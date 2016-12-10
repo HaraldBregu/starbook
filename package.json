@@ -4,8 +4,9 @@
   "description": "This is the web app that run Starbook",
   "main": "app.js",
   "scripts": {
-    "node": "sudo node .",
-    "forever": "sudo forever start .",
+    "start": "sudo forever start .",
+    "restartall": "sudo forever restartall",
+    "stopall": "sudo forever stopall",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Harald Bregu",
