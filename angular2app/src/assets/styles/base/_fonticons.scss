@@ -1,0 +1,109 @@
+@font-face {
+  font-family: 'icomoon';
+  src:  url('/assets/fonts/icomoon.eot?9lheia');
+  src:  url('/assets/fonts/icomoon.eot?9lheia#iefix') format('embedded-opentype'),
+    url('/assets/fonts/icomoon.ttf?9lheia') format('truetype'),
+    url('/assets/fonts/icomoon.woff?9lheia') format('woff'),
+    url('/assets/fonts/icomoon.svg?9lheia#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+[class^="ficon-"], [class*=" ficon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'icomoon' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  margin-right: 5px;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.ficon-anvil:before {
+  content: "\e900";
+}
+.ficon-black:before {
+  content: "\e901";
+}
+.ficon-classroom-pc:before {
+  content: "\e902";
+}
+.ficon-drop:before {
+  content: "\e903";
+}
+.ficon-equipment-1:before {
+  content: "\e904";
+}
+.ficon-equipment:before {
+  content: "\e905";
+}
+.ficon-gardening:before {
+  content: "\e906";
+}
+.ficon-halloween:before {
+  content: "\e907";
+}
+.ficon-light-bulb:before {
+  content: "\e908";
+}
+.ficon-nature-1:before {
+  content: "\e909";
+}
+.ficon-nature-2:before {
+  content: "\e90a";
+}
+.ficon-nature-3:before {
+  content: "\e90b";
+}
+.ficon-nature-4:before {
+  content: "\e90c";
+}
+.ficon-nature-5:before {
+  content: "\e90d";
+}
+.ficon-nature-6:before {
+  content: "\e90e";
+}
+.ficon-nature-7:before {
+  content: "\e90f";
+}
+.ficon-nature-8:before {
+  content: "\e910";
+}
+.ficon-nature-9:before {
+  content: "\e911";
+}
+.ficon-nature:before {
+  content: "\e912";
+}
+.ficon-people-1:before {
+  content: "\e913";
+}
+.ficon-people:before {
+  content: "\e914";
+}
+.ficon-shovel:before {
+  content: "\e915";
+}
+.ficon-tool-1:before {
+  content: "\e916";
+}
+.ficon-tool-2:before {
+  content: "\e917";
+}
+.ficon-tool:before {
+  content: "\e918";
+}
+.ficon-travel-1:before {
+  content: "\e919";
+}
+.ficon-travel:before {
+  content: "\e91a";
+}
+

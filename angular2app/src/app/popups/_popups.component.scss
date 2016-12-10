@@ -1,0 +1,321 @@
+// Popups styles
+$dark-background-color: rgba(0, 0, 0, 0.53);
+$popup-background-color: #ffffff;
+$popup-shadow-style: 0px 2px 4px 0px rgba(0,0,0,0.50);
+$popup-header-color: #212121;
+$popup-header-font-size: 28px;
+$popup-header-letter-spacing: 0.18px;
+$popup-form-font-size: 13px;
+$popup-form-font-color: #212121;
+$popup-form-letter-spacing: 0.08px;
+$popup-input-border: 1px solid #A6A6A6;
+$popup-input-warning-border: 1px solid #DB4F4F;
+$popup-link-color: #0066C0;
+$popup-btn-text-color: #424242;
+$popup-btn-gradient-color-yellow-light: rgba(255,229,137,1);
+$popup-btn-gradient-color-yellow-dark: rgba(254,199,81,1);
+$popup-btn-background-color-gray: #EFF1F3;
+$popup-form-description-border: 1px solid #E7E7E7;
+$popup-form-description-text-color: #8D8D8D;
+$popup-form-description-font-size: 12px;
+$popup-form-description-background-color: #ffffff;
+$popup-notice-text-color: #212121;
+$popup-notice-font-size: 12px;
+$popup-notice-letter-spacing: 0.08px;
+$popup-notice-link-color: #0066C0;
+$popup-login-offer-text-color: #212121;
+$popup-login-offer-font-size: 12px;
+$popup-login-offer-letter-spacing: 0.08px;
+$popup-login-offer-link-color: #0066C0;
+$popup-login-offer-border-style: 1px solid #E7E7E7;
+$popup-form-error-color: #DB4F4F;
+$popup-finish-header-font-size: 24px;
+$popup-finish-header-color: $popup-header-color;
+$popup-finish-header-letter-spacing: 0.15px;
+$popup-finish-text-font-size: 16px;
+$popup-finish-text-color: $popup-header-color;
+$popup-finish-text-letter-spacing: 0.1px;
+$popup-finish-close-background: '/assets/images/cancel.png';
+
+// Alert styles
+$alert-border-style: 1px solid #C40000;
+$alert-header-text-color: #DB4F4F;
+$alert-header-font-size: 17px;
+$alert-header-letter-spacing: 0.11px;
+$alert-content-text-color: #000000;
+$alert-content-font-size: 13px;
+$alert-content-letter-spacing: 0.08px;
+$alert-text-color: #000000;
+$alert-warning-image: '/assets/images/warning.png';
+
+
+.dark-screen {
+  display: block;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: $dark-background-color;
+  z-index: 1030;
+}
+.popup {
+  display: block;
+  position: fixed;
+  background: $popup-background-color;
+  box-shadow: $popup-shadow-style;
+  width: 350px;
+  top: 42px;
+  left: 50%;
+  margin-left: -175px;
+  padding: 27px 25px;
+  z-index: 1031;
+}
+.popup .header {
+  display: block;
+  width: 100%;
+  margin-bottom: 20px;
+  font-family: $font-name;
+  font-size: $popup-header-font-size;
+  font-weight: 400;
+  letter-spacing: $popup-header-letter-spacing;
+  color: $popup-header-color;
+}
+.popup .form-group label {
+  font-family: $font-name;
+  font-size: $popup-form-font-size;
+  color: $popup-form-font-color;
+  letter-spacing: $popup-form-letter-spacing;
+  font-weight: 600;
+  padding: 0 0 0 2px;
+  margin-bottom: 2px;
+}
+.popup .form-group label a.recovery {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding-right: 5px;
+  font-family: $font-name;
+  font-size: $popup-form-font-size;
+  color: $popup-link-color;
+  letter-spacing: $popup-form-letter-spacing;
+  font-weight: 400;
+  text-align: right;
+  text-decoration: none;
+  cursor: pointer;
+}
+.popup .form-group .form-control {
+  font-family: $font-name;
+  height: 30px;
+  border: $popup-input-border;
+  border-radius: 3px;
+  font-size: $popup-form-font-size;
+  color: $popup-form-font-color;
+  letter-spacing: $popup-form-letter-spacing;
+  font-weight: 400;
+  padding: 5px 7px;
+  box-shadow: none !important;
+}
+.popup .form-group .error {
+  display: none;
+}
+.popup .form-group.isError .error {
+  display: block;
+  font-family: $font-name;
+  font-size: $popup-form-font-size;
+  color: $popup-form-error-color;
+  letter-spacing: $popup-form-letter-spacing;
+  font-weight: 400;
+  margin-left: 2px;
+}
+.popup .form-group .form-control.ng-invalid.ng-dirty,
+.popup .form-group .form-control.ng-invalid.ng-touched,
+.popup .form-group.isError .form-control
+{
+  border: $popup-input-warning-border;
+}
+.popup .form-group .btn.btn-warning {
+  width: 100%;
+  height: 30px;
+  font-family: $font-name;
+  border: $popup-input-border;
+  border-radius: 3px;
+  font-size: $popup-form-font-size;
+  color: $popup-btn-text-color;
+  letter-spacing: $popup-form-letter-spacing;
+  font-weight: 600;
+  padding: 5px 7px;
+  background: $popup-btn-gradient-color-yellow-light;
+  text-align: center;
+  margin-top: 18px;
+  outline: none;
+  background: -moz-linear-gradient(top,  $popup-btn-gradient-color-yellow-light 0%, $popup-btn-gradient-color-yellow-dark 100%);
+  background: -webkit-linear-gradient(top,  $popup-btn-gradient-color-yellow-light 0%,$popup-btn-gradient-color-yellow-dark 100%);
+  background: linear-gradient(to bottom,  $popup-btn-gradient-color-yellow-light 0%,$popup-btn-gradient-color-yellow-dark 100%);
+}
+.recovery-form .form-group .btn.btn-warning {
+  margin-top: 10px;
+}
+.popup .form-group .btn.btn-secondary {
+  width: 100%;
+  height: 30px;
+  font-family: $font-name;
+  border: $popup-input-border;
+  border-radius: 3px;
+  font-size: $popup-form-font-size;
+  color: $popup-btn-text-color;
+  letter-spacing: $popup-form-letter-spacing;
+  font-weight: 600;
+  padding: 5px 7px;
+  text-align: center;
+  margin-top: 28px;
+  outline: none;
+  background-color: $popup-btn-background-color-gray;
+  margin-bottom: -1rem;
+}
+.popup .form-description {
+  display: block;
+  position: relative;
+  width: 100%;
+  margin-top: 37px;
+  border-top: $popup-form-description-border;
+}
+.popup .form-description span {
+  display: block;
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  margin-left: -80px;
+  width: 160px;
+  text-align: center;
+  font-family: $font-name;
+  color: $popup-form-description-text-color;
+  font-size: $popup-form-description-font-size;
+  letter-spacing: $popup-form-letter-spacing;
+  background-color: $popup-form-description-background-color;
+  padding: 4px 10px;
+}
+.alert-block {
+  display: block;
+  position: relative;
+  width: 100%;
+  border-radius: 5px;
+  border: $alert-border-style;
+  padding: 0;
+  margin-bottom: 17px;
+  background-color: $popup-background-color;
+}
+.alert-block .alert-icn {
+  display: block;
+  position: absolute;
+  top: 8px;
+  left: 16px;
+  width: 31px;
+  height: 31px;
+  background-image: url($alert-warning-image);
+  background-repeat: no-repeat;
+}
+.alert-block .alert-container {
+  display: block;
+  width: 100%;
+  padding: 15px 56px 19px 58px;
+}
+.alert-block .alert-container .header {
+  display: block;
+  width: 100%;
+  color: $alert-header-text-color;
+  font-family: $font-name;
+  font-size: $alert-header-font-size;
+  letter-spacing: $alert-header-letter-spacing;
+  margin-bottom: 11px;
+  font-weight: 400;
+}
+.alert-block .alert-container p {
+  display: block;
+  width: 100%;
+  color: $alert-content-text-color;
+  font-family: $font-name;
+  font-size: $alert-content-font-size;
+  letter-spacing: $alert-content-letter-spacing;
+  font-weight: 400;
+}
+.form-notice {
+  display: block;
+  width: 100%;
+  font-family: $font-name;
+  color: $popup-notice-text-color;
+  font-size: $popup-notice-font-size;
+  letter-spacing: $popup-notice-letter-spacing;
+  margin-top: 20px;
+}
+.form-notice a {
+  font-family: $font-name;
+  color: $popup-notice-link-color !important;
+  font-size: $popup-notice-font-size;
+  letter-spacing: $popup-notice-letter-spacing;
+  text-decoration: none;
+  cursor: pointer;
+}
+.login-offer {
+  display: block;
+  width: 100%;
+  margin-top: 20px;
+  margin-bottom: -12px;
+  padding-top: 11px;
+  color: $popup-login-offer-text-color;
+  font-family: $font-name;
+  font-size: $popup-login-offer-font-size;
+  letter-spacing: $popup-login-offer-letter-spacing;
+  border-top: $popup-login-offer-border-style;
+  text-align: center;
+}
+.login-offer a {
+  color: $popup-login-offer-link-color !important;
+  font-family: $font-name;
+  font-size: $popup-login-offer-font-size;
+  letter-spacing: $popup-login-offer-letter-spacing;
+  text-decoration: none;
+  cursor: pointer;
+}
+.popup .finish-message {
+  display: block;
+  width: 100%;
+  position: relative;
+}
+.popup .finish-message .header {
+  display: block;
+  width: 100%;
+  text-align: center;
+  font-family: $font-name;
+  font-size: $popup-finish-header-font-size;
+  color: $popup-finish-header-color;
+  letter-spacing: $popup-finish-header-letter-spacing;
+  font-weight: 400;
+  margin-bottom: 0;
+  margin-top: 12px;
+  padding-bottom: 4px;
+}
+.popup .finish-message p {
+  display: block;
+  width: 100%;
+  text-align: center;
+  font-family: $font-name;
+  font-size: $popup-finish-text-font-size;
+  color: $popup-finish-text-color;
+  letter-spacing: $popup-finish-text-letter-spacing;
+  font-weight: 400;
+  margin-top: 23px;
+}
+.popup .finish-message .close-popup {
+  display: block;
+  position: absolute;
+  top:-19px;
+  right: -5px;
+  width: 18px;
+  height: 18px;
+  background-image: url($popup-finish-close-background);
+  background-repeat: no-repeat;
+  cursor: pointer;
+}

@@ -1,0 +1,353 @@
+// General styles
+$font-name: HelveticaNeue, sans-serif;
+$font-name-medium: HelveticaNeue-Medium, sans-serif;
+$letter-spacing: 0.08px;
+$background: #FAFAFA;
+$general-text-color: #000000;
+
+// Left navigation
+$left-navigation-background-color: #ffffff;
+$left-navigation-border-style: 1px solid #CCCCCC;
+$left-navigation-link-color: #212121;
+$left-navigation-link-size: 14px;
+$left-navigation-letter-spacing: 0.09px;
+$left-navigation-link-hover-background-color: #F5F5F5;
+$left-navigation-link-active-background: #324977;
+
+// Order information
+$order-information-text-color: #212121;
+$order-information-background-color: #ffffff;
+$order-information-border-style: 1px solid #DCDCDC;
+$order-information-header-category-font-size: 16px;
+$order-information-header-state-orange: #F5A623;
+$order-information-header-state-green: #7ED321;
+$order-information-header-state-red: #D0021B;
+$order-information-header-state-black: #4A4A4A;
+$order-information-header-category-letter-spacing: 0.1px;
+$order-information-header-category-name-font-size: 18px;
+$order-information-header-category-name-letter-spacing: 0.11px;
+$order-information-order-status-order-id-font-size: 16px;
+$order-information-order-status-order-id-letter-spacing: 0.1px;
+$order-information-btn-primary-background-color: #506795;
+$order-information-btn-primary-border-style: 1px solid #29487D;
+$order-information-btn-primary-text-color: #FFFFFF;
+$order-information-btn-primary-text-size: 12px;
+$order-information-btn-secondary-background-color: #F6F7F9;
+$order-information-btn-secondary-border-style: 1px solid #DDDFE2;
+$order-information-btn-secondary-text-color: #212121;
+$order-information-btn-secondary-text-size: 12px;
+$order-information-product-list-letter-spacing: 0.09px;
+$order-information-product-list-text-color: #4A4A4A;
+$order-information-product-list-header-text-color: #000000;
+$order-information-client-info-item-name-letter-spacing: 0.09px;
+$order-information-client-info-item-name-color: #9B9B9B;
+$order-information-client-info-item-name-font-size: 14px;
+$order-information-client-info-item-name-font-weight: 400;
+$order-information-client-info-item-value-letter-spacing: 0.09px;
+$order-information-client-info-item-value-color: #212121;
+$order-information-client-info-item-value-font-size: 14px;
+$order-information-client-info-item-value-font-weight: 400;
+
+// Order footer
+$order-footer-code-letter-spacing: 0.08px;
+$order-footer-code-color: #212121;
+$order-footer-code-font-size: 12px;
+$order-footer-code-font-weight: 400;
+$order-footer-code-name-color: #9B9B9B;
+
+.container-starbook.without-tabs .row {
+  padding: 40px 0 0 0;
+}
+.container-starbook .orders-container {
+  padding: 34px 38px 0 238px;
+}
+.orders-container .order-information {
+  display: block;
+  width: 100%;
+  background-color: $order-information-background-color;
+  border: $order-information-border-style;
+  border-radius: 3px;
+  margin-bottom: 34px;
+}
+.orders-container .order-information .header {
+  display: block;
+  position: relative;
+  width: 100%;
+  height: 50px;
+  border-bottom: $order-information-border-style;
+}
+.order-information .header .category-services-state {
+  display: inline-block;
+  position: relative;
+  float: left;
+  width: 50%;
+  padding: 15px 17px 15px 42px;
+  font-family: $font-name;
+  color: $order-information-text-color;
+  font-size: $order-information-header-category-font-size;
+  letter-spacing: $order-information-header-category-letter-spacing;
+  font-weight: 400;
+}
+.order-information .header .category-services-state span {
+  display: block;
+  position: absolute;
+  left: 17px;
+  top: 16px;
+  width: 18px;
+  height: 18px;
+  margin-right: 7px;
+  border-radius: 100%;
+}
+.order-information .header .category-services-state span.orange {
+  background-color: $order-information-header-state-orange;
+}
+.order-information .header .category-services-state span.green {
+  background-color: $order-information-header-state-green;
+}
+.order-information .header .category-services-state span.red {
+  background-color: $order-information-header-state-red;
+}
+.order-information .header .category-services-state span.black {
+  background-color: $order-information-header-state-black;
+}
+.order-information .header .order-date {
+  display: inline-block;
+  float: right;
+  width: 50%;
+  text-align: right;
+  padding: 16px 22px 14px 33px;
+  font-family: $font-name-medium;
+  color: $order-information-text-color;
+  font-size: $order-information-order-status-order-id-font-size;
+  letter-spacing: $order-information-order-status-order-id-letter-spacing;
+  font-weight: normal;
+}
+.order-information .header .category-name {
+  display: block;
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  padding: 14px 0 14px 0;
+  font-family: $font-name;
+  color: $order-information-text-color;
+  font-size: $order-information-header-category-name-font-size;
+  letter-spacing: $order-information-header-category-name-letter-spacing;
+  font-weight: 400;
+}
+.order-information .order-body {
+  display: block;
+  width: 100%;
+  padding: 16px 0 24px 0;
+}
+.order-body .row {
+  padding: 0 !important;
+  min-height: 0;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+.order-body .order-row.products {
+  font-family: $font-name;
+  float: left;
+  width: 33.333333% !important;
+  padding-left: 19px;
+  letter-spacing: $order-information-product-list-letter-spacing;
+}
+.order-body .order-row.products .item {
+  display: block;
+  width: 100%;
+  font-size: 14px;
+  font-family: $font-name;
+  font-weight: 400;
+  color: $order-information-product-list-text-color;
+  letter-spacing: $order-information-product-list-letter-spacing;
+}
+.order-body .order-row.products .item strong {
+  font-family: $font-name-medium;
+  font-weight: normal;
+  color: $order-information-product-list-header-text-color;
+}
+.order-body .order-row.description {
+  display: block;
+  width: 310px;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  margin-left: -155px;
+  letter-spacing: $order-information-product-list-letter-spacing;
+  font-family: $font-name;
+  font-weight: 400;
+  color: $order-information-product-list-text-color;
+  padding-left: 0;
+  text-align: left;
+}
+.order-body .client-info {
+  float: right;
+  width: 33.333333% !important;
+  padding-left: 45px;
+  font-family: $font-name;
+  color: $order-information-text-color;
+}
+.order-body .client-info .item {
+  display: block;
+  width: 100%;
+  height: 25px;
+  padding-bottom: 8px;
+}
+.order-body .client-info .item .field-name {
+  display: block;
+  float: left;
+  text-align: right;
+  width: 100px;
+  font-family: $font-name;
+  font-size: $order-information-client-info-item-name-font-size;
+  font-weight: $order-information-client-info-item-name-font-weight;
+  letter-spacing: $order-information-client-info-item-name-letter-spacing;
+  color: $order-information-client-info-item-name-color;
+  padding-right: 20px;
+}
+.order-body .client-info .item .field-value {
+  display: block;
+  float: left;
+  width: 100%;
+  margin-left: -100px;
+  padding-left: 100px;
+  font-family: $font-name;
+  font-size: $order-information-client-info-item-value-font-size;
+  font-weight: $order-information-client-info-item-value-font-weight;
+  letter-spacing: $order-information-client-info-item-value-letter-spacing;
+  color: $order-information-client-info-item-value-color;
+}
+.order-body .client-info .item .field-value strong {
+  font-family: $font-name-medium;
+  font-weight: normal;
+}
+
+.order-information .order-footer {
+  display: block;
+  width: 100%;
+  height: 50px;
+  border-top: $order-information-border-style;
+  padding: 10px 11px;
+}
+.order-information .order-footer .code {
+  display: block;
+  float: left;
+  width: 40%;
+  padding: 8px 6px;
+  font-family: $font-name;
+  letter-spacing: $order-footer-code-letter-spacing;
+  color: $order-footer-code-color;
+  font-size: $order-footer-code-font-size;
+  font-weight: $order-footer-code-font-weight;
+}
+.order-information .order-footer .code span {
+  color: $order-footer-code-name-color;
+}
+.order-information .order-footer .buttons {
+  display: block;
+  float: right;
+  width: 60%;
+  text-align: right;
+}
+.order-footer .buttons .btn-primary,
+.order-footer .buttons .btn-primary:active,
+.order-footer .buttons .btn-primary:hover {
+  height: 28px;
+  font-family: $font-name;
+  background-color: $order-information-btn-primary-background-color;
+  border: $order-information-btn-primary-border-style;
+  color: $order-information-btn-primary-text-color;
+  font-size: $order-information-btn-primary-text-size;
+  letter-spacing: $letter-spacing;
+  font-weight: 600;
+  border-radius: 3px;
+  padding: 6px 8px;
+  margin-left: 10px;
+  outline: none;
+}
+.order-footer .buttons .btn-secondary,
+.order-footer .buttons .btn-secondary:active,
+.order-footer .buttons .btn-secondary:hover {
+  height: 28px;
+  font-family: $font-name;
+  background-color: $order-information-btn-secondary-background-color;
+  border: $order-information-btn-secondary-border-style;
+  color: $order-information-btn-secondary-text-color;
+  font-size: $order-information-btn-secondary-text-size;
+  letter-spacing: $letter-spacing;
+  font-weight: 600;
+  border-radius: 3px;
+  padding: 6px 8px;
+  margin-left: 10px;
+  outline: none;
+}
+.container-starbook .left-navigate {
+  display: block;
+  position: fixed;
+  width: 200px;
+  height: 100%;
+  top: 0;
+  left: 50%;
+  margin-left: -720px;
+  padding: 46px 0 0 0;
+  background-color: $left-navigation-background-color;
+  border-right: $left-navigation-border-style;
+  z-index: 10;
+}
+.container-starbook .left-navigate a {
+  display: block;
+  float: left;
+  position: relative;
+  width: 100%;
+  height: 30px;
+  margin: 5px 0;
+  padding-left: 5px;
+  padding-right: 4px;
+}
+.container-starbook .left-navigate a div {
+  display: block;
+  position: relative;
+  font-family: $font-name;
+  font-weight: 400;
+  padding: 7px 20px;
+  color: $left-navigation-link-color;
+  font-size: $left-navigation-link-size;
+  letter-spacing: $left-navigation-letter-spacing;
+  cursor: pointer !important;
+  border-radius: 1px;
+  background-color: $left-navigation-background-color;
+}
+.container-starbook .left-navigate a span {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: $left-navigation-background-color;
+  height: 100%;
+  width: 4px;
+}
+.container-starbook .left-navigate a:hover div {
+  background-color: $left-navigation-link-hover-background-color;
+  cursor: pointer !important;
+}
+.container-starbook .left-navigate a.active div {
+  font-weight: 700;
+  padding: 6px 20px;
+  background-color: $left-navigation-link-hover-background-color;
+}
+.container-starbook .left-navigate a.active span,
+.container-starbook .left-navigate a.active:hover span {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: $left-navigation-link-active-background;
+}
+
+@media (max-width: 1440px) {
+  .container-starbook .left-navigate {
+    top: 0;
+    left: 0;
+    margin-left: 0;
+  }
+}

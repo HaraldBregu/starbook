@@ -1,0 +1,170 @@
+///
+/// All styles for the Home page
+///
+
+// General styles
+$font-name: HelveticaNeue, sans-serif;
+$font-name-medium: HelveticaNeue-Medium, sans-serif;
+$font-name-light: HelveticaNeue-Light, sans-serif;
+$letter-spacing: 0.08px;
+$background: #FAFAFA;
+$general-text-color: #000000;
+
+// Tabs styles
+$navbar-tabs-items-color: #000000;
+$navbar-tabs-items-letter-spacing: 0.1px;
+$navbar-tabs-background-color: #F5F5F5;
+$navbar-tabs-border-style: 1px solid #DCDCDC;
+$navbar-tabs-border-noactive-style: 1px solid transparent;
+$navbar-tabs-active-background-color: #FAFAFA;
+
+// Services Block styles
+$services-block-background-color: #FCFCFC;
+$services-block-border-color: #DCDCDC;
+$services-block-header-background-color: #FCFCFC;
+$services-block-header-letter-spacing: 0.11px;
+
+// Services item styles
+$services-item-letter-spacing: 0.09px;
+$services-item-font-size: 14px;
+
+.navbar.navbar-tabs {
+  display: block;
+  width: 100%;
+  height: 30px;
+  position: fixed;
+  z-index: 1030;
+  top:40px;
+  left:0;
+  background-color: $navbar-tabs-background-color;
+  border: $navbar-tabs-border-style;
+  padding: 0 !important;
+}
+.container-starbook .nav-pills {
+  margin-left: -15px;
+}
+.nav-pills .nav-item+.nav-item {
+  margin-left: 0 !important;
+}
+.container-starbook .nav-pills .nav-link {
+  position: relative;
+  border-radius: 0 !important;
+  margin: 0;
+  padding: 3px 10px 4px 31px;
+  color: $navbar-tabs-items-color !important;
+  font-family: $font-name-light;
+  font-weight: normal;
+  font-size: 16px;
+  letter-spacing: $navbar-tabs-items-letter-spacing;
+  cursor: pointer;
+  border-left: $navbar-tabs-border-noactive-style;
+  border-right: $navbar-tabs-border-noactive-style;
+}
+.container-starbook .nav-pills .nav-link:hover{
+  background-color: $navbar-tabs-active-background-color;
+  padding: 3px 10px 3px 31px;
+}
+.container-starbook .nav-pills .nav-link i {
+  position: absolute;
+  top: 6px;
+  left: 10px;
+  font-size: 16px;
+  margin-right: 0;
+}
+.container-starbook .nav-pills .nav-link.active {
+  font-family: $font-name-light;
+  font-weight: normal;
+  letter-spacing: $navbar-tabs-items-letter-spacing;
+  background-color: $background;
+  border-left: $navbar-tabs-border-style;
+  border-right: $navbar-tabs-border-style;
+}
+
+.placeholders {
+  margin-bottom: 30px;
+  text-align: center;
+}
+.placeholders h4 {
+  margin-bottom: 0;
+}
+.placeholder {
+  margin-bottom: 20px;
+}
+.placeholder img {
+  display: inline-block;
+  border-radius: 50%;
+}
+
+
+.container-starbook {
+  display: block;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+.container-starbook .row {
+  position: relative;
+  min-height: 100vh;
+  padding: 88px 0 0 0;
+}
+.container-starbook .main {
+  display: block;
+  width: 100%;
+  padding-right: 361px;
+}
+
+.services-block {
+  display: block;
+  width: 300px;
+  background-color: $services-block-background-color;
+  border: 1px solid $services-block-border-color;
+  margin: 0 25px 50px 25px;
+  border-radius: 3px;
+}
+.services-block .header {
+  font-family: $font-name-medium;
+  font-size: 17px;
+  background-color: $services-block-header-background-color;
+  padding: 14px 19px;
+  border-bottom: 1px solid $services-block-border-color;
+  letter-spacing: $services-block-header-letter-spacing;
+}
+.services-block .service {
+  display: block;
+  width: 100%;
+  padding: 28px 23px 2px 23px;
+}
+.services-block .service .item {
+  display: block;
+  position: relative;
+  width: 100%;
+  height: 47px;
+  padding: 0 0 28px 29px;
+  font-weight: 400;
+  font-family: $font-name;
+  font-size: $services-item-font-size;
+  color: $general-text-color;
+  letter-spacing: $services-item-letter-spacing;
+  cursor: pointer;
+  -webkit-font-smoothing: initial !important;
+}
+.services-block .service .item i {
+  display: none;
+}
+.services-block .service .item.checked i {
+  display: block;
+  position: absolute;
+  top: -2px;
+  left: 0;
+  font-size: 19px;
+}
+.services-block .service .item.checked {
+  height: 47px;
+  font-weight: 400;
+  font-family: $font-name;
+  font-size: $services-item-font-size;
+  color: $general-text-color;
+  letter-spacing: $services-item-letter-spacing;
+  cursor: pointer;
+  -webkit-font-smoothing: initial !important;
+}

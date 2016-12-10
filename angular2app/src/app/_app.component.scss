@@ -1,0 +1,95 @@
+// General styles
+$font-name: HelveticaNeue, sans-serif;
+$font-name-medium: HelveticaNeue-Medium, sans-serif;
+$letter-spacing: 0.08px;
+$background: #FAFAFA;
+$general-text-color: #000000;
+
+// Logo styles
+$navbar-brand-font: $font-name;
+$navbar-brand-font-weight: 700;
+$navbar-brand-font-size: 20px;
+$navbar-brand-font-letter-spacing: 0.13px;
+
+// Navbar styles
+$navbar-tagline-letter-spacing: 0.09px;
+$navbar-background-color: #324977;
+$navbar-text-color: #FFFFFF;
+$navbar-font-size: 13px;
+$navbar-border-color: #5A7DB6;
+$navbar-item-background-color: #293C61;
+
+
+html, body {
+  background-color: $background !important;
+}
+.sub-header {
+  padding-bottom: 10px;
+  border-bottom: 1px solid #eee;
+}
+.navbar-fixed-top {
+  border: 0;
+}
+.nav-sidebar > li > a {
+  padding-right: 20px;
+  padding-left: 20px;
+}
+.nav-sidebar > .active > a,
+.nav-sidebar > .active > a:hover,
+.nav-sidebar > .active > a:focus {
+  color: #fff;
+  background-color: #428bca;
+}
+.nav-link.profile {
+  cursor: pointer;
+}
+.navbar {
+  padding: 1px 0 !important;
+  height: 40px;
+}
+.bg-inverse {
+  background-color: $navbar-background-color !important;
+}
+.navbar-brand {
+  font-family: $navbar-brand-font;
+  font-size: $navbar-brand-font-size;
+  font-weight: $navbar-brand-font-weight;
+  color: $navbar-text-color;
+  letter-spacing: $navbar-brand-font-letter-spacing;
+}
+.tagline {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 11px 0;
+  font-family: $font-name-medium;
+  color: $navbar-text-color;
+  font-size: $navbar-font-size;
+  font-weight: normal;
+  letter-spacing: $navbar-tagline-letter-spacing;
+  text-align: center;
+  z-index: 1;
+}
+.container-starbook .nav.navbar-nav.float-xs-right {
+  margin-right: 15px;
+}
+.container-starbook .navbar-nav .nav-item+.nav-item {
+  margin-left: 0 !important;
+}
+.container-starbook .nav-link {
+  position: relative;
+  font-family: $font-name-medium;
+  font-weight: normal;
+  font-size: $navbar-font-size;
+  color: $navbar-text-color !important;
+  letter-spacing: $letter-spacing;
+  padding: 10px 11px 10px 11px;
+  z-index: 2;
+}
+.container-starbook .nav-link:hover,
+.container-starbook .nav-link.active {
+  background-color: $navbar-item-background-color;
+}
+

@@ -1,0 +1,231 @@
+// General styles
+$font-name: HelveticaNeue, sans-serif;
+$letter-spacing: 0.08px;
+$background: #FAFAFA;
+$general-text-color: #000000;
+
+// Left navigation
+$left-navigation-background-color: #ffffff;
+$left-navigation-border-style: 1px solid #CCCCCC;
+$left-navigation-link-color: #212121;
+$left-navigation-link-size: 14px;
+$left-navigation-letter-spacing: 0.09px;
+$left-navigation-link-hover-background-color: #F5F5F5;
+$left-navigation-link-active-border-style: 4px solid #324977;
+
+// Profile settings
+$profile-settings-header-font-size: 20px;
+$profile-settings-header-color: #212121;
+$profile-settings-header-letter-spacing: 0.13px;
+$profile-settings-input-border-style: 1px solid #DCDCDC;
+$profile-settings-input-background-color: #FFFFFF;
+$profile-settings-input-text-color: #4A4A4A;
+$profile-settings-input-font-size: 16px;
+$profile-settings-input-letter-spacing: 0.1px;
+$profile-settings-password-text-color: $profile-settings-input-text-color;
+$profile-settings-password-font-size: 30px;
+$profile-settings-password-letter-spacing: 0.19px;
+$profile-settings-btn-border-style: 1px solid #979797;
+$profile-settings-btn-border-radius: 2px;
+$profile-settings-btn-text-color: #2A0202;
+$profile-settings-btn-font-size: 18px;
+$profile-settings-btn-letter-spacing: 0.11px;
+$profile-settings-btn-gradient-color-yellow-light: #FFE689;
+$profile-settings-btn-gradient-color-yellow-dark: #FEC751;
+
+// Information block
+$profile-information-background-color: #DFF0D8;
+$profile-information-border-style: 1px solid #D6E9C6;
+$profile-information-border-radius: 3px;
+$profile-information-text-color: #3C763D;
+$profile-information-font-size: $profile-settings-input-font-size;
+$profile-information-letter-spacing: $profile-settings-input-letter-spacing;
+$profile-information-strong-text-color: #3C763D;
+$profile-information-strong-font-size: $profile-settings-input-font-size;
+$profile-information-strong-letter-spacing: $profile-settings-input-letter-spacing;
+
+.container-starbook.without-tabs .row {
+  padding: 40px 0 0 0;
+}
+//.container-starbook .left-navigate {
+//  display: block;
+//  position: fixed;
+//  width: 200px;
+//  height: 100%;
+//  top: 0;
+//  left: 50%;
+//  margin-left: -720px;
+//  padding: 46px 0 0 0;
+//  background-color: $left-navigation-background-color;
+//  border-right: $left-navigation-border-style;
+//  z-index: 10;
+//}
+//.container-starbook .left-navigate a {
+//  display: block;
+//  font-family: $font-name;
+//  font-weight: 400;
+//  margin: 5px 9px;
+//  padding: 7px 21px;
+//  color: $left-navigation-link-color;
+//  font-size: $left-navigation-link-size;
+//  letter-spacing: $left-navigation-letter-spacing;
+//  cursor: pointer !important;
+//}
+//.container-starbook .left-navigate a:hover {
+//  background-color: $left-navigation-link-hover-background-color;
+//  border-radius: 1px;
+//  cursor: pointer !important;
+//}
+//.container-starbook .left-navigate a.active,
+//.container-starbook .left-navigate a.active:hover {
+//  font-weight: 700;
+//  margin: 5px 9px 5px 0;
+//  padding: 7px 21px 7px 26px;
+//  border-left: $left-navigation-link-active-border-style;
+//  background-color: transparent;
+//}
+.profile-settings {
+  display: block;
+  width: 700px;
+  margin: 23px auto 0;
+  padding-left: 200px;
+}
+.profile-settings .header {
+  display: block;
+  width: 100%;
+  font-family: $font-name;
+  font-size: $profile-settings-header-font-size;
+  color: $profile-settings-header-color;
+  letter-spacing: $profile-settings-header-letter-spacing;
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+.profile-settings .header.second {
+  margin-top: 33px;
+  margin-bottom: 18px;
+}
+.profile-settings .form-group {
+  margin-bottom: 16px !important;
+  height: 40px;
+}
+.profile-settings input {
+  height: 38px;
+  border: $profile-settings-input-border-style;
+  background-color: $profile-settings-input-background-color;
+  color: $profile-settings-input-text-color;
+  font-family: $font-name;
+  font-size: $profile-settings-input-font-size;
+  letter-spacing: $profile-settings-input-letter-spacing;
+  font-weight: 400;
+  padding: 11px 16px;
+  outline: none;
+}
+.profile-settings .password-block {
+  display: inline-table;
+}
+.profile-settings .password-block input {
+  display: table-cell;
+  width: 216px;
+}
+.password-block .change-password {
+  display: table-cell;
+  text-align: right;
+  position: relative;
+  width: 139px;
+}
+.password-block .password {
+  display: table-cell;
+  position: relative;
+  width: 145px;
+  margin-left: 33px;
+  font-family: $font-name;
+  color: $profile-settings-password-text-color;
+  font-size: $profile-settings-password-font-size;
+  letter-spacing: $profile-settings-password-letter-spacing;
+  text-align: right;
+}
+.password-block .password span {
+  position: absolute;
+  width: 100%;
+  top: -2px;
+  left: 0;
+}
+.profile-settings .btn-primary,
+.profile-settings .btn-primary:active,
+.profile-settings .btn-primary:hover {
+  height: 30px;
+  font-family: $font-name;
+  background-color: $order-information-btn-primary-background-color;
+  border: $order-information-btn-primary-border-style;
+  color: $order-information-btn-primary-text-color;
+  font-size: $order-information-btn-primary-text-size;
+  letter-spacing: $letter-spacing;
+  font-weight: 600;
+  border-radius: 3px;
+  padding: 7px 7px 7px 7px;
+  margin-left: 10px;
+  outline: none;
+}
+.password-block .change-password .btn-primary,
+.password-block .change-password .btn-primary:active,
+.password-block .change-password .btn-primary:hover {
+  display: block;
+  position: absolute;
+  top: 4px;
+  right: 0;
+}
+.form-group.double-input input.first {
+  display: inline-block;
+  float: left;
+  width: 370px;
+}
+.form-group.double-input input.second {
+  display: inline-block;
+  float: right;
+  width: 108px;
+  margin-left: 13px;
+}
+.profile-settings .profile-information {
+  display: block;
+  width: 100%;
+  background-color: $profile-information-background-color;
+  border: $profile-information-border-style;
+  border-radius: $profile-information-border-radius;
+  padding: 18px 26px 22px 19px;
+  margin-top: 33px;
+  margin-bottom: 20px;
+  font-family: $font-name;
+  color: $profile-information-text-color;
+  font-size: $profile-information-font-size;
+  letter-spacing: $profile-information-letter-spacing;
+  font-weight: 400;
+}
+.profile-settings .profile-information strong {
+  color: $profile-information-strong-text-color;
+  font-size: $profile-information-strong-font-size;
+  letter-spacing: $profile-information-strong-letter-spacing;
+  font-weight: 700;
+}
+.profile-settings .btn-warning, .profile-settings .btn-warning:hover, .profile-settings .btn-warning:active {
+  width: 100%;
+  height: 43px;
+  margin-top: 0;
+  border: $profile-settings-btn-border-style;
+  border-radius: $profile-settings-btn-border-radius;
+  background: $profile-settings-btn-gradient-color-yellow-light;
+  background: -moz-linear-gradient(top,  $profile-settings-btn-gradient-color-yellow-light 0%, $profile-settings-btn-gradient-color-yellow-dark 100%);
+  background: -webkit-linear-gradient(top,  $profile-settings-btn-gradient-color-yellow-light 0%,$profile-settings-btn-gradient-color-yellow-dark 100%);
+  background: linear-gradient(to bottom,  $profile-settings-btn-gradient-color-yellow-light 0%,$profile-settings-btn-gradient-color-yellow-dark 100%);
+  color: $profile-settings-btn-text-color;
+  font-size: $profile-settings-btn-font-size;
+  letter-spacing: $profile-settings-btn-letter-spacing;
+  font-weight: 700;
+}
+
+@media (max-width: 1440px) {
+  .container-starbook .left-navigate {
+    top: 0;
+    left: 0;
+    margin-left: 0;
+  }
+}

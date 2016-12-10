@@ -1,0 +1,24 @@
+<nav class="navbar navbar-dark navbar-fixed-top bg-inverse">
+  <div class="container-starbook">
+    <a class="navbar-brand" href="#">Starbook</a>
+    <div class="tagline">{{tagline}}</div>
+    <ul class="nav navbar-nav float-xs-right" *ngIf="auth !== false">
+      <li class="nav-item">
+        <a class="nav-link home" routerLink="" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">Home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link orders" routerLink="/orders" routerLinkActive="active">Orders</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link profile" routerLink="/profile" routerLinkActive="active">{{auth.fullname}}</a>
+      </li>
+    </ul>
+    <ul class="nav navbar-nav float-xs-right" *ngIf="auth === false">
+      <li class="nav-item" *ngIf="auth === false">
+        <a class="nav-link profile" (click)="getLoginPopup()">Login</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+<router-outlet></router-outlet>
+<app-popups [activePopup]="activePopup" (close)="closePopup()"></app-popups>

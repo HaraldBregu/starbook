@@ -1,0 +1,125 @@
+import { Injectable } from '@angular/core';
+import {Http, URLSearchParams, Headers } from '@angular/http';
+import 'rxjs/add/operator/toPromise';
+
+export interface IAddress {
+  street: string;
+  street_number: number;
+  city: string;
+  postal_code: number;
+  province: string;
+  country: string;
+  country_code: string;
+  selected: boolean;
+  isFull: boolean;
+  formattedAddress: string;
+}
+
+@Injectable()
+export class OrderService {
+  private api: string;
+  private auth;
+  private googleApi: string;
+  constructor(private http: Http) {
+    this.api = 'https://api.starbook.co/v0.9.1/';
+    this.googleApi = 'https://maps.googleapis.com/maps/api/geocode/json';
+  }
+
+  private _makeHeaders() {
+    let headers;
+    if (localStorage.getItem('auth') !== null) {
+      this.auth = JSON.parse(localStorage.getItem('auth'));
+      headers = new Headers({'Token': this.auth.token});
+    } else {
+      this.auth = false;
+      headers = new Headers({'Token': ''});
+    }
+    return {headers: headers};
+  }
+
+  saveOrder(orderData) {
+    return this.http.post(this.api + 'orders', {
+      category_type: orderData.category_type,
+      delivery_description: orderData.delivery_description,
+      delivery_details: orderData.delivery_details,
+      delivery_date: orderData.delivery_date,
+      street: orderData.street,
+      street_number: orderData.street_number,
+      city: orderData.city,
+      postal_code: orderData.postal_code,
+      province: orderData.province,
+      country: orderData.country,
+      country_code: orderData.country_code
+    }, this._makeHeaders())
+      .toPromise()
+      .then((response) => {
+        return true;
+      })
+      .catch(this.handleError);
+  }
+
+  getAddresses(key: string) {
+    let params = new URLSearchParams();
+    let addresses: IAddress[] = [];
+    params.set('address', key);
+    params.set('language', 'it');
+    return this.http.get(this.googleApi, {search: params})
+      .toPromise()
+      .then((response) => {
+        let data: any[] = response.json().results;
+        data.forEach((address) => {
+          let addressData: IAddress = {
+            street: '',
+            street_number: null,
+            city: '',
+            postal_code: null,
+            province: '',
+            country: '',
+            country_code: '',
+            selected: false,
+            isFull: false,
+            formattedAddress: ''
+          };
+
+          address.address_components.forEach((components) => {
+            switch (components.types[0]) {
+              case 'street_number':
+                addressData.street_number = components.long_name;
+                break;
+              case 'route':
+                addressData.street = components.long_name;
+                break;
+              case 'locality':
+                addressData.city = components.long_name;
+                break;
+              case 'administrative_area_level_2':
+                addressData.province = components.long_name;
+                break;
+              case 'country':
+                addressData.country = components.long_name;
+                addressData.country_code = components.short_name;
+                break;
+              case 'postal_code':
+                addressData.postal_code = components.long_name;
+            }
+          });
+
+          addressData.formattedAddress = address.formatted_address;
+
+          if (address.types[0] === 'street_address') {
+            addressData.isFull = true;
+          }
+
+          if (addressData.country_code === 'IT') {
+            addresses.push(addressData);
+          }
+        });
+        return addresses;
+      })
+      .catch(this.handleError);
+  }
+
+  private handleError(error: any): Promise<any> {
+    return Promise.reject(error.status || error);
+  }
+}

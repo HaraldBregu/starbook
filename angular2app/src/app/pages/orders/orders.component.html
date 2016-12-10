@@ -1,0 +1,74 @@
+<div class="container-starbook without-tabs">
+  <div class="row">
+    <div class="left-navigate">
+      <a *ngFor="let tab of tabs" [ngClass]="{'active':tab.selected}" (click)="renderPage(tab.name)">
+        <span></span>
+        <div>{{tab.name}}</div>
+      </a>
+    </div>
+    <div class="col-xl-12 orders-container">
+      <div class="order-information" *ngFor="let order of pageData">
+        <div class="header">
+          <div class="category-services-state" *ngIf="order.status === 0">
+            <span class="orange"></span> In attesa di conferma
+          </div>
+          <div class="category-services-state" *ngIf="order.status === 1">
+            <span class="green"></span> Confermato
+          </div>
+          <div class="category-services-state" *ngIf="order.status === 2">
+            <span class="red"></span> Cancellato
+          </div>
+          <div class="category-name">
+            {{ categories[order.category_type] }}
+          </div>
+          <div class="order-date">
+            {{ dateFormating(order.delivery_date) }}
+          </div>
+        </div>
+        <div class="order-body">
+          <div class="row">
+            <div class="order-row products col-xl-4">
+              <div class="item" *ngFor="let product of itemsFormating(order.delivery_details)"><strong>{{ product.name }}:</strong> {{ product.items }}</div>
+            </div>
+            <div class="order-row description col-xl-4">
+              {{ order.delivery_description }}
+            </div>
+            <div class="client-info col-xl-4">
+              <div class="item">
+                <div class="field-name">Richiedente:</div>
+                <div class="field-value"><strong>{{ order.applicant.fullname }}</strong></div>
+              </div>
+              <div class="item">
+                <div class="field-name">Cellulare:</div>
+                <div class="field-value">{{ order.applicant.phone_number | phone }}</div>
+              </div>
+              <div class="item">
+                <div class="field-name">Email:</div>
+                <div class="field-value">{{ order.applicant.email }}</div>
+              </div>
+              <div class="item">
+                <div class="field-name">Indirizzo:</div>
+                <div class="field-value">
+                  {{ order.street }}, {{ order.street_number }}<br>
+                  {{ order.city }}, {{ order.postal_code }}<br>
+                  {{ order.province }}, {{ order.country }}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="order-footer">
+          <div class="code">
+            <span>CODICE:</span>
+            {{ order._id }}
+          </div>
+          <div class="buttons">
+            <button class="btn btn-secondary">Elimina ordine</button>
+            <button class="btn btn-primary">Conferma ordine</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

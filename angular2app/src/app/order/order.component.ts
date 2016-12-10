@@ -1,0 +1,176 @@
+import { Component, Input, OnInit } from '@angular/core';
+import { OrderService, IAddress } from './order.service';
+
+@Component({
+  selector: 'app-order',
+  templateUrl: './order.component.html'
+})
+export class OrderComponent implements OnInit {
+  @Input() orderData;
+  @Input('orderIsFull') orderIsFull;
+  @Input('activeServiceCategoryType') activeServiceCategoryType;
+
+  public it: any;
+  public timePicker = [];
+  public months: {};
+  public timePickerIsShow = false;
+  public addresses = [];
+  public selectedAddress: IAddress = {
+    street: '',
+    street_number: null,
+    city: '',
+    postal_code: null,
+    province: '',
+    country: '',
+    country_code: '',
+    selected: false,
+    isFull: false,
+    formattedAddress: ''
+  };
+  public isAddressFull = true;
+  public isAddressDirty = false;
+  public Order = {
+    category_type: 0,
+    delivery_details: '',
+    delivery_description: '',
+    applicant_fullname: 'none',
+    applicant_email: 'none',
+    applicant_phone: 'none',
+    delivery_address: '',
+    date: null,
+    time: '',
+    delivery_date: '',
+    street: '',
+    street_number: null,
+    city: '',
+    postal_code: null,
+    province: '',
+    country: '',
+    country_code: ''
+  };
+  public activePopup = '';
+
+  constructor(private orderService: OrderService) {
+    for (let i = 0; i < 24; i++) {
+      if (i > 9) {
+        this.timePicker.push(i + ':00', i + ':30');
+      } else {
+        this.timePicker.push('0' + i + ':00', '0' + i + ':30');
+      }
+    }
+    this.months = {
+      1: 'Gennaio',
+      2: 'Febbraio',
+      3: 'Marzo',
+      4: 'Aprile',
+      5: 'Maggio',
+      6: 'Giugno',
+      7: 'Luglio',
+      8: 'Agosto',
+      9: 'Settembre',
+      10: 'Ottobre',
+      11: 'Novembre',
+      12: 'Dicembre'
+    };
+  }
+
+  toggleTimepicker() {
+    this.timePickerIsShow = !this.timePickerIsShow;
+  }
+
+  closeTimepicker() {
+    this.timePickerIsShow = false;
+  }
+
+  selectTime(time) {
+    this.Order.time = time;
+  }
+
+  getAddresses(event) {
+    this.isAddressDirty = true;
+    this.isAddressFull = false;
+    if (event.query.length > 2) {
+      this.orderService.getAddresses(event.query)
+        .then((data) => {
+          this.addresses = [];
+          this.addresses = data;
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
+  }
+
+  selectAddress(value: IAddress) {
+    if (value.isFull) {
+      this.isAddressFull = true;
+    } else {
+      this.isAddressFull = false;
+    }
+    this.selectedAddress = value;
+  }
+
+  createOrder() {
+    let date = new Date(this.Order.date);
+    let userData = localStorage.getItem('auth');
+    if (userData !== null) {
+      let day = date.getDate() > 9 ? date.getDate() : '0' + date.getDate();
+      let correctMonth = 1 + date.getMonth();
+      let month = correctMonth > 9 ? correctMonth : '0' + correctMonth;
+      this.Order.delivery_date = date.getFullYear() + '-' + month + '-' + day + 'T' + this.Order.time + ':00.000Z';
+      this.Order.category_type = this.activeServiceCategoryType;
+      this.orderData.forEach((orderCategory) => {
+        this.Order.delivery_details += orderCategory.name + ': ';
+        let categoryItemsIndex = 0;
+        orderCategory.items.forEach((orderItems) => {
+          if (categoryItemsIndex === 0) {
+            this.Order.delivery_details += orderItems.name;
+          } else {
+            this.Order.delivery_details += ', ' + orderItems.name;
+          }
+          categoryItemsIndex++;
+        });
+        this.Order.delivery_details += '||';
+      });
+
+      this.Order.street = this.selectedAddress.street;
+      this.Order.street_number = this.selectedAddress.street_number;
+      this.Order.city = this.selectedAddress.city;
+      this.Order.postal_code = this.selectedAddress.postal_code;
+      this.Order.province = this.selectedAddress.province;
+      this.Order.country = this.selectedAddress.country;
+      this.Order.country_code = this.selectedAddress.country_code;
+
+      this.orderService.saveOrder(this.Order)
+        .then((status) => {
+          this.Order.delivery_details = '';
+          this.Order.delivery_address = '';
+          this.Order.delivery_description = '';
+          this.Order.date = null;
+          this.Order.time = '';
+          this.Order.delivery_date = '';
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    } else {
+      this.activePopup = 'login';
+    }
+  }
+
+  closePopup() {
+    this.activePopup = '';
+  }
+
+  ngOnInit() {
+    this.it = {
+      firstDayOfWeek: 1,
+      dayNames: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+      dayNamesShort: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
+      dayNamesMin: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'],
+      monthNames: ['Gennaio', 'Febbraio', 'Marzo', 'Aprile', 'Maggio', 'Giugno',
+        'Luglio', 'Agosto', 'Settembre', 'Ottobre', 'Novembre', 'Dicembre'],
+      monthNamesShort: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+    };
+  }
+}

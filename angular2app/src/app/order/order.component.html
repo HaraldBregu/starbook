@@ -1,0 +1,61 @@
+<div class="col-sm-3 col-md-2 sidebar">
+  <form class="sidebar-container" #orderForm="ngForm">
+    <div class="sidebar-block">
+      <h2>Dettagli Ordine</h2>
+      <div class="order-container" *ngIf="orderIsFull">
+        <span *ngFor="let orderCategory of orderData">
+          <div class="category-group" *ngFor="let orderItem of orderCategory.items">
+            <strong>{{orderCategory.name}}:</strong>
+            <span>{{orderItem.name}}</span>
+        </div>
+        </span>
+
+      </div>
+
+      <div class="add-order-form">
+        <div class="form-group">
+          <div class="input-group date datepicker-block">
+            <span class="fa fa-calendar"></span>
+            <p-calendar name="dataOra" [(ngModel)]="Order.date" id="dataOra" class="form-control" placeholder="Inserisci la data del ordine" required autocomplete="off" dateFormat="dd MM yy" [locale]="it">
+            </p-calendar>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="input-group date">
+            <span class="fa fa-clock-o" (click)="toggleTimepicker()"></span>
+            <input id="timeOra" class="form-control" type="text" name="timeOra" [(ngModel)]="Order.time" value="{{Order.time}}" placeholder="Inserisci l’ora" required autocomplete="off" (click)="toggleTimepicker()" (clickOutside)="closeTimepicker()">
+          </div>
+          <div class="time-picker" *ngIf="timePickerIsShow">
+            <div class="time-elem" *ngFor="let time of timePicker" (click)="selectTime(time)">{{time}}</div>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="input-group date">
+            <span class="fa fa-map-marker"></span>
+            <p-autoComplete id="luogo" class="form-control text-small" placeholder="Inserisci l’indirizzo del ordine" [ngClass]="{'isError':isAddressFull === false && isAddressDirty === true}" [(ngModel)]="Order.delivery_address" [ngModelOptions]="{standalone: true}" [suggestions]="addresses" field="formattedAddress" (completeMethod)="getAddresses($event)" (onSelect)="selectAddress($event)">
+            </p-autoComplete>
+          </div>
+          <div class="error-block" *ngIf="!isAddressFull && isAddressDirty">Please enter the full address</div>
+        </div>
+        <div class="form-group">
+          <textarea class="form-control" id="nota" name="applicant_description" [(ngModel)]="Order.delivery_description" placeholder="Aggiungi una nota opzionale…" required></textarea>
+        </div>
+        <div class="form-group">
+          <button class="btn btn-warning btn-block" (click)="createOrder()" [disabled]="!orderForm.form.valid || !orderIsFull || !isAddressFull">Conferma l’ordine</button>
+        </div>
+        <div class="footer-links">
+          <p>
+            <a href="#">Privacy</a> •
+            <a href="#">Condizioni</a> •
+            <a href="#">Informazioni</a> •
+            <a href="#">Assistenza</a>
+          </p>
+          <p>
+            Starbook &copy; 2016
+          </p>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+<app-popups [activePopup]="activePopup" (close)="closePopup()"></app-popups>

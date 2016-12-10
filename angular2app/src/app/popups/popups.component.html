@@ -1,0 +1,101 @@
+<div class="dark-screen" *ngIf="activePopup !== ''" (click)="closePopup()"></div>
+<!-- Login popup -->
+<div class="popup" *ngIf="activePopup === 'login'">
+  <div class="alert-block" *ngIf="formError">
+    <div class="alert-icn"></div>
+    <div class="alert-container">
+      <div class="header">Si è verificato un errore!</div>
+      <p>{{formError.message}}</p>
+    </div>
+  </div>
+  <div class="header">Accedi</div>
+  <form class="login-form" #loginForm="ngForm">
+    <div class="form-group" [ngClass]="{'isError': loginError.email}">
+      <label for="email">Indirizzo e-mail</label>
+      <input id="email" class="form-control" type="email" name="email" placeholder="" required [(ngModel)]="loginData.email" #email="ngModel" (keyup)="checkEmail('login', email.value)">
+      <span class="error">Indirizzo e-mail non valido</span>
+    </div>
+    <div class="form-group">
+      <label for="password">Password <a class="recovery" (click)="getPopup('recovery')">Password dimenticata</a></label>
+      <input id="password" class="form-control" type="password" name="password" placeholder="" required [(ngModel)]="loginData.password" #password="ngModel">
+    </div>
+    <div class="form-group">
+      <button class="btn btn-warning" type="submit" [disabled]="!loginForm.form.valid" (click)="login(email.value, password.value)">Accedi</button>
+    </div>
+    <div class="form-description">
+      <span>Sei nuovo su Starbook?</span>
+    </div>
+    <div class="form-group">
+      <button class="btn btn-secondary" (click)="getPopup('registration')">Crea il tuo account Starbook</button>
+    </div>
+  </form>
+</div>
+
+<!-- Registration popup -->
+<div class="popup" *ngIf="activePopup === 'registration'">
+  <div class="alert-block" *ngIf="formError">
+    <div class="alert-icn"></div>
+    <div class="alert-container">
+      <div class="header">{{formError.title}}</div>
+      <p>{{formError.message}}</p>
+    </div>
+  </div>
+  <div class="header">Nuovo account</div>
+  <form class="registration-form" #registrationForm="ngForm">
+    <div class="form-group">
+      <label for="regName">Il tuo nome completo</label>
+      <input id="regName" class="form-control" type="text" name="name" placeholder="" required [(ngModel)]="registrationData.name" #regName="ngModel">
+    </div>
+    <div class="form-group" [ngClass]="{'isError': registrationError.email}">
+      <label for="regEmail">E-mail</label>
+      <input id="regEmail" class="form-control" type="email" name="email" placeholder="" required [(ngModel)]="registrationData.email" #regEmail="ngModel" (keyup)="checkEmail('registration', regEmail.value)">
+      <span class="error">Indirizzo e-mail non valido</span>
+    </div>
+    <div class="form-group">
+      <label for="regPassword">Password</label>
+      <input id="regPassword" class="form-control" type="password" name="password" placeholder="" required [(ngModel)]="registrationData.password" #regPassword="ngModel">
+    </div>
+    <div class="form-group" [ngClass]="{'isError': registrationError.password}">
+      <label for="regPasswordConfirm">Di nuovo la password</label>
+      <input id="regPasswordConfirm" class="form-control" type="password" name="passwordConfirm" placeholder="" required [(ngModel)]="registrationData.passwordConfirm" #regPasswordConfirm="ngModel" (keyup)="checkPassword(regPassword.value, regPasswordConfirm.value)">
+      <span class="error">Le password non corrispondono</span>
+    </div>
+    <div class="form-group">
+      <button class="btn btn-warning" type="submit" [disabled]="!registrationForm.form.valid" (click)="registration(regName.value, regEmail.value, regPassword.value, regPasswordConfirm.value)">Crea il tuo account Starbook</button>
+    </div>
+  </form>
+  <div class="form-notice">Accedendo dichiari di aver letto e accetti le <a>condizioni generali</a> e <a>l’informativa sulla privacy</a></div>
+  <div class="login-offer">Hai gia un account su Starbook? <a (click)="getPopup('login')">Accedi</a></div>
+</div>
+
+<!-- Recovery popup -->
+<div class="popup" *ngIf="activePopup === 'recovery'">
+  <div class="alert-block" *ngIf="formError">
+    <div class="alert-icn"></div>
+    <div class="alert-container">
+      <div class="header">{{formError.title}}</div>
+      <p>{{formError.message}}</p>
+    </div>
+  </div>
+  <div class="header">Recupera password</div>
+  <form class="recovery-form" #recoveryForm="ngForm">
+    <div class="form-group">
+      <label for="recoveryEmail">E-mail</label>
+      <input id="recoveryEmail" class="form-control" type="text" name="name" placeholder="" required [(ngModel)]="recoveryData.email" #recoveryEmail="ngModel">
+    </div>
+    <div class="form-group">
+      <button class="btn btn-warning" type="submit" [disabled]="!recoveryForm.form.valid" (click)="recovery(recoveryEmail.value)">Invia mail per recuperare la password</button>
+    </div>
+  </form>
+  <div class="login-offer">Hai gia un account su Starbook? <a (click)="getPopup('login')">Accedi</a></div>
+</div>
+
+<!-- Finish popup -->
+<div class="popup" *ngIf="activePopup === 'finish'">
+  <div class="finish-message">
+    <a (click)="closePopup()" class="close-popup"></a>
+    <div class="header">Check your inbox</div>
+    <p>We sent a password reset link to your email address. Please click the link in the email to create e new password.</p>
+    <p>The link will only be active for 1 hour. After that you will need to request a new one.</p>
+  </div>
+</div>

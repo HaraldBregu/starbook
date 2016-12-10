@@ -1,0 +1,86 @@
+<div class="container-starbook without-tabs">
+  <div class="row">
+    <div class="left-navigate">
+      <a *ngFor="let tab of tabs" [ngClass]="{'active':tab.selected}" (click)="renderPage(tab.name)">
+        <span></span>
+        <div>{{tab.name}}</div>
+      </a>
+    </div>
+    <div class="profile-settings">
+      <div class="header">Informazioni generali del account</div>
+      <form #changProfile="ngForm">
+        <div class="form-group">
+          <input class="form-control" name="name" #fullname="ngModel" [(ngModel)]="userData.fullname" required disabled>
+        </div>
+        <div class="form-group password-block">
+          <input class="form-control" name="email" value="harald.bregu@gmail.com" #email="ngModel" [(ngModel)]="userData.email" required disabled>
+          <div class="password">
+            <span>•••••••••••</span>
+          </div>
+          <div class="change-password">
+            <button type="button" class="btn btn-primary" (click)="getPopup('changePassword')">Modifica password</button>
+          </div>
+        </div>
+        <div class="form-group">
+          <input class="form-control" name="phone" #phone_number="ngModel" [(ngModel)]="userData.phone_number">
+        </div>
+        <div class="header second">Indirizzo di fatturazione</div>
+        <div class="form-group double-input">
+          <input class="form-control first" name="address1" #street_name="ngModel" [(ngModel)]="userData.street_name" placeholder="Via">
+          <input class="form-control second" name="number1" #street_number="ngModel" [(ngModel)]="userData.street_number" placeholder="Nr">
+        </div>
+        <div class="form-group double-input">
+          <input class="form-control first" name="address2" #city="ngModel" [(ngModel)]="userData.city" placeholder="Città">
+          <input class="form-control second" name="number2" #postal_code="ngModel" [(ngModel)]="userData.postal_code" placeholder="CAP">
+        </div>
+        <div class="form-group double-input">
+          <input class="form-control first" name="city" #province="ngModel" [(ngModel)]="userData.province" placeholder="Provincia">
+          <input class="form-control second" name="country" #country="ngModel" [(ngModel)]="userData.country" placeholder="Nazione">
+        </div>
+        <div class="form-group">
+          <input class="form-control" name="piva" placeholder="P.IVA">
+        </div>
+        <div class="form-group">
+          <input class="form-control" name="codice" placeholder="Codice Fiscale">
+        </div>
+        <div class="profile-information" *ngIf="formError">
+          <strong *ngIf="formError.title.length > 0">{{formError.title}}</strong> {{formError.message}}
+        </div>
+        <div class="form-group">
+          <button type="button" class="btn btn-warning" (click)="updateProfile()">Aggiorna Informazioni</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<div class="dark-screen" *ngIf="activePopup !== ''" (click)="closePopup()"></div>
+<!-- Change password -->
+<div class="popup" *ngIf="activePopup === 'changePassword'">
+  <div class="alert-block" *ngIf="formError">
+    <div class="alert-icn"></div>
+    <div class="alert-container">
+      <div class="header">{{formError.title}}</div>
+      <p>{{formError.message}}</p>
+    </div>
+  </div>
+  <div class="header">Change password</div>
+  <form class="login-form" #changePasswordForm="ngForm">
+    <div class="form-group" [ngClass]="{'isError': changePasswordError.currentPassword}">
+      <label for="currentPassword">La tua password</label>
+      <input id="currentPassword" class="form-control" type="password" name="currentPassword" placeholder="" required [(ngModel)]="changePasswordData.currentPassword" #currentPassword="ngModel">
+      <span class="error">La tua password attuale è richiesta</span>
+    </div>
+    <div class="form-group">
+      <label for="newPassword">Nuova password</label>
+      <input id="newPassword" class="form-control" type="password" name="newPassword" placeholder="" required [(ngModel)]="changePasswordData.newPassword" #newPassword="ngModel">
+    </div>
+    <div class="form-group" [ngClass]="{'isError': changePasswordError.passwordConfirm}">
+      <label for="passwordConfirm">Di nuovo la nuova password</label>
+      <input id="passwordConfirm" class="form-control" type="password" name="password" placeholder="" required [(ngModel)]="changePasswordData.passwordConfirm" #passwordConfirm="ngModel" (keyup)="checkPassword(newPassword.value, passwordConfirm.value)">
+      <span class="error">Le password non corrispondono</span>
+    </div>
+    <div class="form-group">
+      <button class="btn btn-warning" type="submit" [disabled]="!changePasswordForm.form.valid" (click)="changePassword(currentPassword.value, newPassword.value, passwordConfirm.value)">Change password</button>
+    </div>
+  </form>
+</div>
