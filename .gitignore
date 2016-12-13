@@ -1,3 +1,14 @@
 /node_modules
 /angular2app/node_modules
 
+# IDEs and editors
+/.idea
+/.vscode
+.project
+.classpath
+*.launch
+.settings/
+
+#System Files
+.DS_Store
+Thumbs.db
