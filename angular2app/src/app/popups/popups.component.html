@@ -1,6 +1,6 @@
-<div class="dark-screen" *ngIf="activePopup !== ''" (click)="closePopup()"></div>
+<div class="dark-screen" [@shadowState]="shadowState" (click)="closePopup()"></div>
 <!-- Login popup -->
-<div class="popup" *ngIf="activePopup === 'login'">
+<div class="popup" [@loginPopupState]="loginPopupState">
   <div class="alert-block" *ngIf="formError">
     <div class="alert-icn"></div>
     <div class="alert-container">
@@ -32,7 +32,7 @@
 </div>
 
 <!-- Registration popup -->
-<div class="popup" *ngIf="activePopup === 'registration'">
+<div class="popup" [@registrationPopupState]="registrationPopupState">
   <div class="alert-block" *ngIf="formError">
     <div class="alert-icn"></div>
     <div class="alert-container">
@@ -69,7 +69,7 @@
 </div>
 
 <!-- Recovery popup -->
-<div class="popup" *ngIf="activePopup === 'recovery'">
+<div class="popup" [@recoveryPopupState]="recoveryPopupState">
   <div class="alert-block" *ngIf="formError">
     <div class="alert-icn"></div>
     <div class="alert-container">
@@ -91,7 +91,7 @@
 </div>
 
 <!-- Finish popup -->
-<div class="popup" *ngIf="activePopup === 'finish'">
+<div class="popup" [@finishPopupState]="finishPopupState">
   <div class="finish-message">
     <a (click)="closePopup()" class="close-popup"></a>
     <div class="header">Check your inbox</div>

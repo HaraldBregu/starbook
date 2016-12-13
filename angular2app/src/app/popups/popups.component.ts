@@ -1,15 +1,115 @@
-import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
+import { Component, OnInit, Input, Output, OnDestroy, EventEmitter, trigger, state, style, transition, animate, keyframes } from '@angular/core';
 import { AuthService } from '../shared/auth.service';
 import { NavigationService } from '../shared/navigation.service';
+import { PopupsService } from './popups.service';
+import { Subscription }   from 'rxjs/Subscription';
 
 @Component({
   selector: 'app-popups',
-  templateUrl: './popups.component.html'
+  templateUrl: './popups.component.html',
+  animations: [
+    trigger('loginPopupState', [
+      state('inactive', style({display: 'none', top: '-300px'})),
+      state('active',   style({display: 'block', top: '42px'})),
+      transition('inactive => active', [
+        animate(400, keyframes([
+          style({display: 'none', top: '-300px', offset: 0}),
+          style({display: 'block', opacity: 0, top: '-300px', offset: 0.01}),
+          style({display: 'block', opacity: 1, top: '42px', offset: 1.0})
+        ]))
+      ]),
+      transition('active => inactive', [
+        animate(400, keyframes([
+          style({display: 'block', opacity: 1, top: '42px', offset: 0}),
+          style({display: 'block', opacity: 0, top: '-300px', offset: 0.99}),
+          style({display: 'none', top: '-300px', offset: 1.0})
+        ]))
+      ])
+    ]),
+    trigger('registrationPopupState', [
+      state('inactive', style({display: 'none', top: '-300px'})),
+      state('active',   style({display: 'block', top: '42px'})),
+      transition('inactive => active', [
+        animate(400, keyframes([
+          style({display: 'none', top: '-300px', offset: 0}),
+          style({display: 'block', opacity: 0, top: '-300px', offset: 0.01}),
+          style({display: 'block', opacity: 1, top: '42px', offset: 1.0})
+        ]))
+      ]),
+      transition('active => inactive', [
+        animate(400, keyframes([
+          style({display: 'block', opacity: 1, top: '42px', offset: 0}),
+          style({display: 'block', opacity: 0, top: '-300px', offset: 0.99}),
+          style({display: 'none', top: '-300px', offset: 1.0})
+        ]))
+      ])
+    ]),
+    trigger('recoveryPopupState', [
+      state('inactive', style({display: 'none', top: '-300px'})),
+      state('active',   style({display: 'block', top: '42px'})),
+      transition('inactive => active', [
+        animate(400, keyframes([
+          style({display: 'none', top: '-300px', offset: 0}),
+          style({display: 'block', opacity: 0, top: '-300px', offset: 0.01}),
+          style({display: 'block', opacity: 1, top: '42px', offset: 1.0})
+        ]))
+      ]),
+      transition('active => inactive', [
+        animate(400, keyframes([
+          style({display: 'block', opacity: 1, top: '42px', offset: 0}),
+          style({display: 'block', opacity: 0, top: '-300px', offset: 0.99}),
+          style({display: 'none', top: '-300px', offset: 1.0})
+        ]))
+      ])
+    ]),
+    trigger('finishPopupState', [
+      state('inactive', style({display: 'none', top: '-300px'})),
+      state('active',   style({display: 'block', top: '42px'})),
+      transition('inactive => active', [
+        animate(400, keyframes([
+          style({display: 'none', top: '-300px', offset: 0}),
+          style({display: 'block', opacity: 0, top: '-300px', offset: 0.01}),
+          style({display: 'block', opacity: 1, top: '42px', offset: 1.0})
+        ]))
+      ]),
+      transition('active => inactive', [
+        animate(400, keyframes([
+          style({display: 'block', opacity: 1, top: '42px', offset: 0}),
+          style({display: 'block', opacity: 0, top: '-300px', offset: 0.99}),
+          style({display: 'none', top: '-300px', offset: 1.0})
+        ]))
+      ])
+    ]),
+    trigger('shadowState', [
+      state('inactive', style({display: 'none', opacity: 0})),
+      state('active',   style({display: 'block', opacity: 1})),
+      transition('inactive => active', [
+        animate(400, keyframes([
+          style({display: 'none', offset: 0}),
+          style({display: 'block', opacity: 0, offset: 0.01}),
+          style({display: 'block', opacity: 1, offset: 1.0})
+        ]))
+      ]),
+      transition('active => inactive', [
+        animate(400, keyframes([
+          style({display: 'block', opacity: 1, offset: 0}),
+          style({display: 'block', opacity: 0, offset: 0.99}),
+          style({display: 'none', offset: 1.0})
+        ]))
+      ])
+    ])
+  ]
 })
-export class PopupsComponent implements OnInit {
-  @Input() activePopup = '';
+export class PopupsComponent implements OnInit, OnDestroy {
   @Output() close: EventEmitter<any> = new EventEmitter();
+  subscription: Subscription;
 
+  public activePopup = '';
+  public loginPopupState = 'inactive';
+  public registrationPopupState = 'inactive';
+  public recoveryPopupState = 'inactive';
+  public finishPopupState = 'inactive';
+  public shadowState = 'inactive';
   public emailPattern;
   public auth;
   public loginData = {
@@ -36,19 +136,47 @@ export class PopupsComponent implements OnInit {
     email: false
   };
   public formError: boolean|{title: string, message: string} = false;
-  constructor(private authServics: AuthService, private navigationService: NavigationService) {
+  constructor(private authServics: AuthService, private navigationService: NavigationService, private popupService: PopupsService) {
     this.emailPattern = /^[a-z0-9!#$%&'*+\/=?^_`{|}~.-]+@[a-z0-9]([a-z0-9-]*[a-z0-9])?(\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)*$/i;
   }
   getPopup(type: string) {
     this.closePopup(true);
+    if (type === 'login') {
+      this.loginPopupState = 'active';
+    }
+    if (type === 'registration') {
+      this.registrationPopupState = 'active';
+    }
+    if (type === 'recovery') {
+      this.recoveryPopupState = 'active';
+    }
+    if (type === 'finish') {
+      this.finishPopupState = 'active';
+    }
+    this.shadowState = 'active';
     this.activePopup = type;
+    return false;
   }
 
   closePopup(isReopen = false) {
+    if (this.loginPopupState === 'active') {
+      this.loginPopupState = 'inactive';
+    }
+    if (this.registrationPopupState === 'active') {
+      this.registrationPopupState = 'inactive';
+    }
+    if (this.recoveryPopupState === 'active') {
+      this.recoveryPopupState = 'inactive';
+    }
+    if (this.finishPopupState === 'active') {
+      this.finishPopupState = 'inactive';
+    }
     this.activePopup = '';
     this.formError = false;
+
     if (!isReopen) {
       this.close.emit(true);
+      this.shadowState = 'inactive';
     }
   }
 
@@ -165,7 +293,18 @@ export class PopupsComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.subscription = this.popupService.getActivePopup$.subscribe(popup => {
+      if (popup === 'login') {
+        this.loginPopupState = 'active';
+        this.activePopup = 'login';
+        this.shadowState = 'active';
+      }
+    });
     this.auth = this.authServics.authInit();
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 
 }

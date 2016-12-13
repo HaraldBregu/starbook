@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { OrderService, IAddress } from './order.service';
+import { PopupsService } from '../popups/popups.service';
 
 @Component({
   selector: 'app-order',
@@ -48,9 +49,8 @@ export class OrderComponent implements OnInit {
     country: '',
     country_code: ''
   };
-  public activePopup = '';
 
-  constructor(private orderService: OrderService) {
+  constructor(private orderService: OrderService, private popupsService: PopupsService) {
     for (let i = 0; i < 24; i++) {
       if (i > 9) {
         this.timePicker.push(i + ':00', i + ':30');
@@ -154,12 +154,12 @@ export class OrderComponent implements OnInit {
           console.log(error);
         });
     } else {
-      this.activePopup = 'login';
+      this.popupsService.activate('login');
     }
   }
 
   closePopup() {
-    this.activePopup = '';
+    this.popupsService.activate('');
   }
 
   ngOnInit() {

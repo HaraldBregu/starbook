@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { AuthService } from './shared/auth.service';
 import { NavigationService } from './shared/navigation.service';
+import { PopupsService } from './popups/popups.service';
 import { Subscription }   from 'rxjs/Subscription';
 
 @Component({
@@ -11,17 +12,18 @@ export class AppComponent implements OnInit, OnDestroy {
   public tagline: string;
   public auth;
   public activePopup = '';
+  public popupState = 'inactive';
   subscription: Subscription;
   authSubscription: Subscription;
-  constructor (private authServics: AuthService, private navigationService: NavigationService) {
+  constructor (private authServics: AuthService, private navigationService: NavigationService, private popupsService: PopupsService) {
   }
 
   getLoginPopup() {
-    this.activePopup = 'login';
+    this.popupsService.activate('login');
   }
 
   closePopup() {
-    this.activePopup = '';
+    this.popupsService.activate('');
   }
 
   ngOnInit() {

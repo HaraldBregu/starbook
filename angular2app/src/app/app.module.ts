@@ -15,6 +15,7 @@ import { OrderService } from './order/order.service';
 import { ProfileService } from './shared/profile.service';
 import { NavigationService } from './shared/navigation.service';
 import { OrdersService } from './shared/orders.service';
+import { PopupsService } from './popups/popups.service';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
@@ -54,7 +55,8 @@ import { PhonePipe } from './pipes/phone.pipe';
     OrderService,
     ProfileService,
     NavigationService,
-    OrdersService
+    OrdersService,
+    PopupsService
   ],
   bootstrap: [AppComponent]
 })
