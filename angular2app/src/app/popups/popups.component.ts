@@ -12,14 +12,14 @@ import { Subscription }   from 'rxjs/Subscription';
       state('inactive', style({display: 'none', top: '-300px'})),
       state('active',   style({display: 'block', top: '42px'})),
       transition('inactive => active', [
-        animate(400, keyframes([
+        animate(300, keyframes([
           style({display: 'none', top: '-300px', offset: 0}),
           style({display: 'block', opacity: 0, top: '-300px', offset: 0.01}),
           style({display: 'block', opacity: 1, top: '42px', offset: 1.0})
         ]))
       ]),
       transition('active => inactive', [
-        animate(400, keyframes([
+        animate(300, keyframes([
           style({display: 'block', opacity: 1, top: '42px', offset: 0}),
           style({display: 'block', opacity: 0, top: '-300px', offset: 0.99}),
           style({display: 'none', top: '-300px', offset: 1.0})
@@ -30,14 +30,14 @@ import { Subscription }   from 'rxjs/Subscription';
       state('inactive', style({display: 'none', top: '-300px'})),
       state('active',   style({display: 'block', top: '42px'})),
       transition('inactive => active', [
-        animate(400, keyframes([
+        animate(300, keyframes([
           style({display: 'none', top: '-300px', offset: 0}),
           style({display: 'block', opacity: 0, top: '-300px', offset: 0.01}),
           style({display: 'block', opacity: 1, top: '42px', offset: 1.0})
         ]))
       ]),
       transition('active => inactive', [
-        animate(400, keyframes([
+        animate(300, keyframes([
           style({display: 'block', opacity: 1, top: '42px', offset: 0}),
           style({display: 'block', opacity: 0, top: '-300px', offset: 0.99}),
           style({display: 'none', top: '-300px', offset: 1.0})
@@ -48,14 +48,14 @@ import { Subscription }   from 'rxjs/Subscription';
       state('inactive', style({display: 'none', top: '-300px'})),
       state('active',   style({display: 'block', top: '42px'})),
       transition('inactive => active', [
-        animate(400, keyframes([
+        animate(300, keyframes([
           style({display: 'none', top: '-300px', offset: 0}),
           style({display: 'block', opacity: 0, top: '-300px', offset: 0.01}),
           style({display: 'block', opacity: 1, top: '42px', offset: 1.0})
         ]))
       ]),
       transition('active => inactive', [
-        animate(400, keyframes([
+        animate(300, keyframes([
           style({display: 'block', opacity: 1, top: '42px', offset: 0}),
           style({display: 'block', opacity: 0, top: '-300px', offset: 0.99}),
           style({display: 'none', top: '-300px', offset: 1.0})
@@ -66,14 +66,14 @@ import { Subscription }   from 'rxjs/Subscription';
       state('inactive', style({display: 'none', top: '-300px'})),
       state('active',   style({display: 'block', top: '42px'})),
       transition('inactive => active', [
-        animate(400, keyframes([
+        animate(300, keyframes([
           style({display: 'none', top: '-300px', offset: 0}),
           style({display: 'block', opacity: 0, top: '-300px', offset: 0.01}),
           style({display: 'block', opacity: 1, top: '42px', offset: 1.0})
         ]))
       ]),
       transition('active => inactive', [
-        animate(400, keyframes([
+        animate(300, keyframes([
           style({display: 'block', opacity: 1, top: '42px', offset: 0}),
           style({display: 'block', opacity: 0, top: '-300px', offset: 0.99}),
           style({display: 'none', top: '-300px', offset: 1.0})
@@ -84,14 +84,14 @@ import { Subscription }   from 'rxjs/Subscription';
       state('inactive', style({display: 'none', opacity: 0})),
       state('active',   style({display: 'block', opacity: 1})),
       transition('inactive => active', [
-        animate(400, keyframes([
+        animate(300, keyframes([
           style({display: 'none', offset: 0}),
           style({display: 'block', opacity: 0, offset: 0.01}),
           style({display: 'block', opacity: 1, offset: 1.0})
         ]))
       ]),
       transition('active => inactive', [
-        animate(400, keyframes([
+        animate(300, keyframes([
           style({display: 'block', opacity: 1, offset: 0}),
           style({display: 'block', opacity: 0, offset: 0.99}),
           style({display: 'none', offset: 1.0})

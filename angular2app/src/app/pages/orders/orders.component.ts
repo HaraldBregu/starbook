@@ -109,7 +109,7 @@ export class OrdersComponent implements OnInit {
       returnDate += day > 9 ? '-' + day : '-0' + day;
       returnDate += hours > 9 ? 'T' + hours : 'T0' + hours;
       returnDate += minutes > 9 ? ':' + minutes : ':0' + minutes;
-      returnDate += seconds > 9 ? ':' + seconds : ':0' + seconds + '.000Z';
+      returnDate += seconds > 9 ? ':' + seconds  + '.000Z' : ':0' + seconds + '.000Z';
     }
     return returnDate;
   }
