@@ -36,7 +36,7 @@ export class OrdersService {
   }
 
   getCategories() {
-    return ['Idraulico', 'Elettricista', 'Fabbro', 'Spazzacamino', 'Antennista'];
+    return ['Idraulico', 'Elettricista', 'Fabbro', 'Spazzacamino', 'Antennista', 'Pulizie', 'Edilizia', 'Giardinaggio', 'Informatica'];
   }
 
   modifyOrder(id, type) {
