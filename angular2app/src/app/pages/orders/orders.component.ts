@@ -54,14 +54,35 @@ export class OrdersComponent implements OnInit, OnDestroy {
     this.renderPage('Ordini ricevuti');
     this.categories = this.ordersService.getCategories();
     this.subscription = this.popupsService.getPopupResponse$.subscribe(action => {
-      if (action.type === 'confirmOrder') {
-        let orderIndex = 0;
-        this.pageData.forEach((orderData) => {
-          if (orderData._id === action.data.orderId) {
-            this.pageData[orderIndex].status = 1;
-          }
-          orderIndex++;
-        });
+      let orderIndex = 0;
+      switch (action.type) {
+        case 'confirmOrder':
+          orderIndex = 0;
+          this.pageData.forEach((orderData) => {
+            if (orderData._id === action.data.orderId) {
+              this.pageData[orderIndex].status = 1;
+            }
+            orderIndex++;
+          });
+          break;
+        case 'cancelOrder':
+          orderIndex = 0;
+          this.pageData.forEach((orderData) => {
+            if (orderData._id === action.data.orderId) {
+              this.pageData[orderIndex].status = 2;
+            }
+            orderIndex++;
+          });
+          break;
+        case 'reactivateOrder':
+          orderIndex = 0;
+          this.pageData.forEach((orderData) => {
+            if (orderData._id === action.data.orderId) {
+              this.pageData[orderIndex].status = 0;
+            }
+            orderIndex++;
+          });
+          break;
       }
     });
   }
@@ -89,14 +110,14 @@ export class OrdersComponent implements OnInit, OnDestroy {
       params = [];
       params.push({name: 'sort_delivery_date', value: 1});
       params.push({name: 'delivery_after_date', value: this.dateFormating('now')});
-      params.push({name: 'applicant', value: 'other'});
+      params.push({name: 'customer', value: 'other'});
     }
 
     if (page === 'Ordini richiesti') {
       params = [];
       params.push({name: 'sort_delivery_date', value: 1});
       params.push({name: 'delivery_after_date', value: this.dateFormating('now')});
-      params.push({name: 'applicant', value: 'me'});
+      params.push({name: 'customer', value: 'me'});
     }
 
     this.ordersService.getOrders(params)
@@ -150,6 +171,12 @@ export class OrdersComponent implements OnInit, OnDestroy {
 
   confirmOrder(id) {
     this.popupsService.activate({type: 'confirmOrder', data: {orderId: id}});
+  }
+  cancelOrder(id) {
+    this.popupsService.activate({type: 'cancelOrder', data: {orderId: id}});
+  }
+  reactivateOrder(id) {
+    this.popupsService.activate({type: 'reactivateOrder', data: {orderId: id}});
   }
 
 }

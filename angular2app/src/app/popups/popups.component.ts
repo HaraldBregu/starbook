@@ -81,7 +81,7 @@ import { Subscription }   from 'rxjs/Subscription';
         ]))
       ])
     ]),
-    trigger('confirmOrderPopupState', [
+    trigger('confirmPopupState', [
       state('inactive', style({display: 'none', top: '-300px'})),
       state('active',   style({display: 'block', top: '42px'})),
       transition('inactive => active', [
@@ -99,7 +99,7 @@ import { Subscription }   from 'rxjs/Subscription';
         ]))
       ])
     ]),
-    trigger('confirmOrderFinishPopupState', [
+    trigger('confirmFinishPopupState', [
       state('inactive', style({display: 'none', top: '-300px'})),
       state('active',   style({display: 'block', top: '42px'})),
       transition('inactive => active', [
@@ -146,8 +146,8 @@ export class PopupsComponent implements OnInit, OnDestroy {
   public registrationPopupState = 'inactive';
   public recoveryPopupState = 'inactive';
   public finishPopupState = 'inactive';
-  public confirmOrderPopupState = 'inactive';
-  public confirmOrderFinishPopupState = 'inactive';
+  public confirmPopupState = 'inactive';
+  public confirmFinishPopupState = 'inactive';
   public shadowState = 'inactive';
   public emailPattern;
   public auth;
@@ -174,8 +174,15 @@ export class PopupsComponent implements OnInit, OnDestroy {
   public recoveryError = {
     email: false
   };
-  public confirmOrderData = {
-    id: null
+  public confirmPopupData = {
+    id: null,
+    title: '',
+    text: '',
+    button: ''
+  };
+  public confirmFinishPopupData = {
+    title: '',
+    text: ''
   };
   public formError: boolean|{title: string, message: string} = false;
   constructor(private authServics: AuthService, private navigationService: NavigationService, private popupService: PopupsService, private ordersService: OrdersService) {
@@ -195,8 +202,8 @@ export class PopupsComponent implements OnInit, OnDestroy {
     if (type === 'finish') {
       this.finishPopupState = 'active';
     }
-    if (type === 'confirmOrderFinish') {
-      this.confirmOrderFinishPopupState = 'active';
+    if (type === 'confirmFinish') {
+      this.confirmFinishPopupState = 'active';
     }
     this.shadowState = 'active';
     this.activePopup = type;
@@ -216,11 +223,11 @@ export class PopupsComponent implements OnInit, OnDestroy {
     if (this.finishPopupState === 'active') {
       this.finishPopupState = 'inactive';
     }
-    if (this.confirmOrderPopupState === 'active') {
-      this.confirmOrderPopupState = 'inactive';
+    if (this.confirmPopupState === 'active') {
+      this.confirmPopupState = 'inactive';
     }
-    if (this.confirmOrderFinishPopupState === 'active') {
-      this.confirmOrderFinishPopupState = 'inactive';
+    if (this.confirmFinishPopupState === 'active') {
+      this.confirmFinishPopupState = 'inactive';
     }
     this.activePopup = '';
     this.formError = false;
@@ -346,7 +353,9 @@ export class PopupsComponent implements OnInit, OnDestroy {
   confirmOrder(id) {
     this.ordersService.modifyOrder(id, 'ACCEPT')
         .then((response) => {
-          this.getPopup('confirmOrderFinish');
+          this.confirmFinishPopupData.title = 'Ordine confermato';
+          this.confirmFinishPopupData.text = 'Questo ordine è stato confermato con successo.';
+          this.getPopup('confirmFinish');
           this.popupService.actionComplete({type: 'confirmOrder', data: {orderId: id}})
         })
         .catch((error) => {
@@ -358,18 +367,75 @@ export class PopupsComponent implements OnInit, OnDestroy {
         });
   }
 
+  cancelOrder(id) {
+    this.ordersService.modifyOrder(id, 'CANCEL')
+        .then((response) => {
+          this.confirmFinishPopupData.title = 'Ordine annullato';
+          this.confirmFinishPopupData.text = 'Questo ordine è stato annullato, puoi riactivarlo in un secondo momento.';
+          this.getPopup('confirmFinish');
+          this.popupService.actionComplete({type: 'cancelOrder', data: {orderId: id}})
+        })
+        .catch((error) => {
+          this.formError = true;
+          this.formError = {
+            title: 'Cancellation error',
+            message: `An error occurred while canceling your order. Please try again.`
+          };
+        });
+  }
+
+  reactivateOrder(id) {
+    this.ordersService.modifyOrder(id, 'REACTIVATE')
+        .then((response) => {
+          this.confirmFinishPopupData.title = 'Ordine riattivato';
+          this.confirmFinishPopupData.text = 'Questo ordine è stato riattviato, verrai notificato quando un professionista confermera questo ordine.';
+          this.getPopup('confirmFinish');
+          this.popupService.actionComplete({type: 'reactivateOrder', data: {orderId: id}})
+        })
+        .catch((error) => {
+          this.formError = true;
+          this.formError = {
+            title: 'Reactivation order error',
+            message: `During the reactivation of your order is the order the error occurred. Please try again.`
+          };
+        });
+  }
+
   ngOnInit() {
     this.subscription = this.popupService.getActivePopup$.subscribe(popup => {
-      if (popup.type === 'login') {
-        this.loginPopupState = 'active';
-        this.activePopup = 'login';
-        this.shadowState = 'active';
-      }
-      if (popup.type === 'confirmOrder') {
-        this.confirmOrderData.id = popup.data.orderId;
-        this.confirmOrderPopupState = 'active';
-        this.activePopup = 'confirmOrder';
-        this.shadowState = 'active';
+      switch (popup.type) {
+        case 'login':
+          this.loginPopupState = 'active';
+          this.activePopup = 'login';
+          this.shadowState = 'active';
+          break;
+        case 'confirmOrder':
+          this.confirmPopupData.id = popup.data.orderId;
+          this.confirmPopupData.title = 'Conferma ordine?';
+          this.confirmPopupData.text = 'Dopo aver confermato l’ordine il richiedente verra notificato tramite una mail e un sms.';
+          this.confirmPopupData.button = 'Conferma';
+          this.confirmPopupState = 'active';
+          this.activePopup = 'confirmOrder';
+          this.shadowState = 'active';
+          break;
+        case 'cancelOrder':
+          this.confirmPopupData.id = popup.data.orderId;
+          this.confirmPopupData.title = 'Annulla ordine?';
+          this.confirmPopupData.text = 'Dopo aver annullato questo ordine solo tu sarai in grado di vederlo.';
+          this.confirmPopupData.button = 'Annulla ordine';
+          this.confirmPopupState = 'active';
+          this.activePopup = 'confirmOrder';
+          this.shadowState = 'active';
+          break;
+        case 'reactivateOrder':
+          this.confirmPopupData.id = popup.data.orderId;
+          this.confirmPopupData.title = 'Riattiva ordine?';
+          this.confirmPopupData.text = 'Dopo aver riattivato di nuovo questo ordine sara visibile a tutti.';
+          this.confirmPopupData.button = 'Riattiva ordine';
+          this.confirmPopupState = 'active';
+          this.activePopup = 'confirmOrder';
+          this.shadowState = 'active';
+          break;
       }
     });
     this.auth = this.authServics.authInit();

@@ -12,14 +12,24 @@
       </div>
       <div class="order-information" *ngFor="let order of pageData">
         <div class="header">
-          <div class="category-services-state" *ngIf="order.status === 0">
-            <span class="orange"></span> In attesa di conferma
+          <div class="category-services-state" *ngIf="order.status === 0 && selectTab !== 'Archivio'">
+            <span class="green"></span> In attesa di conferma
           </div>
-          <div class="category-services-state" *ngIf="order.status === 1">
-            <span class="green"></span> Confermato
+          <div class="category-services-state" *ngIf="order.status === 1 && selectTab !== 'Archivio'">
+            <span class="orange"></span> Confermato
           </div>
-          <div class="category-services-state" *ngIf="order.status === 2">
-            <span class="red"></span> Cancellato
+          <div class="category-services-state" *ngIf="order.status === 2 && selectTab !== 'Archivio'">
+            <span class="red"></span> Annullato
+          </div>
+
+          <div class="category-services-state" *ngIf="order.status === 0 && selectTab === 'Archivio'">
+            <span class="black"></span> Scaduto
+          </div>
+          <div class="category-services-state" *ngIf="order.status === 1 && selectTab === 'Archivio'">
+            <span class="orange"></span> Consegnato
+          </div>
+          <div class="category-services-state" *ngIf="order.status === 2 && selectTab === 'Archivio'">
+            <span class="red"></span> Annullato
           </div>
           <div class="category-name">
             {{ categories[order.category_type] }}
@@ -67,6 +77,8 @@
           </div>
           <div class="buttons">
             <button class="btn btn-primary" *ngIf="selectTab === 'Ordini ricevuti' && order.status === 0" (click)="confirmOrder(order._id)">Conferma ordine</button>
+            <button class="btn btn-secondary" *ngIf="selectTab === 'Ordini richiesti' && order.status === 0" (click)="cancelOrder(order._id)">Annulla ordine</button>
+            <button class="btn btn-primary" *ngIf="selectTab === 'Ordini richiesti' && order.status === 2" (click)="reactivateOrder(order._id)">Riattiva ordine</button>
           </div>
         </div>
       </div>

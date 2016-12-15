@@ -91,7 +91,7 @@
 </div>
 
 <!-- Confirm Order popup -->
-<div class="popup" [@confirmOrderPopupState]="confirmOrderPopupState">
+<div class="popup" [@confirmPopupState]="confirmPopupState">
   <div class="alert-block" *ngIf="formError">
     <div class="alert-icn"></div>
     <div class="alert-container">
@@ -99,21 +99,23 @@
       <p>{{formError.message}}</p>
     </div>
   </div>
-  <div class="header">Conferma ordine?</div>
+  <div class="header">{{ confirmPopupData.title }}</div>
   <form class="confirm-order-form" #confirmOrderForm="ngForm">
-    <p>Dopo aver confermato l’ordine il richiedente verra notificato tramite una mail e un sms.</p>
+    <p>{{ confirmPopupData.text }}</p>
     <div class="form-group">
-      <button class="btn btn-warning" type="submit" (click)="confirmOrder(confirmOrderData.id)">Conferma</button>
+      <button class="btn btn-warning" type="submit" (click)="confirmOrder(confirmPopupData.id)" *ngIf="confirmPopupData.button === 'Conferma'">Conferma</button>
+      <button class="btn btn-warning" type="submit" (click)="cancelOrder(confirmPopupData.id)" *ngIf="confirmPopupData.button === 'Annulla ordine'">Annulla ordine</button>
+      <button class="btn btn-warning" type="submit" (click)="reactivateOrder(confirmPopupData.id)" *ngIf="confirmPopupData.button === 'Riattiva ordine'">Riattiva ordine</button>
       <button class="btn btn-secondary" type="submit" (click)="closePopup()">Chiudi</button>
     </div>
   </form>
 </div>
 
 <!-- Confirm Order Finish popup -->
-<div class="popup" [@confirmOrderFinishPopupState]="confirmOrderFinishPopupState">
+<div class="popup" [@confirmFinishPopupState]="confirmFinishPopupState">
   <div class="finish-message">
-    <div class="header">Order confirmed</div>
-    <p>Thank you! Your order has been confirmed.</p>
+    <div class="header">{{ confirmFinishPopupData.title }}</div>
+    <p>{{ confirmFinishPopupData.text }}</p>
     <div class="form-group">
       <button class="btn btn-secondary" type="submit" (click)="closePopup()">Chiudi</button>
     </div>
