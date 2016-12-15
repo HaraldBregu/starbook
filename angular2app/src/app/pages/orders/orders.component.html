@@ -7,6 +7,9 @@
       </a>
     </div>
     <div class="col-xl-12 orders-container">
+      <div class="orders-error" *ngIf="pageData.length === 0 && requestIsComplete">
+        Non ci sono ordini
+      </div>
       <div class="order-information" *ngFor="let order of pageData">
         <div class="header">
           <div class="category-services-state" *ngIf="order.status === 0">
@@ -36,22 +39,22 @@
             <div class="client-info col-xl-4">
               <div class="item">
                 <div class="field-name">Richiedente:</div>
-                <div class="field-value"><strong>{{ order.applicant.fullname }}</strong></div>
+                <div class="field-value"><strong>{{ order.customer.fullname }}</strong></div>
               </div>
               <div class="item">
                 <div class="field-name">Cellulare:</div>
-                <div class="field-value">{{ order.applicant.phone_number | phone }}</div>
+                <div class="field-value">{{ order.customer.phone_number | phone }}</div>
               </div>
               <div class="item">
                 <div class="field-name">Email:</div>
-                <div class="field-value">{{ order.applicant.email }}</div>
+                <div class="field-value">{{ order.customer.email }}</div>
               </div>
               <div class="item">
                 <div class="field-name">Indirizzo:</div>
                 <div class="field-value">
-                  {{ order.street }}, {{ order.street_number }}<br>
-                  {{ order.city }}, {{ order.postal_code }}<br>
-                  {{ order.province }}, {{ order.country }}
+                  {{ order.delivery_address.street }}, {{ order.delivery_address.street_number }}<br>
+                  {{ order.delivery_address.city }}, {{ order.delivery_address.postal_code }}<br>
+                  {{ order.delivery_address.province }}, {{ order.delivery_address.country }}
                 </div>
               </div>
             </div>
@@ -63,8 +66,7 @@
             {{ order._id }}
           </div>
           <div class="buttons">
-            <button class="btn btn-secondary">Elimina ordine</button>
-            <button class="btn btn-primary">Conferma ordine</button>
+            <button class="btn btn-primary" *ngIf="selectTab === 'Ordini ricevuti' && order.status === 0" (click)="confirmOrder(order._id)">Conferma ordine</button>
           </div>
         </div>
       </div>

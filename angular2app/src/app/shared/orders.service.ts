@@ -39,6 +39,15 @@ export class OrdersService {
     return ['Idraulico', 'Elettricista', 'Fabbro', 'Spazzacamino', 'Antennista'];
   }
 
+  modifyOrder(id, type) {
+    return this.http.put(this.api + 'orders/' + id, {action: type}, {headers: this._makeHeaders()})
+        .toPromise()
+        .then((response) => {
+          return true;
+        })
+        .catch(this.handleError);
+  }
+
   private handleError(error: any): Promise<any> {
     return Promise.reject(error.status || error);
   }

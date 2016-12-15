@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { NavigationService } from '../../shared/navigation.service';
 import { OrdersService } from '../../shared/orders.service';
+import { PopupsService } from '../../popups/popups.service';
+import { Subscription }   from 'rxjs/Subscription';
 
 export interface IOrder {
   _id: string;
@@ -9,14 +11,16 @@ export interface IOrder {
   delivery_details: string;
   delivery_description: string;
   delivery_date: string;
-  street: string;
-  street_number: string;
-  city: string;
-  postal_code: string;
-  province: string;
-  country: string;
-  country_code: string;
-  applicant: {
+  delivery_address: {
+    street: string;
+    street_number: string;
+    city: string;
+    postal_code: string;
+    province: string;
+    country: string;
+    country_code: string;
+  },
+  customer: {
     email: string;
     fullname: string;
     phone_number: string;
@@ -27,7 +31,7 @@ export interface IOrder {
   selector: 'app-orders',
   templateUrl: './orders.component.html'
 })
-export class OrdersComponent implements OnInit {
+export class OrdersComponent implements OnInit, OnDestroy {
   public selectTab: string|boolean = false;
   public taglines = {
     'Ordini ricevuti': 'Ordini ricevuti',
@@ -41,16 +45,33 @@ export class OrdersComponent implements OnInit {
   ];
   public categories = [];
   public pageData: IOrder[] = [];
+  public requestIsComplete = false;
+  subscription: Subscription;
 
-  constructor(private navigationService: NavigationService, private ordersService: OrdersService) { }
+  constructor(private navigationService: NavigationService, private ordersService: OrdersService, private popupsService: PopupsService) { }
 
   ngOnInit() {
     this.renderPage('Ordini ricevuti');
     this.categories = this.ordersService.getCategories();
-    console.log(this.categories);
+    this.subscription = this.popupsService.getPopupResponse$.subscribe(action => {
+      if (action.type === 'confirmOrder') {
+        let orderIndex = 0;
+        this.pageData.forEach((orderData) => {
+          if (orderData._id === action.data.orderId) {
+            this.pageData[orderIndex].status = 1;
+          }
+          orderIndex++;
+        });
+      }
+    });
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 
   renderPage(page) {
+    this.requestIsComplete = false;
     this.selectTab = page;
     let tabIndex = 0;
     this.tabs.forEach((tab) => {
@@ -80,6 +101,7 @@ export class OrdersComponent implements OnInit {
 
     this.ordersService.getOrders(params)
       .then((response) => {
+        this.requestIsComplete = true;
         this.pageData = response.result;
         console.log(response.result);
       })
@@ -124,6 +146,10 @@ export class OrdersComponent implements OnInit {
       }
     });
     return returnProducts;
+  }
+
+  confirmOrder(id) {
+    this.popupsService.activate({type: 'confirmOrder', data: {orderId: id}});
   }
 
 }

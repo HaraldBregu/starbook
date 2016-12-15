@@ -3510,6 +3510,20 @@ html, body {
   left: 0;
   background-color: #324977; }
 
+.orders-container .orders-error {
+  display: block;
+  width: 100%;
+  padding: 20px;
+  background-color: #ffffff;
+  border: 1px solid #DCDCDC;
+  text-align: center;
+  border-radius: 3px;
+  font-family: HelveticaNeue, sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: 0.09px;
+  color: #212121; }
+
 @media (max-width: 1440px) {
   .container-starbook .left-navigate {
     top: 0;
@@ -3928,6 +3942,22 @@ html, body {
   background-image: url("/assets/images/cancel.png");
   background-repeat: no-repeat;
   cursor: pointer; }
+
+.confirm-order-form .btn-secondary {
+  margin-top: 14px !important; }
+
+.confirm-order-form p {
+  display: block;
+  font-family: HelveticaNeue, sans-serif;
+  color: #4A4A4A;
+  font-size: 14px;
+  letter-spacing: 0.09px;
+  font-weight: 400;
+  margin-top: -11px;
+  margin-bottom: 27px; }
+
+.popup .confirm-order-form .form-group .btn.btn-secondary {
+  background-color: #EFF1F3; }
 
 ngb-datepicker,
 .datepicker {

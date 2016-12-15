@@ -2,6 +2,7 @@ import { Component, OnInit, Input, Output, OnDestroy, EventEmitter, trigger, sta
 import { AuthService } from '../shared/auth.service';
 import { NavigationService } from '../shared/navigation.service';
 import { PopupsService } from './popups.service';
+import { OrdersService } from '../shared/orders.service';
 import { Subscription }   from 'rxjs/Subscription';
 
 @Component({
@@ -80,6 +81,42 @@ import { Subscription }   from 'rxjs/Subscription';
         ]))
       ])
     ]),
+    trigger('confirmOrderPopupState', [
+      state('inactive', style({display: 'none', top: '-300px'})),
+      state('active',   style({display: 'block', top: '42px'})),
+      transition('inactive => active', [
+        animate(300, keyframes([
+          style({display: 'none', top: '-300px', offset: 0}),
+          style({display: 'block', opacity: 0, top: '-300px', offset: 0.01}),
+          style({display: 'block', opacity: 1, top: '42px', offset: 1.0})
+        ]))
+      ]),
+      transition('active => inactive', [
+        animate(300, keyframes([
+          style({display: 'block', opacity: 1, top: '42px', offset: 0}),
+          style({display: 'block', opacity: 0, top: '-300px', offset: 0.99}),
+          style({display: 'none', top: '-300px', offset: 1.0})
+        ]))
+      ])
+    ]),
+    trigger('confirmOrderFinishPopupState', [
+      state('inactive', style({display: 'none', top: '-300px'})),
+      state('active',   style({display: 'block', top: '42px'})),
+      transition('inactive => active', [
+        animate(300, keyframes([
+          style({display: 'none', top: '-300px', offset: 0}),
+          style({display: 'block', opacity: 0, top: '-300px', offset: 0.01}),
+          style({display: 'block', opacity: 1, top: '42px', offset: 1.0})
+        ]))
+      ]),
+      transition('active => inactive', [
+        animate(300, keyframes([
+          style({display: 'block', opacity: 1, top: '42px', offset: 0}),
+          style({display: 'block', opacity: 0, top: '-300px', offset: 0.99}),
+          style({display: 'none', top: '-300px', offset: 1.0})
+        ]))
+      ])
+    ]),
     trigger('shadowState', [
       state('inactive', style({display: 'none', opacity: 0})),
       state('active',   style({display: 'block', opacity: 1})),
@@ -109,6 +146,8 @@ export class PopupsComponent implements OnInit, OnDestroy {
   public registrationPopupState = 'inactive';
   public recoveryPopupState = 'inactive';
   public finishPopupState = 'inactive';
+  public confirmOrderPopupState = 'inactive';
+  public confirmOrderFinishPopupState = 'inactive';
   public shadowState = 'inactive';
   public emailPattern;
   public auth;
@@ -135,8 +174,11 @@ export class PopupsComponent implements OnInit, OnDestroy {
   public recoveryError = {
     email: false
   };
+  public confirmOrderData = {
+    id: null
+  };
   public formError: boolean|{title: string, message: string} = false;
-  constructor(private authServics: AuthService, private navigationService: NavigationService, private popupService: PopupsService) {
+  constructor(private authServics: AuthService, private navigationService: NavigationService, private popupService: PopupsService, private ordersService: OrdersService) {
     this.emailPattern = /^[a-z0-9!#$%&'*+\/=?^_`{|}~.-]+@[a-z0-9]([a-z0-9-]*[a-z0-9])?(\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)*$/i;
   }
   getPopup(type: string) {
@@ -152,6 +194,9 @@ export class PopupsComponent implements OnInit, OnDestroy {
     }
     if (type === 'finish') {
       this.finishPopupState = 'active';
+    }
+    if (type === 'confirmOrderFinish') {
+      this.confirmOrderFinishPopupState = 'active';
     }
     this.shadowState = 'active';
     this.activePopup = type;
@@ -170,6 +215,12 @@ export class PopupsComponent implements OnInit, OnDestroy {
     }
     if (this.finishPopupState === 'active') {
       this.finishPopupState = 'inactive';
+    }
+    if (this.confirmOrderPopupState === 'active') {
+      this.confirmOrderPopupState = 'inactive';
+    }
+    if (this.confirmOrderFinishPopupState === 'active') {
+      this.confirmOrderFinishPopupState = 'inactive';
     }
     this.activePopup = '';
     this.formError = false;
@@ -292,11 +343,32 @@ export class PopupsComponent implements OnInit, OnDestroy {
     return false;
   }
 
+  confirmOrder(id) {
+    this.ordersService.modifyOrder(id, 'ACCEPT')
+        .then((response) => {
+          this.getPopup('confirmOrderFinish');
+          this.popupService.actionComplete({type: 'confirmOrder', data: {orderId: id}})
+        })
+        .catch((error) => {
+          this.formError = true;
+          this.formError = {
+            title: 'Order confirmation error',
+            message: `An error occurred during the order confirmation. Please try again.`
+          };
+        });
+  }
+
   ngOnInit() {
     this.subscription = this.popupService.getActivePopup$.subscribe(popup => {
-      if (popup === 'login') {
+      if (popup.type === 'login') {
         this.loginPopupState = 'active';
         this.activePopup = 'login';
+        this.shadowState = 'active';
+      }
+      if (popup.type === 'confirmOrder') {
+        this.confirmOrderData.id = popup.data.orderId;
+        this.confirmOrderPopupState = 'active';
+        this.activePopup = 'confirmOrder';
         this.shadowState = 'active';
       }
     });

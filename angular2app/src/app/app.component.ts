@@ -19,7 +19,7 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   getLoginPopup() {
-    this.popupsService.activate('login');
+    this.popupsService.activate({type: 'login'});
   }
 
   closePopup() {

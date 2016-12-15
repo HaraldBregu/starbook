@@ -1,6 +1,10 @@
 // Popups styles
 $dark-background-color: rgba(0, 0, 0, 0.53);
 $popup-background-color: #ffffff;
+$popup-text-color: #4A4A4A;
+$popup-text-size: 14px;
+$popup-text-letter-spacing: 0.09px;
+$popup-text-font-weight: 400;
 $popup-shadow-style: 0px 2px 4px 0px rgba(0,0,0,0.50);
 $popup-header-color: #212121;
 $popup-header-font-size: 28px;
@@ -36,6 +40,7 @@ $popup-finish-text-font-size: 16px;
 $popup-finish-text-color: $popup-header-color;
 $popup-finish-text-letter-spacing: 0.1px;
 $popup-finish-close-background: '/assets/images/cancel.png';
+$popup-order-confirm-gray-background: #EFF1F3;
 
 // Alert styles
 $alert-border-style: 1px solid #C40000;
@@ -318,4 +323,20 @@ $alert-warning-image: '/assets/images/warning.png';
   background-image: url($popup-finish-close-background);
   background-repeat: no-repeat;
   cursor: pointer;
+}
+.confirm-order-form .btn-secondary {
+  margin-top: 14px !important;
+}
+.confirm-order-form p {
+  display: block;
+  font-family: $font-name;
+  color: $popup-text-color;
+  font-size: $popup-text-size;
+  letter-spacing: $popup-text-letter-spacing;
+  font-weight: $popup-text-font-weight;
+  margin-top: -11px;
+  margin-bottom: 27px;
+}
+.popup .confirm-order-form .form-group .btn.btn-secondary {
+  background-color: $popup-order-confirm-gray-background;
 }

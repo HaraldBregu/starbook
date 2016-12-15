@@ -154,12 +154,8 @@ export class OrderComponent implements OnInit {
           console.log(error);
         });
     } else {
-      this.popupsService.activate('login');
+      this.popupsService.activate({type: 'login'});
     }
-  }
-
-  closePopup() {
-    this.popupsService.activate('');
   }
 
   ngOnInit() {

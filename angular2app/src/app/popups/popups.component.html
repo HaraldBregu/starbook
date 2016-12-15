@@ -12,7 +12,7 @@
   <form class="login-form" #loginForm="ngForm">
     <div class="form-group" [ngClass]="{'isError': loginError.email}">
       <label for="email">Indirizzo e-mail</label>
-      <input id="email" class="form-control" type="email" name="email" placeholder="" required [(ngModel)]="loginData.email" #email="ngModel" (keyup)="checkEmail('login', email.value)">
+      <input id="email" class="form-control" type="email" name="email" placeholder="" required [(ngModel)]="loginData.email" #email="ngModel" (keyup)="checkEmail('login', email.value)" (change)="checkEmail('login', email.value)">
       <span class="error">Indirizzo e-mail non valido</span>
     </div>
     <div class="form-group">
@@ -88,6 +88,36 @@
     </div>
   </form>
   <div class="login-offer">Hai gia un account su Starbook? <a (click)="getPopup('login')">Accedi</a></div>
+</div>
+
+<!-- Confirm Order popup -->
+<div class="popup" [@confirmOrderPopupState]="confirmOrderPopupState">
+  <div class="alert-block" *ngIf="formError">
+    <div class="alert-icn"></div>
+    <div class="alert-container">
+      <div class="header">{{formError.title}}</div>
+      <p>{{formError.message}}</p>
+    </div>
+  </div>
+  <div class="header">Conferma ordine?</div>
+  <form class="confirm-order-form" #confirmOrderForm="ngForm">
+    <p>Dopo aver confermato l’ordine il richiedente verra notificato tramite una mail e un sms.</p>
+    <div class="form-group">
+      <button class="btn btn-warning" type="submit" (click)="confirmOrder(confirmOrderData.id)">Conferma</button>
+      <button class="btn btn-secondary" type="submit" (click)="closePopup()">Chiudi</button>
+    </div>
+  </form>
+</div>
+
+<!-- Confirm Order Finish popup -->
+<div class="popup" [@confirmOrderFinishPopupState]="confirmOrderFinishPopupState">
+  <div class="finish-message">
+    <div class="header">Order confirmed</div>
+    <p>Thank you! Your order has been confirmed.</p>
+    <div class="form-group">
+      <button class="btn btn-secondary" type="submit" (click)="closePopup()">Chiudi</button>
+    </div>
+  </div>
 </div>
 
 <!-- Finish popup -->
