@@ -1,12 +1,13 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, OnDestroy } from '@angular/core';
 import { OrderService, IAddress } from './order.service';
 import { PopupsService } from '../popups/popups.service';
+import { Subscription }   from 'rxjs/Subscription';
 
 @Component({
   selector: 'app-order',
   templateUrl: './order.component.html'
 })
-export class OrderComponent implements OnInit {
+export class OrderComponent implements OnInit, OnDestroy {
   @Input() orderData;
   @Input('orderIsFull') orderIsFull;
   @Input('activeServiceCategoryType') activeServiceCategoryType;
@@ -49,6 +50,7 @@ export class OrderComponent implements OnInit {
     country: '',
     country_code: ''
   };
+  subscription: Subscription;
 
   constructor(private orderService: OrderService, private popupsService: PopupsService) {
     for (let i = 0; i < 24; i++) {
@@ -110,6 +112,10 @@ export class OrderComponent implements OnInit {
     this.selectedAddress = value;
   }
 
+  showConfirmation() {
+    this.popupsService.activate({type: 'confirmNewOrder', data: {orderData: this.orderData}});
+  }
+
   createOrder() {
     let date = new Date(this.Order.date);
     let userData = localStorage.getItem('auth');
@@ -168,5 +174,15 @@ export class OrderComponent implements OnInit {
         'Luglio', 'Agosto', 'Settembre', 'Ottobre', 'Novembre', 'Dicembre'],
       monthNamesShort: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
     };
+
+    this.subscription = this.popupsService.getPopupResponse$.subscribe(action => {
+      if (action.type === 'confirm') {
+        this.createOrder();
+      }
+    });
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 }

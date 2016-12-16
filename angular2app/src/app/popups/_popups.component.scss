@@ -337,6 +337,35 @@ $alert-warning-image: '/assets/images/warning.png';
   margin-top: -11px;
   margin-bottom: 27px;
 }
+.confirm-order-form .orders-list {
+  display: block;
+  font-family: $font-name;
+  color: $popup-text-color;
+  font-size: $popup-text-size;
+  letter-spacing: $popup-text-letter-spacing;
+  font-weight: $popup-text-font-weight;
+  margin-top: -4px;
+  margin-bottom: 33px;
+  max-height: 300px;
+  overflow-y: scroll;
+}
+.confirm-order-form .orders-list span {
+  display: block;
+  width: 100%;
+  font-family: $font-name;
+  color: $popup-text-color;
+  font-size: $popup-text-size;
+  letter-spacing: $popup-text-letter-spacing;
+  font-weight: $popup-text-font-weight;
+  margin-bottom: 8px;
+}
+.confirm-order-form .orders-list span strong {
+  font-family: $font-name-medium;
+  color: $general-text-color;
+  font-size: $popup-text-size;
+  letter-spacing: $popup-text-letter-spacing;
+  font-weight: normal;
+}
 .popup .confirm-order-form .form-group .btn.btn-secondary {
   background-color: $popup-order-confirm-gray-background;
 }

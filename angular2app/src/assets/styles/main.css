@@ -2907,6 +2907,15 @@ textarea.form-control {
   height: 100%;
   overflow-y: scroll; }
 
+.order-container .order-list-empty {
+  display: block;
+  width: 100%;
+  margin-bottom: 8px;
+  font-family: HelveticaNeue-Italic, sans-serif;
+  color: #9B9B9B;
+  font-size: 14px;
+  letter-spacing: 0.08px; }
+
 .sidebar-block h2 {
   display: block;
   position: fixed;
@@ -3955,6 +3964,35 @@ html, body {
   font-weight: 400;
   margin-top: -11px;
   margin-bottom: 27px; }
+
+.confirm-order-form .orders-list {
+  display: block;
+  font-family: HelveticaNeue, sans-serif;
+  color: #4A4A4A;
+  font-size: 14px;
+  letter-spacing: 0.09px;
+  font-weight: 400;
+  margin-top: -4px;
+  margin-bottom: 33px;
+  max-height: 300px;
+  overflow-y: scroll; }
+
+.confirm-order-form .orders-list span {
+  display: block;
+  width: 100%;
+  font-family: HelveticaNeue, sans-serif;
+  color: #4A4A4A;
+  font-size: 14px;
+  letter-spacing: 0.09px;
+  font-weight: 400;
+  margin-bottom: 8px; }
+
+.confirm-order-form .orders-list span strong {
+  font-family: HelveticaNeue-Medium, sans-serif;
+  color: #000000;
+  font-size: 14px;
+  letter-spacing: 0.09px;
+  font-weight: normal; }
 
 .popup .confirm-order-form .form-group .btn.btn-secondary {
   background-color: #EFF1F3; }

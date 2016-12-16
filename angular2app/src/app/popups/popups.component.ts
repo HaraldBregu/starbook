@@ -178,7 +178,9 @@ export class PopupsComponent implements OnInit, OnDestroy {
     id: null,
     title: '',
     text: '',
-    button: ''
+    data: [],
+    button: '',
+    type: ''
   };
   public confirmFinishPopupData = {
     title: '',
@@ -356,7 +358,7 @@ export class PopupsComponent implements OnInit, OnDestroy {
           this.confirmFinishPopupData.title = 'Ordine confermato';
           this.confirmFinishPopupData.text = 'Questo ordine è stato confermato con successo.';
           this.getPopup('confirmFinish');
-          this.popupService.actionComplete({type: 'confirmOrder', data: {orderId: id}})
+          this.popupService.actionComplete({type: 'confirmOrder', data: {orderId: id}});
         })
         .catch((error) => {
           this.formError = true;
@@ -373,7 +375,7 @@ export class PopupsComponent implements OnInit, OnDestroy {
           this.confirmFinishPopupData.title = 'Ordine annullato';
           this.confirmFinishPopupData.text = 'Questo ordine è stato annullato, puoi riactivarlo in un secondo momento.';
           this.getPopup('confirmFinish');
-          this.popupService.actionComplete({type: 'cancelOrder', data: {orderId: id}})
+          this.popupService.actionComplete({type: 'cancelOrder', data: {orderId: id}});
         })
         .catch((error) => {
           this.formError = true;
@@ -390,7 +392,7 @@ export class PopupsComponent implements OnInit, OnDestroy {
           this.confirmFinishPopupData.title = 'Ordine riattivato';
           this.confirmFinishPopupData.text = 'Questo ordine è stato riattviato, verrai notificato quando un professionista confermera questo ordine.';
           this.getPopup('confirmFinish');
-          this.popupService.actionComplete({type: 'reactivateOrder', data: {orderId: id}})
+          this.popupService.actionComplete({type: 'reactivateOrder', data: {orderId: id}});
         })
         .catch((error) => {
           this.formError = true;
@@ -399,6 +401,11 @@ export class PopupsComponent implements OnInit, OnDestroy {
             message: `During the reactivation of your order is the order the error occurred. Please try again.`
           };
         });
+  }
+
+  confirmNewOrder() {
+    this.popupService.actionComplete({type: 'confirm'});
+    this.closePopup();
   }
 
   ngOnInit() {
@@ -432,6 +439,20 @@ export class PopupsComponent implements OnInit, OnDestroy {
           this.confirmPopupData.title = 'Riattiva ordine?';
           this.confirmPopupData.text = 'Dopo aver riattivato di nuovo questo ordine sara visibile a tutti.';
           this.confirmPopupData.button = 'Riattiva ordine';
+          this.confirmPopupState = 'active';
+          this.activePopup = 'confirmOrder';
+          this.shadowState = 'active';
+          break;
+        case 'confirmNewOrder':
+          this.confirmPopupData.title = 'Anteprima ordine';
+          this.confirmPopupData.data = [];
+          popup.data.orderData.forEach((product) => {
+            product.items.forEach((item) => {
+              this.confirmPopupData.data.push({productName: product.name, itemName: item.name});
+            })
+          });
+          this.confirmPopupData.button = 'Conferma Ordine';
+          this.confirmPopupData.type = 'newOrder';
           this.confirmPopupState = 'active';
           this.activePopup = 'confirmOrder';
           this.shadowState = 'active';

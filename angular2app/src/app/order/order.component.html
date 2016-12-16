@@ -2,6 +2,9 @@
   <form class="sidebar-container" #orderForm="ngForm">
     <div class="sidebar-block">
       <h2>Dettagli Ordine</h2>
+      <div class="order-container" *ngIf="!orderIsFull">
+        <div class="order-list-empty">Seleziona i servizi che ti servono a aggiungili alla lista degli ordini.</div>
+      </div>
       <div class="order-container" *ngIf="orderIsFull">
         <span *ngFor="let orderCategory of orderData">
           <div class="category-group" *ngFor="let orderItem of orderCategory.items">
@@ -41,7 +44,7 @@
           <textarea class="form-control" id="nota" name="applicant_description" [(ngModel)]="Order.delivery_description" placeholder="Aggiungi una nota opzionale…" required></textarea>
         </div>
         <div class="form-group">
-          <button class="btn btn-warning btn-block" (click)="createOrder()" [disabled]="!orderForm.form.valid || !orderIsFull || !isAddressFull">Conferma l’ordine</button>
+          <button class="btn btn-warning btn-block" (click)="showConfirmation()" [disabled]="!orderForm.form.valid || !orderIsFull || !isAddressFull">Conferma l’ordine</button>
         </div>
         <div class="footer-links">
           <p>

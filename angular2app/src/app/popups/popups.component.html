@@ -101,11 +101,18 @@
   </div>
   <div class="header">{{ confirmPopupData.title }}</div>
   <form class="confirm-order-form" #confirmOrderForm="ngForm">
-    <p>{{ confirmPopupData.text }}</p>
+    <p *ngIf="confirmPopupData.type !== 'newOrder'">{{ confirmPopupData.text }}</p>
+    <div class="orders-list" *ngIf="confirmPopupData.type == 'newOrder'">
+      <span *ngFor="let product of confirmPopupData.data">
+        <strong>{{ product.productName }}:</strong>
+        {{ product.itemName }}
+      </span>
+    </div>
     <div class="form-group">
       <button class="btn btn-warning" type="submit" (click)="confirmOrder(confirmPopupData.id)" *ngIf="confirmPopupData.button === 'Conferma'">Conferma</button>
       <button class="btn btn-warning" type="submit" (click)="cancelOrder(confirmPopupData.id)" *ngIf="confirmPopupData.button === 'Annulla ordine'">Annulla ordine</button>
       <button class="btn btn-warning" type="submit" (click)="reactivateOrder(confirmPopupData.id)" *ngIf="confirmPopupData.button === 'Riattiva ordine'">Riattiva ordine</button>
+      <button class="btn btn-warning" type="submit" (click)="confirmNewOrder()" *ngIf="confirmPopupData.button === 'Conferma Ordine'">Conferma Ordine</button>
       <button class="btn btn-secondary" type="submit" (click)="closePopup()">Chiudi</button>
     </div>
   </form>
