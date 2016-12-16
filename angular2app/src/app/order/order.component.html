@@ -38,13 +38,13 @@
             <p-autoComplete id="luogo" class="form-control text-small" placeholder="Inserisci l’indirizzo del ordine" [ngClass]="{'isError':isAddressFull === false && isAddressDirty === true}" [(ngModel)]="Order.delivery_address" [ngModelOptions]="{standalone: true}" [suggestions]="addresses" field="formattedAddress" (completeMethod)="getAddresses($event)" (onSelect)="selectAddress($event)">
             </p-autoComplete>
           </div>
-          <div class="error-block" *ngIf="!isAddressFull && isAddressDirty">Please enter the full address</div>
+          <div class="error-block" *ngIf="!isAddressFull && isAddressDirty">Inserisci l'indirizzo esatto</div>
         </div>
         <div class="form-group">
           <textarea class="form-control" id="nota" name="applicant_description" [(ngModel)]="Order.delivery_description" placeholder="Aggiungi una nota opzionale…" required></textarea>
         </div>
         <div class="form-group">
-          <button class="btn btn-warning btn-block" (click)="showConfirmation()" [disabled]="!orderForm.form.valid || !orderIsFull || !isAddressFull">Conferma l’ordine</button>
+          <button class="btn btn-warning btn-block" (click)="showConfirmation()" [disabled]="!orderForm.form.valid || !orderIsFull || !isAddressFull">Anteprima ordine</button>
         </div>
         <div class="footer-links">
           <p>
