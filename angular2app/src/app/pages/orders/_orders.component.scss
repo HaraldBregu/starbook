@@ -29,10 +29,14 @@ $order-information-header-category-name-letter-spacing: 0.11px;
 $order-information-order-status-order-id-font-size: 16px;
 $order-information-order-status-order-id-letter-spacing: 0.1px;
 $order-information-btn-primary-background-color: #506795;
+$order-information-btn-primary-hover-background-color: #324977;
+$order-information-btn-primary-active-background-color: #506795;
 $order-information-btn-primary-border-style: 1px solid #29487D;
 $order-information-btn-primary-text-color: #FFFFFF;
 $order-information-btn-primary-text-size: 12px;
 $order-information-btn-secondary-background-color: #F6F7F9;
+$order-information-btn-secondary-hover-background-color: #E4E7ED;
+$order-information-btn-secondary-active-background-color: #F6F7F9;
 $order-information-btn-secondary-border-style: 1px solid #DDDFE2;
 $order-information-btn-secondary-text-color: #212121;
 $order-information-btn-secondary-text-size: 12px;
@@ -255,33 +259,87 @@ $order-error-font-weight: 400;
   width: 60%;
   text-align: right;
 }
-.order-footer .buttons .btn-primary,
-.order-footer .buttons .btn-primary:active,
-.order-footer .buttons .btn-primary:hover {
+.order-footer .buttons .btn-primary {
   height: 28px;
-  font-family: $font-name;
+  font-family: $font-name-medium;
   background-color: $order-information-btn-primary-background-color;
   border: $order-information-btn-primary-border-style;
   color: $order-information-btn-primary-text-color;
   font-size: $order-information-btn-primary-text-size;
   letter-spacing: $letter-spacing;
-  font-weight: 600;
+  font-weight: normal;
   border-radius: 3px;
   padding: 6px 8px;
   margin-left: 10px;
   outline: none;
 }
-.order-footer .buttons .btn-secondary,
-.order-footer .buttons .btn-secondary:active,
-.order-footer .buttons .btn-secondary:hover {
+.order-footer .buttons .btn-primary:focus,
+.order-footer .buttons .btn-primary:hover {
   height: 28px;
-  font-family: $font-name;
+  font-family: $font-name-medium;
+  background-color: $order-information-btn-primary-hover-background-color;
+  border: $order-information-btn-primary-border-style;
+  color: $order-information-btn-primary-text-color;
+  font-size: $order-information-btn-primary-text-size;
+  letter-spacing: $letter-spacing;
+  font-weight: normal;
+  border-radius: 3px;
+  padding: 6px 8px;
+  margin-left: 10px;
+  outline: none;
+}
+.order-footer .buttons .btn-primary:active {
+  height: 28px;
+  font-family: $font-name-medium;
+  background-color: $order-information-btn-primary-active-background-color;
+  border: $order-information-btn-primary-border-style;
+  color: $order-information-btn-primary-text-color;
+  font-size: $order-information-btn-primary-text-size;
+  letter-spacing: $letter-spacing;
+  font-weight: normal;
+  border-radius: 3px;
+  padding: 6px 8px;
+  margin-left: 10px;
+  outline: none;
+}
+.order-footer .buttons .btn-secondary {
+  height: 28px;
+  font-family: $font-name-medium;
   background-color: $order-information-btn-secondary-background-color;
   border: $order-information-btn-secondary-border-style;
   color: $order-information-btn-secondary-text-color;
   font-size: $order-information-btn-secondary-text-size;
   letter-spacing: $letter-spacing;
-  font-weight: 600;
+  font-weight: normal;
+  border-radius: 3px;
+  padding: 6px 8px;
+  margin-left: 10px;
+  outline: none;
+}
+.order-footer .buttons .btn-secondary:focus,
+.order-footer .buttons .btn-secondary:hover {
+  height: 28px;
+  font-family: $font-name-medium;
+  background-color: $order-information-btn-secondary-hover-background-color;
+  border: $order-information-btn-secondary-border-style;
+  color: $order-information-btn-secondary-text-color;
+  font-size: $order-information-btn-secondary-text-size;
+  letter-spacing: $letter-spacing;
+  font-weight: normal;
+  border-radius: 3px;
+  padding: 6px 8px;
+  margin-left: 10px;
+  outline: none;
+}
+.order-footer .buttons .btn-secondary:active {
+  height: 28px;
+  font-family: $font-name-medium;
+  background-color: $order-information-btn-secondary-active-background-color;
+  border: $order-information-btn-secondary-border-style;
+  color: $order-information-btn-secondary-text-color;
+  font-size: $order-information-btn-secondary-text-size;
+  letter-spacing: $letter-spacing;
+  font-weight: normal;
   border-radius: 3px;
   padding: 6px 8px;
   margin-left: 10px;

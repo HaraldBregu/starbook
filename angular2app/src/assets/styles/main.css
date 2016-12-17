@@ -3446,33 +3446,87 @@ html, body {
   width: 60%;
   text-align: right; }
 
-.order-footer .buttons .btn-primary,
-.order-footer .buttons .btn-primary:active,
-.order-footer .buttons .btn-primary:hover {
+.order-footer .buttons .btn-primary {
   height: 28px;
-  font-family: HelveticaNeue, sans-serif;
+  font-family: HelveticaNeue-Medium, sans-serif;
   background-color: #506795;
   border: 1px solid #29487D;
   color: #FFFFFF;
   font-size: 12px;
   letter-spacing: 0.08px;
-  font-weight: 600;
+  font-weight: normal;
   border-radius: 3px;
   padding: 6px 8px;
   margin-left: 10px;
   outline: none; }
 
-.order-footer .buttons .btn-secondary,
-.order-footer .buttons .btn-secondary:active,
-.order-footer .buttons .btn-secondary:hover {
+.order-footer .buttons .btn-primary:focus,
+.order-footer .buttons .btn-primary:hover {
   height: 28px;
-  font-family: HelveticaNeue, sans-serif;
+  font-family: HelveticaNeue-Medium, sans-serif;
+  background-color: #324977;
+  border: 1px solid #29487D;
+  color: #FFFFFF;
+  font-size: 12px;
+  letter-spacing: 0.08px;
+  font-weight: normal;
+  border-radius: 3px;
+  padding: 6px 8px;
+  margin-left: 10px;
+  outline: none; }
+
+.order-footer .buttons .btn-primary:active {
+  height: 28px;
+  font-family: HelveticaNeue-Medium, sans-serif;
+  background-color: #506795;
+  border: 1px solid #29487D;
+  color: #FFFFFF;
+  font-size: 12px;
+  letter-spacing: 0.08px;
+  font-weight: normal;
+  border-radius: 3px;
+  padding: 6px 8px;
+  margin-left: 10px;
+  outline: none; }
+
+.order-footer .buttons .btn-secondary {
+  height: 28px;
+  font-family: HelveticaNeue-Medium, sans-serif;
   background-color: #F6F7F9;
   border: 1px solid #DDDFE2;
   color: #212121;
   font-size: 12px;
   letter-spacing: 0.08px;
-  font-weight: 600;
+  font-weight: normal;
+  border-radius: 3px;
+  padding: 6px 8px;
+  margin-left: 10px;
+  outline: none; }
+
+.order-footer .buttons .btn-secondary:focus,
+.order-footer .buttons .btn-secondary:hover {
+  height: 28px;
+  font-family: HelveticaNeue-Medium, sans-serif;
+  background-color: #E4E7ED;
+  border: 1px solid #DDDFE2;
+  color: #212121;
+  font-size: 12px;
+  letter-spacing: 0.08px;
+  font-weight: normal;
+  border-radius: 3px;
+  padding: 6px 8px;
+  margin-left: 10px;
+  outline: none; }
+
+.order-footer .buttons .btn-secondary:active {
+  height: 28px;
+  font-family: HelveticaNeue-Medium, sans-serif;
+  background-color: #F6F7F9;
+  border: 1px solid #DDDFE2;
+  color: #212121;
+  font-size: 12px;
+  letter-spacing: 0.08px;
+  font-weight: normal;
   border-radius: 3px;
   padding: 6px 8px;
   margin-left: 10px;
