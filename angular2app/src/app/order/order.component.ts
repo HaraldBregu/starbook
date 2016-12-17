@@ -29,7 +29,7 @@ export class OrderComponent implements OnInit, OnDestroy {
     isFull: false,
     formattedAddress: ''
   };
-  public isAddressFull = true;
+  public isAddressFull = false;
   public isAddressDirty = false;
   public Order = {
     category_type: 0,
@@ -50,6 +50,8 @@ export class OrderComponent implements OnInit, OnDestroy {
     country: '',
     country_code: ''
   };
+  public submitOrder = false;
+  public orderForm: any;
   subscription: Subscription;
 
   constructor(private orderService: OrderService, private popupsService: PopupsService) {
@@ -113,7 +115,10 @@ export class OrderComponent implements OnInit, OnDestroy {
   }
 
   showConfirmation() {
-    this.popupsService.activate({type: 'confirmNewOrder', data: {orderData: this.orderData}});
+    this.submitOrder = true;
+    if (this.Order.date && this.orderIsFull && this.isAddressFull) {
+      this.popupsService.activate({type: 'confirmNewOrder', data: {orderData: this.orderData}});
+    }
   }
 
   createOrder() {
@@ -155,6 +160,7 @@ export class OrderComponent implements OnInit, OnDestroy {
           this.Order.date = null;
           this.Order.time = '';
           this.Order.delivery_date = '';
+          this.submitOrder = false;
         })
         .catch((error) => {
           console.log(error);

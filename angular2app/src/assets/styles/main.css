@@ -2584,6 +2584,13 @@ body {
 .ficon-gardening:before {
   content: "\e913"; }
 
+app-home {
+  display: block;
+  float: left;
+  width: 100%;
+  height: 100%;
+  background-color: #FFFFFF; }
+
 .navbar.navbar-tabs {
   display: block;
   width: 100%;
@@ -2631,7 +2638,7 @@ body {
   font-family: HelveticaNeue-Light, sans-serif;
   font-weight: normal;
   letter-spacing: 0.1px;
-  background-color: #FAFAFA;
+  background-color: #FFFFFF;
   border-left: 1px solid #DCDCDC;
   border-right: 1px solid #DCDCDC; }
 
@@ -2655,6 +2662,9 @@ body {
   margin: 0 auto;
   padding: 0 15px; }
 
+.container-starbook.home-page {
+  padding: 0 0 0 10px !important; }
+
 .container-starbook .row {
   position: relative;
   min-height: 100vh;
@@ -2663,42 +2673,48 @@ body {
 .container-starbook .main {
   display: block;
   width: 100%;
-  padding-right: 361px; }
+  padding-right: 388px; }
 
 .services-block {
   display: block;
-  width: 300px;
+  width: 245px;
   background-color: #FCFCFC;
   border: 1px solid #DCDCDC;
-  margin: 0 25px 50px 25px;
+  margin: 0 8px 20px 9px;
   border-radius: 3px; }
 
 .services-block .header {
   font-family: HelveticaNeue-Medium, sans-serif;
-  font-size: 17px;
+  font-size: 15px;
   background-color: #FCFCFC;
-  padding: 14px 19px;
+  padding: 13px 19px;
   border-bottom: 1px solid #DCDCDC;
-  letter-spacing: 0.11px; }
+  letter-spacing: 0.1px;
+  color: #333333; }
 
 .services-block .service {
   display: block;
   width: 100%;
-  padding: 28px 23px 2px 23px; }
+  padding: 9px 9px 12px 9px; }
 
 .services-block .service .item {
   display: block;
   position: relative;
   width: 100%;
-  height: 47px;
-  padding: 0 0 28px 29px;
+  padding: 7px 7px 7px 34px;
   font-weight: 400;
   font-family: HelveticaNeue, sans-serif;
   font-size: 14px;
   color: #000000;
   letter-spacing: 0.09px;
   cursor: pointer;
-  -webkit-font-smoothing: initial !important; }
+  -webkit-font-smoothing: initial !important;
+  background-color: #FCFCFC;
+  border-radius: 3px; }
+
+.services-block .service .item:hover {
+  background-color: #F5F5F5;
+  border-radius: 3px; }
 
 .services-block .service .item i {
   display: none; }
@@ -2706,12 +2722,11 @@ body {
 .services-block .service .item.checked i {
   display: block;
   position: absolute;
-  top: -2px;
-  left: 0;
+  top: 6px;
+  left: 8px;
   font-size: 19px; }
 
 .services-block .service .item.checked {
-  height: 47px;
   font-weight: 400;
   font-family: HelveticaNeue, sans-serif;
   font-size: 14px;
@@ -2722,7 +2737,7 @@ body {
 
 .container-starbook .sidebar {
   display: block;
-  width: 360px;
+  width: 388px;
   height: 100vh;
   position: fixed;
   top: 0;
@@ -2737,8 +2752,8 @@ body {
   position: relative;
   width: 100%;
   height: 100%;
-  padding-left: 13.5px;
-  padding-right: 15.5px;
+  padding-left: 17.5px;
+  padding-right: 20.5px;
   overflow-y: scroll; }
 
 .sidebar-container .sidebar-block {
@@ -2757,9 +2772,9 @@ body {
   bottom: 0;
   display: block;
   float: left;
-  width: 300px;
+  width: 318px;
   padding-top: 20px;
-  margin-right: -690px; }
+  margin-right: -684px; }
 
 .footer-links {
   display: block;
@@ -2921,15 +2936,15 @@ textarea.form-control {
   position: fixed;
   top: 90px;
   right: 50%;
-  margin-right: -690px;
-  width: 300px;
-  padding: 17px 0 11px 0;
-  color: #969696;
-  font-family: HelveticaNeue, sans-serif;
-  font-size: 12px;
+  margin-right: -700px;
+  width: 350px;
+  height: 45px;
+  padding: 14px 0 21px 13px;
+  color: #212121;
+  font-family: HelveticaNeue-Bold, sans-serif;
+  font-size: 15px;
   font-weight: 700;
-  letter-spacing: 0.08px;
-  text-transform: uppercase;
+  letter-spacing: 0.1px;
   border-bottom: 1px solid #DCDCDC; }
 
 .order-container .category-group {
@@ -3146,6 +3161,9 @@ textarea.form-control {
   font-size: 13px;
   padding: 6px 11px 0 11px; }
 
+.isError .form-control {
+  border: 1px solid #DB4F4F; }
+
 @media (max-width: 1440px) {
   .container-starbook .sidebar {
     right: 0;
@@ -3153,12 +3171,12 @@ textarea.form-control {
     margin-right: 0; }
 
   .sidebar-container .add-order-form {
-    right: 30px;
+    right: 35px;
     bottom: 0;
     margin-right: 0; }
 
   .sidebar-block h2 {
-    right: 30px;
+    right: 20px;
     margin-right: 0; } }
 html, body {
   background-color: #FAFAFA !important; }
@@ -3231,6 +3249,9 @@ html, body {
 .container-starbook .nav-link:hover,
 .container-starbook .nav-link.active {
   background-color: #293C61; }
+
+.container-starbook.top-menu {
+  padding-right: 0 !important; }
 
 .container-starbook.without-tabs .row {
   padding: 40px 0 0 0; }
