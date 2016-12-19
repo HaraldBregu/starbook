@@ -56,10 +56,12 @@ export class OrderComponent implements OnInit, OnDestroy {
 
   constructor(private orderService: OrderService, private popupsService: PopupsService) {
     for (let i = 0; i < 24; i++) {
-      if (i > 9) {
-        this.timePicker.push(i + ':00', i + ':30');
-      } else {
-        this.timePicker.push('0' + i + ':00', '0' + i + ':30');
+      if (i > 7 && i < 20) {
+        if (i > 9) {
+          this.timePicker.push(i + ':00', i + ':30');
+        } else {
+          this.timePicker.push('0' + i + ':00', '0' + i + ':30');
+        }
       }
     }
     this.months = {
@@ -175,7 +177,7 @@ export class OrderComponent implements OnInit, OnDestroy {
       firstDayOfWeek: 1,
       dayNames: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
       dayNamesShort: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
-      dayNamesMin: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'],
+      dayNamesMin: ['Do', 'Lu', 'Ma', 'Me', 'Gi', 'Ve', 'Sa'],
       monthNames: ['Gennaio', 'Febbraio', 'Marzo', 'Aprile', 'Maggio', 'Giugno',
         'Luglio', 'Agosto', 'Settembre', 'Ottobre', 'Novembre', 'Dicembre'],
       monthNamesShort: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
