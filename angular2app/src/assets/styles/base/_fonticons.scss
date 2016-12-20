@@ -25,27 +25,30 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-.ficon-anvil:before {
+.ficon-plumber:before {
   content: "\e900";
 }
-.ficon-plumber:before {
-  content: "\e903";
-}
 .ficon-electrician:before {
-  content: "\e908";
-}
-.ficon-chimney-sweep:before {
-  content: "\e902";
-}
-.ficon-satellite:before {
-  content: "\e905";
-}
-.ficon-cleaning:before {
-  content: "\e904";
-}
-.ficon-construction:before {
   content: "\e901";
 }
+.ficon-anvil:before {
+  content: "\e902";
+}
+.ficon-chimney-sweep:before {
+  content: "\e903";
+}
+.ficon-satellite:before {
+  content: "\e904";
+}
+.ficon-cleaning:before {
+  content: "\e905";
+}
+.ficon-construction:before {
+  content: "\e906";
+}
 .ficon-gardening:before {
-  content: "\e913";
+  content: "\e907";
+}
+.ficon-computer:before {
+  content: "\e908";
 }
