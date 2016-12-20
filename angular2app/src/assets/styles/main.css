@@ -2854,9 +2854,9 @@ app-home {
   font-size: 12px; }
 
 textarea.form-control {
-  height: 56px;
+  height: 80px;
   resize: none;
-  font-size: 12px;
+  font-size: 14px;
   color: #565656;
   font-family: HelveticaNeue, sans-serif;
   letter-spacing: 0.01px;

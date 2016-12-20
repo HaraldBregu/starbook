@@ -1,21 +1,21 @@
 /*
 Error: Undefined variable: "$font-name".
-        on line 90 of order.component.scss
+        on line 124 of _order.component.scss
 
-85:   margin-bottom: 4px;
-86: }
-87: .form-control {
-88:   color: $form-input-text-color;
-89:   font-size: 16px;
-90:   font-family: $font-name;
-91:   letter-spacing: $form-input-text-letter-spacing;
-92:   padding: 11px;
-93:   border-radius: 3px;
-94:   background-color: $form-input-background-color;
-95:   border: 1px solid $form-input-text-border-color;
+119: .footer-links p {
+120:   display: block;
+121:   float: left;
+122:   width: 100%;
+123:   text-align: left;
+124:   font-family: $font-name;
+125:   color: $footer-links-text-color;
+126:   letter-spacing: $footer-links-text-letter-spacing;
+127:   font-size: $footer-links-font-size;
+128:   margin-bottom: 12px;
+129: }
 
 Backtrace:
-order.component.scss:90
+_order.component.scss:124
 /Library/Ruby/Gems/2.0.0/gems/sass-3.4.22/lib/sass/script/tree/variable.rb:49:in `_perform'
 /Library/Ruby/Gems/2.0.0/gems/sass-3.4.22/lib/sass/script/tree/node.rb:58:in `perform'
 /Library/Ruby/Gems/2.0.0/gems/sass-3.4.22/lib/sass/tree/visitors/perform.rb:397:in `visit_prop'
@@ -51,20 +51,15 @@ order.component.scss:90
 /Library/Ruby/Gems/2.0.0/gems/sass-3.4.22/lib/sass/tree/root_node.rb:29:in `render_with_sourcemap'
 /Library/Ruby/Gems/2.0.0/gems/sass-3.4.22/lib/sass/engine.rb:381:in `_render_with_sourcemap'
 /Library/Ruby/Gems/2.0.0/gems/sass-3.4.22/lib/sass/engine.rb:298:in `render_with_sourcemap'
-/Library/Ruby/Gems/2.0.0/gems/sass-3.4.22/lib/sass/plugin/compiler.rb:492:in `update_stylesheet'
-/Library/Ruby/Gems/2.0.0/gems/sass-3.4.22/lib/sass/plugin/compiler.rb:215:in `block in update_stylesheets'
-/Library/Ruby/Gems/2.0.0/gems/sass-3.4.22/lib/sass/plugin/compiler.rb:209:in `each'
-/Library/Ruby/Gems/2.0.0/gems/sass-3.4.22/lib/sass/plugin/compiler.rb:209:in `update_stylesheets'
-/Library/Ruby/Gems/2.0.0/gems/sass-3.4.22/lib/sass/plugin.rb:82:in `update_stylesheets'
-/Library/Ruby/Gems/2.0.0/gems/sass-3.4.22/lib/sass/exec/sass_scss.rb:340:in `watch_or_update'
-/Library/Ruby/Gems/2.0.0/gems/sass-3.4.22/lib/sass/exec/sass_scss.rb:51:in `process_result'
+/Library/Ruby/Gems/2.0.0/gems/sass-3.4.22/lib/sass/exec/sass_scss.rb:391:in `run'
+/Library/Ruby/Gems/2.0.0/gems/sass-3.4.22/lib/sass/exec/sass_scss.rb:63:in `process_result'
 /Library/Ruby/Gems/2.0.0/gems/sass-3.4.22/lib/sass/exec/base.rb:52:in `parse'
 /Library/Ruby/Gems/2.0.0/gems/sass-3.4.22/lib/sass/exec/base.rb:19:in `parse!'
-/Library/Ruby/Gems/2.0.0/gems/sass-3.4.22/bin/scss:13:in `<top (required)>'
-/usr/local/bin/scss:23:in `load'
-/usr/local/bin/scss:23:in `<main>'
+/Library/Ruby/Gems/2.0.0/gems/sass-3.4.22/bin/sass:13:in `<top (required)>'
+/usr/local/bin/sass:23:in `load'
+/usr/local/bin/sass:23:in `<main>'
 */
 body:before {
   white-space: pre;
   font-family: monospace;
-  content: "Error: Undefined variable: \"$font-name\".\A         on line 90 of order.component.scss\A \A 85:   margin-bottom: 4px;\A 86: }\A 87: .form-control {\A 88:   color: $form-input-text-color;\A 89:   font-size: 16px;\A 90:   font-family: $font-name;\A 91:   letter-spacing: $form-input-text-letter-spacing;\A 92:   padding: 11px;\A 93:   border-radius: 3px;\A 94:   background-color: $form-input-background-color;\A 95:   border: 1px solid $form-input-text-border-color;"; }
+  content: "Error: Undefined variable: \"$font-name\".\A         on line 124 of _order.component.scss\A \A 119: .footer-links p {\A 120:   display: block;\A 121:   float: left;\A 122:   width: 100%;\A 123:   text-align: left;\A 124:   font-family: $font-name;\A 125:   color: $footer-links-text-color;\A 126:   letter-spacing: $footer-links-text-letter-spacing;\A 127:   font-size: $footer-links-font-size;\A 128:   margin-bottom: 12px;\A 129: }"; }
