@@ -24,9 +24,10 @@ export class ProfileComponent implements OnInit {
   public selectTab: string|boolean = false;
   public tabs = [
     {name: 'Generali', selected: true},
-    {name: 'Pagamento', selected: false},
-    {name: 'Fatturazione', selected: false},
-    {name: 'Impostazioni', selected: false}
+    {name: 'Metodo di Pagamento', selected: false},
+    {name: 'Condizioni', selected: false},
+    {name: 'Privacy', selected: false},
+    {name: 'Assistenza', selected: false}
   ];
 
   public userData: IUserData = {
