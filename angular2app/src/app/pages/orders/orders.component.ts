@@ -34,13 +34,13 @@ export interface IOrder {
 export class OrdersComponent implements OnInit, OnDestroy {
   public selectTab: string|boolean = false;
   public taglines = {
-    'Ordini ricevuti': 'Ordini ricevuti',
-    'Ordini richiesti': 'Ordini richiesti',
-    'Archivio': 'Archivio ordini'
+    'Ricevuti': 'Ordini',
+    'Richiesti': 'Ordini',
+    'Archivio': 'Ordini'
   };
   public tabs = [
-    {name: 'Ordini ricevuti', selected: false},
-    {name: 'Ordini richiesti', selected: false},
+    {name: 'Ricevuti', selected: false},
+    {name: 'Richiesti', selected: false},
     {name: 'Archivio', selected: false}
   ];
   public categories = [];
@@ -51,7 +51,7 @@ export class OrdersComponent implements OnInit, OnDestroy {
   constructor(private navigationService: NavigationService, private ordersService: OrdersService, private popupsService: PopupsService) { }
 
   ngOnInit() {
-    this.renderPage('Ordini ricevuti');
+    this.renderPage('Ricevuti');
     this.categories = this.ordersService.getCategories();
     this.subscription = this.popupsService.getPopupResponse$.subscribe(action => {
       let orderIndex = 0;
@@ -106,14 +106,14 @@ export class OrdersComponent implements OnInit, OnDestroy {
 
     let params = [];
 
-    if (page === 'Ordini ricevuti') {
+    if (page === 'Ricevuti') {
       params = [];
       params.push({name: 'sort_delivery_date', value: 1});
       params.push({name: 'delivery_after_date', value: this.dateFormating('now')});
       params.push({name: 'customer', value: 'other'});
     }
 
-    if (page === 'Ordini richiesti') {
+    if (page === 'Richiesti') {
       params = [];
       params.push({name: 'sort_delivery_date', value: 1});
       params.push({name: 'delivery_after_date', value: this.dateFormating('now')});
