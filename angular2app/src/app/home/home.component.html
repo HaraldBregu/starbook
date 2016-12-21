@@ -2,13 +2,13 @@
   <div class="container-starbook">
     <ul class="nav nav-pills">
       <li class="nav-item" *ngFor="let navServices of servicesCategoryList">
-        <a class="nav-link" [ngClass]="{'active':navServices._id===activeServiceCategory}" (click)="tabNavigate(navServices._id)"><i class="f{{navServices.icon_name}}"></i> {{navServices.title}}</a>
+        <a class="nav-link" [ngClass]="{'active':navServices._id===activeServiceCategory && activeServiceCategoryType !== false}" (click)="tabNavigate(navServices._id)"><i class="f{{navServices.icon_name}}"></i> {{navServices.title}}</a>
       </li>
     </ul>
   </div>
 </nav>
 
-<div class="container-starbook home-page">
+<div class="container-starbook home-page" *ngIf="activeServiceCategoryType !== false">
   <div class="row">
     <div class="col-sm-9 col-md-10 main">
       <div class="tab-container">
@@ -26,3 +26,4 @@
     </div>
   </div>
 </div>
+<app-landing *ngIf="activeServiceCategoryType === false"></app-landing>

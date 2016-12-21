@@ -24,6 +24,7 @@ import { OrdersComponent } from './pages/orders/orders.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { PopupsComponent } from './popups/popups.component';
 import { PhonePipe } from './pipes/phone.pipe';
+import { LandingComponent } from './pages/landing/landing.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { PhonePipe } from './pipes/phone.pipe';
     OrdersComponent,
     ProfileComponent,
     PopupsComponent,
-    PhonePipe
+    PhonePipe,
+    LandingComponent
   ],
   imports: [
     BrowserModule,

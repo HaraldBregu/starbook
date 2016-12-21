@@ -31,7 +31,7 @@ export class HomeComponent implements AfterViewInit, OnInit {
   public servicesCategoryList: IServiceCategoryList[] = [];
   public servicesData: IServiceCategory[] = [];
   public activeServiceCategory: boolean|string = false;
-  public activeServiceCategoryType = 0;
+  public activeServiceCategoryType: boolean|number = false;
   public model: any;
   public orderData;
   public orderIsFull = false;
@@ -125,9 +125,11 @@ export class HomeComponent implements AfterViewInit, OnInit {
   }
 
   ngAfterViewInit() {
+    if (this.activeServiceCategoryType !== false) {
       this.masonry.layoutComplete.subscribe(() => {
 
       });
+    }
   }
 
   ngOnInit() {

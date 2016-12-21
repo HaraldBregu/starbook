@@ -4072,6 +4072,281 @@ html, body {
 .popup .confirm-order-form .form-group .btn.btn-secondary {
   background-color: #EFF1F3; }
 
+.landing {
+  display: block;
+  width: 100%;
+  height: 100%;
+  margin-top: 70px;
+  background-color: #FCFCFC; }
+
+.landing .btn.btn-warning {
+  width: 100%;
+  height: 35px;
+  font-family: HelveticaNeue-Bold, sans-serif;
+  border: 1px solid #A6A6A6;
+  border-radius: 3px;
+  font-size: 14px;
+  color: #2A0202;
+  letter-spacing: 0.9px;
+  padding: 8px 7px;
+  background: #FFE589;
+  text-align: center;
+  outline: none;
+  background: -moz-linear-gradient(top, #FFE589 0%, #FEC751 100%);
+  background: -webkit-linear-gradient(top, #FFE589 0%, #FEC751 100%);
+  background: linear-gradient(to bottom, #FFE589 0%, #FEC751 100%);
+  opacity: 0.9; }
+
+.landing .btn.btn-warning:hover,
+.landing .btn.btn-warning:active {
+  opacity: 1; }
+
+.landing-header h1 {
+  width: 100%;
+  text-align: center;
+  padding: 90px 0;
+  font-family: HelveticaNeue-Medium, sans-serif;
+  color: #3B568D;
+  font-size: 30px;
+  letter-spacing: 0.19px; }
+
+.landing-header h2 {
+  width: 100%;
+  text-align: center;
+  padding: 0 0 90px 0;
+  font-family: HelveticaNeue-Bold, sans-serif;
+  color: #3B568D;
+  font-size: 30px;
+  letter-spacing: 0.19px; }
+
+.landing .row .top-cards {
+  padding: 0 10px; }
+
+.top-cards .top-card {
+  display: block;
+  position: relative;
+  width: 100%;
+  height: 250px;
+  padding: 5px;
+  background-color: #FFFFFF;
+  border: 1px solid #DCDCDC;
+  border-radius: 1px;
+  box-shadow: 0px 2px 6px 0px #DCDCDC;
+  margin-bottom: 20px; }
+
+.top-cards .top-card .header {
+  display: block;
+  position: relative;
+  width: 100%;
+  padding: 16px 12px 20px 12px;
+  font-family: HelveticaNeue-Bold, sans-serif;
+  font-size: 22px;
+  letter-spacing: 0.14px;
+  color: #212121;
+  z-index: 3; }
+
+.top-cards .top-card.green-card .header {
+  color: #FFFFFF; }
+
+.top-cards .top-card .description {
+  display: block;
+  width: 100%;
+  margin-top: -20px;
+  position: relative;
+  z-index: 3;
+  font-family: HelveticaNeue, sans-serif;
+  font-size: 16px;
+  color: #212121;
+  letter-spacing: 0.1px;
+  padding: 0 12px;
+  line-height: 18px; }
+
+.top-cards .top-card.green-card .description {
+  color: #FFFFFF; }
+
+.top-cards .top-card .header span {
+  font-family: HelveticaNeue-Light, sans-serif;
+  font-size: 16px;
+  color: #212121;
+  letter-spacing: 0.1px; }
+
+.top-cards .top-card p {
+  display: block;
+  width: 100%;
+  margin: 0;
+  font-family: HelveticaNeue-Light, sans-serif;
+  font-size: 16px;
+  color: #212121;
+  letter-spacing: 0.1px;
+  padding: 0 12px;
+  line-height: 18px; }
+
+.top-card .card-background {
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 203px;
+  top: 0;
+  left: 0;
+  padding: 5px 5px 0 5px; }
+
+.top-card .card-background .image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  z-index: 1; }
+
+.top-card .card-background .image.image-1 {
+  background-image: url("/assets/images/landing-image-1.png"); }
+
+.top-card .card-background .image.image-2 {
+  background-image: url("/assets/images/landing-image-2.png"); }
+
+.top-card .card-background .image.image-3 {
+  background-image: url("/assets/images/landing-image-3.png"); }
+
+.top-card .card-background .white-background {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #FFFFFF;
+  opacity: 0.95;
+  z-index: 2; }
+
+.top-card.green-card .card-background .white-background {
+  top: 5px;
+  left: 5px;
+  right: 5px;
+  bottom: 0;
+  height: auto;
+  width: auto;
+  background-color: #16A085;
+  opacity: 0.9; }
+
+.top-card .landing-card-footer {
+  display: block;
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  left: 0;
+  padding: 5px; }
+
+.landing .center-description {
+  display: block;
+  max-width: 413px;
+  margin: 38px auto 69px;
+  font-family: HelveticaNeue-Light, sans-serif;
+  color: #212121;
+  font-size: 18px;
+  letter-spacing: 0.11px;
+  text-align: center; }
+
+.landing .how-to-block {
+  margin-bottom: 21px; }
+
+.landing .how-to-block .how-to-content {
+  display: block;
+  width: 100%; }
+
+.how-to-content .top-part {
+  display: block;
+  width: 100%;
+  height: 187px; }
+
+.how-to-content .top-part .product-image {
+  display: block;
+  width: 100%;
+  height: 187px;
+  background-image: url("/assets/images/product-image.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center center; }
+
+.how-to-content .top-part .order-image {
+  display: block;
+  width: 100%;
+  height: 183px;
+  background-image: url("/assets/images/order-form.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center center;
+  margin-bottom: 4px; }
+
+.how-to-content .top-part .landing-form {
+  display: block;
+  width: 209px;
+  height: 183px;
+  margin: 0 auto;
+  padding-top: 40px; }
+
+.how-to-content .top-part .landing-form .btn.btn-warning {
+  height: 30px;
+  color: #212121;
+  padding: 5px 7px; }
+
+.how-to-content .top-part .landing-form .icons-block {
+  display: block;
+  width: 160px;
+  margin: 25px auto 0; }
+
+.how-to-content .top-part .landing-form .icons-block .notify {
+  display: block;
+  float: left;
+  width: 25.5px;
+  height: 30px;
+  background-image: url("/assets/images/notifications-button.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  border: none;
+  margin-right: 37.5px; }
+
+.how-to-content .top-part .landing-form .icons-block .mail {
+  display: block;
+  float: left;
+  width: 30px;
+  height: 21.45px;
+  background-image: url("/assets/images/close-envelope.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  border: none;
+  margin-top: 4px;
+  margin-right: 36px; }
+
+.how-to-content .top-part .landing-form .icons-block .sms {
+  display: block;
+  float: left;
+  width: 30px;
+  height: 30px;
+  background-image: url("/assets/images/speech-bubble.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  border: none; }
+
+.how-to-content .header {
+  display: block;
+  width: 100%;
+  margin-top: 52px;
+  font-family: HelveticaNeue-Bold, sans-serif;
+  font-size: 18px;
+  letter-spacing: 0.11px;
+  color: #212121;
+  text-align: center; }
+
+.how-to-content p {
+  display: block;
+  width: 100%;
+  margin-top: 25px;
+  font-family: HelveticaNeue-Light, sans-serif;
+  font-size: 18px;
+  letter-spacing: 0.11px;
+  color: #212121;
+  text-align: center; }
+
 ngb-datepicker,
 .datepicker {
   border-radius: 3px;
