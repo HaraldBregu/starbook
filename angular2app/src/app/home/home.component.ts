@@ -35,6 +35,8 @@ export class HomeComponent implements AfterViewInit, OnInit {
   public model: any;
   public orderData;
   public orderIsFull = false;
+  public SWIPE_ACTION = { LEFT: 'swipeleft', RIGHT: 'swiperight' };
+  public delta: number = -15;
 
   @ViewChild(AngularMasonry) masonry: AngularMasonry;
 
@@ -196,5 +198,31 @@ export class HomeComponent implements AfterViewInit, OnInit {
       });
       categoryListIndex++;
     });
+  }
+
+  swipe(action = this.SWIPE_ACTION.RIGHT, delta) {
+    let calculateDelta = this.delta + delta;
+    let menuSize = 0;
+    let allMenuItems = document.querySelectorAll('.nav-pills > li');
+    for (let i = 0; i < allMenuItems.length; i++) {
+      let menuItem: any = allMenuItems[i];
+      menuSize += menuItem.offsetWidth;
+    }
+    let menuBlockWidth = document.querySelector('.home-tab-bar').clientWidth;
+    let allowMargin = (menuSize + 50) - menuBlockWidth;
+    if (allowMargin >= 0) {
+      allowMargin = -allowMargin;
+      if (calculateDelta > 0) {
+        this.delta = -15;
+      } else {
+        if (calculateDelta < allowMargin) {
+          if (action === this.SWIPE_ACTION.LEFT && allowMargin !== 0) {
+            this.delta = allowMargin;
+          }
+        } else {
+          this.delta = calculateDelta;
+        }
+      }
+    }
   }
 }

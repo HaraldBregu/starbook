@@ -2611,10 +2611,15 @@ app-home {
   padding: 0 !important; }
 
 .container-starbook .nav-pills {
-  margin-left: -15px; }
+  margin-left: -15px;
+  white-space: nowrap; }
 
 .nav-pills .nav-item + .nav-item {
   margin-left: 0 !important; }
+
+.nav-pills .nav-item {
+  float: none;
+  display: inline-block; }
 
 .container-starbook .nav-pills .nav-link {
   position: relative;

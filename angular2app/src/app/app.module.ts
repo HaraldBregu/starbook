@@ -1,4 +1,4 @@
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule, HammerGestureConfig, HAMMER_GESTURE_CONFIG } from '@angular/platform-browser';
 import { NgModule, forwardRef } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
@@ -26,6 +26,12 @@ import { PopupsComponent } from './popups/popups.component';
 import { PhonePipe } from './pipes/phone.pipe';
 import { LandingComponent } from './pages/landing/landing.component';
 
+export class HammerConfig extends HammerGestureConfig  {
+  overrides = <any> {
+    'swipe': {velocity: 0.4, threshold: 20}
+  };
+}
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -52,6 +58,10 @@ import { LandingComponent } from './pages/landing/landing.component';
   ],
   providers: [
     {provide: NgbDateParserFormatter, useClass: forwardRef(() => OrderComponent)},
+    {
+      provide: HAMMER_GESTURE_CONFIG,
+      useClass: HammerConfig
+    },
     HomeService,
     AuthService,
     OrderService,

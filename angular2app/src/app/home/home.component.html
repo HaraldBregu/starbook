@@ -1,6 +1,9 @@
 <nav class="navbar navbar-dark navbar-tabs">
-  <div class="container-starbook home-tab-bar">
-    <ul class="nav nav-pills">
+  <div class="container-starbook home-tab-bar"
+       (swipeleft)="swipe($event.type, $event.deltaX)"
+       (swiperight)="swipe($event.type, $event.deltaX)">
+    <ul class="nav nav-pills"
+        [ngStyle]="{'margin-left.px': delta}">
       <li class="nav-item" *ngFor="let navServices of servicesCategoryList">
         <a class="nav-link" [ngClass]="{'active':navServices._id===activeServiceCategory && activeServiceCategoryType !== false}" (click)="tabNavigate(navServices._id)"><i class="f{{navServices.icon_name}}"></i> {{navServices.title}}</a>
       </li>
