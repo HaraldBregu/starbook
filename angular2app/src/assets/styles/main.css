@@ -4160,7 +4160,7 @@ html, body {
 .landing-header h1 {
   width: 100%;
   text-align: center;
-  padding: 90px 0;
+  padding: 130px 0 90px;
   font-family: HelveticaNeue-Medium, sans-serif;
   color: #3B568D;
   font-size: 32px;
@@ -4295,7 +4295,7 @@ html, body {
 .landing .center-description {
   display: block;
   max-width: 500px;
-  margin: 50px auto 90px;
+  margin: 20px auto 20px;
   font-family: HelveticaNeue-Light, sans-serif;
   color: #212121;
   font-size: 24px;
