@@ -2594,6 +2594,10 @@ app-home {
   height: 100%;
   background-color: #FFFFFF; }
 
+.container-starbook.home-tab-bar {
+  height: 30px;
+  overflow: hidden; }
+
 .navbar.navbar-tabs {
   display: block;
   width: 100%;
@@ -3256,6 +3260,55 @@ html, body {
 .container-starbook.top-menu {
   padding-right: 0 !important; }
 
+.navbar-toggler {
+  display: none; }
+
+.collapse {
+  display: block; }
+
+@media (max-width: 576px) {
+  .tagline {
+    display: none; }
+
+  .container-starbook.top-menu {
+    padding: 0; }
+
+  .navbar-brand {
+    margin-left: 15px; }
+
+  .navbar-toggler {
+    display: block; }
+
+  .navbar-fixed-bottom, .navbar-fixed-top {
+    z-index: 1040;
+    height: auto;
+    min-height: 40px; }
+
+  .container-starbook .nav.navbar-nav.float-xs-right {
+    margin-right: 0; }
+
+  .float-xs-right {
+    float: left;
+    width: 100%; }
+
+  .navbar-nav .nav-item {
+    width: 100%;
+    padding: 0; }
+
+  .container-starbook .nav-link {
+    padding: 10px 15px; }
+
+  .collapse {
+    display: none; }
+
+  .container-starbook .navbar-toggler {
+    border-color: transparent !important;
+    color: #FFFFFF;
+    float: right;
+    margin-top: 7px;
+    margin-right: 8px;
+    outline: none !important;
+    box-shadow: none !important; } }
 .container-starbook.without-tabs .row {
   padding: 40px 0 0 0; }
 
@@ -4295,40 +4348,13 @@ html, body {
 .how-to-content .top-part .landing-form .icons-block {
   display: block;
   width: 160px;
-  margin: 25px auto 0; }
+  margin: 25px auto 0;
+  color: #4A4A4A;
+  font-size: 24px; }
 
-.how-to-content .top-part .landing-form .icons-block .notify {
-  display: block;
-  float: left;
-  width: 25.5px;
-  height: 30px;
-  background-image: url("/assets/images/notifications-button.png");
-  background-repeat: no-repeat;
-  background-size: contain;
-  border: none;
-  margin-right: 37.5px; }
-
-.how-to-content .top-part .landing-form .icons-block .mail {
-  display: block;
-  float: left;
-  width: 30px;
-  height: 21.45px;
-  background-image: url("/assets/images/close-envelope.png");
-  background-repeat: no-repeat;
-  background-size: contain;
-  border: none;
-  margin-top: 4px;
+.landing-form .icons-block .fa-envelope {
+  margin-left: 37px;
   margin-right: 36px; }
-
-.how-to-content .top-part .landing-form .icons-block .sms {
-  display: block;
-  float: left;
-  width: 30px;
-  height: 30px;
-  background-image: url("/assets/images/speech-bubble.png");
-  background-repeat: no-repeat;
-  background-size: contain;
-  border: none; }
 
 .how-to-content .header {
   display: block;
@@ -4350,6 +4376,96 @@ html, body {
   color: #212121;
   text-align: center; }
 
+.landing .row .banner {
+  padding: 0 10px; }
+
+.landing .banner a {
+  display: block;
+  position: relative;
+  width: 100%;
+  height: 235px; }
+
+.landing .banner a .background {
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-repeat: no-repeat;
+  background-size: cover;
+  opacity: 0.8;
+  z-index: 1;
+  transition: opacity 0.5s ease-in-out; }
+
+.landing .banner a:hover .background {
+  opacity: 1; }
+
+.landing .banner a span {
+  display: block;
+  position: absolute;
+  width: auto;
+  height: 35px;
+  bottom: 19px;
+  left: 26px;
+  z-index: 2;
+  font-family: HelveticaNeue, sans-serif;
+  color: #FFFFFF;
+  font-size: 30px;
+  letter-spacing: 0.19px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8); }
+
+.landing .banner a.banner-1 .background {
+  background-image: url("/assets/images/banner-1.png"); }
+
+.landing .banner a.banner-2 .background {
+  background-image: url("/assets/images/banner-2.png"); }
+
+.landing .banner a.banner-3 .background {
+  background-image: url("/assets/images/banner-3.png"); }
+
+.footer-description {
+  display: block;
+  max-width: 570px;
+  margin: 90px auto 115px;
+  font-family: HelveticaNeue-Light, sans-serif;
+  font-size: 18px;
+  letter-spacing: 0.11px;
+  color: #4A4A4A;
+  text-align: center; }
+
+.footer-container {
+  display: block;
+  width: 100%;
+  height: 42px;
+  background-color: #F4F4F4;
+  text-align: center;
+  padding: 13px 0; }
+
+.footer-container .copyright, .footer-container span, .footer-container a, .footer-container a:hover {
+  display: inline;
+  color: #90949C;
+  font-family: HelveticaNeue, sans-serif;
+  font-size: 14px;
+  letter-spacing: 0.09px;
+  text-decoration: none; }
+
+@media (max-width: 576px) {
+  .footer-container {
+    height: auto; }
+
+  .footer-container span {
+    display: none; }
+
+  .footer-container .copyright, .footer-container a, .footer-container a:hover {
+    display: block;
+    width: 100%;
+    text-align: center;
+    padding: 8px 0; }
+
+  .landing .center-description, .footer-description {
+    width: 100%;
+    padding: 0 15px; } }
 ngb-datepicker,
 .datepicker {
   border-radius: 3px;

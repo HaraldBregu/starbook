@@ -1,5 +1,5 @@
 <nav class="navbar navbar-dark navbar-tabs">
-  <div class="container-starbook">
+  <div class="container-starbook home-tab-bar">
     <ul class="nav nav-pills">
       <li class="nav-item" *ngFor="let navServices of servicesCategoryList">
         <a class="nav-link" [ngClass]="{'active':navServices._id===activeServiceCategory && activeServiceCategoryType !== false}" (click)="tabNavigate(navServices._id)"><i class="f{{navServices.icon_name}}"></i> {{navServices.title}}</a>

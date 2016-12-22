@@ -96,3 +96,54 @@ html, body {
 .container-starbook.top-menu {
   padding-right: 0 !important;
 }
+.navbar-toggler {
+  display: none;
+}
+.collapse {
+  display: block;
+}
+@media (max-width: 576px) {
+  .tagline {
+    display: none;
+  }
+  .container-starbook.top-menu {
+    padding: 0;
+  }
+  .navbar-brand {
+    margin-left: 15px;
+  }
+  .navbar-toggler {
+    display: block;
+  }
+  .navbar-fixed-bottom, .navbar-fixed-top {
+    z-index: 1040;
+    height: auto;
+    min-height: 40px;
+  }
+  .container-starbook .nav.navbar-nav.float-xs-right {
+    margin-right: 0;
+  }
+  .float-xs-right {
+    float: left;
+    width: 100%;
+  }
+  .navbar-nav .nav-item {
+    width: 100%;
+    padding: 0;
+  }
+  .container-starbook .nav-link {
+    padding: 10px 15px;
+  }
+  .collapse {
+    display: none;
+  }
+  .container-starbook .navbar-toggler {
+    border-color: transparent !important;
+    color: $navbar-text-color;
+    float: right;
+    margin-top: 7px;
+    margin-right: 8px;
+    outline: none !important;
+    box-shadow: none !important;
+  }
+}

@@ -13,6 +13,7 @@ export class AppComponent implements OnInit, OnDestroy {
   public auth;
   public activePopup = '';
   public popupState = 'inactive';
+  public navbarState = false;
   subscription: Subscription;
   authSubscription: Subscription;
   constructor (private authServics: AuthService, private navigationService: NavigationService, private popupsService: PopupsService) {
@@ -20,10 +21,15 @@ export class AppComponent implements OnInit, OnDestroy {
 
   getLoginPopup() {
     this.popupsService.activate({type: 'login'});
+    this.toggleMenu();
   }
 
   closePopup() {
     this.popupsService.activate('');
+  }
+
+  toggleMenu() {
+    this.navbarState = !this.navbarState;
   }
 
   ngOnInit() {

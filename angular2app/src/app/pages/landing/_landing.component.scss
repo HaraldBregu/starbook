@@ -30,18 +30,33 @@ $card-btn-text-color: #2A0202;
 $card-btn-font-size: 14px;
 $card-btn-letter-spacing: 0.9px;
 
-// Center description
+// Descriptions styles
 $center-description-font-size: 18px;
 $center-description-letter-spacing: 0.11px;
+$footer-description-color: #4A4A4A;
 
 // How to block styles
 $how-to-products-image: '/assets/images/product-image.png';
 $how-to-order-form-image: '/assets/images/order-form.png';
 $how-to-font-size: 18px;
 $how-to-letter-spacing: 0.11px;
-$how-to-notify-img: '/assets/images/notifications-button.png';
-$how-to-mail-img: '/assets/images/close-envelope.png';
-$how-to-sms-img: '/assets/images/speech-bubble.png';
+$how-to-icons-color: #4A4A4A;
+$how-to-icons-size: 24px;
+
+// Banners style
+$banner-text-color: #FFFFFF;
+$banner-text-font-size: 30px;
+$banner-text-letter-spacing: 0.19px;
+$banner-text-shadow: 2px 2px 4px rgba(0,0,0,0.80);
+$banner-image-1: '/assets/images/banner-1.png';
+$banner-image-2: '/assets/images/banner-2.png';
+$banner-image-3: '/assets/images/banner-3.png';
+
+// Footer styles
+$footer-background-color: #F4F4F4;
+$footer-text-color: #90949C;
+$footer-text-font-size: 14px;
+$footer-text-letter-spacing: 0.09px;
 
 .landing {
   display: block;
@@ -264,39 +279,12 @@ $how-to-sms-img: '/assets/images/speech-bubble.png';
   display: block;
   width: 160px;
   margin: 25px auto 0;
+  color: $how-to-icons-color;
+  font-size: $how-to-icons-size;
 }
-.how-to-content .top-part .landing-form .icons-block .notify {
-  display: block;
-  float: left;
-  width: 25.5px;
-  height: 30px;
-  background-image: url($how-to-notify-img);
-  background-repeat: no-repeat;
-  background-size: contain;
-  border: none;
-  margin-right: 37.5px;
-}
-.how-to-content .top-part .landing-form .icons-block .mail {
-  display: block;
-  float: left;
-  width: 30px;
-  height: 21.45px;
-  background-image: url($how-to-mail-img);
-  background-repeat: no-repeat;
-  background-size: contain;
-  border: none;
-  margin-top: 4px;
+.landing-form .icons-block .fa-envelope {
+  margin-left: 37px;
   margin-right: 36px;
-}
-.how-to-content .top-part .landing-form .icons-block .sms {
-  display: block;
-  float: left;
-  width: 30px;
-  height: 30px;
-  background-image: url($how-to-sms-img);
-  background-repeat: no-repeat;
-  background-size: contain;
-  border: none;
 }
 .how-to-content .header {
   display: block;
@@ -317,4 +305,96 @@ $how-to-sms-img: '/assets/images/speech-bubble.png';
   letter-spacing: $how-to-letter-spacing;
   color: $landing-general-text-color;
   text-align: center;
+}
+.landing .row .banner {
+  padding: 0 10px;
+}
+.landing .banner a {
+  display: block;
+  position: relative;
+  width: 100%;
+  height: 235px;
+}
+.landing .banner a .background {
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-repeat: no-repeat;
+  background-size: cover;
+  opacity: 0.8;
+  z-index: 1;
+  transition: opacity 0.5s ease-in-out;
+}
+.landing .banner a:hover .background {
+  opacity: 1;
+}
+.landing .banner a span {
+  display: block;
+  position: absolute;
+  width: auto;
+  height: 35px;
+  bottom: 19px;
+  left: 26px;
+  z-index: 2;
+  font-family: $font-name;
+  color: $banner-text-color;
+  font-size: $banner-text-font-size;
+  letter-spacing: $banner-text-letter-spacing;
+  text-shadow: $banner-text-shadow;
+}
+.landing .banner a.banner-1 .background {
+  background-image: url($banner-image-1);
+}
+.landing .banner a.banner-2 .background {
+  background-image: url($banner-image-2);
+}
+.landing .banner a.banner-3 .background {
+  background-image: url($banner-image-3);
+}
+.footer-description {
+  display: block;
+  max-width: 570px;
+  margin: 90px auto 115px;
+  font-family: $font-name-light;
+  font-size: $center-description-font-size;
+  letter-spacing: $center-description-letter-spacing;
+  color: #4A4A4A;
+  text-align: center;
+}
+.footer-container {
+  display: block;
+  width: 100%;
+  height: 42px;
+  background-color: $footer-background-color;
+  text-align: center;
+  padding: 13px 0;
+}
+.footer-container .copyright, .footer-container span, .footer-container a, .footer-container a:hover {
+  display: inline;
+  color: $footer-text-color;
+  font-family: $font-name;
+  font-size: $footer-text-font-size;
+  letter-spacing: $footer-text-letter-spacing;
+  text-decoration: none;
+}
+@media (max-width: 576px) {
+  .footer-container {
+    height: auto;
+  }
+  .footer-container span {
+    display: none;
+  }
+  .footer-container .copyright, .footer-container a, .footer-container a:hover {
+    display: block;
+    width: 100%;
+    text-align: center;
+    padding: 8px 0;
+  }
+  .landing .center-description, .footer-description  {
+    width: 100%;
+    padding: 0 15px;
+  }
 }
