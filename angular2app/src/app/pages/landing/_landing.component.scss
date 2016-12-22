@@ -5,7 +5,7 @@ $font-name-bold: HelveticaNeue-Bold, sans-serif;
 $font-name-light: HelveticaNeue-Light, sans-serif;
 $landing-background-color: #FCFCFC;
 $landing-header-color: #3B568D;
-$landing-header-font-size: 30px;
+$landing-header-font-size: 32px;
 $landing-header-letter-spacing: 0.19px;
 $landing-general-text-color: #212121;
 $btn-gradient-color-yellow-light: #FFE589;
@@ -31,7 +31,7 @@ $card-btn-font-size: 14px;
 $card-btn-letter-spacing: 0.9px;
 
 // Descriptions styles
-$center-description-font-size: 18px;
+$center-description-font-size: 24px;
 $center-description-letter-spacing: 0.11px;
 $footer-description-color: #4A4A4A;
 
@@ -99,7 +99,7 @@ $footer-text-letter-spacing: 0.09px;
 .landing-header h2 {
   width: 100%;
   text-align: center;
-  padding: 0 0 90px 0;
+  padding: 90px 0;
   font-family: $font-name-bold;
   color: $landing-header-color;
   font-size: $landing-header-font-size;
@@ -224,8 +224,8 @@ $footer-text-letter-spacing: 0.09px;
 }
 .landing .center-description {
   display: block;
-  max-width: 413px;
-  margin: 38px auto 69px;
+  max-width: 500px;
+  margin: 50px auto 90px;
   font-family: $font-name-light;
   color: $landing-general-text-color;
   font-size: $center-description-font-size;
@@ -357,7 +357,7 @@ $footer-text-letter-spacing: 0.09px;
 .footer-description {
   display: block;
   max-width: 570px;
-  margin: 90px auto 115px;
+  margin: 90px auto 130px;
   font-family: $font-name-light;
   font-size: $center-description-font-size;
   letter-spacing: $center-description-letter-spacing;
