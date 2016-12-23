@@ -78,6 +78,7 @@ $alert-warning-image: '/assets/images/warning.png';
   margin-left: -175px;
   padding: 27px 25px;
   z-index: 1031;
+  border-radius: 3px;
 }
 .popup .header {
   display: block;
@@ -94,7 +95,7 @@ $alert-warning-image: '/assets/images/warning.png';
   font-size: $popup-form-font-size;
   color: $popup-form-font-color;
   letter-spacing: $popup-form-letter-spacing;
-  font-weight: 600;
+  font-weight: 500;
   padding: 0 0 0 2px;
   margin-bottom: 2px;
 }
