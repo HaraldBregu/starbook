@@ -16,7 +16,7 @@
       <span class="error">Indirizzo e-mail non valido</span>
     </div>
     <div class="form-group">
-      <label for="password">Password <a class="recovery" (click)="getPopup('recovery')">Password dimenticata</a></label>
+      <label for="password">Password <a class="recovery" (click)="getPopup('recovery')">Password dimenticata?</a></label>
       <input id="password" class="form-control" type="password" name="password" placeholder="" required [(ngModel)]="loginData.password" #password="ngModel">
     </div>
     <div class="form-group">
@@ -26,7 +26,7 @@
       <span>Sei nuovo su Starbook?</span>
     </div>
     <div class="form-group">
-      <button class="btn btn-secondary" (click)="getPopup('registration')">Crea il tuo account Starbook</button>
+      <button class="btn btn-secondary" (click)="getPopup('registration')">Crea un nuovo account</button>
     </div>
   </form>
 </div>
@@ -61,7 +61,7 @@
       <span class="error">Le password non corrispondono</span>
     </div>
     <div class="form-group">
-      <button class="btn btn-warning" type="submit" [disabled]="!registrationForm.form.valid" (click)="registration(regName.value, regEmail.value, regPassword.value, regPasswordConfirm.value)">Crea il tuo account Starbook</button>
+      <button class="btn btn-warning" type="submit" [disabled]="!registrationForm.form.valid" (click)="registration(regName.value, regEmail.value, regPassword.value, regPasswordConfirm.value)">Crea account</button>
     </div>
   </form>
   <div class="form-notice">Accedendo dichiari di aver letto e accetti le <a>condizioni generali</a> e <a>l’informativa sulla privacy</a></div>
@@ -84,7 +84,7 @@
       <input id="recoveryEmail" class="form-control" type="text" name="name" placeholder="" required [(ngModel)]="recoveryData.email" #recoveryEmail="ngModel">
     </div>
     <div class="form-group">
-      <button class="btn btn-warning" type="submit" [disabled]="!recoveryForm.form.valid" (click)="recovery(recoveryEmail.value)">Invia mail per recuperare la password</button>
+      <button class="btn btn-warning" type="submit" [disabled]="!recoveryForm.form.valid" (click)="recovery(recoveryEmail.value)">Invia email</button>
     </div>
   </form>
   <div class="login-offer">Hai gia un account su Starbook? <a (click)="getPopup('login')">Accedi</a></div>
