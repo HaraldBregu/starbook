@@ -29,4 +29,4 @@
     </div>
   </div>
 </div>
-<app-landing *ngIf="activeServiceCategoryType === false"></app-landing>
+<app-landing *ngIf="activeServiceCategoryType === false" (tabSelect)="tabNavigate($event.id)"></app-landing>

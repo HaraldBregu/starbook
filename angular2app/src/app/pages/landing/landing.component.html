@@ -18,12 +18,12 @@
         <div class="top-card">
           <div class="card-background">
             <div class="image image-1"></div>
-            <div class="white-background"></div>
+            <div class="white-background" [ngStyle]="{'opacity':cardStyles[1]}"></div>
           </div>
           <div class="header">Pulizie</div>
           <div class="description">Hai bisogno di un servizio di pulizie per la casa, l’ufficio o il negozio?</div>
           <div class="landing-card-footer">
-            <a href="#" class="btn btn-warning">Prenota Pulizie</a>
+            <a (click)="navigate('584fcfee9d6752423a61e79e')" class="btn btn-warning" (mouseenter)="cardHover(1, 'on')" (mouseleave)="cardHover(1, 'off')">Prenota Pulizie</a>
           </div>
         </div>
       </div>
@@ -31,12 +31,12 @@
         <div class="top-card">
           <div class="card-background">
             <div class="image image-2"></div>
-            <div class="white-background"></div>
+            <div class="white-background" [ngStyle]="{'opacity':cardStyles[2]}"></div>
           </div>
           <div class="header">Elettricista</div>
           <div class="description">Ti serve un elettricista qualificato e affidabile per lavori di casa, ufficio o negozio?</div>
           <div class="landing-card-footer">
-            <a href="#" class="btn btn-warning">Prenota Elettricista</a>
+            <a (click)="navigate('582ee41df1bafa41cdbfb9d1')" class="btn btn-warning" (mouseenter)="cardHover(2, 'on')" (mouseleave)="cardHover(2, 'off')">Prenota Elettricista</a>
           </div>
         </div>
       </div>
@@ -44,12 +44,12 @@
         <div class="top-card green-card">
           <div class="card-background">
             <div class="image image-3"></div>
-            <div class="white-background"></div>
+            <div class="white-background" [ngStyle]="{'opacity':cardStyles[3]}"></div>
           </div>
           <div class="header">Idraulico</div>
           <div class="description">Ti serve un idraulico professionista, puoi prenotarlo subito su Starbook senza impegno.</div>
           <div class="landing-card-footer">
-            <a href="#" class="btn btn-warning">Prenota Idraulico</a>
+            <a (click)="navigate('582edfe4f1bafa41cdbfb9cb')" class="btn btn-warning" (mouseenter)="cardHover(3, 'on')" (mouseleave)="cardHover(3, 'off')">Prenota Idraulico</a>
           </div>
         </div>
       </div>
