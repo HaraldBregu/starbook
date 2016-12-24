@@ -11,12 +11,15 @@
         <a class="nav-link orders" routerLink="/orders" routerLinkActive="active" (click)="toggleMenu()">Ordini</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link profile" routerLink="/profile" routerLinkActive="active" (click)="toggleMenu()">{{auth.fullname}}</a>
+        <a class="nav-link profile" routerLink="/profile/settings" routerLinkActive="active" (click)="toggleMenu()">{{auth.fullname}}</a>
       </li>
     </ul>
     <ul class="nav navbar-nav float-xs-right" *ngIf="auth === false" [ngClass]="{'collapse':navbarState===false}">
-      <li class="nav-item" *ngIf="auth === false">
-        <a class="nav-link profile" (click)="getLoginPopup()">Login</a>
+      <li class="nav-item">
+        <a class="nav-link profile" (click)="getRegistrationPopup()">Registrati</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link profile" (click)="getLoginPopup()">Accedi</a>
       </li>
     </ul>
   </div>

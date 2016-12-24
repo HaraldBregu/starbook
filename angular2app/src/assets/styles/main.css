@@ -2776,7 +2776,7 @@ app-home {
   background-color: #ffffff;
   border: 1px solid #DCDCDC;
   border-radius: 3px;
-  padding: 56px 19px 265px 19px; }
+  padding: 62px 16px 265px 16px; }
 
 .sidebar-container .add-order-form {
   position: fixed;
@@ -2938,10 +2938,17 @@ textarea.form-control {
   display: block;
   width: 100%;
   margin-bottom: 8px;
-  font-family: HelveticaNeue-Italic, sans-serif;
-  color: #9B9B9B;
+  background-color: #FEEFBC;
+  border: 1px solid #FFBD00;
+  font-family: HelveticaNeue, sans-serif;
   font-size: 14px;
-  letter-spacing: 0.08px; }
+  letter-spacing: 0.09px;
+  color: #BC892D;
+  padding: 10px 10px 12px 10px;
+  border-radius: 3px; }
+
+.order-container .order-list-empty strong {
+  font-family: HelveticaNeue-Bold, sans-serif; }
 
 .sidebar-block h2 {
   display: block;
@@ -3616,7 +3623,8 @@ html, body {
   height: 30px;
   margin: 5px 0;
   padding-left: 5px;
-  padding-right: 4px; }
+  padding-right: 4px;
+  text-decoration: none; }
 
 .container-starbook .left-navigate a div {
   display: block;
@@ -3678,6 +3686,14 @@ html, body {
     margin-left: 0; } }
 .container-starbook.without-tabs .row {
   padding: 40px 0 0 0; }
+
+.profile-page {
+  display: block;
+  width: 100%;
+  height: 100%; }
+
+.profile-page.whiteBg {
+  background-color: #FFFFFF; }
 
 .profile-settings {
   display: block;
@@ -3815,6 +3831,48 @@ html, body {
   font-size: 18px;
   letter-spacing: 0.11px;
   font-weight: 700; }
+
+.profile-page .content-page {
+  display: block;
+  width: 100%;
+  padding: 28px 35px 0 235px; }
+
+.profile-page .content-page h1 {
+  display: block;
+  width: 100%;
+  font-family: HelveticaNeue, sans-serif;
+  color: #212121;
+  font-size: 28px;
+  letter-spacing: 0.18px;
+  margin: 0;
+  padding-bottom: 20px;
+  font-weight: normal; }
+
+.profile-page .content-page h2 {
+  display: block;
+  width: 100%;
+  font-family: HelveticaNeue-Bold, sans-serif;
+  color: #000000;
+  font-size: 16px;
+  letter-spacing: 0.1px;
+  margin: 0;
+  font-weight: normal; }
+
+.profile-page .content-page p {
+  display: block;
+  width: 100%;
+  font-family: HelveticaNeue, sans-serif;
+  color: #4A4A4A;
+  font-size: 16px;
+  letter-spacing: 0.1px;
+  margin-bottom: 16px; }
+
+.profile-page .content-page p.black {
+  color: #000000; }
+
+.profile-page .content-page p.black strong {
+  font-family: HelveticaNeue-Bold, sans-serif;
+  font-weight: normal; }
 
 @media (max-width: 1440px) {
   .container-starbook .left-navigate {

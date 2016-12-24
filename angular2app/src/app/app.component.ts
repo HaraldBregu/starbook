@@ -24,6 +24,11 @@ export class AppComponent implements OnInit, OnDestroy {
     this.toggleMenu();
   }
 
+  getRegistrationPopup() {
+    this.popupsService.activate({type: 'registration'});
+    this.toggleMenu();
+  }
+
   closePopup() {
     this.popupsService.activate('');
   }

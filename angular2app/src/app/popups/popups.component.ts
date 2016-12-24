@@ -416,6 +416,11 @@ export class PopupsComponent implements OnInit, OnDestroy {
           this.activePopup = 'login';
           this.shadowState = 'active';
           break;
+        case 'registration':
+          this.registrationPopupState = 'active';
+          this.activePopup = 'registration';
+          this.shadowState = 'active';
+          break;
         case 'confirmOrder':
           this.confirmPopupData.id = popup.data.orderId;
           this.confirmPopupData.title = 'Conferma ordine?';

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ProfileService } from '../../shared/profile.service';
-import { Router } from '@angular/router';
+import { Router, Route, ActivatedRoute, Params } from '@angular/router';
 import { NavigationService } from '../../shared/navigation.service';
 
 export interface IUserData {
@@ -23,11 +23,11 @@ export interface IUserData {
 export class ProfileComponent implements OnInit {
   public selectTab: string|boolean = false;
   public tabs = [
-    {name: 'Generali', selected: true},
-    {name: 'Metodo di Pagamento', selected: false},
-    {name: 'Condizioni', selected: false},
-    {name: 'Privacy', selected: false},
-    {name: 'Assistenza', selected: false}
+    {name: 'Generali', selected: false, url: 'settings'},
+    {name: 'Metodo di Pagamento', selected: false, url: 'payment'},
+    {name: 'Condizioni', selected: false, url: 'conditions'},
+    {name: 'Privacy', selected: false, url: 'privacy'},
+    {name: 'Assistenza', selected: false, url: 'help'}
   ];
 
   public userData: IUserData = {
@@ -54,7 +54,7 @@ export class ProfileComponent implements OnInit {
   };
   public formError: boolean|{title?: string, message: string, type?: string} = false;
 
-  constructor(private profileService: ProfileService, private router: Router, private navigationService: NavigationService) { }
+  constructor(private profileService: ProfileService, private router: Router, private navigationService: NavigationService, private route: ActivatedRoute) { }
 
   ngOnInit() {
     if (localStorage.getItem('auth') !== null) {
@@ -62,8 +62,18 @@ export class ProfileComponent implements OnInit {
       this.userData.fullname = authData.fullname;
       this.userData.email = authData.email;
     } else {
-      this.router.navigate(['/']);
+      // this.router.navigate(['/']);
+      this.tabs = [
+        {name: 'Condizioni', selected: false, url: 'conditions'},
+        {name: 'Privacy', selected: false, url: 'privacy'},
+        {name: 'Assistenza', selected: false, url: 'help'}
+      ];
     }
+
+    this.route.params.subscribe(params => {
+      this.selectTab = params['page'];
+      console.log(params['page']);
+    });
 
     this.navigationService.updateMessage('Il mio account');
   }

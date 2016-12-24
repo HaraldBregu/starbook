@@ -1,58 +1,83 @@
-<div class="container-starbook without-tabs">
-  <div class="row">
-    <div class="left-navigate">
-      <a *ngFor="let tab of tabs" [ngClass]="{'active':tab.selected}" (click)="renderPage(tab.name)">
-        <span></span>
-        <div>{{tab.name}}</div>
-      </a>
-    </div>
-    <div class="profile-settings">
-      <div class="header">Informazioni generali del account</div>
-      <form #changProfile="ngForm">
-        <div class="form-group">
-          <input class="form-control" name="name" #fullname="ngModel" [(ngModel)]="userData.fullname" required disabled>
-        </div>
-        <div class="form-group password-block">
-          <input class="form-control" name="email" value="harald.bregu@gmail.com" #email="ngModel" [(ngModel)]="userData.email" required disabled>
-          <div class="password">
-            <span>•••••••••••</span>
+<div class="profile-page" [ngClass]="{whiteBg: selectTab === 'conditions' || selectTab === 'privacy' || selectTab === 'help'}">
+  <div class="container-starbook without-tabs">
+    <div class="row">
+      <div class="left-navigate">
+        <a *ngFor="let tab of tabs" [ngClass]="{'active':tab.url === selectTab}" [routerLink]="['/profile', tab.url]">
+          <span></span>
+          <div>{{tab.name}}</div>
+        </a>
+      </div>
+      <div class="profile-settings" *ngIf="selectTab === 'settings'">
+        <div class="header">Informazioni generali del account</div>
+        <form #changProfile="ngForm">
+          <div class="form-group">
+            <input class="form-control" name="name" #fullname="ngModel" [(ngModel)]="userData.fullname" required disabled>
           </div>
-          <div class="change-password">
-            <button type="button" class="btn btn-primary" (click)="getPopup('changePassword')">Modifica password</button>
+          <div class="form-group password-block">
+            <input class="form-control" name="email" value="harald.bregu@gmail.com" #email="ngModel" [(ngModel)]="userData.email" required disabled>
+            <div class="password">
+              <span>•••••••••••</span>
+            </div>
+            <div class="change-password">
+              <button type="button" class="btn btn-primary" (click)="getPopup('changePassword')">Modifica password</button>
+            </div>
           </div>
-        </div>
-        <div class="form-group">
-          <input class="form-control" name="phone" #phone_number="ngModel" [(ngModel)]="userData.phone_number">
-        </div>
-        <div class="header second">Indirizzo di fatturazione</div>
-        <div class="form-group double-input">
-          <input class="form-control first" name="address1" #street_name="ngModel" [(ngModel)]="userData.street_name" placeholder="Via">
-          <input class="form-control second" name="number1" #street_number="ngModel" [(ngModel)]="userData.street_number" placeholder="Nr">
-        </div>
-        <div class="form-group double-input">
-          <input class="form-control first" name="address2" #city="ngModel" [(ngModel)]="userData.city" placeholder="Città">
-          <input class="form-control second" name="number2" #postal_code="ngModel" [(ngModel)]="userData.postal_code" placeholder="CAP">
-        </div>
-        <div class="form-group double-input">
-          <input class="form-control first" name="city" #province="ngModel" [(ngModel)]="userData.province" placeholder="Provincia">
-          <input class="form-control second" name="country" #country="ngModel" [(ngModel)]="userData.country" placeholder="Nazione">
-        </div>
-        <div class="form-group">
-          <input class="form-control" name="piva" placeholder="P.IVA">
-        </div>
-        <div class="form-group">
-          <input class="form-control" name="codice" placeholder="Codice Fiscale">
-        </div>
-        <div class="profile-information" *ngIf="formError">
-          <strong *ngIf="formError.title.length > 0">{{formError.title}}</strong> {{formError.message}}
-        </div>
-        <div class="form-group">
-          <button type="button" class="btn btn-warning" (click)="updateProfile()">Aggiorna Informazioni</button>
-        </div>
-      </form>
+          <div class="form-group">
+            <input class="form-control" name="phone" #phone_number="ngModel" [(ngModel)]="userData.phone_number">
+          </div>
+          <div class="header second">Indirizzo di fatturazione</div>
+          <div class="form-group double-input">
+            <input class="form-control first" name="address1" #street_name="ngModel" [(ngModel)]="userData.street_name" placeholder="Via">
+            <input class="form-control second" name="number1" #street_number="ngModel" [(ngModel)]="userData.street_number" placeholder="Nr">
+          </div>
+          <div class="form-group double-input">
+            <input class="form-control first" name="address2" #city="ngModel" [(ngModel)]="userData.city" placeholder="Città">
+            <input class="form-control second" name="number2" #postal_code="ngModel" [(ngModel)]="userData.postal_code" placeholder="CAP">
+          </div>
+          <div class="form-group double-input">
+            <input class="form-control first" name="city" #province="ngModel" [(ngModel)]="userData.province" placeholder="Provincia">
+            <input class="form-control second" name="country" #country="ngModel" [(ngModel)]="userData.country" placeholder="Nazione">
+          </div>
+          <div class="form-group">
+            <input class="form-control" name="piva" placeholder="P.IVA">
+          </div>
+          <div class="form-group">
+            <input class="form-control" name="codice" placeholder="Codice Fiscale">
+          </div>
+          <div class="profile-information" *ngIf="formError">
+            <strong *ngIf="formError.title.length > 0">{{formError.title}}</strong> {{formError.message}}
+          </div>
+          <div class="form-group">
+            <button type="button" class="btn btn-warning" (click)="updateProfile()">Aggiorna Informazioni</button>
+          </div>
+        </form>
+      </div>
+      <div class="content-page" *ngIf="selectTab === 'conditions'">
+        <h1>Condizioni</h1>
+        <p>The text will be soon</p>
+      </div>
+      <div class="content-page" *ngIf="selectTab === 'privacy'">
+        <p class="black"><strong>1.Dati account.</strong> Intuition is fucking important. Widows and orphans are terrible fucking tragedies, both in real life and definitely in typography. The graphic designer’s first fucking consideration is always the size.</p>
+        <p class="black"><strong>2.Pagamenti.</strong> Intuition is fucking important. Widows and orphans are terrible fucking tragedies, both in real life and definitely in typography. The graphic designer’s first fucking consideration is always the size</p>
+        <p class="black"><strong>3.Ordini. </strong> Intuition is fucking important. Widows and orphans are terrible fucking tragedies, both in real life and definitely in typography. The graphic designer’s first fucking consideration is always the size <br><br></p>
+
+        <h2>Section one</h2>
+        <p>Intuition is fucking important. Widows and orphans are terrible fucking tragedies, both in real life and definitely in typography. The graphic designer’s first fucking consideration is always the size and shape of the format, whether for the printed page or for digital display. Don’t worry about what other people fucking think. While having drinks with Tibor Kalman one night, he told me, “When you make something no one hates, no one fucking loves it.” Never, never assume that what you have achieved is fucking good enough. Can we all just agree as the greater design community to stop fucking talking about Comic Sans altogether? It’s getting fucking old. Make your work consistent but not fucking predictable. Form follows fucking function. Learn from fucking criticism. If you’re not being fucking honest with yourself how could you ever hope to communicate something meaningful to someone else? Sometimes it is appropriate to place various typographic elements on the outside of the fucking left margin of text to maintain a strong vertical axis. This practice is referred to as exdenting and is most often used with bullets and quotations. Nothing of value comes to you without fucking working at it. Design is all about.</p>
+        <h2>Section one</h2>
+        <p>Intuition is fucking important. Widows and orphans are terrible fucking tragedies, both in real life and definitely in typography. The graphic designer’s first fucking consideration is always the size and shape of the format, whether for the printed page or for digital display. Don’t worry about what other people fucking think. While having drinks with Tibor Kalman one night, he told me, “When you make something no one hates, no one fucking loves it.” Never, never assume that what you have achieved is fucking good enough. Can we all just agree as the greater design community to stop fucking talking about Comic Sans altogether? It’s getting fucking old. Make your work consistent but not fucking predictable. Form follows fucking function. Learn from fucking criticism. If you’re not being fucking honest with yourself how could you ever hope to communicate something meaningful to someone else? Sometimes it is appropriate to place various typographic elements on the outside of the fucking left margin of text to maintain a strong vertical axis. This practice is referred to as exdenting and is most often used with bullets and quotations. Nothing of value comes to you without fucking working at it. Design is all about</p>
+        <h2>Section one</h2>
+        <p>Intuition is fucking important. Widows and orphans are terrible fucking tragedies, both in real life and definitely in typography. The graphic designer’s first fucking consideration is always the size and shape of the format, whether for the printed page or for digital display. Don’t worry about what other people fucking think. While having drinks with Tibor Kalman one night, he told me, “When you make something no one hates, no one fucking loves it.” Never, never assume that what you have achieved is fucking good enough. Can we all just agree as the greater design community to stop fucking talking about Comic Sans altogether? It’s getting fucking old. Make your work consistent but not fucking predictable. Form follows fucking function. Learn from fucking criticism. If you’re not being fucking honest with yourself how could you ever hope to communicate something meaningful to someone else? Sometimes it is appropriate to place various typographic elements on the outside of the fucking left margin of text to maintain a strong vertical axis. This practice is referred to as exdenting and is most often used with bullets and quotations. Nothing of value comes to you without fucking working at it. Design is all about</p>
+      </div>
+      <div class="content-page" *ngIf="selectTab === 'help'">
+        <h1>Assistenza</h1>
+        <p>The text will be soon</p>
+      </div>
     </div>
   </div>
 </div>
+
+
+
 <div class="dark-screen" *ngIf="activePopup !== ''" (click)="closePopup()"></div>
 <!-- Change password -->
 <div class="popup" *ngIf="activePopup === 'changePassword'">

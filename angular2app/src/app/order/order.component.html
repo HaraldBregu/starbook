@@ -3,16 +3,13 @@
     <div class="sidebar-block">
       <h2>Dettaglio dell’ordine</h2>
       <div class="order-container" *ngIf="!orderIsFull">
-        <div class="order-list-empty">Seleziona i servizi che ti servono a aggiungili alla lista degli ordini.</div>
+        <div class="order-list-empty"><strong>Inserisci</strong> le informazioni necessari del appuntamento e invia la richiesta.</div>
       </div>
       <div class="order-container" *ngIf="orderIsFull">
-        <span *ngFor="let orderCategory of orderData">
-          <div class="category-group" *ngFor="let orderItem of orderCategory.items">
-            <strong>{{orderCategory.name}}:</strong>
-            <span>{{orderItem.name}}</span>
+        <div class="category-group" *ngFor="let orderCategory of orderData">
+          <strong>{{orderCategory.name}}:</strong>
+          <span *ngFor="let orderItem of orderCategory.items">{{orderItem.name}}</span>
         </div>
-        </span>
-
       </div>
 
       <div class="add-order-form">

@@ -16,7 +16,7 @@ const routes: Routes = [
     component: OrdersComponent
   },
   {
-    path: 'profile',
+    path: 'profile/:page',
     component: ProfileComponent
   }
 ];

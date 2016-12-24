@@ -2,6 +2,7 @@
 $font-name: HelveticaNeue, sans-serif;
 $letter-spacing: 0.08px;
 $background: #FAFAFA;
+$white-background: #FFFFFF;
 $general-text-color: #000000;
 
 // Left navigation
@@ -44,6 +45,18 @@ $profile-information-strong-text-color: #3C763D;
 $profile-information-strong-font-size: $profile-settings-input-font-size;
 $profile-information-strong-letter-spacing: $profile-settings-input-letter-spacing;
 
+// Content styles
+$content-h1-color: #212121;
+$content-h1-text-size: 28px;
+$content-h1-letter-spacing: 0.18px;
+$content-h2-color: #000000;
+$content-h2-text-size: 16px;
+$content-h2-letter-spacing: 0.1px;
+$content-p-color: #4A4A4A;
+$content-p-text-size: 16px;
+$content-p-letter-spacing: 0.1px;
+$content-p-black-color: #000000;
+
 .container-starbook.without-tabs .row {
   padding: 40px 0 0 0;
 }
@@ -84,6 +97,14 @@ $profile-information-strong-letter-spacing: $profile-settings-input-letter-spaci
 //  border-left: $left-navigation-link-active-border-style;
 //  background-color: transparent;
 //}
+.profile-page {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.profile-page.whiteBg {
+  background-color: $white-background;
+}
 .profile-settings {
   display: block;
   width: 700px;
@@ -220,6 +241,49 @@ $profile-information-strong-letter-spacing: $profile-settings-input-letter-spaci
   font-size: $profile-settings-btn-font-size;
   letter-spacing: $profile-settings-btn-letter-spacing;
   font-weight: 700;
+}
+.profile-page .content-page {
+  display: block;
+  width: 100%;
+  padding: 28px 35px 0 235px;
+}
+
+.profile-page .content-page h1 {
+  display: block;
+  width: 100%;
+  font-family: $font-name;
+  color: $content-h1-color;
+  font-size: $content-h1-text-size;
+  letter-spacing: $content-h1-letter-spacing;
+  margin: 0;
+  padding-bottom: 20px;
+  font-weight: normal;
+}
+.profile-page .content-page h2 {
+  display: block;
+  width: 100%;
+  font-family: $font-name-bold;
+  color: $content-h2-color;
+  font-size: $content-h2-text-size;
+  letter-spacing: $content-h2-letter-spacing;
+  margin: 0;
+  font-weight: normal;
+}
+.profile-page .content-page p {
+  display: block;
+  width: 100%;
+  font-family: $font-name;
+  color: $content-p-color;
+  font-size: $content-p-text-size;
+  letter-spacing: $content-p-letter-spacing;
+  margin-bottom: 16px;
+}
+.profile-page .content-page p.black {
+  color: $content-p-black-color;
+}
+.profile-page .content-page p.black strong {
+  font-family: $font-name-bold;
+  font-weight: normal;
 }
 
 @media (max-width: 1440px) {

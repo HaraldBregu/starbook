@@ -37,6 +37,11 @@ $order-block-category-header-color: #000000;
 $order-block-category-letter-spacing: 0.09px;
 $order-block-text-color: #4A4A4A;
 $order-block-text-letter-spacing: 0.09px;
+$order-block-alert-background: #FEEFBC;
+$order-block-alert-border-style: 1px solid #FFBD00;
+$order-block-alert-text-color: #BC892D;
+$order-block-alert-text-size: 14px;
+$order-block-alert-letter-spacing: 0.09px;
 
 // TimePicker Style
 $timepicker-background: #ffffff;
@@ -98,7 +103,7 @@ $footer-links-text-letter-spacing: 0.08px;
   background-color: $sidebar-background-color;
   border: $sidebar-block-border;
   border-radius: 3px;
-  padding: 56px 19px 265px 19px;
+  padding: 62px 16px 265px 16px;
 }
 .sidebar-container .add-order-form {
   position: fixed;
@@ -260,10 +265,17 @@ textarea.form-control {
   display: block;
   width:100%;
   margin-bottom: 8px;
-  font-family: $font-name-italic;
-  color: $sidebar-message-text-color;
-  font-size: $sidebar-message-text-size;
-  letter-spacing: $sidebar-message-letter-spacing;
+  background-color: $order-block-alert-background;
+  border: $order-block-alert-border-style;
+  font-family: $font-name;
+  font-size: $order-block-alert-text-size;
+  letter-spacing: $order-block-alert-letter-spacing;
+  color: $order-block-alert-text-color;
+  padding: 10px 10px 12px 10px;
+  border-radius: 3px;
+}
+.order-container .order-list-empty strong {
+  font-family: $font-name-bold;
 }
 .sidebar-block h2 {
   display: block;
