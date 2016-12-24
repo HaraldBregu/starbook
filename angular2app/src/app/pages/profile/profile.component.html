@@ -88,7 +88,7 @@
       <p>{{formError.message}}</p>
     </div>
   </div>
-  <div class="header">Change password</div>
+  <div class="header">Cambia password</div>
   <form class="login-form" #changePasswordForm="ngForm">
     <div class="form-group" [ngClass]="{'isError': changePasswordError.currentPassword}">
       <label for="currentPassword">La tua password</label>
@@ -100,12 +100,12 @@
       <input id="newPassword" class="form-control" type="password" name="newPassword" placeholder="" required [(ngModel)]="changePasswordData.newPassword" #newPassword="ngModel">
     </div>
     <div class="form-group" [ngClass]="{'isError': changePasswordError.passwordConfirm}">
-      <label for="passwordConfirm">Di nuovo la nuova password</label>
+      <label for="passwordConfirm">Ripeti la nuova password</label>
       <input id="passwordConfirm" class="form-control" type="password" name="password" placeholder="" required [(ngModel)]="changePasswordData.passwordConfirm" #passwordConfirm="ngModel" (keyup)="checkPassword(newPassword.value, passwordConfirm.value)">
       <span class="error">Le password non corrispondono</span>
     </div>
     <div class="form-group">
-      <button class="btn btn-warning" type="submit" [disabled]="!changePasswordForm.form.valid" (click)="changePassword(currentPassword.value, newPassword.value, passwordConfirm.value)">Change password</button>
+      <button class="btn btn-warning" type="submit" [disabled]="!changePasswordForm.form.valid" (click)="changePassword(currentPassword.value, newPassword.value, passwordConfirm.value)">Cambia password</button>
     </div>
   </form>
 </div>

@@ -373,7 +373,7 @@ export class PopupsComponent implements OnInit, OnDestroy {
     this.ordersService.modifyOrder(id, 'CANCEL')
         .then((response) => {
           this.confirmFinishPopupData.title = 'Ordine annullato';
-          this.confirmFinishPopupData.text = 'Questo ordine è stato annullato, puoi riactivarlo in un secondo momento.';
+          this.confirmFinishPopupData.text = 'Questo ordine è stato annullato, puoi riattivarlo in un secondo momento.';
           this.getPopup('confirmFinish');
           this.popupService.actionComplete({type: 'cancelOrder', data: {orderId: id}});
         })
@@ -390,7 +390,7 @@ export class PopupsComponent implements OnInit, OnDestroy {
     this.ordersService.modifyOrder(id, 'REACTIVATE')
         .then((response) => {
           this.confirmFinishPopupData.title = 'Ordine riattivato';
-          this.confirmFinishPopupData.text = 'Questo ordine è stato riattviato, verrai notificato quando un professionista confermera questo ordine.';
+          this.confirmFinishPopupData.text = 'Questo ordine è stato riattivato, verrai notificato quando un professionista confermera questo ordine.';
           this.getPopup('confirmFinish');
           this.popupService.actionComplete({type: 'reactivateOrder', data: {orderId: id}});
         })
@@ -442,7 +442,7 @@ export class PopupsComponent implements OnInit, OnDestroy {
         case 'reactivateOrder':
           this.confirmPopupData.id = popup.data.orderId;
           this.confirmPopupData.title = 'Riattiva ordine?';
-          this.confirmPopupData.text = 'Dopo aver riattivato di nuovo questo ordine sara visibile a tutti.';
+          this.confirmPopupData.text = 'Dopo aver riattivato questo ordine sara visibile a tutti i professionisti.';
           this.confirmPopupData.button = 'Riattiva ordine';
           this.confirmPopupState = 'active';
           this.activePopup = 'confirmOrder';

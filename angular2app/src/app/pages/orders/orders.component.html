@@ -76,9 +76,9 @@
             {{ order._id }}
           </div>
           <div class="buttons">
-            <button class="btn btn-primary" *ngIf="selectTab === 'Ordini ricevuti' && order.status === 0" (click)="confirmOrder(order._id)">Conferma ordine</button>
-            <button class="btn btn-secondary" *ngIf="selectTab === 'Ordini richiesti' && order.status === 0" (click)="cancelOrder(order._id)">Annulla ordine</button>
-            <button class="btn btn-primary" *ngIf="selectTab === 'Ordini richiesti' && order.status === 2" (click)="reactivateOrder(order._id)">Riattiva ordine</button>
+            <button class="btn btn-primary" *ngIf="selectTab === 'Ricevuti' && order.status === 0" (click)="confirmOrder(order._id)">Conferma ordine</button>
+            <button class="btn btn-secondary" *ngIf="selectTab === 'Richiesti' && order.status === 0" (click)="cancelOrder(order._id)">Annulla ordine</button>
+            <button class="btn btn-primary" *ngIf="selectTab === 'Richiesti' && order.status === 2" (click)="reactivateOrder(order._id)">Riattiva ordine</button>
           </div>
         </div>
       </div>
