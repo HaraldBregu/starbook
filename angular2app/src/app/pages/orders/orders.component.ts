@@ -120,6 +120,13 @@ export class OrdersComponent implements OnInit, OnDestroy {
       params.push({name: 'customer', value: 'me'});
     }
 
+    if (page === 'Archivio') {
+      params = [];
+      params.push({name: 'sort_delivery_date', value: 1});
+      params.push({name: 'delivery_before_date', value: this.dateFormating('now')});
+      // params.push({name: 'customer', value: 'me'});
+    }
+
     this.ordersService.getOrders(params)
       .then((response) => {
         this.requestIsComplete = true;

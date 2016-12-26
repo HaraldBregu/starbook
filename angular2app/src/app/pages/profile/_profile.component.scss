@@ -52,8 +52,11 @@ $content-h1-letter-spacing: 0.18px;
 $content-h2-color: #000000;
 $content-h2-text-size: 16px;
 $content-h2-letter-spacing: 0.1px;
+$content-h3-color: #000000;
+$content-h3-text-size: 12px;
+$content-h3-letter-spacing: 0.1px;
 $content-p-color: #4A4A4A;
-$content-p-text-size: 16px;
+$content-p-text-size: 14px;
 $content-p-letter-spacing: 0.1px;
 $content-p-black-color: #000000;
 
@@ -266,6 +269,16 @@ $content-p-black-color: #000000;
   color: $content-h2-color;
   font-size: $content-h2-text-size;
   letter-spacing: $content-h2-letter-spacing;
+  margin: 0;
+  font-weight: normal;
+}
+.profile-page .content-page h3 {
+  display: block;
+  width: 100%;
+  font-family: $font-name-bold;
+  color: $content-h3-color;
+  font-size: $content-h3-text-size;
+  letter-spacing: $content-h3-letter-spacing;
   margin: 0;
   font-weight: normal;
 }

@@ -3858,12 +3858,22 @@ html, body {
   margin: 0;
   font-weight: normal; }
 
+.profile-page .content-page h3 {
+  display: block;
+  width: 100%;
+  font-family: HelveticaNeue-Bold, sans-serif;
+  color: #000000;
+  font-size: 12px;
+  letter-spacing: 0.1px;
+  margin: 0;
+  font-weight: normal; }
+
 .profile-page .content-page p {
   display: block;
   width: 100%;
   font-family: HelveticaNeue, sans-serif;
   color: #4A4A4A;
-  font-size: 16px;
+  font-size: 14px;
   letter-spacing: 0.1px;
   margin-bottom: 16px; }
 
