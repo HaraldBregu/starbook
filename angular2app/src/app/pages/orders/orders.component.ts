@@ -111,7 +111,7 @@ export class OrdersComponent implements OnInit, OnDestroy {
       params.push({name: 'sort_delivery_date', value: 1});
       // params.push({name: 'delivery_after_date', value: this.dateFormating('now')});
       params.push({name: 'customer', value: 'other'});
-      params.push({name: 'statuses', value: '0,1,99']});
+      params.push({name: 'statuses', value: '0,1,99'});
     }
 
     if (page === 'Richiesti') {
@@ -119,14 +119,14 @@ export class OrdersComponent implements OnInit, OnDestroy {
       params.push({name: 'sort_delivery_date', value: 1});
       // params.push({name: 'delivery_after_date', value: this.dateFormating('now')});
       params.push({name: 'customer', value: 'me'});
-      params.push({name: 'statuses', value: '0,1,99']});
+      params.push({name: 'statuses', value: '0,1,99'});
     }
 
     if (page === 'Archivio') {
       params = [];
       params.push({name: 'sort_delivery_date', value: -1});
       params.push({name: 'delivery_before_date', value: this.dateFormating('now')});
-      params.push({name: 'statuses', value: '0,2,99']});
+      params.push({name: 'statuses', value: '0,2,99'});
     }
 
     this.ordersService.getOrders(params)
