@@ -47,6 +47,13 @@ export class AppComponent implements OnInit, OnDestroy {
     });
   }
 
+  updateTabMenu(toggleMenu = false) {
+    if (toggleMenu) {
+      this.toggleMenu();
+    }
+    this.navigationService.updateActiveTab(false);
+  }
+
   ngOnDestroy() {
     this.subscription.unsubscribe();
   }
