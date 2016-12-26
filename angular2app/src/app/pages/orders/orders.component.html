@@ -18,17 +18,17 @@
           <div class="category-services-state" *ngIf="order.status === 1 && selectTab !== 'Archivio'">
             <span class="orange"></span> Hai confermato
           </div>
-          <div class="category-services-state" *ngIf="order.status === 2 && selectTab !== 'Archivio'">
+          <div class="category-services-state" *ngIf="order.status === 99 && selectTab !== 'Archivio'">
             <span class="red"></span> Annullato
           </div>
 
           <div class="category-services-state" *ngIf="order.status === 0 && selectTab === 'Archivio'">
             <span class="black"></span> Scaduto
           </div>
-          <div class="category-services-state" *ngIf="order.status === 1 && selectTab === 'Archivio'">
-            <span class="orange"></span> Consegnato
-          </div>
           <div class="category-services-state" *ngIf="order.status === 2 && selectTab === 'Archivio'">
+            <span class="orange"></span> Pagato
+          </div>
+          <div class="category-services-state" *ngIf="order.status === 99 && selectTab === 'Archivio'">
             <span class="red"></span> Annullato
           </div>
           <div class="category-name">
@@ -78,7 +78,7 @@
           <div class="buttons">
             <button class="btn btn-primary" *ngIf="selectTab === 'Ricevuti' && order.status === 0" (click)="confirmOrder(order._id)">Conferma ordine</button>
             <button class="btn btn-secondary" *ngIf="selectTab === 'Richiesti' && order.status === 0" (click)="cancelOrder(order._id)">Annulla ordine</button>
-            <button class="btn btn-primary" *ngIf="selectTab === 'Richiesti' && order.status === 2" (click)="reactivateOrder(order._id)">Riattiva ordine</button>
+            <button class="btn btn-primary" *ngIf="selectTab === 'Richiesti' && order.status === 99" (click)="reactivateOrder(order._id)">Riattiva ordine</button>
           </div>
         </div>
       </div>

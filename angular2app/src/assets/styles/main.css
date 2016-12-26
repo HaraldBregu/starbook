@@ -2698,7 +2698,7 @@ app-home {
 .services-block .header {
   font-family: HelveticaNeue-Medium, sans-serif;
   font-size: 15px;
-  background-color: #FCFCFC;
+  background-color: rgba(252, 252, 252, 0);
   padding: 13px 19px;
   border-bottom: 1px solid #DCDCDC;
   letter-spacing: 0.1px;
@@ -2721,7 +2721,7 @@ app-home {
   letter-spacing: 0.09px;
   cursor: pointer;
   -webkit-font-smoothing: initial !important;
-  background-color: #FCFCFC;
+  background-color: rgba(252, 252, 252, 0);
   border-radius: 3px; }
 
 .services-block .service .item:hover {
@@ -3858,12 +3858,22 @@ html, body {
   margin: 0;
   font-weight: normal; }
 
+.profile-page .content-page h3 {
+  display: block;
+  width: 100%;
+  font-family: HelveticaNeue-Bold, sans-serif;
+  color: #000000;
+  font-size: 12px;
+  letter-spacing: 0.1px;
+  margin: 0;
+  font-weight: normal; }
+
 .profile-page .content-page p {
   display: block;
   width: 100%;
   font-family: HelveticaNeue, sans-serif;
   color: #4A4A4A;
-  font-size: 16px;
+  font-size: 14px;
   letter-spacing: 0.1px;
   margin-bottom: 16px; }
 
