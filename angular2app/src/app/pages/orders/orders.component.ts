@@ -69,7 +69,7 @@ export class OrdersComponent implements OnInit, OnDestroy {
           orderIndex = 0;
           this.pageData.forEach((orderData) => {
             if (orderData._id === action.data.orderId) {
-              this.pageData[orderIndex].status = 2;
+              this.pageData[orderIndex].status = 99;
             }
             orderIndex++;
           });
@@ -109,22 +109,24 @@ export class OrdersComponent implements OnInit, OnDestroy {
     if (page === 'Ricevuti') {
       params = [];
       params.push({name: 'sort_delivery_date', value: 1});
-      params.push({name: 'delivery_after_date', value: this.dateFormating('now')});
+      // params.push({name: 'delivery_after_date', value: this.dateFormating('now')});
       params.push({name: 'customer', value: 'other'});
+      params.push({name: 'statuses', value: '0,1,99']});
     }
 
     if (page === 'Richiesti') {
       params = [];
       params.push({name: 'sort_delivery_date', value: 1});
-      params.push({name: 'delivery_after_date', value: this.dateFormating('now')});
+      // params.push({name: 'delivery_after_date', value: this.dateFormating('now')});
       params.push({name: 'customer', value: 'me'});
+      params.push({name: 'statuses', value: '0,1,99']});
     }
 
     if (page === 'Archivio') {
       params = [];
-      params.push({name: 'sort_delivery_date', value: 1});
+      params.push({name: 'sort_delivery_date', value: -1});
       params.push({name: 'delivery_before_date', value: this.dateFormating('now')});
-      // params.push({name: 'customer', value: 'me'});
+      params.push({name: 'statuses', value: '0,2,99']});
     }
 
     this.ordersService.getOrders(params)
