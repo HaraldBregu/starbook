@@ -1,7 +1,8 @@
-import { Component, ViewChild, AfterViewInit, OnInit } from '@angular/core';
+import { Component, ViewChild, AfterViewInit, OnInit, OnDestroy } from '@angular/core';
 import { AngularMasonry } from 'angular2-masonry';
 import { HomeService } from './home.service';
 import { NavigationService } from '../shared/navigation.service';
+import { Subscription }   from 'rxjs/Subscription';
 
 export interface IServiceCategoryList {
   _id: string;
@@ -27,7 +28,7 @@ export interface IService {
   templateUrl: './home.component.html'
 })
 
-export class HomeComponent implements AfterViewInit, OnInit {
+export class HomeComponent implements AfterViewInit, OnInit, OnDestroy {
   public servicesCategoryList: IServiceCategoryList[] = [];
   public servicesData: IServiceCategory[] = [];
   public activeServiceCategory: boolean|string = false;
@@ -37,6 +38,7 @@ export class HomeComponent implements AfterViewInit, OnInit {
   public orderIsFull = false;
   public SWIPE_ACTION = { LEFT: 'swipeleft', RIGHT: 'swiperight' };
   public delta: number = -15;
+  subscription: Subscription;
 
   @ViewChild(AngularMasonry) masonry: AngularMasonry;
 
@@ -144,6 +146,14 @@ export class HomeComponent implements AfterViewInit, OnInit {
       });
 
     this.navigationService.updateMessage('Trova servizi nella tua zona');
+    this.subscription = this.navigationService.getActiveTab$.subscribe(tab => {
+      this.activeServiceCategoryType = tab;
+      this.activeServiceCategory = tab;
+    });
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 
   parseServiceData(data) {

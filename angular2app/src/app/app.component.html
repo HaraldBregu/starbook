@@ -1,11 +1,11 @@
 <nav class="navbar navbar-dark navbar-fixed-top bg-inverse">
   <div class="container-starbook top-menu">
-    <a class="navbar-brand" routerLink="">Starbook</a>
+    <a class="navbar-brand" routerLink="" (click)="updateTabMenu()">Starbook</a>
     <div class="tagline">{{tagline}}</div>
     <button class="navbar-toggler" type="button" data-toggle="collapse" aria-label="Menu" (click)="toggleMenu()"></button>
     <ul class="nav navbar-nav float-xs-right" *ngIf="auth !== false" [ngClass]="{'collapse':navbarState===false}">
       <li class="nav-item">
-        <a class="nav-link home" routerLink="" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" (click)="toggleMenu()">Home</a>
+        <a class="nav-link home" routerLink="" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" (click)="updateTabMenu(true)">Home</a>
       </li>
       <li class="nav-item">
         <a class="nav-link orders" routerLink="/orders" routerLinkActive="active" (click)="toggleMenu()">Ordini</a>

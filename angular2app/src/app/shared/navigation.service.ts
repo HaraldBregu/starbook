@@ -5,8 +5,10 @@ import { Subject }    from 'rxjs/Subject';
 export class NavigationService {
   private headerMessage = new Subject<string>();
   private authData = new Subject<string>();
+  private activeTab = new Subject<any>();
   public getMessage$ = this.headerMessage.asObservable();
   public getPersonalMenu$ = this.authData.asObservable();
+  public getActiveTab$ = this.activeTab.asObservable();
 
   constructor() { }
 
@@ -16,5 +18,9 @@ export class NavigationService {
 
   updatePersonalMenu(auth) {
     this.authData.next(auth);
+  }
+
+  updateActiveTab(tab) {
+    this.activeTab.next(tab);
   }
 }
