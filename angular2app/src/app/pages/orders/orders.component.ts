@@ -34,9 +34,9 @@ export interface IOrder {
 export class OrdersComponent implements OnInit, OnDestroy {
   public selectTab: string|boolean = false;
   public taglines = {
-    'Ricevuti': 'Ordini',
-    'Richiesti': 'Ordini',
-    'Archivio': 'Ordini'
+    'Ricevuti': 'Ordini Ricevuti',
+    'Richiesti': 'Ordini Richiesti',
+    'Archivio': 'Archivio Ordini'
   };
   public tabs = [
     {name: 'Ricevuti', selected: false},
@@ -147,7 +147,8 @@ export class OrdersComponent implements OnInit, OnDestroy {
       let dateString = date.substring(0, date.length - 5);
       dateString = dateString.split('T');
       let dateComponents = dateString[0].split('-');
-      returnDate = dateComponents[2] + '-' + dateComponents[1] + '-' + dateComponents[0] + ' ' + dateString[1];
+      let hourComponents = dateString[1].split(':');
+      returnDate = dateComponents[2] + ' ' + dateComponents[1] + ' ' + dateComponents[0] + ' ' + hourComponents[0] + ':' + hourComponents[1];
     } else {
       let currentDate = new Date();
       let day = currentDate.getDate();
