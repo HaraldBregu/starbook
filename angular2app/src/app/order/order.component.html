@@ -5,7 +5,7 @@
       <div class="order-container" *ngIf="!orderIsFull">
         <div class="order-list-empty"><strong>Inserisci</strong> le informazioni necessari del appuntamento e invia la richiesta.</div>
       </div>
-      <div class="order-container" *ngIf="orderIsFull">
+      <div class="order-container selected-orders" *ngIf="orderIsFull">
         <div class="category-group" *ngFor="let orderCategory of orderData">
           <strong>{{orderCategory.name}}:</strong>
           <span *ngFor="let orderItem of orderCategory.items">{{orderItem.name}}</span>

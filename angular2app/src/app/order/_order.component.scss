@@ -527,3 +527,49 @@ textarea.form-control {
     margin-right: 0;
   }
 }
+@media (max-width: 645px) {
+  .container-starbook .row {
+    margin-right: 0;
+  }
+  .container-starbook .main {
+    padding-right: 15px;
+    padding-left: 15px;
+  }
+  .container-starbook .sidebar {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: auto;
+    margin-right: 0;
+    padding: 10px 0 36px 0;
+  }
+  .sidebar-container {
+    margin-bottom: 60px;
+    overflow-y: visible;
+    padding-left: 7px;
+    padding-right: 7px;
+  }
+  .sidebar-container .sidebar-block {
+    position: relative;
+    padding: 62px 16px 0 16px;
+  }
+  .sidebar-block h2 {
+    display: block;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    right: 0;
+  }
+  .sidebar-container .add-order-form {
+    position: relative;
+    right: 0;
+    width: 100%;
+    margin-bottom: -60px;
+  }
+  .order-container.selected-orders {
+    display: none;
+  }
+  .footer-links {
+    height: 50px;
+  }
+}

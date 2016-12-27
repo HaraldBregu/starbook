@@ -194,3 +194,34 @@ app-home {
   cursor: pointer;
   -webkit-font-smoothing: initial !important;
 }
+@media (max-width: 1168px) {
+  .home-page .tab-container {
+    display: block;
+    width: 525px;
+    margin: 0 auto;
+  }
+}
+@media (max-width: 906px) {
+  .home-page .tab-container {
+    display: block;
+    width: 262px;
+    margin: 0 auto;
+  }
+}
+@media (max-width: 645px) {
+  .home-page .tab-container {
+    display: block;
+    width: 525px;
+    margin: 0 auto;
+  }
+  .container-starbook .main {
+    padding-right: 15px;
+  }
+}
+@media (max-width: 534px) {
+  .home-page .tab-container {
+    display: block;
+    width: 262px;
+    margin: 0 auto;
+  }
+}
