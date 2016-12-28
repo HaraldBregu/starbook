@@ -21,10 +21,7 @@ app.use(bodyParser.json({strict: false}))
 app.use(bodyParser.urlencoded({extended: true}))
 app.use(errorHandler({dumpExceptions: true, showStack: true}))
 app.use(express.static(path.join(__dirname, 'angular2app/dist')))
-app.get('/orders',function(req, res){
-     res.sendFile(path.join(__dirname, 'angular2app/dist/index.html'))
-})
-app.get('/profile',function(req, res){
+app.get('*',function(req, res){
      res.sendFile(path.join(__dirname, 'angular2app/dist/index.html'))
 })
 
