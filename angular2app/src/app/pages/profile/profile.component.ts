@@ -22,6 +22,8 @@ export interface IUserData {
 
 export class ProfileComponent implements OnInit {
   public selectTab: string|boolean = false;
+  public SWIPE_ACTION = { LEFT: 'swipeleft', RIGHT: 'swiperight' };
+  public delta: number = 0;
   public tabs = [
     {name: 'Generali', selected: false, url: 'settings'},
     {name: 'Metodo di Pagamento', selected: false, url: 'payment'},
@@ -120,6 +122,35 @@ export class ProfileComponent implements OnInit {
       this.changePasswordError.passwordConfirm = false;
     } else {
       this.changePasswordError.passwordConfirm = true;
+    }
+  }
+
+  swipe(action = this.SWIPE_ACTION.RIGHT, delta) {
+    let calculateDelta = this.delta + delta;
+    console.log(calculateDelta);
+    let menuSize = 0;
+    let allMenuItems = document.querySelectorAll('.left-navigate > div > a');
+    for (let i = 0; i < allMenuItems.length; i++) {
+      let menuItem: any = allMenuItems[i];
+      menuSize += menuItem.offsetWidth;
+    }
+    console.log(menuSize);
+    let menuBlockWidth = document.querySelector('.left-navigate').clientWidth;
+    console.log(menuBlockWidth);
+    let allowMargin = (menuSize) - menuBlockWidth;
+    if (allowMargin >= 0) {
+      allowMargin = -allowMargin;
+      if (calculateDelta > 0) {
+        this.delta = 0;
+      } else {
+        if (calculateDelta < allowMargin) {
+          if (action === this.SWIPE_ACTION.LEFT && allowMargin !== 0) {
+            this.delta = allowMargin;
+          }
+        } else {
+          this.delta = calculateDelta;
+        }
+      }
     }
   }
 

@@ -1,5 +1,6 @@
 // General styles
 $font-name: HelveticaNeue, sans-serif;
+$font-name-medium: HelveticaNeue-Medium, sans-serif;
 $letter-spacing: 0.08px;
 $background: #FAFAFA;
 $white-background: #FFFFFF;
@@ -18,6 +19,9 @@ $left-navigation-link-active-border-style: 4px solid #324977;
 $profile-settings-header-font-size: 20px;
 $profile-settings-header-color: #212121;
 $profile-settings-header-letter-spacing: 0.13px;
+$profile-settings-label-font-size: 14px;
+$profile-settings-label-color: #212121;
+$profile-settings-label-letter-spacing: 0.09px;
 $profile-settings-input-border-style: 1px solid #DCDCDC;
 $profile-settings-input-background-color: #FFFFFF;
 $profile-settings-input-text-color: #4A4A4A;
@@ -110,9 +114,9 @@ $content-p-black-color: #000000;
 }
 .profile-settings {
   display: block;
-  width: 700px;
+  width: 830px;
   margin: 23px auto 0;
-  padding-left: 200px;
+  padding-left: 330px;
 }
 .profile-settings .header {
   display: block;
@@ -131,6 +135,22 @@ $content-p-black-color: #000000;
 .profile-settings .form-group {
   margin-bottom: 16px !important;
   height: 40px;
+  position: relative;
+}
+.profile-settings .form-group label {
+  display: block;
+  position: absolute;
+  top: 9px;
+  left: -141px;
+  font-size: $profile-settings-label-font-size;
+  color: $profile-settings-label-color;
+  letter-spacing: $profile-settings-label-letter-spacing;
+  font-family: $font-name-medium;
+  font-weight: normal;
+  white-space: nowrap;
+  width: 130px;
+  text-align: right;
+
 }
 .profile-settings input {
   height: 38px;
@@ -145,7 +165,13 @@ $content-p-black-color: #000000;
   outline: none;
 }
 .profile-settings .password-block {
-  display: inline-table;
+  display: block;
+  margin-top: 26px;
+}
+.profile-settings .password-block .password-container {
+  display: block;
+  position: absolute;
+  top: 2px;
 }
 .profile-settings .password-block input {
   display: table-cell;
@@ -160,13 +186,13 @@ $content-p-black-color: #000000;
 .password-block .password {
   display: table-cell;
   position: relative;
-  width: 145px;
+  width: 116px;
   margin-left: 33px;
   font-family: $font-name;
   color: $profile-settings-password-text-color;
   font-size: $profile-settings-password-font-size;
   letter-spacing: $profile-settings-password-letter-spacing;
-  text-align: right;
+  text-align: left;
 }
 .password-block .password span {
   position: absolute;
@@ -304,5 +330,20 @@ $content-p-black-color: #000000;
     top: 0;
     left: 0;
     margin-left: 0;
+  }
+}
+@media (max-width: 780px) {
+  .profile-settings {
+    width: 500px;
+    margin: 53px auto 0;
+    padding-left: 0;
+  }
+  .profile-page .content-page {
+    padding: 58px 15px 0 15px;
+  }
+}
+@media (max-width: 645px) {
+  .profile-page .content-page {
+    padding: 58px 0 0 15px;
   }
 }

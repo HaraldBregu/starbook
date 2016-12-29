@@ -43,9 +43,6 @@
             <div class="order-row products col-xl-4">
               <div class="item" *ngFor="let product of itemsFormating(order.delivery_details)"><strong>{{ product.name }}:</strong> {{ product.items }}</div>
             </div>
-            <div class="order-row description col-xl-4">
-              {{ order.delivery_description }}
-            </div>
             <div class="client-info col-xl-4">
               <div class="item">
                 <div class="field-name">Cliente:</div>
@@ -67,6 +64,9 @@
                   {{ order.delivery_address.province }}, {{ order.delivery_address.country }}
                 </div>
               </div>
+            </div>
+            <div class="order-row description col-xl-4">
+              {{ order.delivery_description }}
             </div>
           </div>
         </div>

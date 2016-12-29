@@ -1,47 +1,70 @@
 <div class="profile-page" [ngClass]="{whiteBg: selectTab === 'conditions' || selectTab === 'privacy' || selectTab === 'help'}">
   <div class="container-starbook without-tabs">
     <div class="row">
-      <div class="left-navigate">
-        <a *ngFor="let tab of tabs" [ngClass]="{'active':tab.url === selectTab}" [routerLink]="['/profile', tab.url]">
-          <span></span>
-          <div>{{tab.name}}</div>
-        </a>
+      <div class="left-navigate" (swipeleft)="swipe($event.type, $event.deltaX)" (swiperight)="swipe($event.type, $event.deltaX)">
+        <div [ngStyle]="{'margin-left.px': delta}">
+          <a *ngFor="let tab of tabs" [ngClass]="{'active':tab.url === selectTab}" [routerLink]="['/profile', tab.url]">
+            <span></span>
+            <div>{{tab.name}}</div>
+          </a>
+        </div>
       </div>
       <div class="profile-settings" *ngIf="selectTab === 'settings'">
         <div class="header">Informazioni generali del account</div>
         <form #changProfile="ngForm">
           <div class="form-group">
+            <label>Nome</label>
             <input class="form-control" name="name" #fullname="ngModel" [(ngModel)]="userData.fullname" required disabled>
           </div>
+          <div class="form-group">
+            <label>Cognome</label>
+            <input class="form-control" name="lastname" #fullname="ngModel" [(ngModel)]="userData.lastname" required disabled>
+          </div>
+          <div class="form-group">
+            <label>Nome Azienda</label>
+            <input class="form-control" name="patronymic" #fullname="ngModel" [(ngModel)]="userData.patronymic" required disabled>
+          </div>
+          <div class="form-group">
+            <label>Email</label>
+            <input class="form-control" name="email" value="" #email="ngModel" [(ngModel)]="userData.email" required disabled>
+          </div>
           <div class="form-group password-block">
-            <input class="form-control" name="email" value="harald.bregu@gmail.com" #email="ngModel" [(ngModel)]="userData.email" required disabled>
-            <div class="password">
-              <span>•••••••••••</span>
-            </div>
-            <div class="change-password">
-              <button type="button" class="btn btn-primary" (click)="getPopup('changePassword')">Modifica password</button>
+            <label>Password</label>
+            <div class="password-container">
+              <div class="password">
+                <span>•••••••••••</span>
+              </div>
+              <div class="change-password">
+                <button type="button" class="btn btn-primary" (click)="getPopup('changePassword')">Modifica password</button>
+              </div>
             </div>
           </div>
           <div class="form-group">
+            <label>Phone</label>
             <input class="form-control" name="phone" #phone_number="ngModel" [(ngModel)]="userData.phone_number">
           </div>
           <div class="header second">Indirizzo di fatturazione</div>
           <div class="form-group double-input">
+            <label>Via e Numero</label>
             <input class="form-control first" name="address1" #street_name="ngModel" [(ngModel)]="userData.street_name" placeholder="Via">
             <input class="form-control second" name="number1" #street_number="ngModel" [(ngModel)]="userData.street_number" placeholder="Nr">
           </div>
           <div class="form-group double-input">
+            <label>Città e CAP</label>
             <input class="form-control first" name="address2" #city="ngModel" [(ngModel)]="userData.city" placeholder="Città">
             <input class="form-control second" name="number2" #postal_code="ngModel" [(ngModel)]="userData.postal_code" placeholder="CAP">
           </div>
           <div class="form-group double-input">
+            <label>Provincia e Nazione</label>
             <input class="form-control first" name="city" #province="ngModel" [(ngModel)]="userData.province" placeholder="Provincia">
             <input class="form-control second" name="country" #country="ngModel" [(ngModel)]="userData.country" placeholder="Nazione">
           </div>
           <div class="form-group">
+            <label>Partita IVA</label>
             <input class="form-control" name="piva" placeholder="P.IVA">
           </div>
           <div class="form-group">
+            <label>Codice Fiscale</label>
             <input class="form-control" name="codice" placeholder="Codice Fiscale">
           </div>
           <div class="profile-information" *ngIf="formError">
