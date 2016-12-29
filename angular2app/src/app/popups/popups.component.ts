@@ -156,7 +156,8 @@ export class PopupsComponent implements OnInit, OnDestroy {
     password: ''
   };
   public loginError = {
-    email: false
+    email: false,
+    password: false
   };
   public registrationData = {
     name: '',
@@ -165,7 +166,9 @@ export class PopupsComponent implements OnInit, OnDestroy {
     passwordConfirm: ''
   };
   public registrationError = {
+    name: false,
     email: false,
+    passwordFirst: false,
     password: false
   };
   public recoveryData = {
@@ -241,7 +244,7 @@ export class PopupsComponent implements OnInit, OnDestroy {
   }
 
   login(email: string, password: string) {
-    if (this.emailPattern.test(email)) {
+    if (this.emailPattern.test(email) && password.length > 0) {
       this.authServics.login(email, password)
         .then((data) => {
           this.auth = data;
@@ -267,7 +270,12 @@ export class PopupsComponent implements OnInit, OnDestroy {
           }
         });
     } else {
-      this.loginError.email = true;
+      if (password.length < 1) {
+        this.loginError.password = true;
+      }
+      if (!this.emailPattern.test(email)) {
+        this.loginError.email = true;
+      }
     }
     return false;
   }
@@ -281,6 +289,9 @@ export class PopupsComponent implements OnInit, OnDestroy {
         case 'registration':
           this.registrationError.email = false;
           break;
+        case 'recovery':
+          this.recoveryError.email = false;
+          break;
       }
     } else {
       switch (type) {
@@ -290,6 +301,33 @@ export class PopupsComponent implements OnInit, OnDestroy {
         case 'registration':
           this.registrationError.email = true;
           break;
+        case 'recovery':
+          this.recoveryError.email = true;
+          break;
+      }
+    }
+  }
+
+  checkNonEmpty(type, value) {
+    if (type === 'login') {
+      if(value.length > 0) {
+        this.loginError.password = false;
+      } else {
+        this.loginError.password = true;
+      }
+    }
+    if (type === 'registrationName') {
+      if(value.length > 0) {
+        this.registrationError.name = false;
+      } else {
+        this.registrationError.name = true;
+      }
+    }
+    if (type === 'registrationPassword') {
+      if(value.length > 0) {
+        this.registrationError.passwordFirst = false;
+      } else {
+        this.registrationError.passwordFirst = true;
       }
     }
   }
@@ -303,7 +341,7 @@ export class PopupsComponent implements OnInit, OnDestroy {
   }
 
   registration(name: string, email: string, password: string, passwordConfirm: string) {
-    if (this.emailPattern.test(email) && password === passwordConfirm) {
+    if (this.emailPattern.test(email) && password === passwordConfirm && password.length > 0 && name.length > 0) {
       this.authServics.signup(name, email, password)
         .then((data) => {
           this.auth = data;
@@ -329,6 +367,12 @@ export class PopupsComponent implements OnInit, OnDestroy {
       }
       if (password !== passwordConfirm) {
         this.registrationError.password = true;
+      }
+      if (password.length < 1) {
+        this.registrationError.passwordFirst = true;
+      }
+      if (name.length < 1) {
+        this.registrationError.name = true;
       }
     }
     return false;

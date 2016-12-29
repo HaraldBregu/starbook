@@ -445,12 +445,22 @@ textarea.form-control {
   text-align: center;
   padding: 3px 2px;
 }
+.ui-datepicker-calendar td a.ui-state-disabled {
+  opacity: 0.7;
+}
 .ui-datepicker-calendar td a.ui-state-default:hover, .ui-datepicker-calendar td a.ui-state-active {
   font-family: $font-name;
   text-decoration: none !important;
   border-radius: 3px;
   background-color: $datepicker-background-primary;
   color: $datepicker-hover-text-color;
+}
+.ui-datepicker-calendar td a.ui-state-disabled:hover {
+  font-family: $font-name;
+  text-decoration: none !important;
+  border-radius: 3px;
+  background-color: transparent;
+  color: $datepicker-text-color;
 }
 .ui-datepicker-calendar td.ui-state-disabled a.ui-state-default {
   color: $datepicker-disabled-text-color;
@@ -509,6 +519,14 @@ textarea.form-control {
 }
 .isError .form-control {
   border: 1px solid $autocomplete-form-error-color;
+}
+.input-group .mobileArea {
+  display: none;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  z-index: 4;
 }
 
 @media (max-width: 1440px) {
@@ -571,5 +589,10 @@ textarea.form-control {
   }
   .footer-links {
     height: 50px;
+  }
+}
+@media (max-width: 480px) {
+  .input-group .mobileArea {
+    display: block;
   }
 }

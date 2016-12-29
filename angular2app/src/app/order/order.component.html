@@ -13,17 +13,25 @@
       </div>
 
       <div class="add-order-form">
-        <div class="form-group" [ngClass]="{isError: submitOrder && !Order.date}">
+        <div class="form-group" [ngClass]="{isError: submitOrder && !Order.date}" *ngIf="isMobileCalendar">
           <div class="input-group date datepicker-block">
             <span class="fa fa-calendar"></span>
-            <p-calendar name="dataOra" [(ngModel)]="Order.date" id="dataOra" class="form-control" placeholder="Data" autocomplete="off" dateFormat="dd MM yy" [locale]="it">
+            <p-calendar name="dataOra" [(ngModel)]="Order.date" id="dataOraMobile" class="form-control" placeholder="Data" autocomplete="off" dateFormat="dd MM yy" [locale]="it" [minDate]="minDate" readonlyInput="readonlyInput">
+            </p-calendar>
+          </div>
+        </div>
+        <div class="form-group" [ngClass]="{isError: submitOrder && !Order.date}" *ngIf="!isMobileCalendar">
+          <div class="input-group date datepicker-block">
+            <span class="fa fa-calendar"></span>
+            <p-calendar name="dataOra" [(ngModel)]="Order.date" id="dataOra" class="form-control" placeholder="Data" autocomplete="off" dateFormat="dd MM yy" [locale]="it" [minDate]="minDate">
             </p-calendar>
           </div>
         </div>
         <div class="form-group" [ngClass]="{isError: Order.time === '' && submitOrder}">
-          <div class="input-group date">
+          <div class="input-group date" (clickOutside)="closeTimepicker()">
             <span class="fa fa-clock-o" (click)="toggleTimepicker()"></span>
-            <input id="timeOra" class="form-control" type="text" name="timeOra" [(ngModel)]="Order.time" value="{{Order.time}}" placeholder="Ora" autocomplete="off" (click)="toggleTimepicker()" (clickOutside)="closeTimepicker()">
+            <input id="timeOra" class="form-control" type="text" name="timeOra" [(ngModel)]="Order.time" value="{{Order.time}}" placeholder="Ora" autocomplete="off" (click)="toggleTimepicker()">
+            <div class="mobileArea" (click)="toggleTimepicker()"></div>
           </div>
           <div class="time-picker" *ngIf="timePickerIsShow">
             <div class="time-elem" *ngFor="let time of timePicker" (click)="selectTime(time)">{{time}}</div>

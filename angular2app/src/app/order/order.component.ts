@@ -50,8 +50,10 @@ export class OrderComponent implements OnInit, OnDestroy {
     country: '',
     country_code: ''
   };
+  public minDate = new Date();
   public submitOrder = false;
   public orderForm: any;
+  public isMobileCalendar: any = false;
   subscription: Subscription;
 
   constructor(private orderService: OrderService, private popupsService: PopupsService) {
@@ -82,6 +84,11 @@ export class OrderComponent implements OnInit, OnDestroy {
 
   toggleTimepicker() {
     this.timePickerIsShow = !this.timePickerIsShow;
+    console.log(123);
+  }
+
+  openTimepicker() {
+    this.timePickerIsShow = true;
   }
 
   closeTimepicker() {
@@ -188,6 +195,11 @@ export class OrderComponent implements OnInit, OnDestroy {
         this.createOrder();
       }
     });
+    if (document.querySelector('body').clientWidth > 480) {
+      this.isMobileCalendar = false;
+    } else {
+      this.isMobileCalendar = true;
+    }
   }
 
   ngOnDestroy() {

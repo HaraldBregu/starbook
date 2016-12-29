@@ -142,6 +142,7 @@ $content-p-black-color: #000000;
   position: absolute;
   top: 9px;
   left: -141px;
+  padding-left: 0;
   font-size: $profile-settings-label-font-size;
   color: $profile-settings-label-color;
   letter-spacing: $profile-settings-label-letter-spacing;
@@ -341,9 +342,47 @@ $content-p-black-color: #000000;
   .profile-page .content-page {
     padding: 58px 15px 0 15px;
   }
+  .profile-settings .form-group {
+    margin-top: 40px;
+  }
+  .profile-settings .password-block {
+    margin-top: 40px;
+  }
+  .profile-settings .form-group label {
+    top:-27px;
+    left: 0;
+    padding-left: 0;
+    text-align: left;
+  }
 }
 @media (max-width: 645px) {
   .profile-page .content-page {
     padding: 58px 0 0 15px;
+  }
+}
+@media (max-width: 560px) {
+  .profile-page .content-page {
+    padding: 58px 0 0 15px;
+  }
+  .profile-page .container-starbook {
+    padding: 0 0 0 15px;
+  }
+  .profile-settings {
+    width: 100%;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-bottom: 70px;
+  }
+  .form-group.double-input input.first {
+    width: 63%;
+  }
+  .form-group.double-input input.second {
+    width: 33%;
+    margin-left: 0;
+  }
+}
+@media (max-width: 480px) {
+  .profile-settings .header {
+    font-size: 17px;
   }
 }

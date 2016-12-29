@@ -15,12 +15,13 @@
       <input id="email" class="form-control" type="email" name="email" placeholder="" required [(ngModel)]="loginData.email" #email="ngModel" (keyup)="checkEmail('login', email.value)" (change)="checkEmail('login', email.value)">
       <span class="error">Indirizzo e-mail non valido</span>
     </div>
-    <div class="form-group">
+    <div class="form-group" [ngClass]="{'isError': loginError.password}">
       <label for="password">Password <a class="recovery" (click)="getPopup('recovery')">Password dimenticata?</a></label>
-      <input id="password" class="form-control" type="password" name="password" placeholder="" required [(ngModel)]="loginData.password" #password="ngModel">
+      <input id="password" class="form-control" type="password" name="password" placeholder="" required [(ngModel)]="loginData.password" #password="ngModel" (keyup)="checkNonEmpty('login', password.value)" (change)="checkNonEmpty('login', password.value)">
+      <span class="error">Please enter your password</span>
     </div>
     <div class="form-group">
-      <button class="btn btn-warning" type="submit" [disabled]="!loginForm.form.valid" (click)="login(email.value, password.value)">Accedi</button>
+      <button class="btn btn-warning" type="submit" (click)="login(email.value, password.value)">Accedi</button>
     </div>
     <div class="form-description">
       <span>Sei nuovo su Starbook?</span>
@@ -42,18 +43,20 @@
   </div>
   <div class="header">Nuovo account</div>
   <form class="registration-form" #registrationForm="ngForm">
-    <div class="form-group">
+    <div class="form-group" [ngClass]="{'isError': registrationError.name}">
       <label for="regName">Il tuo nome completo</label>
-      <input id="regName" class="form-control" type="text" name="name" placeholder="" required [(ngModel)]="registrationData.name" #regName="ngModel">
+      <input id="regName" class="form-control" type="text" name="name" placeholder="" required [(ngModel)]="registrationData.name" #regName="ngModel" (keyup)="checkNonEmpty('registrationName', regName.value)">
+      <span class="error">Please enter your name</span>
     </div>
     <div class="form-group" [ngClass]="{'isError': registrationError.email}">
       <label for="regEmail">E-mail</label>
       <input id="regEmail" class="form-control" type="email" name="email" placeholder="" required [(ngModel)]="registrationData.email" #regEmail="ngModel" (keyup)="checkEmail('registration', regEmail.value)">
       <span class="error">Indirizzo e-mail non valido</span>
     </div>
-    <div class="form-group">
+    <div class="form-group" [ngClass]="{'isError': registrationError.passwordFirst}">
       <label for="regPassword">Password</label>
-      <input id="regPassword" class="form-control" type="password" name="password" placeholder="" required [(ngModel)]="registrationData.password" #regPassword="ngModel">
+      <input id="regPassword" class="form-control" type="password" name="password" placeholder="" required [(ngModel)]="registrationData.password" #regPassword="ngModel" (keyup)="checkNonEmpty('registrationPassword', regPassword.value)">
+      <span class="error">Please enter password</span>
     </div>
     <div class="form-group" [ngClass]="{'isError': registrationError.password}">
       <label for="regPasswordConfirm">Di nuovo la password</label>
@@ -61,7 +64,7 @@
       <span class="error">Le password non corrispondono</span>
     </div>
     <div class="form-group">
-      <button class="btn btn-warning" type="submit" [disabled]="!registrationForm.form.valid" (click)="registration(regName.value, regEmail.value, regPassword.value, regPasswordConfirm.value)">Crea account</button>
+      <button class="btn btn-warning" type="submit" (click)="registration(regName.value, regEmail.value, regPassword.value, regPasswordConfirm.value)">Crea account</button>
     </div>
   </form>
   <div class="form-notice">Accedendo dichiari di aver letto e accetti le <a routerLink="profile/conditions">condizioni generali</a> e <a routerLink="profile/privacy">l’informativa sulla privacy</a></div>
@@ -79,12 +82,13 @@
   </div>
   <div class="header">Recupera password</div>
   <form class="recovery-form" #recoveryForm="ngForm">
-    <div class="form-group">
+    <div class="form-group" [ngClass]="{'isError': recoveryError.email}">
       <label for="recoveryEmail">E-mail</label>
-      <input id="recoveryEmail" class="form-control" type="text" name="name" placeholder="" required [(ngModel)]="recoveryData.email" #recoveryEmail="ngModel">
+      <input id="recoveryEmail" class="form-control" type="text" name="name" placeholder="" required [(ngModel)]="recoveryData.email" #recoveryEmail="ngModel" (keyup)="checkEmail('recovery', recoveryEmail.value)">
+      <span class="error">Indirizzo e-mail non valido</span>
     </div>
     <div class="form-group">
-      <button class="btn btn-warning" type="submit" [disabled]="!recoveryForm.form.valid" (click)="recovery(recoveryEmail.value)">Invia email</button>
+      <button class="btn btn-warning" type="submit" (click)="recovery(recoveryEmail.value)">Invia email</button>
     </div>
   </form>
   <div class="login-offer">Hai gia un account su Starbook? <a (click)="getPopup('login')">Accedi</a></div>

@@ -371,3 +371,22 @@ $alert-warning-image: '/assets/images/warning.png';
 .popup .confirm-order-form .form-group .btn.btn-secondary {
   background-color: $popup-order-confirm-gray-background;
 }
+
+@media (max-width: 480px) {
+  .popup {
+    width: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin-left: 0;
+    border-radius: 0;
+    overflow-y: scroll;
+  }
+  .login-offer {
+    margin-bottom: 70px;
+  }
+  .popup .form-group .btn.btn-secondary {
+    margin-bottom: 70px;
+  }
+}
