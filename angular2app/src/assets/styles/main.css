@@ -3222,7 +3222,7 @@ textarea.form-control {
   width: 100%;
   height: 100%;
   cursor: pointer;
-  z-index: 5; }
+  z-index: 4; }
 
 @media (max-width: 1440px) {
   .container-starbook .sidebar {
@@ -4140,11 +4140,233 @@ html, body {
   font-family: HelveticaNeue-Bold, sans-serif;
   font-weight: normal; }
 
+.cards-page {
+  display: block;
+  width: 100%;
+  padding: 16px 18px 0 218px; }
+
+.cards-page .card-block {
+  display: block;
+  float: left;
+  width: 50%;
+  padding: 17px; }
+
+.card-block .container {
+  display: block;
+  width: 100%;
+  background-color: #FFFFFF;
+  border: 1px solid #DCDCDC;
+  border-radius: 3px;
+  padding: 0; }
+
+.card-block .container .header {
+  display: block;
+  position: relative;
+  width: 100%;
+  border-bottom: 1px solid #DCDCDC;
+  padding: 10px; }
+
+.card-block .container .header .card-logo {
+  display: block;
+  position: relative;
+  width: 50px;
+  height: 30px;
+  margin-left: 10px;
+  background-size: contain;
+  background-position: center center;
+  background-repeat: no-repeat; }
+
+.card-block .container .header .card-logo.mastercard {
+  background-image: url("/assets/images/mastercard-big.png"); }
+
+.card-block .container .header .card-logo.visa {
+  background-image: url("/assets/images/visa-big.png"); }
+
+.card-block .container .header .card-logo.amex {
+  background-image: url("/assets/images/amex-big.png"); }
+
+.card-block .container .header .card-logo span {
+  display: block;
+  position: absolute;
+  width: 60px;
+  text-align: left;
+  font-family: HelveticaNeue, sans-serif;
+  color: #212121;
+  font-size: 14px;
+  letter-spacing: 0.09px;
+  top: 7px;
+  left: 70px;
+  white-space: nowrap; }
+
+.card-block .container .header .isDefault {
+  display: block;
+  position: absolute;
+  width: 100%;
+  top: 0;
+  left: 0;
+  text-align: center;
+  color: #212121;
+  font-family: HelveticaNeue-Medium, sans-serif;
+  font-size: 16px;
+  letter-spacing: 0.1px;
+  padding-top: 14px; }
+
+.card-block .container .header .buttons-block {
+  display: block;
+  position: absolute;
+  width: 100%;
+  top: 10px;
+  right: 10px;
+  text-align: right; }
+
+.card-block .container .content {
+  display: block;
+  width: 100%;
+  height: 135px;
+  padding: 18px; }
+
+.card-block .container .content .card-information {
+  display: block;
+  width: 50%;
+  float: left;
+  padding-left: 8px; }
+
+.card-block .container .content .card-information .information-block {
+  display: block;
+  float: left;
+  position: relative;
+  width: 100%;
+  margin-bottom: 10px;
+  padding-left: 90px;
+  color: #212121;
+  font-family: HelveticaNeue, sans-serif;
+  font-size: 12px;
+  letter-spacing: 0.08px; }
+
+.card-block .container .content .card-information .information-block span {
+  display: block;
+  position: absolute;
+  width: 59px;
+  top: 0;
+  left: 0;
+  font-family: HelveticaNeue, sans-serif;
+  font-size: 12px;
+  letter-spacing: 0.08px;
+  color: #9B9B9B;
+  text-align: right; }
+
+.card-block .new-card {
+  display: block;
+  width: 100%;
+  height: 171px;
+  background-color: #F6F7F9;
+  border: 2px dashed #DCDCDC;
+  border-radius: 3px;
+  font-family: HelveticaNeue-Bold, sans-serif;
+  font-size: 20px;
+  color: #9B9B9B;
+  letter-spacing: 0.13px;
+  text-align: center;
+  padding: 74px 0;
+  cursor: pointer; }
+
+.card-block .new-card:hover {
+  background-color: #E4E7ED; }
+
+.cards-page .btn-primary {
+  height: 28px;
+  font-family: HelveticaNeue-Medium, sans-serif;
+  background-color: #506795;
+  border: 1px solid #29487D;
+  color: #FFFFFF;
+  font-size: 12px;
+  letter-spacing: 0.08px;
+  font-weight: normal;
+  border-radius: 3px;
+  padding: 6px 8px;
+  margin-left: 10px;
+  outline: none; }
+
+.cards-page .btn-primary:focus,
+.cards-page .btn-primary:hover {
+  height: 28px;
+  font-family: HelveticaNeue-Medium, sans-serif;
+  background-color: #324977;
+  border: 1px solid #29487D;
+  color: #FFFFFF;
+  font-size: 12px;
+  letter-spacing: 0.08px;
+  font-weight: normal;
+  border-radius: 3px;
+  padding: 6px 8px;
+  margin-left: 10px;
+  outline: none; }
+
+.cards-page .btn-primary:active {
+  height: 28px;
+  font-family: HelveticaNeue-Medium, sans-serif;
+  background-color: #506795;
+  border: 1px solid #29487D;
+  color: #FFFFFF;
+  font-size: 12px;
+  letter-spacing: 0.08px;
+  font-weight: normal;
+  border-radius: 3px;
+  padding: 6px 8px;
+  margin-left: 10px;
+  outline: none; }
+
+.cards-page .btn-secondary {
+  height: 28px;
+  font-family: HelveticaNeue-Medium, sans-serif;
+  background-color: #F6F7F9;
+  border: 1px solid #DDDFE2;
+  color: #212121;
+  font-size: 12px;
+  letter-spacing: 0.08px;
+  font-weight: normal;
+  border-radius: 3px;
+  padding: 6px 8px;
+  margin-left: 10px;
+  outline: none; }
+
+.cards-page .btn-secondary:focus,
+.cards-page .btn-secondary:hover {
+  height: 28px;
+  font-family: HelveticaNeue-Medium, sans-serif;
+  background-color: #E4E7ED;
+  border: 1px solid #DDDFE2;
+  color: #212121;
+  font-size: 12px;
+  letter-spacing: 0.08px;
+  font-weight: normal;
+  border-radius: 3px;
+  padding: 6px 8px;
+  margin-left: 10px;
+  outline: none; }
+
+.cards-page .btn-secondary:active {
+  height: 28px;
+  font-family: HelveticaNeue-Medium, sans-serif;
+  background-color: #F6F7F9;
+  border: 1px solid #DDDFE2;
+  color: #212121;
+  font-size: 12px;
+  letter-spacing: 0.08px;
+  font-weight: normal;
+  border-radius: 3px;
+  padding: 6px 8px;
+  margin-left: 10px;
+  outline: none; }
+
 @media (max-width: 1440px) {
   .container-starbook .left-navigate {
     top: 0;
     left: 0;
     margin-left: 0; } }
+@media (max-width: 1100px) {
+  .cards-page .card-block {
+    width: 100%; } }
 @media (max-width: 780px) {
   .profile-settings {
     width: 500px;
@@ -4164,10 +4386,16 @@ html, body {
     top: -27px;
     left: 0;
     padding-left: 0;
-    text-align: left; } }
+    text-align: left; }
+
+  .cards-page {
+    padding: 30px 18px 0 15px; } }
 @media (max-width: 645px) {
   .profile-page .content-page {
-    padding: 58px 0 0 15px; } }
+    padding: 58px 0 0 15px; }
+
+  .cards-page {
+    padding: 30px 0 0 0; } }
 @media (max-width: 560px) {
   .profile-page .content-page {
     padding: 58px 0 0 15px; }
@@ -4189,7 +4417,23 @@ html, body {
     margin-left: 0; } }
 @media (max-width: 480px) {
   .profile-settings .header {
-    font-size: 17px; } }
+    font-size: 17px; }
+
+  .card-block .container .header .isDefault {
+    text-align: right;
+    padding-right: 15px; }
+
+  .card-block .container .header .buttons-block {
+    position: static;
+    top: 0;
+    right: 0;
+    margin-top: 11px; }
+
+  .card-block .container .content {
+    height: auto; }
+
+  .card-block .container .content .card-information {
+    width: 100%; } }
 .dark-screen {
   display: block;
   position: fixed;
