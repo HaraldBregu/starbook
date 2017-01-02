@@ -142,3 +142,76 @@
     <p>The link will only be active for 1 hour. After that you will need to request a new one.</p>
   </div>
 </div>
+
+
+<!-- Add Card popup -->
+<div class="popup" [@addCardPopupState]="addCardPopupState">
+  <div class="header">Metodo di pagamento</div>
+  <form class="add-card-form" #addCardForm="ngForm">
+    <div class="cards-logo">
+      <div class="card-item visa"></div>
+      <div class="card-item mastercard"></div>
+      <div class="card-item amex"></div>
+    </div>
+    <div class="form-group" [ngClass]="{'isError': addCardError.number}">
+      <label for="addCardNumber">Numero carta</label>
+      <input id="addCardNumber" class="form-control" type="text" name="addCardNumber" placeholder="" [(ngModel)]="addCardData.number" #addCardNumber="ngModel" (keyup)="checkNonEmpty('addCardNumber', addCardNumber.value)">
+      <span class="error">Please enter card number</span>
+    </div>
+    <div class="form-group">
+      <div class="part-group first" [ngClass]="{'isError': addCardError.exp_date}">
+        <label for="addExpDate">Scadenza</label>
+        <input id="addExpDate" class="form-control" type="text" name="addExpDate" placeholder="MM/AA" [(ngModel)]="addCardData.exp_date" #addCardExpDate="ngModel" (keyup)="checkDate('newCard', addCardExpDate.value)">
+        <span class="error">Expiration date isn't correct</span>
+      </div>
+      <div class="part-group last" [ngClass]="{'isError': addCardError.cvc}">
+        <label for="addCVV">CVV</label>
+        <input id="addCVV" class="form-control" type="text" name="addCVV" [(ngModel)]="addCardData.cvc" #addCardCVV="ngModel" (keyup)="checkNonEmpty('addCardCvv', addCardCVV.value)">
+        <span class="fa fa-question-circle"></span>
+        <span class="error">CVV isn't correct</span>
+      </div>
+
+    </div>
+    <div class="subheader">
+      Informazioni facoltativi (collapse)
+    </div>
+    <div class="form-group">
+      <label for="addCardName">Nome intestatario</label>
+      <input id="addCardName" class="form-control" type="text" name="addCardName" placeholder="Nome Cognome" [(ngModel)]="addCardData.name" #addCardName="ngModel">
+    </div>
+    <div class="form-group">
+      <div class="part-group first-big">
+        <label for="addCardVia">Via</label>
+        <input id="addCardVia" class="form-control" type="text" name="addCardVia" [(ngModel)]="addCardData.address_line1" #addCardAddress1="ngModel">
+      </div>
+      <div class="part-group last-small">
+        <label for="addCardNr">Nr</label>
+        <input id="addCardNr" class="form-control" type="text" name="addCardNr" [(ngModel)]="addCardData.address_line2" #addCardAddress2="ngModel">
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="part-group first-big">
+        <label for="addCardCitta">Città</label>
+        <input id="addCardCitta" class="form-control" type="text" name="addCardCitta" [(ngModel)]="addCardData.address_city" #addCardAddressCity="ngModel">
+      </div>
+      <div class="part-group last-small">
+        <label for="addCardCap">CAP</label>
+        <input id="addCardCap" class="form-control" type="text" name="addCardCap" [(ngModel)]="addCardData.address_zip" #addCardAddressZip="ngModel">
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="part-group first">
+        <label for="addCardProvincia">Provincia</label>
+        <input id="addCardProvincia" class="form-control" type="text" name="addCardProvincia" [(ngModel)]="addCardData.address_state" #addCardAddressState="ngModel">
+      </div>
+      <div class="part-group last">
+        <label for="addCardPease">Paese</label>
+        <input id="addCardPease" class="form-control" type="text" name="addCardPease" [(ngModel)]="addCardData.address_country" #addCardAddressCountry="ngModel">
+      </div>
+    </div>
+    <div class="form-group">
+      <button class="btn btn-warning" type="submit" (click)="addNewCard(addCardNumber.value, addCardExpDate.value, addCardCVV.value, addCardName.value, addCardAddress1.value, addCardAddress2.value, addCardAddressCity.value, addCardAddressZip.value, addCardAddressState.value, addCardAddressCountry.value)">Aggiungi metodo</button>
+      <button class="btn btn-secondary" (click)="closePopup()">Chiudi</button>
+    </div>
+  </form>
+</div>

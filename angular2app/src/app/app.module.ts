@@ -16,6 +16,7 @@ import { ProfileService } from './shared/profile.service';
 import { NavigationService } from './shared/navigation.service';
 import { OrdersService } from './shared/orders.service';
 import { PopupsService } from './popups/popups.service';
+import { PaymentService } from './shared/payment.service';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
@@ -68,7 +69,8 @@ export class HammerConfig extends HammerGestureConfig  {
     ProfileService,
     NavigationService,
     OrdersService,
-    PopupsService
+    PopupsService,
+    PaymentService
   ],
   bootstrap: [AppComponent]
 })

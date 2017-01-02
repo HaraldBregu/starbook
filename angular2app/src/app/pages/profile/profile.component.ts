@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ProfileService } from '../../shared/profile.service';
 import { Router, Route, ActivatedRoute, Params } from '@angular/router';
 import { NavigationService } from '../../shared/navigation.service';
+import { PopupsService } from '../../popups/popups.service';
 
 export interface IUserData {
   fullname?: string;
@@ -56,7 +57,7 @@ export class ProfileComponent implements OnInit {
   };
   public formError: boolean|{title?: string, message: string, type?: string} = false;
 
-  constructor(private profileService: ProfileService, private router: Router, private navigationService: NavigationService, private route: ActivatedRoute) { }
+  constructor(private profileService: ProfileService, private router: Router, private navigationService: NavigationService, private route: ActivatedRoute, private  popupsService: PopupsService) { }
 
   ngOnInit() {
     if (localStorage.getItem('auth') !== null) {
@@ -152,6 +153,10 @@ export class ProfileComponent implements OnInit {
         }
       }
     }
+  }
+
+  addNewCard() {
+    this.popupsService.activate({type: 'addCard'});
   }
 
 }

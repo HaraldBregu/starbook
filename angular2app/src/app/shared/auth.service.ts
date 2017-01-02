@@ -39,7 +39,9 @@ export class AuthService {
             street_name: data.result.street_name,
             street_number: data.result.street_number,
             updated_at: data.result.updated_at,
-            token: data.token
+            token: data.token,
+            stripe_customer_id: data.result.stripe_customer_id,
+            stripe_account_id: data.result.stripe_account_id
           };
 
           localStorage.setItem('auth', JSON.stringify(authData));
@@ -62,7 +64,9 @@ export class AuthService {
             fullname: data.result.fullname,
             email: data.result.email,
             phone_number: '',
-            token: data.token
+            token: data.token,
+            stripe_customer_id: data.result.stripe_customer_id,
+            stripe_account_id: data.result.stripe_account_id
           };
 
           localStorage.setItem('auth', JSON.stringify(authData));

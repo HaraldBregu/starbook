@@ -4255,7 +4255,7 @@ html, body {
   color: #9B9B9B;
   text-align: right; }
 
-.card-block .new-card {
+.card-block a.new-card {
   display: block;
   width: 100%;
   height: 171px;
@@ -4270,8 +4270,9 @@ html, body {
   padding: 74px 0;
   cursor: pointer; }
 
-.card-block .new-card:hover {
-  background-color: #E4E7ED; }
+.card-block a.new-card:hover {
+  background-color: #E4E7ED;
+  color: #9B9B9B; }
 
 .cards-page .btn-primary {
   height: 28px;
@@ -4507,18 +4508,22 @@ html, body {
 .popup .form-group .error {
   display: none; }
 
-.popup .form-group.isError .error {
+.popup .form-group.isError .error, .popup .form-group .isError .error {
   display: block;
   font-family: HelveticaNeue, sans-serif;
-  font-size: 14px;
+  font-size: 12px;
   color: #DB4F4F;
   letter-spacing: 0.08px;
   font-weight: 400;
-  margin-left: 2px; }
+  margin-left: 2px;
+  line-height: 16px; }
 
 .popup .form-group .form-control.ng-invalid.ng-dirty,
 .popup .form-group .form-control.ng-invalid.ng-touched,
 .popup .form-group.isError .form-control {
+  border: 1px solid #DB4F4F; }
+
+.popup .form-group .isError .form-control {
   border: 1px solid #DB4F4F; }
 
 .popup .form-group .btn.btn-warning {
@@ -4748,6 +4753,80 @@ html, body {
 
 .popup .confirm-order-form .form-group .btn.btn-secondary {
   background-color: #EFF1F3; }
+
+.add-card-form .cards-logo {
+  display: block;
+  width: 100%;
+  height: 29px;
+  margin-top: 29px;
+  margin-bottom: 29px; }
+
+.add-card-form .cards-logo .card-item {
+  display: block;
+  float: left;
+  width: 48px;
+  height: 29px;
+  margin-right: 5px;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center; }
+
+.add-card-form .cards-logo .card-item.amex {
+  background-image: url("/assets/images/amex-mini.png"); }
+
+.add-card-form .cards-logo .card-item.visa {
+  background-image: url("/assets/images/visa-mini.png"); }
+
+.add-card-form .cards-logo .card-item.mastercard {
+  background-image: url("/assets/images/mastercard-mini.png"); }
+
+.popup .add-card-form .form-group label {
+  font-family: HelveticaNeue-Medium, sans-serif;
+  letter-spacing: 0.09px; }
+
+.popup .add-card-form .form-group .btn.btn-secondary {
+  margin-top: 15px; }
+
+.popup .add-card-form .form-group {
+  min-height: 56px; }
+
+.popup .add-card-form .subheader {
+  display: block;
+  width: 100%;
+  text-align: center;
+  margin-top: 33px;
+  margin-bottom: 27px;
+  font-family: HelveticaNeue-Medium, sans-serif;
+  color: #0066C0;
+  font-size: 12px;
+  letter-spacing: 0.08px; }
+
+.form-group .part-group {
+  display: block;
+  position: relative;
+  float: left;
+  width: 50%; }
+
+.form-group .part-group.first {
+  padding-right: 6px; }
+
+.form-group .part-group.last {
+  padding-left: 6px; }
+
+.form-group .part-group.first-big {
+  width: 66%;
+  padding-right: 6px; }
+
+.form-group .part-group.last-small {
+  width: 34%;
+  padding-left: 6px; }
+
+.form-group .part-group span.fa {
+  color: #000000;
+  font-size: 18px;
+  position: absolute;
+  top: 30px;
+  right: 8px; }
 
 @media (max-width: 480px) {
   .popup {

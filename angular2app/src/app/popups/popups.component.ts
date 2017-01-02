@@ -3,12 +3,31 @@ import { AuthService } from '../shared/auth.service';
 import { NavigationService } from '../shared/navigation.service';
 import { PopupsService } from './popups.service';
 import { OrdersService } from '../shared/orders.service';
+import { PaymentService } from '../shared/payment.service';
 import { Subscription }   from 'rxjs/Subscription';
 
 @Component({
   selector: 'app-popups',
   templateUrl: './popups.component.html',
   animations: [
+    trigger('addCardPopupState', [
+      state('inactive', style({display: 'none', top: '-300px'})),
+      state('active',   style({display: 'block', top: '42px'})),
+      transition('inactive => active', [
+        animate(300, keyframes([
+          style({display: 'none', top: '-300px', offset: 0}),
+          style({display: 'block', opacity: 0, top: '-300px', offset: 0.01}),
+          style({display: 'block', opacity: 1, top: '42px', offset: 1.0})
+        ]))
+      ]),
+      transition('active => inactive', [
+        animate(300, keyframes([
+          style({display: 'block', opacity: 1, top: '42px', offset: 0}),
+          style({display: 'block', opacity: 0, top: '-300px', offset: 0.99}),
+          style({display: 'none', top: '-300px', offset: 1.0})
+        ]))
+      ])
+    ]),
     trigger('loginPopupState', [
       state('inactive', style({display: 'none', top: '-300px'})),
       state('active',   style({display: 'block', top: '42px'})),
@@ -142,6 +161,7 @@ export class PopupsComponent implements OnInit, OnDestroy {
   subscription: Subscription;
 
   public activePopup = '';
+  public addCardPopupState = 'inactive';
   public loginPopupState = 'inactive';
   public registrationPopupState = 'inactive';
   public recoveryPopupState = 'inactive';
@@ -151,6 +171,26 @@ export class PopupsComponent implements OnInit, OnDestroy {
   public shadowState = 'inactive';
   public emailPattern;
   public auth;
+  public  addCardData = {
+    object: 'card',
+    exp_date: '',
+    exp_month: null,
+    exp_year: null,
+    number: null,
+    cvc: '',
+    name: '',           // Nome intestatario
+    address_line1: '',  // Via
+    address_line2: '',  // Nr
+    address_city: '',   // Città
+    address_zip: '',    // CAP
+    address_state: '',  // Provincia
+    address_country: '' // Paese
+  };
+  public addCardError = {
+    exp_date: false,
+    number: false,
+    cvc: false
+  };
   public loginData = {
     email: '',
     password: ''
@@ -190,7 +230,7 @@ export class PopupsComponent implements OnInit, OnDestroy {
     text: ''
   };
   public formError: boolean|{title: string, message: string} = false;
-  constructor(private authServics: AuthService, private navigationService: NavigationService, private popupService: PopupsService, private ordersService: OrdersService) {
+  constructor(private authServics: AuthService, private navigationService: NavigationService, private popupService: PopupsService, private ordersService: OrdersService, private paymentService: PaymentService) {
     this.emailPattern = /^[a-z0-9!#$%&'*+\/=?^_`{|}~.-]+@[a-z0-9]([a-z0-9-]*[a-z0-9])?(\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)*$/i;
   }
   getPopup(type: string) {
@@ -209,6 +249,9 @@ export class PopupsComponent implements OnInit, OnDestroy {
     }
     if (type === 'confirmFinish') {
       this.confirmFinishPopupState = 'active';
+    }
+    if (type === 'addCard') {
+      this.addCardPopupState = 'active';
     }
     this.shadowState = 'active';
     this.activePopup = type;
@@ -233,6 +276,9 @@ export class PopupsComponent implements OnInit, OnDestroy {
     }
     if (this.confirmFinishPopupState === 'active') {
       this.confirmFinishPopupState = 'inactive';
+    }
+    if (this.addCardPopupState === 'active') {
+      this.addCardPopupState = 'inactive';
     }
     this.activePopup = '';
     this.formError = false;
@@ -308,26 +354,56 @@ export class PopupsComponent implements OnInit, OnDestroy {
     }
   }
 
+  checkDate(type, value) {
+    if (type === 'newCard') {
+      if (value.length !== 5) {
+        this.addCardError.exp_date = true;
+      }
+      if (value.length === 5) {
+        let parts = value.split('/');
+        if (parts[0] === value) {
+          this.addCardError.exp_date = true;
+        } else {
+          this.addCardError.exp_date = false;
+        }
+      }
+    }
+  }
+
   checkNonEmpty(type, value) {
     if (type === 'login') {
-      if(value.length > 0) {
+      if (value.length > 0) {
         this.loginError.password = false;
       } else {
         this.loginError.password = true;
       }
     }
     if (type === 'registrationName') {
-      if(value.length > 0) {
+      if (value.length > 0) {
         this.registrationError.name = false;
       } else {
         this.registrationError.name = true;
       }
     }
     if (type === 'registrationPassword') {
-      if(value.length > 0) {
+      if (value.length > 0) {
         this.registrationError.passwordFirst = false;
       } else {
         this.registrationError.passwordFirst = true;
+      }
+    }
+    if (type === 'addCardNumber') {
+      if (value.length > 0) {
+        this.addCardError.number = false;
+      } else {
+        this.addCardError.number = true;
+      }
+    }
+    if (type === 'addCardCvv') {
+      if (value.length > 2) {
+        this.addCardError.cvc = false;
+      } else {
+        this.addCardError.cvc = true;
       }
     }
   }
@@ -452,12 +528,60 @@ export class PopupsComponent implements OnInit, OnDestroy {
     this.closePopup();
   }
 
+  addNewCard(number, exp_date, cvc, name, address_line1, address_line2, address_city, address_zip, address_state, address_country) {
+    let error = false;
+    if (number.length > 0) {
+      this.addCardData.number = number;
+    } else {
+      error = true;
+    }
+    if (exp_date.length === 5) {
+      let exp_parts = exp_date.split('/');
+      if (exp_parts[0] !== exp_date) {
+        this.addCardData.exp_month = exp_parts[0];
+        this.addCardData.exp_year = exp_parts[1];
+      } else {
+        error = true;
+      }
+    } else {
+      error = true;
+    }
+    if (cvc.length > 2)
+    {
+      this.addCardData.cvc = cvc;
+    } else {
+      error = true;
+    }
+
+    if (!error) {
+      this.addCardData.name = name;
+      this.addCardData.address_line1 = address_line1;
+      this.addCardData.address_line2 = address_line2;
+      this.addCardData.address_city = address_city;
+      this.addCardData.address_zip = address_zip;
+      this.addCardData.address_state = address_state;
+      this.addCardData.address_country = address_country;
+      this.paymentService.addNewCard(this.addCardData)
+          .then((response) => {
+            console.log(response);
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+    }
+  }
+
   ngOnInit() {
     this.subscription = this.popupService.getActivePopup$.subscribe(popup => {
       switch (popup.type) {
         case 'login':
           this.loginPopupState = 'active';
           this.activePopup = 'login';
+          this.shadowState = 'active';
+          break;
+        case 'addCard':
+          this.addCardPopupState = 'active';
+          this.activePopup = 'addCard';
           this.shadowState = 'active';
           break;
         case 'registration':
