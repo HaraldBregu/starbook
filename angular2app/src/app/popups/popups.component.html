@@ -124,7 +124,7 @@
 
 <!-- Confirm Order Finish popup -->
 <div class="popup" [@confirmFinishPopupState]="confirmFinishPopupState">
-  <div class="finish-message">
+  <div class="finish-message" [ngClass]="{isLeft: confirmFinishPopupData.type === 'left'}">
     <div class="header">{{ confirmFinishPopupData.title }}</div>
     <p>{{ confirmFinishPopupData.text }}</p>
     <div class="form-group">
@@ -212,6 +212,56 @@
     <div class="form-group">
       <button class="btn btn-warning" type="submit" (click)="addNewCard(addCardNumber.value, addCardExpDate.value, addCardCVV.value, addCardName.value, addCardAddress1.value, addCardAddress2.value, addCardAddressCity.value, addCardAddressZip.value, addCardAddressState.value, addCardAddressCountry.value)">Aggiungi metodo</button>
       <button class="btn btn-secondary" (click)="closePopup()">Chiudi</button>
+    </div>
+  </form>
+</div>
+
+
+<!-- Confirm popup with action -->
+<div class="popup" [@confirmActionPopupState]="confirmActionPopupState">
+  <div class="alert-block" *ngIf="formError">
+    <div class="alert-icn"></div>
+    <div class="alert-container">
+      <div class="header">{{formError.title}}</div>
+      <p>{{formError.message}}</p>
+    </div>
+  </div>
+  <div class="header">{{ confirmActionPopupData.title }}</div>
+  <form class="confirm-action" #confirmActionOrderForm="ngForm">
+    <p>
+      {{ confirmActionPopupData.text }}
+      <span *ngIf="confirmActionPopupData.text2 !== ''"><br> {{ confirmActionPopupData.text2 }}</span>
+    </p>
+    <div class="action" *ngFor="let action of confirmActionPopupData.actions">
+      <div class="form-group" *ngIf="action.type === 'Payment_input_add'">
+        <label>{{ action.label }}</label>
+        <div class="input-group">
+          <input type="text" class="form-control" name="confirmActionInputAddPrice" [(ngModel)]="confirmActionPopupData.price" #confirmActionInputAddPrice="ngModel">
+          <span class="input-group-addon">.00</span>
+          <span class="input-group-addon euro">€</span>
+        </div>
+        <p class="price-description">{{ action.description }}</p>
+      </div>
+      <div class="form-group" *ngIf="action.type === 'Payment_input_edit'">
+        <label>{{ action.label }}</label>
+        <div class="input-group">
+          <input type="text" class="form-control" name="confirmActionInputEditPrice" [(ngModel)]="confirmActionPopupData.price" #confirmActionInputEditPrice="ngModel">
+          <span class="input-group-addon">.00</span>
+          <span class="input-group-addon euro">€</span>
+        </div>
+        <p class="price-description">{{ action.description }}</p>
+      </div>
+      <div class="payment-information" *ngIf="action.type === 'Payment_information'">
+        {{ action.information }}
+      </div>
+    </div>
+    <div class="form-group buttons-block">
+      <span *ngFor="let button of confirmActionPopupData.buttons">
+        <button *ngIf="button.type === 'addPrice'" class="btn btn-warning" (click)="addPrice(confirmActionPopupData.orderId)">{{ button.text }}</button>
+        <button *ngIf="button.type === 'editPrice'" class="btn btn-warning" (click)="editPrice(confirmActionPopupData.orderId)">{{ button.text }}</button>
+        <button *ngIf="button.type === 'continueOrder'" class="btn btn-warning" (click)="continueOrder(confirmActionPopupData.orderId)"><i class="fa fa-lock"></i> {{ button.text }}</button>
+        <button *ngIf="button.type === 'close'" (click)="closePopup()" class="btn btn-secondary">{{ button.text }}</button>
+      </span>
     </div>
   </form>
 </div>

@@ -64,6 +64,20 @@ $cards-subheader-color: #0066C0;
 $cards-subheader-font-size: 12px;
 $cards-subheader-letter-spacing: 0.08px;
 
+// Action form
+$action-form-text-size: 16px;
+$action-form-information-text-size: 22px;
+$action-form-information-icon-size: 17px;
+$action-form-color: #212121;
+$action-form-letter-spacing: 0.1px;
+$action-form-information-letter-spacing: 0.14px;
+$action-form-icon-size: 20px;
+$action-form-border-color: #A6A6A6;
+$action-form-background-color: #FFFFFF;
+$action-form-icon-background-color: #EFF1F3;
+$action-form-description-color: #4A4A4A;
+$action-form-description-text-size: 12px;
+$action-form-description-letter-spacing: 0.08px;
 
 .dark-screen {
   display: block;
@@ -319,6 +333,12 @@ $cards-subheader-letter-spacing: 0.08px;
   margin-top: 12px;
   padding-bottom: 4px;
 }
+.popup .finish-message.isLeft .header {
+  text-align: left;
+  font-size: $popup-header-font-size;
+  letter-spacing: $popup-header-letter-spacing;
+  margin-top: 5px;
+}
 .popup .finish-message p {
   display: block;
   width: 100%;
@@ -329,6 +349,13 @@ $cards-subheader-letter-spacing: 0.08px;
   letter-spacing: $popup-finish-text-letter-spacing;
   font-weight: 400;
   margin-top: 23px;
+}
+.popup .finish-message.isLeft p {
+  text-align: left;
+  font-size: $popup-form-font-size;
+  letter-spacing: $popup-text-letter-spacing;
+  margin-top: 13px;
+  margin-bottom: 17px;
 }
 .popup .finish-message .close-popup {
   display: block;
@@ -459,6 +486,97 @@ $cards-subheader-letter-spacing: 0.08px;
   position: absolute;
   top: 30px;
   right: 8px;
+}
+
+.confirm-action .btn-secondary {
+  margin-top: 14px !important;
+}
+.confirm-action p {
+  display: block;
+  font-family: $font-name;
+  color: $action-form-color;
+  font-size: $popup-text-size;
+  letter-spacing: $popup-text-letter-spacing;
+  font-weight: $popup-text-font-weight;
+  margin-top: -11px;
+  margin-bottom: 22px;
+}
+.popup .confirm-action .form-group .btn.btn-secondary {
+  background-color: $popup-order-confirm-gray-background;
+}
+.confirm-action .action {
+  display: block;
+  width: 100%;
+}
+.confirm-action .action .form-group label {
+  font-family: $font-name-medium;
+  color: $action-form-color;
+  font-size: $popup-text-size;
+  letter-spacing: $popup-text-letter-spacing;
+}
+.confirm-action .action .form-group .input-group .form-control {
+  font-family: $font-name;
+  padding: 9px 8px 9px 9px !important;
+  font-size: $action-form-text-size;
+  color: $action-form-color;
+  letter-spacing: $action-form-letter-spacing;
+  outline: none;
+  text-align: right;
+  border-radius: 3px 0 0 3px;
+  border: 1px solid $action-form-border-color;
+  border-right: none;
+}
+.confirm-action .action .form-group .input-group .input-group-addon {
+  font-family: $font-name;
+  padding: 7px 7px 6px 7px !important;
+  font-size: $action-form-text-size;
+  color: $action-form-color;
+  letter-spacing: $action-form-letter-spacing;
+  text-align: center;
+  border-radius: 0;
+  border: 1px solid $action-form-border-color;
+  background-color: $action-form-icon-background-color;
+}
+.confirm-action .action .form-group .input-group .input-group-addon.euro {
+  font-family: $font-name-medium;
+  padding: 3px 11px 4px 12px !important;
+  font-size: $action-form-icon-size;
+  color: $action-form-color;
+  text-align: center;
+  border-radius: 0 3px 3px 0;
+  border: 1px solid $action-form-border-color;
+  border-left: none;
+  background-color: $action-form-icon-background-color;
+}
+.confirm-action .action .form-group .price-description {
+  display: block;
+  width: 100%;
+  margin-top: 6px;
+  margin-bottom: 0;
+  padding: 0;
+  font-family: $font-name;
+  color: $action-form-description-color;
+  font-size: $action-form-description-text-size;
+  letter-spacing: $action-form-description-letter-spacing;
+}
+.confirm-action .action .payment-information {
+  display: block;
+  width: 100%;
+  margin-top: 17px;
+  margin-bottom: 9px;
+  padding: 0;
+  font-family: $font-name-medium;
+  color: $action-form-color;
+  font-size: $action-form-information-text-size;
+  letter-spacing: $action-form-information-letter-spacing;
+  text-align: right;
+}
+.confirm-action .buttons-block {
+  margin-top: 7px;
+}
+.confirm-action .buttons-block .btn-warning i {
+  font-size: $action-form-information-icon-size;
+  padding-right: 5px;
 }
 
 @media (max-width: 480px) {

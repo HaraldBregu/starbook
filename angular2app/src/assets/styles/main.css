@@ -3690,6 +3690,28 @@ html, body {
   margin-left: 10px;
   outline: none; }
 
+.order-footer .buttons .btn-warning {
+  height: 28px;
+  font-family: HelveticaNeue-Bold, sans-serif;
+  background: #FFE589;
+  background: -moz-linear-gradient(top, #FFE589 0%, #FEC751 100%);
+  background: -webkit-linear-gradient(top, #FFE589 0%, #FEC751 100%);
+  background: linear-gradient(to bottom, #FFE589 0%, #FEC751 100%);
+  border: 1px solid #A6A6A6;
+  color: #212121;
+  font-size: 12px;
+  letter-spacing: 0.08px;
+  font-weight: normal;
+  border-radius: 3px;
+  padding: 6px 15px;
+  margin-left: 10px;
+  outline: none; }
+
+.order-footer .buttons .btn-warning i {
+  color: #000000;
+  font-size: 14px;
+  padding-right: 4px; }
+
 .container-starbook .left-navigate {
   display: block;
   position: fixed;
@@ -3766,6 +3788,27 @@ html, body {
   font-weight: 400;
   letter-spacing: 0.09px;
   color: #212121; }
+
+.order-footer .buttons .price-block {
+  display: inline-block;
+  position: relative;
+  height: 18px; }
+
+.order-footer .buttons .price-block .content-price {
+  display: block;
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-family: HelveticaNeue, sans-serif;
+  font-size: 20px;
+  letter-spacing: 0.13px;
+  color: #212121;
+  white-space: nowrap;
+  max-height: 30px; }
+
+.order-footer .buttons .price-block .content-price span {
+  font-family: HelveticaNeue-Medium, sans-serif;
+  letter-spacing: 0.14px; }
 
 @media (max-width: 1440px) {
   .container-starbook .left-navigate {
@@ -4687,6 +4730,12 @@ html, body {
   margin-top: 12px;
   padding-bottom: 4px; }
 
+.popup .finish-message.isLeft .header {
+  text-align: left;
+  font-size: 28px;
+  letter-spacing: 0.18px;
+  margin-top: 5px; }
+
 .popup .finish-message p {
   display: block;
   width: 100%;
@@ -4697,6 +4746,13 @@ html, body {
   letter-spacing: 0.1px;
   font-weight: 400;
   margin-top: 23px; }
+
+.popup .finish-message.isLeft p {
+  text-align: left;
+  font-size: 14px;
+  letter-spacing: 0.09px;
+  margin-top: 13px;
+  margin-bottom: 17px; }
 
 .popup .finish-message .close-popup {
   display: block;
@@ -4827,6 +4883,96 @@ html, body {
   position: absolute;
   top: 30px;
   right: 8px; }
+
+.confirm-action .btn-secondary {
+  margin-top: 14px !important; }
+
+.confirm-action p {
+  display: block;
+  font-family: HelveticaNeue, sans-serif;
+  color: #212121;
+  font-size: 14px;
+  letter-spacing: 0.09px;
+  font-weight: 400;
+  margin-top: -11px;
+  margin-bottom: 22px; }
+
+.popup .confirm-action .form-group .btn.btn-secondary {
+  background-color: #EFF1F3; }
+
+.confirm-action .action {
+  display: block;
+  width: 100%; }
+
+.confirm-action .action .form-group label {
+  font-family: HelveticaNeue-Medium, sans-serif;
+  color: #212121;
+  font-size: 14px;
+  letter-spacing: 0.09px; }
+
+.confirm-action .action .form-group .input-group .form-control {
+  font-family: HelveticaNeue, sans-serif;
+  padding: 9px 8px 9px 9px !important;
+  font-size: 16px;
+  color: #212121;
+  letter-spacing: 0.1px;
+  outline: none;
+  text-align: right;
+  border-radius: 3px 0 0 3px;
+  border: 1px solid #A6A6A6;
+  border-right: none; }
+
+.confirm-action .action .form-group .input-group .input-group-addon {
+  font-family: HelveticaNeue, sans-serif;
+  padding: 7px 7px 6px 7px !important;
+  font-size: 16px;
+  color: #212121;
+  letter-spacing: 0.1px;
+  text-align: center;
+  border-radius: 0;
+  border: 1px solid #A6A6A6;
+  background-color: #EFF1F3; }
+
+.confirm-action .action .form-group .input-group .input-group-addon.euro {
+  font-family: HelveticaNeue-Medium, sans-serif;
+  padding: 3px 11px 4px 12px !important;
+  font-size: 20px;
+  color: #212121;
+  text-align: center;
+  border-radius: 0 3px 3px 0;
+  border: 1px solid #A6A6A6;
+  border-left: none;
+  background-color: #EFF1F3; }
+
+.confirm-action .action .form-group .price-description {
+  display: block;
+  width: 100%;
+  margin-top: 6px;
+  margin-bottom: 0;
+  padding: 0;
+  font-family: HelveticaNeue, sans-serif;
+  color: #4A4A4A;
+  font-size: 12px;
+  letter-spacing: 0.08px; }
+
+.confirm-action .action .payment-information {
+  display: block;
+  width: 100%;
+  margin-top: 17px;
+  margin-bottom: 9px;
+  padding: 0;
+  font-family: HelveticaNeue-Medium, sans-serif;
+  color: #212121;
+  font-size: 22px;
+  letter-spacing: 0.14px;
+  text-align: right; }
+
+.confirm-action .buttons-block {
+  margin-top: 7px; }
+
+.confirm-action .buttons-block .btn-warning i {
+  font-size: 17px;
+  padding-right: 5px; }
 
 @media (max-width: 480px) {
   .popup {

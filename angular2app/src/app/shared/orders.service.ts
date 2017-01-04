@@ -48,6 +48,15 @@ export class OrdersService {
         .catch(this.handleError);
   }
 
+  addPrice(id, type, price) {
+    return this.http.put(this.api + 'orders/' + id, {action: type, payment: {amount: price, currency: "eur" }}, {headers: this._makeHeaders()})
+        .toPromise()
+        .then((response) => {
+          return true;
+        })
+        .catch(this.handleError);
+  }
+
   private handleError(error: any): Promise<any> {
     return Promise.reject(error.status || error);
   }

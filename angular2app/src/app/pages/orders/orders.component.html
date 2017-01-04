@@ -12,21 +12,43 @@
       </div>
       <div class="order-information" *ngFor="let order of pageData">
         <div class="header">
-          <div class="category-services-state" *ngIf="order.status === 0 && selectTab !== 'Archivio'">
+          <div class="category-services-state" *ngIf="order.status === 1 && dateCompare(dateFormating('now'), order.delivery_date) && selectTab === 'Ricevuti'">
+            <span class="orange"></span> In corso...
+          </div>
+          <div class="category-services-state" *ngIf="order.status === 2 && selectTab === 'Ricevuti'">
+            <span class="orange"></span> In attesa di pagamento...
+          </div>
+          <div class="category-services-state" *ngIf="order.status === 0 && selectTab === 'Ricevuti'">
             <span class="green"></span> In attesa di conferma
           </div>
-          <div class="category-services-state" *ngIf="order.status === 1 && selectTab !== 'Archivio'">
+          <div class="category-services-state" *ngIf="order.status === 1 && dateCompare(order.delivery_date, dateFormating('now')) && selectTab === 'Ricevuti'">
             <span class="orange"></span> Hai confermato
           </div>
-          <div class="category-services-state" *ngIf="order.status === 99 && selectTab !== 'Archivio'">
+
+
+          <div class="category-services-state" *ngIf="order.status === 99 && selectTab === 'Richiesti'">
             <span class="red"></span> Annullato
           </div>
+          <div class="category-services-state" *ngIf="order.status === 0 && selectTab === 'Richiesti'">
+            <span class="green"></span> In attesa di conferma
+          </div>
+          <div class="category-services-state" *ngIf="order.status === 1 && dateCompare(order.delivery_date, dateFormating('now')) && selectTab === 'Richiesti'">
+            <span class="orange"></span> Confermato
+          </div>
+          <div class="category-services-state" *ngIf="order.status === 2 && selectTab === 'Richiesti'">
+            <span class="orange"></span> In attesa di pagamento...
+          </div>
+          <div class="category-services-state" *ngIf="order.status === 1 && dateCompare(dateFormating('now'), order.delivery_date) && selectTab === 'Richiesti'">
+            <span class="orange"></span> In corso...
+          </div>
+
+
 
           <div class="category-services-state" *ngIf="order.status === 0 && selectTab === 'Archivio'">
             <span class="black"></span> Scaduto
           </div>
-          <div class="category-services-state" *ngIf="order.status === 2 && selectTab === 'Archivio'">
-            <span class="orange"></span> Pagato
+          <div class="category-services-state" *ngIf="order.status === 3 && selectTab === 'Archivio'">
+            <span class="orange"></span> Completato
           </div>
           <div class="category-services-state" *ngIf="order.status === 99 && selectTab === 'Archivio'">
             <span class="red"></span> Annullato
@@ -76,9 +98,15 @@
             {{ order._id }}
           </div>
           <div class="buttons">
-            <button class="btn btn-primary" *ngIf="selectTab === 'Ricevuti' && order.status === 0" (click)="confirmOrder(order._id)">Conferma ordine</button>
-            <button class="btn btn-secondary" *ngIf="selectTab === 'Richiesti' && order.status === 0" (click)="cancelOrder(order._id)">Annulla ordine</button>
-            <button class="btn btn-primary" *ngIf="selectTab === 'Richiesti' && order.status === 99" (click)="reactivateOrder(order._id)">Riattiva ordine</button>
+            <button class="btn btn-primary" *ngIf="order.status === 1 && dateCompare(dateFormating('now'), order.delivery_date) && selectTab === 'Ricevuti'" (click)="completaOrder(order._id)">Completa ordine</button>
+            <div class="price-block" *ngIf="order.status === 2 && selectTab === 'Ricevuti'"><div class="content-price">Importo: <span>139.45€</span></div></div>
+            <button class="btn btn-secondary" *ngIf="order.status === 2 && selectTab === 'Ricevuti'" (click)="editOrder(order._id)">Modifica</button>
+            <button class="btn btn-primary" *ngIf="order.status === 0 && selectTab === 'Ricevuti'" (click)="confirmOrder(order._id)">Conferma ordine</button>
+
+            <button class="btn btn-primary" *ngIf="order.status === 99 && selectTab === 'Richiesti'" (click)="completaOrder(order._id)">Completa ordine</button>
+            <button class="btn btn-secondary" *ngIf="order.status === 0 && selectTab === 'Richiesti'" (click)="cancelOrder(order._id)">Annulla ordine</button>
+            <div class="price-block" *ngIf="order.status === 2 && selectTab === 'Richiesti'"><div class="content-price">Importo: <span>139.45€</span></div></div>
+            <button class="btn btn-warning" *ngIf="order.status === 2 && selectTab === 'Richiesti'" (click)="continueOrder(order._id)"><i class="fa fa-lock"></i> Procedi</button>
           </div>
         </div>
       </div>

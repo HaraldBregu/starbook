@@ -136,6 +136,24 @@ import { Subscription }   from 'rxjs/Subscription';
         ]))
       ])
     ]),
+    trigger('confirmActionPopupState', [
+      state('inactive', style({display: 'none', top: '-300px'})),
+      state('active',   style({display: 'block', top: '42px'})),
+      transition('inactive => active', [
+        animate(300, keyframes([
+          style({display: 'none', top: '-300px', offset: 0}),
+          style({display: 'block', opacity: 0, top: '-300px', offset: 0.01}),
+          style({display: 'block', opacity: 1, top: '42px', offset: 1.0})
+        ]))
+      ]),
+      transition('active => inactive', [
+        animate(300, keyframes([
+          style({display: 'block', opacity: 1, top: '42px', offset: 0}),
+          style({display: 'block', opacity: 0, top: '-300px', offset: 0.99}),
+          style({display: 'none', top: '-300px', offset: 1.0})
+        ]))
+      ])
+    ]),
     trigger('shadowState', [
       state('inactive', style({display: 'none', opacity: 0})),
       state('active',   style({display: 'block', opacity: 1})),
@@ -168,6 +186,7 @@ export class PopupsComponent implements OnInit, OnDestroy {
   public finishPopupState = 'inactive';
   public confirmPopupState = 'inactive';
   public confirmFinishPopupState = 'inactive';
+  public confirmActionPopupState = 'inactive';
   public shadowState = 'inactive';
   public emailPattern;
   public auth;
@@ -227,7 +246,17 @@ export class PopupsComponent implements OnInit, OnDestroy {
   };
   public confirmFinishPopupData = {
     title: '',
-    text: ''
+    text: '',
+    type: 'center'
+  };
+  public confirmActionPopupData = {
+    orderId: '',
+    title: '',
+    text: '',
+    text2: '',
+    actions: [],
+    buttons: [],
+    price: null
   };
   public formError: boolean|{title: string, message: string} = false;
   constructor(private authServics: AuthService, private navigationService: NavigationService, private popupService: PopupsService, private ordersService: OrdersService, private paymentService: PaymentService) {
@@ -252,6 +281,9 @@ export class PopupsComponent implements OnInit, OnDestroy {
     }
     if (type === 'addCard') {
       this.addCardPopupState = 'active';
+    }
+    if (type === 'confirmAction') {
+      this.confirmActionPopupState = 'active';
     }
     this.shadowState = 'active';
     this.activePopup = type;
@@ -280,12 +312,15 @@ export class PopupsComponent implements OnInit, OnDestroy {
     if (this.addCardPopupState === 'active') {
       this.addCardPopupState = 'inactive';
     }
+    if (this.confirmActionPopupState === 'active') {
+      this.confirmActionPopupState = 'inactive';
+    }
     this.activePopup = '';
     this.formError = false;
-
     if (!isReopen) {
       this.close.emit(true);
       this.shadowState = 'inactive';
+      this.clearData();
     }
   }
 
@@ -570,6 +605,27 @@ export class PopupsComponent implements OnInit, OnDestroy {
           });
     }
   }
+  addPrice(orderId) {
+    let orderPriceEur = parseInt(this.confirmActionPopupData.price) + ((parseInt(this.confirmActionPopupData.price) / 100) * 5.5);
+    let orderPrice = parseFloat(orderPriceEur.toFixed(2)) * 100;
+    this.ordersService.addPrice(orderId, 'ACTIVE_PAYMENT', orderPrice)
+        .then((response) => {
+          this.closePopup();
+          this.popupService.actionComplete({type: 'addPrice', data: {orderId: orderId, orderPrice: orderPriceEur}});
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+  }
+  editPrice(orderId) {
+
+  }
+  continueOrder(orderId) {
+    this.confirmFinishPopupData.title = 'Pagamento effettuato';
+    this.confirmFinishPopupData.text = 'Ti abbiamo inviato una mail e un sms con la conferma del pagamento e la ricevuta fiscale';
+    this.confirmFinishPopupData.type = 'left';
+    this.getPopup('confirmFinish');
+  }
 
   ngOnInit() {
     this.subscription = this.popupService.getActivePopup$.subscribe(popup => {
@@ -630,9 +686,127 @@ export class PopupsComponent implements OnInit, OnDestroy {
           this.activePopup = 'confirmOrder';
           this.shadowState = 'active';
           break;
+        case 'addPrice':
+          this.confirmActionPopupData.orderId = popup.data.orderId;
+          this.confirmActionPopupData.title = 'Completamento';
+          this.confirmActionPopupData.text = 'Dopo aver inserito il totale, il cliente verra notificato e potra procedere con il pagamento. In caso di cambiamento importo potrai modificarlo successivamente.';
+          this.confirmActionPopupData.actions.push({
+            type: 'Payment_input_add',
+            source: 'euro',
+            label: 'Inserisci l’importo',
+            description: 'All’importo verra aggiunto 5.5% di tassa Starbook.'
+          });
+          this.confirmActionPopupData.buttons.push({
+            type: 'addPrice',
+            text: 'Inserisci importo'
+          });
+          this.confirmActionPopupData.buttons.push({
+            type: 'close',
+            text: 'Chiudi'
+          });
+          this.confirmActionPopupState = 'active';
+          this.activePopup = 'confirmAction';
+          this.shadowState = 'active';
+          break;
+        case 'editPrice':
+          this.confirmActionPopupData.orderId = popup.data.orderId;
+          this.confirmActionPopupData.title = 'Modifica';
+          this.confirmActionPopupData.text = 'Dopo aver modificato l’importo il cliente verra notificato di questa modifica e potra procedere con il pagamento.';
+          this.confirmActionPopupData.actions.push({
+            type: 'Payment_input_edit',
+            source: 'euro',
+            label: 'Inserisci l’importo',
+            description: 'All’importo verra aggiunto 5.5% di tassa Starbook.'
+          });
+          this.confirmActionPopupData.buttons.push({
+            type: 'editPrice',
+            text: 'Inserisci importo'
+          });
+          this.confirmActionPopupData.buttons.push({
+            type: 'close',
+            text: 'Chiudi'
+          });
+          this.confirmActionPopupState = 'active';
+          this.activePopup = 'confirmAction';
+          this.shadowState = 'active';
+          break;
+        case 'continueOrder':
+          this.confirmActionPopupData.orderId = popup.data.orderId;
+          this.confirmActionPopupData.title = 'Pagamento';
+          this.confirmActionPopupData.text = 'Dopo aver effettuato il pagamento riceverai una mail con la fattura del ordine.';
+          this.confirmActionPopupData.text2 = 'Al’importo verra aggiunto 5.5% di tasse Starbook.';
+          this.confirmActionPopupData.actions.push({
+            type: 'Payment_information',
+            information: popup.data.information
+          });
+          this.confirmActionPopupData.buttons.push({
+            type: 'continueOrder',
+            text: 'Procedi con il pagamento'
+          });
+          this.confirmActionPopupData.buttons.push({
+            type: 'close',
+            text: 'Chiudi'
+          });
+          this.confirmActionPopupState = 'active';
+          this.activePopup = 'confirmAction';
+          this.shadowState = 'active';
+          break;
       }
     });
     this.auth = this.authServics.authInit();
+  }
+
+  clearData() {
+    this.addCardData = {
+        object: 'card',
+        exp_date: '',
+        exp_month: null,
+        exp_year: null,
+        number: null,
+        cvc: '',
+        name: '',
+        address_line1: '',
+        address_line2: '',
+        address_city: '',
+        address_zip: '',
+        address_state: '',
+        address_country: ''
+      };
+    this.loginData = {
+        email: '',
+        password: ''
+      };
+    this.registrationData = {
+        name: '',
+        email: '',
+        password: '',
+        passwordConfirm: ''
+      };
+    this.recoveryData = {
+        email: ''
+      };
+    this.confirmPopupData = {
+        id: null,
+        title: '',
+        text: '',
+        data: [],
+        button: '',
+        type: ''
+      };
+    this.confirmFinishPopupData = {
+        title: '',
+        text: '',
+        type: 'center'
+      };
+    this.confirmActionPopupData = {
+        orderId: '',
+        title: '',
+        text: '',
+        text2: '',
+        actions: [],
+        buttons: [],
+        price: null
+      };
   }
 
   ngOnDestroy() {

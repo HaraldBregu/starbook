@@ -83,6 +83,15 @@ export class OrdersComponent implements OnInit, OnDestroy {
             orderIndex++;
           });
           break;
+        case 'addPrice':
+          // orderIndex = 0;
+          // this.pageData.forEach((orderData) => {
+          //   if (orderData._id === action.data.orderId) {
+          //     this.pageData[orderIndex].status = 0;
+          //   }
+          //   orderIndex++;
+          // });
+          break;
       }
     });
   }
@@ -167,6 +176,16 @@ export class OrdersComponent implements OnInit, OnDestroy {
     return returnDate;
   }
 
+  dateCompare(date1, date2) {
+    let date1Obj = Date.parse(date1);
+    let date2Obj = Date.parse(date2);
+    if (date1Obj > date2Obj) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
   itemsFormating(items) {
     let returnProducts = [];
     let products = items.split('||');
@@ -188,5 +207,13 @@ export class OrdersComponent implements OnInit, OnDestroy {
   reactivateOrder(id) {
     this.popupsService.activate({type: 'reactivateOrder', data: {orderId: id}});
   }
-
+  completaOrder(id) {
+    this.popupsService.activate({type: 'addPrice', data: {orderId: id}});
+  }
+  editOrder(id) {
+    this.popupsService.activate({type: 'editPrice', data: {orderId: id}});
+  }
+  continueOrder(id) {
+    this.popupsService.activate({type: 'continueOrder', data: {orderId: id, information: '120€ + 6.6€ = 126.6€'}});
+  }
 }
