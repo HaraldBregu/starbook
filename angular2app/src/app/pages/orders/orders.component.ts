@@ -96,8 +96,7 @@ export class OrdersComponent implements OnInit, OnDestroy {
             this.pageData.forEach((orderData) => {
               if (orderData._id === action.data.orderId) {
                 this.pageData[orderIndex].status = 2;
-                this.pageData[orderIndex].payment.amount = action.data.orderPrice;
-                this.pageData[orderIndex].payment.currency = 'eur';
+                this.pageData[orderIndex].payment = {amount: action.data.orderPrice, currency: 'eur'};
               }
               orderIndex++;
             });

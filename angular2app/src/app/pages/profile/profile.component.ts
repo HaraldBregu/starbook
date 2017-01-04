@@ -3,6 +3,7 @@ import { ProfileService } from '../../shared/profile.service';
 import { Router, Route, ActivatedRoute, Params } from '@angular/router';
 import { NavigationService } from '../../shared/navigation.service';
 import { PopupsService } from '../../popups/popups.service';
+import { PaymentService } from '../../shared/payment.service';
 
 export interface IUserData {
   fullname?: string;
@@ -56,8 +57,10 @@ export class ProfileComponent implements OnInit {
     passwordConfirm: ''
   };
   public formError: boolean|{title?: string, message: string, type?: string} = false;
+  public cards = [];
+  public defaultCard = '';
 
-  constructor(private profileService: ProfileService, private router: Router, private navigationService: NavigationService, private route: ActivatedRoute, private  popupsService: PopupsService) { }
+  constructor(private profileService: ProfileService, private router: Router, private navigationService: NavigationService, private route: ActivatedRoute, private  popupsService: PopupsService, private paymentService: PaymentService) { }
 
   ngOnInit() {
     if (localStorage.getItem('auth') !== null) {
@@ -75,6 +78,18 @@ export class ProfileComponent implements OnInit {
 
     this.route.params.subscribe(params => {
       this.selectTab = params['page'];
+      if (params['page'] ==='payment') {
+        this.paymentService.getCards()
+            .then((cards) => {
+              this.defaultCard = cards.default_source;
+              cards.sources.data.forEach((cardData) => {
+                this.cards.push(cardData);
+              });
+            })
+            .catch((errors) => {
+              console.log(errors);
+            })
+      }
       console.log(params['page']);
     });
 
@@ -157,6 +172,19 @@ export class ProfileComponent implements OnInit {
 
   addNewCard() {
     this.popupsService.activate({type: 'addCard'});
+  }
+
+  formatYear(year) {
+    let i = 0;
+    let formatedYear = '';
+    let yearArray = year.toString().split('');
+    yearArray.forEach((num) => {
+      if (i > 1) {
+        formatedYear += num;
+      }
+      i++;
+    });
+    return formatedYear;
   }
 
 }

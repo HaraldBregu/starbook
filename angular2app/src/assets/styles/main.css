@@ -4219,10 +4219,10 @@ html, body {
   background-position: center center;
   background-repeat: no-repeat; }
 
-.card-block .container .header .card-logo.mastercard {
+.card-block .container .header .card-logo.Mastercard {
   background-image: url("/assets/images/mastercard-big.png"); }
 
-.card-block .container .header .card-logo.visa {
+.card-block .container .header .card-logo.Visa {
   background-image: url("/assets/images/visa-big.png"); }
 
 .card-block .container .header .card-logo.amex {

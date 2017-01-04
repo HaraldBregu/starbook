@@ -116,12 +116,13 @@
             </div>
           </div>
         </div>
-        <div class="card-block">
+        <div class="card-block" *ngFor="let card of cards">
           <div class="container">
             <div class="header">
-              <div class="card-logo mastercard"><span>**** 4444</span></div>
+              <div class="card-logo {{ card.brand }}"><span>**** {{ card.last4 }}</span></div>
+              <div class="isDefault" *ngIf="defaultCard === card.id">Default</div>
               <div class="buttons-block">
-                <a href="#" class="btn btn-primary">Default</a>
+                <a href="#" class="btn btn-primary" *ngIf="defaultCard !== card.id">Default</a>
                 <a href="#" class="btn btn-primary">Rimuovi</a>
                 <a href="#" class="btn btn-secondary">Modifica</a>
               </div>
@@ -130,27 +131,27 @@
               <div class="card-information">
                 <div class="information-block">
                   <span>Nome:</span>
-                  Harald Bregu
+                  {{ card.name }}
                 </div>
                 <div class="information-block">
                   <span>Numero:</span>
-                  **** 4444
+                  **** {{ card.last4 }}
                 </div>
                 <div class="information-block">
                   <span>Scadenza:</span>
-                  02/19
+                  {{ card.exp_month }}/{{ formatYear(card.exp_year) }}
                 </div>
                 <div class="information-block">
                   <span>Tipo:</span>
-                  MasterCard credit card
+                  {{ card.brand }} {{ card.funding }} {{ card.object }}
                 </div>
               </div>
               <div class="card-information">
                 <div class="information-block">
                   <span>Indirizzo:</span>
-                  Via Luigi Pirandello 44<br>
-                  Busto Arsizio, Varese,<br>
-                  21052, Italia
+                  {{ card.address_line1 }} {{ card.address_line2 }} <br>
+                  {{ card.address_state }} {{ card.address_city }} <br>
+                  {{ card.address_zip }} {{ card.address_country }}
                 </div>
               </div>
             </div>
