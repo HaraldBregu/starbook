@@ -52,7 +52,7 @@ export class OrdersService {
     return this.http.put(this.api + 'orders/' + id, {action: type, payment: {amount: price, currency: "eur" }}, {headers: this._makeHeaders()})
         .toPromise()
         .then((response) => {
-          return true;
+          return response.json();
         })
         .catch(this.handleError);
   }

@@ -611,14 +611,23 @@ export class PopupsComponent implements OnInit, OnDestroy {
     this.ordersService.addPrice(orderId, 'ACTIVE_PAYMENT', orderPrice)
         .then((response) => {
           this.closePopup();
-          this.popupService.actionComplete({type: 'addPrice', data: {orderId: orderId, orderPrice: orderPriceEur}});
+          this.popupService.actionComplete({type: 'addPrice', data: {orderId: orderId, orderPrice: orderPrice, isModified: response.nModified}});
         })
         .catch((error) => {
           console.log(error);
         });
   }
   editPrice(orderId) {
-
+    let orderPriceEur = parseInt(this.confirmActionPopupData.price) + ((parseInt(this.confirmActionPopupData.price) / 100) * 5.5);
+    let orderPrice = parseFloat(orderPriceEur.toFixed(2)) * 100;
+    this.ordersService.addPrice(orderId, 'ACTIVE_PAYMENT', orderPrice)
+        .then((response) => {
+          this.closePopup();
+          this.popupService.actionComplete({type: 'editPrice', data: {orderId: orderId, orderPrice: orderPrice, isModified: response.nModified}});
+        })
+        .catch((error) => {
+          console.log(error);
+        });
   }
   continueOrder(orderId) {
     this.confirmFinishPopupData.title = 'Pagamento effettuato';
@@ -726,6 +735,7 @@ export class PopupsComponent implements OnInit, OnDestroy {
             type: 'close',
             text: 'Chiudi'
           });
+          this.confirmActionPopupData.price = Math.round((parseInt(popup.data.payment) / 1.055) / 100);
           this.confirmActionPopupState = 'active';
           this.activePopup = 'confirmAction';
           this.shadowState = 'active';

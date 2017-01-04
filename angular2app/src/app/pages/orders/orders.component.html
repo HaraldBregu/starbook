@@ -99,13 +99,13 @@
           </div>
           <div class="buttons">
             <button class="btn btn-primary" *ngIf="order.status === 1 && dateCompare(dateFormating('now'), order.delivery_date) && selectTab === 'Ricevuti'" (click)="completaOrder(order._id)">Completa ordine</button>
-            <div class="price-block" *ngIf="order.status === 2 && selectTab === 'Ricevuti'"><div class="content-price">Importo: <span>139.45€</span></div></div>
-            <button class="btn btn-secondary" *ngIf="order.status === 2 && selectTab === 'Ricevuti'" (click)="editOrder(order._id)">Modifica</button>
+            <div class="price-block" *ngIf="order.status === 2 && selectTab === 'Ricevuti'"><div class="content-price">Importo: <span>{{ order.payment.amount / 100 }}€</span></div></div>
+            <button class="btn btn-secondary" *ngIf="order.status === 2 && selectTab === 'Ricevuti'" (click)="editOrder(order._id, order.payment.amount)">Modifica</button>
             <button class="btn btn-primary" *ngIf="order.status === 0 && selectTab === 'Ricevuti'" (click)="confirmOrder(order._id)">Conferma ordine</button>
 
             <button class="btn btn-primary" *ngIf="order.status === 99 && selectTab === 'Richiesti'" (click)="completaOrder(order._id)">Completa ordine</button>
             <button class="btn btn-secondary" *ngIf="order.status === 0 && selectTab === 'Richiesti'" (click)="cancelOrder(order._id)">Annulla ordine</button>
-            <div class="price-block" *ngIf="order.status === 2 && selectTab === 'Richiesti'"><div class="content-price">Importo: <span>139.45€</span></div></div>
+            <div class="price-block" *ngIf="order.status === 2 && selectTab === 'Richiesti'"><div class="content-price">Importo: <span>{{ order.payment.amount / 100 }}€</span></div></div>
             <button class="btn btn-warning" *ngIf="order.status === 2 && selectTab === 'Richiesti'" (click)="continueOrder(order._id)"><i class="fa fa-lock"></i> Procedi</button>
           </div>
         </div>

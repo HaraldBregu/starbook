@@ -7,6 +7,10 @@ import { Subscription }   from 'rxjs/Subscription';
 export interface IOrder {
   _id: string;
   status: number;
+  payment?: {
+    amount?: number,
+    currency?: string
+  },
   category_type: number;
   delivery_details: string;
   delivery_description: string;
@@ -84,13 +88,31 @@ export class OrdersComponent implements OnInit, OnDestroy {
           });
           break;
         case 'addPrice':
-          // orderIndex = 0;
-          // this.pageData.forEach((orderData) => {
-          //   if (orderData._id === action.data.orderId) {
-          //     this.pageData[orderIndex].status = 0;
-          //   }
-          //   orderIndex++;
-          // });
+          if (action.data.isModified === 0)
+          {
+            this.renderPage(this.selectTab);
+          } else {
+            orderIndex = 0;
+            this.pageData.forEach((orderData) => {
+              if (orderData._id === action.data.orderId) {
+                this.pageData[orderIndex].status = 2;
+                this.pageData[orderIndex].payment.amount = action.data.orderPrice;
+                this.pageData[orderIndex].payment.currency = 'eur';
+              }
+              orderIndex++;
+            });
+          }
+          break;
+        case 'editPrice':
+          orderIndex = 0;
+          this.pageData.forEach((orderData) => {
+            if (orderData._id === action.data.orderId) {
+              this.pageData[orderIndex].status = 2;
+              this.pageData[orderIndex].payment.amount = action.data.orderPrice;
+              this.pageData[orderIndex].payment.currency = 'eur';
+            }
+            orderIndex++;
+          });
           break;
       }
     });
@@ -210,8 +232,8 @@ export class OrdersComponent implements OnInit, OnDestroy {
   completaOrder(id) {
     this.popupsService.activate({type: 'addPrice', data: {orderId: id}});
   }
-  editOrder(id) {
-    this.popupsService.activate({type: 'editPrice', data: {orderId: id}});
+  editOrder(id, payment) {
+    this.popupsService.activate({type: 'editPrice', data: {orderId: id, payment: payment}});
   }
   continueOrder(id) {
     this.popupsService.activate({type: 'continueOrder', data: {orderId: id, information: '120€ + 6.6€ = 126.6€'}});
