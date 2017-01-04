@@ -467,6 +467,9 @@ $order-error-font-weight: 400;
   position: relative;
   height: 18px;
 }
+.order-footer .buttons .price-block.archive {
+  margin-right: 10px;
+}
 .order-footer .buttons .price-block .content-price {
   display: block;
   position: absolute;

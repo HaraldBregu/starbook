@@ -107,6 +107,7 @@
             <button class="btn btn-secondary" *ngIf="order.status === 0 && selectTab === 'Richiesti'" (click)="cancelOrder(order._id)">Annulla ordine</button>
             <div class="price-block" *ngIf="order.status === 2 && selectTab === 'Richiesti'"><div class="content-price">Importo: <span>{{ order.payment.amount / 100 }}€</span></div></div>
             <button class="btn btn-warning" *ngIf="order.status === 2 && selectTab === 'Richiesti'" (click)="continueOrder(order._id, order.payment.amount)"><i class="fa fa-lock"></i> Procedi</button>
+            <div class="price-block archive" *ngIf="order.status === 3 && selectTab === 'Archivio'"><div class="content-price">Importo: <span>{{ order.payment.amount / 100 }}€</span></div></div>
           </div>
         </div>
       </div>
