@@ -361,10 +361,10 @@ $card-new-card-letter-spacing: 0.13px;
   background-position: center center;
   background-repeat: no-repeat;
 }
-.card-block .container .header .card-logo.Mastercard {
+.card-block .container .header .card-logo.mastercard {
   background-image: url($cards-mastercard-big);
 }
-.card-block .container .header .card-logo.Visa {
+.card-block .container .header .card-logo.visa {
   background-image: url($cards-visa-big);
 }
 .card-block .container .header .card-logo.amex {
@@ -443,7 +443,7 @@ $card-new-card-letter-spacing: 0.13px;
 .card-block a.new-card {
   display: block;
   width: 100%;
-  height: 171px;
+  height: 188px;
   background-color: $card-new-card-background;
   border: $card-new-card-border;
   border-radius: 3px;
@@ -452,7 +452,7 @@ $card-new-card-letter-spacing: 0.13px;
   color: $card-new-card-text-color;
   letter-spacing: $card-new-card-letter-spacing;
   text-align: center;
-  padding: 74px 0;
+  padding: 76px 0;
   cursor: pointer;
 }
 .card-block a.new-card:hover {

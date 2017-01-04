@@ -187,4 +187,18 @@ export class ProfileComponent implements OnInit {
     return formatedYear;
   }
 
+  formatCssClass(brand) {
+    let result = '';
+    if (brand === 'Visa') {
+      result = 'visa';
+    }
+    if (brand === 'American Express') {
+      result = 'amex';
+    }
+    if (brand === 'MasterCard') {
+      result = 'mastercard';
+    }
+    return result;
+  }
+
 }

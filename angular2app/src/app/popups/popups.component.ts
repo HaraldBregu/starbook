@@ -630,10 +630,18 @@ export class PopupsComponent implements OnInit, OnDestroy {
         });
   }
   continueOrder(orderId) {
-    this.confirmFinishPopupData.title = 'Pagamento effettuato';
-    this.confirmFinishPopupData.text = 'Ti abbiamo inviato una mail e un sms con la conferma del pagamento e la ricevuta fiscale';
-    this.confirmFinishPopupData.type = 'left';
-    this.getPopup('confirmFinish');
+    this.ordersService.modifyOrder(orderId, 'PAY')
+        .then((response) => {
+          this.confirmFinishPopupData.title = 'Pagamento effettuato';
+          this.confirmFinishPopupData.text = 'Ti abbiamo inviato una mail e un sms con la conferma del pagamento e la ricevuta fiscale';
+          this.confirmFinishPopupData.type = 'left';
+          this.getPopup('confirmFinish');
+          // this.popupService.actionComplete({type: 'reactivateOrder', data: {orderId: id}});
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+
   }
 
   ngOnInit() {
@@ -745,9 +753,11 @@ export class PopupsComponent implements OnInit, OnDestroy {
           this.confirmActionPopupData.title = 'Pagamento';
           this.confirmActionPopupData.text = 'Dopo aver effettuato il pagamento riceverai una mail con la fattura del ordine.';
           this.confirmActionPopupData.text2 = 'Al’importo verra aggiunto 5.5% di tasse Starbook.';
+          let price = Math.round((parseInt(popup.data.payment) / 1.055) / 100);
+          let tax = (parseInt(popup.data.payment) - Math.round(parseInt(popup.data.payment) / 1.055)) / 100;
           this.confirmActionPopupData.actions.push({
             type: 'Payment_information',
-            information: popup.data.information
+            information: price + '€ + ' + tax + '€ = ' + parseInt(popup.data.payment) / 100 + '€'
           });
           this.confirmActionPopupData.buttons.push({
             type: 'continueOrder',

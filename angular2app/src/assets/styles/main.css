@@ -4219,10 +4219,10 @@ html, body {
   background-position: center center;
   background-repeat: no-repeat; }
 
-.card-block .container .header .card-logo.Mastercard {
+.card-block .container .header .card-logo.mastercard {
   background-image: url("/assets/images/mastercard-big.png"); }
 
-.card-block .container .header .card-logo.Visa {
+.card-block .container .header .card-logo.visa {
   background-image: url("/assets/images/visa-big.png"); }
 
 .card-block .container .header .card-logo.amex {
@@ -4301,7 +4301,7 @@ html, body {
 .card-block a.new-card {
   display: block;
   width: 100%;
-  height: 171px;
+  height: 188px;
   background-color: #F6F7F9;
   border: 2px dashed #DCDCDC;
   border-radius: 3px;
@@ -4310,7 +4310,7 @@ html, body {
   color: #9B9B9B;
   letter-spacing: 0.13px;
   text-align: center;
-  padding: 74px 0;
+  padding: 76px 0;
   cursor: pointer; }
 
 .card-block a.new-card:hover {

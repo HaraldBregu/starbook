@@ -234,7 +234,7 @@ export class OrdersComponent implements OnInit, OnDestroy {
   editOrder(id, payment) {
     this.popupsService.activate({type: 'editPrice', data: {orderId: id, payment: payment}});
   }
-  continueOrder(id) {
-    this.popupsService.activate({type: 'continueOrder', data: {orderId: id, information: '120€ + 6.6€ = 126.6€'}});
+  continueOrder(id, payment) {
+    this.popupsService.activate({type: 'continueOrder', data: {orderId: id, payment: payment, information: '120€ + 6.6€ = 126.6€'}});
   }
 }

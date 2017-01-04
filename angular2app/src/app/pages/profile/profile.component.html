@@ -76,50 +76,10 @@
         </form>
       </div>
       <div class="cards-page" *ngIf="selectTab === 'payment'">
-        <div class="card-block">
-          <div class="container">
-            <div class="header">
-              <div class="card-logo mastercard"><span>**** 4444</span></div>
-              <div class="isDefault">Default</div>
-              <div class="buttons-block">
-                <a href="#" class="btn btn-primary">Rimuovi</a>
-                <a href="#" class="btn btn-secondary">Modifica</a>
-              </div>
-            </div>
-            <div class="content">
-              <div class="card-information">
-                <div class="information-block">
-                  <span>Nome:</span>
-                  Harald Bregu
-                </div>
-                <div class="information-block">
-                  <span>Numero:</span>
-                  **** 4444
-                </div>
-                <div class="information-block">
-                  <span>Scadenza:</span>
-                  02/19
-                </div>
-                <div class="information-block">
-                  <span>Tipo:</span>
-                  MasterCard credit card
-                </div>
-              </div>
-              <div class="card-information">
-                <div class="information-block">
-                  <span>Indirizzo:</span>
-                  Via Luigi Pirandello 44<br>
-                  Busto Arsizio, Varese,<br>
-                  21052, Italia
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
         <div class="card-block" *ngFor="let card of cards">
           <div class="container">
             <div class="header">
-              <div class="card-logo {{ card.brand }}"><span>**** {{ card.last4 }}</span></div>
+              <div class="card-logo {{ formatCssClass(card.brand) }}"><span>**** {{ card.last4 }}</span></div>
               <div class="isDefault" *ngIf="defaultCard === card.id">Default</div>
               <div class="buttons-block">
                 <a href="#" class="btn btn-primary" *ngIf="defaultCard !== card.id">Default</a>
