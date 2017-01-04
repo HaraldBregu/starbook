@@ -113,6 +113,15 @@ export class OrdersComponent implements OnInit, OnDestroy {
             orderIndex++;
           });
           break;
+        case 'continueOrder':
+          orderIndex = 0;
+          this.pageData.forEach((orderData) => {
+            if (orderData._id === action.data.orderId) {
+              this.pageData.splice(orderIndex,1);
+            }
+            orderIndex++;
+          });
+          break;
       }
     });
   }

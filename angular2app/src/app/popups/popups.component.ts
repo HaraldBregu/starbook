@@ -636,7 +636,7 @@ export class PopupsComponent implements OnInit, OnDestroy {
           this.confirmFinishPopupData.text = 'Ti abbiamo inviato una mail e un sms con la conferma del pagamento e la ricevuta fiscale';
           this.confirmFinishPopupData.type = 'left';
           this.getPopup('confirmFinish');
-          // this.popupService.actionComplete({type: 'reactivateOrder', data: {orderId: id}});
+          this.popupService.actionComplete({type: 'continueOrder', data: {orderId: orderId}});
         })
         .catch((error) => {
           console.log(error);
