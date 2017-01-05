@@ -293,6 +293,14 @@ export class ProfileComponent implements OnInit, OnDestroy {
     this.popupsService.activate({type: 'editCard', data: cardData});
   }
 
+  logout() {
+    if (localStorage.getItem('auth') !== null) {
+      localStorage.removeItem('auth');
+    }
+    this.navigationService.updatePersonalMenu(false);
+    this.router.navigate(['/']);
+  }
+
   ngOnDestroy() {
     this.subscription.unsubscribe();
   }

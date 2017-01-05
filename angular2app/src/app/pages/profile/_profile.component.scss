@@ -283,6 +283,19 @@ $card-new-card-letter-spacing: 0.13px;
   letter-spacing: $profile-settings-btn-letter-spacing;
   font-weight: 700;
 }
+.profile-settings .btn-secondary, .profile-settings .btn-secondary:hover, .profile-settings .btn-secondary:active {
+  width: 100%;
+  height: 43px;
+  margin-top: 0;
+  border: $profile-settings-btn-border-style;
+  border-radius: $profile-settings-btn-border-radius;
+  background-color: $cards-btn-secondary-background-color;
+  border: $cards-btn-secondary-border-style;
+  color: $cards-btn-secondary-text-color;
+  font-size: $profile-settings-btn-font-size;
+  letter-spacing: $profile-settings-btn-letter-spacing;
+  font-weight: 700;
+}
 .profile-page .content-page {
   display: block;
   width: 100%;

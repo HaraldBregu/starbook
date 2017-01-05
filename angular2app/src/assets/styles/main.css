@@ -4144,6 +4144,19 @@ html, body {
   letter-spacing: 0.11px;
   font-weight: 700; }
 
+.profile-settings .btn-secondary, .profile-settings .btn-secondary:hover, .profile-settings .btn-secondary:active {
+  width: 100%;
+  height: 43px;
+  margin-top: 0;
+  border: 1px solid #979797;
+  border-radius: 2px;
+  background-color: #F6F7F9;
+  border: 1px solid #DDDFE2;
+  color: #212121;
+  font-size: 18px;
+  letter-spacing: 0.11px;
+  font-weight: 700; }
+
 .profile-page .content-page {
   display: block;
   width: 100%;
