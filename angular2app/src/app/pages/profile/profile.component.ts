@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ProfileService } from '../../shared/profile.service';
 import { Router, Route, ActivatedRoute, Params } from '@angular/router';
 import { NavigationService } from '../../shared/navigation.service';
 import { PopupsService } from '../../popups/popups.service';
 import { PaymentService } from '../../shared/payment.service';
+import { Subscription }   from 'rxjs/Subscription';
 
 export interface IUserData {
   fullname?: string;
@@ -22,7 +23,7 @@ export interface IUserData {
   templateUrl: './profile.component.html'
 })
 
-export class ProfileComponent implements OnInit {
+export class ProfileComponent implements OnInit, OnDestroy {
   public selectTab: string|boolean = false;
   public SWIPE_ACTION = { LEFT: 'swipeleft', RIGHT: 'swiperight' };
   public delta: number = 0;
@@ -59,6 +60,8 @@ export class ProfileComponent implements OnInit {
   public formError: boolean|{title?: string, message: string, type?: string} = false;
   public cards = [];
   public defaultCard = '';
+  public isLoading = false;
+  subscription: Subscription;
 
   constructor(private profileService: ProfileService, private router: Router, private navigationService: NavigationService, private route: ActivatedRoute, private  popupsService: PopupsService, private paymentService: PaymentService) { }
 
@@ -79,12 +82,14 @@ export class ProfileComponent implements OnInit {
     this.route.params.subscribe(params => {
       this.selectTab = params['page'];
       if (params['page'] ==='payment') {
+        this.isLoading = true;
         this.paymentService.getCards()
             .then((cards) => {
               this.defaultCard = cards.default_source;
               cards.sources.data.forEach((cardData) => {
                 this.cards.push(cardData);
               });
+              this.isLoading = false;
             })
             .catch((errors) => {
               console.log(errors);
@@ -94,6 +99,28 @@ export class ProfileComponent implements OnInit {
     });
 
     this.navigationService.updateMessage('Il mio account');
+
+    this.subscription = this.popupsService.getPopupResponse$.subscribe(action => {
+      switch (action.type) {
+        case 'newCard':
+          this.cards.push(action.data);
+          this.isLoading = false;
+          break;
+        case 'startNewCard':
+          this.isLoading = true;
+          break;
+        case 'cardEdited':
+          let i = 0;
+          this.cards.forEach((card) => {
+            if (card.id === action.data.id) {
+              this.cards[i] = action.data;
+            }
+            i++;
+          });
+          this.isLoading = false;
+          break;
+      }
+    });
   }
 
   updateProfile() {
@@ -201,4 +228,71 @@ export class ProfileComponent implements OnInit {
     return result;
   }
 
+  selectCard(id) {
+    this.isLoading = true;
+    this.paymentService.selectCard(id)
+        .then((status) => {
+      this.isLoading = false;
+          this.defaultCard = status.default_source;
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+  }
+
+  deleteCard(id) {
+    this.isLoading = true;
+    this.paymentService.deleteCard(id)
+        .then((status) => {
+          this.isLoading = false;
+          let i = 0;
+          this.cards.forEach((card) => {
+            if (card.id === id) {
+              this.cards.splice(i, 1);
+            }
+            i ++;
+          });
+          if (id === this.defaultCard && this.cards.length > 0) {
+            let otherCard = '';
+            this.cards.forEach((card) => {
+              if (card.id !== id) {
+                otherCard = card.id;
+              }
+            });
+            this.selectCard(otherCard);
+          } else {
+            this.isLoading = false;
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+  }
+
+  editCard(id) {
+    let cardData = {};
+    this.cards.forEach((card) => {
+      if(card.id === id) {
+        cardData = {
+          id: card.id,
+          address_city: card.address_city,
+          address_country: card.address_country,
+          address_line1: card.address_line1,
+          address_line2: card.address_line2,
+          address_state: card.address_state,
+          address_zip: card.address_zip,
+          exp_month: card.exp_month,
+          exp_year: this.formatYear(card.exp_year),
+          name: card.name,
+          number: '**** ' + card.last4,
+          cvc: '***'
+        };
+      }
+    });
+    this.popupsService.activate({type: 'editCard', data: cardData});
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
+  }
 }

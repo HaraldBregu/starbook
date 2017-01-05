@@ -205,6 +205,8 @@ export class PopupsComponent implements OnInit, OnDestroy {
     address_state: '',  // Provincia
     address_country: '' // Paese
   };
+  public actionCardType = 'add';
+  public editedCardId: number;
   public addCardError = {
     exp_date: false,
     number: false,
@@ -563,16 +565,14 @@ export class PopupsComponent implements OnInit, OnDestroy {
     this.closePopup();
   }
 
-  addNewCard(number, exp_date, cvc, name, address_line1, address_line2, address_city, address_zip, address_state, address_country) {
+  addNewCard() {
     let error = false;
-    if (number.length > 0) {
-      this.addCardData.number = number;
-    } else {
+    if (this.addCardData.number.length === 0) {
       error = true;
     }
-    if (exp_date.length === 5) {
-      let exp_parts = exp_date.split('/');
-      if (exp_parts[0] !== exp_date) {
+    if (this.addCardData.exp_date.length === 5) {
+      let exp_parts = this.addCardData.exp_date.split('/');
+      if (exp_parts[0] !== this.addCardData.exp_date) {
         this.addCardData.exp_month = exp_parts[0];
         this.addCardData.exp_year = exp_parts[1];
       } else {
@@ -581,30 +581,67 @@ export class PopupsComponent implements OnInit, OnDestroy {
     } else {
       error = true;
     }
-    if (cvc.length > 2)
-    {
-      this.addCardData.cvc = cvc;
-    } else {
+    if (this.addCardData.cvc.length < 3) {
       error = true;
     }
 
     if (!error) {
-      this.addCardData.name = name;
-      this.addCardData.address_line1 = address_line1;
-      this.addCardData.address_line2 = address_line2;
-      this.addCardData.address_city = address_city;
-      this.addCardData.address_zip = address_zip;
-      this.addCardData.address_state = address_state;
-      this.addCardData.address_country = address_country;
+      this.popupService.actionComplete({type: 'startNewCard'});
       this.paymentService.addNewCard(this.addCardData)
           .then((response) => {
-            console.log(response);
+            this.popupService.actionComplete({type: 'newCard', data: response});
+            this.closePopup();
           })
           .catch((error) => {
             console.log(error);
           });
     }
   }
+
+  editCard() {
+    let error = false;
+    let editCardData = {
+      exp_month: null,
+      exp_year: null,
+      name: '',
+      address_line1: '',
+      address_line2: '',
+      address_city: '',
+      address_zip: '',
+      address_state: '',
+      address_country: ''
+    };
+    if (this.addCardData.exp_date.length === 5) {
+      let exp_parts = this.addCardData.exp_date.split('/');
+      if (exp_parts[0] !== this.addCardData.exp_date) {
+        editCardData.exp_month = exp_parts[0];
+        editCardData.exp_year = exp_parts[1];
+      } else {
+        error = true;
+      }
+    } else {
+      error = true;
+    }
+    if (!error) {
+      editCardData.name = this.addCardData.name;
+      editCardData.address_line1 = this.addCardData.address_line1;
+      editCardData.address_line2 = this.addCardData.address_line2;
+      editCardData.address_city = this.addCardData.address_city;
+      editCardData.address_zip = this.addCardData.address_zip;
+      editCardData.address_state = this.addCardData.address_state;
+      editCardData.address_country = this.addCardData.address_country;
+      this.popupService.actionComplete({type: 'startNewCard'});
+      this.paymentService.editCard(this.editedCardId, editCardData)
+          .then((response) => {
+            this.popupService.actionComplete({type: 'cardEdited', data: response});
+            this.closePopup();
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+    }
+  }
+
   addPrice(orderId) {
     let orderPriceEur = parseInt(this.confirmActionPopupData.price) + ((parseInt(this.confirmActionPopupData.price) / 100) * 5.5);
     let orderPrice = parseFloat(orderPriceEur.toFixed(2)) * 100;
@@ -653,6 +690,24 @@ export class PopupsComponent implements OnInit, OnDestroy {
           this.shadowState = 'active';
           break;
         case 'addCard':
+          this.actionCardType = 'add';
+          this.addCardPopupState = 'active';
+          this.activePopup = 'addCard';
+          this.shadowState = 'active';
+          break;
+        case 'editCard':
+          this.actionCardType = 'edit';
+          this.editedCardId = popup.data.id;
+          this.addCardData.exp_date = popup.data.exp_month + '/' + popup.data.exp_year;
+          this.addCardData.name = popup.data.name;
+          this.addCardData.address_line1 = popup.data.address_line1;
+          this.addCardData.address_line2 = popup.data.address_line2;
+          this.addCardData.address_city = popup.data.address_city;
+          this.addCardData.address_zip = popup.data.address_zip;
+          this.addCardData.address_state = popup.data.address_state;
+          this.addCardData.address_country = popup.data.address_country;
+          this.addCardData.number = popup.data.number;
+          this.addCardData.cvc = popup.data.cvc;
           this.addCardPopupState = 'active';
           this.activePopup = 'addCard';
           this.shadowState = 'active';

@@ -1,3 +1,4 @@
+<div class="loader" *ngIf="isLoading"></div>
 <div class="profile-page" [ngClass]="{whiteBg: selectTab === 'conditions' || selectTab === 'privacy' || selectTab === 'help'}">
   <div class="container-starbook without-tabs">
     <div class="row">
@@ -82,9 +83,9 @@
               <div class="card-logo {{ formatCssClass(card.brand) }}"><span>**** {{ card.last4 }}</span></div>
               <div class="isDefault" *ngIf="defaultCard === card.id">Default</div>
               <div class="buttons-block">
-                <a href="#" class="btn btn-primary" *ngIf="defaultCard !== card.id">Default</a>
-                <a href="#" class="btn btn-primary">Rimuovi</a>
-                <a href="#" class="btn btn-secondary">Modifica</a>
+                <a class="btn btn-primary" *ngIf="defaultCard !== card.id" (click)="selectCard(card.id)">Default</a>
+                <a class="btn btn-primary" (click)="deleteCard(card.id)">Rimuovi</a>
+                <a class="btn btn-secondary" (click)="editCard(card.id)">Modifica</a>
               </div>
             </div>
             <div class="content">

@@ -2,19 +2,16 @@ import { Injectable } from '@angular/core';
 import { Http, Headers } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 
+export interface stripeResponse {
+  token: string;
+  data: {}
+}
+
 @Injectable()
 export class PaymentService {
-  private stripe = 'https://api.stripe.com/v1/';
   private api = 'https://api.starbook.co/v0.9.1/';
-  private key = 'sk_test_jO5JbwCWHNh8N4odvzoFxeKa';
   private auth;
   constructor(private http: Http) { }
-
-  private _makeStripeHeaders() {
-    let headers;
-    headers = new Headers({'Authorization': 'Bearer ' + this.key, 'Content-Type': 'application/x-www-form-urlencoded'});
-    return headers;
-  }
 
   private _makeHeaders() {
     let headers;
@@ -28,16 +25,27 @@ export class PaymentService {
     return {headers: headers};
   }
 
-  public getToken(number, exp_month, exp_year, cvc) {
+  public getToken(card) {
     return new Promise((resolve, reject) => {
       (<any>window).Stripe.card.createToken({
-        number: number,
-        exp_month: exp_month,
-        exp_year: exp_year,
-        cvc: cvc
+        number: card.number,
+        exp_month: card.exp_month,
+        exp_year: card.exp_year,
+        cvc: card.cvc,
+        name: card.name,
+        address_line1: card.address_line1,
+        address_line2: card.address_line2,
+        address_city: card.address_city,
+        address_zip: card.address_zip,
+        address_state: card.address_state,
+        address_country: card.address_country
       }, (status: number, response: any) => {
         if (status === 200) {
-          resolve(response.id);
+          let stripeResponse: stripeResponse = {
+            token: response.id,
+            data: response.card
+          };
+          resolve(stripeResponse);
         } else {
           reject(status);
         }
@@ -46,29 +54,43 @@ export class PaymentService {
   }
 
   public addNewCard(cardData) {
-    let authData;
-    if (localStorage.getItem('auth') !== null) {
-      authData = JSON.parse(localStorage.getItem('auth'));
-    }
-    let card = cardData;
-    return this.getToken(cardData.number, cardData.exp_month, cardData.exp_year, cardData.cvc)
-        .then((token) => {
-          if (token) {
-            card.source = token;
-            console.log(card);
-            return this.http
-                .post(this.stripe + 'customers/' + authData.stripe_customer_id + '/sources', card, {headers: this._makeStripeHeaders()})
-                .toPromise()
-                .then((response) => {
-                  console.log(response.json());
-                  return response.json();
-                })
-                .catch(this.handleError);
-          }
+    return this.getToken(cardData)
+        .then((data: stripeResponse) => {
+          return this.http.post(this.api + 'me/cards', {source: data.token}, this._makeHeaders())
+              .toPromise()
+              .then((response) => {
+                return response.json();
+              })
+              .catch(this.handleError);
         })
-        .catch((error) => {
-          console.log(error);
-        });
+        .catch(this.handleError);
+  }
+
+  public selectCard(cardId) {
+    return this.http.post(this.api + 'me/customers', {default_source: cardId},this._makeHeaders())
+        .toPromise()
+        .then((response) => {
+          return response.json();
+        })
+        .catch(this.handleError);
+  }
+
+  public deleteCard(cardId) {
+    return this.http.delete(this.api + 'me/cards/' + cardId, this._makeHeaders())
+        .toPromise()
+        .then((status) => {
+          return status.json();
+        })
+        .catch(this.handleError);
+  }
+
+  public editCard(cardId, cardData) {
+    return this.http.post(this.api + 'me/cards/' + cardId, cardData, this._makeHeaders())
+        .toPromise()
+        .then((status) => {
+          return status.json();
+        })
+        .catch(this.handleError);
   }
 
   public getCards() {

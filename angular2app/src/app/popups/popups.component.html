@@ -153,9 +153,14 @@
       <div class="card-item mastercard"></div>
       <div class="card-item amex"></div>
     </div>
-    <div class="form-group" [ngClass]="{'isError': addCardError.number}">
+    <div class="form-group" [ngClass]="{'isError': addCardError.number}" *ngIf="actionCardType === 'add'">
       <label for="addCardNumber">Numero carta</label>
       <input id="addCardNumber" class="form-control" type="text" name="addCardNumber" placeholder="" [(ngModel)]="addCardData.number" #addCardNumber="ngModel" (keyup)="checkNonEmpty('addCardNumber', addCardNumber.value)">
+      <span class="error">Please enter card number</span>
+    </div>
+    <div class="form-group" *ngIf="actionCardType === 'edit'">
+      <label for="editCardNumber">Numero carta</label>
+      <input id="editCardNumber" class="form-control" type="text" name="addCardNumber" placeholder="" [(ngModel)]="addCardData.number" disabled>
       <span class="error">Please enter card number</span>
     </div>
     <div class="form-group">
@@ -164,9 +169,15 @@
         <input id="addExpDate" class="form-control" type="text" name="addExpDate" placeholder="MM/AA" [(ngModel)]="addCardData.exp_date" #addCardExpDate="ngModel" (keyup)="checkDate('newCard', addCardExpDate.value)">
         <span class="error">Expiration date isn't correct</span>
       </div>
-      <div class="part-group last" [ngClass]="{'isError': addCardError.cvc}">
+      <div class="part-group last" [ngClass]="{'isError': addCardError.cvc}" *ngIf="actionCardType === 'add'">
         <label for="addCVV">CVV</label>
         <input id="addCVV" class="form-control" type="text" name="addCVV" [(ngModel)]="addCardData.cvc" #addCardCVV="ngModel" (keyup)="checkNonEmpty('addCardCvv', addCardCVV.value)">
+        <span class="fa fa-question-circle"></span>
+        <span class="error">CVV isn't correct</span>
+      </div>
+      <div class="part-group last" *ngIf="actionCardType === 'edit'">
+        <label for="editCVV">CVV</label>
+        <input id="editCVV" class="form-control" type="text" name="addCVV" [(ngModel)]="addCardData.cvc" disabled>
         <span class="fa fa-question-circle"></span>
         <span class="error">CVV isn't correct</span>
       </div>
@@ -210,7 +221,8 @@
       </div>
     </div>
     <div class="form-group">
-      <button class="btn btn-warning" type="submit" (click)="addNewCard(addCardNumber.value, addCardExpDate.value, addCardCVV.value, addCardName.value, addCardAddress1.value, addCardAddress2.value, addCardAddressCity.value, addCardAddressZip.value, addCardAddressState.value, addCardAddressCountry.value)">Aggiungi metodo</button>
+      <button class="btn btn-warning" type="submit" (click)="addNewCard()" *ngIf="actionCardType === 'add'">Aggiungi metodo</button>
+      <button class="btn btn-warning" type="submit" (click)="editCard()" *ngIf="actionCardType === 'edit'">Aggiungi metodo</button>
       <button class="btn btn-secondary" (click)="closePopup()">Chiudi</button>
     </div>
   </form>
