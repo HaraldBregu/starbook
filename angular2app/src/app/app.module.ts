@@ -26,6 +26,7 @@ import { ProfileComponent } from './pages/profile/profile.component';
 import { PopupsComponent } from './popups/popups.component';
 import { PhonePipe } from './pipes/phone.pipe';
 import { LandingComponent } from './pages/landing/landing.component';
+import { ExpiryPipe } from './pipes/expiry.pipe';
 
 export class HammerConfig extends HammerGestureConfig  {
   overrides = <any> {
@@ -42,7 +43,8 @@ export class HammerConfig extends HammerGestureConfig  {
     ProfileComponent,
     PopupsComponent,
     PhonePipe,
-    LandingComponent
+    LandingComponent,
+    ExpiryPipe
   ],
   imports: [
     BrowserModule,

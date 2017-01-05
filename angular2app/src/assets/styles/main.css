@@ -5002,6 +5002,11 @@ html, body {
   font-size: 17px;
   padding-right: 5px; }
 
+.tooltip {
+  font-family: HelveticaNeue, sans-serif;
+  font-size: 12px;
+  letter-spacing: 0.09px; }
+
 @media (max-width: 480px) {
   .popup {
     width: 100%;

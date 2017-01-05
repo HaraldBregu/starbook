@@ -453,6 +453,71 @@ export class PopupsComponent implements OnInit, OnDestroy {
     }
   }
 
+  checkExpiry(value) {
+    let result = '';
+    let date = new Date();
+    let month = (1 + date.getMonth()).toString();
+    if ((date.getMonth() + 1) < 10) {
+      month = '0' + month.toString();
+    }
+    let yearElems = date.getFullYear().toString().split('');
+    let year = parseInt(yearElems[2].toString() + yearElems[3].toString());
+    if (value) {
+      let dateElems = value.split('');
+      let i = 0;
+      dateElems.forEach((elem) => {
+        if (elem === '/') {
+          dateElems.splice(i, 1);
+        }
+        i++;
+      });
+      if (dateElems.length > 1) {
+        let i = 0;
+        dateElems.forEach((elem) => {
+          if (i < 4) {
+            if (i === 2) {
+              result += '/';
+            }
+            result += elem;
+          }
+          i++;
+        });
+      } else {
+        dateElems.forEach((elem) => {
+          result += elem;
+        });
+      }
+    }
+
+    if (result.length !== 5) {
+      this.addCardError.exp_date = true;
+    }
+
+    if (result.length === 5) {
+      let parts = result.split('/');
+      console.log(parseInt(parts[0]));
+      console.log(parseInt(parts[1]));
+      console.log(parseInt(month));
+      console.log(year);
+      console.log(parseInt(parts[1]) > year);
+      if (parts[0] !== result) {
+        if (parseInt(parts[1]) > year) {
+          this.addCardError.exp_date = false;
+        } else {
+          if (parseInt(parts[0]) >= parseInt(month) && parseInt(parts[1]) === year) {
+            this.addCardError.exp_date = false;
+          } else {
+            this.addCardError.exp_date = true;
+          }
+        }
+      } else {
+        this.addCardError.exp_date = true;
+      }
+    }
+    this.addCardData.exp_date = result;
+    return result;
+  }
+
   registration(name: string, email: string, password: string, passwordConfirm: string) {
     if (this.emailPattern.test(email) && password === passwordConfirm && password.length > 0 && name.length > 0) {
       this.authServics.signup(name, email, password)

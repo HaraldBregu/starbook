@@ -43,6 +43,7 @@ $popup-finish-text-color: $popup-header-color;
 $popup-finish-text-letter-spacing: 0.1px;
 $popup-finish-close-background: '/assets/images/cancel.png';
 $popup-order-confirm-gray-background: #EFF1F3;
+$tooltip-font-size: 12px;
 
 // Alert styles
 $alert-border-style: 1px solid #C40000;
@@ -577,6 +578,11 @@ $action-form-description-letter-spacing: 0.08px;
 .confirm-action .buttons-block .btn-warning i {
   font-size: $action-form-information-icon-size;
   padding-right: 5px;
+}
+.tooltip {
+  font-family: $font-name;
+  font-size: $tooltip-font-size;
+  letter-spacing: $popup-text-letter-spacing;
 }
 
 @media (max-width: 480px) {

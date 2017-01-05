@@ -166,19 +166,19 @@
     <div class="form-group">
       <div class="part-group first" [ngClass]="{'isError': addCardError.exp_date}">
         <label for="addExpDate">Scadenza</label>
-        <input id="addExpDate" class="form-control" type="text" name="addExpDate" placeholder="MM/AA" [(ngModel)]="addCardData.exp_date" #addCardExpDate="ngModel" (keyup)="checkDate('newCard', addCardExpDate.value)">
+        <input id="addExpDate" class="form-control" type="text" name="addExpDate" placeholder="MM/AA" maxlength="5" [(ngModel)]="addCardData.exp_date" #addCardExpDate="ngModel" (keyup)="checkExpiry(addCardExpDate.value)" (change)="checkExpiry(addCardExpDate.value)">
         <span class="error">Expiration date isn't correct</span>
       </div>
       <div class="part-group last" [ngClass]="{'isError': addCardError.cvc}" *ngIf="actionCardType === 'add'">
         <label for="addCVV">CVV</label>
         <input id="addCVV" class="form-control" type="text" name="addCVV" [(ngModel)]="addCardData.cvc" #addCardCVV="ngModel" (keyup)="checkNonEmpty('addCardCvv', addCardCVV.value)">
-        <span class="fa fa-question-circle"></span>
+        <span class="fa fa-question-circle" data-toggle="tooltip" data-placement="right" title="Tooltip on right"></span>
         <span class="error">CVV isn't correct</span>
       </div>
       <div class="part-group last" *ngIf="actionCardType === 'edit'">
         <label for="editCVV">CVV</label>
         <input id="editCVV" class="form-control" type="text" name="addCVV" [(ngModel)]="addCardData.cvc" disabled>
-        <span class="fa fa-question-circle"></span>
+        <span class="fa fa-question-circle" data-toggle="tooltip" data-placement="right" title="Tooltip on right"></span>
         <span class="error">CVV isn't correct</span>
       </div>
 
