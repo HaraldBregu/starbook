@@ -96,6 +96,25 @@ export class ProfileComponent implements OnInit, OnDestroy {
               console.log(errors);
             })
       }
+      if (params['page'] ==='settings') {
+        this.isLoading = true;
+        this.profileService.getProfile()
+            .then((profile) => {
+              this.userData.fullname = profile.result.fullname;
+              this.userData.email = profile.result.email;
+              this.userData.phone_number = profile.result.phone_number;
+              this.userData.street_name = profile.result.street_name;
+              this.userData.street_number = profile.result.street_number;
+              this.userData.city = profile.result.city;
+              this.userData.postal_code = profile.result.postal_code;
+              this.userData.province = profile.result.province;
+              this.userData.country = profile.result.country;
+              this.isLoading = false;
+            })
+            .catch((error) => {
+              console.log(error);
+            });
+      }
       console.log(params['page']);
     });
 
@@ -171,16 +190,13 @@ export class ProfileComponent implements OnInit, OnDestroy {
 
   swipe(action = this.SWIPE_ACTION.RIGHT, delta) {
     let calculateDelta = this.delta + delta;
-    console.log(calculateDelta);
     let menuSize = 0;
     let allMenuItems = document.querySelectorAll('.left-navigate > div > a');
     for (let i = 0; i < allMenuItems.length; i++) {
       let menuItem: any = allMenuItems[i];
       menuSize += menuItem.offsetWidth;
     }
-    console.log(menuSize);
     let menuBlockWidth = document.querySelector('.left-navigate').clientWidth;
-    console.log(menuBlockWidth);
     let allowMargin = (menuSize) - menuBlockWidth;
     if (allowMargin >= 0) {
       allowMargin = -allowMargin;

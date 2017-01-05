@@ -31,6 +31,15 @@ export class ProfileService {
       .catch(this.handleError);
   }
 
+  getProfile() {
+    return this.http.get(this.api + 'me', this._makeHeaders())
+        .toPromise()
+        .then((response) => {
+          return response.json();
+        })
+        .catch(this.handleError);
+  }
+
   private handleError(error: any): Promise<any> {
     return Promise.reject(error.status || error);
   }
