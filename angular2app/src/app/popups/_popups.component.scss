@@ -89,7 +89,7 @@ $action-form-description-letter-spacing: 0.08px;
   right: 0;
   bottom: 0;
   background-color: $dark-background-color;
-  z-index: 1030;
+  z-index: 1040;
 }
 .popup {
   display: block;
@@ -101,7 +101,7 @@ $action-form-description-letter-spacing: 0.08px;
   left: 50%;
   margin-left: -175px;
   padding: 27px 25px;
-  z-index: 1031;
+  z-index: 1041;
   border-radius: 3px;
 }
 .popup .header {
@@ -595,5 +595,8 @@ $action-form-description-letter-spacing: 0.08px;
   }
   .popup .form-group .btn.btn-secondary {
     margin-bottom: 70px;
+  }
+  .dark-screen {
+    background-color: transparent;
   }
 }

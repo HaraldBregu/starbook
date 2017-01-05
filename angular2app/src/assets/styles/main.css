@@ -4503,7 +4503,7 @@ html, body {
   right: 0;
   bottom: 0;
   background-color: rgba(0, 0, 0, 0.53);
-  z-index: 1030; }
+  z-index: 1040; }
 
 .popup {
   display: block;
@@ -4515,7 +4515,7 @@ html, body {
   left: 50%;
   margin-left: -175px;
   padding: 27px 25px;
-  z-index: 1031;
+  z-index: 1041;
   border-radius: 3px; }
 
 .popup .header {
@@ -5004,7 +5004,10 @@ html, body {
     margin-bottom: 70px; }
 
   .popup .form-group .btn.btn-secondary {
-    margin-bottom: 70px; } }
+    margin-bottom: 70px; }
+
+  .dark-screen {
+    background-color: transparent; } }
 .landing {
   display: block;
   width: 100%;
