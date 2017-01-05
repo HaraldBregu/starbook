@@ -86,6 +86,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
         this.paymentService.getCards()
             .then((cards) => {
               this.defaultCard = cards.default_source;
+              this.cards = [];
               cards.sources.data.forEach((cardData) => {
                 this.cards.push(cardData);
               });
