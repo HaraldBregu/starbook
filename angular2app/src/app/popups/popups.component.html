@@ -155,7 +155,7 @@
     </div>
     <div class="form-group" [ngClass]="{'isError': addCardError.number}" *ngIf="actionCardType === 'add'">
       <label for="addCardNumber">Numero carta</label>
-      <input id="addCardNumber" class="form-control" type="text" name="addCardNumber" placeholder="" [(ngModel)]="addCardData.number" #addCardNumber="ngModel" (keyup)="checkNonEmpty('addCardNumber', addCardNumber.value)">
+      <input id="addCardNumber" class="form-control" type="text" name="addCardNumber" placeholder="" [(ngModel)]="addCardData.number" #addCardNumber="ngModel" (keyup)="checkCardNumber(addCardNumber.value)" (change)="checkCardNumber(addCardNumber.value)">
       <span class="error">Please enter card number</span>
     </div>
     <div class="form-group" *ngIf="actionCardType === 'edit'">

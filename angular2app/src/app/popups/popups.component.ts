@@ -518,6 +518,16 @@ export class PopupsComponent implements OnInit, OnDestroy {
     return result;
   }
 
+  checkCardNumber(cardNumber) {
+    if (cardNumber !== null) {
+      if (this.paymentService.cardNumberValidate(cardNumber)) {
+        this.addCardError.number = false;
+      } else {
+        this.addCardError.number = true;
+      }
+    }
+  }
+
   registration(name: string, email: string, password: string, passwordConfirm: string) {
     if (this.emailPattern.test(email) && password === passwordConfirm && password.length > 0 && name.length > 0) {
       this.authServics.signup(name, email, password)

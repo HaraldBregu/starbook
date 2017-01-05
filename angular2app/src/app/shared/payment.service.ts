@@ -53,6 +53,10 @@ export class PaymentService {
     });
   }
 
+  public cardNumberValidate(cardNumber) {
+    return (<any>window).Stripe.card.validateCardNumber(cardNumber);
+  }
+
   public addNewCard(cardData) {
     return this.getToken(cardData)
         .then((data: stripeResponse) => {
