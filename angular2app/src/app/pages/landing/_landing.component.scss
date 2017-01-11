@@ -5,11 +5,14 @@ $font-name-bold: HelveticaNeue-Bold, sans-serif;
 $font-name-light: HelveticaNeue-Light, sans-serif;
 $landing-background-color: #FCFCFC;
 $landing-header-color: #3B568D;
-$landing-header-font-size: 32px;
-$landing-header-letter-spacing: 0.19px;
+$landing-header-font-size: 34px; // 32px
+$landing-header-letter-spacing: 0.22px; // 0.19px
 $landing-general-text-color: #212121;
 $btn-gradient-color-yellow-light: #FFE589;
 $btn-gradient-color-yellow-dark: #FEC751;
+$landing-top-header-color: #212121;
+$landing-top-header-text-size: 20px;
+$landing-top-header-letter-spacing: 0.13px;
 
 // Cards styles
 $card-background-color: #FFFFFF;
@@ -58,12 +61,53 @@ $footer-text-color: #90949C;
 $footer-text-font-size: 14px;
 $footer-text-letter-spacing: 0.09px;
 
+// Search box
+$search-input-background: #FFFFFF;
+$search-input-border: 1px solid #DCDCDC;
+$search-input-box-shadow: 0 2px 6px 0 #DCDCDC;
+$search-text-color: #8D9494;
+$search-text-size: 18px;
+$search-text-letter-spacing: 0.11px;
+
+// Services cards
+$services-container-background: #FFFFFF;
+$services-container-border: 1px solid #DCDCDC;
+$services-container-box-shadow: 0 2px 6px 0 #DCDCDC;
+$services-content-image: '/assets/images/servicae-pic.png';
+$services-header-color: #212121;
+$services-header-text-size: 15px;
+$services-header-letter-spacing: 0.1px;
+$services-content-color: #212121;
+$services-content-text-size: 14px;
+$services-content-letter-spacing: 0.09px;
+$services-footer-text-size: 10px;
+$services-footer-letter-spacing: 0.06px;
+$services-footer-price-color: #00B420;
+$services-footer-price-text-size: 18px;
+$services-footer-price-letter-spacing: 0.11px;
+
 .landing {
   display: block;
+  position: relative;
   width: 100%;
   height: 100%;
-  margin-top: 70px;
+  min-height: 100vh;
+  padding-top: 70px;
+  padding-bottom: 62px;
   background-color: $landing-background-color;
+}
+.landing .landing-top-header h1 {
+  display: block;
+  float: none;
+  max-width: 470px;
+  margin: 0 auto;
+  text-align: center;
+  font-family: $font-name-light;
+  color: $landing-top-header-color;
+  font-size: $landing-top-header-text-size;
+  letter-spacing: $landing-top-header-letter-spacing;
+  padding: 0;
+  font-weight: normal;
 }
 .landing .btn.btn-warning {
   width: 100%;
@@ -90,7 +134,7 @@ $footer-text-letter-spacing: 0.09px;
 .landing-header h1 {
   width: 100%;
   text-align: center;
-  padding: 130px 0 90px;
+  padding: 83px 0 20px; // 130px 0 90px
   font-family: $font-name-medium;
   color: $landing-header-color;
   font-size: $landing-header-font-size;
@@ -368,6 +412,10 @@ $footer-text-letter-spacing: 0.09px;
 }
 .footer-container {
   display: block;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
   width: 100%;
   height: 42px;
   background-color: $footer-background-color;
@@ -382,6 +430,136 @@ $footer-text-letter-spacing: 0.09px;
   letter-spacing: $footer-text-letter-spacing;
   text-decoration: none;
 }
+// Search box
+.landing-search {
+  display: block;
+  position: relative;
+  float: none;
+  width: 562px;
+  margin: 0 auto;
+}
+.landing-search .ui-autocomplete-input {
+  display: block;
+  width: 100%;
+  height: 50px;
+  padding: 15px 19px;
+  background-color: $search-input-background;
+  border: $search-input-border;
+  border-radius: 1px;
+  box-shadow: $search-input-box-shadow;
+  outline: none;
+  color: $search-text-color;
+  font-family: $font-name;
+  font-size: $search-text-size;
+  letter-spacing: $search-text-letter-spacing;
+}
+input.ui-autocomplete-input::-webkit-input-placeholder,
+input.landing-search .ui-autocomplete-input:-moz-placeholder,
+input.landing-search .ui-autocomplete-input:-ms-input-placeholder {
+  color: $search-text-color;
+}
+.landing-search .spinner {
+  display: block;
+  position: absolute;
+  top: 15px;
+  right: 35px;
+  width: 21px;
+  height: 21px;
+}
+
+// Services cards
+.landing-services {
+  display: block;
+  padding-left: 0;
+  padding-right: 0;
+  min-height: 200px;
+  margin-top: 151px;
+  margin-bottom: 63px;
+}
+.landing-services .services-card {
+  display: block;
+  float: left;
+  width: 20%;
+  padding: 10px;
+}
+.services-card .service-container {
+  display: block;
+  width: 100%;
+  min-height: 200px;
+  background-color: $services-container-background;
+  border: $services-container-border;
+  border-radius: 1px;
+  box-shadow: $services-container-box-shadow;
+  cursor: pointer;
+}
+.services-card .service-container .content {
+  display: block;
+  position: relative;
+  width: 100%;
+  height: 164px;
+  background-image: url($services-content-image);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.services-card .service-container .content .shadow {
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: $services-container-background;
+  opacity: 0.95;
+  transition: opacity 0.5s ease-in-out;
+  z-index: 1;
+}
+.services-card .service-container:hover .content .shadow {
+  opacity: 1;
+}
+.services-card .service-container .content strong {
+  display: block;
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  font-family: $font-name-bold;
+  color: $services-header-color;
+  font-size: $services-header-text-size;
+  letter-spacing: $services-header-letter-spacing;
+  font-weight: normal;
+  padding: 19px 15px 0 15px;
+}
+.services-card .service-container .content p {
+  display: block;
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  font-family: $font-name;
+  color: $services-content-color;
+  font-size: $services-content-text-size;
+  letter-spacing: $services-content-letter-spacing;
+  font-weight: normal;
+  padding: 0 15px;
+}
+.services-card .service-container .service-footer {
+  display: block;
+  width: 100%;
+  height: 36px;
+  background-color: $services-container-background;
+  text-align: right;
+  font-family: $font-name-medium;
+  color: $services-content-color;
+  font-size: $services-footer-text-size;
+  letter-spacing: $services-footer-letter-spacing;
+  font-weight: normal;
+  padding: 7px 13px 0 0;
+}
+.services-card .service-container .service-footer span {
+  font-family: $font-name-bold;
+  color: $services-footer-price-color;
+  font-size: $services-footer-price-text-size;
+  letter-spacing: $services-footer-price-letter-spacing;
+}
+
 @media (max-width: 576px) {
   .footer-container {
     height: auto;

@@ -8,6 +8,44 @@
   </div>
   <div class="container">
     <div class="row">
+      <div class="col-xl-12 landing-search">
+        <p-autoComplete [(ngModel)]="text" [suggestions]="results" (completeMethod)="search($event)" placeholder="Che tipo servizio ti serve?"></p-autoComplete>
+        <div class="spinner" *ngIf="spinerView">
+          <svg width='21px' height='21px' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid" class="uil-ring">
+            <rect x="0" y="0" width="100" height="100" fill="none" class="bk"></rect>
+            <circle cx="50" cy="50" r="45" stroke-dasharray="169.64600329384882 113.09733552923257" stroke="#3B568D" fill="none" stroke-width="10">
+              <animateTransform attributeName="transform" type="rotate" values="0 50 50;180 50 50;360 50 50;" keyTimes="0;0.5;1" dur="1s" repeatCount="indefinite" begin="0s"></animateTransform>
+            </circle>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-xl-12 landing-services">
+        <div class="services-card" *ngFor="let service of services">
+          <div class="service-container">
+            <div class="content">
+              <div class="shadow"></div>
+              <strong>{{ service.title }}</strong>
+              <p>{{ service.description }}</p>
+            </div>
+            <div class="service-footer">
+              PARTENDO DA <span>€{{ service.service_forms[0].base_price / 100 }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container landing-top-header">
+    <div class="row">
+      <h1>Prenota il servizio di cui hai bisogno, nel ora e giorno che desideri.</h1>
+    </div>
+  </div>
+  <!-- <div class="container">
+    <div class="row">
       <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6 top-cards">
         <div class="top-card">
           <div class="header">Starbook <span>services</span></div>
@@ -134,7 +172,7 @@
         Starbook è la piattaforma che ti da la possibilità di prenotare i professionisti nell'ora e data che tu desideri senza dover chiamare e lasciare appuntamenti tramite telefono o email.
       </div>
     </div>
-  </div>
+  </div> -->
   <div class="footer-container">
     <div class="copyright">Starbook © 2016 Tutti i diritti riservati</div>
     <span> • </span><a routerLink="profile/privacy">Privacy</a>

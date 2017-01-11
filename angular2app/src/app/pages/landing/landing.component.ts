@@ -1,4 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { HomeService } from '../../home/home.service';
 
 @Component({
   selector: 'app-landing',
@@ -7,9 +8,21 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 export class LandingComponent implements OnInit {
   @Output('tabSelect') activeTab = new EventEmitter();
   public cardStyles = {1: '0.95', 2: '0.95', 3: '0.9'};
-  constructor() { }
+  public query: string = '';
+  public results: string[] = [];
+  public services = [];
+  public spinerView = false;
+  constructor(private homeService: HomeService) { }
 
   ngOnInit() {
+    this.homeService.getServices()
+        .then((services) => {
+          this.services = services.result;
+          console.log(this.services);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
   }
   cardHover(id, type) {
     if (type === 'on') {
@@ -25,5 +38,16 @@ export class LandingComponent implements OnInit {
 
   navigate(tabId) {
     this.activeTab.emit({id: tabId});
+  }
+
+  search(event) {
+    this.spinerView = true;
+    this.homeService.search(event.query)
+        .then((results) => {
+
+        })
+        .catch((error) => {
+          console.log(error);
+        })
   }
 }

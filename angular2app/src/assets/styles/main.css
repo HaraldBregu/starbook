@@ -5028,10 +5028,26 @@ html, body {
     background-color: transparent; } }
 .landing {
   display: block;
+  position: relative;
   width: 100%;
   height: 100%;
-  margin-top: 70px;
+  min-height: 100vh;
+  padding-top: 70px;
+  padding-bottom: 62px;
   background-color: #FCFCFC; }
+
+.landing .landing-top-header h1 {
+  display: block;
+  float: none;
+  max-width: 470px;
+  margin: 0 auto;
+  text-align: center;
+  font-family: HelveticaNeue-Light, sans-serif;
+  color: #212121;
+  font-size: 20px;
+  letter-spacing: 0.13px;
+  padding: 0;
+  font-weight: normal; }
 
 .landing .btn.btn-warning {
   width: 100%;
@@ -5058,11 +5074,11 @@ html, body {
 .landing-header h1 {
   width: 100%;
   text-align: center;
-  padding: 130px 0 90px;
+  padding: 83px 0 20px;
   font-family: HelveticaNeue-Medium, sans-serif;
   color: #3B568D;
-  font-size: 32px;
-  letter-spacing: 0.19px; }
+  font-size: 34px;
+  letter-spacing: 0.22px; }
 
 .landing-header h2 {
   width: 100%;
@@ -5070,8 +5086,8 @@ html, body {
   padding: 90px 0;
   font-family: HelveticaNeue-Bold, sans-serif;
   color: #3B568D;
-  font-size: 32px;
-  letter-spacing: 0.19px; }
+  font-size: 34px;
+  letter-spacing: 0.22px; }
 
 .landing .row .top-cards {
   padding: 0 10px; }
@@ -5336,6 +5352,10 @@ html, body {
 
 .footer-container {
   display: block;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
   width: 100%;
   height: 42px;
   background-color: #F4F4F4;
@@ -5349,6 +5369,132 @@ html, body {
   font-size: 14px;
   letter-spacing: 0.09px;
   text-decoration: none; }
+
+.landing-search {
+  display: block;
+  position: relative;
+  float: none;
+  width: 562px;
+  margin: 0 auto; }
+
+.landing-search .ui-autocomplete-input {
+  display: block;
+  width: 100%;
+  height: 50px;
+  padding: 15px 19px;
+  background-color: #FFFFFF;
+  border: 1px solid #DCDCDC;
+  border-radius: 1px;
+  box-shadow: 0 2px 6px 0 #DCDCDC;
+  outline: none;
+  color: #8D9494;
+  font-family: HelveticaNeue, sans-serif;
+  font-size: 18px;
+  letter-spacing: 0.11px; }
+
+input.ui-autocomplete-input::-webkit-input-placeholder,
+input.landing-search .ui-autocomplete-input:-moz-placeholder,
+input.landing-search .ui-autocomplete-input:-ms-input-placeholder {
+  color: #8D9494; }
+
+.landing-search .spinner {
+  display: block;
+  position: absolute;
+  top: 15px;
+  right: 35px;
+  width: 21px;
+  height: 21px; }
+
+.landing-services {
+  display: block;
+  padding-left: 0;
+  padding-right: 0;
+  min-height: 200px;
+  margin-top: 151px;
+  margin-bottom: 63px; }
+
+.landing-services .services-card {
+  display: block;
+  float: left;
+  width: 20%;
+  padding: 10px; }
+
+.services-card .service-container {
+  display: block;
+  width: 100%;
+  min-height: 200px;
+  background-color: #FFFFFF;
+  border: 1px solid #DCDCDC;
+  border-radius: 1px;
+  box-shadow: 0 2px 6px 0 #DCDCDC;
+  cursor: pointer; }
+
+.services-card .service-container .content {
+  display: block;
+  position: relative;
+  width: 100%;
+  height: 164px;
+  background-image: url("/assets/images/servicae-pic.png");
+  background-repeat: no-repeat;
+  background-size: cover; }
+
+.services-card .service-container .content .shadow {
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: #FFFFFF;
+  opacity: 0.95;
+  transition: opacity 0.5s ease-in-out;
+  z-index: 1; }
+
+.services-card .service-container:hover .content .shadow {
+  opacity: 1; }
+
+.services-card .service-container .content strong {
+  display: block;
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  font-family: HelveticaNeue-Bold, sans-serif;
+  color: #212121;
+  font-size: 15px;
+  letter-spacing: 0.1px;
+  font-weight: normal;
+  padding: 19px 15px 0 15px; }
+
+.services-card .service-container .content p {
+  display: block;
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  font-family: HelveticaNeue, sans-serif;
+  color: #212121;
+  font-size: 14px;
+  letter-spacing: 0.09px;
+  font-weight: normal;
+  padding: 0 15px; }
+
+.services-card .service-container .service-footer {
+  display: block;
+  width: 100%;
+  height: 36px;
+  background-color: #FFFFFF;
+  text-align: right;
+  font-family: HelveticaNeue-Medium, sans-serif;
+  color: #212121;
+  font-size: 10px;
+  letter-spacing: 0.06px;
+  font-weight: normal;
+  padding: 7px 13px 0 0; }
+
+.services-card .service-container .service-footer span {
+  font-family: HelveticaNeue-Bold, sans-serif;
+  color: #00B420;
+  font-size: 18px;
+  letter-spacing: 0.11px; }
 
 @media (max-width: 576px) {
   .footer-container {

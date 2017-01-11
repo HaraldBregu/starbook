@@ -18,6 +18,24 @@ export class HomeService {
       .catch(this.handleError);
   }
 
+  getServices() {
+    return this.http.get(this.api + 'services/featured')
+        .toPromise()
+        .then((services) => {
+          return services.json();
+        })
+        .catch(this.handleError);
+  }
+
+  search(query) {
+    return this.http.get(this.api + 'services/search?title=' + query)
+        .toPromise()
+        .then((results) => {
+          return results.json();
+        })
+        .catch(this.handleError);
+  }
+
   private handleError(error: any): Promise<any> {
     return Promise.reject(error.message || error);
   }
