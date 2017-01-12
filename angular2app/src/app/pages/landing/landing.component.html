@@ -9,7 +9,11 @@
   <div class="container">
     <div class="row">
       <div class="col-xl-12 landing-search">
-        <p-autoComplete [(ngModel)]="text" [suggestions]="results" (completeMethod)="search($event)" placeholder="Che tipo servizio ti serve?"></p-autoComplete>
+        <p-autoComplete [(ngModel)]="query" [suggestions]="results" field="title" scrollHeight="275px" (completeMethod)="search($event)" placeholder="Che tipo servizio ti serve?" minLength="0">
+          <template let-res>
+            <div class="search-result" (click)="selectResult(res)">{{ res.title }}</div>
+          </template>
+        </p-autoComplete>
         <div class="spinner" *ngIf="spinerView">
           <svg width='21px' height='21px' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid" class="uil-ring">
             <rect x="0" y="0" width="100" height="100" fill="none" class="bk"></rect>
@@ -17,6 +21,12 @@
               <animateTransform attributeName="transform" type="rotate" values="0 50 50;180 50 50;360 50 50;" keyTimes="0;0.5;1" dur="1s" repeatCount="indefinite" begin="0s"></animateTransform>
             </circle>
           </svg>
+        </div>
+        <div class="close-container" *ngIf="!spinerView && clearView">
+          <span class="close rounded thick" (click)="clearSearchForm()"></span>
+        </div>
+        <div class="ui-autocomplete-panel empty" *ngIf="results.length === 0 && query.length > 0">
+          <div class="no-result">No results</div>
         </div>
       </div>
     </div>

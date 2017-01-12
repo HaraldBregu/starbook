@@ -12,6 +12,7 @@ export class LandingComponent implements OnInit {
   public results: string[] = [];
   public services = [];
   public spinerView = false;
+  public clearView = false;
   constructor(private homeService: HomeService) { }
 
   ngOnInit() {
@@ -41,13 +42,34 @@ export class LandingComponent implements OnInit {
   }
 
   search(event) {
+    console.log(1);
     this.spinerView = true;
+    this.clearView = false;
     this.homeService.search(event.query)
         .then((results) => {
-
+          this.spinerView = false;
+          if (event.query.length > 0) {
+            this.clearView = true;
+          }
+          this.results = results.result;
         })
         .catch((error) => {
           console.log(error);
+          this.spinerView = false;
+          if (event.query.length > 0) {
+            this.clearView = true;
+          }
+          this.results = [];
         })
+  }
+
+  selectResult(servicesObj) {
+    console.log(servicesObj);
+  }
+
+  clearSearchForm() {
+    this.query = '';
+    this.results = [];
+    this.clearView = false;
   }
 }

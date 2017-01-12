@@ -68,6 +68,13 @@ $search-input-box-shadow: 0 2px 6px 0 #DCDCDC;
 $search-text-color: #212121;
 $search-text-size: 18px;
 $search-text-letter-spacing: 0.11px;
+$search-result-hover-background: #F5F5F5;
+$search-result-text-color: #212121;
+$search-result-text-size: 16px;
+$search-result-letter-spacing: 0.1px;
+$search-result-empty-font-size: 14px;
+$search-result-empty-color: #8D9494;
+$search-close-icon-base-color: #8D9494;
 
 // Services cards
 $services-container-background: #FFFFFF;
@@ -92,7 +99,7 @@ $services-footer-price-letter-spacing: 0.11px;
   width: 100%;
   height: 100%;
   min-height: 100vh;
-  padding-top: 70px;
+  padding-top: 40px; // 70px
   padding-bottom: 62px;
   background-color: $landing-background-color;
 }
@@ -435,14 +442,16 @@ $services-footer-price-letter-spacing: 0.11px;
   display: block;
   position: relative;
   float: none;
-  width: 562px;
+  max-width: 562px;
+  width: 100%;
+  height: 50px;
   margin: 0 auto;
 }
 .landing-search .ui-autocomplete-input {
   display: block;
   width: 100%;
   height: 50px;
-  padding: 15px 19px;
+  padding: 15px 46px 15px 19px;
   background-color: $search-input-background;
   border: $search-input-border;
   border-radius: 1px;
@@ -465,6 +474,83 @@ input.landing-search .ui-autocomplete-input:-ms-input-placeholder {
   right: 35px;
   width: 21px;
   height: 21px;
+}
+.landing-search .close-container {
+  display: block;
+  position: absolute;
+  top: 15px;
+  right: 35px;
+}
+.close-container .close{
+  position: relative;
+  display: inline-block;
+  width: 21px;
+  height: 21px;
+  overflow: hidden;
+  &::before, &::after {
+    content: '';
+    position: absolute;
+    height: 2px;
+    width: 100%;
+    top: 50%;
+    left: 0;
+    margin-top: -1px;
+    background: #000;
+  }
+  &::before {
+   transform: rotate(45deg);
+  }
+  &::after {
+    transform: rotate(-45deg);
+  }
+  &.thick {
+    &::before, &::after {
+      height: 4px;
+      margin-top: -2px;
+    }
+  }
+  &.rounded {
+    &::before, &::after {
+      border-radius: 5px;
+    }
+  }
+}
+
+.landing-search .ui-autocomplete-panel {
+  display: block;
+  position: relative;
+  margin-top: -50px;
+  width: 100%;
+  background-color: $search-input-background;
+  border: $search-input-border;
+  box-shadow: $search-input-box-shadow;
+  outline: none;
+  border-radius: 1px;
+  overflow-y: scroll;
+}
+.landing-search .ui-autocomplete-panel .ui-state-highlight .search-result {
+  background-color: $search-result-hover-background;
+}
+.landing-search .ui-autocomplete-panel .search-result {
+  display: block;
+  width: 100%;
+  font-family: $font-name;
+  color: $search-result-text-color;
+  font-size: $search-result-text-size;
+  letter-spacing: $search-result-letter-spacing;
+  padding: 16px 21px;
+}
+.landing-search .ui-autocomplete-panel.empty {
+  margin-top: 0;
+}
+.landing-search .ui-autocomplete-panel.empty .no-result {
+  display: block;
+  width: 100%;
+  font-family: $font-name;
+  color: $search-result-empty-color;
+  font-size: $search-result-empty-font-size;
+  letter-spacing: $search-result-letter-spacing;
+  padding: 8px 21px;
 }
 
 // Services cards
@@ -560,9 +646,37 @@ input.landing-search .ui-autocomplete-input:-ms-input-placeholder {
   letter-spacing: $services-footer-price-letter-spacing;
 }
 
+@media (max-width: 991px) {
+  .landing-services {
+    min-height: 440px;
+  }
+  .landing-services .services-card {
+    width: 33.333%;
+  }
+}
+@media (max-width: 768px) {
+  .landing-services {
+    min-height: 660px;
+  }
+  .landing-services .services-card {
+    width: 50%;
+  }
+}
 @media (max-width: 576px) {
+  .landing-services {
+    min-height: 1100px;
+  }
+  .landing-services .services-card {
+    width: 100%;
+  }
+  .landing .landing-top-header h1 {
+    padding: 0 15px;
+  }
   .footer-container {
     height: auto;
+    position: static;
+    margin-bottom: -62px;
+    margin-top: 20px;
   }
   .footer-container span {
     display: none;
