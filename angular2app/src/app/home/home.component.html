@@ -11,7 +11,7 @@
   </div>
 </nav>-->
 
-<div class="container-starbook home-page" *ngIf="activeServiceCategoryType !== false">
+<div class="container-starbook home-page" *ngIf="isServicesView === true">
   <div class="row">
     <div class="col-sm-9 col-md-10 main">
       <div class="tab-container">
@@ -19,7 +19,7 @@
           <masonry-brick class="services-block" *ngFor="let serviceCategory of servicesData">
             <div class="header">{{serviceCategory.title}}</div>
             <div class="service content">
-              <div class="item" *ngFor="let item of serviceCategory.items" [ngClass]="{'checked':item.selected}" (click)="toggleService(activeServiceCategory, serviceCategory._id, item.name)"><i class="fa fa-check"></i> {{item.name}}</div>
+              <div class="item" *ngFor="let item of serviceCategory.list_items" [ngClass]="{'checked':item.selected}"><i class="fa fa-check"></i> {{item.title}}</div>
             </div>
           </masonry-brick>
         </masonry>
@@ -29,4 +29,4 @@
     </div>
   </div>
 </div>
-<app-landing *ngIf="activeServiceCategoryType === false" (tabSelect)="tabNavigate($event.id)"></app-landing>
+<app-landing *ngIf="isServicesView === false" (servicesData)="renderPage($event.services)"></app-landing>

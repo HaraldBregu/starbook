@@ -6,7 +6,7 @@ import { HomeService } from '../../home/home.service';
   templateUrl: './landing.component.html'
 })
 export class LandingComponent implements OnInit {
-  @Output('tabSelect') activeTab = new EventEmitter();
+  @Output() servicesData = new EventEmitter();
   public cardStyles = {1: '0.95', 2: '0.95', 3: '0.9'};
   public query: string = '';
   public results: string[] = [];
@@ -37,12 +37,7 @@ export class LandingComponent implements OnInit {
     }
   }
 
-  navigate(tabId) {
-    this.activeTab.emit({id: tabId});
-  }
-
   search(event) {
-    console.log(1);
     this.spinerView = true;
     this.clearView = false;
     this.homeService.search(event.query)
@@ -54,7 +49,6 @@ export class LandingComponent implements OnInit {
           this.results = results.result;
         })
         .catch((error) => {
-          console.log(error);
           this.spinerView = false;
           if (event.query.length > 0) {
             this.clearView = true;
@@ -64,7 +58,7 @@ export class LandingComponent implements OnInit {
   }
 
   selectResult(servicesObj) {
-    console.log(servicesObj);
+    this.servicesData.emit({services: servicesObj});
   }
 
   clearSearchForm() {
