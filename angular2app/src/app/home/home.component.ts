@@ -90,6 +90,40 @@ export class HomeComponent implements AfterViewInit, OnInit, OnDestroy {
     });
   }
 
+  toggleService(serviceName, itemName) {
+    let serviceId = 0;
+    this.servicesData.forEach((service) => {
+      if (service.title === serviceName) {
+        let itemId = 0;
+        service.list_items.forEach((item) => {
+          if (item.title === itemName) {
+            let currentValue = item.selected;
+            if (service.form_type === 'RADIOBUTTON') {
+              this.uncheckAllItems(serviceName);
+            }
+            this.servicesData[serviceId].list_items[itemId].selected = !currentValue;
+          }
+          itemId++;
+        });
+      }
+      serviceId++;
+    });
+  }
+
+  uncheckAllItems(serviceName) {
+    let serviceId = 0;
+    this.servicesData.forEach((service) => {
+      if(service.title === serviceName) {
+        let itemId = 0;
+        service.list_items.forEach((item) => {
+          this.servicesData[serviceId].list_items[itemId].selected = false;
+          itemId++;
+        });
+      }
+      serviceId++;
+    });
+  }
+
   // toggleService(categoryListId: string, categoryId: string, serviceName: string) {
   //   let categoryListIndex = 0;
   //   this.servicesCategoryList.forEach((categoryList) => {

@@ -19,7 +19,7 @@
           <masonry-brick class="services-block" *ngFor="let serviceCategory of servicesData">
             <div class="header">{{serviceCategory.title}}</div>
             <div class="service content">
-              <div class="item" *ngFor="let item of serviceCategory.list_items" [ngClass]="{'checked':item.selected}"><i class="fa fa-check"></i> {{item.title}}</div>
+              <div class="item" *ngFor="let item of serviceCategory.list_items" [ngClass]="{'checked':item.selected}" (click)="toggleService(serviceCategory.title, item.title)"><i class="fa fa-check"></i> {{item.title}}</div>
             </div>
           </masonry-brick>
         </masonry>
