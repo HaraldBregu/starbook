@@ -5,10 +5,19 @@ import 'rxjs/add/operator/toPromise';
 
 @Injectable()
 export class HomeService {
+  private servicesObject;
   private api: string;
   constructor(private http: Http) {
     this.api = 'https://api.starbook.co/v0.9.1/';
   }
+
+  sendServices(services) {
+    this.servicesObject = services;
+  }
+  getServicesObject() {
+    return this.servicesObject;
+  }
+
   getCategories() {
     let queryString = 'categories';
     return this.http

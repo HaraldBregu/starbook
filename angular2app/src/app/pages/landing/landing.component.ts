@@ -1,4 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Router, Route, ActivatedRoute, Params } from '@angular/router';
 import { HomeService } from '../../home/home.service';
 
 @Component({
@@ -6,20 +7,18 @@ import { HomeService } from '../../home/home.service';
   templateUrl: './landing.component.html'
 })
 export class LandingComponent implements OnInit {
-  @Output() servicesData = new EventEmitter();
   public cardStyles = {1: '0.95', 2: '0.95', 3: '0.9'};
   public query: string = '';
   public results: string[] = [];
   public services = [];
   public spinerView = false;
   public clearView = false;
-  constructor(private homeService: HomeService) { }
+  constructor(private homeService: HomeService, private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.homeService.getServices()
         .then((services) => {
           this.services = services.result;
-          console.log(this.services);
         })
         .catch((error) => {
           console.log(error);
@@ -58,7 +57,8 @@ export class LandingComponent implements OnInit {
   }
 
   selectResult(servicesObj) {
-    this.servicesData.emit({services: servicesObj});
+    this.homeService.sendServices(servicesObj);
+    this.router.navigate(['services']);
   }
 
   clearSearchForm() {

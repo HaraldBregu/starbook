@@ -2,7 +2,8 @@ import { Component, ViewChild, AfterViewInit, OnInit, OnDestroy } from '@angular
 import { AngularMasonry } from 'angular2-masonry';
 import { HomeService } from './home.service';
 import { NavigationService } from '../shared/navigation.service';
-import { Subscription }   from 'rxjs/Subscription';
+// import { Subscription }   from 'rxjs/Subscription';
+import { Router, Route, ActivatedRoute, Params } from '@angular/router';
 
 // export interface IServiceCategoryList {
 //   _id: string;
@@ -13,15 +14,15 @@ import { Subscription }   from 'rxjs/Subscription';
 //   lang: string;
 //   products: IServiceCategory[];
 // }
-export interface IServiceCategory {
-  _id: string;
-  title: string;
-  items: IService[];
-}
-export interface IService {
-  name: string;
-  selected: boolean;
-}
+// export interface IServiceCategory {
+//   _id: string;
+//   title: string;
+//   items: IService[];
+// }
+// export interface IService {
+//   name: string;
+//   selected: boolean;
+// }
 
 export interface IServiceFormItem {
   title: string;
@@ -66,11 +67,11 @@ export class HomeComponent implements AfterViewInit, OnInit, OnDestroy {
   public orderIsFull = false;
   public SWIPE_ACTION = { LEFT: 'swipeleft', RIGHT: 'swiperight' };
   public delta: number = -15;
-  subscription: Subscription;
+  // subscription: Subscription;
 
   @ViewChild(AngularMasonry) masonry: AngularMasonry;
 
-  constructor(private homeService: HomeService, private navigationService: NavigationService) {}
+  constructor(private homeService: HomeService, private navigationService: NavigationService, private router: Router, private route: ActivatedRoute) {}
 
   renderPage(services: IServices) {
     this.isServicesView = true;
@@ -182,6 +183,16 @@ export class HomeComponent implements AfterViewInit, OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    this.route.url.subscribe((url) => {
+      if (0 in url) {
+        let services = this.homeService.getServicesObject();
+        if (services) {
+          this.renderPage(services);
+        } else {
+          this.router.navigateByUrl('/');
+        }
+      }
+    });
     // this.homeService.getCategories()
     //   .then((data) => {
     //     this.parseServiceData(data.result);
@@ -198,7 +209,7 @@ export class HomeComponent implements AfterViewInit, OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.subscription.unsubscribe();
+    // this.subscription.unsubscribe();
   }
 
   // parseServiceData(data) {

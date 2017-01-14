@@ -12,6 +12,10 @@ const routes: Routes = [
     component: HomeComponent
   },
   {
+    path: 'services',
+    component: HomeComponent
+  },
+  {
     path: 'orders',
     component: OrdersComponent
   },

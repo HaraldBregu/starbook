@@ -34,7 +34,7 @@
   <div class="container">
     <div class="row">
       <div class="col-xl-12 landing-services">
-        <div class="services-card" *ngFor="let service of services">
+        <div class="services-card" *ngFor="let service of services" (click)="selectResult(service)">
           <div class="service-container">
             <div class="content">
               <div class="shadow"></div>
