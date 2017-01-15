@@ -35,7 +35,7 @@ export class OrderComponent implements OnInit, OnDestroy {
   public isAddressDirty = false;
   public Order = {
     service_id: '',
-    delivery_details: '',
+    delivery_details: [],
     delivery_description: '',
     applicant_fullname: 'none',
     applicant_email: 'none',
@@ -185,18 +185,19 @@ export class OrderComponent implements OnInit, OnDestroy {
       let month = correctMonth > 9 ? correctMonth : '0' + correctMonth;
       this.Order.delivery_date = date.getFullYear() + '-' + month + '-' + day + 'T' + this.Order.time + ':00.000Z';
       this.Order.service_id = this.orderData.service_id;
+      this.Order.delivery_details = [{
+        title: this.orderData.service,
+        amount: this.orderData.price.amount,
+        type: 'service'
+      }];
       this.orderData.services.forEach((orderCategory) => {
-        this.Order.delivery_details += orderCategory.name + ': ';
-        let categoryItemsIndex = 0;
         orderCategory.items.forEach((orderItems) => {
-          if (categoryItemsIndex === 0) {
-            this.Order.delivery_details += orderItems.name;
-          } else {
-            this.Order.delivery_details += ', ' + orderItems.name;
-          }
-          categoryItemsIndex++;
+          this.Order.delivery_details.push({
+            title: orderCategory.name + ' - ' + orderItems.name,
+            amount: orderItems.price.amount,
+            type: 'item'
+          });
         });
-        this.Order.delivery_details += '||';
       });
 
       // this.Order.street = this.selectedAddress.street;
@@ -213,7 +214,7 @@ export class OrderComponent implements OnInit, OnDestroy {
 
       this.orderService.saveOrder(this.Order)
         .then((status) => {
-          this.Order.delivery_details = '';
+          this.Order.delivery_details = [];
           this.Order.delivery_address = '';
           this.Order.delivery_description = '';
           this.Order.date = null;
