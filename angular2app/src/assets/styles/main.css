@@ -2856,7 +2856,7 @@ app-home {
 .form-control {
   height: 30px;
   color: #565656;
-  font-size: 14px;
+  font-size: 15px;
   font-family: HelveticaNeue, sans-serif;
   letter-spacing: 0.1px;
   padding: 7px 10px;
@@ -2868,7 +2868,7 @@ app-home {
   position: relative;
   padding: 7px 11px 7px 37px !important;
   box-shadow: none;
-  border-radius: 3px; }
+  border-radius: 0px; }
 
 .input-group .form-control .ui-autocomplete-input {
   position: absolute;
@@ -3105,7 +3105,7 @@ textarea.form-control {
   width: 204px;
   background-color: #ffffff;
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.25);
-  font-size: 13px;
+  font-size: 15px;
   color: #4A4A4A;
   font-family: HelveticaNeue, sans-serif;
   font-weight: 400;
@@ -3222,7 +3222,7 @@ textarea.form-control {
   left: 0;
   background-color: #ffffff;
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.25);
-  font-size: 13px;
+  font-size: 15px;
   color: #4A4A4A;
   font-family: HelveticaNeue, sans-serif;
   font-weight: 400;
@@ -3243,7 +3243,7 @@ textarea.form-control {
   display: block;
   color: #DB4F4F;
   font-family: HelveticaNeue, sans-serif;
-  font-size: 13px;
+  font-size: 15px;
   padding: 6px 11px 0 11px; }
 
 .isError .form-control {
