@@ -2693,7 +2693,7 @@ app-home {
   background-color: #FCFCFC;
   border: 1px solid #DCDCDC;
   margin: 0 8px 20px 9px;
-  border-radius: 3px; }
+  border-radius: 1px; }
 
 .services-block .header {
   font-family: HelveticaNeue-Medium, sans-serif;
@@ -2798,7 +2798,7 @@ app-home {
   height: auto;
   background-color: #FCFCFC;
   border: 1px solid #DCDCDC;
-  border-radius: 3px;
+  border-radius: 1px;
   padding: 62px 16px 0 16px; }
 
 .sidebar-container .add-order-form {
@@ -2860,14 +2860,15 @@ app-home {
   font-family: HelveticaNeue, sans-serif;
   letter-spacing: 0.1px;
   padding: 7px 10px;
-  border-radius: 0;
+  border-radius: 3px;
   background-color: #FFFFFF;
   border: 1px solid #DCDCDC; }
 
 .input-group .form-control {
   position: relative;
   padding: 7px 11px 7px 37px !important;
-  box-shadow: none; }
+  box-shadow: none;
+  border-radius: 3px; }
 
 .input-group .form-control .ui-autocomplete-input {
   position: absolute;
@@ -2878,7 +2879,7 @@ app-home {
   top: 0;
   left: 0;
   color: #565656;
-  font-size: 14px;
+  font-size: 15px;
   font-family: HelveticaNeue, sans-serif;
   letter-spacing: 0.1px;
   outline: none; }
@@ -2988,7 +2989,7 @@ textarea.form-control {
   padding: 14px 0 21px 13px;
   color: #212121;
   font-family: HelveticaNeue-Bold, sans-serif;
-  font-size: 15px;
+  font-size: 17px;
   font-weight: 700;
   letter-spacing: 0.1px;
   border-bottom: 1px solid #DCDCDC; }
@@ -3087,10 +3088,10 @@ textarea.form-control {
   width: 100%;
   height: 30px;
   color: #565656;
-  font-size: 14px;
+  font-size: 15px;
   font-family: HelveticaNeue, sans-serif;
   letter-spacing: 0.1px;
-  border-radius: 0;
+  border-radius: 3px;
   border: none;
   background-color: transparent;
   padding: 7px 11px 7px 37px !important;
