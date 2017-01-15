@@ -40,8 +40,8 @@ export class OrderService {
   saveOrder(orderData) {
     return this.http.post(this.api + 'orders', {
       service_id: orderData.service_id,
-      delivery_description: orderData.delivery_description,
-      delivery_details: orderData.delivery_details,
+      description: orderData.delivery_description,
+      details: orderData.delivery_details,
       date: orderData.delivery_date,
       address: {
         street: orderData.street,

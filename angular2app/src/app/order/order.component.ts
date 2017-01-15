@@ -18,6 +18,7 @@ export class OrderComponent implements OnInit, OnDestroy {
   public months: {};
   public timePickerIsShow = false;
   public addresses = [];
+  public address = '';
   public selectedAddress: IAddress = {
     street: '',
     street_number: null,
@@ -50,6 +51,7 @@ export class OrderComponent implements OnInit, OnDestroy {
     province: '',
     country: '',
     country_code: '',
+    formattedAddress: '',
     payment: {amount: 0, currency: ''}
   };
   public minDate = new Date();
@@ -127,17 +129,46 @@ export class OrderComponent implements OnInit, OnDestroy {
 
   showConfirmation() {
     this.submitOrder = true;
-    if (this.Order.date && this.orderIsFull && this.isAddressFull) {
-      let date = new Date(this.Order.date);
-      let day = date.getDate() > 9 ? date.getDate() : '0' + date.getDate();
-      let orderInformation = {
-        date: day + ' ' + this.it.monthNames[date.getMonth()] + ' ' + date.getFullYear(),
-        time: this.Order.time,
-        address: this.Order.delivery_address,
-        description: this.Order.delivery_description
-      };
-      this.popupsService.activate({type: 'confirmNewOrder', data: {orderData: this.orderData, information: orderInformation}});
-    }
+    this.isAddressDirty = true;
+    this.Order.street_number = '';
+    this.Order.postal_code = '';
+    this.Order.country_code = '';
+
+    this.orderService.getAddresses(this.address)
+        .then((address: IAddress[]) => {
+          if (0 in address) {
+            this.Order.street = address[0].street;
+            this.Order.street_number = address[0].street_number;
+            this.Order.city = address[0].city;
+            this.Order.postal_code = address[0].postal_code;
+            this.Order.province = address[0].province;
+            this.Order.country = address[0].country;
+            this.Order.country_code = address[0].country_code;
+            this.Order.formattedAddress = address[0].formattedAddress;
+            this.address = address[0].formattedAddress;
+
+            if (this.Order.street_number !== '' && this.Order.postal_code !== '' && this.Order.country_code !== '') {
+              this.isAddressFull = true;
+            } else {
+              this.isAddressFull = false;
+            }
+          }
+          if (this.Order.date && this.orderIsFull && this.isAddressFull) {
+            let date = new Date(this.Order.date);
+            let day = date.getDate() > 9 ? date.getDate() : '0' + date.getDate();
+            let orderInformation = {
+              date: day + ' ' + this.it.monthNames[date.getMonth()] + ' ' + date.getFullYear(),
+              time: this.Order.time,
+              address: this.Order.formattedAddress,
+              description: this.Order.delivery_description
+            };
+            this.popupsService.activate({type: 'confirmNewOrder', data: {orderData: this.orderData, information: orderInformation}});
+          }
+        })
+        .catch((error) => {
+
+        });
+
   }
 
   createOrder() {
@@ -163,13 +194,13 @@ export class OrderComponent implements OnInit, OnDestroy {
         this.Order.delivery_details += '||';
       });
 
-      this.Order.street = this.selectedAddress.street;
-      this.Order.street_number = this.selectedAddress.street_number;
-      this.Order.city = this.selectedAddress.city;
-      this.Order.postal_code = this.selectedAddress.postal_code;
-      this.Order.province = this.selectedAddress.province;
-      this.Order.country = this.selectedAddress.country;
-      this.Order.country_code = this.selectedAddress.country_code;
+      // this.Order.street = this.selectedAddress.street;
+      // this.Order.street_number = this.selectedAddress.street_number;
+      // this.Order.city = this.selectedAddress.city;
+      // this.Order.postal_code = this.selectedAddress.postal_code;
+      // this.Order.province = this.selectedAddress.province;
+      // this.Order.country = this.selectedAddress.country;
+      // this.Order.country_code = this.selectedAddress.country_code;
       this.Order.payment = {
         amount: this.orderData.totalPrice,
         currency: this.orderData.price.currency
@@ -183,6 +214,11 @@ export class OrderComponent implements OnInit, OnDestroy {
           this.Order.date = null;
           this.Order.time = '';
           this.Order.delivery_date = '';
+          this.Order.street_number = '';
+          this.Order.postal_code = '';
+          this.Order.country_code = '';
+          this.Order.formattedAddress = '';
+          this.address = '';
           this.submitOrder = false;
           this.popupsService.activate({type: 'confirmNewOrderEnd'});
           this.orderCreated.emit({status: true});

@@ -48,8 +48,9 @@
         <div class="form-group" [ngClass]="{isError: !isAddressFull && submitOrder}">
           <div class="input-group date">
             <span class="fa fa-map-marker"></span>
-            <p-autoComplete id="luogo" class="form-control text-small" placeholder="Indirizzo" [ngClass]="{'isError':isAddressFull === false && isAddressDirty === true}" [(ngModel)]="Order.delivery_address" [ngModelOptions]="{standalone: true}" [suggestions]="addresses" field="formattedAddress" (completeMethod)="getAddresses($event)" (onSelect)="selectAddress($event)">
-            </p-autoComplete>
+            <input type="text" class="form-control" placeholder="Indirizzo" [ngClass]="{'isError':isAddressFull === false && isAddressDirty === true}" [(ngModel)]="address" [ngModelOptions]="{standalone: true}">
+            <!--<p-autoComplete id="luogo" class="form-control text-small" placeholder="Indirizzo" [ngClass]="{'isError':isAddressFull === false && isAddressDirty === true}" [(ngModel)]="Order.delivery_address" [ngModelOptions]="{standalone: true}" [suggestions]="addresses" field="formattedAddress" (completeMethod)="getAddresses($event)" (onSelect)="selectAddress($event)">-->
+            <!--</p-autoComplete>-->
           </div>
           <div class="error-block" *ngIf="!isAddressFull && isAddressDirty">Inserisci l'indirizzo esatto</div>
         </div>
