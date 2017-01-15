@@ -7,7 +7,7 @@ $sidebar-shadow: 0px 0px 0px 0px rgba(0,0,0,0.50);
 $sidebar-border-style: 1px solid #DCDCDC;
 $sidebar-block-border: 1px solid #DCDCDC;
 $sidebar-message-text-color: #9B9B9B;
-$sidebar-message-text-size: 14px;
+$sidebar-message-text-size: 15px;
 $sidebar-message-letter-spacing: 0.08px;
 
 // Form style
@@ -55,7 +55,7 @@ $timepicker-hover-text-color: #ffffff;
 // Datepicker style
 $datepicker-background-color: #ffffff;
 $datepicker-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.25);
-$datepicker-font-size: 13px;
+$datepicker-font-size: 15px;
 $datepicker-text-color: #4A4A4A;
 $datepicker-disabled-text-color: #969696;
 $datepicker-background-primary: rgba(50, 73, 119, 0.8);
@@ -80,7 +80,6 @@ $footer-links-text-letter-spacing: 0.08px;
   display: block;
   width: 388px;
   height: auto;
-  max-height: 100vh;
   position: fixed;
   top: 0;
   right: 50%;
@@ -175,6 +174,7 @@ $footer-links-text-letter-spacing: 0.08px;
   position: relative;
   padding: 7px 11px 7px 37px !important;
   box-shadow: none;
+  border-radius: 0px;
 }
 .input-group .form-control .ui-autocomplete-input {
   position: absolute;
@@ -185,7 +185,7 @@ $footer-links-text-letter-spacing: 0.08px;
   top: 0;
   left: 0;
   color: $form-input-text-color;
-  font-size: 14px;
+  font-size: 15px;
   font-family: $font-name;
   letter-spacing: $form-input-text-letter-spacing;
   outline: none;
@@ -294,7 +294,7 @@ textarea.form-control {
   padding: 11px 0 12px 16px;
   color: $order-block-header-color;
   font-family: $font-name-bold;
-  font-size: 15px;
+  font-size: 17px;
   font-weight: 700;
   letter-spacing: $order-block-header-letter-spacing;
   border-bottom: $order-block-border;
@@ -396,7 +396,7 @@ textarea.form-control {
   font-size: 15px;
   font-family: $font-name;
   letter-spacing: $form-input-text-letter-spacing;
-  border-radius: 0;
+  border-radius: 3px;
   border: none;
   background-color: transparent;
   padding: 7px 11px 7px 37px !important;
