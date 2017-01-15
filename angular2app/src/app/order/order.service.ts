@@ -42,8 +42,8 @@ export class OrderService {
       service_id: orderData.service_id,
       delivery_description: orderData.delivery_description,
       delivery_details: orderData.delivery_details,
-      delivery_date: orderData.delivery_date,
-      delivery_address: {
+      date: orderData.delivery_date,
+      address: {
         street: orderData.street,
         street_number: orderData.street_number,
         city: orderData.city,

@@ -1,11 +1,11 @@
 <div class="col-sm-3 col-md-2 sidebar">
-  <form class="sidebar-container" #orderForm="ngForm">
+  <form class="sidebar-container" #orderForm="ngForm" (window:resize)="onResize()">
     <div class="sidebar-block">
       <h2>Dettagli dell’ordine</h2>
       <!-- <div class="order-container" *ngIf="!orderIsFull">
         <div class="order-list-empty"><strong>Inserisci</strong> le informazioni necessari del appuntamento e invia la richiesta.</div>
       </div> -->
-      <div class="order-container selected-orders">
+      <div class="order-container selected-orders" [ngStyle]="{'max-height': maxOrderBlockSize}">
         <div class="category-group category">
           <span>{{ orderData.service }} <i>{{ orderData.price.symbol_currency }}{{ orderData.price.amount / 100 }}</i></span>
         </div>

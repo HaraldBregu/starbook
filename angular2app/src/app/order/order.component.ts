@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, OnDestroy } from '@angular/core';
+import { Component, Input, OnInit, OnDestroy, Output, EventEmitter } from '@angular/core';
 import { OrderService, IAddress } from './order.service';
 import { PopupsService } from '../popups/popups.service';
 import { Subscription }   from 'rxjs/Subscription';
@@ -11,6 +11,7 @@ export class OrderComponent implements OnInit, OnDestroy {
   @Input() orderData;
   @Input('orderIsFull') orderIsFull;
   @Input('activeServiceCategoryType') activeServiceCategoryType;
+  @Output() orderCreated = new EventEmitter();
 
   public it: any;
   public timePicker = [];
@@ -55,6 +56,7 @@ export class OrderComponent implements OnInit, OnDestroy {
   public submitOrder = false;
   public orderForm: any;
   public isMobileCalendar: any = false;
+  public maxOrderBlockSize: number|string = 'auto';
   subscription: Subscription;
 
   constructor(private orderService: OrderService, private popupsService: PopupsService) {
@@ -183,6 +185,7 @@ export class OrderComponent implements OnInit, OnDestroy {
           this.Order.delivery_date = '';
           this.submitOrder = false;
           this.popupsService.activate({type: 'confirmNewOrderEnd'});
+          this.orderCreated.emit({status: true});
         })
         .catch((error) => {
           console.log(error);
@@ -210,8 +213,20 @@ export class OrderComponent implements OnInit, OnDestroy {
     });
     if (document.querySelector('body').clientWidth > 480) {
       this.isMobileCalendar = false;
+      this.maxOrderBlockSize = document.body.clientHeight - 450 + 'px';
     } else {
       this.isMobileCalendar = true;
+      this.maxOrderBlockSize = 'auto';
+    }
+  }
+
+  onResize() {
+    if (document.querySelector('body').clientWidth > 480) {
+      this.isMobileCalendar = false;
+      this.maxOrderBlockSize = document.body.clientHeight - 450 + 'px';
+    } else {
+      this.isMobileCalendar = true;
+      this.maxOrderBlockSize = 'auto';
     }
   }
 

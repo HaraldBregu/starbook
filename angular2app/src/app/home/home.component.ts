@@ -383,4 +383,12 @@ export class HomeComponent implements AfterViewInit, OnInit, OnDestroy {
       }
     }
   }
+
+  orderCreated(event) {
+    this.servicesData.forEach((service) => {
+      this.uncheckAllItems(service.title);
+    });
+    this.orderData.services = [];
+    this.orderData.totalPrice = this.orderData.price.amount;
+  }
 }

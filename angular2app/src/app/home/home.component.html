@@ -25,7 +25,7 @@
         </masonry>
       </div>
 
-      <app-order [orderData]="orderData" [orderIsFull]="orderIsFull" [activeServiceCategoryType]="activeServiceCategoryType"></app-order>
+      <app-order [orderData]="orderData" [orderIsFull]="orderIsFull" [activeServiceCategoryType]="activeServiceCategoryType" (orderCreated)="orderCreated($event.status)"></app-order>
     </div>
   </div>
 </div>
