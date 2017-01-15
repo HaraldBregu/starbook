@@ -2,9 +2,9 @@
 $font-name-italic: HelveticaNeue-Italic, sans-serif;
 $font-name-bold: HelveticaNeue-Bold, sans-serif;
 // Sidebar styles
-$sidebar-background-color: #ffffff;
+$sidebar-background-color: #FCFCFC;
 $sidebar-shadow: 0px 0px 0px 0px rgba(0,0,0,0.50);
-$sidebar-border-style: 1px solid #D2D2D2;
+$sidebar-border-style: 1px solid #DCDCDC;
 $sidebar-block-border: 1px solid #DCDCDC;
 $sidebar-message-text-color: #9B9B9B;
 $sidebar-message-text-size: 14px;
@@ -33,10 +33,12 @@ $order-block-header-letter-spacing: 0.1px;
 $order-block-border: 1px solid #DCDCDC;
 $order-block-category-background-color: #FFFFFF;
 $order-block-category-border-color: rgba(151, 151, 151, 0.4);
-$order-block-category-header-color: #000000;
+$order-block-category-header-color: #212121;
 $order-block-category-letter-spacing: 0.09px;
-$order-block-text-color: #4A4A4A;
-$order-block-text-letter-spacing: 0.09px;
+$order-block-text-size: 15px;
+$order-block-text-total-size: 16px;
+$order-block-text-color: #212121;
+$order-block-text-letter-spacing: 0.1px;
 $order-block-alert-background: #FEEFBC;
 $order-block-alert-border-style: 1px solid #FFBD00;
 $order-block-alert-text-color: #BC892D;
@@ -77,12 +79,12 @@ $footer-links-text-letter-spacing: 0.08px;
 .container-starbook .sidebar {
   display: block;
   width: 388px;
-  height: 100vh;
+  height: auto;
   position: fixed;
   top: 0;
   right: 50%;
   bottom: 0;
-  padding: 88px 0 36px 0;
+  padding: 59px 0 36px 0;
   margin-right: -720px;
 }
 .sidebar-container {
@@ -90,30 +92,31 @@ $footer-links-text-letter-spacing: 0.08px;
   float: left;
   position: relative;
   width: 100%;
-  height: 100%;
+  height: auto;
   padding-left: 17.5px;
   padding-right: 20.5px;
-  overflow-y: scroll;
+  overflow-y: visible;
 }
 .sidebar-container .sidebar-block {
   display: block;
   float: left;
   width: 100%;
-  height: 100%;
+  height: auto;
   background-color: $sidebar-background-color;
   border: $sidebar-block-border;
   border-radius: 3px;
-  padding: 62px 16px 265px 16px;
+  padding: 62px 16px 0 16px;
 }
 .sidebar-container .add-order-form {
-  position: fixed;
-  right: 50%;
+  position: relative;
+  right: 0;
   bottom: 0;
   display: block;
   float: left;
   width: 318px;
   padding-top: 20px;
-  margin-right: -684px;
+  margin-right: 0;
+  margin-bottom: -37px;
 }
 .footer-links {
   display: block;
@@ -147,7 +150,7 @@ $footer-links-text-letter-spacing: 0.08px;
   font-size: $footer-links-font-size;
 }
 .add-order-form .form-group {
-  margin-bottom: 12px;
+  margin-bottom: 18px;
 }
 .form-group label {
   color: $form-input-text-color;
@@ -244,6 +247,9 @@ textarea.form-control {
   border: $button-warning-border;
   outline: none;
 }
+.add-order-form .form-group .btn-warning {
+  margin-top: -2px;
+}
 .form-group .btn-success {
   background-color: $button-success-background-color;
   color: $button-success-text-color;
@@ -280,7 +286,7 @@ textarea.form-control {
 .sidebar-block h2 {
   display: block;
   position: fixed;
-  top: 90px;
+  top: 61px;
   right: 50%;
   margin-right: -700px;
   width: 350px;
@@ -296,23 +302,42 @@ textarea.form-control {
 .order-container .category-group {
   display: block;
   width: 100%;
-  margin-bottom: 8px;
-}
-.order-container .category-group strong {
-  display: inline;
-  color: $order-block-category-header-color;
-  letter-spacing: $order-block-category-letter-spacing;
-  font-family: $font-name;
-  font-size: 14px;
-  font-weight: 600;
+  margin-bottom: 10px;
 }
 .order-container .category-group span {
-  display: inline;
-  color: $order-block-text-color;
+  display: block;
+  position: relative;
+  padding-right: 60px;
+  width: 100%;
+  color: $order-block-category-header-color;
   letter-spacing: $order-block-text-letter-spacing;
   font-family: $font-name;
-  font-size: 14px;
-  font-weight: 400;
+  font-size: $order-block-text-size;
+  text-align: left;
+}
+.order-container .category-group span i {
+  display: block;
+  position: absolute;
+  top: 0;
+  right: 0;
+  text-align: right;
+  color: $order-block-category-header-color;
+  letter-spacing: $order-block-text-letter-spacing;
+  font-family: $font-name-medium;
+  font-size: $order-block-text-size;
+  font-style: normal;
+}
+.order-container .category-group.category span {
+  font-family: $font-name-medium;
+}
+.order-container .category-group.category span i {
+  font-family: $font-name-bold;
+}
+.order-container .category-group.total span {
+  font-family: $font-name-bold;
+}
+.order-container .category-group.total span i {
+  font-family: $font-name-bold;
 }
 .order-container .category-group span:after {
   content: ', ';
@@ -323,12 +348,21 @@ textarea.form-control {
 .form-group {
   position: relative;
 }
+.form-group.calendar-part {
+  float: left;
+  width: 70%;
+  padding-right: 13px;
+}
+.form-group.time-part {
+  float: right;
+  width: 30%;
+}
 .time-picker {
   display: block;
   position: absolute;
   top: 30px;
   left: 0;
-  width: 120px;
+  width: 95px;
   height: 150px;
   overflow-y: scroll;
   padding: 2px 0;
@@ -536,7 +570,7 @@ textarea.form-control {
     margin-right: 0;
   }
   .sidebar-container .add-order-form {
-    right: 35px;
+    right: 0;
     bottom: 0;
     margin-right: 0;
   }

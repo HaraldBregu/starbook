@@ -39,17 +39,23 @@ export class OrderService {
 
   saveOrder(orderData) {
     return this.http.post(this.api + 'orders', {
-      category_type: orderData.category_type,
+      service_id: orderData.service_id,
       delivery_description: orderData.delivery_description,
       delivery_details: orderData.delivery_details,
       delivery_date: orderData.delivery_date,
-      street: orderData.street,
-      street_number: orderData.street_number,
-      city: orderData.city,
-      postal_code: orderData.postal_code,
-      province: orderData.province,
-      country: orderData.country,
-      country_code: orderData.country_code
+      delivery_address: {
+        street: orderData.street,
+        street_number: orderData.street_number,
+        city: orderData.city,
+        postal_code: orderData.postal_code,
+        province: orderData.province,
+        country: orderData.country,
+        country_code: orderData.country_code
+      },
+      payment: {
+        amount: orderData.payment.amount,
+        currency: orderData.payment.currency
+      }
     }, this._makeHeaders())
       .toPromise()
       .then((response) => {

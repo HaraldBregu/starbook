@@ -27,7 +27,7 @@ import { Router, Route, ActivatedRoute, Params } from '@angular/router';
 export interface IServiceFormItem {
   title: string;
   price: {
-    price: number;
+    amount: number;
     currency: string;
     symbol_currency: string;
   }
@@ -44,7 +44,7 @@ export interface IServices {
   title: string;
   description: string;
   price: {
-    price: number;
+    amount: number;
     currency: string;
     symbol_currency: string;
   }
@@ -63,7 +63,17 @@ export class HomeComponent implements AfterViewInit, OnInit, OnDestroy {
   // public activeServiceCategory: boolean|string = false;
   // public activeServiceCategoryType: boolean|number = false;
   public model: any;
-  public orderData;
+  public orderData = {
+    service_id: '',
+    price: {
+      amount:0,
+      currency: '',
+      symbol_currency: ''
+    },
+    service: '',
+    services: [],
+    totalPrice: 0
+  };
   public orderIsFull = false;
   public SWIPE_ACTION = { LEFT: 'swipeleft', RIGHT: 'swiperight' };
   public delta: number = -15;
@@ -76,6 +86,13 @@ export class HomeComponent implements AfterViewInit, OnInit, OnDestroy {
   renderPage(services: IServices) {
     this.isServicesView = true;
     this.servicesData = [];
+    this.orderData = {
+      service_id: services._id,
+      price: services.price,
+      service: services.title,
+      services: [],
+      totalPrice: services.price.amount
+    };
     services.service_forms.forEach((form) => {
       let serviceForm: IServiceForm = {
         title: form.title,
@@ -108,6 +125,7 @@ export class HomeComponent implements AfterViewInit, OnInit, OnDestroy {
       }
       serviceId++;
     });
+    this.calculateOrder();
   }
 
   uncheckAllItems(serviceName) {
@@ -122,6 +140,46 @@ export class HomeComponent implements AfterViewInit, OnInit, OnDestroy {
       }
       serviceId++;
     });
+  }
+
+  calculateOrder() {
+    this.orderData.services = [];
+    this.orderData.totalPrice = this.orderData.price.amount;
+    let currentOrderState = [];
+    let serviceId = 0;
+    this.servicesData.forEach((service) => {
+      let itemId = 0;
+      service.list_items.forEach((item) => {
+        if (item.selected) {
+          this.orderData.totalPrice = this.orderData.totalPrice + item.price.amount;
+          if (serviceId in currentOrderState) {
+            currentOrderState[serviceId].items.push({name: item.title, price: item.price});
+          } else {
+            currentOrderState[serviceId] = {
+              name: service.title,
+              items: [{
+                name: item.title,
+                price: item.price
+              }]
+            };
+          }
+        }
+        itemId++;
+      });
+      serviceId++;
+    });
+
+    currentOrderState.forEach((service) => {
+      if (service.name) {
+        this.orderData.services.push(service);
+      }
+    });
+
+    if (currentOrderState.length > 0) {
+      this.orderIsFull = true;
+    } else {
+      this.orderIsFull = false;
+    }
   }
 
   // toggleService(categoryListId: string, categoryId: string, serviceName: string) {

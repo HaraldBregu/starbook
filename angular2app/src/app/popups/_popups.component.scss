@@ -44,6 +44,19 @@ $popup-finish-text-letter-spacing: 0.1px;
 $popup-finish-close-background: '/assets/images/cancel.png';
 $popup-order-confirm-gray-background: #EFF1F3;
 $tooltip-font-size: 12px;
+$popup-order-confirm-item-color: #212121;
+$popup-order-confirm-item-text-size: 15px;
+$popup-order-confirm-item-total-text-size: 16px;
+$popup-order-confirm-item-letter-spacing: 0.1px;
+$popup-order-confirm-information-color: #000000;
+$popup-order-confirm-information-text-size: 15px;
+$popup-order-confirm-information-letter-spacing: 0.1px;
+$popup-order-confirm-button-notice-color: #000000;
+$popup-order-confirm-button-notice-text-size: 10px;
+$popup-order-confirm-button-notice-letter-spacing: 0.06px;
+$popup-order-confirm-end-color: #212121;
+$popup-order-confirm-end-text-size: 16px;
+$popup-order-confirm-end-letter-spacing: 0.1px;
 
 // Alert styles
 $alert-border-style: 1px solid #C40000;
@@ -191,6 +204,15 @@ $action-form-description-letter-spacing: 0.08px;
   background: -moz-linear-gradient(top,  $popup-btn-gradient-color-yellow-light 0%, $popup-btn-gradient-color-yellow-dark 100%);
   background: -webkit-linear-gradient(top,  $popup-btn-gradient-color-yellow-light 0%,$popup-btn-gradient-color-yellow-dark 100%);
   background: linear-gradient(to bottom,  $popup-btn-gradient-color-yellow-light 0%,$popup-btn-gradient-color-yellow-dark 100%);
+}
+.popup .form-group .btn.btn-warning.new-order-btn {
+  position: relative;
+}
+.popup .form-group .btn.btn-warning.new-order-btn .fa.fa-lock {
+  position: absolute;
+  top: 11px;
+  left: 19px;
+  font-size: 19px;
 }
 .recovery-form .form-group .btn.btn-warning {
   margin-top: 10px;
@@ -382,34 +404,92 @@ $action-form-description-letter-spacing: 0.08px;
   margin-top: -11px;
   margin-bottom: 27px;
 }
-.confirm-order-form .orders-list {
+.confirm-order-form p.confirm-end {
   display: block;
   font-family: $font-name;
-  color: $popup-text-color;
-  font-size: $popup-text-size;
-  letter-spacing: $popup-text-letter-spacing;
-  font-weight: $popup-text-font-weight;
+  color: $popup-order-confirm-end-color;
+  font-size: $popup-order-confirm-end-text-size;
+  letter-spacing: $popup-order-confirm-end-letter-spacing;
+  font-weight: normal;
+  margin-top: 3px;
+  margin-bottom: 29px;
+}
+.confirm-order-form .orders-list {
+  display: block;
   margin-top: -4px;
-  margin-bottom: 33px;
   max-height: 300px;
   overflow-y: scroll;
 }
-.confirm-order-form .orders-list span {
+.confirm-order-form .orders-list .order-item {
   display: block;
   width: 100%;
-  font-family: $font-name;
-  color: $popup-text-color;
-  font-size: $popup-text-size;
-  letter-spacing: $popup-text-letter-spacing;
-  font-weight: $popup-text-font-weight;
-  margin-bottom: 8px;
+  margin-bottom: 10px;
 }
-.confirm-order-form .orders-list span strong {
-  font-family: $font-name-medium;
-  color: $general-text-color;
-  font-size: $popup-text-size;
-  letter-spacing: $popup-text-letter-spacing;
+.confirm-order-form .orders-list .order-item span {
+  display: block;
+  position: relative;
+  width: 100%;
+  padding-right: 50px;
+  font-family: $font-name;
+  color: $popup-order-confirm-item-color;
+  font-size: $popup-order-confirm-item-text-size;
+  letter-spacing: $popup-order-confirm-item-letter-spacing;
   font-weight: normal;
+}
+.confirm-order-form .orders-list .order-item span i {
+  display: block;
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-family: $font-name-medium;
+  color: $popup-order-confirm-item-color;
+  font-size: $popup-order-confirm-item-text-size;
+  letter-spacing: $popup-order-confirm-item-letter-spacing;
+  font-weight: normal;
+  font-style: normal;
+}
+.confirm-order-form .orders-list .order-item span.service-item {
+  font-family: $font-name-medium;
+}
+.confirm-order-form .orders-list .order-item span.service-item i {
+  font-family: $font-name-bold;
+}
+.confirm-order-form .orders-list .order-item span.total-item {
+  font-family: $font-name-bold;
+  font-size: $popup-order-confirm-item-total-text-size;
+}
+.confirm-order-form .orders-list .order-item span.total-item i {
+  font-family: $font-name-bold;
+  font-size: $popup-order-confirm-item-total-text-size;
+}
+.confirm-order-form .information-list {
+  display: block;
+  width: 100%;
+  margin-top: 16px;
+  margin-bottom: -3px;
+}
+.confirm-order-form .information-list .information-item {
+  display: block;
+  width: 100%;
+  margin-bottom: 1px;
+  color: $popup-order-confirm-information-color;
+  font-family: $font-name;
+  font-size: $popup-order-confirm-information-text-size;
+  letter-spacing: $popup-order-confirm-information-letter-spacing;
+}
+.confirm-order-form .information-list .information-item span {
+  font-family: $font-name-bold;
+}
+.confirm-button-notice {
+  display: block;
+  width: 100%;
+  text-align: center;
+  color: $popup-order-confirm-button-notice-color;
+  font-family: $font-name;
+  font-size: $popup-order-confirm-button-notice-text-size;
+  letter-spacing: $popup-order-confirm-button-notice-letter-spacing;
+  margin-top: 4px;
+  margin-bottom: 4px;
 }
 .popup .confirm-order-form .form-group .btn.btn-secondary {
   background-color: $popup-order-confirm-gray-background;

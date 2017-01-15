@@ -32,7 +32,7 @@ export class OrderComponent implements OnInit, OnDestroy {
   public isAddressFull = false;
   public isAddressDirty = false;
   public Order = {
-    category_type: 0,
+    service_id: '',
     delivery_details: '',
     delivery_description: '',
     applicant_fullname: 'none',
@@ -48,7 +48,8 @@ export class OrderComponent implements OnInit, OnDestroy {
     postal_code: null,
     province: '',
     country: '',
-    country_code: ''
+    country_code: '',
+    payment: {amount: 0, currency: ''}
   };
   public minDate = new Date();
   public submitOrder = false;
@@ -84,7 +85,6 @@ export class OrderComponent implements OnInit, OnDestroy {
 
   toggleTimepicker() {
     this.timePickerIsShow = !this.timePickerIsShow;
-    console.log(123);
   }
 
   openTimepicker() {
@@ -126,7 +126,15 @@ export class OrderComponent implements OnInit, OnDestroy {
   showConfirmation() {
     this.submitOrder = true;
     if (this.Order.date && this.orderIsFull && this.isAddressFull) {
-      this.popupsService.activate({type: 'confirmNewOrder', data: {orderData: this.orderData}});
+      let date = new Date(this.Order.date);
+      let day = date.getDate() > 9 ? date.getDate() : '0' + date.getDate();
+      let orderInformation = {
+        date: day + ' ' + this.it.monthNames[date.getMonth()] + ' ' + date.getFullYear(),
+        time: this.Order.time,
+        address: this.Order.delivery_address,
+        description: this.Order.delivery_description
+      };
+      this.popupsService.activate({type: 'confirmNewOrder', data: {orderData: this.orderData, information: orderInformation}});
     }
   }
 
@@ -138,8 +146,8 @@ export class OrderComponent implements OnInit, OnDestroy {
       let correctMonth = 1 + date.getMonth();
       let month = correctMonth > 9 ? correctMonth : '0' + correctMonth;
       this.Order.delivery_date = date.getFullYear() + '-' + month + '-' + day + 'T' + this.Order.time + ':00.000Z';
-      this.Order.category_type = this.activeServiceCategoryType;
-      this.orderData.forEach((orderCategory) => {
+      this.Order.service_id = this.orderData.service_id;
+      this.orderData.services.forEach((orderCategory) => {
         this.Order.delivery_details += orderCategory.name + ': ';
         let categoryItemsIndex = 0;
         orderCategory.items.forEach((orderItems) => {
@@ -160,6 +168,10 @@ export class OrderComponent implements OnInit, OnDestroy {
       this.Order.province = this.selectedAddress.province;
       this.Order.country = this.selectedAddress.country;
       this.Order.country_code = this.selectedAddress.country_code;
+      this.Order.payment = {
+        amount: this.orderData.totalPrice,
+        currency: this.orderData.price.currency
+      };
 
       this.orderService.saveOrder(this.Order)
         .then((status) => {
@@ -170,6 +182,7 @@ export class OrderComponent implements OnInit, OnDestroy {
           this.Order.time = '';
           this.Order.delivery_date = '';
           this.submitOrder = false;
+          this.popupsService.activate({type: 'confirmNewOrderEnd'});
         })
         .catch((error) => {
           console.log(error);

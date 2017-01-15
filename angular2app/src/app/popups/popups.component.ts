@@ -243,6 +243,7 @@ export class PopupsComponent implements OnInit, OnDestroy {
     title: '',
     text: '',
     data: [],
+    information: {},
     button: '',
     type: ''
   };
@@ -286,6 +287,9 @@ export class PopupsComponent implements OnInit, OnDestroy {
     }
     if (type === 'confirmAction') {
       this.confirmActionPopupState = 'active';
+    }
+    if (type === 'confirmOrderEnd') {
+      this.confirmPopupState = 'active';
     }
     this.shadowState = 'active';
     this.activePopup = type;
@@ -820,17 +824,27 @@ export class PopupsComponent implements OnInit, OnDestroy {
           this.shadowState = 'active';
           break;
         case 'confirmNewOrder':
-          this.confirmPopupData.title = 'Anteprima ordine';
-          this.confirmPopupData.data = [];
-          popup.data.orderData.forEach((product) => {
+          this.confirmPopupData.title = 'Dettagli dell’ordine';
+          this.confirmPopupData.data = [{productName: popup.data.orderData.service, itemName: '', price: popup.data.orderData.price.amount, type: 'service'}];
+          popup.data.orderData.services.forEach((product) => {
             product.items.forEach((item) => {
-              this.confirmPopupData.data.push({productName: product.name, itemName: item.name});
+              this.confirmPopupData.data.push({productName: product.name, itemName: item.name, price: item.price.amount, type: 'item'});
             })
           });
-          this.confirmPopupData.button = 'Conferma Ordine';
+          this.confirmPopupData.data.push({productName: 'Totale', itemName: '', price: popup.data.orderData.totalPrice, type: 'total'});
+          this.confirmPopupData.information = popup.data.information;
+          this.confirmPopupData.button = 'Procedi con l’acquisto';
           this.confirmPopupData.type = 'newOrder';
           this.confirmPopupState = 'active';
           this.activePopup = 'confirmOrder';
+          this.shadowState = 'active';
+          break;
+        case 'confirmNewOrderEnd':
+          this.confirmPopupData.title = 'Acquisto effetuato';
+          this.confirmPopupData.text = 'L’ordine e stato prenotato con successo. Un professionista si presenterà nella data e ora stabilita da voi.';
+          this.confirmPopupData.type = 'newOrderEnd';
+          this.confirmPopupState = 'active';
+          this.activePopup = 'confirmOrderEnd';
           this.shadowState = 'active';
           break;
         case 'addPrice':
@@ -940,6 +954,7 @@ export class PopupsComponent implements OnInit, OnDestroy {
         title: '',
         text: '',
         data: [],
+        information: {},
         button: '',
         type: ''
       };
