@@ -233,6 +233,7 @@ export class OrderComponent implements OnInit, OnDestroy {
           console.log(error);
         });
     } else {
+      console.log(userData);
       this.popupsService.activate({type: 'login'});
     }
   }

@@ -3539,22 +3539,46 @@ html, body {
   font-family: HelveticaNeue, sans-serif;
   float: left;
   width: 33.333333% !important;
+  max-width: 354px;
   padding-left: 19px;
-  letter-spacing: 0.09px; }
+  letter-spacing: 0.1px; }
 
 .order-body .order-row.products .item {
   display: block;
+  position: relative;
   width: 100%;
-  font-size: 14px;
+  margin-bottom: 10px;
+  padding-right: 50px;
+  font-size: 15px;
   font-family: HelveticaNeue, sans-serif;
-  font-weight: 400;
-  color: #4A4A4A;
-  letter-spacing: 0.09px; }
+  color: #212121;
+  letter-spacing: 0.1px; }
 
-.order-body .order-row.products .item strong {
+.order-body .order-row.products .item i {
+  display: block;
+  position: absolute;
+  top: 0;
+  right: 0;
+  text-align: right;
+  font-size: 15px;
   font-family: HelveticaNeue-Medium, sans-serif;
-  font-weight: normal;
-  color: #000000; }
+  color: #212121;
+  letter-spacing: 0.1px;
+  font-style: normal; }
+
+.order-body .order-row.products .item.service {
+  font-family: HelveticaNeue-Medium, sans-serif; }
+
+.order-body .order-row.products .item.service i {
+  font-family: HelveticaNeue-Medium, sans-serif; }
+
+.order-body .order-row.products .item.total {
+  font-family: HelveticaNeue-Bold, sans-serif;
+  font-size: 16px; }
+
+.order-body .order-row.products .item.total i {
+  font-family: HelveticaNeue-Bold, sans-serif;
+  font-size: 16px; }
 
 .order-body .order-row.description {
   display: block;
@@ -3563,10 +3587,10 @@ html, body {
   top: 0;
   left: 50%;
   margin-left: -155px;
-  letter-spacing: 0.09px;
+  letter-spacing: 0.1px;
   font-family: HelveticaNeue, sans-serif;
   font-weight: 400;
-  color: #4A4A4A;
+  color: #212121;
   padding-left: 0;
   text-align: left; }
 
@@ -3755,8 +3779,6 @@ html, body {
   left: 50%;
   margin-left: -720px;
   padding: 46px 0 0 0;
-  background-color: #ffffff;
-  border-right: 1px solid #CCCCCC;
   z-index: 10; }
 
 .container-starbook .left-navigate a {
@@ -3764,49 +3786,62 @@ html, body {
   float: left;
   position: relative;
   width: 100%;
-  height: 30px;
-  margin: 5px 0;
+  height: 40px;
+  margin: 5px 0 0 0;
   padding-left: 5px;
   padding-right: 4px;
-  text-decoration: none; }
+  text-decoration: none;
+  border: 1px solid transparent; }
 
 .container-starbook .left-navigate a div {
   display: block;
   position: relative;
   font-family: HelveticaNeue, sans-serif;
   font-weight: 400;
-  padding: 7px 20px;
+  padding: 10px 20px;
   color: #212121;
   font-size: 14px;
   letter-spacing: 0.09px;
   cursor: pointer !important;
   border-radius: 1px;
-  background-color: #ffffff; }
+  background-color: transparent; }
 
 .container-starbook .left-navigate a span {
   display: block;
   position: absolute;
   top: 0;
   left: 0;
-  background-color: #ffffff;
+  background-color: transparent;
   height: 100%;
-  width: 4px; }
+  width: 5px;
+  border-radius: 2px 0 0 2px; }
 
 .container-starbook .left-navigate a:hover div {
-  background-color: #F5F5F5;
-  cursor: pointer !important; }
+  cursor: pointer !important;
+  background-color: transparent; }
+
+.container-starbook .left-navigate a.active {
+  border-top: 1px solid #DDDFE2;
+  border-right: 1px solid #DDDFE2;
+  border-bottom: 1px solid #DDDFE2;
+  background-color: #FFFFFF; }
+
+.container-starbook .left-navigate a:hover {
+  border: 1px solid #DDDFE2;
+  background-color: #FFFFFF; }
 
 .container-starbook .left-navigate a.active div {
-  font-weight: 700;
-  padding: 6px 20px;
-  background-color: #F5F5F5; }
+  font-family: HelveticaNeue-Bold, sans-serif;
+  padding: 10px 5px 10px 20px;
+  background-color: transparent; }
 
 .container-starbook .left-navigate a.active span,
 .container-starbook .left-navigate a.active:hover span {
   display: block;
   position: absolute;
-  top: 0;
+  top: -1px;
   left: 0;
+  height: 39.5px;
   background-color: #324977; }
 
 .orders-container .orders-error {
@@ -3894,7 +3929,15 @@ html, body {
     height: 30px;
     top: 40px !important;
     padding: 0;
-    border-right: none; }
+    border-right: none;
+    background-color: #ffffff; }
+
+  .container-starbook .left-navigate a.active {
+    border-top: none;
+    border-right: none;
+    border-bottom: none;
+    border-left: none;
+    background-color: transparent; }
 
   .container-starbook .orders-container {
     padding: 60px 15px 0; }
@@ -5107,6 +5150,52 @@ html, body {
   font-family: HelveticaNeue, sans-serif;
   font-size: 12px;
   letter-spacing: 0.09px; }
+
+.popup.new-version .popup-spinner {
+  display: block;
+  width: 100%;
+  height: 40px;
+  margin-top: 3px;
+  margin-bottom: 10px;
+  text-align: center; }
+
+.popup.new-version .success-icon {
+  display: block;
+  width: 100%;
+  height: 40px;
+  margin-top: 3px;
+  margin-bottom: 10px;
+  text-align: center; }
+
+.popup.new-version .success-icon span {
+  display: block;
+  width: 40px;
+  height: 40px;
+  margin: 0 auto;
+  background-image: url("/assets/images/success-icon.png");
+  background-repeat: no-repeat;
+  background-size: contain; }
+
+.popup.new-version .header {
+  font-family: HelveticaNeue, sans-serif;
+  font-weight: normal;
+  text-align: center;
+  font-size: 16px;
+  letter-spacing: 0.1px;
+  margin-bottom: 33px; }
+
+.popup.new-version .confirm-order-form p {
+  margin-top: 0;
+  font-family: HelveticaNeue, sans-serif;
+  font-weight: normal;
+  text-align: left;
+  color: #212121;
+  font-size: 12px;
+  letter-spacing: 0.08px;
+  margin-bottom: 13px; }
+
+.popup.new-version .confirm-order-form p.conferma-finish {
+  margin-bottom: 26px; }
 
 @media (max-width: 480px) {
   .popup {

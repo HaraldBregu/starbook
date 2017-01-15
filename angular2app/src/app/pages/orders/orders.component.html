@@ -12,33 +12,33 @@
       </div>
       <div class="order-information" *ngFor="let order of pageData">
         <div class="header">
-          <div class="category-services-state" *ngIf="order.status === 1 && dateCompare(dateFormating('now'), order.delivery_date) && selectTab === 'Ricevuti'">
+          <div class="category-services-state" *ngIf="order.status === 1 && dateCompare(dateFormating('now'), order.date) && selectTab === 'Richieste Dei Clienti'">
             <span class="orange"></span> In corso...
           </div>
-          <div class="category-services-state" *ngIf="order.status === 2 && selectTab === 'Ricevuti'">
+          <div class="category-services-state" *ngIf="order.status === 2 && selectTab === 'Richieste Dei Clienti'">
             <span class="orange"></span> In attesa di pagamento...
           </div>
-          <div class="category-services-state" *ngIf="order.status === 0 && selectTab === 'Ricevuti'">
+          <div class="category-services-state" *ngIf="order.status === 0 && selectTab === 'Richieste Dei Clienti'">
             <span class="green"></span> In attesa di conferma
           </div>
-          <div class="category-services-state" *ngIf="order.status === 1 && dateCompare(order.delivery_date, dateFormating('now')) && selectTab === 'Ricevuti'">
+          <div class="category-services-state" *ngIf="order.status === 1 && dateCompare(order.date, dateFormating('now')) && selectTab === 'Richieste Dei Clienti'">
             <span class="orange"></span> Hai confermato
           </div>
 
 
-          <div class="category-services-state" *ngIf="order.status === 99 && selectTab === 'Richiesti'">
+          <div class="category-services-state" *ngIf="order.status === 99 && selectTab === 'I Miei Odini'">
             <span class="red"></span> Annullato
           </div>
-          <div class="category-services-state" *ngIf="order.status === 0 && selectTab === 'Richiesti'">
+          <div class="category-services-state" *ngIf="order.status === 0 && selectTab === 'I Miei Odini'">
             <span class="green"></span> In attesa di conferma
           </div>
-          <div class="category-services-state" *ngIf="order.status === 1 && dateCompare(order.delivery_date, dateFormating('now')) && selectTab === 'Richiesti'">
+          <div class="category-services-state" *ngIf="order.status === 1 && dateCompare(order.date, dateFormating('now')) && selectTab === 'I Miei Odini'">
             <span class="orange"></span> Confermato
           </div>
           <div class="category-services-state" *ngIf="order.status === 2 && selectTab === 'Richiesti'">
             <span class="orange"></span> In attesa di pagamento...
           </div>
-          <div class="category-services-state" *ngIf="order.status === 1 && dateCompare(dateFormating('now'), order.delivery_date) && selectTab === 'Richiesti'">
+          <div class="category-services-state" *ngIf="order.status === 1 && dateCompare(dateFormating('now'), order.date) && selectTab === 'I Miei Odini'">
             <span class="orange"></span> In corso...
           </div>
 
@@ -57,13 +57,14 @@
             {{ categories[order.category_type] }}
           </div>
           <div class="order-date">
-            {{ dateFormating(order.delivery_date) }}
+            {{ dateFormating(order.date) }}
           </div>
         </div>
         <div class="order-body">
           <div class="row">
             <div class="order-row products col-xl-4">
-              <div class="item" *ngFor="let product of itemsFormating(order.delivery_details)"><strong>{{ product.name }}:</strong> {{ product.items }}</div>
+              <div class="item" *ngFor="let product of order.details" [ngClass]="{'service':product.type === 'service'}">{{ product.title }} <i>€{{ product.amount / 100 }}</i></div>
+              <div class="item total">Totale <i>€{{ order.payment.amount / 100 }}</i></div>
             </div>
             <div class="client-info col-xl-4">
               <div class="item">
@@ -81,14 +82,14 @@
               <div class="item">
                 <div class="field-name">Indirizzo:</div>
                 <div class="field-value">
-                  {{ order.delivery_address.street }}, {{ order.delivery_address.street_number }}<br>
-                  {{ order.delivery_address.city }}, {{ order.delivery_address.postal_code }}<br>
-                  {{ order.delivery_address.province }}, {{ order.delivery_address.country }}
+                  {{ order.address.street }}, {{ order.address.street_number }}<br>
+                  {{ order.address.city }}, {{ order.address.postal_code }}<br>
+                  {{ order.address.province }}, {{ order.address.country }}
                 </div>
               </div>
             </div>
             <div class="order-row description col-xl-4">
-              {{ order.delivery_description }}
+              {{ order.description }}
             </div>
           </div>
         </div>
@@ -98,16 +99,16 @@
             {{ order._id }}
           </div>
           <div class="buttons">
-            <button class="btn btn-primary" *ngIf="order.status === 1 && dateCompare(dateFormating('now'), order.delivery_date) && selectTab === 'Ricevuti'" (click)="completaOrder(order._id)">Completa ordine</button>
-            <div class="price-block" *ngIf="order.status === 2 && selectTab === 'Ricevuti'"><div class="content-price">Importo: <span>{{ order.payment.amount / 100 }}€</span></div></div>
-            <button class="btn btn-secondary" *ngIf="order.status === 2 && selectTab === 'Ricevuti'" (click)="editOrder(order._id, order.payment.amount)">Modifica</button>
-            <button class="btn btn-primary" *ngIf="order.status === 0 && selectTab === 'Ricevuti'" (click)="confirmOrder(order._id)">Conferma ordine</button>
+            <button class="btn btn-primary" *ngIf="order.status === 1 && dateCompare(dateFormating('now'), order.date) && selectTab === 'Richieste Dei Clienti'" (click)="completaOrder(order._id)">Completa servizio</button>
+            <!--<div class="price-block" *ngIf="order.status === 2 && selectTab === 'Richieste Dei Clienti'"><div class="content-price">Importo: <span>{{ order.payment.amount / 100 }}€</span></div></div>-->
+            <!--<button class="btn btn-secondary" *ngIf="order.status === 2 && selectTab === 'Richieste Dei Clienti'" (click)="editOrder(order._id, order.payment.amount)">Modifica</button>-->
+            <button class="btn btn-primary" *ngIf="order.status === 0 && selectTab === 'Richieste Dei Clienti'" (click)="confirmOrder(order._id)">Conferma servizio</button>
 
-            <button class="btn btn-primary" *ngIf="order.status === 99 && selectTab === 'Richiesti'" (click)="reactivateOrder(order._id)">Riattiva ordine</button>
-            <button class="btn btn-secondary" *ngIf="order.status === 0 && selectTab === 'Richiesti'" (click)="cancelOrder(order._id)">Annulla ordine</button>
-            <div class="price-block" *ngIf="order.status === 2 && selectTab === 'Richiesti'"><div class="content-price">Importo: <span>{{ order.payment.amount / 100 }}€</span></div></div>
-            <button class="btn btn-warning" *ngIf="order.status === 2 && selectTab === 'Richiesti'" (click)="continueOrder(order._id, order.payment.amount)"><i class="fa fa-lock"></i> Procedi</button>
-            <div class="price-block archive" *ngIf="order.status === 3 && selectTab === 'Archivio'"><div class="content-price">Importo: <span>{{ order.payment.amount / 100 }}€</span></div></div>
+            <button class="btn btn-primary" *ngIf="order.status === 99 && selectTab === 'I Miei Odini'" (click)="reactivateOrder(order._id)">Reattiva servizio</button>
+            <button class="btn btn-secondary" *ngIf="order.status === 0 && selectTab === 'I Miei Odini'" (click)="cancelOrder(order._id)">Annulla servizio</button>
+            <!--<div class="price-block" *ngIf="order.status === 2 && selectTab === 'I Miei Odini'"><div class="content-price">Importo: <span>{{ order.payment.amount / 100 }}€</span></div></div>-->
+            <!--<button class="btn btn-warning" *ngIf="order.status === 2 && selectTab === 'I Miei Odini'" (click)="continueOrder(order._id, order.payment.amount)"><i class="fa fa-lock"></i> Procedi</button>-->
+            <!--<div class="price-block archive" *ngIf="order.status === 3 && selectTab === 'Archivio'"><div class="content-price">Importo: <span>{{ order.payment.amount / 100 }}€</span></div></div>-->
           </div>
         </div>
       </div>

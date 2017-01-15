@@ -282,6 +282,9 @@ export class PopupsComponent implements OnInit, OnDestroy {
     if (type === 'confirmFinish') {
       this.confirmFinishPopupState = 'active';
     }
+    if (type === 'confirmEnd') {
+      this.confirmPopupState = 'active';
+    }
     if (type === 'addCard') {
       this.addCardPopupState = 'active';
     }
@@ -589,20 +592,21 @@ export class PopupsComponent implements OnInit, OnDestroy {
   }
 
   confirmOrder(id) {
-    this.ordersService.modifyOrder(id, 'ACCEPT')
-        .then((response) => {
-          this.confirmFinishPopupData.title = 'Ordine confermato';
-          this.confirmFinishPopupData.text = 'Questo ordine è stato confermato con successo.';
-          this.getPopup('confirmFinish');
-          this.popupService.actionComplete({type: 'confirmOrder', data: {orderId: id}});
-        })
-        .catch((error) => {
-          this.formError = true;
-          this.formError = {
-            title: 'Order confirmation error',
-            message: `An error occurred during the order confirmation. Please try again.`
-          };
-        });
+    // this.ordersService.modifyOrder(id, 'ACCEPT')
+    //     .then((response) => {
+    //       this.confirmPopupData.title = 'Servizio confermato con successo';
+    //         this.confirmPopupData.text = 'Adesso non resta altro che offrire il suo servizio al cliente. Per qualsiasi communicazione può usare i dati del contatto aggiunti dal cliente.';
+    //         this.confirmPopupData.type = 'confermaEnd';
+    //       this.getPopup('confirmEnd');
+    //       this.popupService.actionComplete({type: 'confirmOrder', data: {orderId: id}});
+    //     })
+    //     .catch((error) => {
+    //       this.formError = true;
+    //       this.formError = {
+    //         title: 'Order confirmation error',
+    //         message: `An error occurred during the order confirmation. Please try again.`
+    //       };
+    //     });
   }
 
   cancelOrder(id) {
@@ -640,8 +644,8 @@ export class PopupsComponent implements OnInit, OnDestroy {
   }
 
   confirmNewOrder() {
-    this.popupService.actionComplete({type: 'confirm'});
     this.closePopup();
+    this.popupService.actionComplete({type: 'confirm'});
   }
 
   addNewCard() {
@@ -798,12 +802,28 @@ export class PopupsComponent implements OnInit, OnDestroy {
           break;
         case 'confirmOrder':
           this.confirmPopupData.id = popup.data.orderId;
-          this.confirmPopupData.title = 'Conferma ordine?';
-          this.confirmPopupData.text = 'Dopo aver confermato l’ordine il richiedente verra notificato tramite una mail e un sms.';
-          this.confirmPopupData.button = 'Conferma';
+          this.confirmPopupData.title = 'Conferma servizio in corso…';
+          this.confirmPopupData.text = 'Il sistema sta controllando se questo servizio è stato assegnato ad un altro professionista o anullato dal cliente stesso.';
+          this.confirmPopupData.button = '';
+          this.confirmPopupData.type = 'conferma';
           this.confirmPopupState = 'active';
           this.activePopup = 'confirmOrder';
           this.shadowState = 'active';
+          this.ordersService.modifyOrder(popup.data.orderId, 'ACCEPT')
+              .then((response) => {
+                this.confirmPopupData.title = 'Servizio confermato con successo';
+                this.confirmPopupData.text = 'Adesso non resta altro che offrire il suo servizio al cliente. Per qualsiasi communicazione può usare i dati del contatto aggiunti dal cliente.';
+                this.confirmPopupData.type = 'confermaEnd';
+                this.getPopup('confirmEnd');
+                this.popupService.actionComplete({type: 'confirmOrder', data: {orderId: popup.data.orderId}});
+              })
+              .catch((error) => {
+                this.formError = true;
+                this.formError = {
+                  title: 'Order confirmation error',
+                  message: `An error occurred during the order confirmation. Please try again.`
+                };
+              });
           break;
         case 'cancelOrder':
           this.confirmPopupData.id = popup.data.orderId;

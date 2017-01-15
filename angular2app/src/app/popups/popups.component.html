@@ -95,7 +95,7 @@
 </div>
 
 <!-- Confirm Order popup -->
-<div class="popup" [@confirmPopupState]="confirmPopupState">
+<div class="popup" [@confirmPopupState]="confirmPopupState" [ngClass]="{'new-version': confirmPopupData.type === 'conferma' || confirmPopupData.type === 'confermaEnd'}">
   <div class="alert-block" *ngIf="formError">
     <div class="alert-icn"></div>
     <div class="alert-container">
@@ -103,9 +103,18 @@
       <p>{{formError.message}}</p>
     </div>
   </div>
+  <div class="popup-spinner" *ngIf="confirmPopupData.type === 'conferma'">
+    <svg width='40px' height='40px' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid" class="uil-ring">
+      <rect x="0" y="0" width="100" height="100" fill="none" class="bk"></rect>
+      <circle cx="50" cy="50" r="45" stroke-dasharray="169.64600329384882 113.09733552923257" stroke="#3B568D" fill="none" stroke-width="10">
+        <animateTransform attributeName="transform" type="rotate" values="0 50 50;180 50 50;360 50 50;" keyTimes="0;0.5;1" dur="1s" repeatCount="indefinite" begin="0s"></animateTransform>
+      </circle>
+    </svg>
+  </div>
+  <div class="success-icon" *ngIf="confirmPopupData.type === 'confermaEnd'"><span></span></div>
   <div class="header">{{ confirmPopupData.title }}</div>
   <form class="confirm-order-form" #confirmOrderForm="ngForm">
-    <p *ngIf="confirmPopupData.type !== 'newOrder' && confirmPopupData.type !== 'newOrderEnd'">{{ confirmPopupData.text }}</p>
+    <p *ngIf="confirmPopupData.type !== 'newOrder' && confirmPopupData.type !== 'newOrderEnd'" [ngClass]="{'conferma-finish': confirmPopupData.type === 'confermaEnd'}">{{ confirmPopupData.text }}</p>
     <p *ngIf="confirmPopupData.type === 'newOrderEnd'" class="confirm-end">{{ confirmPopupData.text }}</p>
     <div class="orders-list" *ngIf="confirmPopupData.type === 'newOrder'">
       <div class="order-item" *ngFor="let product of confirmPopupData.data">
