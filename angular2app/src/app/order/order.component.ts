@@ -126,6 +126,9 @@ export class OrderComponent implements OnInit, OnDestroy {
     }
     this.selectedAddress = value;
   }
+  modifyAddress() {
+    this.isAddressDirty = false;
+  }
 
   showConfirmation() {
     this.submitOrder = true;
@@ -152,6 +155,8 @@ export class OrderComponent implements OnInit, OnDestroy {
             } else {
               this.isAddressFull = false;
             }
+          } else {
+            this.isAddressFull = false;
           }
           if (this.Order.date && this.orderIsFull && this.isAddressFull) {
             let date = new Date(this.Order.date);
