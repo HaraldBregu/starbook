@@ -53,8 +53,8 @@ export class AuthService {
       .catch(this.handleError);
   }
 
-  signup(name: string, email: string, password: string) {
-    return this.http.post(this.api + 'signup', {fullname: name, email: email, password: password})
+  signup(name: string, phone: string, email: string, password: string) {
+    return this.http.post(this.api + 'signup', {fullname: name, phone_number: phone, email: email, password: password})
       .toPromise()
       .then((response) => {
         let data = response.json();

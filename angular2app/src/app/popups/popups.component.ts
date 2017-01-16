@@ -222,12 +222,14 @@ export class PopupsComponent implements OnInit, OnDestroy {
   };
   public registrationData = {
     name: '',
+    phone: '',
     email: '',
     password: '',
     passwordConfirm: ''
   };
   public registrationError = {
     name: false,
+    phone: false,
     email: false,
     passwordFirst: false,
     password: false
@@ -430,6 +432,13 @@ export class PopupsComponent implements OnInit, OnDestroy {
         this.registrationError.name = true;
       }
     }
+    if (type === 'registrationPhone') {
+      if (value.length > 10) {
+        this.registrationError.phone = false;
+      } else {
+        this.registrationError.phone = true;
+      }
+    }
     if (type === 'registrationPassword') {
       if (value.length > 0) {
         this.registrationError.passwordFirst = false;
@@ -536,9 +545,9 @@ export class PopupsComponent implements OnInit, OnDestroy {
     }
   }
 
-  registration(name: string, email: string, password: string, passwordConfirm: string) {
-    if (this.emailPattern.test(email) && password === passwordConfirm && password.length > 0 && name.length > 0) {
-      this.authServics.signup(name, email, password)
+  registration(name: string, phone: string, email: string, password: string, passwordConfirm: string) {
+    if (this.emailPattern.test(email) && password === passwordConfirm && password.length > 0 && name.length > 0 && phone.length > 10) {
+      this.authServics.signup(name, phone, email, password)
         .then((data) => {
           this.auth = data;
           this.navigationService.updatePersonalMenu(data);
@@ -971,6 +980,7 @@ export class PopupsComponent implements OnInit, OnDestroy {
       };
     this.registrationData = {
         name: '',
+        phone: '',
         email: '',
         password: '',
         passwordConfirm: ''

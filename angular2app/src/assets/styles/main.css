@@ -4072,15 +4072,17 @@ html, body {
   display: block;
   width: 100%;
   font-family: HelveticaNeue, sans-serif;
-  font-size: 20px;
+  font-size: 18px;
   color: #212121;
   letter-spacing: 0.13px;
-  font-weight: 700;
-  margin-bottom: 16px; }
+  margin-bottom: 17px; }
 
 .profile-settings .header.second {
   margin-top: 33px;
   margin-bottom: 18px; }
+
+.profile-settings .form-group.name-input {
+  margin-bottom: 76px !important; }
 
 .profile-settings .form-group {
   margin-bottom: 16px !important;

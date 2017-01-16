@@ -48,6 +48,11 @@
       <input id="regName" class="form-control" type="text" name="name" placeholder="" required [(ngModel)]="registrationData.name" #regName="ngModel" (keyup)="checkNonEmpty('registrationName', regName.value)">
       <span class="error">Please enter your name</span>
     </div>
+    <div class="form-group" [ngClass]="{'isError': registrationError.phone}">
+      <label for="regPhone">Phone</label>
+      <input id="regPhone" class="form-control" type="text" name="phone" placeholder="" required [(ngModel)]="registrationData.phone" #regPhone="ngModel" (keyup)="checkNonEmpty('registrationPhone', regPhone.value)">
+      <span class="error">Indirizzo phone non valido</span>
+    </div>
     <div class="form-group" [ngClass]="{'isError': registrationError.email}">
       <label for="regEmail">E-mail</label>
       <input id="regEmail" class="form-control" type="email" name="email" placeholder="" required [(ngModel)]="registrationData.email" #regEmail="ngModel" (keyup)="checkEmail('registration', regEmail.value)">
@@ -64,7 +69,7 @@
       <span class="error">Le password non corrispondono</span>
     </div>
     <div class="form-group">
-      <button class="btn btn-warning" type="submit" (click)="registration(regName.value, regEmail.value, regPassword.value, regPasswordConfirm.value)">Crea account</button>
+      <button class="btn btn-warning" type="submit" (click)="registration(regName.value, regPhone.value, regEmail.value, regPassword.value, regPasswordConfirm.value)">Crea account</button>
     </div>
   </form>
   <div class="form-notice">Accedendo dichiari di aver letto e accetti le <a routerLink="profile/conditions">condizioni generali</a> e <a routerLink="profile/privacy">l’informativa sulla privacy</a></div>

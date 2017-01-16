@@ -17,7 +17,7 @@ $left-navigation-link-hover-background-color: #F5F5F5;
 $left-navigation-link-active-border-style: 4px solid #324977;
 
 // Profile settings
-$profile-settings-header-font-size: 20px;
+$profile-settings-header-font-size: 18px;
 $profile-settings-header-color: #212121;
 $profile-settings-header-letter-spacing: 0.13px;
 $profile-settings-label-font-size: 14px;
@@ -136,12 +136,14 @@ $card-new-card-letter-spacing: 0.13px;
   font-size: $profile-settings-header-font-size;
   color: $profile-settings-header-color;
   letter-spacing: $profile-settings-header-letter-spacing;
-  font-weight: 700;
-  margin-bottom: 16px;
+  margin-bottom: 17px;
 }
 .profile-settings .header.second {
   margin-top: 33px;
   margin-bottom: 18px;
+}
+.profile-settings .form-group.name-input {
+  margin-bottom: 76px !important;
 }
 .profile-settings .form-group {
   margin-bottom: 16px !important;
