@@ -36,6 +36,7 @@ export interface IOrder {
   templateUrl: './orders.component.html'
 })
 export class OrdersComponent implements OnInit, OnDestroy {
+  public it: any;
   public selectTab: string|boolean = false;
   public taglines = {
     'Richieste Dei Clienti': 'Ordini Ricevuti',
@@ -43,7 +44,6 @@ export class OrdersComponent implements OnInit, OnDestroy {
     'Archivio': 'Archivio Ordini'
   };
   public tabs = [
-    {name: 'Richieste Dei Clienti', selected: false},
     {name: 'I Miei Odini', selected: false},
     {name: 'Archivio', selected: false}
   ];
@@ -55,7 +55,22 @@ export class OrdersComponent implements OnInit, OnDestroy {
   constructor(private navigationService: NavigationService, private ordersService: OrdersService, private popupsService: PopupsService) { }
 
   ngOnInit() {
-    this.renderPage('Richieste Dei Clienti');
+    if (localStorage.getItem('auth') !== null) {
+      let authData = JSON.parse(localStorage.getItem('auth'));
+      if (authData.stripe_account_id !== null) {
+        this.tabs = [
+            {name: 'Richieste Dei Clienti', selected: false},
+            {name: 'I Miei Odini', selected: false},
+            {name: 'Archivio', selected: false}
+          ];
+          this.renderPage('Richieste Dei Clienti');
+      } else {
+        this.renderPage('I Miei Odini');
+      }
+    } else {
+      this.renderPage('I Miei Odini');
+    }
+
     this.categories = this.ordersService.getCategories();
     this.subscription = this.popupsService.getPopupResponse$.subscribe(action => {
       let orderIndex = 0;
@@ -125,6 +140,15 @@ export class OrdersComponent implements OnInit, OnDestroy {
           break;
       }
     });
+    this.it = {
+      firstDayOfWeek: 1,
+      dayNames: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+      dayNamesShort: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
+      dayNamesMin: ['Do', 'Lu', 'Ma', 'Me', 'Gi', 'Ve', 'Sa'],
+      monthNames: ['Gennaio', 'Febbraio', 'Marzo', 'Aprile', 'Maggio', 'Giugno',
+        'Luglio', 'Agosto', 'Settembre', 'Ottobre', 'Novembre', 'Dicembre'],
+      monthNamesShort: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+    };
   }
 
   ngOnDestroy() {
@@ -188,7 +212,7 @@ export class OrdersComponent implements OnInit, OnDestroy {
       dateString = dateString.split('T');
       let dateComponents = dateString[0].split('-');
       let hourComponents = dateString[1].split(':');
-      returnDate = dateComponents[2] + ' ' + dateComponents[1] + ' ' + dateComponents[0] + ' ' + hourComponents[0] + ':' + hourComponents[1];
+      returnDate = dateComponents[2] + ' ' + this.it.monthNames[dateComponents[1]-1] + ' ' + dateComponents[0] + ' ' + hourComponents[0] + ':' + hourComponents[1];
     } else {
       let currentDate = new Date();
       let day = currentDate.getDate();
