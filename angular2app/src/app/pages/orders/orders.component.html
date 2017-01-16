@@ -13,16 +13,16 @@
       <div class="order-information" *ngFor="let order of pageData">
         <div class="header">
           <div class="category-services-state" *ngIf="order.status === 1 && dateCompare(dateFormating('now'), order.date) && selectTab === 'Richieste Dei Clienti'">
-            <span class="orange"></span> In corso...
+            <span class="orange"></span> Servizio in corso...
           </div>
-          <div class="category-services-state" *ngIf="order.status === 2 && selectTab === 'Richieste Dei Clienti'">
-            <span class="orange"></span> In attesa di pagamento...
-          </div>
+          <!--<div class="category-services-state" *ngIf="order.status === 2 && selectTab === 'Richieste Dei Clienti'">-->
+            <!--<span class="orange"></span> In attesa di pagamento...-->
+          <!--</div>-->
           <div class="category-services-state" *ngIf="order.status === 0 && selectTab === 'Richieste Dei Clienti'">
             <span class="green"></span> In attesa di conferma
           </div>
           <div class="category-services-state" *ngIf="order.status === 1 && dateCompare(order.date, dateFormating('now')) && selectTab === 'Richieste Dei Clienti'">
-            <span class="orange"></span> Hai confermato
+            <span class="orange"></span> Assegnato
           </div>
 
 
@@ -33,13 +33,13 @@
             <span class="green"></span> In attesa di conferma
           </div>
           <div class="category-services-state" *ngIf="order.status === 1 && dateCompare(order.date, dateFormating('now')) && selectTab === 'I Miei Odini'">
-            <span class="orange"></span> Confermato
+            <span class="orange"></span> Assegnato
           </div>
-          <div class="category-services-state" *ngIf="order.status === 2 && selectTab === 'Richiesti'">
-            <span class="orange"></span> In attesa di pagamento...
-          </div>
+          <!--<div class="category-services-state" *ngIf="order.status === 2 && selectTab === 'Richiesti'">-->
+            <!--<span class="orange"></span> In attesa di pagamento...-->
+          <!--</div>-->
           <div class="category-services-state" *ngIf="order.status === 1 && dateCompare(dateFormating('now'), order.date) && selectTab === 'I Miei Odini'">
-            <span class="orange"></span> In corso...
+            <span class="orange"></span> Servizio in corso...
           </div>
 
 

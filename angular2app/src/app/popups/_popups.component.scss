@@ -678,6 +678,12 @@ $popup-confirm-message-text-color: #212121;
 $popup-confirm-message-text-size: 12px;
 $popup-confirm-message-letter-spacing: 0.08px;
 $popup-success-icon: '/assets/images/success-icon.png';
+$popup-completa-header-text-size: 20px;
+$popup-completa-header-text-color: #212121;
+$popup-completa-header-letter-spacing: 0.13px;
+$popup-completa-message-text-size: 14px;
+$popup-completa-message-text-color: #212121;
+$popup-completa-message-letter-spacing: 0.09px;
 .popup.new-version .success-icon {
   display: block;
   width: 100%;
@@ -715,6 +721,27 @@ $popup-success-icon: '/assets/images/success-icon.png';
 }
 .popup.new-version .confirm-order-form p.conferma-finish {
   margin-bottom: 26px;
+}
+.popup.add-price .header {
+  font-family: $font-name;
+  font-weight: normal;
+  font-size: $popup-completa-header-text-size;
+  color: $popup-completa-header-text-color;
+  letter-spacing: $popup-completa-header-letter-spacing;
+  margin-top: 2px;
+  margin-bottom: 21px;
+}
+.popup.add-price .confirm-action p {
+  font-family: $font-name;
+  font-weight: normal;
+  font-size: $popup-completa-message-text-size;
+  color: $popup-completa-message-text-color;
+  letter-spacing: $popup-completa-message-letter-spacing;
+  margin-top: 0;
+  margin-bottom: 24px;
+}
+.popup.new-version .header.without-message {
+  margin-bottom: 27px;
 }
 
 @media (max-width: 480px) {

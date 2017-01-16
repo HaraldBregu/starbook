@@ -254,6 +254,7 @@ export class PopupsComponent implements OnInit, OnDestroy {
   };
   public confirmActionPopupData = {
     orderId: '',
+    type: '',
     title: '',
     text: '',
     text2: '',
@@ -726,12 +727,19 @@ export class PopupsComponent implements OnInit, OnDestroy {
   }
 
   addPrice(orderId) {
-    let orderPriceEur = parseInt(this.confirmActionPopupData.price) + ((parseInt(this.confirmActionPopupData.price) / 100) * 5.5);
-    let orderPrice = parseFloat(orderPriceEur.toFixed(2)) * 100;
-    this.ordersService.addPrice(orderId, 'ACTIVE_PAYMENT', orderPrice)
+    // let orderPriceEur = parseInt(this.confirmActionPopupData.price) + ((parseInt(this.confirmActionPopupData.price) / 100) * 5.5);
+    // let orderPrice = parseFloat(orderPriceEur.toFixed(2)) * 100;
+
+    this.ordersService.modifyOrder(orderId, 'CLOSE')
         .then((response) => {
-          this.closePopup();
-          this.popupService.actionComplete({type: 'addPrice', data: {orderId: orderId, orderPrice: orderPrice, isModified: response.nModified}});
+          this.closePopup(true);
+          this.confirmPopupData.title = 'Servizio completato con successo';
+          this.confirmPopupData.text = '';
+          this.confirmPopupData.type = 'addPriceEnd';
+          this.confirmPopupState = 'active';
+          this.activePopup = 'addPriceEnd';
+          this.shadowState = 'active';
+          this.popupService.actionComplete({type: 'addPrice', data: {orderId: orderId, isModified: response.nModified}});
         })
         .catch((error) => {
           console.log(error);
@@ -869,17 +877,18 @@ export class PopupsComponent implements OnInit, OnDestroy {
           break;
         case 'addPrice':
           this.confirmActionPopupData.orderId = popup.data.orderId;
-          this.confirmActionPopupData.title = 'Completamento';
-          this.confirmActionPopupData.text = 'Dopo aver inserito il totale, il cliente verra notificato e potra procedere con il pagamento. In caso di cambiamento importo potrai modificarlo successivamente.';
-          this.confirmActionPopupData.actions.push({
-            type: 'Payment_input_add',
-            source: 'euro',
-            label: 'Inserisci l’importo',
-            description: 'All’importo verra aggiunto 5.5% di tassa Starbook.'
-          });
+          this.confirmActionPopupData.type = 'addPrice';
+          this.confirmActionPopupData.title = 'Completamento servizio';
+          this.confirmActionPopupData.text = 'Dopo aver completato il servizio il professionista verra incrementato del importo prestabilito.';
+          // this.confirmActionPopupData.actions.push({
+          //   type: 'Payment_input_add',
+          //   source: 'euro',
+          //   label: 'Inserisci l’importo',
+          //   description: 'All’importo verra aggiunto 5.5% di tassa Starbook.'
+          // });
           this.confirmActionPopupData.buttons.push({
             type: 'addPrice',
-            text: 'Inserisci importo'
+            text: 'Completa il servizio'
           });
           this.confirmActionPopupData.buttons.push({
             type: 'close',
@@ -985,6 +994,7 @@ export class PopupsComponent implements OnInit, OnDestroy {
       };
     this.confirmActionPopupData = {
         orderId: '',
+        type: '',
         title: '',
         text: '',
         text2: '',

@@ -95,7 +95,7 @@
 </div>
 
 <!-- Confirm Order popup -->
-<div class="popup" [@confirmPopupState]="confirmPopupState" [ngClass]="{'new-version': confirmPopupData.type === 'conferma' || confirmPopupData.type === 'confermaEnd'}">
+<div class="popup" [@confirmPopupState]="confirmPopupState" [ngClass]="{'new-version': confirmPopupData.type === 'conferma' || confirmPopupData.type === 'confermaEnd' || confirmPopupData.type === 'addPriceEnd'}">
   <div class="alert-block" *ngIf="formError">
     <div class="alert-icn"></div>
     <div class="alert-container">
@@ -111,8 +111,8 @@
       </circle>
     </svg>
   </div>
-  <div class="success-icon" *ngIf="confirmPopupData.type === 'confermaEnd'"><span></span></div>
-  <div class="header">{{ confirmPopupData.title }}</div>
+  <div class="success-icon" *ngIf="confirmPopupData.type === 'confermaEnd' || confirmPopupData.type === 'addPriceEnd'"><span></span></div>
+  <div class="header" [ngClass]="{'without-message': confirmPopupData.type === 'addPriceEnd'}">{{ confirmPopupData.title }}</div>
   <form class="confirm-order-form" #confirmOrderForm="ngForm">
     <p *ngIf="confirmPopupData.type !== 'newOrder' && confirmPopupData.type !== 'newOrderEnd'" [ngClass]="{'conferma-finish': confirmPopupData.type === 'confermaEnd'}">{{ confirmPopupData.text }}</p>
     <p *ngIf="confirmPopupData.type === 'newOrderEnd'" class="confirm-end">{{ confirmPopupData.text }}</p>
@@ -248,7 +248,7 @@
 
 
 <!-- Confirm popup with action -->
-<div class="popup" [@confirmActionPopupState]="confirmActionPopupState">
+<div class="popup" [@confirmActionPopupState]="confirmActionPopupState" [ngClass]="{'add-price': confirmActionPopupData.type === 'addPrice'}">
   <div class="alert-block" *ngIf="formError">
     <div class="alert-icn"></div>
     <div class="alert-container">
