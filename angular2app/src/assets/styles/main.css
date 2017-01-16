@@ -4093,7 +4093,7 @@ html, body {
   display: block;
   position: absolute;
   top: 9px;
-  left: -141px;
+  left: -156px;
   padding-left: 0;
   font-size: 14px;
   color: #212121;
@@ -4101,7 +4101,7 @@ html, body {
   font-family: HelveticaNeue-Medium, sans-serif;
   font-weight: normal;
   white-space: nowrap;
-  width: 130px;
+  width: 144px;
   text-align: right; }
 
 .profile-settings input {
@@ -4116,41 +4116,17 @@ html, body {
   padding: 11px 16px;
   outline: none; }
 
-.profile-settings .password-block {
+.profile-settings .email-field {
   display: block;
-  margin-top: 26px; }
-
-.profile-settings .password-block .password-container {
-  display: block;
-  position: absolute;
-  top: 2px; }
-
-.profile-settings .password-block input {
-  display: table-cell;
-  width: 216px; }
-
-.password-block .change-password {
-  display: table-cell;
-  text-align: right;
   position: relative;
-  width: 139px; }
-
-.password-block .password {
-  display: table-cell;
-  position: relative;
-  width: 116px;
-  margin-left: 33px;
-  font-family: HelveticaNeue, sans-serif;
-  color: #4A4A4A;
-  font-size: 30px;
-  letter-spacing: 0.19px;
-  text-align: left; }
-
-.password-block .password span {
-  position: absolute;
   width: 100%;
-  top: -2px;
-  left: 0; }
+  padding-right: 146px; }
+
+.profile-settings .email-field .btn.btn-primary {
+  display: block;
+  position: absolute;
+  top: 4px;
+  right: 0; }
 
 .profile-settings .btn-primary,
 .profile-settings .btn-primary:active,

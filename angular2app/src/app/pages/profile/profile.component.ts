@@ -10,8 +10,7 @@ export interface IUserData {
   fullname?: string;
   email?: string;
   phone_number?: string;
-  street_name?: string;
-  street_number?: number;
+  street?: string;
   city?: string;
   postal_code?: number;
   province?: string;
@@ -30,8 +29,8 @@ export class ProfileComponent implements OnInit, OnDestroy {
   public tabs = [
     {name: 'Generali', selected: false, url: 'settings'},
     {name: 'Metodo di Pagamento', selected: false, url: 'payment'},
-    {name: 'Condizioni', selected: false, url: 'conditions'},
-    {name: 'Privacy', selected: false, url: 'privacy'},
+    {name: 'Condizioni d’uso', selected: false, url: 'conditions'},
+    {name: 'Privacy Policy', selected: false, url: 'privacy'},
     {name: 'Assistenza', selected: false, url: 'help'}
   ];
 
@@ -39,8 +38,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
     fullname: '',
     email: '',
     phone_number: '',
-    street_name: '',
-    street_number: null,
+    street: '',
     city: '',
     postal_code: null,
     province: '',
@@ -73,8 +71,8 @@ export class ProfileComponent implements OnInit, OnDestroy {
     } else {
       // this.router.navigate(['/']);
       this.tabs = [
-        {name: 'Condizioni', selected: false, url: 'conditions'},
-        {name: 'Privacy', selected: false, url: 'privacy'},
+        {name: 'Condizioni d’uso', selected: false, url: 'conditions'},
+        {name: 'Privacy Policy', selected: false, url: 'privacy'},
         {name: 'Assistenza', selected: false, url: 'help'}
       ];
     }
@@ -103,8 +101,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
               this.userData.fullname = profile.result.fullname;
               this.userData.email = profile.result.email;
               this.userData.phone_number = profile.result.phone_number;
-              this.userData.street_name = profile.result.street_name;
-              this.userData.street_number = profile.result.street_number;
+              this.userData.street = profile.result.street;
               this.userData.city = profile.result.city;
               this.userData.postal_code = profile.result.postal_code;
               this.userData.province = profile.result.province;
