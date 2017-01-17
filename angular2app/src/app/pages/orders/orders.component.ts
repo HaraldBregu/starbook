@@ -174,7 +174,6 @@ export class OrdersComponent implements OnInit, OnDestroy {
       params = [];
       params.push({name: 'sort_delivery_date', value: 1});
       params.push({name: 'delivery_from_now', value: this.dateFormating('now')});
-      params.push({name: 'customer', value: 'other'});
       params.push({name: 'order_type', value: 'RECEIVED'});
     }
 
@@ -182,7 +181,6 @@ export class OrdersComponent implements OnInit, OnDestroy {
       params = [];
       params.push({name: 'sort_delivery_date', value: 1});
       params.push({name: 'delivery_from_now', value: this.dateFormating('now')});
-      params.push({name: 'customer', value: 'me'});
       params.push({name: 'order_type', value: 'REQUIRED'});
     }
 

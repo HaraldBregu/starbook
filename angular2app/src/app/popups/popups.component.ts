@@ -554,7 +554,7 @@ export class PopupsComponent implements OnInit, OnDestroy {
           this.auth = data;
           this.navigationService.updatePersonalMenu(data);
           this.closePopup();
-          this.router.navigate(['/']);
+          this.router.navigate(['/profile/payment']);
         })
         .catch((error) => {
           switch (error) {

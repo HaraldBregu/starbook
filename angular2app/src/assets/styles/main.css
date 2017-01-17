@@ -5264,9 +5264,9 @@ html, body {
   width: 100%;
   text-align: center;
   padding: 83px 0 20px;
-  font-family: HelveticaNeue-Medium, sans-serif;
+  font-family: HelveticaNeue, sans-serif;
   color: #3B568D;
-  font-size: 34px;
+  font-size: 30px;
   letter-spacing: 0.22px; }
 
 .landing-header h2 {
@@ -5275,7 +5275,7 @@ html, body {
   padding: 90px 0;
   font-family: HelveticaNeue-Bold, sans-serif;
   color: #3B568D;
-  font-size: 34px;
+  font-size: 30px;
   letter-spacing: 0.22px; }
 
 .landing .row .top-cards {
@@ -5741,7 +5741,7 @@ input.landing-search .ui-autocomplete-input:-ms-input-placeholder {
   height: 36px;
   background-color: #FFFFFF;
   text-align: right;
-  font-family: HelveticaNeue-Medium, sans-serif;
+  font-family: HelveticaNeue, sans-serif;
   color: #212121;
   font-size: 10px;
   letter-spacing: 0.06px;
