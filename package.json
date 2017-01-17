@@ -18,6 +18,7 @@
     "errorhandler": "^1.5.0",
     "express": "^4.14.0",
     "express-https-redirect": "^1.0.0",
+    "forcedomain": "^0.8.0",
     "redirect-https": "^1.1.1"
   }
 }
