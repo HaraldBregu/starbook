@@ -19,7 +19,7 @@ var app = express()
 
 app.use(forceDomain({
   hostname: 'www.starbook.co',
-  port: config.port,
+  port: 443,
   protocol: 'https'
 }))
 
