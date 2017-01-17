@@ -10,18 +10,18 @@ var http = require('http')
 var https = require('https')
 var config = require('./config')
 const dotenv = require('dotenv');
-const forceDomain = require('forcedomain')
+// const forceDomain = require('forcedomain')
 
 dotenv.load({ path: '.env.data' })
 
 var app = express()
 
 
-app.use(forceDomain({
-  hostname: 'www.starbook.co',
-  port: 443,
-  protocol: 'https'
-}))
+// app.use(forceDomain({
+//   hostname: 'www.starbook.co',
+//   port: 443,
+//   protocol: 'https'
+// }))
 
 app.use('/', require('redirect-https')({
   body: '',
