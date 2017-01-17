@@ -60,6 +60,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
   public defaultCard = '';
   public isLoading = false;
   subscription: Subscription;
+  public isAuthenticated = false;
 
   constructor(private profileService: ProfileService, private router: Router, private navigationService: NavigationService, private route: ActivatedRoute, private  popupsService: PopupsService, private paymentService: PaymentService) { }
 
@@ -68,7 +69,9 @@ export class ProfileComponent implements OnInit, OnDestroy {
       let authData = JSON.parse(localStorage.getItem('auth'));
       this.userData.fullname = authData.fullname;
       this.userData.email = authData.email;
+      this.isAuthenticated = true;
     } else {
+      this.isAuthenticated = false;
       // this.router.navigate(['/']);
       this.tabs = [
         {name: 'Condizioni d’uso', selected: false, url: 'conditions'},

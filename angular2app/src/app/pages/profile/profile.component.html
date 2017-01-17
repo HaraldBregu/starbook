@@ -1,4 +1,4 @@
-<div class="loader" *ngIf="isLoading"></div>
+<!-- <div class="loader" *ngIf="isLoading"></div> -->
 <div class="profile-page" [ngClass]="{whiteBg: selectTab === 'conditions' || selectTab === 'privacy' || selectTab === 'help'}">
   <div class="container-starbook without-tabs">
     <div class="row">
@@ -8,7 +8,7 @@
             <span></span>
             <div>{{tab.name}}</div>
           </a>
-          <a (click)="logout()"><span></span><div>Esci</div></a>
+          <a *ngIf="isAuthenticated === true" (click)="logout()"><span></span><div>Esci</div></a>
         </div>
       </div>
       <div class="profile-settings" *ngIf="selectTab === 'settings'">
