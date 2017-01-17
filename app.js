@@ -9,6 +9,9 @@ var fs = require('fs')
 var http = require('http')
 var https = require('https')
 var config = require('./config')
+const dotenv = require('dotenv');
+
+dotenv.load({ path: '.env.data' });
 
 var app = express()
 
