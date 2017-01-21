@@ -147,6 +147,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
     this.profileService.updateProfile(this.userData)
       .then((data) => {
         if (data.success) {
+          this.navigationService.updatePersonalMenu(this.userData);
           this.formError = {
             title: '',
             message: 'Hai aggiornato le tue informazioni con successo!',

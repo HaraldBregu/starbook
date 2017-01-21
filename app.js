@@ -22,6 +22,17 @@ app.use('/', require('redirect-https')({
   port: 443,
   trustProxy: true
 }))
+
+app.all('/*', function(req, res, next) {
+	if(!/^www\./.test(req.headers.host)) {
+		 		// res.redirect(req.protocol + '://' + req.headers.host.replace(/^www\./,'') + req.url,301);
+	res.status(301).redirect(req.protocol + '://www.' + req.headers.host + req.url)
+	} else {
+		next()
+	}
+})
+
+
 app.use(cors())
 app.use(bodyParser.json({strict: false}))
 app.use(bodyParser.urlencoded({extended: true}))
