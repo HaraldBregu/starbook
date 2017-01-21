@@ -27,9 +27,17 @@ $services-block-text-color: #333333;
 $services-block-header-background-color: rgba(252, 252, 252, 0);
 $services-block-header-letter-spacing: 0.1px;
 
+// Input styles
+$home-input-background-color: #FFFFFF;
+$home-input-border: 1px solid #DCDCDC;
+$home-input-text-size: 16px;
+$home-input-text-color: #212121;
+$home-input-text-letter-spacing: 0.1px;
+
 // Services item styles
 $services-item-letter-spacing: 0.09px;
 $services-item-font-size: 14px;
+
 app-home {
   display: block;
   float: left;
@@ -195,6 +203,27 @@ app-home {
   letter-spacing: $services-item-letter-spacing;
   cursor: pointer;
   -webkit-font-smoothing: initial !important;
+}
+.services-block .service .input {
+  display: block;
+  width: 100%;
+  padding: 0 2px 1px 2px;
+}
+.services-block .service .input input {
+  display: block;
+  width: 100%;
+  height: 35px;
+  padding: 9px 13px 8px 13px;
+  text-align: right;
+  border-radius: 3px;
+  background-color: $home-input-background-color;
+  border: $home-input-border;
+  font-family: $font-name;
+  font-weight: normal;
+  font-size: $home-input-text-size;
+  letter-spacing: $home-input-text-letter-spacing;
+  color: $home-input-text-color;
+  outline: none;
 }
 @media (max-width: 1168px) {
   .home-page .tab-container {
