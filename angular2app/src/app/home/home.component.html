@@ -19,7 +19,12 @@
           <masonry-brick class="services-block" *ngFor="let serviceCategory of servicesData">
             <div class="header">{{serviceCategory.title}}</div>
             <div class="service content">
-              <div class="item" *ngFor="let item of serviceCategory.list_items" [ngClass]="{'checked':item.selected}" (click)="toggleService(serviceCategory.title, item.title)"><i class="fa fa-check"></i> {{item.title}}</div>
+              <span *ngFor="let item of serviceCategory.options">
+                <div class="item" *ngIf="item.type === 'CHECKBOX' || item.type === 'RADIOBUTTON'" [ngClass]="{'checked':item.selected}" (click)="toggleService(serviceCategory.title, item.title)"><i class="fa fa-check"></i> {{item.title}}</div>
+                <div class="input" *ngIf="item.type === 'INPUTTEXT'">
+                  <input type="text" [(ngModel)]="servicesData[item.formId].options[item.optionId].input_value" (keyup)="changeValue(item.formId, item.optionId)" (change)="changeValue(item.formId, item.optionId)" (focus)="selectAllContent($event)">
+                </div>
+              </span>
             </div>
           </masonry-brick>
         </masonry>
