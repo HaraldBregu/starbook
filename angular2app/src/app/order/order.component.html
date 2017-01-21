@@ -7,16 +7,16 @@
       </div> -->
       <div class="order-container selected-orders" [ngStyle]="{'max-height': maxOrderBlockSize}">
         <div class="category-group category">
-          <span>{{ orderData.service }} <i>{{ orderData.price.symbol_currency }}{{ orderData.price.amount / 100 }}</i></span>
+          <span>{{ orderData.service }} <i>€{{ orderData.price.base_amount / 100 }}</i></span>
         </div>
         <span  *ngFor="let orderService of orderData.services">
-          <div class="category-group" *ngFor="let orderItem of orderService.items">
-            <span>{{ orderService.name }} - {{orderItem.name}} <i>{{ orderItem.price.symbol_currency }}{{ orderItem.price.amount / 100 }}</i></span>
+          <div class="category-group">
+            <span>{{ orderService.name }} - {{orderService.option.name}} <i>€{{ orderService.option.price / 100 }}</i></span>
           </div>
         </span>
 
         <div class="category-group total">
-          <span>Totale <i>{{ orderData.price.symbol_currency }}{{ orderData.totalPrice / 100 }}</i></span>
+          <span>Totale <i>€{{ orderData.totalPrice / 100 }}</i></span>
         </div>
       </div>
 

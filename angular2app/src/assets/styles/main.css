@@ -2749,6 +2749,27 @@ app-home {
   cursor: pointer;
   -webkit-font-smoothing: initial !important; }
 
+.services-block .service .input {
+  display: block;
+  width: 100%;
+  padding: 0 2px 1px 2px; }
+
+.services-block .service .input input {
+  display: block;
+  width: 100%;
+  height: 35px;
+  padding: 9px 13px 8px 13px;
+  text-align: right;
+  border-radius: 3px;
+  background-color: #FFFFFF;
+  border: 1px solid #DCDCDC;
+  font-family: HelveticaNeue, sans-serif;
+  font-weight: normal;
+  font-size: 16px;
+  letter-spacing: 0.1px;
+  color: #212121;
+  outline: none; }
+
 @media (max-width: 1168px) {
   .home-page .tab-container {
     display: block;

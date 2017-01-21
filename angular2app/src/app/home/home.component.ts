@@ -25,30 +25,32 @@ import { Router, Route, ActivatedRoute, Params } from '@angular/router';
 // }
 
 export interface IServiceFormItem {
+  formId?: number;
+  optionId?: number;
   title: string;
-  price: {
-    amount: number;
-    currency: string;
-    symbol_currency: string;
-  }
+  input_type?: string;
+  input_value?: any;
+  amount: number;
   selected?:boolean;
 }
 export interface IServiceForm {
+  type: string;
+  required: boolean;
   title: string;
-  description: string;
-  form_type: string;
-  list_items: IServiceFormItem[];
+  price_type: string;
+  options: IServiceFormItem[];
 }
 export interface IServices {
-  _id: string;
   title: string;
   description: string;
   price: {
-    amount: number;
-    currency: string;
-    symbol_currency: string;
-  }
-  service_forms: IServiceForm[];
+    base_amount: number;
+  },
+  order_options: {
+    min_amount: number;
+    payment_methods: string[]
+  },
+  forms: IServiceForm[];
 }
 
 @Component({
@@ -57,6 +59,23 @@ export interface IServices {
 })
 
 export class HomeComponent implements AfterViewInit, OnInit, OnDestroy {
+  public baseAmount = {
+    start: 0,
+    calculated: 0
+  };
+  public calculateResults = {
+    queueFirst: 0,
+    queueSecond: 0,
+    queueEnd: 0
+  };
+  public operands = {
+    queueFirst: [],
+    queueSecond: [],
+    queueEnd: []
+  };
+  public finalPrice = 0;
+  public defaultServices;
+
   //public servicesCategoryList: IServiceCategoryList[] = [];
   public isServicesView = false;
   public servicesData: IServiceForm[] = [];
@@ -64,11 +83,12 @@ export class HomeComponent implements AfterViewInit, OnInit, OnDestroy {
   // public activeServiceCategoryType: boolean|number = false;
   public model: any;
   public orderData = {
-    service_id: '',
     price: {
-      amount:0,
-      currency: '',
-      symbol_currency: ''
+      base_amount: 0
+    },
+    order_options: {
+      min_amount: 0,
+      payment_methods: []
     },
     service: '',
     services: [],
@@ -84,27 +104,55 @@ export class HomeComponent implements AfterViewInit, OnInit, OnDestroy {
   constructor(private homeService: HomeService, private navigationService: NavigationService, private router: Router, private route: ActivatedRoute) {}
 
   renderPage(services: IServices) {
+    this.defaultServices = services;
     this.isServicesView = true;
     this.servicesData = [];
     this.orderData = {
-      service_id: services._id,
       price: services.price,
+      order_options: services.order_options,
       service: services.title,
       services: [],
-      totalPrice: services.price.amount
+      totalPrice: services.price.base_amount
     };
-    services.service_forms.forEach((form) => {
+    this.baseAmount.start = services.price.base_amount;
+    this.baseAmount.calculated = services.price.base_amount;
+    let formId = 0;
+    services.forms.forEach((form) => {
       let serviceForm: IServiceForm = {
         title: form.title,
-        description: form.description,
-        form_type: form.form_type,
-        list_items: []
+        type: form.type,
+        required: form.required,
+        price_type: form.price_type,
+        options: []
       };
-      form.list_items.forEach((item: IServiceFormItem) => {
-        serviceForm.list_items.push({title: item.title, price: item.price, selected: false});
+
+      let optionId = 0;
+      form.options.forEach((item: IServiceFormItem) => {
+        let option = {
+          formId: formId,
+          optionId: optionId,
+          title: item.title,
+          type: form.type,
+          amount: item.amount
+        };
+
+        if ('input_type' in item) {
+          option['input_type'] = item.input_type;
+          option['input_value'] = item.input_value;
+        }
+
+        if ('selected' in item) {
+          option['selected'] = item.selected;
+        } else {
+          option['selected'] = false;
+        }
+        serviceForm.options.push(option);
+        optionId ++;
       });
       this.servicesData.push(serviceForm);
+      formId ++;
     });
+    this.calculateOrder();
   }
 
   toggleService(serviceName, itemName) {
@@ -112,13 +160,30 @@ export class HomeComponent implements AfterViewInit, OnInit, OnDestroy {
     this.servicesData.forEach((service) => {
       if (service.title === serviceName) {
         let itemId = 0;
-        service.list_items.forEach((item) => {
+        service.options.forEach((item) => {
           if (item.title === itemName) {
             let currentValue = item.selected;
-            if (service.form_type === 'RADIOBUTTON') {
-              this.uncheckAllItems(serviceName);
+            if (currentValue && service.required === true) {
+              if (service.type === 'RADIOBUTTON') {
+
+              } else {
+                if (this.checkNotEmptyForm(item.formId, item.optionId)) {
+                  this.servicesData[serviceId].options[itemId].selected = !currentValue;
+                }
+              }
+            } else if (!currentValue && service.required === true) {
+              if (service.type === 'RADIOBUTTON') {
+                this.uncheckAllItems(serviceName);
+                this.servicesData[serviceId].options[itemId].selected = !currentValue;
+              } else {
+                this.servicesData[serviceId].options[itemId].selected = !currentValue;
+              }
+            } else {
+              if (service.type === 'RADIOBUTTON') {
+                this.uncheckAllItems(serviceName);
+              }
+              this.servicesData[serviceId].options[itemId].selected = !currentValue;
             }
-            this.servicesData[serviceId].list_items[itemId].selected = !currentValue;
           }
           itemId++;
         });
@@ -128,13 +193,35 @@ export class HomeComponent implements AfterViewInit, OnInit, OnDestroy {
     this.calculateOrder();
   }
 
+  checkNotEmptyForm(formId, optionId): boolean {
+    let result: boolean = false;
+    this.servicesData[formId].options.forEach((option) => {
+      if (option.optionId !== optionId) {
+        if (option.selected) {
+          result = true;
+        }
+      }
+    });
+
+    return result;
+  }
+
+  changeValue(formId, optionId) {
+    let value = this.servicesData[formId].options[optionId].input_value;
+    this.calculateOrder();
+  }
+
+  selectAllContent($event) {
+    $event.target.select();
+  }
+
   uncheckAllItems(serviceName) {
     let serviceId = 0;
     this.servicesData.forEach((service) => {
       if(service.title === serviceName) {
         let itemId = 0;
-        service.list_items.forEach((item) => {
-          this.servicesData[serviceId].list_items[itemId].selected = false;
+        service.options.forEach((item) => {
+          this.servicesData[serviceId].options[itemId].selected = false;
           itemId++;
         });
       }
@@ -142,26 +229,133 @@ export class HomeComponent implements AfterViewInit, OnInit, OnDestroy {
     });
   }
 
+  queueWorker() {
+    this.baseAmount.calculated = this.baseAmount.start;
+    this.operands = {
+      queueFirst: [],
+      queueSecond: [],
+      queueEnd: []
+    };
+    this.finalPrice = 0;
+
+    let serviceId = 0;
+    this.servicesData.forEach((service) => {
+      let itemId = 0;
+      service.options.forEach((item) => {
+        if ('input_type' in item) {
+          if (item.input_value != 0) {
+            if (service.price_type === 'BASE_AMOUNT_PER_INPUT') {
+              if (item.input_value !== 0) {
+                this.operands.queueSecond.push({
+                  type: 'BASE_AMOUNT_PER_INPUT',
+                  fieldType: service.type,
+                  cnt: item.input_value,
+                  amount: item.amount
+                });
+              }
+            }
+
+            if (service.price_type === 'AMOUNT_PER_INPUT') {
+              this.operands.queueEnd.push({
+                type: 'AMOUNT_PER_INPUT',
+                fieldType: service.type,
+                cnt: item.input_value,
+                amount: item.amount
+              });
+            }
+          }
+        }
+
+        if ('selected' in item) {
+          if (item.selected) {
+            if (service.price_type === 'BASE_AMOUNT') {
+              this.baseAmount.calculated = this.baseAmount.start + item.amount;
+            }
+
+            if (service.price_type === 'BASE_AMOUNT_INCREMENT') {
+              this.operands.queueFirst.push({
+                type: 'BASE_AMOUNT_INCREMENT',
+                fieldType: service.type,
+                cnt: 0,
+                amount: item.amount
+              });
+            }
+          }
+        }
+        itemId++;
+      });
+      serviceId++;
+    });
+
+    this.operands.queueFirst.forEach((task) => {
+      if (task.type === 'BASE_AMOUNT_INCREMENT') {
+        this.baseAmount.calculated += task.amount;
+        this.calculateResults.queueFirst = this.baseAmount.calculated;
+      }
+    });
+    this.operands.queueSecond.forEach((task) => {
+      if (task.type === 'BASE_AMOUNT_PER_INPUT') {
+        this.baseAmount.calculated = this.baseAmount.calculated * task.cnt;
+        this.calculateResults.queueSecond = this.baseAmount.calculated;
+      }
+    });
+    this.operands.queueEnd.forEach((task) => {
+      if (task.type === 'AMOUNT_PER_INPUT') {
+        this.baseAmount.calculated = this.baseAmount.calculated + (task.amount * task.cnt);
+        this.calculateResults.queueEnd = this.baseAmount.calculated;
+      }
+    });
+    console.log(this.baseAmount);
+  }
+
   calculateOrder() {
+    this.queueWorker();
     this.orderData.services = [];
-    this.orderData.totalPrice = this.orderData.price.amount;
+    this.orderData.totalPrice = this.baseAmount.calculated;
     let currentOrderState = [];
     let serviceId = 0;
     this.servicesData.forEach((service) => {
       let itemId = 0;
-      service.list_items.forEach((item) => {
-        if (item.selected) {
-          this.orderData.totalPrice = this.orderData.totalPrice + item.price.amount;
-          if (serviceId in currentOrderState) {
-            currentOrderState[serviceId].items.push({name: item.title, price: item.price});
-          } else {
-            currentOrderState[serviceId] = {
+      service.options.forEach((item) => {
+        if (service.type === 'RADIOBUTTON') {
+          if (item.selected) {
+            currentOrderState.push({
               name: service.title,
-              items: [{
+              option: {
                 name: item.title,
-                price: item.price
-              }]
-            };
+                price: item.amount
+              }
+            });
+          }
+        } else if (service.type === 'CHECKBOX') {
+          if (item.selected) {
+            currentOrderState.push({
+              name: service.title,
+              option: {
+                name: item.title,
+                price: item.amount
+              }
+            });
+          }
+        } else if (service.type === 'INPUTTEXT') {
+          if (service.price_type === 'BASE_AMOUNT_PER_INPUT' && item.input_value != 0) {
+            currentOrderState.push({
+              name: service.title,
+              option: {
+                name: item.input_value,
+                price: item.input_value * this.calculateResults.queueFirst
+              }
+            });
+          }
+
+          if (service.price_type === 'AMOUNT_PER_INPUT' && item.input_value != 0) {
+            currentOrderState.push({
+              name: service.title,
+              option: {
+                name: item.input_value,
+                price: item.amount * item.input_value
+              }
+            });
           }
         }
         itemId++;
@@ -182,31 +376,31 @@ export class HomeComponent implements AfterViewInit, OnInit, OnDestroy {
     }
   }
 
-  // toggleService(categoryListId: string, categoryId: string, serviceName: string) {
-  //   let categoryListIndex = 0;
-  //   this.servicesCategoryList.forEach((categoryList) => {
-  //     let categoryIndex = 0;
-  //     if (categoryList._id === categoryListId) {
-  //       categoryList.products.forEach((categoryData) => {
-  //         if (categoryData._id === categoryId) {
-  //           let serviceIndex = 0;
-  //           categoryData.items.forEach((serviceData) => {
-  //             if (serviceData.name === serviceName) {
-  //               this.servicesCategoryList[categoryListIndex].products[categoryIndex].items[serviceIndex].selected = !serviceData.selected;
-  //               this.calculateOrder();
-  //             } else {
-  //               serviceIndex++;
-  //             }
-  //           });
-  //         } else {
-  //           categoryIndex++;
-  //         }
-  //       });
-  //     } else {
-  //       categoryListIndex++;
-  //     }
-  //   });
-  // }
+    // toggleService(categoryListId: string, categoryId: string, serviceName: string) {
+    // let categoryListIndex = 0;
+    // this.servicesCategoryList.forEach((categoryList) => {
+    //   let categoryIndex = 0;
+    //   if (categoryList._id === categoryListId) {
+    //     categoryList.products.forEach((categoryData) => {
+    //       if (categoryData._id === categoryId) {
+    //         let serviceIndex = 0;
+    //         categoryData.items.forEach((serviceData) => {
+    //           if (serviceData.name === serviceName) {
+    //             this.servicesCategoryList[categoryListIndex].products[categoryIndex].items[serviceIndex].selected = !serviceData.selected;
+    //             this.calculateOrder();
+    //           } else {
+    //             serviceIndex++;
+    //           }
+    //         });
+    //       } else {
+    //         categoryIndex++;
+    //       }
+    //     });
+    //   } else {
+    //     categoryListIndex++;
+    //   }
+    // });
+    // }
 
   // calculateOrder() {
   //   this.orderData = [];
@@ -388,7 +582,6 @@ export class HomeComponent implements AfterViewInit, OnInit, OnDestroy {
     this.servicesData.forEach((service) => {
       this.uncheckAllItems(service.title);
     });
-    this.orderData.services = [];
-    this.orderData.totalPrice = this.orderData.price.amount;
+    this.renderPage(this.defaultServices);
   }
 }
