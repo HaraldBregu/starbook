@@ -63,7 +63,7 @@ export class OrderComponent implements OnInit, OnDestroy {
 
   constructor(private orderService: OrderService, private popupsService: PopupsService) {
     for (let i = 0; i < 24; i++) {
-      if (i > 7 && i < 20) {
+      if (i > 7 && i < 15) {
         if (i > 9) {
           this.timePicker.push(i + ':00', i + ':30');
         } else {

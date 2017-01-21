@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, Output, OnDestroy, EventEmitter, trigger, state, style, transition, animate, keyframes } from '@angular/core';
+import { Router, Route, ActivatedRoute, Params } from '@angular/router';
 import { AuthService } from '../shared/auth.service';
 import { NavigationService } from '../shared/navigation.service';
 import { PopupsService } from './popups.service';
@@ -265,7 +266,7 @@ export class PopupsComponent implements OnInit, OnDestroy {
     price: null
   };
   public formError: boolean|{title: string, message: string} = false;
-  constructor(private authServics: AuthService, private navigationService: NavigationService, private popupService: PopupsService, private ordersService: OrdersService, private paymentService: PaymentService) {
+  constructor(private authServics: AuthService, private navigationService: NavigationService, private popupService: PopupsService, private ordersService: OrdersService, private paymentService: PaymentService, private router: Router,) {
     this.emailPattern = /^[a-z0-9!#$%&'*+\/=?^_`{|}~.-]+@[a-z0-9]([a-z0-9-]*[a-z0-9])?(\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)*$/i;
   }
   getPopup(type: string) {
@@ -343,6 +344,7 @@ export class PopupsComponent implements OnInit, OnDestroy {
           this.auth = data;
           this.navigationService.updatePersonalMenu(data);
           this.closePopup();
+          this.router.navigate(['/']);
         })
         .catch((error) => {
           switch (error) {
@@ -546,12 +548,13 @@ export class PopupsComponent implements OnInit, OnDestroy {
   }
 
   registration(name: string, phone: string, email: string, password: string, passwordConfirm: string) {
-    if (this.emailPattern.test(email) && password === passwordConfirm && password.length > 0 && name.length > 0 && phone.length > 10) {
+    if (this.emailPattern.test(email) && password === passwordConfirm && password.length > 0 && name.length > 0 && phone.length > 9) {
       this.authServics.signup(name, phone, email, password)
         .then((data) => {
           this.auth = data;
           this.navigationService.updatePersonalMenu(data);
           this.closePopup();
+          this.router.navigate(['/profile/payment']);
         })
         .catch((error) => {
           switch (error) {
@@ -560,6 +563,18 @@ export class PopupsComponent implements OnInit, OnDestroy {
                 title: 'Indirizzo e-mail già in uso.',
                 message: `Hai indicato di essere un nuovo cliente ma è già 
                 presente un account collegato all'indirizzo e-mail: mail@gmail.com`
+              };
+              break;
+            case 422:
+              this.formError = {
+                title: 'Parametri mancanti',
+                message: `Inserisci tutti i parametri per procedere con la registrazione`
+              };
+              break;
+            case 404:
+              this.formError = {
+                title: 'Errore',
+                message: `C'è stato un errore sconosciuto, per favore riprova più tardi`
               };
               break;
             default:

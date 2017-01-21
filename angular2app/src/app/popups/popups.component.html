@@ -72,7 +72,7 @@
       <button class="btn btn-warning" type="submit" (click)="registration(regName.value, regPhone.value, regEmail.value, regPassword.value, regPasswordConfirm.value)">Crea account</button>
     </div>
   </form>
-  <div class="form-notice">Accedendo dichiari di aver letto e accetti le <a routerLink="profile/conditions">condizioni generali</a> e <a routerLink="profile/privacy">l’informativa sulla privacy</a></div>
+  <div class="form-notice">Accedendo dichiari di aver letto e accetti le <a (click)="closePopup()" routerLink="profile/conditions">condizioni generali</a> e <a (click)="closePopup()" routerLink="profile/privacy">l’informativa sulla privacy</a></div>
   <div class="login-offer">Hai gia un account su Starbook? <a (click)="getPopup('login')">Accedi</a></div>
 </div>
 

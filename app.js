@@ -10,10 +10,16 @@ var http = require('http')
 var https = require('https')
 var config = require('./config')
 
+// const dotenv = require('dotenv')
+// dotenv.load({ path: '.env.data' })
+
 var app = express()
+
+http.Server(app).listen(config.port)
 
 app.use('/', require('redirect-https')({
   body: '',
+  port: 443,
   trustProxy: true
 }))
 app.use(cors())
@@ -24,9 +30,6 @@ app.use(express.static(path.join(__dirname, 'angular2app/dist')))
 app.get('*',function(req, res){
      res.sendFile(path.join(__dirname, 'angular2app/dist/index.html'))
 })
-
-http.Server(app).listen(config.port)
-
 var options = {
 	key: fs.readFileSync('./cert/key.pem', 'utf8'),
 	cert: fs.readFileSync('./cert/server.crt', 'utf8')

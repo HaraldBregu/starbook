@@ -2,14 +2,14 @@
   <div class="container">
     <div class="row">
       <div class="col-xl-12 landing-header">
-        <h1>Scegli un servizio. Prenotalo.</h1>
+        <h1>Starbook, il servizio che ti serve</h1>
       </div>
     </div>
   </div>
   <div class="container">
     <div class="row">
       <div class="col-xl-12 landing-search">
-        <p-autoComplete [(ngModel)]="query" [suggestions]="results" field="title" scrollHeight="275px" (completeMethod)="search($event)" (onSelect)="selectResult(query)" placeholder="Che tipo servizio ti serve?" minLength="0">
+        <p-autoComplete [(ngModel)]="query" [suggestions]="results" field="title" scrollHeight="275px" (completeMethod)="search($event)" (onSelect)="selectResult(query)" placeholder="Cerca" minLength="0">
           <template let-res>
             <div class="search-result" (click)="selectResult(res)">{{ res.title }}</div>
           </template>
@@ -26,7 +26,7 @@
           <span class="close rounded thick" (click)="clearSearchForm()"></span>
         </div>
         <div class="ui-autocomplete-panel empty" *ngIf="results.length === 0 && query.length > 0">
-          <div class="no-result">No results</div>
+          <div class="no-result">Nessun risultato</div>
         </div>
       </div>
     </div>
