@@ -117,7 +117,7 @@
     </svg>
   </div>
   <div class="success-icon" *ngIf="confirmPopupData.type === 'confermaEnd' || confirmPopupData.type === 'addPriceEnd'"><span></span></div>
-  <div class="header" [ngClass]="{'without-message': confirmPopupData.type === 'addPriceEnd'}">{{ confirmPopupData.title }}</div>
+  <div class="header" [ngClass]="{'without-message': confirmPopupData.type === 'addPriceEnd'}" *ngIf="confirmPopupData.title !== ''">{{ confirmPopupData.title }}</div>
   <form class="confirm-order-form" #confirmOrderForm="ngForm">
     <p *ngIf="confirmPopupData.type !== 'newOrder' && confirmPopupData.type !== 'newOrderEnd'" [ngClass]="{'conferma-finish': confirmPopupData.type === 'confermaEnd'}">{{ confirmPopupData.text }}</p>
     <p *ngIf="confirmPopupData.type === 'newOrderEnd'" class="confirm-end">{{ confirmPopupData.text }}</p>
@@ -140,7 +140,9 @@
       <button class="btn btn-warning" type="submit" (click)="reactivateOrder(confirmPopupData.id)" *ngIf="confirmPopupData.button === 'Riattiva ordine'">Riattiva ordine</button>
       <button class="btn btn-warning new-order-btn" type="submit" (click)="confirmNewOrder()" *ngIf="confirmPopupData.button === 'Procedi con l’acquisto'"><i class="fa fa-lock"></i> Procedi con l’acquisto</button>
       <span *ngIf="confirmPopupData.button === 'Procedi con l’acquisto'" class="confirm-button-notice">Verrai notificato con un sms e mail ad acquisto effettuato</span>
-      <button class="btn btn-secondary" type="submit" (click)="closePopup()">Chiudi</button>
+      <button class="btn btn-warning logout-btn" type="submit" (click)="logout()" *ngIf="confirmPopupData.button === 'logout'">Logout</button>
+      <button class="btn btn-secondary" type="submit" (click)="closePopup()" *ngIf="confirmPopupData.button === 'logout'">Dismiss</button>
+      <button class="btn btn-secondary" type="submit" (click)="closePopup()" *ngIf="confirmPopupData.button !== 'logout'">Chiudi</button>
     </div>
   </form>
 </div>

@@ -215,7 +215,9 @@ export class PopupsComponent implements OnInit, OnDestroy {
   };
   public loginData = {
     email: '',
-    password: ''
+    password: '',
+    type: '',
+    orderData: {}
   };
   public loginError = {
     email: false,
@@ -342,9 +344,13 @@ export class PopupsComponent implements OnInit, OnDestroy {
       this.authServics.login(email, password)
         .then((data) => {
           this.auth = data;
-          this.navigationService.updatePersonalMenu(data);
-          this.closePopup();
-          this.router.navigate(['/']);
+          if (this.loginData.type === 'fromOrder') {
+            this.closePopup(true);
+            this.popupService.activate({type: 'confirmNewOrder', data: this.loginData.orderData});
+          } else {
+            this.closePopup();
+            this.router.navigate(['/']);
+          }
         })
         .catch((error) => {
           switch (error) {
@@ -514,11 +520,6 @@ export class PopupsComponent implements OnInit, OnDestroy {
 
     if (result.length === 5) {
       let parts = result.split('/');
-      console.log(parseInt(parts[0]));
-      console.log(parseInt(parts[1]));
-      console.log(parseInt(month));
-      console.log(year);
-      console.log(parseInt(parts[1]) > year);
       if (parts[0] !== result) {
         if (parseInt(parts[1]) > year) {
           this.addCardError.exp_date = false;
@@ -796,10 +797,22 @@ export class PopupsComponent implements OnInit, OnDestroy {
 
   }
 
+  logout() {
+    this.popupService.actionComplete({type: 'logout', data: {}});
+    this.closePopup();
+  }
+
   ngOnInit() {
     this.subscription = this.popupService.getActivePopup$.subscribe(popup => {
       switch (popup.type) {
         case 'login':
+          this.loginPopupState = 'active';
+          this.activePopup = 'login';
+          this.shadowState = 'active';
+          break;
+        case 'loginFromOrder':
+          this.loginData.orderData = popup.data;
+          this.loginData.type = 'fromOrder';
           this.loginPopupState = 'active';
           this.activePopup = 'login';
           this.shadowState = 'active';
@@ -970,6 +983,16 @@ export class PopupsComponent implements OnInit, OnDestroy {
           this.activePopup = 'confirmAction';
           this.shadowState = 'active';
           break;
+        case 'logout':
+          this.confirmPopupData.title = '';
+          this.confirmPopupData.data = [];
+          this.confirmPopupData.information = '';
+          this.confirmPopupData.button = 'logout';
+          this.confirmPopupData.type = 'logout';
+          this.confirmPopupState = 'active';
+          this.activePopup = 'logout';
+          this.shadowState = 'active';
+          break;
       }
     });
     this.auth = this.authServics.authInit();
@@ -993,7 +1016,9 @@ export class PopupsComponent implements OnInit, OnDestroy {
       };
     this.loginData = {
         email: '',
-        password: ''
+        password: '',
+        type: '',
+        orderData: {}
       };
     this.registrationData = {
         name: '',

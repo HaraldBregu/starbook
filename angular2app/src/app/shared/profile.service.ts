@@ -25,7 +25,16 @@ export class ProfileService {
 
   updateProfile(userData) {
     this.navigationService.updateLoadingStatus(true);
-    return this.http.put(this.api + 'me', userData, this._makeHeaders())
+    let data = {
+      fullname: userData.fullname,
+      phone_number: userData.phone_number,
+      street: userData.street,
+      city: userData.city,
+      postal_code: userData.postal_code,
+      province: userData.province,
+      country: userData.country
+    };
+    return this.http.put(this.api + 'me', data, this._makeHeaders())
       .toPromise()
       .then((response) => {
         this.navigationService.updateLoadingStatus(false);

@@ -31,8 +31,10 @@ export class OrderComponent implements OnInit, OnDestroy {
     isFull: false,
     formattedAddress: ''
   };
+  public isAddressOne = false;
   public isAddressFull = false;
   public isAddressDirty = false;
+  public isEnable = true;
   public Order = {
     service_id: '',
     delivery_details: [],
@@ -103,20 +105,20 @@ export class OrderComponent implements OnInit, OnDestroy {
     this.Order.time = time;
   }
 
-  getAddresses(event) {
-    this.isAddressDirty = true;
-    this.isAddressFull = false;
-    if (event.query.length > 2) {
-      this.orderService.getAddresses(event.query)
-        .then((data) => {
-          this.addresses = [];
-          this.addresses = data;
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    }
-  }
+  // getAddresses(event) {
+  //   this.isAddressDirty = true;
+  //   this.isAddressFull = false;
+  //   if (event.query.length > 2) {
+  //     this.orderService.getAddresses(event.query)
+  //       .then((data) => {
+  //         this.addresses = [];
+  //         this.addresses = data;
+  //       })
+  //       .catch((error) => {
+  //         console.log(error);
+  //       });
+  //   }
+  // }
 
   selectAddress(value: IAddress) {
     if (value.isFull) {
@@ -127,6 +129,8 @@ export class OrderComponent implements OnInit, OnDestroy {
     this.selectedAddress = value;
   }
   modifyAddress() {
+    this.isAddressDirty = false;
+    this.isEnable = true;
     this.isAddressDirty = false;
   }
 
@@ -139,7 +143,12 @@ export class OrderComponent implements OnInit, OnDestroy {
 
     this.orderService.getAddresses(this.address)
         .then((address: IAddress[]) => {
-          if (0 in address) {
+          console.log(address);
+          if (address.length > 1) {
+            this.isAddressOne = false;
+            this.isEnable = false;
+          } else if (0 in address) {
+            this.isAddressOne = true;
             this.Order.street = address[0].street;
             this.Order.street_number = address[0].street_number;
             this.Order.city = address[0].city;
@@ -150,14 +159,20 @@ export class OrderComponent implements OnInit, OnDestroy {
             this.Order.formattedAddress = address[0].formattedAddress;
             this.address = address[0].formattedAddress;
 
-            if (this.Order.street_number !== '' && this.Order.postal_code !== '' && this.Order.country_code !== '') {
+            if ((this.Order.street_number !== '' && this.Order.street_number !== null) && (this.Order.postal_code !== '' && this.Order.postal_code !== null) && (this.Order.country_code !== '' && this.Order.country_code !== null)) {
               this.isAddressFull = true;
+              this.isEnable = true;
             } else {
               this.isAddressFull = false;
+              this.isEnable = false;
+              this.isEnable = false;
             }
           } else {
+            this.isAddressOne = true;
             this.isAddressFull = false;
+            this.isEnable = false;
           }
+
           if (this.Order.date && this.orderIsFull && this.isAddressFull && this.orderData.order_options.min_amount <= this.orderData.totalPrice) {
             let date = new Date(this.Order.date);
             let day = date.getDate() > 9 ? date.getDate() : '0' + date.getDate();
@@ -167,7 +182,11 @@ export class OrderComponent implements OnInit, OnDestroy {
               address: this.Order.formattedAddress,
               description: this.Order.delivery_description
             };
-            this.popupsService.activate({type: 'confirmNewOrder', data: {orderData: this.orderData, information: orderInformation}});
+            if (localStorage.getItem('auth') === null) {
+              this.popupsService.activate({type: 'loginFromOrder', data: {orderData: this.orderData, information: orderInformation}});
+            } else {
+              this.popupsService.activate({type: 'confirmNewOrder', data: {orderData: this.orderData, information: orderInformation}});
+            }
           }
         })
         .catch((error) => {

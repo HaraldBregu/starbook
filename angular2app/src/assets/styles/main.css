@@ -3356,9 +3356,8 @@ html, body {
 .loader svg {
   display: block;
   position: fixed;
-  top: 50%;
+  top: 40px;
   left: 50%;
-  margin-top: -30px;
   margin-left: -30px; }
 
 .sub-header {
@@ -5224,6 +5223,9 @@ html, body {
 
 .popup.new-version .header.without-message {
   margin-bottom: 27px; }
+
+.popup .form-group .btn-warning.logout-btn {
+  margin-top: -16px; }
 
 @media (max-width: 480px) {
   .popup {

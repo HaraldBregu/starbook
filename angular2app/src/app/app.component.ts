@@ -45,7 +45,18 @@ export class AppComponent implements OnInit, OnDestroy {
       this.tagline = message;
     });
     this.authSubscription = this.navigationService.getPersonalMenu$.subscribe(auth => {
-      this.auth = auth;
+      if (auth !== false) {
+        this.auth = auth;
+        // this.auth.profile.fullname = auth.fullname;
+        // this.auth.phone_number = auth.phone_number;
+        // this.auth.address.street = auth.street;
+        // this.auth.address.city = auth.city;
+        // this.auth.address.postal_code = auth.postal_code;
+        // this.auth.address.province = auth.province;
+        // this.auth.address.country = auth.country;
+      } else {
+        this.auth = false;
+      }
     });
     this.loadingSubscription = this.navigationService.getLoadingStatus$.subscribe(status => {
       this.isLoading = status;

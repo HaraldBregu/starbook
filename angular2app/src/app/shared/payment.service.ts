@@ -114,7 +114,10 @@ export class PaymentService {
           this.navigationService.updateLoadingStatus(false);
           return response.json();
         })
-        .catch(this.handleError);
+        .catch((error) => {
+          this.navigationService.updateLoadingStatus(false);
+          this.handleError(error);
+        });
   }
 
   private handleError(error: any): Promise<any> {

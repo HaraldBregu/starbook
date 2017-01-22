@@ -743,6 +743,10 @@ $action-form-description-letter-spacing: 0.08px;
 .popup.new-version .header.without-message {
   margin-bottom: 27px;
 }
+.popup .form-group .btn-warning.logout-btn {
+  margin-top: -16px;
+}
+
 
 @media (max-width: 480px) {
   .popup {

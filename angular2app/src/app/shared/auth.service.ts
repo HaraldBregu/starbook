@@ -45,6 +45,7 @@ export class AuthService {
           };
 
           localStorage.setItem('auth', JSON.stringify(authData));
+          this.navigationService.updatePersonalMenu(data.result);
           return authData;
         } else {
           this.handleError(data.message);
@@ -78,7 +79,7 @@ export class AuthService {
           };
 
           localStorage.setItem('auth', JSON.stringify(authData));
-          return authData;
+          return data.result;
         } else {
           this.handleError(data.message);
         }

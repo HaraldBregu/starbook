@@ -1,6 +1,7 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Router, Route, ActivatedRoute, Params } from '@angular/router';
 import { HomeService } from '../../home/home.service';
+import { NavigationService } from '../../shared/navigation.service';
 
 @Component({
   selector: 'app-landing',
@@ -13,9 +14,10 @@ export class LandingComponent implements OnInit {
   public services = [];
   public spinerView = false;
   public clearView = false;
-  constructor(private homeService: HomeService, private router: Router, private route: ActivatedRoute) { }
+  constructor(private homeService: HomeService, private router: Router, private route: ActivatedRoute, private navigationService: NavigationService) { }
 
   ngOnInit() {
+    this.navigationService.updateMessage('Trova servizi nella tua zona');
     this.homeService.getServices()
         .then((services) => {
           this.services = services.result;

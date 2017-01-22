@@ -139,6 +139,13 @@ export class ProfileComponent implements OnInit, OnDestroy {
           });
           this.isLoading = false;
           break;
+        case 'logout':
+          if (localStorage.getItem('auth') !== null) {
+            localStorage.removeItem('auth');
+          }
+          this.navigationService.updatePersonalMenu(false);
+          this.router.navigate(['/']);
+          break;
       }
     });
   }
@@ -311,11 +318,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
   }
 
   logout() {
-    if (localStorage.getItem('auth') !== null) {
-      localStorage.removeItem('auth');
-    }
-    this.navigationService.updatePersonalMenu(false);
-    this.router.navigate(['/']);
+    this.popupsService.activate({type: 'logout', data: {}});
   }
 
   ngOnDestroy() {

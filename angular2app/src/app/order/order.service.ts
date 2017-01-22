@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {Http, URLSearchParams, Headers } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 import { NavigationService } from '../shared/navigation.service';
+import {error} from "util";
 
 export interface IAddress {
   street: string;
@@ -128,11 +129,14 @@ export class OrderService {
         });
         return addresses;
       })
-      .catch(this.handleError);
+      .catch((error) => {
+        this.navigationService.updateLoadingStatus(false);
+        this.handleError;
+      });
   }
 
   private handleError(error: any): Promise<any> {
-    this.navigationService.updateLoadingStatus(true);
+    this.navigationService.updateLoadingStatus(false);
     return Promise.reject(error.status || error);
   }
 }

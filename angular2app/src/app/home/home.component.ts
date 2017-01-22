@@ -106,6 +106,7 @@ export class HomeComponent implements AfterViewInit, OnInit, OnDestroy {
   constructor(private homeService: HomeService, private navigationService: NavigationService, private router: Router, private route: ActivatedRoute) {}
 
   renderPage(services: IServices) {
+    this.navigationService.updateMessage(services.title);
     this.defaultServices = services;
     this.isServicesView = true;
     this.servicesData = [];
@@ -210,7 +211,14 @@ export class HomeComponent implements AfterViewInit, OnInit, OnDestroy {
   }
 
   changeValue(formId, optionId) {
-    let value = this.servicesData[formId].options[optionId].input_value;
+    let value = parseInt(this.servicesData[formId].options[optionId].input_value);
+
+    if (isNaN(value) || value === 0) {
+      this.servicesData[formId].options[optionId].input_value = 0;
+    } else {
+      this.servicesData[formId].options[optionId].input_value = value;
+    }
+
     this.calculateOrder();
   }
 
@@ -506,7 +514,6 @@ export class HomeComponent implements AfterViewInit, OnInit, OnDestroy {
     //     console.log(error);
     //   });
 
-    this.navigationService.updateMessage('Trova servizi nella tua zona');
     // this.subscription = this.navigationService.getActiveTab$.subscribe(tab => {
     //   this.activeServiceCategoryType = tab;
     //   this.activeServiceCategory = tab;

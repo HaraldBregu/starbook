@@ -48,7 +48,7 @@
             <div class="time-elem" *ngFor="let time of timePicker" (click)="selectTime(time)">{{time}}</div>
           </div>
         </div>
-        <div class="form-group" [ngClass]="{isError: !isAddressFull && submitOrder}">
+        <div class="form-group" [ngClass]="{isError: (!isAddressFull || !isAddressOne) && submitOrder && isAddressDirty}">
           <div class="input-group date">
             <span class="fa fa-map-marker"></span>
             <input type="text" class="form-control" placeholder="Indirizzo" [ngClass]="{'isError':isAddressFull === false && isAddressDirty === true}" [(ngModel)]="address" [ngModelOptions]="{standalone: true}" (keyup)="modifyAddress()" (change)="modifyAddress()">
@@ -56,13 +56,14 @@
             <!--</p-autoComplete>-->
           </div>
           <div class="error-block" *ngIf="!isAddressFull && isAddressDirty && address === ''">Inserisci l'indirizzo esatto</div>
-          <div class="error-block" *ngIf="!isAddressFull && isAddressDirty && address !== ''">Address not found</div>
+          <div class="error-block" *ngIf="!isAddressFull && isAddressDirty && address !== '' && isAddressOne">Address not found</div>
+          <div class="error-block" *ngIf="!isAddressOne && isAddressDirty && address !== ''">Address is not specific</div>
         </div>
         <div class="form-group">
           <textarea class="form-control" id="nota" name="applicant_description" [(ngModel)]="Order.delivery_description" placeholder="Lascia una nota..."></textarea>
         </div>
         <div class="form-group">
-          <button class="btn btn-warning btn-block" (click)="showConfirmation()">Procedi con l’ordine</button>
+          <button class="btn btn-warning btn-block" (click)="showConfirmation()" [disabled]="!isEnable">Procedi con l’ordine</button>
         </div>
         <div class="footer-links">
           <p>
