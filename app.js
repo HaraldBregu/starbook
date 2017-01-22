@@ -9,19 +9,25 @@ var fs = require('fs')
 var http = require('http')
 var https = require('https')
 var config = require('./config')
-
-// const dotenv = require('dotenv')
-// dotenv.load({ path: '.env.data' })
-
 var app = express()
 
 http.Server(app).listen(config.port)
 
 app.use('/', require('redirect-https')({
-  body: '',
-  port: 443,
-  trustProxy: true
+	body: '',
+  	port: 443,
+  	trustProxy: true
 }))
+
+app.all('/*', function(req, res, next) {
+	if(!/^www\./.test(req.headers.host)) {
+		res.status(301).redirect(req.protocol + '://www.' + req.headers.host + req.url)
+	} else {
+		next()
+	}
+})
+
+
 app.use(cors())
 app.use(bodyParser.json({strict: false}))
 app.use(bodyParser.urlencoded({extended: true}))
