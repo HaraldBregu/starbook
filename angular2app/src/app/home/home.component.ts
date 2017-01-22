@@ -41,6 +41,7 @@ export interface IServiceForm {
   options: IServiceFormItem[];
 }
 export interface IServices {
+  _id: string;
   title: string;
   description: string;
   price: {
@@ -83,6 +84,7 @@ export class HomeComponent implements AfterViewInit, OnInit, OnDestroy {
   // public activeServiceCategoryType: boolean|number = false;
   public model: any;
   public orderData = {
+    service_id: '',
     price: {
       base_amount: 0
     },
@@ -108,6 +110,7 @@ export class HomeComponent implements AfterViewInit, OnInit, OnDestroy {
     this.isServicesView = true;
     this.servicesData = [];
     this.orderData = {
+      service_id: services._id,
       price: services.price,
       order_options: services.order_options,
       service: services.title,
@@ -280,6 +283,15 @@ export class HomeComponent implements AfterViewInit, OnInit, OnDestroy {
                 amount: item.amount
               });
             }
+
+            if (service.price_type === 'AMOUNT') {
+              this.operands.queueEnd.push({
+                type: 'AMOUNT',
+                fieldType: service.type,
+                cnt: 0,
+                amount: item.amount
+              });
+            }
           }
         }
         itemId++;
@@ -304,8 +316,11 @@ export class HomeComponent implements AfterViewInit, OnInit, OnDestroy {
         this.baseAmount.calculated = this.baseAmount.calculated + (task.amount * task.cnt);
         this.calculateResults.queueEnd = this.baseAmount.calculated;
       }
+      if (task.type === 'AMOUNT') {
+        this.baseAmount.calculated = this.baseAmount.calculated + task.amount;
+        this.calculateResults.queueEnd = this.baseAmount.calculated;
+      }
     });
-    console.log(this.baseAmount);
   }
 
   calculateOrder() {
@@ -321,6 +336,7 @@ export class HomeComponent implements AfterViewInit, OnInit, OnDestroy {
           if (item.selected) {
             currentOrderState.push({
               name: service.title,
+              price_type: service.price_type,
               option: {
                 name: item.title,
                 price: item.amount
@@ -331,6 +347,7 @@ export class HomeComponent implements AfterViewInit, OnInit, OnDestroy {
           if (item.selected) {
             currentOrderState.push({
               name: service.title,
+              price_type: service.price_type,
               option: {
                 name: item.title,
                 price: item.amount
@@ -341,6 +358,7 @@ export class HomeComponent implements AfterViewInit, OnInit, OnDestroy {
           if (service.price_type === 'BASE_AMOUNT_PER_INPUT' && item.input_value != 0) {
             currentOrderState.push({
               name: service.title,
+              price_type: service.price_type,
               option: {
                 name: item.input_value,
                 price: item.input_value * this.calculateResults.queueFirst
@@ -351,6 +369,7 @@ export class HomeComponent implements AfterViewInit, OnInit, OnDestroy {
           if (service.price_type === 'AMOUNT_PER_INPUT' && item.input_value != 0) {
             currentOrderState.push({
               name: service.title,
+              price_type: service.price_type,
               option: {
                 name: item.input_value,
                 price: item.amount * item.input_value

@@ -158,7 +158,7 @@ export class OrderComponent implements OnInit, OnDestroy {
           } else {
             this.isAddressFull = false;
           }
-          if (this.Order.date && this.orderIsFull && this.isAddressFull) {
+          if (this.Order.date && this.orderIsFull && this.isAddressFull && this.orderData.order_options.min_amount <= this.orderData.totalPrice) {
             let date = new Date(this.Order.date);
             let day = date.getDate() > 9 ? date.getDate() : '0' + date.getDate();
             let orderInformation = {
@@ -191,13 +191,19 @@ export class OrderComponent implements OnInit, OnDestroy {
         type: 'service'
       }];
       this.orderData.services.forEach((orderCategory) => {
-        orderCategory.items.forEach((orderItems) => {
+        if (orderCategory.price_type === 'BASE_AMOUNT_INCREMENT') {
           this.Order.delivery_details.push({
-            title: orderCategory.name + ' - ' + orderItems.name,
-            amount: orderItems.price.amount,
+            title: orderCategory.name + ' - ' + orderCategory.option.name,
+            amount: 0,
             type: 'item'
           });
-        });
+        } else {
+          this.Order.delivery_details.push({
+            title: orderCategory.name + ' - ' + orderCategory.option.name,
+            amount: orderCategory.option.price,
+            type: 'item'
+          });
+        }
       });
 
       // this.Order.street = this.selectedAddress.street;
@@ -209,7 +215,7 @@ export class OrderComponent implements OnInit, OnDestroy {
       // this.Order.country_code = this.selectedAddress.country_code;
       this.Order.payment = {
         amount: this.orderData.totalPrice,
-        currency: this.orderData.price.currency
+        currency: '€'
       };
 
       this.orderService.saveOrder(this.Order)

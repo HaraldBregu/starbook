@@ -5,13 +5,16 @@
       <!-- <div class="order-container" *ngIf="!orderIsFull">
         <div class="order-list-empty"><strong>Inserisci</strong> le informazioni necessari del appuntamento e invia la richiesta.</div>
       </div> -->
+      <div class="order-container" *ngIf="orderData.order_options.min_amount > orderData.totalPrice">
+        <div class="order-list-empty"><strong>Attention!</strong> Minimum order value €{{ orderData.order_options.min_amount / 100 }}</div>
+      </div>
       <div class="order-container selected-orders" [ngStyle]="{'max-height': maxOrderBlockSize}">
         <div class="category-group category">
-          <span>{{ orderData.service }} <i>€{{ orderData.price.base_amount / 100 }}</i></span>
+          <span>{{ orderData.service }}</span>
         </div>
         <span  *ngFor="let orderService of orderData.services">
           <div class="category-group">
-            <span>{{ orderService.name }} - {{orderService.option.name}} <i>€{{ orderService.option.price / 100 }}</i></span>
+            <span>{{ orderService.name }} - {{orderService.option.name}} <i *ngIf="orderService.price_type !== 'BASE_AMOUNT_INCREMENT'">€{{ orderService.option.price / 100 }}</i></span>
           </div>
         </span>
 

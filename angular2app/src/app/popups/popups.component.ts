@@ -877,11 +877,13 @@ export class PopupsComponent implements OnInit, OnDestroy {
           break;
         case 'confirmNewOrder':
           this.confirmPopupData.title = 'Dettagli dell’ordine';
-          this.confirmPopupData.data = [{productName: popup.data.orderData.service, itemName: '', price: popup.data.orderData.price.amount, type: 'service'}];
+          this.confirmPopupData.data = [{productName: popup.data.orderData.service, itemName: '', price: '', type: 'service'}];
           popup.data.orderData.services.forEach((product) => {
-            product.items.forEach((item) => {
-              this.confirmPopupData.data.push({productName: product.name, itemName: item.name, price: item.price.amount, type: 'item'});
-            })
+            if(product.price_type === 'BASE_AMOUNT_INCREMENT') {
+              this.confirmPopupData.data.push({productName: product.name, itemName: product.option.name, price: '', type: 'item'});
+            } else {
+              this.confirmPopupData.data.push({productName: product.name, itemName: product.option.name, price: product.option.price, type: 'item'});
+            }
           });
           this.confirmPopupData.data.push({productName: 'Totale', itemName: '', price: popup.data.orderData.totalPrice, type: 'total'});
           this.confirmPopupData.information = popup.data.information;
