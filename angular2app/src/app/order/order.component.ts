@@ -187,7 +187,7 @@ export class OrderComponent implements OnInit, OnDestroy {
       this.Order.service_id = this.orderData.service_id;
       this.Order.delivery_details = [{
         title: this.orderData.service,
-        amount: this.orderData.price.amount,
+        amount: 0,
         type: 'service'
       }];
       this.orderData.services.forEach((orderCategory) => {
