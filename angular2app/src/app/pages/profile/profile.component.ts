@@ -154,7 +154,22 @@ export class ProfileComponent implements OnInit, OnDestroy {
     this.profileService.updateProfile(this.userData)
       .then((data) => {
         if (data.success) {
-          this.navigationService.updatePersonalMenu(this.userData);
+          let profileData = {};
+
+          if (localStorage.getItem('auth') !== null) {
+            let authData = JSON.parse(localStorage.getItem('auth'));
+            authData.profile.fullname = this.userData.fullname;
+            authData.phone_number = this.userData.phone_number;
+            authData.address.street = this.userData.street;
+            authData.address.city = this.userData.city;
+            authData.address.postal_code = this.userData.postal_code;
+            authData.address.province = this.userData.province;
+            authData.address.country = this.userData.country;
+            profileData = authData;
+            localStorage.setItem('auth', JSON.stringify(authData));
+          }
+
+          this.navigationService.updatePersonalMenu(profileData);
           this.formError = {
             title: '',
             message: 'Hai aggiornato le tue informazioni con successo!',
