@@ -215,7 +215,7 @@ export class OrderComponent implements OnInit, OnDestroy {
       // this.Order.country_code = this.selectedAddress.country_code;
       this.Order.payment = {
         amount: this.orderData.totalPrice,
-        currency: '€'
+        currency: 'eur'
       };
 
       this.orderService.saveOrder(this.Order)

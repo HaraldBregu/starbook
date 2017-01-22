@@ -50,6 +50,7 @@ export class OrdersComponent implements OnInit, OnDestroy {
   public categories = [];
   public pageData: IOrder[] = [];
   public requestIsComplete = false;
+  public isVendor = false;
   subscription: Subscription;
 
   constructor(private navigationService: NavigationService, private ordersService: OrdersService, private popupsService: PopupsService) { }
@@ -57,7 +58,13 @@ export class OrdersComponent implements OnInit, OnDestroy {
   ngOnInit() {
     if (localStorage.getItem('auth') !== null) {
       let authData = JSON.parse(localStorage.getItem('auth'));
-      if (authData.stripe_account_id !== null) {
+
+      authData.account_types.forEach((type) => {
+        if (type === 'VENDOR') {
+          this.isVendor = true;
+        }
+      });
+      if (this.isVendor) {
         this.tabs = [
             {name: 'Richieste Dei Clienti', selected: false},
             {name: 'I Miei Odini', selected: false},
@@ -172,29 +179,33 @@ export class OrdersComponent implements OnInit, OnDestroy {
 
     if (page === 'Richieste Dei Clienti') {
       params = [];
-      params.push({name: 'sort_delivery_date', value: 1});
-      params.push({name: 'delivery_from_now', value: this.dateFormating('now')});
+      //params.push({name: 'sort_delivery_date', value: 1});
+      //params.push({name: 'delivery_from_now', value: this.dateFormating('now')});
       params.push({name: 'order_type', value: 'RECEIVED'});
     }
 
     if (page === 'I Miei Odini') {
       params = [];
-      params.push({name: 'sort_delivery_date', value: 1});
-      params.push({name: 'delivery_from_now', value: this.dateFormating('now')});
+      //params.push({name: 'sort_delivery_date', value: 1});
+      //params.push({name: 'delivery_from_now', value: this.dateFormating('now')});
       params.push({name: 'order_type', value: 'REQUIRED'});
     }
 
     if (page === 'Archivio') {
       params = [];
-      params.push({name: 'sort_delivery_date', value: -1});
-      params.push({name: 'delivery_from_now', value: this.dateFormating('now')});
+      //params.push({name: 'sort_delivery_date', value: -1});
+      //params.push({name: 'delivery_from_now', value: this.dateFormating('now')});
       params.push({name: 'order_type', value: 'ARCHIVE'});
     }
 
     this.ordersService.getOrders(params)
       .then((response) => {
         this.requestIsComplete = true;
-        this.pageData = response.result;
+        if (response.result !== null) {
+          this.pageData = response.result;
+        } else {
+          this.pageData = [];
+        }
         console.log(response.result);
       })
       .catch((error) => {

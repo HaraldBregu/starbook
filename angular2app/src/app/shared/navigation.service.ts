@@ -6,9 +6,11 @@ export class NavigationService {
   private headerMessage = new Subject<string>();
   private authData = new Subject<string>();
   private activeTab = new Subject<any>();
+  private loadingStatus = new Subject<boolean>();
   public getMessage$ = this.headerMessage.asObservable();
   public getPersonalMenu$ = this.authData.asObservable();
   public getActiveTab$ = this.activeTab.asObservable();
+  public getLoadingStatus$ = this.loadingStatus.asObservable();
 
   constructor() { }
 
@@ -22,5 +24,9 @@ export class NavigationService {
 
   updateActiveTab(tab) {
     this.activeTab.next(tab);
+  }
+
+  updateLoadingStatus(status) {
+    this.loadingStatus.next(status);
   }
 }

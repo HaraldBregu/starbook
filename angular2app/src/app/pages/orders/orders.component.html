@@ -63,7 +63,7 @@
         <div class="order-body">
           <div class="row">
             <div class="order-row products col-xl-4">
-              <div class="item" *ngFor="let product of order.details" [ngClass]="{'service':product.type === 'service'}">{{ product.title }} <i>€{{ product.amount / 100 }}</i></div>
+              <div class="item" *ngFor="let product of order.details" [ngClass]="{'service':product.type === 'service'}">{{ product.title }} <i *ngIf="product.type !== 'service'">€{{ product.amount / 100 }}</i></div>
               <div class="item total">Totale <i>€{{ order.payment.amount / 100 }}</i></div>
             </div>
             <div class="client-info col-xl-4">
@@ -99,13 +99,13 @@
             {{ order._id }}
           </div>
           <div class="buttons">
-            <button class="btn btn-primary" *ngIf="order.status === 1 && dateCompare(dateFormating('now'), order.date) && selectTab === 'Richieste Dei Clienti'" (click)="completaOrder(order._id)">Completa servizio</button>
+            <button class="btn btn-primary" *ngIf="order.status === 1 && dateCompare(dateFormating('now'), order.date) && selectTab === 'Richieste Dei Clienti' && isVendor === true" (click)="completaOrder(order._id)">Completa servizio</button>
             <!--<div class="price-block" *ngIf="order.status === 2 && selectTab === 'Richieste Dei Clienti'"><div class="content-price">Importo: <span>{{ order.payment.amount / 100 }}€</span></div></div>-->
             <!--<button class="btn btn-secondary" *ngIf="order.status === 2 && selectTab === 'Richieste Dei Clienti'" (click)="editOrder(order._id, order.payment.amount)">Modifica</button>-->
-            <button class="btn btn-primary" *ngIf="order.status === 0 && selectTab === 'Richieste Dei Clienti'" (click)="confirmOrder(order._id)">Conferma servizio</button>
+            <button class="btn btn-primary" *ngIf="order.status === 0 && selectTab === 'Richieste Dei Clienti' && isVendor === true" (click)="confirmOrder(order._id)">Conferma servizio</button>
 
-            <button class="btn btn-primary" *ngIf="order.status === 99 && selectTab === 'I Miei Odini'" (click)="reactivateOrder(order._id)">Reattiva servizio</button>
-            <button class="btn btn-secondary" *ngIf="order.status === 0 && selectTab === 'I Miei Odini'" (click)="cancelOrder(order._id)">Annulla servizio</button>
+            <!--<button class="btn btn-primary" *ngIf="order.status === 99 && selectTab === 'I Miei Odini'" (click)="reactivateOrder(order._id)">Reattiva servizio</button>-->
+            <!--<button class="btn btn-secondary" *ngIf="order.status === 0 && selectTab === 'I Miei Odini'" (click)="cancelOrder(order._id)">Annulla servizio</button>-->
             <!--<div class="price-block" *ngIf="order.status === 2 && selectTab === 'I Miei Odini'"><div class="content-price">Importo: <span>{{ order.payment.amount / 100 }}€</span></div></div>-->
             <!--<button class="btn btn-warning" *ngIf="order.status === 2 && selectTab === 'I Miei Odini'" (click)="continueOrder(order._id, order.payment.amount)"><i class="fa fa-lock"></i> Procedi</button>-->
             <!--<div class="price-block archive" *ngIf="order.status === 3 && selectTab === 'Archivio'"><div class="content-price">Importo: <span>{{ order.payment.amount / 100 }}€</span></div></div>-->

@@ -14,8 +14,10 @@ export class AppComponent implements OnInit, OnDestroy {
   public activePopup = '';
   public popupState = 'inactive';
   public navbarState = false;
+  public isLoading = false;
   subscription: Subscription;
   authSubscription: Subscription;
+  loadingSubscription: Subscription;
   constructor (private authServics: AuthService, private navigationService: NavigationService, private popupsService: PopupsService) {
   }
 
@@ -45,6 +47,9 @@ export class AppComponent implements OnInit, OnDestroy {
     this.authSubscription = this.navigationService.getPersonalMenu$.subscribe(auth => {
       this.auth = auth;
     });
+    this.loadingSubscription = this.navigationService.getLoadingStatus$.subscribe(status => {
+      this.isLoading = status;
+    });
   }
 
   updateTabMenu(toggleMenu = false) {
@@ -56,5 +61,7 @@ export class AppComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.subscription.unsubscribe();
+    this.authSubscription.unsubscribe();
+    this.loadingSubscription.unsubscribe();
   }
 }

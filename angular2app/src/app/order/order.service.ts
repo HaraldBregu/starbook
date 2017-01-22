@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {Http, URLSearchParams, Headers } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
+import { NavigationService } from '../shared/navigation.service';
 
 export interface IAddress {
   street: string;
@@ -20,7 +21,7 @@ export class OrderService {
   private api: string;
   private auth;
   private googleApi: string;
-  constructor(private http: Http) {
+  constructor(private http: Http, private navigationService: NavigationService) {
     this.api = 'https://api.starbook.co/v0.9.1/';
     this.googleApi = 'https://maps.googleapis.com/maps/api/geocode/json';
   }
@@ -38,6 +39,7 @@ export class OrderService {
   }
 
   saveOrder(orderData) {
+    this.navigationService.updateLoadingStatus(true);
     return this.http.post(this.api + 'orders', {
       service_id: orderData.service_id,
       description: orderData.delivery_description,
@@ -59,12 +61,14 @@ export class OrderService {
     }, this._makeHeaders())
       .toPromise()
       .then((response) => {
+        this.navigationService.updateLoadingStatus(false);
         return true;
       })
       .catch(this.handleError);
   }
 
   getAddresses(key: string) {
+    this.navigationService.updateLoadingStatus(true);
     let params = new URLSearchParams();
     let addresses: IAddress[] = [];
     params.set('address', key);
@@ -73,6 +77,7 @@ export class OrderService {
     return this.http.get(this.googleApi, {search: params})
       .toPromise()
       .then((response) => {
+        this.navigationService.updateLoadingStatus(false);
         let data: any[] = response.json().results;
         data.forEach((address) => {
           let addressData: IAddress = {
@@ -127,6 +132,7 @@ export class OrderService {
   }
 
   private handleError(error: any): Promise<any> {
+    this.navigationService.updateLoadingStatus(true);
     return Promise.reject(error.status || error);
   }
 }

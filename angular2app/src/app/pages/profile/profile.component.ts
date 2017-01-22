@@ -101,14 +101,14 @@ export class ProfileComponent implements OnInit, OnDestroy {
         this.isLoading = true;
         this.profileService.getProfile()
             .then((profile) => {
-              this.userData.fullname = profile.result.fullname;
+              this.userData.fullname = profile.result.profile.fullname;
               this.userData.email = profile.result.email;
               this.userData.phone_number = profile.result.phone_number;
-              this.userData.street = profile.result.street;
-              this.userData.city = profile.result.city;
-              this.userData.postal_code = profile.result.postal_code;
-              this.userData.province = profile.result.province;
-              this.userData.country = profile.result.country;
+              this.userData.street = profile.result.address.street;
+              this.userData.city = profile.result.address.city;
+              this.userData.postal_code = profile.result.address.postal_code;
+              this.userData.province = profile.result.address.province;
+              this.userData.country = profile.result.address.country;
               this.isLoading = false;
             })
             .catch((error) => {

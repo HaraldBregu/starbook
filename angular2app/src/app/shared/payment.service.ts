@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
+import { NavigationService } from './navigation.service';
 
 export interface stripeResponse {
   token: string;
@@ -11,7 +12,7 @@ export interface stripeResponse {
 export class PaymentService {
   private api = 'https://api.starbook.co/v0.9.1/';
   private auth;
-  constructor(private http: Http) { }
+  constructor(private http: Http, private navigationService: NavigationService) { }
 
   private _makeHeaders() {
     let headers;
@@ -58,11 +59,13 @@ export class PaymentService {
   }
 
   public addNewCard(cardData) {
+    this.navigationService.updateLoadingStatus(true);
     return this.getToken(cardData)
         .then((data: stripeResponse) => {
           return this.http.post(this.api + 'me/cards', {source: data.token}, this._makeHeaders())
               .toPromise()
               .then((response) => {
+                this.navigationService.updateLoadingStatus(false);
                 return response.json();
               })
               .catch(this.handleError);
@@ -71,42 +74,51 @@ export class PaymentService {
   }
 
   public selectCard(cardId) {
+    this.navigationService.updateLoadingStatus(true);
     return this.http.post(this.api + 'me/customers', {default_source: cardId},this._makeHeaders())
         .toPromise()
         .then((response) => {
+          this.navigationService.updateLoadingStatus(false);
           return response.json();
         })
         .catch(this.handleError);
   }
 
   public deleteCard(cardId) {
+    this.navigationService.updateLoadingStatus(true);
     return this.http.delete(this.api + 'me/cards/' + cardId, this._makeHeaders())
         .toPromise()
         .then((status) => {
+          this.navigationService.updateLoadingStatus(false);
           return status.json();
         })
         .catch(this.handleError);
   }
 
   public editCard(cardId, cardData) {
+    this.navigationService.updateLoadingStatus(true);
     return this.http.post(this.api + 'me/cards/' + cardId, cardData, this._makeHeaders())
         .toPromise()
         .then((status) => {
+          this.navigationService.updateLoadingStatus(false);
           return status.json();
         })
         .catch(this.handleError);
   }
 
   public getCards() {
+    this.navigationService.updateLoadingStatus(true);
     return this.http.get(this.api + 'me/customers', this._makeHeaders())
         .toPromise()
         .then((response) => {
+          this.navigationService.updateLoadingStatus(false);
           return response.json();
         })
         .catch(this.handleError);
   }
 
   private handleError(error: any): Promise<any> {
+    this.navigationService.updateLoadingStatus(false);
     return Promise.reject(error.status || error);
   }
 
