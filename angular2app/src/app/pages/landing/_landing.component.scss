@@ -79,7 +79,7 @@ $search-close-icon-base-color: #8D9494;
 
 // Services cards
 $services-container-background: #FFFFFF;
-$services-container-border: 1px solid #DCDCDC;
+$services-container-border: 1px solid #C8C8C8;
 $services-container-box-shadow: 0 2px 6px 0 #DCDCDC;
 $services-content-image: '/assets/images/city.jpg';
 $services-header-color: #212121;
@@ -578,7 +578,7 @@ input.landing-search .ui-autocomplete-input:-ms-input-placeholder {
   background-color: $services-container-background;
   border: $services-container-border;
   border-radius: 1px;
-  box-shadow: $services-container-box-shadow;
+  // box-shadow: $services-container-box-shadow;
   cursor: pointer;
 }
 .services-card .service-container .content {
