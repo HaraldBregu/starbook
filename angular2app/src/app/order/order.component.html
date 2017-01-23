@@ -6,7 +6,7 @@
         <div class="order-list-empty"><strong>Inserisci</strong> le informazioni necessari del appuntamento e invia la richiesta.</div>
       </div> -->
       <div class="order-container" *ngIf="orderData.order_options.min_amount > orderData.totalPrice">
-        <div class="order-list-empty"><strong>Attention!</strong> Minimum order value €{{ orderData.order_options.min_amount / 100 }}</div>
+        <div class="order-list-empty"><strong></strong>Prezzo minimo del'ordine €{{ orderData.order_options.min_amount / 100 }}</div>
       </div>
       <div class="order-container selected-orders" [ngStyle]="{'max-height': maxOrderBlockSize}">
         <div class="category-group category">
