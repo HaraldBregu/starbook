@@ -562,7 +562,7 @@ export class PopupsComponent implements OnInit, OnDestroy {
             case 409:
               this.formError = {
                 title: 'Indirizzo e-mail già in uso.',
-                message: `Hai indicato di essere un nuovo cliente ma è già 
+                message: `Hai indicato di essere un nuovo cliente ma è già
                 presente un account collegato all'indirizzo e-mail: mail@gmail.com`
               };
               break;
