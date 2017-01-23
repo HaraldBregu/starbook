@@ -39,18 +39,19 @@ export class OrdersComponent implements OnInit, OnDestroy {
   public it: any;
   public selectTab: string|boolean = false;
   public taglines = {
-    'Richieste Dei Clienti': 'Ordini Ricevuti',
-    'I Miei Odini': 'Ordini Richiesti',
-    'Archivio': 'Archivio Ordini'
+    'Richieste dei clienti': 'Richieste dei clienti',
+    'I miei ordini': 'I miei ordini',
+    'Archivio': 'Archivio di tutti gli ordini'
   };
   public tabs = [
-    {name: 'I Miei Odini', selected: false},
+    {name: 'I miei ordini', selected: false},
     {name: 'Archivio', selected: false}
   ];
   public categories = [];
   public pageData: IOrder[] = [];
   public requestIsComplete = false;
   public isVendor = false;
+  public emptyListTitle = ''
   subscription: Subscription;
 
   constructor(private navigationService: NavigationService, private ordersService: OrdersService, private popupsService: PopupsService) { }
@@ -66,16 +67,16 @@ export class OrdersComponent implements OnInit, OnDestroy {
       });
       if (this.isVendor) {
         this.tabs = [
-            {name: 'Richieste Dei Clienti', selected: false},
-            {name: 'I Miei Odini', selected: false},
+            {name: 'Richieste dei clienti', selected: false},
+            {name: 'I miei ordini', selected: false},
             {name: 'Archivio', selected: false}
           ];
-          this.renderPage('Richieste Dei Clienti');
+          this.renderPage('Richieste dei clienti');
       } else {
-        this.renderPage('I Miei Odini');
+        this.renderPage('I miei ordini');
       }
     } else {
-      this.renderPage('I Miei Odini');
+      this.renderPage('I miei ordini');
     }
 
     this.categories = this.ordersService.getCategories();
@@ -177,24 +178,24 @@ export class OrdersComponent implements OnInit, OnDestroy {
 
     let params = [];
 
-    if (page === 'Richieste Dei Clienti') {
+    if (page === 'Richieste dei clienti') {
+      this.requestIsComplete = false;
+      this.emptyListTitle = 'Non ci sono ordini richiesti dai clienti per il momento'
       params = [];
-      //params.push({name: 'sort_delivery_date', value: 1});
-      //params.push({name: 'delivery_from_now', value: this.dateFormating('now')});
       params.push({name: 'order_type', value: 'RECEIVED'});
     }
 
-    if (page === 'I Miei Odini') {
+    if (page === 'I miei ordini') {
+      this.requestIsComplete = false;
+      this.emptyListTitle = 'Non ci sono ordini effettuati'
       params = [];
-      //params.push({name: 'sort_delivery_date', value: 1});
-      //params.push({name: 'delivery_from_now', value: this.dateFormating('now')});
       params.push({name: 'order_type', value: 'REQUIRED'});
     }
 
     if (page === 'Archivio') {
+      this.requestIsComplete = false;
+      this.emptyListTitle = "L'archivio degli ordini e vuota"
       params = [];
-      //params.push({name: 'sort_delivery_date', value: -1});
-      //params.push({name: 'delivery_from_now', value: this.dateFormating('now')});
       params.push({name: 'order_type', value: 'ARCHIVE'});
     }
 

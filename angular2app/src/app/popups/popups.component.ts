@@ -984,7 +984,7 @@ export class PopupsComponent implements OnInit, OnDestroy {
           this.shadowState = 'active';
           break;
         case 'logout':
-          this.confirmPopupData.title = '';
+          this.confirmPopupData.title = 'Sicuro di voler uscire?';
           this.confirmPopupData.data = [];
           this.confirmPopupData.information = '';
           this.confirmPopupData.button = 'logout';

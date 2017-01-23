@@ -11,14 +11,14 @@
   <div class="header">Accedi</div>
   <form class="login-form" #loginForm="ngForm">
     <div class="form-group" [ngClass]="{'isError': loginError.email}">
-      <label for="email">Indirizzo e-mail</label>
+      <label for="email">Indirizzo email</label>
       <input id="email" class="form-control" type="email" name="email" placeholder="" required [(ngModel)]="loginData.email" #email="ngModel" (keyup)="checkEmail('login', email.value)" (change)="checkEmail('login', email.value)">
-      <span class="error">Indirizzo e-mail non valido</span>
+      <span class="error">Indirizzo email non valido</span>
     </div>
     <div class="form-group" [ngClass]="{'isError': loginError.password}">
       <label for="password">Password <a class="recovery" (click)="getPopup('recovery')">Password dimenticata?</a></label>
       <input id="password" class="form-control" type="password" name="password" placeholder="" required [(ngModel)]="loginData.password" #password="ngModel" (keyup)="checkNonEmpty('login', password.value)" (change)="checkNonEmpty('login', password.value)">
-      <span class="error">Please enter your password</span>
+      <span class="error">Inserisci la tua password</span>
     </div>
     <div class="form-group">
       <button class="btn btn-warning" type="submit" (click)="login(email.value, password.value)">Accedi</button>
@@ -44,24 +44,24 @@
   <div class="header">Nuovo account</div>
   <form class="registration-form" #registrationForm="ngForm">
     <div class="form-group" [ngClass]="{'isError': registrationError.name}">
-      <label for="regName">Il tuo nome completo</label>
+      <label for="regName">Nome completo</label>
       <input id="regName" class="form-control" type="text" name="name" placeholder="" required [(ngModel)]="registrationData.name" #regName="ngModel" (keyup)="checkNonEmpty('registrationName', regName.value)">
-      <span class="error">Please enter your name</span>
+      <span class="error">Inserisci il nome completo</span>
     </div>
     <div class="form-group" [ngClass]="{'isError': registrationError.phone}">
-      <label for="regPhone">Phone</label>
+      <label for="regPhone">Cellulare</label>
       <input id="regPhone" class="form-control" type="text" name="phone" placeholder="" required [(ngModel)]="registrationData.phone" #regPhone="ngModel" (keyup)="checkNonEmpty('registrationPhone', regPhone.value)">
-      <span class="error">Indirizzo phone non valido</span>
+      <span class="error">Inserisci numero cellulare</span>
     </div>
     <div class="form-group" [ngClass]="{'isError': registrationError.email}">
-      <label for="regEmail">E-mail</label>
+      <label for="regEmail">Email</label>
       <input id="regEmail" class="form-control" type="email" name="email" placeholder="" required [(ngModel)]="registrationData.email" #regEmail="ngModel" (keyup)="checkEmail('registration', regEmail.value)">
-      <span class="error">Indirizzo e-mail non valido</span>
+      <span class="error">Indirizzo email non valido</span>
     </div>
     <div class="form-group" [ngClass]="{'isError': registrationError.passwordFirst}">
       <label for="regPassword">Password</label>
       <input id="regPassword" class="form-control" type="password" name="password" placeholder="" required [(ngModel)]="registrationData.password" #regPassword="ngModel" (keyup)="checkNonEmpty('registrationPassword', regPassword.value)">
-      <span class="error">Please enter password</span>
+      <span class="error">Inserisci una password</span>
     </div>
     <div class="form-group" [ngClass]="{'isError': registrationError.password}">
       <label for="regPasswordConfirm">Di nuovo la password</label>
@@ -88,9 +88,9 @@
   <div class="header">Recupera password</div>
   <form class="recovery-form" #recoveryForm="ngForm">
     <div class="form-group" [ngClass]="{'isError': recoveryError.email}">
-      <label for="recoveryEmail">E-mail</label>
+      <label for="recoveryEmail">Email</label>
       <input id="recoveryEmail" class="form-control" type="text" name="name" placeholder="" required [(ngModel)]="recoveryData.email" #recoveryEmail="ngModel" (keyup)="checkEmail('recovery', recoveryEmail.value)">
-      <span class="error">Indirizzo e-mail non valido</span>
+      <span class="error">Indirizzo email non valido</span>
     </div>
     <div class="form-group">
       <button class="btn btn-warning" type="submit" (click)="recovery(recoveryEmail.value)">Invia email</button>
@@ -140,8 +140,8 @@
       <button class="btn btn-warning" type="submit" (click)="reactivateOrder(confirmPopupData.id)" *ngIf="confirmPopupData.button === 'Riattiva ordine'">Riattiva ordine</button>
       <button class="btn btn-warning new-order-btn" type="submit" (click)="confirmNewOrder()" *ngIf="confirmPopupData.button === 'Procedi con l’acquisto'"><i class="fa fa-lock"></i> Procedi con l’acquisto</button>
       <span *ngIf="confirmPopupData.button === 'Procedi con l’acquisto'" class="confirm-button-notice">Verrai notificato con un sms e mail ad acquisto effettuato</span>
-      <button class="btn btn-warning logout-btn" type="submit" (click)="logout()" *ngIf="confirmPopupData.button === 'logout'">Logout</button>
-      <button class="btn btn-secondary" type="submit" (click)="closePopup()" *ngIf="confirmPopupData.button === 'logout'">Dismiss</button>
+      <button class="btn btn-warning logout-btn" type="submit" (click)="logout()" *ngIf="confirmPopupData.button === 'logout'">Esci</button>
+      <button class="btn btn-secondary" type="submit" (click)="closePopup()" *ngIf="confirmPopupData.button === 'logout'">Annulla</button>
       <button class="btn btn-secondary" type="submit" (click)="closePopup()" *ngIf="confirmPopupData.button !== 'logout'">Chiudi</button>
     </div>
   </form>

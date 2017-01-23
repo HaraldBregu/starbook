@@ -29,7 +29,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
   public tabs = [
     {name: 'Generali', selected: false, url: 'settings'},
     {name: 'Metodo di Pagamento', selected: false, url: 'payment'},
-    {name: 'Condizioni d’uso', selected: false, url: 'conditions'},
+    {name: 'Condizioni d’utilizzo', selected: false, url: 'conditions'},
     {name: 'Privacy Policy', selected: false, url: 'privacy'},
     {name: 'Assistenza', selected: false, url: 'help'}
   ];
@@ -74,15 +74,16 @@ export class ProfileComponent implements OnInit, OnDestroy {
       this.isAuthenticated = false;
       // this.router.navigate(['/']);
       this.tabs = [
-        {name: 'Condizioni d’uso', selected: false, url: 'conditions'},
+        {name: 'Condizioni d’utilizzo', selected: false, url: 'conditions'},
         {name: 'Privacy Policy', selected: false, url: 'privacy'},
         {name: 'Assistenza', selected: false, url: 'help'}
       ];
     }
-
+    // this.navigationService.updateMessage('Il mio account');
     this.route.params.subscribe(params => {
       this.selectTab = params['page'];
       if (params['page'] ==='payment') {
+        this.navigationService.updateMessage('Metodo di pagamento');
         this.isLoading = true;
         this.paymentService.getCards()
             .then((cards) => {
@@ -98,6 +99,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
             })
       }
       if (params['page'] ==='settings') {
+        this.navigationService.updateMessage('Informazioni del mio account');
         this.isLoading = true;
         this.profileService.getProfile()
             .then((profile) => {
@@ -115,10 +117,17 @@ export class ProfileComponent implements OnInit, OnDestroy {
               console.log(error);
             });
       }
+      if (params['page'] ==='conditions') {
+        this.navigationService.updateMessage('Termini e condizioni d’utilizzo');
+      }
+      if (params['page'] ==='privacy') {
+        this.navigationService.updateMessage('Privacy Policy');
+      }
+      if (params['page'] ==='help') {
+        this.navigationService.updateMessage('Assistenza');
+      }
       console.log(params['page']);
     });
-
-    this.navigationService.updateMessage('Il mio account');
 
     this.subscription = this.popupsService.getPopupResponse$.subscribe(action => {
       switch (action.type) {
