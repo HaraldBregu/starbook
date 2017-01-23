@@ -77,7 +77,7 @@ html, body {
   letter-spacing: $navbar-brand-font-letter-spacing;
   position: relative;
   z-index: 2;
-  padding-top: 5px;
+  padding-top: 6px;
 }
 .tagline {
   display: block;
@@ -85,7 +85,7 @@ html, body {
   top: 0;
   left: 0;
   width: 100%;
-  padding: 12px 0;
+  padding: 14px 0;
   font-family: $font-name-medium;
   color: $navbar-text-color;
   font-size: $navbar-font-size;
@@ -170,7 +170,7 @@ html, body {
     border-color: transparent !important;
     color: $navbar-text-color;
     float: right;
-    margin-top: 7px;
+    margin-top: 9px;
     margin-right: 8px;
     outline: none !important;
     box-shadow: none !important;
