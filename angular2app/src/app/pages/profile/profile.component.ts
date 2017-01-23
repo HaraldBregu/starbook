@@ -160,8 +160,10 @@ export class ProfileComponent implements OnInit, OnDestroy {
   }
 
   updateProfile() {
+    this.isLoading = true;
     this.profileService.updateProfile(this.userData)
       .then((data) => {
+        this.isLoading = false;
         if (data.success) {
           let profileData = {};
 
@@ -187,6 +189,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
         }
       })
       .catch((error) => {
+        this.isLoading = false;
         console.log(error);
       });
     return false;
@@ -281,11 +284,12 @@ export class ProfileComponent implements OnInit, OnDestroy {
     this.isLoading = true;
     this.paymentService.selectCard(id)
         .then((status) => {
-      this.isLoading = false;
+          this.isLoading = false;
           this.defaultCard = status.default_source;
         })
         .catch((error) => {
           console.log(error);
+          this.isLoading = false;
         });
   }
 
@@ -314,6 +318,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
           }
         })
         .catch((error) => {
+          this.isLoading = false;
           console.log(error);
         });
   }

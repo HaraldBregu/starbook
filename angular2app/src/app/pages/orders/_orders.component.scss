@@ -523,6 +523,18 @@ $order-error-font-weight: 400;
   font-family: $font-name-medium;
   letter-spacing: $order-footer-price-block-price-letter-spacing;
 }
+.orders-container .loader {
+  display: block;
+  width: 100%;
+  height: 100%;
+  z-index: 100;
+}
+.orders-container .loader svg {
+  display: block;
+  width: 50px;
+  height: 50px;
+  margin: 20px auto;
+}
 
 @media (max-width: 1440px) {
   .container-starbook .left-navigate {

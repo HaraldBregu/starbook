@@ -6,7 +6,8 @@
         <div>{{tab.name}}</div>
       </a>
     </div>
-    <div class="col-xl-12 orders-container" *ngIf="requestIsComplete">
+    <div class="col-xl-12 orders-container">
+      <app-loading *ngIf="isLoading"></app-loading>
       <div class="orders-error" *ngIf="pageData.length === 0 && requestIsComplete">{{emptyListTitle}}</div>
       <div class="order-information" *ngFor="let order of pageData">
         <div class="header">

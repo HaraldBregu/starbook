@@ -52,6 +52,7 @@ export class OrdersComponent implements OnInit, OnDestroy {
   public requestIsComplete = false;
   public isVendor = false;
   public emptyListTitle = ''
+  public isLoading = false;
   subscription: Subscription;
 
   constructor(private navigationService: NavigationService, private ordersService: OrdersService, private popupsService: PopupsService) { }
@@ -198,9 +199,10 @@ export class OrdersComponent implements OnInit, OnDestroy {
       params = [];
       params.push({name: 'order_type', value: 'ARCHIVE'});
     }
-
+    this.isLoading = true;
     this.ordersService.getOrders(params)
       .then((response) => {
+        this.isLoading = false;
         this.requestIsComplete = true;
         if (response.result !== null) {
           this.pageData = response.result;
@@ -210,6 +212,7 @@ export class OrdersComponent implements OnInit, OnDestroy {
         console.log(response.result);
       })
       .catch((error) => {
+        this.isLoading = false;
         console.log(error);
     });
     this.navigationService.updateMessage(this.taglines[page]);

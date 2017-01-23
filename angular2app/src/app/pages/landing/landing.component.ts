@@ -14,16 +14,20 @@ export class LandingComponent implements OnInit {
   public services = [];
   public spinerView = false;
   public clearView = false;
+  public isLoading = false;
   constructor(private homeService: HomeService, private router: Router, private route: ActivatedRoute, private navigationService: NavigationService) { }
 
   ngOnInit() {
     this.navigationService.updateMessage('Trova il servizio che ti serve e prenotalo');
+    this.isLoading = true;
     this.homeService.getServices()
         .then((services) => {
           this.services = services.result;
+          this.isLoading = false;
         })
         .catch((error) => {
           console.log(error);
+          this.isLoading = false;
         });
   }
   cardHover(id, type) {

@@ -319,6 +319,7 @@ $card-new-card-letter-spacing: 0.13px;
 }
 .cards-page {
   display: block;
+  float: left;
   width: 100%;
   padding: 16px 18px 0 218px;
 }
@@ -538,6 +539,45 @@ $card-new-card-letter-spacing: 0.13px;
   padding: 6px 8px;
   margin-left: 10px;
   outline: none;
+}
+.profile-page .profile-settings form {
+  position: relative;
+  padding-bottom: 10px;
+}
+.profile-page .profile-settings .loader {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 102;
+}
+.profile-page .profile-settings .loader svg {
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 50px;
+  height: 50px;
+  margin-left: -25px;
+  margin-top: -25px;
+}
+.profile-page .cards-page .loader {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 102;
+  padding: 16px 18px 0 218px;
+}
+.profile-page .cards-page .loader svg {
+  display: block;
+  width: 50px;
+  height: 50px;
+  margin: 100px auto;
 }
 
 @media (max-width: 1440px) {

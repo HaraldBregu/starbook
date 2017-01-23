@@ -14,6 +14,7 @@
       <div class="profile-settings" *ngIf="selectTab === 'settings'">
         <div class="header">Informazioni del account</div>
         <form #changProfile="ngForm">
+          <app-loading *ngIf="isLoading"></app-loading>
           <div class="form-group">
             <label>Nome Completo</label>
             <input class="form-control" name="name" #fullname="ngModel" [(ngModel)]="userData.fullname" required>
@@ -83,6 +84,7 @@
         </form>
       </div>
       <div class="cards-page" *ngIf="selectTab === 'payment'">
+        <app-loading *ngIf="isLoading"></app-loading>
         <div class="card-block" *ngFor="let card of cards">
           <div class="container">
             <div class="header">

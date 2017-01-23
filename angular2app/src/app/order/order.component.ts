@@ -61,6 +61,7 @@ export class OrderComponent implements OnInit, OnDestroy {
   public orderForm: any;
   public isMobileCalendar: any = false;
   public maxOrderBlockSize: number|string = 'auto';
+  public isLoading = false;
   subscription: Subscription;
 
   constructor(private orderService: OrderService, private popupsService: PopupsService) {
@@ -141,9 +142,10 @@ export class OrderComponent implements OnInit, OnDestroy {
     this.Order.postal_code = '';
     this.Order.country_code = '';
 
+    this.isLoading = true;
     this.orderService.getAddresses(this.address)
         .then((address: IAddress[]) => {
-          console.log(address);
+          this.isLoading = false;
           if (address.length > 1) {
             this.isAddressOne = false;
             this.isEnable = false;
@@ -190,7 +192,7 @@ export class OrderComponent implements OnInit, OnDestroy {
           }
         })
         .catch((error) => {
-
+          this.isLoading = false;
         });
 
   }
@@ -237,6 +239,7 @@ export class OrderComponent implements OnInit, OnDestroy {
         currency: 'eur'
       };
 
+      this.isLoading = true;
       this.orderService.saveOrder(this.Order)
         .then((status) => {
           this.Order.delivery_details = [];
@@ -253,9 +256,11 @@ export class OrderComponent implements OnInit, OnDestroy {
           this.submitOrder = false;
           this.popupsService.activate({type: 'confirmNewOrderEnd'});
           this.orderCreated.emit({status: true});
+          this.isLoading = false;
         })
         .catch((error) => {
           console.log(error);
+          this.isLoading = false;
         });
     } else {
       console.log(userData);
