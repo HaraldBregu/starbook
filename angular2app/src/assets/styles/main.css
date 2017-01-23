@@ -3406,7 +3406,7 @@ html, body {
   padding: 14px 0;
   font-family: HelveticaNeue-Medium, sans-serif;
   color: #FFFFFF;
-  font-size: 14px;
+  font-size: 15px;
   font-weight: normal;
   letter-spacing: 0.09px;
   text-align: center;
@@ -5302,7 +5302,7 @@ html, body {
 .landing-header h1 {
   width: 100%;
   text-align: center;
-  padding: 83px 0 20px;
+  padding: 100px 0 20px;
   font-family: HelveticaNeue-Medium, sans-serif;
   color: #3B568D;
   font-size: 30px;
@@ -5707,7 +5707,7 @@ input.landing-search .ui-autocomplete-input:-ms-input-placeholder {
   padding-left: 0;
   padding-right: 0;
   min-height: 200px;
-  margin-top: 151px;
+  margin-top: 120px;
   margin-bottom: 63px; }
 
 .landing-services .services-card {

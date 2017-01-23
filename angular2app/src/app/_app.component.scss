@@ -17,6 +17,7 @@ $navbar-brand-font-letter-spacing: 0.13px;
 $navbar-tagline-letter-spacing: 0.09px;
 $navbar-background-color: #324977;
 $navbar-text-color: #FFFFFF;
+$navbar-tagline-font-size: 15px;
 $navbar-font-size: 14px;
 $navbar-border-color: #5A7DB6;
 $navbar-item-background-color: #293C61;
@@ -88,7 +89,7 @@ html, body {
   padding: 14px 0;
   font-family: $font-name-medium;
   color: $navbar-text-color;
-  font-size: $navbar-font-size;
+  font-size: $navbar-tagline-font-size;
   font-weight: normal;
   letter-spacing: $navbar-tagline-letter-spacing;
   text-align: center;
