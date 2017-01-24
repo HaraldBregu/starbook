@@ -267,6 +267,13 @@ export class PopupsComponent implements OnInit, OnDestroy {
     buttons: [],
     price: null
   };
+  public finishPopupData = {
+    title: '',
+    text: []
+  };
+
+  public isPopupLoading = false;
+
   public formError: boolean|{title: string, message: string} = false;
   constructor(private authServics: AuthService, private navigationService: NavigationService, private popupService: PopupsService, private ordersService: OrdersService, private paymentService: PaymentService, private router: Router,) {
     this.emailPattern = /^[a-z0-9!#$%&'*+\/=?^_`{|}~.-]+@[a-z0-9]([a-z0-9-]*[a-z0-9])?(\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)*$/i;
@@ -283,6 +290,14 @@ export class PopupsComponent implements OnInit, OnDestroy {
       this.recoveryPopupState = 'active';
     }
     if (type === 'finish') {
+      this.finishPopupState = 'active';
+      this.finishPopupData.title = 'Check your inbox';
+      this.finishPopupData.text = [
+          'We sent a password reset link to your email address. Please click the link in the email to create e new password.',
+          'The link will only be active for 1 hour. After that you will need to request a new one.'
+      ];
+    }
+    if (type === 'error') {
       this.finishPopupState = 'active';
     }
     if (type === 'confirmFinish') {
@@ -341,8 +356,10 @@ export class PopupsComponent implements OnInit, OnDestroy {
 
   login(email: string, password: string) {
     if (this.emailPattern.test(email) && password.length > 0) {
+      this.isPopupLoading = true;
       this.authServics.login(email, password)
         .then((data) => {
+          this.isPopupLoading = false;
           this.auth = data;
           if (this.loginData.type === 'fromOrder') {
             this.closePopup(true);
@@ -353,6 +370,7 @@ export class PopupsComponent implements OnInit, OnDestroy {
           }
         })
         .catch((error) => {
+          this.isPopupLoading = true;
           switch (error) {
             case 404:
               this.formError = {
@@ -550,14 +568,17 @@ export class PopupsComponent implements OnInit, OnDestroy {
 
   registration(name: string, phone: string, email: string, password: string, passwordConfirm: string) {
     if (this.emailPattern.test(email) && password === passwordConfirm && password.length > 0 && name.length > 0 && phone.length > 9) {
+      this.isPopupLoading = true;
       this.authServics.signup(name, phone, email, password)
         .then((data) => {
+          this.isPopupLoading = false;
           this.auth = data;
           this.navigationService.updatePersonalMenu(data);
           this.closePopup();
           this.router.navigate(['/profile/payment']);
         })
         .catch((error) => {
+          this.isPopupLoading = false;
           switch (error) {
             case 409:
               this.formError = {
@@ -601,11 +622,14 @@ export class PopupsComponent implements OnInit, OnDestroy {
 
   recovery(email: string) {
     if (this.emailPattern.test(email)) {
+      this.isPopupLoading = true;
       this.authServics.recovery(email)
         .then((status) => {
+          this.isPopupLoading = false;
           this.getPopup('finish');
         })
         .catch((error) => {
+          this.isPopupLoading = false;
           this.formError = {
             title: 'Si è verificato un problema!',
             message: `Ci dispiace. Impossibile identificare l'account con le informazioni fornite.`
@@ -695,14 +719,24 @@ export class PopupsComponent implements OnInit, OnDestroy {
     }
 
     if (!error) {
+      this.isPopupLoading = true;
       this.popupService.actionComplete({type: 'startNewCard'});
       this.paymentService.addNewCard(this.addCardData)
           .then((response) => {
+            this.isPopupLoading = false;
             this.popupService.actionComplete({type: 'newCard', data: response});
             this.closePopup();
           })
           .catch((error) => {
-            console.log(error);
+            this.isPopupLoading = false;
+            this.popupService.actionComplete({type: 'newCardError'});
+            this.closePopup();
+            let message = error.json().message;
+            if (message) {
+              this.getErrorPopup('Errore', message);
+            } else {
+              this.getErrorPopup('Errore', 'An error occurred');
+            }
           });
     }
   }
@@ -740,13 +774,23 @@ export class PopupsComponent implements OnInit, OnDestroy {
       editCardData.address_state = this.addCardData.address_state;
       editCardData.address_country = this.addCardData.address_country;
       this.popupService.actionComplete({type: 'startNewCard'});
+      this.isPopupLoading = true;
       this.paymentService.editCard(this.editedCardId, editCardData)
           .then((response) => {
+            this.isPopupLoading = false;
             this.popupService.actionComplete({type: 'cardEdited', data: response});
             this.closePopup();
           })
           .catch((error) => {
-            console.log(error);
+            this.isPopupLoading = false;
+            this.popupService.actionComplete({type: 'newCardError'});
+            this.closePopup();
+            let message = error.json().message;
+            if (message) {
+              this.getErrorPopup('Errore', message);
+            } else {
+              this.getErrorPopup('Errore', 'An error occurred');
+            }
           });
     }
   }
@@ -800,6 +844,12 @@ export class PopupsComponent implements OnInit, OnDestroy {
   logout() {
     this.popupService.actionComplete({type: 'logout', data: {}});
     this.closePopup();
+  }
+
+  getErrorPopup(title, text) {
+    this.finishPopupData.title = title;
+    this.finishPopupData.text.push(text);
+    this.getPopup('error');
   }
 
   ngOnInit() {
@@ -992,6 +1042,11 @@ export class PopupsComponent implements OnInit, OnDestroy {
           this.confirmPopupState = 'active';
           this.activePopup = 'logout';
           this.shadowState = 'active';
+          break;
+        case 'error':
+          this.finishPopupData.title = '';
+          this.finishPopupData.text = [];
+          this.getErrorPopup(popup.data.title, popup.data.message);
           break;
       }
     });

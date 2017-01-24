@@ -94,8 +94,13 @@ export class ProfileComponent implements OnInit, OnDestroy {
               });
               this.isLoading = false;
             })
-            .catch((errors) => {
-              console.log(errors);
+            .catch((error) => {
+              this.isLoading = false;
+              if (error.json().message) {
+                this.popupsService.activate({type: 'error', data: {title:'Errore', message: error.json().message}});
+              } else {
+                this.popupsService.activate({type: 'error', data: {title:'Errore', message: 'An error has occurred'}});
+              }
             })
       }
       if (params['page'] ==='settings') {
@@ -114,7 +119,12 @@ export class ProfileComponent implements OnInit, OnDestroy {
               this.isLoading = false;
             })
             .catch((error) => {
-              console.log(error);
+              this.isLoading = false;
+              if (error.json().message) {
+                this.popupsService.activate({type: 'error', data: {title:'Errore', message: error.json().message}});
+              } else {
+                this.popupsService.activate({type: 'error', data: {title:'Errore', message: 'An error has occurred'}});
+              }
             });
       }
       if (params['page'] ==='conditions') {
@@ -133,6 +143,9 @@ export class ProfileComponent implements OnInit, OnDestroy {
       switch (action.type) {
         case 'newCard':
           this.cards.push(action.data);
+          this.isLoading = false;
+          break;
+        case 'newCardError':
           this.isLoading = false;
           break;
         case 'startNewCard':
@@ -190,7 +203,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
       })
       .catch((error) => {
         this.isLoading = false;
-        console.log(error);
+        this.popupsService.activate({type: 'error', data: {title: 'Errore', message: error.json().message}});
       });
     return false;
   }
@@ -288,7 +301,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
           this.defaultCard = status.default_source;
         })
         .catch((error) => {
-          console.log(error);
+          this.popupsService.activate({type: 'error', data: {title:'Errore', message: error.json().message}});
           this.isLoading = false;
         });
   }
@@ -319,7 +332,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
         })
         .catch((error) => {
           this.isLoading = false;
-          console.log(error);
+          this.popupsService.activate({type: 'error', data: {title:'Errore', message: error.json().message}});
         });
   }
 

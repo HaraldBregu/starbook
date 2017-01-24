@@ -8,6 +8,7 @@
       <p>{{formError.message}}</p>
     </div>
   </div>
+  <app-loading *ngIf="isPopupLoading"></app-loading>
   <div class="header">Accedi</div>
   <form class="login-form" #loginForm="ngForm">
     <div class="form-group" [ngClass]="{'isError': loginError.email}">
@@ -41,6 +42,7 @@
       <p>{{formError.message}}</p>
     </div>
   </div>
+  <app-loading *ngIf="isPopupLoading"></app-loading>
   <div class="header">Nuovo account</div>
   <form class="registration-form" #registrationForm="ngForm">
     <div class="form-group" [ngClass]="{'isError': registrationError.name}">
@@ -162,9 +164,8 @@
 <div class="popup" [@finishPopupState]="finishPopupState">
   <div class="finish-message">
     <a (click)="closePopup()" class="close-popup"></a>
-    <div class="header">Check your inbox</div>
-    <p>We sent a password reset link to your email address. Please click the link in the email to create e new password.</p>
-    <p>The link will only be active for 1 hour. After that you will need to request a new one.</p>
+    <div class="header">{{ finishPopupData.title }}</div>
+    <p *ngFor="let text of finishPopupData.text">{{ text }}</p>
   </div>
 </div>
 
@@ -173,6 +174,7 @@
 <div class="popup" [@addCardPopupState]="addCardPopupState">
   <div class="header">Metodo di pagamento</div>
   <form class="add-card-form" #addCardForm="ngForm">
+    <app-loading *ngIf="isPopupLoading"></app-loading>
     <div class="cards-logo">
       <div class="card-item visa"></div>
       <div class="card-item mastercard"></div>

@@ -62,8 +62,7 @@ export class OrderService {
     }, this._makeHeaders())
       .toPromise()
       .then((response) => {
-        this.navigationService.updateLoadingStatus(false);
-        return true;
+        return response;
       })
       .catch(this.handleError);
   }
@@ -136,7 +135,6 @@ export class OrderService {
   }
 
   private handleError(error: any): Promise<any> {
-    this.navigationService.updateLoadingStatus(false);
-    return Promise.reject(error.status || error);
+    return Promise.reject(error);
   }
 }

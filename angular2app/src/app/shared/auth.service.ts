@@ -108,7 +108,6 @@ export class AuthService {
   }
 
   private handleError(error: any): Promise<any> {
-    this.navigationService.updateLoadingStatus(false);
     return Promise.reject(error.status || error);
   }
 

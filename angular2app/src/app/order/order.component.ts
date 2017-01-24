@@ -242,6 +242,7 @@ export class OrderComponent implements OnInit, OnDestroy {
       this.isLoading = true;
       this.orderService.saveOrder(this.Order)
         .then((status) => {
+          console.log(status);
           this.Order.delivery_details = [];
           this.Order.delivery_address = '';
           this.Order.delivery_description = '';
@@ -259,11 +260,10 @@ export class OrderComponent implements OnInit, OnDestroy {
           this.isLoading = false;
         })
         .catch((error) => {
-          console.log(error);
+          this.popupsService.activate({type: 'error', data: {title:'Errore', message: error.json().message}});
           this.isLoading = false;
         });
     } else {
-      console.log(userData);
       this.popupsService.activate({type: 'login'});
     }
   }

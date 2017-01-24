@@ -107,22 +107,16 @@ export class PaymentService {
   }
 
   public getCards() {
-    this.navigationService.updateLoadingStatus(true);
     return this.http.get(this.api + 'me/customers', this._makeHeaders())
         .toPromise()
         .then((response) => {
-          this.navigationService.updateLoadingStatus(false);
-          return response.json();
+            return response.json();
         })
-        .catch((error) => {
-          this.navigationService.updateLoadingStatus(false);
-          this.handleError(error);
-        });
+        .catch(this.handleError);
   }
 
   private handleError(error: any): Promise<any> {
-    this.navigationService.updateLoadingStatus(false);
-    return Promise.reject(error.status || error);
+    return Promise.reject(error);
   }
 
 }
