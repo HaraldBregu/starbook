@@ -5304,6 +5304,9 @@ textarea.form-control {
   height: 40px;
   margin: 10px auto; }
 
+.popup.add-price .loader {
+  margin-bottom: 20px; }
+
 @media (max-width: 480px) {
   .popup {
     width: 100%;

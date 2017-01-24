@@ -265,6 +265,7 @@
       <p>{{formError.message}}</p>
     </div>
   </div>
+  <app-loading *ngIf="isPopupLoading"></app-loading>
   <div class="header">{{ confirmActionPopupData.title }}</div>
   <form class="confirm-action" #confirmActionOrderForm="ngForm">
     <p>

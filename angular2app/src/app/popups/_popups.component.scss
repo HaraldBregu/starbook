@@ -759,6 +759,9 @@ $action-form-description-letter-spacing: 0.08px;
   height: 40px;
   margin: 10px auto;
 }
+.popup.add-price .loader {
+  margin-bottom: 20px;
+}
 
 @media (max-width: 480px) {
   .popup {

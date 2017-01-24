@@ -370,7 +370,7 @@ export class PopupsComponent implements OnInit, OnDestroy {
           }
         })
         .catch((error) => {
-          this.isPopupLoading = true;
+          this.isPopupLoading = false;
           switch (error) {
             case 404:
               this.formError = {
@@ -798,9 +798,10 @@ export class PopupsComponent implements OnInit, OnDestroy {
   addPrice(orderId) {
     // let orderPriceEur = parseInt(this.confirmActionPopupData.price) + ((parseInt(this.confirmActionPopupData.price) / 100) * 5.5);
     // let orderPrice = parseFloat(orderPriceEur.toFixed(2)) * 100;
-
+    this.isPopupLoading = true;
     this.ordersService.modifyOrder(orderId, 'CLOSE')
         .then((response) => {
+          this.isPopupLoading = false;
           this.closePopup(true);
           this.confirmPopupData.title = 'Servizio completato con successo';
           this.confirmPopupData.text = '';
@@ -811,7 +812,14 @@ export class PopupsComponent implements OnInit, OnDestroy {
           this.popupService.actionComplete({type: 'addPrice', data: {orderId: orderId, isModified: response.nModified}});
         })
         .catch((error) => {
-          console.log(error);
+          this.isPopupLoading = false;
+            this.closePopup();
+            let message = error.json().message;
+            if (message) {
+                this.getErrorPopup('Errore', message);
+            } else {
+                this.getErrorPopup('Errore', 'An error occurred');
+            }
         });
   }
   editPrice(orderId) {
