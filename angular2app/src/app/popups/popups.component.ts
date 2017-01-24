@@ -847,6 +847,7 @@ export class PopupsComponent implements OnInit, OnDestroy {
   }
 
   getErrorPopup(title, text) {
+    this.finishPopupData.text = [];
     this.finishPopupData.title = title;
     this.finishPopupData.text.push(text);
     this.getPopup('error');
