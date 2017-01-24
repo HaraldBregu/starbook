@@ -96,11 +96,16 @@ export class ProfileComponent implements OnInit, OnDestroy {
             })
             .catch((error) => {
               this.isLoading = false;
-              if (error.json().message) {
-                this.popupsService.activate({type: 'error', data: {title:'Errore', message: error.json().message}});
-              } else {
-                this.popupsService.activate({type: 'error', data: {title:'Errore', message: 'An error has occurred'}});
+              if (error.status === 404) {
+                // This Starbook account do not have a Stripe account
+                // When you add a new card, will be created a Stripe account
+                // and update the Starbook account
               }
+              // if (error.json().message) {
+              //   this.popupsService.activate({type: 'error', data: {title:'Errore', message: error.json().message}});
+              // } else {
+              //   this.popupsService.activate({type: 'error', data: {title:'Errore', message: 'An error has occurred'}});
+              // }
             })
       }
       if (params['page'] ==='settings') {
