@@ -56,7 +56,8 @@ export class OrderComponent implements OnInit, OnDestroy {
     formattedAddress: '',
     payment: {amount: 0, currency: ''}
   };
-  public minDate = new Date();
+  public minDate = new Date(new Date().getTime() + 24 * 60 * 60 * 1000);
+  public maxDate = new Date(new Date().getTime() + (24*7) * 60 * 60 * 1000);
   public submitOrder = false;
   public orderForm: any;
   public isMobileCalendar: any = false;
@@ -65,15 +66,16 @@ export class OrderComponent implements OnInit, OnDestroy {
   subscription: Subscription;
 
   constructor(private orderService: OrderService, private popupsService: PopupsService) {
-    for (let i = 0; i < 24; i++) {
-      if (i > 7 && i < 15) {
-        if (i > 9) {
-          this.timePicker.push(i + ':00', i + ':30');
-        } else {
-          this.timePicker.push('0' + i + ':00', '0' + i + ':30');
-        }
-      }
-    }
+    this.timePicker.push('08:00', '08:30', '09:00', '09:30', '10:00', '10:30', '11:00', '14:00', '14:30', '15:00');
+    // for (let i = 0; i < 24; i++) {
+    //   if (i > 7 && i < 15) {
+    //     if (i > 9) {
+    //       this.timePicker.push(i + ':00', i + ':30');
+    //     } else {
+    //       this.timePicker.push('0' + i + ':00', '0' + i + ':30');
+    //     }
+    //   }
+    // }
     this.months = {
       1: 'Gennaio',
       2: 'Febbraio',
@@ -147,8 +149,38 @@ export class OrderComponent implements OnInit, OnDestroy {
         .then((address: IAddress[]) => {
           this.isLoading = false;
           if (address.length > 1) {
-            this.isAddressOne = false;
-            this.isEnable = false;
+            for (var index in address) {
+              var addr = address[index];
+              var city_to_match = new RegExp(addr.city, 'i')
+              var street_number_to_match = new RegExp(String(addr.street_number), 'i')
+              if (this.address.match(city_to_match) && this.address.match(street_number_to_match)) {
+                this.isAddressOne = true;
+                this.Order.street = addr.street;
+                this.Order.street_number = addr.street_number;
+                this.Order.city = addr.city;
+                this.Order.postal_code = addr.postal_code;
+                this.Order.province = addr.province;
+                this.Order.country = addr.country;
+                this.Order.country_code = addr.country_code;
+                this.Order.formattedAddress = addr.formattedAddress;
+
+                this.address = addr.street + ', ' + addr.street_number + ', ' + addr.city;
+
+                if ((this.Order.street_number !== '' && this.Order.street_number !== null) && (this.Order.postal_code !== '' && this.Order.postal_code !== null) && (this.Order.country_code !== '' && this.Order.country_code !== null)) {
+                  this.isAddressFull = true;
+                  this.isEnable = true;
+                } else {
+                  this.isAddressFull = false;
+                  this.isEnable = false;
+                  this.isEnable = false;
+                }
+                this.showPreviewOrder()
+                break;
+              } else {
+                this.isAddressOne = false;
+                this.isEnable = true;
+              }
+            }
           } else if (0 in address) {
             this.isAddressOne = true;
             this.Order.street = address[0].street;
@@ -159,7 +191,10 @@ export class OrderComponent implements OnInit, OnDestroy {
             this.Order.country = address[0].country;
             this.Order.country_code = address[0].country_code;
             this.Order.formattedAddress = address[0].formattedAddress;
-            this.address = address[0].formattedAddress;
+
+            this.address = address[0].street + ', ' + address[0].street_number + ', ' + address[0].city;
+
+            // this.address = address[0].formattedAddress;
 
             if ((this.Order.street_number !== '' && this.Order.street_number !== null) && (this.Order.postal_code !== '' && this.Order.postal_code !== null) && (this.Order.country_code !== '' && this.Order.country_code !== null)) {
               this.isAddressFull = true;
@@ -169,32 +204,36 @@ export class OrderComponent implements OnInit, OnDestroy {
               this.isEnable = false;
               this.isEnable = false;
             }
+
+            this.showPreviewOrder()
+
           } else {
             this.isAddressOne = true;
             this.isAddressFull = false;
             this.isEnable = false;
           }
-
-          if (this.Order.date && this.orderIsFull && this.isAddressFull && this.orderData.order_options.min_amount <= this.orderData.totalPrice) {
-            let date = new Date(this.Order.date);
-            let day = date.getDate() > 9 ? date.getDate() : '0' + date.getDate();
-            let orderInformation = {
-              date: day + ' ' + this.it.monthNames[date.getMonth()] + ' ' + date.getFullYear(),
-              time: this.Order.time,
-              address: this.Order.formattedAddress,
-              description: this.Order.delivery_description
-            };
-            if (localStorage.getItem('auth') === null) {
-              this.popupsService.activate({type: 'loginFromOrder', data: {orderData: this.orderData, information: orderInformation}});
-            } else {
-              this.popupsService.activate({type: 'confirmNewOrder', data: {orderData: this.orderData, information: orderInformation}});
-            }
-          }
         })
         .catch((error) => {
           this.isLoading = false;
         });
+  }
 
+  showPreviewOrder() {
+    if (this.Order.date && this.orderIsFull && this.isAddressFull && this.orderData.order_options.min_amount <= this.orderData.totalPrice) {
+      let date = new Date(this.Order.date);
+      let day = date.getDate() > 9 ? date.getDate() : '0' + date.getDate();
+      let orderInformation = {
+        date: day + ' ' + this.it.monthNames[date.getMonth()] + ' ' + date.getFullYear(),
+        time: this.Order.time,
+        address: this.Order.formattedAddress,
+        description: this.Order.delivery_description
+      };
+      if (localStorage.getItem('auth') === null) {
+        this.popupsService.activate({type: 'loginFromOrder', data: {orderData: this.orderData, information: orderInformation}});
+      } else {
+        this.popupsService.activate({type: 'confirmNewOrder', data: {orderData: this.orderData, information: orderInformation}});
+      }
+    }
   }
 
   createOrder() {
