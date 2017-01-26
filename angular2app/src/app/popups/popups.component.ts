@@ -977,7 +977,7 @@ export class PopupsComponent implements OnInit, OnDestroy {
           this.confirmActionPopupData.orderId = popup.data.orderId;
           this.confirmActionPopupData.type = 'addPrice';
           this.confirmActionPopupData.title = 'Completamento servizio';
-          this.confirmActionPopupData.text = 'Dopo aver completato il servizio il verrai incrementato del importo prestabilito tra 7 giorni lavorativi.';
+          this.confirmActionPopupData.text = 'Dopo aver completato il servizio verrai incrementato del importo prestabilito tra 7 giorni lavorativi.';
           // this.confirmActionPopupData.actions.push({
           //   type: 'Payment_input_add',
           //   source: 'euro',
