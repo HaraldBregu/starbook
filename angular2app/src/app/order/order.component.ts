@@ -260,7 +260,8 @@ export class OrderComponent implements OnInit, OnDestroy {
           this.isLoading = false;
         })
         .catch((error) => {
-          this.popupsService.activate({type: 'error', data: {title:'Errore', message: error.json().message}});
+          // this.popupsService.activate({type: 'error', data: {title:'Errore', message: error.json().message}});
+          this.popupsService.activate({type: 'error', data: {title:'Errore', message: 'Il servizio richiesto non è ancora disponibile in questa zona'}});
           this.isLoading = false;
         });
     } else {
