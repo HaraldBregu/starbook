@@ -225,7 +225,7 @@ export class OrderComponent implements OnInit, OnDestroy {
       let orderInformation = {
         date: day + ' ' + this.it.monthNames[date.getMonth()] + ' ' + date.getFullYear(),
         time: this.Order.time,
-        address: this.Order.formattedAddress,
+        address: this.Order.street + ', ' + this.Order.street_number + ', ' + this.Order.city,
         description: this.Order.delivery_description
       };
       if (localStorage.getItem('auth') === null) {
