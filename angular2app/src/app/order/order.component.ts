@@ -303,6 +303,8 @@ export class OrderComponent implements OnInit, OnDestroy {
             this.popupsService.activate({type: 'error', data: {title:'Errore', message: 'Per favore, inserisci un metodo di pagamento prima di prenotare un servizio'}});
           } else if (error.status === 403) {
             this.popupsService.activate({type: 'error', data: {title:'Errore', message: 'Il servizio richiesto non è ancora disponibile in questa zona. Per favore contattaci nella sezione assistenza di Starbook per richiedere il supporto nella zona desiderata.'}});
+          } else {
+            this.popupsService.activate({type: 'error', data: {title:'Errore', message: "C'è stato un errore riguardo alla richiesta del ordine, ricarica la pagina e riprova di nuovo."}});
           }
           this.isLoading = false;
         });

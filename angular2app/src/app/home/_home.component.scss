@@ -22,7 +22,7 @@ $navbar-tabs-active-background-color: #FAFAFA;
 // Services Block styles
 $services-block-background-color: #FCFCFC;
 $services-item-hover-background-color: #F5F5F5;
-$services-block-border-color: #DCDCDC;
+$services-block-border-color: #C8C8C8;
 $services-block-text-color: #333333;
 $services-block-header-background-color: rgba(252, 252, 252, 0);
 $services-block-header-letter-spacing: 0.1px;
@@ -156,7 +156,7 @@ app-home {
   font-family: $font-name-medium;
   font-size: 15px;
   background-color: $services-block-header-background-color;
-  padding: 13px 19px;
+  padding: 10px 19px;
   border-bottom: 1px solid $services-block-border-color;
   letter-spacing: $services-block-header-letter-spacing;
   color: $services-block-text-color;
