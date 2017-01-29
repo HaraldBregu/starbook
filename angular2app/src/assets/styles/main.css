@@ -2827,16 +2827,16 @@ app-home {
   display: block;
   width: 245px;
   background-color: #FCFCFC;
-  border: 1px solid #C8C8C8;
+  border: 1px solid #DCE0E0;
   margin: 0 8px 20px 9px;
-  border-radius: 1px; }
+  border-radius: 3px; }
 
 .services-block .header {
   font-family: HelveticaNeue-Medium, sans-serif;
   font-size: 15px;
   background-color: rgba(252, 252, 252, 0);
   padding: 10px 19px;
-  border-bottom: 1px solid #C8C8C8;
+  border-bottom: 1px solid #DCE0E0;
   letter-spacing: 0.1px;
   color: #333333; }
 
@@ -5720,7 +5720,7 @@ textarea.form-control {
   height: 50px;
   padding: 15px 46px 15px 19px;
   background-color: #FFFFFF;
-  border: 1px solid #a0a0a0;
+  border: 1px solid #DCDCDC;
   border-radius: 1px;
   outline: none;
   color: #212121;
@@ -5829,8 +5829,8 @@ input.landing-search .ui-autocomplete-input:-ms-input-placeholder {
   width: 100%;
   min-height: 150px;
   background-color: #FFFFFF;
-  border: 1px solid #C8C8C8;
-  border-radius: 1px;
+  border: 1px solid #DCE0E0;
+  border-radius: 3px;
   cursor: pointer; }
 
 .services-card .service-container .content {
@@ -5840,7 +5840,9 @@ input.landing-search .ui-autocomplete-input:-ms-input-placeholder {
   height: 150px;
   background-image: url("/assets/images/city.jpg");
   background-repeat: no-repeat;
-  background-size: cover; }
+  background-size: cover;
+  border-top-left-radius: 2px;
+  border-top-right-radius: 2px; }
 
 .services-card .service-container .content .shadow {
   display: block;
@@ -5852,7 +5854,9 @@ input.landing-search .ui-autocomplete-input:-ms-input-placeholder {
   background-color: #FFFFFF;
   opacity: 0.95;
   transition: opacity 0.5s ease-in-out;
-  z-index: 1; }
+  z-index: 1;
+  border-top-left-radius: 2px;
+  border-top-right-radius: 2px; }
 
 .services-card .service-container:hover .content .shadow {
   opacity: 1; }
@@ -5892,7 +5896,9 @@ input.landing-search .ui-autocomplete-input:-ms-input-placeholder {
   font-size: 10px;
   letter-spacing: 0.06px;
   font-weight: normal;
-  padding: 7px 13px 0 0; }
+  padding: 7px 13px 0 0;
+  border-bottom-left-radius: 3px;
+  border-bottom-right-radius: 3px; }
 
 .services-card .service-container .service-footer span {
   font-family: HelveticaNeue-Bold, sans-serif;
