@@ -15,9 +15,9 @@
         <div class="header">Informazioni del account</div>
         <form #changProfile="ngForm">
           <app-loading *ngIf="isLoading"></app-loading>
+          <label>Nome Completo</label>
           <div class="form-group">
-            <label>Nome Completo</label>
-            <input class="form-control" name="name" #fullname="ngModel" [(ngModel)]="userData.fullname" required>
+            <input class="form-control" name="name" placeholder="Nome Cognome" #fullname="ngModel" [(ngModel)]="userData.fullname" required>
           </div>
           <!--<div class="form-group">-->
             <!--<label>Cognome</label>-->
@@ -27,14 +27,14 @@
             <!--<label>Nome Azienda</label>-->
             <!--<input class="form-control" name="patronymic" #fullname="ngModel" [(ngModel)]="userData.patronymic" required disabled>-->
           <!--</div>-->
+          <label>Cellulare</label>
           <div class="form-group">
-            <label>Cellulare</label>
-            <input class="form-control" name="phone" #phone_number="ngModel" [(ngModel)]="userData.phone_number">
+            <input class="form-control" name="phone" placeholder="Numero" #phone_number="ngModel" [(ngModel)]="userData.phone_number">
           </div>
+          <label>Email</label>
           <div class="form-group">
-            <label>Email</label>
             <div class="email-field">
-              <input class="form-control" name="email" value="" #email="ngModel" [(ngModel)]="userData.email" required disabled>
+              <input class="form-control" name="email" placeholder="Indirizzo email" value="" #email="ngModel" [(ngModel)]="userData.email" required disabled>
               <button type="button" class="btn btn-primary" (click)="getPopup('changePassword')" disabled>Modifica password</button>
             </div>
           </div>
@@ -50,26 +50,26 @@
             <!--</div>-->
           <!--</div>-->
           <div class="header second">Indirizzo di fatturazione</div>
+          <label>Indirizzo del domicilio</label>
           <div class="form-group">
-            <label>Indirizzo del domicilio</label>
             <input class="form-control" name="address1" #street="ngModel" [(ngModel)]="userData.street" placeholder="Via Verdi 13">
           </div>
+          <label>Città e CAP</label>
           <div class="form-group double-input">
-            <label>Città e CAP</label>
             <input class="form-control first" name="address2" #city="ngModel" [(ngModel)]="userData.city" placeholder="Città">
             <input class="form-control second" name="number2" #postal_code="ngModel" [(ngModel)]="userData.postal_code" placeholder="CAP">
           </div>
+          <label>Provincia e Nazione</label>
           <div class="form-group double-input">
-            <label>Provincia e Nazione</label>
             <input class="form-control first" name="city" #province="ngModel" [(ngModel)]="userData.province" placeholder="Provincia">
             <input class="form-control second" name="country" #country="ngModel" [(ngModel)]="userData.country" placeholder="Nazione">
           </div>
+          <label>Partita IVA</label>
           <div class="form-group">
-            <label>Partita IVA</label>
             <input class="form-control" name="piva" placeholder="P.IVA">
           </div>
+          <label>Codice Fiscale</label>
           <div class="form-group">
-            <label>Codice Fiscale</label>
             <input class="form-control" name="codice" placeholder="Codice Fiscale">
           </div>
           <div class="profile-information" *ngIf="formError">

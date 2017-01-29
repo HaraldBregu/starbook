@@ -114,9 +114,12 @@ $card-new-card-letter-spacing: 0.13px;
 }
 .profile-settings {
   display: block;
-  width: 830px;
-  margin: 23px auto 0;
-  padding-left: 330px;
+  // width: 830px;
+  width: 500px;
+  // margin: 23px auto 0;
+  // padding-left: 330px;
+  margin-left: 260px;
+  margin-top: 23px;
 }
 .profile-settings .header {
   display: block;
@@ -139,21 +142,30 @@ $card-new-card-letter-spacing: 0.13px;
   height: 40px;
   position: relative;
 }
-.profile-settings .form-group label {
-  display: block;
-  position: absolute;
-  top: 9px;
-  left: -156px;
-  padding-left: 0;
+// .profile-settings .form-group label {
+//   display: block;
+//   position: absolute;
+//   top: 9px;
+//   left: -156px;
+//   padding-left: 0;
+//   font-size: $profile-settings-label-font-size;
+//   color: $profile-settings-label-color;
+//   letter-spacing: $profile-settings-label-letter-spacing;
+//   font-family: $font-name-medium;
+//   font-weight: normal;
+//   white-space: nowrap;
+//   width: 144px;
+//   text-align: right;
+// }
+.profile-settings label {
   font-size: $profile-settings-label-font-size;
   color: $profile-settings-label-color;
   letter-spacing: $profile-settings-label-letter-spacing;
   font-family: $font-name-medium;
   font-weight: normal;
-  white-space: nowrap;
-  width: 144px;
-  text-align: right;
-
+  // white-space: nowrap;
+  // width: 144px;
+  // text-align: right;
 }
 .profile-settings input {
   height: 38px;
@@ -602,7 +614,7 @@ $card-new-card-letter-spacing: 0.13px;
     padding: 58px 15px 0 15px;
   }
   .profile-settings .form-group {
-    margin-top: 40px;
+    margin-top: 0px;
   }
   .profile-settings .password-block {
     margin-top: 40px;

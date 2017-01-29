@@ -4121,9 +4121,9 @@ textarea.form-control {
 
 .profile-settings {
   display: block;
-  width: 830px;
-  margin: 23px auto 0;
-  padding-left: 330px; }
+  width: 500px;
+  margin-left: 260px;
+  margin-top: 23px; }
 
 .profile-settings .header {
   display: block;
@@ -4146,20 +4146,12 @@ textarea.form-control {
   height: 40px;
   position: relative; }
 
-.profile-settings .form-group label {
-  display: block;
-  position: absolute;
-  top: 9px;
-  left: -156px;
-  padding-left: 0;
+.profile-settings label {
   font-size: 14px;
   color: #212121;
   letter-spacing: 0.09px;
   font-family: HelveticaNeue-Medium, sans-serif;
-  font-weight: normal;
-  white-space: nowrap;
-  width: 144px;
-  text-align: right; }
+  font-weight: normal; }
 
 .profile-settings input {
   height: 38px;
@@ -4601,7 +4593,7 @@ textarea.form-control {
     padding: 58px 15px 0 15px; }
 
   .profile-settings .form-group {
-    margin-top: 40px; }
+    margin-top: 0px; }
 
   .profile-settings .password-block {
     margin-top: 40px; }
