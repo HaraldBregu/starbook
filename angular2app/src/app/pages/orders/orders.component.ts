@@ -28,6 +28,11 @@ export interface IOrder {
     email: string;
     fullname: string;
     phone_number: string;
+  },
+  merchant: {
+    email: string;
+    fullname: string;
+    phone_number: string;
   };
 }
 
@@ -53,6 +58,7 @@ export class OrdersComponent implements OnInit, OnDestroy {
   public isVendor = false;
   public emptyListTitle = ''
   public isLoading = false;
+  public authData = {};
   subscription: Subscription;
 
   constructor(private navigationService: NavigationService, private ordersService: OrdersService, private popupsService: PopupsService) { }
@@ -60,7 +66,7 @@ export class OrdersComponent implements OnInit, OnDestroy {
   ngOnInit() {
     if (localStorage.getItem('auth') !== null) {
       let authData = JSON.parse(localStorage.getItem('auth'));
-
+      this.authData = authData;
       authData.account_types.forEach((type) => {
         if (type === 'VENDOR') {
           this.isVendor = true;
