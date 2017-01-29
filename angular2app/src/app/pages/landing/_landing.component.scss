@@ -69,7 +69,7 @@ $search-input-box-shadow: 0 2px 6px 0 #DCDCDC;
 $search-text-color: #212121;
 $search-text-size: 18px;
 $search-text-letter-spacing: 0.11px;
-$search-result-hover-background: #F5F5F5;
+$search-result-hover-background: #506795;
 $search-result-text-color: #212121;
 $search-result-text-size: 16px;
 $search-result-letter-spacing: 0.1px;
@@ -532,6 +532,7 @@ input.landing-search .ui-autocomplete-input:-ms-input-placeholder {
   overflow-y: scroll;
 }
 .landing-search .ui-autocomplete-panel .ui-state-highlight .search-result {
+  color: white;
   background-color: $search-result-hover-background;
 }
 .landing-search .ui-autocomplete-panel .search-result {

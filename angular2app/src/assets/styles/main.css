@@ -5786,7 +5786,8 @@ input.landing-search .ui-autocomplete-input:-ms-input-placeholder {
   overflow-y: scroll; }
 
 .landing-search .ui-autocomplete-panel .ui-state-highlight .search-result {
-  background-color: #F5F5F5; }
+  color: white;
+  background-color: #506795; }
 
 .landing-search .ui-autocomplete-panel .search-result {
   display: block;
