@@ -262,6 +262,7 @@ $card-new-card-letter-spacing: 0.13px;
   font-size: $profile-settings-btn-font-size;
   letter-spacing: $profile-settings-btn-letter-spacing;
   font-weight: 700;
+  outline: none;
 }
 .profile-settings .btn-secondary, .profile-settings .btn-secondary:hover, .profile-settings .btn-secondary:active {
   width: 100%;
