@@ -30,6 +30,7 @@ export interface IServiceFormItem {
   title: string;
   input_type?: string;
   input_value?: any;
+  value_symbol?: string;
   amount: number;
   selected?:boolean;
 }
@@ -143,6 +144,7 @@ export class HomeComponent implements AfterViewInit, OnInit, OnDestroy {
         if ('input_type' in item) {
           option['input_type'] = item.input_type;
           option['input_value'] = item.input_value;
+          option['value_symbol'] = item.value_symbol;
         }
 
         if ('selected' in item) {

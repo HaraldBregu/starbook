@@ -225,6 +225,46 @@ app-home {
   color: $home-input-text-color;
   outline: none;
 }
+.services-block .service .input-group {
+  padding: 0 2px 1px 2px;
+}
+.services-block .service .input-group input {
+  width: 100%;
+  border-top: 1px solid #DCDCDC;
+  border-left: 1px solid #DCDCDC;
+  border-bottom: 1px solid #DCDCDC;
+  border-right: 0px solid #DCDCDC;
+  border-top-left-radius: 3px;
+  border-bottom-left-radius: 3px;
+  display: block;
+  height: 35px;
+  padding: 9px 13px 8px 13px;
+  text-align: right;
+  background-color: $home-input-background-color;
+  font-family: $font-name;
+  font-weight: normal;
+  font-size: $home-input-text-size;
+  letter-spacing: $home-input-text-letter-spacing;
+  color: $home-input-text-color;
+  outline: none;
+}
+.services-block .service .input-group span {
+  border-top: 1px solid #DCDCDC;
+  border-left: 1px solid #DCDCDC;
+  border-bottom: 1px solid #DCDCDC;
+  border-right: 1px solid #DCDCDC;
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+  height: 35px;
+  text-align: right;
+  background-color: #FCFCFC;
+  font-family: $font-name;
+  font-weight: normal;
+  font-size: 14px;
+  letter-spacing: $home-input-text-letter-spacing;
+  color: $home-input-text-color;
+  outline: none;
+}
 @media (max-width: 1168px) {
   .home-page .tab-container {
     display: block;

@@ -21,8 +21,13 @@
             <div class="service content">
               <span *ngFor="let item of serviceCategory.options">
                 <div class="item" *ngIf="item.type === 'CHECKBOX' || item.type === 'RADIOBUTTON'" [ngClass]="{'checked':item.selected}" (click)="toggleService(serviceCategory.title, item.title)"><i class="fa fa-check"></i> {{item.title}}</div>
-                <div class="input" *ngIf="item.type === 'INPUTTEXT'">
+                <!-- <div class="input" *ngIf="item.type === 'INPUTTEXT'">
                   <input type="text" [(ngModel)]="servicesData[item.formId].options[item.optionId].input_value" (keyup)="changeValue(item.formId, item.optionId)" (change)="changeValue(item.formId, item.optionId)" (focus)="selectAllContent($event)">
+                </div> -->
+                <div class="input-group" *ngIf="item.type === 'INPUTTEXT'">
+                  <input type="text" [(ngModel)]="servicesData[item.formId].options[item.optionId].input_value" (keyup)="changeValue(item.formId, item.optionId)" (change)="changeValue(item.formId, item.optionId)" (focus)="selectAllContent($event)">
+                  <span class="input-group-addon">{{servicesData[item.formId].options[item.optionId].value_symbol}}</span>
+                  <!-- <span class="input-group-addon">{{item.}}</span> -->
                 </div>
               </span>
             </div>
