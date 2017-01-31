@@ -249,6 +249,9 @@ $action-form-description-letter-spacing: 0.08px;
   background-color: $popup-btn-background-color-gray;
   margin-bottom: -1rem;
 }
+.popup .form-group a.btn.btn-secondary {
+  padding: 9px 7px;
+}
 .popup .form-description {
   display: block;
   position: relative;
