@@ -865,6 +865,8 @@ export class PopupsComponent implements OnInit, OnDestroy {
     this.subscription = this.popupService.getActivePopup$.subscribe(popup => {
       switch (popup.type) {
         case 'login':
+          this.loginData.email = '';
+          this.loginData.password = '';
           this.loginPopupState = 'active';
           this.activePopup = 'login';
           this.shadowState = 'active';
@@ -1078,12 +1080,12 @@ export class PopupsComponent implements OnInit, OnDestroy {
         address_state: '',
         address_country: ''
       };
-    this.loginData = {
-        email: '',
-        password: '',
-        type: '',
-        orderData: {}
-      };
+    // this.loginData = {
+    //     email: '',
+    //     password: '',
+    //     type: '',
+    //     orderData: {}
+    //   };
     this.registrationData = {
         name: '',
         phone: '',
@@ -1118,6 +1120,10 @@ export class PopupsComponent implements OnInit, OnDestroy {
         buttons: [],
         price: null
       };
+    this.loginError = {
+      email: false,
+      password: false
+    };
   }
 
   ngOnDestroy() {

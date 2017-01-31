@@ -13,7 +13,7 @@
   <form class="login-form" #loginForm="ngForm">
     <div class="form-group" [ngClass]="{'isError': loginError.email}">
       <label for="email">Indirizzo email</label>
-      <input id="email" class="form-control" type="email" name="email" placeholder="" required [(ngModel)]="loginData.email" #email="ngModel" (keyup)="checkEmail('login', email.value)" (change)="checkEmail('login', email.value)">
+      <input id="email" class="form-control" type="email" name="email" [(ngModel)]="loginData.email" #email="ngModel" (keyup)="checkEmail('login', email.value)" (change)="checkEmail('login', email.value)">
       <span class="error">Indirizzo email non valido</span>
     </div>
     <div class="form-group" [ngClass]="{'isError': loginError.password}">
@@ -22,7 +22,7 @@
       <span class="error">Inserisci la tua password</span>
     </div>
     <div class="form-group">
-      <button class="btn btn-warning" type="submit" (click)="login(email.value, password.value)">Accedi</button>
+      <a class="btn btn-warning" href="#" (click)="login(email.value, password.value)">Accedi</a>
     </div>
     <div class="form-description">
       <span>Sei nuovo su Starbook?</span>

@@ -4801,6 +4801,9 @@ textarea.form-control {
   background: -webkit-linear-gradient(top, #ffe589 0%, #fec751 100%);
   background: linear-gradient(to bottom, #ffe589 0%, #fec751 100%); }
 
+.popup .form-group a.btn.btn-warning {
+  padding: 9px 7px; }
+
 .popup .form-group .btn.btn-warning.new-order-btn {
   position: relative; }
 
