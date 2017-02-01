@@ -35,7 +35,7 @@ export class HomeService {
 
   getServices() {
     this.navigationService.updateLoadingStatus(true);
-    return this.http.get(this.api + 'services/featured')
+    return this.http.get(this.api + 'featured')
         .toPromise()
         .then((services) => {
           this.navigationService.updateLoadingStatus(false);
@@ -45,7 +45,7 @@ export class HomeService {
   }
 
   search(query) {
-    return this.http.get(this.api + 'services/search?title=' + query)
+    return this.http.get(this.api + 'search?title=' + query)
         .toPromise()
         .then((results) => {
           return results.json();
