@@ -24,9 +24,9 @@ export class AppComponent implements OnInit, OnDestroy {
   constructor (public router:Router, private authServics: AuthService, private navigationService: NavigationService, private popupsService: PopupsService) {
     this.router.events.subscribe(
     (event:Event) => {
-        if (event instanceof NavigationEnd) {
-            ga('send', 'pageview', event.urlAfterRedirects);
-        }
+      if (event instanceof NavigationEnd) {
+        ga('send', 'pageview', event.urlAfterRedirects);
+      }
     });
   }
 
