@@ -38,6 +38,7 @@
         <div class="services-card" *ngFor="let service of services" (click)="selectResult(service)">
           <div class="service-container">
             <div class="content">
+              <!-- <img src="{{service.image_url}}" alt="Immagine"> -->
               <div class="shadow"></div>
               <strong>{{ service.title }}</strong>
               <p>{{ service.description }}</p>

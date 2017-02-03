@@ -2,7 +2,7 @@
   <form class="sidebar-container" #orderForm="ngForm" (window:resize)="onResize()">
     <app-loading *ngIf="isLoading"></app-loading>
     <div class="sidebar-block">
-      <h2>Dettagli dell’ordine</h2>
+      <h2>Dettagli del progetto</h2>
       <!-- <div class="order-container" *ngIf="!orderIsFull">
         <div class="order-list-empty"><strong>Inserisci</strong> le informazioni necessari del appuntamento e invia la richiesta.</div>
       </div> -->
@@ -64,7 +64,7 @@
           <textarea class="form-control" id="nota" name="applicant_description" [(ngModel)]="Order.delivery_description" placeholder="Lascia una nota..."></textarea>
         </div>
         <div class="form-group">
-          <button class="btn btn-warning btn-block" (click)="showConfirmation()" [disabled]="!isEnable">Anteprima dell’ordine</button>
+          <button class="btn btn-warning btn-block" (click)="showConfirmation()" [disabled]="!isEnable">Anteprima del progetto</button>
         </div>
         <div class="footer-links">
           <p>
