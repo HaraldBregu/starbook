@@ -15,7 +15,7 @@
         <div class="header">Informazioni del account</div>
         <form #changProfile="ngForm">
           <app-loading *ngIf="isLoading"></app-loading>
-          <label>Nome Completo</label>
+          <label>NOME COMPLETO</label>
           <div class="form-group">
             <input class="form-control" name="name" placeholder="Nome Cognome" #fullname="ngModel" [(ngModel)]="userData.fullname" required>
           </div>
@@ -27,11 +27,11 @@
             <!--<label>Nome Azienda</label>-->
             <!--<input class="form-control" name="patronymic" #fullname="ngModel" [(ngModel)]="userData.patronymic" required disabled>-->
           <!--</div>-->
-          <label>Cellulare</label>
+          <label>CELLULARE</label>
           <div class="form-group">
             <input class="form-control" name="phone" placeholder="Numero" #phone_number="ngModel" [(ngModel)]="userData.phone_number">
           </div>
-          <label>Email</label>
+          <label>EMAIL</label>
           <div class="form-group">
             <div class="email-field">
               <input class="form-control" name="email" placeholder="Indirizzo email" value="" #email="ngModel" [(ngModel)]="userData.email" required disabled>

@@ -19,7 +19,7 @@ $left-navigation-link-active-border-style: 4px solid #324977;
 $profile-settings-header-font-size: 18px;
 $profile-settings-header-color: #212121;
 $profile-settings-header-letter-spacing: 0.13px;
-$profile-settings-label-font-size: 14px;
+$profile-settings-label-font-size: 11px;
 $profile-settings-label-color: #212121;
 $profile-settings-label-letter-spacing: 0.09px;
 $profile-settings-input-border-style: 1px solid #DCDCDC;
@@ -166,6 +166,7 @@ $card-new-card-letter-spacing: 0.13px;
   // white-space: nowrap;
   // width: 144px;
   // text-align: right;
+  padding-bottom: 5px
 }
 .profile-settings input {
   height: 38px;
