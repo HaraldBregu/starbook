@@ -1,8 +1,11 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
+import {Router, Event, NavigationEnd} from '@angular/router';
+
 import { AuthService } from './shared/auth.service';
 import { NavigationService } from './shared/navigation.service';
 import { PopupsService } from './popups/popups.service';
 import { Subscription }   from 'rxjs/Subscription';
+declare let ga: Function;
 
 @Component({
   selector: 'app-root',
@@ -18,7 +21,13 @@ export class AppComponent implements OnInit, OnDestroy {
   subscription: Subscription;
   authSubscription: Subscription;
   // loadingSubscription: Subscription;
-  constructor (private authServics: AuthService, private navigationService: NavigationService, private popupsService: PopupsService) {
+  constructor (public router:Router, private authServics: AuthService, private navigationService: NavigationService, private popupsService: PopupsService) {
+    this.router.events.subscribe(
+    (event:Event) => {
+        if (event instanceof NavigationEnd) {
+            ga('send', 'pageview', event.urlAfterRedirects);
+        }
+    });
   }
 
   getLoginPopup() {
