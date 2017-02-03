@@ -143,12 +143,13 @@ app-home {
   width: 100%;
   padding-right: 388px;
 }
+
 .services-block {
   display: block;
   width: 245px;
   background-color: $services-block-background-color;
   border: 1px solid $services-block-border-color;
-  margin: 0 8px 20px 9px;
+  margin-bottom: 20px;
   border-radius: 3px;
 }
 .services-block .header {
@@ -264,6 +265,56 @@ app-home {
   color: $home-input-text-color;
   outline: none;
 }
+
+.services-block-big {
+  display: block;
+  position: absolute;
+  width: 508px;
+  border: none;
+  background-color: $services-block-background-color;
+  margin-bottom: 20px;
+}
+.services-block-big img {
+  display: block;
+  width: 100%;
+  min-height: 130px;
+  border-radius: 3px 3px 0 0;
+}
+
+// Description block
+$content-block-description-text-color: #212121;
+$content-block-description-text-size: 12px;
+$content-block-description-text-letter-spacing: 0.08px;
+.services-block-big .description {
+  display: block;
+  width: 100%;
+  padding: 15px 12px 14px 13px;
+  font-family: $font-name;
+  font-size: $content-block-description-text-size;
+  color: $content-block-description-text-color;
+  letter-spacing: $content-block-description-text-letter-spacing;
+  border-radius: 0 0 3px 3px;
+  border: 1px solid $services-block-border-color;
+}
+
+// Loading style
+.services-loader .loader {
+  display: block;
+  position: fixed;
+  top: 80px;
+  left: 0;
+  width: 100%;
+  height: 60px;
+}
+.services-loader .loader svg {
+  display: block;
+  width: 60px;
+  height: 60px;
+  margin: 0 auto;
+}
+.services-loader.add-price .loader {
+  margin-bottom: 20px;
+}
 @media (max-width: 1168px) {
   .home-page .tab-container {
     display: block;
@@ -276,6 +327,9 @@ app-home {
     display: block;
     width: 262px;
     margin: 0 auto;
+  }
+  .services-block-big {
+    width: 245px;
   }
 }
 @media (max-width: 645px) {

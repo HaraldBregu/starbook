@@ -1,5 +1,5 @@
 import { Component, ViewChild, AfterViewInit, OnInit, OnDestroy } from '@angular/core';
-import { AngularMasonry } from 'angular2-masonry';
+import { AngularMasonry, MasonryModule } from 'angular2-masonry';
 import { HomeService } from './home.service';
 import { NavigationService } from '../shared/navigation.service';
 // import { Subscription }   from 'rxjs/Subscription';
@@ -45,6 +45,7 @@ export interface IServices {
   _id: string;
   title: string;
   description: string;
+  image_url: string;
   price: {
     base_amount: number;
   },
@@ -80,7 +81,8 @@ export class HomeComponent implements AfterViewInit, OnInit, OnDestroy {
 
   //public servicesCategoryList: IServiceCategoryList[] = [];
   public isServicesView = false;
-  public servicesData: IServiceForm[] = [];
+  public servicesData = [];
+
   // public activeServiceCategory: boolean|string = false;
   // public activeServiceCategoryType: boolean|number = false;
   public model: any;
@@ -100,17 +102,27 @@ export class HomeComponent implements AfterViewInit, OnInit, OnDestroy {
   public orderIsFull = false;
   public SWIPE_ACTION = { LEFT: 'swipeleft', RIGHT: 'swiperight' };
   public delta: number = -15;
+  public isLoading = false;
   // subscription: Subscription;
 
   @ViewChild(AngularMasonry) masonry: AngularMasonry;
+  @ViewChild(MasonryModule) layout: MasonryModule;
 
   constructor(private homeService: HomeService, private navigationService: NavigationService, private router: Router, private route: ActivatedRoute) {}
 
   renderPage(services: IServices) {
     this.navigationService.updateMessage(services.title);
+
     this.defaultServices = services;
     this.isServicesView = true;
-    this.servicesData = [];
+    this.servicesData = [
+      {
+        type: 'content',
+        image: services.image_url,
+        description: services.description,
+        options: []
+      }
+    ];
     this.orderData = {
       service_id: services._id,
       price: services.price,
@@ -121,7 +133,7 @@ export class HomeComponent implements AfterViewInit, OnInit, OnDestroy {
     };
     this.baseAmount.start = services.price.base_amount;
     this.baseAmount.calculated = services.price.base_amount;
-    let formId = 0;
+    let formId = 1;
     services.forms.forEach((form) => {
       let serviceForm: IServiceForm = {
         title: form.title,
@@ -497,17 +509,45 @@ export class HomeComponent implements AfterViewInit, OnInit, OnDestroy {
     }
   }
 
+  makeMasonry() {
+    this.masonry.layout();
+  }
+
   ngOnInit() {
-    this.route.url.subscribe((url) => {
-      if (0 in url) {
-        let services = this.homeService.getServicesObject();
+    // this.route.url.subscribe((url) => {
+    //   if (0 in url) {
+    //     let services = this.homeService.getServicesObject();
+    //     if (services) {
+    //       this.renderPage(services);
+    //     } else {
+    //       this.router.navigateByUrl('/');
+    //     }
+    //   }
+    // });
+
+    this.route.params.subscribe(params => {
+      let serviceId = params['id'];
+      let services = this.homeService.getServicesObject();
+      if (serviceId) {
+        this.isServicesView = true;
         if (services) {
           this.renderPage(services);
         } else {
-          this.router.navigateByUrl('/');
+          this.isLoading = true;
+          this.homeService.getServiceById(serviceId)
+              .then((data) => {
+                this.renderPage(data.result);
+                this.isLoading = false;
+              })
+              .catch((error) => {
+                this.isLoading = false;
+                this.router.navigateByUrl('/');
+              });
+          //this.router.navigateByUrl('/');
         }
       }
     });
+
     // this.homeService.getCategories()
     //   .then((data) => {
     //     this.parseServiceData(data.result);

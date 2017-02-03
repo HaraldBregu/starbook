@@ -12,7 +12,7 @@ const routes: Routes = [
     component: HomeComponent
   },
   {
-    path: 'services',
+    path: 'services/:id',
     component: HomeComponent
   },
   {

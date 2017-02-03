@@ -53,6 +53,15 @@ export class HomeService {
         .catch(this.handleError);
   }
 
+  getServiceById(id) {
+      return this.http.get(this.api + 'services/' + id)
+          .toPromise()
+          .then((results) => {
+              return results.json();
+          })
+          .catch(this.handleError);
+  }
+
   private handleError(error: any): Promise<any> {
     this.navigationService.updateLoadingStatus(false);
     return Promise.reject(error.message || error);

@@ -64,7 +64,7 @@ export class LandingComponent implements OnInit {
 
   selectResult(servicesObj) {
     this.homeService.sendServices(servicesObj);
-    this.router.navigate(['services']);
+    this.router.navigate(['services', servicesObj._id]);
   }
 
   clearSearchForm() {

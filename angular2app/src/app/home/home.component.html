@@ -15,18 +15,24 @@
   <div class="row">
     <div class="col-sm-9 col-md-10 main">
       <div class="tab-container">
-        <masonry>
-          <masonry-brick class="services-block" *ngFor="let serviceCategory of servicesData">
-            <div class="header">{{serviceCategory.title}}</div>
-            <div class="service content">
-              <span *ngFor="let item of serviceCategory.options">
-                <div class="item" *ngIf="item.type === 'CHECKBOX' || item.type === 'RADIOBUTTON'" [ngClass]="{'checked':item.selected}" (click)="toggleService(serviceCategory.title, item.title)"><i class="fa fa-check"></i> {{item.title}}</div>
-                <div class="input-group" *ngIf="item.type === 'INPUTTEXT'">
-                  <input type="text" [(ngModel)]="servicesData[item.formId].options[item.optionId].input_value" (keyup)="changeValue(item.formId, item.optionId)" (change)="changeValue(item.formId, item.optionId)" (focus)="selectAllContent($event)">
-                  <span class="input-group-addon">{{servicesData[item.formId].options[item.optionId].value_symbol}}</span>
-                </div>
-              </span>
-            </div>
+        <masonry [options]="{columnWidth: 245, gutter: 18, itemSelector: '.services-block', originLeft: true, originTop: true}">
+          <masonry-brick class="services-block" *ngFor="let serviceCategory of servicesData" [ngClass]="{'services-block-big': serviceCategory.type === 'content'}">
+            <span *ngIf="serviceCategory.type === 'content'">
+              <img [src]="serviceCategory.image" (load)="makeMasonry()">
+              <div class="description">{{ serviceCategory.description }}</div>
+            </span>
+            <span *ngIf="serviceCategory.type !== 'content'">
+              <div class="header">{{serviceCategory.title}}</div>
+              <div class="service content">
+                <span *ngFor="let item of serviceCategory.options">
+                  <div class="item" *ngIf="item.type === 'CHECKBOX' || item.type === 'RADIOBUTTON'" [ngClass]="{'checked':item.selected}" (click)="toggleService(serviceCategory.title, item.title)"><i class="fa fa-check"></i> {{item.title}}</div>
+                    <div class="input-group" *ngIf="item.type === 'INPUTTEXT'">
+                      <input type="text" [(ngModel)]="servicesData[item.formId].options[item.optionId].input_value" (keyup)="changeValue(item.formId, item.optionId)" (change)="changeValue(item.formId, item.optionId)" (focus)="selectAllContent($event)">
+                      <span class="input-group-addon">{{servicesData[item.formId].options[item.optionId].value_symbol}}</span>
+                    </div>
+                  </span>
+              </div>
+            </span>
           </masonry-brick>
         </masonry>
       </div>
@@ -35,3 +41,4 @@
   </div>
 </div>
 <app-landing *ngIf="isServicesView === false"></app-landing>
+<app-loading *ngIf="isLoading" class="services-loader"></app-loading>
