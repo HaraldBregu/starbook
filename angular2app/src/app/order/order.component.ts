@@ -108,20 +108,20 @@ export class OrderComponent implements OnInit, OnDestroy {
     this.Order.time = time;
   }
 
-  // getAddresses(event) {
-  //   this.isAddressDirty = true;
-  //   this.isAddressFull = false;
-  //   if (event.query.length > 2) {
-  //     this.orderService.getAddresses(event.query)
-  //       .then((data) => {
-  //         this.addresses = [];
-  //         this.addresses = data;
-  //       })
-  //       .catch((error) => {
-  //         console.log(error);
-  //       });
-  //   }
-  // }
+  getAddresses(event) {
+    this.isAddressDirty = true;
+    this.isAddressFull = false;
+    if (event.query.length > 2) {
+      this.orderService.getAddresses(event.query)
+        .then((addresses) => {
+          this.addresses = [];
+          this.addresses = addresses;
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
+  }
 
   selectAddress(value: IAddress) {
     if (value.isFull) {
@@ -144,78 +144,101 @@ export class OrderComponent implements OnInit, OnDestroy {
     this.Order.postal_code = '';
     this.Order.country_code = '';
 
-    this.isLoading = true;
-    this.orderService.getAddresses(this.address)
-        .then((address: IAddress[]) => {
-          this.isLoading = false;
-          if (address.length > 1) {
-            for (var index in address) {
-              var addr = address[index];
-              var city_to_match = new RegExp(addr.city, 'i')
-              var street_number_to_match = new RegExp(String(addr.street_number), 'i')
-              if (this.address.match(city_to_match) && this.address.match(street_number_to_match)) {
-                this.isAddressOne = true;
-                this.Order.street = addr.street;
-                this.Order.street_number = addr.street_number;
-                this.Order.city = addr.city;
-                this.Order.postal_code = addr.postal_code;
-                this.Order.province = addr.province;
-                this.Order.country = addr.country;
-                this.Order.country_code = addr.country_code;
-                this.Order.formattedAddress = addr.formattedAddress;
+    this.Order.street = this.selectedAddress.street;
+    this.Order.street_number = this.selectedAddress.street_number;
+    this.Order.city = this.selectedAddress.city;
+    this.Order.postal_code = this.selectedAddress.postal_code;
+    this.Order.province = this.selectedAddress.province;
+    this.Order.country = this.selectedAddress.country;
+    this.Order.country_code = this.selectedAddress.country_code;
+    this.Order.formattedAddress = this.selectedAddress.formattedAddress;
+    this.address = this.selectedAddress.street + ', ' + this.selectedAddress.street_number + ', ' + this.selectedAddress.city;
 
-                this.address = addr.street + ', ' + addr.street_number + ', ' + addr.city;
+    if ((this.Order.street_number !== '' && this.Order.street_number !== null) && (this.Order.postal_code !== '' && this.Order.postal_code !== null) && (this.Order.country_code !== '' && this.Order.country_code !== null)) {
+      this.isAddressFull = true;
+      this.isEnable = true;
+    } else {
+      this.isAddressFull = false;
+      this.isEnable = false;
+    }
 
-                if ((this.Order.street_number !== '' && this.Order.street_number !== null) && (this.Order.postal_code !== '' && this.Order.postal_code !== null) && (this.Order.country_code !== '' && this.Order.country_code !== null)) {
-                  this.isAddressFull = true;
-                  this.isEnable = true;
-                } else {
-                  this.isAddressFull = false;
-                  this.isEnable = false;
-                  this.isEnable = false;
-                }
-                this.showPreviewOrder()
-                break;
-              } else {
-                this.isAddressOne = false;
-                this.isEnable = true;
-              }
-            }
-          } else if (0 in address) {
-            this.isAddressOne = true;
-            this.Order.street = address[0].street;
-            this.Order.street_number = address[0].street_number;
-            this.Order.city = address[0].city;
-            this.Order.postal_code = address[0].postal_code;
-            this.Order.province = address[0].province;
-            this.Order.country = address[0].country;
-            this.Order.country_code = address[0].country_code;
-            this.Order.formattedAddress = address[0].formattedAddress;
+    this.showPreviewOrder();
 
-            this.address = address[0].street + ', ' + address[0].street_number + ', ' + address[0].city;
-
-            // this.address = address[0].formattedAddress;
-
-            if ((this.Order.street_number !== '' && this.Order.street_number !== null) && (this.Order.postal_code !== '' && this.Order.postal_code !== null) && (this.Order.country_code !== '' && this.Order.country_code !== null)) {
-              this.isAddressFull = true;
-              this.isEnable = true;
-            } else {
-              this.isAddressFull = false;
-              this.isEnable = false;
-              this.isEnable = false;
-            }
-
-            this.showPreviewOrder()
-
-          } else {
-            this.isAddressOne = true;
-            this.isAddressFull = false;
-            this.isEnable = false;
-          }
-        })
-        .catch((error) => {
-          this.isLoading = false;
-        });
+    //////////////////////////////////////////////////////////////////////////
+    // Version with requesting address after click 'Create an order' button //
+    //////////////////////////////////////////////////////////////////////////
+    // this.isLoading = true;
+    // this.orderService.getAddresses(this.address)
+    //     .then((address: IAddress[]) => {
+    //       this.isLoading = false;
+    //       if (address.length > 1) {
+    //         for (var index in address) {
+    //           var addr = address[index];
+    //           var city_to_match = new RegExp(addr.city, 'i')
+    //           var street_number_to_match = new RegExp(String(addr.street_number), 'i')
+    //           if (this.address.match(city_to_match) && this.address.match(street_number_to_match)) {
+    //             this.isAddressOne = true;
+    //             this.Order.street = addr.street;
+    //             this.Order.street_number = addr.street_number;
+    //             this.Order.city = addr.city;
+    //             this.Order.postal_code = addr.postal_code;
+    //             this.Order.province = addr.province;
+    //             this.Order.country = addr.country;
+    //             this.Order.country_code = addr.country_code;
+    //             this.Order.formattedAddress = addr.formattedAddress;
+    //
+    //             this.address = addr.street + ', ' + addr.street_number + ', ' + addr.city;
+    //
+    //             if ((this.Order.street_number !== '' && this.Order.street_number !== null) && (this.Order.postal_code !== '' && this.Order.postal_code !== null) && (this.Order.country_code !== '' && this.Order.country_code !== null)) {
+    //               this.isAddressFull = true;
+    //               this.isEnable = true;
+    //             } else {
+    //               this.isAddressFull = false;
+    //               this.isEnable = false;
+    //               this.isEnable = false;
+    //             }
+    //             this.showPreviewOrder()
+    //             break;
+    //           } else {
+    //             this.isAddressOne = false;
+    //             this.isEnable = true;
+    //           }
+    //         }
+    //       } else if (0 in address) {
+    //         this.isAddressOne = true;
+    //         this.Order.street = address[0].street;
+    //         this.Order.street_number = address[0].street_number;
+    //         this.Order.city = address[0].city;
+    //         this.Order.postal_code = address[0].postal_code;
+    //         this.Order.province = address[0].province;
+    //         this.Order.country = address[0].country;
+    //         this.Order.country_code = address[0].country_code;
+    //         this.Order.formattedAddress = address[0].formattedAddress;
+    //
+    //         this.address = address[0].street + ', ' + address[0].street_number + ', ' + address[0].city;
+    //
+    //         // this.address = address[0].formattedAddress;
+    //
+    //         if ((this.Order.street_number !== '' && this.Order.street_number !== null) && (this.Order.postal_code !== '' && this.Order.postal_code !== null) && (this.Order.country_code !== '' && this.Order.country_code !== null)) {
+    //           this.isAddressFull = true;
+    //           this.isEnable = true;
+    //         } else {
+    //           this.isAddressFull = false;
+    //           this.isEnable = false;
+    //           this.isEnable = false;
+    //         }
+    //
+    //         this.showPreviewOrder()
+    //
+    //       } else {
+    //         this.isAddressOne = true;
+    //         this.isAddressFull = false;
+    //         this.isEnable = false;
+    //       }
+    //     })
+    //     .catch((error) => {
+    //       this.isLoading = false;
+    //     });
   }
 
   showPreviewOrder() {

@@ -13,7 +13,8 @@ const routes: Routes = [
   },
   {
     path: 'services/:id',
-    component: HomeComponent
+    component: HomeComponent,
+    data: {isFindField: true}
   },
   {
     path: 'orders',

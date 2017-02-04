@@ -2668,7 +2668,8 @@ html, body {
   background-color: #293C61; }
 
 .container-starbook.top-menu {
-  padding-right: 0 !important; }
+  padding-right: 0 !important;
+  overflow-x: visible !important; }
 
 .navbar-toggler {
   display: none; }
@@ -2676,6 +2677,117 @@ html, body {
 .collapse {
   display: block; }
 
+.search-block {
+  display: block;
+  position: relative;
+  float: left;
+  max-width: 400px;
+  width: 100%;
+  height: 30px;
+  margin: 7px 0 7px 11px; }
+
+.search-block .ui-autocomplete-input {
+  display: block;
+  width: 100%;
+  height: 30px;
+  padding: 6px 46px 5px 15px;
+  background-color: #FCFCFC;
+  border: none;
+  border-radius: 3px;
+  outline: none;
+  color: #212121;
+  font-family: HelveticaNeue, sans-serif;
+  font-size: 16px;
+  letter-spacing: 0.1px; }
+
+input.ui-autocomplete-input::-webkit-input-placeholder,
+input.search-block .ui-autocomplete-input:-moz-placeholder,
+input.search-block .ui-autocomplete-input:-ms-input-placeholder {
+  color: #212121; }
+
+.search-block .spinner {
+  display: block;
+  position: absolute;
+  top: 5px;
+  right: 11px;
+  width: 13px;
+  height: 13px; }
+
+.search-block .close-container {
+  display: block;
+  position: absolute;
+  top: 9px;
+  right: 11px; }
+
+.search-block .close-container .close {
+  position: relative;
+  display: inline-block;
+  width: 13px;
+  height: 13px;
+  overflow: hidden; }
+  .search-block .close-container .close::before, .search-block .close-container .close::after {
+    content: '';
+    position: absolute;
+    height: 2px;
+    width: 100%;
+    top: 50%;
+    left: 0;
+    margin-top: -1px;
+    background: #000; }
+  .search-block .close-container .close::before {
+    transform: rotate(45deg); }
+  .search-block .close-container .close::after {
+    transform: rotate(-45deg); }
+  .search-block .close-container .close.thick::before, .search-block .close-container .close.thick::after {
+    height: 2px;
+    margin-top: -2px; }
+  .search-block .close-container .close.rounded::before, .search-block .close-container .close.rounded::after {
+    border-radius: 5px; }
+
+.search-block .ui-autocomplete-panel {
+  display: block;
+  position: relative;
+  margin-top: -32px;
+  width: 100%;
+  background-color: #FCFCFC;
+  border-left: 1px solid #DCDCDC;
+  border-right: 1px solid #DCDCDC;
+  border-bottom: 1px solid #DCDCDC;
+  outline: none;
+  border-radius: 1px;
+  overflow-y: scroll; }
+
+.search-block .ui-autocomplete-panel .ui-state-highlight .search-result {
+  color: white;
+  background-color: #506795; }
+
+.search-block .ui-autocomplete-panel .search-result {
+  display: block;
+  width: 100%;
+  font-family: HelveticaNeue, sans-serif;
+  color: #212121;
+  font-size: 16px;
+  letter-spacing: 0.1px;
+  padding: 6px 15px; }
+
+.search-block .ui-autocomplete-panel.empty {
+  margin-top: -2px; }
+
+.search-block .ui-autocomplete-panel.empty .no-result {
+  display: block;
+  width: 100%;
+  font-family: HelveticaNeue, sans-serif;
+  color: #8D9494;
+  font-size: 14px;
+  letter-spacing: 0.1px;
+  padding: 8px 21px; }
+
+@media (max-width: 790px) {
+  .search-block {
+    max-width: 250px; } }
+@media (max-width: 640px) {
+  .is-search .navbar-brand {
+    display: none; } }
 @media (max-width: 576px) {
   .tagline {
     display: none; }

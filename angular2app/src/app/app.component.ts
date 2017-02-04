@@ -1,10 +1,11 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import {Router, Event, NavigationEnd} from '@angular/router';
+import { Router, Event, NavigationEnd, ActivatedRoute } from '@angular/router';
 
 import { AuthService } from './shared/auth.service';
 import { NavigationService } from './shared/navigation.service';
 import { PopupsService } from './popups/popups.service';
 import { Subscription }   from 'rxjs/Subscription';
+import { HomeService } from './home/home.service';
 declare let ga: Function;
 
 @Component({
@@ -18,14 +19,28 @@ export class AppComponent implements OnInit, OnDestroy {
   public popupState = 'inactive';
   public navbarState = false;
   public isLoading = false;
+  public isFindField = false;
+  public spinerView = false;
+  public clearView = false;
+  public findValue: string = '';
+  public results: string[] = [];
   subscription: Subscription;
   authSubscription: Subscription;
   // loadingSubscription: Subscription;
-  constructor (public router:Router, private authServics: AuthService, private navigationService: NavigationService, private popupsService: PopupsService) {
+  constructor (public router:Router, private route: ActivatedRoute, private authServics: AuthService, private navigationService: NavigationService, private popupsService: PopupsService, private homeService: HomeService) {
     this.router.events.subscribe(
     (event:Event) => {
       if (event instanceof NavigationEnd) {
         ga('send', 'pageview', event.urlAfterRedirects);
+        let currentRoute = this.route.root;
+        while (currentRoute.children[0] !== undefined) {
+          currentRoute = currentRoute.children[0];
+        }
+        if ('isFindField' in currentRoute.snapshot.data) {
+          this.isFindField = true;
+        } else {
+          this.isFindField = false;
+        }
       }
     });
   }
@@ -60,6 +75,7 @@ export class AppComponent implements OnInit, OnDestroy {
         this.auth = false;
       }
     });
+
     // this.loadingSubscription = this.navigationService.getLoadingStatus$.subscribe(status => {
     //   this.isLoading = status;
     // });
@@ -70,6 +86,41 @@ export class AppComponent implements OnInit, OnDestroy {
       this.toggleMenu();
     }
     this.navigationService.updateActiveTab(false);
+  }
+
+  search(event) {
+    this.spinerView = true;
+    this.clearView = false;
+    this.homeService.search(event.query)
+        .then((results) => {
+          this.spinerView = false;
+          if (event.query.length > 0) {
+            this.clearView = true;
+          }
+          this.results = results.result;
+        })
+        .catch((error) => {
+          this.spinerView = false;
+          if (event.query.length > 0) {
+            this.clearView = true;
+          }
+          this.results = [];
+        })
+  }
+
+  selectResult(servicesObj) {
+    this.homeService.sendServices(servicesObj);
+    this.results = [];
+    this.clearView = false;
+    this.navbarState = false;
+    this.findValue = '';
+    this.router.navigate(['services', servicesObj._id]);
+  }
+
+  clearSearchForm() {
+    this.findValue = '';
+    this.results = [];
+    this.clearView = false;
   }
 
   ngOnDestroy() {

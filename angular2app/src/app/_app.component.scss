@@ -22,6 +22,21 @@ $navbar-font-size: 14px;
 $navbar-border-color: #5A7DB6;
 $navbar-item-background-color: #293C61;
 
+// Search box
+$search-navbar-input-background: #FCFCFC;
+$search-navbar-result-border: 1px solid #DCDCDC;
+$search-navbar-input-box-shadow: 0 2px 6px 0 #DCDCDC;
+$search-navbar-text-color: #212121;
+$search-navbar-text-size: 16px;
+$search-navbar-text-letter-spacing: 0.1px;
+$search-navbar-result-hover-background: #506795;
+$search-navbar-result-text-color: #212121;
+$search-navbar-result-text-size: 16px;
+$search-navbar-result-letter-spacing: 0.1px;
+$search-navbar-result-empty-font-size: 14px;
+$search-navbar-result-empty-color: #8D9494;
+$search-navbar-close-icon-base-color: #8D9494;
+
 
 html, body {
   background-color: $background !important;
@@ -106,6 +121,7 @@ html, body {
 
 .container-starbook.top-menu {
   padding-right: 0 !important;
+  overflow-x: visible !important;
 }
 .navbar-toggler {
   display: none;
@@ -113,6 +129,134 @@ html, body {
 .collapse {
   display: block;
 }
+
+// Search box
+.search-block {
+  display: block;
+  position: relative;
+  float: left;
+  max-width: 400px;
+  width: 100%;
+  height: 30px;
+  margin: 7px 0 7px 11px;
+}
+.search-block .ui-autocomplete-input {
+  display: block;
+  width: 100%;
+  height: 30px;
+  padding: 6px 46px 5px 15px;
+  background-color: $search-navbar-input-background;
+  border: none;
+  border-radius: 3px;
+  outline: none;
+  color: $search-navbar-text-color;
+  font-family: $font-name;
+  font-size: $search-navbar-text-size;
+  letter-spacing: $search-navbar-text-letter-spacing;
+}
+input.ui-autocomplete-input::-webkit-input-placeholder,
+input.search-block .ui-autocomplete-input:-moz-placeholder,
+input.search-block .ui-autocomplete-input:-ms-input-placeholder {
+  color: $search-navbar-text-color;
+}
+.search-block .spinner {
+  display: block;
+  position: absolute;
+  top: 5px;
+  right: 11px;
+  width: 13px;
+  height: 13px;
+}
+.search-block .close-container {
+  display: block;
+  position: absolute;
+  top: 9px;
+  right: 11px;
+}
+.search-block .close-container .close{
+  position: relative;
+  display: inline-block;
+  width: 13px;
+  height: 13px;
+  overflow: hidden;
+  &::before, &::after {
+    content: '';
+    position: absolute;
+    height: 2px;
+    width: 100%;
+    top: 50%;
+    left: 0;
+    margin-top: -1px;
+    background: #000;
+  }
+  &::before {
+    transform: rotate(45deg);
+  }
+  &::after {
+    transform: rotate(-45deg);
+  }
+  &.thick {
+    &::before, &::after {
+      height: 2px;
+      margin-top: -2px;
+    }
+  }
+  &.rounded {
+    &::before, &::after {
+      border-radius: 5px;
+    }
+  }
+}
+
+.search-block .ui-autocomplete-panel {
+  display: block;
+  position: relative;
+  margin-top: -32px;
+  width: 100%;
+  background-color: $search-navbar-input-background;
+  border-left: $search-navbar-result-border;
+  border-right: $search-navbar-result-border;
+  border-bottom: $search-navbar-result-border;
+  outline: none;
+  border-radius: 1px;
+  overflow-y: scroll;
+}
+.search-block .ui-autocomplete-panel .ui-state-highlight .search-result {
+  color: white;
+  background-color: $search-navbar-result-hover-background;
+}
+.search-block .ui-autocomplete-panel .search-result {
+  display: block;
+  width: 100%;
+  font-family: $font-name;
+  color: $search-navbar-result-text-color;
+  font-size: $search-navbar-result-text-size;
+  letter-spacing: $search-navbar-result-letter-spacing;
+  padding: 6px 15px;
+}
+.search-block .ui-autocomplete-panel.empty {
+  margin-top: -2px;
+}
+.search-block .ui-autocomplete-panel.empty .no-result {
+  display: block;
+  width: 100%;
+  font-family: $font-name;
+  color: $search-navbar-result-empty-color;
+  font-size: $search-navbar-result-empty-font-size;
+  letter-spacing: $search-navbar-result-letter-spacing;
+  padding: 8px 21px;
+}
+@media (max-width: 790px) {
+  .search-block {
+    max-width: 250px;
+  }
+}
+@media (max-width: 640px) {
+  .is-search .navbar-brand {
+    display: none;
+  }
+}
+
 @media (max-width: 576px) {
   .tagline {
     display: none;

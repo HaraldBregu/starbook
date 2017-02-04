@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import {Http, URLSearchParams, Headers } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 import { NavigationService } from '../shared/navigation.service';
-import {error} from "util";
 
 export interface IAddress {
   street: string;
@@ -70,7 +69,7 @@ export class OrderService {
   getAddresses(key: string) {
     this.navigationService.updateLoadingStatus(true);
     let params = new URLSearchParams();
-    let addresses: IAddress[] = [];
+    let addresses = [];
     params.set('address', key);
     params.set('language', 'it');
     params.set('key', 'AIzaSyCLc5etDSrqieAn4lPCsvFDpkM3-F7-c5M');
@@ -128,10 +127,7 @@ export class OrderService {
         });
         return addresses;
       })
-      .catch((error) => {
-        this.navigationService.updateLoadingStatus(false);
-        this.handleError;
-      });
+      .catch(this.handleError);
   }
 
   private handleError(error: any): Promise<any> {
