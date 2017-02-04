@@ -24,6 +24,7 @@ export class AppComponent implements OnInit, OnDestroy {
   public clearView = false;
   public findValue: string = '';
   public results: string[] = [];
+  public isSearched = false;
   subscription: Subscription;
   authSubscription: Subscription;
   // loadingSubscription: Subscription;
@@ -67,6 +68,11 @@ export class AppComponent implements OnInit, OnDestroy {
     this.auth = this.authServics.authInit();
     this.subscription = this.navigationService.getMessage$.subscribe(message => {
       this.tagline = message;
+      this.findValue = message;
+      this.results = [];
+      this.clearView = true;
+      this.isSearched = false;
+      console.log(message);
     });
     this.authSubscription = this.navigationService.getPersonalMenu$.subscribe(auth => {
       if (auth !== false) {
@@ -89,6 +95,7 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   search(event) {
+    this.isSearched = true;
     this.spinerView = true;
     this.clearView = false;
     this.homeService.search(event.query)
