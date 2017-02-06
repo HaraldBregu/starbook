@@ -3460,7 +3460,7 @@ textarea.form-control {
   background-color: #ffffff;
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.25);
   font-size: 15px;
-  color: #4A4A4A;
+  color: #324977;
   font-family: HelveticaNeue, sans-serif;
   font-weight: 400;
   border: none !important;
@@ -3472,7 +3472,7 @@ textarea.form-control {
   height: 25px;
   text-align: center;
   font-size: 14px;
-  color: #4A4A4A;
+  color: #324977;
   font-weight: 600; }
 
 .date .ui-datepicker .ui-datepicker-prev, .date .ui-datepicker .ui-datepicker-next {
@@ -3498,7 +3498,7 @@ textarea.form-control {
 
 .date .dropdown-menu .btn-secondary.btn-inline {
   border: none;
-  color: #4A4A4A;
+  color: #324977;
   width: 30px;
   height: 30px;
   font-weight: 600;
@@ -3512,7 +3512,7 @@ textarea.form-control {
 .ui-datepicker-calendar th span {
   height: 25px;
   display: block;
-  color: #4A4A4A;
+  color: #324977;
   font-family: HelveticaNeue, sans-serif;
   font-weight: 600;
   text-align: center; }
@@ -3520,7 +3520,7 @@ textarea.form-control {
 .ui-datepicker-calendar td a.ui-state-default {
   display: block;
   height: 22px;
-  color: #4A4A4A;
+  color: #324977;
   font-family: HelveticaNeue, sans-serif;
   font-size: 14px;
   font-weight: 900;
@@ -3531,7 +3531,7 @@ textarea.form-control {
 .ui-datepicker-calendar td a.ui-state-disabled {
   opacity: 0.3;
   font-weight: 400;
-  color: #4A4A4A; }
+  color: #324977; }
 
 .ui-datepicker-calendar td a.ui-state-default:hover, .ui-datepicker-calendar td a.ui-state-active {
   font-family: HelveticaNeue, sans-serif;
@@ -3545,7 +3545,7 @@ textarea.form-control {
   text-decoration: none !important;
   border-radius: 3px;
   background-color: transparent;
-  color: #4A4A4A; }
+  color: #324977; }
 
 .ui-datepicker-calendar td.ui-state-disabled a.ui-state-default {
   color: #969696; }
@@ -3556,7 +3556,7 @@ textarea.form-control {
 
 .date .dropdown-menu .next.btn-secondary.btn-inline {
   border: none;
-  color: #4A4A4A;
+  color: #324977;
   width: 30px;
   height: 30px;
   font-weight: 600;
@@ -3579,7 +3579,7 @@ textarea.form-control {
   background-color: #ffffff;
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.25);
   font-size: 15px;
-  color: #4A4A4A;
+  color: #324977;
   font-family: HelveticaNeue, sans-serif;
   font-weight: 400;
   padding-top: 5px;
