@@ -5534,7 +5534,7 @@ textarea.form-control {
   min-height: 100vh;
   padding-top: 40px;
   padding-bottom: 62px;
-  background-color: #FCFCFC; }
+  background-color: #FAFAFA; }
 
 .landing .landing-top-header h1 {
   display: block;
@@ -5885,7 +5885,7 @@ textarea.form-control {
   height: 50px;
   padding: 15px 46px 15px 19px;
   background-color: #FFFFFF;
-  border: 1px solid #DCDCDC;
+  border: 1px solid #C8C8C8;
   border-radius: 1px;
   outline: none;
   color: #212121;
@@ -6011,7 +6011,7 @@ input.landing-search .ui-autocomplete-input:-ms-input-placeholder {
   left: 0;
   background-color: #000000;
   opacity: 0.3;
-  transition: opacity 0.5s ease-in-out;
+  transition: opacity 0.4s ease-in-out;
   z-index: 1;
   border-radius: 3px; }
 
