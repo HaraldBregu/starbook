@@ -34,7 +34,7 @@ export class OrderComponent implements OnInit, OnDestroy {
   public isAddressOne = false;
   public isAddressFull = false;
   public isAddressDirty = false;
-  public isEnable = true;
+  // public isEnable = true;
   public Order = {
     service_id: '',
     delivery_details: [],
@@ -133,7 +133,7 @@ export class OrderComponent implements OnInit, OnDestroy {
   }
   modifyAddress() {
     this.isAddressDirty = false;
-    this.isEnable = true;
+    // this.isEnable = true;
     this.isAddressDirty = false;
   }
 
@@ -156,10 +156,10 @@ export class OrderComponent implements OnInit, OnDestroy {
 
     if ((this.Order.street_number !== '' && this.Order.street_number !== null) && (this.Order.postal_code !== '' && this.Order.postal_code !== null) && (this.Order.country_code !== '' && this.Order.country_code !== null)) {
       this.isAddressFull = true;
-      this.isEnable = true;
+      // this.isEnable = true;
     } else {
       this.isAddressFull = false;
-      this.isEnable = false;
+      // this.isEnable = false;
     }
 
     this.showPreviewOrder();
