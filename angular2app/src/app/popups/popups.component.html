@@ -123,6 +123,7 @@
   <form class="confirm-order-form" #confirmOrderForm="ngForm">
     <p *ngIf="confirmPopupData.type !== 'newOrder' && confirmPopupData.type !== 'newOrderEnd'" [ngClass]="{'conferma-finish': confirmPopupData.type === 'confermaEnd'}">{{ confirmPopupData.text }}</p>
     <p *ngIf="confirmPopupData.type === 'newOrderEnd'" class="confirm-end">{{ confirmPopupData.text }}</p>
+    <p *ngIf="confirmPopupData.type === 'logout'"><br></p>
     <div class="orders-list" *ngIf="confirmPopupData.type === 'newOrder'">
       <div class="order-item" *ngFor="let product of confirmPopupData.data">
         <!-- <span *ngIf="product.type ==='service'" class="service-item">{{ product.productName }} <i *ngIf="product.price !== ''">€{{ product.price / 100 }}</i></span> -->
