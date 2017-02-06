@@ -282,6 +282,14 @@ export class OrderComponent implements OnInit, OnDestroy {
             amount: 0,
             type: 'item'
           });
+        } else if (orderCategory.price_type === 'BASE_AMOUNT_PER_INPUT') {
+          this.Order.delivery_details.push({
+            // title: orderCategory.name + ' - ' + orderCategory.option.name,
+            title: orderCategory.name,
+            description : orderCategory.option.name + ' ' + orderCategory.option.symbol,
+            amount: 0,
+            type: 'item'
+          });
         } else {
           this.Order.delivery_details.push({
             // title: orderCategory.name + ' - ' + orderCategory.option.name,

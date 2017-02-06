@@ -23,8 +23,6 @@
           <div class="category-services-state" *ngIf="order.status === 1 && dateCompare(order.date, dateFormating('now')) && selectTab === 'Richieste dei clienti'">
             <span class="orange"></span> Assegnato
           </div>
-
-
           <div class="category-services-state" *ngIf="order.status === 99 && selectTab === 'I miei ordini'">
             <span class="red"></span> Annullato
           </div>
@@ -40,9 +38,6 @@
           <div class="category-services-state" *ngIf="order.status === 1 && dateCompare(dateFormating('now'), order.date) && selectTab === 'I miei ordini'">
             <span class="orange"></span> Servizio in corso...
           </div>
-
-
-
           <div class="category-services-state" *ngIf="order.status === 0 && selectTab === 'Archivio'">
             <span class="black"></span> Scaduto
           </div>
@@ -52,9 +47,15 @@
           <div class="category-services-state" *ngIf="order.status === 99 && selectTab === 'Archivio'">
             <span class="red"></span> Annullato
           </div>
-          <div class="category-name">
+          <!-- <div class="category-name">
             {{ categories[order.category_type] }}
+          </div> -->
+          <div class="category-name" *ngFor="let product of order.details">
+            <div *ngIf="product.type==='service'">
+              {{ product.title }}
+            </div>
           </div>
+
           <div class="order-date">
             {{ dateFormating(order.date) }}
           </div>
@@ -62,7 +63,12 @@
         <div class="order-body">
           <div class="row">
             <div class="order-row products col-xl-4">
-              <div class="item" *ngFor="let product of order.details" [ngClass]="{'service':product.type === 'service'}">{{ product.title }} <i *ngIf="product.type !== 'service'">{{ product.description }}</i></div>
+              <div class="item" *ngFor="let product of order.details" [ngClass]="{'service':product.type === 'service'}">
+                <div *ngIf="product.type==='item'">
+                  {{ product.title }} <i>{{ product.description }}</i>
+                </div>
+              </div>
+              <!-- <div class="item" *ngFor="let product of order.details" [ngClass]="{'service':product.type === 'service'}">{{ product.title }} <i *ngIf="product.type !== 'service'">{{ product.description }}</i></div> -->
               <!-- <div class="item total">Totale <i>€{{ order.payment.amount / 100 }}</i></div> -->
             </div>
 
