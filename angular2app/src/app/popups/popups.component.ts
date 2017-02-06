@@ -955,6 +955,8 @@ export class PopupsComponent implements OnInit, OnDestroy {
           popup.data.orderData.services.forEach((product) => {
             if(product.price_type === 'BASE_AMOUNT_INCREMENT') {
               this.confirmPopupData.data.push({productName: product.name, itemName: product.option.name, price: '', type: 'item'});
+            } else if (product.price_type === 'BASE_AMOUNT_PER_INPUT'){
+              this.confirmPopupData.data.push({productName: product.name, itemName: product.option.name, price: '', symbol: product.option.symbol, type: 'item'});
             } else {
               this.confirmPopupData.data.push({productName: product.name, itemName: product.option.name, price: product.option.price, type: 'item'});
             }

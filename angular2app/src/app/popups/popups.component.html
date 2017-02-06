@@ -128,7 +128,8 @@
         <!-- <span *ngIf="product.type ==='service'" class="service-item">{{ product.productName }} <i *ngIf="product.price !== ''">€{{ product.price / 100 }}</i></span> -->
         <span *ngIf="product.type ==='service'" class="service-item">{{ product.productName }} <i *ngIf="product.price !== ''">€{{ product.price / 100 }}</i></span>
         <!-- <span *ngIf="product.type ==='item'">{{ product.productName }} {{ product.itemName }} <i *ngIf="product.price !== ''">€{{ product.price / 100 }}</i></span> -->
-        <span *ngIf="product.type ==='item'">{{ product.productName }}<i>{{ product.itemName }}</i></span>
+        <span *ngIf="product.type ==='item'">{{ product.productName }}<i>{{ product.itemName }} {{ product.symbol }}</i></span>
+        <!-- <span *ngIf="product.type ==='item'">{{ product.productName }}<i>{{ product.itemName }}{{ product.symbol }}</i></span> -->
         <span *ngIf="product.type ==='total'" class="total-item">{{ product.productName }} <i>€{{ product.price / 100 }}</i></span>
       </div>
     </div>
