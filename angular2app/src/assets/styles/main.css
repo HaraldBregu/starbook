@@ -5994,14 +5994,14 @@ input.landing-search .ui-autocomplete-input:-ms-input-placeholder {
   font-size: 20px;
   letter-spacing: 0.13px;
   padding-left: 7px;
-  padding-bottom: 20px;
+  padding-bottom: 15px;
   font-weight: normal; }
 
 .landing-services .services-card {
   display: block;
   float: left;
   width: 20%;
-  padding: 7px; }
+  padding: 5px; }
 
 .services-card .service-container {
   display: block;
