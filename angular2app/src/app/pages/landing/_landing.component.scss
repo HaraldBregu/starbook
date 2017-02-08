@@ -566,6 +566,19 @@ input.landing-search .ui-autocomplete-input:-ms-input-placeholder {
   margin-top: 120px;
   margin-bottom: 63px;
 }
+.landing-services h1 {
+  display: block;
+  float: none;
+  margin: 0 auto;
+  text-align: left;
+  font-family: $font-name-light;
+  color: $landing-top-header-color;
+  font-size: $landing-top-header-text-size;
+  letter-spacing: $landing-top-header-letter-spacing;
+  padding-left: 7px;
+  padding-bottom: 20px;
+  font-weight: normal;
+}
 .landing-services .services-card {
   display: block;
   float: left;
@@ -576,9 +589,9 @@ input.landing-search .ui-autocomplete-input:-ms-input-placeholder {
   display: block;
   position: relative;
   width: 100%;
-  min-height: 240px;
+  min-height: 280px;
   border: none;
-  border-radius: 3px;
+  border-radius: 1px;
   cursor: pointer;
   background-repeat: no-repeat;
   background-size: cover;

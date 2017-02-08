@@ -18,7 +18,7 @@ export class LandingComponent implements OnInit {
   constructor(private homeService: HomeService, private router: Router, private route: ActivatedRoute, private navigationService: NavigationService) { }
 
   ngOnInit() {
-    this.navigationService.updateMessage('Trova il servizio che ti serve e prenotalo');
+    this.navigationService.updateMessage('Una città smart ha bisogno di servizi smart');
     this.isLoading = true;
     this.homeService.getServices()
         .then((services) => {

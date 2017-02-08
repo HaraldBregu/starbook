@@ -34,6 +34,7 @@
   <div class="container">
     <div class="row">
       <div class="col-xl-12 landing-services">
+        <h1>Servizi più richiesti</h1>
         <app-loading *ngIf="isLoading"></app-loading>
         <div class="services-card" *ngFor="let service of services" (click)="selectResult(service)">
           <div class="service-container" [style.background-image]="'url(' + service.image_url + ')'">
@@ -47,11 +48,11 @@
       </div>
     </div>
   </div>
-  <div class="container landing-top-header">
+  <!-- <div class="container landing-top-header">
     <div class="row">
       <h1>Prenota il servizio di cui hai bisogno, nell'ora e il giorno che desideri</h1>
     </div>
-  </div>
+  </div> -->
   <!-- <div class="container">
     <div class="row">
       <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6 top-cards">
