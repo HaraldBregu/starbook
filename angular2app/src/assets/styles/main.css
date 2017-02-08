@@ -6009,7 +6009,6 @@ input.landing-search .ui-autocomplete-input:-ms-input-placeholder {
   width: 100%;
   min-height: 280px;
   border: none;
-  border-radius: 1px;
   cursor: pointer;
   background-repeat: no-repeat;
   background-size: cover;
@@ -6025,8 +6024,7 @@ input.landing-search .ui-autocomplete-input:-ms-input-placeholder {
   background-color: #000000;
   opacity: 0.3;
   transition: opacity 0.4s ease-in-out;
-  z-index: 1;
-  border-radius: 3px; }
+  z-index: 1; }
 
 .services-card .service-container:hover .shadow {
   opacity: 0.5; }
