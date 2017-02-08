@@ -2,7 +2,8 @@
   <form class="sidebar-container" #orderForm="ngForm" (window:resize)="onResize()">
     <app-loading *ngIf="isLoading"></app-loading>
     <div class="sidebar-block">
-      <h2>Dettagli del progetto</h2>
+      <h2>Dettagli del servizio</h2>
+      <!-- <h2>{{ orderData.service }}</h2> -->
       <!-- <div class="order-container" *ngIf="!orderIsFull">
         <div class="order-list-empty"><strong>Inserisci</strong> le informazioni necessari del appuntamento e invia la richiesta.</div>
       </div> -->
@@ -67,7 +68,7 @@
         </div>
         <div class="form-group">
           <!-- <button class="btn btn-warning btn-block" (click)="showConfirmation()" [disabled]="!isEnable">Anteprima del progetto</button> -->
-          <button class="btn btn-warning btn-block" (click)="showConfirmation()">Anteprima del progetto</button>
+          <button class="btn btn-warning btn-block" (click)="showConfirmation()">Anteprima del servizio</button>
         </div>
         <div class="footer-links">
           <p>

@@ -605,13 +605,13 @@ input.landing-search .ui-autocomplete-input:-ms-input-placeholder {
   top: 0;
   left: 0;
   background-color: $services-container-shadoed;
-  opacity: 0.3;
+  opacity: 0.1;
   transition: opacity 0.4s ease-in-out;
   z-index: 1;
   // border-radius: 3px;
 }
 .services-card .service-container:hover .shadow {
-  opacity: 0.5;
+  opacity: 0.2;
 }
 .services-card .service-container .header {
   display: block;

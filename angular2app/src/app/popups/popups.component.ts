@@ -950,7 +950,7 @@ export class PopupsComponent implements OnInit, OnDestroy {
           this.shadowState = 'active';
           break;
         case 'confirmNewOrder':
-          this.confirmPopupData.title = 'Dettagli dell’ordine';
+          this.confirmPopupData.title = 'Dettagli del servizio';
           this.confirmPopupData.data = [{productName: popup.data.orderData.service, itemName: '', price: '', type: 'service'}];
           popup.data.orderData.services.forEach((product) => {
             if(product.price_type === 'BASE_AMOUNT_INCREMENT') {
