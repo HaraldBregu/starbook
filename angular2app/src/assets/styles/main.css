@@ -5575,6 +5575,7 @@ textarea.form-control {
   text-align: center;
   padding: 100px 0 20px;
   font-family: HelveticaNeue-Medium, sans-serif;
+  font-weight: 500;
   color: #3B568D;
   font-size: 30px;
   letter-spacing: 0.22px; }
@@ -6038,7 +6039,8 @@ input.landing-search .ui-autocomplete-input:-ms-input-placeholder {
   font-size: 16px;
   letter-spacing: 0.09px;
   padding: 18px 12px;
-  text-transform: uppercase; }
+  text-transform: uppercase;
+  font-weight: bold; }
 
 .services-card .service-container .service-footer {
   display: block;
@@ -6049,6 +6051,7 @@ input.landing-search .ui-autocomplete-input:-ms-input-placeholder {
   width: 100%;
   text-align: right;
   font-family: HelveticaNeue-Medium, sans-serif;
+  font-weight: 500;
   color: #FFFFFF;
   font-size: 12px;
   letter-spacing: 0.06px;
@@ -6057,6 +6060,7 @@ input.landing-search .ui-autocomplete-input:-ms-input-placeholder {
 
 .services-card .service-container .service-footer span {
   font-family: HelveticaNeue-Bold, sans-serif;
+  font-weight: bold;
   color: #FFFFFF;
   font-size: 22px;
   letter-spacing: 0.06px; }

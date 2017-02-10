@@ -15,6 +15,7 @@ export class LandingComponent implements OnInit {
   public spinerView = false;
   public clearView = false;
   public isLoading = false;
+
   constructor(private homeService: HomeService, private router: Router, private route: ActivatedRoute, private navigationService: NavigationService) { }
 
   ngOnInit() {
