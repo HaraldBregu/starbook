@@ -20,7 +20,7 @@ import { routes } from './server.routes';
 
 const app  = express();
 const ROOT = path.join(path.resolve(__dirname, '..'));
-const port = process.env.PORT || 4200;
+const port = process.env.PORT;
 
 /**
  * enable prod mode for production environments
