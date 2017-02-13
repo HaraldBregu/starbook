@@ -1,0 +1,190 @@
+<div class="landing">
+  <div class="container">
+    <div class="row">
+      <div class="col-xl-12 landing-header">
+        <h1>Cerca un servizio</h1>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-xl-12 landing-search">
+        <p-autoComplete [(ngModel)]="query" [suggestions]="results" field="title" scrollHeight="275px" (completeMethod)="search($event)" (onSelect)="selectResult(query)" placeholder="Cerca" minLength="0">
+          <template let-res>
+            <div class="search-result" (click)="selectResult(res)">{{ res.title }}</div>
+          </template>
+        </p-autoComplete>
+        <div class="spinner" *ngIf="spinerView">
+          <svg width='21px' height='21px' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid" class="uil-ring">
+            <rect x="0" y="0" width="100" height="100" fill="none" class="bk"></rect>
+            <circle cx="50" cy="50" r="45" stroke-dasharray="169.64600329384882 113.09733552923257" stroke="#3B568D" fill="none" stroke-width="10">
+              <animateTransform attributeName="transform" type="rotate" values="0 50 50;180 50 50;360 50 50;" keyTimes="0;0.5;1" dur="1s" repeatCount="indefinite" begin="0s"></animateTransform>
+            </circle>
+          </svg>
+        </div>
+        <div class="close-container" *ngIf="!spinerView && clearView">
+          <span class="close rounded thick" (click)="clearSearchForm()"></span>
+        </div>
+        <div class="ui-autocomplete-panel empty" *ngIf="results.length === 0 && query.length > 0">
+          <div class="no-result">Nessun risultato</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-xl-12 landing-services">
+        <app-loading *ngIf="isLoading"></app-loading>
+        <div class="services-card" *ngFor="let service of services" (click)="selectResult(service)">
+          <div class="service-container" [style.background-image]="'url(' + service.image_url + ')'">
+            <div class="shadow"></div>
+            <div class="header">{{ service.title }}</div>
+            <div class="service-footer">
+              A PARTIRE DA <span>€{{ service.order_options.min_amount / 100 }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container landing-top-header">
+    <div class="row">
+      <h1>Prenota il servizio di cui hai bisogno, nell'ora e il giorno che desideri</h1>
+    </div>
+  </div>
+  <!-- <div class="container">
+    <div class="row">
+      <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6 top-cards">
+        <div class="top-card">
+          <div class="header">Starbook <span>services</span></div>
+          <p>Seleziona uno dei servizi su Starbook, imposta la data, ora, indirizzo e conferma l’ordine. Verrai notificato con un sms e una mail quando l’ordine e stato accettato da un professionista qualificato.</p>
+        </div>
+      </div>
+      <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6 top-cards">
+        <div class="top-card">
+          <div class="card-background">
+            <div class="image image-1"></div>
+            <div class="white-background" [ngStyle]="{'opacity':cardStyles[1]}"></div>
+          </div>
+          <div class="header">Pulizie</div>
+          <div class="description">Hai bisogno di un servizio di pulizie per la casa, l’ufficio o il negozio?</div>
+          <div class="landing-card-footer">
+            <a (click)="navigate('584fcfee9d6752423a61e79e')" class="btn btn-warning" (mouseenter)="cardHover(1, 'on')" (mouseleave)="cardHover(1, 'off')">Prenota Pulizie</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6 top-cards">
+        <div class="top-card">
+          <div class="card-background">
+            <div class="image image-2"></div>
+            <div class="white-background" [ngStyle]="{'opacity':cardStyles[2]}"></div>
+          </div>
+          <div class="header">Elettricista</div>
+          <div class="description">Ti serve un elettricista qualificato e affidabile per lavori di casa, ufficio o negozio?</div>
+          <div class="landing-card-footer">
+            <a (click)="navigate('582ee41df1bafa41cdbfb9d1')" class="btn btn-warning" (mouseenter)="cardHover(2, 'on')" (mouseleave)="cardHover(2, 'off')">Prenota Elettricista</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6 top-cards">
+        <div class="top-card green-card">
+          <div class="card-background">
+            <div class="image image-3"></div>
+            <div class="white-background" [ngStyle]="{'opacity':cardStyles[3]}"></div>
+          </div>
+          <div class="header">Idraulico</div>
+          <div class="description">Ti serve un idraulico professionista, puoi prenotarlo subito su Starbook senza impegno.</div>
+          <div class="landing-card-footer">
+            <a (click)="navigate('582edfe4f1bafa41cdbfb9cb')" class="btn btn-warning" (mouseenter)="cardHover(3, 'on')" (mouseleave)="cardHover(3, 'off')">Prenota Idraulico</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="center-description">
+        Rendi la tua vita più facile. Prenota il servizio di cui hai bisogno.
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-xl-12 landing-header">
+        <h1>Come funziona?</h1>
+      </div>
+      <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 how-to-block">
+        <div class="how-to-content">
+          <div class="top-part">
+            <div class="product-image"></div>
+          </div>
+          <div class="header">Seleziona i servizi</div>
+          <p>Ogni categoria ha una lista di servizi. Seleziona quelli di qui hai bisogno.</p>
+        </div>
+      </div>
+      <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 how-to-block">
+        <div class="how-to-content">
+          <div class="top-part">
+            <div class="order-image"></div>
+          </div>
+          <div class="header">Prenota un appuntamento</div>
+          <p>Inserisci i dati necessari del ordine e invia la richiesta.</p>
+        </div>
+      </div>
+      <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 how-to-block">
+        <div class="how-to-content">
+          <div class="top-part">
+            <div class="landing-form">
+              <a class="btn btn-warning">Invia richiesta</a>
+              <div class="icons-block">
+                <a><i class="fa fa-bell"></i></a>
+                <a><i class="fa fa-envelope"></i></a>
+                <a><i class="fa fa-commenting"></i></a>
+              </div>
+            </div>
+          </div>
+          <div class="header">Ricevi la conferma e rilassati!</div>
+          <p>Un professionista si presenterà nella data e l’ora del appuntamento.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-xl-12 landing-header">
+        <h1>Le principali città</h1>
+      </div>
+      <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 banner">
+        <a href="#" class="banner-1">
+          <div class="background"></div>
+          <span>Varese</span>
+        </a>
+      </div>
+      <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 banner">
+        <a href="#" class="banner-2">
+          <div class="background"></div>
+          <span>Milano</span>
+        </a>
+      </div>
+      <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 banner">
+        <a href="#" class="banner-3">
+          <div class="background"></div>
+          <span>Torino</span>
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="footer-description">
+        Starbook è la piattaforma che ti da la possibilità di prenotare i professionisti nell'ora e data che tu desideri senza dover chiamare e lasciare appuntamenti tramite telefono o email.
+      </div>
+    </div>
+  </div> -->
+  <div class="footer-container">
+    <div class="copyright">Starbook © 2016 Tutti i diritti riservati</div>
+    <span> • </span><a routerLink="profile/privacy">Privacy</a>
+    <span> • </span><a routerLink="profile/conditions">Condizioni</a>
+    <span> • </span><a routerLink="profile/help">Assistenza</a>
+  </div>
+</div>

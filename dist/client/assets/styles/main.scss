@@ -1,0 +1,36 @@
+//
+// Main stylesheet.
+// Should import all the other stylesheets
+//
+// Variables, functions, mixins and utils
+@import "base/_variables";
+@import "base/_functions";
+@import "base/_mixins";
+@import "base/_utils";
+// Base/generic style rules
+@import "base/_reset";
+@import "base/_responsive";
+@import "base/_fonts";
+@import "base/_typography";
+@import "base/_base";
+@import "base/_fontawesome";
+@import "base/_fonticons";
+// Layout
+@import "layout/_layout";
+@import "layout/_theme";
+@import "layout/_print";
+// Components
+// Pages
+@import "../../app/_app.component";
+@import "../../app/home/_home.component";
+@import "../../app/order/_order.component";
+@import "../../app/pages/orders/_orders.component";
+@import "../../app/pages/profile/_profile.component";
+@import "../../app/popups/_popups.component";
+@import "../../app/pages/landing/_landing.component";
+@import "../../app/shared/loading/_loading.component";
+// Tests
+@import "tests/tests";
+// Elephant theme
+@import "elephant/_datepicker";
+@import "elephant/_timepicker";

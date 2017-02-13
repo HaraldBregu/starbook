@@ -1,0 +1,683 @@
+// General styles
+$font-name: HelveticaNeue, sans-serif;
+$font-name-medium: HelveticaNeue-Medium, sans-serif;
+$letter-spacing: 0.08px;
+$background: #FAFAFA;
+$white-background: #FFFFFF;
+$general-text-color: #000000;
+
+// Left navigation
+$left-navigation-background-color: #ffffff;
+$left-navigation-border-style: 1px solid #CCCCCC;
+$left-navigation-link-color: #212121;
+$left-navigation-link-size: 14px;
+$left-navigation-letter-spacing: 0.09px;
+$left-navigation-link-hover-background-color: #F5F5F5;
+$left-navigation-link-active-border-style: 4px solid #324977;
+
+// Profile settings
+$profile-settings-header-font-size: 18px;
+$profile-settings-header-color: #212121;
+$profile-settings-header-letter-spacing: 0.13px;
+$profile-settings-label-font-size: 11px;
+$profile-settings-label-color: #212121;
+$profile-settings-label-letter-spacing: 0.09px;
+$profile-settings-input-border-style: 1px solid #DCDCDC;
+$profile-settings-input-background-color: #FFFFFF;
+$profile-settings-input-text-color: #4A4A4A;
+$profile-settings-input-font-size: 16px;
+$profile-settings-input-letter-spacing: 0.1px;
+$profile-settings-password-text-color: $profile-settings-input-text-color;
+$profile-settings-password-font-size: 30px;
+$profile-settings-password-letter-spacing: 0.19px;
+$profile-settings-btn-border-style: 1px solid #979797;
+$profile-settings-btn-border-radius: 2px;
+$profile-settings-btn-text-color: #2A0202;
+$profile-settings-btn-font-size: 18px;
+$profile-settings-btn-letter-spacing: 0.11px;
+$profile-settings-btn-gradient-color-yellow-light: #FFE689;
+$profile-settings-btn-gradient-color-yellow-dark: #FEC751;
+
+// Information block
+$profile-information-background-color: #DFF0D8;
+$profile-information-border-style: 1px solid #D6E9C6;
+$profile-information-border-radius: 3px;
+$profile-information-text-color: #3C763D;
+$profile-information-font-size: $profile-settings-input-font-size;
+$profile-information-letter-spacing: $profile-settings-input-letter-spacing;
+$profile-information-strong-text-color: #3C763D;
+$profile-information-strong-font-size: $profile-settings-input-font-size;
+$profile-information-strong-letter-spacing: $profile-settings-input-letter-spacing;
+
+// Content styles
+$content-h1-color: #212121;
+$content-h1-text-size: 28px;
+$content-h1-letter-spacing: 0.18px;
+$content-h2-color: #000000;
+$content-h2-text-size: 22px;
+$content-h2-letter-spacing: 0.1px;
+$content-h3-color: #000000;
+$content-h3-text-size: 17px;
+$content-h3-letter-spacing: 0.1px;
+$content-p-color: #212121;
+$content-p-text-size: 15px;
+$content-p-letter-spacing: 0.1px;
+$content-p-black-color: #000000;
+
+// Cards block styles
+$cards-amex-big: '/assets/images/amex-big.png';
+$cards-amex-mini: '/assets/images/amex-mini.png';
+$cards-mastercard-big: '/assets/images/mastercard-big.png';
+$cards-mastercard-mini: '/assets/images/mastercard-mini.png';
+$cards-visa-big: '/assets/images/visa-big.png';
+$cards-visa-mini: '/assets/images/visa-mini.png';
+$cards-container-border: 1px solid #DCDCDC;
+$cards-btn-primary-background-color: #506795;
+$cards-btn-primary-hover-background-color: #324977;
+$cards-btn-primary-active-background-color: #506795;
+$cards-btn-primary-border-style: 1px solid #29487D;
+$cards-btn-primary-text-color: #FFFFFF;
+$cards-btn-primary-text-size: 12px;
+$cards-btn-secondary-background-color: #F6F7F9;
+$cards-btn-secondary-hover-background-color: #E4E7ED;
+$cards-btn-secondary-active-background-color: #F6F7F9;
+$cards-btn-secondary-border-style: 1px solid #DDDFE2;
+$cards-btn-secondary-text-color: #212121;
+$cards-btn-secondary-text-size: 12px;
+$cards-header-text-color: #212121;
+$cards-header-font-size: 16px;
+$cards-header-letter-spacing: 0.1px;
+$cards-header-logo-color: #212121;
+$cards-header-logo-text-size: 14px;
+$cards-header-logo-letter-spacing: 0.09px;
+$card-content-color: #212121;
+$card-content-label-color: #9B9B9B;
+$card-content-size: 12px;
+$card-content-letter-spacing: 0.08px;
+$card-new-card-background: #F6F7F9;
+$card-new-card-background-hover: #E4E7ED;
+$card-new-card-border: 2px dashed #DCDCDC;
+$card-new-card-text-size: 20px;
+$card-new-card-text-color: #9B9B9B;
+$card-new-card-letter-spacing: 0.13px;
+
+.container-starbook.without-tabs .row {
+  padding: 40px 0 0 0;
+}
+.profile-page {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.profile-page.whiteBg {
+  background-color: $white-background;
+}
+.profile-settings {
+  display: block;
+  // width: 830px;
+  width: 500px;
+  // margin: 23px auto 0;
+  // padding-left: 330px;
+  margin-left: 260px;
+  margin-top: 23px;
+}
+.profile-settings .header {
+  display: block;
+  width: 100%;
+  font-family: $font-name;
+  font-size: $profile-settings-header-font-size;
+  color: $profile-settings-header-color;
+  letter-spacing: $profile-settings-header-letter-spacing;
+  margin-bottom: 17px;
+}
+.profile-settings .header.second {
+  margin-top: 33px;
+  margin-bottom: 18px;
+}
+.profile-settings .form-group.name-input {
+  margin-bottom: 76px !important;
+}
+.profile-settings .form-group {
+  margin-bottom: 16px !important;
+  height: 40px;
+  position: relative;
+}
+// .profile-settings .form-group label {
+//   display: block;
+//   position: absolute;
+//   top: 9px;
+//   left: -156px;
+//   padding-left: 0;
+//   font-size: $profile-settings-label-font-size;
+//   color: $profile-settings-label-color;
+//   letter-spacing: $profile-settings-label-letter-spacing;
+//   font-family: $font-name-medium;
+//   font-weight: normal;
+//   white-space: nowrap;
+//   width: 144px;
+//   text-align: right;
+// }
+.profile-settings label {
+  font-size: $profile-settings-label-font-size;
+  color: $profile-settings-label-color;
+  letter-spacing: $profile-settings-label-letter-spacing;
+  font-family: $font-name-medium;
+  font-weight: normal;
+  // white-space: nowrap;
+  // width: 144px;
+  // text-align: right;
+  padding-bottom: 5px
+}
+.profile-settings input {
+  height: 38px;
+  border: $profile-settings-input-border-style;
+  background-color: $profile-settings-input-background-color;
+  color: $profile-settings-input-text-color;
+  font-family: $font-name;
+  font-size: $profile-settings-input-font-size;
+  letter-spacing: $profile-settings-input-letter-spacing;
+  font-weight: 400;
+  padding: 11px 16px;
+  outline: none;
+}
+.profile-settings .email-field {
+  display: block;
+  position: relative;
+  width: 100%;
+  padding-right: 146px;
+}
+.profile-settings .email-field .btn.btn-primary {
+  display: block;
+  position: absolute;
+  top:4px;
+  right: 0;
+}
+
+.profile-settings .btn-primary,
+.profile-settings .btn-primary:active,
+.profile-settings .btn-primary:hover {
+  height: 30px;
+  font-family: $font-name;
+  background-color: $cards-btn-primary-background-color;
+  border: $cards-btn-primary-border-style;
+  color: $cards-btn-primary-text-color;
+  font-size: $cards-btn-primary-text-size;
+  letter-spacing: $letter-spacing;
+  font-weight: 600;
+  border-radius: 3px;
+  padding: 7px 7px 7px 7px;
+  margin-left: 10px;
+  outline: none;
+}
+.password-block .change-password .btn-primary,
+.password-block .change-password .btn-primary:active,
+.password-block .change-password .btn-primary:hover {
+  display: block;
+  position: absolute;
+  top: 4px;
+  right: 0;
+}
+.form-group.double-input input.first {
+  display: inline-block;
+  float: left;
+  width: 370px;
+}
+.form-group.double-input input.second {
+  display: inline-block;
+  float: right;
+  width: 108px;
+  margin-left: 13px;
+}
+.profile-settings .profile-information {
+  display: block;
+  width: 100%;
+  background-color: $profile-information-background-color;
+  border: $profile-information-border-style;
+  border-radius: $profile-information-border-radius;
+  padding: 18px 26px 22px 19px;
+  margin-top: 33px;
+  margin-bottom: 20px;
+  font-family: $font-name;
+  color: $profile-information-text-color;
+  font-size: $profile-information-font-size;
+  letter-spacing: $profile-information-letter-spacing;
+  font-weight: 400;
+}
+.profile-settings .profile-information strong {
+  color: $profile-information-strong-text-color;
+  font-size: $profile-information-strong-font-size;
+  letter-spacing: $profile-information-strong-letter-spacing;
+  font-weight: 700;
+}
+.profile-settings .btn-warning, .profile-settings .btn-warning:hover, .profile-settings .btn-warning:active {
+  width: 100%;
+  height: 43px;
+  margin-top: 0;
+  border: $profile-settings-btn-border-style;
+  border-radius: $profile-settings-btn-border-radius;
+  background: $profile-settings-btn-gradient-color-yellow-light;
+  background: -moz-linear-gradient(top,  $profile-settings-btn-gradient-color-yellow-light 0%, $profile-settings-btn-gradient-color-yellow-dark 100%);
+  background: -webkit-linear-gradient(top,  $profile-settings-btn-gradient-color-yellow-light 0%,$profile-settings-btn-gradient-color-yellow-dark 100%);
+  background: linear-gradient(to bottom,  $profile-settings-btn-gradient-color-yellow-light 0%,$profile-settings-btn-gradient-color-yellow-dark 100%);
+  color: $profile-settings-btn-text-color;
+  font-size: $profile-settings-btn-font-size;
+  letter-spacing: $profile-settings-btn-letter-spacing;
+  font-weight: 700;
+  outline: none;
+}
+.profile-settings .btn-secondary, .profile-settings .btn-secondary:hover, .profile-settings .btn-secondary:active {
+  width: 100%;
+  height: 43px;
+  margin-top: 0;
+  border: $profile-settings-btn-border-style;
+  border-radius: $profile-settings-btn-border-radius;
+  background-color: $cards-btn-secondary-background-color;
+  border: $cards-btn-secondary-border-style;
+  color: $cards-btn-secondary-text-color;
+  font-size: $profile-settings-btn-font-size;
+  letter-spacing: $profile-settings-btn-letter-spacing;
+  font-weight: 700;
+}
+.profile-page .content-page {
+  display: block;
+  width: 100%;
+  padding: 28px 35px 0 235px;
+}
+
+.profile-page .content-page h1 {
+  display: block;
+  width: 100%;
+  font-family: $font-name;
+  color: $content-h1-color;
+  font-size: $content-h1-text-size;
+  letter-spacing: $content-h1-letter-spacing;
+  margin: 0;
+  padding-bottom: 20px;
+  font-weight: normal;
+}
+.profile-page .content-page h2 {
+  display: block;
+  width: 100%;
+  font-family: $font-name-bold;
+  color: $content-h2-color;
+  font-size: $content-h2-text-size;
+  letter-spacing: $content-h2-letter-spacing;
+  margin: 0;
+  font-weight: normal;
+}
+.profile-page .content-page h3 {
+  display: block;
+  width: 100%;
+  font-family: $font-name-bold;
+  color: $content-h3-color;
+  font-size: $content-h3-text-size;
+  letter-spacing: $content-h3-letter-spacing;
+  margin: 0;
+  font-weight: normal;
+}
+.profile-page .content-page p {
+  display: block;
+  width: 100%;
+  font-family: $font-name;
+  color: $content-p-color;
+  font-size: $content-p-text-size;
+  letter-spacing: $content-p-letter-spacing;
+  margin-bottom: 16px;
+}
+.profile-page .content-page p.black {
+  color: $content-p-black-color;
+}
+.profile-page .content-page p.black strong {
+  font-family: $font-name-bold;
+  font-weight: normal;
+}
+.cards-page {
+  display: block;
+  float: left;
+  width: 100%;
+  padding: 16px 18px 0 218px;
+}
+.cards-page .card-block {
+  display: block;
+  float: left;
+  width: 50%;
+  padding: 17px;
+}
+.card-block .container {
+  display: block;
+  width: 100%;
+  background-color: $white-background;
+  border: $cards-container-border;
+  border-radius: 3px;
+  padding: 0;
+}
+.card-block .container .header {
+  display: block;
+  position: relative;
+  width: 100%;
+  border-bottom: $cards-container-border;
+  padding: 10px;
+}
+.card-block .container .header .card-logo {
+  display: block;
+  position: relative;
+  width: 50px;
+  height: 30px;
+  margin-left: 10px;
+  background-size: contain;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+.card-block .container .header .card-logo.mastercard {
+  background-image: url($cards-mastercard-big);
+}
+.card-block .container .header .card-logo.visa {
+  background-image: url($cards-visa-big);
+}
+.card-block .container .header .card-logo.amex {
+  background-image: url($cards-amex-big);
+}
+.card-block .container .header .card-logo span {
+  display: block;
+  position: absolute;
+  width: 60px;
+  text-align: left;
+  font-family: $font-name;
+  color: $cards-header-logo-color;
+  font-size: $cards-header-logo-text-size;
+  letter-spacing: $cards-header-logo-letter-spacing;
+  top: 7px;
+  left: 70px;
+  white-space: nowrap;
+}
+.card-block .container .header .isDefault {
+  display: block;
+  position: absolute;
+  width: 100%;
+  top: 0;
+  left: 0;
+  text-align: center;
+  color: $cards-header-text-color;
+  font-family: $font-name-medium;
+  font-size: $cards-header-font-size;
+  letter-spacing: $cards-header-letter-spacing;
+  padding-top: 14px;
+}
+.card-block .container .header .buttons-block {
+  display: block;
+  position: absolute;
+  width: 100%;
+  top: 10px;
+  right: 10px;
+  text-align: right;
+}
+.card-block .container .content {
+  display: block;
+  width: 100%;
+  height: 135px;
+  padding: 18px;
+}
+.card-block .container .content .card-information {
+  display: block;
+  width: 50%;
+  float: left;
+  padding-left: 8px;
+}
+.card-block .container .content .card-information .information-block {
+  display: block;
+  float: left;
+  position: relative;
+  width: 100%;
+  margin-bottom: 10px;
+  padding-left: 90px;
+  color: $card-content-color;
+  font-family: $font-name;
+  font-size: $card-content-size;
+  letter-spacing: $card-content-letter-spacing;
+}
+.card-block .container .content .card-information .information-block span {
+  display: block;
+  position: absolute;
+  width: 59px;
+  top: 0;
+  left: 0;
+  font-family: $font-name;
+  font-size: $card-content-size;
+  letter-spacing: $card-content-letter-spacing;
+  color: $card-content-label-color;
+  text-align: right;
+}
+.card-block a.new-card {
+  display: block;
+  width: 100%;
+  height: 188px;
+  background-color: $card-new-card-background;
+  border: $card-new-card-border;
+  border-radius: 3px;
+  font-family: $font-name-bold;
+  font-size: $card-new-card-text-size;
+  color: $card-new-card-text-color;
+  letter-spacing: $card-new-card-letter-spacing;
+  text-align: center;
+  padding: 76px 0;
+  cursor: pointer;
+}
+.card-block a.new-card:hover {
+  background-color: $card-new-card-background-hover;
+  color: $card-new-card-text-color;
+}
+.cards-page a.btn-primary {
+  height: 28px;
+  font-family: $font-name-medium;
+  background-color: $cards-btn-primary-background-color;
+  border: $cards-btn-primary-border-style;
+  color: $cards-btn-primary-text-color;
+  font-size: $cards-btn-primary-text-size;
+  letter-spacing: $letter-spacing;
+  font-weight: normal;
+  border-radius: 3px;
+  padding: 6px 8px;
+  margin-left: 10px;
+  outline: none;
+  cursor: pointer;
+}
+.cards-page a.btn-primary:focus,
+.cards-page a.btn-primary:hover {
+  height: 28px;
+  font-family: $font-name-medium;
+  background-color: $cards-btn-primary-hover-background-color;
+  border: $cards-btn-primary-border-style;
+  color: $cards-btn-primary-text-color;
+  font-size: $cards-btn-primary-text-size;
+  letter-spacing: $letter-spacing;
+  font-weight: normal;
+  border-radius: 3px;
+  padding: 6px 8px;
+  margin-left: 10px;
+  outline: none;
+}
+.cards-page a.btn-primary:active {
+  height: 28px;
+  font-family: $font-name-medium;
+  background-color: $cards-btn-primary-active-background-color;
+  border: $cards-btn-primary-border-style;
+  color: $cards-btn-primary-text-color;
+  font-size: $cards-btn-primary-text-size;
+  letter-spacing: $letter-spacing;
+  font-weight: normal;
+  border-radius: 3px;
+  padding: 6px 8px;
+  margin-left: 10px;
+  outline: none;
+}
+.cards-page a.btn-secondary {
+  height: 28px;
+  font-family: $font-name-medium;
+  background-color: $cards-btn-secondary-background-color;
+  border: $cards-btn-secondary-border-style;
+  color: $cards-btn-secondary-text-color;
+  font-size: $cards-btn-secondary-text-size;
+  letter-spacing: $letter-spacing;
+  font-weight: normal;
+  border-radius: 3px;
+  padding: 6px 8px;
+  margin-left: 10px;
+  outline: none;
+  cursor: pointer;
+}
+.cards-page a.btn-secondary:focus,
+.cards-page a.btn-secondary:hover {
+  height: 28px;
+  font-family: $font-name-medium;
+  background-color: $cards-btn-secondary-hover-background-color;
+  border: $cards-btn-secondary-border-style;
+  color: $cards-btn-secondary-text-color;
+  font-size: $cards-btn-secondary-text-size;
+  letter-spacing: $letter-spacing;
+  font-weight: normal;
+  border-radius: 3px;
+  padding: 6px 8px;
+  margin-left: 10px;
+  outline: none;
+}
+.cards-page a.btn-secondary:active {
+  height: 28px;
+  font-family: $font-name-medium;
+  background-color: $cards-btn-secondary-active-background-color;
+  border: $cards-btn-secondary-border-style;
+  color: $cards-btn-secondary-text-color;
+  font-size: $cards-btn-secondary-text-size;
+  letter-spacing: $letter-spacing;
+  font-weight: normal;
+  border-radius: 3px;
+  padding: 6px 8px;
+  margin-left: 10px;
+  outline: none;
+}
+.profile-page .profile-settings form {
+  position: relative;
+  padding-bottom: 10px;
+}
+.profile-page .profile-settings .loader {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 102;
+}
+.profile-page .profile-settings .loader svg {
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 50px;
+  height: 50px;
+  margin-left: -25px;
+  margin-top: -25px;
+}
+.profile-page .cards-page .loader {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 102;
+  padding: 16px 18px 0 218px;
+}
+.profile-page .cards-page .loader svg {
+  display: block;
+  width: 50px;
+  height: 50px;
+  margin: 100px auto;
+}
+
+@media (max-width: 1440px) {
+  .container-starbook .left-navigate {
+    top: 0;
+    left: 0;
+    margin-left: 0;
+  }
+}
+@media (max-width: 1100px) {
+  .cards-page .card-block {
+    width: 100%;
+  }
+}
+@media (max-width: 780px) {
+  .profile-settings {
+    width: 500px;
+    margin: 53px auto 0;
+    padding-left: 0;
+  }
+  .profile-page .content-page {
+    padding: 58px 15px 0 15px;
+  }
+  .profile-settings .form-group {
+    margin-top: 0px;
+  }
+  .profile-settings .password-block {
+    margin-top: 40px;
+  }
+  .profile-settings .form-group label {
+    top:-27px;
+    left: 0;
+    padding-left: 0;
+    text-align: left;
+  }
+  .cards-page {
+    padding: 30px 18px 0 15px;
+  }
+}
+@media (max-width: 645px) {
+  .profile-page .content-page {
+    padding: 58px 0 0 15px;
+  }
+  .cards-page {
+    padding: 30px 0 0 0;
+  }
+}
+@media (max-width: 560px) {
+  .profile-page .content-page {
+    padding: 58px 0 0 15px;
+  }
+  .profile-page .container-starbook {
+    padding: 0 0 0 15px;
+  }
+  .profile-settings {
+    width: 100%;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-bottom: 70px;
+  }
+  .form-group.double-input input.first {
+    width: 63%;
+  }
+  .form-group.double-input input.second {
+    width: 33%;
+    margin-left: 0;
+  }
+}
+@media (max-width: 480px) {
+  .profile-settings .header {
+    font-size: 17px;
+  }
+  .card-block .container .header .isDefault {
+    text-align: right;
+    padding-right: 15px;
+  }
+  .card-block .container .header .buttons-block {
+    position: static;
+    top: 0;
+    right: 0;
+    margin-top: 11px;
+  }
+  .card-block .container .content {
+    height: auto;
+  }
+  .card-block .container .content .card-information {
+    width: 100%;
+  }
+}

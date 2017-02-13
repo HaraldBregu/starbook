@@ -1,0 +1,307 @@
+<div class="dark-screen" [@shadowState]="shadowState" (click)="closePopup()"></div>
+<!-- Login popup -->
+<div class="popup" [@loginPopupState]="loginPopupState">
+  <div class="alert-block" *ngIf="formError">
+    <div class="alert-icn"></div>
+    <div class="alert-container">
+      <div class="header">Si è verificato un errore!</div>
+      <p>{{formError.message}}</p>
+    </div>
+  </div>
+  <app-loading *ngIf="isPopupLoading"></app-loading>
+  <div class="header">Accedi</div>
+  <form class="login-form" #loginForm="ngForm" (keyup.enter)="login(email.value, password.value)">
+    <div class="form-group" [ngClass]="{'isError': loginError.email}">
+      <label for="email">Indirizzo email</label>
+      <input id="email" class="form-control" type="email" name="email" [(ngModel)]="loginData.email" #email="ngModel" (keyup)="checkEmail('login', email.value)" (change)="checkEmail('login', email.value)">
+      <span class="error">Indirizzo email non valido</span>
+    </div>
+    <div class="form-group" [ngClass]="{'isError': loginError.password}">
+      <label for="password">Password <a class="recovery" (click)="getPopup('recovery')">Password dimenticata?</a></label>
+      <input id="password" class="form-control" type="password" name="password" [(ngModel)]="loginData.password" #password="ngModel" (keyup)="checkNonEmpty('login', password.value)" (change)="checkNonEmpty('login', password.value)">
+      <span class="error">Inserisci la tua password</span>
+    </div>
+    <div class="form-group">
+      <a class="btn btn-warning" href="#" (click)="login(email.value, password.value)">Accedi</a>
+    </div>
+    <div class="form-description">
+      <span>Sei nuovo su Starbook?</span>
+    </div>
+    <div class="form-group">
+      <a class="btn btn-secondary" (click)="getPopup('registration')">Nuovo account</a>
+    </div>
+  </form>
+</div>
+
+<!-- Registration popup -->
+<div class="popup" [@registrationPopupState]="registrationPopupState">
+  <div class="alert-block" *ngIf="formError">
+    <div class="alert-icn"></div>
+    <div class="alert-container">
+      <div class="header">{{formError.title}}</div>
+      <p>{{formError.message}}</p>
+    </div>
+  </div>
+  <app-loading *ngIf="isPopupLoading"></app-loading>
+  <div class="header">Nuovo account</div>
+  <form class="registration-form" #registrationForm="ngForm">
+    <div class="form-group" [ngClass]="{'isError': registrationError.name}">
+      <label for="regName">Nome completo</label>
+      <input id="regName" class="form-control" type="text" name="name" placeholder="" required [(ngModel)]="registrationData.name" #regName="ngModel" (keyup)="checkNonEmpty('registrationName', regName.value)">
+      <span class="error">Inserisci il nome completo</span>
+    </div>
+    <div class="form-group" [ngClass]="{'isError': registrationError.phone}">
+      <label for="regPhone">Cellulare</label>
+      <input id="regPhone" class="form-control" type="text" name="phone" placeholder="" required [(ngModel)]="registrationData.phone" #regPhone="ngModel" (keyup)="checkNonEmpty('registrationPhone', regPhone.value)">
+      <span class="error">Inserisci numero cellulare</span>
+    </div>
+    <div class="form-group" [ngClass]="{'isError': registrationError.email}">
+      <label for="regEmail">Email</label>
+      <input id="regEmail" class="form-control" type="email" name="email" placeholder="" required [(ngModel)]="registrationData.email" #regEmail="ngModel" (keyup)="checkEmail('registration', regEmail.value)">
+      <span class="error">Indirizzo email non valido</span>
+    </div>
+    <div class="form-group" [ngClass]="{'isError': registrationError.passwordFirst}">
+      <label for="regPassword">Password</label>
+      <input id="regPassword" class="form-control" type="password" name="password" placeholder="" required [(ngModel)]="registrationData.password" #regPassword="ngModel" (keyup)="checkNonEmpty('registrationPassword', regPassword.value)">
+      <span class="error">Inserisci una password</span>
+    </div>
+    <div class="form-group" [ngClass]="{'isError': registrationError.password}">
+      <label for="regPasswordConfirm">Di nuovo la password</label>
+      <input id="regPasswordConfirm" class="form-control" type="password" name="passwordConfirm" placeholder="" required [(ngModel)]="registrationData.passwordConfirm" #regPasswordConfirm="ngModel" (keyup)="checkPassword(regPassword.value, regPasswordConfirm.value)">
+      <span class="error">Le password non corrispondono</span>
+    </div>
+    <div class="form-group">
+      <button class="btn btn-warning" type="submit" (click)="registration(regName.value, regPhone.value, regEmail.value, regPassword.value, regPasswordConfirm.value)">Crea account</button>
+    </div>
+  </form>
+  <div class="form-notice">Accedendo dichiari di aver letto e accetti le <a (click)="closePopup()" routerLink="profile/conditions">condizioni generali</a> e <a (click)="closePopup()" routerLink="profile/privacy">l’informativa sulla privacy</a></div>
+  <div class="login-offer">Hai gia un account su Starbook? <a (click)="getPopup('login')">Accedi</a></div>
+</div>
+
+<!-- Recovery popup -->
+<div class="popup" [@recoveryPopupState]="recoveryPopupState">
+  <div class="alert-block" *ngIf="formError">
+    <div class="alert-icn"></div>
+    <div class="alert-container">
+      <div class="header">{{formError.title}}</div>
+      <p>{{formError.message}}</p>
+    </div>
+  </div>
+  <div class="header">Recupera password</div>
+  <form class="recovery-form" #recoveryForm="ngForm">
+    <div class="form-group" [ngClass]="{'isError': recoveryError.email}">
+      <label for="recoveryEmail">Email</label>
+      <input id="recoveryEmail" class="form-control" type="text" name="name" placeholder="" required [(ngModel)]="recoveryData.email" #recoveryEmail="ngModel" (keyup)="checkEmail('recovery', recoveryEmail.value)">
+      <span class="error">Indirizzo email non valido</span>
+    </div>
+    <div class="form-group">
+      <button class="btn btn-warning" type="submit" (click)="recovery(recoveryEmail.value)">Invia email</button>
+    </div>
+  </form>
+  <div class="login-offer">Hai gia un account su Starbook? <a (click)="getPopup('login')">Accedi</a></div>
+</div>
+
+<!-- Confirm Order popup -->
+<div class="popup" [@confirmPopupState]="confirmPopupState" [ngClass]="{'new-version': confirmPopupData.type === 'conferma' || confirmPopupData.type === 'confermaEnd' || confirmPopupData.type === 'addPriceEnd'}">
+  <div class="alert-block" *ngIf="formError">
+    <div class="alert-icn"></div>
+    <div class="alert-container">
+      <div class="header">{{formError.title}}</div>
+      <p>{{formError.message}}</p>
+    </div>
+  </div>
+  <div class="popup-spinner" *ngIf="confirmPopupData.type === 'conferma'">
+    <svg width='40px' height='40px' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid" class="uil-ring">
+      <rect x="0" y="0" width="100" height="100" fill="none" class="bk"></rect>
+      <circle cx="50" cy="50" r="45" stroke-dasharray="169.64600329384882 113.09733552923257" stroke="#3B568D" fill="none" stroke-width="10">
+        <animateTransform attributeName="transform" type="rotate" values="0 50 50;180 50 50;360 50 50;" keyTimes="0;0.5;1" dur="1s" repeatCount="indefinite" begin="0s"></animateTransform>
+      </circle>
+    </svg>
+  </div>
+  <div class="success-icon" *ngIf="confirmPopupData.type === 'confermaEnd' || confirmPopupData.type === 'addPriceEnd'"><span></span></div>
+  <div class="header" [ngClass]="{'without-message': confirmPopupData.type === 'addPriceEnd'}" *ngIf="confirmPopupData.title !== ''">{{ confirmPopupData.title }}</div>
+  <form class="confirm-order-form" #confirmOrderForm="ngForm">
+    <p *ngIf="confirmPopupData.type !== 'newOrder' && confirmPopupData.type !== 'newOrderEnd'" [ngClass]="{'conferma-finish': confirmPopupData.type === 'confermaEnd'}">{{ confirmPopupData.text }}</p>
+    <p *ngIf="confirmPopupData.type === 'newOrderEnd'" class="confirm-end">{{ confirmPopupData.text }}</p>
+    <div class="orders-list" *ngIf="confirmPopupData.type === 'newOrder'">
+      <div class="order-item" *ngFor="let product of confirmPopupData.data">
+        <span *ngIf="product.type ==='service'" class="service-item">{{ product.productName }} <i *ngIf="product.price !== ''">€{{ product.price / 100 }}</i></span>
+        <span *ngIf="product.type ==='item'">{{ product.productName }} {{ product.itemName }} <i *ngIf="product.price !== ''">€{{ product.price / 100 }}</i></span>
+        <span *ngIf="product.type ==='total'" class="total-item">{{ product.productName }} <i>€{{ product.price / 100 }}</i></span>
+      </div>
+    </div>
+    <div class="information-list" *ngIf="confirmPopupData.type === 'newOrder'">
+      <div class="information-item"><span>Data:</span> {{ confirmPopupData.information.date }}</div>
+      <div class="information-item"><span>Ore:</span> {{ confirmPopupData.information.time }}</div>
+      <div class="information-item"><span>Indirizzo:</span> {{ confirmPopupData.information.address }}</div>
+      <div class="information-item" *ngIf="confirmPopupData.information.description !== ''"><span>Nota:</span> {{ confirmPopupData.information.description }}</div>
+    </div>
+    <div class="form-group">
+      <button class="btn btn-warning" type="submit" (click)="confirmOrder(confirmPopupData.id)" *ngIf="confirmPopupData.button === 'Conferma'">Conferma</button>
+      <button class="btn btn-warning" type="submit" (click)="cancelOrder(confirmPopupData.id)" *ngIf="confirmPopupData.button === 'Annulla ordine'">Annulla ordine</button>
+      <button class="btn btn-warning" type="submit" (click)="reactivateOrder(confirmPopupData.id)" *ngIf="confirmPopupData.button === 'Riattiva ordine'">Riattiva ordine</button>
+      <button class="btn btn-warning new-order-btn" type="submit" (click)="confirmNewOrder()" *ngIf="confirmPopupData.button === 'Procedi con l’acquisto'"><i class="fa fa-lock"></i> Procedi con l’acquisto</button>
+      <span *ngIf="confirmPopupData.button === 'Procedi con l’acquisto'" class="confirm-button-notice">Verrai notificato con un sms e mail ad acquisto effettuato</span>
+      <button class="btn btn-warning logout-btn" type="submit" (click)="logout()" *ngIf="confirmPopupData.button === 'logout'">Esci</button>
+      <button class="btn btn-secondary" type="submit" (click)="closePopup()" *ngIf="confirmPopupData.button === 'logout'">Annulla</button>
+      <button class="btn btn-secondary" type="submit" (click)="closePopup()" *ngIf="confirmPopupData.button !== 'logout'">Chiudi</button>
+    </div>
+  </form>
+</div>
+
+<!-- Confirm Order Finish popup -->
+<div class="popup" [@confirmFinishPopupState]="confirmFinishPopupState">
+  <div class="finish-message" [ngClass]="{isLeft: confirmFinishPopupData.type === 'left'}">
+    <div class="header">{{ confirmFinishPopupData.title }}</div>
+    <p>{{ confirmFinishPopupData.text }}</p>
+    <div class="form-group">
+      <button class="btn btn-secondary" type="submit" (click)="closePopup()">Chiudi</button>
+    </div>
+  </div>
+</div>
+
+<!-- Finish popup -->
+<div class="popup" [@finishPopupState]="finishPopupState">
+  <div class="finish-message">
+    <a (click)="closePopup()" class="close-popup"></a>
+    <div class="header">{{ finishPopupData.title }}</div>
+    <p *ngFor="let text of finishPopupData.text">{{ text }}</p>
+  </div>
+</div>
+
+
+<!-- Add Card popup -->
+<div class="popup" [@addCardPopupState]="addCardPopupState">
+  <div class="header">Metodo di pagamento</div>
+  <form class="add-card-form" #addCardForm="ngForm">
+    <app-loading *ngIf="isPopupLoading"></app-loading>
+    <div class="cards-logo">
+      <div class="card-item visa"></div>
+      <div class="card-item mastercard"></div>
+      <div class="card-item amex"></div>
+    </div>
+    <div class="form-group" [ngClass]="{'isError': addCardError.number}" *ngIf="actionCardType === 'add'">
+      <label for="addCardNumber">Numero carta</label>
+      <input id="addCardNumber" class="form-control" type="text" name="addCardNumber" placeholder="" [(ngModel)]="addCardData.number" #addCardNumber="ngModel" (keyup)="checkCardNumber(addCardNumber.value)" (change)="checkCardNumber(addCardNumber.value)">
+      <span class="error">Please enter card number</span>
+    </div>
+    <div class="form-group" *ngIf="actionCardType === 'edit'">
+      <label for="editCardNumber">Numero carta</label>
+      <input id="editCardNumber" class="form-control" type="text" name="addCardNumber" placeholder="" [(ngModel)]="addCardData.number" disabled>
+      <span class="error">Please enter card number</span>
+    </div>
+    <div class="form-group">
+      <div class="part-group first" [ngClass]="{'isError': addCardError.exp_date}">
+        <label for="addExpDate">Scadenza</label>
+        <input id="addExpDate" class="form-control" type="text" name="addExpDate" placeholder="MM/AA" maxlength="5" [(ngModel)]="addCardData.exp_date" #addCardExpDate="ngModel" (keyup)="checkExpiry(addCardExpDate.value)" (change)="checkExpiry(addCardExpDate.value)">
+        <span class="error">Expiration date isn't correct</span>
+      </div>
+      <div class="part-group last" [ngClass]="{'isError': addCardError.cvc}" *ngIf="actionCardType === 'add'">
+        <label for="addCVV">CVV</label>
+        <input id="addCVV" class="form-control" type="text" name="addCVV" [(ngModel)]="addCardData.cvc" #addCardCVV="ngModel" (keyup)="checkNonEmpty('addCardCvv', addCardCVV.value)">
+        <span class="fa fa-question-circle" data-toggle="tooltip" data-placement="right" title="Tooltip on right"></span>
+        <span class="error">CVV isn't correct</span>
+      </div>
+      <div class="part-group last" *ngIf="actionCardType === 'edit'">
+        <label for="editCVV">CVV</label>
+        <input id="editCVV" class="form-control" type="text" name="addCVV" [(ngModel)]="addCardData.cvc" disabled>
+        <span class="fa fa-question-circle" data-toggle="tooltip" data-placement="right" title="Tooltip on right"></span>
+        <span class="error">CVV isn't correct</span>
+      </div>
+
+    </div>
+    <div class="subheader">
+      Informazioni facoltativi (collapse)
+    </div>
+    <div class="form-group">
+      <label for="addCardName">Nome intestatario</label>
+      <input id="addCardName" class="form-control" type="text" name="addCardName" placeholder="Nome Cognome" [(ngModel)]="addCardData.name" #addCardName="ngModel">
+    </div>
+    <div class="form-group">
+      <div class="part-group first-big">
+        <label for="addCardVia">Via</label>
+        <input id="addCardVia" class="form-control" type="text" name="addCardVia" [(ngModel)]="addCardData.address_line1" #addCardAddress1="ngModel">
+      </div>
+      <div class="part-group last-small">
+        <label for="addCardNr">Nr</label>
+        <input id="addCardNr" class="form-control" type="text" name="addCardNr" [(ngModel)]="addCardData.address_line2" #addCardAddress2="ngModel">
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="part-group first-big">
+        <label for="addCardCitta">Città</label>
+        <input id="addCardCitta" class="form-control" type="text" name="addCardCitta" [(ngModel)]="addCardData.address_city" #addCardAddressCity="ngModel">
+      </div>
+      <div class="part-group last-small">
+        <label for="addCardCap">CAP</label>
+        <input id="addCardCap" class="form-control" type="text" name="addCardCap" [(ngModel)]="addCardData.address_zip" #addCardAddressZip="ngModel">
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="part-group first">
+        <label for="addCardProvincia">Provincia</label>
+        <input id="addCardProvincia" class="form-control" type="text" name="addCardProvincia" [(ngModel)]="addCardData.address_state" #addCardAddressState="ngModel">
+      </div>
+      <div class="part-group last">
+        <label for="addCardPease">Paese</label>
+        <input id="addCardPease" class="form-control" type="text" name="addCardPease" [(ngModel)]="addCardData.address_country" #addCardAddressCountry="ngModel">
+      </div>
+    </div>
+    <div class="form-group">
+      <button class="btn btn-warning" type="submit" (click)="addNewCard()" *ngIf="actionCardType === 'add'">Aggiungi metodo</button>
+      <button class="btn btn-warning" type="submit" (click)="editCard()" *ngIf="actionCardType === 'edit'">Aggiungi metodo</button>
+      <button class="btn btn-secondary" (click)="closePopup()">Chiudi</button>
+    </div>
+  </form>
+</div>
+
+
+<!-- Confirm popup with action -->
+<div class="popup" [@confirmActionPopupState]="confirmActionPopupState" [ngClass]="{'add-price': confirmActionPopupData.type === 'addPrice'}">
+  <div class="alert-block" *ngIf="formError">
+    <div class="alert-icn"></div>
+    <div class="alert-container">
+      <div class="header">{{formError.title}}</div>
+      <p>{{formError.message}}</p>
+    </div>
+  </div>
+  <app-loading *ngIf="isPopupLoading"></app-loading>
+  <div class="header">{{ confirmActionPopupData.title }}</div>
+  <form class="confirm-action" #confirmActionOrderForm="ngForm">
+    <p>
+      {{ confirmActionPopupData.text }}
+      <span *ngIf="confirmActionPopupData.text2 !== ''"><br> {{ confirmActionPopupData.text2 }}</span>
+    </p>
+    <div class="action" *ngFor="let action of confirmActionPopupData.actions">
+      <div class="form-group" *ngIf="action.type === 'Payment_input_add'">
+        <label>{{ action.label }}</label>
+        <div class="input-group">
+          <input type="text" class="form-control" name="confirmActionInputAddPrice" [(ngModel)]="confirmActionPopupData.price" #confirmActionInputAddPrice="ngModel">
+          <span class="input-group-addon">.00</span>
+          <span class="input-group-addon euro">€</span>
+        </div>
+        <p class="price-description">{{ action.description }}</p>
+      </div>
+      <div class="form-group" *ngIf="action.type === 'Payment_input_edit'">
+        <label>{{ action.label }}</label>
+        <div class="input-group">
+          <input type="text" class="form-control" name="confirmActionInputEditPrice" [(ngModel)]="confirmActionPopupData.price" #confirmActionInputEditPrice="ngModel">
+          <span class="input-group-addon">.00</span>
+          <span class="input-group-addon euro">€</span>
+        </div>
+        <p class="price-description">{{ action.description }}</p>
+      </div>
+      <div class="payment-information" *ngIf="action.type === 'Payment_information'">
+        {{ action.information }}
+      </div>
+    </div>
+    <div class="form-group buttons-block">
+      <span *ngFor="let button of confirmActionPopupData.buttons">
+        <button *ngIf="button.type === 'addPrice'" class="btn btn-warning" (click)="addPrice(confirmActionPopupData.orderId)">{{ button.text }}</button>
+        <button *ngIf="button.type === 'editPrice'" class="btn btn-warning" (click)="editPrice(confirmActionPopupData.orderId)">{{ button.text }}</button>
+        <button *ngIf="button.type === 'continueOrder'" class="btn btn-warning" (click)="continueOrder(confirmActionPopupData.orderId)"><i class="fa fa-lock"></i> {{ button.text }}</button>
+        <button *ngIf="button.type === 'close'" (click)="closePopup()" class="btn btn-secondary">{{ button.text }}</button>
+      </span>
+    </div>
+  </form>
+</div>
