@@ -56,8 +56,8 @@ $banner-image-2: '/assets/images/banner-2.png';
 $banner-image-3: '/assets/images/banner-3.png';
 
 // Footer styles
-$footer-background-color: #F4F4F4;
-$footer-text-color: #90949C;
+$footer-background-color: #303030;
+$footer-text-color: #FFFFFF;
 $footer-text-font-size: 14px;
 $footer-text-letter-spacing: 0.09px;
 
@@ -143,7 +143,6 @@ $services-footer-price-letter-spacing: 0.06px;
   text-align: center;
   padding: 100px 0 20px; // 130px 0 90px
   font-family: $font-name-medium;
-  font-weight: 500;
   color: $landing-header-color;
   font-size: $landing-header-font-size;
   letter-spacing: $landing-header-letter-spacing;
@@ -565,7 +564,7 @@ input.landing-search .ui-autocomplete-input:-ms-input-placeholder {
   padding-right: 0;
   min-height: 200px;
   margin-top: 120px;
-  margin-bottom: 63px;
+  margin-bottom: 150px;
 }
 .landing-services h1 {
   display: block;
@@ -625,7 +624,6 @@ input.landing-search .ui-autocomplete-input:-ms-input-placeholder {
   letter-spacing: $services-header-letter-spacing;
   padding: 18px 12px;
   text-transform: uppercase;
-  font-weight: bold;
 }
 .services-card .service-container .service-footer {
   display: block;
@@ -636,7 +634,6 @@ input.landing-search .ui-autocomplete-input:-ms-input-placeholder {
   width: 100%;
   text-align: right;
   font-family: $font-name-medium;
-  font-weight: 500;
   color: $services-header-color;
   font-size: $services-footer-text-size;
   letter-spacing: $services-footer-letter-spacing;
@@ -645,7 +642,6 @@ input.landing-search .ui-autocomplete-input:-ms-input-placeholder {
 }
 .services-card .service-container .service-footer span {
   font-family: $font-name-bold;
-  font-weight: bold;
   color: $services-header-color;
   font-size: $services-footer-price-text-size;
   letter-spacing: $services-footer-price-letter-spacing;
