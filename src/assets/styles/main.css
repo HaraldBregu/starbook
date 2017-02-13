@@ -2804,7 +2804,7 @@ input.search-block .ui-autocomplete-input:-ms-input-placeholder {
   .navbar-fixed-bottom, .navbar-fixed-top {
     z-index: 1040;
     height: auto;
-    min-height: 45px; }
+    min-height: 50px; }
 
   .container-starbook .nav.navbar-nav.float-xs-right {
     margin-right: 0;
@@ -2829,7 +2829,7 @@ input.search-block .ui-autocomplete-input:-ms-input-placeholder {
     border-color: transparent !important;
     color: #FFFFFF;
     float: right;
-    margin-top: 9px;
+    margin-top: 12px;
     margin-right: 8px;
     outline: none !important;
     box-shadow: none !important; } }
