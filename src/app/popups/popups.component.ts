@@ -6,6 +6,7 @@ import { NavigationService } from '../shared/navigation.service';
 import { PopupsService } from './popups.service';
 import { OrdersService } from '../shared/orders.service';
 import { PaymentService } from '../shared/payment.service';
+import { AnalyticsService } from '../shared/analytics.service';
 import { Subscription }   from 'rxjs/Subscription';
 
 @Component({
@@ -275,7 +276,7 @@ export class PopupsComponent implements OnInit, OnDestroy {
   public isPopupLoading = false;
 
   public formError: boolean|{title: string, message: string} = false;
-  constructor(private authServics: AuthService, private navigationService: NavigationService, private popupService: PopupsService, private ordersService: OrdersService, private paymentService: PaymentService, private router: Router) {
+  constructor(private authServics: AuthService, private navigationService: NavigationService, private popupService: PopupsService, private ordersService: OrdersService, private paymentService: PaymentService, private router: Router, private analyticsService: AnalyticsService) {
     this.emailPattern = /^[a-z0-9!#$%&'*+\/=?^_`{|}~.-]+@[a-z0-9]([a-z0-9-]*[a-z0-9])?(\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)*$/i;
   }
   getPopup(type: string) {
@@ -356,8 +357,10 @@ export class PopupsComponent implements OnInit, OnDestroy {
   login(email: string, password: string) {
     if (this.emailPattern.test(email) && password.length > 0) {
       this.isPopupLoading = true;
+      let timeStart = Date.now();
       this.authServics.login(email, password)
         .then((data) => {
+          this.analyticsService.sendTiming({category: 'Login', timingVar: 'load', timingValue: Date.now()-timeStart});
           this.isPopupLoading = false;
           this.auth = data;
           if (this.loginData.type === 'fromOrder') {
@@ -568,8 +571,10 @@ export class PopupsComponent implements OnInit, OnDestroy {
   registration(name: string, phone: string, email: string, password: string, passwordConfirm: string) {
     if (this.emailPattern.test(email) && password === passwordConfirm && password.length > 0 && name.length > 0 && phone.length > 9) {
       this.isPopupLoading = true;
+      let timeStart = Date.now();
       this.authServics.signup(name, phone, email, password)
         .then((data) => {
+          this.analyticsService.sendTiming({category: 'Registration', timingVar: 'save', timingValue: Date.now()-timeStart});
           this.isPopupLoading = false;
           this.auth = data;
           this.navigationService.updatePersonalMenu(data);
@@ -622,8 +627,10 @@ export class PopupsComponent implements OnInit, OnDestroy {
   recovery(email: string) {
     if (this.emailPattern.test(email)) {
       this.isPopupLoading = true;
+      let timeStart = Date.now();
       this.authServics.recovery(email)
         .then((status) => {
+          this.analyticsService.sendTiming({category: 'Recovery of password', timingVar: 'load', timingValue: Date.now()-timeStart});
           this.isPopupLoading = false;
           this.getPopup('finish');
         })
@@ -659,8 +666,10 @@ export class PopupsComponent implements OnInit, OnDestroy {
   }
 
   cancelOrder(id) {
+    let timeStart = Date.now();
     this.ordersService.modifyOrder(id, 'CANCEL')
         .then((response) => {
+          this.analyticsService.sendTiming({category: 'Modify order: Cancel', timingVar: 'save', timingValue: Date.now()-timeStart});
           this.confirmFinishPopupData.title = 'Ordine annullato';
           this.confirmFinishPopupData.text = 'Questo ordine è stato annullato, puoi riattivarlo in un secondo momento.';
           this.getPopup('confirmFinish');
@@ -676,8 +685,10 @@ export class PopupsComponent implements OnInit, OnDestroy {
   }
 
   reactivateOrder(id) {
+    let timeStart = Date.now();
     this.ordersService.modifyOrder(id, 'REACTIVATE')
         .then((response) => {
+          this.analyticsService.sendTiming({category: 'Modify order: Reactivate', timingVar: 'save', timingValue: Date.now()-timeStart});
           this.confirmFinishPopupData.title = 'Ordine riattivato';
           this.confirmFinishPopupData.text = 'Questo ordine è stato riattivato, verrai notificato quando un professionista confermera questo ordine.';
           this.getPopup('confirmFinish');
@@ -720,8 +731,10 @@ export class PopupsComponent implements OnInit, OnDestroy {
     if (!error) {
       this.isPopupLoading = true;
       this.popupService.actionComplete({type: 'startNewCard'});
+      let timeStart = Date.now();
       this.paymentService.addNewCard(this.addCardData)
           .then((response) => {
+            this.analyticsService.sendTiming({category: 'Add new card', timingVar: 'save', timingValue: Date.now()-timeStart});
             this.isPopupLoading = false;
             this.popupService.actionComplete({type: 'newCard', data: response});
             this.closePopup();
@@ -774,8 +787,10 @@ export class PopupsComponent implements OnInit, OnDestroy {
       editCardData.address_country = this.addCardData.address_country;
       this.popupService.actionComplete({type: 'startNewCard'});
       this.isPopupLoading = true;
+      let timeStart = Date.now();
       this.paymentService.editCard(this.editedCardId, editCardData)
           .then((response) => {
+            this.analyticsService.sendTiming({category: 'Edit card card', timingVar: 'save', timingValue: Date.now()-timeStart});
             this.isPopupLoading = false;
             this.popupService.actionComplete({type: 'cardEdited', data: response});
             this.closePopup();
@@ -799,8 +814,10 @@ export class PopupsComponent implements OnInit, OnDestroy {
     // let orderPrice = parseFloat(orderPriceEur.toFixed(2)) * 100;
 
     this.isPopupLoading = true;
+    let timeStart = Date.now();
     this.ordersService.modifyOrder(orderId, 'CLOSE')
         .then((response) => {
+          this.analyticsService.sendTiming({category: 'Modify order: Close', timingVar: 'save', timingValue: Date.now()-timeStart});
           this.isPopupLoading = false;
           this.closePopup(true);
           this.confirmPopupData.title = 'Servizio completato con successo';
@@ -825,8 +842,10 @@ export class PopupsComponent implements OnInit, OnDestroy {
   editPrice(orderId) {
     let orderPriceEur = parseInt(this.confirmActionPopupData.price) + ((parseInt(this.confirmActionPopupData.price) / 100) * 5.5);
     let orderPrice = parseFloat(orderPriceEur.toFixed(2)) * 100;
+    let timeStart = Date.now();
     this.ordersService.addPrice(orderId, 'ACTIVE_PAYMENT', orderPrice)
         .then((response) => {
+          this.analyticsService.sendTiming({category: 'Modify order: Active payment', timingVar: 'save', timingValue: Date.now()-timeStart});
           this.closePopup();
           this.popupService.actionComplete({type: 'editPrice', data: {orderId: orderId, orderPrice: orderPrice, isModified: response.nModified}});
         })
@@ -835,8 +854,10 @@ export class PopupsComponent implements OnInit, OnDestroy {
         });
   }
   continueOrder(orderId) {
+    let timeStart = Date.now();
     this.ordersService.modifyOrder(orderId, 'PAY')
         .then((response) => {
+          this.analyticsService.sendTiming({category: 'Modify order: Pay', timingVar: 'save', timingValue: Date.now()-timeStart});
           this.confirmFinishPopupData.title = 'Pagamento effettuato';
           this.confirmFinishPopupData.text = 'Ti abbiamo inviato una mail e un sms con la conferma del pagamento e la ricevuta fiscale';
           this.confirmFinishPopupData.type = 'left';

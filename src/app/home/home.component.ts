@@ -6,6 +6,7 @@ import { OrderService } from '../order/order.service';
 import { NavigationService } from '../shared/navigation.service';
 import { Subscription }   from 'rxjs/Subscription';
 import { Router, Route, ActivatedRoute, Params } from '@angular/router';
+import { AnalyticsService } from '../shared/analytics.service';
 declare let Masonry: any;
 
 export interface IServiceCategoryList {
@@ -113,7 +114,7 @@ export class HomeComponent implements AfterViewInit, OnInit, OnDestroy {
   // @ViewChild(AngularMasonry) masonry: AngularMasonry;
   // @ViewChild(MasonryModule) layout: MasonryModule;
 
-  constructor(private homeService: HomeService, private navigationService: NavigationService, private router: Router, private route: ActivatedRoute, private orderService: OrderService) {
+  constructor(private homeService: HomeService, private navigationService: NavigationService, private router: Router, private route: ActivatedRoute, private orderService: OrderService, private analyticsService: AnalyticsService) {
 
   }
 
@@ -190,22 +191,28 @@ export class HomeComponent implements AfterViewInit, OnInit, OnDestroy {
             let currentValue = item.selected;
             if (currentValue && service.required === true) {
               if (service.type === 'RADIOBUTTON') {
-
+                this.analyticsService.sendEvent({category:'Order creation form', action: 'modify', label: 'radiobutton'});
               } else {
+                this.analyticsService.sendEvent({category:'Order creation form', action: 'modify', label: 'checkbox'});
                 if (this.checkNotEmptyForm(item.formId, item.optionId)) {
                   this.servicesData[serviceId].options[itemId].selected = !currentValue;
                 }
               }
             } else if (!currentValue && service.required === true) {
               if (service.type === 'RADIOBUTTON') {
+                this.analyticsService.sendEvent({category:'Order creation form', action: 'modify', label: 'radiobutton'});
                 this.uncheckAllItems(serviceName);
                 this.servicesData[serviceId].options[itemId].selected = !currentValue;
               } else {
+                this.analyticsService.sendEvent({category:'Order creation form', action: 'modify', label: 'checkbox'});
                 this.servicesData[serviceId].options[itemId].selected = !currentValue;
               }
             } else {
               if (service.type === 'RADIOBUTTON') {
+                this.analyticsService.sendEvent({category:'Order creation form', action: 'modify', label: 'radiobutton'});
                 this.uncheckAllItems(serviceName);
+              } else {
+                this.analyticsService.sendEvent({category:'Order creation form', action: 'modify', label: 'checkbox'});
               }
               this.servicesData[serviceId].options[itemId].selected = !currentValue;
             }
@@ -233,6 +240,7 @@ export class HomeComponent implements AfterViewInit, OnInit, OnDestroy {
 
   changeValue(formId, optionId) {
     let value = parseInt(this.servicesData[formId].options[optionId].input_value);
+    this.analyticsService.sendEvent({category:'Order creation form', action: 'modify', label: 'input'});
 
     if (isNaN(value) || value === 0) {
       this.servicesData[formId].options[optionId].input_value = 0;
@@ -563,8 +571,10 @@ export class HomeComponent implements AfterViewInit, OnInit, OnDestroy {
           }
         } else {
           this.isLoading = true;
+          let timeStart = Date.now();
           this.homeService.getServiceById(serviceId)
               .then((data) => {
+                this.analyticsService.sendTiming({category: 'Get service by id', timingVar: 'load', timingValue: Date.now()-timeStart});
                 this.renderPage(data.result);
                 if (isBrowser) {
                   setTimeout(function () {

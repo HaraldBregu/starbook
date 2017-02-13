@@ -16,6 +16,7 @@ export class CalendarMockComponent implements ControlValueAccessor {
   @Input('locale') locale: any;
   @Input('minDate') minDate: any;
   @Input('maxDate') maxDate: any;
+  public onSelect: any;
   private innerValue: any = '';
 
   private onTouchedCallback: () => void = () => {};

@@ -26,6 +26,7 @@ import { NavigationService } from './shared/navigation.service';
 import { OrdersService } from './shared/orders.service';
 import { PopupsService } from './popups/popups.service';
 import { PaymentService } from './shared/payment.service';
+import { AnalyticsService } from './shared/analytics.service';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
@@ -111,7 +112,8 @@ else {
     NavigationService,
     OrdersService,
     PopupsService,
-    PaymentService
+    PaymentService,
+    AnalyticsService
   ]
 })
 export class AppModule {

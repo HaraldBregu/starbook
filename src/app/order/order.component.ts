@@ -1,6 +1,7 @@
 import { Component, Input, OnInit, OnDestroy } from '@angular/core';
 import { OrderService, IAddress } from './order.service';
 import { PopupsService } from '../popups/popups.service';
+import { AnalyticsService } from '../shared/analytics.service';
 import { Subscription }   from 'rxjs/Subscription';
 import { isBrowser } from "angular2-universal";
 
@@ -65,7 +66,7 @@ export class OrderComponent implements OnInit, OnDestroy {
   public browser = isBrowser;
   subscription: Subscription;
 
-  constructor(private orderService: OrderService, private popupsService: PopupsService) {
+  constructor(private orderService: OrderService, private popupsService: PopupsService, private analyticsService: AnalyticsService) {
     this.timePicker.push('08:00', '08:30', '09:00', '09:30', '10:00', '10:30', '11:00', '14:00', '14:30', '15:00');
     // for (let i = 0; i < 24; i++) {
     //   if (i > 7 && i < 15) {
@@ -105,6 +106,7 @@ export class OrderComponent implements OnInit, OnDestroy {
   }
 
   selectTime(time) {
+    this.analyticsService.sendEvent({category:'Order creation form', action: 'modify', label: 'select time'});
     this.Order.time = time;
   }
 
@@ -123,6 +125,7 @@ export class OrderComponent implements OnInit, OnDestroy {
     }
   }
   selectAddress(value) {
+    this.analyticsService.sendEvent({category:'Order creation form', action: 'modify', label: 'select address'});
     if (value.isFull) {
       this.isAddressFull = true;
     } else {
@@ -138,6 +141,7 @@ export class OrderComponent implements OnInit, OnDestroy {
   }
 
   showConfirmation() {
+    this.analyticsService.sendEvent({category:'Order creation form', action: 'send form', label: 'start'});
     this.submitOrder = true;
     this.isAddressDirty = true;
     this.Order.street_number = '';
@@ -298,9 +302,11 @@ export class OrderComponent implements OnInit, OnDestroy {
       };
 
       this.isLoading = true;
+      let timeStart = Date.now();
       this.orderService.saveOrder(this.Order)
         .then((status) => {
-          // console.log(status);
+          this.analyticsService.sendEvent({category:'Order creation form', action: 'send form', label: 'finish'});
+          this.analyticsService.sendTiming({category: 'Saving order', timingVar: 'save', timingValue: Date.now()-timeStart});
 
           this.Order.delivery_details = [];
           this.Order.delivery_address = '';
@@ -321,6 +327,7 @@ export class OrderComponent implements OnInit, OnDestroy {
           this.isLoading = false;
         })
         .catch((error) => {
+          this.analyticsService.sendEvent({category:'Order creation form', action: 'send form', label: 'error'});
           // console.log('error or not: '+ error);
           if (error.status === 402) {
             this.popupsService.activate({type: 'error', data: {title:'Errore', message: 'Per favore, inserisci un metodo di pagamento prima di prenotare un servizio'}});
@@ -384,5 +391,9 @@ export class OrderComponent implements OnInit, OnDestroy {
     if (isBrowser) {
       this.subscription.unsubscribe();
     }
+  }
+
+  selectDate() {
+    this.analyticsService.sendEvent({category:'Order creation form', action: 'modify', label: 'select date'});
   }
 }

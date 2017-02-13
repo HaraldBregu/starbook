@@ -5,6 +5,7 @@ import { NavigationService } from '../../shared/navigation.service';
 import { PopupsService } from '../../popups/popups.service';
 import { PaymentService } from '../../shared/payment.service';
 import { Subscription }   from 'rxjs/Subscription';
+import { AnalyticsService } from '../../shared/analytics.service';
 import { isBrowser } from "angular2-universal";
 
 export interface IUserData {
@@ -63,7 +64,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
   subscription: Subscription;
   public isAuthenticated = false;
 
-  constructor(private profileService: ProfileService, private router: Router, private navigationService: NavigationService, private route: ActivatedRoute, private  popupsService: PopupsService, private paymentService: PaymentService) { }
+  constructor(private profileService: ProfileService, private router: Router, private navigationService: NavigationService, private route: ActivatedRoute, private  popupsService: PopupsService, private paymentService: PaymentService, private analyticsService: AnalyticsService) { }
 
   ngOnInit() {
     if (isBrowser) {
@@ -98,8 +99,10 @@ export class ProfileComponent implements OnInit, OnDestroy {
         if (params['page'] ==='payment') {
           this.navigationService.updateMessage('Metodo di pagamento');
           this.isLoading = true;
+          let timeStart = Date.now();
           this.paymentService.getCards()
             .then((cards) => {
+              this.analyticsService.sendTiming({category: 'Get list of cards', timingVar: 'load', timingValue: Date.now()-timeStart});
               this.defaultCard = cards.default_source;
               this.cards = [];
               cards.sources.data.forEach((cardData) => {
@@ -124,8 +127,10 @@ export class ProfileComponent implements OnInit, OnDestroy {
         if (params['page'] ==='settings') {
           this.navigationService.updateMessage('Informazioni del mio account');
           this.isLoading = true;
+          let timeStart = Date.now();
           this.profileService.getProfile()
             .then((profile) => {
+              this.analyticsService.sendTiming({category: 'Get user profile', timingVar: 'load', timingValue: Date.now()-timeStart});
               this.userData.fullname = profile.result.profile.fullname;
               this.userData.email = profile.result.email;
               this.userData.phone_number = profile.result.phone_number;
@@ -195,8 +200,10 @@ export class ProfileComponent implements OnInit, OnDestroy {
 
   updateProfile() {
     this.isLoading = true;
+    let timeStart = Date.now();
     this.profileService.updateProfile(this.userData)
       .then((data) => {
+        this.analyticsService.sendTiming({category: 'Update user profile', timingVar: 'save', timingValue: Date.now()-timeStart});
         this.isLoading = false;
         if (data.success) {
           let profileData = {};
@@ -317,8 +324,10 @@ export class ProfileComponent implements OnInit, OnDestroy {
 
   selectCard(id) {
     this.isLoading = true;
+    let timeStart = Date.now();
     this.paymentService.selectCard(id)
         .then((status) => {
+          this.analyticsService.sendTiming({category: 'Selecting card', timingVar: 'save', timingValue: Date.now()-timeStart});
           this.isLoading = false;
           this.defaultCard = status.default_source;
         })
@@ -330,8 +339,10 @@ export class ProfileComponent implements OnInit, OnDestroy {
 
   deleteCard(id) {
     this.isLoading = true;
+    let timeStart = Date.now();
     this.paymentService.deleteCard(id)
         .then((status) => {
+          this.analyticsService.sendTiming({category: 'Deleting card', timingVar: 'save', timingValue: Date.now()-timeStart});
           this.isLoading = false;
           let i = 0;
           this.cards.forEach((card) => {

@@ -3,6 +3,7 @@ import { NavigationService } from '../../shared/navigation.service';
 import { OrdersService } from '../../shared/orders.service';
 import { PopupsService } from '../../popups/popups.service';
 import { Subscription }   from 'rxjs/Subscription';
+import { AnalyticsService } from '../../shared/analytics.service';
 import { isBrowser } from "angular2-universal";
 
 export interface IOrder {
@@ -62,7 +63,7 @@ export class OrdersComponent implements OnInit, OnDestroy {
   public authData = {};
   subscription: Subscription;
 
-  constructor(private navigationService: NavigationService, private ordersService: OrdersService, private popupsService: PopupsService) { }
+  constructor(private navigationService: NavigationService, private ordersService: OrdersService, private popupsService: PopupsService, private analyticsService: AnalyticsService) { }
 
   ngOnInit() {
     if (isBrowser) {
@@ -217,8 +218,10 @@ export class OrdersComponent implements OnInit, OnDestroy {
       params.push({name: 'order_type', value: 'ARCHIVE'});
     }
     this.isLoading = true;
+    let timeStart = Date.now();
     this.ordersService.getOrders(params)
       .then((response) => {
+        this.analyticsService.sendTiming({category: 'Get list of orders', timingVar: 'load', timingValue: Date.now()-timeStart});
         this.isLoading = false;
         this.requestIsComplete = true;
         if (response.result !== null) {

@@ -26,6 +26,7 @@ export class AppComponent implements OnInit, OnDestroy {
   public findValue: string = '';
   public results: string[] = [];
   public isSearched = false;
+  public browser = isBrowser;
   subscription: Subscription;
   authSubscription: Subscription;
   // loadingSubscription: Subscription;
