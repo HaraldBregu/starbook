@@ -8,6 +8,7 @@
 .classpath
 *.launch
 .settings/
+.sass-cache/
 
 #System Files
 .DS_Store
