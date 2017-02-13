@@ -390,7 +390,8 @@ export class HomeComponent implements AfterViewInit, OnInit, OnDestroy {
               price_type: service.price_type,
               option: {
                 name: item.input_value,
-                price: item.input_value * this.calculateResults.queueFirst
+                price: item.input_value * this.calculateResults.queueFirst,
+                symbol: item.value_symbol
               }
             });
           }

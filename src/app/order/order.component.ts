@@ -56,7 +56,7 @@ export class OrderComponent implements OnInit, OnDestroy {
     payment: {amount: 0, currency: ''}
   };
   public minDate = new Date(new Date().getTime() + 24 * 60 * 60 * 1000);
-  public maxDate = new Date(new Date().getTime() + (24*7) * 60 * 60 * 1000);
+  public maxDate = new Date(new Date().getTime() + (24*21) * 60 * 60 * 1000);
   public submitOrder = false;
   public orderForm: any;
   public isMobileCalendar: any = false;
@@ -276,13 +276,17 @@ export class OrderComponent implements OnInit, OnDestroy {
       this.orderData.services.forEach((orderCategory) => {
         if (orderCategory.price_type === 'BASE_AMOUNT_INCREMENT') {
           this.Order.delivery_details.push({
-            title: orderCategory.name + ' - ' + orderCategory.option.name,
+            // title: orderCategory.name + ' - ' + orderCategory.option.name,
+            title: orderCategory.name,
+            description : orderCategory.option.name,
             amount: 0,
             type: 'item'
           });
         } else {
           this.Order.delivery_details.push({
-            title: orderCategory.name + ' - ' + orderCategory.option.name,
+            // title: orderCategory.name + ' - ' + orderCategory.option.name,
+            title: orderCategory.name,
+            description : orderCategory.option.name,
             amount: orderCategory.option.price,
             type: 'item'
           });

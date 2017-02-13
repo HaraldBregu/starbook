@@ -16,7 +16,8 @@
         <span  *ngFor="let orderService of orderData.services">
           <div class="category-group">
             <!-- <span>{{ orderService.name }} - {{orderService.option.name}} <i *ngIf="orderService.price_type !== 'BASE_AMOUNT_INCREMENT'">€{{ orderService.option.price / 100 }}</i></span> -->
-            <span>{{ orderService.name }}<i>{{orderService.option.name}}</i></span>
+            <span *ngIf="orderService.price_type === 'BASE_AMOUNT_PER_INPUT'">{{ orderService.name }}<i>{{orderService.option.name}} {{orderService.option.symbol}}</i></span>
+            <span *ngIf="orderService.price_type !== 'BASE_AMOUNT_PER_INPUT'">{{ orderService.name }}<i>{{orderService.option.name}}</i></span>
           </div>
         </span>
 
