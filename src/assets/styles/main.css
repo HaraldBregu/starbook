@@ -3067,8 +3067,7 @@ app-home {
 .services-block-big img {
   display: block;
   width: 100%;
-  min-height: 130px;
-  border-radius: 3px 3px 0 0; }
+  min-height: 130px; }
 
 .services-block-big .description {
   display: block;
@@ -3102,12 +3101,12 @@ app-home {
   .home-page .tab-container {
     display: block;
     width: 525px;
-    margin: 0 auto; } }
+    margin: 0 auto 50px auto; } }
 @media (max-width: 906px) {
   .home-page .tab-container {
     display: block;
     width: 262px;
-    margin: 0 auto; }
+    margin: 0 auto 50px auto; }
 
   .services-block-big {
     width: 245px; } }
@@ -3164,7 +3163,7 @@ app-home {
   width: 318px;
   padding-top: 20px;
   margin-right: 0;
-  margin-bottom: -37px; }
+  margin-bottom: 12px; }
 
 .footer-links {
   display: block;
@@ -3198,7 +3197,7 @@ app-home {
   font-size: 12px; }
 
 .add-order-form .form-group {
-  margin-bottom: 18px; }
+  margin-bottom: 10px; }
 
 .form-group label {
   color: #212121;
@@ -3684,7 +3683,7 @@ textarea.form-control {
     position: relative;
     right: 0;
     width: 100%;
-    margin-bottom: -60px; }
+    margin-bottom: 12px; }
 
   .order-container .order-list-empty {
     margin-top: 8px; }
@@ -5852,7 +5851,7 @@ textarea.form-control {
 
 .footer-container {
   display: block;
-  position: absolute;
+  position: fixed;
   bottom: 0;
   left: 0;
   right: 0;
