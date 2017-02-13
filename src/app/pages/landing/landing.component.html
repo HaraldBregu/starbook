@@ -9,7 +9,7 @@
   <div class="container">
     <div class="row">
       <div class="col-xl-12 landing-search">
-        <p-autoComplete [(ngModel)]="query" [suggestions]="results" field="title" scrollHeight="275px" (completeMethod)="search($event)" (onSelect)="selectResult(query)" placeholder="Cerca" minLength="0">
+        <p-autoComplete [(ngModel)]="query" [suggestions]="results" field="title" scrollHeight="275px" (completeMethod)="search($event)" (onSelect)="selectResult(query)" placeholder="Di che tipo di lavoro hai bisogno?" minLength="0">
           <template let-res>
             <div class="search-result" (click)="selectResult(res)">{{ res.title }}</div>
           </template>
