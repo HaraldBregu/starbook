@@ -10,14 +10,14 @@ $loader-style: rgba(255, 255, 255, 0.4);
 // Logo styles
 $navbar-brand-font: $font-name;
 $navbar-brand-font-weight: 700;
-$navbar-brand-font-size: 22px;
+$navbar-brand-font-size: 28px;
 $navbar-brand-font-letter-spacing: 0.13px;
 
 // Navbar styles
 $navbar-tagline-letter-spacing: 0.09px;
 $navbar-background-color: #324977;
 $navbar-text-color: #FFFFFF;
-$navbar-tagline-font-size: 15px;
+$navbar-tagline-font-size: 16px;
 $navbar-font-size: 14px;
 $navbar-border-color: #5A7DB6;
 $navbar-item-background-color: #293C61;
@@ -63,7 +63,7 @@ html, body {
 }
 .navbar {
   padding: 1px 0 !important;
-  height: 45px;
+  height: 50px;
 }
 .bg-inverse {
   background-color: $navbar-background-color !important;
@@ -76,7 +76,7 @@ html, body {
   letter-spacing: $navbar-brand-font-letter-spacing;
   position: relative;
   z-index: 2;
-  padding-top: 6px;
+  padding-top: 4px;
 }
 .tagline {
   display: block;
@@ -84,7 +84,7 @@ html, body {
   top: 0;
   left: 0;
   width: 100%;
-  padding: 13px 0;
+  padding: 14px 0;
   font-family: $font-name-medium;
   color: $navbar-text-color;
   font-size: $navbar-tagline-font-size;
@@ -95,7 +95,7 @@ html, body {
 }
 .container-starbook .nav.navbar-nav.float-xs-right {
   margin-right: 15px;
-  padding-top: 5px;
+  padding-top: 8px;
   padding-bottom: 5px;
 }
 .container-starbook .navbar-nav .nav-item+.nav-item {
@@ -143,7 +143,7 @@ html, body {
 .search-block .ui-autocomplete-input {
   display: block;
   width: 100%;
-  height: 30px;
+  height: 35px;
   padding: 6px 46px 5px 15px;
   background-color: $search-navbar-input-background;
   border: none;
@@ -162,27 +162,27 @@ input.search-block .ui-autocomplete-input:-ms-input-placeholder {
 .search-block .spinner {
   display: block;
   position: absolute;
-  top: 5px;
+  top: 7px;
   right: 11px;
   width: 13px;
-  height: 13px;
+  height: 15px;
 }
 .search-block .close-container {
   display: block;
   position: absolute;
-  top: 9px;
+  top: 11px;
   right: 11px;
 }
 .search-block .close-container .close{
   position: relative;
   display: inline-block;
-  width: 13px;
-  height: 13px;
+  width: 15px;
+  height: 15px;
   overflow: hidden;
   &::before, &::after {
     content: '';
     position: absolute;
-    height: 2px;
+    height: 4px;
     width: 100%;
     top: 50%;
     left: 0;
