@@ -6105,23 +6105,23 @@ input.landing-search .ui-autocomplete-input:-ms-input-placeholder {
 
 .why-container {
   background: #161517;
-  padding: 50px 0 50px 0; }
+  padding: 70px 0 70px 0; }
 
 .why-container h2 {
   width: 100%;
   text-align: center;
-  padding-bottom: 80px;
+  padding-bottom: 60px;
   font-family: HelveticaNeue-Light, sans-serif;
   color: #F6A623; }
 
 .why-container h3 {
   width: 100%;
   text-align: center;
-  padding-top: 10px;
+  padding-top: 20px;
   padding-bottom: 10px;
   font-family: HelveticaNeue-Light, sans-serif;
   color: #F6A623;
-  max-width: 250px;
+  max-width: 280px;
   margin: auto; }
 
 .why-container h4 {
@@ -6129,7 +6129,6 @@ input.landing-search .ui-autocomplete-input:-ms-input-placeholder {
   text-align: center;
   font-family: HelveticaNeue, sans-serif;
   color: white;
-  max-width: 250px;
   margin: auto; }
 
 .why-container img {

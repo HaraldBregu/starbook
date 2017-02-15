@@ -693,26 +693,26 @@ input.landing-search .ui-autocomplete-input:-ms-input-placeholder {
   letter-spacing: $services-footer-price-letter-spacing;
 }
 
-// why-container
+// WHY
 .why-container {
   background: #161517;
-  padding: 50px 0 50px 0;
+  padding: 70px 0 70px 0;
 }
 .why-container h2 {
   width: 100%;
   text-align: center;
-  padding-bottom: 80px;
+  padding-bottom: 60px;
   font-family: $font-name-light;
   color: $landing-orange-text-color;
 }
 .why-container h3 {
   width: 100%;
   text-align: center;
-  padding-top: 10px;
+  padding-top: 20px;
   padding-bottom: 10px;
   font-family: $font-name-light;
   color: $landing-orange-text-color;
-  max-width: 250px;
+  max-width: 280px;
   margin: auto;
 }
 .why-container h4 {
@@ -720,7 +720,7 @@ input.landing-search .ui-autocomplete-input:-ms-input-placeholder {
   text-align: center;
   font-family: $font-name;
   color: white;
-  max-width: 250px;
+  // max-width: 280px;
   margin: auto;
 }
 .why-container img {
