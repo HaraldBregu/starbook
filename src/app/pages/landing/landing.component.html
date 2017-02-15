@@ -1,50 +1,147 @@
 <div class="landing">
-  <div class="container">
-    <div class="row">
-      <div class="col-xl-12 landing-header">
-        <h1>Cerca un servizio</h1>
-      </div>
-    </div>
-  </div>
-  <div class="container">
-    <div class="row">
-      <div class="col-xl-12 landing-search">
-        <p-autoComplete [(ngModel)]="query" [suggestions]="results" field="title" scrollHeight="275px" (completeMethod)="search($event)" (onSelect)="selectResult(query)" placeholder="Di che tipo di lavoro hai bisogno?" minLength="0">
-          <template let-res>
-            <div class="search-result" (click)="selectResult(res)">{{ res.title }}</div>
-          </template>
-        </p-autoComplete>
-        <div class="spinner" *ngIf="spinerView">
-          <svg width='21px' height='21px' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid" class="uil-ring">
-            <rect x="0" y="0" width="100" height="100" fill="none" class="bk"></rect>
-            <circle cx="50" cy="50" r="45" stroke-dasharray="169.64600329384882 113.09733552923257" stroke="#3B568D" fill="none" stroke-width="10">
-              <animateTransform attributeName="transform" type="rotate" values="0 50 50;180 50 50;360 50 50;" keyTimes="0;0.5;1" dur="1s" repeatCount="indefinite" begin="0s"></animateTransform>
-            </circle>
-          </svg>
-        </div>
-        <div class="close-container" *ngIf="!spinerView && clearView">
-          <span class="close rounded thick" (click)="clearSearchForm()"></span>
-        </div>
-        <div class="ui-autocomplete-panel empty" *ngIf="results.length === 0 && query.length > 0">
-          <div class="no-result">Nessun risultato</div>
+  <div class="header-page">
+    <div class="container">
+      <div class="row">
+        <div class="col-xl-12 landing-header">
+          <h1>Hai bisogno di lavorazioni interni?</h1>
+          <h6>È cosi semplice. Trova il servizio. Calcola il preventivo. Prenota.</h6>
         </div>
       </div>
     </div>
+    <div class="container">
+      <div class="row">
+        <div class="col-xl-12 landing-search">
+          <p-autoComplete [(ngModel)]="query" [suggestions]="results" field="title" scrollHeight="275px" (completeMethod)="search($event)" (onSelect)="selectResult(query)" placeholder="Di che tipo di lavoro hai bisogno?" minLength="0">
+            <template let-res>
+              <div class="search-result" (click)="selectResult(res)">{{ res.title }}</div>
+            </template>
+          </p-autoComplete>
+          <div class="spinner" *ngIf="spinerView">
+            <svg width='21px' height='21px' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid" class="uil-ring">
+              <rect x="0" y="0" width="100" height="100" fill="none" class="bk"></rect>
+              <circle cx="50" cy="50" r="45" stroke-dasharray="169.64600329384882 113.09733552923257" stroke="#3B568D" fill="none" stroke-width="10">
+                <animateTransform attributeName="transform" type="rotate" values="0 50 50;180 50 50;360 50 50;" keyTimes="0;0.5;1" dur="1s" repeatCount="indefinite" begin="0s"></animateTransform>
+              </circle>
+            </svg>
+          </div>
+          <div class="close-container" *ngIf="!spinerView && clearView">
+            <span class="close rounded thick" (click)="clearSearchForm()"></span>
+          </div>
+          <div class="ui-autocomplete-panel empty" *ngIf="results.length === 0 && query.length > 0">
+            <div class="no-result">Nessun risultato</div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-  <div class="container">
-    <div class="row">
-      <div class="col-xl-12 landing-services">
-        <app-loading *ngIf="isLoading"></app-loading>
-        <div class="services-card" *ngFor="let service of services" (click)="selectResult(service)">
-          <div class="service-container" [style.background-image]="'url(' + service.image_url + ')'">
-            <div class="shadow"></div>
-            <div class="header">{{ service.title }}</div>
-            <div class="service-footer">
-              A PARTIRE DA <span>€{{ service.order_options.min_amount / 100 }}</span>
+  <div class="card-container">
+    <div class="container">
+      <h2>Lavorazioni più richiesti</h2>
+      <div class="row">
+        <div class="col-xl-12 landing-services">
+          <app-loading *ngIf="isLoading"></app-loading>
+          <div class="services-card" *ngFor="let service of services" (click)="selectResult(service)">
+            <div class="service-container" [style.background-image]="'url(' + service.image_url + ')'">
+              <div class="shadow"></div>
+              <div class="header">{{ service.title }}</div>
+              <div class="service-footer">
+                A PARTIRE DA <span>€{{ service.order_options.min_amount / 100 }}</span>
+              </div>
             </div>
           </div>
         </div>
       </div>
+    </div>
+  </div>
+  <div class="why-container">
+    <div class="container">
+      <h2>Perché usare Starbook?</h2>
+      <div class="row">
+        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 why-cell">
+          <div class="text-center">
+            <img src="../../../assets/images/star_quality.png" class="rounded mx-auto d-block" alt="...">
+            <h3>Alta qualità di servizio</h3>
+            <h4>I servizi su Starbook vengono eseguiti dalle migliori aziende. Usando un algoritmo di ricerca, Starbook trova l’azienda più vicina alla tua abitazione.</h4>
+          </div>
+        </div>
+        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 why-cell">
+          <div class="text-center">
+            <img src="../../../assets/images/market-price.png" class="rounded mx-auto d-block" alt="...">
+            <h3>Prezzo garantito dal mercato</h3>
+            <h4>I prezzi su Starbook vengono calcolati da un algoritmo interno della piattaforma per rendere più equo e trasparente il mercato.</h4>
+          </div>
+        </div>
+        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 why-cell">
+          <div class="text-center">
+            <img src="../../../assets/images/timing.png" class="rounded mx-auto d-block" alt="...">
+            <h3>Preventivo diretto</h3>
+            <h4>Una volta scelto il servizio, seleziona i form secondo le esigenze e calcola il preventivo direttamente dalla piattaforma.</h4>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="partner-container">
+    <div class="container">
+      <h2>Le migliori aziende partner</h2>
+      <div class="list-brands-scrollable">
+        <img src="../../../assets/images/partner-example.png">
+        <img src="../../../assets/images/partner-example.png">
+        <img src="../../../assets/images/partner-example.png">
+        <img src="../../../assets/images/partner-example.png">
+        <img src="../../../assets/images/partner-example.png">
+        <img src="../../../assets/images/partner-example.png">
+        <img src="../../../assets/images/partner-example.png">
+        <img src="../../../assets/images/partner-example.png">
+        <img src="../../../assets/images/partner-example.png">
+      </div>
+    </div>
+  </div>
+  <div class="pre-footer-container">
+    <div class="container">
+      <div class="row">
+        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12">
+          <h4>Sicurezza del sito</h4>
+          <div class="list-security">
+            <img src="../../../assets/images/norton.png">
+            <img src="../../../assets/images/secure.png">
+            <img src="../../../assets/images/trust.png">
+          </div>
+        </div>
+        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12">
+          <h4>Sistemi di pagamento</h4>
+          <div class="list-payment-methods">
+            <img src="../../../assets/images/mastercard.png">
+            <img src="../../../assets/images/visa.png">
+            <img src="../../../assets/images/americanexpress.png">
+            <img src="../../../assets/images/stripe.png">
+          </div>
+        </div>
+        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12">
+          <h4>Contatti</h4>
+          <div class="list-contact-methods">
+            <h4>Attivo 24/7</h4>
+            <h4>Cellulare: +39 327 24 15 028</h4>
+            <h4>Email: info@starbook.co</h4>
+          </div>
+        </div>
+        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12">
+          <h4>Seguici su</h4>
+          <div class="list-socials">
+            <a href="https://www.facebook.com/starbook.co/" target="_blank"><img src="../../../assets/images/facebook.png"></a>
+            <a href="https://twitter.com/StarBookNow/" target="_blank"><img src="../../../assets/images/twitter.png"></a>
+            <a href="https://www.instagram.com/starbooknow/" target="_blank"><img src="../../../assets/images/instagram.png"></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="footer-container">
+    <div class="container">
+      <div class="copyright"><strong>Starbook</strong> © 2017 Tutti i diritti riservati</div>
+      <span> • </span><a routerLink="profile/privacy">Privacy</a>
+      <span> • </span><a routerLink="profile/conditions">Condizioni</a>
+      <span> • </span><a routerLink="profile/help">Assistenza</a>
     </div>
   </div>
   <!-- <div class="container landing-top-header">
@@ -181,10 +278,4 @@
       </div>
     </div>
   </div> -->
-  <div class="footer-container">
-    <div class="copyright">Starbook © 2016 Tutti i diritti riservati</div>
-    <span> • </span><a routerLink="profile/privacy">Privacy</a>
-    <span> • </span><a routerLink="profile/conditions">Condizioni</a>
-    <span> • </span><a routerLink="profile/help">Assistenza</a>
-  </div>
 </div>
