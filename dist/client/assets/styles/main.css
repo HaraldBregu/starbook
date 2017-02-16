@@ -3131,7 +3131,7 @@ app-home {
   top: 0;
   right: 50%;
   bottom: 0;
-  padding: 70px 0 36px 0;
+  padding: 70px 0 20px 0;
   margin-right: -720px; }
 
 .sidebar-container {
@@ -3163,13 +3163,13 @@ app-home {
   width: 318px;
   padding-top: 20px;
   margin-right: 0;
-  margin-bottom: 12px; }
+  margin-bottom: -37px; }
 
 .footer-links {
   display: block;
   float: left;
   width: 100%;
-  margin-top: 14px; }
+  margin-top: 24px; }
 
 .footer-links p {
   display: block;
@@ -3459,7 +3459,7 @@ textarea.form-control {
   background-color: #ffffff;
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.25);
   font-size: 15px;
-  color: #324977;
+  color: #4A4A4A;
   font-family: HelveticaNeue, sans-serif;
   font-weight: 400;
   border: none !important;
@@ -3471,7 +3471,7 @@ textarea.form-control {
   height: 25px;
   text-align: center;
   font-size: 14px;
-  color: #324977;
+  color: #4A4A4A;
   font-weight: 600; }
 
 .date .ui-datepicker .ui-datepicker-prev, .date .ui-datepicker .ui-datepicker-next {
@@ -3497,7 +3497,7 @@ textarea.form-control {
 
 .date .dropdown-menu .btn-secondary.btn-inline {
   border: none;
-  color: #324977;
+  color: #4A4A4A;
   width: 30px;
   height: 30px;
   font-weight: 600;
@@ -3511,7 +3511,7 @@ textarea.form-control {
 .ui-datepicker-calendar th span {
   height: 25px;
   display: block;
-  color: #324977;
+  color: #4A4A4A;
   font-family: HelveticaNeue, sans-serif;
   font-weight: 600;
   text-align: center; }
@@ -3519,7 +3519,7 @@ textarea.form-control {
 .ui-datepicker-calendar td a.ui-state-default {
   display: block;
   height: 22px;
-  color: #324977;
+  color: #4A4A4A;
   font-family: HelveticaNeue, sans-serif;
   font-size: 14px;
   font-weight: 900;
@@ -3530,7 +3530,7 @@ textarea.form-control {
 .ui-datepicker-calendar td a.ui-state-disabled {
   opacity: 0.3;
   font-weight: 400;
-  color: #324977; }
+  color: #4A4A4A; }
 
 .ui-datepicker-calendar td a.ui-state-default:hover, .ui-datepicker-calendar td a.ui-state-active {
   font-family: HelveticaNeue, sans-serif;
@@ -3544,7 +3544,7 @@ textarea.form-control {
   text-decoration: none !important;
   border-radius: 3px;
   background-color: transparent;
-  color: #324977; }
+  color: #4A4A4A; }
 
 .ui-datepicker-calendar td.ui-state-disabled a.ui-state-default {
   color: #969696; }
@@ -3555,7 +3555,7 @@ textarea.form-control {
 
 .date .dropdown-menu .next.btn-secondary.btn-inline {
   border: none;
-  color: #324977;
+  color: #4A4A4A;
   width: 30px;
   height: 30px;
   font-weight: 600;
@@ -3578,7 +3578,7 @@ textarea.form-control {
   background-color: #ffffff;
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.25);
   font-size: 15px;
-  color: #324977;
+  color: #4A4A4A;
   font-family: HelveticaNeue, sans-serif;
   font-weight: 400;
   padding-top: 5px;
@@ -3663,14 +3663,13 @@ textarea.form-control {
     padding: 10px 0 36px 0; }
 
   .sidebar-container {
-    margin-bottom: 60px;
     overflow-y: visible;
     padding-left: 7px;
     padding-right: 7px; }
 
   .sidebar-container .sidebar-block {
     position: relative;
-    padding: 43px 16px 0 16px; }
+    padding: 43px 16px 20px 16px; }
 
   .sidebar-block h2 {
     display: block;
@@ -3683,16 +3682,13 @@ textarea.form-control {
     position: relative;
     right: 0;
     width: 100%;
-    margin-bottom: 12px; }
+    margin-bottom: -60px; }
 
   .order-container .order-list-empty {
     margin-top: 8px; }
 
   .order-container.selected-orders {
-    display: none; }
-
-  .footer-links {
-    height: 50px; } }
+    display: none; } }
 @media (max-width: 480px) {
   .input-group .mobileArea {
     display: block; } }

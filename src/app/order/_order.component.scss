@@ -56,7 +56,7 @@ $timepicker-hover-text-color: #ffffff;
 $datepicker-background-color: #ffffff;
 $datepicker-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.25);
 $datepicker-font-size: 15px;
-$datepicker-text-color: #324977;
+$datepicker-text-color: #4A4A4A;
 $datepicker-disabled-text-color: #969696;
 $datepicker-background-primary: rgba(50, 73, 119, 0.8);
 $datepicker-hover-text-color: #ffffff;
@@ -84,7 +84,7 @@ $footer-links-text-letter-spacing: 0.08px;
   top: 0;
   right: 50%;
   bottom: 0;
-  padding: 70px 0 36px 0;
+  padding: 70px 0 20px 0;
   margin-right: -720px;
 }
 .sidebar-container {
@@ -116,13 +116,13 @@ $footer-links-text-letter-spacing: 0.08px;
   width: 318px;
   padding-top: 20px;
   margin-right: 0;
-  margin-bottom: 12px;
+  margin-bottom: -37px;
 }
 .footer-links {
   display: block;
   float: left;
   width: 100%;
-  margin-top: 14px;
+  margin-top: 24px;
 }
 .footer-links p {
   display: block;
@@ -622,14 +622,14 @@ textarea.form-control {
     padding: 10px 0 36px 0;
   }
   .sidebar-container {
-    margin-bottom: 60px;
+    // margin-bottom: 60px;
     overflow-y: visible;
     padding-left: 7px;
     padding-right: 7px;
   }
   .sidebar-container .sidebar-block {
     position: relative;
-    padding: 43px 16px 0 16px;
+    padding: 43px 16px 20px 16px;
   }
   .sidebar-block h2 {
     display: block;
@@ -642,7 +642,7 @@ textarea.form-control {
     position: relative;
     right: 0;
     width: 100%;
-    margin-bottom: 12px;
+    margin-bottom: -60px;
   }
   .order-container .order-list-empty {
     margin-top: 8px;
@@ -651,7 +651,7 @@ textarea.form-control {
     display: none;
   }
   .footer-links {
-    height: 50px;
+    // height: 50px;
   }
 }
 @media (max-width: 480px) {
