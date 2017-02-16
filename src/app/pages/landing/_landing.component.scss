@@ -852,6 +852,13 @@ input.landing-search .ui-autocomplete-input:-ms-input-placeholder {
   .pre-footer-container .list-security, .pre-footer-container .list-payment-methods, .pre-footer-container .list-contact-methods, .pre-footer-container .list-socials {
     padding-bottom: 20px;
   }
+  .pre-footer-container {
+    margin: auto;
+    text-align: center;
+  }
+  .pre-footer-container h4 {
+    text-align: center;
+  }
 }
 @media (max-width: 576px) {
   .landing-services {
@@ -873,7 +880,7 @@ input.landing-search .ui-autocomplete-input:-ms-input-placeholder {
     height: auto;
     position: static;
     margin-bottom: -62px;
-    margin-top: 20px;
+    // margin-top: 20px;
   }
   .footer-container span {
     display: none;
