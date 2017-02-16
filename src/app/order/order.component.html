@@ -6,25 +6,23 @@
       <!-- <div class="order-container" *ngIf="!orderIsFull">
         <div class="order-list-empty"><strong>Inserisci</strong> le informazioni necessari del appuntamento e invia la richiesta.</div>
       </div> -->
-      <div class="order-container" *ngIf="orderData.order_options.min_amount > orderData.totalPrice">
+      <!-- <div class="order-container" *ngIf="orderData.order_options.min_amount > orderData.totalPrice">
         <div class="order-list-empty"><strong></strong>Prezzo minimo del'ordine €{{ orderData.order_options.min_amount / 100 }}</div>
-      </div>
+      </div> -->
       <div class="order-container selected-orders" [ngStyle]="{'max-height': maxOrderBlockSize}">
         <div class="category-group category">
           <span>{{ orderData.service }}</span>
         </div>
         <span  *ngFor="let orderService of orderData.services">
           <div class="category-group">
-            <!-- <span>{{ orderService.name }} - {{orderService.option.name}} <i *ngIf="orderService.price_type !== 'BASE_AMOUNT_INCREMENT'">€{{ orderService.option.price / 100 }}</i></span> -->
             <span *ngIf="orderService.price_type === 'BASE_AMOUNT_PER_INPUT'">{{ orderService.name }}<i>{{orderService.option.name}} {{orderService.option.symbol}}</i></span>
             <span *ngIf="orderService.price_type !== 'BASE_AMOUNT_PER_INPUT'">{{ orderService.name }}<i>{{orderService.option.name}}</i></span>
           </div>
         </span>
-
-        <!-- <div class="category-group total">
-          <span>Totale <i>€{{ orderData.totalPrice / 100 }}</i></span>
-        </div> -->
       </div>
+      <!-- <div class="category-group total">
+        <span>Totale <i>€{{ orderData.totalPrice / 100 }}</i></span>
+      </div> -->
 
       <div class="add-order-form">
         <div class="form-group calendar-part" [ngClass]="{isError: submitOrder && !Order.date}" *ngIf="isMobileCalendar">

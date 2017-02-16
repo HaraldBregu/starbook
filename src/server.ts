@@ -37,19 +37,19 @@ app.set('views', path.join(ROOT, 'client'));
 app.set('view engine', 'html');
 
 /* There are code from old server */
-app.use('/', require('redirect-https')({
-  body: '',
-  port: 443,
-  trustProxy: true
-}))
-
-app.all('/*', function(req: any, res: any, next) {
-  if(!/^www\./.test(req.headers.host)) {
-    res.status(301).redirect(req.protocol + '://www.' + req.headers.host + req.url)
-  } else {
-    next()
-  }
-})
+// app.use('/', require('redirect-https')({
+//   body: '',
+//   port: 443,
+//   trustProxy: true
+// }))
+//
+// app.all('/*', function(req: any, res: any, next) {
+//   if(!/^www\./.test(req.headers.host)) {
+//     res.status(301).redirect(req.protocol + '://www.' + req.headers.host + req.url)
+//   } else {
+//     next()
+//   }
+// })
 
 
 /**
@@ -113,9 +113,9 @@ let options = {
   key: fs.readFileSync(__dirname + '/cert/key.pem', 'utf8'),
   cert: fs.readFileSync(__dirname + '/cert/server.crt', 'utf8')
 };
-https.createServer(options, app).listen(443, () => {
-  console.log(`Listening on port 443`);
-});
+// https.createServer(options, app).listen(443, () => {
+//   console.log(`Listening on port 443`);
+// });
 
 // app.listen(port, () => {
 //   console.log(`Listening on port ${port}`);
