@@ -3423,8 +3423,8 @@ textarea.form-control {
   float: left;
   width: 100%;
   text-align: left;
-  padding: 5px 15px;
-  color: #4A4A4A;
+  padding: 5px 14px;
+  color: #324977;
   font-family: HelveticaNeue, sans-serif;
   font-size: 15px;
   font-weight: 500;
@@ -3519,7 +3519,7 @@ textarea.form-control {
 .ui-datepicker-calendar td a.ui-state-default {
   display: block;
   height: 22px;
-  color: #4A4A4A;
+  color: #324977;
   font-family: HelveticaNeue, sans-serif;
   font-size: 14px;
   font-weight: 900;
@@ -3547,7 +3547,9 @@ textarea.form-control {
   color: #4A4A4A; }
 
 .ui-datepicker-calendar td.ui-state-disabled a.ui-state-default {
-  color: #969696; }
+  opacity: 0.3;
+  font-weight: 400;
+  color: #4A4A4A; }
 
 .ui-datepicker-calendar td.ui-state-disabled a.ui-state-default:hover {
   background-color: rgba(50, 73, 119, 0.8);

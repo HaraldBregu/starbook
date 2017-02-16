@@ -47,7 +47,7 @@ $order-block-alert-letter-spacing: 0.09px;
 
 // TimePicker Style
 $timepicker-background: #ffffff;
-$timepicker-text-color: #4A4A4A;
+$timepicker-text-color: #324977;
 $timepicker-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.25);
 $timepicker-hover-color: rgba(50, 73, 119, 0.8);
 $timepicker-hover-text-color: #ffffff;
@@ -57,7 +57,8 @@ $datepicker-background-color: #ffffff;
 $datepicker-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.25);
 $datepicker-font-size: 15px;
 $datepicker-text-color: #4A4A4A;
-$datepicker-disabled-text-color: #969696;
+$datepicker-text-default-color: #324977;
+$datepicker-disabled-text-color: #4A4A4A;
 $datepicker-background-primary: rgba(50, 73, 119, 0.8);
 $datepicker-hover-text-color: #ffffff;
 
@@ -376,7 +377,7 @@ textarea.form-control {
   float: left;
   width: 100%;
   text-align: left;
-  padding: 5px 15px;
+  padding: 5px 14px;
   color: $timepicker-text-color;
   font-family: $font-name;
   font-size: 15px;
@@ -472,7 +473,7 @@ textarea.form-control {
 .ui-datepicker-calendar td a.ui-state-default {
   display: block;
   height: 22px;
-  color: $datepicker-text-color;
+  color: $datepicker-text-default-color;
   // color: red;
   font-family: $font-name;
   font-size: 14px;
@@ -501,6 +502,8 @@ textarea.form-control {
   color: $datepicker-text-color;
 }
 .ui-datepicker-calendar td.ui-state-disabled a.ui-state-default {
+  opacity: 0.3;
+  font-weight: 400;
   color: $datepicker-disabled-text-color;
 }
 .ui-datepicker-calendar td.ui-state-disabled a.ui-state-default:hover {
