@@ -10,13 +10,6 @@ const routes: Routes = [
   {
     path: '',
     component: HomeComponent
-    // data: {
-    //   meta: {
-    //     title: 'Dashboard',
-    //     description: 'Description of the dashboard page',
-    //     'og:image': 'https://s3-eu-west-1.amazonaws.com/starbook-s3/cassonetti%2Bcartongesso.jpg'
-    //   }
-    // }
   },
   {
     path: 'services/:id',
