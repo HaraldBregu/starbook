@@ -146,7 +146,7 @@ app-home {
 
 .services-block {
   display: block;
-  width: 245px;
+  width: 490px;
   background-color: $services-block-background-color;
   border: 1px solid $services-block-border-color;
   margin-bottom: 20px;
@@ -268,7 +268,7 @@ app-home {
 .services-block-big {
   display: block;
   position: absolute;
-  width: 508px;
+  width: 490px;
   border: none;
   background-color: $services-block-background-color;
   margin-bottom: 20px;
@@ -277,7 +277,7 @@ app-home {
   display: block;
   width: 100%;
   min-height: 130px;
-  // border-radius: 3px 3px 0 0;
+  border-radius: 3px 3px 0 0;
 }
 
 // Description block

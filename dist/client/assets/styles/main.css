@@ -2937,7 +2937,7 @@ app-home {
 
 .services-block {
   display: block;
-  width: 245px;
+  width: 490px;
   background-color: #FCFCFC;
   border: 1px solid #DCE0E0;
   margin-bottom: 20px;
@@ -3059,7 +3059,7 @@ app-home {
 .services-block-big {
   display: block;
   position: absolute;
-  width: 508px;
+  width: 490px;
   border: none;
   background-color: #FCFCFC;
   margin-bottom: 20px; }
@@ -3067,7 +3067,8 @@ app-home {
 .services-block-big img {
   display: block;
   width: 100%;
-  min-height: 130px; }
+  min-height: 130px;
+  border-radius: 3px 3px 0 0; }
 
 .services-block-big .description {
   display: block;
