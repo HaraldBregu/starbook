@@ -584,8 +584,8 @@ export class HomeComponent implements AfterViewInit, OnInit, OnDestroy {
     this.seoService.setOgElem('og:title', 'Starbook | Acquista servizi professionali online');
     this.seoService.setOgElem('og:description', 'Preventivi veloci? Starbook è la piattaforma dei lavorazioni professionali online con la possibilità di creare preventivi istantanei.');
     this.seoService.setOgElem('og:url', 'https://www.starbook.co/');
-    this.seoService.setOgElem('og:image', 'https://s3-eu-west-1.amazonaws.com/starbook-s3/cartongesso%2Bcontroparete%2Bisolamento.jpg');
-    this.seoService.setOgElem('og:image:secure_url', 'https://s3-eu-west-1.amazonaws.com/starbook-s3/cartongesso%2Bcontroparete%2Bisolamento.jpg');
+    this.seoService.setOgElem('og:image', 'https://s3-eu-west-1.amazonaws.com/starbook-s3/lavorazioni%2Bcartongesso%2Bcontrosoffitti%2Bpareti%2Bcontropareti.png');
+    this.seoService.setOgElem('og:image:secure_url', 'https://s3-eu-west-1.amazonaws.com/starbook-s3/lavorazioni%2Bcartongesso%2Bcontrosoffitti%2Bpareti%2Bcontropareti.png');
 
     this.route.params.subscribe(params => {
       let serviceId = params['id'];
