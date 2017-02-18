@@ -2929,7 +2929,7 @@ app-home {
 .container-starbook .row {
   position: relative;
   min-height: 100vh;
-  padding: 70px 0 0 8px; }
+  padding: 80px 0 0 8px; }
 
 .container-starbook .main {
   display: block;
@@ -2941,6 +2941,7 @@ app-home {
   width: 490px;
   border: 1px solid #DCE0E0;
   margin-bottom: 20px;
+  margin-left: 10px;
   border-radius: 3px;
   background-color: white; }
 
@@ -3080,7 +3081,8 @@ app-home {
   width: 490px;
   border: none;
   background-color: #FCFCFC;
-  margin-bottom: 20px; }
+  margin-bottom: 20px;
+  margin-left: 10px; }
 
 .services-block-big img {
   display: block;

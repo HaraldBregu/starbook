@@ -137,7 +137,7 @@ app-home {
 .container-starbook .row {
   position: relative;
   min-height: 100vh;
-  padding: 70px 0 0 8px;
+  padding: 80px 0 0 8px;
 }
 .container-starbook .main {
   display: block;
@@ -151,6 +151,7 @@ app-home {
   // background-color: $services-block-background-color;
   border: 1px solid $services-block-border-color;
   margin-bottom: 20px;
+  margin-left: 10px;
   border-radius: 3px;
   background-color: white;
 }
@@ -292,6 +293,7 @@ app-home {
   border: none;
   background-color: $services-block-background-color;
   margin-bottom: 20px;
+  margin-left: 10px;
 }
 .services-block-big img {
   display: block;
