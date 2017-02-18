@@ -3185,18 +3185,14 @@ app-home {
   height: auto;
   background-color: white;
   border: 1px solid #DCE0E0;
-  border-radius: 3px;
-  padding: 0 16px 0 16px; }
+  border-radius: 3px; }
 
 .sidebar-container .add-order-form {
   position: relative;
   right: 0;
   bottom: 0;
   display: block;
-  float: left;
-  width: 318px;
-  padding-top: 20px;
-  margin-right: 0;
+  padding: 20px;
   margin-bottom: -37px; }
 
 .footer-links {
@@ -3234,26 +3230,26 @@ app-home {
   margin-bottom: 10px; }
 
 .form-group label {
-  color: #212121;
+  color: #000000;
   font-size: 16px;
   font-weight: 600;
   padding: 0 0 0 11px;
   margin-bottom: 4px; }
 
 .form-control {
-  height: 35px;
-  color: #212121;
-  font-size: 15px;
+  height: 40px;
+  color: #000000;
+  font-size: 16px;
   font-family: HelveticaNeue, sans-serif;
   letter-spacing: 0.1px;
   padding: 7px 10px;
-  border-radius: 3px !important;
+  border-radius: 1px !important;
   background-color: #FFFFFF;
   border: 1px solid #DCDCDC; }
 
 .input-group .form-control {
   position: relative;
-  padding: 7px 11px 7px 37px !important;
+  padding-left: 25px;
   box-shadow: none;
   border-radius: 0px; }
 
@@ -3265,7 +3261,7 @@ app-home {
   padding: 7px 11px 7px 37px !important;
   top: 0;
   left: 0;
-  color: #212121;
+  color: #000000;
   font-size: 15px;
   font-family: HelveticaNeue, sans-serif;
   letter-spacing: 0.1px;
@@ -3278,7 +3274,7 @@ textarea.form-control {
   height: 80px;
   resize: none;
   font-size: 14px;
-  color: #212121;
+  color: #000000;
   font-family: HelveticaNeue, sans-serif;
   letter-spacing: 0.01px;
   box-shadow: none; }
@@ -3368,9 +3364,6 @@ textarea.form-control {
 .sidebar-block h2 {
   display: block;
   position: static;
-  width: 350px;
-  margin-left: -17px;
-  margin-bottom: 20px;
   padding: 17px 0 17px 20px;
   color: #212121;
   font-family: HelveticaNeue-Medium, sans-serif;
@@ -3473,14 +3466,14 @@ textarea.form-control {
   left: 0;
   width: 100%;
   height: 35px;
-  color: #212121;
-  font-size: 15px;
+  color: #000000;
+  font-size: 16px;
   font-family: HelveticaNeue, sans-serif;
   letter-spacing: 0.1px;
   border-radius: 3px;
   border: none;
   background-color: transparent;
-  padding: 7px 11px 7px 37px !important;
+  padding-left: 40px;
   outline: none; }
 
 .date.datepicker-block {

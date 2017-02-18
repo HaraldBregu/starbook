@@ -11,7 +11,7 @@ $sidebar-message-text-size: 15px;
 $sidebar-message-letter-spacing: 0.08px;
 
 // Form style
-$form-input-text-color: #212121;
+$form-input-text-color: #000000;
 $form-input-background-color: #FFFFFF;
 $form-input-text-letter-spacing: 0.1px;
 $form-input-text-border-color: #DCDCDC;
@@ -106,17 +106,18 @@ $footer-links-text-letter-spacing: 0.08px;
   background-color: white;
   border: $sidebar-block-border;
   border-radius: 3px;
-  padding: 0 16px 0 16px;
+  // padding: 0 16px 0 16px;
 }
 .sidebar-container .add-order-form {
   position: relative;
   right: 0;
   bottom: 0;
   display: block;
-  float: left;
-  width: 318px;
-  padding-top: 20px;
-  margin-right: 0;
+  // float: left;
+  // width: 318px;
+  // padding-top: 20px;
+  // margin-right: 0;
+  padding: 20px;
   margin-bottom: -37px;
 }
 .footer-links {
@@ -161,19 +162,19 @@ $footer-links-text-letter-spacing: 0.08px;
   margin-bottom: 4px;
 }
 .form-control {
-  height: 35px;
+  height: 40px;
   color: $form-input-text-color;
-  font-size: 15px;
+  font-size: 16px;
   font-family: $font-name;
   letter-spacing: $form-input-text-letter-spacing;
   padding: 7px 10px;
-  border-radius: 3px !important;
+  border-radius: 1px !important;
   background-color: $form-input-background-color;
   border: 1px solid $form-input-text-border-color;
 }
 .input-group .form-control {
   position: relative;
-  padding: 7px 11px 7px 37px !important;
+  padding-left: 25px;
   box-shadow: none;
   border-radius: 0px;
 }
@@ -288,10 +289,10 @@ textarea.form-control {
 .sidebar-block h2 {
   display: block;
   position: static;
-  width: 350px;
+  // width: 350px;
   // height: 44px;
-  margin-left: -17px;
-  margin-bottom: 20px;
+  // margin-left: -17px;
+  // margin-bottom: 20px;
   padding: 17px 0 17px 20px;
   color: $order-block-header-color;
   font-family: $font-name-medium;
@@ -395,13 +396,14 @@ textarea.form-control {
   width: 100%;
   height: 35px;
   color: $form-input-text-color;
-  font-size: 15px;
+  font-size: 16px;
   font-family: $font-name;
   letter-spacing: $form-input-text-letter-spacing;
   border-radius: 3px;
   border: none;
   background-color: transparent;
-  padding: 7px 11px 7px 37px !important;
+  // padding: 7px 11px 7px 37px !important;
+  padding-left: 40px;
   outline: none;
 }
 .date.datepicker-block {
