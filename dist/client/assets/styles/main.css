@@ -2923,7 +2923,7 @@ app-home {
   overflow-x: hidden; }
 
 .container-starbook.home-page {
-  padding: 0 0 0 10px !important;
+  padding: 0px;
   background-color: #f9f9f9; }
 
 .container-starbook .row {

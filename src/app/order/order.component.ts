@@ -91,6 +91,8 @@ export class OrderComponent implements OnInit, OnDestroy {
       11: 'Novembre',
       12: 'Dicembre'
     };
+    // console.log('services: ' + this.defaultServices.title);
+
   }
 
   toggleTimepicker() {
