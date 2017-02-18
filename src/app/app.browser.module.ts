@@ -16,7 +16,6 @@ import { RouterModule }   from '@angular/router';
 // import { CalendarMockComponent } from './mocks/calendar.component';
 import { ClickOutsideModule } from 'ng2-click-outside';
 // import { MasonryModule } from 'angular2-masonry';
-
 // import { NgbModule, NgbDateParserFormatter } from '@ng-bootstrap/ng-bootstrap';
 import { routing } from './app.routing';
 import { HomeService } from './home/home.service';
@@ -28,6 +27,7 @@ import { OrdersService } from './shared/orders.service';
 import { PopupsService } from './popups/popups.service';
 import { PaymentService } from './shared/payment.service';
 import { AnalyticsService } from './shared/analytics.service';
+import { SeoService } from './shared/seo.service';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
@@ -109,7 +109,8 @@ else {
     OrdersService,
     PopupsService,
     PaymentService,
-    AnalyticsService
+    AnalyticsService,
+    SeoService
   ]
 })
 export class AppModule {

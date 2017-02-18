@@ -7,6 +7,7 @@ import { NavigationService } from '../shared/navigation.service';
 import { Subscription }   from 'rxjs/Subscription';
 import { Router, Route, ActivatedRoute, Params } from '@angular/router';
 import { AnalyticsService } from '../shared/analytics.service';
+import { SeoService } from '../shared/seo.service';
 declare let Masonry: any;
 
 export interface IServiceCategoryList {
@@ -116,12 +117,20 @@ export class HomeComponent implements AfterViewInit, OnInit, OnDestroy {
   // @ViewChild(AngularMasonry) masonry: AngularMasonry;
   // @ViewChild(MasonryModule) layout: MasonryModule;
 
-  constructor(private homeService: HomeService, private navigationService: NavigationService, private router: Router, private route: ActivatedRoute, private orderService: OrderService, private analyticsService: AnalyticsService) {
+  constructor(private homeService: HomeService, private navigationService: NavigationService, private router: Router, private route: ActivatedRoute, private orderService: OrderService, private analyticsService: AnalyticsService, private seoService: SeoService) {
 
   }
 
   renderPage(services: IServices) {
     this.navigationService.updateMessage(services.title);
+
+    this.seoService.setTitle(services.title);
+    this.seoService.setMetaElem('description', services.description);
+    this.seoService.setOgElem('og:title', services.title);
+    this.seoService.setOgElem('og:description', services.description);
+    this.seoService.setOgElem('og:url', 'https://www.starbook.co/services/' + services._id);
+    this.seoService.setOgElem('og:image', 'https://s3-eu-west-1.amazonaws.com/starbook-s3/cartongesso%2Bcontroparete%2Bisolamento.jpg');
+    this.seoService.setOgElem('og:image:secure_url', 'https://s3-eu-west-1.amazonaws.com/starbook-s3/cartongesso%2Bcontroparete%2Bisolamento.jpg');
 
     this.defaultServices = services;
     this.isServicesView = true;
@@ -569,6 +578,14 @@ export class HomeComponent implements AfterViewInit, OnInit, OnDestroy {
     //     }
     //   }
     // });
+
+    this.seoService.setTitle('Starbook | Acquista servizi professionali online');
+    this.seoService.setMetaElem('description', 'Preventivi veloci? Starbook è la piattaforma dei lavorazioni professionali online con la possibilità di creare preventivi istantanei.');
+    this.seoService.setOgElem('og:title', 'Starbook | Acquista servizi professionali online');
+    this.seoService.setOgElem('og:description', 'Preventivi veloci? Starbook è la piattaforma dei lavorazioni professionali online con la possibilità di creare preventivi istantanei.');
+    this.seoService.setOgElem('og:url', 'https://www.starbook.co/');
+    this.seoService.setOgElem('og:image', 'https://s3-eu-west-1.amazonaws.com/starbook-s3/cartongesso%2Bcontroparete%2Bisolamento.jpg');
+    this.seoService.setOgElem('og:image:secure_url', 'https://s3-eu-west-1.amazonaws.com/starbook-s3/cartongesso%2Bcontroparete%2Bisolamento.jpg');
 
     this.route.params.subscribe(params => {
       let serviceId = params['id'];

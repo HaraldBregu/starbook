@@ -6,6 +6,7 @@ import { PopupsService } from '../../popups/popups.service';
 import { PaymentService } from '../../shared/payment.service';
 import { Subscription }   from 'rxjs/Subscription';
 import { AnalyticsService } from '../../shared/analytics.service';
+import { SeoService } from '../../shared/seo.service';
 import { isBrowser } from "angular2-universal";
 
 export interface IUserData {
@@ -64,7 +65,17 @@ export class ProfileComponent implements OnInit, OnDestroy {
   subscription: Subscription;
   public isAuthenticated = false;
 
-  constructor(private profileService: ProfileService, private router: Router, private navigationService: NavigationService, private route: ActivatedRoute, private  popupsService: PopupsService, private paymentService: PaymentService, private analyticsService: AnalyticsService) { }
+  constructor(
+      private profileService: ProfileService,
+      private router: Router,
+      private navigationService: NavigationService,
+      private route: ActivatedRoute,
+      private popupsService: PopupsService,
+      private paymentService: PaymentService,
+      private analyticsService: AnalyticsService,
+      private seoService: SeoService) {
+
+  }
 
   ngOnInit() {
     if (isBrowser) {
@@ -93,16 +104,17 @@ export class ProfileComponent implements OnInit, OnDestroy {
     }
     // this.navigationService.updateMessage('Il mio account');
 
-    if (isBrowser) {
-      this.route.params.subscribe(params => {
-        this.selectTab = params['page'];
-        if (params['page'] ==='payment') {
-          this.navigationService.updateMessage('Metodo di pagamento');
-          this.isLoading = true;
-          let timeStart = Date.now();
-          this.paymentService.getCards()
+    this.route.params.subscribe(params => {
+      this.selectTab = params['page'];
+      if (params['page'] ==='payment') {
+        this.navigationService.updateMessage('Metodo di pagamento');
+        this.isLoading = true;
+        let timeStart = Date.now();
+        this.paymentService.getCards()
             .then((cards) => {
-              this.analyticsService.sendTiming({category: 'Get list of cards', timingVar: 'load', timingValue: Date.now()-timeStart});
+              if (isBrowser) {
+                this.analyticsService.sendTiming({category: 'Get list of cards', timingVar: 'load', timingValue: Date.now()-timeStart});
+              }
               this.defaultCard = cards.default_source;
               this.cards = [];
               cards.sources.data.forEach((cardData) => {
@@ -123,14 +135,16 @@ export class ProfileComponent implements OnInit, OnDestroy {
               //   this.popupsService.activate({type: 'error', data: {title:'Errore', message: 'An error has occurred'}});
               // }
             })
-        }
-        if (params['page'] ==='settings') {
-          this.navigationService.updateMessage('Informazioni del mio account');
-          this.isLoading = true;
-          let timeStart = Date.now();
-          this.profileService.getProfile()
+      }
+      if (params['page'] ==='settings') {
+        this.navigationService.updateMessage('Informazioni del mio account');
+        this.isLoading = true;
+        let timeStart = Date.now();
+        this.profileService.getProfile()
             .then((profile) => {
-              this.analyticsService.sendTiming({category: 'Get user profile', timingVar: 'load', timingValue: Date.now()-timeStart});
+              if (isBrowser) {
+                this.analyticsService.sendTiming({category: 'Get user profile', timingVar: 'load', timingValue: Date.now()-timeStart});
+              }
               this.userData.fullname = profile.result.profile.fullname;
               this.userData.email = profile.result.email;
               this.userData.phone_number = profile.result.phone_number;
@@ -149,18 +163,41 @@ export class ProfileComponent implements OnInit, OnDestroy {
                 this.popupsService.activate({type: 'error', data: {title:'Errore', message: 'An error has occurred'}});
               }
             });
-        }
-        if (params['page'] ==='conditions') {
-          this.navigationService.updateMessage('Termini e condizioni d’utilizzo');
-        }
-        if (params['page'] ==='privacy') {
-          this.navigationService.updateMessage('Privacy Policy');
-        }
-        if (params['page'] ==='help') {
-          this.navigationService.updateMessage('Assistenza');
-        }
-        console.log(params['page']);
-      });
+      }
+      if (params['page'] ==='conditions') {
+        this.navigationService.updateMessage('Termini e condizioni d’utilizzo');
+        this.seoService.setTitle('Termini e condizioni d’utilizzo');
+        this.seoService.setMetaElem('description', 'Preventivi veloci? Starbook è la piattaforma dei lavorazioni professionali online con la possibilità di creare preventivi istantanei.');
+        this.seoService.setOgElem('og:title', 'Termini e condizioni d’utilizzo');
+        this.seoService.setOgElem('og:description', 'Preventivi veloci? Starbook è la piattaforma dei lavorazioni professionali online con la possibilità di creare preventivi istantanei.');
+        this.seoService.setOgElem('og:url', 'https://www.starbook.co/');
+        this.seoService.setOgElem('og:image', 'https://s3-eu-west-1.amazonaws.com/starbook-s3/cartongesso%2Bcontroparete%2Bisolamento.jpg');
+        this.seoService.setOgElem('og:image:secure_url', 'https://s3-eu-west-1.amazonaws.com/starbook-s3/cartongesso%2Bcontroparete%2Bisolamento.jpg');
+      }
+      if (params['page'] ==='privacy') {
+        this.navigationService.updateMessage('Privacy Policy');
+        this.seoService.setTitle('Privacy Policy');
+        this.seoService.setMetaElem('description', 'Preventivi veloci? Starbook è la piattaforma dei lavorazioni professionali online con la possibilità di creare preventivi istantanei.');
+        this.seoService.setOgElem('og:title', 'Privacy Policy');
+        this.seoService.setOgElem('og:description', 'Preventivi veloci? Starbook è la piattaforma dei lavorazioni professionali online con la possibilità di creare preventivi istantanei.');
+        this.seoService.setOgElem('og:url', 'https://www.starbook.co/');
+        this.seoService.setOgElem('og:image', 'https://s3-eu-west-1.amazonaws.com/starbook-s3/cartongesso%2Bcontroparete%2Bisolamento.jpg');
+        this.seoService.setOgElem('og:image:secure_url', 'https://s3-eu-west-1.amazonaws.com/starbook-s3/cartongesso%2Bcontroparete%2Bisolamento.jpg');
+      }
+      if (params['page'] ==='help') {
+        this.navigationService.updateMessage('Assistenza');
+        this.seoService.setTitle('Assistenza');
+        this.seoService.setMetaElem('description', 'Preventivi veloci? Starbook è la piattaforma dei lavorazioni professionali online con la possibilità di creare preventivi istantanei.');
+        this.seoService.setOgElem('og:title', 'Assistenza');
+        this.seoService.setOgElem('og:description', 'Preventivi veloci? Starbook è la piattaforma dei lavorazioni professionali online con la possibilità di creare preventivi istantanei.');
+        this.seoService.setOgElem('og:url', 'https://www.starbook.co/');
+        this.seoService.setOgElem('og:image', 'https://s3-eu-west-1.amazonaws.com/starbook-s3/cartongesso%2Bcontroparete%2Bisolamento.jpg');
+        this.seoService.setOgElem('og:image:secure_url', 'https://s3-eu-west-1.amazonaws.com/starbook-s3/cartongesso%2Bcontroparete%2Bisolamento.jpg');
+      }
+      console.log(params['page']);
+    });
+
+    if (isBrowser) {
 
       this.subscription = this.popupsService.getPopupResponse$.subscribe(action => {
         switch (action.type) {

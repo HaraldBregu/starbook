@@ -27,6 +27,7 @@ import { OrdersService } from './shared/orders.service';
 import { PopupsService } from './popups/popups.service';
 import { PaymentService } from './shared/payment.service';
 import { AnalyticsService } from './shared/analytics.service';
+import { SeoService } from './shared/seo.service';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
@@ -113,7 +114,8 @@ else {
     OrdersService,
     PopupsService,
     PaymentService,
-    AnalyticsService
+    AnalyticsService,
+    SeoService
   ]
 })
 export class AppModule {
