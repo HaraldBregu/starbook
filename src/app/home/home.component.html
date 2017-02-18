@@ -23,13 +23,17 @@
             </span>
             <span *ngIf="serviceCategory.type !== 'content'">
               <div class="header">{{serviceCategory.title_1}}</div>
-              <div class="service content">
+              <div class="service content noselect">
                 <span *ngFor="let item of serviceCategory.options">
-                  <div class="item" *ngIf="item.type === 'CHECKBOX' || item.type === 'RADIOBUTTON'" [ngClass]="{'checked':item.selected}" (click)="toggleService(serviceCategory.title, item.title)"><i class="fa fa-check"></i> {{item.title_1}}</div>
-                    <div class="input-group" *ngIf="item.type === 'INPUTTEXT'">
-                      <input type="text" [(ngModel)]="servicesData[item.formId].options[item.optionId].input_value" (keyup)="changeValue(item.formId, item.optionId)" (change)="changeValue(item.formId, item.optionId)" (focus)="selectAllContent($event)">
-                      <span class="input-group-addon">{{servicesData[item.formId].options[item.optionId].value_symbol}}</span>
-                    </div>
+                  <div class="item" *ngIf="item.type === 'CHECKBOX' || item.type === 'RADIOBUTTON'" [ngClass]="{'checked':item.selected}" (click)="toggleService(serviceCategory.title, item.title)">
+                    <i *ngIf="item.selected===true" class="fa fa-check-square"></i>
+                    <i *ngIf="item.selected===false" class="fa fa-square-o"></i>
+                    {{item.title_1}}
+                  </div>
+                  <div class="input-group" *ngIf="item.type === 'INPUTTEXT'">
+                    <input type="text" [(ngModel)]="servicesData[item.formId].options[item.optionId].input_value" (keyup)="changeValue(item.formId, item.optionId)" (change)="changeValue(item.formId, item.optionId)" (focus)="selectAllContent($event)">
+                    <span class="input-group-addon">{{servicesData[item.formId].options[item.optionId].value_symbol}}</span>
+                  </div>
                   </span>
               </div>
             </span>

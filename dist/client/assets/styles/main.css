@@ -2923,7 +2923,8 @@ app-home {
   overflow-x: hidden; }
 
 .container-starbook.home-page {
-  padding: 0 0 0 10px !important; }
+  padding: 0 0 0 10px !important;
+  background-color: #f9f9f9; }
 
 .container-starbook .row {
   position: relative;
@@ -2938,19 +2939,19 @@ app-home {
 .services-block {
   display: block;
   width: 490px;
-  background-color: #FCFCFC;
   border: 1px solid #DCE0E0;
   margin-bottom: 20px;
-  border-radius: 3px; }
+  border-radius: 3px;
+  background-color: white; }
 
 .services-block .header {
   font-family: HelveticaNeue-Medium, sans-serif;
-  font-size: 15px;
-  background-color: rgba(252, 252, 252, 0);
-  padding: 10px 19px;
+  font-size: 16px;
+  font-weight: bold;
+  padding: 15px 20px;
   border-bottom: 1px solid #DCE0E0;
   letter-spacing: 0.1px;
-  color: #333333; }
+  color: #424242; }
 
 .services-block .service {
   display: block;
@@ -2961,7 +2962,9 @@ app-home {
   display: block;
   position: relative;
   width: 100%;
-  padding: 7px 7px 7px 34px;
+  padding: 10px 7px 9px 50px;
+  margin: 1px 0 1px 0;
+  height: 40px;
   font-weight: 400;
   font-family: HelveticaNeue, sans-serif;
   font-size: 14px;
@@ -2973,27 +2976,42 @@ app-home {
   border-radius: 3px; }
 
 .services-block .service .item:hover {
-  background-color: #F5F5F5;
+  background-color: #E6E9EF;
   border-radius: 3px; }
 
 .services-block .service .item i {
-  display: none; }
+  display: block;
+  position: absolute;
+  top: 10px;
+  left: 15px;
+  font-size: 20px;
+  color: #E0E0E0; }
+
+.services-block .service .item:hover i {
+  display: block;
+  position: absolute;
+  top: 10px;
+  left: 15px;
+  font-size: 20px;
+  color: #324977; }
 
 .services-block .service .item.checked i {
   display: block;
   position: absolute;
-  top: 6px;
-  left: 8px;
-  font-size: 19px; }
+  top: 10px;
+  left: 15px;
+  font-size: 20px;
+  color: #324977; }
 
 .services-block .service .item.checked {
-  font-weight: 400;
+  font-weight: bold;
   font-family: HelveticaNeue, sans-serif;
   font-size: 14px;
   color: #000000;
   letter-spacing: 0.09px;
   cursor: pointer;
-  -webkit-font-smoothing: initial !important; }
+  -webkit-font-smoothing: initial !important;
+  background-color: #E6E9EF; }
 
 .services-block .service .input {
   display: block;
@@ -3013,22 +3031,22 @@ app-home {
   font-weight: normal;
   font-size: 16px;
   letter-spacing: 0.1px;
-  color: #212121;
+  color: #000000;
   outline: none; }
 
 .services-block .service .input-group {
-  padding: 0 2px 1px 2px; }
+  padding: 10px 10px 10px 10px; }
 
 .services-block .service .input-group input {
   width: 100%;
-  border-top: 1px solid #DCDCDC;
-  border-left: 1px solid #DCDCDC;
-  border-bottom: 1px solid #DCDCDC;
-  border-right: 0px solid #DCDCDC;
+  border-top: 1px solid #E0E0E0;
+  border-left: 1px solid #E0E0E0;
+  border-bottom: 1px solid #E0E0E0;
+  border-right: 0px solid #E0E0E0;
   border-top-left-radius: 3px;
   border-bottom-left-radius: 3px;
   display: block;
-  height: 35px;
+  height: 40px;
   padding: 9px 13px 8px 13px;
   text-align: right;
   background-color: #FFFFFF;
@@ -3036,25 +3054,25 @@ app-home {
   font-weight: normal;
   font-size: 16px;
   letter-spacing: 0.1px;
-  color: #212121;
+  color: #000000;
   outline: none; }
 
 .services-block .service .input-group span {
-  border-top: 1px solid #DCDCDC;
-  border-left: 1px solid #DCDCDC;
-  border-bottom: 1px solid #DCDCDC;
-  border-right: 1px solid #DCDCDC;
+  border-top: 1px solid #E0E0E0;
+  border-left: 1px solid #E0E0E0;
+  border-bottom: 1px solid #E0E0E0;
+  border-right: 1px solid #E0E0E0;
   border-top-right-radius: 3px;
   border-bottom-right-radius: 3px;
   height: 35px;
   text-align: right;
-  background-color: #FCFCFC;
   font-family: HelveticaNeue, sans-serif;
   font-weight: normal;
   font-size: 14px;
   letter-spacing: 0.1px;
-  color: #212121;
-  outline: none; }
+  color: #000000;
+  outline: none;
+  background-color: #E6E9EF; }
 
 .services-block-big {
   display: block;
@@ -3124,6 +3142,21 @@ app-home {
     display: block;
     width: 262px;
     margin: 0 auto; } }
+.noselect {
+  -webkit-touch-callout: none;
+  /* iOS Safari */
+  -webkit-user-select: none;
+  /* Safari */
+  -khtml-user-select: none;
+  /* Konqueror HTML */
+  -moz-user-select: none;
+  /* Firefox */
+  -ms-user-select: none;
+  /* Internet Explorer/Edge */
+  user-select: none;
+  /* Non-prefixed version, currently
+     supported by Chrome and Opera */ }
+
 .container-starbook .sidebar {
   display: block;
   width: 388px;
