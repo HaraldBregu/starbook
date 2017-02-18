@@ -3067,10 +3067,10 @@ app-home {
   height: 35px;
   text-align: right;
   font-family: HelveticaNeue, sans-serif;
-  font-weight: normal;
-  font-size: 14px;
+  font-weight: bold;
+  font-size: 15px;
   letter-spacing: 0.1px;
-  color: #000000;
+  color: #424242;
   outline: none;
   background-color: #E6E9EF; }
 
