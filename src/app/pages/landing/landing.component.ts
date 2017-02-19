@@ -1,8 +1,10 @@
+import { isBrowser } from 'angular2-universal';
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Router, Route, ActivatedRoute, Params } from '@angular/router';
 import { HomeService } from '../../home/home.service';
 import { NavigationService } from '../../shared/navigation.service';
 import { AnalyticsService } from '../../shared/analytics.service';
+declare let Swiper: any;
 
 @Component({
   selector: 'app-landing',
@@ -16,6 +18,7 @@ export class LandingComponent implements OnInit {
   public spinerView = false;
   public clearView = false;
   public isLoading = false;
+  public swiper: any;
   constructor(private homeService: HomeService, private router: Router, private route: ActivatedRoute, private navigationService: NavigationService, private analyticsService: AnalyticsService) { }
 
   ngOnInit() {
@@ -27,6 +30,15 @@ export class LandingComponent implements OnInit {
           this.services = services.result;
           this.analyticsService.sendTiming({category: 'Get list of featured', timingVar: 'load', timingValue: Date.now()-timeStart});
           this.isLoading = false;
+          if (isBrowser) {
+              setTimeout(function () {
+                  this.swiper = new Swiper('.swiper-container', {
+                      freeMode: true,
+                      direction: 'horizontal',
+                      slidesPerView: 'auto'
+                  });
+              }, 1);
+          }
         })
         .catch((error) => {
           console.log(error);

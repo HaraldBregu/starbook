@@ -6011,17 +6011,18 @@ input.landing-search .ui-autocomplete-input:-ms-input-placeholder {
   width: 100%;
   text-align: center;
   font-family: HelveticaNeue-Medium, sans-serif;
-  padding-top: 40px;
+  padding-top: 34px;
   color: #F6A623; }
 
 .landing-services {
   display: block;
+  float: none;
   position: relative;
   padding-left: 0;
   padding-right: 0;
-  min-height: 200px;
-  margin-top: 40px;
-  margin-bottom: 100px; }
+  min-height: 284px;
+  margin: 37px auto 73px;
+  text-align: center; }
 
 .landing-services h2 {
   display: block;
@@ -6036,16 +6037,44 @@ input.landing-search .ui-autocomplete-input:-ms-input-placeholder {
   padding-bottom: 15px;
   font-weight: normal; }
 
-.landing-services .services-card {
+.landing-services .swiper-container {
   display: block;
-  float: left;
-  width: 20%;
+  position: relative;
+  width: 100%;
+  max-width: 1136px;
+  height: 284px;
+  overflow: hidden; }
+
+.landing-services .swiper-container .swiper-wrapper {
+  position: relative;
+  width: 100%;
+  height: 284px;
+  text-align: center;
+  white-space: nowrap; }
+
+.landing-services .services-card {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  position: relative;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+  float: none;
+  width: 224px;
+  height: 280px;
   padding: 2px; }
 
 .services-card .service-container {
   display: block;
   position: relative;
-  width: 100%;
+  width: 224px;
   min-height: 280px;
   border: none;
   cursor: pointer;
@@ -6078,22 +6107,23 @@ input.landing-search .ui-autocomplete-input:-ms-input-placeholder {
   font-size: 16px;
   letter-spacing: 0.09px;
   padding: 18px 12px;
-  text-transform: uppercase; }
+  text-transform: uppercase;
+  white-space: normal;
+  text-align: left; }
 
 .services-card .service-container .service-footer {
   display: block;
   position: absolute;
   z-index: 2;
-  left: 0;
-  bottom: 11px;
+  right: 13px;
+  bottom: 17px;
   width: 100%;
   text-align: right;
   font-family: HelveticaNeue-Medium, sans-serif;
   color: #FFFFFF;
   font-size: 12px;
   letter-spacing: 0.06px;
-  font-weight: normal;
-  padding-right: 14px; }
+  font-weight: normal; }
 
 .services-card .service-container .service-footer span {
   font-family: HelveticaNeue-Bold, sans-serif;
@@ -6230,18 +6260,12 @@ input.landing-search .ui-autocomplete-input:-ms-input-placeholder {
   height: 50px;
   margin: 20px auto; }
 
-@media (max-width: 991px) {
-  .landing-services {
-    min-height: 440px; }
-
-  .landing-services .services-card {
-    width: 33.333%; } }
 @media (max-width: 768px) {
-  .landing-services {
-    min-height: 660px; }
+  .card-container h2 {
+    padding-top: 39px; }
 
-  .landing-services .services-card {
-    width: 50%; }
+  .landing-services {
+    margin: 48px auto 41px; }
 
   .why-container .why-cell {
     padding-bottom: 40px; }
@@ -6256,12 +6280,6 @@ input.landing-search .ui-autocomplete-input:-ms-input-placeholder {
   .pre-footer-container h4 {
     text-align: center; } }
 @media (max-width: 576px) {
-  .landing-services {
-    min-height: 1100px; }
-
-  .landing-services .services-card {
-    width: 100%; }
-
   .landing .landing-top-header h1 {
     padding: 0 15px; }
 

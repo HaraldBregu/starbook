@@ -22,6 +22,7 @@
   <link rel="icon" type="image/x-icon" href="favicon.ico">
   <!-- Bootstrap 4 base styles  -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/css/bootstrap.min.css" integrity="sha384-AysaV+vQoT3kOAXZkl02PThvDr8HYKPZhNT5h/CXfBThSRXQ6jW5DO2ekP5ViFdi" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.4.1/css/swiper.min.css">
   <link rel="stylesheet" href="/assets/styles/main.css">
 <link href="styles.b2328beb0372c051d06d.bundle.css" rel="stylesheet"></head>
 <body>
@@ -45,6 +46,8 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/js/bootstrap.min.js" integrity="sha384-BLiI7JTZm+JWlgKa0M0kGRpJbF2J8q+qreVrKBC47e3K6BW78kGLrCkeRX6I9RoK" crossorigin="anonymous"></script>
 <!-- Masonry -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/masonry/4.1.1/masonry.pkgd.min.js"></script>
+<!-- Swiper -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.4.1/js/swiper.min.js"></script>
 
 <!-- Stripe -->
 <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
@@ -65,6 +68,15 @@
       });
   }
 
+  var swiperElems = document.querySelector('.swiper-wrapper');
+  if (swiperElems) {
+      new Swiper ('.swiper-container', {
+          freeMode: true,
+          direction: 'horizontal',
+          slidesPerView: 'auto'
+      });
+  }
+
 </script>
-<script type="text/javascript" src="inline.d41d8cd98f00b204e980.bundle.js"></script><script type="text/javascript" src="vendor.ceb833dc585d9804f2ce.bundle.js"></script><script type="text/javascript" src="client.d04ad2c864aa33d7096b.bundle.js"></script></body>
+<script type="text/javascript" src="inline.d41d8cd98f00b204e980.bundle.js"></script><script type="text/javascript" src="vendor.ceb833dc585d9804f2ce.bundle.js"></script><script type="text/javascript" src="client.3bcea60a1ddd57b3573d.bundle.js"></script></body>
 </html>

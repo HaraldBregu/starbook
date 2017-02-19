@@ -37,10 +37,12 @@
   <div class="card-container">
     <div class="container">
       <h2>Lavorazioni più richiesti</h2>
-      <div class="row">
-        <div class="col-xl-12 landing-services">
-          <app-loading *ngIf="isLoading"></app-loading>
-          <div class="services-card" *ngFor="let service of services" (click)="selectResult(service)">
+    </div>
+    <div class="col-xl-12 landing-services">
+      <app-loading *ngIf="isLoading"></app-loading>
+      <div class="swiper-container">
+        <div class="swiper-wrapper">
+          <div class="services-card swiper-slide" *ngFor="let service of services" (click)="selectResult(service)">
             <div class="service-container" [style.background-image]="'url(' + service.image_url + ')'">
               <div class="shadow"></div>
               <div class="header">{{ service.title }}</div>
