@@ -2918,7 +2918,8 @@ app-home {
   border-radius: 50%; }
 
 .masonry-container {
-  padding-left: 30px; }
+  margin-left: 30px;
+  margin-right: 30px; }
 
 .container-starbook {
   display: block;
@@ -3140,10 +3141,10 @@ app-home {
     margin: 0 auto 20px auto; }
 
   .services-block {
-    width: 89%; }
+    width: 100%; }
 
   .services-block-big {
-    width: 89%; } }
+    width: 100%; } }
 @media (max-width: 906px) {
   .home-page .tab-container {
     display: block;
@@ -3154,10 +3155,14 @@ app-home {
     width: 100%; }
 
   .masonry-container {
-    padding: 0px; }
+    margin-left: 10px;
+    margin-right: 10px; }
 
   .services-block-big {
-    width: 100%; } }
+    width: 100%; }
+
+  .container-starbook .row {
+    padding: 70px 0 0 0; } }
 @media (max-width: 645px) {
   .home-page .tab-container {
     display: block;
@@ -3166,10 +3171,6 @@ app-home {
 
   .container-starbook .main {
     padding-right: 15px; }
-
-  .services-block-big {
-    padding-left: 10px;
-    padding-right: 10px; }
 
   .masonry-container {
     padding: 0px; }
@@ -3183,7 +3184,8 @@ app-home {
     margin: 0 auto; }
 
   .masonry-container {
-    padding: 0px; }
+    margin-left: 10px;
+    margin-right: 10px; }
 
   .container-starbook .row {
     padding: 60px 0 0 0; }
