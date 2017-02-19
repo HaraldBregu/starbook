@@ -2979,7 +2979,7 @@ app-home {
   border-radius: 3px; }
 
 .services-block .service .item:hover {
-  background-color: #E6E9EF;
+  background-color: rgba(230, 233, 239, 0.2);
   border-radius: 3px; }
 
 .services-block .service .item i {
@@ -2996,7 +2996,7 @@ app-home {
   top: 10px;
   left: 15px;
   font-size: 20px;
-  color: #324977; }
+  color: rgba(50, 73, 119, 0.3); }
 
 .services-block .service .item.checked i {
   display: block;
