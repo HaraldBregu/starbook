@@ -3166,12 +3166,24 @@ app-home {
     padding-right: 15px; }
 
   .services-block .services-block-big {
-    width: 345px; } }
+    width: 345px; }
+
+  .masonry-container {
+    padding-left: 20px; }
+
+  .container-starbook .row {
+    padding: 70px 0 0 0; } }
 @media (max-width: 534px) {
   .home-page .tab-container {
     display: block;
     width: 100%;
     margin: 0 auto; }
+
+  .masonry-container {
+    padding-left: 10px; }
+
+  .container-starbook .row {
+    padding: 60px 0 0 0; }
 
   .services-block .services-block-big {
     width: 345px; } }
