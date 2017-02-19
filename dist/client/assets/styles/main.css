@@ -2914,6 +2914,9 @@ app-home {
   display: inline-block;
   border-radius: 50%; }
 
+.masonry-container {
+  padding-left: 30px; }
+
 .container-starbook {
   display: block;
   max-width: 1440px;
@@ -2929,19 +2932,18 @@ app-home {
 .container-starbook .row {
   position: relative;
   min-height: 100vh;
-  padding: 80px 0 0 8px; }
+  padding: 80px 0 0 0; }
 
 .container-starbook .main {
   display: block;
   width: 100%;
-  padding-right: 388px; }
+  padding-right: 390px; }
 
 .services-block {
   display: block;
   width: 490px;
   border: 1px solid #DCE0E0;
   margin-bottom: 20px;
-  margin-left: 10px;
   border-radius: 3px;
   background-color: white; }
 
@@ -3082,8 +3084,7 @@ app-home {
   width: 490px;
   border: none;
   background-color: #FCFCFC;
-  margin-bottom: 20px;
-  margin-left: 10px; }
+  margin-bottom: 20px; }
 
 .services-block-big img {
   display: block;
@@ -3119,19 +3120,39 @@ app-home {
 .services-loader.add-price .loader {
   margin-bottom: 20px; }
 
+@media (max-width: 1430px) {
+  .home-page .tab-container {
+    display: block;
+    width: 600px;
+    margin: 0 auto 20px auto; }
+
+  .services-block {
+    width: 600px; }
+
+  .services-block-big {
+    width: 600px; } }
 @media (max-width: 1168px) {
   .home-page .tab-container {
     display: block;
     width: 525px;
-    margin: 0 auto 50px auto; } }
+    margin: 0 auto 20px auto; }
+
+  .services-block {
+    width: 390px; }
+
+  .services-block-big {
+    width: 390px; } }
 @media (max-width: 906px) {
   .home-page .tab-container {
     display: block;
     width: 262px;
     margin: 0 auto 50px auto; }
 
+  .services-block {
+    width: 345px; }
+
   .services-block-big {
-    width: 245px; } }
+    width: 345px; } }
 @media (max-width: 645px) {
   .home-page .tab-container {
     display: block;
@@ -3139,12 +3160,18 @@ app-home {
     margin: 0 auto; }
 
   .container-starbook .main {
-    padding-right: 15px; } }
+    padding-right: 15px; }
+
+  .services-block .services-block-big {
+    width: 345px; } }
 @media (max-width: 534px) {
   .home-page .tab-container {
     display: block;
-    width: 262px;
-    margin: 0 auto; } }
+    width: 100%;
+    margin: 0 auto; }
+
+  .services-block .services-block-big {
+    width: 345px; } }
 .noselect {
   -webkit-touch-callout: none;
   /* iOS Safari */

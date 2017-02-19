@@ -121,6 +121,9 @@ app-home {
   border-radius: 50%;
 }
 
+.masonry-container {
+  padding-left: 30px;
+}
 
 .container-starbook {
   display: block;
@@ -138,12 +141,12 @@ app-home {
 .container-starbook .row {
   position: relative;
   min-height: 100vh;
-  padding: 80px 0 0 8px;
+  padding: 80px 0 0 0;
 }
 .container-starbook .main {
   display: block;
   width: 100%;
-  padding-right: 388px;
+  padding-right: 390px;
 }
 
 .services-block {
@@ -152,7 +155,7 @@ app-home {
   // background-color: $services-block-background-color;
   border: 1px solid $services-block-border-color;
   margin-bottom: 20px;
-  margin-left: 10px;
+  // margin-left: 10px;
   border-radius: 3px;
   background-color: white;
 }
@@ -295,7 +298,7 @@ app-home {
   border: none;
   background-color: $services-block-background-color;
   margin-bottom: 20px;
-  margin-left: 10px;
+  // margin-left: 10px;
 }
 .services-block-big img {
   display: block;
@@ -338,13 +341,36 @@ $content-block-description-text-letter-spacing: 0.08px;
 .services-loader.add-price .loader {
   margin-bottom: 20px;
 }
+
+@media (max-width: 1430px) {
+  .home-page .tab-container {
+    display: block;
+    width: 600px;
+    margin: 0 auto 20px auto;
+  }
+
+  .services-block {
+    width: 600px;
+  }
+  .services-block-big {
+    width: 600px;
+  }
+}
 @media (max-width: 1168px) {
   .home-page .tab-container {
     display: block;
     width: 525px;
     // margin: 0 auto;
-    margin: 0 auto 50px auto;
+    margin: 0 auto 20px auto;
   }
+
+  .services-block {
+    width: 390px;
+  }
+  .services-block-big {
+    width: 390px;
+  }
+
 }
 @media (max-width: 906px) {
   .home-page .tab-container {
@@ -353,8 +379,11 @@ $content-block-description-text-letter-spacing: 0.08px;
     // margin: 0 auto;
     margin: 0 auto 50px auto;
   }
+  .services-block {
+    width: 345px;
+  }
   .services-block-big {
-    width: 245px;
+    width: 345px;
   }
 }
 @media (max-width: 645px) {
@@ -366,12 +395,21 @@ $content-block-description-text-letter-spacing: 0.08px;
   .container-starbook .main {
     padding-right: 15px;
   }
+
+  .services-block .services-block-big {
+    width: 345px;
+  }
+
 }
 @media (max-width: 534px) {
   .home-page .tab-container {
     display: block;
-    width: 262px;
+    width: 100%;
     margin: 0 auto;
+  }
+
+  .services-block .services-block-big {
+    width: 345px;
   }
 }
 .noselect {
