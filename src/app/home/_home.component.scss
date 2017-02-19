@@ -217,8 +217,8 @@ app-home {
   color: #324977;
 }
 .services-block .service .item.checked {
-  font-weight: bold;
-  font-family: $font-name;
+  font-weight: 500;
+  font-family: $font-name-medium;
   font-size: $services-item-font-size;
   color: $general-text-color;
   letter-spacing: $services-item-letter-spacing;
