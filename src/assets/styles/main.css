@@ -6140,14 +6140,14 @@ input.landing-search .ui-autocomplete-input:-ms-input-placeholder {
   display: block;
   position: relative;
   z-index: 2;
-  width: 100%;
+  width: 200px;
   font-family: HelveticaNeue-Bold, sans-serif;
   color: #FFFFFF;
   font-size: 16px;
   letter-spacing: 0.09px;
   padding: 18px 12px;
   text-transform: uppercase;
-  white-space: normal;
+  white-space: normal !important;
   text-align: left; }
 
 .services-card .service-container .service-footer {
