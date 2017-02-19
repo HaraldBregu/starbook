@@ -2784,7 +2784,7 @@ input.search-block .ui-autocomplete-input:-ms-input-placeholder {
 
 @media (max-width: 790px) {
   .search-block {
-    max-width: 250px; } }
+    max-width: 340px; } }
 @media (max-width: 640px) {
   .is-search .navbar-brand {
     display: none; } }
@@ -3005,8 +3005,8 @@ app-home {
   color: #324977; }
 
 .services-block .service .item.checked {
-  font-weight: bold;
-  font-family: HelveticaNeue, sans-serif;
+  font-weight: 500;
+  font-family: HelveticaNeue-Medium, sans-serif;
   font-size: 14px;
   color: #000000;
   letter-spacing: 0.09px;
