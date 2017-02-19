@@ -39,6 +39,7 @@ import { PhonePipe } from './pipes/phone.pipe';
 import { LandingComponent } from './pages/landing/landing.component';
 import { ExpiryPipe } from './pipes/expiry.pipe';
 import { LoadingComponent } from './shared/loading/loading.component';
+import { FacebookComponent } from './pages/facebook/facebook.component';
 
 export class HammerConfig extends HammerGestureConfig  {
   overrides = <any> {
@@ -70,7 +71,8 @@ let declarations = [
   PhonePipe,
   LandingComponent,
   ExpiryPipe,
-  LoadingComponent
+  LoadingComponent,
+  FacebookComponent
 ];
 
 if (isBrowser) {

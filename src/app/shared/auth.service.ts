@@ -1,6 +1,6 @@
 import { isBrowser } from 'angular2-universal';
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
+import { Http, Headers } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 import { NavigationService } from './navigation.service';
 
@@ -20,6 +20,10 @@ export class AuthService {
       this.auth = false;
     }
 
+  }
+
+  private _makeHeaders(access_token) {
+    return new Headers({'access_token': access_token});
   }
 
   authInit() {
@@ -117,6 +121,16 @@ export class AuthService {
 
   getUserData() {
     return this.auth;
+  }
+
+  facebookLogin(access_token) {
+    return this.http.post(this.api + 'facebook_login', {}, this._makeHeaders(access_token))
+        .toPromise()
+        .then((response) => {
+          let data = response.json();
+          return data;
+        })
+        .catch(this.handleError);
   }
 
   private handleError(error: any): Promise<any> {

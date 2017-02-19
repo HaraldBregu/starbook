@@ -24,7 +24,7 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/css/bootstrap.min.css" integrity="sha384-AysaV+vQoT3kOAXZkl02PThvDr8HYKPZhNT5h/CXfBThSRXQ6jW5DO2ekP5ViFdi" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.4.1/css/swiper.min.css">
   <link rel="stylesheet" href="/assets/styles/main.css">
-<link href="styles.b2328beb0372c051d06d.bundle.css" rel="stylesheet"></head>
+<link href="styles.bundle.css" rel="stylesheet"></head>
 <body>
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -53,6 +53,24 @@
 <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
 <script>
   Stripe.setPublishableKey('pk_test_xWYalXbA2vfaxjF6qflvgQZ0');
+
+  window.fbAsyncInit = function() {
+      FB.init({
+          appId      : '1108461325907277',
+          xfbml      : true,
+          version    : 'v2.8'
+      });
+      FB.AppEvents.logPageView();
+  };
+
+  (function(d, s, id){
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) {return;}
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/en_US/sdk.js";
+      fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+
   $(function () {
     $('[data-toggle="tooltip"]').tooltip()
   });
@@ -78,5 +96,5 @@
   }
 
 </script>
-<script type="text/javascript" src="inline.d41d8cd98f00b204e980.bundle.js"></script><script type="text/javascript" src="vendor.ceb833dc585d9804f2ce.bundle.js"></script><script type="text/javascript" src="client.93b654dfeed8f93728cd.bundle.js"></script></body>
+<script type="text/javascript" src="inline.bundle.js"></script><script type="text/javascript" src="vendor.bundle.js"></script><script type="text/javascript" src="client.bundle.js"></script></body>
 </html>

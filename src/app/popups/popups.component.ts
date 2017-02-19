@@ -401,6 +401,13 @@ export class PopupsComponent implements OnInit, OnDestroy {
     return false;
   }
 
+  facebookLogin() {
+    window.open(
+        'https://www.facebook.com/v2.8/dialog/oauth?client_id=1108461325907277&response_type=token&scope=email,public_profile&redirect_uri=http://localhost:4200/facebook',
+        '_blank',
+        'location=yes,height=570,width=520,scrollbars=yes,status=yes');
+  }
+
   checkEmail(type: string, email: string) {
     if (this.emailPattern.test(email)) {
       switch (type) {
