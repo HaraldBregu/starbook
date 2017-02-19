@@ -2,14 +2,15 @@
   <form class="sidebar-container" #orderForm="ngForm" (window:resize)="onResize()">
     <app-loading *ngIf="isLoading"></app-loading>
     <div class="sidebar-block">
-      <h2>Dettagli del progetto</h2>
+      <h2>{{orderData.service}}</h2>
+
       <!-- <div class="order-container" *ngIf="!orderIsFull">
         <div class="order-list-empty"><strong>Inserisci</strong> le informazioni necessari del appuntamento e invia la richiesta.</div>
       </div> -->
       <!-- <div class="order-container" *ngIf="orderData.order_options.min_amount > orderData.totalPrice">
         <div class="order-list-empty"><strong></strong>Prezzo minimo del'ordine €{{ orderData.order_options.min_amount / 100 }}</div>
       </div> -->
-      <div class="order-container selected-orders" [ngStyle]="{'max-height': maxOrderBlockSize}">
+      <!-- <div class="order-container selected-orders" [ngStyle]="{'max-height': maxOrderBlockSize}">
         <div class="category-group category">
           <span>{{ orderData.service }}</span>
         </div>
@@ -19,40 +20,43 @@
             <span *ngIf="orderService.price_type !== 'BASE_AMOUNT_PER_INPUT'">{{ orderService.name }}<i>{{orderService.option.name}}</i></span>
           </div>
         </span>
-      </div>
+      </div> -->
       <!-- <div class="category-group total">
         <span>Totale <i>€{{ orderData.totalPrice / 100 }}</i></span>
       </div> -->
 
       <div class="add-order-form">
+        <label>Quando vuoi svolgere questo lavoro?</label>
         <div class="form-group calendar-part" [ngClass]="{isError: submitOrder && !Order.date}" *ngIf="isMobileCalendar">
           <div class="input-group date datepicker-block">
-            <span class="fa fa-calendar"></span>
+            <span class="fa fa-calendar-times-o calendar-box"></span>
             <p-calendar name="dataOra" [(ngModel)]="Order.date" id="dataOraMobile" class="form-control" placeholder="Data" autocomplete="off" dateFormat="dd MM yy" readonlyInput="readonlyInput" [locale]="it" [minDate]="minDate" [maxDate]="maxDate" (onSelect)="selectDate()">
             </p-calendar>
           </div>
         </div>
         <div class="form-group calendar-part" [ngClass]="{isError: submitOrder && !Order.date}" *ngIf="!isMobileCalendar">
           <div class="input-group date datepicker-block">
-            <span class="fa fa-calendar"></span>
+            <span class="fa fa-calendar-times-o calendar-box"></span>
             <p-calendar name="dataOra" [(ngModel)]="Order.date" id="dataOra" class="form-control" placeholder="Data" autocomplete="off" dateFormat="dd MM yy" [locale]="it" [minDate]="minDate" [maxDate]="maxDate" (onSelect)="selectDate()">
             </p-calendar>
           </div>
         </div>
         <div class="form-group time-part" [ngClass]="{isError: Order.time === '' && submitOrder}" *ngIf="browser">
           <div class="input-group date" (clickOutside)="closeTimepicker()">
-            <span class="fa fa-clock-o" (click)="toggleTimepicker()"></span>
+            <!-- <span class="fa fa-clock-o" (click)="toggleTimepicker()"></span> -->
             <input id="timeOra" class="form-control" type="text" name="timeOra" [(ngModel)]="Order.time" value="{{Order.time}}" placeholder="Ora" autocomplete="off" (click)="toggleTimepicker()">
             <div class="mobileArea" (click)="toggleTimepicker()"></div>
           </div>
           <div class="time-picker" *ngIf="timePickerIsShow">
             <div class="time-elem" *ngFor="let time of timePicker" (click)="selectTime(time)">
-              <span class="fa fa-clock-o"></span> {{time}}</div>
+              <!-- <span class="fa fa-clock-o"></span> -->
+              {{time}}
+            </div>
           </div>
         </div>
         <div class="form-group time-part" [ngClass]="{isError: Order.time === '' && submitOrder}" *ngIf="!browser">
           <div class="input-group date"> <!-- is not support if client != browser (clickOutside)="closeTimepicker()" -->
-            <span class="fa fa-clock-o" (click)="toggleTimepicker()"></span>
+            <!-- <span class="fa fa-clock-o" (click)="toggleTimepicker()"></span> -->
             <input id="timeOraServer" class="form-control" type="text" name="timeOra" [(ngModel)]="Order.time" value="{{Order.time}}" placeholder="Ora" autocomplete="off" (click)="toggleTimepicker()">
             <div class="mobileArea" (click)="toggleTimepicker()"></div>
           </div>
@@ -60,17 +64,19 @@
             <div class="time-elem" *ngFor="let time of timePicker" (click)="selectTime(time)">{{time}}</div>
           </div>
         </div>
+        <label>Inserisci l’indirizzo</label>
         <div class="form-group" [ngClass]="{isError: !isAddressFull && submitOrder && isAddressDirty}">
           <div class="input-group date">
-            <span class="fa fa-map-marker"></span>
+            <!-- <span class="fa fa-map-marker"></span> -->
             <!--<input type="text" class="form-control" placeholder="Indirizzo" [ngClass]="{'isError':isAddressFull === false && isAddressDirty === true}" [(ngModel)]="address" [ngModelOptions]="{standalone: true}" (keyup)="modifyAddress()" (change)="modifyAddress()">-->
-            <p-autoComplete id="luogo" class="form-control text-small" placeholder="Indirizzo" [ngClass]="{'isError':isAddressFull === false && isAddressDirty === true}" [(ngModel)]="Order.delivery_address" [ngModelOptions]="{standalone: true}" [suggestions]="addresses" field="formattedAddress" (completeMethod)="getAddresses($event)" (onSelect)="selectAddress($event)">
+            <p-autoComplete id="luogo" class="form-control text-small" placeholder="Via Giuseppe Verdi 10 Milano" [ngClass]="{'isError':isAddressFull === false && isAddressDirty === true}" [(ngModel)]="Order.delivery_address" [ngModelOptions]="{standalone: true}" [suggestions]="addresses" field="formattedAddress" (completeMethod)="getAddresses($event)" (onSelect)="selectAddress($event)">
             </p-autoComplete>
           </div>
           <div class="error-block" *ngIf="!isAddressFull && isAddressDirty && address === ''">Inserisci l'indirizzo esatto</div>
           <div class="error-block" *ngIf="!isAddressFull && isAddressDirty && address !== '' && isAddressOne">Indirizzo non trovato</div>
           <!--<div class="error-block" *ngIf="!isAddressOne && isAddressDirty && address !== ''">Indirizzo non è specifico</div>-->
         </div>
+        <label>Nota</label>
         <div class="form-group">
           <textarea class="form-control" id="nota" name="applicant_description" [(ngModel)]="Order.delivery_description" placeholder="Lascia una nota..."></textarea>
         </div>

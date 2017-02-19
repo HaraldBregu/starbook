@@ -550,7 +550,7 @@ export class HomeComponent implements AfterViewInit, OnInit, OnDestroy {
     if (this.isServicesView !== false && isBrowser) {
       let elems = document.querySelector('.masonry-container');
       this.masonry = new Masonry(elems, {
-        columnWidth: 245,
+        columnWidth: 490,
         itemSelector: '.services-block',
         gutter: 18,
         originLeft: true,
@@ -598,7 +598,7 @@ export class HomeComponent implements AfterViewInit, OnInit, OnDestroy {
             setTimeout(function () {
               let elems = document.querySelector('.masonry-container');
               this.masonry = new Masonry(elems, {
-                columnWidth: 245,
+                columnWidth: 490,
                 itemSelector: '.services-block',
                 gutter: 18,
                 originLeft: true,
@@ -617,7 +617,7 @@ export class HomeComponent implements AfterViewInit, OnInit, OnDestroy {
                   setTimeout(function () {
                     let elems = document.querySelector('.masonry-container');
                     this.masonry = new Masonry(elems, {
-                      columnWidth: 245,
+                      columnWidth: 490,
                       itemSelector: '.services-block',
                       gutter: 18,
                       originLeft: true,

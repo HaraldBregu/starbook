@@ -23,7 +23,7 @@ $navbar-tabs-active-background-color: #FAFAFA;
 $services-block-background-color: #FCFCFC;
 $services-item-hover-background-color: #F5F5F5;
 $services-block-border-color: #DCE0E0;
-$services-block-text-color: #333333;
+$services-block-text-color: #424242;
 $services-block-header-background-color: rgba(252, 252, 252, 0);
 $services-block-header-letter-spacing: 0.1px;
 
@@ -31,7 +31,7 @@ $services-block-header-letter-spacing: 0.1px;
 $home-input-background-color: #FFFFFF;
 $home-input-border: 1px solid #DCDCDC;
 $home-input-text-size: 16px;
-$home-input-text-color: #212121;
+$home-input-text-color: #000000;
 $home-input-text-letter-spacing: 0.1px;
 
 // Services item styles
@@ -131,12 +131,14 @@ app-home {
   overflow-x: hidden;
 }
 .container-starbook.home-page {
-  padding: 0 0 0 10px !important;
+  // padding: 0 0 0 10px !important;
+  padding: 0px;
+  background-color: rgb(249, 249, 249);
 }
 .container-starbook .row {
   position: relative;
   min-height: 100vh;
-  padding: 70px 0 0 8px;
+  padding: 80px 0 0 8px;
 }
 .container-starbook .main {
   display: block;
@@ -146,17 +148,20 @@ app-home {
 
 .services-block {
   display: block;
-  width: 245px;
-  background-color: $services-block-background-color;
+  width: 490px;
+  // background-color: $services-block-background-color;
   border: 1px solid $services-block-border-color;
   margin-bottom: 20px;
+  margin-left: 10px;
   border-radius: 3px;
+  background-color: white;
 }
 .services-block .header {
   font-family: $font-name-medium;
-  font-size: 15px;
-  background-color: $services-block-header-background-color;
-  padding: 10px 19px;
+  font-size: 16px;
+  font-weight: bold;
+  // background-color: $services-block-header-background-color;
+  padding: 15px 20px;
   border-bottom: 1px solid $services-block-border-color;
   letter-spacing: $services-block-header-letter-spacing;
   color: $services-block-text-color;
@@ -170,7 +175,9 @@ app-home {
   display: block;
   position: relative;
   width: 100%;
-  padding: 7px 7px 7px 34px;
+  padding: 10px 7px 9px 50px;
+  margin: 1px 0 1px 0;
+  height: 40px;
   font-weight: 400;
   font-family: $font-name;
   font-size: $services-item-font-size;
@@ -182,27 +189,42 @@ app-home {
   border-radius: 3px;
 }
 .services-block .service .item:hover {
-  background-color: $services-item-hover-background-color;
+  background-color: #E6E9EF;
   border-radius: 3px;
 }
 .services-block .service .item i {
-  display: none;
+  display: block;
+  position: absolute;
+  top: 10px;
+  left: 15px;
+  font-size: 20px;
+  color: #E0E0E0;
+}
+.services-block .service .item:hover i {
+  display: block;
+  position: absolute;
+  top: 10px;
+  left: 15px;
+  font-size: 20px;
+  color: #324977;
 }
 .services-block .service .item.checked i {
   display: block;
   position: absolute;
-  top: 6px;
-  left: 8px;
-  font-size: 19px;
+  top: 10px;
+  left: 15px;
+  font-size: 20px;
+  color: #324977;
 }
 .services-block .service .item.checked {
-  font-weight: 400;
+  font-weight: bold;
   font-family: $font-name;
   font-size: $services-item-font-size;
   color: $general-text-color;
   letter-spacing: $services-item-letter-spacing;
   cursor: pointer;
   -webkit-font-smoothing: initial !important;
+  background-color: #E6E9EF;
 }
 .services-block .service .input {
   display: block;
@@ -226,18 +248,18 @@ app-home {
   outline: none;
 }
 .services-block .service .input-group {
-  padding: 0 2px 1px 2px;
+  padding: 10px 10px 10px 10px;
 }
 .services-block .service .input-group input {
   width: 100%;
-  border-top: 1px solid #DCDCDC;
-  border-left: 1px solid #DCDCDC;
-  border-bottom: 1px solid #DCDCDC;
-  border-right: 0px solid #DCDCDC;
+  border-top: 1px solid #E0E0E0;
+  border-left: 1px solid #E0E0E0;
+  border-bottom: 1px solid #E0E0E0;
+  border-right: 0px solid #E0E0E0;
   border-top-left-radius: 3px;
   border-bottom-left-radius: 3px;
   display: block;
-  height: 35px;
+  height: 40px;
   padding: 9px 13px 8px 13px;
   text-align: right;
   background-color: $home-input-background-color;
@@ -249,35 +271,37 @@ app-home {
   outline: none;
 }
 .services-block .service .input-group span {
-  border-top: 1px solid #DCDCDC;
-  border-left: 1px solid #DCDCDC;
-  border-bottom: 1px solid #DCDCDC;
-  border-right: 1px solid #DCDCDC;
+  border-top: 1px solid #E0E0E0;
+  border-left: 1px solid #E0E0E0;
+  border-bottom: 1px solid #E0E0E0;
+  border-right: 1px solid #E0E0E0;
   border-top-right-radius: 3px;
   border-bottom-right-radius: 3px;
   height: 35px;
   text-align: right;
-  background-color: #FCFCFC;
   font-family: $font-name;
-  font-weight: normal;
-  font-size: 14px;
+  font-weight: bold;
+  font-size: 15px;
   letter-spacing: $home-input-text-letter-spacing;
-  color: $home-input-text-color;
+  color: #424242;
   outline: none;
+  background-color: #E6E9EF;
+  padding: 0px 14px;
 }
 .services-block-big {
   display: block;
   position: absolute;
-  width: 508px;
+  width: 490px;
   border: none;
   background-color: $services-block-background-color;
   margin-bottom: 20px;
+  margin-left: 10px;
 }
 .services-block-big img {
   display: block;
   width: 100%;
   min-height: 130px;
-  // border-radius: 3px 3px 0 0;
+  border-radius: 3px 3px 0 0;
 }
 
 // Description block
@@ -349,4 +373,13 @@ $content-block-description-text-letter-spacing: 0.08px;
     width: 262px;
     margin: 0 auto;
   }
+}
+.noselect {
+  -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome and Opera */
 }

@@ -5,13 +5,13 @@ $font-name-bold: HelveticaNeue-Bold, sans-serif;
 $sidebar-background-color: #FCFCFC;
 $sidebar-shadow: 0px 0px 0px 0px rgba(0,0,0,0.50);
 $sidebar-border-style: 1px solid #DCDCDC;
-$sidebar-block-border: 1px solid #C8C8C8;
+$sidebar-block-border: 1px solid #DCE0E0;
 $sidebar-message-text-color: #9B9B9B;
 $sidebar-message-text-size: 15px;
 $sidebar-message-letter-spacing: 0.08px;
 
 // Form style
-$form-input-text-color: #212121;
+$form-input-text-color: #000000;
 $form-input-background-color: #FFFFFF;
 $form-input-text-letter-spacing: 0.1px;
 $form-input-text-border-color: #DCDCDC;
@@ -79,13 +79,13 @@ $footer-links-text-letter-spacing: 0.08px;
 
 .container-starbook .sidebar {
   display: block;
-  width: 388px;
+  width: 390px;
   height: auto;
   position: fixed;
   top: 0;
   right: 50%;
   bottom: 0;
-  padding: 70px 0 20px 0;
+  padding: 80px 30px 20px 0;
   margin-right: -720px;
 }
 .sidebar-container {
@@ -94,8 +94,8 @@ $footer-links-text-letter-spacing: 0.08px;
   position: relative;
   width: 100%;
   height: auto;
-  padding-left: 17.5px;
-  padding-right: 20.5px;
+  // padding-left: 10px;
+  // padding-right: 30px;
   overflow-y: visible;
 }
 .sidebar-container .sidebar-block {
@@ -103,20 +103,21 @@ $footer-links-text-letter-spacing: 0.08px;
   float: left;
   width: 100%;
   height: auto;
-  background-color: $sidebar-background-color;
+  background-color: white;
   border: $sidebar-block-border;
-  border-radius: 1px;
-  padding: 0 16px 0 16px;
+  border-radius: 3px;
+  // padding: 0 16px 0 16px;
 }
 .sidebar-container .add-order-form {
   position: relative;
   right: 0;
   bottom: 0;
   display: block;
-  float: left;
-  width: 318px;
-  padding-top: 20px;
-  margin-right: 0;
+  // float: left;
+  // width: 318px;
+  // padding-top: 20px;
+  // margin-right: 0;
+  padding: 20px;
   margin-bottom: -37px;
 }
 .footer-links {
@@ -153,6 +154,14 @@ $footer-links-text-letter-spacing: 0.08px;
 .add-order-form .form-group {
   margin-bottom: 10px;
 }
+.add-order-form label {
+  font-family: $font-name;
+  font-weight: bold;
+  color: #424242;
+  font-size: 14px;
+  padding-bottom: 5px;
+  padding-top: 5px;
+}
 .form-group label {
   color: $form-input-text-color;
   font-size: 16px;
@@ -161,19 +170,19 @@ $footer-links-text-letter-spacing: 0.08px;
   margin-bottom: 4px;
 }
 .form-control {
-  height: 35px;
+  height: 40px;
   color: $form-input-text-color;
-  font-size: 15px;
+  font-size: 16px;
   font-family: $font-name;
   letter-spacing: $form-input-text-letter-spacing;
   padding: 7px 10px;
-  border-radius: 3px !important;
+  border-radius: 1px !important;
   background-color: $form-input-background-color;
   border: 1px solid $form-input-text-border-color;
 }
 .input-group .form-control {
   position: relative;
-  padding: 7px 11px 7px 37px !important;
+  padding-left: 20px;
   box-shadow: none;
   border-radius: 0px;
 }
@@ -182,11 +191,12 @@ $footer-links-text-letter-spacing: 0.08px;
   width: 100%;
   height: 100%;
   border: none !important;
-  padding: 7px 11px 7px 37px !important;
+  // padding: 7px 11px 7px 37px !important;
+  padding-left: 20px;
   top: 0;
   left: 0;
   color: $form-input-text-color;
-  font-size: 15px;
+  font-size: 16px;
   font-family: $font-name;
   letter-spacing: $form-input-text-letter-spacing;
   outline: none;
@@ -217,8 +227,8 @@ textarea.form-control {
   left: 0;
   color: $form-button-text-color;
   font-size: 16px;
-  padding: 9px 11px;
-  height: 30px;
+  padding: 11px 13px;
+  height: 40px;
   width: 40px;
   text-align: center;
 }
@@ -288,17 +298,17 @@ textarea.form-control {
 .sidebar-block h2 {
   display: block;
   position: static;
-  width: 350px;
-  height: 44px;
-  margin-left: -17px;
-  margin-bottom: 20px;
-  padding: 12px 0 12px 16px;
+  // width: 350px;
+  // height: 44px;
+  // margin-left: -17px;
+  // margin-bottom: 20px;
+  padding: 17px 0 17px 20px;
   color: $order-block-header-color;
-  font-family: $font-name-bold;
-  font-size: 17px;
-  font-weight: 700;
+  font-family: $font-name-medium;
+  font-size: 18px;
+  font-weight: 500;
   letter-spacing: $order-block-header-letter-spacing;
-  border-bottom: $order-block-border;
+  border-bottom: $sidebar-block-border;
 }
 .order-container .category-group {
   display: block;
@@ -354,6 +364,11 @@ textarea.form-control {
   width: 70%;
   padding-right: 13px;
 }
+.calendar-box {
+  border-right: 1px solid #E0E0E0;
+  height: 40px;
+}
+
 .form-group.time-part {
   float: right;
   width: 30%;
@@ -393,15 +408,16 @@ textarea.form-control {
   top:0;
   left: 0;
   width: 100%;
-  height: 35px;
+  height: 40px;
   color: $form-input-text-color;
-  font-size: 15px;
+  font-size: 16px;
   font-family: $font-name;
   letter-spacing: $form-input-text-letter-spacing;
   border-radius: 3px;
   border: none;
   background-color: transparent;
-  padding: 7px 11px 7px 37px !important;
+  // padding: 7px 11px 7px 37px !important;
+  padding-left: 52px;
   outline: none;
 }
 .date.datepicker-block {
