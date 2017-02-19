@@ -345,7 +345,7 @@ $content-block-description-text-letter-spacing: 0.08px;
 @media (max-width: 1430px) {
   .home-page .tab-container {
     display: block;
-    width: 600px;
+    width: 100%;
     margin: 0 auto 20px auto;
   }
 
@@ -359,31 +359,31 @@ $content-block-description-text-letter-spacing: 0.08px;
 @media (max-width: 1168px) {
   .home-page .tab-container {
     display: block;
-    width: 525px;
+    width: 100%;
     // margin: 0 auto;
     margin: 0 auto 20px auto;
   }
 
   .services-block {
-    width: 390px;
+    width: 89%;
   }
   .services-block-big {
-    width: 390px;
+    width: 89%;
   }
 
 }
 @media (max-width: 906px) {
   .home-page .tab-container {
     display: block;
-    width: 262px;
+    width: 100%;
     // margin: 0 auto;
     margin: 0 auto 50px auto;
   }
   .services-block {
-    width: 345px;
+    width: 94%;
   }
   .services-block-big {
-    width: 345px;
+    width: 94%;
   }
 }
 @media (max-width: 645px) {
@@ -397,7 +397,7 @@ $content-block-description-text-letter-spacing: 0.08px;
   }
 
   .services-block .services-block-big {
-    width: 345px;
+    width: 100%;
   }
   .masonry-container {
     padding-left: 20px;

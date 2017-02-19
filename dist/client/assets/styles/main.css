@@ -3125,7 +3125,7 @@ app-home {
 @media (max-width: 1430px) {
   .home-page .tab-container {
     display: block;
-    width: 600px;
+    width: 100%;
     margin: 0 auto 20px auto; }
 
   .services-block {
@@ -3136,25 +3136,25 @@ app-home {
 @media (max-width: 1168px) {
   .home-page .tab-container {
     display: block;
-    width: 525px;
+    width: 100%;
     margin: 0 auto 20px auto; }
 
   .services-block {
-    width: 390px; }
+    width: 89%; }
 
   .services-block-big {
-    width: 390px; } }
+    width: 89%; } }
 @media (max-width: 906px) {
   .home-page .tab-container {
     display: block;
-    width: 262px;
+    width: 100%;
     margin: 0 auto 50px auto; }
 
   .services-block {
-    width: 345px; }
+    width: 94%; }
 
   .services-block-big {
-    width: 345px; } }
+    width: 94%; } }
 @media (max-width: 645px) {
   .home-page .tab-container {
     display: block;
@@ -3165,7 +3165,7 @@ app-home {
     padding-right: 15px; }
 
   .services-block .services-block-big {
-    width: 345px; }
+    width: 100%; }
 
   .masonry-container {
     padding-left: 20px; }
@@ -3728,13 +3728,13 @@ textarea.form-control {
   .sidebar-block h2 {
     right: 20px;
     margin-right: 0; } }
-@media (max-width: 645px) {
+@media (max-width: 906px) {
   .container-starbook .row {
     margin-right: 0; }
 
   .container-starbook .main {
-    padding-right: 15px;
-    padding-left: 15px; }
+    padding-right: 0px;
+    padding-left: 0px; }
 
   .container-starbook .sidebar {
     position: relative;
@@ -3752,6 +3752,51 @@ textarea.form-control {
   .sidebar-container .sidebar-block {
     position: relative;
     padding: 43px 16px 20px 16px; }
+
+  .sidebar-block h2 {
+    display: block;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    right: 0; }
+
+  .sidebar-container .add-order-form {
+    position: relative;
+    right: 0;
+    width: 100%;
+    margin-bottom: -60px; }
+
+  .order-container .order-list-empty {
+    margin-top: 8px; }
+
+  .order-container.selected-orders {
+    display: none; } }
+@media (max-width: 645px) {
+  .container-starbook .row {
+    margin-right: 0;
+    margin-left: 0;
+    padding-bottom: 20px; }
+
+  .container-starbook .main {
+    padding-right: 0px;
+    padding-left: 0px; }
+
+  .container-starbook .sidebar {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: auto;
+    margin-right: 0;
+    padding: 10px 0 36px 0; }
+
+  .sidebar-container {
+    overflow-y: visible;
+    padding-left: 7px;
+    padding-right: 7px; }
+
+  .sidebar-container .sidebar-block {
+    position: relative;
+    padding: 43px 0px 20px 0px; }
 
   .sidebar-block h2 {
     display: block;
