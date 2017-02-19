@@ -248,7 +248,7 @@ input.search-block .ui-autocomplete-input:-ms-input-placeholder {
 }
 @media (max-width: 790px) {
   .search-block {
-    max-width: 340px;
+    max-width: 320px;
   }
 }
 @media (max-width: 640px) {
@@ -302,5 +302,11 @@ input.search-block .ui-autocomplete-input:-ms-input-placeholder {
     margin-right: 8px;
     outline: none !important;
     box-shadow: none !important;
+  }
+}
+
+@media (max-width: 360px) {
+  .search-block {
+    max-width: 260px;
   }
 }
