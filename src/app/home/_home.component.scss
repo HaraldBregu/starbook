@@ -376,14 +376,17 @@ $content-block-description-text-letter-spacing: 0.08px;
   .home-page .tab-container {
     display: block;
     width: 100%;
-    // margin: 0 auto;
     margin: 0 auto 50px auto;
   }
   .services-block {
-    width: 94%;
+    width: 100%;
+  }
+  .masonry-container {
+    // padding-left: 20px;
+    padding: 0px;
   }
   .services-block-big {
-    width: 94%;
+    width: 100%;
   }
 }
 @media (max-width: 645px) {
@@ -396,11 +399,14 @@ $content-block-description-text-letter-spacing: 0.08px;
     padding-right: 15px;
   }
 
-  .services-block .services-block-big {
-    width: 100%;
+  .services-block-big {
+    padding-left: 10px;
+    padding-right: 10px;
   }
+
   .masonry-container {
-    padding-left: 20px;
+    // padding-left: 20px;
+    padding: 0px;
   }
   .container-starbook .row {
     padding: 70px 0 0 0;
@@ -413,7 +419,8 @@ $content-block-description-text-letter-spacing: 0.08px;
     margin: 0 auto;
   }
   .masonry-container {
-    padding-left: 10px;
+    // padding-left: 10px;
+    padding: 0px;
   }
   .container-starbook .row {
     padding: 60px 0 0 0;
