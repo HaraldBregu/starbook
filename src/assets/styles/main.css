@@ -3097,13 +3097,13 @@ app-home {
 .services-block-big .description {
   display: block;
   width: 100%;
-  padding: 15px 12px 14px 13px;
+  padding: 15px 15px 15px 15px;
   font-family: HelveticaNeue, sans-serif;
   font-size: 14px;
-  color: #212121;
+  color: white;
   letter-spacing: 0.08px;
   border-radius: 0 0 3px 3px;
-  border: 1px solid #DCE0E0; }
+  background-color: #161517; }
 
 .services-loader .loader {
   display: block;
