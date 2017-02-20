@@ -141,12 +141,9 @@ $services-footer-price-letter-spacing: 0.06px;
   font-weight: normal;
 }
 .landing .btn.btn-warning {
-  width: 100%;
-  height: 35px;
   font-family: $font-name-bold;
   border: $card-btn-border;
-  border-radius: 3px;
-  font-size: $card-btn-font-size;
+  // font-size: $card-btn-font-size;
   color: $card-btn-text-color;
   letter-spacing: $card-btn-letter-spacing;
   padding: 8px 7px;
@@ -157,14 +154,46 @@ $services-footer-price-letter-spacing: 0.06px;
   background: -webkit-linear-gradient(top,  $btn-gradient-color-yellow-light 0%,$btn-gradient-color-yellow-dark 100%);
   background: linear-gradient(to bottom,  $btn-gradient-color-yellow-light 0%,$btn-gradient-color-yellow-dark 100%);
   opacity: 0.9;
-}
-.landing .btn.btn-warning:hover,
-.landing .btn.btn-warning:active {
-  opacity: 1;
+  width: 320px;
+  margin: auto;
+  height: 60px;
+  border-radius: 30px;
+  font-size: 20px;
 }
 
+.landing .btn.btn-warning:hover,
+.landing .btn.btn-warning:active {
+  opacity: 1.0;
+}
+.landing .btn.btn-success {
+  font-family: $font-name-bold;
+  // border: $card-btn-border;
+  // font-size: $card-btn-font-size;
+  color: white;
+  letter-spacing: $card-btn-letter-spacing;
+  padding: 8px 7px;
+  // background: $btn-gradient-color-yellow-light;
+  text-align: center;
+  outline: none;
+  // background: -moz-linear-gradient(top,  $btn-gradient-color-yellow-light 0%, $btn-gradient-color-yellow-dark 100%);
+  // background: -webkit-linear-gradient(top,  $btn-gradient-color-yellow-light 0%,$btn-gradient-color-yellow-dark 100%);
+  // background: linear-gradient(to bottom,  $btn-gradient-color-yellow-light 0%,$btn-gradient-color-yellow-dark 100%);
+  opacity: 0.9;
+  width: 320px;
+  margin: auto;
+  height: 60px;
+  border-radius: 30px;
+  font-size: 20px;
+}
+
+.landing .btn.btn-success:hover,
+.landing .btn.btn-success:active {
+  opacity: 1.0;
+}
+
+
 .header-page {
-  background: #FAFAFA;
+  // background: #FAFAFA;
   padding-bottom: 50px;
 }
 .landing-header h1 {
@@ -190,6 +219,9 @@ $services-footer-price-letter-spacing: 0.06px;
   text-align: center;
   padding: 20px 0;
   color: $landing-general-text-color;
+}
+.landing-header-button {
+  margin-top: 30px;
 }
 
 .landing .row .top-cards {
@@ -594,6 +626,7 @@ input.landing-search .ui-autocomplete-input:-ms-input-placeholder {
   letter-spacing: $search-result-letter-spacing;
   padding: 8px 21px;
 }
+
 
 // Services cards
 .card-container h2 {

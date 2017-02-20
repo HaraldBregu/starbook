@@ -8,8 +8,9 @@ $font-name-medium: HelveticaNeue-Medium, sans-serif;
 $font-name-light: HelveticaNeue-Light, sans-serif;
 $letter-spacing: 0.08px;
 $background: #FAFAFA;
-$home-background-color: #f5f5f5;
-$general-text-color: #000000;
+$home-background-color: #FDFDFF;
+$general-text-color: rgba(66, 66, 66, 0.87);
+$general-checked-text-color: rgba(33, 33, 33, 0.87);
 
 // Tabs styles
 $navbar-tabs-items-color: #000000;
@@ -23,12 +24,12 @@ $navbar-tabs-active-background-color: #FAFAFA;
 $services-block-background-color: #FCFCFC;
 $services-item-hover-background-color: #F5F5F5;
 $services-block-border-color: #DCE0E0;
-$services-block-text-color: #424242;
+$services-block-text-color: rgba(33, 33, 33, 0.87);
 $services-block-header-background-color: rgba(252, 252, 252, 0);
 $services-block-header-letter-spacing: 0.1px;
 
 // Input styles
-$home-input-background-color: #FFFFFF;
+$home-input-background-color: #FAFAFA;
 $home-input-border: 1px solid #DCDCDC;
 $home-input-text-size: 16px;
 $home-input-text-color: #000000;
@@ -120,9 +121,10 @@ app-home {
   display: inline-block;
   border-radius: 50%;
 }
-
 .masonry-container {
-  padding-left: 30px;
+  // padding-left: 30px;
+  margin-left: 30px;
+  margin-right: 30px;
 }
 
 .container-starbook {
@@ -158,6 +160,7 @@ app-home {
   // margin-left: 10px;
   border-radius: 3px;
   background-color: white;
+  box-shadow: 0 1px 3px 0 #EDEFEF;
 }
 .services-block .header {
   font-family: $font-name-medium;
@@ -223,11 +226,11 @@ app-home {
   font-weight: 500;
   font-family: $font-name-medium;
   font-size: $services-item-font-size;
-  color: $general-text-color;
+  color: $general-checked-text-color;
   letter-spacing: $services-item-letter-spacing;
   cursor: pointer;
   -webkit-font-smoothing: initial !important;
-  background-color: #E6E9EF;
+  // background-color: #E6E9EF;
 }
 .services-block .service .input {
   display: block;
@@ -288,7 +291,7 @@ app-home {
   letter-spacing: $home-input-text-letter-spacing;
   color: #424242;
   outline: none;
-  background-color: #E6E9EF;
+  background-color: $home-input-background-color;
   padding: 0px 14px;
 }
 .services-block-big {
@@ -298,7 +301,7 @@ app-home {
   border: none;
   background-color: $services-block-background-color;
   margin-bottom: 20px;
-  // margin-left: 10px;
+  box-shadow: 0 1px 3px 0 #EDEFEF;
 }
 .services-block-big img {
   display: block;
@@ -309,18 +312,20 @@ app-home {
 
 // Description block
 $content-block-description-text-color: #212121;
-$content-block-description-text-size: 14px;
+$content-block-description-text-size: 15px;
 $content-block-description-text-letter-spacing: 0.08px;
 .services-block-big .description {
   display: block;
   width: 100%;
-  padding: 15px 12px 14px 13px;
+  padding: 15px 15px 15px 15px;
   font-family: $font-name;
   font-size: $content-block-description-text-size;
-  color: $content-block-description-text-color;
+  // color: $content-block-description-text-color;
+  color: white;
   letter-spacing: $content-block-description-text-letter-spacing;
   border-radius: 0 0 3px 3px;
-  border: 1px solid $services-block-border-color;
+  // border: 1px solid $services-block-border-color;
+  background-color: #324977;
 }
 
 // Loading style
@@ -365,25 +370,32 @@ $content-block-description-text-letter-spacing: 0.08px;
   }
 
   .services-block {
-    width: 89%;
+    width: 100%;
   }
   .services-block-big {
-    width: 89%;
+    width: 100%;
   }
-
 }
 @media (max-width: 906px) {
   .home-page .tab-container {
     display: block;
     width: 100%;
-    // margin: 0 auto;
-    margin: 0 auto 50px auto;
+    margin: 0 auto 0 auto;
   }
   .services-block {
-    width: 94%;
+    width: 100%;
+  }
+  .masonry-container {
+    // padding-left: 20px;
+    // padding: 0px;
+    margin-left: 20px;
+    margin-right: 20px;
   }
   .services-block-big {
-    width: 94%;
+    width: 100%;
+  }
+  .container-starbook .row {
+    padding: 70px 0 0 0;
   }
 }
 @media (max-width: 645px) {
@@ -396,11 +408,14 @@ $content-block-description-text-letter-spacing: 0.08px;
     padding-right: 15px;
   }
 
-  .services-block .services-block-big {
-    width: 100%;
+  .services-block-big {
+    // padding-left: 10px;
+    // padding-right: 10px;
   }
+
   .masonry-container {
-    padding-left: 20px;
+    // padding-left: 20px;
+    padding: 0px;
   }
   .container-starbook .row {
     padding: 70px 0 0 0;
@@ -413,7 +428,9 @@ $content-block-description-text-letter-spacing: 0.08px;
     margin: 0 auto;
   }
   .masonry-container {
-    padding-left: 10px;
+    // padding-left: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
   }
   .container-starbook .row {
     padding: 60px 0 0 0;

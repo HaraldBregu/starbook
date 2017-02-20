@@ -158,7 +158,7 @@
     </div>
     <div class="information-list" *ngIf="confirmPopupData.type === 'newOrder'">
       <div class="information-item"><span>Data:</span> {{ confirmPopupData.information.date }}</div>
-      <div class="information-item"><span>Ore:</span> {{ confirmPopupData.information.time }}</div>
+      <!-- <div class="information-item"><span>Ore:</span> {{ confirmPopupData.information.time }}</div> -->
       <div class="information-item"><span>Indirizzo:</span> {{ confirmPopupData.information.address }}</div>
       <div class="information-item" *ngIf="confirmPopupData.information.description !== ''"><span>Nota:</span> {{ confirmPopupData.information.description }}</div>
     </div>
@@ -249,7 +249,7 @@
 
     </div>
     <div class="subheader">
-      Informazioni facoltativi (collapse)
+      Informazioni facoltativi
     </div>
     <div class="form-group">
       <label for="addCardName">Nome intestatario</label>

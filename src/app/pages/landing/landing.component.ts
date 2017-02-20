@@ -19,9 +19,18 @@ export class LandingComponent implements OnInit {
   public clearView = false;
   public isLoading = false;
   public swiper: any;
+  public testPage;
   constructor(private homeService: HomeService, private router: Router, private route: ActivatedRoute, private navigationService: NavigationService, private analyticsService: AnalyticsService) { }
 
   ngOnInit() {
+
+    // TO USE FOR A/B TESTING
+    this.route.queryParams.subscribe((params: Params) => {
+      this.testPage = params['page']
+      // console.log('Parameters: ' + JSON.stringify(params));
+      // console.log(this.testPage);
+    });
+
     this.navigationService.updateMessage('Una città smart ha bisogno di servizi smart');
     this.isLoading = true;
     let timeStart = Date.now();
@@ -88,5 +97,16 @@ export class LandingComponent implements OnInit {
     this.query = '';
     this.results = [];
     this.clearView = false;
+  }
+
+  callToActionRegisterCompany() {
+    console.log('register company');
+    this.analyticsService.sendEvent({category:'Landing page actions', action: 'test buttons', label: 'register company'});
+  }
+
+  callToActionShareToEarn() {
+    console.log('share to earn');
+    this.analyticsService.sendEvent({category:'Landing page actions', action: 'test buttons', label: 'share to earn'});
+
   }
 }

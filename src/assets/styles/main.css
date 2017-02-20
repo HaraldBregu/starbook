@@ -2841,7 +2841,7 @@ app-home {
   float: left;
   width: 100%;
   height: 100%;
-  background-color: #f5f5f5; }
+  background-color: #FDFDFF; }
 
 .container-starbook.home-tab-bar {
   height: 30px;
@@ -2899,7 +2899,7 @@ app-home {
   font-family: HelveticaNeue-Light, sans-serif;
   font-weight: normal;
   letter-spacing: 0.1px;
-  background-color: #f5f5f5;
+  background-color: #FDFDFF;
   border-left: 1px solid #DCDCDC;
   border-right: 1px solid #DCDCDC; }
 
@@ -2918,7 +2918,8 @@ app-home {
   border-radius: 50%; }
 
 .masonry-container {
-  padding-left: 30px; }
+  margin-left: 30px;
+  margin-right: 30px; }
 
 .container-starbook {
   display: block;
@@ -2930,7 +2931,7 @@ app-home {
 
 .container-starbook.home-page {
   padding: 0px;
-  background-color: #f5f5f5; }
+  background-color: #FDFDFF; }
 
 .container-starbook .row {
   position: relative;
@@ -2948,7 +2949,8 @@ app-home {
   border: 1px solid #DCE0E0;
   margin-bottom: 20px;
   border-radius: 3px;
-  background-color: white; }
+  background-color: white;
+  box-shadow: 0 1px 3px 0 #EDEFEF; }
 
 .services-block .header {
   font-family: HelveticaNeue-Medium, sans-serif;
@@ -2957,7 +2959,7 @@ app-home {
   padding: 15px 20px;
   border-bottom: 1px solid #DCE0E0;
   letter-spacing: 0.1px;
-  color: #424242; }
+  color: rgba(33, 33, 33, 0.87); }
 
 .services-block .service {
   display: block;
@@ -2973,7 +2975,7 @@ app-home {
   font-weight: 400;
   font-family: HelveticaNeue, sans-serif;
   font-size: 14px;
-  color: #000000;
+  color: rgba(66, 66, 66, 0.87);
   letter-spacing: 0.09px;
   cursor: pointer;
   -webkit-font-smoothing: initial !important;
@@ -3012,11 +3014,10 @@ app-home {
   font-weight: 500;
   font-family: HelveticaNeue-Medium, sans-serif;
   font-size: 14px;
-  color: #000000;
+  color: rgba(33, 33, 33, 0.87);
   letter-spacing: 0.09px;
   cursor: pointer;
-  -webkit-font-smoothing: initial !important;
-  background-color: #E6E9EF; }
+  -webkit-font-smoothing: initial !important; }
 
 .services-block .service .input {
   display: block;
@@ -3030,7 +3031,7 @@ app-home {
   padding: 9px 13px 8px 13px;
   text-align: right;
   border-radius: 3px;
-  background-color: #FFFFFF;
+  background-color: #FAFAFA;
   border: 1px solid #DCDCDC;
   font-family: HelveticaNeue, sans-serif;
   font-weight: normal;
@@ -3054,7 +3055,7 @@ app-home {
   height: 40px;
   padding: 9px 13px 8px 13px;
   text-align: right;
-  background-color: #FFFFFF;
+  background-color: #FAFAFA;
   font-family: HelveticaNeue, sans-serif;
   font-weight: normal;
   font-size: 16px;
@@ -3077,7 +3078,7 @@ app-home {
   letter-spacing: 0.1px;
   color: #424242;
   outline: none;
-  background-color: #E6E9EF;
+  background-color: #FAFAFA;
   padding: 0px 14px; }
 
 .services-block-big {
@@ -3086,7 +3087,8 @@ app-home {
   width: 490px;
   border: none;
   background-color: #FCFCFC;
-  margin-bottom: 20px; }
+  margin-bottom: 20px;
+  box-shadow: 0 1px 3px 0 #EDEFEF; }
 
 .services-block-big img {
   display: block;
@@ -3097,13 +3099,13 @@ app-home {
 .services-block-big .description {
   display: block;
   width: 100%;
-  padding: 15px 12px 14px 13px;
+  padding: 15px 15px 15px 15px;
   font-family: HelveticaNeue, sans-serif;
-  font-size: 14px;
-  color: #212121;
+  font-size: 15px;
+  color: white;
   letter-spacing: 0.08px;
   border-radius: 0 0 3px 3px;
-  border: 1px solid #DCE0E0; }
+  background-color: #324977; }
 
 .services-loader .loader {
   display: block;
@@ -3140,21 +3142,28 @@ app-home {
     margin: 0 auto 20px auto; }
 
   .services-block {
-    width: 89%; }
+    width: 100%; }
 
   .services-block-big {
-    width: 89%; } }
+    width: 100%; } }
 @media (max-width: 906px) {
   .home-page .tab-container {
     display: block;
     width: 100%;
-    margin: 0 auto 50px auto; }
+    margin: 0 auto 0 auto; }
 
   .services-block {
-    width: 94%; }
+    width: 100%; }
+
+  .masonry-container {
+    margin-left: 20px;
+    margin-right: 20px; }
 
   .services-block-big {
-    width: 94%; } }
+    width: 100%; }
+
+  .container-starbook .row {
+    padding: 70px 0 0 0; } }
 @media (max-width: 645px) {
   .home-page .tab-container {
     display: block;
@@ -3164,11 +3173,8 @@ app-home {
   .container-starbook .main {
     padding-right: 15px; }
 
-  .services-block .services-block-big {
-    width: 100%; }
-
   .masonry-container {
-    padding-left: 20px; }
+    padding: 0px; }
 
   .container-starbook .row {
     padding: 70px 0 0 0; } }
@@ -3179,7 +3185,8 @@ app-home {
     margin: 0 auto; }
 
   .masonry-container {
-    padding-left: 10px; }
+    margin-left: 10px;
+    margin-right: 10px; }
 
   .container-starbook .row {
     padding: 60px 0 0 0; }
@@ -3225,9 +3232,10 @@ app-home {
   float: left;
   width: 100%;
   height: auto;
-  background-color: white;
-  border: 1px solid #DCE0E0;
-  border-radius: 3px; }
+  background-color: #f5f5f5;
+  border: 1px solid #dcdcdc;
+  border-radius: 3px;
+  box-shadow: 0 1px 2px 0 #e7e9e9; }
 
 .sidebar-container .add-order-form {
   position: relative;
@@ -3420,7 +3428,7 @@ textarea.form-control {
   font-size: 18px;
   font-weight: 500;
   letter-spacing: 0.1px;
-  border-bottom: 1px solid #DCE0E0; }
+  border-bottom: 1px solid #dcdcdc; }
 
 .order-container .category-group {
   display: block;
@@ -3473,8 +3481,7 @@ textarea.form-control {
 
 .form-group.calendar-part {
   float: left;
-  width: 70%;
-  padding-right: 13px; }
+  width: 100%; }
 
 .calendar-box {
   border-right: 1px solid #E0E0E0;
@@ -3543,7 +3550,8 @@ textarea.form-control {
   font-family: HelveticaNeue, sans-serif;
   font-weight: 400;
   border: none !important;
-  padding: 12px 7px 11px 9px !important; }
+  padding: 12px 7px 11px 9px !important;
+  margin-left: 40px; }
 
 .date .ui-datepicker .ui-datepicker-title {
   display: block;
@@ -3730,7 +3738,8 @@ textarea.form-control {
     margin-right: 0; } }
 @media (max-width: 906px) {
   .container-starbook .row {
-    margin-right: 0; }
+    margin-left: 0px;
+    margin-right: 0px; }
 
   .container-starbook .main {
     padding-right: 0px;
@@ -3742,12 +3751,12 @@ textarea.form-control {
     width: 100%;
     height: auto;
     margin-right: 0;
-    padding: 10px 0 36px 0; }
+    padding: 0px 0 20px 0; }
 
   .sidebar-container {
     overflow-y: visible;
-    padding-left: 7px;
-    padding-right: 7px; }
+    padding-left: 20px;
+    padding-right: 20px; }
 
   .sidebar-container .sidebar-block {
     position: relative;
@@ -3775,7 +3784,7 @@ textarea.form-control {
   .container-starbook .row {
     margin-right: 0;
     margin-left: 0;
-    padding-bottom: 20px; }
+    padding-bottom: 10px; }
 
   .container-starbook .main {
     padding-right: 0px;
@@ -3791,8 +3800,8 @@ textarea.form-control {
 
   .sidebar-container {
     overflow-y: visible;
-    padding-left: 7px;
-    padding-right: 7px; }
+    padding-left: 10px;
+    padding-right: 10px; }
 
   .sidebar-container .sidebar-block {
     position: relative;
@@ -5741,12 +5750,8 @@ textarea.form-control {
   font-weight: normal; }
 
 .landing .btn.btn-warning {
-  width: 100%;
-  height: 35px;
   font-family: HelveticaNeue-Bold, sans-serif;
   border: 1px solid #A6A6A6;
-  border-radius: 3px;
-  font-size: 14px;
   color: #2A0202;
   letter-spacing: 0.9px;
   padding: 8px 7px;
@@ -5756,14 +5761,36 @@ textarea.form-control {
   background: -moz-linear-gradient(top, #FFE589 0%, #FEC751 100%);
   background: -webkit-linear-gradient(top, #FFE589 0%, #FEC751 100%);
   background: linear-gradient(to bottom, #FFE589 0%, #FEC751 100%);
-  opacity: 0.9; }
+  opacity: 0.9;
+  width: 320px;
+  margin: auto;
+  height: 60px;
+  border-radius: 30px;
+  font-size: 20px; }
 
 .landing .btn.btn-warning:hover,
 .landing .btn.btn-warning:active {
-  opacity: 1; }
+  opacity: 1.0; }
+
+.landing .btn.btn-success {
+  font-family: HelveticaNeue-Bold, sans-serif;
+  color: white;
+  letter-spacing: 0.9px;
+  padding: 8px 7px;
+  text-align: center;
+  outline: none;
+  opacity: 0.9;
+  width: 320px;
+  margin: auto;
+  height: 60px;
+  border-radius: 30px;
+  font-size: 20px; }
+
+.landing .btn.btn-success:hover,
+.landing .btn.btn-success:active {
+  opacity: 1.0; }
 
 .header-page {
-  background: #FAFAFA;
   padding-bottom: 50px; }
 
 .landing-header h1 {
@@ -5789,6 +5816,9 @@ textarea.form-control {
   text-align: center;
   padding: 20px 0;
   color: #212121; }
+
+.landing-header-button {
+  margin-top: 30px; }
 
 .landing .row .top-cards {
   padding: 0 10px; }
