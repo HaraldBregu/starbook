@@ -93,7 +93,7 @@
     <span>o</span>
   </div>
   <div class="form-group registration">
-    <a class="btn btn-primary facebook" (click)="getPopup('registration')">
+    <a class="btn btn-primary facebook" (click)="facebookLogin()">
       <i></i>
       Continua con Facebook
     </a>
@@ -188,10 +188,22 @@
 
 <!-- Finish popup -->
 <div class="popup" [@finishPopupState]="finishPopupState">
-  <div class="finish-message">
+  <div class="finish-message" [ngClass]="{'isForm': finishPopupData.type !== ''}">
     <a (click)="closePopup()" class="close-popup"></a>
     <div class="header">{{ finishPopupData.title }}</div>
     <p *ngFor="let text of finishPopupData.text">{{ text }}</p>
+    <div class="phone-form" *ngIf="finishPopupData.type === 'phone'">
+      <div class="form-group phone-field" [ngClass]="{'isError': enterPhoneFormError.phone}">
+        <label>Numero di telefono</label>
+        <input name="phone" class="form-control" [(ngModel)]="enterPhoneForm.phone" placeholder="" #phone="ngModel" (keyup)="checkNonEmpty('enterPhoneForm', phone.value)" (change)="checkNonEmpty('enterPhoneForm', phone.value)">
+      </div>
+      <div class="form-group">
+        <a (click)="setPhoneNumber()" class="btn btn-warning">Salva e continua</a>
+      </div>
+    </div>
+    <div class="form-group" *ngIf="finishPopupData.type === 'finishFacebookRegistration'">
+      <a (click)="closePopup()" class="btn btn-secondary">Chiudi</a>
+    </div>
   </div>
 </div>
 

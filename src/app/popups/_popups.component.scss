@@ -113,6 +113,11 @@ $action-form-description-color: #4A4A4A;
 $action-form-description-text-size: 12px;
 $action-form-description-letter-spacing: 0.08px;
 
+// Phone enter form
+$popup-phone-enter-form-header-size: 28px;
+$popup-phone-enter-form-header-letter-spacing: 0.18px;
+$popup-phone-enter-form-label-letter-spacing: 0.09px;
+
 .dark-screen {
   display: block;
   position: fixed;
@@ -256,6 +261,9 @@ $action-form-description-letter-spacing: 0.08px;
   outline: none;
   background-color: $popup-btn-background-color-gray;
   margin-bottom: -1rem;
+}
+.popup .login-form .form-group .btn.btn-secondary {
+  margin-top: 7px;
 }
 .popup .form-group a.btn.btn-secondary {
   padding: 9px 7px;
@@ -429,6 +437,14 @@ $action-form-description-letter-spacing: 0.08px;
   margin-top: 12px;
   padding-bottom: 4px;
 }
+
+.popup .finish-message.isForm .header {
+  font-size: $popup-phone-enter-form-header-size;
+  letter-spacing: $popup-phone-enter-form-header-letter-spacing;
+  margin-bottom: 0;
+  margin-top: 4px;
+  padding-bottom: 0;
+}
 .popup .finish-message.isLeft .header {
   text-align: left;
   font-size: $popup-header-font-size;
@@ -446,12 +462,30 @@ $action-form-description-letter-spacing: 0.08px;
   font-weight: 400;
   margin-top: 23px;
 }
+.popup .finish-message.isForm p {
+  margin-top: 14px;
+}
 .popup .finish-message.isLeft p {
   text-align: left;
   font-size: $popup-form-font-size;
   letter-spacing: $popup-text-letter-spacing;
   margin-top: 13px;
   margin-bottom: 17px;
+}
+.popup .finish-message.isForm .form-group.phone-field {
+  margin-top: 46px;
+}
+.popup .finish-message.isForm .form-group label {
+  letter-spacing: $popup-phone-enter-form-label-letter-spacing;
+}
+.popup .finish-message.isForm .form-group .form-control {
+  border-radius: 3px;
+}
+.popup .finish-message.isForm .form-group .btn.btn-warning {
+  margin-top: 22px;
+}
+.popup .finish-message.isForm .form-group .btn.btn-secondary {
+  margin-top: 38px;
 }
 .popup .finish-message .close-popup {
   display: block;
@@ -463,6 +497,9 @@ $action-form-description-letter-spacing: 0.08px;
   background-image: url($popup-finish-close-background);
   background-repeat: no-repeat;
   cursor: pointer;
+}
+.popup .finish-message.isForm .close-popup {
+  display: none;
 }
 .confirm-order-form .btn-secondary {
   margin-top: 14px !important;

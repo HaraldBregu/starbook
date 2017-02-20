@@ -179,6 +179,7 @@ import { Subscription }   from 'rxjs/Subscription';
 })
 export class PopupsComponent implements OnInit, OnDestroy {
   subscription: Subscription;
+  authSubscription: Subscription;
 
   public activePopup = '';
   public addCardPopupState = 'inactive';
@@ -192,7 +193,7 @@ export class PopupsComponent implements OnInit, OnDestroy {
   public shadowState = 'inactive';
   public emailPattern;
   public auth;
-  public  addCardData = {
+  public addCardData = {
     object: 'card',
     exp_date: '',
     exp_month: null,
@@ -270,7 +271,17 @@ export class PopupsComponent implements OnInit, OnDestroy {
   };
   public finishPopupData = {
     title: '',
-    text: []
+    text: [],
+    type: '',
+    data: {},
+    from: ''
+  };
+
+  public enterPhoneForm = {
+    phone: ''
+  };
+  public enterPhoneFormError = {
+    phone: false
   };
 
   public isPopupLoading = false;
@@ -402,10 +413,49 @@ export class PopupsComponent implements OnInit, OnDestroy {
   }
 
   facebookLogin() {
-    window.open(
-        'https://www.facebook.com/v2.8/dialog/oauth?client_id=1108461325907277&response_type=token&scope=email,public_profile&redirect_uri=http://localhost:4200/facebook',
-        '_blank',
-        'location=yes,height=570,width=520,scrollbars=yes,status=yes');
+    if (isBrowser) {
+      let left = Math.round((document.documentElement.clientWidth / 2) - 285);
+      let facebookPopup = window.open(
+          'https://www.facebook.com/v2.8/dialog/oauth?client_id=1108461325907277&response_type=token&scope=email,public_profile&redirect_uri=http://localhost:4200/facebook',
+          '_blank',
+          'location=yes,height=570,width=520,left=' + left + ', top=100,scrollbars=yes,status=yes');
+      this.checkAccessToken(facebookPopup, 1);
+    }
+  }
+
+  checkAccessToken(facebookWindow: Window, context) {
+    if (facebookWindow.closed) {
+      let accessToken = localStorage.getItem('facebook_token');
+
+      this.authServics.facebookLogin(accessToken)
+          .then((userData) => {
+            if(!userData.phone_number) {
+              this.closePopup(true);
+              this.finishPopupState = 'active';
+              this.finishPopupData.title = 'Completa il profilo';
+              this.finishPopupData.text.push('Per restare in contatto con i professionisti inserisci il suo numero di telefono.');
+              this.finishPopupData.type = 'phone';
+              this.finishPopupData.data = { userData: userData };
+              if (this.loginData.type === 'fromOrder') {
+                this.finishPopupData.from = 'order';
+              }
+            } else if (!userData.email) {
+              this.closePopup(true);
+
+            } else {
+              this.closePopup(false);
+            }
+          })
+          .catch((error) => {
+            this.formError = {
+              title: 'Errore!',
+              message: 'Authorization error'
+            };
+          });
+    } else {
+      let self = this;
+      setTimeout(function() {self.checkAccessToken(facebookWindow, context + 1)}, 200);
+    }
   }
 
   checkEmail(type: string, email: string) {
@@ -472,6 +522,13 @@ export class PopupsComponent implements OnInit, OnDestroy {
         this.registrationError.phone = false;
       } else {
         this.registrationError.phone = true;
+      }
+    }
+    if (type === 'enterPhoneForm') {
+      if (value.length > 10) {
+        this.enterPhoneFormError.phone = false;
+      } else {
+        this.enterPhoneFormError.phone = true;
       }
     }
     if (type === 'registrationPassword') {
@@ -889,6 +946,34 @@ export class PopupsComponent implements OnInit, OnDestroy {
     this.getPopup('error');
   }
 
+  setPhoneNumber() {
+    this.enterPhoneFormError.phone = false;
+    if (this.enterPhoneForm.phone.length > 10) {
+      this.authServics.addPhone(this.enterPhoneForm.phone)
+          .then((userData) => {
+            if (userData) {
+              this.finishPopupData.text = [];
+              this.closePopup(true);
+              if (this.finishPopupData.from === 'order') {
+                this.popupService.activate({type: 'confirmNewOrder', data: this.loginData.orderData});
+              } else {
+                this.finishPopupState = 'active';
+                this.finishPopupData.title = 'Complimenti!';
+                this.finishPopupData.text.push('Hai registrato con successo il suo account Starbook.');
+                this.finishPopupData.type = 'finishFacebookRegistration';
+                this.finishPopupData.data = { userData: userData };
+              }
+            }
+          })
+          .catch((error) => {
+            this.closePopup();
+            console.log(error);
+          });
+    } else {
+      this.enterPhoneFormError.phone = true;
+    }
+  }
+
   ngOnInit() {
     if (isBrowser) {
       this.subscription = this.popupService.getActivePopup$.subscribe(popup => {
@@ -1157,11 +1242,25 @@ export class PopupsComponent implements OnInit, OnDestroy {
       email: false,
       password: false
     };
+    this.finishPopupData = {
+      title: '',
+      text: [],
+      type: '',
+      data: {},
+      from: ''
+    };
+    this.enterPhoneForm = {
+      phone: ''
+    };
+    this.enterPhoneFormError = {
+      phone: false
+    };
   }
 
   ngOnDestroy() {
     if (isBrowser) {
       this.subscription.unsubscribe();
+      this.authSubscription.unsubscribe();
     }
   }
 

@@ -5113,6 +5113,9 @@ textarea.form-control {
   background-color: #EFF1F3;
   margin-bottom: -1rem; }
 
+.popup .login-form .form-group .btn.btn-secondary {
+  margin-top: 7px; }
+
 .popup .form-group a.btn.btn-secondary {
   padding: 9px 7px; }
 
@@ -5254,6 +5257,13 @@ textarea.form-control {
   margin-top: 12px;
   padding-bottom: 4px; }
 
+.popup .finish-message.isForm .header {
+  font-size: 28px;
+  letter-spacing: 0.18px;
+  margin-bottom: 0;
+  margin-top: 4px;
+  padding-bottom: 0; }
+
 .popup .finish-message.isLeft .header {
   text-align: left;
   font-size: 28px;
@@ -5271,12 +5281,30 @@ textarea.form-control {
   font-weight: 400;
   margin-top: 23px; }
 
+.popup .finish-message.isForm p {
+  margin-top: 14px; }
+
 .popup .finish-message.isLeft p {
   text-align: left;
   font-size: 14px;
   letter-spacing: 0.09px;
   margin-top: 13px;
   margin-bottom: 17px; }
+
+.popup .finish-message.isForm .form-group.phone-field {
+  margin-top: 46px; }
+
+.popup .finish-message.isForm .form-group label {
+  letter-spacing: 0.09px; }
+
+.popup .finish-message.isForm .form-group .form-control {
+  border-radius: 3px; }
+
+.popup .finish-message.isForm .form-group .btn.btn-warning {
+  margin-top: 22px; }
+
+.popup .finish-message.isForm .form-group .btn.btn-secondary {
+  margin-top: 38px; }
 
 .popup .finish-message .close-popup {
   display: block;
@@ -5288,6 +5316,9 @@ textarea.form-control {
   background-image: url("/assets/images/cancel.png");
   background-repeat: no-repeat;
   cursor: pointer; }
+
+.popup .finish-message.isForm .close-popup {
+  display: none; }
 
 .confirm-order-form .btn-secondary {
   margin-top: 14px !important; }
