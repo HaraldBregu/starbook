@@ -2958,7 +2958,7 @@ app-home {
   padding: 15px 20px;
   border-bottom: 1px solid #DCE0E0;
   letter-spacing: 0.1px;
-  color: #424242; }
+  color: rgba(33, 33, 33, 0.87); }
 
 .services-block .service {
   display: block;
@@ -2974,7 +2974,7 @@ app-home {
   font-weight: 400;
   font-family: HelveticaNeue, sans-serif;
   font-size: 14px;
-  color: #000000;
+  color: rgba(66, 66, 66, 0.87);
   letter-spacing: 0.09px;
   cursor: pointer;
   -webkit-font-smoothing: initial !important;
@@ -3013,7 +3013,7 @@ app-home {
   font-weight: 500;
   font-family: HelveticaNeue-Medium, sans-serif;
   font-size: 14px;
-  color: #000000;
+  color: rgba(33, 33, 33, 0.87);
   letter-spacing: 0.09px;
   cursor: pointer;
   -webkit-font-smoothing: initial !important; }
@@ -3077,7 +3077,7 @@ app-home {
   letter-spacing: 0.1px;
   color: #424242;
   outline: none;
-  background-color: #E6E9EF;
+  background-color: white;
   padding: 0px 14px; }
 
 .services-block-big {

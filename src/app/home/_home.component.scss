@@ -9,7 +9,8 @@ $font-name-light: HelveticaNeue-Light, sans-serif;
 $letter-spacing: 0.08px;
 $background: #FAFAFA;
 $home-background-color: #FDFDFF;
-$general-text-color: #000000;
+$general-text-color: rgba(66, 66, 66, 0.87);
+$general-checked-text-color: rgba(33, 33, 33, 0.87);
 
 // Tabs styles
 $navbar-tabs-items-color: #000000;
@@ -23,7 +24,7 @@ $navbar-tabs-active-background-color: #FAFAFA;
 $services-block-background-color: #FCFCFC;
 $services-item-hover-background-color: #F5F5F5;
 $services-block-border-color: #DCE0E0;
-$services-block-text-color: #424242;
+$services-block-text-color: rgba(33, 33, 33, 0.87);
 $services-block-header-background-color: rgba(252, 252, 252, 0);
 $services-block-header-letter-spacing: 0.1px;
 
@@ -224,7 +225,7 @@ app-home {
   font-weight: 500;
   font-family: $font-name-medium;
   font-size: $services-item-font-size;
-  color: $general-text-color;
+  color: $general-checked-text-color;
   letter-spacing: $services-item-letter-spacing;
   cursor: pointer;
   -webkit-font-smoothing: initial !important;
@@ -289,7 +290,7 @@ app-home {
   letter-spacing: $home-input-text-letter-spacing;
   color: #424242;
   outline: none;
-  background-color: #E6E9EF;
+  background-color: white;
   padding: 0px 14px;
 }
 .services-block-big {
