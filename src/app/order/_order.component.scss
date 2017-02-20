@@ -361,8 +361,8 @@ textarea.form-control {
 }
 .form-group.calendar-part {
   float: left;
-  width: 70%;
-  padding-right: 13px;
+  width: 100%;
+  // padding-right: 13px;
 }
 .calendar-box {
   border-right: 1px solid #E0E0E0;
@@ -434,6 +434,7 @@ textarea.form-control {
   font-weight: 400;
   border: none !important;
   padding: 12px 7px 11px 9px !important;
+  margin-left: 40px;
 }
 .date .ui-datepicker .ui-datepicker-title {
   display: block;

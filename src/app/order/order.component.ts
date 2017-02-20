@@ -272,7 +272,8 @@ export class OrderComponent implements OnInit, OnDestroy {
       let day = date.getDate() > 9 ? date.getDate() : '0' + date.getDate();
       let correctMonth = 1 + date.getMonth();
       let month = correctMonth > 9 ? correctMonth : '0' + correctMonth;
-      this.Order.delivery_date = date.getFullYear() + '-' + month + '-' + day + 'T' + this.Order.time + ':00.000Z';
+      // this.Order.delivery_date = date.getFullYear() + '-' + month + '-' + day + 'T' + this.Order.time + ':00.000Z';
+      this.Order.delivery_date = date.getFullYear() + '-' + month + '-' + day + 'T' + '08:00' + ':00.000Z';
       this.Order.service_id = this.orderData.service_id;
       this.Order.delivery_details = [{
         title: this.orderData.service,
