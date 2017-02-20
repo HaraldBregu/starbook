@@ -638,7 +638,9 @@ textarea.form-control {
   //   padding: 43px 16px 20px 16px;
   // }
   .container-starbook .row {
-    margin-right: 0;
+    // margin-right: 0;
+    margin-left: 0px;
+    margin-right: 0px;
   }
   .container-starbook .main {
     padding-right: 0px;
@@ -650,13 +652,13 @@ textarea.form-control {
     width: 100%;
     height: auto;
     margin-right: 0;
-    padding: 10px 0 36px 0;
+    padding: 0px 0 20px 0;
   }
   .sidebar-container {
     // margin-bottom: 60px;
     overflow-y: visible;
-    padding-left: 7px;
-    padding-right: 7px;
+    padding-left: 20px;
+    padding-right: 20px;
   }
   .sidebar-container .sidebar-block {
     position: relative;
@@ -689,7 +691,7 @@ textarea.form-control {
   .container-starbook .row {
     margin-right: 0;
     margin-left: 0;
-    padding-bottom: 20px;
+    padding-bottom: 10px;
   }
   .container-starbook .main {
     padding-right: 0px;
@@ -706,8 +708,8 @@ textarea.form-control {
   .sidebar-container {
     // margin-bottom: 60px;
     overflow-y: visible;
-    padding-left: 7px;
-    padding-right: 7px;
+    padding-left: 10px;
+    padding-right: 10px;
   }
   .sidebar-container .sidebar-block {
     position: relative;

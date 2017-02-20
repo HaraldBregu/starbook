@@ -3150,14 +3150,14 @@ app-home {
   .home-page .tab-container {
     display: block;
     width: 100%;
-    margin: 0 auto 50px auto; }
+    margin: 0 auto 0 auto; }
 
   .services-block {
     width: 100%; }
 
   .masonry-container {
-    margin-left: 10px;
-    margin-right: 10px; }
+    margin-left: 20px;
+    margin-right: 20px; }
 
   .services-block-big {
     width: 100%; }
@@ -3738,7 +3738,8 @@ textarea.form-control {
     margin-right: 0; } }
 @media (max-width: 906px) {
   .container-starbook .row {
-    margin-right: 0; }
+    margin-left: 0px;
+    margin-right: 0px; }
 
   .container-starbook .main {
     padding-right: 0px;
@@ -3750,12 +3751,12 @@ textarea.form-control {
     width: 100%;
     height: auto;
     margin-right: 0;
-    padding: 10px 0 36px 0; }
+    padding: 0px 0 20px 0; }
 
   .sidebar-container {
     overflow-y: visible;
-    padding-left: 7px;
-    padding-right: 7px; }
+    padding-left: 20px;
+    padding-right: 20px; }
 
   .sidebar-container .sidebar-block {
     position: relative;
@@ -3783,7 +3784,7 @@ textarea.form-control {
   .container-starbook .row {
     margin-right: 0;
     margin-left: 0;
-    padding-bottom: 20px; }
+    padding-bottom: 10px; }
 
   .container-starbook .main {
     padding-right: 0px;
@@ -3799,8 +3800,8 @@ textarea.form-control {
 
   .sidebar-container {
     overflow-y: visible;
-    padding-left: 7px;
-    padding-right: 7px; }
+    padding-left: 10px;
+    padding-right: 10px; }
 
   .sidebar-container .sidebar-block {
     position: relative;
