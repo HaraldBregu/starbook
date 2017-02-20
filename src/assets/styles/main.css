@@ -2610,11 +2610,6 @@ html, body {
 .nav-link.profile {
   cursor: pointer; }
 
-.nav-link.login {
-  cursor: pointer;
-  border: 1px solid white;
-  border-radius: 5px; }
-
 .navbar {
   padding: 1px 0 !important;
   height: 50px; }
@@ -3021,8 +3016,7 @@ app-home {
   color: #000000;
   letter-spacing: 0.09px;
   cursor: pointer;
-  -webkit-font-smoothing: initial !important;
-  background-color: #E6E9EF; }
+  -webkit-font-smoothing: initial !important; }
 
 .services-block .service .input {
   display: block;
