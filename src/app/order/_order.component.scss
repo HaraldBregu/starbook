@@ -103,10 +103,11 @@ $footer-links-text-letter-spacing: 0.08px;
   float: left;
   width: 100%;
   height: auto;
-  background-color: white;
+  background-color: rgba(248, 248, 250, 1);
   border: $sidebar-block-border;
   border-radius: 3px;
   // padding: 0 16px 0 16px;
+  box-shadow: 0 1px 2px 0 #EDEFEF;
 }
 .sidebar-container .add-order-form {
   position: relative;
