@@ -2949,7 +2949,8 @@ app-home {
   border: 1px solid #DCE0E0;
   margin-bottom: 20px;
   border-radius: 3px;
-  background-color: white; }
+  background-color: white;
+  box-shadow: 0 1px 3px 0 #EDEFEF; }
 
 .services-block .header {
   font-family: HelveticaNeue-Medium, sans-serif;
@@ -3030,7 +3031,7 @@ app-home {
   padding: 9px 13px 8px 13px;
   text-align: right;
   border-radius: 3px;
-  background-color: #FFFFFF;
+  background-color: #FAFAFA;
   border: 1px solid #DCDCDC;
   font-family: HelveticaNeue, sans-serif;
   font-weight: normal;
@@ -3054,7 +3055,7 @@ app-home {
   height: 40px;
   padding: 9px 13px 8px 13px;
   text-align: right;
-  background-color: #FFFFFF;
+  background-color: #FAFAFA;
   font-family: HelveticaNeue, sans-serif;
   font-weight: normal;
   font-size: 16px;
@@ -3077,7 +3078,7 @@ app-home {
   letter-spacing: 0.1px;
   color: #424242;
   outline: none;
-  background-color: white;
+  background-color: #FAFAFA;
   padding: 0px 14px; }
 
 .services-block-big {
@@ -3086,7 +3087,8 @@ app-home {
   width: 490px;
   border: none;
   background-color: #FCFCFC;
-  margin-bottom: 20px; }
+  margin-bottom: 20px;
+  box-shadow: 0 1px 3px 0 #EDEFEF; }
 
 .services-block-big img {
   display: block;

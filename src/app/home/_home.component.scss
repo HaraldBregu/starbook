@@ -29,7 +29,7 @@ $services-block-header-background-color: rgba(252, 252, 252, 0);
 $services-block-header-letter-spacing: 0.1px;
 
 // Input styles
-$home-input-background-color: #FFFFFF;
+$home-input-background-color: #FAFAFA;
 $home-input-border: 1px solid #DCDCDC;
 $home-input-text-size: 16px;
 $home-input-text-color: #000000;
@@ -160,6 +160,7 @@ app-home {
   // margin-left: 10px;
   border-radius: 3px;
   background-color: white;
+  box-shadow: 0 1px 3px 0 #EDEFEF;
 }
 .services-block .header {
   font-family: $font-name-medium;
@@ -290,7 +291,7 @@ app-home {
   letter-spacing: $home-input-text-letter-spacing;
   color: #424242;
   outline: none;
-  background-color: white;
+  background-color: $home-input-background-color;
   padding: 0px 14px;
 }
 .services-block-big {
@@ -300,7 +301,7 @@ app-home {
   border: none;
   background-color: $services-block-background-color;
   margin-bottom: 20px;
-  // margin-left: 10px;
+  box-shadow: 0 1px 3px 0 #EDEFEF;
 }
 .services-block-big img {
   display: block;
