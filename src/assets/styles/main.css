@@ -3232,10 +3232,10 @@ app-home {
   float: left;
   width: 100%;
   height: auto;
-  background-color: #f8f8fa;
-  border: 1px solid #DCE0E0;
+  background-color: #f5f5f5;
+  border: 1px solid #dcdcdc;
   border-radius: 3px;
-  box-shadow: 0 1px 2px 0 #EDEFEF; }
+  box-shadow: 0 1px 2px 0 #e7e9e9; }
 
 .sidebar-container .add-order-form {
   position: relative;
@@ -3428,7 +3428,7 @@ textarea.form-control {
   font-size: 18px;
   font-weight: 500;
   letter-spacing: 0.1px;
-  border-bottom: 1px solid #DCE0E0; }
+  border-bottom: 1px solid #dcdcdc; }
 
 .order-container .category-group {
   display: block;
@@ -5718,12 +5718,8 @@ textarea.form-control {
   font-weight: normal; }
 
 .landing .btn.btn-warning {
-  width: 100%;
-  height: 35px;
   font-family: HelveticaNeue-Bold, sans-serif;
   border: 1px solid #A6A6A6;
-  border-radius: 3px;
-  font-size: 14px;
   color: #2A0202;
   letter-spacing: 0.9px;
   padding: 8px 7px;
@@ -5733,14 +5729,36 @@ textarea.form-control {
   background: -moz-linear-gradient(top, #FFE589 0%, #FEC751 100%);
   background: -webkit-linear-gradient(top, #FFE589 0%, #FEC751 100%);
   background: linear-gradient(to bottom, #FFE589 0%, #FEC751 100%);
-  opacity: 0.9; }
+  opacity: 0.9;
+  width: 320px;
+  margin: auto;
+  height: 60px;
+  border-radius: 30px;
+  font-size: 20px; }
 
 .landing .btn.btn-warning:hover,
 .landing .btn.btn-warning:active {
-  opacity: 1; }
+  opacity: 1.0; }
+
+.landing .btn.btn-success {
+  font-family: HelveticaNeue-Bold, sans-serif;
+  color: white;
+  letter-spacing: 0.9px;
+  padding: 8px 7px;
+  text-align: center;
+  outline: none;
+  opacity: 0.9;
+  width: 320px;
+  margin: auto;
+  height: 60px;
+  border-radius: 30px;
+  font-size: 20px; }
+
+.landing .btn.btn-success:hover,
+.landing .btn.btn-success:active {
+  opacity: 1.0; }
 
 .header-page {
-  background: #FAFAFA;
   padding-bottom: 50px; }
 
 .landing-header h1 {
@@ -5766,6 +5784,9 @@ textarea.form-control {
   text-align: center;
   padding: 20px 0;
   color: #212121; }
+
+.landing-header-button {
+  margin-top: 30px; }
 
 .landing .row .top-cards {
   padding: 0 10px; }
