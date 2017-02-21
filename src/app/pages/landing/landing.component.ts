@@ -4,6 +4,8 @@ import { Router, Route, ActivatedRoute, Params } from '@angular/router';
 import { HomeService } from '../../home/home.service';
 import { NavigationService } from '../../shared/navigation.service';
 import { AnalyticsService } from '../../shared/analytics.service';
+import { PopupsService } from '../../popups/popups.service';
+
 declare let Swiper: any;
 
 @Component({
@@ -20,7 +22,7 @@ export class LandingComponent implements OnInit {
   public isLoading = false;
   public swiper: any;
   public testPage;
-  constructor(private homeService: HomeService, private router: Router, private route: ActivatedRoute, private navigationService: NavigationService, private analyticsService: AnalyticsService) { }
+  constructor(private homeService: HomeService, private router: Router, private route: ActivatedRoute, private navigationService: NavigationService, private analyticsService: AnalyticsService, private popupsService: PopupsService) { }
 
   ngOnInit() {
 
@@ -101,6 +103,8 @@ export class LandingComponent implements OnInit {
 
   callToActionRegisterCompany() {
     // console.log('register company');
+    this.popupsService.activate({type: 'registerCompany'});
+
     this.analyticsService.sendEvent({category:'Landing page A/B tests', action: 'press button', label: 'register company'});
   }
 

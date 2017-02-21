@@ -31,7 +31,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
   public delta: number = 0;
   public tabs = [
     {name: 'Generali', selected: false, url: 'settings'},
-    {name: 'Metodo di Pagamento', selected: false, url: 'payment'},
+    // {name: 'Metodo di Pagamento', selected: false, url: 'payment'},
     {name: 'Condizioni d’utilizzo', selected: false, url: 'conditions'},
     {name: 'Privacy Policy', selected: false, url: 'privacy'},
     {name: 'Assistenza', selected: false, url: 'help'}
@@ -106,7 +106,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
 
     this.route.params.subscribe(params => {
       this.selectTab = params['page'];
-      if (params['page'] ==='payment') {
+      /*if (params['page'] ==='payment') {
         this.navigationService.updateMessage('Metodo di pagamento');
         this.isLoading = true;
         let timeStart = Date.now();
@@ -135,7 +135,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
               //   this.popupsService.activate({type: 'error', data: {title:'Errore', message: 'An error has occurred'}});
               // }
             })
-      }
+      }*/
       if (params['page'] ==='settings') {
         this.navigationService.updateMessage('Informazioni del mio account');
         this.isLoading = true;

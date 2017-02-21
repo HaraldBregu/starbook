@@ -15,17 +15,17 @@ import { Subscription }   from 'rxjs/Subscription';
   animations: [
     trigger('addCardPopupState', [
       state('inactive', style({display: 'none', top: '-300px'})),
-      state('active',   style({display: 'block', top: '42px'})),
+      state('active',   style({display: 'block', top: '50px'})),
       transition('inactive => active', [
         animate(300, keyframes([
           style({display: 'none', top: '-300px', offset: 0}),
           style({display: 'block', opacity: 0, top: '-300px', offset: 0.01}),
-          style({display: 'block', opacity: 1, top: '42px', offset: 1.0})
+          style({display: 'block', opacity: 1, top: '50px', offset: 1.0})
         ]))
       ]),
       transition('active => inactive', [
         animate(300, keyframes([
-          style({display: 'block', opacity: 1, top: '42px', offset: 0}),
+          style({display: 'block', opacity: 1, top: '50px', offset: 0}),
           style({display: 'block', opacity: 0, top: '-300px', offset: 0.99}),
           style({display: 'none', top: '-300px', offset: 1.0})
         ]))
@@ -33,17 +33,17 @@ import { Subscription }   from 'rxjs/Subscription';
     ]),
     trigger('loginPopupState', [
       state('inactive', style({display: 'none', top: '-300px'})),
-      state('active',   style({display: 'block', top: '42px'})),
+      state('active',   style({display: 'block', top: '50px'})),
       transition('inactive => active', [
         animate(300, keyframes([
           style({display: 'none', top: '-300px', offset: 0}),
           style({display: 'block', opacity: 0, top: '-300px', offset: 0.01}),
-          style({display: 'block', opacity: 1, top: '42px', offset: 1.0})
+          style({display: 'block', opacity: 1, top: '50px', offset: 1.0})
         ]))
       ]),
       transition('active => inactive', [
         animate(300, keyframes([
-          style({display: 'block', opacity: 1, top: '42px', offset: 0}),
+          style({display: 'block', opacity: 1, top: '50px', offset: 0}),
           style({display: 'block', opacity: 0, top: '-300px', offset: 0.99}),
           style({display: 'none', top: '-300px', offset: 1.0})
         ]))
@@ -51,17 +51,17 @@ import { Subscription }   from 'rxjs/Subscription';
     ]),
     trigger('registrationPopupState', [
       state('inactive', style({display: 'none', top: '-300px'})),
-      state('active',   style({display: 'block', top: '42px'})),
+      state('active',   style({display: 'block', top: '50px'})),
       transition('inactive => active', [
         animate(300, keyframes([
           style({display: 'none', top: '-300px', offset: 0}),
           style({display: 'block', opacity: 0, top: '-300px', offset: 0.01}),
-          style({display: 'block', opacity: 1, top: '42px', offset: 1.0})
+          style({display: 'block', opacity: 1, top: '50px', offset: 1.0})
         ]))
       ]),
       transition('active => inactive', [
         animate(300, keyframes([
-          style({display: 'block', opacity: 1, top: '42px', offset: 0}),
+          style({display: 'block', opacity: 1, top: '50px', offset: 0}),
           style({display: 'block', opacity: 0, top: '-300px', offset: 0.99}),
           style({display: 'none', top: '-300px', offset: 1.0})
         ]))
@@ -69,17 +69,17 @@ import { Subscription }   from 'rxjs/Subscription';
     ]),
     trigger('recoveryPopupState', [
       state('inactive', style({display: 'none', top: '-300px'})),
-      state('active',   style({display: 'block', top: '42px'})),
+      state('active',   style({display: 'block', top: '50px'})),
       transition('inactive => active', [
         animate(300, keyframes([
           style({display: 'none', top: '-300px', offset: 0}),
           style({display: 'block', opacity: 0, top: '-300px', offset: 0.01}),
-          style({display: 'block', opacity: 1, top: '42px', offset: 1.0})
+          style({display: 'block', opacity: 1, top: '50px', offset: 1.0})
         ]))
       ]),
       transition('active => inactive', [
         animate(300, keyframes([
-          style({display: 'block', opacity: 1, top: '42px', offset: 0}),
+          style({display: 'block', opacity: 1, top: '50px', offset: 0}),
           style({display: 'block', opacity: 0, top: '-300px', offset: 0.99}),
           style({display: 'none', top: '-300px', offset: 1.0})
         ]))
@@ -87,17 +87,17 @@ import { Subscription }   from 'rxjs/Subscription';
     ]),
     trigger('finishPopupState', [
       state('inactive', style({display: 'none', top: '-300px'})),
-      state('active',   style({display: 'block', top: '42px'})),
+      state('active',   style({display: 'block', top: '50px'})),
       transition('inactive => active', [
         animate(300, keyframes([
           style({display: 'none', top: '-300px', offset: 0}),
           style({display: 'block', opacity: 0, top: '-300px', offset: 0.01}),
-          style({display: 'block', opacity: 1, top: '42px', offset: 1.0})
+          style({display: 'block', opacity: 1, top: '50px', offset: 1.0})
         ]))
       ]),
       transition('active => inactive', [
         animate(300, keyframes([
-          style({display: 'block', opacity: 1, top: '42px', offset: 0}),
+          style({display: 'block', opacity: 1, top: '50px', offset: 0}),
           style({display: 'block', opacity: 0, top: '-300px', offset: 0.99}),
           style({display: 'none', top: '-300px', offset: 1.0})
         ]))
@@ -105,17 +105,17 @@ import { Subscription }   from 'rxjs/Subscription';
     ]),
     trigger('confirmPopupState', [
       state('inactive', style({display: 'none', top: '-300px'})),
-      state('active',   style({display: 'block', top: '42px'})),
+      state('active',   style({display: 'block', top: '50px'})),
       transition('inactive => active', [
         animate(300, keyframes([
           style({display: 'none', top: '-300px', offset: 0}),
           style({display: 'block', opacity: 0, top: '-300px', offset: 0.01}),
-          style({display: 'block', opacity: 1, top: '42px', offset: 1.0})
+          style({display: 'block', opacity: 1, top: '50px', offset: 1.0})
         ]))
       ]),
       transition('active => inactive', [
         animate(300, keyframes([
-          style({display: 'block', opacity: 1, top: '42px', offset: 0}),
+          style({display: 'block', opacity: 1, top: '50px', offset: 0}),
           style({display: 'block', opacity: 0, top: '-300px', offset: 0.99}),
           style({display: 'none', top: '-300px', offset: 1.0})
         ]))
@@ -123,17 +123,17 @@ import { Subscription }   from 'rxjs/Subscription';
     ]),
     trigger('confirmFinishPopupState', [
       state('inactive', style({display: 'none', top: '-300px'})),
-      state('active',   style({display: 'block', top: '42px'})),
+      state('active',   style({display: 'block', top: '50px'})),
       transition('inactive => active', [
         animate(300, keyframes([
           style({display: 'none', top: '-300px', offset: 0}),
           style({display: 'block', opacity: 0, top: '-300px', offset: 0.01}),
-          style({display: 'block', opacity: 1, top: '42px', offset: 1.0})
+          style({display: 'block', opacity: 1, top: '50px', offset: 1.0})
         ]))
       ]),
       transition('active => inactive', [
         animate(300, keyframes([
-          style({display: 'block', opacity: 1, top: '42px', offset: 0}),
+          style({display: 'block', opacity: 1, top: '50px', offset: 0}),
           style({display: 'block', opacity: 0, top: '-300px', offset: 0.99}),
           style({display: 'none', top: '-300px', offset: 1.0})
         ]))
@@ -141,22 +141,43 @@ import { Subscription }   from 'rxjs/Subscription';
     ]),
     trigger('confirmActionPopupState', [
       state('inactive', style({display: 'none', top: '-300px'})),
-      state('active',   style({display: 'block', top: '42px'})),
+      state('active',   style({display: 'block', top: '50px'})),
       transition('inactive => active', [
         animate(300, keyframes([
           style({display: 'none', top: '-300px', offset: 0}),
           style({display: 'block', opacity: 0, top: '-300px', offset: 0.01}),
-          style({display: 'block', opacity: 1, top: '42px', offset: 1.0})
+          style({display: 'block', opacity: 1, top: '50px', offset: 1.0})
         ]))
       ]),
       transition('active => inactive', [
         animate(300, keyframes([
-          style({display: 'block', opacity: 1, top: '42px', offset: 0}),
+          style({display: 'block', opacity: 1, top: '50px', offset: 0}),
           style({display: 'block', opacity: 0, top: '-300px', offset: 0.99}),
           style({display: 'none', top: '-300px', offset: 1.0})
         ]))
       ])
     ]),
+
+    // A/B Tests
+    trigger('registerCompanyPopupState', [
+      state('inactive', style({display: 'none', top: '-300px'})),
+      state('active',   style({display: 'block', top: '50px'})),
+      transition('inactive => active', [
+        animate(300, keyframes([
+          style({display: 'none', top: '-300px', offset: 0}),
+          style({display: 'block', opacity: 0, top: '-300px', offset: 0.01}),
+          style({display: 'block', opacity: 1, top: '50px', offset: 1.0})
+        ]))
+      ]),
+      transition('active => inactive', [
+        animate(300, keyframes([
+          style({display: 'block', opacity: 1, top: '50px', offset: 0}),
+          style({display: 'block', opacity: 0, top: '-300px', offset: 0.99}),
+          style({display: 'none', top: '-300px', offset: 1.0})
+        ]))
+      ])
+    ]),
+
     trigger('shadowState', [
       state('inactive', style({display: 'none', opacity: 0})),
       state('active',   style({display: 'block', opacity: 1})),
@@ -190,6 +211,10 @@ export class PopupsComponent implements OnInit, OnDestroy {
   public confirmPopupState = 'inactive';
   public confirmFinishPopupState = 'inactive';
   public confirmActionPopupState = 'inactive';
+
+  // A/B Tests
+  public registerCompanyPopupState = 'inactive';
+
   public shadowState = 'inactive';
   public emailPattern;
   public auth;
@@ -327,6 +352,12 @@ export class PopupsComponent implements OnInit, OnDestroy {
     if (type === 'confirmOrderEnd') {
       this.confirmPopupState = 'active';
     }
+
+    // A/B TESTS
+    if (type === 'registerCompany') {
+      this.registerCompanyPopupState = 'active';
+    }
+
     this.shadowState = 'active';
     this.activePopup = type;
     return false;
@@ -357,6 +388,12 @@ export class PopupsComponent implements OnInit, OnDestroy {
     if (this.confirmActionPopupState === 'active') {
       this.confirmActionPopupState = 'inactive';
     }
+
+    // A/B TESTS
+    if (this.registerCompanyPopupState === 'active') {
+      this.registerCompanyPopupState = 'inactive';
+    }
+
     this.activePopup = '';
     this.formError = false;
     if (!isReopen) {
@@ -1176,6 +1213,14 @@ export class PopupsComponent implements OnInit, OnDestroy {
             this.finishPopupData.text = [];
             this.getErrorPopup(popup.data.title, popup.data.message);
             break;
+
+          // A/B TESTS
+          case 'registerCompany':
+            this.registerCompanyPopupState = 'active';
+            this.activePopup = 'registerCompany';
+            this.shadowState = 'active';
+            break;
+
         }
       });
     }
