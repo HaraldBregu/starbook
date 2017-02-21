@@ -100,13 +100,13 @@ export class LandingComponent implements OnInit {
   }
 
   callToActionRegisterCompany() {
-    console.log('register company');
-    this.analyticsService.sendEvent({category:'Landing page actions', action: 'test buttons', label: 'register company'});
+    // console.log('register company');
+    this.analyticsService.sendEvent({category:'Landing page A/B tests', action: 'press button', label: 'register company'});
   }
 
   callToActionShareToEarn() {
-    console.log('share to earn');
-    this.analyticsService.sendEvent({category:'Landing page actions', action: 'test buttons', label: 'share to earn'});
+    // console.log('share to earn');
+    this.analyticsService.sendEvent({category:'Landing page A/B tests', action: 'press button', label: 'share to earn'});
 
   }
 }
