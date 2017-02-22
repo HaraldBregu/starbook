@@ -5,12 +5,16 @@ import { HomeService } from '../../home/home.service';
 import { NavigationService } from '../../shared/navigation.service';
 import { AnalyticsService } from '../../shared/analytics.service';
 import { PopupsService } from '../../popups/popups.service';
+// import {FacebookService, FacebookLoginResponse} from 'ng2-facebook-sdk';
+import { AuthService } from '../../shared/auth.service';
 
 declare let Swiper: any;
+declare const FB:any;
 
 @Component({
   selector: 'app-landing',
-  templateUrl: './landing.component.html'
+  templateUrl: './landing.component.html',
+  // providers: [FacebookService]
 })
 export class LandingComponent implements OnInit {
   public cardStyles = {1: '0.95', 2: '0.95', 3: '0.9'};
@@ -22,13 +26,14 @@ export class LandingComponent implements OnInit {
   public isLoading = false;
   public swiper: any;
   public testPage;
-  constructor(private homeService: HomeService, private router: Router, private route: ActivatedRoute, private navigationService: NavigationService, private analyticsService: AnalyticsService, private popupsService: PopupsService) { }
+  constructor(private authServics: AuthService, private homeService: HomeService, private router: Router, private route: ActivatedRoute, private navigationService: NavigationService, private analyticsService: AnalyticsService, private popupsService: PopupsService) {
+  }
 
   ngOnInit() {
 
     // TO USE FOR A/B TESTING
     this.route.queryParams.subscribe((params: Params) => {
-      this.testPage = params['page']
+      this.testPage = params['action']
       // console.log('Parameters: ' + JSON.stringify(params));
       // console.log(this.testPage);
     });
@@ -101,16 +106,91 @@ export class LandingComponent implements OnInit {
     this.clearView = false;
   }
 
+  callToActionLoginWithFacebook() {
+    this.analyticsService.sendEvent({category:'Login', action: 'login with facebook', label: 'A/B Test Campain'});
+    if (isBrowser) {
+      let left = Math.round((document.documentElement.clientWidth / 2) - 285);
+      let facebookPopup = window.open(
+        // 'https://www.facebook.com/v2.8/dialog/oauth?client_id=1108461325907277&response_type=token&scope=email,public_profile&redirect_uri=https://www.starbook.co/facebook',
+        'https://www.facebook.com/v2.8/dialog/oauth?client_id=1108461325907277&response_type=token&scope=email,public_profile&redirect_uri=http://localhost:4200/facebook',
+          '_blank',
+          'location=yes,height=570,width=520,left=' + left + ', top=100,scrollbars=yes,status=yes');
+      this.checkAccessToken(facebookPopup, 1);
+    }
+  }
   callToActionRegisterCompany() {
     // console.log('register company');
     this.popupsService.activate({type: 'registerCompany'});
-
-    this.analyticsService.sendEvent({category:'Landing page A/B tests', action: 'press button', label: 'register company'});
+    this.analyticsService.sendEvent({category:'Landing page A/B tests', action: 'CTA', label: 'register company'});
   }
-
   callToActionShareToEarn() {
     // console.log('share to earn');
-    this.analyticsService.sendEvent({category:'Landing page A/B tests', action: 'press button', label: 'share to earn'});
+    this.analyticsService.sendEvent({category:'Landing page A/B tests', action: 'CTA', label: 'share to earn'});
+    if (isBrowser) {
+      let left = Math.round((document.documentElement.clientWidth / 2) - 285);
 
+      let sharelink = 'https://www.facebook.com/sharer/sharer.php';
+      let urlToShare = 'https://www.starbook.co';
+      let name = "Starbook | Prenota servizi professionali";
+      let caption = 'Starbook';
+      let description = 'Preventivi diretti? Starbook è la piattaforma dei lavorazioni professionali. Puoi creare preventivi istantanei senza il bisogno di contattare il professionista.';
+
+      let facebookPopup = window.open(sharelink + "?u=" + encodeURI(urlToShare) + /*"&name=" + name +*/ "&caption=" + encodeURI(caption) + "&description=" + encodeURI(description),
+        '_blank', 'location=yes,height=570,width=520,left=' + left + ', top=100,scrollbars=yes,status=yes');
+      // this.checkAccessToken(facebookPopup, 1);
+    }
+
+    // FB.ui({
+    //   method: 'feed',
+    //   mobile_iframe: true,
+    //   name: "Starbook | Prenota servizi professionali",
+    //   link: "https://www.starbook.co",
+    //   caption: 'Starbook',
+    //   description: 'Preventivi diretti? Starbook è la piattaforma dei lavorazioni professionali. Puoi creare preventivi istantanei senza il bisogno di contattare il professionista.'
+    // }, function(response) {
+    //   console.log(JSON.stringify(response));
+    //   if (response && response.post_id) {
+    //     console.log('Post was published.');
+    //   } else {
+    //     console.log('Post was not published.');
+    //   }
+    // });
+
+  }
+
+  checkAccessToken(facebookWindow: Window, context) {
+    if (facebookWindow.closed) {
+      let accessToken = localStorage.getItem('facebook_token');
+      // let auth = localStorage.getItem('auth');
+
+      this.authServics.facebookLogin(accessToken)
+          .then((userData) => {
+            if(!userData.phone_number) {
+              // this.popupsService.closePopup(true);
+              // this.finishPopupState = 'active';
+              // this.finishPopupData.title = 'Completa il profilo';
+              // this.finishPopupData.text.push('Per restare in contatto con i professionisti inserisci il suo numero di telefono.');
+              // this.finishPopupData.type = 'phone';
+              // this.finishPopupData.data = { userData: userData };
+              // if (this.loginData.type === 'fromOrder') {
+              //   this.finishPopupData.from = 'order';
+              // }
+            } else if (!userData.email) {
+              // this.popupsService.closePopup(true);
+
+            } else {
+              // this.popupsService.closePopup(false);
+            }
+          })
+          .catch((error) => {
+            // this.popupsService.formError = {
+            //   title: 'Errore!',
+            //   message: 'Authorization error'
+            // };
+          });
+    } else {
+      let self = this;
+      setTimeout(function() {self.checkAccessToken(facebookWindow, context + 1)}, 200);
+    }
   }
 }

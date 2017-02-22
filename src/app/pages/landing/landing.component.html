@@ -11,7 +11,7 @@
     <div class="container">
       <div class="row">
         <div class="col-xl-12 landing-search">
-          <p-autoComplete [(ngModel)]="query" [suggestions]="results" field="title" scrollHeight="275px" (completeMethod)="search($event)" (onSelect)="selectResult(query)" placeholder="Controsoffitto in cartongesso, Parete in cartongesso..." minLength="0">
+          <p-autoComplete [(ngModel)]="query" [suggestions]="results" field="title" scrollHeight="275px" (completeMethod)="search($event)" (onSelect)="selectResult(query)" placeholder="Parete in cartongesso..." minLength="0">
             <template let-res>
               <div class="search-result" (click)="selectResult(res)">{{ res.title }}</div>
             </template>
@@ -35,22 +35,35 @@
     </div>
 
     <!-- A/B TESTS -->
-    <div class="container landing-header-button" *ngIf="testPage==='register_company'">
+    <div class="container landing-header-button" *ngIf="testPage==='' || !testPage">
+      <div class="row">
+        <div class="col-xl-12">
+          <button class="btn btn-warning btn-block" (click)="callToActionLoginWithFacebook()">Registrati con Facebook</button>
+        </div>
+      </div>
+    </div>
+    <div class="container landing-header-button" *ngIf="testPage==='registro_impresa'">
       <div class="row">
         <div class="col-xl-12">
           <button class="btn btn-warning btn-block" (click)="callToActionRegisterCompany()">Registra la tua impresa</button>
         </div>
       </div>
     </div>
-    <div class="container landing-header-button" *ngIf="testPage==='share_starbook'">
+    <div class="container landing-header-button" *ngIf="testPage==='invita_un_amico_cell'">
       <div class="row">
         <div class="col-xl-12">
-          <button class="btn btn-warning btn-block" (click)="callToActionShareToEarn()">Condividi e guadagna 50€</button>
+          <button class="btn btn-warning btn-block" (click)="callToActionShareToEarn()">Consiglia ad un amico</button>
+        </div>
+      </div>
+    </div>
+    <div class="container landing-header-button" *ngIf="testPage==='invita_un_amico_email'">
+      <div class="row">
+        <div class="col-xl-12">
+          <button class="btn btn-warning btn-block" (click)="callToActionShareToEarn()">Invita un amico</button>
         </div>
       </div>
     </div>
 
-    
   </div>
   <div class="card-container">
     <div class="container">

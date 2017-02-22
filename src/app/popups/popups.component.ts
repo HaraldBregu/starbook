@@ -1050,7 +1050,7 @@ export class PopupsComponent implements OnInit, OnDestroy {
   }
 
   recommendToFriend() {
-    
+
   }
 
   ngOnInit() {

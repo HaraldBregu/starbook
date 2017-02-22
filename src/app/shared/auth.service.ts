@@ -11,7 +11,7 @@ export class AuthService {
   constructor(private http: Http, private navigationService: NavigationService) {
     let remote = 'https://api.starbook.co/v0.9.1/';
     let local = 'http://localhost/v0.9.1/';
-    this.api = local
+    this.api = remote
 
     if (isBrowser) {
       if (localStorage.getItem('auth') !== null) {
