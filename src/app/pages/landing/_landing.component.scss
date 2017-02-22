@@ -194,7 +194,7 @@ $services-footer-price-letter-spacing: 0.06px;
 
 .header-page {
   // background: #FAFAFA;
-  padding-bottom: 50px;
+  // padding-bottom: 50px;
 }
 .landing-header h1 {
   width: 100%;
@@ -629,6 +629,9 @@ input.landing-search .ui-autocomplete-input:-ms-input-placeholder {
 
 
 // Services cards
+.card-container {
+  margin-top: 20px;
+}
 .card-container h2 {
   width: 100%;
   text-align: center;
@@ -898,11 +901,21 @@ input.landing-search .ui-autocomplete-input:-ms-input-placeholder {
 
 }
 @media (max-width: 768px) {
+  .landing-header h1 {
+    padding: 40px 0 10px;
+  }
+  .landing-header h6 {
+    padding: 10px 0 25px;
+  }
+  .header-page {
+    padding-bottom: 0;
+  }
+
   .card-container h2 {
     padding-top: 39px;
   }
   .landing-services {
-    margin: 48px auto 41px;
+    margin: 40px auto 0px;
   }
   .why-container .why-cell {
     padding-bottom: 40px;
@@ -919,9 +932,30 @@ input.landing-search .ui-autocomplete-input:-ms-input-placeholder {
   }
 }
 @media (max-width: 576px) {
-  .landing-services {
-
+  .landing-header h1 {
+    text-align: left;
+    padding: 20px 0 10px;
   }
+  .landing-header h6 {
+    text-align: left;
+    padding: 0 0 10px;
+  }
+  .header-page {
+    padding-bottom: 0;
+  }
+  .card-container h2 {
+    padding: 30px 10px 0px;
+  }
+  .landing-services {
+    margin: 10px auto;
+  }
+  .landing-header-button {
+    margin: 20px 0 0;
+  }
+  .landing .btn.btn-warning {
+    width: 100%;
+  }
+
   .landing-services .services-card {
 
   }
