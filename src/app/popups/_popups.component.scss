@@ -436,15 +436,12 @@ $popup-phone-enter-form-label-letter-spacing: 0.09px;
 .popup .finish-message .header {
   display: block;
   width: 100%;
-  text-align: center;
+  text-align: left;
   font-family: $font-name;
   font-size: $popup-finish-header-font-size;
   color: $popup-finish-header-color;
   letter-spacing: $popup-finish-header-letter-spacing;
   font-weight: 400;
-  margin-bottom: 0;
-  margin-top: 12px;
-  padding-bottom: 4px;
 }
 
 .popup .finish-message.isForm .header {
@@ -463,13 +460,12 @@ $popup-phone-enter-form-label-letter-spacing: 0.09px;
 .popup .finish-message p {
   display: block;
   width: 100%;
-  text-align: center;
+  text-align: left;
   font-family: $font-name;
   font-size: $popup-finish-text-font-size;
   color: $popup-finish-text-color;
   letter-spacing: $popup-finish-text-letter-spacing;
   font-weight: 400;
-  margin-top: 23px;
 }
 .popup .finish-message.isForm p {
   margin-top: 14px;
@@ -909,7 +905,6 @@ $popup-phone-enter-form-label-letter-spacing: 0.09px;
 .popup.add-price .loader {
   margin-bottom: 20px;
 }
-
 @media (max-width: 480px) {
   .popup {
     width: 100%;

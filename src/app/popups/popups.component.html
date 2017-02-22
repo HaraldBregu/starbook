@@ -359,7 +359,50 @@
 </div>
 
 
-<!-- A/B Tests -->
+<!-- ******************************** A/B Tests ******************************** -->
+
 <div class="popup" [@registerCompanyPopupState]="registerCompanyPopupState">
-  <div class="header">This is ab Tests</div>
+  <app-loading *ngIf="isPopupLoading"></app-loading>
+  <div class="header">Registra la tua impresa</div>
+  <form class="registration-company-form" #registrationCompanyForm="ngForm">
+    <div class="form-group" >
+      <label for="regName">Il tuo nome</label>
+      <input id="regName" class="form-control" type="text" name="name" placeholder="il tuo nome" required [(ngModel)]="registerNewCompany.name" #regName="ngModel">
+    </div>
+    <div class="form-group">
+      <label for="regPhone">Numero di cellulare</label>
+      <input id="regPhone" class="form-control" type="text" name="phone" placeholder="+39" required [(ngModel)]="registerNewCompany.phone" #regPhone="ngModel">
+    </div>
+    <div class="form-group">
+      <label for="regProfession">Inserisci la tua professione</label>
+      <input id="regProfession" class="form-control" name="profession" placeholder="professione" [(ngModel)]="registerNewCompany.profession" #regProfession="ngModel">
+    </div>
+    <div class="form-group">
+      <button class="btn btn-warning" type="submit" (click)="registerCompany(regName.value, regPhone.value, regProfession.value)">Registra la tua impresa</button>
+      <button class="btn btn-secondary" type="submit" (click)="closePopup()">Annulla</button>
+    </div>
+  </form>
 </div>
+
+<!-- <div class="popup" [@recommendToFriendPopupState]="recommendToFriendPopupState">
+  <app-loading *ngIf="isPopupLoading"></app-loading>
+  <div class="header">Registra la tua impresa</div>
+  <form class="registration-company-form" #registrationCompanyForm="ngForm">
+    <div class="form-group" >
+      <label for="regName">Il tuo nome</label>
+      <input id="regName" class="form-control" type="text" name="name" placeholder="il tuo nome" required [(ngModel)]="registerNewCompany.name" #regName="ngModel">
+    </div>
+    <div class="form-group">
+      <label for="regPhone">Numero di cellulare</label>
+      <input id="regPhone" class="form-control" type="text" name="phone" placeholder="+39" required [(ngModel)]="registerNewCompany.phone" #regPhone="ngModel">
+    </div>
+    <div class="form-group">
+      <label for="regProfession">Inserisci la tua professione</label>
+      <input id="regProfession" class="form-control" name="profession" placeholder="professione" [(ngModel)]="registerNewCompany.profession" #regProfession="ngModel">
+    </div>
+    <div class="form-group">
+      <button class="btn btn-warning" type="submit" (click)="registerCompany(regName.value, regPhone.value, regProfession.value)">Registra la tua impresa</button>
+      <button class="btn btn-secondary" type="submit" (click)="closePopup()">Annulla</button>
+    </div>
+  </form>
+</div> -->

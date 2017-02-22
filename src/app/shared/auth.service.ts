@@ -9,7 +9,10 @@ export class AuthService {
   private api: string;
   private auth;
   constructor(private http: Http, private navigationService: NavigationService) {
-    this.api = 'https://api.starbook.co/v0.9.1/';
+    let remote = 'https://api.starbook.co/v0.9.1/';
+    let local = 'http://localhost/v0.9.1/';
+    this.api = local
+
     if (isBrowser) {
       if (localStorage.getItem('auth') !== null) {
         this.auth = JSON.parse(localStorage.getItem('auth'));
@@ -195,4 +198,21 @@ export class AuthService {
     return Promise.reject(error.status || error);
   }
 
+  //**********************************************
+  //***************** A/B TESTS ******************
+  //**********************************************
+
+  registerCompany(name: string, phone: string, profession: string) {
+    return this.http.post(this.api + 'register_company', {name: name, phone_number: phone, profession: profession})
+      .toPromise()
+      .then((response) => {
+        let data = response.json();
+        if (data.success === true) {
+          return data.result;
+        } else {
+          this.handleError(data.message);
+        }
+      })
+      .catch(this.handleError);
+  }
 }

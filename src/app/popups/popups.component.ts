@@ -311,6 +311,13 @@ export class PopupsComponent implements OnInit, OnDestroy {
     phone: false
   };
 
+  // A/B TESTS
+  public registerNewCompany = {
+    name : '',
+    phone : '',
+    profession : ''
+  }
+
   public isPopupLoading = false;
 
   public formError: boolean|{title: string, message: string} = false;
@@ -1012,6 +1019,38 @@ export class PopupsComponent implements OnInit, OnDestroy {
     } else {
       this.enterPhoneFormError.phone = true;
     }
+  }
+
+  //**********************************************
+  //***************** A/B TESTS ******************
+  //**********************************************
+
+  registerCompany(name: string, phone: string, profession: string) {
+    if (name.length > 0 && phone.length > 0) {
+      console.log('register the company: ' + name + phone + profession);
+      this.isPopupLoading = true;
+
+      this.authServics.registerCompany(name, phone, profession)
+      .then((data) => {
+        this.isPopupLoading = false;
+
+        console.log('register company data: ' + JSON.stringify(data));
+        // this.closePopup();
+        this.confirmFinishPopupData.title = "Richiesta d'iscrizione inviata";
+        this.confirmFinishPopupData.text = 'Questo ordine è stato annullato, puoi riattivarlo in un secondo momento.';
+        this.getPopup('confirmFinish');
+
+      })
+      .catch((error) => {
+        this.isPopupLoading = false;
+        console.log('error register: ' + error);
+        this.closePopup();
+      })
+    }
+  }
+
+  recommendToFriend() {
+    
   }
 
   ngOnInit() {

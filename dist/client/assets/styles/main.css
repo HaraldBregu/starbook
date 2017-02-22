@@ -5266,15 +5266,12 @@ textarea.form-control {
 .popup .finish-message .header {
   display: block;
   width: 100%;
-  text-align: center;
+  text-align: left;
   font-family: HelveticaNeue, sans-serif;
   font-size: 24px;
   color: #212121;
   letter-spacing: 0.15px;
-  font-weight: 400;
-  margin-bottom: 0;
-  margin-top: 12px;
-  padding-bottom: 4px; }
+  font-weight: 400; }
 
 .popup .finish-message.isForm .header {
   font-size: 28px;
@@ -5292,13 +5289,12 @@ textarea.form-control {
 .popup .finish-message p {
   display: block;
   width: 100%;
-  text-align: center;
+  text-align: left;
   font-family: HelveticaNeue, sans-serif;
   font-size: 16px;
   color: #212121;
   letter-spacing: 0.1px;
-  font-weight: 400;
-  margin-top: 23px; }
+  font-weight: 400; }
 
 .popup .finish-message.isForm p {
   margin-top: 14px; }
