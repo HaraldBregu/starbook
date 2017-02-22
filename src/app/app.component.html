@@ -1,6 +1,7 @@
 <nav class="navbar navbar-dark navbar-fixed-top bg-inverse" [ngClass]="{'is-search': isFindField}">
   <div class="container-starbook top-menu">
     <a class="navbar-brand" routerLink="" (click)="updateTabMenu()">Starbook</a>
+    <a class="navbar-brand mobile" routerLink="" (click)="updateTabMenu()">S</a>
     <div class="search-block" *ngIf="isFindField">
       <p-autoComplete [(ngModel)]="findValue" [suggestions]="results" field="title" scrollHeight="170px" (completeMethod)="search($event)" (onSelect)="selectResult(findValue)" placeholder="Cerca" minLength="0">
         <template let-res>

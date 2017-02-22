@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Http, URLSearchParams, Headers } from '@angular/http';
 import { Subject }    from 'rxjs/Subject';
 import 'rxjs/add/operator/toPromise';
+import * as http from "selenium-webdriver/http";
 // import { NavigationService } from '../shared/navigation.service';
 
 export interface IAddress {
@@ -146,6 +147,16 @@ export class OrderService {
         return addresses;
       })
       .catch(this.handleError);
+  }
+
+  getEstimatePrice(data) {
+    return this.http.post(this.api + 'calculate_estimate_price', data, this._makeHeaders())
+        .toPromise()
+        .then((response) => {
+          let price = response.json();
+          return price;
+        })
+        .catch(this.handleError);
   }
 
   private handleError(error: any): Promise<any> {

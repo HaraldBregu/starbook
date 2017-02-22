@@ -162,15 +162,29 @@
       <div class="information-item"><span>Indirizzo:</span> {{ confirmPopupData.information.address }}</div>
       <div class="information-item" *ngIf="confirmPopupData.information.description !== ''"><span>Nota:</span> {{ confirmPopupData.information.description }}</div>
     </div>
+    <div class="price-loader" *ngIf="confirmPopupData.type === 'newOrder' && isPopupLoading">
+      <div class="spinner">
+        <svg width='40px' height='40px' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid" class="uil-ring">
+          <rect x="0" y="0" width="100" height="100" fill="none" class="bk"></rect>
+          <circle cx="50" cy="50" r="45" stroke-dasharray="169.64600329384882 113.09733552923257" stroke="#3B568D" fill="none" stroke-width="10">
+            <animateTransform attributeName="transform" type="rotate" values="0 50 50;180 50 50;360 50 50;" keyTimes="0;0.5;1" dur="1s" repeatCount="indefinite" begin="0s"></animateTransform>
+          </circle>
+        </svg>
+      </div>
+      <span>Calcolando totale…</span>
+    </div>
+    <div class="price-area" *ngIf="confirmPopupData.type === 'newOrder' && isPopupLoading === false && confirmPopupData.totalPrice">
+      Totale<span>{{confirmPopupData.totalPrice / 100}}€</span>
+    </div>
     <div class="form-group">
       <button class="btn btn-warning" type="submit" (click)="confirmOrder(confirmPopupData.id)" *ngIf="confirmPopupData.button === 'Conferma'">Conferma</button>
       <button class="btn btn-warning" type="submit" (click)="cancelOrder(confirmPopupData.id)" *ngIf="confirmPopupData.button === 'Annulla ordine'">Annulla ordine</button>
       <button class="btn btn-warning" type="submit" (click)="reactivateOrder(confirmPopupData.id)" *ngIf="confirmPopupData.button === 'Riattiva ordine'">Riattiva ordine</button>
-      <button class="btn btn-warning new-order-btn" type="submit" (click)="confirmNewOrder()" *ngIf="confirmPopupData.button === 'Procedi con l’acquisto'"><i class="fa fa-lock"></i> Procedi con l’acquisto</button>
-      <span *ngIf="confirmPopupData.button === 'Procedi con l’acquisto'" class="confirm-button-notice">Verrai notificato con un sms e mail ad acquisto effettuato</span>
+      <button class="btn btn-warning new-order-btn" type="submit" (click)="confirmNewOrder()" *ngIf="confirmPopupData.button === 'Prenota servizio' && isPopupLoading === false"><i class="fa fa-lock"></i> Prenota servizio</button>
       <button class="btn btn-warning logout-btn" type="submit" (click)="logout()" *ngIf="confirmPopupData.button === 'logout'">Esci</button>
       <button class="btn btn-secondary" type="submit" (click)="closePopup()" *ngIf="confirmPopupData.button === 'logout'">Annulla</button>
       <button class="btn btn-secondary" type="submit" (click)="closePopup()" *ngIf="confirmPopupData.button !== 'logout'">Chiudi</button>
+      <span *ngIf="confirmPopupData.button === 'Prenota servizio' && isPopupLoading === false" class="confirm-button-notice">Attenzione, chiudendo potresti perdere il prezzo calcolato del servizio.</span>
     </div>
   </form>
 </div>

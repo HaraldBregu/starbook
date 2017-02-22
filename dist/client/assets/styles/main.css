@@ -2627,6 +2627,9 @@ html, body {
   z-index: 2;
   padding-top: 4px; }
 
+.navbar-brand.mobile {
+  display: none; }
+
 .tagline {
   display: block;
   position: absolute;
@@ -2784,10 +2787,17 @@ input.search-block .ui-autocomplete-input:-ms-input-placeholder {
 
 @media (max-width: 790px) {
   .search-block {
-    max-width: 320px; } }
+    max-width: 280px; } }
 @media (max-width: 640px) {
   .is-search .navbar-brand {
-    display: none; } }
+    display: none; }
+
+  .is-search .navbar-brand.mobile {
+    display: block; }
+
+  .search-block {
+    margin-left: -30px;
+    padding-left: 35px; } }
 @media (max-width: 576px) {
   .tagline {
     display: none; }
@@ -5387,7 +5397,8 @@ textarea.form-control {
   font-style: normal; }
 
 .confirm-order-form .orders-list .order-item span.service-item {
-  font-family: HelveticaNeue-Medium, sans-serif; }
+  font-family: HelveticaNeue-Bold, sans-serif;
+  font-size: 16px; }
 
 .confirm-order-form .orders-list .order-item span.service-item i {
   font-family: HelveticaNeue-Bold, sans-serif; }
@@ -5400,10 +5411,49 @@ textarea.form-control {
   font-family: HelveticaNeue-Bold, sans-serif;
   font-size: 16px; }
 
+.confirm-order-form .price-loader {
+  display: block;
+  margin-top: 55px;
+  width: 100%;
+  position: relative; }
+
+.confirm-order-form .price-loader .spinner {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  margin-left: -16px;
+  width: 32px;
+  height: 32px; }
+
+.confirm-order-form .price-loader span {
+  display: block;
+  padding-top: 49px;
+  width: 100%;
+  color: #212121;
+  font-family: HelveticaNeue, sans-serif;
+  font-size: 20px;
+  letter-spacing: 0.11px;
+  text-align: center; }
+
+.confirm-order-form .price-area {
+  display: block;
+  width: 100%;
+  text-align: center;
+  font-family: HelveticaNeue-Bold, sans-serif;
+  color: #212121;
+  font-size: 28px;
+  letter-spacing: 0.18px;
+  margin: 41px 0; }
+
+.confirm-order-form .price-area span {
+  color: #00B420;
+  padding-left: 42px; }
+
 .confirm-order-form .information-list {
   display: block;
   width: 100%;
-  margin-top: 16px;
+  margin-top: 10px;
   margin-bottom: -3px; }
 
 .confirm-order-form .information-list .information-item {
@@ -5421,13 +5471,13 @@ textarea.form-control {
 .confirm-button-notice {
   display: block;
   width: 100%;
-  text-align: center;
-  color: #000000;
+  text-align: left;
+  color: #212121;
   font-family: HelveticaNeue, sans-serif;
-  font-size: 10px;
-  letter-spacing: 0.06px;
-  margin-top: 4px;
-  margin-bottom: 4px; }
+  font-size: 12px;
+  letter-spacing: 0.08px;
+  margin-top: 20px;
+  margin-bottom: 1px; }
 
 .popup .confirm-order-form .form-group .btn.btn-secondary {
   background-color: #EFF1F3; }

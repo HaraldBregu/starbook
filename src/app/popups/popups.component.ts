@@ -5,6 +5,7 @@ import { AuthService } from '../shared/auth.service';
 import { NavigationService } from '../shared/navigation.service';
 import { PopupsService } from './popups.service';
 import { OrdersService } from '../shared/orders.service';
+import { OrderService } from '../order/order.service';
 import { PaymentService } from '../shared/payment.service';
 import { AnalyticsService } from '../shared/analytics.service';
 import { Subscription }   from 'rxjs/Subscription';
@@ -277,7 +278,8 @@ export class PopupsComponent implements OnInit, OnDestroy {
     data: [],
     information: {},
     button: '',
-    type: ''
+    type: '',
+    totalPrice: null
   };
   public confirmFinishPopupData = {
     title: '',
@@ -312,7 +314,7 @@ export class PopupsComponent implements OnInit, OnDestroy {
   public isPopupLoading = false;
 
   public formError: boolean|{title: string, message: string} = false;
-  constructor(private authServics: AuthService, private navigationService: NavigationService, private popupService: PopupsService, private ordersService: OrdersService, private paymentService: PaymentService, private router: Router, private analyticsService: AnalyticsService) {
+  constructor(private authServics: AuthService, private navigationService: NavigationService, private popupService: PopupsService, private ordersService: OrdersService, private orderService: OrderService, private paymentService: PaymentService, private router: Router, private analyticsService: AnalyticsService) {
     this.emailPattern = /^[a-z0-9!#$%&'*+\/=?^_`{|}~.-]+@[a-z0-9]([a-z0-9-]*[a-z0-9])?(\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)*$/i;
   }
   getPopup(type: string) {
@@ -806,8 +808,8 @@ export class PopupsComponent implements OnInit, OnDestroy {
   }
 
   confirmNewOrder() {
+    this.popupService.actionComplete({type: 'confirm', data: {price: this.confirmPopupData.totalPrice}});
     this.closePopup();
-    this.popupService.actionComplete({type: 'confirm'});
   }
 
   addNewCard() {
@@ -1102,7 +1104,7 @@ export class PopupsComponent implements OnInit, OnDestroy {
             this.shadowState = 'active';
             break;
           case 'confirmNewOrder':
-            this.confirmPopupData.title = 'Dettagli dell’ordine';
+            this.confirmPopupData.title = 'Dettagli del servizio';
             this.confirmPopupData.data = [{productName: popup.data.orderData.service, itemName: '', price: '', type: 'service'}];
             popup.data.orderData.services.forEach((product) => {
               if(product.price_type === 'BASE_AMOUNT_INCREMENT') {
@@ -1113,9 +1115,20 @@ export class PopupsComponent implements OnInit, OnDestroy {
                 this.confirmPopupData.data.push({productName: product.name, itemName: product.option.name, price: product.option.price, type: 'item'});
               }
             });
-            this.confirmPopupData.data.push({productName: 'Totale', itemName: '', price: popup.data.orderData.totalPrice, type: 'total'});
+            this.isPopupLoading = true;
+            this.orderService.getEstimatePrice(popup.data.queryPrice)
+                .then((price) => {
+                  this.isPopupLoading = false;
+                  this.confirmPopupData.totalPrice = price.result.total + price.result.fee;
+                })
+                .catch((error) => {
+                  this.isPopupLoading = false;
+                  this.closePopup(true);
+                  this.getErrorPopup('Errore', error.message);
+                });
+            // this.confirmPopupData.data.push({productName: 'Totale', itemName: '', price: popup.data.orderData.totalPrice, type: 'total'});
             this.confirmPopupData.information = popup.data.information;
-            this.confirmPopupData.button = 'Procedi con l’acquisto';
+            this.confirmPopupData.button = 'Prenota servizio';
             this.confirmPopupData.type = 'newOrder';
             this.confirmPopupState = 'active';
             this.activePopup = 'confirmOrder';
@@ -1267,7 +1280,8 @@ export class PopupsComponent implements OnInit, OnDestroy {
         data: [],
         information: {},
         button: '',
-        type: ''
+        type: '',
+        totalPrice: null
       };
     this.confirmFinishPopupData = {
         title: '',

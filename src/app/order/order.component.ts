@@ -64,6 +64,7 @@ export class OrderComponent implements OnInit, OnDestroy {
   public maxOrderBlockSize: number|string = 'auto';
   public isLoading = false;
   public browser = isBrowser;
+  public finalPrice = 0;
   subscription: Subscription;
 
   constructor(private orderService: OrderService, private popupsService: PopupsService, private analyticsService: AnalyticsService) {
@@ -260,7 +261,20 @@ export class OrderComponent implements OnInit, OnDestroy {
       if (localStorage.getItem('auth') === null) {
         this.popupsService.activate({type: 'loginFromOrder', data: {orderData: this.orderData, information: orderInformation}});
       } else {
-        this.popupsService.activate({type: 'confirmNewOrder', data: {orderData: this.orderData, information: orderInformation}});
+        let date = new Date(this.Order.date);
+        let day = date.getDate() > 9 ? date.getDate() : '0' + date.getDate();
+        let correctMonth = 1 + date.getMonth();
+        let month = correctMonth > 9 ? correctMonth : '0' + correctMonth;
+
+        let queryPriceData = {
+          service_id: this.orderData.service_id,
+          country_code: this.Order.country_code,
+          postal_code: this.Order.postal_code,
+          start_date: date.getFullYear() + '-' + month + '-' + day + 'T' + '08:00' + ':00.000Z',
+          amount: this.orderData.totalPrice.toString()
+        };
+
+        this.popupsService.activate({type: 'confirmNewOrder', data: {orderData: this.orderData, information: orderInformation, queryPrice: queryPriceData}});
       }
     }
   }
@@ -306,11 +320,12 @@ export class OrderComponent implements OnInit, OnDestroy {
 
       this.isLoading = true;
       let timeStart = Date.now();
+      this.Order.payment.amount = this.finalPrice;
       this.orderService.saveOrder(this.Order)
         .then((status) => {
           this.analyticsService.sendEvent({category:'Order creation form', action: 'send form', label: 'finish'});
           this.analyticsService.sendTiming({category: 'Saving order', timingVar: 'save', timingValue: Date.now()-timeStart});
-
+          this.finalPrice = 0;
           this.Order.delivery_details = [];
           this.Order.delivery_address = '';
           this.Order.delivery_description = '';
@@ -361,6 +376,7 @@ export class OrderComponent implements OnInit, OnDestroy {
     if (isBrowser) {
       this.subscription = this.popupsService.getPopupResponse$.subscribe(action => {
         if (action.type === 'confirm') {
+          this.finalPrice = action.data.price;
           this.createOrder();
         }
       });
