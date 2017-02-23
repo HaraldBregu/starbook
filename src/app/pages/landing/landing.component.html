@@ -2,9 +2,25 @@
   <div class="header-page">
     <div class="container">
       <div class="row">
-        <div class="col-xl-12 landing-header">
+        <div class="col-xl-12 landing-header" *ngIf="testPage!=='login_facebook' && testPage!=='registro_impresa' && testPage!=='consiglia_amico' && testPage!=='condividi_guadagna'">
           <h1>Hai bisogno di lavorazioni interni?</h1>
-          <h6>È cosi semplice. Trova il servizio. Calcola il preventivo. Prenota.</h6>
+          <h6>Trova il servizio. Calcola il preventivo. Prenota.</h6>
+        </div>
+        <div class="col-xl-12 landing-header" *ngIf="testPage==='login_facebook'">
+          <h1>Hai bisogno di lavorazioni interni?</h1>
+          <h6>Trova il servizio. Calcola il preventivo. Prenota.</h6>
+        </div>
+        <div class="col-xl-12 landing-header" *ngIf="testPage==='registro_impresa'">
+          <h1>Hai un impresa o un attività professionale?</h1>
+          <h6>Registra la tua impresa su Starbook. Riceverai decina di preventivi e non dovrai pagare niente.</h6>
+        </div>
+        <div class="col-xl-12 landing-header" *ngIf="testPage==='consiglia_amico'">
+          <h1>Un bonus di 10% per qualsiasi lavorazione che ti serve.</h1>
+          <h6>Consiglia ad un amico questo sito e riceverai un codice promozionale.</h6>
+        </div>
+        <div class="col-xl-12 landing-header" *ngIf="testPage==='condividi_guadagna'">
+          <h1>Un bonus di 10% per qualsiasi lavorazione che ti serve.</h1>
+          <h6>Condividi e riceverai un codice promozionale tramite sms.</h6>
         </div>
       </div>
     </div>
@@ -35,7 +51,7 @@
     </div>
 
     <!-- A/B TESTS -->
-    <div class="container landing-header-button" *ngIf="testPage==='' || !testPage">
+    <div class="container landing-header-button" *ngIf="testPage==='login_facebook' && !isAuthenticated">
       <div class="row">
         <div class="col-xl-12">
           <button class="btn btn-warning btn-block" (click)="callToActionLoginWithFacebook()">Registrati con Facebook</button>
@@ -49,17 +65,20 @@
         </div>
       </div>
     </div>
-    <div class="container landing-header-button" *ngIf="testPage==='invita_un_amico_cell'">
+    <div class="container landing-header-button" *ngIf="testPage==='consiglia_amico'">
       <div class="row">
         <div class="col-xl-12">
-          <button class="btn btn-warning btn-block" (click)="callToActionShareToEarn()">Consiglia ad un amico</button>
+          <button class="btn btn-warning btn-block" (click)="callToActionRecommendFriend()">Consiglia ad un amico</button>
         </div>
       </div>
     </div>
-    <div class="container landing-header-button" *ngIf="testPage==='invita_un_amico_email'">
+    <div class="container landing-header-button" *ngIf="testPage==='condividi_guadagna'">
       <div class="row">
-        <div class="col-xl-12">
-          <button class="btn btn-warning btn-block" (click)="callToActionShareToEarn()">Invita un amico</button>
+        <div class="col-xl-12 button-header-column">
+          <button class="btn btn-primary facebook" (click)="callToActionShareToEarn()">
+            <i></i>
+            Condividi su Facebook
+          </button>
         </div>
       </div>
     </div>

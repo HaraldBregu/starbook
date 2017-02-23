@@ -178,6 +178,42 @@ import { Subscription }   from 'rxjs/Subscription';
         ]))
       ])
     ]),
+    trigger('recommendToFriendPopupState', [
+      state('inactive', style({display: 'none', top: '-300px'})),
+      state('active',   style({display: 'block', top: '50px'})),
+      transition('inactive => active', [
+        animate(300, keyframes([
+          style({display: 'none', top: '-300px', offset: 0}),
+          style({display: 'block', opacity: 0, top: '-300px', offset: 0.01}),
+          style({display: 'block', opacity: 1, top: '50px', offset: 1.0})
+        ]))
+      ]),
+      transition('active => inactive', [
+        animate(300, keyframes([
+          style({display: 'block', opacity: 1, top: '50px', offset: 0}),
+          style({display: 'block', opacity: 0, top: '-300px', offset: 0.99}),
+          style({display: 'none', top: '-300px', offset: 1.0})
+        ]))
+      ])
+    ]),
+    trigger('getPromoCodePopupState', [
+      state('inactive', style({display: 'none', top: '-300px'})),
+      state('active',   style({display: 'block', top: '50px'})),
+      transition('inactive => active', [
+        animate(300, keyframes([
+          style({display: 'none', top: '-300px', offset: 0}),
+          style({display: 'block', opacity: 0, top: '-300px', offset: 0.01}),
+          style({display: 'block', opacity: 1, top: '50px', offset: 1.0})
+        ]))
+      ]),
+      transition('active => inactive', [
+        animate(300, keyframes([
+          style({display: 'block', opacity: 1, top: '50px', offset: 0}),
+          style({display: 'block', opacity: 0, top: '-300px', offset: 0.99}),
+          style({display: 'none', top: '-300px', offset: 1.0})
+        ]))
+      ])
+    ]),
 
     trigger('shadowState', [
       state('inactive', style({display: 'none', opacity: 0})),
@@ -215,6 +251,8 @@ export class PopupsComponent implements OnInit, OnDestroy {
 
   // A/B Tests
   public registerCompanyPopupState = 'inactive';
+  public recommendToFriendPopupState = 'inactive';
+  public getPromoCodePopupState = 'inactive';
 
   public shadowState = 'inactive';
   public emailPattern;
@@ -317,6 +355,16 @@ export class PopupsComponent implements OnInit, OnDestroy {
     phone : '',
     profession : ''
   }
+  public recommendFriend = {
+    friend_name : '',
+    frend_phone_number : '',
+    my_name : '',
+    my_phone_number : ''
+  }
+  public earnPromoCode = {
+    my_name : '',
+    my_phone_number : ''
+  }
 
   public isPopupLoading = false;
 
@@ -366,6 +414,12 @@ export class PopupsComponent implements OnInit, OnDestroy {
     if (type === 'registerCompany') {
       this.registerCompanyPopupState = 'active';
     }
+    if (type === 'recommendToFriend') {
+      this.recommendToFriendPopupState = 'active';
+    }
+    if (type === 'getPromoCode') {
+      this.getPromoCodePopupState = 'active';
+    }
 
     this.shadowState = 'active';
     this.activePopup = type;
@@ -401,6 +455,12 @@ export class PopupsComponent implements OnInit, OnDestroy {
     // A/B TESTS
     if (this.registerCompanyPopupState === 'active') {
       this.registerCompanyPopupState = 'inactive';
+    }
+    if (this.recommendToFriendPopupState === 'active') {
+      this.recommendToFriendPopupState = 'inactive';
+    }
+    if (this.getPromoCodePopupState === 'active') {
+      this.getPromoCodePopupState = 'inactive';
     }
 
     this.activePopup = '';
@@ -462,8 +522,8 @@ export class PopupsComponent implements OnInit, OnDestroy {
     if (isBrowser) {
       let left = Math.round((document.documentElement.clientWidth / 2) - 285);
       let facebookPopup = window.open(
-        // 'https://www.facebook.com/v2.8/dialog/oauth?client_id=1108461325907277&response_type=token&scope=email,public_profile&redirect_uri=https://www.starbook.co/facebook',
-        'https://www.facebook.com/v2.8/dialog/oauth?client_id=1108461325907277&response_type=token&scope=email,public_profile&redirect_uri=http://localhost:4200/facebook',
+        'https://www.facebook.com/v2.8/dialog/oauth?client_id=1108461325907277&response_type=token&scope=email,public_profile&redirect_uri=https://www.starbook.co/facebook',
+        // 'https://www.facebook.com/v2.8/dialog/oauth?client_id=1108461325907277&response_type=token&scope=email,public_profile&redirect_uri=http://localhost:4200/facebook',
           '_blank',
           'location=yes,height=570,width=520,left=' + left + ', top=100,scrollbars=yes,status=yes');
       this.checkAccessToken(facebookPopup, 1);
@@ -1027,31 +1087,51 @@ export class PopupsComponent implements OnInit, OnDestroy {
 
   registerCompany(name: string, phone: string, profession: string) {
     if (name.length > 0 && phone.length > 0) {
-      console.log('register the company: ' + name + phone + profession);
+      this.analyticsService.sendEvent({category:'Landing page A/B popup', action: 'register', label: 'register company'});
       this.isPopupLoading = true;
-
-      this.authServics.registerCompany(name, phone, profession)
-      .then((data) => {
+      this.authServics.registerCompany(name, phone, profession).then((data) => {
         this.isPopupLoading = false;
-
-        console.log('register company data: ' + JSON.stringify(data));
-        // this.closePopup();
+        this.closePopup();
         this.confirmFinishPopupData.title = "Richiesta d'iscrizione inviata";
         this.confirmFinishPopupData.text = 'Questo ordine è stato annullato, puoi riattivarlo in un secondo momento.';
         this.getPopup('confirmFinish');
-
-      })
-      .catch((error) => {
+      }).catch((error) => {
         this.isPopupLoading = false;
-        console.log('error register: ' + error);
         this.closePopup();
       })
     }
   }
 
-  recommendToFriend() {
-
+  recommendToFriend(friend_name: string, friend_phone: string, my_name: string, my_phone_number: string) {
+    this.analyticsService.sendEvent({category:'Landing page A/B popup', action: 'recommend', label: 'recommend to friend'});
+    this.isPopupLoading = true;
+    this.authServics.recommendToFriend(friend_name, friend_phone, my_name, my_phone_number).then((data) => {
+      this.isPopupLoading = false;
+      this.closePopup();
+      this.confirmFinishPopupData.title = "Invito effettuato con successo";
+      this.confirmFinishPopupData.text = "Grazie " + my_name + ". Abbiamo invitato il tuo amico su Starbook. A breve riceverai un sms con il codice promozionale.";
+      this.getPopup('confirmFinish');
+    }).catch((error) => {
+      this.isPopupLoading = false;
+      this.closePopup();
+    })
   }
+
+  earnPromoCodeAction(my_name: string, my_phone_number: string) {
+    this.analyticsService.sendEvent({category:'Landing page A/B popup', action: 'get code', label: 'get promo code'});
+    this.isPopupLoading = true;
+    this.authServics.earnPromoCode(my_name, my_phone_number).then((data) => {
+      this.isPopupLoading = false;
+      this.closePopup();
+      this.confirmFinishPopupData.title = "Complimenti " + my_name + "!";
+      this.confirmFinishPopupData.text = "Hai guadagnato con successo un promo code. A breve riceverai un sms con il codice promozionale.";
+      this.getPopup('confirmFinish');
+    }).catch((error) => {
+      this.isPopupLoading = false;
+      this.closePopup();
+    })
+  }
+
 
   ngOnInit() {
     if (isBrowser) {
@@ -1174,8 +1254,8 @@ export class PopupsComponent implements OnInit, OnDestroy {
             this.shadowState = 'active';
             break;
           case 'confirmNewOrderEnd':
-            this.confirmPopupData.title = 'Acquisto effetuato';
-            this.confirmPopupData.text = 'L’ordine e stato prenotato con successo. Un professionista si presenterà nella data e ora stabilita da voi.';
+            this.confirmPopupData.title = 'Appuntamento fissato';
+            this.confirmPopupData.text = "Hai fissato un appuntamento per questo tipo di servizio con successo. Appena un professionista confermerà la disponibilità potra contattarlo direttamente. Per tenere traccia degli appuntamenti vai nella sezione 'Ordini' del sito.";
             this.confirmPopupData.type = 'newOrderEnd';
             this.confirmPopupState = 'active';
             this.activePopup = 'confirmOrderEnd';
@@ -1272,6 +1352,18 @@ export class PopupsComponent implements OnInit, OnDestroy {
             this.activePopup = 'registerCompany';
             this.shadowState = 'active';
             break;
+
+          case 'recommendToFriend':
+            this.recommendToFriendPopupState = 'active';
+            this.activePopup = 'recommendToFriend';
+            this.shadowState = 'active';
+            break;
+
+          case 'getPromoCode':
+              this.getPromoCodePopupState = 'active';
+              this.activePopup = 'getPromoCode';
+              this.shadowState = 'active';
+              break;
 
         }
       });

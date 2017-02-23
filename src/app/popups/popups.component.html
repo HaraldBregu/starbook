@@ -365,13 +365,13 @@
   <app-loading *ngIf="isPopupLoading"></app-loading>
   <div class="header">Registra la tua impresa</div>
   <form class="registration-company-form" #registrationCompanyForm="ngForm">
-    <div class="form-group" >
+    <div class="form-group">
       <label for="regName">Il tuo nome</label>
       <input id="regName" class="form-control" type="text" name="name" placeholder="il tuo nome" required [(ngModel)]="registerNewCompany.name" #regName="ngModel">
     </div>
     <div class="form-group">
       <label for="regPhone">Numero di cellulare</label>
-      <input id="regPhone" class="form-control" type="text" name="phone" placeholder="+39" required [(ngModel)]="registerNewCompany.phone" #regPhone="ngModel">
+      <input id="regPhone" class="form-control" type="text" name="phone" placeholder="328..." required [(ngModel)]="registerNewCompany.phone" #regPhone="ngModel">
     </div>
     <div class="form-group">
       <label for="regProfession">Inserisci la tua professione</label>
@@ -384,25 +384,48 @@
   </form>
 </div>
 
-<!-- <div class="popup" [@recommendToFriendPopupState]="recommendToFriendPopupState">
+<div class="popup" [@recommendToFriendPopupState]="recommendToFriendPopupState">
   <app-loading *ngIf="isPopupLoading"></app-loading>
-  <div class="header">Registra la tua impresa</div>
-  <form class="registration-company-form" #registrationCompanyForm="ngForm">
-    <div class="form-group" >
-      <label for="regName">Il tuo nome</label>
-      <input id="regName" class="form-control" type="text" name="name" placeholder="il tuo nome" required [(ngModel)]="registerNewCompany.name" #regName="ngModel">
+  <div class="header">Invita un amico</div>
+  <form class="reccoment-friend-form" #recommendToFriendForm="ngForm">
+    <div class="form-group">
+      <label for="friendName">Nome di tuo amico</label>
+      <input id="friendName" class="form-control" type="text" name="friendname" placeholder="nome" [(ngModel)]="recommendFriend.friend_name" #friendName="ngModel">
     </div>
     <div class="form-group">
-      <label for="regPhone">Numero di cellulare</label>
-      <input id="regPhone" class="form-control" type="text" name="phone" placeholder="+39" required [(ngModel)]="registerNewCompany.phone" #regPhone="ngModel">
+      <label for="friendPhone">Numero di cellulare di tuo amico</label>
+      <input id="friendPhone" class="form-control" type="text" name="friendphone" placeholder="328.." required [(ngModel)]="recommendFriend.frend_phone_number" #friendPhone="ngModel">
     </div>
     <div class="form-group">
-      <label for="regProfession">Inserisci la tua professione</label>
-      <input id="regProfession" class="form-control" name="profession" placeholder="professione" [(ngModel)]="registerNewCompany.profession" #regProfession="ngModel">
+      <label for="myName">Il tuo nome</label>
+      <input id="myName" class="form-control" type="text" name="myname" placeholder="nome" [(ngModel)]="recommendFriend.my_name" #myName="ngModel">
     </div>
     <div class="form-group">
-      <button class="btn btn-warning" type="submit" (click)="registerCompany(regName.value, regPhone.value, regProfession.value)">Registra la tua impresa</button>
+      <label for="myPhone">Il tuo numero di cellulare</label>
+      <input id="myPhone" class="form-control" type="text" name="myphone" placeholder="328.." required [(ngModel)]="recommendFriend.my_phone_number" #myPhone="ngModel">
+    </div>
+    <div class="form-group">
+      <button class="btn btn-warning" type="submit" (click)="recommendToFriend(friendName.value, friendPhone.value, myName.value, myPhone.value)">Invita e guadagna</button>
       <button class="btn btn-secondary" type="submit" (click)="closePopup()">Annulla</button>
     </div>
   </form>
-</div> -->
+</div>
+
+<div class="popup" [@getPromoCodePopupState]="getPromoCodePopupState">
+  <app-loading *ngIf="isPopupLoading"></app-loading>
+  <div class="header">Guadagna uno sconto</div>
+  <form class="get-promo-code-form" #getPromoCodeForm="ngForm">
+    <div class="form-group">
+      <label for="myName">Inserisci il tuo nome</label>
+      <input id="myName" class="form-control" type="text" name="myName" placeholder="mio nome" [(ngModel)]="earnPromoCode.my_name" #myName="ngModel">
+    </div>
+    <div class="form-group">
+      <label for="myPhone">Numero di cellulare</label>
+      <input id="myPhone" class="form-control" type="text" name="myPhone" placeholder="328.." required [(ngModel)]="earnPromoCode.my_phone_number" #myPhone="ngModel">
+    </div>
+    <div class="form-group">
+      <button class="btn btn-warning" type="submit" (click)="earnPromoCodeAction(myName.value, myPhone.value)">Ricevi codice</button>
+      <button class="btn btn-secondary" type="submit" (click)="closePopup()">Annulla</button>
+    </div>
+  </form>
+</div>

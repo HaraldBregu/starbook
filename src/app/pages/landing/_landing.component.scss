@@ -206,6 +206,8 @@ $services-footer-price-letter-spacing: 0.06px;
   color: $landing-general-text-color;
   font-size: $landing-header-font-size;
   letter-spacing: $landing-header-letter-spacing;
+  margin: 0 auto;
+  max-width: 700px;
 }
 .landing-header h2 {
   width: 100%;
@@ -221,10 +223,50 @@ $services-footer-price-letter-spacing: 0.06px;
   text-align: center;
   padding: 20px 0;
   color: $landing-general-text-color;
+  margin: 0 auto;
+  max-width: 600px;
 }
 .landing-header-button {
   margin-top: 30px;
 }
+.landing-header-button .button-header-column {
+  display: block;
+  position: relative;
+  float: none;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+// Facebook btn
+.landing-header-button .btn.btn-primary {
+  position: relative;
+  width: 100%;
+  height: 50px;
+  font-family: $font-name-bold;
+  border: 1px solid #3B5998;
+  border-radius: 3px;
+  font-size: 18px;
+  color: #FFFFFF;
+  letter-spacing: 0.1px;
+  font-weight: 600;
+  padding: 10px 7px;
+  background-color: #3B5998;
+  text-align: center;
+  margin-top: 34px;
+  outline: none;
+}
+.landing-header-button .btn.btn-primary.facebook i {
+  display: block;
+  position: absolute;
+  top: 7px;
+  left: 12px;
+  width: 34px;
+  height: 34px;
+  background-image: url('/assets/images/fb-icon.png');
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
 
 .landing .row .top-cards {
   padding: 0 10px;
@@ -639,7 +681,8 @@ input.landing-search .ui-autocomplete-input:-ms-input-placeholder {
   text-align: center;
   font-family: $font-name-medium;
   padding-top: 34px;
-  color: $landing-orange-text-color;
+  // color: $landing-orange-text-color;
+  color: #324977;
 }
 .landing-services {
   display: block;
@@ -918,7 +961,7 @@ input.landing-search .ui-autocomplete-input:-ms-input-placeholder {
   }
 
   .card-container h2 {
-    padding-top: 39px;
+    padding-top: 25px;
   }
   .landing-services {
     margin: 40px auto 0px;
@@ -950,7 +993,7 @@ input.landing-search .ui-autocomplete-input:-ms-input-placeholder {
     padding-bottom: 0;
   }
   .card-container h2 {
-    padding: 30px 10px 0px;
+    padding: 10px 10px 10px;
   }
   .landing-services {
     margin: 10px auto;

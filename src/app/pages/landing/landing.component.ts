@@ -26,6 +26,8 @@ export class LandingComponent implements OnInit {
   public isLoading = false;
   public swiper: any;
   public testPage;
+  public isAuthenticated = false;
+
   constructor(private authServics: AuthService, private homeService: HomeService, private router: Router, private route: ActivatedRoute, private navigationService: NavigationService, private analyticsService: AnalyticsService, private popupsService: PopupsService) {
   }
 
@@ -37,6 +39,17 @@ export class LandingComponent implements OnInit {
       // console.log('Parameters: ' + JSON.stringify(params));
       // console.log(this.testPage);
     });
+
+    if (isBrowser) {
+      if (localStorage.getItem('auth') !== null) {
+        this.isAuthenticated = true;
+      } else {
+        this.isAuthenticated = false;
+      }
+    } else {
+      this.isAuthenticated = false;
+    }
+
 
     this.navigationService.updateMessage('Una città smart ha bisogno di servizi smart');
     this.isLoading = true;
@@ -61,6 +74,7 @@ export class LandingComponent implements OnInit {
           this.isLoading = false;
         });
   }
+
   cardHover(id, type) {
     if (type === 'on') {
       this.cardStyles[id] = '1';
@@ -106,40 +120,55 @@ export class LandingComponent implements OnInit {
     this.clearView = false;
   }
 
+  //******************************************************
+  //***************** A/B TESTS **************************
+  //******************************************************
+
   callToActionLoginWithFacebook() {
-    this.analyticsService.sendEvent({category:'Login', action: 'login with facebook', label: 'A/B Test Campain'});
+    this.analyticsService.sendEvent({category:'Landing page A/B button', action: 'login', label: 'facebook login'});
     if (isBrowser) {
       let left = Math.round((document.documentElement.clientWidth / 2) - 285);
       let facebookPopup = window.open(
-        // 'https://www.facebook.com/v2.8/dialog/oauth?client_id=1108461325907277&response_type=token&scope=email,public_profile&redirect_uri=https://www.starbook.co/facebook',
-        'https://www.facebook.com/v2.8/dialog/oauth?client_id=1108461325907277&response_type=token&scope=email,public_profile&redirect_uri=http://localhost:4200/facebook',
-          '_blank',
-          'location=yes,height=570,width=520,left=' + left + ', top=100,scrollbars=yes,status=yes');
+        'https://www.facebook.com/v2.8/dialog/oauth?client_id=1108461325907277&response_type=token&scope=email,public_profile&redirect_uri=https://www.starbook.co/facebook',
+        // 'https://www.facebook.com/v2.8/dialog/oauth?client_id=1108461325907277&response_type=token&scope=email,public_profile&redirect_uri=http://localhost:4200/facebook',
+          '_blank', 'location=yes,height=570,width=520,left=' + left + ', top=100,scrollbars=yes,status=yes');
       this.checkAccessToken(facebookPopup, 1);
     }
   }
-  callToActionRegisterCompany() {
-    // console.log('register company');
-    this.popupsService.activate({type: 'registerCompany'});
-    this.analyticsService.sendEvent({category:'Landing page A/B tests', action: 'CTA', label: 'register company'});
+
+  checkAccessToken(facebookWindow: Window, context) {
+    if (facebookWindow.closed) {
+      let accessToken = localStorage.getItem('facebook_token');
+      this.authServics.facebookLogin(accessToken).then((userData) => {}).catch((error) => {});
+    } else {
+      let self = this;
+      setTimeout(function() {self.checkAccessToken(facebookWindow, context + 1)}, 200);
+    }
   }
+
+  callToActionRegisterCompany() {
+    this.analyticsService.sendEvent({category:'Landing page A/B button', action: 'register', label: 'register company'});
+    this.popupsService.activate({type: 'registerCompany'});
+  }
+
+  callToActionRecommendFriend() {
+    this.analyticsService.sendEvent({category:'Landing page A/B button', action: 'recommend', label: 'recommend to friend'});
+    this.popupsService.activate({type: 'recommendToFriend'});
+  }
+
   callToActionShareToEarn() {
-    // console.log('share to earn');
-    this.analyticsService.sendEvent({category:'Landing page A/B tests', action: 'CTA', label: 'share to earn'});
+    this.analyticsService.sendEvent({category:'Landing page A/B button', action: 'share', label: 'share to earn'});
     if (isBrowser) {
       let left = Math.round((document.documentElement.clientWidth / 2) - 285);
-
       let sharelink = 'https://www.facebook.com/sharer/sharer.php';
       let urlToShare = 'https://www.starbook.co';
       let name = "Starbook | Prenota servizi professionali";
       let caption = 'Starbook';
       let description = 'Preventivi diretti? Starbook è la piattaforma dei lavorazioni professionali. Puoi creare preventivi istantanei senza il bisogno di contattare il professionista.';
-
       let facebookPopup = window.open(sharelink + "?u=" + encodeURI(urlToShare) + /*"&name=" + name +*/ "&caption=" + encodeURI(caption) + "&description=" + encodeURI(description),
         '_blank', 'location=yes,height=570,width=520,left=' + left + ', top=100,scrollbars=yes,status=yes');
-      // this.checkAccessToken(facebookPopup, 1);
+      this.checkFacebookSharePage(facebookPopup, 1);
     }
-
     // FB.ui({
     //   method: 'feed',
     //   mobile_iframe: true,
@@ -155,42 +184,15 @@ export class LandingComponent implements OnInit {
     //     console.log('Post was not published.');
     //   }
     // });
-
   }
 
-  checkAccessToken(facebookWindow: Window, context) {
+  checkFacebookSharePage(facebookWindow: Window, context) {
     if (facebookWindow.closed) {
-      let accessToken = localStorage.getItem('facebook_token');
-      // let auth = localStorage.getItem('auth');
-
-      this.authServics.facebookLogin(accessToken)
-          .then((userData) => {
-            if(!userData.phone_number) {
-              // this.popupsService.closePopup(true);
-              // this.finishPopupState = 'active';
-              // this.finishPopupData.title = 'Completa il profilo';
-              // this.finishPopupData.text.push('Per restare in contatto con i professionisti inserisci il suo numero di telefono.');
-              // this.finishPopupData.type = 'phone';
-              // this.finishPopupData.data = { userData: userData };
-              // if (this.loginData.type === 'fromOrder') {
-              //   this.finishPopupData.from = 'order';
-              // }
-            } else if (!userData.email) {
-              // this.popupsService.closePopup(true);
-
-            } else {
-              // this.popupsService.closePopup(false);
-            }
-          })
-          .catch((error) => {
-            // this.popupsService.formError = {
-            //   title: 'Errore!',
-            //   message: 'Authorization error'
-            // };
-          });
+      this.popupsService.activate({type: 'getPromoCode'});
     } else {
       let self = this;
-      setTimeout(function() {self.checkAccessToken(facebookWindow, context + 1)}, 200);
+      setTimeout(function() {self.checkFacebookSharePage(facebookWindow, context + 1)}, 200);
     }
   }
+
 }

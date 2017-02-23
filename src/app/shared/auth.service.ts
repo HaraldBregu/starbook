@@ -203,7 +203,7 @@ export class AuthService {
   //**********************************************
 
   registerCompany(name: string, phone: string, profession: string) {
-    return this.http.post(this.api + 'register_company', {name: name, phone_number: phone, profession: profession})
+    return this.http.post(this.api + 'new_company_request', {name: name, phone_number: phone, profession: profession})
       .toPromise()
       .then((response) => {
         let data = response.json();
@@ -215,4 +215,35 @@ export class AuthService {
       })
       .catch(this.handleError);
   }
+
+  recommendToFriend(friendName: string, friendPhone: string, myName: string, myPhone: string) {
+    return this.http.post(this.api + 'recommend_to_friend', {
+      frend_name: friendName,
+      frend_phone_number: friendPhone,
+      my_name: myName,
+      my_phone_number: myPhone
+    }).toPromise().then((response) => {
+      let data = response.json();
+      if (data.success === true) {
+        return data.result;
+      } else {
+        this.handleError(data.message);
+      }
+    }).catch(this.handleError);
+  }
+
+  earnPromoCode(myName: string, myPhone: string) {
+    return this.http.post(this.api + 'my_promo_code', {
+      name: myName,
+      phone_number: myPhone
+    }).toPromise().then((response) => {
+      let data = response.json();
+      if (data.success === true) {
+        return data.result;
+      } else {
+        this.handleError(data.message);
+      }
+    }).catch(this.handleError);
+  }
+
 }
