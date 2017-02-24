@@ -8,7 +8,7 @@ $font-name-medium: HelveticaNeue-Medium, sans-serif;
 $font-name-light: HelveticaNeue-Light, sans-serif;
 $letter-spacing: 0.08px;
 $background: #FAFAFA;
-$home-background-color: #FDFDFF;
+$home-background-color: #ffffff;
 $general-text-color: rgba(66, 66, 66, 0.87);
 $general-checked-text-color: rgba(33, 33, 33, 0.87);
 
@@ -175,7 +175,7 @@ app-home {
 .services-block .service {
   display: block;
   width: 100%;
-  padding: 9px 9px 12px 9px;
+  padding: 15px;
 }
 .services-block .service .item {
   display: block;
@@ -201,25 +201,25 @@ app-home {
 .services-block .service .item i {
   display: block;
   position: absolute;
-  top: 10px;
+  top: 8px;
   left: 15px;
-  font-size: 20px;
+  font-size: 24px;
   color: #E0E0E0;
 }
 .services-block .service .item:hover i {
   display: block;
   position: absolute;
-  top: 10px;
+  top: 8px;
   left: 15px;
-  font-size: 20px;
+  font-size: 24px;
   color: rgba(50, 73, 119, 0.3);
 }
 .services-block .service .item.checked i {
   display: block;
   position: absolute;
-  top: 10px;
+  top: 8px;
   left: 15px;
-  font-size: 20px;
+  font-size: 24px;
   color: #324977;
 }
 .services-block .service .item.checked {
@@ -317,7 +317,7 @@ $content-block-description-text-letter-spacing: 0.08px;
 .services-block-big .description {
   display: block;
   width: 100%;
-  padding: 15px 15px 15px 15px;
+  padding: 22px 20px;
   font-family: $font-name;
   font-size: $content-block-description-text-size;
   // color: $content-block-description-text-color;
@@ -325,7 +325,7 @@ $content-block-description-text-letter-spacing: 0.08px;
   letter-spacing: $content-block-description-text-letter-spacing;
   border-radius: 0 0 3px 3px;
   // border: 1px solid $services-block-border-color;
-  background-color: #324977;
+  background-color: black;
 }
 
 // Loading style
