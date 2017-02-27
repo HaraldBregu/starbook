@@ -15,8 +15,39 @@
   <div class="row">
     <div class="col-sm-9 col-md-10 main">
       <div class="tab-container">
+        <div class="header-cover">
+          <div class="tablet-mobile">
+            <div class="title">{{ title }}</div>
+            <img src="{{image_url}}" (load)="makeMasonry()">
+            <div class="description">{{ description }}</div>
+          </div>
+          <div class="large-cover">
+            <div class="left-block">
+              <div class="title">{{ title }}</div>
+              <div class="description">{{ description }}</div>
+            </div>
+            <img src="{{image_url}}" (load)="makeMasonry()">
+          </div>
+        </div>
         <div class="masonry-container">
-          <div class="services-block" *ngFor="let serviceCategory of servicesData" [ngClass]="{'services-block-big': serviceCategory.type === 'content'}">
+          <div class="services-block" *ngFor="let serviceCategory of servicesData">
+            <div class="header">{{serviceCategory.title_1}}</div>
+            <div class="service content noselect">
+              <span *ngFor="let item of serviceCategory.options">
+                <div class="item" *ngIf="item.type === 'CHECKBOX' || item.type === 'RADIOBUTTON'" [ngClass]="{'checked':item.selected}" (click)="toggleService(serviceCategory.title, item.title)">
+                  <i *ngIf="item.selected===true" class="fa fa-check-square"></i>
+                  <i *ngIf="item.selected===false" class="fa fa-square-o"></i>
+                  {{item.title_1}}
+                </div>
+                <div class="input-group" *ngIf="item.type === 'INPUTTEXT'">
+                  <input type="text" [(ngModel)]="servicesData[item.formId].options[item.optionId].input_value" (keyup)="changeValue(item.formId, item.optionId)" (change)="changeValue(item.formId, item.optionId)" (focus)="selectAllContent($event)">
+                  <span class="input-group-addon">{{servicesData[item.formId].options[item.optionId].value_symbol}}</span>
+                </div>
+              </span>
+            </div>
+          </div>
+
+          <!-- <div class="services-block" *ngFor="let serviceCategory of servicesData" [ngClass]="{'services-block-big': serviceCategory.type === 'content'}">
             <span *ngIf="serviceCategory.type === 'content'">
               <img [src]="serviceCategory.image" (load)="makeMasonry()">
               <div class="description">{{ serviceCategory.description }}</div>
@@ -37,7 +68,7 @@
                 </span>
               </div>
             </span>
-          </div>
+          </div> -->
         </div>
       </div>
       <app-order [orderData]="orderData" [orderIsFull]="orderIsFull"></app-order>

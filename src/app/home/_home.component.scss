@@ -8,9 +8,14 @@ $font-name-medium: HelveticaNeue-Medium, sans-serif;
 $font-name-light: HelveticaNeue-Light, sans-serif;
 $letter-spacing: 0.08px;
 $background: #FAFAFA;
-$home-background-color: #ffffff;
+$home-background-color: #FFFFFF;
 $general-text-color: rgba(66, 66, 66, 0.87);
-$general-checked-text-color: rgba(33, 33, 33, 0.87);
+$general-checked-text-color: rgba(33, 33, 33, 1.0);
+$general-background-black-color: #161517;
+$white-text-secondary-color: rgba(255,255,255,0.7);
+$white-text-primary-color: rgba(255,255,255,1.0);
+$black-text-primary-color: rgba(0,0,0,1);
+$black-text-secondary-color: rgba(0,0,0,0.7);
 
 // Tabs styles
 $navbar-tabs-items-color: #000000;
@@ -21,10 +26,11 @@ $navbar-tabs-border-noactive-style: 1px solid transparent;
 $navbar-tabs-active-background-color: #FAFAFA;
 
 // Services Block styles
-$services-block-background-color: #FCFCFC;
+$services-block-background-color: #F7F7F7;
 $services-item-hover-background-color: #F5F5F5;
-$services-block-border-color: #DCE0E0;
-$services-block-text-color: rgba(33, 33, 33, 0.87);
+$services-block-border-color: #CCCCCC;
+$services-block-header-border-color: #E1E1E1;
+$services-block-text-color: rgba(0, 0, 0, 1);
 $services-block-header-background-color: rgba(252, 252, 252, 0);
 $services-block-header-letter-spacing: 0.1px;
 
@@ -123,8 +129,8 @@ app-home {
 }
 .masonry-container {
   // padding-left: 30px;
-  margin-left: 30px;
-  margin-right: 30px;
+  // margin-left: 10px;
+  // margin-right: 10px;
 }
 
 .container-starbook {
@@ -143,32 +149,79 @@ app-home {
 .container-starbook .row {
   position: relative;
   min-height: 100vh;
-  padding: 80px 0 0 0;
+  padding: 70px 0 0 0;
+  margin: 0;
+}
+.container-starbook .header-cover {
+  background-color: red;
+  margin-bottom: 20px;
+  background-color: $general-background-black-color;
+  color: white;
+}
+.tablet-mobile {
+  display: none;
+}
+.header-cover .left-block {
+  float: left;
+  width: 30%;
+}
+.header-cover .title {
+  font-family: $font-name-light;
+  font-size: 19px;
+  font-weight: 400;
+  color: $white-text-primary-color;
+  padding: 20px;
+}
+.header-cover .description {
+  font-family: $font-name;
+  font-size: 16px;
+  font-weight: 400;
+  color: $white-text-secondary-color;
+  padding: 0 20px 20px 20px;
+}
+.header-cover img {
+  width: 70%;
+  height: 400px;
+  object-fit: cover;
 }
 .container-starbook .main {
   display: block;
   width: 100%;
   padding-right: 390px;
+  padding-left: 0px;
 }
 
+// Service masonry
+$icon-checked-background-color: #161517;
+
+.tab-container {
+  padding: 0 10px 0 20px;
+}
+// .gutter-sizer {
+//   width: 4%;
+// }
+// .grid-sizer {
+//   width: 48%;
+// }
 .services-block {
   display: block;
-  width: 490px;
+  width: 48%;
+  // width: 505px;
   // background-color: $services-block-background-color;
   border: 1px solid $services-block-border-color;
   margin-bottom: 20px;
   // margin-left: 10px;
-  border-radius: 3px;
-  background-color: white;
-  box-shadow: 0 1px 3px 0 #EDEFEF;
+  // border-radius: 3px;
+  background-color: $services-block-background-color;
+  // box-shadow: 0 1px 3px 0 #EDEFEF;
 }
 .services-block .header {
   font-family: $font-name-medium;
   font-size: 16px;
-  font-weight: bold;
+  font-weight: 500;
   // background-color: $services-block-header-background-color;
   padding: 15px 20px;
-  border-bottom: 1px solid $services-block-border-color;
+  border-bottom: 1px solid $services-block-header-border-color;
   letter-spacing: $services-block-header-letter-spacing;
   color: $services-block-text-color;
 }
@@ -187,7 +240,7 @@ app-home {
   font-weight: 400;
   font-family: $font-name;
   font-size: $services-item-font-size;
-  color: $general-text-color;
+  color: $black-text-secondary-color;
   letter-spacing: $services-item-letter-spacing;
   cursor: pointer;
   -webkit-font-smoothing: initial !important;
@@ -220,13 +273,13 @@ app-home {
   top: 8px;
   left: 15px;
   font-size: 24px;
-  color: #324977;
+  color: $icon-checked-background-color;
 }
 .services-block .service .item.checked {
-  font-weight: 500;
-  font-family: $font-name-medium;
+  font-weight: 400;
+  font-family: $font-name;
   font-size: $services-item-font-size;
-  color: $general-checked-text-color;
+  color: $black-text-primary-color;
   letter-spacing: $services-item-letter-spacing;
   cursor: pointer;
   -webkit-font-smoothing: initial !important;
@@ -254,21 +307,21 @@ app-home {
   outline: none;
 }
 .services-block .service .input-group {
-  padding: 10px 10px 10px 10px;
+  padding: 0 10px 0 10px;
 }
 .services-block .service .input-group input {
   width: 100%;
-  border-top: 1px solid #E0E0E0;
-  border-left: 1px solid #E0E0E0;
-  border-bottom: 1px solid #E0E0E0;
-  border-right: 0px solid #E0E0E0;
-  border-top-left-radius: 3px;
-  border-bottom-left-radius: 3px;
+  border-top: 1px solid $services-block-border-color;
+  border-left: 1px solid $services-block-border-color;
+  border-bottom: 1px solid $services-block-border-color;
+  border-right: 0px solid $services-block-border-color;
+  // border-top-left-radius: 3px;
+  // border-bottom-left-radius: 3px;
   display: block;
   height: 40px;
   padding: 9px 13px 8px 13px;
   text-align: right;
-  background-color: $home-input-background-color;
+  background-color: white;
   font-family: $font-name;
   font-weight: normal;
   font-size: $home-input-text-size;
@@ -277,27 +330,28 @@ app-home {
   outline: none;
 }
 .services-block .service .input-group span {
-  border-top: 1px solid #E0E0E0;
-  border-left: 1px solid #E0E0E0;
-  border-bottom: 1px solid #E0E0E0;
-  border-right: 1px solid #E0E0E0;
-  border-top-right-radius: 3px;
-  border-bottom-right-radius: 3px;
+  border-top: 1px solid $services-block-border-color;
+  border-left: 1px solid $services-block-border-color;
+  border-bottom: 1px solid $services-block-border-color;
+  border-right: 1px solid $services-block-border-color;
+  // border-top-right-radius: 3px;
+  // border-bottom-right-radius: 3px;
   height: 35px;
   text-align: right;
-  font-family: $font-name;
-  font-weight: bold;
+  font-family: $font-name-medium;
+  font-weight: 500;
   font-size: 15px;
   letter-spacing: $home-input-text-letter-spacing;
-  color: #424242;
+  color: $services-block-text-color;
   outline: none;
-  background-color: $home-input-background-color;
+  background-color: #FAFAFA;
   padding: 0px 14px;
+  border-radius: 0;
 }
 .services-block-big {
   display: block;
   position: absolute;
-  width: 490px;
+  width: 505px;
   border: none;
   background-color: $services-block-background-color;
   margin-bottom: 20px;
@@ -362,11 +416,29 @@ $content-block-description-text-letter-spacing: 0.08px;
   }
 }
 @media (max-width: 1168px) {
+  .tablet-mobile {
+    display: inherit;
+  }
+  .large-cover {
+    display: none;
+  }
+  .header-cover .title {
+    text-align: center;
+    padding: 10px 20px;
+  }
+  .header-cover .description {
+    padding-top: 20px;
+  }
+  .header-cover img {
+    width: 100%;
+    height: 400px;
+    object-position: bottom;
+  }
   .home-page .tab-container {
     display: block;
     width: 100%;
     // margin: 0 auto;
-    margin: 0 auto 20px auto;
+    margin: 0 auto 0 auto;
   }
 
   .services-block {
@@ -377,9 +449,18 @@ $content-block-description-text-letter-spacing: 0.08px;
   }
 }
 @media (max-width: 906px) {
+  .container-starbook .tablet-mobile {
+    display: inherit;
+  }
+  .container-starbook .header-cover {
+    margin-left: 20px;
+    margin-right: 20px;
+  }
   .home-page .tab-container {
     display: block;
     width: 100%;
+    // margin: 0 auto 0 auto;
+    padding: 0;
     margin: 0 auto 0 auto;
   }
   .services-block {
@@ -404,21 +485,27 @@ $content-block-description-text-letter-spacing: 0.08px;
     width: 525px;
     margin: 0 auto;
   }
+  .header-cover img {
+    height: 240px;
+  }
   .container-starbook .main {
     padding-right: 15px;
   }
-
-  .services-block-big {
+  .container-starbook .header-cover {
+    margin-left: 0;
+    margin-right: 0;
+  }
+  .services-block {
     // padding-left: 10px;
     // padding-right: 10px;
+    margin-bottom: 10px;
   }
-
   .masonry-container {
     // padding-left: 20px;
     padding: 0px;
   }
   .container-starbook .row {
-    padding: 70px 0 0 0;
+    padding: 50px 0 0 0;
   }
 }
 @media (max-width: 534px) {

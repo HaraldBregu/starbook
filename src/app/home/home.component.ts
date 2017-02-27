@@ -86,6 +86,9 @@ export class HomeComponent implements AfterViewInit, OnInit, OnDestroy {
   };
   public finalPrice = 0;
   public defaultServices;
+  public title;
+  public description;
+  public image_url;
 
   public servicesCategoryList: IServiceCategoryList[] = [];
   public isServicesView = false;
@@ -133,14 +136,17 @@ export class HomeComponent implements AfterViewInit, OnInit, OnDestroy {
     this.seoService.setOgElem('og:image:secure_url', 'https://s3-eu-west-1.amazonaws.com/starbook-s3/lavorazioni%2Bcartongesso%2Bcontrosoffitti%2Bpareti%2Bcontropareti.png');
 
     this.defaultServices = services;
+    this.title = services.title;
+    this.description = services.description;
+    this.image_url = this.defaultServices.image_url;
     this.isServicesView = true;
     this.servicesData = [
-      {
-        type: 'content',
-        image: services.image_url,
-        description: services.description,
-        options: []
-      }
+      // {
+      //   type: 'content',
+      //   image: services.image_url,
+      //   description: services.description,
+      //   options: []
+      // }
     ];
     this.orderData = {
       service_id: services._id,
@@ -152,7 +158,8 @@ export class HomeComponent implements AfterViewInit, OnInit, OnDestroy {
     };
     this.baseAmount.start = services.price.base_amount;
     this.baseAmount.calculated = services.price.base_amount;
-    let formId = 1;
+    let formId = 0;
+    // console.log('services:' + JSON.stringify(services));
     services.forms.forEach((form) => {
       // console.log(form);
       var title_1: string;
@@ -202,11 +209,13 @@ export class HomeComponent implements AfterViewInit, OnInit, OnDestroy {
           option['selected'] = false;
         }
         serviceForm.options.push(option);
+        // console.log('option: ' + JSON.stringify(option));
         optionId ++;
       });
       this.servicesData.push(serviceForm);
       formId ++;
     });
+    // console.log('services:' + JSON.stringify(this.servicesData));
     this.calculateOrder();
   }
 
@@ -310,6 +319,7 @@ export class HomeComponent implements AfterViewInit, OnInit, OnDestroy {
     let serviceId = 0;
     this.servicesData.forEach((service) => {
       let itemId = 0;
+      // console.log('Each service: ' + JSON.stringify(service));
       service.options.forEach((item) => {
         if ('input_type' in item) {
           if (item.input_value != 0) {
@@ -552,7 +562,7 @@ export class HomeComponent implements AfterViewInit, OnInit, OnDestroy {
       this.masonry = new Masonry(elems, {
         columnWidth: 490,
         itemSelector: '.services-block',
-        gutter: 18,
+        gutter: 20,
         originLeft: true,
         originTop: true
       });
@@ -600,7 +610,7 @@ export class HomeComponent implements AfterViewInit, OnInit, OnDestroy {
               this.masonry = new Masonry(elems, {
                 columnWidth: 490,
                 itemSelector: '.services-block',
-                gutter: 18,
+                gutter: 20,
                 originLeft: true,
                 originTop: true
               });
@@ -619,7 +629,7 @@ export class HomeComponent implements AfterViewInit, OnInit, OnDestroy {
                     this.masonry = new Masonry(elems, {
                       columnWidth: 490,
                       itemSelector: '.services-block',
-                      gutter: 18,
+                      gutter: 20,
                       originLeft: true,
                       originTop: true
                     });

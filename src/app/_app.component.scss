@@ -23,14 +23,14 @@ $navbar-border-color: #5A7DB6;
 $navbar-item-background-color: #293C61;
 
 // Search box
-$search-navbar-input-background: #FCFCFC;
+$search-navbar-input-background: #293C61;
 $search-navbar-result-border: 1px solid #DCDCDC;
 $search-navbar-input-box-shadow: 0 2px 6px 0 #DCDCDC;
-$search-navbar-text-color: #212121;
+$search-navbar-text-color: #FFFFFF;
 $search-navbar-text-size: 16px;
 $search-navbar-text-letter-spacing: 0.1px;
 $search-navbar-result-hover-background: #506795;
-$search-navbar-result-text-color: #212121;
+$search-navbar-result-text-color: white;
 $search-navbar-result-text-size: 16px;
 $search-navbar-result-letter-spacing: 0.1px;
 $search-navbar-result-empty-font-size: 14px;
@@ -98,22 +98,22 @@ html, body {
 }
 .container-starbook .nav.navbar-nav.float-xs-right {
   margin-right: 15px;
-  padding-top: 8px;
-  padding-bottom: 5px;
+  padding-top: 2px;
+  padding-bottom: 2px;
 }
 .container-starbook .navbar-nav .nav-item+.nav-item {
   margin-left: 0 !important;
 }
 .container-starbook .nav-link {
   position: relative;
-  font-family: $font-name-bold;
-  font-weight: bold;
+  font-family: $font-name-medium;
+  font-weight: 500;
   font-size: $navbar-font-size;
   color: $navbar-text-color !important;
   letter-spacing: $letter-spacing;
-  padding: 7px 15px 7px 15px;
+  padding: 12px 15px 12px 15px;
   z-index: 2;
-  border-radius: 3px;
+  // border-radius: 3px;
   margin-left: 1px;
   margin-right: 1px;
 }
@@ -150,7 +150,7 @@ html, body {
   padding: 6px 46px 5px 15px;
   background-color: $search-navbar-input-background;
   border: none;
-  border-radius: 3px;
+  // border-radius: 3px;
   outline: none;
   color: $search-navbar-text-color;
   font-family: $font-name;
@@ -190,7 +190,7 @@ input.search-block .ui-autocomplete-input:-ms-input-placeholder {
     top: 50%;
     left: 0;
     margin-top: -1px;
-    background: #000;
+    background: #6E85B3;
   }
   &::before {
     transform: rotate(45deg);
@@ -217,11 +217,11 @@ input.search-block .ui-autocomplete-input:-ms-input-placeholder {
   margin-top: -32px;
   width: 100%;
   background-color: $search-navbar-input-background;
-  border-left: $search-navbar-result-border;
-  border-right: $search-navbar-result-border;
-  border-bottom: $search-navbar-result-border;
+  // border-left: $search-navbar-result-border;
+  // border-right: $search-navbar-result-border;
+  // border-bottom: $search-navbar-result-border;
   outline: none;
-  border-radius: 1px;
+  // border-radius: 1px;
   overflow-y: scroll;
 }
 .search-block .ui-autocomplete-panel .ui-state-highlight .search-result {
@@ -235,7 +235,7 @@ input.search-block .ui-autocomplete-input:-ms-input-placeholder {
   color: $search-navbar-result-text-color;
   font-size: $search-navbar-result-text-size;
   letter-spacing: $search-navbar-result-letter-spacing;
-  padding: 6px 15px;
+  padding: 15px;
 }
 .search-block .ui-autocomplete-panel.empty {
   margin-top: -2px;
