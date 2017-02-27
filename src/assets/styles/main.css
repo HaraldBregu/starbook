@@ -3262,6 +3262,10 @@ app-home {
 
   .services-block .services-block-big {
     width: 345px; } }
+/* Remove inner shadow from inputs on mobile iOS */
+textarea, input[type="text"] {
+  -webkit-appearance: none; }
+
 .noselect {
   -webkit-touch-callout: none;
   /* iOS Safari */
@@ -6702,6 +6706,10 @@ input.landing-search .ui-autocomplete-input:-ms-input-placeholder {
   .landing .center-description, .footer-description {
     width: 100%;
     padding: 0 15px; } }
+/* Remove inner shadow from inputs on mobile iOS */
+textarea, input[type="text"] {
+  -webkit-appearance: none; }
+
 ngb-datepicker,
 .datepicker {
   border-radius: 3px;

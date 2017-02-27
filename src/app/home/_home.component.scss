@@ -527,6 +527,14 @@ $content-block-description-text-letter-spacing: 0.08px;
     width: 345px;
   }
 }
+
+
+
+/* Remove inner shadow from inputs on mobile iOS */
+textarea, input[type="text"] {
+  -webkit-appearance: none;
+}
+
 .noselect {
   -webkit-touch-callout: none; /* iOS Safari */
     -webkit-user-select: none; /* Safari */

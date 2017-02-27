@@ -1047,3 +1047,8 @@ input.landing-search .ui-autocomplete-input:-ms-input-placeholder {
     padding: 0 15px;
   }
 }
+
+/* Remove inner shadow from inputs on mobile iOS */
+textarea, input[type="text"] {
+  -webkit-appearance: none;
+}
