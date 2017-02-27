@@ -571,6 +571,7 @@ $services-footer-price-letter-spacing: 0.06px;
   border: $search-input-border;
   border-radius: 1px;
   // box-shadow: $search-input-box-shadow;
+  box-shadow: none;
   outline: none;
   color: $search-text-color;
   font-family: $font-name;

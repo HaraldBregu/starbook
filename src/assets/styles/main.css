@@ -3094,7 +3094,8 @@ app-home {
   font-size: 16px;
   letter-spacing: 0.1px;
   color: #000000;
-  outline: none; }
+  outline: none;
+  box-shadow: none; }
 
 .services-block .service .input-group span {
   border-top: 1px solid #CCCCCC;
@@ -6264,6 +6265,7 @@ textarea.form-control {
   background-color: #FFFFFF;
   border: 1px solid #C8C8C8;
   border-radius: 1px;
+  box-shadow: none;
   outline: none;
   color: #212121;
   font-family: HelveticaNeue, sans-serif;

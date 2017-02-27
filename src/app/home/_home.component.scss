@@ -328,6 +328,7 @@ $icon-checked-background-color: #161517;
   letter-spacing: $home-input-text-letter-spacing;
   color: $home-input-text-color;
   outline: none;
+  box-shadow: none;
 }
 .services-block .service .input-group span {
   border-top: 1px solid $services-block-border-color;
