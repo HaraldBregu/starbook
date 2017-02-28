@@ -61,6 +61,7 @@ export interface IServices {
     payment_methods: string[]
   },
   forms: IServiceForm[];
+  technical_details: any[];
 }
 
 @Component({
@@ -89,6 +90,7 @@ export class HomeComponent implements AfterViewInit, OnInit, OnDestroy {
   public title;
   public description;
   public image_url;
+  public technical_details;
 
   public servicesCategoryList: IServiceCategoryList[] = [];
   public isServicesView = false;
@@ -138,6 +140,7 @@ export class HomeComponent implements AfterViewInit, OnInit, OnDestroy {
     this.defaultServices = services;
     this.title = services.title;
     this.description = services.description;
+    this.technical_details = services.technical_details;
     this.image_url = this.defaultServices.image_url;
     this.isServicesView = true;
     this.servicesData = [

@@ -34,6 +34,12 @@ $services-block-text-color: rgba(0, 0, 0, 1);
 $services-block-header-background-color: rgba(252, 252, 252, 0);
 $services-block-header-letter-spacing: 0.1px;
 
+// Cover block styles
+$cover-footer-text-size: 13px;
+$cover-footer-text-letter-spacing: 0.1px;
+$cover-footer-specifications-size: 28px;
+$cover-footer-specifications-letter-spacing: 0.13px;
+
 // Input styles
 $home-input-background-color: #FAFAFA;
 $home-input-border: 1px solid #DCDCDC;
@@ -128,6 +134,9 @@ app-home {
   border-radius: 50%;
 }
 .masonry-container {
+  display: block;
+  float: left;
+  width: 100%;
   // padding-left: 30px;
   // margin-left: 10px;
   // margin-right: 10px;
@@ -153,6 +162,9 @@ app-home {
   margin: 0;
 }
 .container-starbook .header-cover {
+  display: block;
+  float: left;
+  width: 100%;
   background-color: red;
   margin-bottom: 20px;
   background-color: $general-background-black-color;
@@ -183,6 +195,66 @@ app-home {
   width: 70%;
   height: 400px;
   object-fit: cover;
+}
+.header-cover .cover-footer {
+  display: block;
+  float: left;
+  width: 100%;
+  padding: 23px 3px 23px 4px;
+  background-color: $services-block-background-color;
+  border: 1px solid $services-block-border-color;
+}
+.header-cover .cover-footer .item {
+  display: block;
+  float: left;
+  width: 50%;
+  padding: 16px 31px;
+}
+.cover-footer .item .left-area {
+  display: block;
+  float: left;
+  width: 158px;
+}
+.cover-footer .item .content {
+  display: block;
+  float: left;
+  width: 100%;
+  margin-left: -158px;
+  padding-left: 173px;
+}
+.cover-footer .item .left-area .header {
+  display: block;
+  float: left;
+  width: 100%;
+  font-family: $font-name;
+  color: $services-block-text-color;
+  font-size: $cover-footer-text-size;
+  letter-spacing: $cover-footer-text-letter-spacing;
+  text-transform: uppercase;
+  text-align: right;
+}
+.cover-footer .item .left-area .specifications {
+  display: block;
+  float: left;
+  width: 100%;
+  margin-top: 5px;
+  font-family: $font-name-bold;
+  color: $services-block-text-color;
+  font-size: $cover-footer-specifications-size;
+  letter-spacing: $cover-footer-specifications-letter-spacing;
+  text-align: right;
+}
+.cover-footer .item .content {
+  display: block;
+  float: left;
+  width: 100%;
+  margin-left: -158px;
+  padding-left: 173px;
+  font-family: $font-name-light;
+  color: $services-block-text-color;
+  font-size: $cover-footer-text-size;
+  letter-spacing: $cover-footer-text-letter-spacing;
+  text-align: left;
 }
 .container-starbook .main {
   display: block;

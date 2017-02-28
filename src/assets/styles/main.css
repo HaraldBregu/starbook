@@ -2921,6 +2921,11 @@ app-home {
   display: inline-block;
   border-radius: 50%; }
 
+.masonry-container {
+  display: block;
+  float: left;
+  width: 100%; }
+
 .container-starbook {
   display: block;
   max-width: 1440px;
@@ -2940,6 +2945,9 @@ app-home {
   margin: 0; }
 
 .container-starbook .header-cover {
+  display: block;
+  float: left;
+  width: 100%;
   background-color: red;
   margin-bottom: 20px;
   background-color: #161517;
@@ -2970,6 +2978,66 @@ app-home {
   width: 70%;
   height: 400px;
   object-fit: cover; }
+
+.header-cover .cover-footer {
+  display: block;
+  float: left;
+  width: 100%;
+  padding: 23px 3px 23px 4px;
+  background-color: #F7F7F7;
+  border: 1px solid #CCCCCC; }
+
+.header-cover .cover-footer .item {
+  display: block;
+  float: left;
+  width: 50%;
+  padding: 16px 31px; }
+
+.cover-footer .item .left-area {
+  display: block;
+  float: left;
+  width: 158px; }
+
+.cover-footer .item .content {
+  display: block;
+  float: left;
+  width: 100%;
+  margin-left: -158px;
+  padding-left: 173px; }
+
+.cover-footer .item .left-area .header {
+  display: block;
+  float: left;
+  width: 100%;
+  font-family: HelveticaNeue, sans-serif;
+  color: black;
+  font-size: 13px;
+  letter-spacing: 0.1px;
+  text-transform: uppercase;
+  text-align: right; }
+
+.cover-footer .item .left-area .specifications {
+  display: block;
+  float: left;
+  width: 100%;
+  margin-top: 5px;
+  font-family: HelveticaNeue-Bold, sans-serif;
+  color: black;
+  font-size: 28px;
+  letter-spacing: 0.13px;
+  text-align: right; }
+
+.cover-footer .item .content {
+  display: block;
+  float: left;
+  width: 100%;
+  margin-left: -158px;
+  padding-left: 173px;
+  font-family: HelveticaNeue-Light, sans-serif;
+  color: black;
+  font-size: 13px;
+  letter-spacing: 0.1px;
+  text-align: left; }
 
 .container-starbook .main {
   display: block;
