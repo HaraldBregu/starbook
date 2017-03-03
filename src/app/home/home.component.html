@@ -18,7 +18,7 @@
         <div class="header-cover">
           <div class="tablet-mobile">
             <div class="title">{{ title }}</div>
-            <img src="{{image_url}}" (load)="makeMasonry()">
+            <img src="{{image_url}}">
             <div class="description">{{ description }}</div>
           </div>
           <div class="large-cover">
@@ -26,7 +26,7 @@
               <div class="title">{{ title }}</div>
               <div class="description">{{ description }}</div>
             </div>
-            <img src="{{image_url}}" (load)="makeMasonry()">
+            <img src="{{image_url}}">
             <div class="cover-footer">
               <div class="item" *ngFor="let item of technical_details">
                 <div class="left-area">
@@ -38,7 +38,33 @@
             </div>
           </div>
         </div>
-        <div class="masonry-container">
+        <div class="services-block" *ngFor="let serviceCategory of servicesData">
+          <div class="header">
+            <span>{{serviceCategory.title_1}}</span>
+            <div class="service-description" *ngIf="serviceCategory.description !== ''">{{serviceCategory.description}}</div>
+            <div class="service-image" *ngIf="serviceCategory.image_url !== ''" [ngStyle]="{'background-image': 'url(' + serviceCategory.image_url + ')'}"></div>
+          </div>
+          <div class="service content noselect">
+              <span *ngFor="let item of serviceCategory.options">
+                <div class="item-container" *ngIf="item.type === 'CHECKBOX' || item.type === 'RADIOBUTTON'" [ngClass]="{'checked':item.selected, 'image-item': item.image_url}" (click)="toggleService(serviceCategory.title, item.title)">
+                  <!--<i *ngIf="item.selected===true" class="fa fa-check-square"></i>-->
+                  <!--<i *ngIf="item.selected===false" class="fa fa-square-o"></i>-->
+                  <div class="item">
+                    <i *ngIf="item.selected===true" class="checkbox"><span></span></i>
+                    <i *ngIf="item.selected===false" class="checkbox empty"></i>
+                    {{item.title_1}}
+                  </div>
+                  <div class="item-description" *ngIf="item.description !== ''">{{ item.description }}</div>
+                  <div class="item-image" *ngIf="item.image_url !== ''" [ngStyle]="{'background-image': 'url(' + item.image_url + ')'}"></div>
+                </div>
+                <div class="input-group" *ngIf="item.type === 'INPUTTEXT'">
+                  <input type="text" [(ngModel)]="servicesData[item.formId].options[item.optionId].input_value" (keyup)="changeValue(item.formId, item.optionId)" (change)="changeValue(item.formId, item.optionId)" (focus)="selectAllContent($event)">
+                  <span class="input-group-addon">{{servicesData[item.formId].options[item.optionId].value_symbol}}</span>
+                </div>
+              </span>
+          </div>
+        </div>
+        <!-- <div class="masonry-container">
           <div class="services-block" *ngFor="let serviceCategory of servicesData">
             <div class="header">{{serviceCategory.title_1}}</div>
             <div class="service content noselect">
@@ -77,8 +103,8 @@
                 </span>
               </div>
             </span>
-          </div> -->
-        </div>
+          </div>
+        </div> -->
       </div>
       <app-order [orderData]="orderData" [orderIsFull]="orderIsFull"></app-order>
     </div>

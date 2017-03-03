@@ -51,6 +51,21 @@ $home-input-text-letter-spacing: 0.1px;
 $services-item-letter-spacing: 0.09px;
 $services-item-font-size: 14px;
 
+// Services styles V2
+$services-block-v2-header-font-size: 20px;
+$services-block-v2-header-letter-spacing: 0.13px;
+$services-block-v2-description-font-size: 16px;
+$services-block-v2-description-letter-spacing: 0.1px;
+$services-block-v2-checkbox-unchecked-border: 1px solid #E0E0E0;
+$services-block-v2-checkbox-unchecked-border-hover: 1px solid rgba(50, 73, 119, 0.3);
+$services-block-v2-checkbox-unchecked-background: #ffffff;
+$services-block-v2-checkbox-checked-background: #161517;
+$services-block-v2-checkbox-checked-image: '/assets/images/check.png';
+$services-block-v2-checkbox-text-font-size: 15px;
+$services-block-v2-checkbox-text-letter-spacing: 0.1px;
+$services-block-v2-checkbox-description-font-size: 14px;
+$services-block-v2-checkbox-description-letter-spacing: 0.09px;
+
 app-home {
   display: block;
   float: left;
@@ -277,7 +292,9 @@ $icon-checked-background-color: #161517;
 // }
 .services-block {
   display: block;
-  width: 48%;
+  float: left;
+  width: 100%;
+  padding: 47px 67px 50px 50px;
   // width: 505px;
   // background-color: $services-block-background-color;
   border: 1px solid $services-block-border-color;
@@ -287,33 +304,75 @@ $icon-checked-background-color: #161517;
   background-color: $services-block-background-color;
   // box-shadow: 0 1px 3px 0 #EDEFEF;
 }
+
+
+
 .services-block .header {
-  font-family: $font-name-medium;
-  font-size: 16px;
-  font-weight: 500;
+  display: block;
+  width: 100%;
+  position: relative;
+  padding-bottom: 50px;
+  //font-family: $font-name-medium;
+  //font-size: 16px;
+  //font-weight: 500;
   // background-color: $services-block-header-background-color;
-  padding: 15px 20px;
-  border-bottom: 1px solid $services-block-header-border-color;
-  letter-spacing: $services-block-header-letter-spacing;
+  //padding: 15px 20px;
+  //border-bottom: 1px solid $services-block-header-border-color;
+  //letter-spacing: $services-block-header-letter-spacing;
+  //color: $services-block-text-color;
+}
+.services-block .header span {
+  display: block;
+  width: 100%;
+  font-family: $font-name;
+  font-size: $services-block-v2-header-font-size;
+  letter-spacing: $services-block-v2-header-letter-spacing;
   color: $services-block-text-color;
+  padding-right: 380px;
+  margin-bottom: 15px;
+}
+.services-block .header .service-description {
+  display: block;
+  width: 100%;
+  font-family: $font-name-light;
+  font-size: $services-block-v2-description-font-size;
+  letter-spacing: $services-block-v2-description-letter-spacing;
+  color: $services-block-text-color;
+  padding-right: 380px;
+}
+.services-block .header .service-image {
+  display: block;
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 360px;
+  height: 140px;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 .services-block .service {
   display: block;
   width: 100%;
-  padding: 15px;
+  //padding: 15px;
 }
-.services-block .service .item {
+.services-block .service .item-container {
   display: block;
   position: relative;
   width: 100%;
-  padding: 10px 7px 9px 50px;
-  margin: 1px 0 1px 0;
-  // height: 40px;
-  font-weight: 400;
-  font-family: $font-name;
-  font-size: $services-item-font-size;
-  color: $black-text-secondary-color;
-  letter-spacing: $services-item-letter-spacing;
+  padding: 0 32px 20px 0;
+}
+.services-block .service .item-container.image-item {
+  padding: 0 105px 20px 0;
+}
+.services-block .service .item-container .item {
+  display: block;
+  position: relative;
+  width: 100%;
+  padding: 3px 130px 10px 50px;
+  font-family: $font-name-bold;
+  font-size: $services-block-v2-checkbox-text-font-size;
+  color: $services-block-text-color;
+  letter-spacing: $services-block-v2-checkbox-text-letter-spacing;
   cursor: pointer;
   -webkit-font-smoothing: initial !important;
   background-color: $services-block-header-background-color;
@@ -323,30 +382,69 @@ $icon-checked-background-color: #161517;
   background-color: rgba(230, 233, 239, 0.2);
   border-radius: 3px;
 }
-.services-block .service .item i {
+.services-block .service .item-container .item i.checkbox {
   display: block;
   position: absolute;
-  top: 8px;
-  left: 15px;
-  font-size: 24px;
-  color: #E0E0E0;
+  top: 0;
+  left: 0;
+  background-color: $services-block-v2-checkbox-checked-background;
+  border: none;
 }
-.services-block .service .item:hover i {
+.services-block .service .item-container .item i.checkbox span {
+  background-image: url($services-block-v2-checkbox-checked-image);
+  display: block;
+  width: 16px;
+  height: 13px;
+  margin: 6px 4px 6px 5px;
+}
+.services-block .service .item-container .item i.checkbox.empty {
   display: block;
   position: absolute;
-  top: 8px;
-  left: 15px;
-  font-size: 24px;
-  color: rgba(50, 73, 119, 0.3);
+  top: 0;
+  left: 0;
+  width: 25px;
+  height: 25px;
+  border: $services-block-v2-checkbox-unchecked-border;
+  background-color: $services-block-v2-checkbox-unchecked-background;
 }
-.services-block .service .item.checked i {
+.services-block .service .item-container .item:hover i.checkbox.empty {
+  border: $services-block-v2-checkbox-unchecked-border-hover;
+}
+.services-block .service .item-container .item-description {
+  display: block;
+  width: 100%;
+  font-family: $font-name-light;
+  color: $services-block-text-color;
+  font-size: $services-block-v2-checkbox-description-font-size;
+  letter-spacing: $services-block-v2-checkbox-description-letter-spacing;
+  padding: 0 130px 0 50px;
+}
+.services-block .service .item-container .item-image {
   display: block;
   position: absolute;
-  top: 8px;
-  left: 15px;
-  font-size: 24px;
-  color: $icon-checked-background-color;
+  top: 0;
+  right: 105px;
+  width: 110px;
+  height: 110px;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
+//.services-block .service .item:hover i {
+//  display: block;
+//  position: absolute;
+//  top: 8px;
+//  left: 15px;
+//  font-size: 24px;
+//  color: rgba(50, 73, 119, 0.3);
+//}
+//.services-block .service .item.checked i {
+//  display: block;
+//  position: absolute;
+//  top: 8px;
+//  left: 15px;
+//  font-size: 24px;
+//  color: $icon-checked-background-color;
+//}
 .services-block .service .item.checked {
   font-weight: 400;
   font-family: $font-name;
@@ -379,7 +477,8 @@ $icon-checked-background-color: #161517;
   outline: none;
 }
 .services-block .service .input-group {
-  padding: 0 10px 0 10px;
+  //padding: 0 10px 0 10px;
+  max-width: 450px;
 }
 .services-block .service .input-group input {
   width: 100%;
@@ -482,7 +581,7 @@ $content-block-description-text-letter-spacing: 0.08px;
   }
 
   .services-block {
-    width: 600px;
+    width: 100%;
   }
   .services-block-big {
     width: 600px;
@@ -498,6 +597,7 @@ $content-block-description-text-letter-spacing: 0.08px;
   .header-cover .title {
     text-align: center;
     padding: 10px 20px;
+    margin-bottom: 20px;
   }
   .header-cover .description {
     padding-top: 20px;
@@ -516,6 +616,37 @@ $content-block-description-text-letter-spacing: 0.08px;
 
   .services-block {
     width: 100%;
+    padding: 0;
+  }
+  .services-block .header {
+    padding-bottom: 10px;
+  }
+  .services-block .header span {
+    font-family: $font-name-medium;
+    font-size: 16px;
+    font-weight: 500;
+    padding: 15px 20px;
+    border-bottom: 1px solid $services-block-header-border-color;
+    letter-spacing: $services-block-header-letter-spacing;
+    color: $services-block-text-color;
+  }
+  .services-block .service .input-group {
+    padding: 0 0 20px 20px;
+  }
+  .services-block .service .item-container.image-item {
+    padding: 0 105px 10px 20px;
+  }
+  .services-block .header .service-description {
+    display: none;
+  }
+  .services-block .header .service-image {
+    display: none;
+  }
+  .services-block .service .item-container .item-description {
+    display: none;
+  }
+  .services-block .service .item-container .item-image {
+    display: none;
   }
   .services-block-big {
     width: 100%;

@@ -966,6 +966,8 @@ var HomeComponent = (function () {
             var serviceForm = {
                 title: form.title,
                 title_1: title_1,
+                description: form.description,
+                image_url: form.image_url,
                 type: form.type,
                 required: form.required,
                 price_type: form.price_type,
@@ -986,6 +988,8 @@ var HomeComponent = (function () {
                     optionId: optionId,
                     title: item.title,
                     title_1: title_1,
+                    description: form.description,
+                    image_url: form.image_url,
                     type: form.type,
                     amount: item.amount
                 };
@@ -1338,24 +1342,24 @@ var HomeComponent = (function () {
     //   });
     // }
     HomeComponent.prototype.ngAfterViewInit = function () {
-        if (this.isServicesView !== false && __WEBPACK_IMPORTED_MODULE_0_angular2_universal__["isBrowser"]) {
-            var elems = document.querySelector('.masonry-container');
-            this.masonry = new Masonry(elems, {
-                columnWidth: 490,
-                itemSelector: '.services-block',
-                gutter: 20,
-                originLeft: true,
-                originTop: true
-            });
-        }
+        //   if (this.isServicesView !== false && isBrowser) {
+        //     let elems = document.querySelector('.masonry-container');
+        //     this.masonry = new Masonry(elems, {
+        //       columnWidth: 490,
+        //       itemSelector: '.services-block',
+        //       gutter: 20,
+        //       originLeft: true,
+        //       originTop: true
+        //     });
+        //   }
     };
-    HomeComponent.prototype.makeMasonry = function () {
-        if (__WEBPACK_IMPORTED_MODULE_0_angular2_universal__["isBrowser"]) {
-            if (this.masonry) {
-                this.masonry.layout();
-            }
-        }
-    };
+    // makeMasonry() {
+    //   if (isBrowser) {
+    //     if(this.masonry) {
+    //       this.masonry.layout();
+    //     }
+    //   }
+    // }
     HomeComponent.prototype.ngOnInit = function () {
         // this.route.url.subscribe((url) => {
         //   if (0 in url) {
@@ -1382,18 +1386,6 @@ var HomeComponent = (function () {
                 _this.isServicesView = true;
                 if (services) {
                     _this.renderPage(services);
-                    if (__WEBPACK_IMPORTED_MODULE_0_angular2_universal__["isBrowser"]) {
-                        setTimeout(function () {
-                            var elems = document.querySelector('.masonry-container');
-                            this.masonry = new Masonry(elems, {
-                                columnWidth: 490,
-                                itemSelector: '.services-block',
-                                gutter: 20,
-                                originLeft: true,
-                                originTop: true
-                            });
-                        }, 1);
-                    }
                 }
                 else {
                     _this.isLoading = true;
@@ -1402,18 +1394,18 @@ var HomeComponent = (function () {
                         .then(function (data) {
                         _this.analyticsService.sendTiming({ category: 'Get service by id', timingVar: 'load', timingValue: Date.now() - timeStart_1 });
                         _this.renderPage(data.result);
-                        if (__WEBPACK_IMPORTED_MODULE_0_angular2_universal__["isBrowser"]) {
-                            setTimeout(function () {
-                                var elems = document.querySelector('.masonry-container');
-                                this.masonry = new Masonry(elems, {
-                                    columnWidth: 490,
-                                    itemSelector: '.services-block',
-                                    gutter: 20,
-                                    originLeft: true,
-                                    originTop: true
-                                });
-                            }, 1);
-                        }
+                        // if (isBrowser) {
+                        //   setTimeout(function () {
+                        //     let elems = document.querySelector('.masonry-container');
+                        //     this.masonry = new Masonry(elems, {
+                        //       columnWidth: 490,
+                        //       itemSelector: '.services-block',
+                        //       gutter: 20,
+                        //       originLeft: true,
+                        //       originTop: true
+                        //     });
+                        //   }, 1);
+                        // }
                         _this.isLoading = false;
                     })
                         .catch(function (error) {
@@ -5527,7 +5519,7 @@ module.exports = "<nav class=\"navbar navbar-dark navbar-fixed-top bg-inverse\" 
 /***/ 679:
 /***/ function(module, exports) {
 
-module.exports = "<!--<nav class=\"navbar navbar-dark navbar-tabs\">\n  <div class=\"container-starbook home-tab-bar\"\n       (swipeleft)=\"swipe($event.type, $event.deltaX)\"\n       (swiperight)=\"swipe($event.type, $event.deltaX)\">\n    <ul class=\"nav nav-pills\"\n        [ngStyle]=\"{'margin-left.px': delta}\">\n      <li class=\"nav-item\" *ngFor=\"let navServices of servicesCategoryList\">\n        <a class=\"nav-link\" [ngClass]=\"{'active':navServices._id===activeServiceCategory && activeServiceCategoryType !== false}\" (click)=\"tabNavigate(navServices._id)\"><i class=\"f{{navServices.icon_name}}\"></i> {{navServices.title}}</a>\n      </li>\n    </ul>\n  </div>\n</nav>-->\n\n<div class=\"container-starbook home-page\" *ngIf=\"isServicesView === true\">\n  <div class=\"row\">\n    <div class=\"col-sm-9 col-md-10 main\">\n      <div class=\"tab-container\">\n        <div class=\"header-cover\">\n          <div class=\"tablet-mobile\">\n            <div class=\"title\">{{ title }}</div>\n            <img src=\"{{image_url}}\" (load)=\"makeMasonry()\">\n            <div class=\"description\">{{ description }}</div>\n          </div>\n          <div class=\"large-cover\">\n            <div class=\"left-block\">\n              <div class=\"title\">{{ title }}</div>\n              <div class=\"description\">{{ description }}</div>\n            </div>\n            <img src=\"{{image_url}}\" (load)=\"makeMasonry()\">\n            <div class=\"cover-footer\">\n              <div class=\"item\" *ngFor=\"let item of technical_details\">\n                <div class=\"left-area\">\n                  <div class=\"header\">{{ item.title }}</div>\n                  <div class=\"specifications\">{{ item.value }}</div>\n                </div>\n                <div class=\"content\">{{ item.description }}</div>\n              </div>\n            </div>\n          </div>\n        </div>\n        <div class=\"masonry-container\">\n          <div class=\"services-block\" *ngFor=\"let serviceCategory of servicesData\">\n            <div class=\"header\">{{serviceCategory.title_1}}</div>\n            <div class=\"service content noselect\">\n              <span *ngFor=\"let item of serviceCategory.options\">\n                <div class=\"item\" *ngIf=\"item.type === 'CHECKBOX' || item.type === 'RADIOBUTTON'\" [ngClass]=\"{'checked':item.selected}\" (click)=\"toggleService(serviceCategory.title, item.title)\">\n                  <i *ngIf=\"item.selected===true\" class=\"fa fa-check-square\"></i>\n                  <i *ngIf=\"item.selected===false\" class=\"fa fa-square-o\"></i>\n                  {{item.title_1}}\n                </div>\n                <div class=\"input-group\" *ngIf=\"item.type === 'INPUTTEXT'\">\n                  <input type=\"text\" [(ngModel)]=\"servicesData[item.formId].options[item.optionId].input_value\" (keyup)=\"changeValue(item.formId, item.optionId)\" (change)=\"changeValue(item.formId, item.optionId)\" (focus)=\"selectAllContent($event)\">\n                  <span class=\"input-group-addon\">{{servicesData[item.formId].options[item.optionId].value_symbol}}</span>\n                </div>\n              </span>\n            </div>\n          </div>\n\n          <!-- <div class=\"services-block\" *ngFor=\"let serviceCategory of servicesData\" [ngClass]=\"{'services-block-big': serviceCategory.type === 'content'}\">\n            <span *ngIf=\"serviceCategory.type === 'content'\">\n              <img [src]=\"serviceCategory.image\" (load)=\"makeMasonry()\">\n              <div class=\"description\">{{ serviceCategory.description }}</div>\n            </span>\n            <span *ngIf=\"serviceCategory.type !== 'content'\">\n              <div class=\"header\">{{serviceCategory.title_1}}</div>\n              <div class=\"service content noselect\">\n                <span *ngFor=\"let item of serviceCategory.options\">\n                  <div class=\"item\" *ngIf=\"item.type === 'CHECKBOX' || item.type === 'RADIOBUTTON'\" [ngClass]=\"{'checked':item.selected}\" (click)=\"toggleService(serviceCategory.title, item.title)\">\n                    <i *ngIf=\"item.selected===true\" class=\"fa fa-check-square\"></i>\n                    <i *ngIf=\"item.selected===false\" class=\"fa fa-square-o\"></i>\n                    {{item.title_1}}\n                  </div>\n                  <div class=\"input-group\" *ngIf=\"item.type === 'INPUTTEXT'\">\n                    <input type=\"text\" [(ngModel)]=\"servicesData[item.formId].options[item.optionId].input_value\" (keyup)=\"changeValue(item.formId, item.optionId)\" (change)=\"changeValue(item.formId, item.optionId)\" (focus)=\"selectAllContent($event)\">\n                    <span class=\"input-group-addon\">{{servicesData[item.formId].options[item.optionId].value_symbol}}</span>\n                  </div>\n                </span>\n              </div>\n            </span>\n          </div> -->\n        </div>\n      </div>\n      <app-order [orderData]=\"orderData\" [orderIsFull]=\"orderIsFull\"></app-order>\n    </div>\n  </div>\n\n  <!-- <div class=\"footer-container\">\n    <div class=\"copyright\">Starbook © 2016 Tutti i diritti riservati</div>\n    <span> • </span><a routerLink=\"../../profile/privacy\">Privacy</a>\n    <span> • </span><a routerLink=\"../../profile/conditions\">Condizioni</a>\n    <span> • </span><a routerLink=\"../../profile/help\">Assistenza</a>\n  </div> -->\n</div>\n<app-landing *ngIf=\"isServicesView === false\"></app-landing>\n<app-loading *ngIf=\"isLoading\" class=\"services-loader\"></app-loading>\n"
+module.exports = "<!--<nav class=\"navbar navbar-dark navbar-tabs\">\n  <div class=\"container-starbook home-tab-bar\"\n       (swipeleft)=\"swipe($event.type, $event.deltaX)\"\n       (swiperight)=\"swipe($event.type, $event.deltaX)\">\n    <ul class=\"nav nav-pills\"\n        [ngStyle]=\"{'margin-left.px': delta}\">\n      <li class=\"nav-item\" *ngFor=\"let navServices of servicesCategoryList\">\n        <a class=\"nav-link\" [ngClass]=\"{'active':navServices._id===activeServiceCategory && activeServiceCategoryType !== false}\" (click)=\"tabNavigate(navServices._id)\"><i class=\"f{{navServices.icon_name}}\"></i> {{navServices.title}}</a>\n      </li>\n    </ul>\n  </div>\n</nav>-->\n\n<div class=\"container-starbook home-page\" *ngIf=\"isServicesView === true\">\n  <div class=\"row\">\n    <div class=\"col-sm-9 col-md-10 main\">\n      <div class=\"tab-container\">\n        <div class=\"header-cover\">\n          <div class=\"tablet-mobile\">\n            <div class=\"title\">{{ title }}</div>\n            <img src=\"{{image_url}}\">\n            <div class=\"description\">{{ description }}</div>\n          </div>\n          <div class=\"large-cover\">\n            <div class=\"left-block\">\n              <div class=\"title\">{{ title }}</div>\n              <div class=\"description\">{{ description }}</div>\n            </div>\n            <img src=\"{{image_url}}\">\n            <div class=\"cover-footer\">\n              <div class=\"item\" *ngFor=\"let item of technical_details\">\n                <div class=\"left-area\">\n                  <div class=\"header\">{{ item.title }}</div>\n                  <div class=\"specifications\">{{ item.value }}</div>\n                </div>\n                <div class=\"content\">{{ item.description }}</div>\n              </div>\n            </div>\n          </div>\n        </div>\n        <div class=\"services-block\" *ngFor=\"let serviceCategory of servicesData\">\n          <div class=\"header\">\n            <span>{{serviceCategory.title_1}}</span>\n            <div class=\"service-description\" *ngIf=\"serviceCategory.description !== ''\">{{serviceCategory.description}}</div>\n            <div class=\"service-image\" *ngIf=\"serviceCategory.image_url !== ''\" [ngStyle]=\"{'background-image': 'url(' + serviceCategory.image_url + ')'}\"></div>\n          </div>\n          <div class=\"service content noselect\">\n              <span *ngFor=\"let item of serviceCategory.options\">\n                <div class=\"item-container\" *ngIf=\"item.type === 'CHECKBOX' || item.type === 'RADIOBUTTON'\" [ngClass]=\"{'checked':item.selected, 'image-item': item.image_url}\" (click)=\"toggleService(serviceCategory.title, item.title)\">\n                  <!--<i *ngIf=\"item.selected===true\" class=\"fa fa-check-square\"></i>-->\n                  <!--<i *ngIf=\"item.selected===false\" class=\"fa fa-square-o\"></i>-->\n                  <div class=\"item\">\n                    <i *ngIf=\"item.selected===true\" class=\"checkbox\"><span></span></i>\n                    <i *ngIf=\"item.selected===false\" class=\"checkbox empty\"></i>\n                    {{item.title_1}}\n                  </div>\n                  <div class=\"item-description\" *ngIf=\"item.description !== ''\">{{ item.description }}</div>\n                  <div class=\"item-image\" *ngIf=\"item.image_url !== ''\" [ngStyle]=\"{'background-image': 'url(' + item.image_url + ')'}\"></div>\n                </div>\n                <div class=\"input-group\" *ngIf=\"item.type === 'INPUTTEXT'\">\n                  <input type=\"text\" [(ngModel)]=\"servicesData[item.formId].options[item.optionId].input_value\" (keyup)=\"changeValue(item.formId, item.optionId)\" (change)=\"changeValue(item.formId, item.optionId)\" (focus)=\"selectAllContent($event)\">\n                  <span class=\"input-group-addon\">{{servicesData[item.formId].options[item.optionId].value_symbol}}</span>\n                </div>\n              </span>\n          </div>\n        </div>\n        <!-- <div class=\"masonry-container\">\n          <div class=\"services-block\" *ngFor=\"let serviceCategory of servicesData\">\n            <div class=\"header\">{{serviceCategory.title_1}}</div>\n            <div class=\"service content noselect\">\n              <span *ngFor=\"let item of serviceCategory.options\">\n                <div class=\"item\" *ngIf=\"item.type === 'CHECKBOX' || item.type === 'RADIOBUTTON'\" [ngClass]=\"{'checked':item.selected}\" (click)=\"toggleService(serviceCategory.title, item.title)\">\n                  <i *ngIf=\"item.selected===true\" class=\"fa fa-check-square\"></i>\n                  <i *ngIf=\"item.selected===false\" class=\"fa fa-square-o\"></i>\n                  {{item.title_1}}\n                </div>\n                <div class=\"input-group\" *ngIf=\"item.type === 'INPUTTEXT'\">\n                  <input type=\"text\" [(ngModel)]=\"servicesData[item.formId].options[item.optionId].input_value\" (keyup)=\"changeValue(item.formId, item.optionId)\" (change)=\"changeValue(item.formId, item.optionId)\" (focus)=\"selectAllContent($event)\">\n                  <span class=\"input-group-addon\">{{servicesData[item.formId].options[item.optionId].value_symbol}}</span>\n                </div>\n              </span>\n            </div>\n          </div>\n\n          <!-- <div class=\"services-block\" *ngFor=\"let serviceCategory of servicesData\" [ngClass]=\"{'services-block-big': serviceCategory.type === 'content'}\">\n            <span *ngIf=\"serviceCategory.type === 'content'\">\n              <img [src]=\"serviceCategory.image\" (load)=\"makeMasonry()\">\n              <div class=\"description\">{{ serviceCategory.description }}</div>\n            </span>\n            <span *ngIf=\"serviceCategory.type !== 'content'\">\n              <div class=\"header\">{{serviceCategory.title_1}}</div>\n              <div class=\"service content noselect\">\n                <span *ngFor=\"let item of serviceCategory.options\">\n                  <div class=\"item\" *ngIf=\"item.type === 'CHECKBOX' || item.type === 'RADIOBUTTON'\" [ngClass]=\"{'checked':item.selected}\" (click)=\"toggleService(serviceCategory.title, item.title)\">\n                    <i *ngIf=\"item.selected===true\" class=\"fa fa-check-square\"></i>\n                    <i *ngIf=\"item.selected===false\" class=\"fa fa-square-o\"></i>\n                    {{item.title_1}}\n                  </div>\n                  <div class=\"input-group\" *ngIf=\"item.type === 'INPUTTEXT'\">\n                    <input type=\"text\" [(ngModel)]=\"servicesData[item.formId].options[item.optionId].input_value\" (keyup)=\"changeValue(item.formId, item.optionId)\" (change)=\"changeValue(item.formId, item.optionId)\" (focus)=\"selectAllContent($event)\">\n                    <span class=\"input-group-addon\">{{servicesData[item.formId].options[item.optionId].value_symbol}}</span>\n                  </div>\n                </span>\n              </div>\n            </span>\n          </div>\n        </div> -->\n      </div>\n      <app-order [orderData]=\"orderData\" [orderIsFull]=\"orderIsFull\"></app-order>\n    </div>\n  </div>\n\n  <!-- <div class=\"footer-container\">\n    <div class=\"copyright\">Starbook © 2016 Tutti i diritti riservati</div>\n    <span> • </span><a routerLink=\"../../profile/privacy\">Privacy</a>\n    <span> • </span><a routerLink=\"../../profile/conditions\">Condizioni</a>\n    <span> • </span><a routerLink=\"../../profile/help\">Assistenza</a>\n  </div> -->\n</div>\n<app-landing *ngIf=\"isServicesView === false\"></app-landing>\n<app-loading *ngIf=\"isLoading\" class=\"services-loader\"></app-loading>\n"
 
 /***/ },
 
