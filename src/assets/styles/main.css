@@ -2681,12 +2681,13 @@ html, body {
 
 .search-block {
   display: block;
-  position: relative;
+  position: absolute;
+  left: 50%;
   float: left;
   max-width: 400px;
   width: 100%;
   height: 30px;
-  margin: 7px 0 7px 11px; }
+  margin: 7px 0 7px -200px; }
 
 .search-block .ui-autocomplete-input {
   display: block;
@@ -2779,10 +2780,20 @@ input.search-block .ui-autocomplete-input:-ms-input-placeholder {
   letter-spacing: 0.1px;
   padding: 8px 21px; }
 
-@media (max-width: 790px) {
+@media (max-width: 900px) {
   .search-block {
-    max-width: 280px; } }
-@media (max-width: 640px) {
+    max-width: 280px;
+    margin: 7px 0 7px -140px; } }
+@media (max-width: 770px) {
+  .search-block {
+    max-width: 280px;
+    margin: 7px 0 7px 11px;
+    position: relative;
+    left: auto; } }
+@media (max-width: 690px) {
+  .search-block {
+    max-width: 240px; } }
+@media (max-width: 650px) {
   .is-search .navbar-brand {
     display: none; }
 
@@ -2839,7 +2850,7 @@ input.search-block .ui-autocomplete-input:-ms-input-placeholder {
     box-shadow: none !important; } }
 @media (max-width: 360px) {
   .search-block {
-    max-width: 260px; } }
+    max-width: 240px; } }
 app-home {
   display: block;
   float: left;
@@ -2923,8 +2934,7 @@ app-home {
 
 .masonry-container {
   display: block;
-  float: left;
-  width: 100%; }
+  float: left; }
 
 .container-starbook {
   display: block;
@@ -2947,7 +2957,6 @@ app-home {
 .container-starbook .header-cover {
   display: block;
   float: left;
-  width: 100%;
   background-color: red;
   margin-bottom: 20px;
   background-color: #161517;
@@ -3400,10 +3409,24 @@ app-home {
     margin-bottom: 10px; }
 
   .masonry-container {
-    padding: 0px; }
+    padding: 0px;
+    margin-left: 0;
+    margin-right: 0; }
 
   .container-starbook .row {
-    padding: 50px 0 0 0; } }
+    padding: 50px 0 0 0; }
+
+  .services-block .service .input-group {
+    max-width: 290px; }
+
+  .services-block .service .input-group {
+    padding: 0 0 10px 20px; }
+
+  .services-block .service .item-container .item {
+    padding: 3px 10px 10px 50px; }
+
+  .services-block .service .item-container.image-item {
+    padding: 0 20px 10px 20px; } }
 @media (max-width: 534px) {
   .home-page .tab-container {
     display: block;

@@ -151,7 +151,6 @@ app-home {
 .masonry-container {
   display: block;
   float: left;
-  width: 100%;
   // padding-left: 30px;
   // margin-left: 10px;
   // margin-right: 10px;
@@ -179,7 +178,6 @@ app-home {
 .container-starbook .header-cover {
   display: block;
   float: left;
-  width: 100%;
   background-color: red;
   margin-bottom: 20px;
   background-color: $general-background-black-color;
@@ -707,9 +705,23 @@ $content-block-description-text-letter-spacing: 0.08px;
   .masonry-container {
     // padding-left: 20px;
     padding: 0px;
+    margin-left: 0;
+    margin-right: 0;
   }
   .container-starbook .row {
     padding: 50px 0 0 0;
+  }
+  .services-block .service .input-group {
+    max-width: 290px;
+  }
+  .services-block .service .input-group {
+    padding: 0 0 10px 20px;
+  }
+  .services-block .service .item-container .item {
+    padding: 3px 10px 10px 50px;
+  }
+  .services-block .service .item-container.image-item {
+    padding: 0 20px 10px 20px;
   }
 }
 @media (max-width: 534px) {

@@ -38,13 +38,14 @@
             </div>
           </div>
         </div>
-        <div class="services-block" *ngFor="let serviceCategory of servicesData">
-          <div class="header">
-            <span>{{serviceCategory.title_1}}</span>
-            <div class="service-description" *ngIf="serviceCategory.description !== ''">{{serviceCategory.description}}</div>
-            <div class="service-image" *ngIf="serviceCategory.image_url !== ''" [ngStyle]="{'background-image': 'url(' + serviceCategory.image_url + ')'}"></div>
-          </div>
-          <div class="service content noselect">
+        <div class="masonry-container">
+          <div class="services-block" *ngFor="let serviceCategory of servicesData">
+            <div class="header">
+              <span>{{serviceCategory.title_1}}</span>
+              <div class="service-description" *ngIf="serviceCategory.description !== ''">{{serviceCategory.description}}</div>
+              <div class="service-image" *ngIf="serviceCategory.image_url !== ''" [ngStyle]="{'background-image': 'url(' + serviceCategory.image_url + ')'}"></div>
+            </div>
+            <div class="service content noselect">
               <span *ngFor="let item of serviceCategory.options">
                 <div class="item-container" *ngIf="item.type === 'CHECKBOX' || item.type === 'RADIOBUTTON'" [ngClass]="{'checked':item.selected, 'image-item': item.image_url}" (click)="toggleService(serviceCategory.title, item.title)">
                   <!--<i *ngIf="item.selected===true" class="fa fa-check-square"></i>-->
@@ -62,8 +63,10 @@
                   <span class="input-group-addon">{{servicesData[item.formId].options[item.optionId].value_symbol}}</span>
                 </div>
               </span>
+            </div>
           </div>
         </div>
+
         <!-- <div class="masonry-container">
           <div class="services-block" *ngFor="let serviceCategory of servicesData">
             <div class="header">{{serviceCategory.title_1}}</div>

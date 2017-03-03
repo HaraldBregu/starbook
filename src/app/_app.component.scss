@@ -136,12 +136,13 @@ html, body {
 // Search box
 .search-block {
   display: block;
-  position: relative;
+  position: absolute;
+  left: 50%;
   float: left;
   max-width: 400px;
   width: 100%;
   height: 30px;
-  margin: 7px 0 7px 11px;
+  margin: 7px 0 7px -200px;
 }
 .search-block .ui-autocomplete-input {
   display: block;
@@ -249,12 +250,26 @@ input.search-block .ui-autocomplete-input:-ms-input-placeholder {
   letter-spacing: $search-navbar-result-letter-spacing;
   padding: 8px 21px;
 }
-@media (max-width: 790px) {
+@media (max-width: 900px) {
   .search-block {
     max-width: 280px;
+    margin: 7px 0 7px -140px;
   }
 }
-@media (max-width: 640px) {
+@media (max-width: 770px) {
+  .search-block {
+    max-width: 280px;
+    margin: 7px 0 7px 11px;
+    position: relative;
+    left: auto;
+  }
+}
+@media (max-width: 690px) {
+  .search-block {
+    max-width: 240px;
+  }
+}
+@media (max-width: 650px) {
   .is-search .navbar-brand {
     display: none;
   }
@@ -317,6 +332,6 @@ input.search-block .ui-autocomplete-input:-ms-input-placeholder {
 
 @media (max-width: 360px) {
   .search-block {
-    max-width: 260px;
+    max-width: 240px;
   }
 }
