@@ -34,6 +34,8 @@ export interface IServiceFormItem {
   optionId?: number;
   title: string;
   title_1: string;
+  description?: string;
+  image_url?: string;
   input_type?: string;
   input_value?: any;
   value_symbol?: string;
@@ -45,6 +47,8 @@ export interface IServiceForm {
   required: boolean;
   title: string;
   title_1: string;
+  description?: string;
+  image_url?: string;
   price_type: string;
   options: IServiceFormItem[];
 }
@@ -175,6 +179,8 @@ export class HomeComponent implements AfterViewInit, OnInit, OnDestroy {
       let serviceForm: IServiceForm = {
         title: form.title,
         title_1 : title_1,
+        description: form.description,
+        image_url: form.image_url,
         type: form.type,
         required: form.required,
         price_type: form.price_type,
@@ -196,6 +202,8 @@ export class HomeComponent implements AfterViewInit, OnInit, OnDestroy {
           optionId: optionId,
           title: item.title,
           title_1: title_1,
+          description: form.description,
+          image_url: form.image_url,
           type: form.type,
           amount: item.amount
         };
@@ -560,25 +568,25 @@ export class HomeComponent implements AfterViewInit, OnInit, OnDestroy {
   // }
 
   ngAfterViewInit() {
-    if (this.isServicesView !== false && isBrowser) {
-      let elems = document.querySelector('.masonry-container');
-      this.masonry = new Masonry(elems, {
-        columnWidth: 490,
-        itemSelector: '.services-block',
-        gutter: 20,
-        originLeft: true,
-        originTop: true
-      });
-    }
+  //   if (this.isServicesView !== false && isBrowser) {
+  //     let elems = document.querySelector('.masonry-container');
+  //     this.masonry = new Masonry(elems, {
+  //       columnWidth: 490,
+  //       itemSelector: '.services-block',
+  //       gutter: 20,
+  //       originLeft: true,
+  //       originTop: true
+  //     });
+  //   }
   }
 
-  makeMasonry() {
-    if (isBrowser) {
-      if(this.masonry) {
-        this.masonry.layout();
-      }
-    }
-  }
+  // makeMasonry() {
+  //   if (isBrowser) {
+  //     if(this.masonry) {
+  //       this.masonry.layout();
+  //     }
+  //   }
+  // }
 
   ngOnInit() {
     // this.route.url.subscribe((url) => {
@@ -607,18 +615,18 @@ export class HomeComponent implements AfterViewInit, OnInit, OnDestroy {
         this.isServicesView = true;
         if (services) {
           this.renderPage(services);
-          if (isBrowser) {
-            setTimeout(function () {
-              let elems = document.querySelector('.masonry-container');
-              this.masonry = new Masonry(elems, {
-                columnWidth: 490,
-                itemSelector: '.services-block',
-                gutter: 20,
-                originLeft: true,
-                originTop: true
-              });
-            }, 1);
-          }
+          // if (isBrowser) {
+          //   setTimeout(function () {
+          //     let elems = document.querySelector('.masonry-container');
+          //     this.masonry = new Masonry(elems, {
+          //       columnWidth: 490,
+          //       itemSelector: '.services-block',
+          //       gutter: 20,
+          //       originLeft: true,
+          //       originTop: true
+          //     });
+          //   }, 1);
+          // }
         } else {
           this.isLoading = true;
           let timeStart = Date.now();
@@ -626,18 +634,18 @@ export class HomeComponent implements AfterViewInit, OnInit, OnDestroy {
               .then((data) => {
                 this.analyticsService.sendTiming({category: 'Get service by id', timingVar: 'load', timingValue: Date.now()-timeStart});
                 this.renderPage(data.result);
-                if (isBrowser) {
-                  setTimeout(function () {
-                    let elems = document.querySelector('.masonry-container');
-                    this.masonry = new Masonry(elems, {
-                      columnWidth: 490,
-                      itemSelector: '.services-block',
-                      gutter: 20,
-                      originLeft: true,
-                      originTop: true
-                    });
-                  }, 1);
-                }
+                // if (isBrowser) {
+                //   setTimeout(function () {
+                //     let elems = document.querySelector('.masonry-container');
+                //     this.masonry = new Masonry(elems, {
+                //       columnWidth: 490,
+                //       itemSelector: '.services-block',
+                //       gutter: 20,
+                //       originLeft: true,
+                //       originTop: true
+                //     });
+                //   }, 1);
+                // }
                 this.isLoading = false;
               })
               .catch((error) => {
