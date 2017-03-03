@@ -3042,7 +3042,7 @@ app-home {
 .container-starbook .main {
   display: block;
   width: 100%;
-  padding-right: 390px;
+  padding-right: 410px;
   padding-left: 0px; }
 
 .tab-container {
@@ -3442,7 +3442,7 @@ textarea, input[type="text"] {
 
 .container-starbook .sidebar {
   display: block;
-  width: 390px;
+  width: 410px;
   height: auto;
   position: fixed;
   top: 0;
