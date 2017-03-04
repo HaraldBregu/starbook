@@ -746,11 +746,11 @@ $content-block-description-text-letter-spacing: 0.08px;
 
 
 /* Remove inner shadow from inputs on mobile iOS */
-textarea, input[type="text"] {
-  -webkit-appearance: none;
-  -webkit-border-radius: 0px;
-  border-radius: 0;
-}
+// textarea, input[type="text"] {
+//   -webkit-appearance: none;
+//   -webkit-border-radius: 0px;
+//   border-radius: 0;
+// }
 
 .noselect {
   -webkit-touch-callout: none; /* iOS Safari */

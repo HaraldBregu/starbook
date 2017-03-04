@@ -3443,11 +3443,6 @@ app-home {
   .services-block .services-block-big {
     width: 345px; } }
 /* Remove inner shadow from inputs on mobile iOS */
-textarea, input[type="text"] {
-  -webkit-appearance: none;
-  -webkit-border-radius: 0px;
-  border-radius: 0; }
-
 .noselect {
   -webkit-touch-callout: none;
   /* iOS Safari */
@@ -3593,7 +3588,7 @@ textarea.form-control {
 .form-control:focus {
   border: 1px solid rgba(220, 224, 224, 0.7);
   outline: none;
-  background-color: #2A292B;
+  background-color: white;
   color: white; }
 
 .input-group {
@@ -6889,9 +6884,6 @@ input.landing-search .ui-autocomplete-input:-ms-input-placeholder {
     width: 100%;
     padding: 0 15px; } }
 /* Remove inner shadow from inputs on mobile iOS */
-textarea, input[type="text"] {
-  -webkit-appearance: none; }
-
 ngb-datepicker,
 .datepicker {
   border-radius: 3px;
