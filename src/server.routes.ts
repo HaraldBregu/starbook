@@ -16,5 +16,6 @@ export const routes: string[] = [
     'profile/conditions',
     'orders',
     'profile/:page',
-    'facebook'
+    'facebook',
+    'order'
 ];

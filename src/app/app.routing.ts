@@ -5,6 +5,7 @@ import { HomeComponent } from './home/home.component';
 import { OrdersComponent } from './pages/orders/orders.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { FacebookComponent } from './pages/facebook/facebook.component';
+import { WizardComponent } from './pages/wizard/wizard.component';
 
 const routes: Routes = [
   {
@@ -27,6 +28,10 @@ const routes: Routes = [
   {
     path: 'facebook',
     component: FacebookComponent
+  },
+  {
+    path: 'order',
+    component: WizardComponent
   }
 ];
 

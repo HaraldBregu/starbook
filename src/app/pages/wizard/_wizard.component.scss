@@ -1,0 +1,122 @@
+// Wizard styles
+$wizard-background-color: #F7F7F7;
+$wizard-border-style: 1px solid #CCCCCC;
+$wizard-header-text-color: #000000;
+$wizard-header-text-size: 18px;
+$wizard-header-text-letter-spacing: 0.11px;
+$wizard-content-header-text-color: #000000;
+$wizard-content-header-text-size: 28px;
+$wizard-content-header-text-letter-spacing: 0.16px;
+$wizard-content-item-text-color: #000000;
+$wizard-content-item-text-size: 18px;
+$wizard-content-item-text-letter-spacing: 0.11px;
+
+app-wizard {
+  display: block;
+  float: left;
+  width: 100%;
+  height: 100%;
+  min-height: 100vh;
+  background-color: #FFFFFF;
+}
+.wizard {
+  display: block;
+  width: 100%;
+  max-width: 1000px;
+  margin: 70px auto 0;
+}
+.wizard .wizard-container {
+  display: block;
+  float: left;
+  width: 100%;
+  background-color: $wizard-background-color;
+  border: $wizard-border-style;
+}
+.wizard .wizard-container .header {
+  display: block;
+  float: left;
+  width: 100%;
+  border-bottom: $wizard-border-style;
+  padding-left: 10px;
+}
+.wizard .wizard-container .header span {
+  display: inline-block;
+  float: left;
+  position: relative;
+  padding: 16px 30px 19px 20px;
+  overflow: hidden;
+  font-family: $font-name;
+  color: $wizard-header-text-color;
+  font-size: $wizard-header-text-size;
+  letter-spacing: $wizard-header-text-letter-spacing;
+}
+.wizard .wizard-container .header span i {
+  display: block;
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  top: 2px;
+  right: 7px;
+  -moz-transform: rotate(54deg) skewX(20deg);
+  -ms-transform: rotate(54deg) skewX(20deg);
+  -webkit-transform: rotate(54deg) skewX(20deg);
+  -o-transform: rotate(54deg) skewX(20deg);
+  transform: rotate(54deg) skewX(20deg);
+  background-color: transparent;
+  border-top: $wizard-border-style;
+  border-right: $wizard-border-style;
+}
+.wizard-container .image-block {
+  display: block;
+  width: 100%;
+  height: 385px;
+  float: left;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+.wizard-container .content-container {
+  display: block;
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+}
+.wizard-container .content-container .title {
+  display: block;
+  float: left;
+  width: 100%;
+  font-family: $font-name;
+  color: $wizard-content-header-text-color;
+  font-size: $wizard-content-header-text-size;
+  letter-spacing: $wizard-content-header-text-letter-spacing;
+  margin-top: 41px;
+}
+.wizard-container .content-container .items {
+  display: block;
+  float: left;
+  width: 100%;
+  margin-top: 18px;
+}
+.wizard-container .content-container .items .item {
+  display: block;
+  float: left;
+  position: relative;
+  width: 100%;
+  padding-top: 5px;
+  font-family: $font-name-light;
+  color: $wizard-content-item-text-color;
+  font-size: $wizard-content-item-text-size;
+  letter-spacing: $wizard-content-item-text-letter-spacing;
+}
+.wizard-container .content-container .items .item span {
+  display: block;
+  position: absolute;
+  top: 0;
+  right: 0;
+  text-align: right;
+  padding-top: 5px;
+  font-family: $font-name-light;
+  color: $wizard-content-item-text-color;
+  font-size: $wizard-content-item-text-size;
+  letter-spacing: $wizard-content-item-text-letter-spacing;
+}

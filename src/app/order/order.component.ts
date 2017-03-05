@@ -65,6 +65,10 @@ export class OrderComponent implements OnInit, OnDestroy {
   public isLoading = false;
   public browser = isBrowser;
   public finalPrice = 0;
+
+  public openedTab = 'contanti';
+  public multiplier = 1;
+
   subscription: Subscription;
 
   constructor(private orderService: OrderService, private popupsService: PopupsService, private analyticsService: AnalyticsService) {
@@ -94,6 +98,19 @@ export class OrderComponent implements OnInit, OnDestroy {
     };
     // console.log('services: ' + this.defaultServices.title);
 
+  }
+
+  changeTab(tab) {
+    this.openedTab = tab;
+    if (tab === 'contanti') {
+      this.multiplier = 1;
+    }
+    if (tab === 'carta') {
+      this.multiplier = 0.95;
+    }
+    if (tab === 'prestito') {
+      this.multiplier = 0.98;
+    }
   }
 
   toggleTimepicker() {
