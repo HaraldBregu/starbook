@@ -42,6 +42,8 @@ import { LoadingComponent } from './shared/loading/loading.component';
 import { FacebookComponent } from './pages/facebook/facebook.component';
 import { WizardComponent } from './pages/wizard/wizard.component';
 import { AboutComponent } from './pages/about/about.component';
+import { HelpComponent } from './pages/help/help.component';
+import { LegalComponent } from './pages/legal/legal.component';
 
 export class HammerConfig extends HammerGestureConfig  {
   overrides = <any> {
@@ -76,7 +78,9 @@ let declarations = [
   LoadingComponent,
   FacebookComponent,
   WizardComponent,
-  AboutComponent
+  AboutComponent,
+  HelpComponent,
+  LegalComponent
 ];
 
 if (isBrowser) {

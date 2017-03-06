@@ -7,6 +7,8 @@ import { ProfileComponent } from './pages/profile/profile.component';
 import { FacebookComponent } from './pages/facebook/facebook.component';
 import { WizardComponent } from './pages/wizard/wizard.component';
 import { AboutComponent } from './pages/about/about.component';
+import { HelpComponent } from './pages/help/help.component';
+import { LegalComponent } from './pages/legal/legal.component';
 
 const routes: Routes = [
   {
@@ -37,6 +39,14 @@ const routes: Routes = [
   {
     path: 'about',
     component: AboutComponent
+  },
+  {
+    path: 'help',
+    component: HelpComponent
+  },
+  {
+    path: 'legal',
+    component: LegalComponent
   }
 ];
 

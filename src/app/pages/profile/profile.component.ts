@@ -31,10 +31,10 @@ export class ProfileComponent implements OnInit, OnDestroy {
   public delta: number = 0;
   public tabs = [
     {name: 'Generali', selected: false, url: 'settings'},
-    // {name: 'Metodo di Pagamento', selected: false, url: 'payment'},
-    {name: 'Condizioni d’utilizzo', selected: false, url: 'conditions'},
-    {name: 'Privacy Policy', selected: false, url: 'privacy'},
-    {name: 'Assistenza', selected: false, url: 'help'}
+    {name: 'Metodo di Pagamento', selected: false, url: 'payment'},
+    // {name: 'Condizioni d’utilizzo', selected: false, url: 'conditions'},
+    // {name: 'Privacy Policy', selected: false, url: 'privacy'},
+    // {name: 'Assistenza', selected: false, url: 'help'}
   ];
 
   public userData: IUserData = {
@@ -86,27 +86,27 @@ export class ProfileComponent implements OnInit, OnDestroy {
         this.isAuthenticated = true;
       } else {
         this.isAuthenticated = false;
-        // this.router.navigate(['/']);
-        this.tabs = [
-          {name: 'Condizioni d’utilizzo', selected: false, url: 'conditions'},
-          {name: 'Privacy Policy', selected: false, url: 'privacy'},
-          {name: 'Assistenza', selected: false, url: 'help'}
-        ];
+        this.router.navigate(['/']);
+        // this.tabs = [
+        //   {name: 'Condizioni d’utilizzo', selected: false, url: 'conditions'},
+        //   {name: 'Privacy Policy', selected: false, url: 'privacy'},
+        //   {name: 'Assistenza', selected: false, url: 'help'}
+        // ];
       }
     } else {
       this.isAuthenticated = false;
-      // this.router.navigate(['/']);
-      this.tabs = [
-        {name: 'Condizioni d’utilizzo', selected: false, url: 'conditions'},
-        {name: 'Privacy Policy', selected: false, url: 'privacy'},
-        {name: 'Assistenza', selected: false, url: 'help'}
-      ];
+      this.router.navigate(['/']);
+      // this.tabs = [
+      //   {name: 'Condizioni d’utilizzo', selected: false, url: 'conditions'},
+      //   {name: 'Privacy Policy', selected: false, url: 'privacy'},
+      //   {name: 'Assistenza', selected: false, url: 'help'}
+      // ];
     }
     // this.navigationService.updateMessage('Il mio account');
 
     this.route.params.subscribe(params => {
       this.selectTab = params['page'];
-      /*if (params['page'] ==='payment') {
+      if (params['page'] ==='payment') {
         this.navigationService.updateMessage('Metodo di pagamento');
         this.isLoading = true;
         let timeStart = Date.now();
@@ -135,7 +135,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
               //   this.popupsService.activate({type: 'error', data: {title:'Errore', message: 'An error has occurred'}});
               // }
             })
-      }*/
+      }
       if (params['page'] ==='settings') {
         this.navigationService.updateMessage('Informazioni del mio account');
         this.isLoading = true;
@@ -164,37 +164,37 @@ export class ProfileComponent implements OnInit, OnDestroy {
               }
             });
       }
-      if (params['page'] ==='conditions') {
-        this.navigationService.updateMessage('Termini e condizioni d’utilizzo');
-        this.seoService.setTitle('Termini e condizioni d’utilizzo');
-        this.seoService.setMetaElem('description', 'Preventivi veloci? Starbook è la piattaforma dei lavorazioni professionali online con la possibilità di creare preventivi istantanei.');
-        this.seoService.setOgElem('og:title', 'Termini e condizioni d’utilizzo');
-        this.seoService.setOgElem('og:description', 'Preventivi veloci? Starbook è la piattaforma dei lavorazioni professionali online con la possibilità di creare preventivi istantanei.');
-        this.seoService.setOgElem('og:url', 'https://www.starbook.co/');
-        this.seoService.setOgElem('og:image', 'https://s3-eu-west-1.amazonaws.com/starbook-s3/lavorazioni%2Bcartongesso%2Bcontrosoffitti%2Bpareti%2Bcontropareti.png');
-        this.seoService.setOgElem('og:image:secure_url', 'https://s3-eu-west-1.amazonaws.com/starbook-s3/lavorazioni%2Bcartongesso%2Bcontrosoffitti%2Bpareti%2Bcontropareti.png');
-      }
-      if (params['page'] ==='privacy') {
-        this.navigationService.updateMessage('Privacy Policy');
-        this.seoService.setTitle('Privacy Policy');
-        this.seoService.setMetaElem('description', 'Preventivi veloci? Starbook è la piattaforma dei lavorazioni professionali online con la possibilità di creare preventivi istantanei.');
-        this.seoService.setOgElem('og:title', 'Privacy Policy');
-        this.seoService.setOgElem('og:description', 'Preventivi veloci? Starbook è la piattaforma dei lavorazioni professionali online con la possibilità di creare preventivi istantanei.');
-        this.seoService.setOgElem('og:url', 'https://www.starbook.co/');
-        this.seoService.setOgElem('og:image', 'https://s3-eu-west-1.amazonaws.com/starbook-s3/lavorazioni%2Bcartongesso%2Bcontrosoffitti%2Bpareti%2Bcontropareti.png');
-        this.seoService.setOgElem('og:image:secure_url', 'https://s3-eu-west-1.amazonaws.com/starbook-s3/lavorazioni%2Bcartongesso%2Bcontrosoffitti%2Bpareti%2Bcontropareti.png');
-      }
-      if (params['page'] ==='help') {
-        this.navigationService.updateMessage('Assistenza');
-        this.seoService.setTitle('Assistenza');
-        this.seoService.setMetaElem('description', 'Preventivi veloci? Starbook è la piattaforma dei lavorazioni professionali online con la possibilità di creare preventivi istantanei.');
-        this.seoService.setOgElem('og:title', 'Assistenza');
-        this.seoService.setOgElem('og:description', 'Preventivi veloci? Starbook è la piattaforma dei lavorazioni professionali online con la possibilità di creare preventivi istantanei.');
-        this.seoService.setOgElem('og:url', 'https://www.starbook.co/');
-        this.seoService.setOgElem('og:image', 'https://s3-eu-west-1.amazonaws.com/starbook-s3/lavorazioni%2Bcartongesso%2Bcontrosoffitti%2Bpareti%2Bcontropareti.png');
-        this.seoService.setOgElem('og:image:secure_url', 'https://s3-eu-west-1.amazonaws.com/starbook-s3/lavorazioni%2Bcartongesso%2Bcontrosoffitti%2Bpareti%2Bcontropareti.png');
-      }
-      console.log(params['page']);
+      // if (params['page'] ==='conditions') {
+      //   this.navigationService.updateMessage('Termini e condizioni d’utilizzo');
+      //   this.seoService.setTitle('Termini e condizioni d’utilizzo');
+      //   this.seoService.setMetaElem('description', 'Preventivi veloci? Starbook è la piattaforma dei lavorazioni professionali online con la possibilità di creare preventivi istantanei.');
+      //   this.seoService.setOgElem('og:title', 'Termini e condizioni d’utilizzo');
+      //   this.seoService.setOgElem('og:description', 'Preventivi veloci? Starbook è la piattaforma dei lavorazioni professionali online con la possibilità di creare preventivi istantanei.');
+      //   this.seoService.setOgElem('og:url', 'https://www.starbook.co/');
+      //   this.seoService.setOgElem('og:image', 'https://s3-eu-west-1.amazonaws.com/starbook-s3/lavorazioni%2Bcartongesso%2Bcontrosoffitti%2Bpareti%2Bcontropareti.png');
+      //   this.seoService.setOgElem('og:image:secure_url', 'https://s3-eu-west-1.amazonaws.com/starbook-s3/lavorazioni%2Bcartongesso%2Bcontrosoffitti%2Bpareti%2Bcontropareti.png');
+      // }
+      // if (params['page'] ==='privacy') {
+      //   this.navigationService.updateMessage('Privacy Policy');
+      //   this.seoService.setTitle('Privacy Policy');
+      //   this.seoService.setMetaElem('description', 'Preventivi veloci? Starbook è la piattaforma dei lavorazioni professionali online con la possibilità di creare preventivi istantanei.');
+      //   this.seoService.setOgElem('og:title', 'Privacy Policy');
+      //   this.seoService.setOgElem('og:description', 'Preventivi veloci? Starbook è la piattaforma dei lavorazioni professionali online con la possibilità di creare preventivi istantanei.');
+      //   this.seoService.setOgElem('og:url', 'https://www.starbook.co/');
+      //   this.seoService.setOgElem('og:image', 'https://s3-eu-west-1.amazonaws.com/starbook-s3/lavorazioni%2Bcartongesso%2Bcontrosoffitti%2Bpareti%2Bcontropareti.png');
+      //   this.seoService.setOgElem('og:image:secure_url', 'https://s3-eu-west-1.amazonaws.com/starbook-s3/lavorazioni%2Bcartongesso%2Bcontrosoffitti%2Bpareti%2Bcontropareti.png');
+      // }
+      // if (params['page'] ==='help') {
+      //   this.navigationService.updateMessage('Assistenza');
+      //   this.seoService.setTitle('Assistenza');
+      //   this.seoService.setMetaElem('description', 'Preventivi veloci? Starbook è la piattaforma dei lavorazioni professionali online con la possibilità di creare preventivi istantanei.');
+      //   this.seoService.setOgElem('og:title', 'Assistenza');
+      //   this.seoService.setOgElem('og:description', 'Preventivi veloci? Starbook è la piattaforma dei lavorazioni professionali online con la possibilità di creare preventivi istantanei.');
+      //   this.seoService.setOgElem('og:url', 'https://www.starbook.co/');
+      //   this.seoService.setOgElem('og:image', 'https://s3-eu-west-1.amazonaws.com/starbook-s3/lavorazioni%2Bcartongesso%2Bcontrosoffitti%2Bpareti%2Bcontropareti.png');
+      //   this.seoService.setOgElem('og:image:secure_url', 'https://s3-eu-west-1.amazonaws.com/starbook-s3/lavorazioni%2Bcartongesso%2Bcontrosoffitti%2Bpareti%2Bcontropareti.png');
+      // }
+      // console.log(params['page']);
     });
 
     if (isBrowser) {
