@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, Route, ActivatedRoute, Params } from '@angular/router';
 import { isBrowser } from "angular2-universal";
+import { NavigationService } from '../../shared/navigation.service';
 
 export interface IMemberObject {
   fullname: string;
@@ -18,7 +19,9 @@ export interface IMemberObject {
 export class AboutComponent implements OnInit {
   public memberObject: IMemberObject[] = [];
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private navigationService: NavigationService) {
+    this.navigationService.updateMessage("Starbook Team");
+  }
 
   ngOnInit() {
     this.memberObject.push(

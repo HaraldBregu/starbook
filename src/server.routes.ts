@@ -17,5 +17,6 @@ export const routes: string[] = [
     'orders',
     'profile/:page',
     'facebook',
-    'order'
+    'order',
+    'about'
 ];

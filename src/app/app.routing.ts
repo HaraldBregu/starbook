@@ -6,6 +6,7 @@ import { OrdersComponent } from './pages/orders/orders.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { FacebookComponent } from './pages/facebook/facebook.component';
 import { WizardComponent } from './pages/wizard/wizard.component';
+import { AboutComponent } from './pages/about/about.component';
 
 const routes: Routes = [
   {
@@ -32,6 +33,10 @@ const routes: Routes = [
   {
     path: 'order',
     component: WizardComponent
+  },
+  {
+    path: 'about',
+    component: AboutComponent
   }
 ];
 
