@@ -35,6 +35,13 @@ export class AboutComponent implements OnInit {
       description: "Now Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum",
       avatar_url: "https://organicthemes.com/demo/profile/files/2012/12/profile_img.png",
       email: "aleksandr.gorin@gmail.com"
+    },
+    {
+      fullname: "Daniel Lopez Bucheli",
+      headline: "Business Design",
+      description: "Now Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum",
+      avatar_url: "https://organicthemes.com/demo/profile/files/2012/12/profile_img.png",
+      email: "daniele.lopez.bucheli@gmail.com"
     })
     // console.log('member object: ' + JSON.stringify(this.memberObject));
   }
