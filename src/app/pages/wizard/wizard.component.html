@@ -1,26 +1,82 @@
 <div class="wizard">
-  <div class="wizard-container">
+  <div class="wizard-container" *ngIf="wizardData.type !== '' && step === 'confirmation'">
     <div class="header">
-      <span>Controparete in cartongesso<i></i></span>
+      <span>{{ wizardData.order.service }}<i></i></span>
       <span>Dettagli del servizio<i></i></span>
     </div>
-    <div class="image-block" style="background-image: url('https://s3-eu-west-1.amazonaws.com/starbook-s3/controsoffitto%2Bcartongesso.jpg')"></div>
+    <div class="image-block" [ngStyle]="{'background-image': 'url(' + wizardData.order.service_image + ')'}"></div>
     <div class="content-container">
-      <div class="title">Controparete in cartongesso</div>
+      <div class="title">{{ wizardData.order.service }}</div>
       <div class="items">
-        <div class="item">
-          Title item
-          <span>Quantity</span>
-        </div>
-        <div class="item">
-          Title item
-          <span>Quantity</span>
-        </div>
-        <div class="item">
-          Title item
-          <span>Quantity</span>
+        <div class="item" *ngFor="let item of wizardData.order.services">
+          {{ item.name }}
+          <span>{{ item.option.name }}</span>
         </div>
       </div>
+      <div class="summary">
+        <div class="item">
+          Importo
+          <span class="big">{{(wizardData.order.totalPrice * wizardData.multiplier) / 100 }}€</span>
+        </div>
+        <div class="item">
+          Metodo
+          <span>{{ wizardData.type }}</span>
+        </div>
+      </div>
+      <form class="wizard-form" #wizardForm="ngForm">
+        <div class="form-group" [ngClass]="{'isError': isDataError}">
+          <label>Inserisci la data del lavoro</label>
+          <p-calendar name="data" [(ngModel)]="Order.date" id="data" class="date" autocomplete="off" dateFormat="dd MM yy" [locale]="it" [minDate]="minDate" [maxDate]="maxDate" (onSelect)="selectDate()">
+          </p-calendar>
+        </div>
+        <div class="form-group" [ngClass]="{'isError': isAddressDirty && !isAddressFull}">
+          <label>Inserisci l’indirizzo</label>
+          <p-autoComplete id="luogo" class="form-control" [ngClass]="{'isError':isAddressFull === false && isAddressDirty === true}" [(ngModel)]="Order.delivery_address" [ngModelOptions]="{standalone: true}" [suggestions]="addresses" field="formattedAddress" (completeMethod)="getAddresses($event)" (onSelect)="selectAddress($event)">
+          </p-autoComplete>
+          <div class="error-message" *ngIf="errorMessage !== null">{{ errorMessage }}</div>
+        </div>
+        <div class="form-group">
+          <button type="button" class="btn btn-warning" (click)="createOrder()">Continua</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="wizard-container" *ngIf="wizardData.type !== '' && step === 'registration'">
+    <div class="header">
+      <span>{{ wizardData.order.service }}<i></i></span>
+      <span>Dettagli del servizio<i></i></span>
+      <span>Ultimi dettagli<i></i></span>
+    </div>
+    <div class="content-container registration">
+      <div class="title action-title">Crea un account</div>
+      <form class="wizard-form" #wizardRegistrationForm="ngForm">
+        <div class="form-group" [ngClass]="{'isError': registrationError.name}">
+          <label>Nome completo</label>
+          <input name="name" class="form-control" [(ngModel)]="registrationData.name" (keyup)="checkNonEmpty('registrationName', registrationData.name)" (change)="checkNonEmpty('registrationName', registrationData.name)">
+        </div>
+        <div class="form-group" [ngClass]="{'isError': registrationError.phone}">
+          <label>Telefono</label>
+          <input name="phone" class="form-control" [(ngModel)]="registrationData.phone" (keyup)="checkNonEmpty('registrationPhone', registrationData.phone)" (change)="checkNonEmpty('registrationPhone', registrationData.phone)">
+        </div>
+        <div class="form-group" [ngClass]="{'isError': registrationError.email}">
+          <label>Email</label>
+          <input name="email" class="form-control" [(ngModel)]="registrationData.email" (keyup)="checkEmail('registration', registrationData.email)" (change)="checkEmail('registration', registrationData.email)">
+        </div>
+        <div class="form-group" [ngClass]="{'isError': registrationError.password}">
+          <label>Password</label>
+          <input type="password" name="password" class="form-control" [(ngModel)]="registrationData.password" (keyup)="checkPassword('registration', registrationData.password, registrationData.confirmPassword)" (change)="checkPassword('registration', registrationData.password, registrationData.confirmPassword)">
+        </div>
+        <div class="form-group" [ngClass]="{'isError': registrationError.confirmPassword}">
+          <label>Di nuovo la password</label>
+          <input type="password" name="confirmPassword" class="form-control" [(ngModel)]="registrationData.confirmPassword" (keyup)="checkPassword('registrationConfirm', registrationData.password, registrationData.confirmPassword)" (change)="checkPassword('registrationConfirm', registrationData.password, registrationData.confirmPassword)">
+        </div>
+        <div class="form-group">
+          <button type="button" class="btn btn-warning">Continua</button>
+        </div>
+        <div class="form-footer">
+          Accedendo dichiari di aver letto e accetti le <a>condizioni generali</a> e <a>l’informativa sulla privacy</a>
+        </div>
+      </form>
     </div>
   </div>
 </div>

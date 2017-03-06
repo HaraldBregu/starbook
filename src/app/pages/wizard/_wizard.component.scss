@@ -7,9 +7,33 @@ $wizard-header-text-letter-spacing: 0.11px;
 $wizard-content-header-text-color: #000000;
 $wizard-content-header-text-size: 28px;
 $wizard-content-header-text-letter-spacing: 0.16px;
+$wizard-content-action-header-text-letter-spacing: 0.18px;
 $wizard-content-item-text-color: #000000;
 $wizard-content-item-text-size: 18px;
 $wizard-content-item-text-letter-spacing: 0.11px;
+$wizard-content-summary-item-text-color: #000000;
+$wizard-content-summary-item-text-size: 20px;
+$wizard-content-summary-item-big-text-size: 25px;
+$wizard-content-summary-item-text-letter-spacing: 0.13px;
+
+// Wizard form
+$wizard-form-label-text-color: #000000;
+$wizard-form-label-text-size: 16px;
+$wizard-form-label-text-letter-spacing: 0.1px;
+$wizard-form-input-text-color: #000000;
+$wizard-form-input-text-size: 16px;
+$wizard-form-input-text-letter-spacing: 0.1px;
+$wizard-form-input-background-color: #FFFFFF;
+$wizard-form-input-border-style: 1px solid #E1E1E1;
+$wizard-form-input-button-letter-spacing: 0.11px;
+$wizard-form-input-warning-border: 1px solid #DB4F4F;
+$wizard-form-error-text-color: #DB4F4F;
+$wizard-form-error-text-size: 14px;
+$wizard-form-error-text-letter-spacing: 0.1px;
+$wizard-form-footer-text-color: #212121;
+$wizard-form-footer-link-color: #0066C0;
+$wizard-form-footer-text-size: 12px;
+$wizard-form-footer-text-letter-spacing: 0.08px;
 
 app-wizard {
   display: block;
@@ -91,6 +115,11 @@ app-wizard {
   letter-spacing: $wizard-content-header-text-letter-spacing;
   margin-top: 41px;
 }
+.wizard-container .content-container .title.action-title {
+  letter-spacing: $wizard-content-action-header-text-letter-spacing;
+  margin-top: 48px;
+  text-align: center;
+}
 .wizard-container .content-container .items {
   display: block;
   float: left;
@@ -119,4 +148,176 @@ app-wizard {
   color: $wizard-content-item-text-color;
   font-size: $wizard-content-item-text-size;
   letter-spacing: $wizard-content-item-text-letter-spacing;
+}
+.wizard-container .content-container .summary {
+  display: block;
+  float: left;
+  width: 100%;
+  margin-top: 15px;
+}
+.wizard-container .content-container .summary .item {
+  display: block;
+  float: left;
+  position: relative;
+  width: 100%;
+  padding-top: 10px;
+  font-family: $font-name;
+  color: $wizard-content-summary-item-text-color;
+  font-size: $wizard-content-summary-item-text-size;
+  letter-spacing: $wizard-content-summary-item-text-letter-spacing;
+}
+.wizard-container .content-container .summary .item span {
+  display: block;
+  position: absolute;
+  top: 10px;
+  right: 0;
+  text-align: right;
+  font-family: $font-name;
+  color: $wizard-content-summary-item-text-color;
+  font-size: $wizard-content-summary-item-text-size;
+  letter-spacing: $wizard-content-summary-item-text-letter-spacing;
+  text-transform: capitalize;
+}
+.wizard-container .content-container .summary .item span.big {
+  top: 5px;
+  font-size: $wizard-content-summary-item-big-text-size;
+}
+.wizard-container .content-container .wizard-form {
+  display: block;
+  float: left;
+  width: 100%;
+  margin-top: 22px;
+}
+.wizard-container .content-container.registration .wizard-form {
+  margin-top: 45px;
+}
+.wizard-container .content-container .wizard-form .form-group {
+  display: block;
+  float: left;
+  position: relative;
+  width: 100%;
+  margin-top: 10px;
+  margin-bottom: 0;
+}
+.wizard-container .content-container .wizard-form .form-group label {
+  display: block;
+  float: left;
+  width: 100%;
+  font-family: $font-name;
+  color: $wizard-form-label-text-color;
+  font-size: $wizard-form-label-text-size;
+  letter-spacing: $wizard-form-label-text-letter-spacing;
+  font-weight: normal;
+  padding: 0 0 5px 0;
+  margin-bottom: 0;
+}
+.wizard-container .content-container .wizard-form .form-group button.btn.btn-warning {
+  display: block;
+  float: left;
+  width: 100%;
+  margin-top: 20px;
+  font-family: $font-name;
+  letter-spacing: $wizard-form-input-button-letter-spacing;
+  border: none;
+  margin-bottom: 179px;
+  outline: none;
+}
+.wizard-container .content-container.registration .wizard-form .form-group button.btn.btn-warning {
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+.wizard-container .content-container .wizard-form .form-group .date {
+  display: block;
+  position: relative;
+  float: left;
+  width: 100%;
+}
+.wizard-container .content-container .wizard-form .form-group .date .ui-datepicker {
+  margin-left: 0;
+}
+.wizard-container .content-container .wizard-form .form-group .ui-inputtext {
+  display: block;
+  position: relative;
+  float: left;
+  width: 100%;
+  height: 38px;
+  padding: 7px 12px;
+  font-family: $font-name;
+  color: $wizard-form-input-text-color;
+  font-size: $wizard-form-input-text-size;
+  letter-spacing: $wizard-form-input-text-letter-spacing;
+  border-radius: 0;
+  border: $wizard-form-input-border-style;
+  background-color: $wizard-form-input-background-color;
+  outline: none;
+}
+.wizard-container .content-container .wizard-form .form-group.isError .ui-inputtext {
+  border: $wizard-form-input-warning-border;
+}
+.wizard-container .content-container .wizard-form .form-group .date .ui-datepicker .ui-datepicker-prev span, .date .ui-datepicker .ui-datepicker-next span {
+  padding: 3px;
+  width: 30px;
+  height: 25px;
+  text-align: center;
+}
+.wizard-container .content-container .wizard-form .form-group .date .ui-datepicker .ui-datepicker-next {
+  right: 10px;
+}
+.wizard-container .content-container .wizard-form .form-group .ui-datepicker-calendar td a.ui-state-default {
+  padding: 6px 2px;
+  height: 30px;
+}
+.wizard-container .content-container .wizard-form .form-group .form-control {
+  display: block;
+  position: relative;
+  float: left;
+  width: 100%;
+  padding: 0;
+  background-color: transparent;
+  border: none;
+}
+.wizard .error-message {
+  display: block;
+  float: left;
+  width: 100%;
+  margin-top: 10px;
+  font-family: $font-name;
+  color: $wizard-form-error-text-color;
+  font-size: $wizard-form-error-text-size;
+  letter-spacing: $wizard-form-error-text-letter-spacing;
+  text-transform: capitalize;
+}
+.wizard-container .content-container.registration .form-group .form-control {
+  display: block;
+  position: relative;
+  float: left;
+  width: 100%;
+  height: 38px;
+  padding: 7px 12px;
+  font-family: $font-name;
+  color: $wizard-form-input-text-color;
+  font-size: $wizard-form-input-text-size;
+  letter-spacing: $wizard-form-input-text-letter-spacing;
+  border-radius: 0;
+  border: $wizard-form-input-border-style;
+  background-color: $wizard-form-input-background-color;
+  outline: none;
+}
+.wizard-container .content-container.registration .form-group.isError .form-control {
+  border: $wizard-form-input-warning-border;
+}
+.wizard-container .content-container.registration .form-footer {
+  display: block;
+  float: left;
+  width: 100%;
+  margin-bottom: 115px;
+  font-family: $font-name;
+  color: $wizard-form-footer-text-color;
+  font-size: $wizard-form-footer-text-size;
+  letter-spacing: $wizard-form-footer-text-letter-spacing;
+}
+.wizard-container .content-container.registration .form-footer a,
+.wizard-container .content-container.registration .form-footer a:hover {
+  color: $wizard-form-footer-link-color;
+  text-decoration: none;
 }

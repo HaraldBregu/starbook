@@ -26,6 +26,15 @@ export class OrderService {
 
   private api: string;
   private auth;
+  private wizardData = {
+    order: {
+      service: '',
+      services: [],
+      totalPrice: null
+    },
+    type: '',
+    multiplier: ''
+  };
   private googleApi: string;
   constructor(private http: Http/*, private navigationService: NavigationService*/) {
     this.api = 'https://api.starbook.co/v0.9.1/';
@@ -37,6 +46,14 @@ export class OrderService {
 
   makeEvent(event) {
     this.orderEvent.next(event);
+  }
+
+  updateWizardData(wizardData) {
+    this.wizardData = wizardData;
+  }
+
+  getWizardData() {
+    return this.wizardData;
   }
 
   private _makeHeaders() {

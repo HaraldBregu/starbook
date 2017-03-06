@@ -757,7 +757,31 @@ textarea.form-control {
 .date .dropdown-menu .day .bg-primary {
   background-color: $datepicker-background-primary !important;
 }
-.input-group .form-control .ui-autocomplete-panel {
+//.input-group .form-control .ui-autocomplete-panel {
+//  display: block;
+//  position: absolute;
+//  top: 40px;
+//  left: 0;
+//  background-color: $autocomplete-background-color;
+//  box-shadow: $autocomplete-shadow;
+//  font-size: $autocomplete-font-size;
+//  color: $autocomplete-text-color;
+//  font-family: $font-name;
+//  font-weight: 400;
+//  padding-top: 5px;
+//  overflow-y: scroll;
+//}
+//.input-group .form-control.isError {
+//  border: $autocomplete-input-warning-border;
+//}
+//.input-group .form-control .ui-autocomplete-panel .ui-autocomplete-list-item {
+//  padding: 5px 15px;
+//}
+//.input-group .form-control .ui-autocomplete-panel .ui-autocomplete-list-item.ui-state-highlight {
+//  background-color: $autocomplete-hover-color;
+//  color: $autocomplete-hover-text-color;
+//}
+.form-control .ui-autocomplete-panel {
   display: block;
   position: absolute;
   top: 40px;
@@ -771,13 +795,13 @@ textarea.form-control {
   padding-top: 5px;
   overflow-y: scroll;
 }
-.input-group .form-control.isError {
+.form-control.isError {
   border: $autocomplete-input-warning-border;
 }
-.input-group .form-control .ui-autocomplete-panel .ui-autocomplete-list-item {
+.form-control .ui-autocomplete-panel .ui-autocomplete-list-item {
   padding: 5px 15px;
 }
-.input-group .form-control .ui-autocomplete-panel .ui-autocomplete-list-item.ui-state-highlight {
+.form-control .ui-autocomplete-panel .ui-autocomplete-list-item.ui-state-highlight {
   background-color: $autocomplete-hover-color;
   color: $autocomplete-hover-text-color;
 }

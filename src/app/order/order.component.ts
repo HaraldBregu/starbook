@@ -1,4 +1,5 @@
 import { Component, Input, OnInit, OnDestroy } from '@angular/core';
+import { Router } from '@angular/router';
 import { OrderService, IAddress } from './order.service';
 import { PopupsService } from '../popups/popups.service';
 import { AnalyticsService } from '../shared/analytics.service';
@@ -71,7 +72,7 @@ export class OrderComponent implements OnInit, OnDestroy {
 
   subscription: Subscription;
 
-  constructor(private orderService: OrderService, private popupsService: PopupsService, private analyticsService: AnalyticsService) {
+  constructor(private orderService: OrderService, private popupsService: PopupsService, private analyticsService: AnalyticsService, private router: Router) {
     this.timePicker.push('08:00', '08:30', '09:00', '09:30', '10:00', '10:30', '11:00', '14:00', '14:30', '15:00');
     // for (let i = 0; i < 24; i++) {
     //   if (i > 7 && i < 15) {
@@ -421,6 +422,17 @@ export class OrderComponent implements OnInit, OnDestroy {
         this.maxOrderBlockSize = 'auto';
       }
     }
+  }
+
+  startWizard() {
+    let wizardData = {
+      order: this.orderData,
+      type: this.openedTab,
+      multiplier: this.multiplier
+    };
+
+    this.orderService.updateWizardData(wizardData);
+    this.router.navigateByUrl('/order');
   }
 
   ngOnDestroy() {

@@ -105,6 +105,7 @@ export class HomeComponent implements AfterViewInit, OnInit, OnDestroy {
   public model: any;
   public orderData = {
     service_id: '',
+    service_image: '',
     price: {
       base_amount: 0
     },
@@ -157,6 +158,7 @@ export class HomeComponent implements AfterViewInit, OnInit, OnDestroy {
     ];
     this.orderData = {
       service_id: services._id,
+      service_image: this.image_url,
       price: services.price,
       order_options: services.order_options,
       service: services.title,

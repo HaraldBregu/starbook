@@ -8,7 +8,7 @@ export class SeoService {
   constructor(@Inject(DOCUMENT) private _document: any) { }
 
   setTitle(title: string) {
-    this._document.title = title
+    this._document.title = title;
   }
 
   setMetaElem(name: string, value: string) {
