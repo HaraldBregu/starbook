@@ -6608,6 +6608,10 @@ textarea.form-control {
   text-align: center;
   padding: 13px 0; }
 
+.light-footer {
+  background-color: white;
+  border-top: 1px solid #CCCCCC; }
+
 .footer-container .copyright, .footer-container span, .footer-container a, .footer-container a:hover {
   display: inline;
   color: rgba(255, 255, 255, 0.7);
@@ -6615,6 +6619,9 @@ textarea.form-control {
   font-size: 15px;
   letter-spacing: 0.09px;
   text-decoration: none; }
+
+.light-footer .copyright, .light-footer span, .light-footer a, .light-footer a:hover {
+  color: black; }
 
 .footer-container .copyright strong {
   font-size: 16px; }

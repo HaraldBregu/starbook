@@ -541,6 +541,10 @@ $services-footer-price-letter-spacing: 0.06px;
   text-align: center;
   padding: 13px 0;
 }
+.light-footer {
+  background-color: white;
+  border-top: 1px solid #CCCCCC;
+}
 .footer-container .copyright, .footer-container span, .footer-container a, .footer-container a:hover {
   display: inline;
   color: $footer-text-color;
@@ -548,6 +552,9 @@ $services-footer-price-letter-spacing: 0.06px;
   font-size: $footer-text-font-size;
   letter-spacing: $footer-text-letter-spacing;
   text-decoration: none;
+}
+.light-footer .copyright, .light-footer span, .light-footer a, .light-footer a:hover{
+  color: black;
 }
 .footer-container .copyright strong {
   font-size: 16px;
