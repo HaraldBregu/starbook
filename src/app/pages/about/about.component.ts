@@ -20,7 +20,7 @@ export class AboutComponent implements OnInit {
   public memberObject: IMemberObject[] = [];
 
   constructor(private router: Router, private navigationService: NavigationService) {
-    this.navigationService.updateMessage("Starbook Team");
+    this.navigationService.updateMessage("Chi siamo");
   }
 
   ngOnInit() {

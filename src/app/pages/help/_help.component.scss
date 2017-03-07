@@ -31,10 +31,15 @@ app-help {
 .help-container {
   background: white;
   padding: 50px;
+  max-width: 500px;
+  margin: 0 auto;
+  text-align: center;
 }
 .help-container h1 {
   font-size: 30px;
   letter-spacing: 0.22px;
+  text-align: center;
+  margin-bottom: 10px;
 }
 .help-container h2 {
   font-size: 26px;
@@ -43,6 +48,8 @@ app-help {
 .help-container h3 {
   font-size: 20px;
   letter-spacing: 0.22px;
+  margin: 10px 0;
+  text-align: center;
 }
 .help-container h4 {
   font-size: 14px;
@@ -51,4 +58,24 @@ app-help {
 .help-container h6 {
   font-size: 16px;
   letter-spacing: 0.22px;
+}
+.help-container p {
+  text-align: center;
+}
+.help-container .list-socials {
+  display: inline-block;
+  max-width: 280px;
+  margin: auto;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+.help-container .list-socials img {
+  max-height: 40px;
+  margin: 5px;
+  float: left;
+}
+@media (max-width: 576px) {
+  .help-container {
+    padding: 30px;
+  }
 }

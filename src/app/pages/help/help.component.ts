@@ -10,7 +10,7 @@ import { NavigationService } from '../../shared/navigation.service';
 export class HelpComponent implements OnInit {
 
   constructor(private router: Router, private navigationService: NavigationService) {
-    this.navigationService.updateMessage("Aiuto");
+    this.navigationService.updateMessage("Aiuto e Assistenza");
   }
 
   ngOnInit() {
