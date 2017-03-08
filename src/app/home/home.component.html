@@ -45,7 +45,7 @@
                 <span>{{serviceCategory.title_1}}</span>
                 <div class="service-description" *ngIf="serviceCategory.description !== ''">{{serviceCategory.description}}</div>
               </div>
-              <div class="content-header" *ngIf="!serviceCategory.image_url || serviceCategory.image_url === ''" [ngStyle]="{'width': '100%'}">
+              <div class="content-header" *ngIf="!serviceCategory.image_url || serviceCategory.image_url === ''" [ngStyle]="{'width': '100%', 'padding-right' : '0px'}">
                 <span>{{serviceCategory.title_1}}</span>
                 <div class="service-description" *ngIf="serviceCategory.description !== ''">{{serviceCategory.description}}</div>
               </div>

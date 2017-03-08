@@ -204,7 +204,7 @@ export class HomeComponent implements AfterViewInit, OnInit, OnDestroy {
           optionId: optionId,
           title: item.title,
           title_1: title_1,
-          description: form.description,
+          description: item.description,
           image_url: item.image_url,
           type: form.type,
           amount: item.amount
