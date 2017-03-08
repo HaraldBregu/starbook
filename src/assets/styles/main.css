@@ -3043,6 +3043,7 @@ app-home {
   margin-left: -158px;
   padding-left: 173px;
   font-family: HelveticaNeue-Light, sans-serif;
+  font-weight: 300;
   color: black;
   font-size: 13px;
   letter-spacing: 0.1px;
@@ -3088,6 +3089,7 @@ app-home {
   display: block;
   width: 100%;
   font-family: HelveticaNeue-Light, sans-serif;
+  font-weight: 300;
   font-size: 16px;
   letter-spacing: 0.1px;
   color: black; }
@@ -3170,6 +3172,7 @@ app-home {
   display: block;
   width: 100%;
   font-family: HelveticaNeue-Light, sans-serif;
+  font-weight: 300;
   color: black;
   font-size: 14px;
   letter-spacing: 0.09px;
