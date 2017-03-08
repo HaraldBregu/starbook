@@ -7166,6 +7166,9 @@ app-wizard {
   margin-top: 48px;
   text-align: center; }
 
+.wizard-container .content-container.loan .title.action-title {
+  margin-top: 45px; }
+
 .wizard-container .content-container .items {
   display: block;
   float: left;
@@ -7186,10 +7189,39 @@ app-wizard {
 .wizard-container .content-container .items .item span {
   display: block;
   position: absolute;
+  max-width: 120px;
   top: 0;
   right: 0;
   text-align: right;
   padding-top: 5px;
+  font-family: HelveticaNeue-Light, sans-serif;
+  color: #000000;
+  font-size: 18px;
+  letter-spacing: 0.11px; }
+
+.wizard-container .content-container .items .element {
+  display: block;
+  float: left;
+  width: 100%;
+  padding-top: 5px; }
+
+.wizard-container .content-container .items .element p {
+  display: block;
+  float: left;
+  width: 68%;
+  font-family: HelveticaNeue-Light, sans-serif;
+  color: #000000;
+  font-size: 18px;
+  letter-spacing: 0.11px;
+  padding: 0 10px 0 0;
+  margin: 0; }
+
+.wizard-container .content-container .items .element span {
+  display: block;
+  position: static;
+  float: left;
+  width: 32%;
+  text-align: right;
   font-family: HelveticaNeue-Light, sans-serif;
   color: #000000;
   font-size: 18px;
@@ -7272,6 +7304,10 @@ app-wizard {
   margin-top: 10px;
   margin-bottom: 20px; }
 
+.wizard-container .content-container.loan .wizard-form .form-group button.btn.btn-warning {
+  margin-top: 35px;
+  margin-bottom: 139px; }
+
 .wizard-container .content-container .wizard-form .form-group .date {
   display: block;
   position: relative;
@@ -7333,7 +7369,8 @@ app-wizard {
   letter-spacing: 0.1px;
   text-transform: capitalize; }
 
-.wizard-container .content-container.registration .form-group .form-control {
+.wizard-container .content-container.registration .form-group .form-control,
+.wizard-container .content-container.loan .form-group .form-control {
   display: block;
   position: relative;
   float: left;
@@ -7349,10 +7386,12 @@ app-wizard {
   background-color: #FFFFFF;
   outline: none; }
 
-.wizard-container .content-container.registration .form-group.isError .form-control {
+.wizard-container .content-container.registration .isError .form-control,
+.wizard-container .content-container.loan .isError .form-control {
   border: 1px solid #DB4F4F; }
 
-.wizard-container .content-container.registration .form-footer {
+.wizard-container .content-container.registration .form-footer,
+.wizard-container .content-container.loan .form-footer {
   display: block;
   float: left;
   width: 100%;
@@ -7363,9 +7402,42 @@ app-wizard {
   letter-spacing: 0.08px; }
 
 .wizard-container .content-container.registration .form-footer a,
-.wizard-container .content-container.registration .form-footer a:hover {
+.wizard-container .content-container.registration .form-footer a:hover,
+.wizard-container .content-container.loan .form-footer a,
+.wizard-container .content-container.loan .form-footer a:hover {
   color: #0066C0;
   text-decoration: none; }
+
+.wizard-container .form-group.subheader {
+  display: block;
+  width: 100%;
+  text-align: center;
+  margin-top: 33px;
+  margin-bottom: 27px;
+  font-family: HelveticaNeue-Medium, sans-serif;
+  color: #0066C0;
+  font-size: 12px;
+  letter-spacing: 0.08px; }
+
+.wizard-container .form-group .part-group span.fa {
+  top: 37px;
+  right: 11px; }
+
+.wizard-form .error-message {
+  display: block;
+  float: left;
+  width: 100%;
+  padding: 11px 15px 12px;
+  border: 1px solid #C40000;
+  background-color: #F2DEDE;
+  border-radius: 3px;
+  font-family: HelveticaNeue, sans-serif;
+  font-size: 13px;
+  color: #AB433F;
+  letter-spacing: 0.08px; }
+
+.wizard-form .error-message span {
+  font-family: HelveticaNeue-Medium, sans-serif; }
 
 app-about {
   display: block;

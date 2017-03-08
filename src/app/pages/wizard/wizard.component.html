@@ -8,8 +8,8 @@
     <div class="content-container">
       <div class="title">{{ wizardData.order.service }}</div>
       <div class="items">
-        <div class="item" *ngFor="let item of wizardData.order.services">
-          {{ item.name }}
+        <div class="element" *ngFor="let item of wizardData.order.services">
+          <p>{{ item.name }}</p>
           <span>{{ item.option.name }}</span>
         </div>
       </div>
@@ -50,6 +50,11 @@
     <div class="content-container registration">
       <div class="title action-title">Crea un account</div>
       <form class="wizard-form" #wizardRegistrationForm="ngForm">
+        <div class="form-group" *ngIf="formError !== false">
+          <div class="error-message">
+            <span>{{ formError.title }}</span> {{ formError.message }}
+          </div>
+        </div>
         <div class="form-group" [ngClass]="{'isError': registrationError.name}">
           <label>Nome completo</label>
           <input name="name" class="form-control" [(ngModel)]="registrationData.name" (keyup)="checkNonEmpty('registrationName', registrationData.name)" (change)="checkNonEmpty('registrationName', registrationData.name)">
@@ -71,10 +76,131 @@
           <input type="password" name="confirmPassword" class="form-control" [(ngModel)]="registrationData.confirmPassword" (keyup)="checkPassword('registrationConfirm', registrationData.password, registrationData.confirmPassword)" (change)="checkPassword('registrationConfirm', registrationData.password, registrationData.confirmPassword)">
         </div>
         <div class="form-group">
-          <button type="button" class="btn btn-warning">Continua</button>
+          <button type="button" class="btn btn-warning" (click)="registration()">Continua</button>
         </div>
         <div class="form-footer">
           Accedendo dichiari di aver letto e accetti le <a>condizioni generali</a> e <a>l’informativa sulla privacy</a>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="wizard-container" *ngIf="wizardData.type !== '' && step === 'addcard'">
+    <div class="header">
+      <span>{{ wizardData.order.service }}<i></i></span>
+      <span>Dettagli del servizio<i></i></span>
+      <span>Metodo di pagamento<i></i></span>
+    </div>
+    <div class="content-container registration">
+      <div class="title action-title">Metodo di pagamento</div>
+      <form class="wizard-form" #wizardCardForm="ngForm">
+        <div class="form-group" *ngIf="formError !== false">
+          <div class="error-message">
+            <span>{{ formError.title }}</span> {{ formError.message }}
+          </div>
+        </div>
+        <div class="form-group cards-logo">
+          <div class="card-item visa"></div>
+          <div class="card-item mastercard"></div>
+          <div class="card-item amex"></div>
+        </div>
+        <div class="form-group" [ngClass]="{'isError': addCardError.number}">
+          <label>Numero carta</label>
+          <input name="number" class="form-control" [(ngModel)]="addCardData.number" (keyup)="checkCardNumber(addCardData.number)" (change)="checkCardNumber(addCardData.number)">
+        </div>
+        <div class="form-group" [ngClass]="{'isError': registrationError.phone}">
+          <div class="part-group first" [ngClass]="{'isError': addCardError.exp_date}">
+            <label>Scadenza</label>
+            <input class="form-control" type="text" name="exp_date" placeholder="MM/AA" maxlength="5" [(ngModel)]="addCardData.exp_date" (keyup)="checkExpiry(addCardData.exp_date)" (change)="checkExpiry(addCardData.exp_date)">
+          </div>
+          <div class="part-group last" [ngClass]="{'isError': addCardError.cvc}">
+            <label>CVV</label>
+            <input class="form-control" type="text" name="cvc" [(ngModel)]="addCardData.cvc" (keyup)="checkNonEmpty('cardCvv', addCardData.cvc)">
+            <span class="fa fa-question-circle" data-toggle="tooltip" data-placement="right" title="Tooltip on right"></span>
+          </div>
+        </div>
+        <div class="form-group subheader">
+          Informazioni facoltativi
+        </div>
+        <div class="form-group">
+          <label>Nome intestatario</label>
+          <input class="form-control" type="text" name="name" placeholder="Nome Cognome" [(ngModel)]="addCardData.name">
+        </div>
+        <div class="form-group">
+          <div class="part-group first-big">
+            <label>Via</label>
+            <input class="form-control" type="text" name="address_line1" [(ngModel)]="addCardData.address_line1">
+          </div>
+          <div class="part-group last-small">
+            <label>Nr</label>
+            <input class="form-control" type="text" name="address_line2" [(ngModel)]="addCardData.address_line2">
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="part-group first-big">
+            <label>Città</label>
+            <input class="form-control" type="text" name="address_city" [(ngModel)]="addCardData.address_city">
+          </div>
+          <div class="part-group last-small">
+            <label>CAP</label>
+            <input class="form-control" type="text" name="address_zip" [(ngModel)]="addCardData.address_zip">
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="part-group first">
+            <label>Provincia</label>
+            <input class="form-control" type="text" name="address_state" [(ngModel)]="addCardData.address_state">
+          </div>
+          <div class="part-group last">
+            <label>Paese</label>
+            <input class="form-control" type="text" name="address_country" [(ngModel)]="addCardData.address_country">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <button type="button" class="btn btn-warning" (click)="addCard()">Continua</button>
+        </div>
+        <div class="form-footer">
+          Accedendo dichiari di aver letto e accetti le <a>condizioni generali</a> e <a>l’informativa sulla privacy</a>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="wizard-container" *ngIf="wizardData.type !== '' && step === 'loan'">
+    <div class="header">
+      <span>{{ wizardData.order.service }}<i></i></span>
+      <span>Dettagli del servizio<i></i></span>
+      <span>Ultimi dettagli<i></i></span>
+    </div>
+    <div class="content-container loan">
+      <div class="title action-title">Gli ultimi dettagli</div>
+      <form class="wizard-form" #wizardLoanForm="ngForm">
+        <div class="form-group" *ngIf="formError !== false">
+          <div class="error-message">
+            <span>{{ formError.title }}</span> {{ formError.message }}
+          </div>
+        </div>
+        <div class="form-group" [ngClass]="{'isError': loanError.name}">
+          <label>Nome completo</label>
+          <input name="name" class="form-control" [(ngModel)]="loanData.name" (keyup)="checkNonEmpty('loanName', loanData.name)" (change)="checkNonEmpty('loanName', loanData.name)">
+        </div>
+        <div class="form-group" [ngClass]="{'isError': loanError.email}">
+          <label>Email</label>
+          <input name="email" class="form-control" [(ngModel)]="loanData.email" (keyup)="checkEmail('loanEmail', loanData.email)" (change)="checkEmail('loanEmail', loanData.email)">
+        </div>
+        <div class="form-group" [ngClass]="{'isError': loanError.phone}">
+          <label>Numero del telefono</label>
+          <input name="phone" class="form-control" [(ngModel)]="loanData.phone" (keyup)="checkNonEmpty('loanPhone', loanData.phone)" (change)="checkNonEmpty('loanPhone', loanData.phone)">
+        </div>
+        <div class="form-group" [ngClass]="{'isError': loanError.tax}">
+          <label>Partita iva</label>
+          <input name="tax" class="form-control" [(ngModel)]="loanData.tax" (keyup)="checkNonEmpty('loanTax', loanData.tax)" (change)="checkNonEmpty('loanTax', loanData.tax)">
+        </div>
+        <div class="form-group" [ngClass]="{'isError': loanError.codice}">
+          <label>Codice fiscale</label>
+          <input name="codice" class="form-control" [(ngModel)]="loanData.codice" (keyup)="checkNonEmpty('loanCodice', loanData.codice)" (change)="checkNonEmpty('loanCodice', loanData.codice)">
+        </div>
+        <div class="form-group">
+          <button type="button" class="btn btn-warning" (click)="createLoan()">Continua</button>
         </div>
       </form>
     </div>

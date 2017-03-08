@@ -34,6 +34,14 @@ $wizard-form-footer-text-color: #212121;
 $wizard-form-footer-link-color: #0066C0;
 $wizard-form-footer-text-size: 12px;
 $wizard-form-footer-text-letter-spacing: 0.08px;
+$wizard-form-error-message-border-style: 1px solid #C40000;
+$wizard-form-error-message-background-color: #F2DEDE;
+$wizard-form-error-message-text-size: 13px;
+$wizard-form-error-message-text-color: #AB433F;
+$wizard-form-error-message-letter-spacing: 0.08px;
+$wizard-cards-subheader-color: #0066C0;
+$wizard-cards-subheader-font-size: 12px;
+$wizard-cards-subheader-letter-spacing: 0.08px;
 
 app-wizard {
   display: block;
@@ -120,6 +128,9 @@ app-wizard {
   margin-top: 48px;
   text-align: center;
 }
+.wizard-container .content-container.loan .title.action-title {
+  margin-top: 45px;
+}
 .wizard-container .content-container .items {
   display: block;
   float: left;
@@ -140,10 +151,39 @@ app-wizard {
 .wizard-container .content-container .items .item span {
   display: block;
   position: absolute;
+  max-width: 120px;
   top: 0;
   right: 0;
   text-align: right;
   padding-top: 5px;
+  font-family: $font-name-light;
+  color: $wizard-content-item-text-color;
+  font-size: $wizard-content-item-text-size;
+  letter-spacing: $wizard-content-item-text-letter-spacing;
+}
+.wizard-container .content-container .items .element {
+  display: block;
+  float: left;
+  width: 100%;
+  padding-top: 5px;
+}
+.wizard-container .content-container .items .element p {
+  display: block;
+  float: left;
+  width: 68%;
+  font-family: $font-name-light;
+  color: $wizard-content-item-text-color;
+  font-size: $wizard-content-item-text-size;
+  letter-spacing: $wizard-content-item-text-letter-spacing;
+  padding: 0 10px 0 0;
+  margin: 0;
+}
+.wizard-container .content-container .items .element span {
+  display: block;
+  position: static;
+  float: left;
+  width: 32%;
+  text-align: right;
   font-family: $font-name-light;
   color: $wizard-content-item-text-color;
   font-size: $wizard-content-item-text-size;
@@ -226,6 +266,10 @@ app-wizard {
   margin-top: 10px;
   margin-bottom: 20px;
 }
+.wizard-container .content-container.loan .wizard-form .form-group button.btn.btn-warning {
+  margin-top: 35px;
+  margin-bottom: 139px;
+}
 .wizard-container .content-container .wizard-form .form-group .date {
   display: block;
   position: relative;
@@ -287,7 +331,8 @@ app-wizard {
   letter-spacing: $wizard-form-error-text-letter-spacing;
   text-transform: capitalize;
 }
-.wizard-container .content-container.registration .form-group .form-control {
+.wizard-container .content-container.registration .form-group .form-control,
+.wizard-container .content-container.loan .form-group .form-control {
   display: block;
   position: relative;
   float: left;
@@ -303,10 +348,12 @@ app-wizard {
   background-color: $wizard-form-input-background-color;
   outline: none;
 }
-.wizard-container .content-container.registration .form-group.isError .form-control {
+.wizard-container .content-container.registration .isError .form-control,
+.wizard-container .content-container.loan .isError .form-control {
   border: $wizard-form-input-warning-border;
 }
-.wizard-container .content-container.registration .form-footer {
+.wizard-container .content-container.registration .form-footer,
+.wizard-container .content-container.loan .form-footer {
   display: block;
   float: left;
   width: 100%;
@@ -317,7 +364,42 @@ app-wizard {
   letter-spacing: $wizard-form-footer-text-letter-spacing;
 }
 .wizard-container .content-container.registration .form-footer a,
-.wizard-container .content-container.registration .form-footer a:hover {
+.wizard-container .content-container.registration .form-footer a:hover,
+.wizard-container .content-container.loan .form-footer a,
+.wizard-container .content-container.loan .form-footer a:hover {
   color: $wizard-form-footer-link-color;
   text-decoration: none;
+}
+
+.wizard-container .form-group.subheader {
+  display: block;
+  width: 100%;
+  text-align: center;
+  margin-top: 33px;
+  margin-bottom: 27px;
+  font-family: $font-name-medium;
+  color: $wizard-cards-subheader-color;
+  font-size: $wizard-cards-subheader-font-size;
+  letter-spacing: $wizard-cards-subheader-letter-spacing;
+}
+.wizard-container .form-group .part-group span.fa {
+  top: 37px;
+  right: 11px;
+}
+
+.wizard-form .error-message {
+  display: block;
+  float: left;
+  width: 100%;
+  padding: 11px 15px 12px;
+  border: $wizard-form-error-message-border-style;
+  background-color: $wizard-form-error-message-background-color;
+  border-radius: 3px;
+  font-family: $font-name;
+  font-size: $wizard-form-error-message-text-size;
+  color: $wizard-form-error-message-text-color;
+  letter-spacing: $wizard-form-error-message-letter-spacing;
+}
+.wizard-form .error-message span {
+  font-family: $font-name-medium;
 }
