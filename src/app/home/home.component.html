@@ -41,9 +41,21 @@
         <div class="masonry-container">
           <div class="services-block" *ngFor="let serviceCategory of servicesData">
             <div class="header">
-              <span>{{serviceCategory.title_1}}</span>
-              <div class="service-description" *ngIf="serviceCategory.description !== ''">{{serviceCategory.description}}</div>
-              <div class="service-image" *ngIf="serviceCategory.image_url !== ''" [ngStyle]="{'background-image': 'url(' + serviceCategory.image_url + ')'}"></div>
+              <div class="content-header" *ngIf="serviceCategory.image_url && serviceCategory.image_url !== ''" [ngStyle]="{'width': '70%'}">
+                <span>{{serviceCategory.title_1}}</span>
+                <div class="service-description" *ngIf="serviceCategory.description !== ''">{{serviceCategory.description}}</div>
+              </div>
+              <div class="content-header" *ngIf="!serviceCategory.image_url || serviceCategory.image_url === ''" [ngStyle]="{'width': '100%'}">
+                <span>{{serviceCategory.title_1}}</span>
+                <div class="service-description" *ngIf="serviceCategory.description !== ''">{{serviceCategory.description}}</div>
+              </div>
+              <div *ngIf="serviceCategory.image_url && serviceCategory.image_url !== ''">
+                <img src="{{serviceCategory.image_url}}" alt="{{serviceCategory.title}}" alt="{{serviceCategory.title}}">
+              </div>
+              <div *ngIf="!serviceCategory.image_url || serviceCategory.image_url == ''">
+                <img [ngStyle]="{'display': 'none'}">
+              </div>
+              <!-- <div class="service-image" *ngIf="serviceCategory.image_url !== ''" [ngStyle]="{'background-image': 'url(' + serviceCategory.image_url + ')'}"></div> -->
             </div>
             <div class="service content noselect">
               <span *ngFor="let item of serviceCategory.options">
@@ -57,6 +69,7 @@
                   </div>
                   <div class="item-description" *ngIf="item.description !== ''">{{ item.description }}</div>
                   <div class="item-image" *ngIf="item.image_url !== ''" [ngStyle]="{'background-image': 'url(' + item.image_url + ')'}"></div>
+                  <div class="item-image" *ngIf="item.image_url == ''" [ngStyle]="{'display': 'none'}"></div>
                 </div>
                 <div class="input-group" *ngIf="item.type === 'INPUTTEXT'">
                   <input type="text" [(ngModel)]="servicesData[item.formId].options[item.optionId].input_value" (keyup)="changeValue(item.formId, item.optionId)" (change)="changeValue(item.formId, item.optionId)" (focus)="selectAllContent($event)">
