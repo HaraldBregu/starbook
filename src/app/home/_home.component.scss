@@ -304,12 +304,13 @@ $icon-checked-background-color: #161517;
 }
 
 
-
+// Forms
 .services-block .header {
-  display: block;
+  display: inline-block;
   width: 100%;
-  position: relative;
-  padding-bottom: 50px;
+  padding-bottom: 20px;
+  // position: relative;
+  // padding-bottom: 50px;
   //font-family: $font-name-medium;
   //font-size: 16px;
   //font-weight: 500;
@@ -319,24 +320,32 @@ $icon-checked-background-color: #161517;
   //letter-spacing: $services-block-header-letter-spacing;
   //color: $services-block-text-color;
 }
-.services-block .header span {
+.services-block .header .content-header {
+  float: left;
+  // width: 70%;
+  padding-right: 10px;
+}
+.services-block .header .content-header span {
   display: block;
   width: 100%;
   font-family: $font-name;
   font-size: $services-block-v2-header-font-size;
   letter-spacing: $services-block-v2-header-letter-spacing;
   color: $services-block-text-color;
-  padding-right: 380px;
   margin-bottom: 15px;
 }
-.services-block .header .service-description {
+.services-block .header .content-header .service-description {
   display: block;
   width: 100%;
   font-family: $font-name-light;
   font-size: $services-block-v2-description-font-size;
   letter-spacing: $services-block-v2-description-letter-spacing;
   color: $services-block-text-color;
-  padding-right: 380px;
+}
+.services-block .header img {
+  width: 30%;
+  max-height: 140px;
+  object-fit: cover;
 }
 .services-block .header .service-image {
   display: block;
@@ -476,7 +485,7 @@ $icon-checked-background-color: #161517;
 }
 .services-block .service .input-group {
   //padding: 0 10px 0 10px;
-  max-width: 450px;
+  max-width: 70%;
 }
 .services-block .service .input-group input {
   width: 100%;

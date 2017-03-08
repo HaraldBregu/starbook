@@ -3067,29 +3067,35 @@ app-home {
   background-color: #F7F7F7; }
 
 .services-block .header {
-  display: block;
+  display: inline-block;
   width: 100%;
-  position: relative;
-  padding-bottom: 50px; }
+  padding-bottom: 20px; }
 
-.services-block .header span {
+.services-block .header .content-header {
+  float: left;
+  padding-right: 10px; }
+
+.services-block .header .content-header span {
   display: block;
   width: 100%;
   font-family: HelveticaNeue, sans-serif;
   font-size: 20px;
   letter-spacing: 0.13px;
   color: black;
-  padding-right: 380px;
   margin-bottom: 15px; }
 
-.services-block .header .service-description {
+.services-block .header .content-header .service-description {
   display: block;
   width: 100%;
   font-family: HelveticaNeue-Light, sans-serif;
   font-size: 16px;
   letter-spacing: 0.1px;
-  color: black;
-  padding-right: 380px; }
+  color: black; }
+
+.services-block .header img {
+  width: 30%;
+  max-height: 140px;
+  object-fit: cover; }
 
 .services-block .header .service-image {
   display: block;
@@ -3210,7 +3216,7 @@ app-home {
   outline: none; }
 
 .services-block .service .input-group {
-  max-width: 450px; }
+  max-width: 70%; }
 
 .services-block .service .input-group input {
   width: 100%;
