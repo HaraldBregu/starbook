@@ -42,11 +42,11 @@
           <div class="services-block" *ngFor="let serviceCategory of servicesData">
             <div class="header">
               <div class="content-header" *ngIf="serviceCategory.image_url && serviceCategory.image_url !== ''" [ngStyle]="{'width': '70%'}">
-                <span>{{serviceCategory.title_1}}</span>
+                <span>{{serviceCategory.title}}</span>
                 <div class="service-description" *ngIf="serviceCategory.description !== ''">{{serviceCategory.description}}</div>
               </div>
               <div class="content-header" *ngIf="!serviceCategory.image_url || serviceCategory.image_url === ''" [ngStyle]="{'width': '100%', 'padding-right' : '0px'}">
-                <span>{{serviceCategory.title_1}}</span>
+                <span>{{serviceCategory.title}}</span>
                 <div class="service-description" *ngIf="serviceCategory.description !== ''">{{serviceCategory.description}}</div>
               </div>
               <div *ngIf="serviceCategory.image_url && serviceCategory.image_url !== ''">
@@ -65,7 +65,7 @@
                   <div class="item">
                     <i *ngIf="item.selected===true" class="checkbox"><span></span></i>
                     <i *ngIf="item.selected===false" class="checkbox empty"></i>
-                    {{item.title_1}}
+                    {{item.title}}
                   </div>
                   <div class="item-description" *ngIf="item.description !== ''">{{ item.description }}</div>
                   <div class="item-image" *ngIf="item.image_url !== ''" [ngStyle]="{'background-image': 'url(' + item.image_url + ')'}"></div>
