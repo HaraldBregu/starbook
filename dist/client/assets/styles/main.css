@@ -7101,7 +7101,7 @@ app-wizard {
 .wizard {
   display: block;
   width: 100%;
-  max-width: 1000px;
+  max-width: 735px;
   margin: 70px auto 0; }
 
 .wizard .wizard-container {
@@ -7109,7 +7109,8 @@ app-wizard {
   float: left;
   width: 100%;
   background-color: #F7F7F7;
-  border: 1px solid #CCCCCC; }
+  border: 1px solid #CCCCCC;
+  margin-bottom: 40px; }
 
 .wizard .wizard-container .header {
   display: block;
@@ -7148,11 +7149,11 @@ app-wizard {
 .wizard-container .image-block {
   display: block;
   width: 100%;
-  height: 385px;
+  height: 250px;
   float: left;
   background-repeat: no-repeat;
   background-size: cover;
-  background-position: center; }
+  background-position: 50% 90%; }
 
 .wizard-container .content-container {
   display: block;
@@ -7168,7 +7169,7 @@ app-wizard {
   color: #000000;
   font-size: 28px;
   letter-spacing: 0.16px;
-  margin-top: 41px; }
+  margin-top: 40px; }
 
 .wizard-container .content-container .title.action-title {
   letter-spacing: 0.18px;
@@ -7240,17 +7241,31 @@ app-wizard {
   display: block;
   float: left;
   width: 100%;
-  margin-top: 15px; }
+  margin-top: 30px;
+  padding: 5px 0;
+  border-top: 0.5px solid #E1E1E1;
+  border-bottom: 0.5px solid #E1E1E1; }
 
 .wizard-container .content-container .summary .item {
   display: block;
   float: left;
   position: relative;
   width: 100%;
-  padding-top: 10px;
+  padding: 5px 0;
   font-family: HelveticaNeue, sans-serif;
   color: #000000;
-  font-size: 20px;
+  font-size: 25px;
+  letter-spacing: 0.13px; }
+
+.wizard-container .content-container .summary .item-small {
+  display: block;
+  float: left;
+  position: relative;
+  width: 100%;
+  padding: 5px 0;
+  font-family: HelveticaNeue, sans-serif;
+  color: #000000;
+  font-size: 18px;
   letter-spacing: 0.13px; }
 
 .wizard-container .content-container .summary .item span {
@@ -7261,7 +7276,19 @@ app-wizard {
   text-align: right;
   font-family: HelveticaNeue, sans-serif;
   color: #000000;
-  font-size: 20px;
+  font-size: 25px;
+  letter-spacing: 0.13px;
+  text-transform: capitalize; }
+
+.wizard-container .content-container .summary .item-small span {
+  display: block;
+  position: absolute;
+  top: 10px;
+  right: 0;
+  text-align: right;
+  font-family: HelveticaNeue, sans-serif;
+  color: #000000;
+  font-size: 18px;
   letter-spacing: 0.13px;
   text-transform: capitalize; }
 
@@ -7306,7 +7333,7 @@ app-wizard {
   font-family: HelveticaNeue, sans-serif;
   letter-spacing: 0.11px;
   border: none;
-  margin-bottom: 179px;
+  margin-bottom: 80px;
   outline: none; }
 
 .wizard-container .content-container.registration .wizard-form .form-group button.btn.btn-warning {
@@ -7447,6 +7474,31 @@ app-wizard {
 
 .wizard-form .error-message span {
   font-family: HelveticaNeue-Medium, sans-serif; }
+
+.content-container .success-icon {
+  display: block;
+  width: 100%;
+  height: 70px;
+  margin-top: 3px;
+  margin-bottom: 30px;
+  text-align: center; }
+
+.content-container .success-icon span {
+  display: block;
+  width: 70px;
+  height: 70px;
+  margin: 0 auto;
+  background-image: url("/assets/images/success-icon.png");
+  background-repeat: no-repeat;
+  background-size: contain; }
+
+.wizard-form .popup-spinner {
+  display: block;
+  width: 100%;
+  height: 40px;
+  margin-top: 3px;
+  margin-bottom: 10px;
+  text-align: center; }
 
 app-about {
   display: block;

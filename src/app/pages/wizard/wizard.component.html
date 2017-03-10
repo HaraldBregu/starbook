@@ -9,34 +9,46 @@
       <div class="title">{{ wizardData.order.service }}</div>
       <div class="items">
         <div class="element" *ngFor="let item of wizardData.order.services">
-          <p>{{ item.name }}</p>
-          <span>{{ item.option.name }}</span>
+          <div *ngIf="item.price_type === 'BASE_AMOUNT_PER_INPUT'">
+            <p>{{ item.option.name }} {{item.option.symbol}}</p>
+          </div>
+          <div *ngIf="item.price_type !== 'BASE_AMOUNT_PER_INPUT'">
+            <p>{{ item.option.name }}</p>
+          </div>
+          <!-- <p>{{ item.name }}</p>
+          <span>{{ item.option.name }}</span> -->
         </div>
       </div>
       <div class="summary">
         <div class="item">
-          Importo
-          <span class="big">{{(wizardData.order.totalPrice * wizardData.multiplier) / 100 }}€</span>
+          Totale: <span class="big">{{(wizardData.order.totalPrice * wizardData.multiplier) / 100 }}€</span>
         </div>
-        <div class="item">
-          Metodo
-          <span>{{ wizardData.type }}</span>
+        <div class="item-small">
+          Metodo di pagamento: <span>{{ wizardData.type }}</span>
         </div>
       </div>
       <form class="wizard-form" #wizardForm="ngForm">
         <div class="form-group" [ngClass]="{'isError': isDataError}">
           <label>Inserisci la data del lavoro</label>
-          <p-calendar name="data" [(ngModel)]="Order.date" id="data" class="date" autocomplete="off" dateFormat="dd MM yy" [locale]="it" [minDate]="minDate" [maxDate]="maxDate" (onSelect)="selectDate()">
+          <p-calendar name="data" [(ngModel)]="Order.date" id="data" class="date" autocomplete="off" dateFormat="dd MM yy" [locale]="it" [minDate]="minDate" [maxDate]="maxDate" (onSelect)="selectDate()" placeholder="Inserisci la data">
           </p-calendar>
         </div>
         <div class="form-group" [ngClass]="{'isError': isAddressDirty && !isAddressFull}">
           <label>Inserisci l’indirizzo</label>
-          <p-autoComplete id="luogo" class="form-control" [ngClass]="{'isError':isAddressFull === false && isAddressDirty === true}" [(ngModel)]="Order.delivery_address" [ngModelOptions]="{standalone: true}" [suggestions]="addresses" field="formattedAddress" (completeMethod)="getAddresses($event)" (onSelect)="selectAddress($event)">
+          <p-autoComplete id="luogo" class="form-control" [ngClass]="{'isError':isAddressFull === false && isAddressDirty === true}" [(ngModel)]="Order.delivery_address" [ngModelOptions]="{standalone: true}" [suggestions]="addresses" field="formattedAddress" (completeMethod)="getAddresses($event)" (onSelect)="selectAddress($event)" placeholder="Via Luigi Settembrini, 4, Milano">
           </p-autoComplete>
           <div class="error-message" *ngIf="errorMessage !== null">{{ errorMessage }}</div>
         </div>
+        <div class="popup-spinner" *ngIf="createOrderDisabled">
+          <svg width='40px' height='40px' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid" class="uil-ring">
+            <rect x="0" y="0" width="100" height="100" fill="none" class="bk"></rect>
+            <circle cx="50" cy="50" r="45" stroke-dasharray="169.64600329384882 113.09733552923257" stroke="#3B568D" fill="none" stroke-width="10">
+              <animateTransform attributeName="transform" type="rotate" values="0 50 50;180 50 50;360 50 50;" keyTimes="0;0.5;1" dur="1s" repeatCount="indefinite" begin="0s"></animateTransform>
+            </circle>
+          </svg>
+        </div>
         <div class="form-group">
-          <button type="button" class="btn btn-warning" (click)="createOrder()">Continua</button>
+          <button type="button" class="btn btn-warning" (click)="createOrder()" [disabled]="createOrderDisabled">Continua</button>
         </div>
       </form>
     </div>
@@ -45,7 +57,7 @@
     <div class="header">
       <span>{{ wizardData.order.service }}<i></i></span>
       <span>Dettagli del servizio<i></i></span>
-      <span>Ultimi dettagli<i></i></span>
+      <span>Registrazione<i></i></span>
     </div>
     <div class="content-container registration">
       <div class="title action-title">Crea un account</div>
@@ -80,6 +92,35 @@
         </div>
         <div class="form-footer">
           Accedendo dichiari di aver letto e accetti le <a>condizioni generali</a> e <a>l’informativa sulla privacy</a>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="wizard-container" *ngIf="wizardData.type !== '' && step === 'login'">
+    <div class="header">
+      <span>{{ wizardData.order.service }}<i></i></span>
+      <span>Dettagli del servizio<i></i></span>
+      <span>Accedi<i></i></span>
+    </div>
+    <div class="content-container registration">
+      <div class="title action-title">Accedi</div>
+      <form class="wizard-form" #wizardLoginForm="ngForm">
+        <div class="form-group" *ngIf="formError !== false">
+          <div class="error-message">
+            <span>{{ formError.title }}</span> {{ formError.message }}
+          </div>
+        </div>
+        <div class="form-group" [ngClass]="{'isError': registrationError.email}">
+          <label>Email</label>
+          <input name="email" class="form-control" [(ngModel)]="registrationData.email" (keyup)="checkEmail('registration', registrationData.email)" (change)="checkEmail('registration', registrationData.email)">
+        </div>
+        <div class="form-group" [ngClass]="{'isError': registrationError.password}">
+          <label>Password</label>
+          <input type="password" name="password" class="form-control" [(ngModel)]="registrationData.password" (keyup)="checkPassword('registration', registrationData.password, registrationData.confirmPassword)" (change)="checkPassword('registration', registrationData.password, registrationData.confirmPassword)">
+        </div>
+        <div class="form-group">
+          <button type="button" class="btn btn-warning" (click)="login()">Accedi</button>
+          <button type="button" class="btn btn-secondary" (click)="registration()">Crea un account</button>
         </div>
       </form>
     </div>
@@ -201,6 +242,21 @@
         </div>
         <div class="form-group">
           <button type="button" class="btn btn-warning" (click)="createLoan()">Continua</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="wizard-container" *ngIf="wizardData.type !== '' && step === 'success'">
+    <div class="header">
+      <span>{{ wizardData.order.service }}<i></i></span>
+      <span>Dettagli del servizio<i></i></span>
+    </div>
+    <div class="content-container">
+      <div class="title">Ordine effettuato con successo</div>
+      <form class="wizard-form" #wizardForm="ngForm">
+        <div class="success-icon"><span></span></div>
+        <div class="form-group">
+          <button type="button" class="btn btn-warning" (click)="success()">Fatto</button>
         </div>
       </form>
     </div>

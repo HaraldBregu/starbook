@@ -12,7 +12,7 @@ $wizard-content-item-text-color: #000000;
 $wizard-content-item-text-size: 18px;
 $wizard-content-item-text-letter-spacing: 0.11px;
 $wizard-content-summary-item-text-color: #000000;
-$wizard-content-summary-item-text-size: 20px;
+$wizard-content-summary-item-text-size: 25px;
 $wizard-content-summary-item-big-text-size: 25px;
 $wizard-content-summary-item-text-letter-spacing: 0.13px;
 
@@ -54,7 +54,7 @@ app-wizard {
 .wizard {
   display: block;
   width: 100%;
-  max-width: 1000px;
+  max-width: 735px;
   margin: 70px auto 0;
 }
 .wizard .wizard-container {
@@ -63,6 +63,7 @@ app-wizard {
   width: 100%;
   background-color: $wizard-background-color;
   border: $wizard-border-style;
+  margin-bottom: 40px;
 }
 .wizard .wizard-container .header {
   display: block;
@@ -101,11 +102,11 @@ app-wizard {
 .wizard-container .image-block {
   display: block;
   width: 100%;
-  height: 385px;
+  height: 250px;
   float: left;
   background-repeat: no-repeat;
   background-size: cover;
-  background-position: center;
+  background-position: 50% 90%;
 }
 .wizard-container .content-container {
   display: block;
@@ -121,7 +122,7 @@ app-wizard {
   color: $wizard-content-header-text-color;
   font-size: $wizard-content-header-text-size;
   letter-spacing: $wizard-content-header-text-letter-spacing;
-  margin-top: 41px;
+  margin-top: 40px;
 }
 .wizard-container .content-container .title.action-title {
   letter-spacing: $wizard-content-action-header-text-letter-spacing;
@@ -193,17 +194,31 @@ app-wizard {
   display: block;
   float: left;
   width: 100%;
-  margin-top: 15px;
+  margin-top: 30px;
+  padding: 5px 0;
+  border-top: 0.5px solid #E1E1E1;
+  border-bottom: 0.5px solid #E1E1E1;
 }
 .wizard-container .content-container .summary .item {
   display: block;
   float: left;
   position: relative;
   width: 100%;
-  padding-top: 10px;
+  padding: 5px 0;
   font-family: $font-name;
   color: $wizard-content-summary-item-text-color;
   font-size: $wizard-content-summary-item-text-size;
+  letter-spacing: $wizard-content-summary-item-text-letter-spacing;
+}
+.wizard-container .content-container .summary .item-small {
+  display: block;
+  float: left;
+  position: relative;
+  width: 100%;
+  padding: 5px 0;
+  font-family: $font-name;
+  color: $wizard-content-summary-item-text-color;
+  font-size: 18px;
   letter-spacing: $wizard-content-summary-item-text-letter-spacing;
 }
 .wizard-container .content-container .summary .item span {
@@ -215,6 +230,18 @@ app-wizard {
   font-family: $font-name;
   color: $wizard-content-summary-item-text-color;
   font-size: $wizard-content-summary-item-text-size;
+  letter-spacing: $wizard-content-summary-item-text-letter-spacing;
+  text-transform: capitalize;
+}
+.wizard-container .content-container .summary .item-small span {
+  display: block;
+  position: absolute;
+  top: 10px;
+  right: 0;
+  text-align: right;
+  font-family: $font-name;
+  color: $wizard-content-summary-item-text-color;
+  font-size: 18px;
   letter-spacing: $wizard-content-summary-item-text-letter-spacing;
   text-transform: capitalize;
 }
@@ -259,7 +286,7 @@ app-wizard {
   font-family: $font-name;
   letter-spacing: $wizard-form-input-button-letter-spacing;
   border: none;
-  margin-bottom: 179px;
+  margin-bottom: 80px;
   outline: none;
 }
 .wizard-container .content-container.registration .wizard-form .form-group button.btn.btn-warning {
@@ -402,4 +429,36 @@ app-wizard {
 }
 .wizard-form .error-message span {
   font-family: $font-name-medium;
+}
+
+// ICONS
+$popup-success-icon: '/assets/images/success-icon.png';
+
+.content-container .success-icon {
+  display: block;
+  width: 100%;
+  height: 70px;
+  margin-top: 3px;
+  margin-bottom: 30px;
+  text-align: center;
+}
+.content-container .success-icon span {
+  display: block;
+  width: 70px;
+  height: 70px;
+  margin: 0 auto;
+  background-image: url($popup-success-icon);
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+// Spinner
+
+.wizard-form .popup-spinner {
+  display: block;
+  width: 100%;
+  height: 40px;
+  margin-top: 3px;
+  margin-bottom: 10px;
+  text-align: center;
 }

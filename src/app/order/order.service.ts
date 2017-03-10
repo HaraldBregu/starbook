@@ -91,6 +91,7 @@ export class OrderService {
         country_code: orderData.country_code
       },
       payment: {
+        method: orderData.payment.method,
         amount: orderData.payment.amount,
         currency: orderData.payment.currency
       }

@@ -33,7 +33,6 @@ export interface IServiceFormItem {
   formId?: number;
   optionId?: number;
   title: string;
-  title_1: string;
   description?: string;
   image_url?: string;
   input_type?: string;
@@ -46,7 +45,6 @@ export interface IServiceForm {
   type: string;
   required: boolean;
   title: string;
-  title_1: string;
   description?: string;
   image_url?: string;
   price_type: string;
@@ -170,17 +168,8 @@ export class HomeComponent implements AfterViewInit, OnInit, OnDestroy {
     let formId = 0;
     // console.log('services:' + JSON.stringify(services));
     services.forms.forEach((form) => {
-      // console.log(form);
-      var title_1: string;
-      if (form.title_1) {
-        title_1 = form.title_1;
-      } else {
-        title_1 = form.title;
-      }
-
       let serviceForm: IServiceForm = {
         title: form.title,
-        title_1 : title_1,
         description: form.description,
         image_url: form.image_url,
         type: form.type,
@@ -191,19 +180,10 @@ export class HomeComponent implements AfterViewInit, OnInit, OnDestroy {
 
       let optionId = 0;
       form.options.forEach((item: IServiceFormItem) => {
-        // console.log(item);
-        var title_1: string;
-        if (item.title_1) {
-          title_1 = item.title_1;
-        } else {
-          title_1 = item.title;
-        }
-
         var option = {
           formId: formId,
           optionId: optionId,
           title: item.title,
-          title_1: title_1,
           description: item.description,
           image_url: item.image_url,
           type: form.type,

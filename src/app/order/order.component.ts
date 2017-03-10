@@ -74,15 +74,6 @@ export class OrderComponent implements OnInit, OnDestroy {
 
   constructor(private orderService: OrderService, private popupsService: PopupsService, private analyticsService: AnalyticsService, private router: Router) {
     this.timePicker.push('08:00', '08:30', '09:00', '09:30', '10:00', '10:30', '11:00', '14:00', '14:30', '15:00');
-    // for (let i = 0; i < 24; i++) {
-    //   if (i > 7 && i < 15) {
-    //     if (i > 9) {
-    //       this.timePicker.push(i + ':00', i + ':30');
-    //     } else {
-    //       this.timePicker.push('0' + i + ':00', '0' + i + ':30');
-    //     }
-    //   }
-    // }
     this.months = {
       1: 'Gennaio',
       2: 'Febbraio',
@@ -97,8 +88,6 @@ export class OrderComponent implements OnInit, OnDestroy {
       11: 'Novembre',
       12: 'Dicembre'
     };
-    // console.log('services: ' + this.defaultServices.title);
-
   }
 
   changeTab(tab) {
@@ -154,7 +143,6 @@ export class OrderComponent implements OnInit, OnDestroy {
     }
     this.selectedAddress = value;
   }
-
   modifyAddress() {
     this.isAddressDirty = false;
     // this.isEnable = true;
@@ -163,6 +151,7 @@ export class OrderComponent implements OnInit, OnDestroy {
 
   showConfirmation() {
     this.analyticsService.sendEvent({category:'Order creation form', action: 'send form', label: 'start'});
+
     this.submitOrder = true;
     this.isAddressDirty = true;
     this.Order.street_number = '';
@@ -181,10 +170,8 @@ export class OrderComponent implements OnInit, OnDestroy {
 
     if ((this.Order.street_number !== '' && this.Order.street_number !== null) && (this.Order.postal_code !== '' && this.Order.postal_code !== null) && (this.Order.country_code !== '' && this.Order.country_code !== null)) {
       this.isAddressFull = true;
-      // this.isEnable = true;
     } else {
       this.isAddressFull = false;
-      // this.isEnable = false;
     }
 
     this.showPreviewOrder();
@@ -312,18 +299,26 @@ export class OrderComponent implements OnInit, OnDestroy {
         amount: 0,
         type: 'service'
       }];
+      // console.log('this orderData:' + this.orderData);
       this.orderData.services.forEach((orderCategory) => {
         if (orderCategory.price_type === 'BASE_AMOUNT_INCREMENT') {
           this.Order.delivery_details.push({
-            // title: orderCategory.name + ' - ' + orderCategory.option.name,
             title: orderCategory.name,
             description : orderCategory.option.name,
             amount: 0,
             type: 'item'
           });
-        } else {
+        }
+        // else if (orderCategory.price_type === 'BASE_AMOUNT_PER_INPUT') {
+        //   this.Order.delivery_details.push({
+        //     title: orderCategory.name,
+        //     description : orderCategory.option.name + 'meters',
+        //     amount: 0,
+        //     type: 'item'
+        //   });
+        // }
+        else {
           this.Order.delivery_details.push({
-            // title: orderCategory.name + ' - ' + orderCategory.option.name,
             title: orderCategory.name,
             description : orderCategory.option.name,
             amount: orderCategory.option.price,
@@ -430,7 +425,7 @@ export class OrderComponent implements OnInit, OnDestroy {
       type: this.openedTab,
       multiplier: this.multiplier
     };
-
+    // console.log('wizardData:' + JSON.stringify(wizardData));
     this.orderService.updateWizardData(wizardData);
     this.router.navigateByUrl('/order');
   }

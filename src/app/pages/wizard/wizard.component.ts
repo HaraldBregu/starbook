@@ -18,7 +18,7 @@ export class WizardComponent implements OnInit {
     delivery_address: '',
     delivery_date: '',
     delivery_details: [],
-    payment: {amount: 0, currency: ''},
+    payment: {amount: 0, currency: '', method: ''},
     street: '',
     street_number: null,
     city: '',
@@ -27,7 +27,6 @@ export class WizardComponent implements OnInit {
     country: '',
     country_code: '',
     formattedAddress: '',
-    payment_metod: ''
   };
   public wizardData: any = {
     order: {
@@ -59,6 +58,7 @@ export class WizardComponent implements OnInit {
   public errorMessage = null;
   public isDataError = false;
   public isLoading = false;
+  public createOrderDisabled = false;
   public emailPattern: any;
   public registrationData = {
     name: '',
@@ -157,6 +157,7 @@ export class WizardComponent implements OnInit {
 
   createOrder() {
     this.errorMessage = null;
+    // console.log('this order: ' + JSON.stringify(this.Order));
 
     if (this.Order.date && this.isAddressFull) {
       let userData = localStorage.getItem('auth');
@@ -164,6 +165,7 @@ export class WizardComponent implements OnInit {
 
       if (userData !== null && (this.wizardData.type === 'contanti' || this.wizardData.type === 'carta')) {
         this.isLoading = true;
+        this.createOrderDisabled = true;
         let timeStart = Date.now();
         this.orderService.saveOrder(this.Order)
             .then((status) => {
@@ -179,16 +181,31 @@ export class WizardComponent implements OnInit {
               this.Order.formattedAddress = '';
               this.isLoading = false;
               if (this.step === 'confirmation' || this.step === 'registration' || this.step === 'addcard') {
-                this.router.navigate(['services', this.wizardData.order.service]);
+                // this.router.navigate(['services', this.wizardData.order.service]);
+                this.createOrderDisabled = false;
+                this.step = 'success';
               }
             })
             .catch((errorData) => {
-              if (errorData.status === 402 && this.wizardData.type !== '') {
+              if (this.wizardData.type === 'contanti') {
+
+              } else if (this.wizardData.type === 'carta') {
+                let error = errorData.json();
+                this.errorMessage = error.message;
                 this.step = 'addcard';
+
+                if (errorData.status === 400) {
+                  // No customer, deleted customer,
+                  // No stripe customer (add card and create customer)
+                  // this.errorMessage = error.message;
+                }
+                if (errorData.status === 402) {
+                  // No cards for the customer
+                  // this.errorMessage = error.message;
+                }
               }
-              this.analyticsService.sendEvent({category:'Order creation form', action: 'send form', label: 'error'});
-              let error = errorData.json();
-              this.errorMessage = error.message;
+              this.analyticsService.sendEvent({category:'Order creation form', action: this.wizardData.type + ' error response', label: errorData.status});
+              this.createOrderDisabled = false;
               this.isLoading = false;
             });
       } else if (userData === null && (this.wizardData.type === 'contanti' || this.wizardData.type === 'carta')) {
@@ -205,6 +222,10 @@ export class WizardComponent implements OnInit {
         this.isAddressDirty = true;
       }
     }
+  }
+
+  success() {
+    this.router.navigate(['services', this.wizardData.order.service]);
   }
 
   prepareOrderData() {
@@ -238,7 +259,8 @@ export class WizardComponent implements OnInit {
     });
     this.Order.payment = {
       amount: this.wizardData.order.totalPrice,
-      currency: 'eur'
+      currency: 'eur',
+      method : ''
     };
 
     this.Order.street = this.selectedAddress.street;
@@ -248,13 +270,13 @@ export class WizardComponent implements OnInit {
     this.Order.formattedAddress = this.selectedAddress.formattedAddress;
     this.Order.payment.amount = this.wizardData.order.totalPrice * this.wizardData.multiplier;
     if (this.wizardData.type === 'contanti') {
-      this.Order.payment_metod = 'CASH';
+      this.Order.payment.method = 'CASH';
     }
     if (this.wizardData.type === 'carta') {
-      this.Order.payment_metod = 'CARD';
+      this.Order.payment.method = 'CARD';
     }
     if (this.wizardData.type === 'prestito') {
-      this.Order.payment_metod = 'LOAN';
+      this.Order.payment.method = 'LOAN';
     }
   }
 
@@ -283,11 +305,12 @@ export class WizardComponent implements OnInit {
             this.isLoading = false;
             switch (error) {
               case 409:
-                this.formError = {
-                  title: 'Indirizzo e-mail già in uso.',
-                  message: `Hai indicato di essere un nuovo cliente ma è già
-                presente un account collegato all'indirizzo e-mail: mail@gmail.com`
-                };
+                // this.formError = {
+                //   title: 'Indirizzo e-mail già in uso.',
+                //   message: `Hai indicato di essere un nuovo cliente ma è già
+                // presente un account collegato all'indirizzo e-mail: mail@gmail.com`
+                // };
+                this.step = 'login';
                 break;
               case 422:
                 this.formError = {
@@ -312,6 +335,10 @@ export class WizardComponent implements OnInit {
       this.checkPassword('registration', this.registrationData.password, this.registrationData.confirmPassword);
       this.checkPassword('registrationConfirm', this.registrationData.password, this.registrationData.confirmPassword);
     }
+  }
+
+  login() {
+
   }
 
   addCard() {
