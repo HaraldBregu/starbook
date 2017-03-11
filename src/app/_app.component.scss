@@ -258,7 +258,7 @@ input.search-block .ui-autocomplete-input:-ms-input-placeholder {
 }
 @media (max-width: 770px) {
   .search-block {
-    max-width: 280px;
+    max-width: 340px;
     margin: 7px 0 7px 11px;
     position: relative;
     left: auto;
@@ -279,6 +279,7 @@ input.search-block .ui-autocomplete-input:-ms-input-placeholder {
   .search-block {
     margin-left: -30px;
     padding-left: 35px;
+    max-width: 360px;
   }
 }
 
@@ -330,8 +331,14 @@ input.search-block .ui-autocomplete-input:-ms-input-placeholder {
   }
 }
 
+@media (max-width: 380px) {
+  .search-block {
+    max-width: 315px;
+  }
+}
+
 @media (max-width: 360px) {
   .search-block {
-    max-width: 240px;
+    max-width: 260px;
   }
 }

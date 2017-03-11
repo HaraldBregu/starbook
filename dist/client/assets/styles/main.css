@@ -2786,7 +2786,7 @@ input.search-block .ui-autocomplete-input:-ms-input-placeholder {
     margin: 7px 0 7px -140px; } }
 @media (max-width: 770px) {
   .search-block {
-    max-width: 280px;
+    max-width: 340px;
     margin: 7px 0 7px 11px;
     position: relative;
     left: auto; } }
@@ -2802,7 +2802,8 @@ input.search-block .ui-autocomplete-input:-ms-input-placeholder {
 
   .search-block {
     margin-left: -30px;
-    padding-left: 35px; } }
+    padding-left: 35px;
+    max-width: 360px; } }
 @media (max-width: 576px) {
   .tagline {
     display: none; }
@@ -2848,9 +2849,12 @@ input.search-block .ui-autocomplete-input:-ms-input-placeholder {
     margin-right: 8px;
     outline: none !important;
     box-shadow: none !important; } }
+@media (max-width: 380px) {
+  .search-block {
+    max-width: 315px; } }
 @media (max-width: 360px) {
   .search-block {
-    max-width: 240px; } }
+    max-width: 260px; } }
 app-home {
   display: block;
   float: left;
@@ -2973,7 +2977,8 @@ app-home {
   font-family: HelveticaNeue-Light, sans-serif;
   font-size: 19px;
   font-weight: 400;
-  color: white; }
+  color: white;
+  padding: 20px; }
 
 .header-cover .description {
   font-family: HelveticaNeue, sans-serif;
@@ -3319,8 +3324,7 @@ app-home {
 
   .header-cover .title {
     text-align: center;
-    padding: 10px 20px;
-    margin-bottom: 20px; }
+    padding: 10px 20px; }
 
   .header-cover .description {
     padding-top: 20px; }
@@ -3441,6 +3445,11 @@ app-home {
   .services-block .services-block-big {
     width: 345px; } }
 /* Remove inner shadow from inputs on mobile iOS */
+textarea, input[type="text"] {
+  -webkit-appearance: none;
+  -webkit-border-radius: 0px;
+  border-radius: 0; }
+
 .noselect {
   -webkit-touch-callout: none;
   /* iOS Safari */
@@ -7062,6 +7071,9 @@ input.landing-search .ui-autocomplete-input:-ms-input-placeholder {
     width: 100%;
     padding: 0 15px; } }
 /* Remove inner shadow from inputs on mobile iOS */
+textarea, input[type="text"] {
+  -webkit-appearance: none; }
+
 app-wizard {
   display: block;
   float: left;
