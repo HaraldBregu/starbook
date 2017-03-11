@@ -11,6 +11,7 @@ import * as fs from 'fs';
 import * as http from 'http';
 import * as https from 'https';
 
+
 import { createEngine } from 'angular2-express-engine';
 import { enableProdMode } from '@angular/core';
 import { AppModule } from './app/app.node.module';
@@ -23,6 +24,7 @@ const app  = express();
 const ROOT = path.join(path.resolve(__dirname, '..'));
 const port = process.env.PORT || 80 || 8080;
 // const port = 4200;
+// sitemap.generate(app);
 
 /**
  * enable prod mode for production environments
