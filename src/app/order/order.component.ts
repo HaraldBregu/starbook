@@ -69,6 +69,7 @@ export class OrderComponent implements OnInit, OnDestroy {
 
   public openedTab = 'contanti';
   public multiplier = 1;
+  public message_0 = 'Pagamento in contanti. Il totale viene dato al professionista personalmente.';
 
   subscription: Subscription;
 
@@ -94,12 +95,15 @@ export class OrderComponent implements OnInit, OnDestroy {
     this.openedTab = tab;
     if (tab === 'contanti') {
       this.multiplier = 1;
+      this.message_0 = "Pagamento in contanti. Il totale viene dato al professionista personalmente.";
     }
     if (tab === 'carta') {
       this.multiplier = 0.95;
+      this.message_0 = "Metodo di pagamento consigliato. Pagando con carta hai la possibilità di ricevere sconti nel totale del lavoro.";
     }
     if (tab === 'prestito') {
       this.multiplier = 0.98;
+      this.message_0 = "Puoi richiedere un prestito per il lavoro che ti serve. Consigliamo questa opzione per lavori con un totale più di 2000 euro.";
     }
   }
 
@@ -425,7 +429,6 @@ export class OrderComponent implements OnInit, OnDestroy {
       type: this.openedTab,
       multiplier: this.multiplier
     };
-    // console.log('wizardData:' + JSON.stringify(wizardData));
     this.orderService.updateWizardData(wizardData);
     this.router.navigateByUrl('/order');
   }

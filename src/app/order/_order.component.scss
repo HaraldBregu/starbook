@@ -275,6 +275,7 @@ $footer-links-text-letter-spacing: 0.08px;
   width: 100%;
   padding: 0 5px;
   margin-top: 30px;
+  margin-bottom: 0;
 }
 .order-content .form-group .btn.btn-warning {
   display: block;
@@ -295,24 +296,24 @@ $footer-links-text-letter-spacing: 0.08px;
   letter-spacing: $sidebar-content-btn-text-letter-spacing;
   cursor: pointer;
 }
-.order-content .notice {
-  display: block;
-  float: left;
-  width: 100%;
-  margin-top: 20px;
-}
-.order-content .notice p {
-  display: block;
-  float: left;
-  width: 100%;
-  padding: 5px 0 0 0;
-  margin: 0;
-  text-align: center;
-  font-family: $font-name-light;
-  color: $sidebar-color-second;
-  font-size: $sidebar-content-notice-text-size;
-  letter-spacing: $sidebar-content-notice-text-letter-spacing;
-}
+// .order-content .notice {
+//   display: block;
+//   float: left;
+//   width: 100%;
+//   margin-top: 20px;
+// }
+// .order-content .notice p {
+//   display: block;
+//   float: left;
+//   width: 100%;
+//   padding: 5px 0 0 0;
+//   margin: 0;
+//   text-align: center;
+//   font-family: $font-name-light;
+//   color: $sidebar-color-second;
+//   font-size: $sidebar-content-notice-text-size;
+//   letter-spacing: $sidebar-content-notice-text-letter-spacing;
+// }
 .sidebar-container .add-order-form {
   position: relative;
   right: 0;

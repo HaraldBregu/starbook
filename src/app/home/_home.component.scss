@@ -195,7 +195,7 @@ app-home {
   font-size: 19px;
   font-weight: 400;
   color: $white-text-primary-color;
-  padding: 20px;
+  // padding: 20px;
 }
 .header-cover .description {
   font-family: $font-name;
@@ -293,7 +293,7 @@ $icon-checked-background-color: #161517;
   display: block;
   float: left;
   width: 100%;
-  padding: 47px 67px 50px 50px;
+  padding: 50px;
   // width: 505px;
   // background-color: $services-block-background-color;
   border: 1px solid $services-block-border-color;
@@ -607,7 +607,7 @@ $content-block-description-text-letter-spacing: 0.08px;
   .header-cover .title {
     text-align: center;
     padding: 10px 20px;
-    margin-bottom: 20px;
+    // margin-bottom: 20px;
   }
   .header-cover .description {
     padding-top: 20px;
@@ -626,22 +626,22 @@ $content-block-description-text-letter-spacing: 0.08px;
 
   .services-block {
     width: 100%;
-    padding: 0;
+    padding: 30px;
   }
   .services-block .header {
-    padding-bottom: 10px;
+    // padding-bottom: 10px;
   }
   .services-block .header span {
     font-family: $font-name-medium;
     font-size: 16px;
     font-weight: 500;
-    padding: 15px 20px;
-    border-bottom: 1px solid $services-block-header-border-color;
+    // padding: 15px 20px;
+    // border-bottom: 1px solid $services-block-header-border-color;
     letter-spacing: $services-block-header-letter-spacing;
     color: $services-block-text-color;
   }
   .services-block .service .input-group {
-    padding: 0 0 20px 20px;
+    // padding: 0 0 20px 20px;
   }
   .services-block .service .item-container.image-item {
     padding: 0 105px 10px 20px;
@@ -712,6 +712,7 @@ $content-block-description-text-letter-spacing: 0.08px;
   .services-block {
     // padding-left: 10px;
     // padding-right: 10px;
+    padding: 20px;
     margin-bottom: 10px;
   }
   .masonry-container {
@@ -724,10 +725,7 @@ $content-block-description-text-letter-spacing: 0.08px;
     padding: 50px 0 0 0;
   }
   .services-block .service .input-group {
-    max-width: 290px;
-  }
-  .services-block .service .input-group {
-    padding: 0 0 10px 20px;
+    max-width: 100%;
   }
   .services-block .service .item-container .item {
     padding: 3px 10px 10px 50px;
@@ -758,11 +756,11 @@ $content-block-description-text-letter-spacing: 0.08px;
 
 
 /* Remove inner shadow from inputs on mobile iOS */
-// textarea, input[type="text"] {
-//   -webkit-appearance: none;
-//   -webkit-border-radius: 0px;
-//   border-radius: 0;
-// }
+textarea, input[type="text"] {
+  -webkit-appearance: none;
+  -webkit-border-radius: 0px;
+  border-radius: 0;
+}
 
 .noselect {
   -webkit-touch-callout: none; /* iOS Safari */

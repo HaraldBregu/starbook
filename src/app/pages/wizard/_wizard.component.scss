@@ -490,7 +490,7 @@ $popup-success-icon: '/assets/images/success-icon.png';
 .breadcrumb li a {
   color: white;
   text-decoration: none;
-  padding: 14px 0 10px 65px;
+  // padding: 14px 0;
   // background: brown; /* fallback color */
   background: #27AE60;
   position: relative;
@@ -498,6 +498,9 @@ $popup-success-icon: '/assets/images/success-icon.png';
   float: left;
   width: 100%;
   height: 100%;
+  text-align: center;
+  line-height: 50px;
+  padding-left: 15px;
 }
 .breadcrumb li a::after {
   content: " ";
@@ -546,6 +549,7 @@ $popup-success-icon: '/assets/images/success-icon.png';
   color: black;
   pointer-events: none;
   cursor: default;
+  padding-left: 15px;
 }
 .breadcrumb li:last-child a::after {
   border: 0;

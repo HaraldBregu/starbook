@@ -2973,8 +2973,7 @@ app-home {
   font-family: HelveticaNeue-Light, sans-serif;
   font-size: 19px;
   font-weight: 400;
-  color: white;
-  padding: 20px; }
+  color: white; }
 
 .header-cover .description {
   font-family: HelveticaNeue, sans-serif;
@@ -3062,7 +3061,7 @@ app-home {
   display: block;
   float: left;
   width: 100%;
-  padding: 47px 67px 50px 50px;
+  padding: 50px;
   border: 1px solid #CCCCCC;
   margin-bottom: 20px;
   background-color: #F7F7F7; }
@@ -3338,22 +3337,14 @@ app-home {
 
   .services-block {
     width: 100%;
-    padding: 0; }
-
-  .services-block .header {
-    padding-bottom: 10px; }
+    padding: 30px; }
 
   .services-block .header span {
     font-family: HelveticaNeue-Medium, sans-serif;
     font-size: 16px;
     font-weight: 500;
-    padding: 15px 20px;
-    border-bottom: 1px solid #E1E1E1;
     letter-spacing: 0.1px;
     color: black; }
-
-  .services-block .service .input-group {
-    padding: 0 0 20px 20px; }
 
   .services-block .service .item-container.image-item {
     padding: 0 105px 10px 20px; }
@@ -3415,6 +3406,7 @@ app-home {
     margin-right: 0; }
 
   .services-block {
+    padding: 20px;
     margin-bottom: 10px; }
 
   .masonry-container {
@@ -3426,10 +3418,7 @@ app-home {
     padding: 50px 0 0 0; }
 
   .services-block .service .input-group {
-    max-width: 290px; }
-
-  .services-block .service .input-group {
-    padding: 0 0 10px 20px; }
+    max-width: 100%; }
 
   .services-block .service .item-container .item {
     padding: 3px 10px 10px 50px; }
@@ -3622,7 +3611,8 @@ app-home {
   float: left;
   width: 100%;
   padding: 0 5px;
-  margin-top: 30px; }
+  margin-top: 30px;
+  margin-bottom: 0; }
 
 .order-content .form-group .btn.btn-warning {
   display: block;
@@ -3642,24 +3632,6 @@ app-home {
   color: #000000;
   letter-spacing: 0.11px;
   cursor: pointer; }
-
-.order-content .notice {
-  display: block;
-  float: left;
-  width: 100%;
-  margin-top: 20px; }
-
-.order-content .notice p {
-  display: block;
-  float: left;
-  width: 100%;
-  padding: 5px 0 0 0;
-  margin: 0;
-  text-align: center;
-  font-family: HelveticaNeue-Light, sans-serif;
-  color: rgba(255, 255, 255, 0.7);
-  font-size: 16px;
-  letter-spacing: 0.19px; }
 
 .sidebar-container .add-order-form {
   position: relative;
@@ -7520,13 +7492,15 @@ app-wizard {
 .breadcrumb li a {
   color: white;
   text-decoration: none;
-  padding: 14px 0 10px 65px;
   background: #27AE60;
   position: relative;
   display: block;
   float: left;
   width: 100%;
-  height: 100%; }
+  height: 100%;
+  text-align: center;
+  line-height: 50px;
+  padding-left: 15px; }
 
 .breadcrumb li a::after {
   content: " ";
@@ -7586,7 +7560,8 @@ app-wizard {
   background: transparent !important;
   color: black;
   pointer-events: none;
-  cursor: default; }
+  cursor: default;
+  padding-left: 15px; }
 
 .breadcrumb li:last-child a::after {
   border: 0; }
