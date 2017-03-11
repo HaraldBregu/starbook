@@ -7508,18 +7508,21 @@ app-wizard {
 
 .breadcrumb li {
   float: left;
-  width: 25%; }
+  width: 25%;
+  height: 50px; }
 
 .breadcrumb li a {
   color: white;
   text-decoration: none;
-  padding: 10px 0 10px 65px;
+  padding: 14px 0 10px 65px;
   background: brown;
   /* fallback color */
-  background: #a5630d;
+  background: #27AE60;
   position: relative;
   display: block;
-  float: left; }
+  float: left;
+  width: 100%;
+  height: 100%; }
 
 .breadcrumb li a::after {
   content: " ";
@@ -7529,7 +7532,7 @@ app-wizard {
   border-top: 50px solid transparent;
   /* Go big on the size, and let overflow hide */
   border-bottom: 50px solid transparent;
-  border-left: 30px solid #a5630d;
+  border-left: 30px solid #27AE60;
   position: absolute;
   top: 50%;
   margin-top: -50px;
@@ -7550,10 +7553,6 @@ app-wizard {
   margin-left: 1px;
   left: 100%;
   z-index: 1; }
-
-.breadcrumb li:first-child a {
-  padding-left: 10px;
-  width: 100%; }
 
 .breadcrumb li:nth-child(2) a {
   background: #d48011; }
