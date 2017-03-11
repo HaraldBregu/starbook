@@ -7101,7 +7101,7 @@ app-wizard {
 .wizard {
   display: block;
   width: 100%;
-  max-width: 735px;
+  max-width: 900px;
   margin: 70px auto 0; }
 
 .wizard .wizard-container {
@@ -7150,10 +7150,11 @@ app-wizard {
   display: block;
   width: 100%;
   height: 250px;
-  float: left;
   background-repeat: no-repeat;
   background-size: cover;
-  background-position: 50% 90%; }
+  background-position: 50% 90%;
+  width: 400px;
+  margin: 40px auto 0; }
 
 .wizard-container .content-container {
   display: block;
@@ -7504,11 +7505,16 @@ app-wizard {
   list-style: none;
   overflow: hidden;
   font: 18px Sans-Serif;
-  padding: 0; }
+  padding: 0;
+  margin-bottom: 0;
+  background-color: #F7F7F7;
+  border-top: 1px solid #CCCCCC;
+  border-left: 1px solid #CCCCCC;
+  border-right: 1px solid #CCCCCC;
+  border-radius: 0; }
 
 .breadcrumb li {
   float: left;
-  width: 25%;
   height: 50px; }
 
 .breadcrumb li a {

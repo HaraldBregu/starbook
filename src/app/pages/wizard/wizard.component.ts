@@ -111,6 +111,8 @@ export class WizardComponent implements OnInit {
     cvc: false
   };
 
+  public wizardDataItems = [];
+
   public formError: boolean|{title: string, message: string} = false;
 
   public step = 'confirmation';
@@ -118,6 +120,28 @@ export class WizardComponent implements OnInit {
   constructor(private analyticsService: AnalyticsService, private orderService: OrderService, private router: Router, private authService: AuthService, private navigationService: NavigationService, private paymentService: PaymentService) {
     this.wizardData = this.orderService.getWizardData();
     if (this.wizardData.type !== '') {
+      let userData = localStorage.getItem('auth');
+
+      var dettagli = 'Dettagli';
+      var accedi = 'Accedi';
+      var carta = 'Carta';
+      var informazioni = 'Informazioni';
+      var success = 'Fine';
+
+      this.wizardDataItems.push(dettagli);
+      if (!userData) {
+        this.wizardDataItems.push(accedi);
+      }
+
+      if (this.wizardData.type === 'contanti') {
+        this.wizardDataItems.push(success);
+      } else if (this.wizardData.type === 'carta') {
+        this.wizardDataItems.push(carta);
+        this.wizardDataItems.push(success);
+      } else if (this.wizardData.type === 'prestito') {
+        this.wizardDataItems.push(informazioni);
+      }
+
       this.analyticsService.sendEvent({category:'Order creation wizard', action: 'start', label: 'open wizard'});
     } else {
       this.router.navigateByUrl('/');
@@ -157,8 +181,6 @@ export class WizardComponent implements OnInit {
 
   createOrder() {
     this.errorMessage = null;
-    // console.log('this order: ' + JSON.stringify(this.Order));
-
     if (this.Order.date && this.isAddressFull) {
       let userData = localStorage.getItem('auth');
       this.prepareOrderData();

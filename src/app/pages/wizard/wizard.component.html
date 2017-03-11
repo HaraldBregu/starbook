@@ -1,15 +1,8 @@
 <div class="wizard">
   <ul class="breadcrumb">
-    <li><a>Dettagli</a></li>
-    <li><a>Accedi</a></li>
-    <li><a>Card</a></li>
-    <li><a>Success</a></li>
+    <li *ngFor="let items of wizardDataItems" [ngStyle]="{'width': 100/wizardDataItems.length + '%'}"><a>{{items}}</a></li>
   </ul>
   <div class="wizard-container" *ngIf="wizardData.type !== '' && step === 'confirmation'">
-    <div class="header">
-      <span>{{ wizardData.order.service }}<i></i></span>
-      <span>Dettagli del servizio<i></i></span>
-    </div>
     <div class="image-block" [ngStyle]="{'background-image': 'url(' + wizardData.order.service_image + ')'}"></div>
     <div class="content-container">
       <div class="title">{{ wizardData.order.service }}</div>
@@ -60,11 +53,6 @@
     </div>
   </div>
   <div class="wizard-container" *ngIf="wizardData.type !== '' && step === 'registration'">
-    <div class="header">
-      <span>{{ wizardData.order.service }}<i></i></span>
-      <span>Dettagli del servizio<i></i></span>
-      <span>Registrazione<i></i></span>
-    </div>
     <div class="content-container registration">
       <div class="title action-title">Crea un account</div>
       <form class="wizard-form" #wizardRegistrationForm="ngForm">
@@ -103,11 +91,6 @@
     </div>
   </div>
   <div class="wizard-container" *ngIf="wizardData.type !== '' && step === 'login'">
-    <div class="header">
-      <span>{{ wizardData.order.service }}<i></i></span>
-      <span>Dettagli del servizio<i></i></span>
-      <span>Accedi<i></i></span>
-    </div>
     <div class="content-container registration">
       <div class="title action-title">Accedi</div>
       <form class="wizard-form" #wizardLoginForm="ngForm">
@@ -132,11 +115,6 @@
     </div>
   </div>
   <div class="wizard-container" *ngIf="wizardData.type !== '' && step === 'addcard'">
-    <div class="header">
-      <span>{{ wizardData.order.service }}<i></i></span>
-      <span>Dettagli del servizio<i></i></span>
-      <span>Metodo di pagamento<i></i></span>
-    </div>
     <div class="content-container registration">
       <div class="title action-title">Metodo di pagamento</div>
       <form class="wizard-form" #wizardCardForm="ngForm">
@@ -213,11 +191,6 @@
     </div>
   </div>
   <div class="wizard-container" *ngIf="wizardData.type !== '' && step === 'loan'">
-    <div class="header">
-      <span>{{ wizardData.order.service }}<i></i></span>
-      <span>Dettagli del servizio<i></i></span>
-      <span>Ultimi dettagli<i></i></span>
-    </div>
     <div class="content-container loan">
       <div class="title action-title">Gli ultimi dettagli</div>
       <form class="wizard-form" #wizardLoanForm="ngForm">
@@ -253,10 +226,6 @@
     </div>
   </div>
   <div class="wizard-container" *ngIf="wizardData.type !== '' && step === 'success'">
-    <div class="header">
-      <span>{{ wizardData.order.service }}<i></i></span>
-      <span>Dettagli del servizio<i></i></span>
-    </div>
     <div class="content-container">
       <div class="title">Ordine effettuato con successo</div>
       <form class="wizard-form" #wizardForm="ngForm">
