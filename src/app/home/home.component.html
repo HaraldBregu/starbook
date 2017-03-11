@@ -18,7 +18,7 @@
         <div class="header-cover">
           <div class="tablet-mobile">
             <div class="title">{{ title }}</div>
-            <img src="{{image_url}}">
+            <img src="{{image_url}}" alt="{{title}}">
             <div class="description">{{ description }}</div>
           </div>
           <div class="large-cover">
@@ -50,7 +50,7 @@
                 <div class="service-description" *ngIf="serviceCategory.description !== ''">{{serviceCategory.description}}</div>
               </div>
               <div *ngIf="serviceCategory.image_url && serviceCategory.image_url !== ''">
-                <img src="{{serviceCategory.image_url}}" alt="{{serviceCategory.title}}" alt="{{serviceCategory.title}}">
+                <img src="{{serviceCategory.image_url}}" alt="{{serviceCategory.title}}">
               </div>
               <div *ngIf="!serviceCategory.image_url || serviceCategory.image_url == ''">
                 <img [ngStyle]="{'display': 'none'}">
