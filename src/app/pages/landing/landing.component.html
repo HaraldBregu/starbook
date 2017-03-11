@@ -28,7 +28,7 @@
     <div class="container">
       <div class="row">
         <div class="col-xl-12 landing-search">
-          <p-autoComplete [(ngModel)]="query" [suggestions]="results" field="title" scrollHeight="275px" (completeMethod)="search($event)" (onSelect)="selectResult(query)" placeholder="Parete in cartongesso..." minLength="0">
+          <p-autoComplete [(ngModel)]="query" [suggestions]="results" field="title" scrollHeight="275px" (completeMethod)="search($event)" (onSelect)="selectResult(query)" placeholder="Cartongesso..." minLength="0">
             <template let-res>
               <div class="search-result" (click)="selectResult(res)">{{ res.title }}</div>
             </template>
@@ -115,21 +115,21 @@
       <div class="row">
         <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 why-cell">
           <div class="text-center">
-            <img src="../../../assets/images/star_quality.png" class="rounded mx-auto d-block" alt="...">
+            <img src="../../../assets/images/star_quality.png" class="rounded mx-auto d-block" alt="Quality">
             <h3>Lavorazioni di alta qualità</h3>
             <h4>I servizi su Starbook vengono eseguiti dalle migliori aziende. Usando un algoritmo di ricerca, Starbook trova l’azienda più vicina alla tua abitazione.</h4>
           </div>
         </div>
         <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 why-cell">
           <div class="text-center">
-            <img src="../../../assets/images/market-price.png" class="rounded mx-auto d-block" alt="...">
+            <img src="../../../assets/images/market-price.png" class="rounded mx-auto d-block" alt="Market price">
             <h3>Prezzo garantito dal mercato</h3>
             <h4>I prezzi su Starbook vengono calcolati da un algoritmo interno della piattaforma per rendere più equo e trasparente il mercato.</h4>
           </div>
         </div>
         <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 why-cell">
           <div class="text-center">
-            <img src="../../../assets/images/timing.png" class="rounded mx-auto d-block" alt="...">
+            <img src="../../../assets/images/timing.png" class="rounded mx-auto d-block" alt="Timing">
             <h3>Preventivo diretto</h3>
             <h4>Una volta scelto il servizio, seleziona i form secondo le esigenze e calcola il preventivo direttamente dalla piattaforma.</h4>
           </div>
@@ -159,18 +159,18 @@
         <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12">
           <h4>Sicurezza del sito</h4>
           <div class="list-security">
-            <img src="../../../assets/images/norton.png">
-            <img src="../../../assets/images/secure.png">
-            <img src="../../../assets/images/trust.png">
+            <img src="../../../assets/images/norton.png" alt="Norton Security">
+            <img src="../../../assets/images/secure.png" alt="100% Secure">
+            <img src="../../../assets/images/trust.png" alt="Trusted Website">
           </div>
         </div>
         <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12">
           <h4>Sistemi di pagamento</h4>
           <div class="list-payment-methods">
-            <img src="../../../assets/images/mastercard.png">
-            <img src="../../../assets/images/visa.png">
-            <img src="../../../assets/images/americanexpress.png">
-            <img src="../../../assets/images/stripe.png">
+            <img src="../../../assets/images/mastercard.png" alt="Mastercard">
+            <img src="../../../assets/images/visa.png" alt="Visa">
+            <img src="../../../assets/images/americanexpress.png" alt="American Express">
+            <img src="../../../assets/images/stripe.png" alt="Stripe">
           </div>
         </div>
         <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12">
@@ -185,9 +185,9 @@
         <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12">
           <h4>Seguici su</h4>
           <div class="list-socials">
-            <a href="https://www.facebook.com/starbook.co/" target="_blank"><img src="../../../assets/images/facebook.png"></a>
-            <a href="https://twitter.com/starbookco/" target="_blank"><img src="../../../assets/images/twitter.png"></a>
-            <a href="https://www.instagram.com/starbook.co/" target="_blank"><img src="../../../assets/images/instagram.png"></a>
+            <a href="https://www.facebook.com/starbook.co/" target="_blank"><img src="../../../assets/images/facebook.png" alt="Facebook"></a>
+            <a href="https://twitter.com/starbookco/" target="_blank"><img src="../../../assets/images/twitter.png" alt="Twitter"></a>
+            <a href="https://www.instagram.com/starbook.co/" target="_blank"><img src="../../../assets/images/instagram.png" alt="Instagram"></a>
           </div>
         </div>
       </div>

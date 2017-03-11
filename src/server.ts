@@ -10,6 +10,7 @@ import * as compression from 'compression';
 import * as fs from 'fs';
 import * as http from 'http';
 import * as https from 'https';
+
 import { createEngine } from 'angular2-express-engine';
 import { enableProdMode } from '@angular/core';
 import { AppModule } from './app/app.node.module';
@@ -66,6 +67,14 @@ app.use('/', express.static(path.join(ROOT, 'client'), {index: false}));
  * place your api routes here
  */
 // app.use('/api', api);
+// app.use(function (req, res, next) {
+//     if ('/robots.txt' == req.url) {
+//         res.type('text/plain')
+//         res.send("User-agent: *\nDisallow: /");
+//     } else {
+//         next();
+//     }
+// });
 
 /**
  * bootstrap universal app
@@ -88,6 +97,10 @@ function ngApp(req: any, res: any) {
  * use universal for specific routes
  */
 app.get('/', ngApp);
+app.get('/robots.txt', function(req, res) {
+  res.type('text/plain')
+  res.send("User-agent: *\nDisallow:");
+})
 routes.forEach(route => {
   app.get(`/${route}`, ngApp);
   app.get(`/${route}/*`, ngApp);

@@ -118,7 +118,18 @@ export class WizardComponent implements OnInit {
   public step = 'confirmation';
 
   constructor(private analyticsService: AnalyticsService, private orderService: OrderService, private router: Router, private authService: AuthService, private navigationService: NavigationService, private paymentService: PaymentService) {
+
+    // let order_data = JSON.parse(localStorage.getItem('order_data'));
+    // if (!order_data) {
+    //   this.wizardData = this.orderService.getWizardData();
+    //   localStorage.setItem('order_data', JSON.stringify(this.wizardData));
+    // } else {
+    //   this.wizardData = order_data;
+    // }
+    // console.log('wizard data after: ' + JSON.stringify(this.wizardData));
+
     this.wizardData = this.orderService.getWizardData();
+
     if (this.wizardData.type !== '') {
       let userData = localStorage.getItem('auth');
 
@@ -141,7 +152,6 @@ export class WizardComponent implements OnInit {
       } else if (this.wizardData.type === 'prestito') {
         this.wizardDataItems.push(informazioni);
       }
-
       this.analyticsService.sendEvent({category:'Order creation wizard', action: 'start', label: 'open wizard'});
     } else {
       this.router.navigateByUrl('/');
