@@ -491,7 +491,7 @@ $popup-success-icon: '/assets/images/success-icon.png';
   color: white;
   text-decoration: none;
   padding: 14px 0 10px 65px;
-  background: brown; /* fallback color */
+  // background: brown; /* fallback color */
   background: #27AE60;
   position: relative;
   display: block;
@@ -550,9 +550,9 @@ $popup-success-icon: '/assets/images/success-icon.png';
 .breadcrumb li:last-child a::after {
   border: 0;
 }
-.breadcrumb li a:hover {
-  background: hsla(34, 85%, 25%, 1);
-}
-.breadcrumb li a:hover:after {
-  border-left-color: hsla(34, 85%, 25%, 1) !important;
-}
+// .breadcrumb li a:hover {
+//   background: hsla(34, 85%, 25%, 1);
+// }
+// .breadcrumb li a:hover:after {
+//   border-left-color: hsla(34, 85%, 25%, 1) !important;
+// }

@@ -7521,8 +7521,6 @@ app-wizard {
   color: white;
   text-decoration: none;
   padding: 14px 0 10px 65px;
-  background: brown;
-  /* fallback color */
   background: #27AE60;
   position: relative;
   display: block;
@@ -7592,12 +7590,6 @@ app-wizard {
 
 .breadcrumb li:last-child a::after {
   border: 0; }
-
-.breadcrumb li a:hover {
-  background: #76470a; }
-
-.breadcrumb li a:hover:after {
-  border-left-color: #76470a !important; }
 
 app-about {
   display: block;
