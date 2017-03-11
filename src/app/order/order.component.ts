@@ -431,6 +431,7 @@ export class OrderComponent implements OnInit, OnDestroy {
     };
     this.orderService.updateWizardData(wizardData);
     this.router.navigateByUrl('/order');
+    return false;
   }
 
   ngOnDestroy() {
