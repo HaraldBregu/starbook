@@ -1,4 +1,10 @@
 <div class="wizard">
+  <ul class="breadcrumb">
+    <li><a>Dettagli</a></li>
+    <li><a>Accedi</a></li>
+    <li><a>Card</a></li>
+    <li><a>Success</a></li>
+  </ul>
   <div class="wizard-container" *ngIf="wizardData.type !== '' && step === 'confirmation'">
     <div class="header">
       <span>{{ wizardData.order.service }}<i></i></span>
