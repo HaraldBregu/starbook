@@ -48,15 +48,14 @@ if (environment.production) {
     port: 443,
     trustProxy: true
   }))
-  app.all('/*', function(req: any, res: any, next) {
-    if(!/^www\./.test(req.headers.host)) {
-      res.status(301).redirect(req.protocol + '://www.' + req.headers.host + req.url)
-    } else {
-      next()
-    }
-  })
+  // app.all('/*', function(req: any, res: any, next) {
+  //   if(!/^www\./.test(req.headers.host)) {
+  //     res.status(301).redirect(req.protocol + '://www.' + req.headers.host + req.url)
+  //   } else {
+  //     next()
+  //   }
+  // })
 }
-
 
 /**
  * Enable compression
