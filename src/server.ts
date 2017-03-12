@@ -55,6 +55,9 @@ if (environment.production) {
   //     next()
   //   }
   // })
+  app.get('*',function(req,res){
+    res.redirect('https://www.starbook.co'+req.url)
+  })
 }
 
 /**
