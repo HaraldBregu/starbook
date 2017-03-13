@@ -136,9 +136,9 @@ export class HomeComponent implements AfterViewInit, OnInit, OnDestroy {
     this.seoService.setMetaElem('description', services.description);
     this.seoService.setOgElem('og:title', services.title);
     this.seoService.setOgElem('og:description', services.description);
-    this.seoService.setOgElem('og:url', 'https://www.starbook.co/services/' + services._id);
-    this.seoService.setOgElem('og:image', 'https://s3-eu-west-1.amazonaws.com/starbook-s3/lavorazioni%2Bcartongesso%2Bcontrosoffitti%2Bpareti%2Bcontropareti.png');
-    this.seoService.setOgElem('og:image:secure_url', 'https://s3-eu-west-1.amazonaws.com/starbook-s3/lavorazioni%2Bcartongesso%2Bcontrosoffitti%2Bpareti%2Bcontropareti.png');
+    this.seoService.setOgElem('og:url', 'https://www.starbook.co/services/' + services.title);
+    this.seoService.setOgElem('og:image', services.image_url);
+    this.seoService.setOgElem('og:image:secure_url', services.image_url);
 
     this.defaultServices = services;
     this.title = services.title;
