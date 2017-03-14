@@ -1,6 +1,8 @@
 <div class="wizard">
   <ul class="breadcrumb">
-    <li *ngFor="let items of wizardDataItems" [ngStyle]="{'width': 100/wizardDataItems.length + '%'}"><a>{{items}}</a></li>
+    <li *ngFor="let items of wizardDataItems"
+        [ngStyle]="{'width': 100/wizardDataItems.length + '%'}"
+        [ngClass]="{'active': (step === 'confirmation' && items === 'Dettagli') || (step === 'registration' && items === 'Accedi') || (step === 'login' && items === 'Accedi')  || (step === 'addcard' && items === 'Carta') || (step === 'loan' && items === 'Informazioni') || (step === 'success' && items === 'Fine')}"><a>{{items}}</a></li>
   </ul>
   <div class="wizard-container" *ngIf="wizardData.type !== '' && step === 'confirmation'">
     <div class="image-block" [ngStyle]="{'background-image': 'url(' + wizardData.order.service_image + ')'}"></div>
@@ -82,7 +84,8 @@
           <input type="password" name="confirmPassword" class="form-control" [(ngModel)]="registrationData.confirmPassword" (keyup)="checkPassword('registrationConfirm', registrationData.password, registrationData.confirmPassword)" (change)="checkPassword('registrationConfirm', registrationData.password, registrationData.confirmPassword)">
         </div>
         <div class="form-group">
-          <button type="button" class="btn btn-warning" (click)="registration()">Continua</button>
+          <button type="button" class="btn btn-warning" (click)="registration()">Crea account</button>
+          <button type="button" class="btn btn-secondary" (click)="openLogin()">Accedi al tuo account</button>
         </div>
         <div class="form-footer">
           Accedendo dichiari di aver letto e accetti le <a>condizioni generali</a> e <a>l’informativa sulla privacy</a>
@@ -91,7 +94,7 @@
     </div>
   </div>
   <div class="wizard-container" *ngIf="wizardData.type !== '' && step === 'login'">
-    <div class="content-container registration">
+    <div class="content-container login-step">
       <div class="title action-title">Accedi</div>
       <form class="wizard-form" #wizardLoginForm="ngForm">
         <div class="form-group" *ngIf="formError !== false">
@@ -99,17 +102,17 @@
             <span>{{ formError.title }}</span> {{ formError.message }}
           </div>
         </div>
-        <div class="form-group" [ngClass]="{'isError': registrationError.email}">
+        <div class="form-group" [ngClass]="{'isError': loginError.email}">
           <label>Email</label>
-          <input name="email" class="form-control" [(ngModel)]="registrationData.email" (keyup)="checkEmail('registration', registrationData.email)" (change)="checkEmail('registration', registrationData.email)">
+          <input name="email" class="form-control" [(ngModel)]="loginData.email" (keyup)="checkEmail('login', loginData.email)" (change)="checkEmail('login', loginData.email)">
         </div>
-        <div class="form-group" [ngClass]="{'isError': registrationError.password}">
+        <div class="form-group" [ngClass]="{'isError': loginError.password}">
           <label>Password</label>
-          <input type="password" name="password" class="form-control" [(ngModel)]="registrationData.password" (keyup)="checkPassword('registration', registrationData.password, registrationData.confirmPassword)" (change)="checkPassword('registration', registrationData.password, registrationData.confirmPassword)">
+          <input type="password" name="password" class="form-control" [(ngModel)]="loginData.password" (keyup)="checkPassword('login', loginData.password)" (change)="checkPassword('login', loginData.password)">
         </div>
         <div class="form-group">
           <button type="button" class="btn btn-warning" (click)="login()">Accedi</button>
-          <button type="button" class="btn btn-secondary" (click)="registration()">Crea un account</button>
+          <button type="button" class="btn btn-secondary" (click)="openRegistration()">Crea un account</button>
         </div>
       </form>
     </div>

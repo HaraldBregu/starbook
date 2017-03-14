@@ -74,6 +74,14 @@ export class WizardComponent implements OnInit {
     password: false,
     confirmPassword: false
   };
+  public loginData = {
+    email: '',
+    password: ''
+  };
+  public loginError = {
+    email: false,
+    password: false
+  };
   public loanData = {
     name: '',
     phone: '',
@@ -117,6 +125,15 @@ export class WizardComponent implements OnInit {
 
   public step = 'confirmation';
 
+  public saveState = {
+    order: this.Order,
+    currentStep: this.step,
+    wizardData: this.wizardData,
+    items: this.wizardDataItems,
+    isAddressFull: this.isAddressFull,
+    selectedAddress: this.selectedAddress
+  };
+
   constructor(private analyticsService: AnalyticsService, private orderService: OrderService, private router: Router, private authService: AuthService, private navigationService: NavigationService, private paymentService: PaymentService) {
 
     // let order_data = JSON.parse(localStorage.getItem('order_data'));
@@ -130,7 +147,13 @@ export class WizardComponent implements OnInit {
 
     this.wizardData = this.orderService.getWizardData();
 
-    if (this.wizardData.type !== '') {
+
+    let recovery = null;
+    if (isBrowser) {
+      recovery = localStorage.getItem('wizard');
+    }
+
+    if (this.wizardData.type !== '' || recovery !== null) {
       let userData = localStorage.getItem('auth');
 
       var dettagli = 'Dettagli';
@@ -144,25 +167,53 @@ export class WizardComponent implements OnInit {
         this.wizardDataItems.push(accedi);
       }
 
-      if (this.wizardData.type === 'contanti') {
-        this.wizardDataItems.push(success);
-      } else if (this.wizardData.type === 'carta') {
-        this.wizardDataItems.push(carta);
-        this.wizardDataItems.push(success);
-      } else if (this.wizardData.type === 'prestito') {
-        this.wizardDataItems.push(informazioni);
+      if (this.wizardData.type === '') {
+        let recoveryWizard = JSON.parse(recovery);
+        this.wizardData = recoveryWizard.wizardData;
+        this.wizardDataItems = recoveryWizard.items;
+        this.Order = recoveryWizard.order;
+        this.step = recoveryWizard.currentStep;
+        this.isAddressFull = recoveryWizard.isAddressFull;
+        this.selectedAddress = recoveryWizard.selectedAddress;
+      } else {
+        if (this.wizardData.type === 'contanti') {
+          this.wizardDataItems.push(success);
+        } else if (this.wizardData.type === 'carta') {
+          this.wizardDataItems.push(carta);
+          this.wizardDataItems.push(success);
+        } else if (this.wizardData.type === 'prestito') {
+          this.wizardDataItems.push(informazioni);
+        }
       }
+
+      this.saveCurrentState();
       this.analyticsService.sendEvent({category:'Order creation wizard', action: 'start', label: 'open wizard'});
     } else {
-      this.router.navigateByUrl('/');
+      if (isBrowser) {
+        this.router.navigateByUrl('/');
+      }
     }
 
     this.emailPattern = /^[a-z0-9!#$%&'*+\/=?^_`{|}~.-]+@[a-z0-9]([a-z0-9-]*[a-z0-9])?(\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)*$/i;
   }
 
+  saveCurrentState() {
+    this.saveState = {
+      order: this.Order,
+      currentStep: this.step,
+      wizardData: this.wizardData,
+      items: this.wizardDataItems,
+      isAddressFull: this.isAddressFull,
+      selectedAddress: this.selectedAddress
+    };
+
+    localStorage.setItem('wizard', JSON.stringify(this.saveState));
+  }
+
   selectDate() {
     this.isDataError = false;
     this.analyticsService.sendEvent({category:'Order creation form', action: 'modify', label: 'select date'});
+    this.saveCurrentState();
   }
 
   getAddresses(event) {
@@ -187,6 +238,7 @@ export class WizardComponent implements OnInit {
       this.isAddressFull = false;
     }
     this.selectedAddress = value;
+    this.saveCurrentState();
   }
 
   createOrder() {
@@ -212,10 +264,11 @@ export class WizardComponent implements OnInit {
               this.Order.country_code = '';
               this.Order.formattedAddress = '';
               this.isLoading = false;
-              if (this.step === 'confirmation' || this.step === 'registration' || this.step === 'addcard') {
+              if (this.step === 'confirmation' || this.step === 'registration' || this.step === 'login' || this.step === 'addcard') {
                 // this.router.navigate(['services', this.wizardData.order.service]);
                 this.createOrderDisabled = false;
                 this.step = 'success';
+                this.saveCurrentState();
               }
             })
             .catch((errorData) => {
@@ -225,6 +278,7 @@ export class WizardComponent implements OnInit {
                 let error = errorData.json();
                 this.errorMessage = error.message;
                 this.step = 'addcard';
+                this.saveCurrentState();
 
                 if (errorData.status === 400) {
                   // No customer, deleted customer,
@@ -242,8 +296,10 @@ export class WizardComponent implements OnInit {
             });
       } else if (userData === null && (this.wizardData.type === 'contanti' || this.wizardData.type === 'carta')) {
         this.step = 'registration';
+        this.saveCurrentState();
       } else if (this.wizardData.type === 'prestito') {
         this.step = 'loan';
+        this.saveCurrentState();
       }
 
     } else {
@@ -254,13 +310,18 @@ export class WizardComponent implements OnInit {
         this.isAddressDirty = true;
       }
     }
+
+    this.saveCurrentState();
   }
 
   success() {
+    localStorage.removeItem('wizard');
     this.router.navigate(['services', this.wizardData.order.service]);
+
   }
 
   prepareOrderData() {
+    this.saveCurrentState();
     let date = new Date(this.Order.date);
     let day = date.getDate() > 9 ? date.getDate() : '0' + date.getDate();
     let correctMonth = 1 + date.getMonth();
@@ -313,6 +374,7 @@ export class WizardComponent implements OnInit {
   }
 
   registration() {
+    this.saveCurrentState();
     this.formError = false;
     if (this.registrationData.name.length > 0 && this.registrationData.phone.length > 10 && this.emailPattern.test(this.registrationData.email) && this.registrationData.password.length > 0 && this.registrationData.password === this.registrationData.confirmPassword) {
       let timeStart = Date.now();
@@ -328,6 +390,7 @@ export class WizardComponent implements OnInit {
             }
             if (this.wizardData.type === 'carta') {
               this.step = 'addcard';
+              this.saveCurrentState();
             }
             if (this.wizardData.type === 'prestito') {
               // redirect to outside
@@ -369,11 +432,69 @@ export class WizardComponent implements OnInit {
     }
   }
 
-  login() {
+  openLogin() {
+    this.step = 'login';
+    this.saveCurrentState();
+  }
 
+  openRegistration() {
+    this.step = 'registration';
+    this.saveCurrentState();
+  }
+
+  login() {
+    this.saveCurrentState();
+    this.formError = false;
+    if (this.emailPattern.test(this.loginData.email) && this.loginData.password.length > 3) {
+      this.isLoading = true;
+      let timeStart = Date.now();
+      this.authService.login(this.loginData.email, this.loginData.password)
+          .then((data) => {
+            this.analyticsService.sendTiming({category: 'Login wizard', timingVar: 'load', timingValue: Date.now()-timeStart});
+            this.isLoading = false;
+            this.navigationService.updatePersonalMenu(data);
+
+            if (this.wizardData.type === 'contanti') {
+              this.createOrder();
+            }
+            if (this.wizardData.type === 'carta') {
+              this.createOrder();
+            }
+            if (this.wizardData.type === 'prestito') {
+              // redirect to outside
+            }
+          })
+          .catch((error) => {
+            this.isLoading = false;
+            switch (error) {
+              case 404:
+                this.formError = {
+                  title: 'Si è verificato un errore!',
+                  message: 'Non riusciamo a trovare un account con quell’indirizzo e-mail'
+                };
+                break;
+              case 401:
+                this.formError = {
+                  title: 'Si è verificato un errore!',
+                  message: 'La tua password non è corretta'
+                };
+                break;
+              default:
+                this.formError = false;
+            }
+          });
+    } else {
+      if (this.loginData.password.length < 4) {
+        this.loginError.password = true;
+      }
+      if (!this.emailPattern.test(this.loginError.email)) {
+        this.loginError.email = true;
+      }
+    }
   }
 
   addCard() {
+    this.saveCurrentState();
     this.formError= false;
     let error = false;
     if (this.addCardData.number.length === 0) {
@@ -432,6 +553,7 @@ export class WizardComponent implements OnInit {
         this.registrationData.phone = this.loanData.phone;
         this.loanData.isFull = true;
         this.step = 'registration';
+        this.saveCurrentState();
       }
     } else {
       this.checkNonEmpty('loanName', this.loanData.name);
@@ -459,6 +581,9 @@ export class WizardComponent implements OnInit {
         case 'registration':
           this.registrationError.email = false;
           break;
+        case 'login':
+          this.loginError.email = false;
+          break;
         case 'loanEmail':
           this.loanError.email = false;
           break;
@@ -467,6 +592,9 @@ export class WizardComponent implements OnInit {
       switch (type) {
         case 'registration':
           this.registrationError.email = true;
+          break;
+        case 'login':
+          this.loginError.email = true;
           break;
         case 'loanEmail':
           this.loanError.email = true;
@@ -527,7 +655,7 @@ export class WizardComponent implements OnInit {
     }
   }
 
-  checkPassword (type, password, passwordConfirm) {
+  checkPassword (type, password, passwordConfirm = null) {
     if (type === 'registration') {
       if (password.length > 3) {
         this.registrationError.password = false;
@@ -540,6 +668,13 @@ export class WizardComponent implements OnInit {
         this.registrationError.confirmPassword = false;
       } else {
         this.registrationError.confirmPassword = true;
+      }
+    }
+    if (type === 'login') {
+      if (password.length > 3) {
+        this.loginError.password = false;
+      } else {
+        this.loginError.password = true;
       }
     }
   }

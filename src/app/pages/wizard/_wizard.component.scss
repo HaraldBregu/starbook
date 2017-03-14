@@ -1,6 +1,8 @@
 // Wizard styles
 $wizard-background-color: #F7F7F7;
+$wizard-background-active-color: #27AE60;
 $wizard-border-style: 1px solid #CCCCCC;
+$wizard-border-color: #CCCCCC;
 $wizard-header-text-color: #000000;
 $wizard-header-text-size: 18px;
 $wizard-header-text-letter-spacing: 0.11px;
@@ -42,6 +44,10 @@ $wizard-form-error-message-letter-spacing: 0.08px;
 $wizard-cards-subheader-color: #0066C0;
 $wizard-cards-subheader-font-size: 12px;
 $wizard-cards-subheader-letter-spacing: 0.08px;
+$wizard-form-button-secondary-background-color: #ffffff;
+$wizard-form-button-secondary-text-color: #212121;
+$wizard-form-button-secondary-text-size: 18px;
+$wizard-form-button-secondary-letter-spacing: 0.11px;
 
 app-wizard {
   display: block;
@@ -107,7 +113,7 @@ app-wizard {
   background-repeat: no-repeat;
   background-size: cover;
   background-position: 50% 90%;
-  width: 400px;
+  max-width: 400px;
   margin: 40px auto 0;
 }
 .wizard-container .content-container {
@@ -291,9 +297,32 @@ app-wizard {
   margin-bottom: 80px;
   outline: none;
 }
+.wizard-container .content-container .wizard-form .form-group button.btn.btn-secondary {
+  display: block;
+  float: left;
+  width: 100%;
+  height: 45px;
+  padding: 11px 7px;
+  margin-top: 10px;
+  color: $wizard-form-button-secondary-text-color;
+  font-family: $font-name;
+  font-size: $wizard-form-button-secondary-text-size;
+  letter-spacing: $wizard-form-input-button-letter-spacing;
+  border: none;
+  outline: none;
+  background-color: $wizard-form-button-secondary-background-color;
+  margin-bottom: 20px;
+}
+.wizard-container .content-container.login-step .wizard-form .form-group button.btn.btn-warning {
+  margin-bottom: 0;
+  margin-top: 10px;
+}
+.wizard-container .content-container.login-step .wizard-form .form-group button.btn.btn-secondary {
+  margin-bottom: 80px;
+}
 .wizard-container .content-container.registration .wizard-form .form-group button.btn.btn-warning {
   margin-top: 10px;
-  margin-bottom: 20px;
+  margin-bottom: 0;
 }
 .wizard-container .content-container.loan .wizard-form .form-group button.btn.btn-warning {
   margin-top: 35px;
@@ -361,6 +390,7 @@ app-wizard {
   text-transform: capitalize;
 }
 .wizard-container .content-container.registration .form-group .form-control,
+.wizard-container .content-container.login-step .form-group .form-control,
 .wizard-container .content-container.loan .form-group .form-control {
   display: block;
   position: relative;
@@ -378,10 +408,12 @@ app-wizard {
   outline: none;
 }
 .wizard-container .content-container.registration .isError .form-control,
+.wizard-container .content-container.login-step .isError .form-control,
 .wizard-container .content-container.loan .isError .form-control {
   border: $wizard-form-input-warning-border;
 }
 .wizard-container .content-container.registration .form-footer,
+.wizard-container .content-container.login-step .form-footer,
 .wizard-container .content-container.loan .form-footer {
   display: block;
   float: left;
@@ -394,6 +426,8 @@ app-wizard {
 }
 .wizard-container .content-container.registration .form-footer a,
 .wizard-container .content-container.registration .form-footer a:hover,
+.wizard-container .content-container.login-step .form-footer a,
+.wizard-container .content-container.login-step .form-footer a:hover,
 .wizard-container .content-container.loan .form-footer a,
 .wizard-container .content-container.loan .form-footer a:hover {
   color: $wizard-form-footer-link-color;
@@ -431,6 +465,47 @@ app-wizard {
 }
 .wizard-form .error-message span {
   font-family: $font-name-medium;
+}
+
+@media (max-width: 906px) {
+  .wizard {
+    padding: 0 10px 10px;
+    margin: 60px auto 0;
+  }
+  .wizard .wizard-container {
+    margin-bottom: 10px;
+  }
+}
+@media (max-width: 645px) {
+  .wizard {
+    padding: 0;
+    margin: 50px auto 0;
+  }
+  .wizard .wizard-container {
+    margin-bottom: 0;
+  }
+  .breadcrumb {
+    position: fixed;
+    width: 100%;
+    border-bottom: 1px solid #CCCCCC;
+  }
+  .wizard-container .image-block {
+    margin: 60px auto 0;
+  }
+  .wizard-container .content-container {
+    padding: 10px;
+  }
+  .wizard-container .content-container .title {
+    margin-top: 20px;
+  }
+  .wizard-container .content-container .wizard-form .form-group button.btn.btn-warning {
+    margin-bottom: 30px;
+  }
+}
+@media (max-width: 400px) {
+  .wizard-container .image-block {
+    margin: 0 auto 0;
+  }
 }
 
 // ICONS
@@ -488,11 +563,11 @@ $popup-success-icon: '/assets/images/success-icon.png';
   height: 50px;
 }
 .breadcrumb li a {
-  color: white;
+  color: $wizard-header-text-color;
   text-decoration: none;
   // padding: 14px 0;
   // background: brown; /* fallback color */
-  background: #27AE60;
+  background: $wizard-background-color;
   position: relative;
   display: block;
   float: left;
@@ -509,7 +584,7 @@ $popup-success-icon: '/assets/images/success-icon.png';
   height: 0;
   border-top: 50px solid transparent; /* Go big on the size, and let overflow hide */
   border-bottom: 50px solid transparent;
-  border-left: 30px solid #27AE60;
+  border-left: 30px solid $wizard-background-color;
   position: absolute;
   top: 50%;
   margin-top: -50px;
@@ -523,7 +598,7 @@ $popup-success-icon: '/assets/images/success-icon.png';
   height: 0;
   border-top: 50px solid transparent;
   border-bottom: 50px solid transparent;
-  border-left: 30px solid white;
+  border-left: 30px solid $wizard-border-color;
   position: absolute;
   top: 50%;
   margin-top: -50px;
@@ -531,22 +606,39 @@ $popup-success-icon: '/assets/images/success-icon.png';
   left: 100%;
   z-index: 1;
 }
+.breadcrumb li.active a, .breadcrumb li.active:hover a {
+  color: white;
+  background: $wizard-background-active-color;
+}
+.breadcrumb li.active a::after {
+  border-left: 30px solid $wizard-background-active-color;
+}
+.breadcrumb li.active a::before {
+  border-left: 30px solid white;
+}
 .breadcrumb li:first-child a {
   // padding-left: 10px;
   // width: 100%;
   // height: 100%;
 }
-.breadcrumb li:nth-child(2) a       { background:        hsla(34,85%,45%,1); }
-.breadcrumb li:nth-child(2) a:after { border-left-color: hsla(34,85%,45%,1); }
-.breadcrumb li:nth-child(3) a       { background:        hsla(34,85%,55%,1); }
-.breadcrumb li:nth-child(3) a:after { border-left-color: hsla(34,85%,55%,1); }
-.breadcrumb li:nth-child(4) a       { background:        hsla(34,85%,65%,1); }
-.breadcrumb li:nth-child(4) a:after { border-left-color: hsla(34,85%,65%,1); }
-.breadcrumb li:nth-child(5) a       { background:        hsla(34,85%,75%,1); }
-.breadcrumb li:nth-child(5) a:after { border-left-color: hsla(34,85%,75%,1); }
+//.breadcrumb li:nth-child(2) a       { background:        hsla(34,85%,45%,1); }
+//.breadcrumb li:nth-child(2) a:after { border-left-color: hsla(34,85%,45%,1); }
+//.breadcrumb li:nth-child(3) a       { background:        hsla(34,85%,55%,1); }
+//.breadcrumb li:nth-child(3) a:after { border-left-color: hsla(34,85%,55%,1); }
+//.breadcrumb li:nth-child(4) a       { background:        hsla(34,85%,65%,1); }
+//.breadcrumb li:nth-child(4) a:after { border-left-color: hsla(34,85%,65%,1); }
+//.breadcrumb li:nth-child(5) a       { background:        hsla(34,85%,75%,1); }
+//.breadcrumb li:nth-child(5) a:after { border-left-color: hsla(34,85%,75%,1); }
 .breadcrumb li:last-child a {
   background: transparent !important;
   color: black;
+  pointer-events: none;
+  cursor: default;
+  padding-left: 15px;
+}
+.breadcrumb li:last-child.active a {
+  color: white;
+  background: $wizard-background-active-color !important;
   pointer-events: none;
   cursor: default;
   padding-left: 15px;
