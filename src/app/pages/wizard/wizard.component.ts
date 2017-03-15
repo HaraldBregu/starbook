@@ -375,7 +375,7 @@ export class WizardComponent implements OnInit {
       this.emailPattern.test(this.registrationData.email) && this.registrationData.password.length > 0 && this.registrationData.password === this.registrationData.confirmPassword) {
       let timeStart = Date.now();
       this.isLoading = true;
-      this.authService.signup(this.registrationData.name, this.registrationData.phone, this.registrationData.email, this.registrationData.password)
+      this.authService.signup(this.registrationData.firstname, this.registrationData.lastname, this.registrationData.phone, this.registrationData.email, this.registrationData.password)
           .then((data) => {
             this.analyticsService.sendTiming({category: 'Wizard registration', timingVar: 'save', timingValue: Date.now()-timeStart});
             this.isLoading = false;
