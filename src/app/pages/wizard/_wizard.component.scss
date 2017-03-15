@@ -204,8 +204,8 @@ app-wizard {
   width: 100%;
   margin-top: 30px;
   padding: 5px 0;
-  border-top: 0.5px solid #E1E1E1;
-  border-bottom: 0.5px solid #E1E1E1;
+  // border-top: 0.5px solid #E1E1E1;
+  // border-bottom: 0.5px solid #E1E1E1;
 }
 .wizard-container .content-container .summary .item {
   display: block;
@@ -342,7 +342,7 @@ app-wizard {
   position: relative;
   float: left;
   width: 100%;
-  height: 38px;
+  height: 40px;
   padding: 7px 12px;
   font-family: $font-name;
   color: $wizard-form-input-text-color;

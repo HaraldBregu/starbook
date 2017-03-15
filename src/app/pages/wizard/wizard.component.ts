@@ -62,6 +62,8 @@ export class WizardComponent implements OnInit {
   public emailPattern: any;
   public registrationData = {
     name: '',
+    firstname: '',
+    lastname: '',
     phone: '',
     email: '',
     password: '',
@@ -69,6 +71,8 @@ export class WizardComponent implements OnInit {
   };
   public registrationError = {
     name: false,
+    firstname: false,
+    lastname: false,
     phone: false,
     email: false,
     password: false,
@@ -135,18 +139,7 @@ export class WizardComponent implements OnInit {
   };
 
   constructor(private analyticsService: AnalyticsService, private orderService: OrderService, private router: Router, private authService: AuthService, private navigationService: NavigationService, private paymentService: PaymentService) {
-
-    // let order_data = JSON.parse(localStorage.getItem('order_data'));
-    // if (!order_data) {
-    //   this.wizardData = this.orderService.getWizardData();
-    //   localStorage.setItem('order_data', JSON.stringify(this.wizardData));
-    // } else {
-    //   this.wizardData = order_data;
-    // }
-    // console.log('wizard data after: ' + JSON.stringify(this.wizardData));
-
     this.wizardData = this.orderService.getWizardData();
-
 
     let recovery = null;
     if (isBrowser) {
@@ -376,7 +369,10 @@ export class WizardComponent implements OnInit {
   registration() {
     this.saveCurrentState();
     this.formError = false;
-    if (this.registrationData.name.length > 0 && this.registrationData.phone.length > 10 && this.emailPattern.test(this.registrationData.email) && this.registrationData.password.length > 0 && this.registrationData.password === this.registrationData.confirmPassword) {
+    if (this.registrationData.firstname.length > 0 &&
+      this.registrationData.lastname.length > 0 &&
+      this.registrationData.phone.length > 9 &&
+      this.emailPattern.test(this.registrationData.email) && this.registrationData.password.length > 0 && this.registrationData.password === this.registrationData.confirmPassword) {
       let timeStart = Date.now();
       this.isLoading = true;
       this.authService.signup(this.registrationData.name, this.registrationData.phone, this.registrationData.email, this.registrationData.password)
@@ -612,7 +608,7 @@ export class WizardComponent implements OnInit {
       }
     }
     if (type === 'registrationPhone') {
-      if (value.length > 10) {
+      if (value.length > 9) {
         this.registrationError.phone = false;
       } else {
         this.registrationError.phone = true;

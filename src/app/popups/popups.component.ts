@@ -291,6 +291,8 @@ export class PopupsComponent implements OnInit, OnDestroy {
   };
   public registrationData = {
     name: '',
+    firstname: '',
+    lastname: '',
     phone: '',
     email: '',
     password: '',
@@ -298,6 +300,8 @@ export class PopupsComponent implements OnInit, OnDestroy {
   };
   public registrationError = {
     name: false,
+    firstname: false,
+    lastname: false,
     phone: false,
     email: false,
     passwordFirst: false,
@@ -485,7 +489,7 @@ export class PopupsComponent implements OnInit, OnDestroy {
             this.popupService.activate({type: 'confirmNewOrder', data: this.loginData.orderData});
           } else {
             this.closePopup();
-            this.router.navigate(['/']);
+            // this.router.navigate(['/']);
           }
         })
         .catch((error) => {
@@ -624,8 +628,22 @@ export class PopupsComponent implements OnInit, OnDestroy {
         this.registrationError.name = true;
       }
     }
+    if (type === 'registrationFirstName') {
+      if (value.length > 0) {
+        this.registrationError.firstname = false;
+      } else {
+        this.registrationError.firstname = true;
+      }
+    }
+    if (type === 'registrationLastName') {
+      if (value.length > 0) {
+        this.registrationError.lastname = false;
+      } else {
+        this.registrationError.lastname = true;
+      }
+    }
     if (type === 'registrationPhone') {
-      if (value.length > 10) {
+      if (value.length > 9) {
         this.registrationError.phone = false;
       } else {
         this.registrationError.phone = true;
@@ -739,11 +757,16 @@ export class PopupsComponent implements OnInit, OnDestroy {
     // }
   }
 
-  registration(name: string, phone: string, email: string, password: string, passwordConfirm: string) {
-    if (this.emailPattern.test(email) && password === passwordConfirm && password.length > 0 && name.length > 0 && phone.length > 9) {
+  registration(firstname: string, lastname: string, phone: string, email: string, password: string, passwordConfirm: string) {
+    if (this.emailPattern.test(email) &&
+    password === passwordConfirm &&
+    password.length > 0 &&
+    firstname.length > 0 &&
+    lastname.length > 0 &&
+    phone.length > 9) {
       this.isPopupLoading = true;
       let timeStart = Date.now();
-      this.authServics.signup(name, phone, email, password)
+      this.authServics.signup(firstname, lastname, phone, email, password)
         .then((data) => {
           this.analyticsService.sendTiming({category: 'Registration', timingVar: 'save', timingValue: Date.now()-timeStart});
           this.isPopupLoading = false;
@@ -759,7 +782,7 @@ export class PopupsComponent implements OnInit, OnDestroy {
               this.formError = {
                 title: 'Indirizzo e-mail già in uso.',
                 message: `Hai indicato di essere un nuovo cliente ma è già
-                presente un account collegato all'indirizzo e-mail: mail@gmail.com`
+                presente un account collegato all'indirizzo email: ` + email
               };
               break;
             case 422:
@@ -788,8 +811,11 @@ export class PopupsComponent implements OnInit, OnDestroy {
       if (password.length < 1) {
         this.registrationError.passwordFirst = true;
       }
-      if (name.length < 1) {
-        this.registrationError.name = true;
+      if (firstname.length < 1) {
+        this.registrationError.firstname = true;
+      }
+      if (lastname.length < 1) {
+        this.registrationError.lastname = true;
       }
     }
     return false;
@@ -1395,12 +1421,14 @@ export class PopupsComponent implements OnInit, OnDestroy {
     //     orderData: {}
     //   };
     this.registrationData = {
-        name: '',
-        phone: '',
-        email: '',
-        password: '',
-        passwordConfirm: ''
-      };
+      name: '',
+      firstname: '',
+      lastname: '',
+      phone: '',
+      email: '',
+      password: '',
+      passwordConfirm: ''
+    };
     this.recoveryData = {
         email: ''
       };

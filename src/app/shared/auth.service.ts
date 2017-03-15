@@ -88,9 +88,10 @@ export class AuthService {
       .catch(this.handleError);
   }
 
-  signup(name: string, phone: string, email: string, password: string) {
+  signup(firstname: string, lastname: string, phone: string, email: string, password: string) {
     // this.navigationService.updateLoadingStatus(true);
-    return this.http.post(this.api + 'signup', {fullname: name, phone_number: phone, email: email, password: password})
+    return this.http.post(this.api + 'signup', {
+      firstname: firstname, lastname: lastname, phone_number: phone, email: email, password: password})
       .toPromise()
       .then((response) => {
         // this.navigationService.updateLoadingStatus(false);

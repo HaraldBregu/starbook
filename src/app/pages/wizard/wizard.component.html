@@ -30,7 +30,7 @@
       </div>
       <form class="wizard-form" #wizardForm="ngForm">
         <div class="form-group" [ngClass]="{'isError': isDataError}">
-          <label>Inserisci la data del lavoro</label>
+          <label>Inserisci la data</label>
           <p-calendar name="data" [(ngModel)]="Order.date" id="data" class="date" autocomplete="off" dateFormat="dd MM yy" [locale]="it" [minDate]="minDate" [maxDate]="maxDate" (onSelect)="selectDate()" placeholder="Inserisci la data">
           </p-calendar>
         </div>
@@ -63,10 +63,20 @@
             <span>{{ formError.title }}</span> {{ formError.message }}
           </div>
         </div>
-        <div class="form-group" [ngClass]="{'isError': registrationError.name}">
+        <div class="form-group">
+          <div class="part-group first" [ngClass]="{'isError': registrationError.firstname}">
+            <label>Nome</label>
+            <input name="firstname" class="form-control" [(ngModel)]="registrationData.firstname" (keyup)="checkNonEmpty('registrationName', registrationData.firstname)" (change)="checkNonEmpty('registrationName', registrationData.firstname)">
+          </div>
+          <div class="part-group last" [ngClass]="{'isError': registrationError.lastname}">
+            <label>Cognome</label>
+            <input name="lastname" class="form-control" [(ngModel)]="registrationData.lastname" (keyup)="checkNonEmpty('registrationName', registrationData.lastname)" (change)="checkNonEmpty('registrationName', registrationData.lastname)">
+          </div>
+        </div>
+        <!-- <div class="form-group" [ngClass]="{'isError': registrationError.name}">
           <label>Nome completo</label>
           <input name="name" class="form-control" [(ngModel)]="registrationData.name" (keyup)="checkNonEmpty('registrationName', registrationData.name)" (change)="checkNonEmpty('registrationName', registrationData.name)">
-        </div>
+        </div> -->
         <div class="form-group" [ngClass]="{'isError': registrationError.phone}">
           <label>Telefono</label>
           <input name="phone" class="form-control" [(ngModel)]="registrationData.phone" (keyup)="checkNonEmpty('registrationPhone', registrationData.phone)" (change)="checkNonEmpty('registrationPhone', registrationData.phone)">
@@ -203,7 +213,11 @@
           </div>
         </div>
         <div class="form-group" [ngClass]="{'isError': loanError.name}">
-          <label>Nome completo</label>
+          <label>Nome</label>
+          <input name="name" class="form-control" [(ngModel)]="loanData.name" (keyup)="checkNonEmpty('loanName', loanData.name)" (change)="checkNonEmpty('loanName', loanData.name)">
+        </div>
+        <div class="form-group" [ngClass]="{'isError': loanError.name}">
+          <label>Cognome</label>
           <input name="name" class="form-control" [(ngModel)]="loanData.name" (keyup)="checkNonEmpty('loanName', loanData.name)" (change)="checkNonEmpty('loanName', loanData.name)">
         </div>
         <div class="form-group" [ngClass]="{'isError': loanError.email}">
@@ -211,7 +225,7 @@
           <input name="email" class="form-control" [(ngModel)]="loanData.email" (keyup)="checkEmail('loanEmail', loanData.email)" (change)="checkEmail('loanEmail', loanData.email)">
         </div>
         <div class="form-group" [ngClass]="{'isError': loanError.phone}">
-          <label>Numero del telefono</label>
+          <label>Telefono</label>
           <input name="phone" class="form-control" [(ngModel)]="loanData.phone" (keyup)="checkNonEmpty('loanPhone', loanData.phone)" (change)="checkNonEmpty('loanPhone', loanData.phone)">
         </div>
         <div class="form-group" [ngClass]="{'isError': loanError.tax}">
