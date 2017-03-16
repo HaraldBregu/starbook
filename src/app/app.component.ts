@@ -126,7 +126,11 @@ export class AppComponent implements OnInit, OnDestroy {
     this.clearView = false;
     this.navbarState = false;
     this.findValue = '';
-    this.router.navigate(['services', servicesObj._id]);
+    // this.router.navigate(['services', servicesObj._id]);
+    // var str = 'hello     world  !!';
+    // str = servicesObj.title.replace(/\s+/g, '-');
+    // console.log('space replaced: ' + str);
+    this.router.navigate(['services', servicesObj.title.replace(/\s+/g, '-')]);
   }
 
   clearSearchForm() {

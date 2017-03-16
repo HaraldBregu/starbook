@@ -111,7 +111,7 @@ export class LandingComponent implements OnInit {
 
   selectResult(servicesObj) {
     this.homeService.sendServices(servicesObj);
-    this.router.navigate(['services', servicesObj.title]);
+    this.router.navigate(['services', servicesObj.title.replace(/\s+/g, '-')]);
   }
 
   clearSearchForm() {
