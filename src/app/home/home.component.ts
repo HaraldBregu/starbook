@@ -136,7 +136,7 @@ export class HomeComponent implements AfterViewInit, OnInit, OnDestroy {
     this.seoService.setMetaElem('description', services.description);
     this.seoService.setOgElem('og:title', services.title);
     this.seoService.setOgElem('og:description', services.description);
-    this.seoService.setOgElem('og:url', 'https://www.starbook.co/services/' + services.title);
+    this.seoService.setOgElem('og:url', 'https://www.starbook.co/services/' + services.title.replace(/\s+/g, '-'));
     this.seoService.setOgElem('og:image', services.image_url);
     this.seoService.setOgElem('og:image:secure_url', services.image_url);
 
