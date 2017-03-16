@@ -69,7 +69,7 @@ export class OrderComponent implements OnInit, OnDestroy {
 
   public openedTab = 'contanti';
   public multiplier = 1;
-  public message_0 = 'Pagamento in contanti. Il totale viene dato al professionista personalmente.';
+  public message_0 = "Pagamento tradizionale. Hai la flessibilità di poter pagare il professionista a fine lavori nei modi tradizionali.";
 
   subscription: Subscription;
 
@@ -95,64 +95,78 @@ export class OrderComponent implements OnInit, OnDestroy {
     this.openedTab = tab;
     if (tab === 'contanti') {
       this.multiplier = 1;
-      this.message_0 = "Pagamento in contanti. Il totale viene dato al professionista personalmente.";
+      this.message_0 = "Pagamento tradizionale. Hai la flessibilità di poter pagare il professionista a fine lavori nei modi tradizionali.";
     }
     if (tab === 'carta') {
-      this.multiplier = 0.95;
-      this.message_0 = "Metodo di pagamento consigliato. Pagando con carta hai la possibilità di ricevere sconti nel totale del lavoro.";
+      this.multiplier = 0.98;
+      this.message_0 = "Pagamento con carta. Prezzo garantito e sicuro. Con questa modalità hai diritto di sconti e agevolazioni.";
     }
     if (tab === 'prestito') {
-      this.multiplier = 0.98;
+      this.multiplier = 0.99;
       this.message_0 = "Puoi richiedere un prestito per il lavoro che ti serve. Consigliamo questa opzione per lavori con un totale più di 2000 euro.";
     }
   }
 
-  toggleTimepicker() {
-    this.timePickerIsShow = !this.timePickerIsShow;
+  getEstimatePrice(standardPrice) {
+    // this.orderService.getEstimatePrice(event.query)
+    // .then((addresses) => {
+    //   this.addresses = [];
+    //   this.addresses = addresses;
+    // })
+    // .catch((error) => {
+    //   console.log(error);
+    // });
+
+    return standardPrice/100;
   }
 
-  openTimepicker() {
-    this.timePickerIsShow = true;
-  }
+  // toggleTimepicker() {
+  //   this.timePickerIsShow = !this.timePickerIsShow;
+  // }
+  //
+  // openTimepicker() {
+  //   this.timePickerIsShow = true;
+  // }
+  //
+  // closeTimepicker() {
+  //   this.timePickerIsShow = false;
+  // }
+  //
+  // selectTime(time) {
+  //   this.analyticsService.sendEvent({category:'Order creation form', action: 'modify', label: 'select time'});
+  //   this.Order.time = time;
+  // }
 
-  closeTimepicker() {
-    this.timePickerIsShow = false;
-  }
+  // getAddresses(event) {
+  //   this.isAddressDirty = true;
+  //   this.isAddressFull = false;
+  //   if (event.query.length > 2) {
+  //     this.orderService.getAddresses(event.query)
+  //       .then((addresses) => {
+  //         this.addresses = [];
+  //         this.addresses = addresses;
+  //       })
+  //       .catch((error) => {
+  //         console.log(error);
+  //       });
+  //   }
+  // }
+  // selectAddress(value) {
+  //   this.analyticsService.sendEvent({category:'Order creation form', action: 'modify', label: 'select address'});
+  //   if (value.isFull) {
+  //     this.isAddressFull = true;
+  //   } else {
+  //     this.isAddressFull = false;
+  //   }
+  //   this.selectedAddress = value;
+  // }
+  // modifyAddress() {
+  //   this.isAddressDirty = false;
+  //   // this.isEnable = true;
+  //   this.isAddressDirty = false;
+  // }
 
-  selectTime(time) {
-    this.analyticsService.sendEvent({category:'Order creation form', action: 'modify', label: 'select time'});
-    this.Order.time = time;
-  }
-
-  getAddresses(event) {
-    this.isAddressDirty = true;
-    this.isAddressFull = false;
-    if (event.query.length > 2) {
-      this.orderService.getAddresses(event.query)
-        .then((addresses) => {
-          this.addresses = [];
-          this.addresses = addresses;
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    }
-  }
-  selectAddress(value) {
-    this.analyticsService.sendEvent({category:'Order creation form', action: 'modify', label: 'select address'});
-    if (value.isFull) {
-      this.isAddressFull = true;
-    } else {
-      this.isAddressFull = false;
-    }
-    this.selectedAddress = value;
-  }
-  modifyAddress() {
-    this.isAddressDirty = false;
-    // this.isEnable = true;
-    this.isAddressDirty = false;
-  }
-
+/*
   showConfirmation() {
     this.analyticsService.sendEvent({category:'Order creation form', action: 'send form', label: 'start'});
 
@@ -255,7 +269,7 @@ export class OrderComponent implements OnInit, OnDestroy {
     //     .catch((error) => {
     //       this.isLoading = false;
     //     });
-  }
+  }*/
 
   showPreviewOrder() {
     if (this.Order.date && this.orderIsFull && this.isAddressFull && this.orderData.order_options.min_amount <= this.orderData.totalPrice) {
@@ -303,7 +317,6 @@ export class OrderComponent implements OnInit, OnDestroy {
         amount: 0,
         type: 'service'
       }];
-      // console.log('this orderData:' + this.orderData);
       this.orderData.services.forEach((orderCategory) => {
         if (orderCategory.price_type === 'BASE_AMOUNT_INCREMENT') {
           this.Order.delivery_details.push({
@@ -312,16 +325,7 @@ export class OrderComponent implements OnInit, OnDestroy {
             amount: 0,
             type: 'item'
           });
-        }
-        // else if (orderCategory.price_type === 'BASE_AMOUNT_PER_INPUT') {
-        //   this.Order.delivery_details.push({
-        //     title: orderCategory.name,
-        //     description : orderCategory.option.name + 'meters',
-        //     amount: 0,
-        //     type: 'item'
-        //   });
-        // }
-        else {
+        } else {
           this.Order.delivery_details.push({
             title: orderCategory.name,
             description : orderCategory.option.name,

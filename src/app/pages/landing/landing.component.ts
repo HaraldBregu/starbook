@@ -51,7 +51,7 @@ export class LandingComponent implements OnInit {
     }
 
 
-    this.navigationService.updateMessage('Una città smart ha bisogno di servizi smart');
+    this.navigationService.updateMessage('La cura per la casa');
     this.isLoading = true;
     let timeStart = Date.now();
     this.homeService.getServices()

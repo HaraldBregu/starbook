@@ -852,8 +852,9 @@ input.landing-search .ui-autocomplete-input:-ms-input-placeholder {
   text-align: center;
   font-family: $font-name;
   color: white;
-  // max-width: 280px;
   margin: auto;
+  line-height: 19px;
+  max-width: 280px;
 }
 .why-container img {
   height: 100px;

@@ -4,7 +4,7 @@
       <div class="order-tabs">
         <div class="tab" (click)="changeTab('contanti')" [ngClass]="{'active': openedTab === 'contanti'}">
           <i class="tab-icon money"></i>
-          <span>Contanti</span>
+          <span>Tradizionale</span>
         </div>
         <div class="tab" (click)="changeTab('carta')" [ngClass]="{'active': openedTab === 'carta'}">
           <i class="tab-icon cards"></i>
@@ -16,16 +16,17 @@
         </div>
       </div>
       <div class="order-content">
-        <div class="price-block">
+        <!-- <div class="price-block">
+          <span>{{getEstimatePrice(orderData.totalPrice * multiplier)}}€</span>
           <span>{{(orderData.totalPrice * multiplier) / 100 }}€</span>
           <div class="description">
             prezzo attuale del mercato
           </div>
-        </div>
-        <div class="price-block-second">
+        </div> -->
+        <div class="price-block">
           <span>{{(orderData.totalPrice * multiplier) / 100 }}€</span>
           <div class="description">
-            prezzo standard
+            totale
           </div>
         </div>
         <div class="line"></div>
@@ -36,7 +37,7 @@
           <button class="btn btn-warning" (click)="startWizard()">Avanti</button>
         </div>
         <div class="description">
-          Il totale indicato è IVA compresa. Non ci sono commissioni da parte di Starbook.
+          *Il totale indicato è il prezzo finale IVA compresa.
         </div>
       </div>
     </div>
