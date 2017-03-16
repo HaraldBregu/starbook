@@ -141,7 +141,7 @@ $popup-phone-enter-form-label-letter-spacing: 0.09px;
 }
 .popup {
   display: block;
-  position: absolute;
+  position: fixed;
   background: $popup-background-color;
   box-shadow: $popup-shadow-style;
   width: 450px;
@@ -921,7 +921,7 @@ $popup-phone-enter-form-label-letter-spacing: 0.09px;
 @media (max-width: 480px) {
   .popup {
     width: 100%;
-    position: fixed;
+    // position: fixed;
     top: 0;
     left: 0;
     right: 0;
