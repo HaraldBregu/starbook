@@ -5421,7 +5421,7 @@ textarea.form-control {
 
 .popup {
   display: block;
-  position: fixed;
+  position: absolute;
   background: #ffffff;
   box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.5);
   width: 450px;
@@ -6156,6 +6156,7 @@ textarea.form-control {
 @media (max-width: 480px) {
   .popup {
     width: 100%;
+    position: fixed;
     top: 0;
     left: 0;
     right: 0;
