@@ -154,7 +154,7 @@ $popup-phone-enter-form-label-letter-spacing: 0.09px;
   overflow-y: scroll;
   // border-radius: 3px;
 }
-.popup .popup-container {
+.popup-container {
   background: $popup-background-color;
   box-shadow: $popup-shadow-style;
   padding: 35px 30px 27px;
@@ -941,7 +941,7 @@ $popup-phone-enter-form-label-letter-spacing: 0.09px;
     background: $popup-background-color;
     box-shadow: $popup-shadow-style;
   }
-  .popup .popup-container {
+  .popup-container {
     // background: $popup-background-color;
     box-shadow: 0px 0px 0px 0px rgba(0,0,0,0.50);
     padding: 15px 10px 20px;
