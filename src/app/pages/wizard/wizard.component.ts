@@ -309,8 +309,7 @@ export class WizardComponent implements OnInit {
 
   success() {
     localStorage.removeItem('wizard');
-    this.router.navigate(['services', this.wizardData.order.service]);
-
+    this.router.navigate(['services', this.wizardData.order.service.replace(/\s+/g, '-')]);
   }
 
   prepareOrderData() {

@@ -5422,14 +5422,18 @@ textarea.form-control {
 .popup {
   display: block;
   position: fixed;
-  background: #ffffff;
-  box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.5);
   width: 450px;
   top: 42px;
+  bottom: 0;
   left: 50%;
   margin-left: -215px;
-  padding: 35px 30px 27px;
-  z-index: 1041; }
+  z-index: 1041;
+  overflow-y: scroll; }
+
+.popup .popup-container {
+  background: #ffffff;
+  box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.5);
+  padding: 35px 30px 27px; }
 
 .popup .header {
   display: block;
@@ -6163,6 +6167,11 @@ textarea.form-control {
     margin-left: 0;
     border-radius: 0;
     overflow-y: scroll;
+    background: #ffffff;
+    box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.5); }
+
+  .popup .popup-container {
+    box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.5);
     padding: 15px 10px 20px; }
 
   .login-offer {
