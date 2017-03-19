@@ -94,6 +94,11 @@ $services-footer-letter-spacing: 0.06px;
 $services-footer-price-text-size: 22px;
 $services-footer-price-letter-spacing: 0.06px;
 
+app-landing {
+  height: 100%;
+  overflow: auto;
+}
+
 .landing {
   display: block;
   position: relative;
@@ -103,6 +108,7 @@ $services-footer-price-letter-spacing: 0.06px;
   padding-top: 50px; // 70px
   padding-bottom: 50px;
   background-color: $landing-background-color;
+  overflow: auto;
 }
 .landing h1 {
   font-size: $landing-header-font-size;

@@ -2860,7 +2860,8 @@ app-home {
   float: left;
   width: 100%;
   height: 100%;
-  background-color: #FFFFFF; }
+  background-color: #FFFFFF;
+  overflow: auto; }
 
 .container-starbook.home-tab-bar {
   height: 30px;
@@ -6172,6 +6173,10 @@ textarea.form-control {
 
   .dark-screen {
     background-color: transparent; } }
+app-landing {
+  height: 100%;
+  overflow: auto; }
+
 .landing {
   display: block;
   position: relative;
@@ -6180,7 +6185,8 @@ textarea.form-control {
   min-height: 100vh;
   padding-top: 50px;
   padding-bottom: 50px;
-  background-color: #FFFFFF; }
+  background-color: #FFFFFF;
+  overflow: auto; }
 
 .landing h1 {
   font-size: 30px;
