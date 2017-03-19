@@ -127,7 +127,6 @@ $popup-phone-enter-form-header-size: 28px;
 $popup-phone-enter-form-header-letter-spacing: 0.18px;
 $popup-phone-enter-form-label-letter-spacing: 0.09px;
 
-
 .dark-screen {
   display: block;
   position: fixed;
@@ -148,7 +147,7 @@ $popup-phone-enter-form-label-letter-spacing: 0.09px;
   width: 450px;
   top: 42px;
   left: 50%;
-  bottom: 0;
+  // bottom: 0;
   overflow: scroll;
   margin-left: -215px;
   padding: 35px 30px 27px;

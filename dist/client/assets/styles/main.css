@@ -2590,6 +2590,9 @@ body {
 html, body {
   background-color: #FAFAFA !important; }
 
+.fixed {
+  overflow: hidden; }
+
 .sub-header {
   padding-bottom: 10px;
   border-bottom: 1px solid #eee; }
@@ -5428,7 +5431,6 @@ textarea.form-control {
   width: 450px;
   top: 42px;
   left: 50%;
-  bottom: 0;
   overflow: scroll;
   margin-left: -215px;
   padding: 35px 30px 27px;
