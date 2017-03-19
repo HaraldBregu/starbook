@@ -1,116 +1,112 @@
 <div class="dark-screen" [@shadowState]="shadowState" (click)="closePopup()"></div>
 
 <!-- Login popup -->
-<div class="popup-container">
-  <div class="popup" [@loginPopupState]="loginPopupState">
-    <!--<div class="alert-block" *ngIf="formError">-->
-      <!--<div class="alert-icn"></div>-->
-      <!--<div class="alert-container">-->
-        <!--<div class="header">Si è verificato un errore!</div>-->
-        <!--<p>{{formError.message}}</p>-->
-      <!--</div>-->
+<div class="popup" [@loginPopupState]="loginPopupState">
+  <!--<div class="alert-block" *ngIf="formError">-->
+    <!--<div class="alert-icn"></div>-->
+    <!--<div class="alert-container">-->
+      <!--<div class="header">Si è verificato un errore!</div>-->
+      <!--<p>{{formError.message}}</p>-->
     <!--</div>-->
-    <div class="alert-block" *ngIf="formError">
-      <div class="alert-container">
-        <p><span>Errore!</span> {{formError.message}}</p>
-      </div>
+  <!--</div>-->
+  <div class="alert-block" *ngIf="formError">
+    <div class="alert-container">
+      <p><span>Errore!</span> {{formError.message}}</p>
     </div>
-    <app-loading *ngIf="isPopupLoading"></app-loading>
-    <div class="header">Accedi</div>
-    <form class="login-form" #loginForm="ngForm" (keyup.enter)="login(email.value, password.value)">
-      <div class="form-group" [ngClass]="{'isError': loginError.email}">
-        <label for="email">Indirizzo email</label>
-        <input id="email" class="form-control" type="email" name="email" [(ngModel)]="loginData.email" #email="ngModel" (keyup)="checkEmail('login', email.value)" (change)="checkEmail('login', email.value)">
-        <span class="error">Indirizzo email non valido</span>
-      </div>
-      <div class="form-group" [ngClass]="{'isError': loginError.password}">
-        <label for="password">Password <a class="recovery" (click)="getPopup('recovery')">Password dimenticata?</a></label>
-        <input id="password" class="form-control" type="password" name="password" [(ngModel)]="loginData.password" #password="ngModel" (keyup)="checkNonEmpty('login', password.value)" (change)="checkNonEmpty('login', password.value)">
-        <span class="error">Inserisci la tua password</span>
-      </div>
-      <div class="form-group">
-        <a class="btn btn-warning" href="#" (click)="login(email.value, password.value)">Accedi</a>
-      </div>
-      <div class="form-group">
-        <a class="btn btn-secondary" (click)="getPopup('registration')">Crea il tuo account Starbook</a>
-      </div>
-      <div class="form-description">
-        <span>o</span>
-      </div>
-      <div class="form-group">
-        <a class="btn btn-primary facebook" (click)="facebookLogin()">
-          <i></i>
-          Continua con Facebook
-        </a>
-      </div>
-    </form>
   </div>
-</div>
-
-<!-- Registration popup -->
-<div class="popup-container">
-  <div class="popup" [@registrationPopupState]="registrationPopupState">
-    <div class="alert-block" *ngIf="formError">
-      <div class="alert-icn"></div>
-      <div class="alert-container">
-        <div class="header">{{formError.title}}</div>
-        <p>{{formError.message}}</p>
-      </div>
+  <app-loading *ngIf="isPopupLoading"></app-loading>
+  <div class="header">Accedi</div>
+  <form class="login-form" #loginForm="ngForm" (keyup.enter)="login(email.value, password.value)">
+    <div class="form-group" [ngClass]="{'isError': loginError.email}">
+      <label for="email">Indirizzo email</label>
+      <input id="email" class="form-control" type="email" name="email" [(ngModel)]="loginData.email" #email="ngModel" (keyup)="checkEmail('login', email.value)" (change)="checkEmail('login', email.value)">
+      <span class="error">Indirizzo email non valido</span>
     </div>
-    <app-loading *ngIf="isPopupLoading"></app-loading>
-    <div class="header">Nuovo utente</div>
-    <form class="registration-form" #registrationForm="ngForm">
-      <div class="form-group double-form">
-        <div class="part-group first">
-          <label for="regFirstName">Nome</label>
-          <input id="regFirstName" class="form-control" type="text" name="firstname" placeholder="" required [(ngModel)]="registrationData.firstname" #regFirstName="ngModel" (keyup)="checkNonEmpty('registrationFirstName', regFirstName.value)">
-        </div>
-        <div class="part-group last">
-          <label for="regLastName">Cognome</label>
-          <input id="regLastName" class="form-control" type="text" name="lastname" placeholder="" required [(ngModel)]="registrationData.lastname" #regLastName="ngModel" (keyup)="checkNonEmpty('registrationLastName', regLastName.value)">
-        </div>
-      </div>
-      <!-- <div class="form-group" [ngClass]="{'isError': registrationError.name}">
-        <label for="regName">Nome completo</label>
-        <input id="regName" class="form-control" type="text" name="name" placeholder="" required [(ngModel)]="registrationData.name" #regName="ngModel" (keyup)="checkNonEmpty('registrationName', regName.value)">
-        <span class="error">Inserisci il nome completo</span>
-      </div> -->
-      <div class="form-group" [ngClass]="{'isError': registrationError.phone}">
-        <label for="regPhone">Cellulare</label>
-        <input id="regPhone" class="form-control" type="text" name="phone" placeholder="" required [(ngModel)]="registrationData.phone" #regPhone="ngModel" (keyup)="checkNonEmpty('registrationPhone', regPhone.value)">
-        <span class="error">Inserisci numero cellulare</span>
-      </div>
-      <div class="form-group" [ngClass]="{'isError': registrationError.email}">
-        <label for="regEmail">Email</label>
-        <input id="regEmail" class="form-control" type="email" name="email" placeholder="" required [(ngModel)]="registrationData.email" #regEmail="ngModel" (keyup)="checkEmail('registration', regEmail.value)">
-        <span class="error">Indirizzo email non valido</span>
-      </div>
-      <div class="form-group" [ngClass]="{'isError': registrationError.passwordFirst}">
-        <label for="regPassword">Password</label>
-        <input id="regPassword" class="form-control" type="password" name="password" placeholder="" required [(ngModel)]="registrationData.password" #regPassword="ngModel" (keyup)="checkNonEmpty('registrationPassword', regPassword.value)">
-        <span class="error">Inserisci una password</span>
-      </div>
-      <div class="form-group" [ngClass]="{'isError': registrationError.password}">
-        <label for="regPasswordConfirm">Di nuovo la password</label>
-        <input id="regPasswordConfirm" class="form-control" type="password" name="passwordConfirm" placeholder="" required [(ngModel)]="registrationData.passwordConfirm" #regPasswordConfirm="ngModel" (keyup)="checkPassword(regPassword.value, regPasswordConfirm.value)">
-        <span class="error">Le password non corrispondono</span>
-      </div>
-      <div class="form-group">
-        <button class="btn btn-warning" type="submit" (click)="registration(regFirstName.value, regLastName.value, regPhone.value, regEmail.value, regPassword.value, regPasswordConfirm.value)">Crea account</button>
-      </div>
-    </form>
-    <div class="form-notice">Accedendo dichiari di aver letto e accetti le <a (click)="closePopup()" routerLink="profile/conditions">condizioni generali</a> e <a (click)="closePopup()" routerLink="profile/privacy">l’informativa sulla privacy</a></div>
+    <div class="form-group" [ngClass]="{'isError': loginError.password}">
+      <label for="password">Password <a class="recovery" (click)="getPopup('recovery')">Password dimenticata?</a></label>
+      <input id="password" class="form-control" type="password" name="password" [(ngModel)]="loginData.password" #password="ngModel" (keyup)="checkNonEmpty('login', password.value)" (change)="checkNonEmpty('login', password.value)">
+      <span class="error">Inserisci la tua password</span>
+    </div>
+    <div class="form-group">
+      <a class="btn btn-warning" href="#" (click)="login(email.value, password.value)">Accedi</a>
+    </div>
+    <div class="form-group">
+      <a class="btn btn-secondary" (click)="getPopup('registration')">Crea il tuo account Starbook</a>
+    </div>
     <div class="form-description">
       <span>o</span>
     </div>
-    <div class="form-group registration">
+    <div class="form-group">
       <a class="btn btn-primary facebook" (click)="facebookLogin()">
         <i></i>
         Continua con Facebook
       </a>
     </div>
-    <div class="login-offer registration">Hai gia un account su Starbook? <a (click)="getPopup('login')">Accedi</a></div>
+  </form>
+</div>
+
+<!-- Registration popup -->
+<div class="popup" [@registrationPopupState]="registrationPopupState">
+  <div class="alert-block" *ngIf="formError">
+    <div class="alert-icn"></div>
+    <div class="alert-container">
+      <div class="header">{{formError.title}}</div>
+      <p>{{formError.message}}</p>
+    </div>
   </div>
+  <app-loading *ngIf="isPopupLoading"></app-loading>
+  <div class="header">Nuovo utente</div>
+  <form class="registration-form" #registrationForm="ngForm">
+    <div class="form-group double-form">
+      <div class="part-group first">
+        <label for="regFirstName">Nome</label>
+        <input id="regFirstName" class="form-control" type="text" name="firstname" placeholder="" required [(ngModel)]="registrationData.firstname" #regFirstName="ngModel" (keyup)="checkNonEmpty('registrationFirstName', regFirstName.value)">
+      </div>
+      <div class="part-group last">
+        <label for="regLastName">Cognome</label>
+        <input id="regLastName" class="form-control" type="text" name="lastname" placeholder="" required [(ngModel)]="registrationData.lastname" #regLastName="ngModel" (keyup)="checkNonEmpty('registrationLastName', regLastName.value)">
+      </div>
+    </div>
+    <!-- <div class="form-group" [ngClass]="{'isError': registrationError.name}">
+      <label for="regName">Nome completo</label>
+      <input id="regName" class="form-control" type="text" name="name" placeholder="" required [(ngModel)]="registrationData.name" #regName="ngModel" (keyup)="checkNonEmpty('registrationName', regName.value)">
+      <span class="error">Inserisci il nome completo</span>
+    </div> -->
+    <div class="form-group" [ngClass]="{'isError': registrationError.phone}">
+      <label for="regPhone">Cellulare</label>
+      <input id="regPhone" class="form-control" type="text" name="phone" placeholder="" required [(ngModel)]="registrationData.phone" #regPhone="ngModel" (keyup)="checkNonEmpty('registrationPhone', regPhone.value)">
+      <span class="error">Inserisci numero cellulare</span>
+    </div>
+    <div class="form-group" [ngClass]="{'isError': registrationError.email}">
+      <label for="regEmail">Email</label>
+      <input id="regEmail" class="form-control" type="email" name="email" placeholder="" required [(ngModel)]="registrationData.email" #regEmail="ngModel" (keyup)="checkEmail('registration', regEmail.value)">
+      <span class="error">Indirizzo email non valido</span>
+    </div>
+    <div class="form-group" [ngClass]="{'isError': registrationError.passwordFirst}">
+      <label for="regPassword">Password</label>
+      <input id="regPassword" class="form-control" type="password" name="password" placeholder="" required [(ngModel)]="registrationData.password" #regPassword="ngModel" (keyup)="checkNonEmpty('registrationPassword', regPassword.value)">
+      <span class="error">Inserisci una password</span>
+    </div>
+    <div class="form-group" [ngClass]="{'isError': registrationError.password}">
+      <label for="regPasswordConfirm">Di nuovo la password</label>
+      <input id="regPasswordConfirm" class="form-control" type="password" name="passwordConfirm" placeholder="" required [(ngModel)]="registrationData.passwordConfirm" #regPasswordConfirm="ngModel" (keyup)="checkPassword(regPassword.value, regPasswordConfirm.value)">
+      <span class="error">Le password non corrispondono</span>
+    </div>
+    <div class="form-group">
+      <button class="btn btn-warning" type="submit" (click)="registration(regFirstName.value, regLastName.value, regPhone.value, regEmail.value, regPassword.value, regPasswordConfirm.value)">Crea account</button>
+    </div>
+  </form>
+  <div class="form-notice">Accedendo dichiari di aver letto e accetti le <a (click)="closePopup()" routerLink="profile/conditions">condizioni generali</a> e <a (click)="closePopup()" routerLink="profile/privacy">l’informativa sulla privacy</a></div>
+  <div class="form-description">
+    <span>o</span>
+  </div>
+  <div class="form-group registration">
+    <a class="btn btn-primary facebook" (click)="facebookLogin()">
+      <i></i>
+      Continua con Facebook
+    </a>
+  </div>
+  <div class="login-offer registration">Hai gia un account su Starbook? <a (click)="getPopup('login')">Accedi</a></div>
 </div>
 
 <!-- Recovery popup -->

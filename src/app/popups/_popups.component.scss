@@ -140,44 +140,18 @@ $popup-phone-enter-form-label-letter-spacing: 0.09px;
   z-index: 1040;
 }
 .popup {
-  // display: block;
-  // position: fixed;
-  // width: 450px;
-  // top: 42px;
-  // bottom: 0;
-  // left: 50%;
-  // margin-left: -215px;
-  // z-index: 1041;
-  // overflow-y: scroll;
-
   display: block;
   position: fixed;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 10001;
-  padding: 50px 10px;
-  overflow: auto;
-  background: rgba(0,0,0,.75);
-  -webkit-transition: background-color .3s;
-  box-sizing: border-box;
+  background: $popup-background-color;
+  box-shadow: $popup-shadow-style;
+  width: 450px;
+  top: 42px;
+  left: 50%;
+  margin-left: -215px;
+  padding: 35px 30px 27px;
+  z-index: 1041;
+  // border-radius: 3px;
 }
-.popup-container {
-  // background: $popup-background-color;
-  // box-shadow: $popup-shadow-style;
-  // padding: 35px 30px 27px;
-
-  border-radius: 3px;
-margin: auto;
-width: auto;
-max-width: 550px;
-background: #fff;
-box-shadow: 0 0 6px rgba(0,0,0,.6), 0 1px 2px rgba(0,0,0,.9);
-text-align: center;
-padding: 15px;
-}
-
 .popup .header {
   display: block;
   width: 100%;
@@ -945,68 +919,18 @@ padding: 15px;
   margin-bottom: 20px;
 }
 @media (max-width: 480px) {
-  // .popup {
-  //   width: 100%;
-  //   // position: fixed;
-  //   top: 0;
-  //   left: 0;
-  //   right: 0;
-  //   bottom: 0;
-  //   margin-left: 0;
-  //   border-radius: 0;
-  //   overflow-y: scroll;
-  //   // padding: 15px 10px 20px;
-  //   background: $popup-background-color;
-  //   box-shadow: $popup-shadow-style;
-  // }
-  // .popup-container {
-  //   // background: $popup-background-color;
-  //   box-shadow: 0px 0px 0px 0px rgba(0,0,0,0.50);
-  //   padding: 15px 10px 20px;
-  // }
-
   .popup {
-    background: $popup-background-color;
-
-    // display: block;
-    // position: fixed;
-    // width: 450px;
-    // top: 42px;
-    // bottom: 0;
-    // left: 50%;
-    // margin-left: -215px;
-    // z-index: 1041;
-    // overflow-y: scroll;
-
-    display: block;
-    position: fixed;
-    left: 0;
-    top: 0;
     width: 100%;
-    height: 100%;
-    z-index: 10001;
-    padding: 50px 10px;
-    overflow: auto;
-    background: rgba(0,0,0,.75);
-    -webkit-transition: background-color .3s;
-    box-sizing: border-box;
+    // position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin-left: 0;
+    border-radius: 0;
+    overflow-y: scroll;
+    padding: 15px 10px 20px;
   }
-  .popup-container {
-    // box-shadow: $popup-shadow-style;
-    // padding: 35px 30px 27px;
-
-    border-radius: 3px;
-  margin: auto;
-  width: auto;
-  max-width: 550px;
-  background: #fff;
-  box-shadow: 0 0 6px rgba(0,0,0,.6), 0 1px 2px rgba(0,0,0,.9);
-  text-align: center;
-  padding: 15px;
-  }
-
-
-
   .login-offer {
     margin-bottom: 70px;
   }
