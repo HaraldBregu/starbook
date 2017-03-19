@@ -376,6 +376,7 @@ export class PopupsComponent implements OnInit, OnDestroy {
   constructor(private authServics: AuthService, private navigationService: NavigationService, private popupService: PopupsService, private ordersService: OrdersService, private orderService: OrderService, private paymentService: PaymentService, private router: Router, private analyticsService: AnalyticsService) {
     this.emailPattern = /^[a-z0-9!#$%&'*+\/=?^_`{|}~.-]+@[a-z0-9]([a-z0-9-]*[a-z0-9])?(\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)*$/i;
   }
+
   getPopup(type: string) {
     this.closePopup(true);
     if (type === 'login') {
@@ -427,6 +428,7 @@ export class PopupsComponent implements OnInit, OnDestroy {
 
     this.shadowState = 'active';
     this.activePopup = type;
+
     return false;
   }
 
