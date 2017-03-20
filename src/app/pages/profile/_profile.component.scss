@@ -121,6 +121,9 @@ $card-new-card-letter-spacing: 0.13px;
   margin-left: 260px;
   margin-top: 23px;
 }
+.profile-settings .form-control:focus {
+  color: $profile-settings-input-text-color;
+}
 .profile-settings .header {
   display: block;
   width: 100%;

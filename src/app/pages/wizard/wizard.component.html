@@ -2,7 +2,7 @@
   <ul class="breadcrumb">
     <li *ngFor="let items of wizardDataItems"
         [ngStyle]="{'width': 100/wizardDataItems.length + '%'}"
-        [ngClass]="{'active': (step === 'confirmation' && items === 'Dettagli') || (step === 'registration' && items === 'Accedi') || (step === 'login' && items === 'Accedi')  || (step === 'addcard' && items === 'Carta') || (step === 'loan' && items === 'Informazioni') || (step === 'success' && items === 'Fine')}"><a>{{items}}</a></li>
+        [ngClass]="{'active': (step === 'confirmation' && items === 'Dettagli') || (step === 'registration' && items === 'Accedi') || (step === 'login' && items === 'Accedi') || (step == 'confirm-user-info' && items == 'Accedi') || (step === 'addcard' && items === 'Carta') || (step === 'loan' && items === 'Informazioni') || (step === 'success' && items === 'Fine')}"><a>{{items}}</a></li>
   </ul>
   <div class="wizard-container" *ngIf="wizardData.type !== '' && step === 'confirmation'">
     <div class="image-block" [ngStyle]="{'background-image': 'url(' + wizardData.order.service_image + ')'}"></div>
@@ -97,6 +97,15 @@
           <button type="button" class="btn btn-warning" (click)="registration()">Crea account</button>
           <button type="button" class="btn btn-secondary" (click)="openLogin()">Accedi al tuo account</button>
         </div>
+        <div class="form-description">
+          <span>o</span>
+        </div>
+        <div class="form-group">
+          <a class="btn btn-primary facebook" (click)="facebookLogin()">
+            <i></i>
+            Continua con Facebook
+          </a>
+        </div>
         <div class="form-footer">
           Accedendo dichiari di aver letto e accetti le <a>condizioni generali</a> e <a>l’informativa sulla privacy</a>
         </div>
@@ -123,6 +132,34 @@
         <div class="form-group">
           <button type="button" class="btn btn-warning" (click)="login()">Accedi</button>
           <button type="button" class="btn btn-secondary" (click)="openRegistration()">Crea un account</button>
+        </div>
+        <div class="form-description">
+          <span>o</span>
+        </div>
+        <div class="form-group">
+          <a class="btn btn-primary facebook" (click)="facebookLogin()">
+            <i></i>
+            Continua con Facebook
+          </a>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="wizard-container" *ngIf="wizardData.type !== '' && step === 'confirm-user-info'">
+    <div class="content-container confirm-user-info">
+      <div class="title action-title">Conferma la tua Info</div>
+      <form class="wizard-form" #wizardForm="ngForm">
+        <div class="form-group" *ngIf="formError !== false">
+          <div class="error-message">
+            <span>{{ formError.title }}</span> {{ formError.message }}
+          </div>
+        </div>
+        <div class="form-group" *ngIf="showConfirmPhone" [ngClass]="{'isError': confirmationError.phone}">
+          <label>Telefono</label>
+          <input name="phone" class="form-control" [(ngModel)]="confirmationData.phone" (keyup)="checkNonEmpty('confirmationPhone', confirmationData.phone)" (change)="checkNonEmpty('confirmationPhone', confirmationData.phone)">
+        </div>
+        <div class="form-group">
+          <button type="button" class="btn btn-warning" (click)="confirmUserInfo()">Continua</button>
         </div>
       </form>
     </div>

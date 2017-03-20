@@ -5,6 +5,7 @@ import { OrderService, IAddress } from '../../order/order.service';
 import { AuthService } from '../../shared/auth.service';
 import { NavigationService } from '../../shared/navigation.service';
 import { PaymentService } from '../../shared/payment.service';
+import { ProfileService } from '../../shared/profile.service';
 import { isBrowser } from "angular2-universal";
 
 @Component({
@@ -78,6 +79,13 @@ export class WizardComponent implements OnInit {
     password: false,
     confirmPassword: false
   };
+  public confirmationData = {
+    phone: ''
+  };
+  public showConfirmPhone: boolean = true;
+  public confirmationError = {
+    phone: false
+  };
   public loginData = {
     email: '',
     password: ''
@@ -138,7 +146,9 @@ export class WizardComponent implements OnInit {
     selectedAddress: this.selectedAddress
   };
 
-  constructor(private analyticsService: AnalyticsService, private orderService: OrderService, private router: Router, private authService: AuthService, private navigationService: NavigationService, private paymentService: PaymentService) {
+  constructor(private analyticsService: AnalyticsService, private orderService: OrderService, private router: Router,
+              private authService: AuthService, private navigationService: NavigationService,
+              private paymentService: PaymentService, private profileService: ProfileService ) {
     this.wizardData = this.orderService.getWizardData();
 
     let recovery = null;
@@ -156,7 +166,13 @@ export class WizardComponent implements OnInit {
       var success = 'Fine';
 
       this.wizardDataItems.push(dettagli);
-      if (!userData) {
+      let parserUserData = JSON.parse(userData);
+
+      if (userData !== null) {
+        if (!parserUserData['phone_number'] || parserUserData['phone_number'].length == 0) {
+          this.wizardDataItems.push(accedi);
+        }
+      } else {
         this.wizardDataItems.push(accedi);
       }
 
@@ -239,8 +255,9 @@ export class WizardComponent implements OnInit {
     if (this.Order.date && this.isAddressFull) {
       let userData = localStorage.getItem('auth');
       this.prepareOrderData();
+      let parserUserData = JSON.parse(userData);
 
-      if (userData !== null && (this.wizardData.type === 'contanti' || this.wizardData.type === 'carta')) {
+      if (userData !== null && (parserUserData['phone_number'] && parserUserData['phone_number'].length > 0) && (this.wizardData.type === 'contanti' || this.wizardData.type === 'carta')) {
         this.isLoading = true;
         this.createOrderDisabled = true;
         let timeStart = Date.now();
@@ -287,6 +304,10 @@ export class WizardComponent implements OnInit {
               this.createOrderDisabled = false;
               this.isLoading = false;
             });
+      } else if (userData !== null && (!parserUserData['phone_number'] || parserUserData['phone_number'].length == 0)) {
+        // user has no phone
+        this.step = 'confirm-user-info';
+        this.saveCurrentState();
       } else if (userData === null && (this.wizardData.type === 'contanti' || this.wizardData.type === 'carta')) {
         this.step = 'registration';
         this.saveCurrentState();
@@ -380,15 +401,22 @@ export class WizardComponent implements OnInit {
             this.isLoading = false;
             this.navigationService.updatePersonalMenu(data);
 
-            if (this.wizardData.type === 'contanti') {
-              this.createOrder();
-            }
-            if (this.wizardData.type === 'carta') {
-              this.step = 'addcard';
+            let parsedData = JSON.parse(data);
+
+            if (!parsedData['phone_number'] || parsedData['phone_number'].length == 0) {
+              this.step = 'confirm-user-info';
               this.saveCurrentState();
-            }
-            if (this.wizardData.type === 'prestito') {
-              // redirect to outside
+            } else {
+              if (this.wizardData.type === 'contanti') {
+                this.createOrder();
+              }
+              if (this.wizardData.type === 'carta') {
+                this.step = 'addcard';
+                this.saveCurrentState();
+              }
+              if (this.wizardData.type === 'prestito') {
+                // redirect to outside
+              }
             }
           })
           .catch((error) => {
@@ -449,14 +477,21 @@ export class WizardComponent implements OnInit {
             this.isLoading = false;
             this.navigationService.updatePersonalMenu(data);
 
-            if (this.wizardData.type === 'contanti') {
-              this.createOrder();
-            }
-            if (this.wizardData.type === 'carta') {
-              this.createOrder();
-            }
-            if (this.wizardData.type === 'prestito') {
-              // redirect to outside
+            let parsedData = JSON.parse(data);
+
+            if (!parsedData['phone_number'] || parsedData['phone_number'].length == 0) {
+              this.step = 'confirm-user-info';
+              this.saveCurrentState();
+            } else {
+              if (this.wizardData.type === 'contanti') {
+                this.createOrder();
+              }
+              if (this.wizardData.type === 'carta') {
+                this.createOrder();
+              }
+              if (this.wizardData.type === 'prestito') {
+                // redirect to outside
+              }
             }
           })
           .catch((error) => {
@@ -613,6 +648,13 @@ export class WizardComponent implements OnInit {
         this.registrationError.phone = true;
       }
     }
+    if (type === 'confirmationPhone') {
+      if (value.length > 9) {
+        this.confirmationError.phone = false;
+      } else {
+        this.confirmationError.phone = true;
+      }
+    }
     if (type === 'cardCvv') {
       if (value.length > 2) {
         this.addCardError.cvc = false;
@@ -732,6 +774,91 @@ export class WizardComponent implements OnInit {
     }
     this.addCardData.exp_date = result;
     return result;
+  }
+
+  facebookLogin() {
+    if (isBrowser) {
+      let timeStart = Date.now();
+      this.isLoading = true;
+      let left = Math.round((document.documentElement.clientWidth / 2) - 285);
+      let facebookPopup = window.open(
+          'https://www.facebook.com/v2.8/dialog/oauth?client_id=1108461325907277&response_type=token&scope=email,public_profile&redirect_uri=https://www.starbook.co/facebook',
+          // 'https://www.facebook.com/v2.8/dialog/oauth?client_id=1108461325907277&response_type=token&scope=email,public_profile&redirect_uri=http://localhost:4200/facebook',
+          '_blank',
+          'location=yes,height=570,width=520,left=' + left + ', top=100,scrollbars=yes,status=yes');
+      this.checkAccessToken(facebookPopup, 1, timeStart);
+    }
+  }
+
+  checkAccessToken(facebookWindow: Window, context, timeStart) {
+    if (facebookWindow.closed) {
+      let accessToken = localStorage.getItem('facebook_token');
+
+      this.authService.facebookLogin(accessToken)
+          .then((userData) => {
+        let parsedUserData = JSON.parse(userData);
+            if(!parsedUserData['phone_number'] || parsedUserData['phone_number'].length == 0) {
+              // show phone number field - required
+              this.step = 'confirm-user-info';
+              this.saveCurrentState();
+            } else {
+              // success
+              this.saveCurrentState();
+              this.analyticsService.sendTiming({category: 'Wizard registration', timingVar: 'save', timingValue: Date.now() - timeStart});
+              this.isLoading = false;
+              this.navigationService.updatePersonalMenu(userData);
+
+              if (this.wizardData.type === 'contanti') {
+                this.createOrder();
+              }
+              if (this.wizardData.type === 'carta') {
+                this.step = 'addcard';
+                this.saveCurrentState();
+              }
+              if (this.wizardData.type === 'prestito') {
+                // redirect to outside
+              }
+            }
+          })
+          .catch((error) => {
+            this.isLoading = false;
+            this.formError = {
+              title: 'Errore!',
+              message: 'Authorization error'
+            };
+          });
+    } else {
+      let self = this;
+      setTimeout(function() {self.checkAccessToken(facebookWindow, context + 1, timeStart)}, 200);
+    }
+  }
+
+  confirmUserInfo() {
+    this.saveCurrentState();
+    this.formError = false;
+    if (this.confirmationData.phone.length > 9) {
+      let userData = JSON.parse(localStorage.getItem('auth'));
+      userData['phone_number'] = this.confirmationData.phone;
+      let timeStart = Date.now();
+
+      this.profileService.updateProfile(userData)
+          .then((data) => {
+            this.analyticsService.sendTiming({category: 'Update user profile', timingVar: 'save', timingValue: Date.now() - timeStart});
+            localStorage.setItem('auth', JSON.stringify(userData));
+            this.isLoading = false;
+            this.step = 'success';
+            this.saveCurrentState();
+          })
+          .catch((error) => {
+            this.isLoading = false;
+            this.formError = {
+              title: 'Errore',
+              message: error.json().message || ''
+            };
+          });
+    } else {
+      this.checkNonEmpty('confirmationPhone', this.confirmationData.phone);
+    }
   }
 
   ngOnInit() {

@@ -148,7 +148,7 @@ $popup-phone-enter-form-label-letter-spacing: 0.09px;
   top: 42px;
   left: 50%;
   // bottom: 0;
-  overflow: scroll;
+  overflow: auto;
   margin-left: -215px;
   padding: 35px 30px 27px;
   z-index: 1041;
@@ -548,7 +548,7 @@ $popup-phone-enter-form-label-letter-spacing: 0.09px;
   display: block;
   margin-top: -4px;
   max-height: 300px;
-  overflow-y: scroll;
+  overflow: auto;
 }
 .confirm-order-form .orders-list .order-item {
   display: block;
@@ -930,7 +930,7 @@ $popup-phone-enter-form-label-letter-spacing: 0.09px;
     bottom: 0;
     margin-left: 0;
     border-radius: 0;
-    overflow-y: scroll;
+    overflow: auto;
     padding: 15px 10px 20px;
   }
   .login-offer {

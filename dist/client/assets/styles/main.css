@@ -2590,9 +2590,6 @@ body {
 html, body {
   background-color: #FAFAFA !important; }
 
-.fixed {
-  overflow: hidden; }
-
 .sub-header {
   padding-bottom: 10px;
   border-bottom: 1px solid #eee; }
@@ -4888,6 +4885,9 @@ textarea.form-control {
   margin-left: 260px;
   margin-top: 23px; }
 
+.profile-settings .form-control:focus {
+  color: #4A4A4A; }
+
 .profile-settings .header {
   display: block;
   width: 100%;
@@ -5431,7 +5431,7 @@ textarea.form-control {
   width: 450px;
   top: 42px;
   left: 50%;
-  overflow: scroll;
+  overflow: auto;
   margin-left: -215px;
   padding: 35px 30px 27px;
   z-index: 1041; }
@@ -5792,7 +5792,7 @@ textarea.form-control {
   display: block;
   margin-top: -4px;
   max-height: 300px;
-  overflow-y: scroll; }
+  overflow: auto; }
 
 .confirm-order-form .orders-list .order-item {
   display: block;
@@ -6167,7 +6167,7 @@ textarea.form-control {
     bottom: 0;
     margin-left: 0;
     border-radius: 0;
-    overflow-y: scroll;
+    overflow: auto;
     padding: 15px 10px 20px; }
 
   .login-offer {
@@ -7346,11 +7346,12 @@ app-wizard {
   background-color: #ffffff;
   margin-bottom: 20px; }
 
-.wizard-container .content-container.login-step .wizard-form .form-group button.btn.btn-warning {
+.wizard-container .content-container.login-step .wizard-form .form-group button.btn.btn-warning,
+.wizard-container .content-container.confirm-user-info .wizard-form .form-group button.btn.btn-warning {
   margin-bottom: 0;
   margin-top: 10px; }
 
-.wizard-container .content-container.login-step .wizard-form .form-group button.btn.btn-secondary {
+.wizard-container .content-container.confirm-user-info .wizard-form .form-group button.btn.btn-warning {
   margin-bottom: 80px; }
 
 .wizard-container .content-container.registration .wizard-form .form-group button.btn.btn-warning {
@@ -7424,7 +7425,8 @@ app-wizard {
 
 .wizard-container .content-container.registration .form-group .form-control,
 .wizard-container .content-container.login-step .form-group .form-control,
-.wizard-container .content-container.loan .form-group .form-control {
+.wizard-container .content-container.loan .form-group .form-control,
+.wizard-container .content-container.confirm-user-info .form-group .form-control {
   display: block;
   position: relative;
   float: left;
@@ -7442,7 +7444,8 @@ app-wizard {
 
 .wizard-container .content-container.registration .isError .form-control,
 .wizard-container .content-container.login-step .isError .form-control,
-.wizard-container .content-container.loan .isError .form-control {
+.wizard-container .content-container.loan .isError .form-control,
+.wizard-container .content-container.confirm-user-info .isError .form-control {
   border: 1px solid #DB4F4F; }
 
 .wizard-container .content-container.registration .form-footer,
@@ -7465,6 +7468,68 @@ app-wizard {
 .wizard-container .content-container.loan .form-footer a:hover {
   color: #0066C0;
   text-decoration: none; }
+
+.wizard-container .content-container.registration .form-description,
+.wizard-container .content-container.login-step .form-description {
+  display: block;
+  position: relative;
+  width: 100%;
+  margin-top: 23px;
+  border-top: 1px solid #E7E7E7;
+  float: left; }
+
+.wizard-container .content-container.login-step .form-description span,
+.wizard-container .content-container.registration .form-description span {
+  display: block;
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  margin-left: -15px;
+  width: 30px;
+  text-align: center;
+  font-family: HelveticaNeue, sans-serif;
+  color: #8D8D8D;
+  font-size: 12px;
+  letter-spacing: 0.08px;
+  background-color: #F7F7F7;
+  padding: 4px 10px; }
+
+.wizard-container .content-container.login-step .form-group .btn.btn-primary.facebook i,
+.wizard-container .content-container.registration .form-group .btn.btn-primary.facebook i {
+  display: block;
+  position: absolute;
+  top: 9px;
+  left: 12px;
+  width: 25px;
+  height: 25px;
+  background-image: url("/assets/images/fb-icon.png");
+  background-repeat: no-repeat;
+  background-size: contain; }
+
+.wizard-container .content-container.login-step .form-group .btn.btn-primary.facebook,
+.wizard-container .content-container.registration .form-group .btn.btn-primary.facebook {
+  position: relative;
+  width: 100%;
+  height: 45px;
+  font-family: HelveticaNeue-Bold, sans-serif;
+  border: 1px solid #3B5998;
+  border-radius: 0px;
+  font-size: 16px;
+  color: #FFFFFF;
+  letter-spacing: 0.1px;
+  font-weight: 600;
+  padding: 10px 7px;
+  background-color: #3B5998;
+  text-align: center;
+  margin-top: 30px;
+  outline: none;
+  line-height: 24px; }
+
+.wizard-container .content-container.registration .form-group .btn.btn-primary.facebook {
+  margin-bottom: 20px; }
+
+.wizard-container .content-container.login-step .form-group .btn.btn-primary.facebook {
+  margin-bottom: 80px; }
 
 .wizard-container .form-group.subheader {
   display: block;
@@ -7566,7 +7631,8 @@ app-wizard {
   border-top: 1px solid #CCCCCC;
   border-left: 1px solid #CCCCCC;
   border-right: 1px solid #CCCCCC;
-  border-radius: 0; }
+  border-radius: 0;
+  z-index: 1; }
 
 .breadcrumb li {
   float: left;
