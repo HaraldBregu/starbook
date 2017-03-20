@@ -9,6 +9,7 @@ import { OrderService } from '../order/order.service';
 import { PaymentService } from '../shared/payment.service';
 import { AnalyticsService } from '../shared/analytics.service';
 import { Subscription }   from 'rxjs/Subscription';
+declare let $: any;
 
 @Component({
   selector: 'app-popups',
@@ -472,6 +473,7 @@ export class PopupsComponent implements OnInit, OnDestroy {
     this.activePopup = '';
     this.formError = false;
     if (!isReopen) {
+      $('body').removeClass('disable-body-scroll');
       this.shadowState = 'inactive';
       this.clearData();
     }

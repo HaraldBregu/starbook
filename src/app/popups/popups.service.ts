@@ -1,6 +1,7 @@
 import { isBrowser } from 'angular2-universal';
 import { Injectable } from '@angular/core';
 import { Subject }    from 'rxjs/Subject';
+declare let $: any;
 
 @Injectable()
 export class PopupsService {
@@ -15,6 +16,9 @@ export class PopupsService {
     }
   }
   activate(popup) {
+    if (popup && popup['type'] && popup['type'].length > 0) {
+      $('body').addClass('disable-body-scroll');
+    }
     this.activePopup.next(popup);
   }
   actionComplete(data) {
