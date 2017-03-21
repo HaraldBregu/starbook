@@ -923,15 +923,17 @@ $popup-phone-enter-form-label-letter-spacing: 0.09px;
 @media (max-width: 480px) {
   .popup {
     width: 100%;
-    // position: fixed;
+    position: absolute;
     top: 0;
     left: 0;
     right: 0;
-    bottom: 0;
+    bottom: -100px;
     margin-left: 0;
     border-radius: 0;
     overflow: auto;
     padding: 15px 10px 20px;
+    box-shadow: none;
+    height: 100%;
   }
   .login-offer {
     margin-bottom: 70px;
