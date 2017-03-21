@@ -474,6 +474,8 @@ export class PopupsComponent implements OnInit, OnDestroy {
     this.formError = false;
     if (!isReopen) {
       $('body').removeClass('disable-body-scroll');
+      $('app-home').removeClass('visibility-hidden');
+      $('app-profile').removeClass('visibility-hidden');
       this.shadowState = 'inactive';
       this.clearData();
     }

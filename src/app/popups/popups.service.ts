@@ -18,6 +18,8 @@ export class PopupsService {
   activate(popup) {
     if (popup && popup['type'] && popup['type'].length > 0) {
       $('body').addClass('disable-body-scroll');
+      $('app-home').addClass('visibility-hidden');
+      $('app-profile').addClass('visibility-hidden');
     }
     this.activePopup.next(popup);
   }
