@@ -108,7 +108,7 @@ app-landing {
   padding-top: 50px; // 70px
   padding-bottom: 50px;
   background-color: $landing-background-color;
-  overflow: auto;
+  overflow: hidden;
 }
 .landing h1 {
   font-size: $landing-header-font-size;

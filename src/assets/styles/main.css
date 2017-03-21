@@ -6173,6 +6173,9 @@ textarea.form-control {
     box-shadow: none;
     height: 100%; }
 
+  .popup .add-card-form .form-group .btn.btn-secondary {
+    margin-bottom: 70px; }
+
   .login-offer {
     margin-bottom: 70px; }
 
@@ -6191,7 +6194,7 @@ app-landing {
   padding-top: 50px;
   padding-bottom: 50px;
   background-color: #FFFFFF;
-  overflow: auto; }
+  overflow: hidden; }
 
 .landing h1 {
   font-size: 30px;
@@ -7578,7 +7581,8 @@ app-wizard {
     margin: 50px auto 0; }
 
   .wizard .wizard-container {
-    margin-bottom: 0; }
+    margin-bottom: 0;
+    margin-top: 50px; }
 
   .breadcrumb {
     position: fixed;
