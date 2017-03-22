@@ -2,15 +2,14 @@ import { Component, OnInit} from '@angular/core';
 import { Router, Route, ActivatedRoute, Params } from '@angular/router';
 import { NavigationService } from '../../shared/navigation.service';
 import { ProfileService } from '../../shared/profile.service';
+import { isBrowser } from "angular2-universal";
 
 @Component({
   selector: 'app-account',
   templateUrl: './account.component.html'
 })
 export class AccountComponent implements OnInit {
-
   public page = '';
-
   public email_verification = {
     title: 'Verificando la tua email',
     spinner: {
@@ -24,7 +23,6 @@ export class AccountComponent implements OnInit {
       visible: false
     }
   };
-
   public password_verification = {
     title: 'Verificando la nuova password',
     spinner: {
@@ -38,7 +36,25 @@ export class AccountComponent implements OnInit {
       visible: false
     }
   };
-
+  public new_password_creation = {
+    title: 'Inserisci una password',
+    spinner: {
+      visible: false,
+    },
+    success: {
+      visible: false,
+    },
+    password_field: {
+      title:'Crea una password sicura',
+      value: '',
+      visible: true
+    },
+    button: {
+      title : 'Crea password',
+      visible: true
+    },
+    code: ''
+  }
 
   constructor(
     private route: ActivatedRoute,
@@ -48,6 +64,7 @@ export class AccountComponent implements OnInit {
   }
 
   ngOnInit() {
+
   }
 
   ngAfterContentInit() {
@@ -64,7 +81,7 @@ export class AccountComponent implements OnInit {
           this.navigationService.updateMessage('Verifica della email');
           var code = params['code']
           if (!code) {
-            this.goToHomePage()
+            // this.goToHomePage()
           } else {
             this.email_verification.spinner.visible = true;
             this.profileService.verifyEmail(code)
@@ -79,7 +96,8 @@ export class AccountComponent implements OnInit {
               this.email_verification.spinner.visible = false;
             });
           }
-        } else if (this.page === 'password_verification') {
+        } else
+         if (this.page === 'password_verification') {
           this.navigationService.updateMessage('Verifica della nuova password');
           var code = params['code']
           if (!code) {
@@ -100,14 +118,12 @@ export class AccountComponent implements OnInit {
           }
          } else if (this.page === 'create_new_password') {
            this.navigationService.updateMessage('Crea una nuova password');
-
-          //  if (params['code']) {
-           //
-          //  }
-          //  var queryKey = params['action']
-           // console.log('Parameters: ' + JSON.stringify(params));
-           // console.log(this.queryKey);
-
+           var code = params['code']
+           if (!code) {
+             this.goToHomePage()
+             return;
+           }
+           this.new_password_creation.code = code;
          } else {
            // login
            // signup
@@ -127,8 +143,27 @@ export class AccountComponent implements OnInit {
   //   console.log('ngAfterViewChecked');
   // }
 
+  createNewPassword(password) {
+    this.new_password_creation.spinner.visible = true;
+    this.profileService.createNewPassword(this.new_password_creation.code, password)
+    .then((object) => {
+      this.new_password_creation.title = 'Nuova password creata!';
+      this.new_password_creation.spinner.visible = false;
+      this.new_password_creation.success.visible = true;
+      this.new_password_creation.button.visible = true;
+    })
+    .catch((error) => {
+      this.new_password_creation.title = 'Errore creazione password!';
+      this.new_password_creation.spinner.visible = false;
+    });
+  }
 
   goToHomePage() {
     this.router.navigate(['/']);
+  }
+
+  ngOnDestroy() {
+    if (isBrowser) {
+    }
   }
 }

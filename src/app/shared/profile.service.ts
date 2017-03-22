@@ -95,5 +95,13 @@ export class ProfileService {
       })
       .catch(this.handleError);
   }
+  createNewPassword(code, password) {
+    return this.http.post(this.api + 'create_new_password?code=' + code, {new_password:password})
+      .toPromise()
+      .then((response) => {
+        return response.json();
+      })
+      .catch(this.handleError);
+  }
 
 }

@@ -21,7 +21,7 @@
     </div>
     <div class="success-icon" *ngIf="email_verification.success.visible"><span></span></div>
     <div class="form-group">
-      <button class="btn btn-warning" type="submit" (click)="goToHomePage()" *ngIf="email_verification.button.visible">{{email_verification.button.title}}</button>
+      <button class="btn btn-warning" type="button" (click)="goToHomePage()" *ngIf="email_verification.button.visible">{{email_verification.button.title}}</button>
     </div>
   </div>
   <div class="password-verification" *ngIf="page === 'password_verification'">
@@ -36,17 +36,17 @@
     </div>
     <div class="success-icon" *ngIf="password_verification.success.visible"><span></span></div>
     <div class="form-group">
-      <button class="btn btn-warning" type="submit" (click)="goToHomePage()" *ngIf="password_verification.button.visible">{{password_verification.button.title}}</button>
+      <button class="btn btn-warning" type="button" (click)="goToHomePage()" *ngIf="password_verification.button.visible">{{password_verification.button.title}}</button>
     </div>
   </div>
   <div class="new-password" *ngIf="page === 'create_new_password'">
-    <h1>Inserisci una password</h1>
-    <div class="form-group">
-      <label for="password">Password</label>
-      <input class="form-control" type="password" name="password">
+    <h1>{{new_password_creation.title}}</h1>
+    <div class="form-group" *ngIf="new_password_creation.password_field.visible">
+      <label>{{new_password_creation.password_field.title}}</label>
+      <input class="form-control" type="password" name="password" placeholder="" required [(ngModel)]="new_password_creation.password_field.value">
     </div>
-    <div class="form-group">
-      <button class="btn btn-warning" type="submit" (click)="registration(regFirstName.value, regLastName.value, regPhone.value, regEmail.value, regPassword.value, regPasswordConfirm.value)">Crea password</button>
+    <div class="form-group" *ngIf="new_password_creation.button.visible">
+      <button class="btn btn-warning" type="button" (click)="createNewPassword(new_password_creation.password_field.value)">{{new_password_creation.button.title}}</button>
     </div>
   </div>
 </div>
