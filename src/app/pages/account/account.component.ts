@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { Router, Route, ActivatedRoute, Params } from '@angular/router';
 import { NavigationService } from '../../shared/navigation.service';
 import { ProfileService } from '../../shared/profile.service';
@@ -48,6 +48,9 @@ export class AccountComponent implements OnInit {
   }
 
   ngOnInit() {
+  }
+
+  ngAfterContentInit() {
     this.route.params.subscribe(params => {
       this.page = params['page']
       this.route.queryParams.subscribe((params: Params) => {
@@ -114,6 +117,16 @@ export class AccountComponent implements OnInit {
       });
     })
   }
+  // ngAfterContentChecked() {
+  //   console.log('ngAfterContentChecked');
+  // }
+  // ngAfterViewInit() {
+  //   console.log('ngAfterViewInit');
+  // }
+  // ngAfterViewChecked() {
+  //   console.log('ngAfterViewChecked');
+  // }
+
 
   goToHomePage() {
     this.router.navigate(['/']);

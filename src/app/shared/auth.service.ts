@@ -62,6 +62,7 @@ export class AuthService {
           let authData = {
             _id: data.result._id,
             email: data.result.email,
+            email_verified: data.result.email_verified,
             phone_number: data.result.phone_number,
             account_types: data.result.account_types,
             profile: data.result.profile,
@@ -74,7 +75,6 @@ export class AuthService {
             updated_at: data.result.updated_at,
             token: data.token
           };
-
           if (isBrowser) {
             localStorage.setItem('auth', JSON.stringify(authData));
           }
@@ -100,6 +100,7 @@ export class AuthService {
           let authData = {
             _id: data.result._id,
             email: data.result.email,
+            email_verified: data.result.email_verified,
             phone_number: '',
             account_types: data.result.account_types,
             profile: data.result.profile,
@@ -154,8 +155,10 @@ export class AuthService {
             let authData = {
               _id: data.result._id,
               email: data.result.email,
+              email_verified: data.result.email_verified,
               phone_number: data.result.phone_number,
               account_types: data.result.account_types,
+              is_social_account: data.result.is_social_account,
               profile: data.result.profile,
               company: data.result.company,
               address: data.result.address,
