@@ -50,10 +50,6 @@ const routes: Routes = [
     component: LegalComponent
   },
   {
-    path: 'account',
-    component: AccountComponent
-  },
-  {
     path: 'account/:page',
     component: AccountComponent
   }

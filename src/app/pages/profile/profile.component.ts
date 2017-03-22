@@ -83,6 +83,8 @@ export class ProfileComponent implements OnInit, OnDestroy {
         this.userData.fullname = authData.fullname;
         this.userData.email = authData.email;
         this.isAuthenticated = true;
+
+        console.log('Auth data: ' + JSON.stringify(this.userData));
       } else {
         this.isAuthenticated = false;
         this.router.navigate(['/']);

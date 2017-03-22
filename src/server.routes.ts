@@ -18,6 +18,5 @@ export const routes: string[] = [
     'about',
     'help',
     'legal',
-    'account',
     'account/:page'
 ];
