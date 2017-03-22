@@ -63,4 +63,37 @@ export class ProfileService {
   private handleError(error: any): Promise<any> {
     return Promise.reject(error);
   }
+
+  changePassword(oldPassword, newPassword, reNewPassword) {
+    let data = {
+      old_password: oldPassword,
+      new_password: newPassword,
+      retype_new_password: reNewPassword
+    };
+    return this.http.put(this.api + 'change_password', data, this._makeHeaders())
+      .toPromise()
+      .then((response) => {
+        return response.json();
+      })
+      .catch(this.handleError);
+  }
+
+  // NEW
+  verifyEmail(code) {
+    return this.http.get(this.api + 'email_verification?code=' + code)
+      .toPromise()
+      .then((response) => {
+        return response.json();
+      })
+      .catch(this.handleError);
+  }
+  verifyNewPassword(code) {
+    return this.http.get(this.api + 'save_password?code=' + code)
+      .toPromise()
+      .then((response) => {
+        return response.json();
+      })
+      .catch(this.handleError);
+  }
+
 }

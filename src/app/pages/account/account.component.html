@@ -1,0 +1,61 @@
+<div class="account">
+  <div class="new-password" *ngIf="page === 'login'">
+    <p>
+      Login
+    </p>
+  </div>
+  <div class="new-password" *ngIf="page === 'signup'">
+    <p>
+      Signup
+    </p>
+  </div>
+  <div class="email-verification" *ngIf="page === 'email_verification'">
+    <h1>{{email_verification.title}}</h1>
+    <div class="popup-spinner" *ngIf="email_verification.spinner.visible">
+      <svg width='100px' height='100px' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid" class="uil-ring">
+        <rect x="0" y="0" width="100" height="100" fill="none" class="bk"></rect>
+        <circle cx="50" cy="50" r="45" stroke-dasharray="169.64600329384882 113.09733552923257" stroke="#7FC443" fill="none" stroke-width="4">
+          <animateTransform attributeName="transform" type="rotate" values="0 50 50;180 50 50;360 50 50;" keyTimes="0;0.5;1" dur="1s" repeatCount="indefinite" begin="0s"></animateTransform>
+        </circle>
+      </svg>
+    </div>
+    <div class="success-icon" *ngIf="email_verification.success.visible"><span></span></div>
+    <div class="form-group">
+      <button class="btn btn-warning" type="submit" (click)="goToHomePage()" *ngIf="email_verification.button.visible">{{email_verification.button.title}}</button>
+    </div>
+  </div>
+  <div class="password-verification" *ngIf="page === 'password_verification'">
+    <h1>{{password_verification.title}}</h1>
+    <div class="popup-spinner" *ngIf="password_verification.spinner.visible">
+      <svg width='100px' height='100px' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid" class="uil-ring">
+        <rect x="0" y="0" width="100" height="100" fill="none" class="bk"></rect>
+        <circle cx="50" cy="50" r="45" stroke-dasharray="169.64600329384882 113.09733552923257" stroke="#7FC443" fill="none" stroke-width="4">
+          <animateTransform attributeName="transform" type="rotate" values="0 50 50;180 50 50;360 50 50;" keyTimes="0;0.5;1" dur="1s" repeatCount="indefinite" begin="0s"></animateTransform>
+        </circle>
+      </svg>
+    </div>
+    <div class="success-icon" *ngIf="password_verification.success.visible"><span></span></div>
+    <div class="form-group">
+      <button class="btn btn-warning" type="submit" (click)="goToHomePage()" *ngIf="password_verification.button.visible">{{password_verification.button.title}}</button>
+    </div>
+  </div>
+  <div class="new-password" *ngIf="page === 'create_new_password'">
+    <h1>Inserisci una password</h1>
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input class="form-control" type="password" name="password">
+    </div>
+    <div class="form-group">
+      <button class="btn btn-warning" type="submit" (click)="registration(regFirstName.value, regLastName.value, regPhone.value, regEmail.value, regPassword.value, regPasswordConfirm.value)">Crea password</button>
+    </div>
+  </div>
+</div>
+
+<div class="footer-container light-footer">
+  <div class="container">
+    <div class="copyright"><a routerLink="/"><strong>Starbook</strong> © 2017 Tutti i diritti riservati</a></div>
+    <span> • </span><a routerLink="../../legal">Privacy e Condizioni</a>
+    <span> • </span><a routerLink="../../about">Chi siamo</a>
+    <span> • </span><a routerLink="../../help">Aiuto e Assistenza</a>
+  </div>
+</div>

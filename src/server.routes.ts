@@ -17,5 +17,7 @@ export const routes: string[] = [
     'order',
     'about',
     'help',
-    'legal'
+    'legal',
+    'account',
+    'account/:page'
 ];

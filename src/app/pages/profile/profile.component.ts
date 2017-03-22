@@ -74,7 +74,6 @@ export class ProfileComponent implements OnInit, OnDestroy {
       private paymentService: PaymentService,
       private analyticsService: AnalyticsService,
       private seoService: SeoService) {
-
   }
 
   ngOnInit() {
@@ -198,7 +197,6 @@ export class ProfileComponent implements OnInit, OnDestroy {
     });
 
     if (isBrowser) {
-
       this.subscription = this.popupsService.getPopupResponse$.subscribe(action => {
         switch (action.type) {
           case 'newCard':
@@ -287,10 +285,18 @@ export class ProfileComponent implements OnInit, OnDestroy {
   }
 
   changePassword(currentPassword, newPassword, passwordConfirm) {
-    this.closePopup();
-    this.changePasswordData.currentPassword = '';
-    this.changePasswordData.newPassword = '';
-    this.changePasswordData.passwordConfirm = '';
+    let timeStart = Date.now();
+    this.profileService.changePassword(currentPassword, newPassword, passwordConfirm)
+      .then((data) => {
+        this.analyticsService.sendTiming({category: 'Change password', timingVar: 'save', timingValue: Date.now()-timeStart});
+        this.closePopup();
+        this.changePasswordData.currentPassword = '';
+        this.changePasswordData.newPassword = '';
+        this.changePasswordData.passwordConfirm = '';
+      })
+      .catch((error) => {
+      });
+
     return false;
   }
 

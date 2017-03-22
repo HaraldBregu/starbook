@@ -31,6 +31,7 @@
       <form class="wizard-form" #wizardForm="ngForm">
         <div class="form-group" [ngClass]="{'isError': isDataError}">
           <label>Inserisci la data</label>
+          <!-- <span class="fa fa-calendar-times-o calendar-box"></span> -->
           <p-calendar name="data" [(ngModel)]="Order.date" id="data" class="date" autocomplete="off" dateFormat="dd MM yy" [locale]="it" [minDate]="minDate" [maxDate]="maxDate" (onSelect)="selectDate()" placeholder="Inserisci la data">
           </p-calendar>
         </div>

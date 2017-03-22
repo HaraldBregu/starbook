@@ -391,10 +391,10 @@ export class PopupsComponent implements OnInit, OnDestroy {
     }
     if (type === 'finish') {
       this.finishPopupState = 'active';
-      this.finishPopupData.title = 'Check your inbox';
+      this.finishPopupData.title = 'Controlla la tua email';
       this.finishPopupData.text = [
-          'We sent a password reset link to your email address. Please click the link in the email to create e new password.',
-          'The link will only be active for 1 hour. After that you will need to request a new one.'
+          'Ti abbiamo inviato una mail con le istruzioni per poter cambiare la password dimenticata con una nuova.',
+          'Per favore vai in posta in arrivo dalla tua email e segui le istruzioni indicate.'
       ];
     }
     if (type === 'error') {
@@ -656,7 +656,7 @@ export class PopupsComponent implements OnInit, OnDestroy {
       }
     }
     if (type === 'enterPhoneForm') {
-      if (value.length > 10) {
+      if (value.length > 9) {
         this.enterPhoneFormError.phone = false;
       } else {
         this.enterPhoneFormError.phone = true;

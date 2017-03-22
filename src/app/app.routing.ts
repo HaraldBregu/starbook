@@ -9,6 +9,7 @@ import { WizardComponent } from './pages/wizard/wizard.component';
 import { AboutComponent } from './pages/about/about.component';
 import { HelpComponent } from './pages/help/help.component';
 import { LegalComponent } from './pages/legal/legal.component';
+import { AccountComponent } from './pages/account/account.component';
 
 const routes: Routes = [
   {
@@ -47,6 +48,14 @@ const routes: Routes = [
   {
     path: 'legal',
     component: LegalComponent
+  },
+  {
+    path: 'account',
+    component: AccountComponent
+  },
+  {
+    path: 'account/:page',
+    component: AccountComponent
   }
 ];
 

@@ -44,6 +44,7 @@ import { WizardComponent } from './pages/wizard/wizard.component';
 import { AboutComponent } from './pages/about/about.component';
 import { HelpComponent } from './pages/help/help.component';
 import { LegalComponent } from './pages/legal/legal.component';
+import { AccountComponent } from './pages/account/account.component';
 
 
 // import { RouterModule } from '@angular/router';
@@ -85,7 +86,8 @@ let declarations = [
   WizardComponent,
   AboutComponent,
   HelpComponent,
-  LegalComponent
+  LegalComponent,
+  AccountComponent
 ];
 
 if (isBrowser) {

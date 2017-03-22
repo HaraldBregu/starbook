@@ -1,0 +1,131 @@
+// General styles
+$font-name: HelveticaNeue, sans-serif;
+$font-name-medium: HelveticaNeue-Medium, sans-serif;
+$font-name-bold: HelveticaNeue-Bold, sans-serif;
+$font-name-light: HelveticaNeue-Light, sans-serif;
+$account-background-color: #FFFFFF;
+$account-header-color: #3B568D;
+$account-header-font-size: 32px; // 32px
+$account-header-letter-spacing: 0.22px; // 0.19px
+$account-general-text-color: #212121;
+$account-orange-text-color: #F6A623;
+$btn-gradient-color-yellow-light: #FFE589;
+$btn-gradient-color-yellow-dark: #FEC751;
+
+$success-icon: '/assets/images/success.png';
+
+.account {
+  padding: 50px 0 0 0;
+}
+
+.account h1 {
+  font-family: $font-name;
+  font-size: $account-header-font-size;
+  letter-spacing: $account-header-letter-spacing;
+  margin-top: 40px;
+}
+.account h2 {
+  font-size: 26px;
+  letter-spacing: 0.22px;
+}
+.account h3 {
+  font-size: 20px;
+  letter-spacing: 0.22px;
+}
+.account h4 {
+  font-size: 14px;
+  letter-spacing: 0.22px;
+}
+.account h6 {
+  width: 100%;
+  font-family: $font-name;
+  font-size: 16px;
+  letter-spacing: $account-header-letter-spacing;
+}
+.account .popup-spinner {
+  text-align: center;
+  margin: 50px auto 0px;
+}
+.account .form-group {
+  margin-top: 20px;
+}
+.account .form-group .btn-warning {
+  margin-top: 50px;
+  border-radius: 0;
+  height: 50px;
+  width: 400px;
+  height: 50px;
+  border: 0;
+  color: white;
+  font-size: 22px;
+  font-family: $font-name-bold;
+  font-weight: 700;
+  outline: none;
+}
+.account .form-group .form-control {
+  width: 400px;
+  // text-align: left;
+  margin: auto;
+}
+.account .form-group label {
+  width: 400px;
+  text-align: left;
+  padding: 0;
+  font-family: $font-name;
+  font-size: 14px;
+}
+.account .success-icon {
+  display: block;
+  width: 100%;
+  height: 100px;
+  margin-top: 50px;
+  text-align: center;
+}
+.account .success-icon span {
+  display: block;
+  width: 100px;
+  height: 100px;
+  margin: 0 auto;
+  background-image: url($success-icon);
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+
+
+//////////////////////////////////////////////
+// Email Verification
+//////////////////////////////////////////////
+.email-verification {
+  text-align: center;
+}
+.email-verification h1 {
+  text-align: center;
+}
+
+//////////////////////////////////////////////
+// Password Verification
+//////////////////////////////////////////////
+.password-verification {
+  text-align: center;
+}
+.password-verification h1 {
+  text-align: center;
+}
+
+//////////////////////////////////////////////
+// New Password Creation
+//////////////////////////////////////////////
+.new-password {
+  text-align: center;
+}
+.new-password h1 {
+  text-align: center;
+  margin-bottom: 40px;
+}
+.new-password .form-group {
+  margin-top: 0px;
+}
+.new-password .form-group .btn-warning {
+  margin-top: 20px;
+}
