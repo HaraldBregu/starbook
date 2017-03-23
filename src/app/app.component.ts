@@ -1,6 +1,7 @@
 import { isBrowser } from 'angular2-universal';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router, Event, NavigationEnd, ActivatedRoute } from '@angular/router';
+import { AnalyticsService } from './shared/analytics.service';
 
 import { AuthService } from './shared/auth.service';
 import { NavigationService } from './shared/navigation.service';
@@ -30,8 +31,11 @@ export class AppComponent implements OnInit, OnDestroy {
   subscription: Subscription;
   authSubscription: Subscription;
   // loadingSubscription: Subscription;
+  public newServiceRequest = {
+    message: 'Richiedi?'
+  };
 
-  constructor (public router:Router, private route: ActivatedRoute, private authServics: AuthService, private navigationService: NavigationService, private popupsService: PopupsService, private homeService: HomeService) {
+  constructor (public router:Router, private route: ActivatedRoute, private authServics: AuthService, private navigationService: NavigationService, private popupsService: PopupsService, private homeService: HomeService, private analyticsService: AnalyticsService) {
     if (isBrowser) {
       this.router.events.subscribe(
         (event:Event) => {
@@ -100,6 +104,7 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   search(event) {
+    this.newServiceRequest.message = 'Richiedi?';
     this.isSearched = true;
     this.spinerView = true;
     this.clearView = false;
@@ -120,6 +125,12 @@ export class AppComponent implements OnInit, OnDestroy {
       })
   }
 
+  requireService() {
+    console.log('require service');
+    this.newServiceRequest.message = 'Grazie!';
+    this.analyticsService.sendEvent({category:'Services', action: 'request', label: this.findValue});
+  }
+  
   selectResult(servicesObj) {
     this.homeService.sendServices(servicesObj);
     this.results = [];

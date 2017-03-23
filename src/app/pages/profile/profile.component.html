@@ -1,5 +1,113 @@
 <!-- <div class="loader" *ngIf="isLoading"></div> -->
+
 <div class="profile-page">
+<!-- 
+  <div class="top-bar-container">
+    <ul class="top-bar">
+      <li *ngFor="let tab of tabs" [ngClass]="{'active':tab.url === selectTab}" [routerLink]="['/profile', tab.url]">{{tab.name}}</li>
+    </ul>
+  </div>
+
+  <div class="page-container" *ngIf="selectTab === 'settings'">
+    <div class="header">
+      <div class="info">
+        <h1>Informazioni del account</h1>
+        <h4>Aggiorna le informazioni del tuo account</h4>
+      </div>
+      <div class="actions">
+        <a class="btn btn-success" (click)="saveInformations()">Salva</a>
+      </div>
+    </div>
+    <div class="content-section">
+      <div class="row">
+        <div class="col-lg-4">
+          <div class="form-group">
+            <label for="firstname">Nome</label>
+            <input type="firstname" class="form-control" id="firstname" name="firstname" placeholder="" required>
+          </div>
+        </div>
+        <div class="col-lg-4">
+          <div class="form-group">
+            <label for="lastname">Cognome</label>
+            <input type="lastname" class="form-control" id="lastname" name="lastname" placeholder="" required>
+          </div>
+        </div>
+        <div class="col-lg-4">
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" class="form-control" id="email" name="email" placeholder="" required>
+          </div>
+        </div>
+        <div class="col-lg-4">
+          <div class="form-group">
+            <label for="phone">Telefono</label>
+            <input type="phone" class="form-control" id="phone" name="phone" placeholder="" required>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="content-section">
+      <h2>Cambia Password</h2>
+      <div class="row">
+        <div class="col-lg-4">
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" class="form-control" id="password" name="password" placeholder="" required>
+          </div>
+        </div>
+        <div class="col-lg-4">
+          <div class="form-group">
+            <label for="password">Nuova Password</label>
+            <input type="password" class="form-control" id="password" name="password" placeholder="" required>
+          </div>
+        </div>
+        <div class="col-lg-4">
+          <div class="form-group">
+            <label for="password">Conferma Nuova Password</label>
+            <input type="password" class="form-control" id="password" name="password" placeholder="" required>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer">
+      <h3>Privacy del account</h3>
+      <h5>Le informazioni degli utenti consentono a STARBOOK di fornire agli utenti stessi l’accesso alle sezioni del Sito cui sono interessati e di fornire il Servizio. Esse mettono inoltre STARBOOK in grado di fatturare gli importi dovuti e consentono a STARBOOK o ad un professionista cui l’utente abbia inoltrato un Ordine di contattare l’utente in merito al Servizio, ove necessario.</h5>
+    </div>
+  </div>
+
+  <div class="page-container" *ngIf="selectTab === 'payment'">
+    <div class="header">
+      <div class="info">
+        <h1>Pagamento</h1>
+        <h4>Aggiorna le informazioni del tuo account</h4>
+      </div>
+    </div>
+    <div class="content-section">
+      <form class="form-horizontal">
+        <div class="form-group">
+          <label for="firstname">Nome</label>
+          <input type="firstname" class="form-control" id="firstname" name="firstname" placeholder="" required>
+        </div>
+        <div class="form-group">
+          <label for="lastname">Cognome</label>
+          <input type="lastname" class="form-control" id="lastname" name="lastname" placeholder="" required>
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" class="form-control" id="email" name="email" placeholder="" required>
+        </div>
+        <div class="form-group">
+          <label for="phone">Telefono</label>
+          <input type="phone" class="form-control" id="phone" name="phone" placeholder="" required>
+        </div>
+      </form>
+    </div>
+    <div class="footer">
+      <h3>Privacy del account</h3>
+      <h5>Le informazioni degli utenti consentono a STARBOOK di fornire agli utenti stessi l’accesso alle sezioni del Sito cui sono interessati e di fornire il Servizio. Esse mettono inoltre STARBOOK in grado di fatturare gli importi dovuti e consentono a STARBOOK o ad un professionista cui l’utente abbia inoltrato un Ordine di contattare l’utente in merito al Servizio, ove necessario.</h5>
+    </div>
+  </div>
+ -->
   <div class="container-starbook without-tabs">
     <div class="row">
       <div class="left-navigate" (swipeleft)="swipe($event.type, $event.deltaX)" (swiperight)="swipe($event.type, $event.deltaX)">
@@ -135,14 +243,14 @@
     </div>
   </div>
 </div>
-<div class="footer-container light-footer">
+<!-- <div class="footer-container light-footer">
   <div class="container">
     <div class="copyright"><a routerLink="/"><strong>Starbook</strong> © 2017 Tutti i diritti riservati</a></div>
     <span> • </span><a routerLink="../../legal">Privacy e Condizioni</a>
     <span> • </span><a routerLink="../../about">Chi siamo</a>
     <span> • </span><a routerLink="../../help">Aiuto e Assistenza</a>
   </div>
-</div>
+</div> -->
 
 
 

@@ -45,7 +45,10 @@
             <span class="close rounded thick" (click)="clearSearchForm()"></span>
           </div>
           <div class="ui-autocomplete-panel empty" *ngIf="results.length === 0 && query.length > 0">
-            <div class="no-result">Nessun risultato</div>
+            <div class="no-result noselect">
+              Il servizio "{{query}}" non è disponibile
+              <button class="suggess-service" (click)="requireService()">{{newServiceRequest.message}}</button>
+            </div>
           </div>
         </div>
       </div>
@@ -87,7 +90,7 @@
   </div>
   <div class="card-container">
     <div class="container">
-      <h2>Seleziona una lavorazione</h2>
+      <h4>LAVORI IN CARTONGESSO</h4>
     </div>
     <div class="col-xl-12 landing-services">
       <app-loading *ngIf="isLoading"></app-loading>
@@ -106,32 +109,32 @@
       </div>
     </div>
     <div class="container">
-      <h3>Scegli una delle lavorazioni di cui hai bisogno, calcola il preventivo e prenotalo</h3>
+      <h5>Scegli una delle lavorazioni di cui hai bisogno, calcola il preventivo e prenotalo</h5>
     </div>
   </div>
   <div class="why-container">
     <div class="container">
-      <h2>Perché Starbook?</h2>
+      <h3>Perché Starbook?</h3>
       <div class="row">
         <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 why-cell">
           <div class="text-center">
             <img src="../../../assets/images/star_quality.png" class="rounded mx-auto d-block" alt="Quality">
-            <h3>Lavorazioni di alta qualità</h3>
-            <h4>I servizi vengono eseguiti dai migliori professionisti e artigiani della zona. Usando un algoritmo di ricerca, Starbook trova il professionista più vicino alla sua abitazione.</h4>
+            <h5>Lavorazioni di alta qualità</h5>
+            <h6>I servizi vengono eseguiti dai migliori professionisti e artigiani della zona. Usando un algoritmo di ricerca, Starbook trova il professionista più vicino alla sua abitazione.</h6>
           </div>
         </div>
         <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 why-cell">
           <div class="text-center">
             <img src="../../../assets/images/timing.png" class="rounded mx-auto d-block" alt="Timing">
-            <h3>Preventivo istantaneo</h3>
-            <h4>Una volta scelto il servizio, seleziona i form secondo le esigenze e calcola il preventivo direttamente dalla piattaforma.</h4>
+            <h5>Preventivo istantaneo</h5>
+            <h6>Una volta scelto il servizio, seleziona i form secondo le esigenze e calcola il preventivo direttamente dalla piattaforma.</h6>
           </div>
         </div>
         <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 why-cell">
           <div class="text-center">
             <img src="../../../assets/images/market-price.png" class="rounded mx-auto d-block" alt="Market price">
-            <h3>Prezzo mercato</h3>
-            <h4>I prezzi dei servizi su Starbook sono dinamici che partono dagli standard del mercato. Usando un algoritmo della piattaforma il prezzo standard viene ridotto in base al mercato attuale.</h4>
+            <h5>Prezzo mercato</h5>
+            <h6>I prezzi dei servizi su Starbook sono dinamici che partono dagli standard del mercato. Usando un algoritmo della piattaforma il prezzo standard viene ridotto in base al mercato attuale.</h6>
           </div>
         </div>
       </div>
@@ -157,7 +160,7 @@
     <div class="container">
       <div class="row">
         <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12">
-          <h4>Sicurezza del sito</h4>
+          <h6>Sicurezza del sito</h6>
           <div class="list-security">
             <img src="../../../assets/images/norton.png" alt="Norton Security">
             <img src="../../../assets/images/secure.png" alt="100% Secure">
@@ -165,7 +168,7 @@
           </div>
         </div>
         <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12">
-          <h4>Sistemi di pagamento</h4>
+          <h6>Sistemi di pagamento</h6>
           <div class="list-payment-methods">
             <img src="../../../assets/images/mastercard.png" alt="Mastercard">
             <img src="../../../assets/images/visa.png" alt="Visa">
@@ -174,16 +177,13 @@
           </div>
         </div>
         <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12">
-          <h4>Contatti</h4>
+          <h6>Contatti</h6>
           <div class="list-contact-methods">
-            <h4>Attivo 24/7</h4>
-            <h4>Cellulare: +39 327 24 15 028</h4>
-            <h4>Email: info@starbook.co</h4>
-            <h4>Busto Arsizio VA</h4>
+            <h6><small>Attivo 24/7 <br>Cellulare: +39 327 24 15 028<br>Email: info@starbook.co<br>Busto Arsizio VA</small></h6>
           </div>
         </div>
         <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12">
-          <h4>Seguici su</h4>
+          <h6>Seguici su</h6>
           <div class="list-socials">
             <a href="https://www.facebook.com/starbook.co/" target="_blank"><img src="../../../assets/images/facebook.png" alt="Facebook"></a>
             <a href="https://twitter.com/starbookco/" target="_blank"><img src="../../../assets/images/twitter.png" alt="Twitter"></a>

@@ -31,10 +31,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
   public delta: number = 0;
   public tabs = [
     {name: 'Generali', selected: false, url: 'settings'},
-    {name: 'Metodo di Pagamento', selected: false, url: 'payment'},
-    // {name: 'Condizioni d’utilizzo', selected: false, url: 'conditions'},
-    // {name: 'Privacy Policy', selected: false, url: 'privacy'},
-    // {name: 'Assistenza', selected: false, url: 'help'}
+    {name: 'Pagamento', selected: false, url: 'payment'},
   ];
 
   public userData: IUserData = {
@@ -84,7 +81,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
         this.userData.email = authData.email;
         this.isAuthenticated = true;
 
-        console.log('Auth data: ' + JSON.stringify(this.userData));
+        // console.log('Auth data: ' + JSON.stringify(this.userData));
       } else {
         this.isAuthenticated = false;
         this.router.navigate(['/']);

@@ -28,6 +28,10 @@ export class LandingComponent implements OnInit {
   public testPage;
   public isAuthenticated = false;
 
+  public newServiceRequest = {
+    message: 'Richiedi?'
+  };
+
   constructor(private authServics: AuthService, private homeService: HomeService, private router: Router, private route: ActivatedRoute, private navigationService: NavigationService, private analyticsService: AnalyticsService, private popupsService: PopupsService) {
   }
 
@@ -88,6 +92,7 @@ export class LandingComponent implements OnInit {
   }
 
   search(event) {
+    this.newServiceRequest.message = 'Richiedi?';
     this.spinerView = true;
     this.clearView = false;
     let timeStart = Date.now();
@@ -118,6 +123,11 @@ export class LandingComponent implements OnInit {
     this.query = '';
     this.results = [];
     this.clearView = false;
+  }
+
+  requireService() {
+    this.newServiceRequest.message = 'Grazie!';
+    this.analyticsService.sendEvent({category:'Services', action: 'request', label: this.query});
   }
 
   //******************************************************

@@ -1,6 +1,8 @@
 // General styles
 $font-name: HelveticaNeue, sans-serif;
 $font-name-medium: HelveticaNeue-Medium, sans-serif;
+$font-name-bold: HelveticaNeue-Bold, sans-serif;
+$font-name-light: HelveticaNeue-Light, sans-serif;
 $letter-spacing: 0.08px;
 $background: #FAFAFA;
 $white-background: #FFFFFF;
@@ -101,13 +103,109 @@ $card-new-card-text-size: 20px;
 $card-new-card-text-color: #9B9B9B;
 $card-new-card-letter-spacing: 0.13px;
 
-.container-starbook.without-tabs .row {
-  padding: 40px 0 0 0;
-}
 .profile-page {
   display: block;
   width: 100%;
   height: 100%;
+  padding-top: 50px;
+}
+
+// TabBar
+.top-bar-container {
+  display: block;
+  position: fixed;
+  width: 100%;
+  background: white;
+  height: 70px;
+  border-bottom: 1px solid #CCCCCC;
+}
+.top-bar {
+  list-style: none;
+  overflow: hidden;
+  font: 18px Sans-Serif;
+  padding: 0;
+  z-index: 1;
+  max-width: 1130px;
+  margin: 0 auto;
+}
+.top-bar li {
+  color: #9B9B9B;
+  float: left;
+  height: 70px;
+  line-height: 70px;
+  padding-left: 40px;
+  padding-right: 40px;
+  text-align: center;
+}
+.top-bar li:hover {
+  color: black;
+}
+.top-bar .active {
+  color: black;
+}
+
+////////////////////////////
+// Information Container
+////////////////////////////
+.page-container {
+  display: block;
+  max-width: 1130px;
+  border: 1px solid #CCCCCC;
+  background: white;
+  margin: 100px auto;
+}
+.page-container .header {
+  display: block;
+  width: 100%;
+  height: 140px;
+  padding: 40px 50px;
+  border-bottom: 1px solid #CCCCCC;
+}
+.page-container .header h4 {
+  color: #4A4A4A;
+  font-family: $font-name-light;
+  margin-top: 5px;
+}
+.info {
+  float: left;
+}
+.actions {
+  float: right;
+}
+.page-container .content-section {
+  display: block;
+  padding: 50px 0;
+  margin: 0 50px;
+  border-bottom: 1px solid #CCCCCC;
+}
+.content-section h2 {
+  margin-bottom: 30px;
+}
+.content-section .actions {
+  float: none;
+}
+.content-section .form-horizontal {
+  margin: auto;
+}
+.content-section .form-horizontal .form-group {
+  display: inline-block;
+  width: 32%;
+}
+.page-container .footer {
+  display: block;
+  width: 100%;
+  height: 140px;
+  padding: 40px 50px;
+}
+.page-container .footer h5 {
+  color: #4A4A4A;
+  font-family: $font-name-light;
+  margin-top: 5px;
+}
+
+
+.container-starbook.without-tabs .row {
+  padding: 40px 0 0 0;
 }
 .profile-page.whiteBg {
   background-color: $white-background;
@@ -128,7 +226,7 @@ $card-new-card-letter-spacing: 0.13px;
   display: block;
   width: 100%;
   font-family: $font-name;
-  font-size: $profile-settings-header-font-size;
+  font-size: 30px;
   color: $profile-settings-header-color;
   letter-spacing: $profile-settings-header-letter-spacing;
   margin-bottom: 17px;

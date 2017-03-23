@@ -98,7 +98,6 @@ app-landing {
   height: 100%;
   overflow: auto;
 }
-
 .landing {
   display: block;
   position: relative;
@@ -111,130 +110,40 @@ app-landing {
   overflow: hidden;
 }
 .landing h1 {
-  font-size: $landing-header-font-size;
-  letter-spacing: $landing-header-letter-spacing;
-}
-.landing h2 {
-  font-size: 26px;
-  letter-spacing: 0.22px;
-}
-.landing h3 {
-  font-size: 20px;
-  letter-spacing: 0.22px;
-}
-.landing h4 {
-  font-size: 14px;
-  letter-spacing: 0.22px;
-}
-.landing h6 {
-  width: 100%;
-  font-family: $font-name;
-  font-size: 16px;
-  letter-spacing: $landing-header-letter-spacing;
-}
-
-.landing .landing-top-header h1 {
-  display: block;
-  float: none;
-  max-width: 470px;
-  margin: 0 auto;
-  text-align: center;
-  font-family: $font-name-light;
-  color: $landing-top-header-color;
-  font-size: $landing-top-header-text-size;
-  letter-spacing: $landing-top-header-letter-spacing;
-  padding: 0;
-  font-weight: normal;
-}
-.landing .btn.btn-warning {
   font-family: $font-name-bold;
   font-weight: bold;
-  border: $card-btn-border;
-  // font-size: $card-btn-font-size;
-  color: $card-btn-text-color;
-  letter-spacing: $card-btn-letter-spacing;
-  padding: 8px 7px;
-  background: $btn-gradient-color-yellow-light;
-  text-align: center;
-  outline: none;
-  background: -moz-linear-gradient(top,  $btn-gradient-color-yellow-light 0%, $btn-gradient-color-yellow-dark 100%);
-  background: -webkit-linear-gradient(top,  $btn-gradient-color-yellow-light 0%,$btn-gradient-color-yellow-dark 100%);
-  background: linear-gradient(to bottom,  $btn-gradient-color-yellow-light 0%,$btn-gradient-color-yellow-dark 100%);
-  opacity: 0.9;
-  width: 320px;
-  margin: auto;
-  height: 60px;
-  border-radius: 30px;
-  font-size: 20px;
-}
-
-.landing .btn.btn-warning:hover,
-.landing .btn.btn-warning:active {
-  opacity: 1.0;
-}
-.landing .btn.btn-success {
-  font-family: $font-name-bold;
-  // border: $card-btn-border;
-  // font-size: $card-btn-font-size;
-  color: white;
-  letter-spacing: $card-btn-letter-spacing;
-  padding: 8px 7px;
-  // background: $btn-gradient-color-yellow-light;
-  text-align: center;
-  outline: none;
-  // background: -moz-linear-gradient(top,  $btn-gradient-color-yellow-light 0%, $btn-gradient-color-yellow-dark 100%);
-  // background: -webkit-linear-gradient(top,  $btn-gradient-color-yellow-light 0%,$btn-gradient-color-yellow-dark 100%);
-  // background: linear-gradient(to bottom,  $btn-gradient-color-yellow-light 0%,$btn-gradient-color-yellow-dark 100%);
-  opacity: 0.9;
-  width: 320px;
-  margin: auto;
-  height: 60px;
-  border-radius: 30px;
-  font-size: 20px;
-}
-
-.landing .btn.btn-success:hover,
-.landing .btn.btn-success:active {
-  opacity: 1.0;
-}
-
-
-.header-page {
-  // background: #FAFAFA;
-  // padding-bottom: 50px;
-}
-.landing-header h1 {
-  width: 100%;
-  text-align: center;
-  padding: 90px 0 0px; // 130px 0 90px
-  font-family: $font-name-bold;
-  font-weight: bold;
-  color: $landing-general-text-color;
-  font-size: $landing-header-font-size;
-  letter-spacing: $landing-header-letter-spacing;
+  color: black;
   margin: 0 auto;
   max-width: 700px;
 }
-.landing-header h2 {
-  width: 100%;
-  text-align: center;
-  padding: 90px 0;
+.landing h2 {
   font-family: $font-name-bold;
-  color: $landing-general-text-color;
-  font-size: $landing-header-font-size;
-  letter-spacing: $landing-header-letter-spacing;
+  color: black;
+}
+.landing h6 {
+  color: black;
+  margin: 0 auto;
+}
+
+
+// HEADER
+.header-page {
+  padding: 90px 0 50px;
+  // border-bottom: 1px solid #CCCCCC;
+}
+.landing-header {
+
+}
+.landing-header h1, h2, h3, h4, h5, h6 {
+  text-align: center;
 }
 .landing-header h6 {
-  width: 100%;
-  text-align: center;
-  padding: 20px 0;
-  color: $landing-general-text-color;
-  margin: 0 auto;
-  max-width: 600px;
+  margin: 20px 0;
 }
 .landing-header-button {
   margin-top: 30px;
 }
+
 .landing-header-button .button-header-column {
   display: block;
   position: relative;
@@ -242,6 +151,9 @@ app-landing {
   max-width: 400px;
   margin: 0 auto;
 }
+
+
+
 
 // Facebook btn
 .landing-header-button .btn.btn-primary {
@@ -570,7 +482,7 @@ app-landing {
   display: block;
   position: relative;
   float: none;
-  max-width: 530px;
+  max-width: 600px;
   width: 100%;
   height: 50px;
   margin: 0 auto;
@@ -591,6 +503,73 @@ app-landing {
   font-size: $search-text-size;
   letter-spacing: $search-text-letter-spacing;
 }
+
+
+.landing .landing-top-header h1 {
+  display: block;
+  float: none;
+  max-width: 470px;
+  margin: 0 auto;
+  text-align: center;
+  font-family: $font-name-light;
+  color: $landing-top-header-color;
+  font-size: $landing-top-header-text-size;
+  letter-spacing: $landing-top-header-letter-spacing;
+  padding: 0;
+  font-weight: normal;
+}
+.landing .btn.btn-warning {
+  font-family: $font-name-bold;
+  font-weight: bold;
+  border: $card-btn-border;
+  // font-size: $card-btn-font-size;
+  color: $card-btn-text-color;
+  letter-spacing: $card-btn-letter-spacing;
+  padding: 8px 7px;
+  background: $btn-gradient-color-yellow-light;
+  text-align: center;
+  outline: none;
+  background: -moz-linear-gradient(top,  $btn-gradient-color-yellow-light 0%, $btn-gradient-color-yellow-dark 100%);
+  background: -webkit-linear-gradient(top,  $btn-gradient-color-yellow-light 0%,$btn-gradient-color-yellow-dark 100%);
+  background: linear-gradient(to bottom,  $btn-gradient-color-yellow-light 0%,$btn-gradient-color-yellow-dark 100%);
+  opacity: 0.9;
+  width: 320px;
+  margin: auto;
+  height: 60px;
+  border-radius: 30px;
+  font-size: 20px;
+}
+
+.landing .btn.btn-warning:hover,
+.landing .btn.btn-warning:active {
+  opacity: 1.0;
+}
+.landing .btn.btn-success {
+  font-family: $font-name-bold;
+  // border: $card-btn-border;
+  // font-size: $card-btn-font-size;
+  color: white;
+  letter-spacing: $card-btn-letter-spacing;
+  padding: 8px 7px;
+  // background: $btn-gradient-color-yellow-light;
+  text-align: center;
+  outline: none;
+  // background: -moz-linear-gradient(top,  $btn-gradient-color-yellow-light 0%, $btn-gradient-color-yellow-dark 100%);
+  // background: -webkit-linear-gradient(top,  $btn-gradient-color-yellow-light 0%,$btn-gradient-color-yellow-dark 100%);
+  // background: linear-gradient(to bottom,  $btn-gradient-color-yellow-light 0%,$btn-gradient-color-yellow-dark 100%);
+  opacity: 0.9;
+  width: 320px;
+  margin: auto;
+  height: 60px;
+  border-radius: 30px;
+  font-size: 20px;
+}
+
+.landing .btn.btn-success:hover,
+.landing .btn.btn-success:active {
+  opacity: 1.0;
+}
+
 input.ui-autocomplete-input::-webkit-input-placeholder,
 input.landing-search .ui-autocomplete-input:-moz-placeholder,
 input.landing-search .ui-autocomplete-input:-ms-input-placeholder {
@@ -603,6 +582,20 @@ input.landing-search .ui-autocomplete-input:-ms-input-placeholder {
   right: 35px;
   width: 21px;
   height: 21px;
+}
+.no-result button {
+  outline: none;
+}
+.suggess-service {
+  display: block;
+  position: absolute;
+  top: 10px;
+  right: 5px;
+  color: #2980b9;
+  font-weight: 600;
+}
+.suggess-service:hover {
+  color: #3C5381;
 }
 .landing-search .close-container {
   display: block;
@@ -624,7 +617,7 @@ input.landing-search .ui-autocomplete-input:-ms-input-placeholder {
     top: 50%;
     left: 0;
     margin-top: -1px;
-    background: #000;
+    background: #3498db;
   }
   &::before {
    transform: rotate(45deg);
@@ -688,24 +681,38 @@ input.landing-search .ui-autocomplete-input:-ms-input-placeholder {
 
 // Services cards
 .card-container {
-  margin-top: 20px;
-  padding-bottom: 60px;
+  padding: 40px 0;
+  text-align: center;
 }
 .card-container h2 {
   width: 100%;
   text-align: center;
   font-family: $font-name-medium;
-  padding-top: 34px;
   color: #324977;
 }
 .card-container h3 {
-  width: 100%;
-  text-align: center;
-  font-family: $font-name;
-  padding-top: 20px;
-  color: #212121;
-  max-width: 500px;
-  margin: 0 auto;
+  display: block;
+  font-family: $font-name-bold;
+  font-weight: 700;
+  color: #FFC846;
+}
+.card-container h4 {
+  display: block;
+  font-family: $font-name-bold;
+  font-weight: 700;
+  color: #FFC846;
+}
+.card-container h5 {
+  display: block;
+  font-family: $font-name-light;
+  font-weight: 400;
+  color: black;
+}
+.card-container h6 {
+  display: block;
+  font-family: $font-name-light;
+  font-weight: 400;
+  color: black;
 }
 .landing-services {
   display: block;
@@ -714,7 +721,7 @@ input.landing-search .ui-autocomplete-input:-ms-input-placeholder {
   padding-left: 0;
   padding-right: 0;
   min-height: 284px;
-  margin: 37px auto 40px;
+  margin: 40px auto 40px;
   text-align: center;
 }
 .landing-services h2 {
@@ -835,32 +842,40 @@ input.landing-search .ui-autocomplete-input:-ms-input-placeholder {
   background: #161517;
   padding: 70px 0 70px 0;
 }
-.why-container h2 {
+.why-container h3 {
   width: 100%;
   text-align: center;
   padding-bottom: 60px;
   font-family: $font-name-light;
   color: $landing-orange-text-color;
 }
-.why-container h3 {
+.why-container h4 {
+  width: 100%;
+  text-align: center;
+  padding-bottom: 60px;
+  font-family: $font-name-light;
+  color: $landing-orange-text-color;
+}
+.why-container h5 {
   width: 100%;
   text-align: center;
   padding-top: 20px;
   padding-bottom: 10px;
   font-family: $font-name-light;
-  font-weight: 300;
+  font-weight: 400;
   color: $landing-orange-text-color;
   max-width: 280px;
   margin: auto;
 }
-.why-container h4 {
+.why-container h6 {
   width: 100%;
   text-align: center;
-  font-family: $font-name;
-  color: white;
+  font-family: $font-name-light;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.7);
   margin: auto;
-  line-height: 19px;
-  max-width: 280px;
+  line-height: 22px;
+  max-width: 300px;
 }
 .why-container img {
   height: 100px;
@@ -897,12 +912,26 @@ input.landing-search .ui-autocomplete-input:-ms-input-placeholder {
   padding: 50px 0 50px 0;
   border-top: 1px solid rgba(240, 240, 240, 0.2);
 }
-.pre-footer-container h4 {
+.pre-footer-container h5 {
   width: 100%;
   text-align: left;
-  font-family: $font-name;
+  font-family: $font-name-light;
+  font-weight: 400;
   color: white;
 }
+.pre-footer-container h6 {
+  width: 100%;
+  text-align: left;
+  font-family: $font-name-light;
+  font-weight: 400;
+  color: white;
+}
+.pre-footer-container small {
+  line-height: 20px;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.7);
+}
+
 .pre-footer-container .list-security {
   display: inline-block;
   max-width: 280px;
@@ -988,7 +1017,6 @@ input.landing-search .ui-autocomplete-input:-ms-input-placeholder {
     padding-top: 25px;
   }
   .landing-services {
-    margin: 40px auto 0px;
   }
   .why-container .why-cell {
     padding-bottom: 40px;
@@ -1011,16 +1039,17 @@ input.landing-search .ui-autocomplete-input:-ms-input-placeholder {
   }
   .landing-header h6 {
     text-align: left;
-    padding: 0 0 10px;
+    padding: 0px;
+    margin: 10px 0;
   }
   .header-page {
-    padding-bottom: 0;
+    padding: 0;
   }
   .card-container h2 {
     padding: 10px 10px 10px;
   }
   .landing-services {
-    margin: 10px auto;
+    margin: 20px auto;
   }
   .landing-header-button {
     margin: 20px 0 0;
@@ -1059,6 +1088,9 @@ input.landing-search .ui-autocomplete-input:-ms-input-placeholder {
   .landing .center-description, .footer-description  {
     width: 100%;
     padding: 0 15px;
+  }
+  .pre-footer-container h6 {
+    text-align: center;
   }
 }
 

@@ -20,7 +20,10 @@
         <span class="close rounded thick" (click)="clearSearchForm()"></span>
       </div>
       <div class="ui-autocomplete-panel empty" *ngIf="results.length === 0 && findValue.length > 0 && isSearched">
-        <div class="no-result">Nessun risultato</div>
+        <div class="no-result noselect">
+          Il servizio "{{findValue}}" non è disponibile
+          <button class="suggess-service" (click)="requireService()">{{newServiceRequest.message}}</button>
+        </div>
       </div>
     </div>
 
