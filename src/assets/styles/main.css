@@ -3135,7 +3135,8 @@ app-home {
   width: 100%;
   margin-top: 5px;
   font-family: HelveticaNeue-Bold, sans-serif;
-  color: black;
+  font-weight: 700;
+  color: #4990E2;
   font-size: 28px;
   letter-spacing: 0.13px;
   text-align: right; }
@@ -3221,7 +3222,10 @@ app-home {
   display: block;
   position: relative;
   width: 100%;
-  padding: 0 32px 20px 0; }
+  padding: 20px; }
+
+.services-block .service .item-container:hover {
+  box-sizing: border-box; }
 
 .services-block .service .item-container.image-item {
   padding: 0 105px 20px 0; }
@@ -3237,11 +3241,9 @@ app-home {
   letter-spacing: 0.1px;
   cursor: pointer;
   -webkit-font-smoothing: initial !important;
-  background-color: rgba(252, 252, 252, 0);
   border-radius: 3px; }
 
 .services-block .service .item:hover {
-  background-color: rgba(230, 233, 239, 0.2);
   border-radius: 3px; }
 
 .services-block .service .item-container .item i.checkbox {

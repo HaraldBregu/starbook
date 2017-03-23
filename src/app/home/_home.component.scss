@@ -253,7 +253,8 @@ app-home {
   width: 100%;
   margin-top: 5px;
   font-family: $font-name-bold;
-  color: $services-block-text-color;
+  font-weight: 700;
+  color: #4990E2;
   font-size: $cover-footer-specifications-size;
   letter-spacing: $cover-footer-specifications-letter-spacing;
   text-align: right;
@@ -369,7 +370,13 @@ $icon-checked-background-color: #161517;
   display: block;
   position: relative;
   width: 100%;
-  padding: 0 32px 20px 0;
+  // padding: 0 32px 20px 0;
+  padding: 20px;
+}
+.services-block .service .item-container:hover {
+  box-sizing: border-box;
+  // border: 1px solid red;
+  // background: #FFC845;
 }
 .services-block .service .item-container.image-item {
   padding: 0 105px 20px 0;
@@ -385,11 +392,11 @@ $icon-checked-background-color: #161517;
   letter-spacing: $services-block-v2-checkbox-text-letter-spacing;
   cursor: pointer;
   -webkit-font-smoothing: initial !important;
-  background-color: $services-block-header-background-color;
+  // background-color: $services-block-header-background-color;
   border-radius: 3px;
 }
 .services-block .service .item:hover {
-  background-color: rgba(230, 233, 239, 0.2);
+  // background-color: rgba(230, 233, 239, 0.2);
   border-radius: 3px;
 }
 .services-block .service .item-container .item i.checkbox {
