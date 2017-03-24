@@ -420,7 +420,13 @@ h6 {
   font-size: 16px;
   letter-spacing: 0.22px; }
 
+p {
+  font-family: HelveticaNeue, sans-serif;
+  font-size: 18px !important;
+  letter-spacing: 0.11px !important; }
+
 .btn-success {
+  background: #7FC443 !important;
   border-radius: 0;
   height: 50px;
   width: 160px;
@@ -448,12 +454,36 @@ h6 {
   padding: 0;
   line-height: 50px; }
 
+.btn-warning {
+  background: #FFC845 !important;
+  color: white;
+  font-family: HelveticaNeue-Light, sans-serif;
+  letter-spacing: 0.1px;
+  font-weight: 400;
+  padding: 11px 7px;
+  outline: none;
+  border-radius: 0;
+  border: 0;
+  outline: none !important; }
+
+.btn-warning:active:focus {
+  color: white !important;
+  background-color: #FFC845 !important; }
+
+.btn-warning:hover {
+  color: white !important;
+  background-color: #7FC443 !important; }
+
 .form-group .form-control {
-  height: 45px !important;
+  height: 50px !important;
   border: 1px solid #DCDCDC !important; }
 
 .form-group .form-control:focus {
   color: black !important; }
+
+.form-group .ui-inputtext {
+  height: 50px !important;
+  border: 1px solid #DCDCDC !important; }
 
 .form-group label {
   color: #212121 !important;
@@ -462,6 +492,38 @@ h6 {
   font-weight: 600 !important;
   padding: 0 !important;
   margin-bottom: 5px !important; }
+
+.form-group .ui-inputtext {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  padding: 20px;
+  font-size: 16px;
+  font-family: HelveticaNeue, sans-serif;
+  letter-spacing: 0.1px;
+  border: 1px solid #DCDCDC;
+  border-radius: 0;
+  outline: none; }
+
+.success-icon {
+  display: block;
+  width: 100%;
+  height: 100px;
+  text-align: center; }
+
+.success-icon span {
+  display: block;
+  width: 100px;
+  height: 100px;
+  margin: 0 auto;
+  background-image: url("/assets/images/success.png");
+  background-repeat: no-repeat;
+  background-size: contain; }
+
+.text-center {
+  text-align: center; }
 
 .noselect {
   -webkit-touch-callout: none;
@@ -3862,19 +3924,6 @@ textarea.form-control {
   margin-top: 59px;
   padding: 10px 10px 0 10px; }
 
-.form-group .btn-warning {
-  height: 45px;
-  background: #FFC845;
-  color: black;
-  font-size: 18px;
-  font-family: HelveticaNeue-Light, sans-serif;
-  letter-spacing: 0.1px;
-  font-weight: 400;
-  padding: 11px 7px;
-  margin-top: 14px;
-  outline: none;
-  border-radius: 0; }
-
 .add-order-form .form-group .btn-warning {
   margin-top: 30px; }
 
@@ -4014,7 +4063,7 @@ textarea.form-control {
   background-color: rgba(50, 73, 119, 0.8);
   color: #ffffff; }
 
-.form-control .ui-inputtext {
+.order-container .form-control .ui-inputtext {
   position: absolute;
   top: 0;
   left: 0;
@@ -5013,9 +5062,6 @@ textarea.form-control {
 
 .info {
   float: left; }
-
-.actions {
-  float: right; }
 
 .page-container .content-section {
   display: block;
@@ -7300,7 +7346,7 @@ app-wizard {
   display: block;
   width: 100%;
   max-width: 900px;
-  margin: 70px auto 0; }
+  margin: 100px auto 50px; }
 
 .wizard .wizard-container {
   display: block;
@@ -7308,14 +7354,7 @@ app-wizard {
   width: 100%;
   background-color: #F7F7F7;
   border: 1px solid #CCCCCC;
-  margin-bottom: 40px; }
-
-.wizard .wizard-container .header {
-  display: block;
-  float: left;
-  width: 100%;
-  border-bottom: 1px solid #CCCCCC;
-  padding-left: 10px; }
+  padding: 50px 0; }
 
 .wizard .wizard-container .header span {
   display: inline-block;
@@ -7357,7 +7396,7 @@ app-wizard {
 .wizard-container .content-container {
   display: block;
   width: 100%;
-  max-width: 400px;
+  max-width: 600px;
   margin: 0 auto; }
 
 .wizard-container .content-container .title {
@@ -7734,6 +7773,62 @@ app-wizard {
 .wizard-container .content-container.login-step .form-group .btn.btn-primary.facebook {
   margin-bottom: 80px; }
 
+.content-container .form-group .ui-inputtext:focus {
+  border: 2px solid #7FC443 !important; }
+
+.content-container .header {
+  padding-bottom: 20px;
+  text-align: center; }
+  .content-container .header h1 {
+    margin-bottom: 20px; }
+  .content-container .header p {
+    font-family: HelveticaNeue-Light, sans-serif; }
+
+.content-container .address {
+  text-align: center; }
+
+.content-container .date {
+  text-align: center; }
+
+.content-container .payment {
+  text-align: center;
+  width: 400px;
+  margin: 0 auto;
+  padding: 20px 0; }
+  .content-container .payment .total {
+    margin: 10px 0 0; }
+    .content-container .payment .total span {
+      color: #00B420; }
+
+.content-container .messages {
+  padding: 20px 0; }
+
+.content-container .forms {
+  padding: 20px 0; }
+  .content-container .forms .form-group .ui-inputtext {
+    text-align: center; }
+
+.content-container .actions {
+  width: 100%;
+  text-align: center;
+  padding: 20px 0; }
+  .content-container .actions .btn-warning {
+    width: 100%;
+    font-size: 26px;
+    color: white;
+    height: 60px;
+    font-family: HelveticaNeue-Bold, sans-serif;
+    font-weight: 700; }
+  .content-container .actions p {
+    margin-top: 20px;
+    color: red; }
+
+.content-container .footer {
+  border-top: 1px solid #CCCCCC;
+  padding: 20px 0 0; }
+  .content-container .footer h6 {
+    text-align: left; }
+
 .wizard-container .form-group.subheader {
   display: block;
   width: 100%;
@@ -7800,23 +7895,6 @@ app-wizard {
 @media (max-width: 400px) {
   .wizard-container .image-block {
     margin: 50px auto 0; } }
-.content-container .success-icon {
-  display: block;
-  width: 100%;
-  height: 70px;
-  margin-top: 3px;
-  margin-bottom: 30px;
-  text-align: center; }
-
-.content-container .success-icon span {
-  display: block;
-  width: 70px;
-  height: 70px;
-  margin: 0 auto;
-  background-image: url("/assets/images/success-icon.png");
-  background-repeat: no-repeat;
-  background-size: contain; }
-
 .wizard-form .popup-spinner {
   display: block;
   width: 100%;
@@ -7853,7 +7931,7 @@ app-wizard {
   height: 100%;
   text-align: center;
   line-height: 50px;
-  padding-left: 15px; }
+  padding-left: 35px; }
 
 .breadcrumb li a::after {
   content: " ";
@@ -7887,13 +7965,17 @@ app-wizard {
 
 .breadcrumb li.active a, .breadcrumb li.active:hover a {
   color: white;
-  background: #27AE60; }
+  background: #7FC443;
+  font-weight: 600; }
 
 .breadcrumb li.active a::after {
-  border-left: 30px solid #27AE60; }
+  border-left: 30px solid #7FC443; }
 
 .breadcrumb li.active a::before {
   border-left: 30px solid white; }
+
+.breadcrumb li:first-child a {
+  padding-left: 25px; }
 
 .breadcrumb li:last-child a {
   background: transparent !important;
@@ -7904,7 +7986,7 @@ app-wizard {
 
 .breadcrumb li:last-child.active a {
   color: white;
-  background: #27AE60 !important;
+  background: #7FC443 !important;
   pointer-events: none;
   cursor: default;
   padding-left: 15px; }
@@ -8222,22 +8304,6 @@ app-legal {
   font-family: HelveticaNeue, sans-serif;
   font-weight: 400;
   font-size: 14px; }
-
-.account .success-icon {
-  display: block;
-  width: 100%;
-  height: 100px;
-  margin-top: 50px;
-  text-align: center; }
-
-.account .success-icon span {
-  display: block;
-  width: 100px;
-  height: 100px;
-  margin: 0 auto;
-  background-image: url("/assets/images/success.png");
-  background-repeat: no-repeat;
-  background-size: contain; }
 
 .email-verification {
   text-align: center; }

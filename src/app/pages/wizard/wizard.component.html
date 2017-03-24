@@ -1,9 +1,127 @@
 <div class="wizard">
-  <ul class="breadcrumb">
+  <ul class="breadcrumb noselect">
     <li *ngFor="let items of wizardDataItems"
         [ngStyle]="{'width': 100/wizardDataItems.length + '%'}"
-        [ngClass]="{'active': (step === 'confirmation' && items === 'Dettagli') || (step === 'registration' && items === 'Accedi') || (step === 'login' && items === 'Accedi') || (step == 'confirm-user-info' && items == 'Accedi') || (step === 'addcard' && items === 'Carta') || (step === 'loan' && items === 'Informazioni') || (step === 'success' && items === 'Fine')}"><a>{{items}}</a></li>
+        [ngClass]="{'active': (step === 'preview' && items === 'Anteprima') || (step === 'address' && items === 'Indirizzo') || (step === 'date' && items === 'Data') || (step === 'order' && items === 'Ordine') || (step === 'end' && items === 'Fine')}"><a>{{items}}</a></li>
   </ul>
+  <div class="wizard-container" *ngIf="step === 'preview'">
+    <div class="content-container">
+      <div class="header">
+        <h1>Mansarda isolamento in cartongesso</h1>
+        <p>Metri quadri 25</p>
+        <p>Struttura mettallica</p>
+        <p>Isolamento termico base</p>
+        <p>Materiale base standard</p>
+      </div>
+      <div class="payment">
+        <div class="method">
+          <h5>Pagamento: <span>Carta</span></h5>
+        </div>
+        <div class="total">
+          <h2><strong>Totale: <span>234€</span></strong></h2>
+        </div>
+      </div>
+      <div class="actions">
+        <div class="form-group">
+          <button type="button" id="next" class="btn btn-warning" (click)="setAddressOrder()">Continua</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="wizard-container" *ngIf="step === 'address'">
+    <div class="content-container">
+      <div class="header">
+        <h1 class="text-center">Dove si trova la tua abitazione?</h1>
+        <p class="text-center">Inserisci la città e la via della sua abitazione</p>
+      </div>
+      <div class="forms">
+        <div class="form-group">
+          <p-autoComplete id="luogo" class="form-control" [ngClass]="{'isError':isAddressFull === false && isAddressDirty === true}" [(ngModel)]="Order.delivery_address" [ngModelOptions]="{standalone: true}" [suggestions]="addresses" field="formattedAddress" (completeMethod)="getAddresses($event)" (onSelect)="selectAddress($event)" placeholder="Milano, Italia"></p-autoComplete>
+        </div>
+        <div class="form-group">
+          <p-autoComplete id="street" class="form-control" [ngClass]="{'isError':isAddressFull === false && isAddressDirty === true}" [(ngModel)]="Order.delivery_address" [ngModelOptions]="{standalone: true}" [suggestions]="addresses" field="formattedAddress" (completeMethod)="getAddresses($event)" (onSelect)="selectAddress($event)" placeholder="Via Pirandello 4"></p-autoComplete>
+        </div>
+      </div>
+      <div class="actions">
+        <div class="form-group">
+          <button type="button" id="next" class="btn btn-warning" (click)="setDateOrder()">Continua</button>
+          <p><small>Per favore compila il campo richiesto</small></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="wizard-container" *ngIf="step === 'date'">
+    <div class="content-container">
+      <div class="header">
+        <h1 class="text-center">Quando vuoi realizare questo lavoro?</h1>
+        <p class="text-center">Inserisci la data che vuoi realizzare questo servizio</p>
+      </div>
+      <div class="forms">
+        <div class="form-group">
+          <!-- <p-calendar name="date" id="date" class="date" autocomplete="off" dateFormat="dd MM yy" [locale]="it" [minDate]="minDate" [maxDate]="maxDate" (onSelect)="selectDate()" placeholder="Inserisci la data"></p-calendar> -->
+        </div>
+      </div>
+      <div class="actions">
+        <div class="form-group">
+          <button type="button" id="next" class="btn btn-warning" (click)="showPreviewOrder()">Continua</button>
+          <p><small>Per favore compila il campo richiesto</small></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="wizard-container" *ngIf="step === 'order'">
+    <div class="content-container">
+      <div class="header">
+        <h1>Mansarda isolamento in cartongesso</h1>
+        <p>Metri quadri 25</p>
+        <p>Struttura mettallica</p>
+        <p>Isolamento termico base</p>
+        <p>Materiale base standard</p>
+      </div>
+      <div class="address">
+        <p><strong>Indirizzo: </strong><span>Via Michelangelo 2, Milano</span></p>
+      </div>
+      <div class="date">
+        <p><strong>Data: </strong><span>23 Maggio 2017</span></p>
+      </div>
+      <div class="payment">
+        <div class="method">
+          <h5>Pagamento: <span>Carta</span></h5>
+        </div>
+        <div class="total">
+          <h2><strong>Totale: <span>234€</span></strong></h2>
+        </div>
+      </div>
+      <div class="actions">
+        <div class="form-group">
+          <button type="button" id="next" class="btn btn-warning" (click)="saveOrder()">Invia ordine</button>
+        </div>
+      </div>
+      <div class="footer">
+        <h6><small>Carta: Il pagamento con la carta viene effetutato per dare una garanzia al professionista che la lavorazione richiesta verra pagata regolarmente.
+        In caso l’ordine verra annullato o per diversi imprevisti ricevera 100% rimborso.</small></h6>
+      </div>
+    </div>
+  </div>
+  <div class="wizard-container" *ngIf="step === 'end'">
+    <div class="content-container">
+      <div class="header">
+        <h1 class="text-center">Ordine effettuato con successo!</h1>
+        <p class="text-center">Hai inviato un ordine con la lavorazione da te scelta! Per controllare lo stato del suo ordine, vai nella sezione degli ordini.</p>
+        <p class="text-center">In caso di mancanza di dati necessari sulla lavorazione o sul ordine, verra richiamato tramite telefono o email per ulteriori dettagli.</p>
+        <p class="text-center">Per sicurezza, controlla la mail e il numero di telefono siano corretti nel suo account.</p>
+      </div>
+      <div class="messages">
+        <div class="success-icon"><span></span></div>
+      </div>
+      <div class="actions">
+        <div class="form-group">
+          <button type="button" id="next" class="btn btn-warning" (click)="finish()">Fatto</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <div class="wizard-container" *ngIf="wizardData.type !== '' && step === 'confirmation'">
     <div class="image-block" [ngStyle]="{'background-image': 'url(' + wizardData.order.service_image + ')'}"></div>
     <div class="content-container">

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, Route, ActivatedRoute, Params } from '@angular/router';
 import { AnalyticsService } from '../../shared/analytics.service';
 import { OrderService, IAddress } from '../../order/order.service';
 import { AuthService } from '../../shared/auth.service';
@@ -131,11 +131,9 @@ export class WizardComponent implements OnInit {
     cvc: false
   };
 
-  public wizardDataItems = [];
-
+  public wizardDataItems = ['Anteprima', 'Indirizzo', 'Data', 'Ordine', 'Fine'];
   public formError: boolean|{title: string, message: string} = false;
-
-  public step = 'confirmation';
+  public step = '';
 
   public saveState = {
     order: this.Order,
@@ -146,64 +144,131 @@ export class WizardComponent implements OnInit {
     selectedAddress: this.selectedAddress
   };
 
-  constructor(private analyticsService: AnalyticsService, private orderService: OrderService, private router: Router,
+  constructor(private router: Router, private route: ActivatedRoute, private analyticsService: AnalyticsService, private orderService: OrderService,
               private authService: AuthService, private navigationService: NavigationService,
               private paymentService: PaymentService, private profileService: ProfileService ) {
     this.wizardData = this.orderService.getWizardData();
+    this.navigationService.updateMessage('Anteprima servizio');
+    // this.wizardDataItems.push('Anteprima', 'Indirizzo', 'Data', 'Ordine', 'Fine');
 
     let recovery = null;
     if (isBrowser) {
       recovery = localStorage.getItem('wizard');
     }
 
-    if (this.wizardData.type !== '' || recovery !== null) {
-      let userData = localStorage.getItem('auth');
-
-      var dettagli = 'Dettagli';
-      var accedi = 'Accedi';
-      var carta = 'Carta';
-      var informazioni = 'Informazioni';
-      var success = 'Fine';
-
-      this.wizardDataItems.push(dettagli);
-      let parserUserData = JSON.parse(userData);
-
-      if (userData !== null) {
-        if (!parserUserData['phone_number'] || parserUserData['phone_number'].length == 0) {
-          this.wizardDataItems.push(accedi);
-        }
-      } else {
-        this.wizardDataItems.push(accedi);
-      }
-
-      if (this.wizardData.type === '') {
-        let recoveryWizard = JSON.parse(recovery);
-        this.wizardData = recoveryWizard.wizardData;
-        this.wizardDataItems = recoveryWizard.items;
-        this.Order = recoveryWizard.order;
-        this.step = recoveryWizard.currentStep;
-        this.isAddressFull = recoveryWizard.isAddressFull;
-        this.selectedAddress = recoveryWizard.selectedAddress;
-      } else {
-        if (this.wizardData.type === 'contanti') {
-          this.wizardDataItems.push(success);
-        } else if (this.wizardData.type === 'carta') {
-          this.wizardDataItems.push(carta);
-          this.wizardDataItems.push(success);
-        } else if (this.wizardData.type === 'prestito') {
-          this.wizardDataItems.push(informazioni);
-        }
-      }
-
-      this.saveCurrentState();
-      this.analyticsService.sendEvent({category:'Order creation wizard', action: 'start', label: 'open wizard'});
-    } else {
-      if (isBrowser) {
-        this.router.navigateByUrl('/');
-      }
-    }
+    // if (this.wizardData.type !== '' || recovery !== null) {
+    //   let userData = localStorage.getItem('auth');
+    //
+    //   var dettagli = 'Dettagli';
+    //   var accedi = 'Accedi';
+    //   var carta = 'Carta';
+    //   var informazioni = 'Informazioni';
+    //   var success = 'Fine';
+    //
+    //   this.wizardDataItems.push(dettagli);
+    //   let parserUserData = JSON.parse(userData);
+    //
+    //   if (userData !== null) {
+    //     if (!parserUserData['phone_number'] || parserUserData['phone_number'].length == 0) {
+    //       this.wizardDataItems.push(accedi);
+    //     }
+    //   } else {
+    //     this.wizardDataItems.push(accedi);
+    //   }
+    //
+    //   if (this.wizardData.type === '') {
+    //     let recoveryWizard = JSON.parse(recovery);
+    //     this.wizardData = recoveryWizard.wizardData;
+    //     this.wizardDataItems = recoveryWizard.items;
+    //     this.Order = recoveryWizard.order;
+    //     this.step = recoveryWizard.currentStep;
+    //     this.isAddressFull = recoveryWizard.isAddressFull;
+    //     this.selectedAddress = recoveryWizard.selectedAddress;
+    //   } else {
+    //     if (this.wizardData.type === 'contanti') {
+    //       this.wizardDataItems.push(success);
+    //     } else if (this.wizardData.type === 'carta') {
+    //       this.wizardDataItems.push(carta);
+    //       this.wizardDataItems.push(success);
+    //     } else if (this.wizardData.type === 'prestito') {
+    //       this.wizardDataItems.push(informazioni);
+    //     }
+    //   }
+    //
+    //   this.saveCurrentState();
+    //   this.analyticsService.sendEvent({category:'Order creation wizard', action: 'start', label: 'open wizard'});
+    // } else {
+    //   if (isBrowser) {
+    //     this.router.navigateByUrl('/');
+    //   }
+    // }
 
     this.emailPattern = /^[a-z0-9!#$%&'*+\/=?^_`{|}~.-]+@[a-z0-9]([a-z0-9-]*[a-z0-9])?(\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)*$/i;
+  }
+
+  ngOnInit() {
+    this.route.params.subscribe((params: Params) => {
+      this.step = params['step']
+
+      if (this.step === 'preview') {
+        this.navigationService.updateMessage("Anteprima servizio");
+
+      } else if (this.step === 'address') {
+        this.navigationService.updateMessage("Inserisci l'indirizzo");
+
+      } else if (this.step === 'date') {
+        this.navigationService.updateMessage("Inserisci la data");
+
+      } else if (this.step === 'order') {
+        this.navigationService.updateMessage("Anteprima ordine");
+
+      } else if (this.step === 'end') {
+        this.navigationService.updateMessage("Ordine effetuato");
+      } else {
+        // this.router.navigate(['/']);
+        this.router.navigate(['services', this.wizardData.order.service]);
+      }
+    })
+
+    this.it = {
+      firstDayOfWeek: 1,
+      dayNames: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+      dayNamesShort: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
+      dayNamesMin: ['Do', 'Lu', 'Ma', 'Me', 'Gi', 'Ve', 'Sa'],
+      monthNames: ['Gennaio', 'Febbraio', 'Marzo', 'Aprile', 'Maggio', 'Giugno',
+        'Luglio', 'Agosto', 'Settembre', 'Ottobre', 'Novembre', 'Dicembre'],
+      monthNamesShort: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+    };
+  }
+
+  setAddressOrder() {
+    console.log('go to address');
+    this.router.navigate(['order/address']);
+  }
+  setDateOrder() {
+    console.log('go to date');
+    this.router.navigate(['order/date']);
+  }
+  showPreviewOrder() {
+    console.log('go to date');
+    this.router.navigate(['order/order']);
+  }
+  saveOrder() {
+    console.log('go to date');
+    this.router.navigate(['order/end']);
+  }
+  finish() {
+    console.log('go to date');
+    this.router.navigate(['']);
+    // this.router.navigate(['services', this.wizardData.order.service]);
+  }
+  
+  ngAfterViewChecked() {
+    window.scrollTo(0, 0);
+  }
+
+  ngOnDestroy() {
+
   }
 
   saveCurrentState() {
@@ -860,17 +925,4 @@ export class WizardComponent implements OnInit {
       this.checkNonEmpty('confirmationPhone', this.confirmationData.phone);
     }
   }
-
-  ngOnInit() {
-    this.it = {
-      firstDayOfWeek: 1,
-      dayNames: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
-      dayNamesShort: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
-      dayNamesMin: ['Do', 'Lu', 'Ma', 'Me', 'Gi', 'Ve', 'Sa'],
-      monthNames: ['Gennaio', 'Febbraio', 'Marzo', 'Aprile', 'Maggio', 'Giugno',
-        'Luglio', 'Agosto', 'Settembre', 'Ottobre', 'Novembre', 'Dicembre'],
-      monthNamesShort: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
-    };
-  }
-
 }

@@ -434,7 +434,7 @@ export class OrderComponent implements OnInit, OnDestroy {
       multiplier: this.multiplier
     };
     this.orderService.updateWizardData(wizardData);
-    this.router.navigateByUrl('/order');
+    this.router.navigateByUrl('/order/preview');
     return false;
   }
 

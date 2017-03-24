@@ -34,7 +34,7 @@ const routes: Routes = [
     component: FacebookComponent
   },
   {
-    path: 'order',
+    path: 'order/:step',
     component: WizardComponent
   },
   {

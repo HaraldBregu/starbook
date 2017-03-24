@@ -453,24 +453,24 @@ textarea.form-control {
   margin-top: 59px;
   padding: 10px 10px 0 10px;
 }
-.form-group .btn-warning {
-  height: 45px;
-  background: $button-warning-color-yellow;
-  // background: $button-warning-gradient-color-yellow-light;
-  // background: -moz-linear-gradient(top,  $button-warning-gradient-color-yellow-light 0%, $button-warning-gradient-color-yellow-dark 100%);
-  // background: -webkit-linear-gradient(top,  $button-warning-gradient-color-yellow-light 0%,$button-warning-gradient-color-yellow-dark 100%);
-  // background: linear-gradient(to bottom,  $button-warning-gradient-color-yellow-light 0%,$button-warning-gradient-color-yellow-dark 100%);
-  color: black;
-  font-size: 18px;
-  font-family: $font-name-light;
-  letter-spacing: $button-warning-letter-spacing;
-  font-weight: 400;
-  padding: 11px 7px;
-  margin-top: 14px;
-  // border: $button-warning-border;
-  outline: none;
-  border-radius: 0;
-}
+// .form-group .btn-warning {
+//   height: 45px;
+//   background: $button-warning-color-yellow;
+//   // background: $button-warning-gradient-color-yellow-light;
+//   // background: -moz-linear-gradient(top,  $button-warning-gradient-color-yellow-light 0%, $button-warning-gradient-color-yellow-dark 100%);
+//   // background: -webkit-linear-gradient(top,  $button-warning-gradient-color-yellow-light 0%,$button-warning-gradient-color-yellow-dark 100%);
+//   // background: linear-gradient(to bottom,  $button-warning-gradient-color-yellow-light 0%,$button-warning-gradient-color-yellow-dark 100%);
+//   color: black;
+//   font-size: 18px;
+//   font-family: $font-name-light;
+//   letter-spacing: $button-warning-letter-spacing;
+//   font-weight: 400;
+//   padding: 11px 7px;
+//   margin-top: 14px;
+//   // border: $button-warning-border;
+//   outline: none;
+//   border-radius: 0;
+// }
 .add-order-form .form-group .btn-warning {
   margin-top: 30px;
 }
@@ -617,7 +617,7 @@ textarea.form-control {
   background-color: $timepicker-hover-color;
   color: $timepicker-hover-text-color;
 }
-.form-control .ui-inputtext {
+.order-container .form-control .ui-inputtext {
   position: absolute;
   top:0;
   left: 0;
