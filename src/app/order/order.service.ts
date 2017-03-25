@@ -16,7 +16,8 @@ export interface IAddress {
   country_code: string;
   selected: boolean;
   isFull: boolean;
-  formattedAddress: string;
+  full: string;
+  street_number_city: string;
 }
 
 @Injectable()
@@ -126,7 +127,8 @@ export class OrderService {
             country_code: '',
             selected: false,
             isFull: false,
-            formattedAddress: ''
+            full: '',
+            street_number_city: '',
           };
 
           address.address_components.forEach((components) => {
@@ -152,15 +154,26 @@ export class OrderService {
             }
           });
 
-          addressData.formattedAddress = address.formatted_address;
+          addressData.full = address.formatted_address;
 
-          if (address.types[0] === 'street_address') {
-            addressData.isFull = true;
-          }
-
-          if (addressData.country_code === 'IT') {
+          if (addressData.street && addressData.city) {
+            if (addressData.street_number) {
+              addressData.street_number_city = addressData.street + ', ' + addressData.street_number + ' ' + addressData.city;
+            } else {
+              addressData.street_number_city = addressData.street + ', ' + addressData.city;
+            }
             addresses.push(addressData);
           }
+
+          // console.log(addressData);
+          // console.log(JSON.stringify(address));
+
+          // if (address.types[0] === 'street_address') {
+          //   addressData.isFull = true;
+          // }
+          // if (addressData.country_code === 'IT') {
+          //   addresses.push(addressData);
+          // }
         });
         return addresses;
       })

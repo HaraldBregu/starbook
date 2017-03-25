@@ -2,15 +2,15 @@
   <form class="sidebar-container" #orderForm="ngForm" (window:resize)="onResize()">
     <div class="sidebar-block">
       <div class="order-tabs">
-        <div class="tab" (click)="changeTab('contanti')" [ngClass]="{'active': openedTab === 'contanti'}">
+        <div class="tab" (click)="changeTab('TRADITIONAL')" [ngClass]="{'active': openedTab === 'TRADITIONAL'}">
           <i class="tab-icon money"></i>
           <span>Tradizionale</span>
         </div>
-        <div class="tab" (click)="changeTab('carta')" [ngClass]="{'active': openedTab === 'carta'}">
+        <div class="tab" (click)="changeTab('CARD')" [ngClass]="{'active': openedTab === 'CARD'}">
           <i class="tab-icon cards"></i>
           <span>Carta</span>
         </div>
-        <div class="tab" (click)="changeTab('prestito')" [ngClass]="{'active': openedTab === 'prestito'}">
+        <div class="tab" (click)="changeTab('LOAN')" [ngClass]="{'active': openedTab === 'LOAN'}">
           <i class="tab-icon coins"></i>
           <span>Prestito</span>
         </div>

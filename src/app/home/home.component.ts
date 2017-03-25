@@ -1,6 +1,5 @@
 import { isBrowser } from 'angular2-universal';
 import { Component, ViewChild, AfterViewInit, OnInit, OnDestroy } from '@angular/core';
-// import { AngularMasonry, MasonryModule } from 'angular2-masonry';
 import { HomeService } from './home.service';
 import { OrderService } from '../order/order.service';
 import { NavigationService } from '../shared/navigation.service';
@@ -9,25 +8,6 @@ import { Router, Route, ActivatedRoute, Params } from '@angular/router';
 import { AnalyticsService } from '../shared/analytics.service';
 import { SeoService } from '../shared/seo.service';
 declare let Masonry: any;
-
-export interface IServiceCategoryList {
-  _id: string;
-  type: number;
-  title: string;
-  icon_code: string;
-  icon_name: string;
-  lang: string;
-  products: IServiceCategory[];
-}
-export interface IServiceCategory {
-  _id: string;
-  title: string;
-  items: IService[];
-}
-export interface IService {
-  name: string;
-  selected: boolean;
-}
 
 export interface IServiceFormItem {
   formId?: number;
@@ -94,13 +74,9 @@ export class HomeComponent implements AfterViewInit, OnInit, OnDestroy {
   public image_url;
   public technical_details;
 
-  public servicesCategoryList: IServiceCategoryList[] = [];
   public isServicesView = false;
   public servicesData = [];
 
-  public activeServiceCategory: boolean|string = false;
-  public activeServiceCategoryType: boolean|number = false;
-  public model: any;
   public orderData = {
     service_id: '',
     service_image: '',
@@ -116,16 +92,59 @@ export class HomeComponent implements AfterViewInit, OnInit, OnDestroy {
     totalPrice: 0
   };
   public orderIsFull = false;
-  public SWIPE_ACTION = { LEFT: 'swipeleft', RIGHT: 'swiperight' };
-  public delta: number = -15;
   public isLoading = false;
   public masonry: any;
   subscription: Subscription;
 
-  // @ViewChild(AngularMasonry) masonry: AngularMasonry;
-  // @ViewChild(MasonryModule) layout: MasonryModule;
-
   constructor(private homeService: HomeService, private navigationService: NavigationService, private router: Router, private route: ActivatedRoute, private orderService: OrderService, private analyticsService: AnalyticsService, private seoService: SeoService) {
+  }
+
+  ngOnInit() {
+
+    this.seoService.setTitle('Starbook | Prenota lavorazioni professionali per la tua casa');
+    this.seoService.setOgElem('og:title', 'Starbook | Prenota lavorazioni professionali per la tua casa');
+    this.seoService.setMetaElem('description', 'Preventivi diretti? Starbook è la piattaforma dei lavorazioni professionali. Puoi creare preventivi istantanei senza il bisogno di contattare il professionista.');
+    this.seoService.setOgElem('og:description', 'Preventivi diretti? Starbook è la piattaforma dei lavorazioni professionali. Puoi creare preventivi istantanei senza il bisogno di contattare il professionista.');
+    this.seoService.setOgElem('og:url', 'https://www.starbook.co/');
+    this.seoService.setOgElem('og:image', 'https://s3-eu-west-1.amazonaws.com/starbook-s3/lavorazioni%2Bcartongesso%2Bcontrosoffitti%2Bpareti%2Bcontropareti.png');
+    this.seoService.setOgElem('og:image:secure_url', 'https://s3-eu-west-1.amazonaws.com/starbook-s3/lavorazioni%2Bcartongesso%2Bcontrosoffitti%2Bpareti%2Bcontropareti.png');
+
+    this.route.params.subscribe(params => {
+      let serviceId = params['id'];
+      let services = this.homeService.getServicesObject();
+      if (serviceId) {
+        this.isServicesView = true;
+        if (services) {
+          this.renderPage(services);
+        } else {
+          this.isLoading = true;
+          let timeStart = Date.now();
+          this.homeService.getServiceById(serviceId)
+              .then((data) => {
+                this.analyticsService.sendTiming({category: 'Get service by id', timingVar: 'load', timingValue: Date.now()-timeStart});
+                this.renderPage(data.result);
+                this.isLoading = false;
+              })
+              .catch((error) => {
+                this.isLoading = false;
+                this.router.navigateByUrl('/');
+              });
+        }
+      }
+    });
+
+    if (isBrowser) {
+      this.subscription = this.orderService.getOrderEvent$.subscribe(event => {
+        this.orderCreated(event);
+      });
+    }
+  }
+
+  ngAfterViewInit() {
+
+  }
+
+  ngOnDestroy() {
 
   }
 
@@ -146,14 +165,7 @@ export class HomeComponent implements AfterViewInit, OnInit, OnDestroy {
     this.technical_details = services.technical_details;
     this.image_url = this.defaultServices.image_url;
     this.isServicesView = true;
-    this.servicesData = [
-      // {
-      //   type: 'content',
-      //   image: services.image_url,
-      //   description: services.description,
-      //   options: []
-      // }
-    ];
+    this.servicesData = [];
     this.orderData = {
       service_id: services._id,
       service_image: this.image_url,
@@ -166,7 +178,6 @@ export class HomeComponent implements AfterViewInit, OnInit, OnDestroy {
     this.baseAmount.start = services.price.base_amount;
     this.baseAmount.calculated = services.price.base_amount;
     let formId = 0;
-    // console.log('services:' + JSON.stringify(services));
     services.forms.forEach((form) => {
       let serviceForm: IServiceForm = {
         title: form.title,
@@ -202,13 +213,11 @@ export class HomeComponent implements AfterViewInit, OnInit, OnDestroy {
           option['selected'] = false;
         }
         serviceForm.options.push(option);
-        // console.log('option: ' + JSON.stringify(option));
         optionId ++;
       });
       this.servicesData.push(serviceForm);
       formId ++;
     });
-    // console.log('services:' + JSON.stringify(this.servicesData));
     this.calculateOrder();
   }
 
@@ -312,7 +321,6 @@ export class HomeComponent implements AfterViewInit, OnInit, OnDestroy {
     let serviceId = 0;
     this.servicesData.forEach((service) => {
       let itemId = 0;
-      // console.log('Each service: ' + JSON.stringify(service));
       service.options.forEach((item) => {
         if ('input_type' in item) {
           if (item.input_value != 0) {
@@ -403,48 +411,18 @@ export class HomeComponent implements AfterViewInit, OnInit, OnDestroy {
       service.options.forEach((item) => {
         if (service.type === 'RADIOBUTTON') {
           if (item.selected) {
-            currentOrderState.push({
-              name: service.title,
-              price_type: service.price_type,
-              option: {
-                name: item.title,
-                price: item.amount
-              }
-            });
+            currentOrderState.push({title: item.title});
           }
         } else if (service.type === 'CHECKBOX') {
           if (item.selected) {
-            currentOrderState.push({
-              name: service.title,
-              price_type: service.price_type,
-              option: {
-                name: item.title,
-                price: item.amount
-              }
-            });
+            currentOrderState.push({title: item.title});
           }
         } else if (service.type === 'INPUTTEXT') {
           if (service.price_type === 'BASE_AMOUNT_PER_INPUT' && item.input_value != 0) {
-            currentOrderState.push({
-              name: service.title,
-              price_type: service.price_type,
-              option: {
-                name: item.input_value,
-                price: item.input_value * this.calculateResults.queueFirst,
-                symbol: item.value_symbol
-              }
-            });
+            currentOrderState.push({title: item.title + ' ' + item.input_value});
           }
-
           if (service.price_type === 'AMOUNT_PER_INPUT' && item.input_value != 0) {
-            currentOrderState.push({
-              name: service.title,
-              price_type: service.price_type,
-              option: {
-                name: item.input_value,
-                price: item.amount * item.input_value
-              }
-            });
+            currentOrderState.push({title: item.title + ' ' + item.input_value});
           }
         }
         itemId++;
@@ -453,7 +431,7 @@ export class HomeComponent implements AfterViewInit, OnInit, OnDestroy {
     });
 
     currentOrderState.forEach((service) => {
-      if (service.name) {
+      if (service.title) {
         this.orderData.services.push(service);
       }
     });
@@ -464,286 +442,6 @@ export class HomeComponent implements AfterViewInit, OnInit, OnDestroy {
       this.orderIsFull = false;
     }
   }
-
-    // toggleService(categoryListId: string, categoryId: string, serviceName: string) {
-    // let categoryListIndex = 0;
-    // this.servicesCategoryList.forEach((categoryList) => {
-    //   let categoryIndex = 0;
-    //   if (categoryList._id === categoryListId) {
-    //     categoryList.products.forEach((categoryData) => {
-    //       if (categoryData._id === categoryId) {
-    //         let serviceIndex = 0;
-    //         categoryData.items.forEach((serviceData) => {
-    //           if (serviceData.name === serviceName) {
-    //             this.servicesCategoryList[categoryListIndex].products[categoryIndex].items[serviceIndex].selected = !serviceData.selected;
-    //             this.calculateOrder();
-    //           } else {
-    //             serviceIndex++;
-    //           }
-    //         });
-    //       } else {
-    //         categoryIndex++;
-    //       }
-    //     });
-    //   } else {
-    //     categoryListIndex++;
-    //   }
-    // });
-    // }
-
-  // calculateOrder() {
-  //   this.orderData = [];
-  //   let currentOrderState = [];
-  //   let arrayIndex = 0;
-  //   this.servicesCategoryList.forEach((categoryList) => {
-  //     categoryList.products.forEach((service) => {
-  //       service.items.forEach((item) => {
-  //         if (item.selected) {
-  //           if (arrayIndex in currentOrderState) {
-  //             currentOrderState[arrayIndex].items.push({ name: item.name });
-  //           } else {
-  //             currentOrderState[arrayIndex] = {
-  //               _id: service._id,
-  //               name: service.title,
-  //               items: [{
-  //                 name: item.name
-  //               }]
-  //             };
-  //           }
-  //         }
-  //       });
-  //       arrayIndex++;
-  //     });
-  //   });
-  //
-  //   currentOrderState.forEach((service) => {
-  //     if (service.name) {
-  //       this.orderData.push(service);
-  //     }
-  //   });
-  //
-  //   if (currentOrderState.length > 0) {
-  //     this.orderIsFull = true;
-  //   } else {
-  //     this.orderIsFull = false;
-  //   }
-  // }
-
-  // tabNavigate(id: string) {
-  //   this.activeServiceCategory = id;
-  //   this.orderData = [];
-  //   this.clearServiceData();
-  //   this.renderPage(id);
-  //   this.servicesCategoryList.forEach((serviceCategoryData) => {
-  //     if (serviceCategoryData._id === id) {
-  //       this.activeServiceCategoryType = serviceCategoryData.type;
-  //     }
-  //   });
-  // }
-
-  // renderPage(id: string) {
-  //   this.servicesCategoryList.forEach((ServicesList: IServiceCategoryList) => {
-  //     if (ServicesList._id === id) {
-  //       this.servicesData = ServicesList.products;
-  //     }
-  //   });
-  // }
-
-  ngAfterViewInit() {
-  //   if (this.isServicesView !== false && isBrowser) {
-  //     let elems = document.querySelector('.masonry-container');
-  //     this.masonry = new Masonry(elems, {
-  //       columnWidth: 490,
-  //       itemSelector: '.services-block',
-  //       gutter: 20,
-  //       originLeft: true,
-  //       originTop: true
-  //     });
-  //   }
-  }
-
-  // makeMasonry() {
-  //   if (isBrowser) {
-  //     if(this.masonry) {
-  //       this.masonry.layout();
-  //     }
-  //   }
-  // }
-
-  ngOnInit() {
-    // this.route.url.subscribe((url) => {
-    //   if (0 in url) {
-    //     let services = this.homeService.getServicesObject();
-    //     if (services) {
-    //       this.renderPage(services);
-    //     } else {
-    //       this.router.navigateByUrl('/');
-    //     }
-    //   }
-    // });
-
-    this.seoService.setTitle('Starbook | Prenota lavorazioni professionali per la tua casa');
-    this.seoService.setOgElem('og:title', 'Starbook | Prenota lavorazioni professionali per la tua casa');
-    this.seoService.setMetaElem('description', 'Preventivi diretti? Starbook è la piattaforma dei lavorazioni professionali. Puoi creare preventivi istantanei senza il bisogno di contattare il professionista.');
-    this.seoService.setOgElem('og:description', 'Preventivi diretti? Starbook è la piattaforma dei lavorazioni professionali. Puoi creare preventivi istantanei senza il bisogno di contattare il professionista.');
-    this.seoService.setOgElem('og:url', 'https://www.starbook.co/');
-    this.seoService.setOgElem('og:image', 'https://s3-eu-west-1.amazonaws.com/starbook-s3/lavorazioni%2Bcartongesso%2Bcontrosoffitti%2Bpareti%2Bcontropareti.png');
-    this.seoService.setOgElem('og:image:secure_url', 'https://s3-eu-west-1.amazonaws.com/starbook-s3/lavorazioni%2Bcartongesso%2Bcontrosoffitti%2Bpareti%2Bcontropareti.png');
-
-    this.route.params.subscribe(params => {
-      let serviceId = params['id'];
-      let services = this.homeService.getServicesObject();
-      if (serviceId) {
-        this.isServicesView = true;
-        if (services) {
-          this.renderPage(services);
-          // if (isBrowser) {
-          //   setTimeout(function () {
-          //     let elems = document.querySelector('.masonry-container');
-          //     this.masonry = new Masonry(elems, {
-          //       columnWidth: 490,
-          //       itemSelector: '.services-block',
-          //       gutter: 20,
-          //       originLeft: true,
-          //       originTop: true
-          //     });
-          //   }, 1);
-          // }
-        } else {
-          this.isLoading = true;
-          let timeStart = Date.now();
-          this.homeService.getServiceById(serviceId)
-              .then((data) => {
-                this.analyticsService.sendTiming({category: 'Get service by id', timingVar: 'load', timingValue: Date.now()-timeStart});
-                this.renderPage(data.result);
-                // if (isBrowser) {
-                //   setTimeout(function () {
-                //     let elems = document.querySelector('.masonry-container');
-                //     this.masonry = new Masonry(elems, {
-                //       columnWidth: 490,
-                //       itemSelector: '.services-block',
-                //       gutter: 20,
-                //       originLeft: true,
-                //       originTop: true
-                //     });
-                //   }, 1);
-                // }
-                this.isLoading = false;
-              })
-              .catch((error) => {
-                this.isLoading = false;
-                this.router.navigateByUrl('/');
-              });
-          //this.router.navigateByUrl('/');
-        }
-      }
-    });
-
-    if (isBrowser) {
-      this.subscription = this.orderService.getOrderEvent$.subscribe(event => {
-        this.orderCreated(event);
-      });
-    }
-
-    // this.homeService.getCategories()
-    //   .then((data) => {
-    //     this.parseServiceData(data.result);
-    //   })
-    //   .catch((error) => {
-    //     console.log(error);
-    //   });
-
-    // this.subscription = this.navigationService.getActiveTab$.subscribe(tab => {
-    //   this.activeServiceCategoryType = tab;
-    //   this.activeServiceCategory = tab;
-    // });
-  }
-
-  ngOnDestroy() {
-    // this.subscription.unsubscribe();
-  }
-
-  // parseServiceData(data) {
-  //   let i = 0;
-  //   data.forEach((ServicesList: any) => {
-  //     let Products = [];
-  //     ServicesList.products.forEach((ServicesCategory) => {
-  //       let Items = [];
-  //       ServicesCategory.items.forEach((CategoryItem) => {
-  //         Items.push({
-  //           name: CategoryItem as string,
-  //           selected: false
-  //         });
-  //       });
-  //       Products.push({
-  //         _id: ServicesCategory._id as number,
-  //         title: ServicesCategory.title as string,
-  //         items: Items
-  //       });
-  //     });
-  //     this.servicesCategoryList.push({
-  //       _id: ServicesList._id as string,
-  //       type: ServicesList.type as number,
-  //       title: ServicesList.title as string,
-  //       icon_code: ServicesList.icon_code as string,
-  //       icon_name: ServicesList.icon_name as string,
-  //       lang: ServicesList.lang as string,
-  //       products: Products
-  //     });
-  //     if (i === 0) {
-  //       this.activeServiceCategory = ServicesList._id;
-  //       this.renderPage(ServicesList._id);
-  //       i++;
-  //     }
-  //   });
-  // }
-
-  // clearServiceData() {
-  //   let categoryListIndex = 0;
-  //   this.servicesCategoryList.forEach((categoryList) => {
-  //     let categoryIndex = 0;
-  //     categoryList.products.forEach((categoryData) => {
-  //       let serviceIndex = 0;
-  //       categoryData.items.forEach((serviceData) => {
-  //         this.servicesCategoryList[categoryListIndex]
-  //           .products[categoryIndex]
-  //           .items[serviceIndex]
-  //           .selected = false;
-  //         serviceIndex++;
-  //       });
-  //       categoryIndex++;
-  //     });
-  //     categoryListIndex++;
-  //   });
-  // }
-
-  // swipe(action = this.SWIPE_ACTION.RIGHT, delta) {
-  //   if (isBrowser) {
-  //     let calculateDelta = this.delta + delta;
-  //     let menuSize = 0;
-  //     let allMenuItems = document.querySelectorAll('.nav-pills > li');
-  //     for (let i = 0; i < allMenuItems.length; i++) {
-  //       let menuItem: any = allMenuItems[i];
-  //       menuSize += menuItem.offsetWidth;
-  //     }
-  //     let menuBlockWidth = document.querySelector('.home-tab-bar').clientWidth;
-  //     let allowMargin = (menuSize + 50) - menuBlockWidth;
-  //     if (allowMargin >= 0) {
-  //       allowMargin = -allowMargin;
-  //       if (calculateDelta > 0) {
-  //         this.delta = -15;
-  //       } else {
-  //         if (calculateDelta < allowMargin) {
-  //           if (action === this.SWIPE_ACTION.LEFT && allowMargin !== 0) {
-  //             this.delta = allowMargin;
-  //           }
-  //         } else {
-  //           this.delta = calculateDelta;
-  //         }
-  //       }
-  //     }
-  //   }
-  // }
 
   orderCreated(event) {
     this.servicesData.forEach((service) => {

@@ -7,18 +7,19 @@
   <div class="wizard-container" *ngIf="step === 'preview'">
     <div class="content-container">
       <div class="header">
-        <h1>Mansarda isolamento in cartongesso</h1>
-        <p>Metri quadri 25</p>
-        <p>Struttura mettallica</p>
-        <p>Isolamento termico base</p>
-        <p>Materiale base standard</p>
+        <h1>{{wizardData.title}}</h1>
+        <div *ngFor="let item of wizardData.details">
+          <p>{{item.title}}</p>
+        </div>
       </div>
       <div class="payment">
         <div class="method">
-          <h5>Pagamento: <span>Carta</span></h5>
+          <h5 *ngIf="wizardData.payment_method === 'TRADITIONAL'">Pagamento: <span>Tradizionale</span></h5>
+          <h5 *ngIf="wizardData.payment_method === 'CARD'">Pagamento: <span>Carta</span></h5>
+          <h5 *ngIf="wizardData.payment_method === 'LOAN'">Pagamento: <span>Prestito</span></h5>
         </div>
         <div class="total">
-          <h2><strong>Totale: <span>234€</span></strong></h2>
+          <h2><strong>Totale: <span>{{wizardData.amount/100}}€</span></strong></h2>
         </div>
       </div>
       <div class="actions">
@@ -30,36 +31,49 @@
   </div>
   <div class="wizard-container" *ngIf="step === 'address'">
     <div class="content-container">
-      <div class="header">
-        <h1 class="text-center">Dove si trova la tua abitazione?</h1>
-        <p class="text-center">Inserisci la città e la via della sua abitazione</p>
+      <div class="header noselect">
+        <h1 class="text-center">Dove si trova la sua abitazione?</h1>
+        <p class="text-center">Inserisci l'indirizzo e la città della sua abitazione</p>
       </div>
       <div class="forms">
         <div class="form-group">
-          <p-autoComplete id="luogo" class="form-control" [ngClass]="{'isError':isAddressFull === false && isAddressDirty === true}" [(ngModel)]="Order.delivery_address" [ngModelOptions]="{standalone: true}" [suggestions]="addresses" field="formattedAddress" (completeMethod)="getAddresses($event)" (onSelect)="selectAddress($event)" placeholder="Milano, Italia"></p-autoComplete>
-        </div>
-        <div class="form-group">
-          <p-autoComplete id="street" class="form-control" [ngClass]="{'isError':isAddressFull === false && isAddressDirty === true}" [(ngModel)]="Order.delivery_address" [ngModelOptions]="{standalone: true}" [suggestions]="addresses" field="formattedAddress" (completeMethod)="getAddresses($event)" (onSelect)="selectAddress($event)" placeholder="Via Pirandello 4"></p-autoComplete>
+          <p-autoComplete id="luogo" class="form-control" [(ngModel)]="Order.address.street_number_city" [ngModelOptions]="{standalone: true}" [suggestions]="addresses" field="street_number_city" (completeMethod)="getAddresses($event)" (onSelect)="selectAddress($event)" placeholder="Via Verdi 32, Milano"></p-autoComplete>
         </div>
       </div>
       <div class="actions">
         <div class="form-group">
           <button type="button" id="next" class="btn btn-warning" (click)="setDateOrder()">Continua</button>
-          <p><small>Per favore compila il campo richiesto</small></p>
+          <div [hidden]="">
+            <p><small>Per favore compila il campo richiesto</small></p>
+          </div>
         </div>
       </div>
     </div>
   </div>
   <div class="wizard-container" *ngIf="step === 'date'">
-    <div class="content-container">
+    <div class="content-container noselect">
       <div class="header">
         <h1 class="text-center">Quando vuoi realizare questo lavoro?</h1>
         <p class="text-center">Inserisci la data che vuoi realizzare questo servizio</p>
       </div>
       <div class="forms">
-        <div class="form-group">
-          <!-- <p-calendar name="date" id="date" class="date" autocomplete="off" dateFormat="dd MM yy" [locale]="it" [minDate]="minDate" [maxDate]="maxDate" (onSelect)="selectDate()" placeholder="Inserisci la data"></p-calendar> -->
+        <!-- <div class="form-group calendar-part" [ngClass]="{isError: submitOrder && !Order.date}" *ngIf="isMobileCalendar">
+          <div class="input-group date datepicker-block">
+            <span class="fa fa-calendar-times-o calendar-box"></span>
+            <p-calendar name="dataOra" [(ngModel)]="Order.date" id="dataOraMobile" class="form-control" placeholder="Inserisci la data" autocomplete="off" dateFormat="dd MM yy" readonlyInput="readonlyInput" [locale]="it" [minDate]="minDate" [maxDate]="maxDate" (onSelect)="selectDate()">
+            </p-calendar>
+          </div>
+        </div> -->
+        <div class="form-group calendar-part">
+          <div class="input-group date datepicker-block">
+            <p-calendar name="dataOra" [(ngModel)]="Order.date" id="dataOra" readonlyInput="true" class="form-control" placeholder="Inserisci la data" autocomplete="off" dateFormat="dd MM yy" [locale]="it" [minDate]="minDate" [maxDate]="maxDate" (onSelect)="selectDate()"></p-calendar>
+          </div>
         </div>
+
+
+        <!-- <div class="form-group">
+          <p-calendar name="date" id="date" class="date" readonlyInput="true" autocomplete="off" dateFormat="dd MM yy" [locale]="it" [minDate]="minDate" [maxDate]="maxDate" (onSelect)="selectDate()" placeholder="Inserisci la data"></p-calendar>
+        </div> -->
       </div>
       <div class="actions">
         <div class="form-group">
@@ -72,11 +86,10 @@
   <div class="wizard-container" *ngIf="step === 'order'">
     <div class="content-container">
       <div class="header">
-        <h1>Mansarda isolamento in cartongesso</h1>
-        <p>Metri quadri 25</p>
-        <p>Struttura mettallica</p>
-        <p>Isolamento termico base</p>
-        <p>Materiale base standard</p>
+        <h1>{{wizardData.title}}</h1>
+        <div *ngFor="let item of wizardData.details">
+          <p>{{item.title}}</p>
+        </div>
       </div>
       <div class="address">
         <p><strong>Indirizzo: </strong><span>Via Michelangelo 2, Milano</span></p>
@@ -86,10 +99,12 @@
       </div>
       <div class="payment">
         <div class="method">
-          <h5>Pagamento: <span>Carta</span></h5>
+          <h5 *ngIf="wizardData.payment_method === 'TRADITIONAL'">Pagamento: <span>Tradizionale</span></h5>
+          <h5 *ngIf="wizardData.payment_method === 'CARD'">Pagamento: <span>Carta</span></h5>
+          <h5 *ngIf="wizardData.payment_method === 'LOAN'">Pagamento: <span>Prestito</span></h5>
         </div>
         <div class="total">
-          <h2><strong>Totale: <span>234€</span></strong></h2>
+          <h2><strong>Totale: <span>{{wizardData.amount/100}}€</span></strong></h2>
         </div>
       </div>
       <div class="actions">
@@ -121,6 +136,9 @@
       </div>
     </div>
   </div>
+
+
+  <!-- OLD -->
 
   <div class="wizard-container" *ngIf="wizardData.type !== '' && step === 'confirmation'">
     <div class="image-block" [ngStyle]="{'background-image': 'url(' + wizardData.order.service_image + ')'}"></div>

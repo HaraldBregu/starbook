@@ -67,7 +67,7 @@ export class OrderComponent implements OnInit, OnDestroy {
   public browser = isBrowser;
   public finalPrice = 0;
 
-  public openedTab = 'contanti';
+  public openedTab = 'TRADITIONAL';
   public multiplier = 1;
   public message_0 = "Pagamento tradizionale. Hai la flessibilità di poter pagare il professionista a fine lavori nei modi tradizionali.";
 
@@ -93,15 +93,15 @@ export class OrderComponent implements OnInit, OnDestroy {
 
   changeTab(tab) {
     this.openedTab = tab;
-    if (tab === 'contanti') {
+    if (tab === 'TRADITIONAL') {
       this.multiplier = 1;
       this.message_0 = "Pagamento tradizionale. Hai la flessibilità di poter pagare il professionista a fine lavori nei modi tradizionali.";
     }
-    if (tab === 'carta') {
+    if (tab === 'CARD') {
       this.multiplier = 0.98;
       this.message_0 = "Pagamento con carta. Prezzo garantito e sicuro. Con questa modalità hai diritto di sconti e agevolazioni.";
     }
-    if (tab === 'prestito') {
+    if (tab === 'LOAN') {
       this.multiplier = 0.99;
       this.message_0 = "Puoi richiedere un prestito per il lavoro che ti serve. Consigliamo questa opzione per lavori con un totale più di 2000 euro.";
     }
@@ -116,7 +116,6 @@ export class OrderComponent implements OnInit, OnDestroy {
     // .catch((error) => {
     //   console.log(error);
     // });
-
     return standardPrice/100;
   }
 
@@ -302,6 +301,74 @@ export class OrderComponent implements OnInit, OnDestroy {
     }
   }
 
+  ngOnInit() {
+    this.it = {
+      firstDayOfWeek: 1,
+      dayNames: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+      dayNamesShort: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
+      dayNamesMin: ['Do', 'Lu', 'Ma', 'Me', 'Gi', 'Ve', 'Sa'],
+      monthNames: ['Gennaio', 'Febbraio', 'Marzo', 'Aprile', 'Maggio', 'Giugno',
+        'Luglio', 'Agosto', 'Settembre', 'Ottobre', 'Novembre', 'Dicembre'],
+      monthNamesShort: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+    };
+
+    if (isBrowser) {
+      this.subscription = this.popupsService.getPopupResponse$.subscribe(action => {
+        if (action.type === 'confirm') {
+          this.finalPrice = action.data.price;
+          // this.createOrder();
+        }
+      });
+    }
+
+
+    if(isBrowser) {
+      if (document.querySelector('body').clientWidth > 480) {
+        this.isMobileCalendar = false;
+        this.maxOrderBlockSize = document.body.clientHeight - 450 + 'px';
+      } else {
+        this.isMobileCalendar = true;
+        this.maxOrderBlockSize = 'auto';
+      }
+    }
+  }
+
+  onResize() {
+    if (isBrowser) {
+      if (document.querySelector('body').clientWidth > 480) {
+        this.isMobileCalendar = false;
+        this.maxOrderBlockSize = document.body.clientHeight - 450 + 'px';
+      } else {
+        this.isMobileCalendar = true;
+        this.maxOrderBlockSize = 'auto';
+      }
+    }
+  }
+
+  ngOnDestroy() {
+    if (isBrowser) {
+      this.subscription.unsubscribe();
+    }
+  }
+
+  startWizard() {
+    let wizardData = {
+      service_id: this.orderData.service_id,
+      title: this.orderData.service,
+      details: this.orderData.services,
+      payment_method: this.openedTab,
+      amount: this.multiplier * this.orderData.totalPrice
+    };
+    this.orderService.updateWizardData(wizardData);
+    this.router.navigateByUrl('/order/preview');
+    return false;
+  }
+
+  selectDate() {
+    this.analyticsService.sendEvent({category:'Order creation form', action: 'modify', label: 'select date'});
+  }
+
+  /*
   createOrder() {
     let date = new Date(this.Order.date);
     let userData = localStorage.getItem('auth');
@@ -381,70 +448,5 @@ export class OrderComponent implements OnInit, OnDestroy {
     } else {
       this.popupsService.activate({type: 'login'});
     }
-  }
-
-  ngOnInit() {
-    this.it = {
-      firstDayOfWeek: 1,
-      dayNames: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
-      dayNamesShort: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
-      dayNamesMin: ['Do', 'Lu', 'Ma', 'Me', 'Gi', 'Ve', 'Sa'],
-      monthNames: ['Gennaio', 'Febbraio', 'Marzo', 'Aprile', 'Maggio', 'Giugno',
-        'Luglio', 'Agosto', 'Settembre', 'Ottobre', 'Novembre', 'Dicembre'],
-      monthNamesShort: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
-    };
-
-    if (isBrowser) {
-      this.subscription = this.popupsService.getPopupResponse$.subscribe(action => {
-        if (action.type === 'confirm') {
-          this.finalPrice = action.data.price;
-          this.createOrder();
-        }
-      });
-    }
-
-
-    if(isBrowser) {
-      if (document.querySelector('body').clientWidth > 480) {
-        this.isMobileCalendar = false;
-        this.maxOrderBlockSize = document.body.clientHeight - 450 + 'px';
-      } else {
-        this.isMobileCalendar = true;
-        this.maxOrderBlockSize = 'auto';
-      }
-    }
-  }
-
-  onResize() {
-    if (isBrowser) {
-      if (document.querySelector('body').clientWidth > 480) {
-        this.isMobileCalendar = false;
-        this.maxOrderBlockSize = document.body.clientHeight - 450 + 'px';
-      } else {
-        this.isMobileCalendar = true;
-        this.maxOrderBlockSize = 'auto';
-      }
-    }
-  }
-
-  startWizard() {
-    let wizardData = {
-      order: this.orderData,
-      type: this.openedTab,
-      multiplier: this.multiplier
-    };
-    this.orderService.updateWizardData(wizardData);
-    this.router.navigateByUrl('/order/preview');
-    return false;
-  }
-
-  ngOnDestroy() {
-    if (isBrowser) {
-      this.subscription.unsubscribe();
-    }
-  }
-
-  selectDate() {
-    this.analyticsService.sendEvent({category:'Order creation form', action: 'modify', label: 'select date'});
-  }
+  }*/
 }

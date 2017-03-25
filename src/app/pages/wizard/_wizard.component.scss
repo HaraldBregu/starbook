@@ -369,12 +369,6 @@ app-wizard {
 .wizard-container .content-container .wizard-form .form-group.isError .ui-inputtext {
   border: $wizard-form-input-warning-border;
 }
-.wizard-container .content-container .wizard-form .form-group .date .ui-datepicker .ui-datepicker-prev span, .date .ui-datepicker .ui-datepicker-next span {
-  padding: 3px;
-  width: 30px;
-  height: 25px;
-  text-align: center;
-}
 .wizard-container .content-container .wizard-form .form-group .date .ui-datepicker .ui-datepicker-next {
   right: 10px;
 }
