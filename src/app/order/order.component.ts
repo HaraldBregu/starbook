@@ -30,7 +30,10 @@ export class OrderComponent implements OnInit, OnDestroy {
     country_code: '',
     selected: false,
     isFull: false,
-    formattedAddress: ''
+    // formattedAddress: ''
+    full: '',
+    street_number_city: 'string'
+
   };
   public isAddressOne = false;
   public isAddressFull = false;
