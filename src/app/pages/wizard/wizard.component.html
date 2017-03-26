@@ -24,7 +24,7 @@
       </div>
       <div class="actions">
         <div class="form-group">
-          <button type="button" id="next" class="btn btn-warning" (click)="setAddressOrder()">Continua</button>
+          <button type="button" id="next" class="btn btn-yellow-green" (click)="confirmPreview()">Continua</button>
         </div>
       </div>
     </div>
@@ -37,14 +37,14 @@
       </div>
       <div class="forms">
         <div class="form-group">
-          <p-autoComplete id="luogo" class="form-control" [(ngModel)]="Order.address.street_number_city" [ngModelOptions]="{standalone: true}" [suggestions]="addresses" field="street_number_city" (completeMethod)="getAddresses($event)" (onSelect)="selectAddress($event)" placeholder="Via Verdi 32, Milano"></p-autoComplete>
+          <p-autoComplete id="luogo" class="form-control" (clickOutside)="clickOutsideAddressInput()" [(ngModel)]="temp_address" [ngModelOptions]="{standalone: true}" [suggestions]="addresses" field="street_number_city" (completeMethod)="getAddresses($event)" (onSelect)="selectAddress($event)" placeholder="Inserisci indirizzo"></p-autoComplete>
         </div>
       </div>
       <div class="actions">
         <div class="form-group">
-          <button type="button" id="next" class="btn btn-warning" (click)="setDateOrder()">Continua</button>
-          <div [hidden]="">
-            <p><small>Per favore compila il campo richiesto</small></p>
+          <button type="button" id="next" class="btn btn-yellow-green" (click)="confirmAddress()">Continua</button>
+          <div [hidden]="temp_address_check.hidden">
+            <p><small>{{temp_address_check.message}}</small></p>
           </div>
         </div>
       </div>
@@ -57,28 +57,25 @@
         <p class="text-center">Inserisci la data che vuoi realizzare questo servizio</p>
       </div>
       <div class="forms">
-        <!-- <div class="form-group calendar-part" [ngClass]="{isError: submitOrder && !Order.date}" *ngIf="isMobileCalendar">
+        <div class="form-group calendar-part" [ngClass]="{isError: submitOrder && !Order.date}">
           <div class="input-group date datepicker-block">
             <span class="fa fa-calendar-times-o calendar-box"></span>
             <p-calendar name="dataOra" [(ngModel)]="Order.date" id="dataOraMobile" class="form-control" placeholder="Inserisci la data" autocomplete="off" dateFormat="dd MM yy" readonlyInput="readonlyInput" [locale]="it" [minDate]="minDate" [maxDate]="maxDate" (onSelect)="selectDate()">
             </p-calendar>
           </div>
-        </div> -->
-        <div class="form-group calendar-part">
-          <div class="input-group date datepicker-block">
-            <p-calendar name="dataOra" [(ngModel)]="Order.date" id="dataOra" readonlyInput="true" class="form-control" placeholder="Inserisci la data" autocomplete="off" dateFormat="dd MM yy" [locale]="it" [minDate]="minDate" [maxDate]="maxDate" (onSelect)="selectDate()"></p-calendar>
-          </div>
         </div>
-
-
-        <!-- <div class="form-group">
-          <p-calendar name="date" id="date" class="date" readonlyInput="true" autocomplete="off" dateFormat="dd MM yy" [locale]="it" [minDate]="minDate" [maxDate]="maxDate" (onSelect)="selectDate()" placeholder="Inserisci la data"></p-calendar>
+        <!-- <div class="form-group calendar-part">
+          <div class="input-group date datepicker-block">
+            <p-calendar name="data" [(ngModel)]="temp_date" id="data" class="date" autocomplete="off" readonlyInput="true" dateFormat="dd MM yy" [locale]="it" [minDate]="minDate" [maxDate]="maxDate" (onSelect)="selectDate()" placeholder="Inserisci la data"></p-calendar>
+          </div>
         </div> -->
       </div>
       <div class="actions">
         <div class="form-group">
-          <button type="button" id="next" class="btn btn-warning" (click)="showPreviewOrder()">Continua</button>
-          <p><small>Per favore compila il campo richiesto</small></p>
+          <button type="button" id="next" class="btn btn-yellow-green" (click)="confirmDate()">Continua</button>
+          <div [hidden]="temp_date_check.hidden">
+            <p><small>{{temp_date_check.message}}</small></p>
+          </div>
         </div>
       </div>
     </div>
@@ -109,7 +106,7 @@
       </div>
       <div class="actions">
         <div class="form-group">
-          <button type="button" id="next" class="btn btn-warning" (click)="saveOrder()">Invia ordine</button>
+          <button type="button" id="next" class="btn btn-yellow-green" (click)="confirmOrder()">Invia ordine</button>
         </div>
       </div>
       <div class="footer">
@@ -131,7 +128,7 @@
       </div>
       <div class="actions">
         <div class="form-group">
-          <button type="button" id="next" class="btn btn-warning" (click)="finish()">Fatto</button>
+          <button type="button" id="next" class="btn btn-yellow-green" (click)="confirmEnd()">Fatto</button>
         </div>
       </div>
     </div>

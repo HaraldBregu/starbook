@@ -176,8 +176,7 @@ export class OrderService {
           // }
         });
         return addresses;
-      })
-      .catch(this.handleError);
+      }).catch(this.handleError);
   }
 
   getEstimatePrice(data) {

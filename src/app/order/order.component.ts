@@ -273,37 +273,6 @@ export class OrderComponent implements OnInit, OnDestroy {
     //     });
   }*/
 
-  showPreviewOrder() {
-    if (this.Order.date && this.orderIsFull && this.isAddressFull && this.orderData.order_options.min_amount <= this.orderData.totalPrice) {
-      let date = new Date(this.Order.date);
-      let day = date.getDate() > 9 ? date.getDate() : '0' + date.getDate();
-      let orderInformation = {
-        date: day + ' ' + this.it.monthNames[date.getMonth()] + ' ' + date.getFullYear(),
-        time: this.Order.time,
-        address: this.Order.street + ', ' + this.Order.street_number + ', ' + this.Order.city,
-        description: this.Order.delivery_description
-      };
-      if (localStorage.getItem('auth') === null) {
-        this.popupsService.activate({type: 'loginFromOrder', data: {orderData: this.orderData, information: orderInformation}});
-      } else {
-        let date = new Date(this.Order.date);
-        let day = date.getDate() > 9 ? date.getDate() : '0' + date.getDate();
-        let correctMonth = 1 + date.getMonth();
-        let month = correctMonth > 9 ? correctMonth : '0' + correctMonth;
-
-        let queryPriceData = {
-          service_id: this.orderData.service_id,
-          country_code: this.Order.country_code,
-          postal_code: this.Order.postal_code,
-          start_date: date.getFullYear() + '-' + month + '-' + day + 'T' + '08:00' + ':00.000Z',
-          amount: this.orderData.totalPrice.toString()
-        };
-
-        this.popupsService.activate({type: 'confirmNewOrder', data: {orderData: this.orderData, information: orderInformation, queryPrice: queryPriceData}});
-      }
-    }
-  }
-
   ngOnInit() {
     this.it = {
       firstDayOfWeek: 1,
@@ -372,6 +341,37 @@ export class OrderComponent implements OnInit, OnDestroy {
   }
 
   /*
+  showPreviewOrder() {
+    if (this.Order.date && this.orderIsFull && this.isAddressFull && this.orderData.order_options.min_amount <= this.orderData.totalPrice) {
+      let date = new Date(this.Order.date);
+      let day = date.getDate() > 9 ? date.getDate() : '0' + date.getDate();
+      let orderInformation = {
+        date: day + ' ' + this.it.monthNames[date.getMonth()] + ' ' + date.getFullYear(),
+        time: this.Order.time,
+        address: this.Order.street + ', ' + this.Order.street_number + ', ' + this.Order.city,
+        description: this.Order.delivery_description
+      };
+      if (localStorage.getItem('auth') === null) {
+        this.popupsService.activate({type: 'loginFromOrder', data: {orderData: this.orderData, information: orderInformation}});
+      } else {
+        let date = new Date(this.Order.date);
+        let day = date.getDate() > 9 ? date.getDate() : '0' + date.getDate();
+        let correctMonth = 1 + date.getMonth();
+        let month = correctMonth > 9 ? correctMonth : '0' + correctMonth;
+
+        let queryPriceData = {
+          service_id: this.orderData.service_id,
+          country_code: this.Order.country_code,
+          postal_code: this.Order.postal_code,
+          start_date: date.getFullYear() + '-' + month + '-' + day + 'T' + '08:00' + ':00.000Z',
+          amount: this.orderData.totalPrice.toString()
+        };
+
+        this.popupsService.activate({type: 'confirmNewOrder', data: {orderData: this.orderData, information: orderInformation, queryPrice: queryPriceData}});
+      }
+    }
+  }
+
   createOrder() {
     let date = new Date(this.Order.date);
     let userData = localStorage.getItem('auth');

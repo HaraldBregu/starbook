@@ -278,23 +278,10 @@ $footer-links-text-letter-spacing: 0.08px;
   margin-bottom: 0;
 }
 .order-content .form-group .btn.btn-warning {
-  display: block;
-  float: left;
-  position: relative;
   width: 100%;
-  height: 45px;
-  background-color: $sidebar-content-btn-background-color;
-  border-radius: 0;
-  border: none;
-  outline: none;
-  margin: 0;
-  padding: 12px 0;
-  text-align: center;
-  font-family: $font-name;
+  height: 50px;
   font-size: $sidebar-content-btn-text-size;
-  color: $sidebar-content-btn-text-color;
-  letter-spacing: $sidebar-content-btn-text-letter-spacing;
-  cursor: pointer;
+  color: black;
 }
 // .order-content .notice {
 //   display: block;

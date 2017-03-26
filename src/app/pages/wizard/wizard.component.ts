@@ -13,22 +13,6 @@ import { isBrowser } from "angular2-universal";
   templateUrl: './wizard.component.html'
 })
 export class WizardComponent implements OnInit {
-  public Order = {
-    service_id: '',
-    details: [],
-    date: null,
-    address: {
-      street: '',
-      street_number: null,
-      city: '',
-      postal_code: null,
-      province: '',
-      country: '',
-      country_code: '',
-      full: ''
-    },
-    payment: {amount: 0, currency: '', method: ''}
-  };
   public wizardData: any = {
     order: {
       service: '',
@@ -39,10 +23,6 @@ export class WizardComponent implements OnInit {
     multiplier: ''
   };
   public it: any;
-  public minDate = new Date(new Date().getTime() + 24 * 60 * 60 * 1000);
-  public maxDate = new Date(new Date().getTime() + (24*21) * 60 * 60 * 1000);
-  public isAddressDirty = false;
-  public isAddressFull = false;
   public addresses = [];
   public selectedAddress: IAddress = {
     street: '',
@@ -58,7 +38,6 @@ export class WizardComponent implements OnInit {
     street_number_city: ''
   };
   public errorMessage = null;
-  public isDataError = false;
   public isLoading = false;
   public createOrderDisabled = false;
   public emailPattern: any;
@@ -135,25 +114,95 @@ export class WizardComponent implements OnInit {
   public wizardDataItems = ['Anteprima', 'Indirizzo', 'Data', 'Ordine', 'Fine'];
   public formError: boolean|{title: string, message: string} = false;
   public step = '';
+  public userData = null;
 
-  public saveState = {
-    order: this.Order,
-    currentStep: this.step,
-    wizardData: this.wizardData,
-    items: this.wizardDataItems,
-    isAddressFull: this.isAddressFull,
-    selectedAddress: this.selectedAddress
+  public Order = {
+    service_id: '',
+    details: [],
+    date: null,
+    address: {
+      street: '',
+      street_number: null,
+      city: '',
+      postal_code: null,
+      province: '',
+      country: '',
+      country_code: '',
+      full: ''
+    },
+    payment: {amount: 0, currency: '', method: ''}
   };
 
-  constructor(private router: Router, private route: ActivatedRoute, private analyticsService: AnalyticsService, private orderService: OrderService,
-              private authService: AuthService, private navigationService: NavigationService,
-              private paymentService: PaymentService, private profileService: ProfileService ) {
+  ///////////////////////////////
+  //// CONFIRM ADDRESS //////////
+  ///////////////////////////////
+  public address = {
+    street: null,
+    street_number: null,
+    city: null,
+    postal_code: null,
+    province: null,
+    country: null,
+    country_code: null
+  };
+  public temp_address;
+  public temp_address_street_number_city;
+  public temp_address_check = {
+    hidden: true,
+    message: "Per favore compila il campo richiesto",
+    full: false
+  };
+
+  ////////////////////////////
+  //// CONFIRM DATE //////////
+  ////////////////////////////
+  public date = null;
+  public temp_date = null;
+  public minDate = new Date(new Date().getTime() + 24 * 60 * 60 * 1000);
+  public maxDate = new Date(new Date().getTime() + (24*28) * 60 * 60 * 1000);
+  public temp_date_check = {
+    hidden: true,
+    message: "Per favore compila il campo richiesto",
+    full: false
+  };
+
+
+  // public saveState = {
+  //   order: this.Order,
+  //   currentStep: this.step,
+  //   wizardData: this.wizardData,
+  //   items: this.wizardDataItems,
+  //   isAddressFull: this.isAddressFull,
+  //   selectedAddress: this.selectedAddress
+  // };
+
+
+  constructor(private router: Router, private route: ActivatedRoute, private analyticsService: AnalyticsService, private orderService: OrderService, private authService: AuthService, private navigationService: NavigationService, private paymentService: PaymentService, private profileService: ProfileService ) {
+
+    // console.log(this.temp_address_check.hidden);
+    // console.log(this.temp_address.selected);
+    // console.log(this.temp_address.city);
+    // console.log(this.temp_address.street);
     this.wizardData = this.orderService.getWizardData();
+    // if (!localStorage.getItem('wizard')) {
+    //   localStorage.setItem('wizard', JSON.stringify(this.wizardData));
+    // } else {
+    //   if ((localStorage.getItem('wizard') === JSON.stringify(this.wizardData))) {
+    //     // this.wizardData = localStorage.getItem('wizard');
+    //   }
+    // }
     // console.log('wizarddata: ' + JSON.stringify(this.wizardData));
-    let recovery = null;
-    if (isBrowser) {
-      recovery = localStorage.getItem('wizard');
-    }
+    // let recovery = null;
+    // if (isBrowser) {
+    //   recovery = localStorage.getItem('wizard');
+    // }
+    // console.log('recovery: ' + recovery);
+    //
+    // if (localStorage.getItem('auth')) {
+    //   this.userData = localStorage.getItem('auth');
+    //   // console.log('userData: ' + this.userData);
+    // }
+
 
     // if (this.wizardData.type !== '' || recovery !== null) {
     //   let userData = localStorage.getItem('auth');
@@ -208,30 +257,23 @@ export class WizardComponent implements OnInit {
   ngOnInit() {
     this.route.params.subscribe((params: Params) => {
       this.step = params['step']
-
       if (this.step === 'preview') {
         this.navigationService.updateMessage("Anteprima servizio");
         window.scrollTo(0, 0);
-
       } else if (this.step === 'address') {
         this.navigationService.updateMessage("Inserisci l'indirizzo");
         window.scrollTo(0, 0);
-
       } else if (this.step === 'date') {
         this.navigationService.updateMessage("Inserisci la data");
         window.scrollTo(0, 0);
-
       } else if (this.step === 'order') {
         this.navigationService.updateMessage("Anteprima ordine");
         window.scrollTo(0, 0);
-
       } else if (this.step === 'end') {
         this.navigationService.updateMessage("Ordine effetuato");
         window.scrollTo(0, 0);
-
       } else {
-        // this.router.navigate(['/']);
-        this.router.navigate(['services', this.wizardData.order.service]);
+        this.router.navigate(['services', this.wizardData.service_id]);
       }
     })
 
@@ -246,56 +288,54 @@ export class WizardComponent implements OnInit {
     };
   }
 
-  setAddressOrder() {
-    this.router.navigate(['order/address']);
-  }
-
-  setDateOrder() {
-    this.router.navigate(['order/date']);
-  }
-
-  showPreviewOrder() {
-    this.router.navigate(['order/order']);
-  }
-
-  saveOrder() {
-    this.router.navigate(['order/end']);
-  }
-
-  finish() {
-    this.router.navigate(['']);
-  }
-
   ngAfterViewChecked() {
-    // window.scrollTo(0, 0);
+
   }
 
   ngOnDestroy() {
 
   }
 
-  saveCurrentState() {
-    this.saveState = {
-      order: this.Order,
-      currentStep: this.step,
-      wizardData: this.wizardData,
-      items: this.wizardDataItems,
-      isAddressFull: this.isAddressFull,
-      selectedAddress: this.selectedAddress
-    };
+  // saveCurrentState() {
+  //   this.saveState = {
+  //     order: this.Order,
+  //     currentStep: this.step,
+  //     wizardData: this.wizardData,
+  //     items: this.wizardDataItems,
+  //     isAddressFull: this.isAddressFull,
+  //     selectedAddress: this.selectedAddress
+  //   };
+  //   localStorage.setItem('wizard', JSON.stringify(this.saveState));
+  // }
 
-    localStorage.setItem('wizard', JSON.stringify(this.saveState));
+
+
+
+  ///////////////////////////////
+  //// CONFIRM PREVIEW //////////
+  ///////////////////////////////
+  confirmPreview() {
+    this.router.navigate(['order/address']);
   }
 
-  selectDate() {
-    this.isDataError = false;
-    this.analyticsService.sendEvent({category:'Order creation form', action: 'modify', label: 'select date'});
-    this.saveCurrentState();
+  ///////////////////////////////
+  //// CONFIRM ADDRESS //////////
+  ///////////////////////////////
+  confirmAddress() {
+    if (!this.temp_address_check.full) {
+      this.temp_address_check.hidden = false;
+      return;
+    }
+    this.router.navigate(['order/date']);
   }
-
   getAddresses(event) {
-    this.isAddressDirty = true;
-    this.isAddressFull = false;
+    if (this.temp_address_street_number_city !== event.query) {
+      this.temp_address_check.full = false;
+      this.temp_address_check.message = "Per favore inserisci un indirizzo corretto";
+    } else {
+      this.temp_address_check.full = true;
+      this.temp_address_check.message = "Per favore compila il campo richiesto";
+    }
     this.orderService.getAddresses(event.query).then((addresses) => {
       this.addresses = [];
       this.addresses = addresses;
@@ -303,22 +343,67 @@ export class WizardComponent implements OnInit {
       // console.log(error);
     });
   }
-
   selectAddress(value) {
     this.analyticsService.sendEvent({category:'Order creation wizard', action: 'modify', label: 'select address'});
-    if (value.isFull) {
-      this.isAddressFull = true;
-    } else {
-      this.isAddressFull = false;
-    }
-    this.selectedAddress = value;
-    console.log('Selected address: ' + JSON.stringify(value));
-    this.saveCurrentState();
+    this.address.street = value.street;
+    this.address.street_number = value.street_number;
+    this.address.city = value.city;
+    this.address.postal_code = value.postal_code;
+    this.address.province = value.province;
+    this.address.country = value.country;
+    this.address.country_code = value.country_code;
+    this.temp_address_check.hidden = true;
+    this.temp_address_check.full = true;
+    this.temp_address_check.message = "Per favore compila il campo richiesto";
+    this.temp_address_street_number_city = this.temp_address.street_number_city;
   }
+  clickOutsideAddressInput() {
+    if (this.temp_address_check.full === false) {
+      this.temp_address = null;
+    }
+  }
+
+  ////////////////////////////
+  //// CONFIRM DATE //////////
+  ////////////////////////////
+  confirmDate() {
+    if (this.temp_date_check.full === false) {
+      this.temp_date_check.full = false;
+      this.temp_date_check.hidden = false;
+      return;
+    }
+    this.router.navigate(['order/order']);
+  }
+  selectDate() {
+    this.analyticsService.sendEvent({category:'Order creation form', action: 'modify', label: 'select date'});
+    let date = new Date(this.temp_date);
+    let day = date.getDate() > 9 ? date.getDate() : '0' + date.getDate();
+    let correctMonth = 1 + date.getMonth();
+    let month = correctMonth > 9 ? correctMonth : '0' + correctMonth;
+    this.date = date.getFullYear() + '-' + month + '-' + day + 'T' + '08:00' + ':00.000Z';
+    this.temp_date_check.full = true;
+    this.temp_date_check.hidden = true;
+  }
+
+  /////////////////////////////
+  //// CONFIRM ORDER //////////
+  /////////////////////////////
+  confirmOrder() {
+    this.router.navigate(['order/end']);
+  }
+
+  ///////////////////////////
+  //// CONFIRM END //////////
+  ///////////////////////////
+  confirmEnd() {
+    this.router.navigate(['']);
+  }
+
+
 
   createOrder() {
     this.errorMessage = null;
-    if (this.Order.date && this.isAddressFull) {
+    if (this.Order.date) {
       let userData = localStorage.getItem('auth');
       this.prepareOrderData();
       let parserUserData = JSON.parse(userData);
@@ -341,7 +426,7 @@ export class WizardComponent implements OnInit {
             // this.router.navigate(['services', this.wizardData.order.service]);
             this.createOrderDisabled = false;
             this.step = 'success';
-            this.saveCurrentState();
+            // this.saveCurrentState();
           }
         }).catch((errorData) => {
           if (this.wizardData.type === 'contanti') {
@@ -350,7 +435,7 @@ export class WizardComponent implements OnInit {
             let error = errorData.json();
             this.errorMessage = error.message;
             this.step = 'addcard';
-            this.saveCurrentState();
+            // this.saveCurrentState();
 
             if (errorData.status === 400) {
               // No customer, deleted customer,
@@ -369,25 +454,19 @@ export class WizardComponent implements OnInit {
       } else if (userData !== null && (!parserUserData['phone_number'] || parserUserData['phone_number'].length == 0)) {
         // user has no phone
         this.step = 'confirm-user-info';
-        this.saveCurrentState();
+        // this.saveCurrentState();
       } else if (userData === null && (this.wizardData.type === 'contanti' || this.wizardData.type === 'carta')) {
         this.step = 'registration';
-        this.saveCurrentState();
+        // this.saveCurrentState();
       } else if (this.wizardData.type === 'prestito') {
         this.step = 'loan';
-        this.saveCurrentState();
+        // this.saveCurrentState();
       }
 
     } else {
-      if (this.Order.date === null) {
-        this.isDataError = true;
-      }
-      if (!this.isAddressFull) {
-        this.isAddressDirty = true;
-      }
     }
 
-    this.saveCurrentState();
+    // this.saveCurrentState();
   }
 
   success() {
@@ -396,7 +475,7 @@ export class WizardComponent implements OnInit {
   }
 
   prepareOrderData() {
-    this.saveCurrentState();
+    // this.saveCurrentState();
     let date = new Date(this.Order.date);
     let day = date.getDate() > 9 ? date.getDate() : '0' + date.getDate();
     let correctMonth = 1 + date.getMonth();
@@ -449,7 +528,7 @@ export class WizardComponent implements OnInit {
   }
 
   registration() {
-    this.saveCurrentState();
+    // this.saveCurrentState();
     this.formError = false;
     if (this.registrationData.firstname.length > 0 &&
       this.registrationData.lastname.length > 0 &&
@@ -467,14 +546,14 @@ export class WizardComponent implements OnInit {
 
             if (!parsedData['phone_number'] || parsedData['phone_number'].length == 0) {
               this.step = 'confirm-user-info';
-              this.saveCurrentState();
+              // this.saveCurrentState();
             } else {
               if (this.wizardData.type === 'contanti') {
                 this.createOrder();
               }
               if (this.wizardData.type === 'carta') {
                 this.step = 'addcard';
-                this.saveCurrentState();
+                // this.saveCurrentState();
               }
               if (this.wizardData.type === 'prestito') {
                 // redirect to outside
@@ -519,16 +598,16 @@ export class WizardComponent implements OnInit {
 
   openLogin() {
     this.step = 'login';
-    this.saveCurrentState();
+    // this.saveCurrentState();
   }
 
   openRegistration() {
     this.step = 'registration';
-    this.saveCurrentState();
+    // this.saveCurrentState();
   }
 
   login() {
-    this.saveCurrentState();
+    // this.saveCurrentState();
     this.formError = false;
     if (this.emailPattern.test(this.loginData.email) && this.loginData.password.length > 3) {
       this.isLoading = true;
@@ -543,7 +622,7 @@ export class WizardComponent implements OnInit {
 
             if (!parsedData['phone_number'] || parsedData['phone_number'].length == 0) {
               this.step = 'confirm-user-info';
-              this.saveCurrentState();
+              // this.saveCurrentState();
             } else {
               if (this.wizardData.type === 'contanti') {
                 this.createOrder();
@@ -586,7 +665,7 @@ export class WizardComponent implements OnInit {
   }
 
   addCard() {
-    this.saveCurrentState();
+    // this.saveCurrentState();
     this.formError= false;
     let error = false;
     if (this.addCardData.number.length === 0) {
@@ -645,7 +724,7 @@ export class WizardComponent implements OnInit {
         this.registrationData.phone = this.loanData.phone;
         this.loanData.isFull = true;
         this.step = 'registration';
-        this.saveCurrentState();
+        // this.saveCurrentState();
       }
     } else {
       this.checkNonEmpty('loanName', this.loanData.name);
@@ -862,10 +941,10 @@ export class WizardComponent implements OnInit {
             if(!parsedUserData['phone_number'] || parsedUserData['phone_number'].length == 0) {
               // show phone number field - required
               this.step = 'confirm-user-info';
-              this.saveCurrentState();
+              // this.saveCurrentState();
             } else {
               // success
-              this.saveCurrentState();
+              // this.saveCurrentState();
               this.analyticsService.sendTiming({category: 'Wizard registration', timingVar: 'save', timingValue: Date.now() - timeStart});
               this.isLoading = false;
               this.navigationService.updatePersonalMenu(userData);
@@ -875,7 +954,7 @@ export class WizardComponent implements OnInit {
               }
               if (this.wizardData.type === 'carta') {
                 this.step = 'addcard';
-                this.saveCurrentState();
+                // this.saveCurrentState();
               }
               if (this.wizardData.type === 'prestito') {
                 // redirect to outside
@@ -896,7 +975,7 @@ export class WizardComponent implements OnInit {
   }
 
   confirmUserInfo() {
-    this.saveCurrentState();
+    // this.saveCurrentState();
     this.formError = false;
     if (this.confirmationData.phone.length > 9) {
       let userData = JSON.parse(localStorage.getItem('auth'));
@@ -909,7 +988,7 @@ export class WizardComponent implements OnInit {
             localStorage.setItem('auth', JSON.stringify(userData));
             this.isLoading = false;
             this.step = 'success';
-            this.saveCurrentState();
+            // this.saveCurrentState();
           })
           .catch((error) => {
             this.isLoading = false;

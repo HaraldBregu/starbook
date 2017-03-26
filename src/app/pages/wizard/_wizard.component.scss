@@ -557,6 +557,7 @@ app-wizard {
 }
 .content-container .forms {
   padding: 20px 0;
+  height: 70px;
   .form-group .ui-inputtext {
     text-align: center;
   }
@@ -565,7 +566,7 @@ app-wizard {
   width: 100%;
   text-align: center;
   padding: 20px 0;
-  .btn-warning {
+  .btn-yellow-green {
     width: 100%;
     font-size: 26px;
     color: white;
