@@ -322,7 +322,7 @@ export class WizardComponent implements OnInit {
   //// CONFIRM ADDRESS //////////
   ///////////////////////////////
   confirmAddress() {
-    if (!this.temp_address_check.full) {
+    if (!this.temp_address_check.full || this.temp_address.length === 0 ) {
       this.temp_address_check.hidden = false;
       return;
     }
@@ -332,6 +332,9 @@ export class WizardComponent implements OnInit {
     if (this.temp_address_street_number_city !== event.query) {
       this.temp_address_check.full = false;
       this.temp_address_check.message = "Per favore inserisci un indirizzo corretto";
+    } else if (!this.temp_address || this.temp_address === "") {
+      this.temp_address_check.full = false;
+      this.temp_address_check.message = "Per favore compila il campo richiesto";
     } else {
       this.temp_address_check.full = true;
       this.temp_address_check.message = "Per favore compila il campo richiesto";
