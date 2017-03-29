@@ -2,24 +2,24 @@
   <ul class="breadcrumb noselect">
     <li *ngFor="let items of wizardDataItems"
         [ngStyle]="{'width': 100/wizardDataItems.length + '%'}"
-        [ngClass]="{'active': (step === 'preview' && items === 'Anteprima') || (step === 'address' && items === 'Indirizzo') || (step === 'date' && items === 'Data') || (step === 'order' && items === 'Ordine') || (step === 'end' && items === 'Fine')}"><a>{{items}}</a></li>
+        [ngClass]="{'active': (step === 'summary' && items === 'Sommario') || (step === 'address' && items === 'Indirizzo') || (step === 'date' && items === 'Data') || ((step === 'preview' || step === 'login' || step === 'signup' || step === 'card') && items === 'Anteprima') || ((step === 'end' || step === 'info') && items === 'Fine')}"><a>{{items}}</a></li>
   </ul>
-  <div class="wizard-container" *ngIf="step === 'preview'">
+  <div class="wizard-container" *ngIf="step === 'summary'">
     <div class="content-container">
       <div class="header">
-        <h1>{{wizardData.title}}</h1>
-        <div *ngFor="let item of wizardData.details">
+        <h1>{{Order.title}}</h1>
+        <div *ngFor="let item of Order.details">
           <p>{{item.title}}</p>
         </div>
       </div>
       <div class="payment">
         <div class="method">
-          <h5 *ngIf="wizardData.payment_method === 'TRADITIONAL'">Pagamento: <span>Tradizionale</span></h5>
-          <h5 *ngIf="wizardData.payment_method === 'CARD'">Pagamento: <span>Carta</span></h5>
-          <h5 *ngIf="wizardData.payment_method === 'LOAN'">Pagamento: <span>Prestito</span></h5>
+          <h5 *ngIf="Order.payment.method === 'TRADITIONAL'">Pagamento: <span>Tradizionale</span></h5>
+          <h5 *ngIf="Order.payment.method === 'CARD'">Pagamento: <span>Carta</span></h5>
+          <h5 *ngIf="Order.payment.method === 'LOAN'">Pagamento: <span>Prestito</span></h5>
         </div>
         <div class="total">
-          <h2><strong>Totale: <span>{{wizardData.amount/100}}€</span></strong></h2>
+          <h2><strong>Totale: <span>{{Order.payment.amount/100}}€</span></strong></h2>
         </div>
       </div>
       <div class="actions">
@@ -37,15 +37,15 @@
       </div>
       <div class="forms">
         <div class="form-group">
-          <p-autoComplete id="luogo" class="form-control" (clickOutside)="clickOutsideAddressInput()" [(ngModel)]="temp_address" [ngModelOptions]="{standalone: true}" [suggestions]="addresses" field="street_number_city" (completeMethod)="getAddresses($event)" (onSelect)="selectAddress($event)" placeholder="Inserisci indirizzo"></p-autoComplete>
+          <p-autoComplete id="luogo" class="form-control" [(ngModel)]="temp_address" (clickOutside)="clickOutsideAddressInput()" [ngModelOptions]="{standalone: true}" [suggestions]="addresses" field="street_number_city" (completeMethod)="getAddresses($event)" (onSelect)="selectAddress($event)" placeholder="Inserisci indirizzo"></p-autoComplete>
         </div>
       </div>
       <div class="actions">
+        <div [hidden]="temp_address_check.hidden">
+          <p><small>{{temp_address_check.message}}</small></p>
+        </div>
         <div class="form-group">
           <button type="button" id="next" class="btn btn-yellow-green" (click)="confirmAddress()">Continua</button>
-          <div [hidden]="temp_address_check.hidden">
-            <p><small>{{temp_address_check.message}}</small></p>
-          </div>
         </div>
       </div>
     </div>
@@ -64,19 +64,191 @@
         </div>
       </div>
       <div class="actions">
+        <div [hidden]="temp_date_check.hidden">
+          <p><small>{{temp_date_check.message}}</small></p>
+        </div>
         <div class="form-group">
           <button type="button" id="next" class="btn btn-yellow-green" (click)="confirmDate()">Continua</button>
-          <div [hidden]="temp_date_check.hidden">
-            <p><small>{{temp_date_check.message}}</small></p>
-          </div>
         </div>
       </div>
     </div>
   </div>
-  <div class="wizard-container" *ngIf="step === 'order'">
+  <div class="wizard-container" *ngIf="step === 'preview'">
+    <div class="content-container noselect">
+      <div class="header">
+        <h1>{{Order.title}}</h1>
+        <div *ngFor="let item of Order.details">
+          <p>{{item.title}}</p>
+        </div>
+      </div>
+      <div class="address">
+        <p><strong>Indirizzo: </strong><span>{{Order.address.street}} {{Order.address.street_number}}, {{Order.address.city}}</span></p>
+      </div>
+      <div class="date">
+        <p><strong>Data: </strong><span>{{formated_date}}</span></p>
+      </div>
+      <div class="payment">
+        <div class="method">
+          <h5 *ngIf="Order.payment.method === 'TRADITIONAL'">Pagamento: <span>Tradizionale</span></h5>
+          <h5 *ngIf="Order.payment.method === 'CARD'">Pagamento: <span>Carta</span></h5>
+          <h5 *ngIf="Order.payment.method === 'LOAN'">Pagamento: <span>Prestito</span></h5>
+        </div>
+        <div class="total">
+          <h2><strong>Totale: <span>{{Order.payment.amount/100}}€</span></strong></h2>
+        </div>
+      </div>
+      <div class="messages" [hidden]="!order_status.error_message">
+        <p><small>{{order_status.error_message}}</small></p>
+        <div *ngIf="order_status.payment_error_message">
+          <p><small>{{order_status.payment_error_message}} <a routerlink="profile/payment" ng-reflect-router-link="profile/payment" ng-reflect-href="profile/payment" href="/profile/payment" target="_blank">metodo di pagamento</a></small></p>
+        </div>
+      </div>
+      <div class="actions">
+        <div class="form-group">
+          <button type="button" id="next" class="btn btn-yellow-green" (click)="confirmOrder()"><i class="fa fa-circle-o-notch animate" *ngIf="order_status.loading"></i>{{order_status.button_title}}</button>
+        </div>
+      </div>
+      <div class="footer">
+        <h6 *ngIf="Order.payment.method === 'TRADITIONAL'"><small>Carta: Il pagamento con la carta viene effetutato per dare una garanzia al professionista che la lavorazione richiesta verra pagata regolarmente.
+        In caso l’ordine verra annullato o per diversi imprevisti ricevera 100% rimborso.</small></h6>
+        <h6 *ngIf="Order.payment.method === 'CARD'"><small>Carta: Il pagamento con la carta viene effetutato per dare una garanzia al professionista che la lavorazione richiesta verra pagata regolarmente.
+        In caso l’ordine verra annullato o per diversi imprevisti ricevera 100% rimborso.</small></h6>
+        <h6 *ngIf="Order.payment.method === 'LOAN'"><small>Carta: Il pagamento con la carta viene effetutato per dare una garanzia al professionista che la lavorazione richiesta verra pagata regolarmente.
+        In caso l’ordine verra annullato o per diversi imprevisti ricevera 100% rimborso.</small></h6>
+      </div>
+    </div>
+  </div>
+  <div class="wizard-container" *ngIf="step === 'end'">
     <div class="content-container">
       <div class="header">
-        <h1>{{wizardData.title}}</h1>
+        <h1 class="text-center">Complimenti!</h1>
+        <h1 class="text-center">Ordine effettuato con successo!</h1>
+        <p class="text-center">La contatteremo per ulteriori informazioni in caso di mancanza dati.</p>
+      </div>
+      <div class="messages">
+        <div class="success-icon"><span></span></div>
+      </div>
+      <div class="actions">
+        <div class="form-group">
+          <button type="button" id="next" class="btn btn-yellow-green" (click)="confirmEnd()">Fatto</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="wizard-container" *ngIf="step === 'login'">
+    <div class="content-container noselect">
+      <div class="header noselect">
+        <h1>Accedi al tuo account</h1>
+      </div>
+      <form>
+        <div class="form-group">
+          <label for="emailInput">Email</label>
+          <input type="email" placeholder="La tua mail" class="form-control" [ngClass]="{'error-input': login_state.email_error}" id="emailInput" [(ngModel)]="loginParameters.email" [ngModelOptions]="{standalone: true}">
+          <small class="error-message" *ngIf="login_state.email_error">{{login_state.email_error}}</small>
+        </div>
+        <div class="form-group">
+          <label for="passwordInput">Password</label>
+          <input type="password" placeholder="Password" class="form-control" [ngClass]="{'error-input': login_state.password_error}" id="passwordInput" [(ngModel)]="loginParameters.password" [ngModelOptions]="{standalone: true}">
+          <small class="error-message" *ngIf="login_state.password_error">{{login_state.password_error}}</small>
+        </div>
+      </form>
+      <div class="messages" [hidden]="!login_state.error_message">
+        <p><small>{{login_state.error_message}}</small></p>
+      </div>
+      <div class="messages" [hidden]="!facebook_state.error_message">
+        <p><small>{{facebook_state.error_message}}</small></p>
+      </div>
+      <div class="actions">
+        <div class="form-group">
+          <button type="button" id="next" class="btn btn-yellow-green" (click)="login()"><i class="fa fa-circle-o-notch animate" *ngIf="login_state.loading"></i>{{login_state.button_title}}</button>
+        </div>
+        <div class="form-group">
+          <button type="button" id="next"class="btn btn-white" (click)="changeToSignup()">Sei nuovo? Crea un account</button>
+        </div>
+        <div class="form-divider">
+          <span>o</span>
+        </div>
+        <div class="form-group">
+          <button type="button" id="next"class="btn btn-facebook" (click)="continueWithFacebook()"><i></i>{{facebook_state.button_title}}</button>
+        </div>
+      </div>
+      <div class="footer noselect">
+        <h6><small>Continuando dichiari di aver letto e accetti le <a routerlink="legal" ng-reflect-router-link="legal" ng-reflect-href="legal" href="/legal" target="_blank">condizioni generali</a> e <a routerlink="legal" ng-reflect-router-link="legal" ng-reflect-href="legal" href="/legal" target="_blank">l’informativa sulla privacy</a></small></h6>
+      </div>
+    </div>
+  </div>
+  <div class="wizard-container" *ngIf="step === 'signup'">
+    <div class="content-container noselect">
+      <div class="header">
+        <h1>Crea un account</h1>
+      </div>
+      <form>
+        <div class="form-group">
+          <label for="emailInput">Email</label>
+          <input type="email" placeholder="La tua mail" class="form-control" [ngClass]="{'error-input': signup_state.email_error}" id="emailInput" [(ngModel)]="signupParameters.email" [ngModelOptions]="{standalone: true}">
+          <small class="error-message" *ngIf="signup_state.email_error">{{signup_state.email_error}}</small>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="firstNameInput">Nome</label>
+              <input type="firstname" placeholder="Nome" class="form-control" [ngClass]="{'error-input': signup_state.first_name_error}" id="firstNameInput" [(ngModel)]="signupParameters.firstname" [ngModelOptions]="{standalone: true}">
+              <small class="error-message" *ngIf="signup_state.first_name_error">{{signup_state.first_name_error}}</small>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="lastNameInput">Cognome</label>
+              <input type="lastname" placeholder="Cognome" class="form-control" [ngClass]="{'error-input': signup_state.last_name_error}" id="lastNameInput" [(ngModel)]="signupParameters.lastname" [ngModelOptions]="{standalone: true}">
+              <small class="error-message" *ngIf="signup_state.last_name_error">{{signup_state.last_name_error}}</small>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="phoneInput">Telefono</label>
+          <input type="phone" placeholder="Numero di telefono" class="form-control" [ngClass]="{'error-input': signup_state.phone_error}" id="phoneInput" [(ngModel)]="signupParameters.phone" [ngModelOptions]="{standalone: true}">
+          <small class="error-message" *ngIf="signup_state.phone_error">{{signup_state.phone_error}}</small>
+        </div>
+        <div class="form-group">
+          <label for="passwordInput">Password</label>
+          <input type="password" placeholder="Password" class="form-control" [ngClass]="{'error-input': signup_state.password_error}" id="passwordInput" [(ngModel)]="signupParameters.password" [ngModelOptions]="{standalone: true}">
+          <small class="error-message" *ngIf="signup_state.password_error">{{signup_state.password_error}}</small>
+        </div>
+        <div class="form-group">
+          <label for="confirmPasswordInput">Di nuovo la password</label>
+          <input type="password" placeholder="Password" class="form-control" [ngClass]="{'error-input': signup_state.confirm_password_error}" id="confirmPasswordInput" [(ngModel)]="signupParameters.confirmPassword" [ngModelOptions]="{standalone: true}">
+          <small class="error-message" *ngIf="signup_state.confirm_password_error">{{signup_state.confirm_password_error}}</small>
+        </div>
+      </form>
+      <div class="messages" [hidden]="!signup_state.error_message">
+        <p><small>{{signup_state.error_message}}</small></p>
+      </div>
+      <div class="messages" [hidden]="!facebook_state.error_message">
+        <p><small>{{facebook_state.error_message}}</small></p>
+      </div>
+      <div class="actions">
+        <div class="form-group">
+          <button type="button" id="next" class="btn btn-yellow-green" (click)="signup()"><i class="fa fa-circle-o-notch animate" *ngIf="signup_state.loading"></i>{{signup_state.button_title}}</button>
+        </div>
+        <div class="form-group">
+          <button type="button" id="next"class="btn btn-white" (click)="changeToLogin()">Accedi</button>
+        </div>
+        <div class="form-divider">
+          <span>o</span>
+        </div>
+        <div class="form-group">
+          <button type="button" id="next"class="btn btn-facebook" (click)="continueWithFacebook()"><i></i>{{facebook_state.button_title}}</button>
+        </div>
+      </div>
+      <div class="footer noselect">
+        <h6><small>Continuando dichiari di aver letto e accetti le <a routerlink="legal" ng-reflect-router-link="legal" ng-reflect-href="legal" href="/legal" target="_blank">condizioni generali</a> e <a routerlink="legal" ng-reflect-router-link="legal" ng-reflect-href="legal" href="/legal" target="_blank">l’informativa sulla privacy</a></small></h6>
+      </div>
+    </div>
+  </div>
+  <div class="wizard-container" *ngIf="step === 'card'">
+    <div class="content-container">
+      <div class="header">
+        <h1>Accedi</h1>
         <div *ngFor="let item of wizardData.details">
           <p>{{item.title}}</p>
         </div>
@@ -108,27 +280,29 @@
       </div>
     </div>
   </div>
-  <div class="wizard-container" *ngIf="step === 'end'">
+  <div class="wizard-container" *ngIf="step === 'info'">
     <div class="content-container">
       <div class="header">
-        <h1 class="text-center">Ordine effettuato con successo!</h1>
-        <p class="text-center">Hai inviato un ordine con la lavorazione da te scelta! Per controllare lo stato del suo ordine, vai nella sezione degli ordini.</p>
-        <p class="text-center">In caso di mancanza di dati necessari sulla lavorazione o sul ordine, verra richiamato tramite telefono o email per ulteriori dettagli.</p>
-        <p class="text-center">Per sicurezza, controlla la mail e il numero di telefono siano corretti nel suo account.</p>
+        <h1>Inserisci un contatto telefonico</h1>
+        <p>Per favore inserisci un numero di telefono per essere contatato dal professionista.</p>
       </div>
-      <div class="messages">
-        <div class="success-icon"><span></span></div>
-      </div>
+      <form>
+        <div class="form-group">
+          <label for="phoneInput">Telefono</label>
+          <input type="phone" placeholder="Numero di telefono" class="form-control" [ngClass]="{'error-input': profile_info_state.phone_number_error}" id="phoneInput" [(ngModel)]="profileInformation.phone_number" [ngModelOptions]="{standalone: true}">
+          <small class="error-message" *ngIf="profile_info_state.phone_number_error">{{profile_info_state.phone_number_error_message}}</small>
+        </div>
+      </form>
       <div class="actions">
         <div class="form-group">
-          <button type="button" id="next" class="btn btn-yellow-green" (click)="confirmEnd()">Fatto</button>
+          <button type="button" id="next" class="btn btn-yellow-green" (click)="saveInformations()"><i class="fa fa-circle-o-notch animate" *ngIf="profile_info_state.loading"></i>{{profile_info_state.button_title}}</button>
         </div>
       </div>
     </div>
   </div>
 
 
-  <!-- OLD -->
+  <!--
 
   <div class="wizard-container" *ngIf="wizardData.type !== '' && step === 'confirmation'">
     <div class="image-block" [ngStyle]="{'background-image': 'url(' + wizardData.order.service_image + ')'}"></div>
@@ -142,8 +316,6 @@
           <div *ngIf="item.price_type !== 'BASE_AMOUNT_PER_INPUT'">
             <p>{{ item.option.name }}</p>
           </div>
-          <!-- <p>{{ item.name }}</p>
-          <span>{{ item.option.name }}</span> -->
         </div>
       </div>
       <div class="summary">
@@ -157,7 +329,6 @@
       <form class="wizard-form" #wizardForm="ngForm">
         <div class="form-group" [ngClass]="{'isError': isDataError}">
           <label>Inserisci la data</label>
-          <!-- <span class="fa fa-calendar-times-o calendar-box"></span> -->
           <p-calendar name="data" [(ngModel)]="Order.date" id="data" class="date" autocomplete="off" dateFormat="dd MM yy" [locale]="it" [minDate]="minDate" [maxDate]="maxDate" (onSelect)="selectDate()" placeholder="Inserisci la data">
           </p-calendar>
         </div>
@@ -200,10 +371,6 @@
             <input name="lastname" class="form-control" [(ngModel)]="registrationData.lastname" (keyup)="checkNonEmpty('registrationName', registrationData.lastname)" (change)="checkNonEmpty('registrationName', registrationData.lastname)">
           </div>
         </div>
-        <!-- <div class="form-group" [ngClass]="{'isError': registrationError.name}">
-          <label>Nome completo</label>
-          <input name="name" class="form-control" [(ngModel)]="registrationData.name" (keyup)="checkNonEmpty('registrationName', registrationData.name)" (change)="checkNonEmpty('registrationName', registrationData.name)">
-        </div> -->
         <div class="form-group" [ngClass]="{'isError': registrationError.phone}">
           <label>Telefono</label>
           <input name="phone" class="form-control" [(ngModel)]="registrationData.phone" (keyup)="checkNonEmpty('registrationPhone', registrationData.phone)" (change)="checkNonEmpty('registrationPhone', registrationData.phone)">
@@ -418,3 +585,5 @@
     </div>
   </div>
 </div>
+
+-->

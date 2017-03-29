@@ -27,15 +27,7 @@ export class OrderService {
 
   private api: string;
   private auth;
-  private wizardData = {
-    order: {
-      service: '',
-      services: [],
-      totalPrice: null
-    },
-    type: '',
-    multiplier: ''
-  };
+  private wizardData:any = {};
   private googleApi: string;
   constructor(private http: Http/*, private navigationService: NavigationService*/) {
     this.api = 'https://api.starbook.co/v0.9.1/';
@@ -79,23 +71,11 @@ export class OrderService {
     // this.navigationService.updateLoadingStatus(true);
     return this.http.post(this.api + 'orders', {
       service_id: orderData.service_id,
-      description: orderData.delivery_description,
-      details: orderData.delivery_details,
-      date: orderData.delivery_date,
-      address: {
-        street: orderData.street,
-        street_number: orderData.street_number,
-        city: orderData.city,
-        postal_code: orderData.postal_code,
-        province: orderData.province,
-        country: orderData.country,
-        country_code: orderData.country_code
-      },
-      payment: {
-        method: orderData.payment.method,
-        amount: orderData.payment.amount,
-        currency: orderData.payment.currency
-      }
+      description: orderData.description,
+      details: orderData.details,
+      date: orderData.date,
+      address: orderData.address,
+      payment: orderData.payment
     }, this._makeHeaders())
       .toPromise()
       .then((response) => {

@@ -13,124 +13,30 @@ import { isBrowser } from "angular2-universal";
   templateUrl: './wizard.component.html'
 })
 export class WizardComponent implements OnInit {
-  public wizardData: any = {
-    order: {
-      service: '',
-      services: [],
-      totalPrice: null
-    },
-    type: '',
-    multiplier: ''
-  };
   public it: any;
-  public addresses = [];
-  public selectedAddress: IAddress = {
-    street: '',
-    street_number: null,
-    city: '',
-    postal_code: null,
-    province: '',
-    country: '',
-    country_code: '',
-    selected: false,
-    isFull: false,
-    full: '',
-    street_number_city: ''
-  };
-  public errorMessage = null;
-  public isLoading = false;
-  public createOrderDisabled = false;
   public emailPattern: any;
-  public registrationData = {
-    name: '',
-    firstname: '',
-    lastname: '',
-    phone: '',
-    email: '',
-    password: '',
-    confirmPassword: ''
-  };
-  public registrationError = {
-    name: false,
-    firstname: false,
-    lastname: false,
-    phone: false,
-    email: false,
-    password: false,
-    confirmPassword: false
-  };
-  public confirmationData = {
-    phone: ''
-  };
-  public showConfirmPhone: boolean = true;
-  public confirmationError = {
-    phone: false
-  };
-  public loginData = {
-    email: '',
-    password: ''
-  };
-  public loginError = {
-    email: false,
-    password: false
-  };
-  public loanData = {
-    name: '',
-    phone: '',
-    email: '',
-    tax: '',
-    codice: '',
-    isFull: false
-  };
-  public loanError = {
-    name: false,
-    phone: false,
-    email: false,
-    tax: false,
-    codice: false
-  };
-  public addCardData = {
-    object: 'card',
-    exp_date: '',
-    exp_month: null,
-    exp_year: null,
-    number: null,
-    cvc: '',
-    name: '',
-    address_line1: '',
-    address_line2: '',
-    address_city: '',
-    address_zip: '',
-    address_state: '',
-    address_country: ''
-  };
 
-  public addCardError = {
-    exp_date: false,
-    number: false,
-    cvc: false
-  };
-
-  public wizardDataItems = ['Anteprima', 'Indirizzo', 'Data', 'Ordine', 'Fine'];
+  public wizardDataItems = ['Sommario', 'Indirizzo', 'Data', 'Anteprima', 'Fine'];
   public formError: boolean|{title: string, message: string} = false;
   public step = '';
-  public userData = null;
 
+  ////////////////////////////
+  //// ORDER OBJECT //////////
+  ////////////////////////////
   public Order = {
     service_id: '',
+    title: '',
     details: [],
     date: null,
-    address: {
-      street: '',
-      street_number: null,
-      city: '',
-      postal_code: null,
-      province: '',
-      country: '',
-      country_code: '',
-      full: ''
-    },
-    payment: {amount: 0, currency: '', method: ''}
+    address: null,
+    payment: {method:'', amount:0, currency:'eur'}
+  };
+  public order_status = {
+    loading: false,
+    button_title: "Invia ordine",
+    error_message: null,
+    payment_error_message: null,
+    created: false
   };
 
   ///////////////////////////////
@@ -152,12 +58,13 @@ export class WizardComponent implements OnInit {
     message: "Per favore compila il campo richiesto",
     full: false
   };
+  public addresses = [];
 
   ////////////////////////////
   //// CONFIRM DATE //////////
   ////////////////////////////
   public date = null;
-  public temp_date = null;
+  public temp_date;
   public minDate = new Date(new Date().getTime() + 24 * 60 * 60 * 1000);
   public maxDate = new Date(new Date().getTime() + (24*28) * 60 * 60 * 1000);
   public temp_date_check = {
@@ -165,118 +72,94 @@ export class WizardComponent implements OnInit {
     message: "Per favore compila il campo richiesto",
     full: false
   };
+  public formated_date = null;
 
+  /////////////////////////
+  /////// LOGIN  //////////
+  /////////////////////////
+  public loginParameters = {
+    email: '',
+    password: ''
+  };
+  public login_state = {
+    loading: false,
+    button_title: "Accedi",
+    error_message: null,
+    email_error: null,
+    password_error: null,
+  };
 
-  // public saveState = {
-  //   order: this.Order,
-  //   currentStep: this.step,
-  //   wizardData: this.wizardData,
-  //   items: this.wizardDataItems,
-  //   isAddressFull: this.isAddressFull,
-  //   selectedAddress: this.selectedAddress
-  // };
+  //////////////////////////
+  /////// Signup  //////////
+  //////////////////////////
+  public signupParameters = {
+    firstname: '',
+    lastname: '',
+    phone: '',
+    email: '',
+    password: '',
+    confirmPassword: ''
+  };
+  public signup_state = {
+    loading: false,
+    button_title: "Registrati",
+    error_message: null,
+    email_error: null,
+    first_name_error: null,
+    last_name_error: null,
+    phone_error: null,
+    password_error: null,
+    confirm_password_error: null
+  };
+
+  ///////////////////////////
+  /////// FACEBOOK //////////
+  ///////////////////////////
+  public facebook_state = {
+    loading: false,
+    button_title: "Continua con Facebook",
+    error_message: null,
+  }
+
+  //////////////////////////
+  /////// PROFILE //////////
+  //////////////////////////
+  public profileInformation = {
+    phone_number: ''
+  };
+  public profile_info_state = {
+    loading:false,
+    button_title: "Salva",
+    phone_number_error:null
+  };
+
+  ///////////////////////////
+  /////// CARD DATA /////////
+  ///////////////////////////
+  public addCardData = {
+    object: 'card',
+    exp_date: '',
+    exp_month: null,
+    exp_year: null,
+    number: null,
+    cvc: '',
+    name: '',
+    address_line1: '',
+    address_line2: '',
+    address_city: '',
+    address_zip: '',
+    address_state: '',
+    address_country: ''
+  };
+  public addCardError = {
+    exp_date: false,
+    number: false,
+    cvc: false
+  };
 
 
   constructor(private router: Router, private route: ActivatedRoute, private analyticsService: AnalyticsService, private orderService: OrderService, private authService: AuthService, private navigationService: NavigationService, private paymentService: PaymentService, private profileService: ProfileService ) {
-
-    // console.log(this.temp_address_check.hidden);
-    // console.log(this.temp_address.selected);
-    // console.log(this.temp_address.city);
-    // console.log(this.temp_address.street);
-    this.wizardData = this.orderService.getWizardData();
-    // if (!localStorage.getItem('wizard')) {
-    //   localStorage.setItem('wizard', JSON.stringify(this.wizardData));
-    // } else {
-    //   if ((localStorage.getItem('wizard') === JSON.stringify(this.wizardData))) {
-    //     // this.wizardData = localStorage.getItem('wizard');
-    //   }
-    // }
-    // console.log('wizarddata: ' + JSON.stringify(this.wizardData));
-    // let recovery = null;
-    // if (isBrowser) {
-    //   recovery = localStorage.getItem('wizard');
-    // }
-    // console.log('recovery: ' + recovery);
-    //
-    // if (localStorage.getItem('auth')) {
-    //   this.userData = localStorage.getItem('auth');
-    //   // console.log('userData: ' + this.userData);
-    // }
-
-
-    // if (this.wizardData.type !== '' || recovery !== null) {
-    //   let userData = localStorage.getItem('auth');
-    //
-    //   var dettagli = 'Dettagli';
-    //   var accedi = 'Accedi';
-    //   var carta = 'Carta';
-    //   var informazioni = 'Informazioni';
-    //   var success = 'Fine';
-    //
-    //   this.wizardDataItems.push(dettagli);
-    //   let parserUserData = JSON.parse(userData);
-    //
-    //   if (userData !== null) {
-    //     if (!parserUserData['phone_number'] || parserUserData['phone_number'].length == 0) {
-    //       this.wizardDataItems.push(accedi);
-    //     }
-    //   } else {
-    //     this.wizardDataItems.push(accedi);
-    //   }
-    //
-    //   if (this.wizardData.type === '') {
-    //     let recoveryWizard = JSON.parse(recovery);
-    //     this.wizardData = recoveryWizard.wizardData;
-    //     this.wizardDataItems = recoveryWizard.items;
-    //     this.Order = recoveryWizard.order;
-    //     this.step = recoveryWizard.currentStep;
-    //     this.isAddressFull = recoveryWizard.isAddressFull;
-    //     this.selectedAddress = recoveryWizard.selectedAddress;
-    //   } else {
-    //     if (this.wizardData.type === 'contanti') {
-    //       this.wizardDataItems.push(success);
-    //     } else if (this.wizardData.type === 'carta') {
-    //       this.wizardDataItems.push(carta);
-    //       this.wizardDataItems.push(success);
-    //     } else if (this.wizardData.type === 'prestito') {
-    //       this.wizardDataItems.push(informazioni);
-    //     }
-    //   }
-    //
-    //   this.saveCurrentState();
-    //   this.analyticsService.sendEvent({category:'Order creation wizard', action: 'start', label: 'open wizard'});
-    // } else {
-    //   if (isBrowser) {
-    //     this.router.navigateByUrl('/');
-    //   }
-    // }
-
     this.emailPattern = /^[a-z0-9!#$%&'*+\/=?^_`{|}~.-]+@[a-z0-9]([a-z0-9-]*[a-z0-9])?(\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)*$/i;
-  }
-
-  ngOnInit() {
-    this.route.params.subscribe((params: Params) => {
-      this.step = params['step']
-      if (this.step === 'preview') {
-        this.navigationService.updateMessage("Anteprima servizio");
-        window.scrollTo(0, 0);
-      } else if (this.step === 'address') {
-        this.navigationService.updateMessage("Inserisci l'indirizzo");
-        window.scrollTo(0, 0);
-      } else if (this.step === 'date') {
-        this.navigationService.updateMessage("Inserisci la data");
-        window.scrollTo(0, 0);
-      } else if (this.step === 'order') {
-        this.navigationService.updateMessage("Anteprima ordine");
-        window.scrollTo(0, 0);
-      } else if (this.step === 'end') {
-        this.navigationService.updateMessage("Ordine effetuato");
-        window.scrollTo(0, 0);
-      } else {
-        this.router.navigate(['services', this.wizardData.service_id]);
-      }
-    })
-
     this.it = {
       firstDayOfWeek: 1,
       dayNames: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
@@ -286,30 +169,72 @@ export class WizardComponent implements OnInit {
         'Luglio', 'Agosto', 'Settembre', 'Ottobre', 'Novembre', 'Dicembre'],
       monthNamesShort: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
     };
+
+    var service_data = this.orderService.getWizardData();
+    if (Object.keys(service_data).length === 0) {
+      this.Order = this.readOrderFromLocal()
+
+      // To show in address step
+      if (this.Order.address && this.Order.address.street_number.length > 0) {
+        this.temp_address = this.Order.address.street + ', ' + this.Order.address.street_number + ' ' + this.Order.address.city;
+      } else {
+        this.temp_address = this.Order.address.street + ', ' + this.Order.address.city;
+      }
+
+      // To show in date step
+      this.temp_date = new Date(this.Order.date);
+
+      // To show in preview order
+      let date = new Date(this.Order.date);
+      let day = date.getDate() > 9 ? date.getDate() : '0' + date.getDate();
+      this.formated_date =  day + ' ' + this.it.monthNames[date.getMonth()] + ' ' + date.getFullYear();
+    } else {
+      this.Order.service_id = service_data.service_id;
+      this.Order.title = service_data.title;
+      this.Order.details = service_data.details;
+      this.Order.payment.method = service_data.payment_method;
+      this.Order.payment.amount = service_data.amount;
+      this.saveOrderToLocal(this.Order)
+    }
   }
 
-  ngAfterViewChecked() {
+  ngOnInit() {
+    this.route.params.subscribe((params: Params) => {
+      this.step = params['step']
+      window.scrollTo(0, 0);
 
+      if (this.step === 'summary') {
+        this.navigationService.updateMessage("Sommario del servizio");
+      } else if (this.step === 'address') {
+        this.navigationService.updateMessage("Inserisci l'indirizzo");
+      } else if (this.step === 'date') {
+        this.navigationService.updateMessage("Inserisci la data");
+      } else if (this.step === 'preview') {
+        this.navigationService.updateMessage("Anteprima ordine");
+      } else if (this.step === 'end') {
+        this.navigationService.updateMessage("Ordine effetuato");
+      } else if (this.step === 'login') {
+        this.navigationService.updateMessage("Accedi");
+      } else if (this.step === 'signup') {
+        this.navigationService.updateMessage("Registrazione");
+      } else if (this.step === 'card') {
+        this.navigationService.updateMessage("Metodo di pagamento");
+      } else if (this.step === 'info') {
+        this.navigationService.updateMessage("Informazioni profilo");
+      } else {
+        // this.router.navigate(['services', this.wizardData.service_id]);
+      }
+
+      // function checkData() {
+      //   if (!this.Order.address) {
+      //     this.router.navigate(['order/address']);
+      //   } else if (!this.Order.date) {
+      //     this.router.navigate(['order/date']);
+      //   }
+      // }
+
+    })
   }
-
-  ngOnDestroy() {
-
-  }
-
-  // saveCurrentState() {
-  //   this.saveState = {
-  //     order: this.Order,
-  //     currentStep: this.step,
-  //     wizardData: this.wizardData,
-  //     items: this.wizardDataItems,
-  //     isAddressFull: this.isAddressFull,
-  //     selectedAddress: this.selectedAddress
-  //   };
-  //   localStorage.setItem('wizard', JSON.stringify(this.saveState));
-  // }
-
-
-
 
   ///////////////////////////////
   //// CONFIRM PREVIEW //////////
@@ -326,6 +251,7 @@ export class WizardComponent implements OnInit {
       this.temp_address_check.hidden = false;
       return;
     }
+    this.saveOrderToLocal(this.Order)
     this.router.navigate(['order/date']);
   }
   getAddresses(event) {
@@ -347,7 +273,6 @@ export class WizardComponent implements OnInit {
     });
   }
   selectAddress(value) {
-    this.analyticsService.sendEvent({category:'Order creation wizard', action: 'modify', label: 'select address'});
     this.address.street = value.street;
     this.address.street_number = value.street_number;
     this.address.city = value.city;
@@ -359,6 +284,7 @@ export class WizardComponent implements OnInit {
     this.temp_address_check.full = true;
     this.temp_address_check.message = "Per favore compila il campo richiesto";
     this.temp_address_street_number_city = this.temp_address.street_number_city;
+    this.Order.address = this.address;
   }
   clickOutsideAddressInput() {
     if (this.temp_address_check.full === false) {
@@ -370,15 +296,9 @@ export class WizardComponent implements OnInit {
   //// CONFIRM DATE //////////
   ////////////////////////////
   confirmDate() {
-    if (this.temp_date_check.full === false) {
-      this.temp_date_check.full = false;
-      this.temp_date_check.hidden = false;
-      return;
-    }
-    this.router.navigate(['order/order']);
+    this.router.navigate(['order/preview']);
   }
   selectDate() {
-    this.analyticsService.sendEvent({category:'Order creation form', action: 'modify', label: 'select date'});
     let date = new Date(this.temp_date);
     let day = date.getDate() > 9 ? date.getDate() : '0' + date.getDate();
     let correctMonth = 1 + date.getMonth();
@@ -386,287 +306,307 @@ export class WizardComponent implements OnInit {
     this.date = date.getFullYear() + '-' + month + '-' + day + 'T' + '08:00' + ':00.000Z';
     this.temp_date_check.full = true;
     this.temp_date_check.hidden = true;
+    this.Order.date = this.date;
+    this.saveOrderToLocal(this.Order);
+    let _date = new Date(this.Order.date);
+    let _day = _date.getDate() > 9 ? _date.getDate() : '0' + _date.getDate();
+    this.formated_date =  _day + ' ' + this.it.monthNames[_date.getMonth()] + ' ' + _date.getFullYear();
   }
 
   /////////////////////////////
   //// CONFIRM ORDER //////////
   /////////////////////////////
   confirmOrder() {
-    this.router.navigate(['order/end']);
+    if (localStorage.getItem('auth')) {
+      this.order_status.loading = true;
+      this.order_status.button_title = "Inviando l'ordine...";
+      this.order_status.error_message = null;
+      this.orderService.saveOrder(this.Order).then((response) => {
+        this.order_status.loading = false;
+        this.order_status.button_title = "Invia ordine";
+        this.order_status.error_message = null;
+        if (response.status === 201) {
+          this.order_status.error_message = "Effetua l'accesso prima di creare un ordine";
+          this.order_status.created = true;
+          // this.deleteLocalOrder()
+          this.router.navigate(['order/end']);
+        }
+      }).catch((errorData) => {
+        this.order_status.loading = false;
+        this.order_status.button_title = "Invia ordine";
+        this.router.navigate(['order/preview']);
+        var _body = JSON.parse(errorData._body);
+        if (errorData.status === 400) {
+          if (_body.message === "no_stripe_customer") {
+            this.order_status.error_message = "Inserisci un metodo di pagamento.";
+            this.order_status.payment_error_message = "Vai alla pagina"
+          } else {
+            this.order_status.error_message = "Effetua l'accesso prima di creare un ordine";
+          }
+
+        } else if (errorData.status === 403) {
+          this.order_status.error_message = "service not supported in your location";
+        }
+      })
+    } else {
+      this.router.navigate(['order/signup']);
+    }
   }
 
   ///////////////////////////
   //// CONFIRM END //////////
   ///////////////////////////
   confirmEnd() {
-    this.router.navigate(['']);
-  }
-
-
-
-  createOrder() {
-    this.errorMessage = null;
-    if (this.Order.date) {
-      let userData = localStorage.getItem('auth');
-      this.prepareOrderData();
-      let parserUserData = JSON.parse(userData);
-
-      if (userData !== null && (parserUserData['phone_number'] && parserUserData['phone_number'].length > 0) && (this.wizardData.type === 'contanti' || this.wizardData.type === 'carta')) {
-        this.isLoading = true;
-        this.createOrderDisabled = true;
-        let timeStart = Date.now();
-        this.orderService.saveOrder(this.Order).then((status) => {
-          this.analyticsService.sendEvent({category:'Order creation wizard', action: 'send form', label: 'finish'});
-          this.analyticsService.sendTiming({category: 'Saving order', timingVar: 'save', timingValue: Date.now()-timeStart});
-          this.Order.details = [];
-          this.Order.date = null;
-          this.Order.address.street_number = '';
-          this.Order.address.postal_code = '';
-          this.Order.address.country_code = '';
-          this.Order.address.full = '';
-          this.isLoading = false;
-          if (this.step === 'confirmation' || this.step === 'registration' || this.step === 'login' || this.step === 'addcard') {
-            // this.router.navigate(['services', this.wizardData.order.service]);
-            this.createOrderDisabled = false;
-            this.step = 'success';
-            // this.saveCurrentState();
-          }
-        }).catch((errorData) => {
-          if (this.wizardData.type === 'contanti') {
-
-          } else if (this.wizardData.type === 'carta') {
-            let error = errorData.json();
-            this.errorMessage = error.message;
-            this.step = 'addcard';
-            // this.saveCurrentState();
-
-            if (errorData.status === 400) {
-              // No customer, deleted customer,
-              // No stripe customer (add card and create customer)
-              // this.errorMessage = error.message;
-            }
-            if (errorData.status === 402) {
-              // No cards for the customer
-              // this.errorMessage = error.message;
-            }
-          }
-          this.analyticsService.sendEvent({category:'Order creation form', action: this.wizardData.type + ' error response', label: errorData.status});
-          this.createOrderDisabled = false;
-          this.isLoading = false;
-        });
-      } else if (userData !== null && (!parserUserData['phone_number'] || parserUserData['phone_number'].length == 0)) {
-        // user has no phone
-        this.step = 'confirm-user-info';
-        // this.saveCurrentState();
-      } else if (userData === null && (this.wizardData.type === 'contanti' || this.wizardData.type === 'carta')) {
-        this.step = 'registration';
-        // this.saveCurrentState();
-      } else if (this.wizardData.type === 'prestito') {
-        this.step = 'loan';
-        // this.saveCurrentState();
-      }
-
+    let user = JSON.parse(localStorage.getItem('auth'));
+    if (!user.phone_number || user.phone_number.length < 10) {
+      this.router.navigate(['order/info']);
     } else {
+      this.router.navigate(['services', this.Order.service_id]);
     }
-
-    // this.saveCurrentState();
   }
 
-  success() {
-    localStorage.removeItem('wizard');
-    this.router.navigate(['services', this.wizardData.order.service.replace(/\s+/g, '-')]);
-  }
-
-  prepareOrderData() {
-    // this.saveCurrentState();
-    let date = new Date(this.Order.date);
-    let day = date.getDate() > 9 ? date.getDate() : '0' + date.getDate();
-    let correctMonth = 1 + date.getMonth();
-    let month = correctMonth > 9 ? correctMonth : '0' + correctMonth;
-    this.Order.date = date.getFullYear() + '-' + month + '-' + day + 'T' + '08:00' + ':00.000Z';
-    this.Order.service_id = this.wizardData.order.service_id;
-    this.Order.details = [{
-      title: this.wizardData.order.service,
-      amount: 0,
-      type: 'service'
-    }];
-    this.wizardData.order.services.forEach((orderCategory) => {
-      if (orderCategory.price_type === 'BASE_AMOUNT_INCREMENT') {
-        this.Order.details.push({
-          title: orderCategory.name,
-          description : orderCategory.option.name,
-          amount: 0,
-          type: 'item'
-        });
+  ////////////////////////////////////
+  ////////// AUTHENTICATION //////////
+  ////////////////////////////////////
+  login() {
+    if (this.login_state.loading || this.facebook_state.loading) {return;}
+    if (this.loginParameters.email.length === 0 || this.loginParameters.password.length === 0) {
+      if (this.loginParameters.email.length === 0) {
+        this.login_state.email_error = "Inserisci un indirizzo email";
       } else {
-        this.Order.details.push({
-          title: orderCategory.name,
-          description : orderCategory.option.name,
-          amount: orderCategory.option.price,
-          type: 'item'
-        });
+        this.login_state.email_error = null;
+      }
+      if (this.loginParameters.password.length === 0) {
+        this.login_state.password_error = "Inserisci una password";
+      } else {
+        this.login_state.password_error = null;
+      }
+      return;
+    }
+    this.login_state.loading = true;
+    this.login_state.button_title = "Accedendo...";
+    this.authService.login(this.loginParameters.email, this.loginParameters.password).then((data) => {
+      this.login_state.loading = false;
+      this.login_state.button_title = "Accedi";
+      this.login_state.error_message = null;
+      this.confirmOrder();
+      }).catch((error) => {
+        this.login_state.email_error = null;
+        this.login_state.password_error = null;
+        this.login_state.loading = false;
+        this.login_state.button_title = "Accedi";
+        switch (error) {
+          case 404:
+          this.login_state.error_message = "Non esiste un account con questa mail! Crea un nuovo account."
+            break;
+          case 401:
+          this.login_state.error_message = "La password non è corretta!"
+            break;
+          default:
+        }
+      });
+  }
+  changeToSignup() {
+    if (this.login_state.loading) {return;}
+    this.router.navigate(['order/signup']);
+  }
+  signup() {
+    if (this.signup_state.loading || this.facebook_state.loading) {return;}
+    if (this.signupParameters.email.length > 0 && this.signupParameters.firstname.length > 0 && this.signupParameters.lastname.length > 0 && this.signupParameters.phone.length > 0 && this.signupParameters.password.length > 0 && this.signupParameters.confirmPassword.length > 0) {
+      if (this.signupParameters.password !== this.signupParameters.confirmPassword) {
+        this.signup_state.password_error = null;
+        this.signup_state.confirm_password_error = "Inserisci una password uguale alla prima";
+        return;
+      } else {
+        this.signup_state.password_error = null;
+        this.signup_state.confirm_password_error = null;
+      }
+      if (!this.emailPattern.test(this.signupParameters.email)) {
+        this.signup_state.email_error = "Inserisci un indirizzo email corretto";
+        return;
+      }
+    } else {
+      if (this.signupParameters.email.length === 0) {
+        this.signup_state.email_error = "Inserisci un indirizzo email";
+      } else if (this.signupParameters.email.length > 0 && !this.emailPattern.test(this.signupParameters.email)) {
+        this.signup_state.email_error = "Inserisci un indirizzo email corretto";
+      } else {
+        this.signup_state.email_error = null;
+      }
+      if (this.signupParameters.firstname.length === 0) {
+        this.signup_state.first_name_error = "Inserisci un nome";
+      } else {
+        this.signup_state.first_name_error = null;
+      }
+      if (this.signupParameters.lastname.length === 0) {
+        this.signup_state.last_name_error = "Inserisci un cognome";
+      } else {
+        this.signup_state.last_name_error = null;
+      }
+      if (this.signupParameters.phone.length < 9) {
+        this.signup_state.phone_error = "Inserisci un numero di telefono corretto";
+        if (this.signupParameters.phone.length === 0) {
+          this.signup_state.phone_error = "Inserisci un numero di telefono";
+        }
+      } else {
+        this.signup_state.phone_error = null;
+      }
+      if (this.signupParameters.password.length === 0) {
+        this.signup_state.password_error = "Inserisci una password";
+      } else {
+        this.signup_state.password_error = null;
+      }
+      if (this.signupParameters.confirmPassword.length === 0) {
+        this.signup_state.confirm_password_error = "Inserisci di nuovo la password";
+      } else {
+        this.signup_state.confirm_password_error = null;
+      }
+      if (this.signupParameters.password.length > 0 &&
+        this.signupParameters.confirmPassword.length > 0
+        && this.signupParameters.password !== this.signupParameters.confirmPassword) {
+        this.signup_state.password_error = null;
+        this.signup_state.confirm_password_error = "Inserisci una password uguale alla prima";
+      }
+      return;
+    }
+    this.signup_state.loading = true;
+    this.signup_state.button_title = "Registrando...";
+    this.authService.signup(this.signupParameters.firstname, this.signupParameters.lastname, this.signupParameters.phone, this.signupParameters.email, this.signupParameters.password).then((data) => {
+      this.navigationService.updatePersonalMenu(data);
+      this.signup_state.error_message = null;
+      this.signup_state.loading = false;
+      this.signup_state.button_title = "Registrando...";
+      this.confirmOrder();
+    }).catch((error) => {
+      this.signup_state.loading = false;
+      this.signup_state.button_title = "Registrati";
+      switch (error) {
+        case 409:
+        this.signup_state.error_message = "Questo indirizzo email è gia in uso. Prova ad accedere.";
+          break;
+        case 422:
+        this.signup_state.error_message = "Inserisci tutti i campi richiesti";
+          break;
+        case 404:
+        this.signup_state.error_message = "C'è stato un errore sconosciuto, per favore riprova più tardi";
+          break;
+        default:
+        this.signup_state.error_message = null;
       }
     });
-    this.Order.payment = {
-      amount: this.wizardData.order.totalPrice,
-      currency: 'eur',
-      method : ''
-    };
-
-    this.Order.address.street = this.selectedAddress.street;
-    this.Order.address.street_number = this.selectedAddress.street_number;
-    this.Order.address.postal_code = this.selectedAddress.postal_code;
-    this.Order.address.country_code = this.selectedAddress.country_code;
-    this.Order.address.full = this.selectedAddress.full;
-    this.Order.payment.amount = this.wizardData.order.totalPrice * this.wizardData.multiplier;
-    if (this.wizardData.type === 'contanti') {
-      this.Order.payment.method = 'CASH';
-    }
-    if (this.wizardData.type === 'carta') {
-      this.Order.payment.method = 'CARD';
-    }
-    if (this.wizardData.type === 'prestito') {
-      this.Order.payment.method = 'LOAN';
-    }
   }
-
-  registration() {
-    // this.saveCurrentState();
-    this.formError = false;
-    if (this.registrationData.firstname.length > 0 &&
-      this.registrationData.lastname.length > 0 &&
-      this.registrationData.phone.length > 9 &&
-      this.emailPattern.test(this.registrationData.email) && this.registrationData.password.length > 0 && this.registrationData.password === this.registrationData.confirmPassword) {
+  changeToLogin() {
+    if (this.signup_state.loading) {return;}
+    this.router.navigate(['order/login']);
+  }
+  continueWithFacebook () {
+    if (this.login_state.loading || this.signup_state.loading) {return;}
+    this.facebook_state.loading = true;
+    this.facebook_state.button_title = "Accedendo..."
+    this.facebook_state.error_message = null;
+    if (isBrowser) {
       let timeStart = Date.now();
-      this.isLoading = true;
-      this.authService.signup(this.registrationData.firstname, this.registrationData.lastname, this.registrationData.phone, this.registrationData.email, this.registrationData.password)
-          .then((data) => {
-            this.analyticsService.sendTiming({category: 'Wizard registration', timingVar: 'save', timingValue: Date.now()-timeStart});
-            this.isLoading = false;
-            this.navigationService.updatePersonalMenu(data);
-
-            let parsedData = JSON.parse(data);
-
-            if (!parsedData['phone_number'] || parsedData['phone_number'].length == 0) {
-              this.step = 'confirm-user-info';
-              // this.saveCurrentState();
-            } else {
-              if (this.wizardData.type === 'contanti') {
-                this.createOrder();
-              }
-              if (this.wizardData.type === 'carta') {
-                this.step = 'addcard';
-                // this.saveCurrentState();
-              }
-              if (this.wizardData.type === 'prestito') {
-                // redirect to outside
-              }
-            }
-          })
-          .catch((error) => {
-            this.isLoading = false;
-            switch (error) {
-              case 409:
-                // this.formError = {
-                //   title: 'Indirizzo e-mail già in uso.',
-                //   message: `Hai indicato di essere un nuovo cliente ma è già
-                // presente un account collegato all'indirizzo e-mail: mail@gmail.com`
-                // };
-                this.step = 'login';
-                break;
-              case 422:
-                this.formError = {
-                  title: 'Parametri mancanti',
-                  message: `Inserisci tutti i parametri per procedere con la registrazione`
-                };
-                break;
-              case 404:
-                this.formError = {
-                  title: 'Errore',
-                  message: `C'è stato un errore sconosciuto, per favore riprova più tardi`
-                };
-                break;
-              default:
-                this.formError = false;
-            }
-          });
+      let left = Math.round((document.documentElement.clientWidth / 2) - 285);
+      let facebookPopup = window.open(
+          'https://www.facebook.com/v2.8/dialog/oauth?client_id=1108461325907277&response_type=token&scope=email,public_profile&redirect_uri=https://www.starbook.co/facebook',
+          '_blank',
+          'location=yes,height=570,width=520,left=' + left + ', top=100,scrollbars=yes,status=yes');
+      this.checkAccessToken(facebookPopup, 1, timeStart);
+    }
+  }
+  checkAccessToken(facebookWindow: Window, context, timeStart) {
+    if (facebookWindow.closed) {
+      let accessToken = localStorage.getItem('facebook_token');
+      this.authService.facebookLogin(accessToken).then((userData) => {
+        this.navigationService.updatePersonalMenu(userData);
+        this.facebook_state.loading = false;
+        this.facebook_state.button_title = "Continua con Facebook";
+        this.facebook_state.error_message = null;
+        this.confirmOrder();
+        console.log('confirmOrder');
+      }).catch((error) => {
+        this.facebook_state.loading = false;
+        this.facebook_state.button_title = "Continua con Facebook";
+        this.facebook_state.error_message = "Errore di accesso con Facebook!";
+        console.log('error');
+      });
     } else {
-      this.checkNonEmpty('registrationName', this.registrationData.name);
-      this.checkNonEmpty('registrationPhone', this.registrationData.phone);
-      this.checkEmail('registration', this.registrationData.email);
-      this.checkPassword('registration', this.registrationData.password, this.registrationData.confirmPassword);
-      this.checkPassword('registrationConfirm', this.registrationData.password, this.registrationData.confirmPassword);
+      let self = this;
+      setTimeout(function() {self.checkAccessToken(facebookWindow, context + 1, timeStart)}, 200);
     }
   }
 
-  openLogin() {
-    this.step = 'login';
-    // this.saveCurrentState();
-  }
-
-  openRegistration() {
-    this.step = 'registration';
-    // this.saveCurrentState();
-  }
-
-  login() {
-    // this.saveCurrentState();
-    this.formError = false;
-    if (this.emailPattern.test(this.loginData.email) && this.loginData.password.length > 3) {
-      this.isLoading = true;
-      let timeStart = Date.now();
-      this.authService.login(this.loginData.email, this.loginData.password)
-          .then((data) => {
-            this.analyticsService.sendTiming({category: 'Login wizard', timingVar: 'load', timingValue: Date.now()-timeStart});
-            this.isLoading = false;
-            this.navigationService.updatePersonalMenu(data);
-
-            let parsedData = JSON.parse(data);
-
-            if (!parsedData['phone_number'] || parsedData['phone_number'].length == 0) {
-              this.step = 'confirm-user-info';
-              // this.saveCurrentState();
-            } else {
-              if (this.wizardData.type === 'contanti') {
-                this.createOrder();
-              }
-              if (this.wizardData.type === 'carta') {
-                this.createOrder();
-              }
-              if (this.wizardData.type === 'prestito') {
-                // redirect to outside
-              }
-            }
-          })
-          .catch((error) => {
-            this.isLoading = false;
-            switch (error) {
-              case 404:
-                this.formError = {
-                  title: 'Si è verificato un errore!',
-                  message: 'Non riusciamo a trovare un account con quell’indirizzo e-mail'
-                };
-                break;
-              case 401:
-                this.formError = {
-                  title: 'Si è verificato un errore!',
-                  message: 'La tua password non è corretta'
-                };
-                break;
-              default:
-                this.formError = false;
-            }
-          });
-    } else {
-      if (this.loginData.password.length < 4) {
-        this.loginError.password = true;
+  ////////////////////////////////////
+  ////////// PROFILE INFO ////////////
+  ////////////////////////////////////
+  saveInformations() {
+    if (this.profile_info_state.loading) {return;}
+    if (this.profileInformation.phone_number.length < 9 ) {
+      this.profile_info_state.loading = false;
+      this.profile_info_state.phone_number_error = "Il numero inserito non è completo";
+      if (this.profileInformation.phone_number.length === 0 ) {
+        this.profile_info_state.phone_number_error = "Inserisci un numero di telefono";
       }
-      if (!this.emailPattern.test(this.loginError.email)) {
-        this.loginError.email = true;
-      }
+      return;
     }
+    let userData = JSON.parse(localStorage.getItem('auth'));
+    userData['phone_number'] = this.profileInformation.phone_number;
+    this.profile_info_state.loading = true;
+    this.profile_info_state.button_title = "Salvando...";
+    this.profileService.updateProfile(userData).then((data) => {
+      localStorage.setItem('auth', JSON.stringify(userData));
+      this.profile_info_state.loading = false;
+      this.profile_info_state.phone_number_error = null;
+      this.profile_info_state.button_title = "Salva";
+      this.router.navigate(['services', this.Order.service_id]);
+    }).catch((error) => {
+      this.profile_info_state.loading = false;
+      this.profile_info_state.phone_number_error = null;
+      this.profile_info_state.button_title = "Salva";
+    });
   }
 
+  ///////////////////////////
+  ////////// ORDER //////////
+  ///////////////////////////
+  saveOrderToLocal(order) {
+    localStorage.setItem('order', JSON.stringify(order));
+  }
+  readOrderFromLocal() {
+    let recovery
+    if (isBrowser) {recovery = localStorage.getItem('order');}
+    return JSON.parse(recovery);
+  }
+  deleteLocalOrder() {
+    localStorage.removeItem('order');
+  }
+  createOrder(callback: (done:boolean) => void) {
+    this.orderService.saveOrder(this.Order).then((response) => {
+      if (response.status === 201) {
+        this.order_status.created = true;
+        // var body_response = response._body;
+        // console.log('body_response: ' + body_response);
+        // if (this.Order.payment.method === 'TRADITIONAL') {
+        // } else if (this.Order.payment.method === 'CARD') {
+        //   // Check card
+        // }
+        callback(true)
+      }
+    }).catch((errorData) => {
+      callback(false)
+
+      // if (errorData.status === 400) {
+      //   console.log('Error access token');
+      // }
+      // let error = errorData.json();
+      // console.log('error: ' + JSON.stringify(errorData));
+    })
+  }
+
+
+  //////////////////////////
+  ////////// CARD //////////
+  //////////////////////////
   addCard() {
     // this.saveCurrentState();
     this.formError= false;
@@ -690,16 +630,13 @@ export class WizardComponent implements OnInit {
     }
 
     if (!error) {
-      this.isLoading = true;
       let timeStart = Date.now();
       this.paymentService.addNewCard(this.addCardData)
           .then((response) => {
             this.analyticsService.sendTiming({category: 'Wizard add new card', timingVar: 'save', timingValue: Date.now()-timeStart});
-            this.isLoading = false;
-            this.createOrder();
+            // this.createOrder();
           })
           .catch((error) => {
-            this.isLoading = false;
             let message = error.json().message;
             if (message) {
               this.formError = {
@@ -717,26 +654,25 @@ export class WizardComponent implements OnInit {
   }
 
   createLoan() {
-    if (this.loanData.name.length > 0 && this.emailPattern.test(this.loanData.email) && this.loanData.phone.length > 10 && this.loanData.tax.length > 0 && this.loanData.codice.length > 0) {
-      let userData = localStorage.getItem('auth');
-      if (userData !== null) {
-        // call to out api
-      } else {
-        this.registrationData.name = this.loanData.name;
-        this.registrationData.email = this.loanData.email;
-        this.registrationData.phone = this.loanData.phone;
-        this.loanData.isFull = true;
-        this.step = 'registration';
-        // this.saveCurrentState();
-      }
-    } else {
-      this.checkNonEmpty('loanName', this.loanData.name);
-      this.checkEmail('loanEmail', this.loanData.email);
-      this.checkNonEmpty('loanPhone', this.loanData.phone);
-      this.checkNonEmpty('loanTax', this.loanData.tax);
-      this.checkNonEmpty('loanCodice', this.loanData.codice);
-    }
-
+    // if (this.loanData.name.length > 0 && this.emailPattern.test(this.loanData.email) && this.loanData.phone.length > 10 && this.loanData.tax.length > 0 && this.loanData.codice.length > 0) {
+    //   let userData = localStorage.getItem('auth');
+    //   if (userData !== null) {
+    //     // call to out api
+    //   } else {
+    //     this.registrationData.name = this.loanData.name;
+    //     this.registrationData.email = this.loanData.email;
+    //     this.registrationData.phone = this.loanData.phone;
+    //     this.loanData.isFull = true;
+    //     this.step = 'registration';
+    //     // this.saveCurrentState();
+    //   }
+    // } else {
+    //   this.checkNonEmpty('loanName', this.loanData.name);
+    //   this.checkEmail('loanEmail', this.loanData.email);
+    //   this.checkNonEmpty('loanPhone', this.loanData.phone);
+    //   this.checkNonEmpty('loanTax', this.loanData.tax);
+    //   this.checkNonEmpty('loanCodice', this.loanData.codice);
+    // }
   }
 
   checkCardNumber(cardNumber) {
@@ -750,114 +686,115 @@ export class WizardComponent implements OnInit {
   }
 
   checkEmail(type: string, email: string) {
-    if (this.emailPattern.test(email)) {
-      switch (type) {
-        case 'registration':
-          this.registrationError.email = false;
-          break;
-        case 'login':
-          this.loginError.email = false;
-          break;
-        case 'loanEmail':
-          this.loanError.email = false;
-          break;
-      }
-    } else {
-      switch (type) {
-        case 'registration':
-          this.registrationError.email = true;
-          break;
-        case 'login':
-          this.loginError.email = true;
-          break;
-        case 'loanEmail':
-          this.loanError.email = true;
-          break;
-      }
-    }
+    console.log('check email');
+    // if (this.emailPattern.test(email)) {
+    //   switch (type) {
+    //     case 'registration':
+    //       this.registrationError.email = false;
+    //       break;
+    //     case 'login':
+    //       this.loginError.email = false;
+    //       break;
+    //     case 'loanEmail':
+    //       this.loanError.email = false;
+    //       break;
+    //   }
+    // } else {
+    //   switch (type) {
+    //     case 'registration':
+    //       this.registrationError.email = true;
+    //       break;
+    //     case 'login':
+    //       this.loginError.email = true;
+    //       break;
+    //     case 'loanEmail':
+    //       this.loanError.email = true;
+    //       break;
+    //   }
+    // }
   }
 
   checkNonEmpty(type, value) {
-    if (type === 'registrationName') {
-      if (value.length > 0) {
-        this.registrationError.name = false;
-      } else {
-        this.registrationError.name = true;
-      }
-    }
-    if (type === 'registrationPhone') {
-      if (value.length > 9) {
-        this.registrationError.phone = false;
-      } else {
-        this.registrationError.phone = true;
-      }
-    }
-    if (type === 'confirmationPhone') {
-      if (value.length > 9) {
-        this.confirmationError.phone = false;
-      } else {
-        this.confirmationError.phone = true;
-      }
-    }
-    if (type === 'cardCvv') {
-      if (value.length > 2) {
-        this.addCardError.cvc = false;
-      } else {
-        this.addCardError.cvc = true;
-      }
-    }
-    if (type === 'loanName') {
-      if (value.length > 0) {
-        this.loanError.name = false;
-      } else {
-        this.loanError.name = true;
-      }
-    }
-    if (type === 'loanPhone') {
-      if (value.length > 10) {
-        this.loanError.phone = false;
-      } else {
-        this.loanError.phone = true;
-      }
-    }
-    if (type === 'loanTax') {
-      if (value.length > 0) {
-        this.loanError.tax = false;
-      } else {
-        this.loanError.tax = true;
-      }
-    }
-    if (type === 'loanCodice') {
-      if (value.length > 0) {
-        this.loanError.codice = false;
-      } else {
-        this.loanError.codice = true;
-      }
-    }
+    // if (type === 'registrationName') {
+    //   if (value.length > 0) {
+    //     this.registrationError.name = false;
+    //   } else {
+    //     this.registrationError.name = true;
+    //   }
+    // }
+    // if (type === 'registrationPhone') {
+    //   if (value.length > 9) {
+    //     this.registrationError.phone = false;
+    //   } else {
+    //     this.registrationError.phone = true;
+    //   }
+    // }
+    // if (type === 'confirmationPhone') {
+    //   if (value.length > 9) {
+    //     this.confirmationError.phone = false;
+    //   } else {
+    //     this.confirmationError.phone = true;
+    //   }
+    // }
+    // if (type === 'cardCvv') {
+    //   if (value.length > 2) {
+    //     this.addCardError.cvc = false;
+    //   } else {
+    //     this.addCardError.cvc = true;
+    //   }
+    // }
+    // if (type === 'loanName') {
+    //   if (value.length > 0) {
+    //     this.loanError.name = false;
+    //   } else {
+    //     this.loanError.name = true;
+    //   }
+    // }
+    // if (type === 'loanPhone') {
+    //   if (value.length > 10) {
+    //     this.loanError.phone = false;
+    //   } else {
+    //     this.loanError.phone = true;
+    //   }
+    // }
+    // if (type === 'loanTax') {
+    //   if (value.length > 0) {
+    //     this.loanError.tax = false;
+    //   } else {
+    //     this.loanError.tax = true;
+    //   }
+    // }
+    // if (type === 'loanCodice') {
+    //   if (value.length > 0) {
+    //     this.loanError.codice = false;
+    //   } else {
+    //     this.loanError.codice = true;
+    //   }
+    // }
   }
 
   checkPassword (type, password, passwordConfirm = null) {
-    if (type === 'registration') {
-      if (password.length > 3) {
-        this.registrationError.password = false;
-      } else {
-        this.registrationError.password = true;
-      }
-    }
-    if (type === 'registrationConfirm') {
-      if (password === passwordConfirm) {
-        this.registrationError.confirmPassword = false;
-      } else {
-        this.registrationError.confirmPassword = true;
-      }
-    }
-    if (type === 'login') {
-      if (password.length > 3) {
-        this.loginError.password = false;
-      } else {
-        this.loginError.password = true;
-      }
-    }
+    // if (type === 'registration') {
+    //   if (password.length > 3) {
+    //     this.registrationError.password = false;
+    //   } else {
+    //     this.registrationError.password = true;
+    //   }
+    // }
+    // if (type === 'registrationConfirm') {
+    //   if (password === passwordConfirm) {
+    //     this.registrationError.confirmPassword = false;
+    //   } else {
+    //     this.registrationError.confirmPassword = true;
+    //   }
+    // }
+    // if (type === 'login') {
+    //   if (password.length > 3) {
+    //     this.loginError.password = false;
+    //   } else {
+    //     this.loginError.password = true;
+    //   }
+    // }
   }
 
   checkExpiry(value) {
@@ -918,90 +855,5 @@ export class WizardComponent implements OnInit {
     }
     this.addCardData.exp_date = result;
     return result;
-  }
-
-  facebookLogin() {
-    if (isBrowser) {
-      let timeStart = Date.now();
-      this.isLoading = true;
-      let left = Math.round((document.documentElement.clientWidth / 2) - 285);
-      let facebookPopup = window.open(
-          'https://www.facebook.com/v2.8/dialog/oauth?client_id=1108461325907277&response_type=token&scope=email,public_profile&redirect_uri=https://www.starbook.co/facebook',
-          // 'https://www.facebook.com/v2.8/dialog/oauth?client_id=1108461325907277&response_type=token&scope=email,public_profile&redirect_uri=http://localhost:4200/facebook',
-          '_blank',
-          'location=yes,height=570,width=520,left=' + left + ', top=100,scrollbars=yes,status=yes');
-      this.checkAccessToken(facebookPopup, 1, timeStart);
-    }
-  }
-
-  checkAccessToken(facebookWindow: Window, context, timeStart) {
-    if (facebookWindow.closed) {
-      let accessToken = localStorage.getItem('facebook_token');
-
-      this.authService.facebookLogin(accessToken)
-          .then((userData) => {
-        let parsedUserData = JSON.parse(userData);
-            if(!parsedUserData['phone_number'] || parsedUserData['phone_number'].length == 0) {
-              // show phone number field - required
-              this.step = 'confirm-user-info';
-              // this.saveCurrentState();
-            } else {
-              // success
-              // this.saveCurrentState();
-              this.analyticsService.sendTiming({category: 'Wizard registration', timingVar: 'save', timingValue: Date.now() - timeStart});
-              this.isLoading = false;
-              this.navigationService.updatePersonalMenu(userData);
-
-              if (this.wizardData.type === 'contanti') {
-                this.createOrder();
-              }
-              if (this.wizardData.type === 'carta') {
-                this.step = 'addcard';
-                // this.saveCurrentState();
-              }
-              if (this.wizardData.type === 'prestito') {
-                // redirect to outside
-              }
-            }
-          })
-          .catch((error) => {
-            this.isLoading = false;
-            this.formError = {
-              title: 'Errore!',
-              message: 'Authorization error'
-            };
-          });
-    } else {
-      let self = this;
-      setTimeout(function() {self.checkAccessToken(facebookWindow, context + 1, timeStart)}, 200);
-    }
-  }
-
-  confirmUserInfo() {
-    // this.saveCurrentState();
-    this.formError = false;
-    if (this.confirmationData.phone.length > 9) {
-      let userData = JSON.parse(localStorage.getItem('auth'));
-      userData['phone_number'] = this.confirmationData.phone;
-      let timeStart = Date.now();
-
-      this.profileService.updateProfile(userData)
-          .then((data) => {
-            this.analyticsService.sendTiming({category: 'Update user profile', timingVar: 'save', timingValue: Date.now() - timeStart});
-            localStorage.setItem('auth', JSON.stringify(userData));
-            this.isLoading = false;
-            this.step = 'success';
-            // this.saveCurrentState();
-          })
-          .catch((error) => {
-            this.isLoading = false;
-            this.formError = {
-              title: 'Errore',
-              message: error.json().message || ''
-            };
-          });
-    } else {
-      this.checkNonEmpty('confirmationPhone', this.confirmationData.phone);
-    }
   }
 }

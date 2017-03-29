@@ -1,4 +1,5 @@
 @charset "UTF-8";
+@import url("https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i");
 .u-block {
   display: block !important; }
 
@@ -486,12 +487,44 @@ p {
   color: white !important;
   background-color: #7FC443 !important; }
 
+.btn-white {
+  background: white !important;
+  color: black;
+  font-family: HelveticaNeue-Light, sans-serif;
+  letter-spacing: 0.1px;
+  font-weight: 400;
+  padding: 11px 7px;
+  outline: none;
+  border-radius: 0;
+  border: 1px solid #A6A6A6;
+  outline: none !important; }
+
+.btn-white:active:focus {
+  color: black !important; }
+
+.btn-white:hover {
+  color: black !important; }
+
+.btn-facebook {
+  background: #3B5998 !important;
+  color: white;
+  font-family: HelveticaNeue, sans-serif;
+  letter-spacing: 0.1px;
+  font-weight: 400;
+  padding: 11px 7px;
+  outline: none;
+  border-radius: 0;
+  outline: none !important; }
+
+.form-group {
+  margin-bottom: 20px; }
+
 .form-group .form-control {
   height: 50px !important;
   border: 1px solid #DCDCDC !important; }
 
 .form-group .form-control:focus {
-  color: black !important; }
+  color: black; }
 
 .form-group .ui-inputtext {
   height: 50px !important;
@@ -519,6 +552,24 @@ p {
   border-radius: 0;
   outline: none; }
 
+.animate {
+  -webkit-animation: spin 1000ms infinite linear;
+  animation: spin 1000ms infinite linear; }
+
+@-webkit-keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg); }
+  100% {
+    -webkit-transform: rotate(359deg);
+    transform: rotate(359deg); } }
+@keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg); }
+  100% {
+    -webkit-transform: rotate(359deg);
+    transform: rotate(359deg); } }
 .success-icon {
   display: block;
   width: 100%;
@@ -2878,7 +2929,8 @@ p {
   content: "\e908"; }
 
 html, body {
-  background-color: #FAFAFA !important; }
+  background-color: #FAFAFA !important;
+  overflow-x: hidden; }
 
 .sub-header {
   padding-bottom: 10px;
@@ -3981,7 +4033,7 @@ textarea, input[type="text"] {
   font-size: 16px;
   font-family: HelveticaNeue, sans-serif;
   letter-spacing: 0.1px;
-  padding: 7px 10px;
+  padding: 7px 20px;
   border-radius: 1px !important;
   background-color: #FFFFFF;
   border: 1px solid rgba(220, 224, 224, 0.7); }
@@ -7360,7 +7412,8 @@ app-wizard {
   width: 100%;
   background-color: #F7F7F7;
   border: 1px solid #CCCCCC;
-  padding: 50px 0; }
+  padding: 50px 0;
+  margin: 0 0 50px; }
 
 .wizard .wizard-container .header span {
   display: inline-block;
@@ -7654,17 +7707,6 @@ app-wizard {
   background-color: transparent;
   border: none; }
 
-.wizard .error-message {
-  display: block;
-  float: left;
-  width: 100%;
-  margin-top: 10px;
-  font-family: HelveticaNeue, sans-serif;
-  color: #DB4F4F;
-  font-size: 14px;
-  letter-spacing: 0.1px;
-  text-transform: capitalize; }
-
 .wizard-container .content-container.registration .form-group .form-control,
 .wizard-container .content-container.login-step .form-group .form-control,
 .wizard-container .content-container.loan .form-group .form-control,
@@ -7775,6 +7817,16 @@ app-wizard {
 
 .content-container .form-group .ui-inputtext:focus {
   border: 2px solid #7FC443 !important; }
+.content-container .form-group .form-control:focus {
+  border: 2px solid #7FC443 !important; }
+.content-container .form-group .error-input {
+  border: 2px solid #f75c4b !important; }
+
+.content-container form .error-message {
+  font-family: HelveticaNeue, sans-serif;
+  color: #f75c4b;
+  font-size: 12px;
+  position: absolute; }
 
 .content-container .header {
   padding-bottom: 20px;
@@ -7801,7 +7853,13 @@ app-wizard {
       color: #00B420; }
 
 .content-container .messages {
-  padding: 20px 0; }
+  padding: 20px 0;
+  text-align: center; }
+  .content-container .messages p {
+    color: red; }
+  .content-container .messages a {
+    color: #0066C0 !important;
+    cursor: pointer; }
 
 .content-container .forms {
   padding: 20px 0;
@@ -7820,15 +7878,62 @@ app-wizard {
     height: 60px;
     font-family: HelveticaNeue-Bold, sans-serif;
     font-weight: 700; }
-  .content-container .actions p {
-    margin-top: 20px;
-    color: red; }
+  .content-container .actions .btn-white {
+    width: 100%;
+    font-size: 20px;
+    height: 60px; }
+  .content-container .actions .btn-facebook {
+    width: 100%;
+    font-size: 20px;
+    height: 60px; }
+  .content-container .actions .btn-facebook i {
+    display: block;
+    position: absolute;
+    top: 10px;
+    left: 12px;
+    width: 40px;
+    height: 40px;
+    background-image: url("/assets/images/fb-icon.png");
+    background-repeat: no-repeat;
+    background-size: contain; }
+  .content-container .actions .form-divider {
+    display: block;
+    position: relative;
+    width: 100%;
+    margin: 50px 0;
+    border-top: 1px solid #E7E7E7; }
+  .content-container .actions .form-divider span {
+    display: block;
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    margin-left: -15px;
+    width: 30px;
+    text-align: center;
+    font-family: HelveticaNeue, sans-serif;
+    color: #8D8D8D;
+    font-size: 12px;
+    letter-spacing: 0.08px;
+    background-color: #F7F7F7;
+    padding: 4px 10px; }
+  .content-container .actions .animate {
+    display: block;
+    position: absolute;
+    top: 18px;
+    left: 20px; }
 
 .content-container .footer {
   border-top: 1px solid #CCCCCC;
   padding: 20px 0 0; }
   .content-container .footer h6 {
     text-align: left; }
+  .content-container .footer a {
+    font-family: HelveticaNeue, sans-serif;
+    color: #0066C0 !important;
+    font-size: 12px;
+    letter-spacing: 0.08px;
+    text-decoration: none;
+    cursor: pointer; }
 
 .wizard-container .form-group.subheader {
   display: block;

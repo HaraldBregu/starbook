@@ -332,7 +332,7 @@ export class OrderComponent implements OnInit, OnDestroy {
       amount: this.multiplier * this.orderData.totalPrice
     };
     this.orderService.updateWizardData(wizardData);
-    this.router.navigateByUrl('/order/preview');
+    this.router.navigateByUrl('/order/summary');
     return false;
   }
 

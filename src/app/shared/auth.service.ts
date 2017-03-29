@@ -1,7 +1,8 @@
 import { isBrowser } from 'angular2-universal';
 import { Injectable } from '@angular/core';
-import { Http, Headers } from '@angular/http';
+import { Http, Headers, Response } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
+import 'rxjs/add/operator/map';
 import { NavigationService } from './navigation.service';
 
 @Injectable()
@@ -50,7 +51,36 @@ export class AuthService {
   authInit() {
     return this.auth;
   }
-
+  // loginCallback(email: string, password: string, success:() => void, error:() => void) {
+  //   return this.http.post(this.api + 'login', {email: email, password: password})
+  //   .toPromise()
+  //   .then((response) => {
+  //     success()
+  //     // console.log('response success');
+  //     // let data = response.json();
+  //     // if (data.success === true) {
+  //     //   let authData = {
+  //     //     _id: data.result._id,
+  //     //     email: data.result.email,
+  //     //     email_verified: data.result.email_verified,
+  //     //     phone_number: data.result.phone_number,
+  //     //     account_types: data.result.account_types,
+  //     //     profile: data.result.profile,
+  //     //     company: data.result.company,
+  //     //     address: data.result.address,
+  //     //     services: data.result.services,
+  //     //     locations: data.result.locations,
+  //     //     payment: data.result.payment,
+  //     //     created_at: data.result.created_at,
+  //     //     updated_at: data.result.updated_at,
+  //     //     token: data.token
+  //     //   };
+  //     //   if (isBrowser) { localStorage.setItem('auth', JSON.stringify(authData));}
+  //     //   this.navigationService.updatePersonalMenu(data.result);
+  //       // return authData;
+  //     // }
+  //   }).catch(this.handleError);
+  // }
   login(email: string, password: string) {
     // this.navigationService.updateLoadingStatus(true);
     return this.http.post(this.api + 'login', {email: email, password: password})
@@ -78,14 +108,12 @@ export class AuthService {
           if (isBrowser) {
             localStorage.setItem('auth', JSON.stringify(authData));
           }
-
           this.navigationService.updatePersonalMenu(data.result);
           return authData;
         } else {
           this.handleError(data.message);
         }
-      })
-      .catch(this.handleError);
+      }).catch(this.handleError);
   }
 
   signup(firstname: string, lastname: string, phone: string, email: string, password: string) {
@@ -96,7 +124,7 @@ export class AuthService {
       .then((response) => {
         // this.navigationService.updateLoadingStatus(false);
         let data = response.json();
-        if (data.success === true) {
+        // if (data.success === true) {
           let authData = {
             _id: data.result._id,
             email: data.result.email,
@@ -119,9 +147,9 @@ export class AuthService {
           }
 
           return data.result;
-        } else {
-          this.handleError(data.message);
-        }
+        // } else {
+        //   this.handleError(data.message);
+        // }
       })
       .catch(this.handleError);
   }

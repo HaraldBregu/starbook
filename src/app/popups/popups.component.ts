@@ -485,8 +485,8 @@ export class PopupsComponent implements OnInit, OnDestroy {
     if (this.emailPattern.test(email) && password.length > 0) {
       this.isPopupLoading = true;
       let timeStart = Date.now();
-      this.authServics.login(email, password)
-        .then((data) => {
+      this.authServics.login(email, password).then((data) => {
+        console.log('logged in');
           this.analyticsService.sendTiming({category: 'Login', timingVar: 'load', timingValue: Date.now()-timeStart});
           this.isPopupLoading = false;
           this.auth = data;
@@ -497,8 +497,9 @@ export class PopupsComponent implements OnInit, OnDestroy {
             this.closePopup();
             // this.router.navigate(['/']);
           }
-        })
-        .catch((error) => {
+        }).catch((error) => {
+          console.log('error loggin');
+
           this.isPopupLoading = false;
           switch (error) {
             case 404:

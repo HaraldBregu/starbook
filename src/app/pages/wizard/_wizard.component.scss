@@ -18,6 +18,8 @@ $wizard-content-summary-item-text-size: 25px;
 $wizard-content-summary-item-big-text-size: 25px;
 $wizard-content-summary-item-text-letter-spacing: 0.13px;
 
+// font-family: 'Roboto', sans-serif;
+
 // Wizard form
 $wizard-form-label-text-color: #000000;
 $wizard-form-label-text-size: 16px;
@@ -82,6 +84,7 @@ app-wizard {
   background-color: $wizard-background-color;
   border: $wizard-border-style;
   padding: 50px 0;
+  margin: 0 0 50px;
 }
 // .wizard .wizard-container .header {
 //   display: block;
@@ -385,17 +388,17 @@ app-wizard {
   background-color: transparent;
   border: none;
 }
-.wizard .error-message {
-  display: block;
-  float: left;
-  width: 100%;
-  margin-top: 10px;
-  font-family: $font-name;
-  color: $wizard-form-error-text-color;
-  font-size: $wizard-form-error-text-size;
-  letter-spacing: $wizard-form-error-text-letter-spacing;
-  text-transform: capitalize;
-}
+// .wizard .error-message {
+//   display: block;
+//   float: left;
+//   width: 100%;
+//   margin-top: 10px;
+//   font-family: $font-name;
+//   color: $wizard-form-error-text-color;
+//   font-size: $wizard-form-error-text-size;
+//   letter-spacing: $wizard-form-error-text-letter-spacing;
+//   text-transform: capitalize;
+// }
 .wizard-container .content-container.registration .form-group .form-control,
 .wizard-container .content-container.login-step .form-group .form-control,
 .wizard-container .content-container.loan .form-group .form-control,
@@ -516,6 +519,20 @@ app-wizard {
   .form-group .ui-inputtext:focus {
     border: 2px solid #7FC443 !important;
   }
+  .form-group .form-control:focus {
+    border: 2px solid #7FC443 !important;
+  }
+  .form-group .error-input {
+    border: 2px solid #f75c4b !important;
+  }
+}
+.content-container form {
+  .error-message {
+    font-family: $font-name;
+    color: #f75c4b;
+    font-size: 12px;
+    position: absolute;
+  }
 }
 .content-container .header {
   padding-bottom: 20px;
@@ -554,6 +571,14 @@ app-wizard {
 }
 .content-container .messages {
   padding: 20px 0;
+  text-align: center;
+  p {
+    color: red;
+  }
+  a {
+    color: #0066C0 !important;
+    cursor: pointer;
+  }
 }
 .content-container .forms {
   padding: 20px 0;
@@ -574,9 +599,54 @@ app-wizard {
     font-family: $font-name-bold;
     font-weight: 700;
   }
-  p {
-    margin-top: 20px;
-    color: red;
+  .btn-white {
+    width: 100%;
+    font-size: 20px;
+    height: 60px;
+  }
+  .btn-facebook {
+    width: 100%;
+    font-size: 20px;
+    height: 60px;
+  }
+  .btn-facebook i {
+    display: block;
+    position: absolute;
+    top: 10px;
+    left: 12px;
+    width: 40px;
+    height: 40px;
+    background-image: url('/assets/images/fb-icon.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+  }
+  .form-divider {
+    display: block;
+    position: relative;
+    width: 100%;
+    margin: 50px 0;
+    border-top: 1px solid #E7E7E7;
+  }
+  .form-divider span {
+    display: block;
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    margin-left: -15px;
+    width: 30px;
+    text-align: center;
+    font-family: $font-name;
+    color: #8D8D8D;
+    font-size: 12px;
+    letter-spacing: 0.08px;
+    background-color: #F7F7F7;
+    padding: 4px 10px;
+  }
+  .animate {
+    display: block;
+    position: absolute;
+    top: 18px;
+    left: 20px;
   }
 }
 .content-container .footer {
@@ -584,6 +654,14 @@ app-wizard {
   padding: 20px 0 0;
   h6 {
     text-align: left;
+  }
+  a {
+    font-family: $font-name;
+    color: #0066C0 !important;
+    font-size: 12px;
+    letter-spacing: 0.08px;
+    text-decoration: none;
+    cursor: pointer;
   }
 }
 
