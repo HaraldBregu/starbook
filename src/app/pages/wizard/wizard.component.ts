@@ -215,12 +215,16 @@ export class WizardComponent implements OnInit {
         this.navigationService.updateMessage("Ordine effetuato");
       } else if (this.step === 'login') {
         this.navigationService.updateMessage("Accedi");
+        this.wizardDataItems[3] = "Login";
       } else if (this.step === 'signup') {
         this.navigationService.updateMessage("Registrazione");
+        this.wizardDataItems[3] = "Signup";
       } else if (this.step === 'card') {
         this.navigationService.updateMessage("Metodo di pagamento");
+        this.wizardDataItems[3] = "Carta";
       } else if (this.step === 'info') {
         this.navigationService.updateMessage("Informazioni profilo");
+        this.wizardDataItems[4] = "Info";
       } else {
         // this.router.navigate(['services', this.wizardData.service_id]);
       }

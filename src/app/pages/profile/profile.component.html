@@ -1,10 +1,13 @@
 <div class="profile-page">
   <div class="top-bar-container">
+    <!-- <ul class="top-bar">
+      <li *ngFor="let tab of tabs" [ngClass]="{'active':tab.url === selectTab}" (click)="clickTabItem()" [routerLink]="['/profile', tab.url]">{{tab.name}}</li>
+    </ul> -->
     <ul class="top-bar">
-      <li *ngFor="let tab of tabs" [ngClass]="{'active':tab.url === selectTab}" [routerLink]="['/profile', tab.url]">{{tab.name}}</li>
+      <li *ngFor="let tab of tabs" [ngClass]="{'active':tab.route === page}" (click)="clickTabItem(tab.route)">{{tab.name}}</li>
     </ul>
   </div>
-  <div class="page-container" *ngIf="selectTab === 'general'">
+  <div class="page-container" *ngIf="page === 'general'">
     <div class="header">
       <h1>Informazioni generali</h1>
       <h6>Aggiorna le informazioni del tuo account per rimanere in contatto</h6>
@@ -42,7 +45,7 @@
       <h6><small>Le informazioni degli utenti consentono a STARBOOK di fornire agli utenti stessi l’accesso alle sezioni del Sito cui sono interessati e di fornire il Servizio. Esse mettono inoltre STARBOOK in grado di fatturare gli importi dovuti e consentono a STARBOOK o ad un professionista cui l’utente abbia inoltrato un Ordine di contattare l’utente in merito al Servizio, ove necessario.</small></h6>
     </div>
   </div>
-  <div class="page-container" *ngIf="selectTab === 'payment'">
+  <div class="page-container" *ngIf="page === 'payment'">
     <div class="header">
       <h1>Metodo di pagamento</h1>
       <h6>Aggiorna le informazioni del tuo metodo di pagamento</h6>
@@ -92,7 +95,7 @@
       <h6><small>Le informazioni degli utenti consentono a STARBOOK di fornire agli utenti stessi l’accesso alle sezioni del Sito cui sono interessati e di fornire il Servizio. Esse mettono inoltre STARBOOK in grado di fatturare gli importi dovuti e consentono a STARBOOK o ad un professionista cui l’utente abbia inoltrato un Ordine di contattare l’utente in merito al Servizio, ove necessario.</small></h6>
     </div>
   </div>
-  <div class="page-container" *ngIf="selectTab === 'settings'">
+  <div class="page-container" *ngIf="page === 'settings'">
     <div class="header">
       <h1>Impostazioni</h1>
       <h6>Modifica le informazioni</h6>
@@ -108,7 +111,7 @@
           </div>
         </div>
         <div class="col-lg-8">
-          <p><small>Dopo aver salvato la nuova email riceverai ti invieremo nel attuale email un messaggio di conferma per confermare il nuovo indirizzo.</small></p>
+          <p><small>Dopo aver salvato la nuova email ti invieremo nella attuale email un messaggio di conferma per confermare il nuovo indirizzo.</small></p>
         </div>
       </div>
       <div class="actions">
@@ -155,142 +158,241 @@
       </div>
     </div>
   </div>
+  <div class="page-container" *ngIf="page === 'addCard'">
+    <div class="header">
+      <h1>Inserisci un metodo di pagamento</h1>
+      <h6>Per utilizzare al massimo i servizi Starbook inserisci un metodo di pagamento.</h6>
+    </div>
+    <form>
+      <div class="card-form">
+        <div class="form-group">
+          <label for="emailInput">Numero carta</label>
+          <input type="email" placeholder="La tua mail" class="form-control" [ngClass]="{'error-input': signup_state.email_error}" id="emailInput" [(ngModel)]="signupParameters.email" [ngModelOptions]="{standalone: true}">
+          <small class="error-message" *ngIf="signup_state.email_error">{{signup_state.email_error}}</small>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="firstNameInput">Scadenza</label>
+              <input type="firstname" placeholder="Nome" class="form-control" [ngClass]="{'error-input': signup_state.first_name_error}" id="firstNameInput" [(ngModel)]="signupParameters.firstname" [ngModelOptions]="{standalone: true}">
+              <small class="error-message" *ngIf="signup_state.first_name_error">{{signup_state.first_name_error}}</small>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="lastNameInput">CVV</label>
+              <input type="lastname" placeholder="Cognome" class="form-control" [ngClass]="{'error-input': signup_state.last_name_error}" id="lastNameInput" [(ngModel)]="signupParameters.lastname" [ngModelOptions]="{standalone: true}">
+              <small class="error-message" *ngIf="signup_state.last_name_error">{{signup_state.last_name_error}}</small>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="phoneInput">Nome intestatario</label>
+          <input type="phone" placeholder="Numero di telefono" class="form-control" [ngClass]="{'error-input': signup_state.phone_error}" id="phoneInput" [(ngModel)]="signupParameters.phone" [ngModelOptions]="{standalone: true}">
+          <small class="error-message" *ngIf="signup_state.phone_error">{{signup_state.phone_error}}</small>
+        </div>
+        <div class="row">
+          <div class="col-md-8">
+            <div class="form-group">
+              <label for="firstNameInput">Indirizzo</label>
+              <input type="firstname" placeholder="Nome" class="form-control" [ngClass]="{'error-input': signup_state.first_name_error}" id="firstNameInput" [(ngModel)]="signupParameters.firstname" [ngModelOptions]="{standalone: true}">
+              <small class="error-message" *ngIf="signup_state.first_name_error">{{signup_state.first_name_error}}</small>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label for="lastNameInput">Numero</label>
+              <input type="lastname" placeholder="Cognome" class="form-control" [ngClass]="{'error-input': signup_state.last_name_error}" id="lastNameInput" [(ngModel)]="signupParameters.lastname" [ngModelOptions]="{standalone: true}">
+              <small class="error-message" *ngIf="signup_state.last_name_error">{{signup_state.last_name_error}}</small>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-8">
+            <div class="form-group">
+              <label for="firstNameInput">Città</label>
+              <input type="firstname" placeholder="Nome" class="form-control" [ngClass]="{'error-input': signup_state.first_name_error}" id="firstNameInput" [(ngModel)]="signupParameters.firstname" [ngModelOptions]="{standalone: true}">
+              <small class="error-message" *ngIf="signup_state.first_name_error">{{signup_state.first_name_error}}</small>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label for="lastNameInput">CAP</label>
+              <input type="lastname" placeholder="Cognome" class="form-control" [ngClass]="{'error-input': signup_state.last_name_error}" id="lastNameInput" [(ngModel)]="signupParameters.lastname" [ngModelOptions]="{standalone: true}">
+              <small class="error-message" *ngIf="signup_state.last_name_error">{{signup_state.last_name_error}}</small>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="firstNameInput">Provincia</label>
+              <input type="firstname" placeholder="Nome" class="form-control" [ngClass]="{'error-input': signup_state.first_name_error}" id="firstNameInput" [(ngModel)]="signupParameters.firstname" [ngModelOptions]="{standalone: true}">
+              <small class="error-message" *ngIf="signup_state.first_name_error">{{signup_state.first_name_error}}</small>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="lastNameInput">Paese</label>
+              <!-- <select class="form-control">
+                <option>Italia</option>
+                <option>Germania</option>
+              </select> -->
+              <input type="lastname" placeholder="Cognome" class="form-control" [ngClass]="{'error-input': signup_state.last_name_error}" id="lastNameInput" [(ngModel)]="signupParameters.lastname" [ngModelOptions]="{standalone: true}">
+              <small class="error-message" *ngIf="signup_state.last_name_error">{{signup_state.last_name_error}}</small>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <a class="btn btn-success" (click)="addOrUpdateCard()">Add or update</a>
+        </div>
+      </div>
+    </form>
+    <div class="footer">
+      <h5>Privacy del account</h5>
+      <h6><small>Le informazioni degli utenti consentono a STARBOOK di fornire agli utenti stessi l’accesso alle sezioni del Sito cui sono interessati e di fornire il Servizio. Esse mettono inoltre STARBOOK in grado di fatturare gli importi dovuti e consentono a STARBOOK o ad un professionista cui l’utente abbia inoltrato un Ordine di contattare l’utente in merito al Servizio, ove necessario.</small></h6>
+    </div>
+  </div>
+</div>
 
-  <!-- <div class="container-starbook without-tabs">
-    <div class="row">
-      <div class="left-navigate" (swipeleft)="swipe($event.type, $event.deltaX)" (swiperight)="swipe($event.type, $event.deltaX)">
-        <div [ngStyle]="{'margin-left.px': delta}">
-          <a *ngFor="let tab of tabs" [ngClass]="{'active':tab.url === selectTab}" [routerLink]="['/profile', tab.url]">
-            <span></span>
-            <div>{{tab.name}}</div>
-          </a>
-          <a *ngIf="isAuthenticated === true" (click)="logout()"><span></span><div>Esci</div></a>
-        </div>
-      </div>
-      <div class="profile-settings" *ngIf="selectTab === 'settings'">
-        <div class="header">Informazioni del account</div>
-        <form #changProfile="ngForm">
-          <app-loading *ngIf="isLoading"></app-loading>
-          <label>NOME COMPLETO</label>
-          <div class="form-group">
-            <input class="form-control" name="name" placeholder="Nome Cognome" #fullname="ngModel" [(ngModel)]="userData.fullname" required>
-          </div>
-          <div class="form-group">
-            <label>Cognome</label>
-            <input class="form-control" name="lastname" #fullname="ngModel" [(ngModel)]="userData.lastname" required disabled>
-          </div>
-          <div class="form-group">
-            <label>Nome Azienda</label>
-            <input class="form-control" name="patronymic" #fullname="ngModel" [(ngModel)]="userData.patronymic" required disabled>
-          </div>
-          <label>CELLULARE</label>
-          <div class="form-group">
-            <input class="form-control" name="phone" placeholder="Numero" #phone_number="ngModel" [(ngModel)]="userData.phone_number">
-          </div>
-          <label>EMAIL</label>
-          <div class="form-group">
-            <div class="email-field">
-              <input class="form-control" name="email" placeholder="Indirizzo email" value="" #email="ngModel" [(ngModel)]="userData.email">
-              <button type="button" class="btn btn-primary" (click)="getPopup('changePassword')">Modifica password</button>
-            </div>
-          </div> -->
-          <!--<div class="form-group password-block">-->
-            <!--<label>Password</label>-->
-            <!--<div class="password-container">-->
-              <!--<div class="password">-->
-                <!--<span>•••••••••••</span>-->
-              <!--</div>-->
-              <!--<div class="change-password">-->
-                <!--<button type="button" class="btn btn-primary" (click)="getPopup('changePassword')">Modifica password</button>-->
-              <!--</div>-->
-            <!--</div>-->
-          <!--</div>-->
-          <!-- <div class="header second">Indirizzo di fatturazione</div> -->
-          <!-- <label>Indirizzo del domicilio</label>
-          <div class="form-group">
-            <input class="form-control" name="address1" #street="ngModel" [(ngModel)]="userData.street" placeholder="Via Verdi 13">
-          </div> -->
-          <!-- <label>Città e CAP</label>
-          <div class="form-group double-input">
-            <input class="form-control first" name="address2" #city="ngModel" [(ngModel)]="userData.city" placeholder="Città">
-            <input class="form-control second" name="number2" #postal_code="ngModel" [(ngModel)]="userData.postal_code" placeholder="CAP">
-          </div> -->
-          <!-- <label>Provincia e Nazione</label>
-          <div class="form-group double-input">
-            <input class="form-control first" name="city" #province="ngModel" [(ngModel)]="userData.province" placeholder="Provincia">
-            <input class="form-control second" name="country" #country="ngModel" [(ngModel)]="userData.country" placeholder="Nazione">
-          </div> -->
-          <!-- <label>Partita IVA</label>
-          <div class="form-group">
-            <input class="form-control" name="piva" placeholder="P.IVA">
-          </div> -->
-          <!-- <label>Codice Fiscale</label>
-          <div class="form-group">
-            <input class="form-control" name="codice" placeholder="Codice Fiscale">
-          </div> -->
-          <!-- <div class="profile-information" *ngIf="formError">
-            <strong *ngIf="formError.title.length > 0">{{formError.title}}</strong> {{formError.message}}
-          </div>
-          <div class="form-group">
-            <button type="button" class="btn btn-warning" (click)="updateProfile()">Aggiorna Informazioni</button>
-          </div> -->
-          <!--<div class="form-group">-->
-            <!--<button type="button" class="btn btn-secondary" (click)="logout()"><span class="fa fa-sign-out"></span> Log out</button>-->
-          <!--</div>-->
-        <!-- </form>
-      </div>
-      <div class="cards-page" *ngIf="selectTab === 'payment'">
-        <app-loading *ngIf="isLoading"></app-loading>
-        <div class="card-block" *ngFor="let card of cards">
-          <div class="container">
-            <div class="header">
-              <div class="card-logo {{ formatCssClass(card.brand) }}"><span>**** {{ card.last4 }}</span></div>
-              <div class="isDefault" *ngIf="defaultCard === card.id">Default</div>
-              <div class="buttons-block">
-                <a class="btn btn-primary" *ngIf="defaultCard !== card.id" (click)="selectCard(card.id)">Default</a>
-                <a class="btn btn-primary" (click)="deleteCard(card.id)">Rimuovi</a>
-                <a class="btn btn-secondary" (click)="editCard(card.id)">Modifica</a>
-              </div>
-            </div>
-            <div class="content">
-              <div class="card-information">
-                <div class="information-block">
-                  <span>Nome:</span>
-                  {{ card.name }}
-                </div>
-                <div class="information-block">
-                  <span>Numero:</span>
-                  **** {{ card.last4 }}
-                </div>
-                <div class="information-block">
-                  <span>Scadenza:</span>
-                  {{ card.exp_month }}/{{ formatYear(card.exp_year) }}
-                </div>
-                <div class="information-block">
-                  <span>Tipo:</span>
-                  {{ card.brand }} {{ card.funding }} {{ card.object }}
-                </div>
-              </div>
-              <div class="card-information">
-                <div class="information-block">
-                  <span>Indirizzo:</span>
-                  {{ card.address_line1 }} {{ card.address_line2 }} <br>
-                  {{ card.address_state }} {{ card.address_city }} <br>
-                  {{ card.address_zip }} {{ card.address_country }}
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="card-block">
-          <a class="new-card" (click)="addNewCard()">
-            Aggiungi un metodo di pagamento
-          </a>
-        </div>
+
+
+
+<!-- <div class="container-starbook without-tabs">
+  <div class="row">
+    <div class="left-navigate" (swipeleft)="swipe($event.type, $event.deltaX)" (swiperight)="swipe($event.type, $event.deltaX)">
+      <div [ngStyle]="{'margin-left.px': delta}">
+        <a *ngFor="let tab of tabs" [ngClass]="{'active':tab.url === selectTab}" [routerLink]="['/profile', tab.url]">
+          <span></span>
+          <div>{{tab.name}}</div>
+        </a>
+        <a *ngIf="isAuthenticated === true" (click)="logout()"><span></span><div>Esci</div></a>
       </div>
     </div>
-  </div> -->
-</div>
+    <div class="profile-settings" *ngIf="selectTab === 'settings'">
+      <div class="header">Informazioni del account</div>
+      <form #changProfile="ngForm">
+        <app-loading *ngIf="isLoading"></app-loading>
+        <label>NOME COMPLETO</label>
+        <div class="form-group">
+          <input class="form-control" name="name" placeholder="Nome Cognome" #fullname="ngModel" [(ngModel)]="userData.fullname" required>
+        </div>
+        <div class="form-group">
+          <label>Cognome</label>
+          <input class="form-control" name="lastname" #fullname="ngModel" [(ngModel)]="userData.lastname" required disabled>
+        </div>
+        <div class="form-group">
+          <label>Nome Azienda</label>
+          <input class="form-control" name="patronymic" #fullname="ngModel" [(ngModel)]="userData.patronymic" required disabled>
+        </div>
+        <label>CELLULARE</label>
+        <div class="form-group">
+          <input class="form-control" name="phone" placeholder="Numero" #phone_number="ngModel" [(ngModel)]="userData.phone_number">
+        </div>
+        <label>EMAIL</label>
+        <div class="form-group">
+          <div class="email-field">
+            <input class="form-control" name="email" placeholder="Indirizzo email" value="" #email="ngModel" [(ngModel)]="userData.email">
+            <button type="button" class="btn btn-primary" (click)="getPopup('changePassword')">Modifica password</button>
+          </div>
+        </div> -->
+        <!--<div class="form-group password-block">-->
+          <!--<label>Password</label>-->
+          <!--<div class="password-container">-->
+            <!--<div class="password">-->
+              <!--<span>•••••••••••</span>-->
+            <!--</div>-->
+            <!--<div class="change-password">-->
+              <!--<button type="button" class="btn btn-primary" (click)="getPopup('changePassword')">Modifica password</button>-->
+            <!--</div>-->
+          <!--</div>-->
+        <!--</div>-->
+        <!-- <div class="header second">Indirizzo di fatturazione</div> -->
+        <!-- <label>Indirizzo del domicilio</label>
+        <div class="form-group">
+          <input class="form-control" name="address1" #street="ngModel" [(ngModel)]="userData.street" placeholder="Via Verdi 13">
+        </div> -->
+        <!-- <label>Città e CAP</label>
+        <div class="form-group double-input">
+          <input class="form-control first" name="address2" #city="ngModel" [(ngModel)]="userData.city" placeholder="Città">
+          <input class="form-control second" name="number2" #postal_code="ngModel" [(ngModel)]="userData.postal_code" placeholder="CAP">
+        </div> -->
+        <!-- <label>Provincia e Nazione</label>
+        <div class="form-group double-input">
+          <input class="form-control first" name="city" #province="ngModel" [(ngModel)]="userData.province" placeholder="Provincia">
+          <input class="form-control second" name="country" #country="ngModel" [(ngModel)]="userData.country" placeholder="Nazione">
+        </div> -->
+        <!-- <label>Partita IVA</label>
+        <div class="form-group">
+          <input class="form-control" name="piva" placeholder="P.IVA">
+        </div> -->
+        <!-- <label>Codice Fiscale</label>
+        <div class="form-group">
+          <input class="form-control" name="codice" placeholder="Codice Fiscale">
+        </div> -->
+        <!-- <div class="profile-information" *ngIf="formError">
+          <strong *ngIf="formError.title.length > 0">{{formError.title}}</strong> {{formError.message}}
+        </div>
+        <div class="form-group">
+          <button type="button" class="btn btn-warning" (click)="updateProfile()">Aggiorna Informazioni</button>
+        </div> -->
+        <!--<div class="form-group">-->
+          <!--<button type="button" class="btn btn-secondary" (click)="logout()"><span class="fa fa-sign-out"></span> Log out</button>-->
+        <!--</div>-->
+      <!-- </form>
+    </div>
+    <div class="cards-page" *ngIf="selectTab === 'payment'">
+      <app-loading *ngIf="isLoading"></app-loading>
+      <div class="card-block" *ngFor="let card of cards">
+        <div class="container">
+          <div class="header">
+            <div class="card-logo {{ formatCssClass(card.brand) }}"><span>**** {{ card.last4 }}</span></div>
+            <div class="isDefault" *ngIf="defaultCard === card.id">Default</div>
+            <div class="buttons-block">
+              <a class="btn btn-primary" *ngIf="defaultCard !== card.id" (click)="selectCard(card.id)">Default</a>
+              <a class="btn btn-primary" (click)="deleteCard(card.id)">Rimuovi</a>
+              <a class="btn btn-secondary" (click)="editCard(card.id)">Modifica</a>
+            </div>
+          </div>
+          <div class="content">
+            <div class="card-information">
+              <div class="information-block">
+                <span>Nome:</span>
+                {{ card.name }}
+              </div>
+              <div class="information-block">
+                <span>Numero:</span>
+                **** {{ card.last4 }}
+              </div>
+              <div class="information-block">
+                <span>Scadenza:</span>
+                {{ card.exp_month }}/{{ formatYear(card.exp_year) }}
+              </div>
+              <div class="information-block">
+                <span>Tipo:</span>
+                {{ card.brand }} {{ card.funding }} {{ card.object }}
+              </div>
+            </div>
+            <div class="card-information">
+              <div class="information-block">
+                <span>Indirizzo:</span>
+                {{ card.address_line1 }} {{ card.address_line2 }} <br>
+                {{ card.address_state }} {{ card.address_city }} <br>
+                {{ card.address_zip }} {{ card.address_country }}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card-block">
+        <a class="new-card" (click)="addNewCard()">
+          Aggiungi un metodo di pagamento
+        </a>
+      </div>
+    </div>
+  </div>
+</div> -->
+
 <!-- <div class="footer-container light-footer">
   <div class="container">
     <div class="copyright"><a routerLink="/"><strong>Starbook</strong> © 2017 Tutti i diritti riservati</a></div>
@@ -299,37 +401,3 @@
     <span> • </span><a routerLink="../../help">Aiuto e Assistenza</a>
   </div>
 </div> -->
-
-
-
-<div class="dark-screen" *ngIf="activePopup !== ''" (click)="closePopup()"></div>
-<!-- Change password -->
-<div class="popup" *ngIf="activePopup === 'changePassword'">
-  <div class="alert-block" *ngIf="formError">
-    <div class="alert-icn"></div>
-    <div class="alert-container">
-      <div class="header">{{formError.title}}</div>
-      <p>{{formError.message}}</p>
-    </div>
-  </div>
-  <div class="header">Cambia password</div>
-  <form class="login-form" #changePasswordForm="ngForm">
-    <div class="form-group" [ngClass]="{'isError': changePasswordError.currentPassword}">
-      <label for="currentPassword">La tua password</label>
-      <input id="currentPassword" class="form-control" type="password" name="currentPassword" placeholder="" required [(ngModel)]="changePasswordData.currentPassword" #currentPassword="ngModel">
-      <span class="error">La tua password attuale è richiesta</span>
-    </div>
-    <div class="form-group">
-      <label for="newPassword">Nuova password</label>
-      <input id="newPassword" class="form-control" type="password" name="newPassword" placeholder="" required [(ngModel)]="changePasswordData.newPassword" #newPassword="ngModel">
-    </div>
-    <div class="form-group" [ngClass]="{'isError': changePasswordError.passwordConfirm}">
-      <label for="passwordConfirm">Ripeti la nuova password</label>
-      <input id="passwordConfirm" class="form-control" type="password" name="password" placeholder="" required [(ngModel)]="changePasswordData.passwordConfirm" #passwordConfirm="ngModel" (keyup)="checkPassword(newPassword.value, passwordConfirm.value)">
-      <span class="error">Le password non corrispondono</span>
-    </div>
-    <div class="form-group">
-      <button class="btn btn-warning" type="submit" [disabled]="!changePasswordForm.form.valid" (click)="changePassword(currentPassword.value, newPassword.value, passwordConfirm.value)">Cambia password</button>
-    </div>
-  </form>
-</div>

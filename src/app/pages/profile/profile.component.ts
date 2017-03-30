@@ -9,42 +9,22 @@ import { AnalyticsService } from '../../shared/analytics.service';
 import { SeoService } from '../../shared/seo.service';
 import { isBrowser } from "angular2-universal";
 
-export interface IUserData {
-  fullname?: string;
-  email?: string;
-  phone_number?: string;
-  street?: string;
-  city?: string;
-  postal_code?: number;
-  province?: string;
-  country?: string;
-}
-
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html'
 })
 
 export class ProfileComponent implements OnInit, OnDestroy {
-  public selectTab: string|boolean = false;
-  public SWIPE_ACTION = { LEFT: 'swipeleft', RIGHT: 'swiperight' };
-  public delta: number = 0;
-  public tabs = [
-    {name: 'Generali', selected: false, url: 'general'},
-    {name: 'Pagamento', selected: false, url: 'payment'},
-    {name: 'Impostazioni', selected: false, url: 'settings'}
-  ];
 
-  public userData: IUserData = {
-    fullname: '',
-    email: '',
-    phone_number: '',
-    street: '',
-    city: '',
-    postal_code: null,
-    province: '',
-    country: ''
-  };
+  //////////////////////////
+  /////// TAB BAR //////////
+  //////////////////////////
+  public page = '';
+  public tabs = [
+    {name: 'Generali', route: 'general'},
+    {name: 'Pagamento', route: 'payment'},
+    {name: 'Impostazioni', route: 'settings'}
+  ];
 
   ///////////////////////
   /////// USER //////////
@@ -79,13 +59,13 @@ export class ProfileComponent implements OnInit, OnDestroy {
     message_success: null
   }
 
-
-
+  //////////////////////////
+  /////// PAYMENT //////////
+  //////////////////////////
   public activePopup = '';
   public cards = [];
   public defaultCard = '';
   subscription: Subscription;
-
 
 
   constructor(private profileService: ProfileService, private router: Router, private navigationService: NavigationService, private route: ActivatedRoute, private popupsService: PopupsService, private paymentService: PaymentService, private analyticsService: AnalyticsService, private seoService: SeoService) {
@@ -116,35 +96,36 @@ export class ProfileComponent implements OnInit, OnDestroy {
         this.router.navigate(['/']);
       }
     }
+    this.paymentService.getCards().then((cards) => {
+      this.defaultCard = cards.default_source;
+      this.cards = [];
+      cards.sources.data.forEach((cardData) => {
+        this.cards.push(cardData);
+      });
+      console.log('cards: ' + JSON.stringify(this.cards));
+    }).catch((error) => {
+      console.log('error: ' + JSON.stringify(error));
+      if (error.status === 404) {
+        // This Starbook account do not have a Stripe account
+        // When you add a new card, will be created a Stripe account
+        // and update the Starbook account
+      }
+    })
   }
 
   ngOnInit() {
     this.route.params.subscribe(params => {
-      this.selectTab = params['page'];
-      if (this.selectTab ==='general') {
+      this.page = params['page'];
+      if (this.page ==='general') {
         this.navigationService.updateMessage('Informazioni del mio account');
-
-      } else if (this.selectTab ==='payment') {
+      } else if (this.page ==='payment') {
         this.navigationService.updateMessage('Metodo di pagamento');
-        this.paymentService.getCards().then((cards) => {
-          this.defaultCard = cards.default_source;
-          this.cards = [];
-          cards.sources.data.forEach((cardData) => {
-            this.cards.push(cardData);
-          });
-          console.log('cards: ' + JSON.stringify(this.cards));
-        }).catch((error) => {
-          console.log('error: ' + JSON.stringify(error));
-          if (error.status === 404) {
-            // This Starbook account do not have a Stripe account
-            // When you add a new card, will be created a Stripe account
-            // and update the Starbook account
-          }
-        })
-      } else if (this.selectTab ==='settings') {
+      } else if (this.page ==='settings') {
         this.navigationService.updateMessage('Impostazioni');
-
+      } else if (this.page ==='addCard') {
+        this.navigationService.updateMessage('Impostazioni');
       }
+
     });
 
     if (isBrowser) {
@@ -179,6 +160,12 @@ export class ProfileComponent implements OnInit, OnDestroy {
       });
     }
   }
+
+  clickTabItem(route) {
+    this.page = route;
+    this.router.navigate(['/profile/' + route]);
+  }
+
 
   ///////////////////////
   /////// USER //////////
@@ -260,9 +247,17 @@ export class ProfileComponent implements OnInit, OnDestroy {
 
   }
 
-  renderPage(page) {
-    this.selectTab = page;
+  ///////////////////////
+  /////// CARD //////////
+  ///////////////////////
+  addNewCard() {
+    this.router.navigate(['/profile/addCard']);
+    // this.popupsService.activate({type: 'addCard'});
   }
+
+  // renderPage(page) {
+  //   this.selectTab = page;
+  // }
 
   getPopup(type) {
     this.activePopup = type;
@@ -271,36 +266,32 @@ export class ProfileComponent implements OnInit, OnDestroy {
   closePopup() {
     this.activePopup = '';
   }
-
-  swipe(action = this.SWIPE_ACTION.RIGHT, delta) {
-    let calculateDelta = this.delta + delta;
-    let menuSize = 0;
-    let allMenuItems = document.querySelectorAll('.left-navigate > div > a');
-    for (let i = 0; i < allMenuItems.length; i++) {
-      let menuItem: any = allMenuItems[i];
-      menuSize += menuItem.offsetWidth;
-    }
-    let menuBlockWidth = document.querySelector('.left-navigate').clientWidth;
-    let allowMargin = (menuSize) - menuBlockWidth;
-    if (allowMargin >= 0) {
-      allowMargin = -allowMargin;
-      if (calculateDelta > 0) {
-        this.delta = 0;
-      } else {
-        if (calculateDelta < allowMargin) {
-          if (action === this.SWIPE_ACTION.LEFT && allowMargin !== 0) {
-            this.delta = allowMargin;
-          }
-        } else {
-          this.delta = calculateDelta;
-        }
-      }
-    }
-  }
-
-  addNewCard() {
-    this.popupsService.activate({type: 'addCard'});
-  }
+  //
+  // swipe(action = this.SWIPE_ACTION.RIGHT, delta) {
+  //   let calculateDelta = this.delta + delta;
+  //   let menuSize = 0;
+  //   let allMenuItems = document.querySelectorAll('.left-navigate > div > a');
+  //   for (let i = 0; i < allMenuItems.length; i++) {
+  //     let menuItem: any = allMenuItems[i];
+  //     menuSize += menuItem.offsetWidth;
+  //   }
+  //   let menuBlockWidth = document.querySelector('.left-navigate').clientWidth;
+  //   let allowMargin = (menuSize) - menuBlockWidth;
+  //   if (allowMargin >= 0) {
+  //     allowMargin = -allowMargin;
+  //     if (calculateDelta > 0) {
+  //       this.delta = 0;
+  //     } else {
+  //       if (calculateDelta < allowMargin) {
+  //         if (action === this.SWIPE_ACTION.LEFT && allowMargin !== 0) {
+  //           this.delta = allowMargin;
+  //         }
+  //       } else {
+  //         this.delta = calculateDelta;
+  //       }
+  //     }
+  //   }
+  // }
 
   formatYear(year) {
     let i = 0;

@@ -5027,13 +5027,12 @@ textarea.form-control {
   .order-information .order-footer .buttons {
     width: 100%;
     float: none; } }
-.profile-page {
+app-profile .profile-page {
   display: block;
   width: 100%;
   height: 100%;
   padding-top: 50px; }
-
-.top-bar-container {
+app-profile .top-bar-container {
   display: block;
   position: fixed;
   width: 100%;
@@ -5041,8 +5040,7 @@ textarea.form-control {
   height: 70px;
   border-bottom: 1px solid #CCCCCC;
   z-index: 1; }
-
-.top-bar {
+app-profile .top-bar {
   list-style: none;
   overflow: hidden;
   font: 18px Sans-Serif;
@@ -5050,8 +5048,7 @@ textarea.form-control {
   z-index: 1;
   max-width: 1130px;
   margin: 0 auto; }
-
-.top-bar li {
+app-profile .top-bar li {
   color: #9B9B9B;
   float: left;
   height: 70px;
@@ -5059,14 +5056,11 @@ textarea.form-control {
   padding-left: 40px;
   padding-right: 40px;
   text-align: center; }
-
-.top-bar li:hover {
+app-profile .top-bar li:hover {
   color: black; }
-
-.top-bar .active {
+app-profile .top-bar .active {
   color: black; }
-
-.page-container {
+app-profile .page-container {
   display: block;
   max-width: 1130px;
   padding: 30px 40px 0;
@@ -5074,67 +5068,64 @@ textarea.form-control {
   border: 1px solid #CCCCCC;
   background: white;
   margin: 100px auto; }
-  .page-container .form-group .ui-inputtext:focus {
+  app-profile .page-container .form-group .ui-inputtext:focus {
     border: 2px solid #7FC443 !important; }
-  .page-container .form-group .form-control:focus {
+  app-profile .page-container .form-group .form-control:focus {
     border: 2px solid #7FC443 !important; }
-  .page-container .form-group .error-input {
+  app-profile .page-container .form-group .error-input {
     border: 2px solid #f75c4b !important; }
-  .page-container .header {
+  app-profile .page-container .header {
     display: block;
     width: 100%;
     padding: 0 0 30px;
     border-bottom: 1px solid #CCCCCC;
     text-align: center; }
-    .page-container .header h6 {
+    app-profile .page-container .header h6 {
       color: #4A4A4A;
       font-weight: 300;
       margin-top: 15px; }
-  .page-container .messages {
+  app-profile .page-container .messages {
     padding: 20px 0;
     text-align: left; }
-    .page-container .messages .success p {
+    app-profile .page-container .messages .success p {
       color: #449d44; }
-    .page-container .messages .error p {
+    app-profile .page-container .messages .error p {
       color: red; }
-    .page-container .messages a {
+    app-profile .page-container .messages a {
       color: #0066C0 !important;
       cursor: pointer; }
-  .page-container .actions .btn-success {
+  app-profile .page-container .actions .btn-success {
     width: 200px; }
-  .page-container .actions .animate {
+  app-profile .page-container .actions .animate {
     display: block;
     position: absolute;
     top: 18px;
     left: 20px; }
-  .page-container form {
+  app-profile .page-container form {
     margin: 40px 0 20px; }
-    .page-container form h1, .page-container form h2, .page-container form h3, .page-container form h4, .page-container form h5, .page-container form h6 {
+    app-profile .page-container form .card-form {
+      margin: 40px auto 20px;
+      max-width: 600px; }
+    app-profile .page-container form h1, app-profile .page-container form h2, app-profile .page-container form h3, app-profile .page-container form h4, app-profile .page-container form h5, app-profile .page-container form h6 {
       margin: 40px 0 20px; }
-    .page-container form .actions {
+    app-profile .page-container form .actions {
       margin: 20px 0; }
-  .page-container .footer {
+  app-profile .page-container .footer {
     display: block;
     text-align: left !important;
     width: 100%;
     padding: 20px 0 40px;
     border-top: 1px solid #CCCCCC; }
-    .page-container .footer h5 {
+    app-profile .page-container .footer h5 {
       color: #4A4A4A;
       margin-top: 5px; }
-    .page-container .footer .actions {
+    app-profile .page-container .footer .actions {
       margin: 20px 0 0; }
-      .page-container .footer .actions .btn-danger {
+      app-profile .page-container .footer .actions .btn-danger {
         width: 100px; }
-  .page-container .card-block .header .card-logo.mastercard {
-    background-image: url("/assets/images/mastercard-big.png"); }
-  .page-container .card-block .header .card-logo.visa {
-    background-image: url("/assets/images/visa-big.png"); }
-  .page-container .card-block .header .card-logo.amex {
-    background-image: url("/assets/images/amex-big.png"); }
-  .page-container .card-container {
+  app-profile .page-container .card-container {
     padding: 30px 0; }
-    .page-container .card-container .btn-success, .page-container .card-container .btn-danger, .page-container .card-container .btn-secondary {
+    app-profile .page-container .card-container .btn-success, app-profile .page-container .card-container .btn-danger, app-profile .page-container .card-container .btn-secondary {
       padding: 0 30px;
       width: initial;
       height: 40px;
@@ -5142,532 +5133,24 @@ textarea.form-control {
       font-weight: 300;
       font-size: 18px;
       margin: 0 10px 10px 0; }
-  .page-container .btn-secondary {
+  app-profile .page-container .btn-secondary {
     font-size: 20px;
     font-family: Roboto, sans-serif;
     font-weight: 500; }
-  .page-container .btn-yellow-green {
+  app-profile .page-container .btn-yellow-green {
     width: 100%;
     font-size: 26px;
     color: white;
     height: 60px;
     font-weight: 700; }
-
 @media (max-width: 1100px) {
-  .page-container {
+  app-profile .page-container {
     margin: 70px auto;
     border-top: 0;
     border-left: 0;
     border-right: 0;
     padding: 30px 30px 0; } }
-.container-starbook.without-tabs .row {
-  padding: 40px 0 0 0; }
 
-.profile-page.whiteBg {
-  background-color: #FFFFFF; }
-
-.profile-settings {
-  display: block;
-  width: 500px;
-  margin-left: 260px;
-  margin-top: 23px; }
-
-.profile-settings .form-control:focus {
-  color: #4A4A4A; }
-
-.profile-settings .header {
-  display: block;
-  width: 100%;
-  font-size: 30px;
-  color: #212121;
-  letter-spacing: 0.13px;
-  margin-bottom: 17px; }
-
-.profile-settings .header.second {
-  margin-top: 33px;
-  margin-bottom: 18px; }
-
-.profile-settings .form-group.name-input {
-  margin-bottom: 76px !important; }
-
-.profile-settings .form-group {
-  margin-bottom: 16px !important;
-  height: 40px;
-  position: relative; }
-
-.profile-settings label {
-  font-size: 11px;
-  color: #212121;
-  letter-spacing: 0.09px;
-  font-weight: normal;
-  padding-bottom: 5px; }
-
-.profile-settings input {
-  height: 38px;
-  border: 1px solid #DCDCDC;
-  background-color: #FFFFFF;
-  color: #4A4A4A;
-  font-size: 16px;
-  letter-spacing: 0.1px;
-  font-weight: 400;
-  padding: 11px 16px;
-  outline: none; }
-
-.profile-settings .email-field {
-  display: block;
-  position: relative;
-  width: 100%;
-  padding-right: 146px; }
-
-.profile-settings .email-field .btn.btn-primary {
-  display: block;
-  position: absolute;
-  top: 4px;
-  right: 0; }
-
-.profile-settings .btn-primary,
-.profile-settings .btn-primary:active,
-.profile-settings .btn-primary:hover {
-  height: 30px;
-  background-color: #506795;
-  border: 1px solid #29487D;
-  color: #FFFFFF;
-  font-size: 12px;
-  letter-spacing: 0.08px;
-  font-weight: 600;
-  border-radius: 3px;
-  padding: 7px 7px 7px 7px;
-  margin-left: 10px;
-  outline: none; }
-
-.password-block .change-password .btn-primary,
-.password-block .change-password .btn-primary:active,
-.password-block .change-password .btn-primary:hover {
-  display: block;
-  position: absolute;
-  top: 4px;
-  right: 0; }
-
-.form-group.double-input input.first {
-  display: inline-block;
-  float: left;
-  width: 370px; }
-
-.form-group.double-input input.second {
-  display: inline-block;
-  float: right;
-  width: 108px;
-  margin-left: 13px; }
-
-.profile-settings .profile-information {
-  display: block;
-  width: 100%;
-  background-color: #DFF0D8;
-  border: 1px solid #D6E9C6;
-  border-radius: 3px;
-  padding: 18px 26px 22px 19px;
-  margin-top: 33px;
-  margin-bottom: 20px;
-  color: #3C763D;
-  font-size: 16px;
-  letter-spacing: 0.1px;
-  font-weight: 400; }
-
-.profile-settings .profile-information strong {
-  color: #3C763D;
-  font-size: 16px;
-  letter-spacing: 0.1px;
-  font-weight: 700; }
-
-.profile-settings .btn-warning, .profile-settings .btn-warning:hover, .profile-settings .btn-warning:active {
-  width: 100%;
-  height: 45px;
-  margin-top: 0;
-  border: 1px solid #979797;
-  background: #FFC845;
-  color: #2A0202;
-  font-size: 18px;
-  letter-spacing: 0.11px;
-  font-weight: 700;
-  outline: none; }
-
-.profile-settings .btn-secondary, .profile-settings .btn-secondary:hover, .profile-settings .btn-secondary:active {
-  width: 100%;
-  height: 43px;
-  margin-top: 0;
-  border: 1px solid #979797;
-  border-radius: 2px;
-  background-color: #F6F7F9;
-  border: 1px solid #DDDFE2;
-  color: #212121;
-  font-size: 18px;
-  letter-spacing: 0.11px;
-  font-weight: 700; }
-
-.profile-page .content-page {
-  display: block;
-  width: 100%;
-  padding: 28px 35px 0 235px; }
-
-.profile-page .content-page h1 {
-  display: block;
-  width: 100%;
-  color: #212121;
-  font-size: 28px;
-  letter-spacing: 0.18px;
-  margin: 0;
-  padding-bottom: 20px;
-  font-weight: normal; }
-
-.profile-page .content-page h2 {
-  display: block;
-  width: 100%;
-  color: #000000;
-  font-size: 22px;
-  letter-spacing: 0.1px;
-  margin: 0;
-  font-weight: normal; }
-
-.profile-page .content-page h3 {
-  display: block;
-  width: 100%;
-  color: #000000;
-  font-size: 17px;
-  letter-spacing: 0.1px;
-  margin: 0;
-  font-weight: normal; }
-
-.profile-page .content-page p {
-  display: block;
-  width: 100%;
-  color: #212121;
-  font-size: 15px;
-  letter-spacing: 0.1px;
-  margin-bottom: 16px; }
-
-.profile-page .content-page p.black {
-  color: #000000; }
-
-.profile-page .content-page p.black strong {
-  font-weight: normal; }
-
-.cards-page {
-  display: block;
-  float: left;
-  width: 100%;
-  padding: 16px 18px 0 218px; }
-
-.cards-page .card-block {
-  display: block;
-  float: left;
-  width: 50%;
-  padding: 17px; }
-
-.card-block .container {
-  display: block;
-  width: 100%;
-  background-color: #FFFFFF;
-  border: 1px solid #DCDCDC;
-  border-radius: 3px;
-  padding: 0; }
-
-.card-block .container .header {
-  display: block;
-  position: relative;
-  width: 100%;
-  border-bottom: 1px solid #DCDCDC;
-  padding: 10px; }
-
-.card-block .container .header .card-logo {
-  display: block;
-  position: relative;
-  width: 50px;
-  height: 30px;
-  margin-left: 10px;
-  background-size: contain;
-  background-position: center center;
-  background-repeat: no-repeat; }
-
-.card-block .container .header .card-logo span {
-  display: block;
-  position: absolute;
-  width: 60px;
-  text-align: left;
-  color: #212121;
-  font-size: 14px;
-  letter-spacing: 0.09px;
-  top: 7px;
-  left: 70px;
-  white-space: nowrap; }
-
-.card-block .container .header .isDefault {
-  display: block;
-  position: absolute;
-  width: 100%;
-  top: 0;
-  left: 0;
-  text-align: center;
-  color: #212121;
-  font-size: 16px;
-  letter-spacing: 0.1px;
-  padding-top: 14px; }
-
-.card-block .container .header .buttons-block {
-  display: block;
-  position: absolute;
-  width: 100%;
-  top: 10px;
-  right: 10px;
-  text-align: right; }
-
-.card-block .container .content {
-  display: block;
-  width: 100%;
-  height: 135px;
-  padding: 18px; }
-
-.card-block .container .content .card-information {
-  display: block;
-  width: 50%;
-  float: left;
-  padding-left: 8px; }
-
-.card-block .container .content .card-information .information-block {
-  display: block;
-  float: left;
-  position: relative;
-  width: 100%;
-  margin-bottom: 10px;
-  padding-left: 90px;
-  color: #212121;
-  font-size: 12px;
-  letter-spacing: 0.08px; }
-
-.card-block .container .content .card-information .information-block span {
-  display: block;
-  position: absolute;
-  width: 59px;
-  top: 0;
-  left: 0;
-  font-size: 12px;
-  letter-spacing: 0.08px;
-  color: #9B9B9B;
-  text-align: right; }
-
-.card-block a.new-card {
-  display: block;
-  width: 100%;
-  height: 188px;
-  background-color: #F6F7F9;
-  border: 2px dashed #DCDCDC;
-  border-radius: 3px;
-  font-size: 20px;
-  color: #9B9B9B;
-  letter-spacing: 0.13px;
-  text-align: center;
-  padding: 76px 0;
-  cursor: pointer; }
-
-.card-block a.new-card:hover {
-  background-color: #E4E7ED;
-  color: #9B9B9B; }
-
-.cards-page a.btn-primary {
-  height: 28px;
-  background-color: #506795;
-  border: 1px solid #29487D;
-  color: #FFFFFF;
-  font-size: 12px;
-  letter-spacing: 0.08px;
-  font-weight: normal;
-  border-radius: 3px;
-  padding: 6px 8px;
-  margin-left: 10px;
-  outline: none;
-  cursor: pointer; }
-
-.cards-page a.btn-primary:focus,
-.cards-page a.btn-primary:hover {
-  height: 28px;
-  background-color: #324977;
-  border: 1px solid #29487D;
-  color: #FFFFFF;
-  font-size: 12px;
-  letter-spacing: 0.08px;
-  font-weight: normal;
-  border-radius: 3px;
-  padding: 6px 8px;
-  margin-left: 10px;
-  outline: none; }
-
-.cards-page a.btn-primary:active {
-  height: 28px;
-  background-color: #506795;
-  border: 1px solid #29487D;
-  color: #FFFFFF;
-  font-size: 12px;
-  letter-spacing: 0.08px;
-  font-weight: normal;
-  border-radius: 3px;
-  padding: 6px 8px;
-  margin-left: 10px;
-  outline: none; }
-
-.cards-page a.btn-secondary {
-  height: 28px;
-  background-color: #F6F7F9;
-  border: 1px solid #DDDFE2;
-  color: #212121;
-  font-size: 12px;
-  letter-spacing: 0.08px;
-  font-weight: normal;
-  border-radius: 3px;
-  padding: 6px 8px;
-  margin-left: 10px;
-  outline: none;
-  cursor: pointer; }
-
-.cards-page a.btn-secondary:focus,
-.cards-page a.btn-secondary:hover {
-  height: 28px;
-  background-color: #E4E7ED;
-  border: 1px solid #DDDFE2;
-  color: #212121;
-  font-size: 12px;
-  letter-spacing: 0.08px;
-  font-weight: normal;
-  border-radius: 3px;
-  padding: 6px 8px;
-  margin-left: 10px;
-  outline: none; }
-
-.cards-page a.btn-secondary:active {
-  height: 28px;
-  background-color: #F6F7F9;
-  border: 1px solid #DDDFE2;
-  color: #212121;
-  font-size: 12px;
-  letter-spacing: 0.08px;
-  font-weight: normal;
-  border-radius: 3px;
-  padding: 6px 8px;
-  margin-left: 10px;
-  outline: none; }
-
-.profile-page .profile-settings form {
-  position: relative;
-  padding-bottom: 10px; }
-
-.profile-page .profile-settings .loader {
-  display: block;
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 102; }
-
-.profile-page .profile-settings .loader svg {
-  display: block;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 50px;
-  height: 50px;
-  margin-left: -25px;
-  margin-top: -25px; }
-
-.profile-page .cards-page .loader {
-  display: block;
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 102;
-  padding: 16px 18px 0 218px; }
-
-.profile-page .cards-page .loader svg {
-  display: block;
-  width: 50px;
-  height: 50px;
-  margin: 100px auto; }
-
-@media (max-width: 1440px) {
-  .container-starbook .left-navigate {
-    top: 10px;
-    left: 0;
-    margin-left: 0; } }
-@media (max-width: 1100px) {
-  .cards-page .card-block {
-    width: 100%; } }
-@media (max-width: 780px) {
-  .profile-settings {
-    width: 500px;
-    margin: 53px auto 0;
-    padding-left: 0; }
-
-  .profile-page .content-page {
-    padding: 58px 15px 0 15px; }
-
-  .profile-settings .form-group {
-    margin-top: 0px; }
-
-  .profile-settings .password-block {
-    margin-top: 40px; }
-
-  .profile-settings .form-group label {
-    top: -27px;
-    left: 0;
-    padding-left: 0;
-    text-align: left; }
-
-  .cards-page {
-    padding: 30px 18px 0 15px; } }
-@media (max-width: 645px) {
-  .profile-page .content-page {
-    padding: 58px 0 0 15px; }
-
-  .cards-page {
-    padding: 30px 0 0 0; } }
-@media (max-width: 560px) {
-  .profile-page .content-page {
-    padding: 58px 0 0 15px; }
-
-  .profile-page .container-starbook {
-    padding: 0 0 0 15px; }
-
-  .profile-settings {
-    width: 100%;
-    padding-left: 15px;
-    padding-right: 15px;
-    padding-bottom: 70px; }
-
-  .form-group.double-input input.first {
-    width: 63%; }
-
-  .form-group.double-input input.second {
-    width: 33%;
-    margin-left: 0; } }
-@media (max-width: 480px) {
-  .profile-settings .header {
-    font-size: 17px; }
-
-  .card-block .container .header .isDefault {
-    text-align: right;
-    padding-right: 15px; }
-
-  .card-block .container .header .buttons-block {
-    position: static;
-    top: 0;
-    right: 0;
-    margin-top: 11px; }
-
-  .card-block .container .content {
-    height: auto; }
-
-  .card-block .container .content .card-information {
-    width: 100%; } }
 .dark-screen {
   display: block;
   position: fixed;
