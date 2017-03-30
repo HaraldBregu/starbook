@@ -130,7 +130,7 @@ export class AppComponent implements OnInit, OnDestroy {
     this.newServiceRequest.message = 'Grazie!';
     this.analyticsService.sendEvent({category:'Services', action: 'request', label: this.findValue});
   }
-  
+
   selectResult(servicesObj) {
     this.homeService.sendServices(servicesObj);
     this.results = [];
@@ -152,9 +152,8 @@ export class AppComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     if(isBrowser) {
-      this.subscription.unsubscribe();
-      this.authSubscription.unsubscribe();
+      // this.subscription.unsubscribe();
+      // this.authSubscription.unsubscribe();
     }
-    // this.loadingSubscription.unsubscribe();
   }
 }

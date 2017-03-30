@@ -534,6 +534,47 @@ p {
   border-radius: 0;
   outline: none !important; }
 
+.form-group label {
+  color: black;
+  font-size: 16px;
+  font-weight: 600;
+  padding: 0 0 0 11px;
+  margin-bottom: 4px; }
+
+.form-control {
+  height: 40px;
+  color: black;
+  font-size: 16px;
+  letter-spacing: 0.1px;
+  padding: 7px 20px;
+  border-radius: 1px !important;
+  background-color: #FFFFFF;
+  border: 1px solid rgba(220, 224, 224, 0.7); }
+
+.input-group .form-control {
+  position: relative;
+  padding-left: 20px;
+  box-shadow: none;
+  background-color: #2A292B; }
+
+.form-control.text-small {
+  font-size: 12px; }
+
+textarea.form-control {
+  height: 80px;
+  resize: none;
+  font-size: 17px;
+  color: white;
+  letter-spacing: 0.01px;
+  box-shadow: none;
+  background-color: #2A292B; }
+
+.form-control:focus {
+  border: 1px solid rgba(220, 224, 224, 0.7);
+  outline: none;
+  background-color: white;
+  color: white; }
+
 .form-group {
   margin-bottom: 20px; }
 
@@ -3869,7 +3910,6 @@ textarea, input[type="text"] {
   width: 100%;
   margin-top: 5px;
   text-align: center;
-  font-family: Roboto, sans-serif;
   color: #FFFFFF;
   font-size: 16px;
   letter-spacing: 0.19px; }
@@ -3891,7 +3931,6 @@ textarea, input[type="text"] {
   float: left;
   width: 100%;
   text-align: center;
-  font-family: Roboto, sans-serif;
   color: #ffffff;
   font-size: 35px;
   letter-spacing: 0.22px; }
@@ -3917,7 +3956,6 @@ textarea, input[type="text"] {
   float: left;
   width: 100%;
   text-align: center;
-  font-family: Roboto, sans-serif;
   color: #ffffff;
   font-size: 22px;
   letter-spacing: 0.14px; }
@@ -3984,7 +4022,6 @@ textarea, input[type="text"] {
   float: left;
   width: 100%;
   text-align: left;
-  font-family: Roboto, sans-serif;
   color: #90949C;
   letter-spacing: 0.08px;
   font-size: 12px;
@@ -3992,14 +4029,12 @@ textarea, input[type="text"] {
 
 .footer-links p a {
   text-decoration: none;
-  font-family: Roboto, sans-serif;
   color: #90949C;
   letter-spacing: 0.08px;
   font-size: 12px; }
 
 .footer-links p a:hover, .footer-links p a:active {
   text-decoration: none;
-  font-family: Roboto, sans-serif;
   color: #90949C;
   letter-spacing: 0.08px;
   font-size: 12px; }
@@ -4008,69 +4043,11 @@ textarea, input[type="text"] {
   margin-bottom: 10px; }
 
 .add-order-form label {
-  font-family: Roboto, sans-serif;
   font-weight: lighter;
   color: rgba(255, 255, 255, 0.7);
   font-size: 17px;
   padding-bottom: 10px;
   padding-top: 5px; }
-
-.form-group label {
-  color: #000000;
-  font-size: 16px;
-  font-weight: 600;
-  padding: 0 0 0 11px;
-  margin-bottom: 4px; }
-
-.form-control {
-  height: 40px;
-  color: #000000;
-  font-size: 16px;
-  font-family: Roboto, sans-serif;
-  letter-spacing: 0.1px;
-  padding: 7px 20px;
-  border-radius: 1px !important;
-  background-color: #FFFFFF;
-  border: 1px solid rgba(220, 224, 224, 0.7); }
-
-.input-group .form-control {
-  position: relative;
-  padding-left: 20px;
-  box-shadow: none;
-  background-color: #2A292B; }
-
-.input-group .form-control .ui-autocomplete-input {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  border: none !important;
-  padding-left: 20px;
-  top: 0;
-  left: 0;
-  color: white;
-  font-size: 16px;
-  font-family: Roboto, sans-serif;
-  letter-spacing: 0.1px;
-  outline: none; }
-
-.form-control.text-small {
-  font-size: 12px; }
-
-textarea.form-control {
-  height: 80px;
-  resize: none;
-  font-size: 17px;
-  color: white;
-  font-family: Roboto, sans-serif;
-  letter-spacing: 0.01px;
-  box-shadow: none;
-  background-color: #2A292B; }
-
-.form-control:focus {
-  border: 1px solid rgba(220, 224, 224, 0.7);
-  outline: none;
-  background-color: white;
-  color: white; }
 
 .input-group {
   position: relative; }
@@ -4106,7 +4083,6 @@ textarea.form-control {
   color: #FFFFFF;
   font-size: 20px;
   font-weight: 700;
-  font-family: Roboto, sans-serif;
   letter-spacing: 0.11px;
   padding: 13px;
   border: none; }
@@ -4124,7 +4100,6 @@ textarea.form-control {
   margin-bottom: 8px;
   background-color: #FEEFBC;
   border: 1px solid #FFBD00;
-  font-family: Roboto, sans-serif;
   font-size: 14px;
   letter-spacing: 0.09px;
   color: #BC892D;
@@ -4157,7 +4132,6 @@ textarea.form-control {
   width: 100%;
   color: #212121;
   letter-spacing: 0.1px;
-  font-family: Roboto, sans-serif;
   font-size: 15px;
   text-align: left; }
 
@@ -4227,7 +4201,6 @@ textarea.form-control {
   text-align: left;
   padding: 5px 14px;
   color: #324977;
-  font-family: Roboto, sans-serif;
   font-size: 15px;
   font-weight: 500;
   cursor: pointer; }
@@ -4244,7 +4217,6 @@ textarea.form-control {
   height: 38px;
   color: white;
   font-size: 16px;
-  font-family: Roboto, sans-serif;
   letter-spacing: 0.1px;
   border-radius: 3px;
   border: none;
@@ -4260,7 +4232,6 @@ textarea.form-control {
   background-color: #ffffff;
   font-size: 15px;
   color: #4A4A4A;
-  font-family: Roboto, sans-serif;
   font-weight: 400;
   border-left: 1px solid #DCDCDC;
   border-right: 1px solid #DCDCDC;
@@ -4281,7 +4252,6 @@ textarea.form-control {
 .form-group .error-block {
   display: block;
   color: #DB4F4F;
-  font-family: Roboto, sans-serif;
   font-size: 15px;
   padding: 6px 11px 0 11px; }
 
@@ -5103,9 +5073,15 @@ app-profile .page-container {
     left: 20px; }
   app-profile .page-container form {
     margin: 40px 0 20px; }
+    app-profile .page-container form .error-message {
+      color: #f75c4b;
+      font-size: 12px;
+      position: absolute; }
     app-profile .page-container form .card-form {
-      margin: 40px auto 20px;
+      margin: 40px auto 40px;
       max-width: 600px; }
+      app-profile .page-container form .card-form .btn-success  {
+        width: 100%; }
     app-profile .page-container form h1, app-profile .page-container form h2, app-profile .page-container form h3, app-profile .page-container form h4, app-profile .page-container form h5, app-profile .page-container form h6 {
       margin: 40px 0 20px; }
     app-profile .page-container form .actions {

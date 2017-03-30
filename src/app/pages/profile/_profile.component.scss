@@ -99,10 +99,19 @@ app-profile {
     }
     form {
       margin: 40px 0 20px;
-      .card-form {
-        margin: 40px auto 20px;
-        max-width: 600px;
+      .error-message {
+        color: #f75c4b;
+        font-size: 12px;
+        position: absolute;
       }
+      .card-form {
+        margin: 40px auto 40px;
+        max-width: 600px;
+        .btn-success {
+          width: 100%;
+        }
+      }
+
       h1, h2, h3, h4, h5, h6 {
         margin: 40px 0 20px;
       }

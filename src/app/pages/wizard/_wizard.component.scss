@@ -167,7 +167,7 @@ app-wizard {
   position: relative;
   width: 100%;
   padding-top: 5px;
-  
+
   color: $wizard-content-item-text-color;
   font-size: $wizard-content-item-text-size;
   letter-spacing: $wizard-content-item-text-letter-spacing;
@@ -528,7 +528,6 @@ app-wizard {
 }
 .content-container form {
   .error-message {
-
     color: #f75c4b;
     font-size: 12px;
     position: absolute;

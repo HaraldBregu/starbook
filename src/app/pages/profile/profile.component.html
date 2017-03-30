@@ -1,8 +1,5 @@
 <div class="profile-page">
-  <div class="top-bar-container">
-    <!-- <ul class="top-bar">
-      <li *ngFor="let tab of tabs" [ngClass]="{'active':tab.url === selectTab}" (click)="clickTabItem()" [routerLink]="['/profile', tab.url]">{{tab.name}}</li>
-    </ul> -->
+  <div class="top-bar-container noselect">
     <ul class="top-bar">
       <li *ngFor="let tab of tabs" [ngClass]="{'active':tab.route === page}" (click)="clickTabItem(tab.route)">{{tab.name}}</li>
     </ul>
@@ -87,8 +84,8 @@
       </div>
     </div>
     <div class="card-container">
-      <a class="btn btn-secondary" *ngIf="cards?.length===0" (click)="addNewCard()">Aggiungi un metodo</a>
-      <a class="btn btn-secondary" *ngIf="cards?.length > 0" (click)="addNewCard()">Aggiungi un altro metodo</a>
+      <a class="btn btn-secondary" *ngIf="cards?.length===0" (click)="showCardPage()">Aggiungi un metodo</a>
+      <a class="btn btn-secondary" *ngIf="cards?.length > 0" (click)="showCardPage()">Aggiungi un altro metodo</a>
     </div>
     <div class="footer">
       <h5>Privacy del account</h5>
@@ -158,7 +155,7 @@
       </div>
     </div>
   </div>
-  <div class="page-container" *ngIf="page === 'addCard'">
+  <div class="page-container" *ngIf="page === 'card'">
     <div class="header">
       <h1>Inserisci un metodo di pagamento</h1>
       <h6>Per utilizzare al massimo i servizi Starbook inserisci un metodo di pagamento.</h6>
@@ -166,92 +163,82 @@
     <form>
       <div class="card-form">
         <div class="form-group">
-          <label for="emailInput">Numero carta</label>
-          <input type="email" placeholder="La tua mail" class="form-control" [ngClass]="{'error-input': signup_state.email_error}" id="emailInput" [(ngModel)]="signupParameters.email" [ngModelOptions]="{standalone: true}">
-          <small class="error-message" *ngIf="signup_state.email_error">{{signup_state.email_error}}</small>
+          <label for="numberInput">Numero carta</label>
+          <input autocomplete="off" type="text" placeholder="Numero" class="form-control" [ngClass]="{'error-input': card_state.number_error}" id="numberInput" [(ngModel)]="Card.number" [ngModelOptions]="{standalone: true}">
+          <small class="error-message" *ngIf="card_state.number_error">{{card_state.number_error}}</small>
         </div>
         <div class="row">
           <div class="col-md-6">
             <div class="form-group">
-              <label for="firstNameInput">Scadenza</label>
-              <input type="firstname" placeholder="Nome" class="form-control" [ngClass]="{'error-input': signup_state.first_name_error}" id="firstNameInput" [(ngModel)]="signupParameters.firstname" [ngModelOptions]="{standalone: true}">
-              <small class="error-message" *ngIf="signup_state.first_name_error">{{signup_state.first_name_error}}</small>
+              <label for="dateInput">Scadenza</label>
+              <input autocomplete="off" type="text" placeholder="Scadenza" class="form-control" [ngClass]="{'error-input': card_state.exp_date_error}" id="dateInput" [(ngModel)]="Card.exp_date" (keyup)="checkExpiry(Card.exp_date)" (change)="checkExpiry(Card.exp_date)" [ngModelOptions]="{standalone: true}">
+              <small class="error-message" *ngIf="card_state.exp_date_error">{{card_state.exp_date_error}}</small>
             </div>
           </div>
           <div class="col-md-6">
             <div class="form-group">
-              <label for="lastNameInput">CVV</label>
-              <input type="lastname" placeholder="Cognome" class="form-control" [ngClass]="{'error-input': signup_state.last_name_error}" id="lastNameInput" [(ngModel)]="signupParameters.lastname" [ngModelOptions]="{standalone: true}">
-              <small class="error-message" *ngIf="signup_state.last_name_error">{{signup_state.last_name_error}}</small>
+              <label for="numberInput">CVC/CVV</label>
+              <input autocomplete="off" type="text" placeholder="CVC/CVV" class="form-control" [ngClass]="{'error-input': card_state.cvc_error}" id="numberInput" [(ngModel)]="Card.cvc" [ngModelOptions]="{standalone: true}">
+              <small class="error-message" *ngIf="card_state.cvc_error">{{card_state.cvc_error}}</small>
             </div>
           </div>
         </div>
         <div class="form-group">
-          <label for="phoneInput">Nome intestatario</label>
-          <input type="phone" placeholder="Numero di telefono" class="form-control" [ngClass]="{'error-input': signup_state.phone_error}" id="phoneInput" [(ngModel)]="signupParameters.phone" [ngModelOptions]="{standalone: true}">
-          <small class="error-message" *ngIf="signup_state.phone_error">{{signup_state.phone_error}}</small>
+          <label for="nameInput">Nome e cognome dell'intestatario</label>
+          <input type="name" name="name" placeholder="Nome e cognome" class="form-control" id="nameInput" [(ngModel)]="Card.name" [ngModelOptions]="{standalone: true}">
         </div>
         <div class="row">
           <div class="col-md-8">
             <div class="form-group">
-              <label for="firstNameInput">Indirizzo</label>
-              <input type="firstname" placeholder="Nome" class="form-control" [ngClass]="{'error-input': signup_state.first_name_error}" id="firstNameInput" [(ngModel)]="signupParameters.firstname" [ngModelOptions]="{standalone: true}">
-              <small class="error-message" *ngIf="signup_state.first_name_error">{{signup_state.first_name_error}}</small>
+              <label for="addressInput">Indirizzo</label>
+              <input type="address" placeholder="Via" class="form-control" id="addressInput" [(ngModel)]="Card.address_line1" [ngModelOptions]="{standalone: true}">
             </div>
           </div>
           <div class="col-md-4">
             <div class="form-group">
-              <label for="lastNameInput">Numero</label>
-              <input type="lastname" placeholder="Cognome" class="form-control" [ngClass]="{'error-input': signup_state.last_name_error}" id="lastNameInput" [(ngModel)]="signupParameters.lastname" [ngModelOptions]="{standalone: true}">
-              <small class="error-message" *ngIf="signup_state.last_name_error">{{signup_state.last_name_error}}</small>
+              <label for="addressNumberInput">Nr</label>
+              <input type="text" placeholder="Nr" class="form-control" id="addressNumberInput" [(ngModel)]="Card.address_line2" [ngModelOptions]="{standalone: true}">
             </div>
           </div>
         </div>
         <div class="row">
           <div class="col-md-8">
             <div class="form-group">
-              <label for="firstNameInput">Città</label>
-              <input type="firstname" placeholder="Nome" class="form-control" [ngClass]="{'error-input': signup_state.first_name_error}" id="firstNameInput" [(ngModel)]="signupParameters.firstname" [ngModelOptions]="{standalone: true}">
-              <small class="error-message" *ngIf="signup_state.first_name_error">{{signup_state.first_name_error}}</small>
+              <label for="cittyInput">Città</label>
+              <input type="text" placeholder="Città" class="form-control" id="cittyInput" [(ngModel)]="Card.address_city" [ngModelOptions]="{standalone: true}">
             </div>
           </div>
           <div class="col-md-4">
             <div class="form-group">
-              <label for="lastNameInput">CAP</label>
-              <input type="lastname" placeholder="Cognome" class="form-control" [ngClass]="{'error-input': signup_state.last_name_error}" id="lastNameInput" [(ngModel)]="signupParameters.lastname" [ngModelOptions]="{standalone: true}">
-              <small class="error-message" *ngIf="signup_state.last_name_error">{{signup_state.last_name_error}}</small>
+              <label for="capInput">CAP</label>
+              <input type="text" placeholder="CAP" class="form-control" id="capInput" [(ngModel)]="Card.address_zip" [ngModelOptions]="{standalone: true}">
             </div>
           </div>
         </div>
         <div class="row">
           <div class="col-md-6">
             <div class="form-group">
-              <label for="firstNameInput">Provincia</label>
-              <input type="firstname" placeholder="Nome" class="form-control" [ngClass]="{'error-input': signup_state.first_name_error}" id="firstNameInput" [(ngModel)]="signupParameters.firstname" [ngModelOptions]="{standalone: true}">
-              <small class="error-message" *ngIf="signup_state.first_name_error">{{signup_state.first_name_error}}</small>
+              <label for="provinceInput">Provincia</label>
+              <input type="text" placeholder="Provincia" class="form-control" id="provinceInput" [(ngModel)]="Card.address_state" [ngModelOptions]="{standalone: true}">
             </div>
           </div>
           <div class="col-md-6">
             <div class="form-group">
-              <label for="lastNameInput">Paese</label>
-              <!-- <select class="form-control">
-                <option>Italia</option>
-                <option>Germania</option>
-              </select> -->
-              <input type="lastname" placeholder="Cognome" class="form-control" [ngClass]="{'error-input': signup_state.last_name_error}" id="lastNameInput" [(ngModel)]="signupParameters.lastname" [ngModelOptions]="{standalone: true}">
-              <small class="error-message" *ngIf="signup_state.last_name_error">{{signup_state.last_name_error}}</small>
+              <label for="countryInput">Paese</label>
+              <input type="text" placeholder="Paese" class="form-control" id="countryInput" [(ngModel)]="Card.address_country" [ngModelOptions]="{standalone: true}">
             </div>
           </div>
         </div>
+        <div class="messages" *ngIf="card_state.message_error">
+          <div class="error" *ngIf="card_state.message_error">
+            <p><small>{{card_state.message_error}}</small></p>
+          </div>
+        </div>
         <div class="form-group">
-          <a class="btn btn-success" (click)="addOrUpdateCard()">Add or update</a>
+          <a class="btn btn-success" (click)="addCard()">Add card</a>
         </div>
       </div>
     </form>
-    <div class="footer">
-      <h5>Privacy del account</h5>
-      <h6><small>Le informazioni degli utenti consentono a STARBOOK di fornire agli utenti stessi l’accesso alle sezioni del Sito cui sono interessati e di fornire il Servizio. Esse mettono inoltre STARBOOK in grado di fatturare gli importi dovuti e consentono a STARBOOK o ad un professionista cui l’utente abbia inoltrato un Ordine di contattare l’utente in merito al Servizio, ove necessario.</small></h6>
-    </div>
   </div>
 </div>
 
