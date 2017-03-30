@@ -153,35 +153,19 @@ export class ProfileComponent implements OnInit, OnDestroy {
     });
 
     if (isBrowser) {
-      // this.subscription = this.popupsService.getPopupResponse$.subscribe(action => {
-      //   switch (action.type) {
-      //     case 'newCard':
-      //       this.cards.push(action.data);
-      //       break;
-      //     case 'newCardError':
-      //       break;
-      //     case 'startNewCard':
-      //       break;
-      //     case 'cardEdited':
-      //       let i = 0;
-      //       this.cards.forEach((card) => {
-      //         if (card.id === action.data.id) {
-      //           this.cards[i] = action.data;
-      //         }
-      //         i++;
-      //       });
-      //       break;
-      //     case 'logout':
-      //       if (isBrowser) {
-      //         if (localStorage.getItem('auth') !== null) {
-      //           localStorage.removeItem('auth');
-      //         }
-      //       }
-      //       this.navigationService.updatePersonalMenu(false);
-      //       this.router.navigate(['/']);
-      //       break;
-      //   }
-      // });
+      this.subscription = this.popupsService.getPopupResponse$.subscribe(action => {
+        switch (action.type) {
+          case 'logout':
+          if (isBrowser) {
+            if (localStorage.getItem('auth') !== null) {
+              localStorage.removeItem('auth');
+            }
+          }
+          this.navigationService.updatePersonalMenu(false);
+          this.router.navigate(['/']);
+          break;
+        }
+      });
     }
   }
 
