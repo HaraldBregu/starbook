@@ -1,8 +1,4 @@
 // General styles
-$font-name: HelveticaNeue, sans-serif;
-$font-name-medium: HelveticaNeue-Medium, sans-serif;
-$font-name-bold: HelveticaNeue-Bold, sans-serif;
-$font-name-light: HelveticaNeue-Light, sans-serif;
 $letter-spacing: 0.08px;
 $background: #FAFAFA;
 $white-background: #FFFFFF;
@@ -118,6 +114,7 @@ $card-new-card-letter-spacing: 0.13px;
   background: white;
   height: 70px;
   border-bottom: 1px solid #CCCCCC;
+  z-index: 1;
 }
 .top-bar {
   list-style: none;
@@ -150,60 +147,144 @@ $card-new-card-letter-spacing: 0.13px;
 .page-container {
   display: block;
   max-width: 1130px;
+  padding: 30px 40px 0;
+  border-bottom: 1px solid #CCCCCC;
   border: 1px solid #CCCCCC;
   background: white;
   margin: 100px auto;
-}
-.page-container .header {
-  display: block;
-  width: 100%;
-  height: 140px;
-  padding: 40px 50px;
-  border-bottom: 1px solid #CCCCCC;
-}
-.page-container .header h4 {
-  color: #4A4A4A;
-  font-family: $font-name-light;
-  margin-top: 5px;
-}
-.info {
-  float: left;
-}
-.actions {
-  // float: right;
-}
-.page-container .content-section {
-  display: block;
-  padding: 50px 0;
-  margin: 0 50px;
-  border-bottom: 1px solid #CCCCCC;
-}
-.content-section h2 {
-  margin-bottom: 30px;
-}
-.content-section .actions {
-  float: none;
-}
-.content-section .form-horizontal {
-  margin: auto;
-}
-.content-section .form-horizontal .form-group {
-  display: inline-block;
-  width: 32%;
-}
-.page-container .footer {
-  display: block;
-  width: 100%;
-  height: 140px;
-  padding: 40px 50px;
-}
-.page-container .footer h5 {
-  color: #4A4A4A;
-  font-family: $font-name-light;
-  margin-top: 5px;
+  .form-group .ui-inputtext:focus {
+    border: 2px solid #7FC443 !important;
+  }
+  .form-group .form-control:focus {
+    border: 2px solid #7FC443 !important;
+  }
+  .form-group .error-input {
+    border: 2px solid #f75c4b !important;
+  }
+  .header {
+    display: block;
+    width: 100%;
+    padding: 0 0 30px;
+    border-bottom: 1px solid #CCCCCC;
+    text-align: center;
+    h6 {
+     color: #4A4A4A;
+     font-weight: 300;
+     margin-top: 15px;
+   }
+  }
+  .messages {
+    padding: 20px 0;
+    text-align: left;
+    .success {
+      p {
+        color: #449d44;
+      }
+    }
+    .error {
+      p {
+        color: red;
+      }
+    }
+
+    a {
+      color: #0066C0 !important;
+      cursor: pointer;
+    }
+  }
+  .actions {
+    .btn-success {
+      width: 200px;
+    }
+    .animate {
+      display: block;
+      position: absolute;
+      top: 18px;
+      left: 20px;
+    }
+  }
+  form {
+    margin: 40px 0 20px;
+
+    h1, h2, h3, h4, h5, h6 {
+      margin: 40px 0 20px;
+    }
+
+    .actions {
+      margin: 20px 0;
+    }
+  }
+  .footer {
+    display: block;
+    text-align: left !important;
+    width: 100%;
+    padding: 20px 0 40px;
+    border-top: 1px solid #CCCCCC;
+    h5 {
+      color: #4A4A4A;
+      margin-top: 5px;
+    }
+    .actions {
+      margin: 20px 0 0;
+      .btn-danger {
+        width: 100px;
+      }
+    }
+  }
+  // Card
+  .card-block .header .card-logo.mastercard {
+    background-image: url($cards-mastercard-big);
+  }
+  .card-block .header .card-logo.visa {
+    background-image: url($cards-visa-big);
+  }
+  .card-block .header .card-logo.amex {
+    background-image: url($cards-amex-big);
+  }
+  .card-container {
+    padding: 30px 0;
+    .btn-success, .btn-danger, .btn-secondary {
+      padding: 0 30px;
+      width: initial;
+      height: 40px;
+      line-height: 40px;
+      font-weight: 300;
+      font-size: 18px;
+      margin: 0 10px 10px 0;
+    }
+  }
+  .btn-secondary {
+    font-size: 20px;
+    font-family: Roboto, sans-serif;
+    font-weight: 500;
+  }
+  .btn-yellow-green {
+    width: 100%;
+    font-size: 26px;
+    color: white;
+    height: 60px;
+    font-weight: 700;
+  }
 }
 
+@media (max-width: 1100px) {
+  .page-container {
+    margin: 70px auto;
+    border-top: 0;
+    border-left: 0;
+    border-right: 0;
+    padding: 30px 30px 0;
+  }
+}
 
+@media (max-width: 780px) {
+
+}
+
+/////////////////
+/////////////////
+/////////////////
+/////////////////
 .container-starbook.without-tabs .row {
   padding: 40px 0 0 0;
 }
@@ -225,7 +306,6 @@ $card-new-card-letter-spacing: 0.13px;
 .profile-settings .header {
   display: block;
   width: 100%;
-  font-family: $font-name;
   font-size: 30px;
   color: $profile-settings-header-color;
   letter-spacing: $profile-settings-header-letter-spacing;
@@ -252,7 +332,6 @@ $card-new-card-letter-spacing: 0.13px;
 //   font-size: $profile-settings-label-font-size;
 //   color: $profile-settings-label-color;
 //   letter-spacing: $profile-settings-label-letter-spacing;
-//   font-family: $font-name-medium;
 //   font-weight: normal;
 //   white-space: nowrap;
 //   width: 144px;
@@ -262,7 +341,6 @@ $card-new-card-letter-spacing: 0.13px;
   font-size: $profile-settings-label-font-size;
   color: $profile-settings-label-color;
   letter-spacing: $profile-settings-label-letter-spacing;
-  font-family: $font-name-medium;
   font-weight: normal;
   // white-space: nowrap;
   // width: 144px;
@@ -274,7 +352,6 @@ $card-new-card-letter-spacing: 0.13px;
   border: $profile-settings-input-border-style;
   background-color: $profile-settings-input-background-color;
   color: $profile-settings-input-text-color;
-  font-family: $font-name;
   font-size: $profile-settings-input-font-size;
   letter-spacing: $profile-settings-input-letter-spacing;
   font-weight: 400;
@@ -298,7 +375,6 @@ $card-new-card-letter-spacing: 0.13px;
 .profile-settings .btn-primary:active,
 .profile-settings .btn-primary:hover {
   height: 30px;
-  font-family: $font-name;
   background-color: $cards-btn-primary-background-color;
   border: $cards-btn-primary-border-style;
   color: $cards-btn-primary-text-color;
@@ -338,7 +414,6 @@ $card-new-card-letter-spacing: 0.13px;
   padding: 18px 26px 22px 19px;
   margin-top: 33px;
   margin-bottom: 20px;
-  font-family: $font-name;
   color: $profile-information-text-color;
   font-size: $profile-information-font-size;
   letter-spacing: $profile-information-letter-spacing;
@@ -388,7 +463,6 @@ $card-new-card-letter-spacing: 0.13px;
 .profile-page .content-page h1 {
   display: block;
   width: 100%;
-  font-family: $font-name;
   color: $content-h1-color;
   font-size: $content-h1-text-size;
   letter-spacing: $content-h1-letter-spacing;
@@ -399,7 +473,6 @@ $card-new-card-letter-spacing: 0.13px;
 .profile-page .content-page h2 {
   display: block;
   width: 100%;
-  font-family: $font-name-bold;
   color: $content-h2-color;
   font-size: $content-h2-text-size;
   letter-spacing: $content-h2-letter-spacing;
@@ -409,7 +482,6 @@ $card-new-card-letter-spacing: 0.13px;
 .profile-page .content-page h3 {
   display: block;
   width: 100%;
-  font-family: $font-name-bold;
   color: $content-h3-color;
   font-size: $content-h3-text-size;
   letter-spacing: $content-h3-letter-spacing;
@@ -419,7 +491,6 @@ $card-new-card-letter-spacing: 0.13px;
 .profile-page .content-page p {
   display: block;
   width: 100%;
-  font-family: $font-name;
   color: $content-p-color;
   font-size: $content-p-text-size;
   letter-spacing: $content-p-letter-spacing;
@@ -429,7 +500,6 @@ $card-new-card-letter-spacing: 0.13px;
   color: $content-p-black-color;
 }
 .profile-page .content-page p.black strong {
-  font-family: $font-name-bold;
   font-weight: normal;
 }
 .cards-page {
@@ -469,21 +539,11 @@ $card-new-card-letter-spacing: 0.13px;
   background-position: center center;
   background-repeat: no-repeat;
 }
-.card-block .container .header .card-logo.mastercard {
-  background-image: url($cards-mastercard-big);
-}
-.card-block .container .header .card-logo.visa {
-  background-image: url($cards-visa-big);
-}
-.card-block .container .header .card-logo.amex {
-  background-image: url($cards-amex-big);
-}
 .card-block .container .header .card-logo span {
   display: block;
   position: absolute;
   width: 60px;
   text-align: left;
-  font-family: $font-name;
   color: $cards-header-logo-color;
   font-size: $cards-header-logo-text-size;
   letter-spacing: $cards-header-logo-letter-spacing;
@@ -499,7 +559,6 @@ $card-new-card-letter-spacing: 0.13px;
   left: 0;
   text-align: center;
   color: $cards-header-text-color;
-  font-family: $font-name-medium;
   font-size: $cards-header-font-size;
   letter-spacing: $cards-header-letter-spacing;
   padding-top: 14px;
@@ -532,7 +591,6 @@ $card-new-card-letter-spacing: 0.13px;
   margin-bottom: 10px;
   padding-left: 90px;
   color: $card-content-color;
-  font-family: $font-name;
   font-size: $card-content-size;
   letter-spacing: $card-content-letter-spacing;
 }
@@ -542,7 +600,6 @@ $card-new-card-letter-spacing: 0.13px;
   width: 59px;
   top: 0;
   left: 0;
-  font-family: $font-name;
   font-size: $card-content-size;
   letter-spacing: $card-content-letter-spacing;
   color: $card-content-label-color;
@@ -555,7 +612,6 @@ $card-new-card-letter-spacing: 0.13px;
   background-color: $card-new-card-background;
   border: $card-new-card-border;
   border-radius: 3px;
-  font-family: $font-name-bold;
   font-size: $card-new-card-text-size;
   color: $card-new-card-text-color;
   letter-spacing: $card-new-card-letter-spacing;
@@ -569,7 +625,6 @@ $card-new-card-letter-spacing: 0.13px;
 }
 .cards-page a.btn-primary {
   height: 28px;
-  font-family: $font-name-medium;
   background-color: $cards-btn-primary-background-color;
   border: $cards-btn-primary-border-style;
   color: $cards-btn-primary-text-color;
@@ -585,7 +640,6 @@ $card-new-card-letter-spacing: 0.13px;
 .cards-page a.btn-primary:focus,
 .cards-page a.btn-primary:hover {
   height: 28px;
-  font-family: $font-name-medium;
   background-color: $cards-btn-primary-hover-background-color;
   border: $cards-btn-primary-border-style;
   color: $cards-btn-primary-text-color;
@@ -599,7 +653,6 @@ $card-new-card-letter-spacing: 0.13px;
 }
 .cards-page a.btn-primary:active {
   height: 28px;
-  font-family: $font-name-medium;
   background-color: $cards-btn-primary-active-background-color;
   border: $cards-btn-primary-border-style;
   color: $cards-btn-primary-text-color;
@@ -613,7 +666,6 @@ $card-new-card-letter-spacing: 0.13px;
 }
 .cards-page a.btn-secondary {
   height: 28px;
-  font-family: $font-name-medium;
   background-color: $cards-btn-secondary-background-color;
   border: $cards-btn-secondary-border-style;
   color: $cards-btn-secondary-text-color;
@@ -629,7 +681,6 @@ $card-new-card-letter-spacing: 0.13px;
 .cards-page a.btn-secondary:focus,
 .cards-page a.btn-secondary:hover {
   height: 28px;
-  font-family: $font-name-medium;
   background-color: $cards-btn-secondary-hover-background-color;
   border: $cards-btn-secondary-border-style;
   color: $cards-btn-secondary-text-color;
@@ -643,7 +694,6 @@ $card-new-card-letter-spacing: 0.13px;
 }
 .cards-page a.btn-secondary:active {
   height: 28px;
-  font-family: $font-name-medium;
   background-color: $cards-btn-secondary-active-background-color;
   border: $cards-btn-secondary-border-style;
   color: $cards-btn-secondary-text-color;

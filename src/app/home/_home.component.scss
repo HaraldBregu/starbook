@@ -1,11 +1,5 @@
-///
-/// All styles for the Home page
-///
 
 // General styles
-$font-name: HelveticaNeue, sans-serif;
-$font-name-medium: HelveticaNeue-Medium, sans-serif;
-$font-name-light: HelveticaNeue-Light, sans-serif;
 $letter-spacing: 0.08px;
 $background: #FAFAFA;
 $home-background-color: #FFFFFF;
@@ -107,7 +101,6 @@ app-home {
   margin: 0;
   padding: 3px 10px 4px 31px;
   color: $navbar-tabs-items-color !important;
-  font-family: $font-name-light;
   font-weight: normal;
   font-size: 16px;
   letter-spacing: $navbar-tabs-items-letter-spacing;
@@ -127,7 +120,6 @@ app-home {
   margin-right: 0;
 }
 .container-starbook .nav-pills .nav-link.active {
-  font-family: $font-name-light;
   font-weight: normal;
   letter-spacing: $navbar-tabs-items-letter-spacing;
   background-color: $home-background-color;
@@ -192,14 +184,12 @@ app-home {
   width: 30%;
 }
 .header-cover .title {
-  font-family: $font-name-light;
   font-size: 19px;
   font-weight: 400;
   color: $white-text-primary-color;
   padding: 20px;
 }
 .header-cover .description {
-  font-family: $font-name;
   font-size: 16px;
   font-weight: 400;
   color: $white-text-secondary-color;
@@ -240,7 +230,6 @@ app-home {
   display: block;
   float: left;
   width: 100%;
-  font-family: $font-name;
   color: $services-block-text-color;
   font-size: $cover-footer-text-size;
   letter-spacing: $cover-footer-text-letter-spacing;
@@ -252,7 +241,6 @@ app-home {
   float: left;
   width: 100%;
   margin-top: 5px;
-  font-family: $font-name-bold;
   font-weight: 700;
   color: #4990E2;
   font-size: $cover-footer-specifications-size;
@@ -265,7 +253,6 @@ app-home {
   width: 100%;
   margin-left: -158px;
   padding-left: 173px;
-  font-family: $font-name-light;
   font-weight: 300;
   color: $services-block-text-color;
   font-size: $cover-footer-text-size;
@@ -314,7 +301,6 @@ $icon-checked-background-color: #161517;
   padding-bottom: 20px;
   // position: relative;
   // padding-bottom: 50px;
-  //font-family: $font-name-medium;
   //font-size: 16px;
   //font-weight: 500;
   // background-color: $services-block-header-background-color;
@@ -331,7 +317,6 @@ $icon-checked-background-color: #161517;
 .services-block .header .content-header span {
   display: block;
   width: 100%;
-  font-family: $font-name;
   font-size: $services-block-v2-header-font-size;
   letter-spacing: $services-block-v2-header-letter-spacing;
   color: $services-block-text-color;
@@ -340,7 +325,6 @@ $icon-checked-background-color: #161517;
 .services-block .header .content-header .service-description {
   display: block;
   width: 100%;
-  font-family: $font-name-light;
   font-weight: 300;
   font-size: $services-block-v2-description-font-size;
   letter-spacing: $services-block-v2-description-letter-spacing;
@@ -386,7 +370,6 @@ $icon-checked-background-color: #161517;
   position: relative;
   width: 100%;
   padding: 3px 130px 10px 50px;
-  font-family: $font-name-bold;
   font-size: $services-block-v2-checkbox-text-font-size;
   color: $services-block-text-color;
   letter-spacing: $services-block-v2-checkbox-text-letter-spacing;
@@ -430,7 +413,6 @@ $icon-checked-background-color: #161517;
 .services-block .service .item-container .item-description {
   display: block;
   width: 100%;
-  font-family: $font-name-light;
   font-weight: 300;
   color: $services-block-text-color;
   font-size: $services-block-v2-checkbox-description-font-size;
@@ -465,7 +447,6 @@ $icon-checked-background-color: #161517;
 //}
 .services-block .service .item.checked {
   font-weight: 400;
-  font-family: $font-name;
   font-size: $services-item-font-size;
   color: $black-text-primary-color;
   letter-spacing: $services-item-letter-spacing;
@@ -487,7 +468,6 @@ $icon-checked-background-color: #161517;
   border-radius: 3px;
   background-color: $home-input-background-color;
   border: $home-input-border;
-  font-family: $font-name;
   font-weight: normal;
   font-size: $home-input-text-size;
   letter-spacing: $home-input-text-letter-spacing;
@@ -511,7 +491,6 @@ $icon-checked-background-color: #161517;
   padding: 9px 13px 8px 13px;
   text-align: right;
   background-color: white;
-  font-family: $font-name;
   font-weight: normal;
   font-size: $home-input-text-size;
   letter-spacing: $home-input-text-letter-spacing;
@@ -528,7 +507,6 @@ $icon-checked-background-color: #161517;
   // border-bottom-right-radius: 3px;
   height: 35px;
   text-align: right;
-  font-family: $font-name-medium;
   font-weight: 500;
   font-size: 15px;
   letter-spacing: $home-input-text-letter-spacing;
@@ -562,13 +540,10 @@ $content-block-description-text-letter-spacing: 0.08px;
   display: block;
   width: 100%;
   padding: 22px 20px;
-  font-family: $font-name;
   font-size: $content-block-description-text-size;
-  // color: $content-block-description-text-color;
   color: white;
   letter-spacing: $content-block-description-text-letter-spacing;
   border-radius: 0 0 3px 3px;
-  // border: 1px solid $services-block-border-color;
   background-color: black;
 }
 
@@ -640,7 +615,6 @@ $content-block-description-text-letter-spacing: 0.08px;
     // padding-bottom: 10px;
   }
   .services-block .header span {
-    font-family: $font-name-medium;
     font-size: 16px;
     font-weight: 500;
     // padding: 15px 20px;

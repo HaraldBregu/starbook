@@ -30,8 +30,9 @@ export class ProfileComponent implements OnInit, OnDestroy {
   public SWIPE_ACTION = { LEFT: 'swipeleft', RIGHT: 'swiperight' };
   public delta: number = 0;
   public tabs = [
-    {name: 'Generali', selected: false, url: 'settings'},
+    {name: 'Generali', selected: false, url: 'general'},
     {name: 'Pagamento', selected: false, url: 'payment'},
+    {name: 'Impostazioni', selected: false, url: 'settings'}
   ];
 
   public userData: IUserData = {
@@ -45,154 +46,105 @@ export class ProfileComponent implements OnInit, OnDestroy {
     country: ''
   };
 
-  public activePopup = '';
-  public changePasswordError = {
-    currentPassword: false,
-    passwordConfirm: false
-  };
-  public changePasswordData = {
-    currentPassword: '',
-    newPassword: '',
-    passwordConfirm: ''
-  };
-  public formError: boolean|{title?: string, message: string, type?: string} = false;
-  public cards = [];
-  public defaultCard = '';
-  public isLoading = false;
-  subscription: Subscription;
-  public isAuthenticated = false;
-
-  constructor(
-      private profileService: ProfileService,
-      private router: Router,
-      private navigationService: NavigationService,
-      private route: ActivatedRoute,
-      private popupsService: PopupsService,
-      private paymentService: PaymentService,
-      private analyticsService: AnalyticsService,
-      private seoService: SeoService) {
+  ///////////////////////
+  /////// USER //////////
+  ///////////////////////
+  public User = {
+    firstname: '',
+    lastname: '',
+    email: '',
+    phone_number: ''
+  }
+  public user_state = {
+    loading: false,
+    button_title: "Salva",
+    first_name_error: null,
+    last_name_error: null,
+    email_error: null,
+    phone_number_error: null
   }
 
-  ngOnInit() {
+  ///////////////////////////
+  /////// PASSWORD //////////
+  ///////////////////////////
+  public Password = {
+    old_password: '',
+    new_password: '',
+    confirm_password: ''
+  }
+  public password_state = {
+    loading: false,
+    button_title: "Cambia",
+    message_error: null,
+    message_success: null
+  }
+
+
+
+  public activePopup = '';
+  public cards = [];
+  public defaultCard = '';
+  subscription: Subscription;
+
+
+
+  constructor(private profileService: ProfileService, private router: Router, private navigationService: NavigationService, private route: ActivatedRoute, private popupsService: PopupsService, private paymentService: PaymentService, private analyticsService: AnalyticsService, private seoService: SeoService) {
     if (isBrowser) {
       if (localStorage.getItem('auth') !== null) {
         let authData = JSON.parse(localStorage.getItem('auth'));
-        this.userData.fullname = authData.fullname;
-        this.userData.email = authData.email;
-        this.isAuthenticated = true;
+        this.User.firstname = authData.profile.firstname;
+        this.User.lastname = authData.profile.lastname;
+        this.User.phone_number = authData.phone_number;
+        this.User.email = authData.email;
+        // console.log('authData: ' + JSON.stringify(authData));
+        // console.log('this User: ' + JSON.stringify(this.User));
 
-        // console.log('Auth data: ' + JSON.stringify(this.userData));
+        // this.profileService.getProfile().then((profile) => {
+        //   this.User.firstname = profile.result.profile.firstname;
+        //   this.User.lastname = profile.result.profile.lastname;
+        //   this.User.email = profile.result.email;
+        //   this.User.phone_number = profile.result.phone_number;
+        // }).catch((error) => {
+        //   console.log('error message: ' + JSON.stringify(error));
+        //   if (error.json().message) {
+        //     this.popupsService.activate({type: 'error', data: {title:'Errore', message: error.json().message}});
+        //   } else {
+        //     this.popupsService.activate({type: 'error', data: {title:'Errore', message: 'An error has occurred'}});
+        //   }
+        // });
       } else {
-        this.isAuthenticated = false;
         this.router.navigate(['/']);
-        // this.tabs = [
-        //   {name: 'Condizioni d’utilizzo', selected: false, url: 'conditions'},
-        //   {name: 'Privacy Policy', selected: false, url: 'privacy'},
-        //   {name: 'Assistenza', selected: false, url: 'help'}
-        // ];
       }
-    } else {
-      this.isAuthenticated = false;
-      this.router.navigate(['/']);
-      // this.tabs = [
-      //   {name: 'Condizioni d’utilizzo', selected: false, url: 'conditions'},
-      //   {name: 'Privacy Policy', selected: false, url: 'privacy'},
-      //   {name: 'Assistenza', selected: false, url: 'help'}
-      // ];
     }
-    // this.navigationService.updateMessage('Il mio account');
+  }
 
+  ngOnInit() {
     this.route.params.subscribe(params => {
       this.selectTab = params['page'];
-      if (params['page'] ==='payment') {
-        this.navigationService.updateMessage('Metodo di pagamento');
-        this.isLoading = true;
-        let timeStart = Date.now();
-        this.paymentService.getCards()
-            .then((cards) => {
-              if (isBrowser) {
-                this.analyticsService.sendTiming({category: 'Get list of cards', timingVar: 'load', timingValue: Date.now()-timeStart});
-              }
-              this.defaultCard = cards.default_source;
-              this.cards = [];
-              cards.sources.data.forEach((cardData) => {
-                this.cards.push(cardData);
-              });
-              this.isLoading = false;
-            })
-            .catch((error) => {
-              this.isLoading = false;
-              if (error.status === 404) {
-                // This Starbook account do not have a Stripe account
-                // When you add a new card, will be created a Stripe account
-                // and update the Starbook account
-              }
-              // if (error.json().message) {
-              //   this.popupsService.activate({type: 'error', data: {title:'Errore', message: error.json().message}});
-              // } else {
-              //   this.popupsService.activate({type: 'error', data: {title:'Errore', message: 'An error has occurred'}});
-              // }
-            })
-      }
-      if (params['page'] ==='settings') {
+      if (this.selectTab ==='general') {
         this.navigationService.updateMessage('Informazioni del mio account');
-        this.isLoading = true;
-        let timeStart = Date.now();
-        this.profileService.getProfile()
-            .then((profile) => {
-              if (isBrowser) {
-                this.analyticsService.sendTiming({category: 'Get user profile', timingVar: 'load', timingValue: Date.now()-timeStart});
-              }
-              this.userData.fullname = profile.result.profile.fullname;
-              this.userData.email = profile.result.email;
-              this.userData.phone_number = profile.result.phone_number;
-              this.userData.street = profile.result.address.street;
-              this.userData.city = profile.result.address.city;
-              this.userData.postal_code = profile.result.address.postal_code;
-              this.userData.province = profile.result.address.province;
-              this.userData.country = profile.result.address.country;
-              this.isLoading = false;
-            })
-            .catch((error) => {
-              this.isLoading = false;
-              if (error.json().message) {
-                this.popupsService.activate({type: 'error', data: {title:'Errore', message: error.json().message}});
-              } else {
-                this.popupsService.activate({type: 'error', data: {title:'Errore', message: 'An error has occurred'}});
-              }
-            });
+
+      } else if (this.selectTab ==='payment') {
+        this.navigationService.updateMessage('Metodo di pagamento');
+        this.paymentService.getCards().then((cards) => {
+          this.defaultCard = cards.default_source;
+          this.cards = [];
+          cards.sources.data.forEach((cardData) => {
+            this.cards.push(cardData);
+          });
+          console.log('cards: ' + JSON.stringify(this.cards));
+        }).catch((error) => {
+          console.log('error: ' + JSON.stringify(error));
+          if (error.status === 404) {
+            // This Starbook account do not have a Stripe account
+            // When you add a new card, will be created a Stripe account
+            // and update the Starbook account
+          }
+        })
+      } else if (this.selectTab ==='settings') {
+        this.navigationService.updateMessage('Impostazioni');
+
       }
-      // if (params['page'] ==='conditions') {
-      //   this.navigationService.updateMessage('Termini e condizioni d’utilizzo');
-      //   this.seoService.setTitle('Termini e condizioni d’utilizzo');
-      //   this.seoService.setMetaElem('description', 'Preventivi veloci? Starbook è la piattaforma dei lavorazioni professionali online con la possibilità di creare preventivi istantanei.');
-      //   this.seoService.setOgElem('og:title', 'Termini e condizioni d’utilizzo');
-      //   this.seoService.setOgElem('og:description', 'Preventivi veloci? Starbook è la piattaforma dei lavorazioni professionali online con la possibilità di creare preventivi istantanei.');
-      //   this.seoService.setOgElem('og:url', 'https://www.starbook.co/');
-      //   this.seoService.setOgElem('og:image', 'https://s3-eu-west-1.amazonaws.com/starbook-s3/lavorazioni%2Bcartongesso%2Bcontrosoffitti%2Bpareti%2Bcontropareti.png');
-      //   this.seoService.setOgElem('og:image:secure_url', 'https://s3-eu-west-1.amazonaws.com/starbook-s3/lavorazioni%2Bcartongesso%2Bcontrosoffitti%2Bpareti%2Bcontropareti.png');
-      // }
-      // if (params['page'] ==='privacy') {
-      //   this.navigationService.updateMessage('Privacy Policy');
-      //   this.seoService.setTitle('Privacy Policy');
-      //   this.seoService.setMetaElem('description', 'Preventivi veloci? Starbook è la piattaforma dei lavorazioni professionali online con la possibilità di creare preventivi istantanei.');
-      //   this.seoService.setOgElem('og:title', 'Privacy Policy');
-      //   this.seoService.setOgElem('og:description', 'Preventivi veloci? Starbook è la piattaforma dei lavorazioni professionali online con la possibilità di creare preventivi istantanei.');
-      //   this.seoService.setOgElem('og:url', 'https://www.starbook.co/');
-      //   this.seoService.setOgElem('og:image', 'https://s3-eu-west-1.amazonaws.com/starbook-s3/lavorazioni%2Bcartongesso%2Bcontrosoffitti%2Bpareti%2Bcontropareti.png');
-      //   this.seoService.setOgElem('og:image:secure_url', 'https://s3-eu-west-1.amazonaws.com/starbook-s3/lavorazioni%2Bcartongesso%2Bcontrosoffitti%2Bpareti%2Bcontropareti.png');
-      // }
-      // if (params['page'] ==='help') {
-      //   this.navigationService.updateMessage('Assistenza');
-      //   this.seoService.setTitle('Assistenza');
-      //   this.seoService.setMetaElem('description', 'Preventivi veloci? Starbook è la piattaforma dei lavorazioni professionali online con la possibilità di creare preventivi istantanei.');
-      //   this.seoService.setOgElem('og:title', 'Assistenza');
-      //   this.seoService.setOgElem('og:description', 'Preventivi veloci? Starbook è la piattaforma dei lavorazioni professionali online con la possibilità di creare preventivi istantanei.');
-      //   this.seoService.setOgElem('og:url', 'https://www.starbook.co/');
-      //   this.seoService.setOgElem('og:image', 'https://s3-eu-west-1.amazonaws.com/starbook-s3/lavorazioni%2Bcartongesso%2Bcontrosoffitti%2Bpareti%2Bcontropareti.png');
-      //   this.seoService.setOgElem('og:image:secure_url', 'https://s3-eu-west-1.amazonaws.com/starbook-s3/lavorazioni%2Bcartongesso%2Bcontrosoffitti%2Bpareti%2Bcontropareti.png');
-      // }
-      // console.log(params['page']);
     });
 
     if (isBrowser) {
@@ -200,13 +152,10 @@ export class ProfileComponent implements OnInit, OnDestroy {
         switch (action.type) {
           case 'newCard':
             this.cards.push(action.data);
-            this.isLoading = false;
             break;
           case 'newCardError':
-            this.isLoading = false;
             break;
           case 'startNewCard':
-            this.isLoading = true;
             break;
           case 'cardEdited':
             let i = 0;
@@ -216,7 +165,6 @@ export class ProfileComponent implements OnInit, OnDestroy {
               }
               i++;
             });
-            this.isLoading = false;
             break;
           case 'logout':
             if (isBrowser) {
@@ -232,43 +180,84 @@ export class ProfileComponent implements OnInit, OnDestroy {
     }
   }
 
-  updateProfile() {
-    this.isLoading = true;
-    let timeStart = Date.now();
-    this.profileService.updateProfile(this.userData)
-      .then((data) => {
-        this.analyticsService.sendTiming({category: 'Update user profile', timingVar: 'save', timingValue: Date.now()-timeStart});
-        this.isLoading = false;
-        if (data.success) {
-          let profileData = {};
-          if (isBrowser) {
-            if (localStorage.getItem('auth') !== null) {
-              let authData = JSON.parse(localStorage.getItem('auth'));
-              authData.profile.fullname = this.userData.fullname;
-              authData.phone_number = this.userData.phone_number;
-              authData.address.street = this.userData.street;
-              authData.address.city = this.userData.city;
-              authData.address.postal_code = this.userData.postal_code;
-              authData.address.province = this.userData.province;
-              authData.address.country = this.userData.country;
-              profileData = authData;
-              localStorage.setItem('auth', JSON.stringify(authData));
-            }
-          }
+  ///////////////////////
+  /////// USER //////////
+  ///////////////////////
+  saveProfile() {
+    console.log('Current object User: ' + JSON.stringify(this.User));
+    this.user_state.loading = true;
+    this.user_state.button_title = "Salvando..."
+    this.profileService.updateProfile(this.User).then((data) => {
+      this.user_state.loading = false;
+      this.user_state.button_title = "Salva"
+      if (data.success) {
+        console.log(' data: ' + JSON.stringify(data));
 
-          this.navigationService.updatePersonalMenu(profileData);
-          this.formError = {
-            title: '',
-            message: 'Hai aggiornato le tue informazioni con successo!',
-            type: 'success'
-          };
+        let profileData = {};
+        if (isBrowser) {
+          if (localStorage.getItem('auth') !== null) {
+            let authData = JSON.parse(localStorage.getItem('auth'));
+            console.log('auth data: ' + JSON.stringify(authData));
+            authData.profile.firstname = this.User.firstname;
+            authData.profile.lastname = this.User.lastname;
+            authData.profile.fullname = this.User.firstname + ' ' + this.User.lastname;
+            authData.phone_number = this.User.phone_number;
+            profileData = authData;
+            localStorage.setItem('auth', JSON.stringify(authData));
+          }
         }
-      })
-      .catch((error) => {
-        this.isLoading = false;
-        this.popupsService.activate({type: 'error', data: {title: 'Errore', message: error.json().message}});
+        this.navigationService.updatePersonalMenu(profileData);
+      }}).catch((error) => {
+        this.user_state.loading = false;
+        this.user_state.button_title = "Salva"
       });
-    return false;
+  }
+
+  ///////////////////////////
+  /////// PASSWORD //////////
+  ///////////////////////////
+  changePassword() {
+    if (this.password_state.loading) {return;}
+    if (this.Password.old_password.length !== 0 && this.Password.new_password.length !== 0 && this.Password.confirm_password.length !== 0) {
+      if (this.Password.new_password !== this.Password.confirm_password) {
+        this.password_state.message_error = "Conferma correttamente la nuova password!";
+        return;
+      }
+    } else if (this.Password.old_password.length === 0 || this.Password.new_password.length === 0 || this.Password.confirm_password.length === 0) {
+      this.password_state.message_error = "Compila tutti i campi richiesti!";
+      return;
+    }
+    this.password_state.loading = true;
+    this.password_state.button_title = "Cambiando...";
+    this.password_state.message_success = null;
+    this.password_state.message_error = null;
+    this.profileService.changePassword(this.Password).then((data) => {
+      this.password_state.loading = false;
+      this.password_state.button_title = "Cambia";
+      this.Password.old_password = '';
+      this.Password.new_password = '';
+      this.Password.confirm_password = '';
+      this.password_state.message_success = "Verifica la nuova password clicando il link che ti abbiamo inviato tramite mail.";
+      this.password_state.message_error = null;
+    }).catch((error) => {
+      this.password_state.loading = false;
+      this.password_state.button_title = "Cambia";
+      this.password_state.message_success = null;
+      this.password_state.message_error = "Errore nel cambio password";
+      if (error.status === 401) {
+        this.password_state.message_error = "La password attuale inserita non è corretta.";
+      }
+      if (error.status === 422) {
+        this.password_state.message_error = "Inserisci tutti i parametri richiesti correttamente.";
+      }
+    });
+  }
+
+  ////////////////////////
+  /////// EMAIL //////////
+  ////////////////////////
+  saveNewEmail() {
+
   }
 
   renderPage(page) {
@@ -281,30 +270,6 @@ export class ProfileComponent implements OnInit, OnDestroy {
 
   closePopup() {
     this.activePopup = '';
-  }
-
-  changePassword(currentPassword, newPassword, passwordConfirm) {
-    let timeStart = Date.now();
-    this.profileService.changePassword(currentPassword, newPassword, passwordConfirm)
-      .then((data) => {
-        this.analyticsService.sendTiming({category: 'Change password', timingVar: 'save', timingValue: Date.now()-timeStart});
-        this.closePopup();
-        this.changePasswordData.currentPassword = '';
-        this.changePasswordData.newPassword = '';
-        this.changePasswordData.passwordConfirm = '';
-      })
-      .catch((error) => {
-      });
-
-    return false;
-  }
-
-  checkPassword(newPassword, passwordConfirm) {
-    if (newPassword === passwordConfirm) {
-      this.changePasswordError.passwordConfirm = false;
-    } else {
-      this.changePasswordError.passwordConfirm = true;
-    }
   }
 
   swipe(action = this.SWIPE_ACTION.RIGHT, delta) {
@@ -365,50 +330,41 @@ export class ProfileComponent implements OnInit, OnDestroy {
   }
 
   selectCard(id) {
-    this.isLoading = true;
     let timeStart = Date.now();
     this.paymentService.selectCard(id)
         .then((status) => {
           this.analyticsService.sendTiming({category: 'Selecting card', timingVar: 'save', timingValue: Date.now()-timeStart});
-          this.isLoading = false;
           this.defaultCard = status.default_source;
         })
         .catch((error) => {
           this.popupsService.activate({type: 'error', data: {title:'Errore', message: error.json().message}});
-          this.isLoading = false;
         });
   }
 
   deleteCard(id) {
-    this.isLoading = true;
     let timeStart = Date.now();
-    this.paymentService.deleteCard(id)
-        .then((status) => {
-          this.analyticsService.sendTiming({category: 'Deleting card', timingVar: 'save', timingValue: Date.now()-timeStart});
-          this.isLoading = false;
-          let i = 0;
-          this.cards.forEach((card) => {
-            if (card.id === id) {
-              this.cards.splice(i, 1);
-            }
-            i ++;
-          });
-          if (id === this.defaultCard && this.cards.length > 0) {
-            let otherCard = '';
-            this.cards.forEach((card) => {
-              if (card.id !== id) {
-                otherCard = card.id;
-              }
-            });
-            this.selectCard(otherCard);
-          } else {
-            this.isLoading = false;
+    this.paymentService.deleteCard(id).then((status) => {
+      this.analyticsService.sendTiming({category: 'Deleting card', timingVar: 'save', timingValue: Date.now()-timeStart});
+      let i = 0;
+      this.cards.forEach((card) => {
+        if (card.id === id) {
+          this.cards.splice(i, 1);
+        }
+        i ++;
+      });
+      if (id === this.defaultCard && this.cards.length > 0) {
+        let otherCard = '';
+        this.cards.forEach((card) => {
+          if (card.id !== id) {
+            otherCard = card.id;
           }
-        })
-        .catch((error) => {
-          this.isLoading = false;
-          this.popupsService.activate({type: 'error', data: {title:'Errore', message: error.json().message}});
         });
+        this.selectCard(otherCard);
+      } else {
+      }
+    }).catch((error) => {
+      this.popupsService.activate({type: 'error', data: {title:'Errore', message: error.json().message}});
+    });
   }
 
   editCard(id) {

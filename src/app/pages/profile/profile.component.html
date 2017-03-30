@@ -1,114 +1,162 @@
-<!-- <div class="loader" *ngIf="isLoading"></div> -->
-
 <div class="profile-page">
-<!-- 
   <div class="top-bar-container">
     <ul class="top-bar">
       <li *ngFor="let tab of tabs" [ngClass]="{'active':tab.url === selectTab}" [routerLink]="['/profile', tab.url]">{{tab.name}}</li>
     </ul>
   </div>
-
-  <div class="page-container" *ngIf="selectTab === 'settings'">
+  <div class="page-container" *ngIf="selectTab === 'general'">
     <div class="header">
-      <div class="info">
-        <h1>Informazioni del account</h1>
-        <h4>Aggiorna le informazioni del tuo account</h4>
-      </div>
-      <div class="actions">
-        <a class="btn btn-success" (click)="saveInformations()">Salva</a>
-      </div>
+      <h1>Informazioni generali</h1>
+      <h6>Aggiorna le informazioni del tuo account per rimanere in contatto</h6>
     </div>
-    <div class="content-section">
+    <form>
       <div class="row">
         <div class="col-lg-4">
           <div class="form-group">
             <label for="firstname">Nome</label>
-            <input type="firstname" class="form-control" id="firstname" name="firstname" placeholder="" required>
+            <input type="firstname" class="form-control" id="firstname" name="firstname" placeholder="Nome" [ngClass]="{'error-input': user_state.first_name_error}" [(ngModel)]="User.firstname">
+            <small class="error-message" *ngIf="user_state.first_name_error">{{user_state.first_name_error}}</small>
           </div>
         </div>
         <div class="col-lg-4">
           <div class="form-group">
             <label for="lastname">Cognome</label>
-            <input type="lastname" class="form-control" id="lastname" name="lastname" placeholder="" required>
-          </div>
-        </div>
-        <div class="col-lg-4">
-          <div class="form-group">
-            <label for="email">Email</label>
-            <input type="email" class="form-control" id="email" name="email" placeholder="" required>
+            <input type="lastname" class="form-control" id="lastname" name="lastname" placeholder="Cognome" [ngClass]="{'error-input': user_state.last_name_error}" [(ngModel)]="User.lastname">
+            <small class="error-message" *ngIf="user_state.last_name_error">{{user_state.last_name_error}}</small>
           </div>
         </div>
         <div class="col-lg-4">
           <div class="form-group">
             <label for="phone">Telefono</label>
-            <input type="phone" class="form-control" id="phone" name="phone" placeholder="" required>
+            <input type="phone" class="form-control" id="phone" name="phone" placeholder="Telefono" [ngClass]="{'error-input': user_state.phone_number_error}" [(ngModel)]="User.phone_number">
+            <small class="error-message" *ngIf="user_state.phone_number_error">{{user_state.phone_number_error}}</small>
+          </div>
+        </div>
+      </div>
+      <div class="actions">
+        <a class="btn btn-success" (click)="saveProfile()">{{user_state.button_title}}</a>
+      </div>
+    </form>
+    <div class="footer">
+      <h5>Privacy del account</h5>
+      <h6><small>Le informazioni degli utenti consentono a STARBOOK di fornire agli utenti stessi l’accesso alle sezioni del Sito cui sono interessati e di fornire il Servizio. Esse mettono inoltre STARBOOK in grado di fatturare gli importi dovuti e consentono a STARBOOK o ad un professionista cui l’utente abbia inoltrato un Ordine di contattare l’utente in merito al Servizio, ove necessario.</small></h6>
+    </div>
+  </div>
+  <div class="page-container" *ngIf="selectTab === 'payment'">
+    <div class="header">
+      <h1>Metodo di pagamento</h1>
+      <h6>Aggiorna le informazioni del tuo metodo di pagamento</h6>
+    </div>
+    <div class="card-container" *ngFor="let card of cards">
+      <div class="row">
+        <div class="col-lg-8 col-md-8">
+          <h4>{{card.brand}} <small>{{ card.funding }} {{ card.object }}</small> <small *ngIf="defaultCard === card.id">Default</small></h4>
+          <div class="information-block">
+            <span>Nome:</span>
+            {{ card.name }}
+          </div>
+          <div class="information-block">
+            <span>Numero:</span>
+            **** {{ card.last4 }}
+          </div>
+          <div class="information-block">
+            <span>Scadenza:</span>
+            {{ card.exp_month }}/{{ formatYear(card.exp_year) }}
+          </div>
+          <div class="information-block">
+            <span>Tipo:</span>
+            {{ card.brand }} {{ card.funding }} {{ card.object }}
+          </div>
+          <div class="information-block">
+            <span>Indirizzo:</span>
+            {{ card.address_line1 }} {{ card.address_line2 }} <br>
+            {{ card.address_state }} {{ card.address_city }} <br>
+            {{ card.address_zip }} {{ card.address_country }}
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-4">
+          <div class="buttons-block">
+            <a class="btn btn-success" *ngIf="defaultCard !== card.id" (click)="selectCard(card.id)">Default</a>
+            <a class="btn btn-danger" (click)="deleteCard(card.id)">Rimuovi</a>
+            <a class="btn btn-secondary" (click)="editCard(card.id)">Modifica</a>
           </div>
         </div>
       </div>
     </div>
-    <div class="content-section">
-      <h2>Cambia Password</h2>
+    <div class="card-container">
+      <a class="btn btn-secondary" *ngIf="cards?.length===0" (click)="addNewCard()">Aggiungi un metodo</a>
+      <a class="btn btn-secondary" *ngIf="cards?.length > 0" (click)="addNewCard()">Aggiungi un altro metodo</a>
+    </div>
+    <div class="footer">
+      <h5>Privacy del account</h5>
+      <h6><small>Le informazioni degli utenti consentono a STARBOOK di fornire agli utenti stessi l’accesso alle sezioni del Sito cui sono interessati e di fornire il Servizio. Esse mettono inoltre STARBOOK in grado di fatturare gli importi dovuti e consentono a STARBOOK o ad un professionista cui l’utente abbia inoltrato un Ordine di contattare l’utente in merito al Servizio, ove necessario.</small></h6>
+    </div>
+  </div>
+  <div class="page-container" *ngIf="selectTab === 'settings'">
+    <div class="header">
+      <h1>Impostazioni</h1>
+      <h6>Modifica le informazioni</h6>
+    </div>
+    <form>
+      <h4>Aggiorna Email</h4>
+      <div class="row">
+        <div class="col-lg-4">
+          <div class="form-group">
+            <!-- <label for="email">La tua email</label> -->
+            <input type="email" class="form-control" id="email" name="email" placeholder="Email" [ngClass]="{'error-input': user_state.email_error}" [(ngModel)]="User.email">
+            <small class="error-message" *ngIf="user_state.email_error">{{user_state.email_error}}</small>
+          </div>
+        </div>
+        <div class="col-lg-8">
+          <p><small>Dopo aver salvato la nuova email riceverai ti invieremo nel attuale email un messaggio di conferma per confermare il nuovo indirizzo.</small></p>
+        </div>
+      </div>
+      <div class="actions">
+        <a class="btn btn-success" (click)="saveNewEmail()">Salva</a>
+      </div>
+      <h4>Cambia Password</h4>
       <div class="row">
         <div class="col-lg-4">
           <div class="form-group">
             <label for="password">Password</label>
-            <input type="password" class="form-control" id="password" name="password" placeholder="" required>
+            <input type="password" class="form-control" id="password" name="password" placeholder="" [ngClass]="{'error-input': password_state.message_error}" [(ngModel)]="Password.old_password">
           </div>
         </div>
         <div class="col-lg-4">
           <div class="form-group">
             <label for="password">Nuova Password</label>
-            <input type="password" class="form-control" id="password" name="password" placeholder="" required>
+            <input type="password" class="form-control" id="password" name="password" placeholder="" [ngClass]="{'error-input': password_state.message_error}" [(ngModel)]="Password.new_password">
           </div>
         </div>
         <div class="col-lg-4">
           <div class="form-group">
             <label for="password">Conferma Nuova Password</label>
-            <input type="password" class="form-control" id="password" name="password" placeholder="" required>
+            <input type="password" class="form-control" id="password" name="password" placeholder="" [ngClass]="{'error-input': password_state.message_error}" [(ngModel)]="Password.confirm_password">
           </div>
         </div>
       </div>
-    </div>
+      <div class="messages" *ngIf="password_state.message_error || password_state.message_success">
+        <div class="success" *ngIf="password_state.message_success">
+          <p><small>{{password_state.message_success}}</small></p>
+        </div>
+        <div class="error" *ngIf="password_state.message_error">
+          <p><small>{{password_state.message_error}}</small></p>
+        </div>
+      </div>
+      <div class="actions">
+        <a class="btn btn-success" (click)="changePassword()">{{password_state.button_title}}</a>
+      </div>
+    </form>
     <div class="footer">
-      <h3>Privacy del account</h3>
-      <h5>Le informazioni degli utenti consentono a STARBOOK di fornire agli utenti stessi l’accesso alle sezioni del Sito cui sono interessati e di fornire il Servizio. Esse mettono inoltre STARBOOK in grado di fatturare gli importi dovuti e consentono a STARBOOK o ad un professionista cui l’utente abbia inoltrato un Ordine di contattare l’utente in merito al Servizio, ove necessario.</h5>
+      <h5>Esci da starbook</h5>
+      <h6><small>Puoi uscire ed entrare in qualsiasi momento dal sito. Le tue informazioni rimangono salvate su Starbook.</small></h6>
+      <div class="actions">
+        <a class="btn btn-danger" (click)="logout()">Esci</a>
+      </div>
     </div>
   </div>
 
-  <div class="page-container" *ngIf="selectTab === 'payment'">
-    <div class="header">
-      <div class="info">
-        <h1>Pagamento</h1>
-        <h4>Aggiorna le informazioni del tuo account</h4>
-      </div>
-    </div>
-    <div class="content-section">
-      <form class="form-horizontal">
-        <div class="form-group">
-          <label for="firstname">Nome</label>
-          <input type="firstname" class="form-control" id="firstname" name="firstname" placeholder="" required>
-        </div>
-        <div class="form-group">
-          <label for="lastname">Cognome</label>
-          <input type="lastname" class="form-control" id="lastname" name="lastname" placeholder="" required>
-        </div>
-        <div class="form-group">
-          <label for="email">Email</label>
-          <input type="email" class="form-control" id="email" name="email" placeholder="" required>
-        </div>
-        <div class="form-group">
-          <label for="phone">Telefono</label>
-          <input type="phone" class="form-control" id="phone" name="phone" placeholder="" required>
-        </div>
-      </form>
-    </div>
-    <div class="footer">
-      <h3>Privacy del account</h3>
-      <h5>Le informazioni degli utenti consentono a STARBOOK di fornire agli utenti stessi l’accesso alle sezioni del Sito cui sono interessati e di fornire il Servizio. Esse mettono inoltre STARBOOK in grado di fatturare gli importi dovuti e consentono a STARBOOK o ad un professionista cui l’utente abbia inoltrato un Ordine di contattare l’utente in merito al Servizio, ove necessario.</h5>
-    </div>
-  </div>
- -->
-  <div class="container-starbook without-tabs">
+  <!-- <div class="container-starbook without-tabs">
     <div class="row">
       <div class="left-navigate" (swipeleft)="swipe($event.type, $event.deltaX)" (swiperight)="swipe($event.type, $event.deltaX)">
         <div [ngStyle]="{'margin-left.px': delta}">
@@ -127,14 +175,14 @@
           <div class="form-group">
             <input class="form-control" name="name" placeholder="Nome Cognome" #fullname="ngModel" [(ngModel)]="userData.fullname" required>
           </div>
-          <!--<div class="form-group">-->
-            <!--<label>Cognome</label>-->
-            <!--<input class="form-control" name="lastname" #fullname="ngModel" [(ngModel)]="userData.lastname" required disabled>-->
-          <!--</div>-->
-          <!--<div class="form-group">-->
-            <!--<label>Nome Azienda</label>-->
-            <!--<input class="form-control" name="patronymic" #fullname="ngModel" [(ngModel)]="userData.patronymic" required disabled>-->
-          <!--</div>-->
+          <div class="form-group">
+            <label>Cognome</label>
+            <input class="form-control" name="lastname" #fullname="ngModel" [(ngModel)]="userData.lastname" required disabled>
+          </div>
+          <div class="form-group">
+            <label>Nome Azienda</label>
+            <input class="form-control" name="patronymic" #fullname="ngModel" [(ngModel)]="userData.patronymic" required disabled>
+          </div>
           <label>CELLULARE</label>
           <div class="form-group">
             <input class="form-control" name="phone" placeholder="Numero" #phone_number="ngModel" [(ngModel)]="userData.phone_number">
@@ -145,7 +193,7 @@
               <input class="form-control" name="email" placeholder="Indirizzo email" value="" #email="ngModel" [(ngModel)]="userData.email">
               <button type="button" class="btn btn-primary" (click)="getPopup('changePassword')">Modifica password</button>
             </div>
-          </div>
+          </div> -->
           <!--<div class="form-group password-block">-->
             <!--<label>Password</label>-->
             <!--<div class="password-container">-->
@@ -180,16 +228,16 @@
           <div class="form-group">
             <input class="form-control" name="codice" placeholder="Codice Fiscale">
           </div> -->
-          <div class="profile-information" *ngIf="formError">
+          <!-- <div class="profile-information" *ngIf="formError">
             <strong *ngIf="formError.title.length > 0">{{formError.title}}</strong> {{formError.message}}
           </div>
           <div class="form-group">
             <button type="button" class="btn btn-warning" (click)="updateProfile()">Aggiorna Informazioni</button>
-          </div>
+          </div> -->
           <!--<div class="form-group">-->
             <!--<button type="button" class="btn btn-secondary" (click)="logout()"><span class="fa fa-sign-out"></span> Log out</button>-->
           <!--</div>-->
-        </form>
+        <!-- </form>
       </div>
       <div class="cards-page" *ngIf="selectTab === 'payment'">
         <app-loading *ngIf="isLoading"></app-loading>
@@ -241,7 +289,7 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
 </div>
 <!-- <div class="footer-container light-footer">
   <div class="container">

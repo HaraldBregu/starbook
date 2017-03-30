@@ -32,13 +32,14 @@ export class ProfileService {
   updateProfile(userData) {
     // this.navigationService.updateLoadingStatus(true);
     let data = {
-      fullname: userData.fullname,
-      phone_number: userData.phone_number,
-      street: userData.street,
-      city: userData.city,
-      postal_code: userData.postal_code,
-      province: userData.province,
-      country: userData.country
+      firstname: userData.firstname,
+      lastname: userData.lastname,
+      phone_number: userData.phone_number
+      // street: userData.street,
+      // city: userData.city,
+      // postal_code: userData.postal_code,
+      // province: userData.province,
+      // country: userData.country
     };
     return this.http.put(this.api + 'me', data, this._makeHeaders())
       .toPromise()
@@ -64,18 +65,10 @@ export class ProfileService {
     return Promise.reject(error);
   }
 
-  changePassword(oldPassword, newPassword, reNewPassword) {
-    let data = {
-      old_password: oldPassword,
-      new_password: newPassword,
-      retype_new_password: reNewPassword
-    };
-    return this.http.put(this.api + 'change_password', data, this._makeHeaders())
-      .toPromise()
-      .then((response) => {
-        return response.json();
-      })
-      .catch(this.handleError);
+  changePassword(data) {
+    return this.http.put(this.api + 'change_password', data, this._makeHeaders()).toPromise().then((response) => {
+      return response.json();
+    }).catch(this.handleError);
   }
 
   // NEW

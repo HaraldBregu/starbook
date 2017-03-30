@@ -3,43 +3,37 @@
 // Should define common styles used throughout the application.
 // Should be defined from specific to generic
 //
-$font-name: HelveticaNeue, sans-serif;
-$font-name-medium: HelveticaNeue-Medium, sans-serif;
-$font-name-bold: HelveticaNeue-Bold, sans-serif;
-$font-name-light: HelveticaNeue-Light, sans-serif;
+$font-name: Roboto, sans-serif;
+
+html, body {
+  font-family: $font-name;
+}
 
 h1 {
-  font-family: $font-name;
   font-size: 32px;
   letter-spacing: 0.22px;
 }
 h2 {
-  font-family: $font-name;
   font-size: 30px;
   letter-spacing: 0.22px;
 }
 h3 {
-  font-family: $font-name;
   font-size: 28px;
   letter-spacing: 0.22px;
 }
 h4 {
-  font-family: $font-name;
   font-size: 22px;
   letter-spacing: 0.22px;
 }
 h5 {
-  font-family: $font-name;
   font-size: 20px;
   letter-spacing: 0.22px;
 }
 h6 {
-  font-family: $font-name;
   font-size: 16px;
   letter-spacing: 0.22px;
 }
 p {
-  font-family: $font-name;
   font-size: 18px !important;
   letter-spacing: 0.11px !important;
 }
@@ -48,19 +42,29 @@ p {
   background: #7FC443 !important;
   border-radius: 0;
   height: 50px;
-  width: 160px;
+  border: 0;
+  color: white !important;
+  font-size: 22px;
+  font-family: $font-name;
+  font-weight: 400;
+  outline: none;
+  padding: 0;
+  line-height: 50px;
+  // padding: 0 50px;
+}
+.btn-danger {
+  border-radius: 0;
   height: 50px;
   border: 0;
   color: white !important;
   font-size: 22px;
-  font-family: $font-name-bold;
-  font-weight: 700;
+  font-family: $font-name;
+  font-weight: 400;
   outline: none;
   padding: 0;
   line-height: 50px;
 }
 .btn-primary {
-  // background: #7FC443 !important;
   border-radius: 0;
   height: 50px;
   width: 160px;
@@ -68,8 +72,20 @@ p {
   border: 0;
   color: white !important;
   font-size: 22px;
-  font-family: $font-name-bold;
-  font-weight: 700;
+  font-family: $font-name;
+  font-weight: 400;
+  outline: none;
+  padding: 0;
+  line-height: 50px;
+}
+.btn-secondary {
+  border-radius: 0;
+  height: 50px;
+  width: 160px;
+  height: 50px;
+  font-size: 22px;
+  font-family: $font-name;
+  font-weight: 400;
   outline: none;
   padding: 0;
   line-height: 50px;
@@ -78,7 +94,7 @@ p {
   background: #FFC845 !important;
   color: white;
   font-family: $font-name;
-  font-weight: 300;
+  font-weight: 400;
   letter-spacing: 0.1px;
   padding: 11px 7px;
   outline: none;
@@ -89,9 +105,9 @@ p {
 .btn-yellow-green {
   background: #FFC845 !important;
   color: white;
-  font-family: $font-name-light;
-  letter-spacing: 0.1px;
+  font-family: $font-name;
   font-weight: 400;
+  letter-spacing: 0.1px;
   padding: 11px 7px;
   outline: none;
   border-radius: 0;
@@ -109,9 +125,9 @@ p {
 .btn-white {
   background: white !important;
   color: black;
-  font-family: $font-name-light;
-  letter-spacing: 0.1px;
+  font-family: $font-name;
   font-weight: 400;
+  letter-spacing: 0.1px;
   padding: 11px 7px;
   outline: none;
   border-radius: 0;
@@ -130,8 +146,8 @@ p {
   background: #3B5998 !important;
   color: white;
   font-family: $font-name;
-  letter-spacing: 0.1px;
   font-weight: 400;
+  letter-spacing: 0.1px;
   padding: 11px 7px;
   outline: none;
   border-radius: 0;
@@ -163,7 +179,7 @@ p {
 .form-group label {
   color: #212121 !important;
   font-size: 14px !important;
-  font-family: $font-name-medium;
+  font-family: $font-name;
   font-weight: 600 !important;
   padding: 0 !important;
   margin-bottom: 5px !important;
@@ -177,6 +193,7 @@ p {
   padding: 20px;
   font-size: 22px;
   font-family: $font-name;
+  font-weight: 400;
   letter-spacing: 0.1px;
   border: 1px solid #DCDCDC;
   border-radius: 0;
@@ -260,6 +277,7 @@ $datepicker-hover-text-color: #ffffff;
   text-align: center;
   font-size: 18px;
   color: $datepicker-text-color;
+  font-family: $font-name;
   font-weight: 600;
   line-height: 50px;
 }
@@ -291,6 +309,7 @@ $datepicker-hover-text-color: #ffffff;
   color: $datepicker-text-color;
   width: 30px;
   height: 30px;
+  font-family: $font-name;
   font-weight: 600;
   font-size: 12px;
   margin-top: -3px;
@@ -311,8 +330,8 @@ $datepicker-hover-text-color: #ffffff;
   display: block;
   height: 22px;
   color: $datepicker-text-default-color;
-  font-family: $font-name;
   font-size: 18px;
+  font-family: $font-name;
   font-weight: 900;
   text-decoration: none !important;
   text-align: center;

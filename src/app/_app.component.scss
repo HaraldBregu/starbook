@@ -1,17 +1,8 @@
 // General styles
-$font-name: HelveticaNeue, sans-serif;
-$font-name-medium: HelveticaNeue-Medium, sans-serif;
-$font-name-bold: HelveticaNeue-Bold, sans-serif;
 $letter-spacing: 0.08px;
 $background: #FAFAFA;
 $general-text-color: #000000;
 $loader-style: rgba(255, 255, 255, 0.4);
-
-// Logo styles
-$navbar-brand-font: $font-name;
-$navbar-brand-font-weight: 700;
-$navbar-brand-font-size: 28px;
-$navbar-brand-font-letter-spacing: 0.13px;
 
 // Navbar styles
 $navbar-tagline-letter-spacing: 0.09px;
@@ -69,11 +60,10 @@ html, body {
   background-color: $navbar-background-color !important;
 }
 .navbar-brand {
-  font-family: $navbar-brand-font;
-  font-size: $navbar-brand-font-size;
-  font-weight: $navbar-brand-font-weight;
+  font-size: 28px;
+  font-weight: 700;
   color: $navbar-text-color;
-  letter-spacing: $navbar-brand-font-letter-spacing;
+  letter-spacing: 0.13px;
   position: relative;
   z-index: 2;
   padding-top: 4px;
@@ -88,7 +78,6 @@ html, body {
   left: 0;
   width: 100%;
   padding: 14px 0;
-  font-family: $font-name-medium;
   color: $navbar-text-color;
   font-size: $navbar-tagline-font-size;
   font-weight: normal;
@@ -106,9 +95,8 @@ html, body {
 }
 .container-starbook .nav-link {
   position: relative;
-  font-family: $font-name-medium;
   font-weight: 500;
-  font-size: $navbar-font-size;
+  font-size: 16px;
   color: $navbar-text-color !important;
   letter-spacing: $letter-spacing;
   padding: 12px 15px 12px 15px;
@@ -154,7 +142,6 @@ html, body {
   // border-radius: 3px;
   outline: none;
   color: $search-navbar-text-color;
-  font-family: $font-name;
   font-size: $search-navbar-text-size;
   letter-spacing: $search-navbar-text-letter-spacing;
 }
@@ -232,7 +219,6 @@ input.search-block .ui-autocomplete-input:-ms-input-placeholder {
 .search-block .ui-autocomplete-panel .search-result {
   display: block;
   width: 100%;
-  font-family: $font-name;
   color: $search-navbar-result-text-color;
   font-size: $search-navbar-result-text-size;
   letter-spacing: $search-navbar-result-letter-spacing;
@@ -244,7 +230,6 @@ input.search-block .ui-autocomplete-input:-ms-input-placeholder {
 .search-block .ui-autocomplete-panel.empty .no-result {
   display: block;
   width: 100%;
-  font-family: $font-name;
   color: $search-navbar-result-empty-color;
   font-size: $search-navbar-result-empty-font-size;
   letter-spacing: $search-navbar-result-letter-spacing;

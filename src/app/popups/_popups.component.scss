@@ -158,14 +158,14 @@ $popup-phone-enter-form-label-letter-spacing: 0.09px;
   display: block;
   width: 100%;
   margin-bottom: 20px;
-  font-family: $font-name;
+
   font-size: $popup-header-font-size;
   font-weight: 400;
   letter-spacing: $popup-header-letter-spacing;
   color: $popup-header-color;
 }
 .popup .double-form {
-  font-family: $font-name;
+
   font-size: $popup-form-font-size;
   color: $popup-form-font-color;
   letter-spacing: $popup-form-letter-spacing;
@@ -175,7 +175,7 @@ $popup-phone-enter-form-label-letter-spacing: 0.09px;
   height: 61px;
 }
 .popup .form-group label {
-  font-family: $font-name;
+
   font-size: $popup-form-font-size;
   color: $popup-form-font-color;
   letter-spacing: $popup-form-letter-spacing;
@@ -188,7 +188,7 @@ $popup-phone-enter-form-label-letter-spacing: 0.09px;
   top: 0;
   right: 0;
   padding-right: 5px;
-  font-family: $font-name;
+
   font-size: $popup-form-font-size;
   color: $popup-link-color;
   letter-spacing: $popup-form-letter-spacing;
@@ -198,7 +198,7 @@ $popup-phone-enter-form-label-letter-spacing: 0.09px;
   cursor: pointer;
 }
 .popup .form-group .form-control {
-  font-family: $font-name;
+
   height: 40px;
   border: $popup-input-border;
   border-radius: 3px;
@@ -214,7 +214,7 @@ $popup-phone-enter-form-label-letter-spacing: 0.09px;
 }
 .popup .form-group.isError .error, .popup .form-group .isError .error {
   display: block;
-  font-family: $font-name;
+
   font-size: $popup-form-error-font-size;
   color: $popup-form-error-color;
   letter-spacing: $popup-form-letter-spacing;
@@ -235,7 +235,7 @@ $popup-phone-enter-form-label-letter-spacing: 0.09px;
 .popup .form-group .btn.btn-warning {
   width: 100%;
   height: 45px;
-  font-family: $font-name;
+
   border: $popup-input-border;
   // border-radius: 3px;
   font-size: $popup-btn-font-size;
@@ -270,7 +270,7 @@ $popup-phone-enter-form-label-letter-spacing: 0.09px;
 .popup .form-group .btn.btn-secondary {
   width: 100%;
   height: 45px;
-  font-family: $font-name;
+
   border: $popup-input-border;
   border-radius: 0px;
   font-size: $popup-btn-font-size;
@@ -296,7 +296,7 @@ $popup-phone-enter-form-label-letter-spacing: 0.09px;
   position: relative;
   width: 100%;
   height: 45px;
-  font-family: $font-name-bold;
+
   border: $popup-btn-facebook-border;
   border-radius: 0px;
   font-size: $popup-btn-font-size;
@@ -343,7 +343,7 @@ $popup-phone-enter-form-label-letter-spacing: 0.09px;
   margin-left: -15px;
   width: 30px;
   text-align: center;
-  font-family: $font-name;
+
   color: $popup-form-description-text-color;
   font-size: $popup-form-description-font-size;
   letter-spacing: $popup-form-letter-spacing;
@@ -374,19 +374,19 @@ $popup-phone-enter-form-label-letter-spacing: 0.09px;
   display: block;
   width: 100%;
   padding: 11px 15px 12px;
-  font-family: $font-name;
+
   color: $alert-text-color;
   font-size: $alert-content-font-size;
   letter-spacing: $alert-content-letter-spacing;
 }
 .alert-block .alert-container span {
-  font-family: $font-name-medium;
+   font-weight: 500;
 }
 //.alert-block .alert-container .header {
 //  display: block;
 //  width: 100%;
 //  color: $alert-header-text-color;
-//  font-family: $font-name;
+//
 //  font-size: $alert-header-font-size;
 //  letter-spacing: $alert-header-letter-spacing;
 //  margin-bottom: 11px;
@@ -396,7 +396,7 @@ $popup-phone-enter-form-label-letter-spacing: 0.09px;
 //  display: block;
 //  width: 100%;
 //  color: $alert-content-text-color;
-//  font-family: $font-name;
+//
 //  font-size: $alert-content-font-size;
 //  letter-spacing: $alert-content-letter-spacing;
 //  font-weight: 400;
@@ -404,7 +404,7 @@ $popup-phone-enter-form-label-letter-spacing: 0.09px;
 .form-notice {
   display: block;
   width: 100%;
-  font-family: $font-name;
+
   color: $popup-notice-text-color;
   font-size: $popup-notice-font-size;
   letter-spacing: $popup-notice-letter-spacing;
@@ -412,7 +412,7 @@ $popup-phone-enter-form-label-letter-spacing: 0.09px;
   margin-bottom: -14px;
 }
 .form-notice a {
-  font-family: $font-name;
+
   color: $popup-notice-link-color !important;
   font-size: $popup-notice-font-size;
   letter-spacing: $popup-notice-letter-spacing;
@@ -426,7 +426,7 @@ $popup-phone-enter-form-label-letter-spacing: 0.09px;
   margin-bottom: -12px;
   padding-top: 11px;
   color: $popup-login-offer-text-color;
-  font-family: $font-name;
+
   font-size: $popup-login-offer-font-size;
   letter-spacing: $popup-login-offer-letter-spacing;
   border-top: $popup-login-offer-border-style;
@@ -437,7 +437,7 @@ $popup-phone-enter-form-label-letter-spacing: 0.09px;
 }
 .login-offer a {
   color: $popup-login-offer-link-color !important;
-  font-family: $font-name;
+
   font-size: $popup-login-offer-font-size;
   letter-spacing: $popup-login-offer-letter-spacing;
   text-decoration: none;
@@ -452,7 +452,7 @@ $popup-phone-enter-form-label-letter-spacing: 0.09px;
   display: block;
   width: 100%;
   text-align: left;
-  font-family: $font-name;
+
   font-size: $popup-finish-header-font-size;
   color: $popup-finish-header-color;
   letter-spacing: $popup-finish-header-letter-spacing;
@@ -476,7 +476,7 @@ $popup-phone-enter-form-label-letter-spacing: 0.09px;
   display: block;
   width: 100%;
   text-align: left;
-  font-family: $font-name;
+
   font-size: $popup-finish-text-font-size;
   color: $popup-finish-text-color;
   letter-spacing: $popup-finish-text-letter-spacing;
@@ -526,7 +526,7 @@ $popup-phone-enter-form-label-letter-spacing: 0.09px;
 }
 .confirm-order-form p {
   display: block;
-  font-family: $font-name;
+
   color: $popup-text-color;
   font-size: $popup-text-size;
   letter-spacing: $popup-text-letter-spacing;
@@ -536,7 +536,7 @@ $popup-phone-enter-form-label-letter-spacing: 0.09px;
 }
 .confirm-order-form p.confirm-end {
   display: block;
-  font-family: $font-name;
+
   color: $popup-order-confirm-end-color;
   font-size: $popup-order-confirm-end-text-size;
   letter-spacing: $popup-order-confirm-end-letter-spacing;
@@ -560,7 +560,7 @@ $popup-phone-enter-form-label-letter-spacing: 0.09px;
   position: relative;
   width: 100%;
   padding-right: 50px;
-  font-family: $font-name;
+
   color: $popup-order-confirm-item-color;
   font-size: $popup-order-confirm-item-text-size;
   letter-spacing: $popup-order-confirm-item-letter-spacing;
@@ -571,7 +571,7 @@ $popup-phone-enter-form-label-letter-spacing: 0.09px;
   position: absolute;
   top: 0;
   right: 0;
-  font-family: $font-name-medium;
+   font-weight: 500;
   color: $popup-order-confirm-item-color;
   font-size: $popup-order-confirm-item-text-size;
   letter-spacing: $popup-order-confirm-item-letter-spacing;
@@ -579,18 +579,18 @@ $popup-phone-enter-form-label-letter-spacing: 0.09px;
   font-style: normal;
 }
 .confirm-order-form .orders-list .order-item span.service-item {
-  font-family: $font-name-bold;
+
   font-size: $popup-order-confirm-item-total-text-size;
 }
 .confirm-order-form .orders-list .order-item span.service-item i {
-  font-family: $font-name-bold;
+
 }
 .confirm-order-form .orders-list .order-item span.total-item {
-  font-family: $font-name-bold;
+
   font-size: $popup-order-confirm-item-total-text-size;
 }
 .confirm-order-form .orders-list .order-item span.total-item i {
-  font-family: $font-name-bold;
+
   font-size: $popup-order-confirm-item-total-text-size;
 }
 .confirm-order-form .price-loader {
@@ -613,7 +613,7 @@ $popup-phone-enter-form-label-letter-spacing: 0.09px;
   padding-top: 49px;
   width: 100%;
   color: $popup-order-confirm-spiner-text-color;
-  font-family: $font-name;
+
   font-size: $popup-order-confirm-spiner-text-size;
   letter-spacing: $popup-order-confirm-spiner-text-letter-spacing;
   text-align: center;
@@ -622,7 +622,7 @@ $popup-phone-enter-form-label-letter-spacing: 0.09px;
   display: block;
   width: 100%;
   text-align: center;
-  font-family: $font-name-bold;
+
   color: $popup-order-confirm-price-area-color;
   font-size: $popup-order-confirm-price-area-text-size;
   letter-spacing: $popup-order-confirm-price-area-text-letter-spacing;
@@ -643,19 +643,19 @@ $popup-phone-enter-form-label-letter-spacing: 0.09px;
   width: 100%;
   margin-bottom: 1px;
   color: $popup-order-confirm-information-color;
-  font-family: $font-name;
+
   font-size: $popup-order-confirm-information-text-size;
   letter-spacing: $popup-order-confirm-information-letter-spacing;
 }
 .confirm-order-form .information-list .information-item span {
-  font-family: $font-name-bold;
+
 }
 .confirm-button-notice {
   display: block;
   width: 100%;
   text-align: left;
   color: $popup-order-confirm-button-notice-color;
-  font-family: $font-name;
+
   font-size: $popup-order-confirm-button-notice-text-size;
   letter-spacing: $popup-order-confirm-button-notice-letter-spacing;
   margin-top: 20px;
@@ -691,7 +691,7 @@ $popup-phone-enter-form-label-letter-spacing: 0.09px;
   background-image: url($cards-mastercard-mini);
 }
 .popup .add-card-form .form-group label {
-  font-family: $font-name-medium;
+   font-weight: 500;
   letter-spacing: $popup-text-letter-spacing;
 }
 .popup .add-card-form .form-group .btn.btn-secondary {
@@ -706,7 +706,7 @@ $popup-phone-enter-form-label-letter-spacing: 0.09px;
   text-align: center;
   margin-top: 33px;
   margin-bottom: 27px;
-  font-family: $font-name-medium;
+   font-weight: 500;
   color: $cards-subheader-color;
   font-size: $cards-subheader-font-size;
   letter-spacing: $cards-subheader-letter-spacing;
@@ -744,7 +744,7 @@ $popup-phone-enter-form-label-letter-spacing: 0.09px;
 }
 .confirm-action p {
   display: block;
-  font-family: $font-name;
+
   color: $action-form-color;
   font-size: $popup-text-size;
   letter-spacing: $popup-text-letter-spacing;
@@ -760,13 +760,13 @@ $popup-phone-enter-form-label-letter-spacing: 0.09px;
   width: 100%;
 }
 .confirm-action .action .form-group label {
-  font-family: $font-name-medium;
+   font-weight: 500;
   color: $action-form-color;
   font-size: $popup-text-size;
   letter-spacing: $popup-text-letter-spacing;
 }
 .confirm-action .action .form-group .input-group .form-control {
-  font-family: $font-name;
+
   padding: 9px 8px 9px 9px !important;
   font-size: $action-form-text-size;
   color: $action-form-color;
@@ -778,7 +778,7 @@ $popup-phone-enter-form-label-letter-spacing: 0.09px;
   border-right: none;
 }
 .confirm-action .action .form-group .input-group .input-group-addon {
-  font-family: $font-name;
+
   padding: 7px 7px 6px 7px !important;
   font-size: $action-form-text-size;
   color: $action-form-color;
@@ -789,7 +789,7 @@ $popup-phone-enter-form-label-letter-spacing: 0.09px;
   background-color: $action-form-icon-background-color;
 }
 .confirm-action .action .form-group .input-group .input-group-addon.euro {
-  font-family: $font-name-medium;
+   font-weight: 500;
   padding: 3px 11px 4px 12px !important;
   font-size: $action-form-icon-size;
   color: $action-form-color;
@@ -805,7 +805,7 @@ $popup-phone-enter-form-label-letter-spacing: 0.09px;
   margin-top: 6px;
   margin-bottom: 0;
   padding: 0;
-  font-family: $font-name;
+
   color: $action-form-description-color;
   font-size: $action-form-description-text-size;
   letter-spacing: $action-form-description-letter-spacing;
@@ -816,7 +816,7 @@ $popup-phone-enter-form-label-letter-spacing: 0.09px;
   margin-top: 17px;
   margin-bottom: 9px;
   padding: 0;
-  font-family: $font-name-medium;
+   font-weight: 500;
   color: $action-form-color;
   font-size: $action-form-information-text-size;
   letter-spacing: $action-form-information-letter-spacing;
@@ -830,7 +830,7 @@ $popup-phone-enter-form-label-letter-spacing: 0.09px;
   padding-right: 5px;
 }
 .tooltip {
-  font-family: $font-name;
+
   font-size: $tooltip-font-size;
   letter-spacing: $popup-text-letter-spacing;
 }
@@ -860,7 +860,7 @@ $popup-phone-enter-form-label-letter-spacing: 0.09px;
   background-size: contain;
 }
 .popup.new-version .header {
-  font-family: $font-name;
+
   font-weight: normal;
   text-align: center;
   font-size: $popup-confirm-header-text-size;
@@ -869,7 +869,7 @@ $popup-phone-enter-form-label-letter-spacing: 0.09px;
 }
 .popup.new-version .confirm-order-form p {
   margin-top: 0;
-  font-family: $font-name;
+
   font-weight: normal;
   text-align: left;
   color: $popup-confirm-message-text-color;
@@ -881,7 +881,7 @@ $popup-phone-enter-form-label-letter-spacing: 0.09px;
   margin-bottom: 26px;
 }
 .popup.add-price .header {
-  font-family: $font-name;
+
   font-weight: normal;
   font-size: $popup-completa-header-text-size;
   color: $popup-completa-header-text-color;
@@ -890,7 +890,7 @@ $popup-phone-enter-form-label-letter-spacing: 0.09px;
   margin-bottom: 21px;
 }
 .popup.add-price .confirm-action p {
-  font-family: $font-name;
+
   font-weight: normal;
   font-size: $popup-completa-message-text-size;
   color: $popup-completa-message-text-color;

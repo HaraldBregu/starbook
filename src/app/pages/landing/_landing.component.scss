@@ -1,8 +1,4 @@
 // General styles
-$font-name: HelveticaNeue, sans-serif;
-$font-name-medium: HelveticaNeue-Medium, sans-serif;
-$font-name-bold: HelveticaNeue-Bold, sans-serif;
-$font-name-light: HelveticaNeue-Light, sans-serif;
 $landing-background-color: #FFFFFF;
 $landing-header-color: #3B568D;
 $landing-header-font-size: 30px; // 32px
@@ -110,14 +106,12 @@ app-landing {
   overflow: hidden;
 }
 .landing h1 {
-  font-family: $font-name-bold;
-  font-weight: bold;
+  font-weight: 700;
   color: black;
   margin: 0 auto;
   max-width: 700px;
 }
 .landing h2 {
-  font-family: $font-name-bold;
   color: black;
 }
 .landing h6 {
@@ -134,11 +128,17 @@ app-landing {
 .landing-header {
 
 }
-.landing-header h1, h2, h3, h4, h5, h6 {
+.landing-header h1,
+.landing-header h2,
+.landing-header h3,
+.landing-header h4,
+.landing-header h5,
+.landing-header h6 {
   text-align: center;
 }
 .landing-header h6 {
   margin: 20px 0;
+  font-weight: 400;
 }
 .landing-header-button {
   margin-top: 30px;
@@ -160,7 +160,7 @@ app-landing {
   position: relative;
   width: 100%;
   height: 50px;
-  font-family: $font-name-bold;
+
   border: 1px solid #3B5998;
   border-radius: 3px;
   font-size: 18px;
@@ -206,7 +206,7 @@ app-landing {
   position: relative;
   width: 100%;
   padding: 16px 12px 20px 12px;
-  font-family: $font-name-bold;
+
   font-size: $card-header-font-size;
   letter-spacing: $card-header-letter-spacing;
   color: $card-font-color;
@@ -221,7 +221,7 @@ app-landing {
   margin-top: -20px;
   position: relative;
   z-index: 3;
-  font-family: $font-name;
+
   font-size: $card-text-font-size;
   color: $card-font-color;
   letter-spacing: $card-text-letter-spacing;
@@ -232,7 +232,7 @@ app-landing {
   color: $card-background-color;
 }
 .top-cards .top-card .header span {
-  font-family: $font-name-light;
+
   font-size: $card-text-font-size;
   color: $card-font-color;
   letter-spacing: $card-text-letter-spacing;
@@ -241,7 +241,7 @@ app-landing {
   display: block;
   width: 100%;
   margin: 0;
-  font-family: $font-name-light;
+
   font-size: $card-text-font-size;
   color: $card-font-color;
   letter-spacing: $card-text-letter-spacing;
@@ -309,7 +309,7 @@ app-landing {
   display: block;
   max-width: 500px;
   margin: 20px auto 20px;
-  font-family: $font-name-light;
+
   color: $landing-general-text-color;
   font-size: $center-description-font-size;
   letter-spacing: $center-description-letter-spacing;
@@ -373,7 +373,7 @@ app-landing {
   display: block;
   width: 100%;
   margin-top: 52px;
-  font-family: $font-name-bold;
+
   font-size: $how-to-font-size;
   letter-spacing: $how-to-letter-spacing;
   color: $landing-general-text-color;
@@ -383,7 +383,7 @@ app-landing {
   display: block;
   width: 100%;
   margin-top: 25px;
-  font-family: $font-name-light;
+
   font-size: $how-to-font-size;
   letter-spacing: $how-to-letter-spacing;
   color: $landing-general-text-color;
@@ -422,7 +422,7 @@ app-landing {
   bottom: 19px;
   left: 26px;
   z-index: 2;
-  font-family: $font-name;
+
   color: $banner-text-color;
   font-size: $banner-text-font-size;
   letter-spacing: $banner-text-letter-spacing;
@@ -441,7 +441,7 @@ app-landing {
   display: block;
   max-width: 570px;
   margin: 90px auto 130px;
-  font-family: $font-name-light;
+
   font-size: $center-description-font-size;
   letter-spacing: $center-description-letter-spacing;
   color: #4A4A4A;
@@ -466,7 +466,7 @@ app-landing {
 .footer-container .copyright, .footer-container span, .footer-container a, .footer-container a:hover {
   display: inline;
   color: $footer-text-color;
-  font-family: $font-name;
+
   font-size: $footer-text-font-size;
   letter-spacing: $footer-text-letter-spacing;
   text-decoration: none;
@@ -499,7 +499,7 @@ app-landing {
   box-shadow: none;
   outline: none;
   color: $search-text-color;
-  font-family: $font-name;
+
   font-size: $search-text-size;
   letter-spacing: $search-text-letter-spacing;
 }
@@ -511,7 +511,7 @@ app-landing {
   max-width: 470px;
   margin: 0 auto;
   text-align: center;
-  font-family: $font-name-light;
+
   color: $landing-top-header-color;
   font-size: $landing-top-header-text-size;
   letter-spacing: $landing-top-header-letter-spacing;
@@ -519,7 +519,7 @@ app-landing {
   font-weight: normal;
 }
 .landing .btn.btn-warning {
-  font-family: $font-name-bold;
+
   font-weight: bold;
   border: $card-btn-border;
   // font-size: $card-btn-font-size;
@@ -545,7 +545,7 @@ app-landing {
   opacity: 1.0;
 }
 .landing .btn.btn-success {
-  font-family: $font-name-bold;
+
   // border: $card-btn-border;
   // font-size: $card-btn-font-size;
   color: white;
@@ -659,7 +659,7 @@ input.landing-search .ui-autocomplete-input:-ms-input-placeholder {
 .landing-search .ui-autocomplete-panel .search-result {
   display: block;
   width: 100%;
-  font-family: $font-name;
+
   color: $search-result-text-color;
   font-size: $search-result-text-size;
   letter-spacing: $search-result-letter-spacing;
@@ -671,7 +671,7 @@ input.landing-search .ui-autocomplete-input:-ms-input-placeholder {
 .landing-search .ui-autocomplete-panel.empty .no-result {
   display: block;
   width: 100%;
-  font-family: $font-name;
+
   color: $search-result-empty-color;
   font-size: $search-result-empty-font-size;
   letter-spacing: $search-result-letter-spacing;
@@ -680,37 +680,32 @@ input.landing-search .ui-autocomplete-input:-ms-input-placeholder {
 
 
 // Services cards
-.card-container {
+.landing .card-container {
   padding: 40px 0;
   text-align: center;
 }
-.card-container h2 {
+.landing .card-container h2 {
   width: 100%;
   text-align: center;
-  font-family: $font-name-medium;
   color: #324977;
 }
-.card-container h3 {
+.landing .card-container h3 {
   display: block;
-  font-family: $font-name-bold;
   font-weight: 700;
   color: #FFC846;
 }
-.card-container h4 {
+.landing .card-container h4 {
   display: block;
-  font-family: $font-name-bold;
   font-weight: 700;
   color: #FFC846;
 }
-.card-container h5 {
+.landing .card-container h5 {
   display: block;
-  font-family: $font-name-light;
-  font-weight: 400;
+  font-weight: 300;
   color: black;
 }
-.card-container h6 {
+.landing .card-container h6 {
   display: block;
-  font-family: $font-name-light;
   font-weight: 400;
   color: black;
 }
@@ -729,7 +724,7 @@ input.landing-search .ui-autocomplete-input:-ms-input-placeholder {
   float: none;
   margin: 0 auto;
   text-align: left;
-  font-family: $font-name-light;
+
   color: $landing-top-header-color;
   font-size: $landing-top-header-text-size;
   letter-spacing: $landing-top-header-letter-spacing;
@@ -804,7 +799,7 @@ input.landing-search .ui-autocomplete-input:-ms-input-placeholder {
   position: relative;
   z-index: 2;
   width: 200px;
-  font-family: $font-name-bold;
+
   font-weight: bold;
   color: $services-header-color;
   font-size: $services-header-text-size;
@@ -822,7 +817,7 @@ input.landing-search .ui-autocomplete-input:-ms-input-placeholder {
   bottom: 17px;
   width: 100%;
   text-align: right;
-  font-family: $font-name-medium;
+
   font-weight: 600;
   color: $services-header-color;
   font-size: $services-footer-text-size;
@@ -830,7 +825,7 @@ input.landing-search .ui-autocomplete-input:-ms-input-placeholder {
   font-weight: normal;
 }
 .services-card .service-container .service-footer span {
-  font-family: $font-name-bold;
+
   font-weight: bold;
   color: $services-header-color;
   font-size: $services-footer-price-text-size;
@@ -846,14 +841,14 @@ input.landing-search .ui-autocomplete-input:-ms-input-placeholder {
   width: 100%;
   text-align: center;
   padding-bottom: 60px;
-  font-family: $font-name-light;
+
   color: $landing-orange-text-color;
 }
 .why-container h4 {
   width: 100%;
   text-align: center;
   padding-bottom: 60px;
-  font-family: $font-name-light;
+
   color: $landing-orange-text-color;
 }
 .why-container h5 {
@@ -861,7 +856,7 @@ input.landing-search .ui-autocomplete-input:-ms-input-placeholder {
   text-align: center;
   padding-top: 20px;
   padding-bottom: 10px;
-  font-family: $font-name-light;
+
   font-weight: 400;
   color: $landing-orange-text-color;
   max-width: 280px;
@@ -870,7 +865,7 @@ input.landing-search .ui-autocomplete-input:-ms-input-placeholder {
 .why-container h6 {
   width: 100%;
   text-align: center;
-  font-family: $font-name-light;
+
   font-weight: 400;
   color: rgba(255, 255, 255, 0.7);
   margin: auto;
@@ -892,7 +887,7 @@ input.landing-search .ui-autocomplete-input:-ms-input-placeholder {
   width: 100%;
   text-align: center;
   padding-bottom: 20px;
-  font-family: $font-name-light;
+
   color: $landing-orange-text-color;
 }
 .partner-container .list-brands-scrollable {
@@ -915,14 +910,14 @@ input.landing-search .ui-autocomplete-input:-ms-input-placeholder {
 .pre-footer-container h5 {
   width: 100%;
   text-align: left;
-  font-family: $font-name-light;
+
   font-weight: 400;
   color: white;
 }
 .pre-footer-container h6 {
   width: 100%;
   text-align: left;
-  font-family: $font-name-light;
+
   font-weight: 400;
   color: white;
 }
@@ -1008,6 +1003,7 @@ input.landing-search .ui-autocomplete-input:-ms-input-placeholder {
   }
   .landing-header h6 {
     padding: 10px 0 25px;
+    font-weight: 400;
   }
   .header-page {
     padding-bottom: 0;

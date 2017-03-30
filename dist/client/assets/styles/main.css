@@ -391,38 +391,34 @@ body {
   font-size: 40px;
   font-size: 4.0rem; }
 
+html, body {
+  font-family: Roboto, sans-serif; }
+
 h1 {
-  font-family: HelveticaNeue, sans-serif;
   font-size: 32px;
   letter-spacing: 0.22px; }
 
 h2 {
-  font-family: HelveticaNeue, sans-serif;
   font-size: 30px;
   letter-spacing: 0.22px; }
 
 h3 {
-  font-family: HelveticaNeue, sans-serif;
   font-size: 28px;
   letter-spacing: 0.22px; }
 
 h4 {
-  font-family: HelveticaNeue, sans-serif;
   font-size: 22px;
   letter-spacing: 0.22px; }
 
 h5 {
-  font-family: HelveticaNeue, sans-serif;
   font-size: 20px;
   letter-spacing: 0.22px; }
 
 h6 {
-  font-family: HelveticaNeue, sans-serif;
   font-size: 16px;
   letter-spacing: 0.22px; }
 
 p {
-  font-family: HelveticaNeue, sans-serif;
   font-size: 18px !important;
   letter-spacing: 0.11px !important; }
 
@@ -430,13 +426,23 @@ p {
   background: #7FC443 !important;
   border-radius: 0;
   height: 50px;
-  width: 160px;
+  border: 0;
+  color: white !important;
+  font-size: 22px;
+  font-family: Roboto, sans-serif;
+  font-weight: 400;
+  outline: none;
+  padding: 0;
+  line-height: 50px; }
+
+.btn-danger {
+  border-radius: 0;
   height: 50px;
   border: 0;
   color: white !important;
   font-size: 22px;
-  font-family: HelveticaNeue-Bold, sans-serif;
-  font-weight: 700;
+  font-family: Roboto, sans-serif;
+  font-weight: 400;
   outline: none;
   padding: 0;
   line-height: 50px; }
@@ -449,8 +455,20 @@ p {
   border: 0;
   color: white !important;
   font-size: 22px;
-  font-family: HelveticaNeue-Bold, sans-serif;
-  font-weight: 700;
+  font-family: Roboto, sans-serif;
+  font-weight: 400;
+  outline: none;
+  padding: 0;
+  line-height: 50px; }
+
+.btn-secondary {
+  border-radius: 0;
+  height: 50px;
+  width: 160px;
+  height: 50px;
+  font-size: 22px;
+  font-family: Roboto, sans-serif;
+  font-weight: 400;
   outline: none;
   padding: 0;
   line-height: 50px; }
@@ -458,8 +476,8 @@ p {
 .btn-warning {
   background: #FFC845 !important;
   color: white;
-  font-family: HelveticaNeue, sans-serif;
-  font-weight: 300;
+  font-family: Roboto, sans-serif;
+  font-weight: 400;
   letter-spacing: 0.1px;
   padding: 11px 7px;
   outline: none;
@@ -470,9 +488,9 @@ p {
 .btn-yellow-green {
   background: #FFC845 !important;
   color: white;
-  font-family: HelveticaNeue-Light, sans-serif;
-  letter-spacing: 0.1px;
+  font-family: Roboto, sans-serif;
   font-weight: 400;
+  letter-spacing: 0.1px;
   padding: 11px 7px;
   outline: none;
   border-radius: 0;
@@ -490,9 +508,9 @@ p {
 .btn-white {
   background: white !important;
   color: black;
-  font-family: HelveticaNeue-Light, sans-serif;
-  letter-spacing: 0.1px;
+  font-family: Roboto, sans-serif;
   font-weight: 400;
+  letter-spacing: 0.1px;
   padding: 11px 7px;
   outline: none;
   border-radius: 0;
@@ -508,9 +526,9 @@ p {
 .btn-facebook {
   background: #3B5998 !important;
   color: white;
-  font-family: HelveticaNeue, sans-serif;
-  letter-spacing: 0.1px;
+  font-family: Roboto, sans-serif;
   font-weight: 400;
+  letter-spacing: 0.1px;
   padding: 11px 7px;
   outline: none;
   border-radius: 0;
@@ -533,7 +551,7 @@ p {
 .form-group label {
   color: #212121 !important;
   font-size: 14px !important;
-  font-family: HelveticaNeue-Medium, sans-serif;
+  font-family: Roboto, sans-serif;
   font-weight: 600 !important;
   padding: 0 !important;
   margin-bottom: 5px !important; }
@@ -546,7 +564,8 @@ p {
   height: 100%;
   padding: 20px;
   font-size: 22px;
-  font-family: HelveticaNeue, sans-serif;
+  font-family: Roboto, sans-serif;
+  font-weight: 400;
   letter-spacing: 0.1px;
   border: 1px solid #DCDCDC;
   border-radius: 0;
@@ -595,7 +614,7 @@ p {
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.25);
   font-size: 15px;
   color: #4A4A4A;
-  font-family: HelveticaNeue, sans-serif;
+  font-family: Roboto, sans-serif;
   font-weight: 400;
   border: none !important;
   padding: 12px 7px 11px 9px !important; }
@@ -607,6 +626,7 @@ p {
   text-align: center;
   font-size: 18px;
   color: #4A4A4A;
+  font-family: Roboto, sans-serif;
   font-weight: 600;
   line-height: 50px; }
 
@@ -638,6 +658,7 @@ p {
   color: #4A4A4A;
   width: 30px;
   height: 30px;
+  font-family: Roboto, sans-serif;
   font-weight: 600;
   font-size: 12px;
   margin-top: -3px; }
@@ -650,7 +671,7 @@ p {
   height: 25px;
   display: block;
   color: #4A4A4A;
-  font-family: HelveticaNeue, sans-serif;
+  font-family: Roboto, sans-serif;
   font-weight: 600;
   text-align: center; }
 
@@ -658,8 +679,8 @@ p {
   display: block;
   height: 22px;
   color: #7FC443;
-  font-family: HelveticaNeue, sans-serif;
   font-size: 18px;
+  font-family: Roboto, sans-serif;
   font-weight: 900;
   text-decoration: none !important;
   text-align: center;
@@ -672,14 +693,14 @@ p {
   color: #4A4A4A; }
 
 .ui-datepicker-calendar td a.ui-state-default:hover, .ui-datepicker-calendar td a.ui-state-active {
-  font-family: HelveticaNeue, sans-serif;
+  font-family: Roboto, sans-serif;
   text-decoration: none !important;
   background-color: #7FC443;
   color: #ffffff;
   height: 100%; }
 
 .ui-datepicker-calendar td a.ui-state-disabled:hover {
-  font-family: HelveticaNeue, sans-serif;
+  font-family: Roboto, sans-serif;
   text-decoration: none !important;
   border-radius: 3px;
   background-color: transparent;
@@ -2960,7 +2981,6 @@ html, body {
   background-color: #324977 !important; }
 
 .navbar-brand {
-  font-family: HelveticaNeue, sans-serif;
   font-size: 28px;
   font-weight: 700;
   color: #FFFFFF;
@@ -2979,7 +2999,6 @@ html, body {
   left: 0;
   width: 100%;
   padding: 14px 0;
-  font-family: HelveticaNeue-Medium, sans-serif;
   color: #FFFFFF;
   font-size: 16px;
   font-weight: normal;
@@ -2997,9 +3016,8 @@ html, body {
 
 .container-starbook .nav-link {
   position: relative;
-  font-family: HelveticaNeue-Medium, sans-serif;
   font-weight: 500;
-  font-size: 14px;
+  font-size: 16px;
   color: #FFFFFF !important;
   letter-spacing: 0.08px;
   padding: 12px 15px 12px 15px;
@@ -3040,7 +3058,6 @@ html, body {
   border: none;
   outline: none;
   color: #FFFFFF;
-  font-family: HelveticaNeue, sans-serif;
   font-size: 16px;
   letter-spacing: 0.1px; }
 
@@ -3104,7 +3121,6 @@ input.search-block .ui-autocomplete-input:-ms-input-placeholder {
 .search-block .ui-autocomplete-panel .search-result {
   display: block;
   width: 100%;
-  font-family: HelveticaNeue, sans-serif;
   color: white;
   font-size: 16px;
   letter-spacing: 0.1px;
@@ -3116,7 +3132,6 @@ input.search-block .ui-autocomplete-input:-ms-input-placeholder {
 .search-block .ui-autocomplete-panel.empty .no-result {
   display: block;
   width: 100%;
-  font-family: HelveticaNeue, sans-serif;
   color: rgba(255, 255, 255, 0.7);
   font-size: 14px;
   letter-spacing: 0.1px;
@@ -3249,7 +3264,6 @@ app-home {
   margin: 0;
   padding: 3px 10px 4px 31px;
   color: #000000 !important;
-  font-family: HelveticaNeue-Light, sans-serif;
   font-weight: normal;
   font-size: 16px;
   letter-spacing: 0.1px;
@@ -3269,7 +3283,6 @@ app-home {
   margin-right: 0; }
 
 .container-starbook .nav-pills .nav-link.active {
-  font-family: HelveticaNeue-Light, sans-serif;
   font-weight: normal;
   letter-spacing: 0.1px;
   background-color: #FFFFFF;
@@ -3328,14 +3341,12 @@ app-home {
   width: 30%; }
 
 .header-cover .title {
-  font-family: HelveticaNeue-Light, sans-serif;
   font-size: 19px;
   font-weight: 400;
   color: white;
   padding: 20px; }
 
 .header-cover .description {
-  font-family: HelveticaNeue, sans-serif;
   font-size: 16px;
   font-weight: 400;
   color: rgba(255, 255, 255, 0.7);
@@ -3376,7 +3387,6 @@ app-home {
   display: block;
   float: left;
   width: 100%;
-  font-family: HelveticaNeue, sans-serif;
   color: black;
   font-size: 13px;
   letter-spacing: 0.1px;
@@ -3388,7 +3398,6 @@ app-home {
   float: left;
   width: 100%;
   margin-top: 5px;
-  font-family: HelveticaNeue-Bold, sans-serif;
   font-weight: 700;
   color: #4990E2;
   font-size: 28px;
@@ -3401,7 +3410,6 @@ app-home {
   width: 100%;
   margin-left: -158px;
   padding-left: 173px;
-  font-family: HelveticaNeue-Light, sans-serif;
   font-weight: 300;
   color: black;
   font-size: 13px;
@@ -3438,7 +3446,6 @@ app-home {
 .services-block .header .content-header span {
   display: block;
   width: 100%;
-  font-family: HelveticaNeue, sans-serif;
   font-size: 20px;
   letter-spacing: 0.13px;
   color: black;
@@ -3447,7 +3454,6 @@ app-home {
 .services-block .header .content-header .service-description {
   display: block;
   width: 100%;
-  font-family: HelveticaNeue-Light, sans-serif;
   font-weight: 300;
   font-size: 16px;
   letter-spacing: 0.1px;
@@ -3489,7 +3495,6 @@ app-home {
   position: relative;
   width: 100%;
   padding: 3px 130px 10px 50px;
-  font-family: HelveticaNeue-Bold, sans-serif;
   font-size: 15px;
   color: black;
   letter-spacing: 0.1px;
@@ -3531,7 +3536,6 @@ app-home {
 .services-block .service .item-container .item-description {
   display: block;
   width: 100%;
-  font-family: HelveticaNeue-Light, sans-serif;
   font-weight: 300;
   color: black;
   font-size: 14px;
@@ -3550,7 +3554,6 @@ app-home {
 
 .services-block .service .item.checked {
   font-weight: 400;
-  font-family: HelveticaNeue, sans-serif;
   font-size: 14px;
   color: black;
   letter-spacing: 0.09px;
@@ -3571,7 +3574,6 @@ app-home {
   border-radius: 3px;
   background-color: #FAFAFA;
   border: 1px solid #DCDCDC;
-  font-family: HelveticaNeue, sans-serif;
   font-weight: normal;
   font-size: 16px;
   letter-spacing: 0.1px;
@@ -3592,7 +3594,6 @@ app-home {
   padding: 9px 13px 8px 13px;
   text-align: right;
   background-color: white;
-  font-family: HelveticaNeue, sans-serif;
   font-weight: normal;
   font-size: 16px;
   letter-spacing: 0.1px;
@@ -3607,7 +3608,6 @@ app-home {
   border-right: 1px solid #CCCCCC;
   height: 35px;
   text-align: right;
-  font-family: HelveticaNeue-Medium, sans-serif;
   font-weight: 500;
   font-size: 15px;
   letter-spacing: 0.1px;
@@ -3636,7 +3636,6 @@ app-home {
   display: block;
   width: 100%;
   padding: 22px 20px;
-  font-family: HelveticaNeue, sans-serif;
   font-size: 15px;
   color: white;
   letter-spacing: 0.08px;
@@ -3700,7 +3699,6 @@ app-home {
     padding: 30px; }
 
   .services-block .header span {
-    font-family: HelveticaNeue-Medium, sans-serif;
     font-size: 16px;
     font-weight: 500;
     letter-spacing: 0.1px;
@@ -3871,7 +3869,7 @@ textarea, input[type="text"] {
   width: 100%;
   margin-top: 5px;
   text-align: center;
-  font-family: HelveticaNeue, sans-serif;
+  font-family: Roboto, sans-serif;
   color: #FFFFFF;
   font-size: 16px;
   letter-spacing: 0.19px; }
@@ -3893,7 +3891,7 @@ textarea, input[type="text"] {
   float: left;
   width: 100%;
   text-align: center;
-  font-family: HelveticaNeue, sans-serif;
+  font-family: Roboto, sans-serif;
   color: #ffffff;
   font-size: 35px;
   letter-spacing: 0.22px; }
@@ -3903,7 +3901,6 @@ textarea, input[type="text"] {
   float: left;
   width: 100%;
   text-align: center;
-  font-family: HelveticaNeue-Light, sans-serif;
   color: rgba(255, 255, 255, 0.7);
   font-size: 16px;
   letter-spacing: 0.19px;
@@ -3920,7 +3917,7 @@ textarea, input[type="text"] {
   float: left;
   width: 100%;
   text-align: center;
-  font-family: HelveticaNeue, sans-serif;
+  font-family: Roboto, sans-serif;
   color: #ffffff;
   font-size: 22px;
   letter-spacing: 0.14px; }
@@ -3930,7 +3927,6 @@ textarea, input[type="text"] {
   float: left;
   width: 100%;
   text-align: center;
-  font-family: HelveticaNeue-Light, sans-serif;
   color: rgba(255, 255, 255, 0.7);
   font-size: 16px;
   letter-spacing: 0.19px;
@@ -3950,7 +3946,6 @@ textarea, input[type="text"] {
   width: 100%;
   margin-top: 30px;
   padding: 0 35px;
-  font-family: HelveticaNeue-Light, sans-serif;
   font-size: 14px;
   letter-spacing: 0.17px;
   color: rgba(255, 255, 255, 0.7);
@@ -3989,7 +3984,7 @@ textarea, input[type="text"] {
   float: left;
   width: 100%;
   text-align: left;
-  font-family: HelveticaNeue, sans-serif;
+  font-family: Roboto, sans-serif;
   color: #90949C;
   letter-spacing: 0.08px;
   font-size: 12px;
@@ -3997,14 +3992,14 @@ textarea, input[type="text"] {
 
 .footer-links p a {
   text-decoration: none;
-  font-family: HelveticaNeue, sans-serif;
+  font-family: Roboto, sans-serif;
   color: #90949C;
   letter-spacing: 0.08px;
   font-size: 12px; }
 
 .footer-links p a:hover, .footer-links p a:active {
   text-decoration: none;
-  font-family: HelveticaNeue, sans-serif;
+  font-family: Roboto, sans-serif;
   color: #90949C;
   letter-spacing: 0.08px;
   font-size: 12px; }
@@ -4013,7 +4008,7 @@ textarea, input[type="text"] {
   margin-bottom: 10px; }
 
 .add-order-form label {
-  font-family: HelveticaNeue, sans-serif;
+  font-family: Roboto, sans-serif;
   font-weight: lighter;
   color: rgba(255, 255, 255, 0.7);
   font-size: 17px;
@@ -4031,7 +4026,7 @@ textarea, input[type="text"] {
   height: 40px;
   color: #000000;
   font-size: 16px;
-  font-family: HelveticaNeue, sans-serif;
+  font-family: Roboto, sans-serif;
   letter-spacing: 0.1px;
   padding: 7px 20px;
   border-radius: 1px !important;
@@ -4054,7 +4049,7 @@ textarea, input[type="text"] {
   left: 0;
   color: white;
   font-size: 16px;
-  font-family: HelveticaNeue, sans-serif;
+  font-family: Roboto, sans-serif;
   letter-spacing: 0.1px;
   outline: none; }
 
@@ -4066,7 +4061,7 @@ textarea.form-control {
   resize: none;
   font-size: 17px;
   color: white;
-  font-family: HelveticaNeue, sans-serif;
+  font-family: Roboto, sans-serif;
   letter-spacing: 0.01px;
   box-shadow: none;
   background-color: #2A292B; }
@@ -4111,7 +4106,7 @@ textarea.form-control {
   color: #FFFFFF;
   font-size: 20px;
   font-weight: 700;
-  font-family: HelveticaNeue, sans-serif;
+  font-family: Roboto, sans-serif;
   letter-spacing: 0.11px;
   padding: 13px;
   border: none; }
@@ -4129,7 +4124,7 @@ textarea.form-control {
   margin-bottom: 8px;
   background-color: #FEEFBC;
   border: 1px solid #FFBD00;
-  font-family: HelveticaNeue, sans-serif;
+  font-family: Roboto, sans-serif;
   font-size: 14px;
   letter-spacing: 0.09px;
   color: #BC892D;
@@ -4137,7 +4132,7 @@ textarea.form-control {
   border-radius: 3px; }
 
 .order-container .order-list-empty strong {
-  font-family: HelveticaNeue-Bold, sans-serif; }
+  font-weight: bold; }
 
 .sidebar-block h2 {
   display: block;
@@ -4145,7 +4140,6 @@ textarea.form-control {
   position: static;
   padding: 17px 0 17px 20px;
   color: #FFFFFF;
-  font-family: HelveticaNeue-Light, sans-serif;
   font-size: 19px;
   font-weight: 400;
   letter-spacing: 0.1px;
@@ -4163,7 +4157,7 @@ textarea.form-control {
   width: 100%;
   color: #212121;
   letter-spacing: 0.1px;
-  font-family: HelveticaNeue, sans-serif;
+  font-family: Roboto, sans-serif;
   font-size: 15px;
   text-align: left; }
 
@@ -4175,21 +4169,21 @@ textarea.form-control {
   text-align: right;
   color: #212121;
   letter-spacing: 0.1px;
-  font-family: HelveticaNeue-Medium, sans-serif;
+  font-weight: 500;
   font-size: 15px;
   font-style: normal; }
 
 .order-container .category-group.category span {
-  font-family: HelveticaNeue-Medium, sans-serif; }
+  font-weight: 500; }
 
 .order-container .category-group.category span i {
-  font-family: HelveticaNeue-Bold, sans-serif; }
+  font-weight: bold; }
 
 .order-container .category-group.total span {
-  font-family: HelveticaNeue-Bold, sans-serif; }
+  font-weight: bold; }
 
 .order-container .category-group.total span i {
-  font-family: HelveticaNeue-Bold, sans-serif; }
+  font-weight: bold; }
 
 .order-container .category-group span:after {
   content: ', '; }
@@ -4233,7 +4227,7 @@ textarea.form-control {
   text-align: left;
   padding: 5px 14px;
   color: #324977;
-  font-family: HelveticaNeue, sans-serif;
+  font-family: Roboto, sans-serif;
   font-size: 15px;
   font-weight: 500;
   cursor: pointer; }
@@ -4250,7 +4244,7 @@ textarea.form-control {
   height: 38px;
   color: white;
   font-size: 16px;
-  font-family: HelveticaNeue, sans-serif;
+  font-family: Roboto, sans-serif;
   letter-spacing: 0.1px;
   border-radius: 3px;
   border: none;
@@ -4266,7 +4260,7 @@ textarea.form-control {
   background-color: #ffffff;
   font-size: 15px;
   color: #4A4A4A;
-  font-family: HelveticaNeue, sans-serif;
+  font-family: Roboto, sans-serif;
   font-weight: 400;
   border-left: 1px solid #DCDCDC;
   border-right: 1px solid #DCDCDC;
@@ -4287,7 +4281,7 @@ textarea.form-control {
 .form-group .error-block {
   display: block;
   color: #DB4F4F;
-  font-family: HelveticaNeue, sans-serif;
+  font-family: Roboto, sans-serif;
   font-size: 15px;
   padding: 6px 11px 0 11px; }
 
@@ -4480,7 +4474,6 @@ textarea.form-control {
   float: left;
   width: 50%;
   padding: 15px 17px 15px 42px;
-  font-family: HelveticaNeue, sans-serif;
   color: #212121;
   font-size: 16px;
   letter-spacing: 0.1px;
@@ -4514,7 +4507,6 @@ textarea.form-control {
   width: 50%;
   text-align: right;
   padding: 16px 22px 14px 33px;
-  font-family: HelveticaNeue-Medium, sans-serif;
   color: #212121;
   font-size: 16px;
   letter-spacing: 0.1px;
@@ -4526,7 +4518,6 @@ textarea.form-control {
   width: 100%;
   text-align: center;
   padding: 14px 0 14px 0;
-  font-family: HelveticaNeue, sans-serif;
   color: #212121;
   font-size: 18px;
   letter-spacing: 0.11px;
@@ -4544,7 +4535,6 @@ textarea.form-control {
   margin-right: 0 !important; }
 
 .order-body .order-row.products {
-  font-family: HelveticaNeue, sans-serif;
   float: left;
   width: 33.333333% !important;
   max-width: 354px;
@@ -4558,7 +4548,6 @@ textarea.form-control {
   margin-bottom: 10px;
   padding-right: 50px;
   font-size: 15px;
-  font-family: HelveticaNeue, sans-serif;
   color: #212121;
   letter-spacing: 0.1px; }
 
@@ -4569,23 +4558,16 @@ textarea.form-control {
   right: 0;
   text-align: right;
   font-size: 15px;
-  font-family: HelveticaNeue-Medium, sans-serif;
   color: #212121;
   letter-spacing: 0.1px;
   font-style: normal; }
 
-.order-body .order-row.products .item.service {
-  font-family: HelveticaNeue-Medium, sans-serif; }
-
-.order-body .order-row.products .item.service i {
-  font-family: HelveticaNeue-Medium, sans-serif; }
-
 .order-body .order-row.products .item.total {
-  font-family: HelveticaNeue-Bold, sans-serif;
+  font-weight: 600;
   font-size: 16px; }
 
 .order-body .order-row.products .item.total i {
-  font-family: HelveticaNeue-Bold, sans-serif;
+  font-weight: 600;
   font-size: 16px; }
 
 .order-body .order-row.description {
@@ -4596,7 +4578,6 @@ textarea.form-control {
   left: 50%;
   margin-left: -155px;
   letter-spacing: 0.1px;
-  font-family: HelveticaNeue, sans-serif;
   font-weight: 400;
   color: #212121;
   padding-left: 0;
@@ -4606,7 +4587,6 @@ textarea.form-control {
   float: right;
   width: 33.333333% !important;
   padding-left: 45px;
-  font-family: HelveticaNeue, sans-serif;
   color: #212121; }
 
 .order-body .client-info .item {
@@ -4620,7 +4600,6 @@ textarea.form-control {
   float: left;
   text-align: right;
   width: 100px;
-  font-family: HelveticaNeue, sans-serif;
   font-size: 14px;
   font-weight: 400;
   letter-spacing: 0.09px;
@@ -4633,14 +4612,12 @@ textarea.form-control {
   width: 100%;
   margin-left: -100px;
   padding-left: 100px;
-  font-family: HelveticaNeue, sans-serif;
   font-size: 14px;
   font-weight: 400;
   letter-spacing: 0.09px;
   color: #212121; }
 
 .order-body .client-info .item .field-value strong {
-  font-family: HelveticaNeue-Medium, sans-serif;
   font-weight: normal; }
 
 .order-information .order-footer {
@@ -4655,7 +4632,6 @@ textarea.form-control {
   float: left;
   width: 40%;
   padding: 8px 6px;
-  font-family: HelveticaNeue, sans-serif;
   letter-spacing: 0.08px;
   color: #212121;
   font-size: 12px;
@@ -4672,7 +4648,6 @@ textarea.form-control {
 
 .order-footer .buttons .btn-primary {
   height: 28px;
-  font-family: HelveticaNeue-Medium, sans-serif;
   background-color: #506795;
   border: 1px solid #29487D;
   color: #FFFFFF;
@@ -4687,7 +4662,6 @@ textarea.form-control {
 .order-footer .buttons .btn-primary:focus,
 .order-footer .buttons .btn-primary:hover {
   height: 28px;
-  font-family: HelveticaNeue-Medium, sans-serif;
   background-color: #324977;
   border: 1px solid #29487D;
   color: #FFFFFF;
@@ -4701,7 +4675,6 @@ textarea.form-control {
 
 .order-footer .buttons .btn-primary:active {
   height: 28px;
-  font-family: HelveticaNeue-Medium, sans-serif;
   background-color: #506795;
   border: 1px solid #29487D;
   color: #FFFFFF;
@@ -4715,7 +4688,6 @@ textarea.form-control {
 
 .order-footer .buttons .btn-secondary {
   height: 28px;
-  font-family: HelveticaNeue-Medium, sans-serif;
   background-color: #F6F7F9;
   border: 1px solid #DDDFE2;
   color: #212121;
@@ -4730,7 +4702,6 @@ textarea.form-control {
 .order-footer .buttons .btn-secondary:focus,
 .order-footer .buttons .btn-secondary:hover {
   height: 28px;
-  font-family: HelveticaNeue-Medium, sans-serif;
   background-color: #E4E7ED;
   border: 1px solid #DDDFE2;
   color: #212121;
@@ -4744,7 +4715,6 @@ textarea.form-control {
 
 .order-footer .buttons .btn-secondary:active {
   height: 28px;
-  font-family: HelveticaNeue-Medium, sans-serif;
   background-color: #F6F7F9;
   border: 1px solid #DDDFE2;
   color: #212121;
@@ -4758,7 +4728,7 @@ textarea.form-control {
 
 .order-footer .buttons .btn-warning {
   height: 28px;
-  font-family: HelveticaNeue-Bold, sans-serif;
+  font-weight: 600;
   background: #FFE589;
   background: -moz-linear-gradient(top, #FFE589 0%, #FEC751 100%);
   background: -webkit-linear-gradient(top, #FFE589 0%, #FEC751 100%);
@@ -4767,7 +4737,6 @@ textarea.form-control {
   color: #212121;
   font-size: 12px;
   letter-spacing: 0.08px;
-  font-weight: normal;
   border-radius: 3px;
   padding: 6px 15px;
   margin-left: 10px;
@@ -4804,7 +4773,6 @@ textarea.form-control {
 .container-starbook .left-navigate a div {
   display: block;
   position: relative;
-  font-family: HelveticaNeue, sans-serif;
   font-weight: 400;
   padding: 10px 10px 10px 20px;
   color: #212121;
@@ -4839,7 +4807,7 @@ textarea.form-control {
   background-color: #FFFFFF; }
 
 .container-starbook .left-navigate a.active div {
-  font-family: HelveticaNeue-Bold, sans-serif;
+  font-weight: 600;
   padding: 10px 5px 10px 20px;
   background-color: transparent; }
 
@@ -4860,7 +4828,6 @@ textarea.form-control {
   border: 1px solid #DCDCDC;
   text-align: center;
   border-radius: 3px;
-  font-family: HelveticaNeue, sans-serif;
   font-size: 16px;
   font-weight: 400;
   letter-spacing: 0.09px;
@@ -4879,7 +4846,6 @@ textarea.form-control {
   position: absolute;
   top: 0;
   right: 0;
-  font-family: HelveticaNeue, sans-serif;
   font-size: 20px;
   letter-spacing: 0.13px;
   color: #212121;
@@ -4887,7 +4853,7 @@ textarea.form-control {
   max-height: 30px; }
 
 .order-footer .buttons .price-block .content-price span {
-  font-family: HelveticaNeue-Medium, sans-serif;
+  font-weight: bold;
   letter-spacing: 0.14px; }
 
 .orders-container .loader {
@@ -5073,7 +5039,8 @@ textarea.form-control {
   width: 100%;
   background: white;
   height: 70px;
-  border-bottom: 1px solid #CCCCCC; }
+  border-bottom: 1px solid #CCCCCC;
+  z-index: 1; }
 
 .top-bar {
   list-style: none;
@@ -5102,55 +5069,97 @@ textarea.form-control {
 .page-container {
   display: block;
   max-width: 1130px;
+  padding: 30px 40px 0;
+  border-bottom: 1px solid #CCCCCC;
   border: 1px solid #CCCCCC;
   background: white;
   margin: 100px auto; }
+  .page-container .form-group .ui-inputtext:focus {
+    border: 2px solid #7FC443 !important; }
+  .page-container .form-group .form-control:focus {
+    border: 2px solid #7FC443 !important; }
+  .page-container .form-group .error-input {
+    border: 2px solid #f75c4b !important; }
+  .page-container .header {
+    display: block;
+    width: 100%;
+    padding: 0 0 30px;
+    border-bottom: 1px solid #CCCCCC;
+    text-align: center; }
+    .page-container .header h6 {
+      color: #4A4A4A;
+      font-weight: 300;
+      margin-top: 15px; }
+  .page-container .messages {
+    padding: 20px 0;
+    text-align: left; }
+    .page-container .messages .success p {
+      color: #449d44; }
+    .page-container .messages .error p {
+      color: red; }
+    .page-container .messages a {
+      color: #0066C0 !important;
+      cursor: pointer; }
+  .page-container .actions .btn-success {
+    width: 200px; }
+  .page-container .actions .animate {
+    display: block;
+    position: absolute;
+    top: 18px;
+    left: 20px; }
+  .page-container form {
+    margin: 40px 0 20px; }
+    .page-container form h1, .page-container form h2, .page-container form h3, .page-container form h4, .page-container form h5, .page-container form h6 {
+      margin: 40px 0 20px; }
+    .page-container form .actions {
+      margin: 20px 0; }
+  .page-container .footer {
+    display: block;
+    text-align: left !important;
+    width: 100%;
+    padding: 20px 0 40px;
+    border-top: 1px solid #CCCCCC; }
+    .page-container .footer h5 {
+      color: #4A4A4A;
+      margin-top: 5px; }
+    .page-container .footer .actions {
+      margin: 20px 0 0; }
+      .page-container .footer .actions .btn-danger {
+        width: 100px; }
+  .page-container .card-block .header .card-logo.mastercard {
+    background-image: url("/assets/images/mastercard-big.png"); }
+  .page-container .card-block .header .card-logo.visa {
+    background-image: url("/assets/images/visa-big.png"); }
+  .page-container .card-block .header .card-logo.amex {
+    background-image: url("/assets/images/amex-big.png"); }
+  .page-container .card-container {
+    padding: 30px 0; }
+    .page-container .card-container .btn-success, .page-container .card-container .btn-danger, .page-container .card-container .btn-secondary {
+      padding: 0 30px;
+      width: initial;
+      height: 40px;
+      line-height: 40px;
+      font-weight: 300;
+      font-size: 18px;
+      margin: 0 10px 10px 0; }
+  .page-container .btn-secondary {
+    font-size: 20px;
+    font-family: Roboto, sans-serif;
+    font-weight: 500; }
+  .page-container .btn-yellow-green {
+    width: 100%;
+    font-size: 26px;
+    color: white;
+    height: 60px;
+    font-weight: 700; }
 
-.page-container .header {
-  display: block;
-  width: 100%;
-  height: 140px;
-  padding: 40px 50px;
-  border-bottom: 1px solid #CCCCCC; }
-
-.page-container .header h4 {
-  color: #4A4A4A;
-  font-family: HelveticaNeue-Light, sans-serif;
-  margin-top: 5px; }
-
-.info {
-  float: left; }
-
-.page-container .content-section {
-  display: block;
-  padding: 50px 0;
-  margin: 0 50px;
-  border-bottom: 1px solid #CCCCCC; }
-
-.content-section h2 {
-  margin-bottom: 30px; }
-
-.content-section .actions {
-  float: none; }
-
-.content-section .form-horizontal {
-  margin: auto; }
-
-.content-section .form-horizontal .form-group {
-  display: inline-block;
-  width: 32%; }
-
-.page-container .footer {
-  display: block;
-  width: 100%;
-  height: 140px;
-  padding: 40px 50px; }
-
-.page-container .footer h5 {
-  color: #4A4A4A;
-  font-family: HelveticaNeue-Light, sans-serif;
-  margin-top: 5px; }
-
+@media (max-width: 1100px) {
+  .page-container {
+    margin: 70px auto;
+    border-top: 0;
+    border-left: 0;
+    border-right: 0;
+    padding: 30px 30px 0; } }
 .container-starbook.without-tabs .row {
   padding: 40px 0 0 0; }
 
@@ -5169,7 +5178,6 @@ textarea.form-control {
 .profile-settings .header {
   display: block;
   width: 100%;
-  font-family: HelveticaNeue, sans-serif;
   font-size: 30px;
   color: #212121;
   letter-spacing: 0.13px;
@@ -5191,7 +5199,6 @@ textarea.form-control {
   font-size: 11px;
   color: #212121;
   letter-spacing: 0.09px;
-  font-family: HelveticaNeue-Medium, sans-serif;
   font-weight: normal;
   padding-bottom: 5px; }
 
@@ -5200,7 +5207,6 @@ textarea.form-control {
   border: 1px solid #DCDCDC;
   background-color: #FFFFFF;
   color: #4A4A4A;
-  font-family: HelveticaNeue, sans-serif;
   font-size: 16px;
   letter-spacing: 0.1px;
   font-weight: 400;
@@ -5223,7 +5229,6 @@ textarea.form-control {
 .profile-settings .btn-primary:active,
 .profile-settings .btn-primary:hover {
   height: 30px;
-  font-family: HelveticaNeue, sans-serif;
   background-color: #506795;
   border: 1px solid #29487D;
   color: #FFFFFF;
@@ -5263,7 +5268,6 @@ textarea.form-control {
   padding: 18px 26px 22px 19px;
   margin-top: 33px;
   margin-bottom: 20px;
-  font-family: HelveticaNeue, sans-serif;
   color: #3C763D;
   font-size: 16px;
   letter-spacing: 0.1px;
@@ -5308,7 +5312,6 @@ textarea.form-control {
 .profile-page .content-page h1 {
   display: block;
   width: 100%;
-  font-family: HelveticaNeue, sans-serif;
   color: #212121;
   font-size: 28px;
   letter-spacing: 0.18px;
@@ -5319,7 +5322,6 @@ textarea.form-control {
 .profile-page .content-page h2 {
   display: block;
   width: 100%;
-  font-family: HelveticaNeue-Bold, sans-serif;
   color: #000000;
   font-size: 22px;
   letter-spacing: 0.1px;
@@ -5329,7 +5331,6 @@ textarea.form-control {
 .profile-page .content-page h3 {
   display: block;
   width: 100%;
-  font-family: HelveticaNeue-Bold, sans-serif;
   color: #000000;
   font-size: 17px;
   letter-spacing: 0.1px;
@@ -5339,7 +5340,6 @@ textarea.form-control {
 .profile-page .content-page p {
   display: block;
   width: 100%;
-  font-family: HelveticaNeue, sans-serif;
   color: #212121;
   font-size: 15px;
   letter-spacing: 0.1px;
@@ -5349,7 +5349,6 @@ textarea.form-control {
   color: #000000; }
 
 .profile-page .content-page p.black strong {
-  font-family: HelveticaNeue-Bold, sans-serif;
   font-weight: normal; }
 
 .cards-page {
@@ -5389,21 +5388,11 @@ textarea.form-control {
   background-position: center center;
   background-repeat: no-repeat; }
 
-.card-block .container .header .card-logo.mastercard {
-  background-image: url("/assets/images/mastercard-big.png"); }
-
-.card-block .container .header .card-logo.visa {
-  background-image: url("/assets/images/visa-big.png"); }
-
-.card-block .container .header .card-logo.amex {
-  background-image: url("/assets/images/amex-big.png"); }
-
 .card-block .container .header .card-logo span {
   display: block;
   position: absolute;
   width: 60px;
   text-align: left;
-  font-family: HelveticaNeue, sans-serif;
   color: #212121;
   font-size: 14px;
   letter-spacing: 0.09px;
@@ -5419,7 +5408,6 @@ textarea.form-control {
   left: 0;
   text-align: center;
   color: #212121;
-  font-family: HelveticaNeue-Medium, sans-serif;
   font-size: 16px;
   letter-spacing: 0.1px;
   padding-top: 14px; }
@@ -5452,7 +5440,6 @@ textarea.form-control {
   margin-bottom: 10px;
   padding-left: 90px;
   color: #212121;
-  font-family: HelveticaNeue, sans-serif;
   font-size: 12px;
   letter-spacing: 0.08px; }
 
@@ -5462,7 +5449,6 @@ textarea.form-control {
   width: 59px;
   top: 0;
   left: 0;
-  font-family: HelveticaNeue, sans-serif;
   font-size: 12px;
   letter-spacing: 0.08px;
   color: #9B9B9B;
@@ -5475,7 +5461,6 @@ textarea.form-control {
   background-color: #F6F7F9;
   border: 2px dashed #DCDCDC;
   border-radius: 3px;
-  font-family: HelveticaNeue-Bold, sans-serif;
   font-size: 20px;
   color: #9B9B9B;
   letter-spacing: 0.13px;
@@ -5489,7 +5474,6 @@ textarea.form-control {
 
 .cards-page a.btn-primary {
   height: 28px;
-  font-family: HelveticaNeue-Medium, sans-serif;
   background-color: #506795;
   border: 1px solid #29487D;
   color: #FFFFFF;
@@ -5505,7 +5489,6 @@ textarea.form-control {
 .cards-page a.btn-primary:focus,
 .cards-page a.btn-primary:hover {
   height: 28px;
-  font-family: HelveticaNeue-Medium, sans-serif;
   background-color: #324977;
   border: 1px solid #29487D;
   color: #FFFFFF;
@@ -5519,7 +5502,6 @@ textarea.form-control {
 
 .cards-page a.btn-primary:active {
   height: 28px;
-  font-family: HelveticaNeue-Medium, sans-serif;
   background-color: #506795;
   border: 1px solid #29487D;
   color: #FFFFFF;
@@ -5533,7 +5515,6 @@ textarea.form-control {
 
 .cards-page a.btn-secondary {
   height: 28px;
-  font-family: HelveticaNeue-Medium, sans-serif;
   background-color: #F6F7F9;
   border: 1px solid #DDDFE2;
   color: #212121;
@@ -5549,7 +5530,6 @@ textarea.form-control {
 .cards-page a.btn-secondary:focus,
 .cards-page a.btn-secondary:hover {
   height: 28px;
-  font-family: HelveticaNeue-Medium, sans-serif;
   background-color: #E4E7ED;
   border: 1px solid #DDDFE2;
   color: #212121;
@@ -5563,7 +5543,6 @@ textarea.form-control {
 
 .cards-page a.btn-secondary:active {
   height: 28px;
-  font-family: HelveticaNeue-Medium, sans-serif;
   background-color: #F6F7F9;
   border: 1px solid #DDDFE2;
   color: #212121;
@@ -5718,14 +5697,12 @@ textarea.form-control {
   display: block;
   width: 100%;
   margin-bottom: 20px;
-  font-family: HelveticaNeue, sans-serif;
   font-size: 28px;
   font-weight: 400;
   letter-spacing: 0.18px;
   color: #212121; }
 
 .popup .double-form {
-  font-family: HelveticaNeue, sans-serif;
   font-size: 14px;
   color: #212121;
   letter-spacing: 0.08px;
@@ -5735,7 +5712,6 @@ textarea.form-control {
   height: 61px; }
 
 .popup .form-group label {
-  font-family: HelveticaNeue, sans-serif;
   font-size: 14px;
   color: #212121;
   letter-spacing: 0.08px;
@@ -5748,7 +5724,6 @@ textarea.form-control {
   top: 0;
   right: 0;
   padding-right: 5px;
-  font-family: HelveticaNeue, sans-serif;
   font-size: 14px;
   color: #0066C0;
   letter-spacing: 0.08px;
@@ -5758,7 +5733,6 @@ textarea.form-control {
   cursor: pointer; }
 
 .popup .form-group .form-control {
-  font-family: HelveticaNeue, sans-serif;
   height: 40px;
   border: 1px solid #A6A6A6;
   border-radius: 3px;
@@ -5774,7 +5748,6 @@ textarea.form-control {
 
 .popup .form-group.isError .error, .popup .form-group .isError .error {
   display: block;
-  font-family: HelveticaNeue, sans-serif;
   font-size: 12px;
   color: #DB4F4F;
   letter-spacing: 0.08px;
@@ -5793,7 +5766,6 @@ textarea.form-control {
 .popup .form-group .btn.btn-warning {
   width: 100%;
   height: 45px;
-  font-family: HelveticaNeue, sans-serif;
   border: 1px solid #A6A6A6;
   font-size: 16px;
   color: #424242;
@@ -5824,7 +5796,6 @@ textarea.form-control {
 .popup .form-group .btn.btn-secondary {
   width: 100%;
   height: 45px;
-  font-family: HelveticaNeue, sans-serif;
   border: 1px solid #A6A6A6;
   border-radius: 0px;
   font-size: 16px;
@@ -5849,7 +5820,6 @@ textarea.form-control {
   position: relative;
   width: 100%;
   height: 45px;
-  font-family: HelveticaNeue-Bold, sans-serif;
   border: 1px solid #3B5998;
   border-radius: 0px;
   font-size: 16px;
@@ -5895,7 +5865,6 @@ textarea.form-control {
   margin-left: -15px;
   width: 30px;
   text-align: center;
-  font-family: HelveticaNeue, sans-serif;
   color: #8D8D8D;
   font-size: 12px;
   letter-spacing: 0.08px;
@@ -5916,18 +5885,16 @@ textarea.form-control {
   display: block;
   width: 100%;
   padding: 11px 15px 12px;
-  font-family: HelveticaNeue, sans-serif;
   color: #AB433F;
   font-size: 13px;
   letter-spacing: 0.08px; }
 
 .alert-block .alert-container span {
-  font-family: HelveticaNeue-Medium, sans-serif; }
+  font-weight: 500; }
 
 .form-notice {
   display: block;
   width: 100%;
-  font-family: HelveticaNeue, sans-serif;
   color: #212121;
   font-size: 12px;
   letter-spacing: 0.08px;
@@ -5935,7 +5902,6 @@ textarea.form-control {
   margin-bottom: -14px; }
 
 .form-notice a {
-  font-family: HelveticaNeue, sans-serif;
   color: #0066C0 !important;
   font-size: 12px;
   letter-spacing: 0.08px;
@@ -5949,7 +5915,6 @@ textarea.form-control {
   margin-bottom: -12px;
   padding-top: 11px;
   color: #212121;
-  font-family: HelveticaNeue, sans-serif;
   font-size: 12px;
   letter-spacing: 0.08px;
   border-top: 1px solid #E7E7E7;
@@ -5960,7 +5925,6 @@ textarea.form-control {
 
 .login-offer a {
   color: #0066C0 !important;
-  font-family: HelveticaNeue, sans-serif;
   font-size: 12px;
   letter-spacing: 0.08px;
   text-decoration: none;
@@ -5975,7 +5939,6 @@ textarea.form-control {
   display: block;
   width: 100%;
   text-align: left;
-  font-family: HelveticaNeue, sans-serif;
   font-size: 24px;
   color: #212121;
   letter-spacing: 0.15px;
@@ -5998,7 +5961,6 @@ textarea.form-control {
   display: block;
   width: 100%;
   text-align: left;
-  font-family: HelveticaNeue, sans-serif;
   font-size: 16px;
   color: #212121;
   letter-spacing: 0.1px;
@@ -6048,7 +6010,6 @@ textarea.form-control {
 
 .confirm-order-form p {
   display: block;
-  font-family: HelveticaNeue, sans-serif;
   color: #4A4A4A;
   font-size: 14px;
   letter-spacing: 0.09px;
@@ -6058,7 +6019,6 @@ textarea.form-control {
 
 .confirm-order-form p.confirm-end {
   display: block;
-  font-family: HelveticaNeue, sans-serif;
   color: #212121;
   font-size: 16px;
   letter-spacing: 0.1px;
@@ -6082,7 +6042,6 @@ textarea.form-control {
   position: relative;
   width: 100%;
   padding-right: 50px;
-  font-family: HelveticaNeue, sans-serif;
   color: #212121;
   font-size: 15px;
   letter-spacing: 0.1px;
@@ -6093,7 +6052,7 @@ textarea.form-control {
   position: absolute;
   top: 0;
   right: 0;
-  font-family: HelveticaNeue-Medium, sans-serif;
+  font-weight: 500;
   color: #212121;
   font-size: 15px;
   letter-spacing: 0.1px;
@@ -6101,18 +6060,12 @@ textarea.form-control {
   font-style: normal; }
 
 .confirm-order-form .orders-list .order-item span.service-item {
-  font-family: HelveticaNeue-Bold, sans-serif;
   font-size: 16px; }
 
-.confirm-order-form .orders-list .order-item span.service-item i {
-  font-family: HelveticaNeue-Bold, sans-serif; }
-
 .confirm-order-form .orders-list .order-item span.total-item {
-  font-family: HelveticaNeue-Bold, sans-serif;
   font-size: 16px; }
 
 .confirm-order-form .orders-list .order-item span.total-item i {
-  font-family: HelveticaNeue-Bold, sans-serif;
   font-size: 16px; }
 
 .confirm-order-form .price-loader {
@@ -6135,7 +6088,6 @@ textarea.form-control {
   padding-top: 49px;
   width: 100%;
   color: #212121;
-  font-family: HelveticaNeue, sans-serif;
   font-size: 20px;
   letter-spacing: 0.11px;
   text-align: center; }
@@ -6144,7 +6096,6 @@ textarea.form-control {
   display: block;
   width: 100%;
   text-align: center;
-  font-family: HelveticaNeue-Bold, sans-serif;
   color: #212121;
   font-size: 28px;
   letter-spacing: 0.18px;
@@ -6165,19 +6116,14 @@ textarea.form-control {
   width: 100%;
   margin-bottom: 1px;
   color: #000000;
-  font-family: HelveticaNeue, sans-serif;
   font-size: 15px;
   letter-spacing: 0.1px; }
-
-.confirm-order-form .information-list .information-item span {
-  font-family: HelveticaNeue-Bold, sans-serif; }
 
 .confirm-button-notice {
   display: block;
   width: 100%;
   text-align: left;
   color: #212121;
-  font-family: HelveticaNeue, sans-serif;
   font-size: 12px;
   letter-spacing: 0.08px;
   margin-top: 20px;
@@ -6213,7 +6159,7 @@ textarea.form-control {
   background-image: url("/assets/images/mastercard-mini.png"); }
 
 .popup .add-card-form .form-group label {
-  font-family: HelveticaNeue-Medium, sans-serif;
+  font-weight: 500;
   letter-spacing: 0.09px; }
 
 .popup .add-card-form .form-group .btn.btn-secondary {
@@ -6228,7 +6174,7 @@ textarea.form-control {
   text-align: center;
   margin-top: 33px;
   margin-bottom: 27px;
-  font-family: HelveticaNeue-Medium, sans-serif;
+  font-weight: 500;
   color: #0066C0;
   font-size: 12px;
   letter-spacing: 0.08px; }
@@ -6265,7 +6211,6 @@ textarea.form-control {
 
 .confirm-action p {
   display: block;
-  font-family: HelveticaNeue, sans-serif;
   color: #212121;
   font-size: 14px;
   letter-spacing: 0.09px;
@@ -6281,13 +6226,12 @@ textarea.form-control {
   width: 100%; }
 
 .confirm-action .action .form-group label {
-  font-family: HelveticaNeue-Medium, sans-serif;
+  font-weight: 500;
   color: #212121;
   font-size: 14px;
   letter-spacing: 0.09px; }
 
 .confirm-action .action .form-group .input-group .form-control {
-  font-family: HelveticaNeue, sans-serif;
   padding: 9px 8px 9px 9px !important;
   font-size: 16px;
   color: #212121;
@@ -6299,7 +6243,6 @@ textarea.form-control {
   border-right: none; }
 
 .confirm-action .action .form-group .input-group .input-group-addon {
-  font-family: HelveticaNeue, sans-serif;
   padding: 7px 7px 6px 7px !important;
   font-size: 16px;
   color: #212121;
@@ -6310,7 +6253,7 @@ textarea.form-control {
   background-color: #EFF1F3; }
 
 .confirm-action .action .form-group .input-group .input-group-addon.euro {
-  font-family: HelveticaNeue-Medium, sans-serif;
+  font-weight: 500;
   padding: 3px 11px 4px 12px !important;
   font-size: 20px;
   color: #212121;
@@ -6326,7 +6269,6 @@ textarea.form-control {
   margin-top: 6px;
   margin-bottom: 0;
   padding: 0;
-  font-family: HelveticaNeue, sans-serif;
   color: #4A4A4A;
   font-size: 12px;
   letter-spacing: 0.08px; }
@@ -6337,7 +6279,7 @@ textarea.form-control {
   margin-top: 17px;
   margin-bottom: 9px;
   padding: 0;
-  font-family: HelveticaNeue-Medium, sans-serif;
+  font-weight: 500;
   color: #212121;
   font-size: 22px;
   letter-spacing: 0.14px;
@@ -6351,7 +6293,6 @@ textarea.form-control {
   padding-right: 5px; }
 
 .tooltip {
-  font-family: HelveticaNeue, sans-serif;
   font-size: 12px;
   letter-spacing: 0.09px; }
 
@@ -6381,7 +6322,6 @@ textarea.form-control {
   background-size: contain; }
 
 .popup.new-version .header {
-  font-family: HelveticaNeue, sans-serif;
   font-weight: normal;
   text-align: center;
   font-size: 16px;
@@ -6390,7 +6330,6 @@ textarea.form-control {
 
 .popup.new-version .confirm-order-form p {
   margin-top: 0;
-  font-family: HelveticaNeue, sans-serif;
   font-weight: normal;
   text-align: left;
   color: #212121;
@@ -6402,7 +6341,6 @@ textarea.form-control {
   margin-bottom: 26px; }
 
 .popup.add-price .header {
-  font-family: HelveticaNeue, sans-serif;
   font-weight: normal;
   font-size: 20px;
   color: #212121;
@@ -6411,7 +6349,6 @@ textarea.form-control {
   margin-bottom: 21px; }
 
 .popup.add-price .confirm-action p {
-  font-family: HelveticaNeue, sans-serif;
   font-weight: normal;
   font-size: 14px;
   color: #212121;
@@ -6475,14 +6412,12 @@ app-landing {
   overflow: hidden; }
 
 .landing h1 {
-  font-family: HelveticaNeue-Bold, sans-serif;
-  font-weight: bold;
+  font-weight: 700;
   color: black;
   margin: 0 auto;
   max-width: 700px; }
 
 .landing h2 {
-  font-family: HelveticaNeue-Bold, sans-serif;
   color: black; }
 
 .landing h6 {
@@ -6492,11 +6427,17 @@ app-landing {
 .header-page {
   padding: 90px 0 50px; }
 
-.landing-header h1, h2, h3, h4, h5, h6 {
+.landing-header h1,
+.landing-header h2,
+.landing-header h3,
+.landing-header h4,
+.landing-header h5,
+.landing-header h6 {
   text-align: center; }
 
 .landing-header h6 {
-  margin: 20px 0; }
+  margin: 20px 0;
+  font-weight: 400; }
 
 .landing-header-button {
   margin-top: 30px; }
@@ -6512,7 +6453,6 @@ app-landing {
   position: relative;
   width: 100%;
   height: 50px;
-  font-family: HelveticaNeue-Bold, sans-serif;
   border: 1px solid #3B5998;
   border-radius: 3px;
   font-size: 18px;
@@ -6556,7 +6496,6 @@ app-landing {
   position: relative;
   width: 100%;
   padding: 16px 12px 20px 12px;
-  font-family: HelveticaNeue-Bold, sans-serif;
   font-size: 22px;
   letter-spacing: 0.14px;
   color: #212121;
@@ -6571,7 +6510,6 @@ app-landing {
   margin-top: -20px;
   position: relative;
   z-index: 3;
-  font-family: HelveticaNeue, sans-serif;
   font-size: 16px;
   color: #212121;
   letter-spacing: 0.1px;
@@ -6582,7 +6520,6 @@ app-landing {
   color: #FFFFFF; }
 
 .top-cards .top-card .header span {
-  font-family: HelveticaNeue-Light, sans-serif;
   font-size: 16px;
   color: #212121;
   letter-spacing: 0.1px; }
@@ -6591,7 +6528,6 @@ app-landing {
   display: block;
   width: 100%;
   margin: 0;
-  font-family: HelveticaNeue-Light, sans-serif;
   font-size: 16px;
   color: #212121;
   letter-spacing: 0.1px;
@@ -6659,7 +6595,6 @@ app-landing {
   display: block;
   max-width: 500px;
   margin: 20px auto 20px;
-  font-family: HelveticaNeue-Light, sans-serif;
   color: #212121;
   font-size: 24px;
   letter-spacing: 0.11px;
@@ -6723,7 +6658,6 @@ app-landing {
   display: block;
   width: 100%;
   margin-top: 52px;
-  font-family: HelveticaNeue-Bold, sans-serif;
   font-size: 18px;
   letter-spacing: 0.11px;
   color: #212121;
@@ -6733,7 +6667,6 @@ app-landing {
   display: block;
   width: 100%;
   margin-top: 25px;
-  font-family: HelveticaNeue-Light, sans-serif;
   font-size: 18px;
   letter-spacing: 0.11px;
   color: #212121;
@@ -6772,7 +6705,6 @@ app-landing {
   bottom: 19px;
   left: 26px;
   z-index: 2;
-  font-family: HelveticaNeue, sans-serif;
   color: #FFFFFF;
   font-size: 30px;
   letter-spacing: 0.19px;
@@ -6791,7 +6723,6 @@ app-landing {
   display: block;
   max-width: 570px;
   margin: 90px auto 130px;
-  font-family: HelveticaNeue-Light, sans-serif;
   font-size: 24px;
   letter-spacing: 0.11px;
   color: #4A4A4A;
@@ -6816,7 +6747,6 @@ app-landing {
 .footer-container .copyright, .footer-container span, .footer-container a, .footer-container a:hover {
   display: inline;
   color: rgba(255, 255, 255, 0.7);
-  font-family: HelveticaNeue, sans-serif;
   font-size: 15px;
   letter-spacing: 0.09px;
   text-decoration: none; }
@@ -6847,7 +6777,6 @@ app-landing {
   box-shadow: none;
   outline: none;
   color: #212121;
-  font-family: HelveticaNeue, sans-serif;
   font-size: 18px;
   letter-spacing: 0.11px; }
 
@@ -6857,7 +6786,6 @@ app-landing {
   max-width: 470px;
   margin: 0 auto;
   text-align: center;
-  font-family: HelveticaNeue-Light, sans-serif;
   color: #212121;
   font-size: 20px;
   letter-spacing: 0.13px;
@@ -6865,7 +6793,6 @@ app-landing {
   font-weight: normal; }
 
 .landing .btn.btn-warning {
-  font-family: HelveticaNeue-Bold, sans-serif;
   font-weight: bold;
   border: 1px solid #A6A6A6;
   color: #2A0202;
@@ -6889,7 +6816,6 @@ app-landing {
   opacity: 1.0; }
 
 .landing .btn.btn-success {
-  font-family: HelveticaNeue-Bold, sans-serif;
   color: white;
   letter-spacing: 0.9px;
   padding: 8px 7px;
@@ -6984,7 +6910,6 @@ input.landing-search .ui-autocomplete-input:-ms-input-placeholder {
 .landing-search .ui-autocomplete-panel .search-result {
   display: block;
   width: 100%;
-  font-family: HelveticaNeue, sans-serif;
   color: #212121;
   font-size: 16px;
   letter-spacing: 0.1px;
@@ -6996,43 +6921,37 @@ input.landing-search .ui-autocomplete-input:-ms-input-placeholder {
 .landing-search .ui-autocomplete-panel.empty .no-result {
   display: block;
   width: 100%;
-  font-family: HelveticaNeue, sans-serif;
   color: #8D9494;
   font-size: 14px;
   letter-spacing: 0.1px;
   padding: 8px 21px; }
 
-.card-container {
+.landing .card-container {
   padding: 40px 0;
   text-align: center; }
 
-.card-container h2 {
+.landing .card-container h2 {
   width: 100%;
   text-align: center;
-  font-family: HelveticaNeue-Medium, sans-serif;
   color: #324977; }
 
-.card-container h3 {
+.landing .card-container h3 {
   display: block;
-  font-family: HelveticaNeue-Bold, sans-serif;
   font-weight: 700;
   color: #FFC846; }
 
-.card-container h4 {
+.landing .card-container h4 {
   display: block;
-  font-family: HelveticaNeue-Bold, sans-serif;
   font-weight: 700;
   color: #FFC846; }
 
-.card-container h5 {
+.landing .card-container h5 {
   display: block;
-  font-family: HelveticaNeue-Light, sans-serif;
-  font-weight: 400;
+  font-weight: 300;
   color: black; }
 
-.card-container h6 {
+.landing .card-container h6 {
   display: block;
-  font-family: HelveticaNeue-Light, sans-serif;
   font-weight: 400;
   color: black; }
 
@@ -7051,7 +6970,6 @@ input.landing-search .ui-autocomplete-input:-ms-input-placeholder {
   float: none;
   margin: 0 auto;
   text-align: left;
-  font-family: HelveticaNeue-Light, sans-serif;
   color: #212121;
   font-size: 20px;
   letter-spacing: 0.13px;
@@ -7124,7 +7042,6 @@ input.landing-search .ui-autocomplete-input:-ms-input-placeholder {
   position: relative;
   z-index: 2;
   width: 200px;
-  font-family: HelveticaNeue-Bold, sans-serif;
   font-weight: bold;
   color: #FFFFFF;
   font-size: 16px;
@@ -7142,7 +7059,6 @@ input.landing-search .ui-autocomplete-input:-ms-input-placeholder {
   bottom: 17px;
   width: 100%;
   text-align: right;
-  font-family: HelveticaNeue-Medium, sans-serif;
   font-weight: 600;
   color: #FFFFFF;
   font-size: 12px;
@@ -7150,7 +7066,6 @@ input.landing-search .ui-autocomplete-input:-ms-input-placeholder {
   font-weight: normal; }
 
 .services-card .service-container .service-footer span {
-  font-family: HelveticaNeue-Bold, sans-serif;
   font-weight: bold;
   color: #FFFFFF;
   font-size: 22px;
@@ -7164,14 +7079,12 @@ input.landing-search .ui-autocomplete-input:-ms-input-placeholder {
   width: 100%;
   text-align: center;
   padding-bottom: 60px;
-  font-family: HelveticaNeue-Light, sans-serif;
   color: #F6A623; }
 
 .why-container h4 {
   width: 100%;
   text-align: center;
   padding-bottom: 60px;
-  font-family: HelveticaNeue-Light, sans-serif;
   color: #F6A623; }
 
 .why-container h5 {
@@ -7179,7 +7092,6 @@ input.landing-search .ui-autocomplete-input:-ms-input-placeholder {
   text-align: center;
   padding-top: 20px;
   padding-bottom: 10px;
-  font-family: HelveticaNeue-Light, sans-serif;
   font-weight: 400;
   color: #F6A623;
   max-width: 280px;
@@ -7188,7 +7100,6 @@ input.landing-search .ui-autocomplete-input:-ms-input-placeholder {
 .why-container h6 {
   width: 100%;
   text-align: center;
-  font-family: HelveticaNeue-Light, sans-serif;
   font-weight: 400;
   color: rgba(255, 255, 255, 0.7);
   margin: auto;
@@ -7208,7 +7119,6 @@ input.landing-search .ui-autocomplete-input:-ms-input-placeholder {
   width: 100%;
   text-align: center;
   padding-bottom: 20px;
-  font-family: HelveticaNeue-Light, sans-serif;
   color: #F6A623; }
 
 .partner-container .list-brands-scrollable {
@@ -7229,14 +7139,12 @@ input.landing-search .ui-autocomplete-input:-ms-input-placeholder {
 .pre-footer-container h5 {
   width: 100%;
   text-align: left;
-  font-family: HelveticaNeue-Light, sans-serif;
   font-weight: 400;
   color: white; }
 
 .pre-footer-container h6 {
   width: 100%;
   text-align: left;
-  font-family: HelveticaNeue-Light, sans-serif;
   font-weight: 400;
   color: white; }
 
@@ -7314,7 +7222,8 @@ input.landing-search .ui-autocomplete-input:-ms-input-placeholder {
     padding: 40px 0 10px; }
 
   .landing-header h6 {
-    padding: 10px 0 25px; }
+    padding: 10px 0 25px;
+    font-weight: 400; }
 
   .header-page {
     padding-bottom: 0; }
@@ -7421,7 +7330,6 @@ app-wizard {
   position: relative;
   padding: 16px 30px 19px 20px;
   overflow: hidden;
-  font-family: HelveticaNeue, sans-serif;
   color: #000000;
   font-size: 18px;
   letter-spacing: 0.11px; }
@@ -7462,7 +7370,6 @@ app-wizard {
   display: block;
   float: left;
   width: 100%;
-  font-family: HelveticaNeue, sans-serif;
   color: #000000;
   font-size: 28px;
   letter-spacing: 0.16px;
@@ -7488,7 +7395,6 @@ app-wizard {
   position: relative;
   width: 100%;
   padding-top: 5px;
-  font-family: HelveticaNeue-Light, sans-serif;
   color: #000000;
   font-size: 18px;
   letter-spacing: 0.11px; }
@@ -7501,7 +7407,6 @@ app-wizard {
   right: 0;
   text-align: right;
   padding-top: 5px;
-  font-family: HelveticaNeue-Light, sans-serif;
   color: #000000;
   font-size: 18px;
   letter-spacing: 0.11px; }
@@ -7516,7 +7421,6 @@ app-wizard {
   display: block;
   float: left;
   width: 68%;
-  font-family: HelveticaNeue-Light, sans-serif;
   color: #000000;
   font-size: 18px;
   letter-spacing: 0.11px;
@@ -7529,7 +7433,6 @@ app-wizard {
   float: left;
   width: 32%;
   text-align: right;
-  font-family: HelveticaNeue-Light, sans-serif;
   color: #000000;
   font-size: 18px;
   letter-spacing: 0.11px; }
@@ -7547,7 +7450,6 @@ app-wizard {
   position: relative;
   width: 100%;
   padding: 5px 0;
-  font-family: HelveticaNeue, sans-serif;
   color: #000000;
   font-size: 25px;
   letter-spacing: 0.13px; }
@@ -7558,7 +7460,6 @@ app-wizard {
   position: relative;
   width: 100%;
   padding: 5px 0;
-  font-family: HelveticaNeue, sans-serif;
   color: #000000;
   font-size: 18px;
   letter-spacing: 0.13px; }
@@ -7569,7 +7470,6 @@ app-wizard {
   top: 10px;
   right: 0;
   text-align: right;
-  font-family: HelveticaNeue, sans-serif;
   color: #000000;
   font-size: 25px;
   letter-spacing: 0.13px;
@@ -7581,7 +7481,6 @@ app-wizard {
   top: 10px;
   right: 0;
   text-align: right;
-  font-family: HelveticaNeue, sans-serif;
   color: #000000;
   font-size: 18px;
   letter-spacing: 0.13px;
@@ -7612,7 +7511,6 @@ app-wizard {
   display: block;
   float: left;
   width: 100%;
-  font-family: HelveticaNeue, sans-serif;
   color: #000000;
   font-size: 16px;
   letter-spacing: 0.1px;
@@ -7625,7 +7523,6 @@ app-wizard {
   float: left;
   width: 100%;
   margin-top: 20px;
-  font-family: HelveticaNeue, sans-serif;
   letter-spacing: 0.11px;
   border: none;
   margin-bottom: 80px;
@@ -7639,7 +7536,6 @@ app-wizard {
   padding: 11px 7px;
   margin-top: 10px;
   color: #212121;
-  font-family: HelveticaNeue, sans-serif;
   font-size: 18px;
   letter-spacing: 0.11px;
   border: none;
@@ -7679,7 +7575,6 @@ app-wizard {
   width: 100%;
   height: 40px;
   padding: 7px 12px;
-  font-family: HelveticaNeue, sans-serif;
   color: #000000;
   font-size: 16px;
   letter-spacing: 0.1px;
@@ -7717,7 +7612,6 @@ app-wizard {
   width: 100%;
   height: 38px;
   padding: 7px 12px;
-  font-family: HelveticaNeue, sans-serif;
   color: #000000;
   font-size: 16px;
   letter-spacing: 0.1px;
@@ -7739,7 +7633,6 @@ app-wizard {
   float: left;
   width: 100%;
   margin-bottom: 115px;
-  font-family: HelveticaNeue, sans-serif;
   color: #212121;
   font-size: 12px;
   letter-spacing: 0.08px; }
@@ -7771,7 +7664,6 @@ app-wizard {
   margin-left: -15px;
   width: 30px;
   text-align: center;
-  font-family: HelveticaNeue, sans-serif;
   color: #8D8D8D;
   font-size: 12px;
   letter-spacing: 0.08px;
@@ -7795,7 +7687,6 @@ app-wizard {
   position: relative;
   width: 100%;
   height: 45px;
-  font-family: HelveticaNeue-Bold, sans-serif;
   border: 1px solid #3B5998;
   border-radius: 0px;
   font-size: 16px;
@@ -7823,7 +7714,6 @@ app-wizard {
   border: 2px solid #f75c4b !important; }
 
 .content-container form .error-message {
-  font-family: HelveticaNeue, sans-serif;
   color: #f75c4b;
   font-size: 12px;
   position: absolute; }
@@ -7833,8 +7723,6 @@ app-wizard {
   text-align: center; }
   .content-container .header h1 {
     margin-bottom: 20px; }
-  .content-container .header p {
-    font-family: HelveticaNeue-Light, sans-serif; }
 
 .content-container .address {
   text-align: center; }
@@ -7876,7 +7764,6 @@ app-wizard {
     font-size: 26px;
     color: white;
     height: 60px;
-    font-family: HelveticaNeue-Bold, sans-serif;
     font-weight: 700; }
   .content-container .actions .btn-white {
     width: 100%;
@@ -7910,7 +7797,6 @@ app-wizard {
     margin-left: -15px;
     width: 30px;
     text-align: center;
-    font-family: HelveticaNeue, sans-serif;
     color: #8D8D8D;
     font-size: 12px;
     letter-spacing: 0.08px;
@@ -7928,7 +7814,6 @@ app-wizard {
   .content-container .footer h6 {
     text-align: left; }
   .content-container .footer a {
-    font-family: HelveticaNeue, sans-serif;
     color: #0066C0 !important;
     font-size: 12px;
     letter-spacing: 0.08px;
@@ -7941,7 +7826,6 @@ app-wizard {
   text-align: center;
   margin-top: 33px;
   margin-bottom: 27px;
-  font-family: HelveticaNeue-Medium, sans-serif;
   color: #0066C0;
   font-size: 12px;
   letter-spacing: 0.08px; }
@@ -7958,13 +7842,9 @@ app-wizard {
   border: 1px solid #C40000;
   background-color: #F2DEDE;
   border-radius: 3px;
-  font-family: HelveticaNeue, sans-serif;
   font-size: 13px;
   color: #AB433F;
   letter-spacing: 0.08px; }
-
-.wizard-form .error-message span {
-  font-family: HelveticaNeue-Medium, sans-serif; }
 
 @media (max-width: 906px) {
   .wizard {

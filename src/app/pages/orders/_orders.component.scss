@@ -1,6 +1,4 @@
 // General styles
-$font-name: HelveticaNeue, sans-serif;
-$font-name-medium: HelveticaNeue-Medium, sans-serif;
 $letter-spacing: 0.08px;
 $background: #FAFAFA;
 $general-text-color: #000000;
@@ -105,7 +103,6 @@ $order-error-font-weight: 400;
   float: left;
   width: 50%;
   padding: 15px 17px 15px 42px;
-  font-family: $font-name;
   color: $order-information-text-color;
   font-size: $order-information-header-category-font-size;
   letter-spacing: $order-information-header-category-letter-spacing;
@@ -139,7 +136,6 @@ $order-error-font-weight: 400;
   width: 50%;
   text-align: right;
   padding: 16px 22px 14px 33px;
-  font-family: $font-name-medium;
   color: $order-information-text-color;
   font-size: $order-information-order-status-order-id-font-size;
   letter-spacing: $order-information-order-status-order-id-letter-spacing;
@@ -151,7 +147,7 @@ $order-error-font-weight: 400;
   width: 100%;
   text-align: center;
   padding: 14px 0 14px 0;
-  font-family: $font-name;
+
   color: $order-information-text-color;
   font-size: $order-information-header-category-name-font-size;
   letter-spacing: $order-information-header-category-name-letter-spacing;
@@ -169,7 +165,7 @@ $order-error-font-weight: 400;
   margin-right: 0 !important;
 }
 .order-body .order-row.products {
-  font-family: $font-name;
+
   float: left;
   width: 33.333333% !important;
   max-width: 354px;
@@ -183,7 +179,7 @@ $order-error-font-weight: 400;
   margin-bottom: 10px;
   padding-right: 50px;
   font-size: $order-information-product-list-text-size;
-  font-family: $font-name;
+
   color: $order-information-product-list-text-color;
   letter-spacing: $order-information-product-list-letter-spacing;
 }
@@ -194,23 +190,23 @@ $order-error-font-weight: 400;
   right: 0;
   text-align: right;
   font-size: $order-information-product-list-text-size;
-  font-family: $font-name-medium;
+
   color: $order-information-product-list-text-color;
   letter-spacing: $order-information-product-list-letter-spacing;
   font-style: normal;
 }
 .order-body .order-row.products .item.service {
-  font-family: $font-name-medium;
+
 }
 .order-body .order-row.products .item.service i {
-  font-family: $font-name-medium;
+
 }
 .order-body .order-row.products .item.total {
-  font-family: $font-name-bold;
+  font-weight: 600;
   font-size: $order-information-product-list-total-text-size;
 }
 .order-body .order-row.products .item.total i {
-  font-family: $font-name-bold;
+  font-weight: 600;
   font-size: $order-information-product-list-total-text-size;
 }
 .order-body .order-row.description {
@@ -221,7 +217,7 @@ $order-error-font-weight: 400;
   left: 50%;
   margin-left: -155px;
   letter-spacing: $order-information-product-list-letter-spacing;
-  font-family: $font-name;
+
   font-weight: 400;
   color: $order-information-product-list-text-color;
   padding-left: 0;
@@ -231,7 +227,7 @@ $order-error-font-weight: 400;
   float: right;
   width: 33.333333% !important;
   padding-left: 45px;
-  font-family: $font-name;
+
   color: $order-information-text-color;
 }
 .order-body .client-info .item {
@@ -245,7 +241,7 @@ $order-error-font-weight: 400;
   float: left;
   text-align: right;
   width: 100px;
-  font-family: $font-name;
+
   font-size: $order-information-client-info-item-name-font-size;
   font-weight: $order-information-client-info-item-name-font-weight;
   letter-spacing: $order-information-client-info-item-name-letter-spacing;
@@ -258,14 +254,14 @@ $order-error-font-weight: 400;
   width: 100%;
   margin-left: -100px;
   padding-left: 100px;
-  font-family: $font-name;
+
   font-size: $order-information-client-info-item-value-font-size;
   font-weight: $order-information-client-info-item-value-font-weight;
   letter-spacing: $order-information-client-info-item-value-letter-spacing;
   color: $order-information-client-info-item-value-color;
 }
 .order-body .client-info .item .field-value strong {
-  font-family: $font-name-medium;
+
   font-weight: normal;
 }
 
@@ -281,7 +277,7 @@ $order-error-font-weight: 400;
   float: left;
   width: 40%;
   padding: 8px 6px;
-  font-family: $font-name;
+
   letter-spacing: $order-footer-code-letter-spacing;
   color: $order-footer-code-color;
   font-size: $order-footer-code-font-size;
@@ -298,7 +294,7 @@ $order-error-font-weight: 400;
 }
 .order-footer .buttons .btn-primary {
   height: 28px;
-  font-family: $font-name-medium;
+
   background-color: $order-information-btn-primary-background-color;
   border: $order-information-btn-primary-border-style;
   color: $order-information-btn-primary-text-color;
@@ -313,7 +309,7 @@ $order-error-font-weight: 400;
 .order-footer .buttons .btn-primary:focus,
 .order-footer .buttons .btn-primary:hover {
   height: 28px;
-  font-family: $font-name-medium;
+
   background-color: $order-information-btn-primary-hover-background-color;
   border: $order-information-btn-primary-border-style;
   color: $order-information-btn-primary-text-color;
@@ -327,7 +323,7 @@ $order-error-font-weight: 400;
 }
 .order-footer .buttons .btn-primary:active {
   height: 28px;
-  font-family: $font-name-medium;
+
   background-color: $order-information-btn-primary-active-background-color;
   border: $order-information-btn-primary-border-style;
   color: $order-information-btn-primary-text-color;
@@ -341,7 +337,7 @@ $order-error-font-weight: 400;
 }
 .order-footer .buttons .btn-secondary {
   height: 28px;
-  font-family: $font-name-medium;
+
   background-color: $order-information-btn-secondary-background-color;
   border: $order-information-btn-secondary-border-style;
   color: $order-information-btn-secondary-text-color;
@@ -356,7 +352,7 @@ $order-error-font-weight: 400;
 .order-footer .buttons .btn-secondary:focus,
 .order-footer .buttons .btn-secondary:hover {
   height: 28px;
-  font-family: $font-name-medium;
+
   background-color: $order-information-btn-secondary-hover-background-color;
   border: $order-information-btn-secondary-border-style;
   color: $order-information-btn-secondary-text-color;
@@ -370,7 +366,7 @@ $order-error-font-weight: 400;
 }
 .order-footer .buttons .btn-secondary:active {
   height: 28px;
-  font-family: $font-name-medium;
+
   background-color: $order-information-btn-secondary-active-background-color;
   border: $order-information-btn-secondary-border-style;
   color: $order-information-btn-secondary-text-color;
@@ -384,7 +380,7 @@ $order-error-font-weight: 400;
 }
 .order-footer .buttons .btn-warning {
   height: 28px;
-  font-family: $font-name-bold;
+  font-weight: 600;
   background: $order-information-btn-warning-gradient-start;
   background: -moz-linear-gradient(top,  $order-information-btn-warning-gradient-start 0%, $order-information-btn-warning-gradient-end 100%);
   background: -webkit-linear-gradient(top,  $order-information-btn-warning-gradient-start 0%,$order-information-btn-warning-gradient-end 100%);
@@ -393,7 +389,6 @@ $order-error-font-weight: 400;
   color: $order-information-btn-warning-text-color;
   font-size: $order-information-btn-warning-text-size;
   letter-spacing: $letter-spacing;
-  font-weight: normal;
   border-radius: 3px;
   padding: 6px 15px;
   margin-left: 10px;
@@ -437,7 +432,7 @@ $order-error-font-weight: 400;
 .container-starbook .left-navigate a div {
   display: block;
   position: relative;
-  font-family: $font-name;
+
   font-weight: 400;
   padding: 10px 10px 10px 20px;
   color: $left-navigation-link-color;
@@ -472,7 +467,7 @@ $order-error-font-weight: 400;
   background-color: $left-navigation-link-hover-background-color;
 }
 .container-starbook .left-navigate a.active div {
-  font-family: $font-name-bold;
+  font-weight: 600;
   padding: 10px 5px 10px 20px;
   background-color: transparent;
 }
@@ -493,7 +488,6 @@ $order-error-font-weight: 400;
   border: $order-information-border-style;
   text-align: center;
   border-radius: 3px;
-  font-family: $font-name;
   font-size: $order-error-font-size;
   font-weight: $order-error-font-weight;
   letter-spacing: $order-error-letter-spacing;
@@ -512,7 +506,6 @@ $order-error-font-weight: 400;
   position: absolute;
   top: 0;
   right: 0;
-  font-family: $font-name;
   font-size: $order-footer-price-block-text-size;
   letter-spacing: $order-footer-price-block-letter-spacing;
   color: $order-footer-price-block-color;
@@ -520,7 +513,7 @@ $order-error-font-weight: 400;
   max-height: 30px;
 }
 .order-footer .buttons .price-block .content-price span {
-  font-family: $font-name-medium;
+  font-weight: bold;
   letter-spacing: $order-footer-price-block-price-letter-spacing;
 }
 .orders-container .loader {

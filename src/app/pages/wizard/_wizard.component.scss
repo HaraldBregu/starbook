@@ -99,7 +99,7 @@ app-wizard {
   position: relative;
   padding: 16px 30px 19px 20px;
   overflow: hidden;
-  font-family: $font-name;
+
   color: $wizard-header-text-color;
   font-size: $wizard-header-text-size;
   letter-spacing: $wizard-header-text-letter-spacing;
@@ -141,7 +141,7 @@ app-wizard {
   display: block;
   float: left;
   width: 100%;
-  font-family: $font-name;
+
   color: $wizard-content-header-text-color;
   font-size: $wizard-content-header-text-size;
   letter-spacing: $wizard-content-header-text-letter-spacing;
@@ -167,7 +167,7 @@ app-wizard {
   position: relative;
   width: 100%;
   padding-top: 5px;
-  font-family: $font-name-light;
+  
   color: $wizard-content-item-text-color;
   font-size: $wizard-content-item-text-size;
   letter-spacing: $wizard-content-item-text-letter-spacing;
@@ -180,7 +180,7 @@ app-wizard {
   right: 0;
   text-align: right;
   padding-top: 5px;
-  font-family: $font-name-light;
+
   color: $wizard-content-item-text-color;
   font-size: $wizard-content-item-text-size;
   letter-spacing: $wizard-content-item-text-letter-spacing;
@@ -195,7 +195,7 @@ app-wizard {
   display: block;
   float: left;
   width: 68%;
-  font-family: $font-name-light;
+
   color: $wizard-content-item-text-color;
   font-size: $wizard-content-item-text-size;
   letter-spacing: $wizard-content-item-text-letter-spacing;
@@ -208,7 +208,7 @@ app-wizard {
   float: left;
   width: 32%;
   text-align: right;
-  font-family: $font-name-light;
+
   color: $wizard-content-item-text-color;
   font-size: $wizard-content-item-text-size;
   letter-spacing: $wizard-content-item-text-letter-spacing;
@@ -228,7 +228,7 @@ app-wizard {
   position: relative;
   width: 100%;
   padding: 5px 0;
-  font-family: $font-name;
+
   color: $wizard-content-summary-item-text-color;
   font-size: $wizard-content-summary-item-text-size;
   letter-spacing: $wizard-content-summary-item-text-letter-spacing;
@@ -239,7 +239,7 @@ app-wizard {
   position: relative;
   width: 100%;
   padding: 5px 0;
-  font-family: $font-name;
+
   color: $wizard-content-summary-item-text-color;
   font-size: 18px;
   letter-spacing: $wizard-content-summary-item-text-letter-spacing;
@@ -250,7 +250,7 @@ app-wizard {
   top: 10px;
   right: 0;
   text-align: right;
-  font-family: $font-name;
+
   color: $wizard-content-summary-item-text-color;
   font-size: $wizard-content-summary-item-text-size;
   letter-spacing: $wizard-content-summary-item-text-letter-spacing;
@@ -262,7 +262,7 @@ app-wizard {
   top: 10px;
   right: 0;
   text-align: right;
-  font-family: $font-name;
+
   color: $wizard-content-summary-item-text-color;
   font-size: 18px;
   letter-spacing: $wizard-content-summary-item-text-letter-spacing;
@@ -293,7 +293,7 @@ app-wizard {
   display: block;
   float: left;
   width: 100%;
-  font-family: $font-name;
+
   color: $wizard-form-label-text-color;
   font-size: $wizard-form-label-text-size;
   letter-spacing: $wizard-form-label-text-letter-spacing;
@@ -306,7 +306,7 @@ app-wizard {
   float: left;
   width: 100%;
   margin-top: 20px;
-  font-family: $font-name;
+
   letter-spacing: $wizard-form-input-button-letter-spacing;
   border: none;
   margin-bottom: 80px;
@@ -320,7 +320,7 @@ app-wizard {
   padding: 11px 7px;
   margin-top: 10px;
   color: $wizard-form-button-secondary-text-color;
-  font-family: $font-name;
+
   font-size: $wizard-form-button-secondary-text-size;
   letter-spacing: $wizard-form-input-button-letter-spacing;
   border: none;
@@ -360,7 +360,7 @@ app-wizard {
   width: 100%;
   height: 40px;
   padding: 7px 12px;
-  font-family: $font-name;
+
   color: $wizard-form-input-text-color;
   font-size: $wizard-form-input-text-size;
   letter-spacing: $wizard-form-input-text-letter-spacing;
@@ -393,7 +393,7 @@ app-wizard {
 //   float: left;
 //   width: 100%;
 //   margin-top: 10px;
-//   font-family: $font-name;
+//
 //   color: $wizard-form-error-text-color;
 //   font-size: $wizard-form-error-text-size;
 //   letter-spacing: $wizard-form-error-text-letter-spacing;
@@ -409,7 +409,7 @@ app-wizard {
   width: 100%;
   height: 38px;
   padding: 7px 12px;
-  font-family: $font-name;
+
   color: $wizard-form-input-text-color;
   font-size: $wizard-form-input-text-size;
   letter-spacing: $wizard-form-input-text-letter-spacing;
@@ -431,7 +431,7 @@ app-wizard {
   float: left;
   width: 100%;
   margin-bottom: 115px;
-  font-family: $font-name;
+
   color: $wizard-form-footer-text-color;
   font-size: $wizard-form-footer-text-size;
   letter-spacing: $wizard-form-footer-text-letter-spacing;
@@ -465,7 +465,7 @@ app-wizard {
   margin-left: -15px;
   width: 30px;
   text-align: center;
-  font-family: $font-name;
+
   color: $wizard-form-description-text-color;
   font-size: $wizard-form-description-font-size;
   letter-spacing: $wizard-form-letter-spacing;
@@ -491,7 +491,7 @@ app-wizard {
   position: relative;
   width: 100%;
   height: 45px;
-  font-family: $font-name-bold;
+
   border: $wizard-btn-facebook-border;
   border-radius: 0px;
   font-size: $wizard-btn-font-size;
@@ -528,7 +528,7 @@ app-wizard {
 }
 .content-container form {
   .error-message {
-    font-family: $font-name;
+
     color: #f75c4b;
     font-size: 12px;
     position: absolute;
@@ -541,7 +541,7 @@ app-wizard {
     margin-bottom: 20px;
   }
   p {
-    font-family: $font-name-light;
+
   }
 }
 .content-container .address {
@@ -596,7 +596,7 @@ app-wizard {
     font-size: 26px;
     color: white;
     height: 60px;
-    font-family: $font-name-bold;
+
     font-weight: 700;
   }
   .btn-white {
@@ -635,7 +635,7 @@ app-wizard {
     margin-left: -15px;
     width: 30px;
     text-align: center;
-    font-family: $font-name;
+
     color: #8D8D8D;
     font-size: 12px;
     letter-spacing: 0.08px;
@@ -656,7 +656,7 @@ app-wizard {
     text-align: left;
   }
   a {
-    font-family: $font-name;
+
     color: #0066C0 !important;
     font-size: 12px;
     letter-spacing: 0.08px;
@@ -673,7 +673,7 @@ app-wizard {
   text-align: center;
   margin-top: 33px;
   margin-bottom: 27px;
-  font-family: $font-name-medium;
+
   color: $wizard-cards-subheader-color;
   font-size: $wizard-cards-subheader-font-size;
   letter-spacing: $wizard-cards-subheader-letter-spacing;
@@ -691,13 +691,13 @@ app-wizard {
   border: $wizard-form-error-message-border-style;
   background-color: $wizard-form-error-message-background-color;
   border-radius: 3px;
-  font-family: $font-name;
+
   font-size: $wizard-form-error-message-text-size;
   color: $wizard-form-error-message-text-color;
   letter-spacing: $wizard-form-error-message-letter-spacing;
 }
 .wizard-form .error-message span {
-  font-family: $font-name-medium;
+
 }
 
 @media (max-width: 906px) {
