@@ -107,8 +107,10 @@ app-profile {
       .card-form {
         margin: 40px auto 40px;
         max-width: 600px;
-        .btn-success {
-          width: 100%;
+        .form-group .btn-yellow-green {
+          width: 100% !important;
+          line-height: 60px;
+          padding: 0 !important;
         }
       }
 

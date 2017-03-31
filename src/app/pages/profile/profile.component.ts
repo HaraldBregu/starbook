@@ -121,21 +121,6 @@ export class ProfileComponent implements OnInit, OnDestroy {
         this.router.navigate(['/']);
       }
     }
-    this.paymentService.getCards().then((cards) => {
-      this.defaultCard = cards.default_source;
-      this.cards = [];
-      cards.sources.data.forEach((cardData) => {
-        this.cards.push(cardData);
-      });
-      // console.log('cards: ' + JSON.stringify(this.cards));
-    }).catch((error) => {
-      // console.log('error: ' + JSON.stringify(error));
-      if (error.status === 404) {
-        // This Starbook account do not have a Stripe account
-        // When you add a new card, will be created a Stripe account
-        // and update the Starbook account
-      }
-    })
   }
 
   ngOnInit() {
@@ -145,6 +130,21 @@ export class ProfileComponent implements OnInit, OnDestroy {
         this.navigationService.updateMessage('Informazioni del mio account');
       } else if (this.page ==='payment') {
         this.navigationService.updateMessage('Metodo di pagamento');
+        this.paymentService.getCards().then((cards) => {
+          this.defaultCard = cards.default_source;
+          this.cards = [];
+          cards.sources.data.forEach((cardData) => {
+            this.cards.push(cardData);
+          });
+          // console.log('cards: ' + JSON.stringify(this.cards));
+        }).catch((error) => {
+          // console.log('error: ' + JSON.stringify(error));
+          if (error.status === 404) {
+            // This Starbook account do not have a Stripe account
+            // When you add a new card, will be created a Stripe account
+            // and update the Starbook account
+          }
+        })
       } else if (this.page ==='settings') {
         this.navigationService.updateMessage('Impostazioni');
       } else if (this.page ==='card') {
@@ -292,6 +292,13 @@ export class ProfileComponent implements OnInit, OnDestroy {
     });
   }
   addCard() {
+    if (this.card_state.loading) {return;}
+    this.card_state.loading = true;
+    this.card_state.button_title = "Salvando...";
+    this.card_state.message_error = null;
+    this.card_state.number_error = null;
+    this.card_state.exp_date_error = null;
+    this.card_state.cvc_error = null;
     if (this.Card !== null) {
       if (this.paymentService.cardNumberValidate(this.Card.number)) {
         this.card_state.number_error = null;
@@ -310,18 +317,33 @@ export class ProfileComponent implements OnInit, OnDestroy {
     } else {
       this.card_state.exp_date_error = "La data non è completa";
     }
-    console.log('card: ' + JSON.stringify(this.Card));
-
-    // return;
-    this.card_state.message_error = "Errore carta";
     this.paymentService.addNewCard(this.Card).then((response) => {
-      console.log('addCard response: ' + JSON.stringify(response));
-
+      this.card_state.loading = false;
+      this.card_state.button_title = "Salva";
+      this.card_state.message_error = null;
+      this.card_state.number_error = null;
+      this.card_state.exp_date_error = null;
+      this.card_state.cvc_error = null;
+      this.router.navigate(['/profile/payment']);
     }).catch((error) => {
-
-      // 402
-      // Error expiration date
-      console.log('error response: ' +  JSON.stringify(error));
+      this.card_state.loading = false;
+      this.card_state.button_title = "Salva";
+      this.card_state.message_error = null;
+      this.card_state.number_error = null;
+      this.card_state.exp_date_error = null;
+      this.card_state.cvc_error = null;
+      console.log('error: ' + error);
+      console.log('error status: ' + error.status);
+      if (error === 400) {
+        this.card_state.message_error = "Errore nel inserimento del codice della sicurezza";
+        this.card_state.cvc_error = "Inserisci un codice corretto";
+      } else if (error === 402) {
+        this.card_state.message_error = "Errore nel inserimento del numero della carta o della data di scadenza";
+        this.card_state.number_error = "Inserisci un numero corretto";
+        this.card_state.exp_date_error = "Inserisci una data corretta";
+      } else {
+        this.card_state.message_error = "Errore sconosciuto. Controlla i campi inseriti e riprova.";
+      }
     });
   }
   checkExpiry(value) {

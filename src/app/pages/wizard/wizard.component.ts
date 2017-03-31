@@ -53,10 +53,9 @@ export class WizardComponent implements OnInit {
   };
   public temp_address;
   public temp_address_street_number_city;
-  public temp_address_check = {
-    hidden: true,
-    message: "Per favore compila il campo richiesto",
-    full: false
+  public address_state = {
+    loading: false,
+    error_message: null,
   };
   public addresses = [];
 
@@ -67,12 +66,11 @@ export class WizardComponent implements OnInit {
   public temp_date;
   public minDate = new Date(new Date().getTime() + 24 * 60 * 60 * 1000);
   public maxDate = new Date(new Date().getTime() + (24*28) * 60 * 60 * 1000);
-  public temp_date_check = {
-    hidden: true,
-    message: "Per favore compila il campo richiesto",
-    full: false
-  };
   public formated_date = null;
+  public date_state = {
+    loading: false,
+    error_message: null
+  }
 
   /////////////////////////
   /////// LOGIN  //////////
@@ -182,7 +180,9 @@ export class WizardComponent implements OnInit {
       }
 
       // To show in date step
-      this.temp_date = new Date(this.Order.date);
+      if(this.Order.date) {
+        this.temp_date = new Date(this.Order.date);
+      }
 
       // To show in preview order
       let date = new Date(this.Order.date);
@@ -251,23 +251,22 @@ export class WizardComponent implements OnInit {
   //// CONFIRM ADDRESS //////////
   ///////////////////////////////
   confirmAddress() {
-    if (!this.temp_address_check.full || this.temp_address.length === 0 ) {
-      this.temp_address_check.hidden = false;
+    if (!this.Order.address) {
+      this.address_state.error_message = "Per favore inserisci un indirizzo corretto";
       return;
     }
+    this.address_state.error_message = null;
     this.saveOrderToLocal(this.Order)
     this.router.navigate(['order/date']);
   }
   getAddresses(event) {
+    this.address_state.error_message = null;
     if (this.temp_address_street_number_city !== event.query) {
-      this.temp_address_check.full = false;
-      this.temp_address_check.message = "Per favore inserisci un indirizzo corretto";
+      this.address_state.error_message = "Per favore inserisci un indirizzo corretto";
     } else if (!this.temp_address || this.temp_address === "") {
-      this.temp_address_check.full = false;
-      this.temp_address_check.message = "Per favore compila il campo richiesto";
+      this.address_state.error_message = "Per favore compila il campo richiesto";
     } else {
-      this.temp_address_check.full = true;
-      this.temp_address_check.message = "Per favore compila il campo richiesto";
+      this.address_state.error_message = "Per favore compila il campo richiesto";
     }
     this.orderService.getAddresses(event.query).then((addresses) => {
       this.addresses = [];
@@ -284,22 +283,22 @@ export class WizardComponent implements OnInit {
     this.address.province = value.province;
     this.address.country = value.country;
     this.address.country_code = value.country_code;
-    this.temp_address_check.hidden = true;
-    this.temp_address_check.full = true;
-    this.temp_address_check.message = "Per favore compila il campo richiesto";
+    this.address_state.error_message = null
     this.temp_address_street_number_city = this.temp_address.street_number_city;
     this.Order.address = this.address;
   }
   clickOutsideAddressInput() {
-    if (this.temp_address_check.full === false) {
-      this.temp_address = null;
-    }
+    if (!this.Order.address) {this.temp_address = null;}
   }
 
   ////////////////////////////
   //// CONFIRM DATE //////////
   ////////////////////////////
   confirmDate() {
+    if (!this.Order.date) {
+      this.date_state.error_message = "Per favore inserisci una data";
+      return;
+    }
     this.router.navigate(['order/preview']);
   }
   selectDate() {
@@ -308,8 +307,7 @@ export class WizardComponent implements OnInit {
     let correctMonth = 1 + date.getMonth();
     let month = correctMonth > 9 ? correctMonth : '0' + correctMonth;
     this.date = date.getFullYear() + '-' + month + '-' + day + 'T' + '08:00' + ':00.000Z';
-    this.temp_date_check.full = true;
-    this.temp_date_check.hidden = true;
+    this.date_state.error_message = null;
     this.Order.date = this.date;
     this.saveOrderToLocal(this.Order);
     let _date = new Date(this.Order.date);

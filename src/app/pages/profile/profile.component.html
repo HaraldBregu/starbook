@@ -39,7 +39,7 @@
     </form>
     <div class="footer">
       <h5>Privacy del account</h5>
-      <h6><small>Le informazioni degli utenti consentono a STARBOOK di fornire agli utenti stessi l’accesso alle sezioni del Sito cui sono interessati e di fornire il Servizio. Esse mettono inoltre STARBOOK in grado di fatturare gli importi dovuti e consentono a STARBOOK o ad un professionista cui l’utente abbia inoltrato un Ordine di contattare l’utente in merito al Servizio, ove necessario.</small></h6>
+      <h6><small>Le informazioni degli utenti consentono a Starbook di fornire agli utenti stessi l’accesso alle sezioni del Sito cui sono interessati e di fornire il Servizio. Esse mettono inoltre Starbook in grado di fatturare gli importi dovuti e consentono a Starbook o ad un professionista cui l’utente abbia inoltrato un Ordine di contattare l’utente in merito al Servizio.</small></h6>
     </div>
   </div>
   <div class="page-container" *ngIf="page === 'payment'">
@@ -78,7 +78,7 @@
           <div class="buttons-block">
             <a class="btn btn-success" *ngIf="defaultCard !== card.id" (click)="selectCard(card.id)">Default</a>
             <a class="btn btn-danger" (click)="deleteCard(card.id)">Rimuovi</a>
-            <a class="btn btn-secondary" (click)="editCard(card.id)">Modifica</a>
+            <!-- <a class="btn btn-secondary" (click)="editCard(card.id)">Modifica</a> -->
           </div>
         </div>
       </div>
@@ -89,7 +89,7 @@
     </div>
     <div class="footer">
       <h5>Privacy del account</h5>
-      <h6><small>Le informazioni degli utenti consentono a STARBOOK di fornire agli utenti stessi l’accesso alle sezioni del Sito cui sono interessati e di fornire il Servizio. Esse mettono inoltre STARBOOK in grado di fatturare gli importi dovuti e consentono a STARBOOK o ad un professionista cui l’utente abbia inoltrato un Ordine di contattare l’utente in merito al Servizio, ove necessario.</small></h6>
+      <h6><small>Le informazioni degli utenti consentono a Starbook di fornire agli utenti stessi l’accesso alle sezioni del Sito cui sono interessati e di fornire il Servizio. Esse mettono inoltre Starbook in grado di fatturare gli importi dovuti e consentono a Starbook o ad un professionista cui l’utente abbia inoltrato un Ordine di contattare l’utente in merito al Servizio.</small></h6>
     </div>
   </div>
   <div class="page-container" *ngIf="page === 'settings'">
@@ -103,7 +103,7 @@
         <div class="col-lg-4">
           <div class="form-group">
             <!-- <label for="email">La tua email</label> -->
-            <input type="email" class="form-control" id="email" name="email" placeholder="Email" [ngClass]="{'error-input': user_state.email_error}" [(ngModel)]="User.email">
+            <input type="email" class="form-control" id="email" name="email" placeholder="Email" [ngClass]="{'error-input': user_state.email_error}" [(ngModel)]="User.email" disabled>
             <small class="error-message" *ngIf="user_state.email_error">{{user_state.email_error}}</small>
           </div>
         </div>
@@ -235,7 +235,7 @@
           </div>
         </div>
         <div class="form-group">
-          <a class="btn btn-success" (click)="addCard()">Add card</a>
+          <a class="btn btn-yellow-green" (click)="addCard()"><i class="fa fa-circle-o-notch animate" *ngIf="card_state.loading"></i>{{card_state.button_title}}</a>
         </div>
       </div>
     </form>

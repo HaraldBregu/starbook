@@ -40,10 +40,10 @@
           <p-autoComplete id="luogo" class="form-control" [(ngModel)]="temp_address" (clickOutside)="clickOutsideAddressInput()" [ngModelOptions]="{standalone: true}" [suggestions]="addresses" field="street_number_city" (completeMethod)="getAddresses($event)" (onSelect)="selectAddress($event)" placeholder="Inserisci indirizzo"></p-autoComplete>
         </div>
       </div>
+      <div class="messages" [hidden]="!address_state.error_message">
+        <p><small>{{address_state.error_message}}</small></p>
+      </div>
       <div class="actions">
-        <div [hidden]="temp_address_check.hidden">
-          <p><small>{{temp_address_check.message}}</small></p>
-        </div>
         <div class="form-group">
           <button type="button" id="next" class="btn btn-yellow-green" (click)="confirmAddress()">Continua</button>
         </div>
@@ -63,10 +63,10 @@
           </div>
         </div>
       </div>
+      <div class="messages" [hidden]="!date_state.error_message">
+        <p><small>{{date_state.error_message}}</small></p>
+      </div>
       <div class="actions">
-        <div [hidden]="temp_date_check.hidden">
-          <p><small>{{temp_date_check.message}}</small></p>
-        </div>
         <div class="form-group">
           <button type="button" id="next" class="btn btn-yellow-green" (click)="confirmDate()">Continua</button>
         </div>

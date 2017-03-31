@@ -3057,7 +3057,7 @@ html, body {
 
 .container-starbook .nav-link {
   position: relative;
-  font-weight: 500;
+  font-weight: 400;
   font-size: 16px;
   color: #FFFFFF !important;
   letter-spacing: 0.08px;
@@ -5080,8 +5080,10 @@ app-profile .page-container {
     app-profile .page-container form .card-form {
       margin: 40px auto 40px;
       max-width: 600px; }
-      app-profile .page-container form .card-form .btn-success  {
-        width: 100%; }
+      app-profile .page-container form .card-form .form-group .btn-yellow-green {
+        width: 100% !important;
+        line-height: 60px;
+        padding: 0 !important; }
     app-profile .page-container form h1, app-profile .page-container form h2, app-profile .page-container form h3, app-profile .page-container form h4, app-profile .page-container form h5, app-profile .page-container form h6 {
       margin: 40px 0 20px; }
     app-profile .page-container form .actions {
