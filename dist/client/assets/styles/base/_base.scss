@@ -217,7 +217,7 @@ textarea.form-control {
   color: rgba(255,255,255,1.0);
 }
 .form-group {
-  margin-bottom: 20px;
+  margin-bottom: 15px;
 }
 .form-group .form-control {
   height: 50px !important;
@@ -444,7 +444,14 @@ $datepicker-hover-text-color: #ffffff;
 .text-center {
   text-align: center;
 }
-
+.disable-body-scroll {
+  overflow: hidden;
+}
+@media (max-width: 480px) {
+  .visibility-hidden {
+    visibility: hidden;
+  }
+}
 .noselect {
   -webkit-touch-callout: none; /* iOS Safari */
     -webkit-user-select: none; /* Safari */

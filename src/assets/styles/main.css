@@ -576,7 +576,7 @@ textarea.form-control {
   color: white; }
 
 .form-group {
-  margin-bottom: 20px; }
+  margin-bottom: 15px; }
 
 .form-group .form-control {
   height: 50px !important;
@@ -778,6 +778,12 @@ textarea.form-control {
 .text-center {
   text-align: center; }
 
+.disable-body-scroll {
+  overflow: hidden; }
+
+@media (max-width: 480px) {
+  .visibility-hidden {
+    visibility: hidden; } }
 .noselect {
   -webkit-touch-callout: none;
   /* iOS Safari */
@@ -2990,10 +2996,6 @@ textarea.form-control {
 .ficon-computer:before {
   content: "\e908"; }
 
-html, body {
-  background-color: #FAFAFA !important;
-  overflow-x: hidden; }
-
 .sub-header {
   padding-bottom: 10px;
   border-bottom: 1px solid #eee; }
@@ -5146,13 +5148,16 @@ app-profile .page-container {
   position: fixed;
   background: #ffffff;
   box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.5);
-  width: 450px;
+  width: 500px;
   top: 42px;
   left: 50%;
+  bottom: 0;
   overflow: auto;
   margin-left: -215px;
   padding: 35px 30px 27px;
   z-index: 1041; }
+  .popup .popup-container {
+    height: 100%; }
 
 .popup .header {
   display: block;
@@ -5194,15 +5199,10 @@ app-profile .page-container {
   cursor: pointer; }
 
 .popup .form-group .form-control {
-  height: 40px;
-  border: 1px solid #A6A6A6;
-  border-radius: 3px;
-  font-size: 14px;
-  color: #212121;
-  letter-spacing: 0.08px;
-  font-weight: 400;
-  padding: 5px 7px;
-  box-shadow: none !important; }
+  height: 45px !important; }
+
+.form-group .form-control:focus {
+  border: 2px solid #7FC443 !important; }
 
 .popup .form-group .error {
   display: none; }
@@ -5226,21 +5226,11 @@ app-profile .page-container {
 
 .popup .form-group .btn.btn-warning {
   width: 100%;
-  height: 45px;
-  border: 1px solid #A6A6A6;
-  font-size: 16px;
-  color: #424242;
+  height: 50px;
+  font-size: 22px;
   letter-spacing: 0.08px;
-  font-weight: 600;
-  padding: 5px 7px;
-  background: #FFC845;
-  text-align: center;
-  margin-top: 18px;
-  outline: none;
-  line-height: 24px; }
-
-.popup .form-group a.btn.btn-warning {
-  padding: 9px 7px; }
+  font-weight: 800;
+  outline: none; }
 
 .popup .form-group .btn.btn-warning.new-order-btn {
   position: relative; }
@@ -5256,66 +5246,34 @@ app-profile .page-container {
 
 .popup .form-group .btn.btn-secondary {
   width: 100%;
-  height: 45px;
-  border: 1px solid #A6A6A6;
-  border-radius: 0px;
-  font-size: 16px;
-  color: #424242;
-  letter-spacing: 0.08px;
-  font-weight: 600;
-  padding: 5px 7px;
-  text-align: center;
-  margin-top: 28px;
+  height: 50px;
   outline: none;
-  background-color: #EFF1F3;
-  margin-bottom: -1rem;
-  line-height: 24px; }
+  background-color: #EFF1F3; }
 
-.popup .login-form .form-group .btn.btn-secondary {
-  margin-top: 7px; }
-
-.popup .form-group a.btn.btn-secondary {
-  padding: 9px 7px; }
-
-.popup .form-group .btn.btn-primary {
+.popup .form-group .btn.btn-facebook {
   position: relative;
   width: 100%;
-  height: 45px;
-  border: 1px solid #3B5998;
-  border-radius: 0px;
-  font-size: 16px;
-  color: #FFFFFF;
-  letter-spacing: 0.1px;
-  font-weight: 600;
-  padding: 10px 7px;
-  background-color: #3B5998;
-  text-align: center;
-  margin-top: 34px;
-  outline: none;
-  line-height: 24px; }
+  height: 50px;
+  font-size: 20px;
+  color: white;
+  outline: none; }
 
-.popup .form-group.registration .btn.btn-primary {
-  margin-top: 32px; }
-
-.popup .form-group .btn.btn-primary.facebook i {
+.popup .form-group .btn.btn-facebook i {
   display: block;
   position: absolute;
-  top: 9px;
+  top: 10px;
   left: 12px;
-  width: 25px;
-  height: 25px;
+  width: 30px;
+  height: 30px;
   background-image: url("/assets/images/fb-icon.png");
   background-repeat: no-repeat;
   background-size: contain; }
-
-.popup .form-group a.btn.btn-warning {
-  padding: 9px 7px; }
 
 .popup .form-description {
   display: block;
   position: relative;
   width: 100%;
-  margin-top: 48px;
+  margin-top: 10px;
   border-top: 1px solid #E7E7E7; }
 
 .popup .form-description span {
@@ -5358,9 +5316,7 @@ app-profile .page-container {
   width: 100%;
   color: #212121;
   font-size: 12px;
-  letter-spacing: 0.08px;
-  margin-top: 20px;
-  margin-bottom: -14px; }
+  letter-spacing: 0.08px; }
 
 .form-notice a {
   color: #0066C0 !important;

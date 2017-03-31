@@ -59,7 +59,7 @@
       <div class="forms">
         <div class="form-group calendar-part">
           <div class="input-group date datepicker-block">
-            <p-calendar name="data" [(ngModel)]="temp_date" id="data" class="date" autocomplete="off" readonlyInput="true" dateFormat="dd MM yy" [locale]="it" [minDate]="minDate" [maxDate]="maxDate" (onSelect)="selectDate()" placeholder="Inserisci la data"></p-calendar>
+            <p-calendar name="data" [(ngModel)]="temp_date" id="data" class="date" autocomplete="off" readonlyInput="true" dateFormat="dd MM yy" [locale]="it" [minDate]="minDate" (onSelect)="selectDate()" placeholder="Inserisci la data"></p-calendar>
           </div>
         </div>
       </div>
@@ -271,7 +271,7 @@
       </div>
       <div class="actions">
         <div class="form-group">
-          <button type="button" id="next" class="btn btn-yellow-green" (click)="confirmOrder()">Invia ordine</button>
+          <button type="button"  id="next" class="btn btn-yellow-green" (click)="confirmOrder()">Invia ordine</button>
         </div>
       </div>
       <div class="footer">
@@ -289,7 +289,7 @@
       <form>
         <div class="form-group">
           <label for="phoneInput">Telefono</label>
-          <input type="phone" placeholder="Numero di telefono" class="form-control" [ngClass]="{'error-input': profile_info_state.phone_number_error}" id="phoneInput" [(ngModel)]="profileInformation.phone_number" [ngModelOptions]="{standalone: true}">
+          <input type="phone" name="phone" placeholder="Numero di telefono" class="form-control" [ngClass]="{'error-input': profile_info_state.phone_number_error}" id="phoneInput" [(ngModel)]="profileInformation.phone_number" [ngModelOptions]="{standalone: true}">
           <small class="error-message" *ngIf="profile_info_state.phone_number_error">{{profile_info_state.phone_number_error_message}}</small>
         </div>
       </form>

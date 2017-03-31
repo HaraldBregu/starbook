@@ -28,10 +28,6 @@ $search-navbar-result-empty-font-size: 14px;
 $search-navbar-result-empty-color: rgba(255, 255,255,0.7);
 $search-navbar-close-icon-base-color: #8D9494;
 
-html, body {
-  background-color: $background !important;
-  overflow-x: hidden;
-}
 .sub-header {
   padding-bottom: 10px;
   border-bottom: 1px solid #eee;

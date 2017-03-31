@@ -533,7 +533,8 @@ export class PopupsComponent implements OnInit, OnDestroy {
     if (isBrowser) {
       let left = Math.round((document.documentElement.clientWidth / 2) - 285);
       let facebookPopup = window.open(
-        'https://www.facebook.com/v2.8/dialog/oauth?client_id=1108461325907277&response_type=token&scope=email,public_profile&redirect_uri=https://www.starbook.co/facebook',
+        // 'https://www.facebook.com/v2.8/dialog/oauth?client_id=1108461325907277&response_type=token&scope=email,public_profile&redirect_uri=https://www.starbook.co/facebook',
+        'https://www.facebook.com/v2.8/dialog/oauth?client_id=1108461325907277&response_type=token&scope=email,public_profile&redirect_uri=https://glacial-shore-66987.herokuapp.com/facebook',
         // 'https://www.facebook.com/v2.8/dialog/oauth?client_id=1108461325907277&response_type=token&scope=email,public_profile&redirect_uri=http://localhost:4200/facebook',
           '_blank',
           'location=yes,height=570,width=520,left=' + left + ', top=100,scrollbars=yes,status=yes');

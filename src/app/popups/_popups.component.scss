@@ -144,15 +144,18 @@ $popup-phone-enter-form-label-letter-spacing: 0.09px;
   position: fixed;
   background: $popup-background-color;
   box-shadow: $popup-shadow-style;
-  width: 450px;
+  width: 500px;
   top: 42px;
   left: 50%;
-  // bottom: 0;
+  bottom: 0;
   overflow: auto;
   margin-left: -215px;
   padding: 35px 30px 27px;
   z-index: 1041;
   // border-radius: 3px;
+  .popup-container {
+    height: 100%;
+  }
 }
 .popup .header {
   display: block;
@@ -198,17 +201,26 @@ $popup-phone-enter-form-label-letter-spacing: 0.09px;
   cursor: pointer;
 }
 .popup .form-group .form-control {
-
-  height: 40px;
-  border: $popup-input-border;
-  border-radius: 3px;
-  font-size: $popup-form-font-size;
-  color: $popup-form-font-color;
-  letter-spacing: $popup-form-letter-spacing;
-  font-weight: 400;
-  padding: 5px 7px;
-  box-shadow: none !important;
+  height: 45px !important;
 }
+.form-group .form-control:focus {
+  border: 2px solid #7FC443 !important;
+
+}
+// .pupup .form-control:focus {
+//   border: 2px solid #7FC443 !important;
+// }
+// .popup .form-group .form-control {
+//   height: 40px;
+//   border: $popup-input-border;
+//   border-radius: 3px;
+//   font-size: $popup-form-font-size;
+//   color: $popup-form-font-color;
+//   letter-spacing: $popup-form-letter-spacing;
+//   font-weight: 400;
+//   padding: 5px 7px;
+//   box-shadow: none !important;
+// }
 .popup .form-group .error {
   display: none;
 }
@@ -234,26 +246,14 @@ $popup-phone-enter-form-label-letter-spacing: 0.09px;
 }
 .popup .form-group .btn.btn-warning {
   width: 100%;
-  height: 45px;
-
-  border: $popup-input-border;
-  // border-radius: 3px;
-  font-size: $popup-btn-font-size;
-  color: $popup-btn-text-color;
-  letter-spacing: $popup-form-letter-spacing;
-  font-weight: 600;
-  padding: 5px 7px;
-  background: $popup-btn-gradient-color-yellow-light;
-  text-align: center;
-  margin-top: 18px;
+  height: 50px;
+  font-size: 22px;
+  letter-spacing: 0.08px;
+  font-weight: 800;
   outline: none;
-  line-height: 24px;
-  // background: -moz-linear-gradient(top,  $popup-btn-gradient-color-yellow-light 0%, $popup-btn-gradient-color-yellow-dark 100%);
-  // background: -webkit-linear-gradient(top,  $popup-btn-gradient-color-yellow-light 0%,$popup-btn-gradient-color-yellow-dark 100%);
-  // background: linear-gradient(to bottom,  $popup-btn-gradient-color-yellow-light 0%,$popup-btn-gradient-color-yellow-dark 100%);
 }
 .popup .form-group a.btn.btn-warning {
-  padding: 9px 7px;
+  // padding: 9px 7px;
 }
 .popup .form-group .btn.btn-warning.new-order-btn {
   position: relative;
@@ -269,71 +269,49 @@ $popup-phone-enter-form-label-letter-spacing: 0.09px;
 }
 .popup .form-group .btn.btn-secondary {
   width: 100%;
-  height: 45px;
-
-  border: $popup-input-border;
-  border-radius: 0px;
-  font-size: $popup-btn-font-size;
-  color: $popup-btn-text-color;
-  letter-spacing: $popup-form-letter-spacing;
-  font-weight: 600;
-  padding: 5px 7px;
-  text-align: center;
-  margin-top: 28px;
+  height: 50px;
   outline: none;
   background-color: $popup-btn-background-color-gray;
-  margin-bottom: -1rem;
-  line-height: 24px;
 }
 .popup .login-form .form-group .btn.btn-secondary {
-  margin-top: 7px;
+  // margin-top: 7px;
 }
 .popup .form-group a.btn.btn-secondary {
-  padding: 9px 7px;
+  // padding: 9px 7px;
 }
 
-.popup .form-group .btn.btn-primary {
+.popup .form-group .btn.btn-facebook {
   position: relative;
   width: 100%;
-  height: 45px;
-
-  border: $popup-btn-facebook-border;
-  border-radius: 0px;
-  font-size: $popup-btn-font-size;
-  color: $popup-btn-facebook-text-color;
-  letter-spacing: $popup-btn-facebook-letter-spacing;
-  font-weight: 600;
-  padding: 10px 7px;
-  background-color: $popup-btn-facebook-background;
-  text-align: center;
-  margin-top: 34px;
+  height: 50px;
+  font-size: 20px;
+  color: white;
   outline: none;
-  line-height: 24px;
 }
-.popup .form-group.registration .btn.btn-primary {
-  margin-top: 32px;
+.popup .form-group.registration .btn.btn-facebook {
+  // margin-top: 20px;
 }
-.popup .form-group .btn.btn-primary.facebook i {
+.popup .form-group .btn.btn-facebook i {
   display: block;
   position: absolute;
-  top: 9px;
+  top: 10px;
   left: 12px;
-  width: 25px;
-  height: 25px;
+  width: 30px;
+  height: 30px;
   background-image: url($popup-btn-facebook-icon);
   background-repeat: no-repeat;
   background-size: contain;
 }
 .popup .form-group a.btn.btn-warning {
-  padding: 9px 7px;
+  // padding: 9px 7px;
 }
 
 .popup .form-description {
   display: block;
   position: relative;
   width: 100%;
-  margin-top: 48px;
-  border-top: $popup-form-description-border;
+  margin-top: 10px;
+  border-top: 1px solid #E7E7E7;
 }
 .popup .form-description span {
   display: block;
@@ -404,12 +382,9 @@ $popup-phone-enter-form-label-letter-spacing: 0.09px;
 .form-notice {
   display: block;
   width: 100%;
-
   color: $popup-notice-text-color;
   font-size: $popup-notice-font-size;
   letter-spacing: $popup-notice-letter-spacing;
-  margin-top: 20px;
-  margin-bottom: -14px;
 }
 .form-notice a {
 
