@@ -485,6 +485,14 @@ p {
   border: 0;
   outline: none !important; }
 
+.btn-warning:active:focus {
+  color: white !important;
+  background-color: #EBB431 !important; }
+
+.btn-warning:hover {
+  color: white !important;
+  background-color: #EBB431 !important; }
+
 .btn-yellow-green {
   background: #FFC845 !important;
   color: white;
@@ -7174,7 +7182,7 @@ app-wizard {
   width: 100%;
   text-align: center;
   padding: 20px 0; }
-  .content-container .actions .btn-yellow-green {
+  .content-container .actions .btn-warning {
     width: 100%;
     font-size: 26px;
     color: white;

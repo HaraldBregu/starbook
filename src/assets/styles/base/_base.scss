@@ -102,6 +102,14 @@ p {
   border: 0;
   outline: none !important;
 }
+.btn-warning:active:focus {
+  color: white !important;
+  background-color: #EBB431 !important;
+}
+.btn-warning:hover {
+  color: white !important;
+  background-color: #EBB431 !important;
+}
 .btn-yellow-green {
   background: #FFC845 !important;
   color: white;
