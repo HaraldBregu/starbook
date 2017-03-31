@@ -147,9 +147,9 @@ $popup-phone-enter-form-label-letter-spacing: 0.09px;
   width: 500px;
   top: 42px;
   left: 50%;
-  bottom: 0;
+  // bottom: 0;
   overflow: auto;
-  margin-left: -215px;
+  margin-left: -240px;
   padding: 35px 30px 27px;
   z-index: 1041;
   // border-radius: 3px;
@@ -161,11 +161,13 @@ $popup-phone-enter-form-label-letter-spacing: 0.09px;
   display: block;
   width: 100%;
   margin-bottom: 20px;
-
-  font-size: $popup-header-font-size;
-  font-weight: 400;
-  letter-spacing: $popup-header-letter-spacing;
-  color: $popup-header-color;
+  text-align: center;
+  // font-size: $popup-header-font-size;
+  // letter-spacing: $popup-header-letter-spacing;
+  // color: $popup-header-color;
+  h1 {
+    font-weight: 400;
+  }
 }
 .popup .double-form {
 

@@ -5151,9 +5151,8 @@ app-profile .page-container {
   width: 500px;
   top: 42px;
   left: 50%;
-  bottom: 0;
   overflow: auto;
-  margin-left: -215px;
+  margin-left: -240px;
   padding: 35px 30px 27px;
   z-index: 1041; }
   .popup .popup-container {
@@ -5163,10 +5162,9 @@ app-profile .page-container {
   display: block;
   width: 100%;
   margin-bottom: 20px;
-  font-size: 28px;
-  font-weight: 400;
-  letter-spacing: 0.18px;
-  color: #212121; }
+  text-align: center; }
+  .popup .header h1 {
+    font-weight: 400; }
 
 .popup .double-form {
   font-size: 14px;

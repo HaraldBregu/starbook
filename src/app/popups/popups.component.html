@@ -9,7 +9,9 @@
       </div>
     </div>
     <app-loading *ngIf="isPopupLoading"></app-loading>
-    <div class="header">Accedi</div>
+    <div class="header">
+      <h1>Accedi</h1>
+    </div>
     <form class="login-form" #loginForm="ngForm" (keyup.enter)="login(email.value, password.value)">
       <div class="form-group" [ngClass]="{'isError': loginError.email}">
         <label for="email">Indirizzo email</label>
@@ -47,7 +49,9 @@
     </div>
   </div>
   <app-loading *ngIf="isPopupLoading"></app-loading>
-  <div class="header">Nuovo utente</div>
+  <div class="header">
+    <h1>Nuovo utente</h1>
+  </div>
   <form class="registration-form" #registrationForm="ngForm">
     <div class="form-group" [ngClass]="{'isError': registrationError.email}">
       <label for="regEmail">Email</label>
@@ -109,7 +113,9 @@
       <p>{{formError.message}}</p>
     </div>
   </div>
-  <div class="header">Recupera password</div>
+  <div class="header">
+    <h1>Recupera password</h1>
+  </div>
   <form class="recovery-form" #recoveryForm="ngForm">
     <div class="form-group" [ngClass]="{'isError': recoveryError.email}">
       <label for="recoveryEmail">Email</label>
@@ -142,7 +148,9 @@
       </svg>
     </div>
     <div class="success-icon" *ngIf="confirmPopupData.type === 'confermaEnd' || confirmPopupData.type === 'addPriceEnd'"><span></span></div>
-    <div class="header" [ngClass]="{'without-message': confirmPopupData.type === 'addPriceEnd'}" *ngIf="confirmPopupData.title !== ''">{{ confirmPopupData.title }}</div>
+    <div class="header" [ngClass]="{'without-message': confirmPopupData.type === 'addPriceEnd'}" *ngIf="confirmPopupData.title !== ''">
+      <h1>{{ confirmPopupData.title }}</h1>
+    </div>
     <form class="confirm-order-form" #confirmOrderForm="ngForm">
       <p *ngIf="confirmPopupData.type !== 'newOrder' && confirmPopupData.type !== 'newOrderEnd'" [ngClass]="{'conferma-finish': confirmPopupData.type === 'confermaEnd'}">{{ confirmPopupData.text }}</p>
       <p *ngIf="confirmPopupData.type === 'newOrderEnd'" class="confirm-end">{{ confirmPopupData.text }}</p>
