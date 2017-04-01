@@ -450,14 +450,12 @@ p {
 .btn-primary {
   border-radius: 0;
   height: 50px;
-  width: 160px;
-  height: 50px;
   border: 0;
   color: white !important;
   font-size: 22px;
   font-family: Roboto, sans-serif;
   font-weight: 400;
-  outline: none;
+  outline: none !important;
   padding: 0;
   line-height: 50px; }
 
@@ -3026,19 +3024,20 @@ textarea.form-control {
 
 .navbar {
   padding: 1px 0 !important;
-  height: 50px; }
+  height: 70px; }
 
 .bg-inverse {
-  background-color: #324977 !important; }
+  background-color: white !important;
+  padding: 0 !important;
+  border-bottom: 1px solid #E8E8F2; }
 
 .navbar-brand {
-  font-size: 28px;
-  font-weight: 700;
-  color: #FFFFFF;
-  letter-spacing: 0.13px;
-  position: relative;
-  z-index: 2;
-  padding-top: 4px; }
+  line-height: 70px;
+  padding: 0;
+  margin: 0; }
+  .navbar-brand img {
+    height: 50px;
+    margin: 10px 0; }
 
 .navbar-brand.mobile {
   display: none; }
@@ -3049,18 +3048,16 @@ textarea.form-control {
   top: 0;
   left: 0;
   width: 100%;
-  padding: 14px 0;
-  color: #FFFFFF;
-  font-size: 16px;
-  font-weight: normal;
+  color: black;
+  font-size: 18px;
+  font-weight: 300;
   letter-spacing: 0.09px;
   text-align: center;
-  z-index: 1; }
+  z-index: 1;
+  line-height: 70px; }
 
 .container-starbook .nav.navbar-nav.float-xs-right {
-  margin-right: 15px;
-  padding-top: 2px;
-  padding-bottom: 2px; }
+  margin-right: 15px; }
 
 .container-starbook .navbar-nav .nav-item + .nav-item {
   margin-left: 0 !important; }
@@ -3069,16 +3066,16 @@ textarea.form-control {
   position: relative;
   font-weight: 400;
   font-size: 16px;
-  color: #FFFFFF !important;
-  letter-spacing: 0.08px;
-  padding: 12px 15px 12px 15px;
+  color: black !important;
+  padding: 0 15px;
   z-index: 2;
   margin-left: 1px;
-  margin-right: 1px; }
+  margin-right: 1px;
+  line-height: 70px; }
 
 .container-starbook .nav-link:hover,
 .container-starbook .nav-link.active {
-  background-color: #293C61; }
+  background-color: #e8e8e8; }
 
 .container-starbook.top-menu {
   padding-right: 0 !important;
@@ -3373,7 +3370,7 @@ app-home {
 .container-starbook .row {
   position: relative;
   min-height: 100vh;
-  padding: 70px 0 0 0;
+  padding: 90px 0 0 0;
   margin: 0; }
 
 .container-starbook .header-cover {
@@ -3863,7 +3860,7 @@ textarea, input[type="text"] {
   top: 0;
   right: 50%;
   bottom: 0;
-  padding: 70px 20px 20px 10px;
+  padding: 90px 20px 20px 10px;
   margin-right: -720px; }
 
 .sidebar-container {
@@ -4428,7 +4425,7 @@ textarea, input[type="text"] {
   .input-group .mobileArea {
     display: block; } }
 .container-starbook.without-tabs .row {
-  padding: 40px 0 0 0; }
+  padding: 70px 0 0 0; }
 
 .container-starbook .orders-container {
   padding: 34px 38px 50px 238px; }
@@ -4628,41 +4625,8 @@ textarea, input[type="text"] {
 
 .order-footer .buttons .btn-primary {
   height: 28px;
-  background-color: #506795;
-  border: 1px solid #29487D;
-  color: #FFFFFF;
-  font-size: 12px;
-  letter-spacing: 0.08px;
-  font-weight: normal;
-  border-radius: 3px;
-  padding: 6px 8px;
-  margin-left: 10px;
-  outline: none; }
-
-.order-footer .buttons .btn-primary:focus,
-.order-footer .buttons .btn-primary:hover {
-  height: 28px;
-  background-color: #324977;
-  border: 1px solid #29487D;
-  color: #FFFFFF;
-  font-size: 12px;
-  letter-spacing: 0.08px;
-  font-weight: normal;
-  border-radius: 3px;
-  padding: 6px 8px;
-  margin-left: 10px;
-  outline: none; }
-
-.order-footer .buttons .btn-primary:active {
-  height: 28px;
-  background-color: #506795;
-  border: 1px solid #29487D;
-  color: #FFFFFF;
-  font-size: 12px;
-  letter-spacing: 0.08px;
-  font-weight: normal;
-  border-radius: 3px;
-  padding: 6px 8px;
+  font-size: 16px;
+  padding: 0 8px;
   margin-left: 10px;
   outline: none; }
 
@@ -4735,7 +4699,7 @@ textarea, input[type="text"] {
   top: 10px;
   left: 50%;
   margin-left: -720px;
-  padding: 46px 0 0 0;
+  padding: 70px 0 0 0;
   z-index: 10; }
 
 .container-starbook .left-navigate a {
@@ -5011,7 +4975,7 @@ app-profile .profile-page {
   display: block;
   width: 100%;
   height: 100%;
-  padding-top: 50px; }
+  padding-top: 70px; }
 app-profile .top-bar-container {
   display: block;
   position: fixed;
@@ -5047,7 +5011,7 @@ app-profile .page-container {
   border-bottom: 1px solid #CCCCCC;
   border: 1px solid #CCCCCC;
   background: white;
-  margin: 100px auto; }
+  margin: 120px auto; }
   app-profile .page-container .form-group .ui-inputtext:focus {
     border: 2px solid #7FC443 !important; }
   app-profile .page-container .form-group .form-control:focus {
@@ -5822,6 +5786,185 @@ app-profile .page-container {
 app-landing {
   height: 100%;
   overflow: auto; }
+  app-landing .landing-page {
+    display: block;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    min-height: 100vh;
+    padding: 70px 0;
+    background-color: #FFFFFF;
+    overflow: hidden; }
+  app-landing .header {
+    background-image: url("/assets/images/lavori.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    color: white;
+    padding: 150px 0;
+    max-height: 550px; }
+    app-landing .header .shadow {
+      display: block;
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      background-color: #000000;
+      opacity: 0.1;
+      transition: opacity 0.4s ease-in-out;
+      z-index: 1; }
+      app-landing .header .shadow:hover {
+        opacity: 0.2; }
+    app-landing .header h1, app-landing .header h2, app-landing .header h3, app-landing .header h4, app-landing .header h5, app-landing .header h6 {
+      margin: 0 auto;
+      max-width: 700px; }
+    app-landing .header h1 {
+      font-size: 300%;
+      margin: 0 auto 10px;
+      font-weight: 700; }
+    app-landing .header h4 {
+      font-weight: 400;
+      font-style: italic; }
+    app-landing .header .search {
+      display: block;
+      position: relative;
+      float: none;
+      max-width: 700px;
+      width: 100%;
+      margin: 40px auto 0; }
+      app-landing .header .search .ui-autocomplete-input {
+        display: block;
+        width: 100%;
+        height: 60px;
+        padding: 15px 46px 15px 19px;
+        background-color: #FFFFFF;
+        border: none;
+        border-radius: 1px;
+        box-shadow: none;
+        outline: none;
+        color: #212121;
+        font-size: 18px;
+        letter-spacing: 0.11px; }
+      app-landing .header .search .close-container {
+        display: block;
+        position: absolute;
+        top: 15px;
+        right: 35px; }
+      app-landing .header .search .close-container .close {
+        position: relative;
+        display: inline-block;
+        width: 21px;
+        height: 21px;
+        overflow: hidden; }
+        app-landing .header .search .close-container .close::before, app-landing .header .search .close-container .close::after {
+          content: '';
+          position: absolute;
+          height: 2px;
+          width: 100%;
+          top: 50%;
+          left: 0;
+          margin-top: -1px;
+          background: #3498db; }
+        app-landing .header .search .close-container .close::before {
+          transform: rotate(45deg); }
+        app-landing .header .search .close-container .close::after {
+          transform: rotate(-45deg); }
+        app-landing .header .search .close-container .close.thick::before, app-landing .header .search .close-container .close.thick::after {
+          height: 4px;
+          margin-top: -2px; }
+        app-landing .header .search .close-container .close.rounded::before, app-landing .header .search .close-container .close.rounded::after {
+          border-radius: 5px; }
+      app-landing .header .search .ui-autocomplete-panel {
+        display: block;
+        position: relative;
+        margin-top: -60px;
+        width: 100%;
+        background-color: #FFFFFF;
+        border-left: 1px solid #DCDCDC;
+        border-right: 1px solid #DCDCDC;
+        border-bottom: 1px solid #DCDCDC;
+        outline: none;
+        border-radius: 1px;
+        overflow-y: scroll; }
+      app-landing .header .search .ui-autocomplete-panel .ui-state-highlight .search-result {
+        color: white;
+        background-color: #506795; }
+      app-landing .header .search .ui-autocomplete-panel .search-result {
+        display: block;
+        width: 100%;
+        color: #212121;
+        font-size: 16px;
+        letter-spacing: 0.1px;
+        padding: 16px 21px; }
+      app-landing .header .search .ui-autocomplete-panel.empty {
+        margin-top: 0; }
+      app-landing .header .search .ui-autocomplete-panel.empty .no-result {
+        display: block;
+        width: 100%;
+        color: #8D9494;
+        font-size: 14px;
+        letter-spacing: 0.1px;
+        padding: 8px 21px; }
+      app-landing .header .search .spinner {
+        display: block;
+        position: absolute;
+        top: 15px;
+        right: 35px;
+        width: 21px;
+        height: 21px; }
+      app-landing .header .search .btn-primary {
+        height: 60px;
+        width: 100%; }
+  app-landing .services {
+    padding: 50px 2px;
+    text-align: center; }
+    app-landing .services .services-container {
+      margin: 40px 0 0; }
+    app-landing .services .service-box {
+      display: inline-block;
+      float: left;
+      width: 20%;
+      height: 300px;
+      padding: 2px; }
+    app-landing .services .service {
+      display: block;
+      position: relative;
+      width: 100%;
+      height: 100%;
+      border: none;
+      cursor: pointer;
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: top center; }
+    app-landing .services .title {
+      display: block;
+      position: relative;
+      z-index: 2;
+      font-weight: 800;
+      color: white;
+      font-size: 20px;
+      letter-spacing: 0.09px;
+      padding: 20px 15px;
+      text-transform: uppercase;
+      white-space: normal !important;
+      text-align: left; }
+  @media (max-width: 1100px) {
+    app-landing .services .service-box {
+      width: 25%;
+      height: 300px; } }
+  @media (max-width: 991px) {
+    app-landing .services .service-box {
+      width: 33.33333%;
+      height: 300px; } }
+  @media (max-width: 768px) {
+    app-landing .services .service-box {
+      width: 50%;
+      height: 300px; } }
+  @media (max-width: 576px) {
+    app-landing .services .service-box {
+      width: 100%;
+      height: 300px; } }
 
 .landing {
   display: block;
@@ -6404,7 +6547,6 @@ input.landing-search .ui-autocomplete-input:-ms-input-placeholder {
   display: block;
   position: relative;
   width: 100%;
-  max-width: 1136px;
   height: 284px;
   overflow: hidden; }
 
@@ -6430,14 +6572,14 @@ input.landing-search .ui-autocomplete-input:-ms-input-placeholder {
   -webkit-align-items: center;
   align-items: center;
   float: none;
-  width: 224px;
+  width: 20%;
   height: 280px;
   padding: 2px; }
 
 .services-card .service-container {
   display: block;
   position: relative;
-  width: 224px;
+  width: 100%;
   min-height: 280px;
   border: none;
   cursor: pointer;
@@ -6460,16 +6602,16 @@ input.landing-search .ui-autocomplete-input:-ms-input-placeholder {
 .services-card .service-container:hover .shadow {
   opacity: 0.2; }
 
-.services-card .service-container .header {
+.landing .services-card .service-container .header {
   display: block;
   position: relative;
   z-index: 2;
   width: 200px;
-  font-weight: bold;
-  color: #FFFFFF;
-  font-size: 16px;
+  font-weight: 800;
+  color: white;
+  font-size: 20px;
   letter-spacing: 0.09px;
-  padding: 18px 12px;
+  padding: 20px 15px;
   text-transform: uppercase;
   white-space: normal !important;
   text-align: left; }

@@ -1,28 +1,62 @@
+<div class="landing-page">
+  <div class="header">
+    <h1>Il miglior servizio per la tua casa al prezzo giusto.</h1>
+    <h4>Niente più ricerche, attese o confronti di preventivi. Lo faciamo noi al posto tuo. Ed è gratis.</h4>
+    <div class="search">
+      <div class="row">
+        <div class="col-md-9">
+          <p-autoComplete [(ngModel)]="query" [suggestions]="results" field="title" scrollHeight="275px" (completeMethod)="search($event)" (onSelect)="selectResult(query)" placeholder="Cartongesso..." minLength="0">
+            <template let-res>
+              <div class="search-result" (click)="selectResult(res)">{{ res.title }}</div>
+            </template>
+          </p-autoComplete>
+          <div class="spinner" *ngIf="spinerView">
+            <svg width='21px' height='21px' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid" class="uil-ring">
+              <rect x="0" y="0" width="100" height="100" fill="none" class="bk"></rect>
+              <circle cx="50" cy="50" r="45" stroke-dasharray="169.64600329384882 113.09733552923257" stroke="#3B568D" fill="none" stroke-width="10">
+                <animateTransform attributeName="transform" type="rotate" values="0 50 50;180 50 50;360 50 50;" keyTimes="0;0.5;1" dur="1s" repeatCount="indefinite" begin="0s"></animateTransform>
+              </circle>
+            </svg>
+          </div>
+          <div class="close-container" *ngIf="!spinerView && clearView">
+            <span class="close rounded thick" (click)="clearSearchForm()"></span>
+          </div>
+          <div class="ui-autocomplete-panel empty" *ngIf="results.length === 0 && query.length > 0">
+            <div class="no-result noselect">
+              Il servizio "{{query}}" non è disponibile
+              <button class="suggess-service" (click)="requireService()">{{newServiceRequest.message}}</button>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <button class="btn btn-primary" (click)="search()">Cerca</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="services">
+    <h2>Servizi piu richiesti</h2>
+    <div class="services-container">
+      <div class="service-box" *ngFor="let service of services" (click)="selectResult(service)">
+        <div class="service" [style.background-image]="'url(' + service.image_url + ')'">
+          <div class="title">
+            {{ service.title }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
 <div class="landing">
-  <div class="header-page">
+  <!-- <div class="header-page">
     <div class="container">
       <div class="row">
-        <div class="col-xl-12 landing-header" *ngIf="testPage!=='login_facebook' && testPage!=='registro_impresa' && testPage!=='consiglia_amico' && testPage!=='condividi_guadagna'">
-          <!-- <h1 style="color:red;">Atenzione, Sito in manutenzione!</h1> -->
+        <div class="col-xl-12 landing-header">
           <h1>Hai bisogno di lavorazioni interni?</h1>
           <h6>É semplice. Trova il servizio. Prenota.</h6>
         </div>
-        <!-- <div class="col-xl-12 landing-header" *ngIf="testPage==='login_facebook'">
-          <h1>Hai bisogno di lavorazioni interni?</h1>
-          <h6>Trova il servizio. Calcola il preventivo. Prenota.</h6>
-        </div>
-        <div class="col-xl-12 landing-header" *ngIf="testPage==='registro_impresa'">
-          <h1>Hai un impresa o un attività professionale?</h1>
-          <h6>Registra la tua impresa su Starbook. Riceverai decina di preventivi e non dovrai pagare niente.</h6>
-        </div>
-        <div class="col-xl-12 landing-header" *ngIf="testPage==='consiglia_amico'">
-          <h1>Un bonus di 10% per qualsiasi lavorazione che ti serve.</h1>
-          <h6>Consiglia ad un amico questo sito e riceverai un codice promozionale.</h6>
-        </div>
-        <div class="col-xl-12 landing-header" *ngIf="testPage==='condividi_guadagna'">
-          <h1>Un bonus di 10% per qualsiasi lavorazione che ti serve.</h1>
-          <h6>Condividi e riceverai un codice promozionale tramite sms.</h6>
-        </div> -->
       </div>
     </div>
     <div class="container">
@@ -53,42 +87,8 @@
         </div>
       </div>
     </div>
-
-    <!-- A/B TESTS -->
-    <!-- <div class="container landing-header-button" *ngIf="testPage==='login_facebook' && !isAuthenticated">
-      <div class="row">
-        <div class="col-xl-12">
-          <button class="btn btn-warning btn-block" (click)="callToActionLoginWithFacebook()">Registrati con Facebook</button>
-        </div>
-      </div>
-    </div>
-    <div class="container landing-header-button" *ngIf="testPage==='registro_impresa'">
-      <div class="row">
-        <div class="col-xl-12">
-          <button class="btn btn-warning btn-block" (click)="callToActionRegisterCompany()">Registra la tua impresa</button>
-        </div>
-      </div>
-    </div>
-    <div class="container landing-header-button" *ngIf="testPage==='consiglia_amico'">
-      <div class="row">
-        <div class="col-xl-12">
-          <button class="btn btn-warning btn-block" (click)="callToActionRecommendFriend()">Consiglia ad un amico</button>
-        </div>
-      </div>
-    </div>
-    <div class="container landing-header-button" *ngIf="testPage==='condividi_guadagna'">
-      <div class="row">
-        <div class="col-xl-12 button-header-column">
-          <button class="btn btn-primary facebook" (click)="callToActionShareToEarn()">
-            <i></i>
-            Condividi su Facebook
-          </button>
-        </div>
-      </div>
-    </div> -->
-
-  </div>
-  <div class="card-container">
+  </div> -->
+  <!-- <div class="card-container">
     <div class="container">
       <h4>LAVORI IN CARTONGESSO</h4>
     </div>
@@ -111,7 +111,7 @@
     <div class="container">
       <h5>Scegli una delle lavorazioni di cui hai bisogno, calcola il preventivo e prenotalo</h5>
     </div>
-  </div>
+  </div> -->
   <div class="why-container">
     <div class="container">
       <h3>Perché Starbook?</h3>

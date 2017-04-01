@@ -77,7 +77,7 @@ $order-error-font-size: 16px;
 $order-error-font-weight: 400;
 
 .container-starbook.without-tabs .row {
-  padding: 40px 0 0 0;
+  padding: 70px 0 0 0;
 }
 .container-starbook .orders-container {
   padding: 34px 38px 50px 238px;
@@ -294,47 +294,38 @@ $order-error-font-weight: 400;
 }
 .order-footer .buttons .btn-primary {
   height: 28px;
-
-  background-color: $order-information-btn-primary-background-color;
-  border: $order-information-btn-primary-border-style;
-  color: $order-information-btn-primary-text-color;
-  font-size: $order-information-btn-primary-text-size;
-  letter-spacing: $letter-spacing;
-  font-weight: normal;
-  border-radius: 3px;
-  padding: 6px 8px;
+  font-size: 16px;
+  padding: 0 8px;
   margin-left: 10px;
   outline: none;
 }
-.order-footer .buttons .btn-primary:focus,
-.order-footer .buttons .btn-primary:hover {
-  height: 28px;
-
-  background-color: $order-information-btn-primary-hover-background-color;
-  border: $order-information-btn-primary-border-style;
-  color: $order-information-btn-primary-text-color;
-  font-size: $order-information-btn-primary-text-size;
-  letter-spacing: $letter-spacing;
-  font-weight: normal;
-  border-radius: 3px;
-  padding: 6px 8px;
-  margin-left: 10px;
-  outline: none;
-}
-.order-footer .buttons .btn-primary:active {
-  height: 28px;
-
-  background-color: $order-information-btn-primary-active-background-color;
-  border: $order-information-btn-primary-border-style;
-  color: $order-information-btn-primary-text-color;
-  font-size: $order-information-btn-primary-text-size;
-  letter-spacing: $letter-spacing;
-  font-weight: normal;
-  border-radius: 3px;
-  padding: 6px 8px;
-  margin-left: 10px;
-  outline: none;
-}
+// .order-footer .buttons .btn-primary:focus,
+// .order-footer .buttons .btn-primary:hover {
+//   height: 28px;
+//   background-color: $order-information-btn-primary-hover-background-color;
+//   border: $order-information-btn-primary-border-style;
+//   color: $order-information-btn-primary-text-color;
+//   font-size: $order-information-btn-primary-text-size;
+//   letter-spacing: $letter-spacing;
+//   font-weight: normal;
+//   border-radius: 3px;
+//   padding: 6px 8px;
+//   margin-left: 10px;
+//   outline: none;
+// }
+// .order-footer .buttons .btn-primary:active {
+//   height: 28px;
+//   background-color: $order-information-btn-primary-active-background-color;
+//   border: $order-information-btn-primary-border-style;
+//   color: $order-information-btn-primary-text-color;
+//   font-size: $order-information-btn-primary-text-size;
+//   letter-spacing: $letter-spacing;
+//   font-weight: normal;
+//   border-radius: 3px;
+//   padding: 6px 8px;
+//   margin-left: 10px;
+//   outline: none;
+// }
 .order-footer .buttons .btn-secondary {
   height: 28px;
 
@@ -414,7 +405,7 @@ $order-error-font-weight: 400;
   top: 10px;
   left: 50%;
   margin-left: -720px;
-  padding: 46px 0 0 0;
+  padding: 70px 0 0 0;
   z-index: 10;
 }
 .container-starbook .left-navigate a {

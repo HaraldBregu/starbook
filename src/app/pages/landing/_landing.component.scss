@@ -1,3 +1,243 @@
+
+app-landing {
+  height: 100%;
+  overflow: auto;
+
+  .landing-page {
+    display: block;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    min-height: 100vh;
+    padding: 70px 0; // 70px
+    background-color: #FFFFFF;
+    overflow: hidden;
+  }
+
+  .header {
+    background-image: url('/assets/images/lavori.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    color: white;
+    padding: 150px 0;
+    max-height: 550px;
+
+    .shadow {
+      display: block;
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      background-color: #000000;
+      opacity: 0.1;
+      transition: opacity 0.4s ease-in-out;
+      z-index: 1;
+      &:hover {
+        opacity: 0.2;
+      }
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin: 0 auto;
+      max-width: 700px;
+    }
+    h1 {
+      font-size: 300%;
+      margin: 0 auto 10px;
+      font-weight: 700;
+    }
+    h4 {
+      font-weight: 400;
+      font-style: italic;
+    }
+    .search {
+      display: block;
+      position: relative;
+      float: none;
+      max-width: 700px;
+      width: 100%;
+      margin: 40px auto 0;
+
+      .ui-autocomplete-input {
+        display: block;
+        width: 100%;
+        height: 60px;
+        padding: 15px 46px 15px 19px;
+        background-color: #FFFFFF;
+        border: none;
+        border-radius: 1px;
+        box-shadow: none;
+        outline: none;
+        color: #212121;
+        font-size: 18px;
+        letter-spacing: 0.11px;
+      }
+      .close-container {
+        display: block;
+        position: absolute;
+        top: 15px;
+        right: 35px;
+      }
+      .close-container .close{
+        position: relative;
+        display: inline-block;
+        width: 21px;
+        height: 21px;
+        overflow: hidden;
+        &::before, &::after {
+          content: '';
+          position: absolute;
+          height: 2px;
+          width: 100%;
+          top: 50%;
+          left: 0;
+          margin-top: -1px;
+          background: #3498db;
+        }
+        &::before {
+         transform: rotate(45deg);
+        }
+        &::after {
+          transform: rotate(-45deg);
+        }
+        &.thick {
+          &::before, &::after {
+            height: 4px;
+            margin-top: -2px;
+          }
+        }
+        &.rounded {
+          &::before, &::after {
+            border-radius: 5px;
+          }
+        }
+      }
+      .ui-autocomplete-panel {
+        display: block;
+        position: relative;
+        margin-top: -60px;
+        width: 100%;
+        background-color: #FFFFFF;
+        border-left: 1px solid #DCDCDC;
+        border-right: 1px solid #DCDCDC;
+        border-bottom: 1px solid #DCDCDC;
+        outline: none;
+        border-radius: 1px;
+        overflow-y: scroll;
+      }
+      .ui-autocomplete-panel .ui-state-highlight .search-result {
+        color: white;
+        background-color: #506795;
+      }
+      .ui-autocomplete-panel .search-result {
+        display: block;
+        width: 100%;
+        color: #212121;
+        font-size: 16px;
+        letter-spacing: 0.1px;
+        padding: 16px 21px;
+      }
+      .ui-autocomplete-panel.empty {
+        margin-top: 0;
+      }
+      .ui-autocomplete-panel.empty .no-result {
+        display: block;
+        width: 100%;
+        color: #8D9494;
+        font-size: 14px;
+        letter-spacing: 0.1px;
+        padding: 8px 21px;
+      }
+      .spinner {
+        display: block;
+        position: absolute;
+        top: 15px;
+        right: 35px;
+        width: 21px;
+        height: 21px;
+      }
+
+      .btn-primary {
+        height: 60px;
+        width: 100%;
+      }
+    }
+  }
+  .services {
+    padding: 50px 2px;
+    text-align: center;
+
+    .services-container {
+      margin: 40px 0 0;
+    }
+    .service-box {
+      display: inline-block;
+      float: left;
+      width: 20%;
+      height: 300px;
+      padding: 2px;
+    }
+    .service {
+      display: block;
+      position: relative;
+      width: 100%;
+      height: 100%;
+      border: none;
+      cursor: pointer;
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: top center;
+    }
+    .title {
+      display: block;
+      position: relative;
+      z-index: 2;
+      font-weight: 800;
+      color: white;
+      font-size: 20px;
+      letter-spacing: 0.09px;
+      padding: 20px 15px;
+      text-transform: uppercase;
+      white-space: normal !important;
+      text-align: left;
+    }
+  }
+  @media (max-width: 1100px) {
+    .services {
+      .service-box {
+        width: 25%;
+        height: 300px;
+      }
+    }
+  }
+  @media (max-width: 991px) {
+    .services {
+      .service-box {
+        width: (100%/3);
+        height: 300px;
+      }
+    }
+  }
+  @media (max-width: 768px) {
+    .services {
+      .service-box {
+        width: (100%/2);
+        height: 300px;
+      }
+    }
+  }
+  @media (max-width: 576px) {
+    .services {
+      .service-box {
+        width: 100%;
+        height: 300px;
+      }
+    }
+  }
+}
+
+
 // General styles
 $landing-background-color: #FFFFFF;
 $landing-header-color: #3B568D;
@@ -90,10 +330,6 @@ $services-footer-letter-spacing: 0.06px;
 $services-footer-price-text-size: 22px;
 $services-footer-price-letter-spacing: 0.06px;
 
-app-landing {
-  height: 100%;
-  overflow: auto;
-}
 .landing {
   display: block;
   position: relative;
@@ -736,7 +972,7 @@ input.landing-search .ui-autocomplete-input:-ms-input-placeholder {
   display: block;
   position: relative;
   width: 100%;
-  max-width: 1136px;
+  // max-width: 1136px;
   height: 284px;
   overflow: hidden;
 }
@@ -762,14 +998,14 @@ input.landing-search .ui-autocomplete-input:-ms-input-placeholder {
   -webkit-align-items: center;
   align-items: center;
   float: none;
-  width: 224px;
+  width: 20%;
   height: 280px;
   padding: 2px;
 }
 .services-card .service-container {
   display: block;
   position: relative;
-  width: 224px;
+  width: 100%;
   min-height: 280px;
   border: none;
   // border-radius: 1px;
@@ -794,17 +1030,16 @@ input.landing-search .ui-autocomplete-input:-ms-input-placeholder {
 .services-card .service-container:hover .shadow {
   opacity: 0.2;
 }
-.services-card .service-container .header {
+.landing .services-card .service-container .header {
   display: block;
   position: relative;
   z-index: 2;
   width: 200px;
-
-  font-weight: bold;
-  color: $services-header-color;
-  font-size: $services-header-text-size;
+  font-weight: 800;
+  color: white;
+  font-size: 20px;
   letter-spacing: $services-header-letter-spacing;
-  padding: 18px 12px;
+  padding: 20px 15px;
   text-transform: uppercase;
   white-space: normal !important;
   text-align: left;
