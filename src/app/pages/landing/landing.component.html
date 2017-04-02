@@ -1,6 +1,6 @@
 <div class="header">
-  <h1>Il miglior servizio per la tua casa al prezzo giusto.</h1>
-  <h4>Niente più ricerche, attese o confronti di preventivi. Lo faciamo noi al posto tuo. Ed è gratis.</h4>
+  <h1>Il miglior servizio per la tua casa al prezzo giusto</h1>
+  <h4>Niente più ricerche, attese o confronti di preventivi. Lo facciamo noi al posto tuo. Ed è gratis.</h4>
   <div class="search">
     <div class="row">
       <div class="col-md-9">
@@ -38,54 +38,66 @@
   <div class="services-container">
     <div class="service-box" *ngFor="let service of services" (click)="selectResult(service)">
       <div class="service" [style.background-image]="'url(' + service.image_url + ')'">
-        <div class="title">{{ service.title }}</div>
       </div>
+      <div class="title">{{ service.title }}</div>
     </div>
   </div>
 </div>
 <div class="how-work">
   <h1>Come funziona</h1>
-  <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
-    <img src="../../../assets/images/star_quality.png" class="rounded mx-auto d-block" alt="Quality">
-    <h3>Seleziona un servizio</h3>
-    <h4>Seleziona il servizio e definisci le carateristiche del servizio che ti serve.</h4>
+  <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12">
+    <div class="box">
+      <img src="../../../assets/images/service-list.png" class="rounded mx-auto d-block" alt="Seleziona il servizio">
+      <h3>Seleziona un servizio</h3>
+      <h5>Trova un servizio di cui hai bisogno e seleziona le carateristiche.</h5>
+    </div>
   </div>
-  <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 left-vertical-line right-vertical-line">
-    <img src="../../../assets/images/star_quality.png" class="rounded mx-auto d-block" alt="Quality">
-    <h3>Preventivo immediato</h3>
-    <h4>Ricevi in tempo reale solo un prezzo giusto per il servizio, niente attese.</h4>
+  <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12">
+    <div class="box">
+      <img src="../../../assets/images/service-time.png" class="rounded mx-auto d-block" alt="Calcola preventivo">
+      <h3>Preventivo immediato</h3>
+      <h5>Ricevi in tempo reale un unico prezzo per il servizio, niente attese e niente intermediari.</h5>
+    </div>
   </div>
-  <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
-    <img src="../../../assets/images/star_quality.png" class="rounded mx-auto d-block" alt="Quality">
-    <h3>Ordina il servizio</h3>
-    <h4>Ordina il servizio, parla con uno dei nostri dipendenti e ricevi il professionista a casa tua.</h4>
+  <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12">
+    <div class="box">
+      <img src="../../../assets/images/service-booking.png" class="rounded mx-auto d-block" alt="Ordina il servizio">
+      <h3>Ordina</h3>
+      <h5>Scegli il giorno quando vuoi iniziare i lavori, l'indirizzo dove si trova la tua casa e ordina direttamente.</h5>
+    </div>
   </div>
 </div>
 <div class="market">
   <div class="row">
-    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
-      <img src="../../../assets/images/star_quality.png" class="rounded mx-auto d-block" alt="Quality">
+    <div class="col-xl-6 col-lg-6 col-md-7 col-sm-12">
+      <div class="box">
+        <img src="../../../assets/images/bars-chart.png" class="rounded mx-auto d-block" alt="Quality">
+      </div>
     </div>
-    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
-      <h1>Prezzo del mercato</h1>
-      <p>I prezzi dei servizi vengono calcolati usando un algoritmo che considera il prezzo del mercato. Noi ci assicuriamo che il cliente riceva il prezzo giusto del servizio e che il professionista sia pagato il giusto.</p>
+    <div class="col-xl-6 col-lg-6 col-md-5 col-sm-12">
+      <div class="box">
+        <h1>Prezzo del mercato</h1>
+        <p>I prezzi dei servizi vengono calcolati usando un algoritmo che considera il prezzo del mercato. Noi ci assicuriamo che il cliente riceva il prezzo giusto del servizio e che il professionista sia pagato il giusto.</p>
+      </div>
     </div>
   </div>
 </div>
 <div class="professional">
   <div class="row">
-    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
-      <h1>Solo i migliori professionisti</h1>
-      <p>Noi lavoriamo solo con i migliori professionisti del settore per assicurarci un miglior risultato finale. Questi sono alcuni dei professionisti selezionati che fanno parte del team Starbook.</p>
+    <div class="col-xl-5 col-lg-5 col-md-5 col-sm-12">
+      <div class="box">
+        <h1>Solo i migliori professionisti</h1>
+        <p>Noi lavoriamo solo con i migliori professionisti del settore per assicurarci un miglior risultato finale. Questi sono alcuni dei professionisti selezionati che fanno parte del team Starbook.</p>
+      </div>
     </div>
-    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
-      <img src="../../../assets/images/star_quality.png" class="rounded mx-auto d-block" alt="Quality">
+    <div class="col-xl-7 col-lg-7 col-md-7 col-sm-12">
+      <div class="worker-img"></div>
     </div>
   </div>
 </div>
-<div class="reviews">
+<!-- <div class="reviews">
   <h1>Cosa dicono i nostri clienti</h1>
-</div>
+</div> -->
 <div class="recruiting">
   <div class="join-box">
     <h1>Sei un professionista in cerca di clienti?</h1>
@@ -97,17 +109,53 @@
     <p>Scopri il nostro programma di Riferimento per Agenzie Immobiliari e Amministratori Condominiali.</p>
     <button type="button" class="btn btn-warning" name="button">Scopri di più</button>
   </div>
-
-  <!-- <div class="row">
-    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 left-box">
-      <h1>Solo i migliori professionisti</h1>
-      <p>Noi lavoriamo solo con i migliori professionisti del settore per assicurarci un miglior risultato finale. Questi sono alcuni dei professionisti selezionati che fanno parte del team Starbook.</p>
-    </div>
-    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 right-box">
-      <img src="../../../assets/images/star_quality.png" class="rounded mx-auto d-block" alt="Quality">
-    </div>
-  </div> -->
 </div>
+<!-- <div class="slogan">
+  <h1>This is a slogan</h1>
+</div> -->
+<div class="pre-footer">
+  <div class="container-fluid">
+    <div class="pre">
+      <div class="row">
+        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12">
+          <p>Sicurezza del sito</p>
+          <div class="list-security">
+            <img src="../../../assets/images/norton.png" alt="Norton Security">
+            <img src="../../../assets/images/secure.png" alt="100% Secure">
+            <img src="../../../assets/images/trust.png" alt="Trusted Website">
+          </div>
+        </div>
+        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12">
+          <p>Sistemi di pagamento</p>
+          <div class="list-payment-methods">
+            <img src="../../../assets/images/mastercard.png" alt="Mastercard">
+            <img src="../../../assets/images/visa.png" alt="Visa">
+            <img src="../../../assets/images/americanexpress.png" alt="American Express">
+            <img src="../../../assets/images/stripe.png" alt="Stripe">
+          </div>
+        </div>
+        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12">
+          <p><a routerLink="about">Chi siamo</a></p>
+          <p><a routerLink="help">Aiuto e Assistenza</a></p>
+          <p><a routerLink="legal">Privacy e Condizioni</a></p>
+        </div>
+        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12">
+          <p>Seguici su</p>
+          <div class="list-socials">
+            <a href="https://www.facebook.com/starbook.co/" target="_blank"><img src="../../../assets/images/facebook.png" alt="Facebook"></a>
+            <a href="https://twitter.com/starbookco/" target="_blank"><img src="../../../assets/images/twitter.png" alt="Twitter"></a>
+            <a href="https://www.instagram.com/starbook.co/" target="_blank"><img src="../../../assets/images/instagram.png" alt="Instagram"></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="footer">
+  <p><a routerLink="/"><strong>Starbook</strong> © 2017 Tutti i diritti riservati</a></p>
+</div>
+
+
 <!-- <div class="landing">
   <div class="header-page">
     <div class="container">

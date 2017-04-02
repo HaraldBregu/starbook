@@ -137,19 +137,20 @@ $search-navbar-close-icon-base-color: #8D9494;
   float: left;
   max-width: 400px;
   width: 100%;
-  height: 30px;
-  margin: 7px 0 7px -200px;
+  height: 40px;
+  margin: 15px 0 15px -200px;
 }
 .search-block .ui-autocomplete-input {
   display: block;
   width: 100%;
-  height: 35px;
+  height: 40px;
   padding: 6px 46px 5px 15px;
-  background-color: $search-navbar-input-background;
+  background-color: white;
   border: none;
-  // border-radius: 3px;
+  border-radius: 3px;
+  border: 1px solid #DCE0E0;
   outline: none;
-  color: $search-navbar-text-color;
+  color: #212121;
   font-size: $search-navbar-text-size;
   letter-spacing: $search-navbar-text-letter-spacing;
 }
@@ -169,8 +170,8 @@ input.search-block .ui-autocomplete-input:-ms-input-placeholder {
 .search-block .close-container {
   display: block;
   position: absolute;
-  top: 11px;
-  right: 11px;
+  top: 14px;
+  right: 14px;
 }
 .search-block .close-container .close{
   position: relative;
@@ -210,26 +211,25 @@ input.search-block .ui-autocomplete-input:-ms-input-placeholder {
 .search-block .ui-autocomplete-panel {
   display: block;
   position: relative;
-  margin-top: -32px;
+  margin-top: -40px;
   width: 100%;
-  background-color: $search-navbar-input-background;
-  // border-left: $search-navbar-result-border;
-  // border-right: $search-navbar-result-border;
-  // border-bottom: $search-navbar-result-border;
+  background-color: white;
+  border-left: 1px solid #DCE0E0;
+  border-right: 1px solid #DCE0E0;
+  border-bottom: 1px solid #DCE0E0;
   outline: none;
-  // border-radius: 1px;
   overflow-y: scroll;
 }
 .search-block .ui-autocomplete-panel .ui-state-highlight .search-result {
   color: white;
-  background-color: $search-navbar-result-hover-background;
+  background-color: #506795;
 }
 .search-block .ui-autocomplete-panel .search-result {
   display: block;
   width: 100%;
-  color: $search-navbar-result-text-color;
-  font-size: $search-navbar-result-text-size;
-  letter-spacing: $search-navbar-result-letter-spacing;
+  color: rgba(0, 0, 0, 0.8);
+  font-size: 16;
+  letter-spacing: 0.1px;
   padding: 15px;
 }
 .search-block .ui-autocomplete-panel.empty {
@@ -238,9 +238,9 @@ input.search-block .ui-autocomplete-input:-ms-input-placeholder {
 .search-block .ui-autocomplete-panel.empty .no-result {
   display: block;
   width: 100%;
-  color: $search-navbar-result-empty-color;
-  font-size: $search-navbar-result-empty-font-size;
-  letter-spacing: $search-navbar-result-letter-spacing;
+  color: rgba(0, 0, 0, 0.7);
+  font-size: 14px;
+  letter-spacing: 0.1px;
   padding: 8px 21px;
 }
 .suggess-service {
