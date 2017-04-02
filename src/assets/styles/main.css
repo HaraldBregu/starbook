@@ -5935,8 +5935,7 @@ app-landing {
         width: 100%; }
   app-landing .services {
     padding: 50px 2px;
-    text-align: center;
-    overflow: hidden; }
+    text-align: center; }
     app-landing .services .services-container {
       overflow: hidden;
       margin: 40px 0 0;
