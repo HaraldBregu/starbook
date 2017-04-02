@@ -1,18 +1,15 @@
 
 app-landing {
+  display: block;
+  position: relative;
+  width: 100%;
   height: 100%;
-  overflow: auto;
-
-  .landing-page {
-    display: block;
-    position: relative;
-    width: 100%;
-    height: 100%;
-    min-height: 100vh;
-    padding: 70px 0; // 70px
-    background-color: #FFFFFF;
-    overflow: hidden;
-  }
+  // min-height: 100vh;
+  padding: 70px 0;
+  background-color: #FFFFFF;
+  overflow: hidden;
+  max-width: 1440px;
+  margin: auto;
 
   .header {
     background-image: url('/assets/images/lavori.png');
@@ -22,7 +19,6 @@ app-landing {
     color: white;
     padding: 150px 0;
     max-height: 550px;
-
     .shadow {
       display: block;
       position: absolute;
@@ -73,6 +69,7 @@ app-landing {
         font-size: 18px;
         letter-spacing: 0.11px;
       }
+
       .close-container {
         display: block;
         position: absolute;
@@ -167,8 +164,9 @@ app-landing {
   .services {
     padding: 50px 2px;
     text-align: center;
-
+    overflow: hidden;
     .services-container {
+      overflow: hidden;
       margin: 40px 0 0;
     }
     .service-box {
@@ -203,6 +201,99 @@ app-landing {
       text-align: left;
     }
   }
+  .how-work {
+    display: block;
+    overflow: hidden;
+    position: relative;
+    text-align: center;
+    padding: 50px 0;
+    img {
+      margin: 0 0 30px;
+    }
+    h1 {
+      margin: 0 0 50px;
+    }
+    h3 {
+      margin: 0 auto 10px;
+      color: #0072BB;
+      max-width: 400px;
+    }
+    h4 {
+      margin: auto;
+      font-weight: 300;
+      max-width: 400px;
+    }
+  }
+  .market {
+    background: #959595;
+    padding: 150px 200px;
+    color: white;
+    h1 {
+      text-align: right;
+      margin: 0 0 40px;
+    }
+    p {
+      text-align: justify;
+    }
+  }
+  .professional {
+    background: white;
+    padding: 150px 200px;
+    h1 {
+      text-align: left;
+      margin: 0 0 40px;
+    }
+    p {
+      text-align: justify;
+    }
+  }
+  .reviews {
+    background: #959595;
+    padding: 150px 200px;
+    text-align: center;
+    min-height: 200px;
+    color: white;
+  }
+  .recruiting {
+    text-align: center;
+    color: #646464;
+    height: 600px;
+    text-align: left;
+
+    .join-box, .partner-box {
+      display: inline-block;
+      float: left;
+      width: 50%;
+      height: 100%;
+      padding: 100px;
+      h1 {
+        margin: 0 0 20px;
+        font-weight: 700;
+      }
+      p {
+        font-weight: 400;
+      }
+      .btn-primary, .btn-warning {
+        margin: 100px 0 0;
+        border-radius: 3px;
+        font-weight: 500;
+      }
+    }
+    .join-box {
+      background: #ebebeb;
+    }
+    .partner-box {
+      background: white;
+    }
+  }
+
+  .left-vertical-line {
+    border-left: 1px solid #979797;
+  }
+  .right-vertical-line {
+    border-right: 1px solid #979797;
+  }
+
   @media (max-width: 1100px) {
     .services {
       .service-box {
@@ -236,6 +327,18 @@ app-landing {
     }
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 // General styles
@@ -731,11 +834,9 @@ $services-footer-price-letter-spacing: 0.06px;
   background-color: $search-input-background;
   border: $search-input-border;
   border-radius: 1px;
-  // box-shadow: $search-input-box-shadow;
   box-shadow: none;
   outline: none;
   color: $search-text-color;
-
   font-size: $search-text-size;
   letter-spacing: $search-text-letter-spacing;
 }
@@ -747,7 +848,6 @@ $services-footer-price-letter-spacing: 0.06px;
   max-width: 470px;
   margin: 0 auto;
   text-align: center;
-
   color: $landing-top-header-color;
   font-size: $landing-top-header-text-size;
   letter-spacing: $landing-top-header-letter-spacing;
@@ -755,10 +855,8 @@ $services-footer-price-letter-spacing: 0.06px;
   font-weight: normal;
 }
 .landing .btn.btn-warning {
-
   font-weight: bold;
   border: $card-btn-border;
-  // font-size: $card-btn-font-size;
   color: $card-btn-text-color;
   letter-spacing: $card-btn-letter-spacing;
   padding: 8px 7px;
@@ -781,18 +879,11 @@ $services-footer-price-letter-spacing: 0.06px;
   opacity: 1.0;
 }
 .landing .btn.btn-success {
-
-  // border: $card-btn-border;
-  // font-size: $card-btn-font-size;
   color: white;
   letter-spacing: $card-btn-letter-spacing;
   padding: 8px 7px;
-  // background: $btn-gradient-color-yellow-light;
   text-align: center;
   outline: none;
-  // background: -moz-linear-gradient(top,  $btn-gradient-color-yellow-light 0%, $btn-gradient-color-yellow-dark 100%);
-  // background: -webkit-linear-gradient(top,  $btn-gradient-color-yellow-light 0%,$btn-gradient-color-yellow-dark 100%);
-  // background: linear-gradient(to bottom,  $btn-gradient-color-yellow-light 0%,$btn-gradient-color-yellow-dark 100%);
   opacity: 0.9;
   width: 320px;
   margin: auto;
@@ -839,7 +930,7 @@ input.landing-search .ui-autocomplete-input:-ms-input-placeholder {
   top: 15px;
   right: 35px;
 }
-.close-container .close{
+.close-container .close {
   position: relative;
   display: inline-block;
   width: 21px;
@@ -913,7 +1004,6 @@ input.landing-search .ui-autocomplete-input:-ms-input-placeholder {
   letter-spacing: $search-result-letter-spacing;
   padding: 8px 21px;
 }
-
 
 // Services cards
 .landing .card-container {
@@ -1060,7 +1150,6 @@ input.landing-search .ui-autocomplete-input:-ms-input-placeholder {
   font-weight: normal;
 }
 .services-card .service-container .service-footer span {
-
   font-weight: bold;
   color: $services-header-color;
   font-size: $services-footer-price-text-size;
@@ -1228,10 +1317,6 @@ input.landing-search .ui-autocomplete-input:-ms-input-placeholder {
   height: 50px;
   margin: 20px auto;
 }
-
-@media (max-width: 991px) {
-
-}
 @media (max-width: 768px) {
   .landing-header h1 {
     padding: 40px 0 10px;
@@ -1323,9 +1408,4 @@ input.landing-search .ui-autocomplete-input:-ms-input-placeholder {
   .pre-footer-container h6 {
     text-align: center;
   }
-}
-
-/* Remove inner shadow from inputs on mobile iOS */
-textarea, input[type="text"] {
-  -webkit-appearance: none;
 }

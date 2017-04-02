@@ -72,7 +72,7 @@ p {
   font-family: $font-name;
   font-weight: 400;
   outline: none !important;
-  padding: 0;
+  padding: 0 20px;
   line-height: 50px;
 }
 .btn-secondary {
@@ -90,14 +90,16 @@ p {
 .btn-warning {
   background: #FFC845 !important;
   color: white;
+  font-size: 22px;
   font-family: $font-name;
   font-weight: 400;
   letter-spacing: 0.1px;
-  padding: 11px 7px;
+  padding: 0 20px;
   outline: none;
   border-radius: 0;
   border: 0;
   outline: none !important;
+  height: 50px;
 }
 .btn-warning:active:focus {
   color: white !important;
@@ -449,6 +451,12 @@ $datepicker-hover-text-color: #ffffff;
 .text-center {
   text-align: center;
 }
+.text-right {
+  text-align: right;
+}
+.text-justify {
+  text-align: justify;
+}
 .disable-body-scroll {
   overflow: hidden;
 }
@@ -456,6 +464,14 @@ $datepicker-hover-text-color: #ffffff;
   .visibility-hidden {
     visibility: hidden;
   }
+}
+
+/* Remove inner shadow from inputs on mobile iOS */
+textarea, input[type="text"] {
+  -webkit-appearance: none;
+}
+input::-ms-clear {
+  display: none;
 }
 .noselect {
   -webkit-touch-callout: none; /* iOS Safari */

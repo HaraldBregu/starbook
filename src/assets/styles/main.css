@@ -456,7 +456,7 @@ p {
   font-family: Roboto, sans-serif;
   font-weight: 400;
   outline: none !important;
-  padding: 0;
+  padding: 0 20px;
   line-height: 50px; }
 
 .btn-secondary {
@@ -474,14 +474,16 @@ p {
 .btn-warning {
   background: #FFC845 !important;
   color: white;
+  font-size: 22px;
   font-family: Roboto, sans-serif;
   font-weight: 400;
   letter-spacing: 0.1px;
-  padding: 11px 7px;
+  padding: 0 20px;
   outline: none;
   border-radius: 0;
   border: 0;
-  outline: none !important; }
+  outline: none !important;
+  height: 50px; }
 
 .btn-warning:active:focus {
   color: white !important;
@@ -784,12 +786,25 @@ textarea.form-control {
 .text-center {
   text-align: center; }
 
+.text-right {
+  text-align: right; }
+
+.text-justify {
+  text-align: justify; }
+
 .disable-body-scroll {
   overflow: hidden; }
 
 @media (max-width: 480px) {
   .visibility-hidden {
     visibility: hidden; } }
+/* Remove inner shadow from inputs on mobile iOS */
+textarea, input[type="text"] {
+  -webkit-appearance: none; }
+
+input::-ms-clear {
+  display: none; }
+
 .noselect {
   -webkit-touch-callout: none;
   /* iOS Safari */
@@ -5784,17 +5799,15 @@ app-profile .page-container {
   .dark-screen {
     background-color: transparent; } }
 app-landing {
+  display: block;
+  position: relative;
+  width: 100%;
   height: 100%;
-  overflow: auto; }
-  app-landing .landing-page {
-    display: block;
-    position: relative;
-    width: 100%;
-    height: 100%;
-    min-height: 100vh;
-    padding: 70px 0;
-    background-color: #FFFFFF;
-    overflow: hidden; }
+  padding: 70px 0;
+  background-color: #FFFFFF;
+  overflow: hidden;
+  max-width: 1440px;
+  margin: auto; }
   app-landing .header {
     background-image: url("/assets/images/lavori.png");
     background-size: cover;
@@ -5918,8 +5931,10 @@ app-landing {
         width: 100%; }
   app-landing .services {
     padding: 50px 2px;
-    text-align: center; }
+    text-align: center;
+    overflow: hidden; }
     app-landing .services .services-container {
+      overflow: hidden;
       margin: 40px 0 0; }
     app-landing .services .service-box {
       display: inline-block;
@@ -5949,6 +5964,75 @@ app-landing {
       text-transform: uppercase;
       white-space: normal !important;
       text-align: left; }
+  app-landing .how-work {
+    display: block;
+    overflow: hidden;
+    position: relative;
+    text-align: center;
+    padding: 50px 0; }
+    app-landing .how-work img {
+      margin: 0 0 30px; }
+    app-landing .how-work h1 {
+      margin: 0 0 50px; }
+    app-landing .how-work h3 {
+      margin: 0 auto 10px;
+      color: #0072BB;
+      max-width: 400px; }
+    app-landing .how-work h4 {
+      margin: auto;
+      font-weight: 300;
+      max-width: 400px; }
+  app-landing .market {
+    background: #959595;
+    padding: 150px 200px;
+    color: white; }
+    app-landing .market h1 {
+      text-align: right;
+      margin: 0 0 40px; }
+    app-landing .market p {
+      text-align: justify; }
+  app-landing .professional {
+    background: white;
+    padding: 150px 200px; }
+    app-landing .professional h1 {
+      text-align: left;
+      margin: 0 0 40px; }
+    app-landing .professional p {
+      text-align: justify; }
+  app-landing .reviews {
+    background: #959595;
+    padding: 150px 200px;
+    text-align: center;
+    min-height: 200px;
+    color: white; }
+  app-landing .recruiting {
+    text-align: center;
+    color: #646464;
+    height: 600px;
+    text-align: left; }
+    app-landing .recruiting .join-box, app-landing .recruiting .partner-box {
+      display: inline-block;
+      float: left;
+      width: 50%;
+      height: 100%;
+      padding: 100px; }
+      app-landing .recruiting .join-box h1, app-landing .recruiting .partner-box h1 {
+        margin: 0 0 20px;
+        font-weight: 700; }
+      app-landing .recruiting .join-box p, app-landing .recruiting .partner-box p {
+        font-weight: 400; }
+      app-landing .recruiting .join-box .btn-primary, app-landing .recruiting .join-box .btn-warning, app-landing .recruiting .partner-box .btn-primary, app-landing .recruiting .partner-box .btn-warning {
+        margin: 100px 0 0;
+        border-radius: 3px;
+        font-weight: 500; }
+    app-landing .recruiting .join-box {
+      background: #ebebeb; }
+    app-landing .recruiting .partner-box {
+      background: white; }
+  app-landing .left-vertical-line {
+    border-left: 1px solid #979797; }
+  app-landing .right-vertical-line {
+    border-right: 1px solid #979797; }
   @media (max-width: 1100px) {
     app-landing .services .service-box {
       width: 25%;
@@ -6862,10 +6946,6 @@ input.landing-search .ui-autocomplete-input:-ms-input-placeholder {
 
   .pre-footer-container h6 {
     text-align: center; } }
-/* Remove inner shadow from inputs on mobile iOS */
-textarea, input[type="text"] {
-  -webkit-appearance: none; }
-
 app-wizard {
   display: block;
   float: left;
