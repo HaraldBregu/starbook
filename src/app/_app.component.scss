@@ -143,6 +143,9 @@ app-root {
   }
   .container-starbook {
     padding: 0 20px;
+    max-width: 1440px;
+    margin: auto;
+    
     .navbar-nav .nav-item+.nav-item {
       margin-left: 0 !important;
     }
@@ -274,7 +277,7 @@ $search-navbar-close-icon-base-color: #8D9494;
 
 @media (max-width: 576px) {
   .tagline {
-    display: none;
+    // display: none;
   }
   .navbar-brand {
     margin-left: 15px;

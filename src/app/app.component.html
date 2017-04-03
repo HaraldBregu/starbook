@@ -1,13 +1,7 @@
 <nav class="navbar navbar-dark navbar-fixed-top bg-inverse" [ngClass]="{'is-search': isFindField}" (window:resize)="onResize()">
   <div class="container-starbook top-menu">
-    <!-- <a class="navbar-brand" routerLink="/" (click)="updateTabMenu()">
-      <img *ngIf="navbarState===false" src="/assets/images/starbook-brand-logo.png" alt="starbook">
-      <img *ngIf="navbarState===true" src="/assets/images/starbook-brand-logo-right.png" alt="starbook">
-    </a> -->
-    <!-- <a class="navbar-brand" [routerLink]="['/']" (click)="updateTabMenu(true)" >Starbook</a> -->
-
-    <a class="navbar-brand" routerLink="" (click)="clickBrandLogo()">
-      <div *ngIf="screenWidth > 768">
+    <a class="navbar-brand" (click)="clickBrandLogo()">
+      <div *ngIf="screenWidth > 768" routerLink="">
         <img src="/assets/images/brand-logo-name-rotated.png" alt="starbook">
       </div>
       <div *ngIf="screenWidth < 769">
@@ -15,8 +9,6 @@
         <img *ngIf="collapsed" src="/assets/images/brand-logo-right.png" alt="starbook">
       </div>
     </a>
-
-    <!-- <a class="navbar-brand mobile" routerLink="" (click)="updateTabMenu()">S</a> -->
 
     <div class="center-container">
       <div class="search-block" *ngIf="isFindField">
@@ -43,11 +35,8 @@
           </div>
         </div>
       </div>
+      <div *ngIf="!isFindField" class="tagline noselect">{{tagline}}</div>
     </div>
-
-    <div class="tagline noselect" *ngIf="!isFindField">{{tagline}}</div>
-
-    <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" aria-label="Menu" (click)="toggleMenu()"></button> -->
 
     <!--  Collapsed -->
     <ul class="nav navbar-nav float-xs-right" *ngIf="auth !== false" [ngClass]="{'collapse':!collapsed}">
