@@ -1,39 +1,56 @@
-<nav class="navbar navbar-dark navbar-fixed-top bg-inverse" [ngClass]="{'is-search': isFindField}">
+<nav class="navbar navbar-dark navbar-fixed-top bg-inverse" [ngClass]="{'is-search': isFindField}" (window:resize)="onResize()">
   <div class="container-starbook top-menu">
-    <a class="navbar-brand" routerLink="/" (click)="updateTabMenu()">
-      <img src="/assets/images/starbook-brand-logo.png" alt="starbook">
+    <!-- <a class="navbar-brand" routerLink="/" (click)="updateTabMenu()">
+      <img *ngIf="navbarState===false" src="/assets/images/starbook-brand-logo.png" alt="starbook">
+      <img *ngIf="navbarState===true" src="/assets/images/starbook-brand-logo-right.png" alt="starbook">
+    </a> -->
+    <!-- <a class="navbar-brand" [routerLink]="['/']" (click)="updateTabMenu(true)" >Starbook</a> -->
+
+    <a class="navbar-brand" routerLink="" (click)="clickBrandLogo()">
+      <div *ngIf="screenWidth > 768">
+        <img src="/assets/images/brand-logo-name-rotated.png" alt="starbook">
+      </div>
+      <div *ngIf="screenWidth < 769">
+        <img *ngIf="!collapsed" src="/assets/images/brand-logo-rotated.png" alt="starbook">
+        <img *ngIf="collapsed" src="/assets/images/brand-logo-right.png" alt="starbook">
+      </div>
     </a>
-    <a class="navbar-brand mobile" routerLink="" (click)="updateTabMenu()">S</a>
-    <div class="search-block" *ngIf="isFindField">
-      <p-autoComplete [(ngModel)]="findValue" [suggestions]="results" field="title" scrollHeight="170px" (completeMethod)="search($event)" (onSelect)="selectResult(findValue)" placeholder="Cerca" minLength="0">
-        <template let-res>
-          <div class="search-result" (click)="selectResult(res)">{{ res.title }}</div>
-        </template>
-      </p-autoComplete>
-      <div class="spinner" *ngIf="spinerView">
-        <svg width='13px' height='13px' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid" class="uil-ring">
-          <rect x="0" y="0" width="100" height="100" fill="none" class="bk"></rect>
-          <circle cx="50" cy="50" r="45" stroke-dasharray="169.64600329384882 113.09733552923257" stroke="#3B568D" fill="none" stroke-width="10">
-            <animateTransform attributeName="transform" type="rotate" values="0 50 50;180 50 50;360 50 50;" keyTimes="0;0.5;1" dur="1s" repeatCount="indefinite" begin="0s"></animateTransform>
-          </circle>
-        </svg>
-      </div>
-      <div class="close-container" *ngIf="!spinerView && clearView">
-        <span class="close rounded thick" (click)="clearSearchForm()"></span>
-      </div>
-      <div class="ui-autocomplete-panel empty" *ngIf="results.length === 0 && findValue.length > 0 && isSearched">
-        <div class="no-result noselect">
-          Il servizio "{{findValue}}" non è disponibile
-          <button class="suggess-service" (click)="requireService()">{{newServiceRequest.message}}</button>
+
+    <!-- <a class="navbar-brand mobile" routerLink="" (click)="updateTabMenu()">S</a> -->
+
+    <div class="center-container">
+      <div class="search-block" *ngIf="isFindField">
+        <p-autoComplete [(ngModel)]="findValue" [suggestions]="results" field="title" scrollHeight="170px" (completeMethod)="search($event)" (onSelect)="selectResult(findValue)" placeholder="Cerca" minLength="0">
+          <template let-res>
+            <div class="search-result" (click)="selectResult(res)">{{ res.title }}</div>
+          </template>
+        </p-autoComplete>
+        <div class="spinner" *ngIf="spinerView">
+          <svg width='20px' height='20px' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid" class="uil-ring">
+            <rect x="0" y="0" width="100" height="100" fill="none" class="bk"></rect>
+            <circle cx="50" cy="50" r="45" stroke-dasharray="169.64600329384882 113.09733552923257" stroke="#3B568D" fill="none" stroke-width="10">
+              <animateTransform attributeName="transform" type="rotate" values="0 50 50;180 50 50;360 50 50;" keyTimes="0;0.5;1" dur="1s" repeatCount="indefinite" begin="0s"></animateTransform>
+            </circle>
+          </svg>
+        </div>
+        <div class="close-container" *ngIf="!spinerView && clearView">
+          <span class="close rounded thick" (click)="clearSearchForm()"></span>
+        </div>
+        <div class="ui-autocomplete-panel empty" *ngIf="results.length === 0 && findValue.length > 0 && isSearched">
+          <div class="no-result noselect">
+            Il servizio "{{findValue}}" non è disponibile
+            <button class="suggess-service" (click)="requireService()">{{newServiceRequest.message}}</button>
+          </div>
         </div>
       </div>
     </div>
 
     <div class="tagline noselect" *ngIf="!isFindField">{{tagline}}</div>
 
-    <button class="navbar-toggler" type="button" data-toggle="collapse" aria-label="Menu" (click)="toggleMenu()"></button>
+    <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" aria-label="Menu" (click)="toggleMenu()"></button> -->
 
-    <ul class="nav navbar-nav float-xs-right" *ngIf="auth !== false" [ngClass]="{'collapse':navbarState===false}">
+    <!--  Collapsed -->
+    <ul class="nav navbar-nav float-xs-right" *ngIf="auth !== false" [ngClass]="{'collapse':!collapsed}">
       <li class="nav-item">
         <a class="nav-link home" routerLink="" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" (click)="updateTabMenu(true)">Home</a>
       </li>
@@ -44,8 +61,8 @@
         <a class="nav-link profile" routerLink="/profile/general" routerLinkActive="active" (click)="toggleMenu()"><i class="fa fa-user" aria-hidden="true"> </i> {{auth.profile.fullname}}</a>
       </li>
     </ul>
-
-    <ul class="nav navbar-nav float-xs-right" *ngIf="auth === false && browser" [ngClass]="{'collapse':navbarState===false}">
+    <!--  Collapsed not authenticated -->
+    <ul class="nav navbar-nav float-xs-right" *ngIf="auth === false && browser" [ngClass]="{'collapse':!collapsed}">
       <li class="nav-item">
         <a class="nav-link profile" (click)="getRegistrationPopup()">Registrati</a>
       </li>
@@ -53,8 +70,8 @@
         <a class="nav-link profile" (click)="getLoginPopup()">Accedi</a>
       </li>
     </ul>
-
   </div>
+
 </nav>
 <router-outlet></router-outlet>
 <app-popups></app-popups>

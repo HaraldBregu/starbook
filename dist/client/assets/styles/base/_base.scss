@@ -469,6 +469,8 @@ $datepicker-hover-text-color: #ffffff;
 /* Remove inner shadow from inputs on mobile iOS */
 textarea, input[type="text"] {
   -webkit-appearance: none;
+  -webkit-border-radius: 0px;
+  border-radius: 0;
 }
 input::-ms-clear {
   display: none;

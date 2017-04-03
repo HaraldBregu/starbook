@@ -109,7 +109,7 @@ $footer-links-font-size: 12px;
 $footer-links-text-letter-spacing: 0.08px;
 
 // app-order {
-  .container-starbook .sidebar {
+  .sidebar {
     display: block;
     width: 410px;
     height: auto;
@@ -828,7 +828,7 @@ $footer-links-text-letter-spacing: 0.08px;
   }
 
   @media (max-width: 1440px) {
-    .container-starbook .sidebar {
+    .sidebar {
       right: 0;
       bottom: 0;
       margin-right: 0;
@@ -874,16 +874,16 @@ $footer-links-text-letter-spacing: 0.08px;
     //   position: relative;
     //   padding: 43px 16px 20px 16px;
     // }
-    .container-starbook .row {
+    .row {
       // margin-right: 0;
       margin-left: 0px;
       margin-right: 0px;
     }
-    .container-starbook .main {
+    .main {
       padding-right: 0px;
       padding-left: 0px;
     }
-    .container-starbook .sidebar {
+    .sidebar {
       position: relative;
       display: block;
       width: 100%;
@@ -931,17 +931,17 @@ $footer-links-text-letter-spacing: 0.08px;
     }
   }
   @media (max-width: 645px) {
-    .container-starbook .row {
+    .row {
       margin-right: 0;
       margin-left: 0;
       padding-bottom: 0px;
-      padding-top: 50px;
+      // padding-top: 50px;
     }
-    .container-starbook .main {
+    .main {
       padding-right: 0px;
       padding-left: 0px;
     }
-    .container-starbook .sidebar {
+    .sidebar {
       position: relative;
       display: block;
       width: 100%;

@@ -2,7 +2,6 @@ import { isBrowser } from 'angular2-universal';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router, Event, NavigationEnd, ActivatedRoute } from '@angular/router';
 import { AnalyticsService } from './shared/analytics.service';
-
 import { AuthService } from './shared/auth.service';
 import { NavigationService } from './shared/navigation.service';
 import { PopupsService } from './popups/popups.service';
@@ -31,50 +30,36 @@ export class AppComponent implements OnInit, OnDestroy {
   subscription: Subscription;
   authSubscription: Subscription;
   // loadingSubscription: Subscription;
+  public screenWidth;
   public newServiceRequest = {
     message: 'Richiedi?'
   };
+  public collapsed = false;
 
   constructor (public router:Router, private route: ActivatedRoute, private authServics: AuthService, private navigationService: NavigationService, private popupsService: PopupsService, private homeService: HomeService, private analyticsService: AnalyticsService) {
+    this.navbarState = false;
+
     if (isBrowser) {
-      this.router.events.subscribe(
-        (event:Event) => {
-          if (event instanceof NavigationEnd) {
-            ga('send', 'pageview', event.urlAfterRedirects);
-            let currentRoute = this.route.root;
-            while (currentRoute.children[0] !== undefined) {
-              currentRoute = currentRoute.children[0];
-            }
-            if ('isFindField' in currentRoute.snapshot.data) {
-              this.isFindField = true;
-            } else {
-              this.isFindField = false;
-            }
+      this.router.events.subscribe((event:Event) => {
+        if (event instanceof NavigationEnd) {
+          ga('send', 'pageview', event.urlAfterRedirects);
+          let currentRoute = this.route.root;
+          while (currentRoute.children[0] !== undefined) {
+            currentRoute = currentRoute.children[0];
           }
-        });
+          if ('isFindField' in currentRoute.snapshot.data) {
+            this.isFindField = true;
+          } else {
+            this.isFindField = false;
+          }
+        }
+      });
     }
-  }
-
-  getLoginPopup() {
-    this.popupsService.activate({type: 'login'});
-    this.toggleMenu();
-  }
-
-  getRegistrationPopup() {
-    this.popupsService.activate({type: 'registration'});
-    this.toggleMenu();
-  }
-
-  closePopup() {
-    this.popupsService.activate('');
-  }
-
-  toggleMenu() {
-    this.navbarState = !this.navbarState;
   }
 
   ngOnInit() {
     this.auth = this.authServics.authInit();
+    this.screenWidth = document.querySelector('body').clientWidth;
     if (isBrowser) {
       this.subscription = this.navigationService.getMessage$.subscribe(message => {
         this.tagline = message;
@@ -96,10 +81,48 @@ export class AppComponent implements OnInit, OnDestroy {
     // });
   }
 
+  onResize() {
+    if (isBrowser) {
+      this.screenWidth = document.querySelector('body').clientWidth;
+    }
+  }
+
+  ngAfterViewInit() {
+
+  }
+
+  clickBrandLogo() {
+    this.collapsed = !this.collapsed;
+    console.log('click to brand');
+  }
+
+  getLoginPopup() {
+    this.popupsService.activate({type: 'login'});
+    this.toggleMenu();
+    this.collapsed = false;
+  }
+
+  getRegistrationPopup() {
+    this.popupsService.activate({type: 'registration'});
+    this.toggleMenu();
+    this.collapsed = false;
+  }
+
+  closePopup() {
+    this.popupsService.activate('');
+  }
+
+  toggleMenu() {
+    this.collapsed = false;
+
+    this.navbarState = !this.navbarState;
+  }
+
   updateTabMenu(toggleMenu = false) {
     if (toggleMenu) {
       this.toggleMenu();
     }
+    this.collapsed = false;
     this.navigationService.updateActiveTab(false);
   }
 
@@ -126,7 +149,6 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   requireService() {
-    console.log('require service');
     this.newServiceRequest.message = 'Grazie!';
     this.analyticsService.sendEvent({category:'Services', action: 'request', label: this.findValue});
   }

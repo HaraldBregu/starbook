@@ -1,17 +1,4 @@
-<!--<nav class="navbar navbar-dark navbar-tabs">
-  <div class="container-starbook home-tab-bar"
-       (swipeleft)="swipe($event.type, $event.deltaX)"
-       (swiperight)="swipe($event.type, $event.deltaX)">
-    <ul class="nav nav-pills"
-        [ngStyle]="{'margin-left.px': delta}">
-      <li class="nav-item" *ngFor="let navServices of servicesCategoryList">
-        <a class="nav-link" [ngClass]="{'active':navServices._id===activeServiceCategory && activeServiceCategoryType !== false}" (click)="tabNavigate(navServices._id)"><i class="f{{navServices.icon_name}}"></i> {{navServices.title}}</a>
-      </li>
-    </ul>
-  </div>
-</nav>-->
-
-<div class="container-starbook home-page" *ngIf="isServicesView === true">
+<div class="home-page" *ngIf="isServicesView === true">
   <div class="row">
     <div class="col-sm-9 col-md-10 main">
       <div class="tab-container">
@@ -55,13 +42,10 @@
               <div *ngIf="!serviceCategory.image_url || serviceCategory.image_url == ''">
                 <img [ngStyle]="{'display': 'none'}">
               </div>
-              <!-- <div class="service-image" *ngIf="serviceCategory.image_url !== ''" [ngStyle]="{'background-image': 'url(' + serviceCategory.image_url + ')'}"></div> -->
             </div>
             <div class="service content noselect">
               <span *ngFor="let item of serviceCategory.options">
                 <div class="item-container" *ngIf="item.type === 'CHECKBOX' || item.type === 'RADIOBUTTON'" [ngClass]="{'checked':item.selected, 'image-item': item.image_url}" (click)="toggleService(serviceCategory.title, item.title)">
-                  <!--<i *ngIf="item.selected===true" class="fa fa-check-square"></i>-->
-                  <!--<i *ngIf="item.selected===false" class="fa fa-square-o"></i>-->
                   <div class="item">
                     <i *ngIf="item.selected===true" class="checkbox"><span></span></i>
                     <i *ngIf="item.selected===false" class="checkbox empty"></i>
@@ -79,59 +63,10 @@
             </div>
           </div>
         </div>
-
-        <!-- <div class="masonry-container">
-          <div class="services-block" *ngFor="let serviceCategory of servicesData">
-            <div class="header">{{serviceCategory.title_1}}</div>
-            <div class="service content noselect">
-              <span *ngFor="let item of serviceCategory.options">
-                <div class="item" *ngIf="item.type === 'CHECKBOX' || item.type === 'RADIOBUTTON'" [ngClass]="{'checked':item.selected}" (click)="toggleService(serviceCategory.title, item.title)">
-                  <i *ngIf="item.selected===true" class="fa fa-check-square"></i>
-                  <i *ngIf="item.selected===false" class="fa fa-square-o"></i>
-                  {{item.title_1}}
-                </div>
-                <div class="input-group" *ngIf="item.type === 'INPUTTEXT'">
-                  <input type="text" [(ngModel)]="servicesData[item.formId].options[item.optionId].input_value" (keyup)="changeValue(item.formId, item.optionId)" (change)="changeValue(item.formId, item.optionId)" (focus)="selectAllContent($event)">
-                  <span class="input-group-addon">{{servicesData[item.formId].options[item.optionId].value_symbol}}</span>
-                </div>
-              </span>
-            </div>
-          </div>
-
-          <!-- <div class="services-block" *ngFor="let serviceCategory of servicesData" [ngClass]="{'services-block-big': serviceCategory.type === 'content'}">
-            <span *ngIf="serviceCategory.type === 'content'">
-              <img [src]="serviceCategory.image" (load)="makeMasonry()">
-              <div class="description">{{ serviceCategory.description }}</div>
-            </span>
-            <span *ngIf="serviceCategory.type !== 'content'">
-              <div class="header">{{serviceCategory.title_1}}</div>
-              <div class="service content noselect">
-                <span *ngFor="let item of serviceCategory.options">
-                  <div class="item" *ngIf="item.type === 'CHECKBOX' || item.type === 'RADIOBUTTON'" [ngClass]="{'checked':item.selected}" (click)="toggleService(serviceCategory.title, item.title)">
-                    <i *ngIf="item.selected===true" class="fa fa-check-square"></i>
-                    <i *ngIf="item.selected===false" class="fa fa-square-o"></i>
-                    {{item.title_1}}
-                  </div>
-                  <div class="input-group" *ngIf="item.type === 'INPUTTEXT'">
-                    <input type="text" [(ngModel)]="servicesData[item.formId].options[item.optionId].input_value" (keyup)="changeValue(item.formId, item.optionId)" (change)="changeValue(item.formId, item.optionId)" (focus)="selectAllContent($event)">
-                    <span class="input-group-addon">{{servicesData[item.formId].options[item.optionId].value_symbol}}</span>
-                  </div>
-                </span>
-              </div>
-            </span>
-          </div>
-        </div> -->
       </div>
       <app-order [orderData]="orderData" [orderIsFull]="orderIsFull"></app-order>
     </div>
   </div>
-
-  <!-- <div class="footer-container">
-    <div class="copyright">Starbook © 2016 Tutti i diritti riservati</div>
-    <span> • </span><a routerLink="../../profile/privacy">Privacy</a>
-    <span> • </span><a routerLink="../../profile/conditions">Condizioni</a>
-    <span> • </span><a routerLink="../../profile/help">Assistenza</a>
-  </div> -->
 </div>
 <app-landing *ngIf="isServicesView === false"></app-landing>
 <app-loading *ngIf="isLoading" class="services-loader"></app-loading>

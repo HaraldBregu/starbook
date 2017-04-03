@@ -100,7 +100,6 @@ export class HomeComponent implements AfterViewInit, OnInit, OnDestroy {
   }
 
   ngOnInit() {
-
     this.seoService.setTitle('Starbook | Prenota lavorazioni professionali per la tua casa');
     this.seoService.setOgElem('og:title', 'Starbook | Prenota lavorazioni professionali per la tua casa');
     this.seoService.setMetaElem('description', 'Preventivi diretti? Starbook è la piattaforma dei lavorazioni professionali. Puoi creare preventivi istantanei senza il bisogno di contattare il professionista.');

@@ -48,11 +48,22 @@ app-landing {
     .search {
       display: block;
       position: relative;
+      // overflow: auto;
       float: none;
       max-width: 800px;
       width: 100%;
       margin: 40px auto 0;
 
+      .search-field {
+        display: inline-block;
+        float: left;
+        width: 80%;
+      }
+      .search-button {
+        display: inline-block;
+        float: left;
+        width: 20%;
+      }
       .ui-autocomplete-input {
         display: block;
         width: 100%;
@@ -71,14 +82,14 @@ app-landing {
       .close-container {
         display: block;
         position: absolute;
-        top: 15px;
-        right: 35px;
+        top: 17px;
+        right: 23%;
       }
       .close-container .close{
         position: relative;
         display: inline-block;
-        width: 21px;
-        height: 21px;
+        width: 25px;
+        height: 25px;
         overflow: hidden;
         &::before, &::after {
           content: '';
@@ -110,16 +121,18 @@ app-landing {
       }
       .ui-autocomplete-panel {
         display: block;
-        position: relative;
-        margin-top: -60px;
-        width: 100%;
+        // position: relative;
+        // overflow-y: scroll;
+        position: absolute;
+        overflow-y: auto;
+        // margin-top: -60px;
+        width: 80% !important;
         background-color: #FFFFFF;
         border-left: 1px solid #DCDCDC;
         border-right: 1px solid #DCDCDC;
         border-bottom: 1px solid #DCDCDC;
         outline: none;
         border-radius: 1px;
-        overflow-y: scroll;
       }
       .ui-autocomplete-panel .ui-state-highlight .search-result {
         color: white;
@@ -148,9 +161,9 @@ app-landing {
         display: block;
         position: absolute;
         top: 15px;
-        right: 35px;
-        width: 21px;
-        height: 21px;
+        right: 23%;
+        width: 25px;
+        height: 25px;
       }
 
       .btn-primary {
@@ -314,6 +327,7 @@ app-landing {
     padding: 100px 40px 20px;
   }
   .pre-footer {
+    overflow: auto;
     color: rgba(255, 255, 255, 0.7);
     text-align: left;
     background: #161517;
@@ -388,14 +402,30 @@ app-landing {
     background-position: center center;
     height: 500px;
   }
-  .workers-invitation-img {
-  }
 
+  @media (max-width: 1200px) {
+    .services {
+      .service-box {
+        width: 25%;
+      }
+    }
+  }
   @media (max-width: 1100px) {
     .services {
       .service-box {
         width: 25%;
-        height: 300px;
+      }
+    }
+    .market {
+      padding: 50px 20px;
+    }
+    .professional {
+      padding: 50px 20px;
+    }
+    .recruiting {
+      .partner-box {
+        background-position: 116% 89%;
+        background-size: 356px;
       }
     }
   }
@@ -403,15 +433,17 @@ app-landing {
     .services {
       .service-box {
         width: (100%/3);
-        height: 300px;
       }
     }
   }
   @media (max-width: 768px) {
+    .header {
+      padding: 80px 20px;
+      height: 380px;
+    }
     .services {
       .service-box {
         width: (100%/2);
-        height: 300px;
       }
     }
     .market {
@@ -421,19 +453,101 @@ app-landing {
         margin: 40px 0 40px;
       }
     }
+    .recruiting {
+      .join-box, .partner-box {
+        width: 100%;
+        padding: 80px;
+        height: 600px;
+      }
+      .partner-box {
+        background-position: 116% 89%;
+        background-size: 513px;
+      }
+    }
   }
   @media (max-width: 576px) {
+    .header {
+      padding: 40px 30px;
+      height: 500px;
+
+      .search {
+        .ui-autocomplete-panel {
+          width: 100% !important;
+        }
+        .spinner {
+          right: 5%;
+        }
+        .close-container {
+          right: 5%;
+        }
+        .search-field {
+          display: block;
+          width: 100%;
+          margin: auto;
+          float: none;
+        }
+        .search-button {
+          display: block;
+          width: 50%;
+          margin: 10px 0;
+          float: none;
+        }
+      }
+    }
     .services {
       .service-box {
         width: 100%;
-        height: 300px;
       }
     }
     .market {
       padding: 20px;
     }
+    .recruiting {
+      .join-box, .partner-box {
+        width: 100%;
+        padding: 50px;
+        height: 600px;
+      }
+      .partner-box {
+        background-position: 165% 89%;
+        background-size: 376px;
+      }
+    }
   }
+  @media (max-width: 375px) {
+    .header {
+      height: 550px;
+    }
+  }
+  @media (max-width: 320px) {
+    .header {
+      max-height: 650px;
+      padding: 40px 30px;
+      height: 600px;
+    }
+    .recruiting {
+      .partner-box {
+        background-position: -56% 89%;
+        background-size: 386px;
+      }
+    }
+
+  }
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
