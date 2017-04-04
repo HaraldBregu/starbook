@@ -27,7 +27,7 @@
       </div>
     </div>
     <div class="search-button">
-      <button class="btn btn-primary" (click)="search()">Cerca</button>
+      <button class="btn btn-primary" (click)="searchMore()">Cerca</button>
     </div>
   </div>
 </div>
@@ -93,24 +93,18 @@
     </div>
   </div>
 </div>
-<!-- <div class="reviews">
-  <h1>Cosa dicono i nostri clienti</h1>
-</div> -->
 <div class="recruiting">
   <div class="join-box">
     <h1>Sei un professionista in cerca di clienti?</h1>
     <p>Iscriviti a Starbook gratuitamente e diventa parte del nostro team.</p>
-    <button type="button" class="btn btn-primary" name="button">Unisciti adesso</button>
+    <button type="button" class="btn btn-primary" name="button" (click)="joinUs()">Unisciti adesso</button>
   </div>
   <div class="partner-box">
     <h1>Programma partnership</h1>
     <p>Scopri il nostro programma di Riferimento per Agenzie Immobiliari e Amministratori Condominiali.</p>
-    <button type="button" class="btn btn-warning" name="button">Scopri di più</button>
+    <button type="button" class="btn btn-warning" name="button" (click)="lernMore()">Scopri di più</button>
   </div>
 </div>
-<!-- <div class="slogan">
-  <h1>This is a slogan</h1>
-</div> -->
 <div class="pre-footer">
   <div class="container-fluid">
     <div class="pre">

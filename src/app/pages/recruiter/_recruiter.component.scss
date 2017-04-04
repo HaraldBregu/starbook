@@ -1,0 +1,46 @@
+app-recruiter {
+  display: block;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background-color: #FFFFFF;
+  overflow: hidden;
+  max-width: 1440px;
+  margin: 70px auto 0;
+  .row {
+    margin: auto -15px;
+  }
+  .btn-warning {
+    width: 100%;
+    height: 60px;
+    font-weight: 700;
+    font-size: 30px;
+    i {
+      position: absolute;
+      left: 20px;
+      line-height: 60px;
+      top: 0;
+      font-size: 30px;
+    }
+  }
+  .recruiter-container {
+    max-width: 900px;
+    margin: auto;
+    padding: 50px 150px;
+  }
+  .header {
+    padding: 0 0 10px;
+  }
+  h3 {
+    margin: 1.5rem 0 0.5rem;
+  }
+  p {
+    margin: 0 0 1rem;
+  }
+
+  @media (max-width: 768px) {
+    .recruiter-container {
+      padding: 20px;
+    }
+  }
+}

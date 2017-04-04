@@ -10,6 +10,7 @@ import { AboutComponent } from './pages/about/about.component';
 import { HelpComponent } from './pages/help/help.component';
 import { LegalComponent } from './pages/legal/legal.component';
 import { AccountComponent } from './pages/account/account.component';
+import { RecruiterComponent } from './pages/recruiter/recruiter.component';
 
 const routes: Routes = [
   {
@@ -52,6 +53,14 @@ const routes: Routes = [
   {
     path: 'account/:page',
     component: AccountComponent
+  },
+  {
+    path: 'recruiter',
+    component: RecruiterComponent
+  },
+  {
+    path: 'recruiter/:page',
+    component: RecruiterComponent
   }
 ];
 

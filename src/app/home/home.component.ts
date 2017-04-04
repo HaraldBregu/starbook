@@ -112,6 +112,7 @@ export class HomeComponent implements AfterViewInit, OnInit, OnDestroy {
       let serviceId = params['id'];
       let services = this.homeService.getServicesObject();
       if (serviceId) {
+        window.scrollTo(0, 0);
         this.isServicesView = true;
         if (services) {
           this.renderPage(services);

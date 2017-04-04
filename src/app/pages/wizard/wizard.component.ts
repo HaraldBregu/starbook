@@ -226,7 +226,7 @@ export class WizardComponent implements OnInit {
         this.navigationService.updateMessage("Informazioni profilo");
         this.wizardDataItems[4] = "Info";
       } else {
-        // this.router.navigate(['services', this.wizardData.service_id]);
+        //this.router.navigate(['services', this.wizardData.service_id]);
       }
 
       // function checkData() {

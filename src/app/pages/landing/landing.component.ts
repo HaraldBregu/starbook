@@ -5,7 +5,6 @@ import { HomeService } from '../../home/home.service';
 import { NavigationService } from '../../shared/navigation.service';
 import { AnalyticsService } from '../../shared/analytics.service';
 import { PopupsService } from '../../popups/popups.service';
-// import {FacebookService, FacebookLoginResponse} from 'ng2-facebook-sdk';
 import { AuthService } from '../../shared/auth.service';
 
 declare let Swiper: any;
@@ -14,7 +13,6 @@ declare const FB:any;
 @Component({
   selector: 'app-landing',
   templateUrl: './landing.component.html',
-  // providers: [FacebookService]
 })
 export class LandingComponent implements OnInit {
   public cardStyles = {1: '0.95', 2: '0.95', 3: '0.9'};
@@ -40,8 +38,6 @@ export class LandingComponent implements OnInit {
     // TO USE FOR A/B TESTING
     this.route.queryParams.subscribe((params: Params) => {
       this.testPage = params['action']
-      // console.log('Parameters: ' + JSON.stringify(params));
-      // console.log(this.testPage);
     });
 
     if (isBrowser) {
@@ -54,29 +50,41 @@ export class LandingComponent implements OnInit {
       this.isAuthenticated = false;
     }
 
-
     this.navigationService.updateMessage('La cura per la casa');
     this.isLoading = true;
     let timeStart = Date.now();
-    this.homeService.getServices()
-        .then((services) => {
-          this.services = services.result;
-          this.analyticsService.sendTiming({category: 'Get list of featured', timingVar: 'load', timingValue: Date.now()-timeStart});
-          this.isLoading = false;
-          if (isBrowser) {
-              setTimeout(function () {
-                  this.swiper = new Swiper('.swiper-container', {
-                      freeMode: true,
-                      direction: 'horizontal',
-                      slidesPerView: 'auto'
-                  });
-              }, 1);
-          }
-        })
-        .catch((error) => {
-          console.log(error);
-          this.isLoading = false;
-        });
+    this.homeService.getServices().then((services) => {
+      this.services = services.result;
+      this.analyticsService.sendTiming({category: 'Get list of featured', timingVar: 'load', timingValue: Date.now()-timeStart});
+      this.isLoading = false;
+      if (isBrowser) {
+          setTimeout(function () {
+              this.swiper = new Swiper('.swiper-container', {
+                  freeMode: true,
+                  direction: 'horizontal',
+                  slidesPerView: 'auto'
+              });
+          }, 1);
+      }}).catch((error) => {
+        this.isLoading = false;
+      });
+  }
+
+  /////////////////////////
+  /////// SEARCH //////////
+  /////////////////////////
+  searchMore() {
+
+  }
+
+  ///////////////////////////////
+  /////// PARTNERSHIP //////////
+  //////////////////////////////
+  joinUs() {
+    this.router.navigate(['recruiter/workerjoin']);
+  }
+  lernMore() {
+    this.router.navigate(['recruiter/partnerjoin']);
   }
 
   cardHover(id, type) {

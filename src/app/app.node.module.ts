@@ -28,6 +28,7 @@ import { PopupsService } from './popups/popups.service';
 import { PaymentService } from './shared/payment.service';
 import { AnalyticsService } from './shared/analytics.service';
 import { SeoService } from './shared/seo.service';
+import { JoinService } from './shared/join.service';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
@@ -45,6 +46,7 @@ import { AboutComponent } from './pages/about/about.component';
 import { HelpComponent } from './pages/help/help.component';
 import { LegalComponent } from './pages/legal/legal.component';
 import { AccountComponent } from './pages/account/account.component';
+import { RecruiterComponent } from './pages/recruiter/recruiter.component';
 
 // import { RouterModule } from '@angular/router';
 // import { appRoutes } from './app/app.routing';
@@ -86,7 +88,8 @@ let declarations = [
   AboutComponent,
   HelpComponent,
   LegalComponent,
-  AccountComponent
+  AccountComponent,
+  RecruiterComponent
 ];
 
 if (isBrowser) {
@@ -126,7 +129,8 @@ else {
     PopupsService,
     PaymentService,
     AnalyticsService,
-    SeoService
+    SeoService,
+    JoinService
   ]
 })
 export class AppModule {

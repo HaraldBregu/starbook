@@ -168,7 +168,12 @@ p {
   // color: black !important;
   // background-color: #7FC443 !important;
 }
-
+.input-group .form-control {
+  position: relative;
+  padding-left: 20px;
+  box-shadow: none;
+  background-color: #2A292B;
+}
 .form-group label {
   color: black;
   font-size: 16px;
@@ -186,12 +191,7 @@ p {
   background-color: #FFFFFF;
   border: 1px solid rgba(220,224,224,0.7);
 }
-.input-group .form-control {
-  position: relative;
-  padding-left: 20px;
-  box-shadow: none;
-  background-color: #2A292B;
-}
+
 // .input-group .form-control .ui-autocomplete-input {
 //   position: absolute;
 //   width: 100%;
@@ -228,7 +228,10 @@ textarea.form-control {
 }
 .form-group .form-control {
   height: 50px !important;
-  border: 1px solid #DCDCDC !important;
+  border: 1px solid #DCDCDC;
+}
+.form-group .error-input {
+  border: 2px solid #f75c4b !important;
 }
 .form-group .form-control:focus {
   color: black;

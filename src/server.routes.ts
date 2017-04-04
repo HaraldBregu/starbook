@@ -18,5 +18,7 @@ export const routes: string[] = [
     'about',
     'help',
     'legal',
-    'account/:page'
+    'account/:page',
+    'recruiter',
+    'recruiter/:page'
 ];
