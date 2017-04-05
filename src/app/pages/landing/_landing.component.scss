@@ -1,4 +1,3 @@
-
 app-landing {
   display: block;
   position: relative;
@@ -240,9 +239,19 @@ app-landing {
     }
   }
   .market {
-    background: #959595;
-    padding: 100px 200px;
-    color: white;
+    background: #f1f1f2;
+    color: #646464;
+    .background {
+      background: white;
+      background-image: url('/assets/images/MarketChart.jpg');
+      background-repeat: no-repeat;
+      background-position: center bottom;
+      background-size: cover;
+      height: 600px;
+    }
+    .box {
+      padding: 120px 120px 0 120px;
+    }
     img {
       max-width: 290px;
       max-height: 280px;
@@ -251,6 +260,7 @@ app-landing {
       text-align: right;
       margin: 0 0 40px;
       font-size: 40px;
+      font-weight: 700;
     }
     p {
       font-size: 26px !important;
@@ -260,12 +270,23 @@ app-landing {
   }
   .professional {
     background: white;
-    color: #646464;
-    padding: 100px 200px;
+    color: #4a4a4a;
+    .background {
+      background: white;
+      background-image: url('/assets/images/Worker.jpg');
+      background-repeat: no-repeat;
+      background-position: center bottom;
+      background-size: cover;
+      height: 600px;
+    }
+    .box {
+      padding: 120px 120px 0 120px;
+    }
     h1 {
       font-size: 40px;
       text-align: left;
       margin: 0 0 40px;
+      font-weight: 700;
     }
     p {
       font-size: 26px !important;
@@ -393,13 +414,25 @@ app-landing {
   .box {
     padding: 20px;
   }
-  .worker-img {
-    background-image: url('/assets/images/professional.png');
-    // background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center center;
-    height: 500px;
-  }
+  // .img-worker {
+  //   display: inline-block !important;
+  //   float: left !important;
+  //   width: 50% !important;
+  //   background: white !important;
+  //   background-image: url('/assets/images/Worker.jpg') !important;
+  //   background-repeat: no-repeat !important;
+  //   background-position: center bottom !important;
+  //   background-size: cover !important;
+  //   height: 600px !important;
+  // }
+
+  // .worker-img {
+  //   background-image: url('/assets/images/professional.png');
+  //   // background-size: cover;
+  //   background-repeat: no-repeat;
+  //   background-position: center center;
+  //   height: 500px;
+  // }
 
   @media (max-width: 1200px) {
     .services {
@@ -408,17 +441,21 @@ app-landing {
       }
     }
   }
-  @media (max-width: 1100px) {
+  @media (max-width: 1024px) {
     .services {
       .service-box {
         width: 25%;
       }
     }
     .market {
-      padding: 50px 20px;
+      .box {
+        padding: 50px 50px 0 50px;
+      }
     }
     .professional {
-      padding: 50px 20px;
+      .box {
+        padding: 50px 50px 0 50px;
+      }
     }
     .recruiting {
       .partner-box {
@@ -445,10 +482,26 @@ app-landing {
       }
     }
     .market {
-      padding: 100px 150px;
-      h1 {
-        text-align: center;
-        margin: 40px 0 40px;
+      .box {
+        padding: 50px;
+        h1, p {
+          text-align: center;
+        }
+      }
+      .background {
+        height: 300px;
+      }
+    }
+    .professional {
+      .box {
+        padding: 50px;
+        h1, p {
+          text-align: center;
+        }
+      }
+      .background {
+        height: 400px;
+        background-position: center top;
       }
     }
     .recruiting {
@@ -498,13 +551,27 @@ app-landing {
       }
     }
     .market {
-      padding: 20px;
+      .box {
+        padding: 40px 20px;
+      }
+    }
+    .professional {
+      .box {
+        padding: 40px 20px;
+      }
     }
     .recruiting {
       .join-box, .partner-box {
         width: 100%;
-        padding: 50px;
+        padding: 20px;
         height: 600px;
+        .btn-primary, .btn-warning {
+          margin: 20px auto 0;
+        }
+      }
+      .join-box {
+        background-position: 100% 100%;
+        background-size: 600px;
       }
       .partner-box {
         background-position: 165% 89%;
@@ -535,7 +602,6 @@ app-landing {
         background-size: 386px;
       }
     }
-
   }
 
 }

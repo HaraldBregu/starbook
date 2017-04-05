@@ -3594,6 +3594,11 @@ app-home {
       margin-left: 10px;
       margin-right: 10px; } }
 
+@media (max-width: 906px) {
+  app-order .row {
+    margin-left: 0px;
+    margin-right: 0px; } }
+
 .sidebar {
   display: block;
   width: 410px;
@@ -4068,10 +4073,6 @@ app-home {
   .order-content .notice {
     margin-top: 23px; } }
 @media (max-width: 906px) {
-  .row {
-    margin-left: 0px;
-    margin-right: 0px; }
-
   .main {
     padding-right: 0px;
     padding-left: 0px; }
@@ -5725,28 +5726,46 @@ app-landing {
       font-weight: 400;
       max-width: 400px; }
   app-landing .market {
-    background: #959595;
-    padding: 100px 200px;
-    color: white; }
+    background: #f1f1f2;
+    color: #646464; }
+    app-landing .market .background {
+      background: white;
+      background-image: url("/assets/images/MarketChart.jpg");
+      background-repeat: no-repeat;
+      background-position: center bottom;
+      background-size: cover;
+      height: 600px; }
+    app-landing .market .box {
+      padding: 120px 120px 0 120px; }
     app-landing .market img {
       max-width: 290px;
       max-height: 280px; }
     app-landing .market h1 {
       text-align: right;
       margin: 0 0 40px;
-      font-size: 40px; }
+      font-size: 40px;
+      font-weight: 700; }
     app-landing .market p {
       font-size: 26px !important;
       line-height: 30px;
       text-align: justify; }
   app-landing .professional {
     background: white;
-    color: #646464;
-    padding: 100px 200px; }
+    color: #4a4a4a; }
+    app-landing .professional .background {
+      background: white;
+      background-image: url("/assets/images/Worker.jpg");
+      background-repeat: no-repeat;
+      background-position: center bottom;
+      background-size: cover;
+      height: 600px; }
+    app-landing .professional .box {
+      padding: 120px 120px 0 120px; }
     app-landing .professional h1 {
       font-size: 40px;
       text-align: left;
-      margin: 0 0 40px; }
+      margin: 0 0 40px;
+      font-weight: 700; }
     app-landing .professional p {
       font-size: 26px !important;
       line-height: 30px;
@@ -5847,21 +5866,16 @@ app-landing {
       text-decoration: none; }
   app-landing .box {
     padding: 20px; }
-  app-landing .worker-img {
-    background-image: url("/assets/images/professional.png");
-    background-repeat: no-repeat;
-    background-position: center center;
-    height: 500px; }
   @media (max-width: 1200px) {
     app-landing .services .service-box {
       width: 25%; } }
-  @media (max-width: 1100px) {
+  @media (max-width: 1024px) {
     app-landing .services .service-box {
       width: 25%; }
-    app-landing .market {
-      padding: 50px 20px; }
-    app-landing .professional {
-      padding: 50px 20px; }
+    app-landing .market .box {
+      padding: 50px 50px 0 50px; }
+    app-landing .professional .box {
+      padding: 50px 50px 0 50px; }
     app-landing .recruiting .partner-box {
       background-position: 116% 89%;
       background-size: 356px; } }
@@ -5874,11 +5888,19 @@ app-landing {
       height: 380px; }
     app-landing .services .service-box {
       width: 50%; }
-    app-landing .market {
-      padding: 100px 150px; }
-      app-landing .market h1 {
-        text-align: center;
-        margin: 40px 0 40px; }
+    app-landing .market .box {
+      padding: 50px; }
+      app-landing .market .box h1, app-landing .market .box p {
+        text-align: center; }
+    app-landing .market .background {
+      height: 300px; }
+    app-landing .professional .box {
+      padding: 50px; }
+      app-landing .professional .box h1, app-landing .professional .box p {
+        text-align: center; }
+    app-landing .professional .background {
+      height: 400px;
+      background-position: center top; }
     app-landing .recruiting .join-box, app-landing .recruiting .partner-box {
       width: 100%;
       padding: 80px;
@@ -5908,12 +5930,19 @@ app-landing {
         float: none; }
     app-landing .services .service-box {
       width: 100%; }
-    app-landing .market {
-      padding: 20px; }
+    app-landing .market .box {
+      padding: 40px 20px; }
+    app-landing .professional .box {
+      padding: 40px 20px; }
     app-landing .recruiting .join-box, app-landing .recruiting .partner-box {
       width: 100%;
-      padding: 50px;
+      padding: 20px;
       height: 600px; }
+      app-landing .recruiting .join-box .btn-primary, app-landing .recruiting .join-box .btn-warning, app-landing .recruiting .partner-box .btn-primary, app-landing .recruiting .partner-box .btn-warning {
+        margin: 20px auto 0; }
+    app-landing .recruiting .join-box {
+      background-position: 100% 100%;
+      background-size: 600px; }
     app-landing .recruiting .partner-box {
       background-position: 165% 89%;
       background-size: 376px; } }
@@ -6955,9 +6984,7 @@ app-recruiter {
   background-color: #FFFFFF;
   overflow: hidden;
   max-width: 1440px;
-  margin: 70px auto 0; }
-  app-recruiter .row {
-    margin: auto -15px; }
+  padding: 70px 0 0; }
   app-recruiter .btn-warning {
     width: 100%;
     height: 60px;

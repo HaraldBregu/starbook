@@ -81,7 +81,62 @@
       </div>
     </div>
     <div class="form-group">
-      <button type="button" id="next" class="btn btn-warning" (click)="joinAsPartner()"><i class="fa fa-circle-o-notch animate" *ngIf="recruiter_state.loading"></i>Invia richiesta</button>
+      <button type="button" id="next" class="btn btn-warning" (click)="joinAsWorker()"><i class="fa fa-circle-o-notch animate" *ngIf="recruiter_state.loading"></i>Invia richiesta</button>
     </div>
   </form>
 </div>
+
+<!-- <div class="recruiter-container" *ngIf="page==='partnerjoin'">
+  <div class="header">
+    <h3>Un buon partnership è una garanzia per il futuro</h3>
+    <p>Noi del team Starbook siamo sempre aperti a nuovi partnership e nuove collaborazioni e diamo il massimo del supporto per offrire il miglior servizio nel minor tempo e nel miglior prezzo possibile ai nostri clienti.</p>
+    <p>Per i nostri parter abbiamo un piano di affiliazione. Per ulteriori dettagli invia una richiesta e ti contatteremo subito.</p>
+  </div>
+  <form>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="firstNameInput">Nome</label>
+          <input type="firstname" placeholder="Nome" class="form-control" [ngClass]="{'error-input': signup_state.first_name_error}" id="firstNameInput" [(ngModel)]="Signup.firstname" [ngModelOptions]="{standalone: true}">
+          <small class="error-message" *ngIf="signup_state.first_name_error">{{signup_state.first_name_error}}</small>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="lastNameInput">Cognome</label>
+          <input type="lastname" placeholder="Cognome" class="form-control" [ngClass]="{'error-input': signup_state.last_name_error}" id="lastNameInput" [(ngModel)]="Signup.lastname" [ngModelOptions]="{standalone: true}">
+          <small class="error-message" *ngIf="signup_state.last_name_error">{{signup_state.last_name_error}}</small>
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="phoneInput">Telefono</label>
+      <input type="phone" placeholder="Numero di telefono" class="form-control" [ngClass]="{'error-input': signup_state.phone_error}" id="phoneInput" [(ngModel)]="Signup.phone" [ngModelOptions]="{standalone: true}">
+      <small class="error-message" *ngIf="signup_state.phone_error">{{signup_state.phone_error}}</small>
+    </div>
+    <div class="form-group">
+      <label for="emailInput">Email</label>
+      <input type="email" placeholder="La tua mail" class="form-control" [ngClass]="{'error-input': signup_state.email_error}" id="emailInput" [(ngModel)]="Signup.email" [ngModelOptions]="{standalone: true}">
+      <small class="error-message" *ngIf="signup_state.email_error">{{signup_state.email_error}}</small>
+    </div>
+    <div class="form-group">
+      <label for="passwordInput">Password</label>
+      <input type="password" placeholder="Password" class="form-control" [ngClass]="{'error-input': signup_state.password_error}" id="passwordInput" [(ngModel)]="Signup.password" [ngModelOptions]="{standalone: true}">
+      <small class="error-message" *ngIf="signup_state.password_error">{{signup_state.password_error}}</small>
+    </div>
+    <div class="form-group">
+      <label for="confirmPasswordInput">Di nuovo la password</label>
+      <input type="password" placeholder="Password" class="form-control" [ngClass]="{'error-input': signup_state.confirm_password_error}" id="confirmPasswordInput" [(ngModel)]="Signup.confirmPassword" [ngModelOptions]="{standalone: true}">
+      <small class="error-message" *ngIf="signup_state.confirm_password_error">{{signup_state.confirm_password_error}}</small>
+    </div>
+    <div class="form-group" *ngIf="signup_state.message_success">
+      <div class="alert alert-success" role="alert">{{signup_state.message_success}}</div>
+    </div>
+    <div class="form-group" *ngIf="signup_state.message_error">
+      <div class="alert alert-danger" role="alert">{{signup_state.message_error}}</div>
+    </div>
+    <div class="form-group">
+      <button type="button" id="next" class="btn btn-warning" (click)="joinAsPartner()"><i class="fa fa-circle-o-notch animate" *ngIf="signup_state.loading"></i>Invia richiesta</button>
+    </div>
+  </form>
+</div> -->

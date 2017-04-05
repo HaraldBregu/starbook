@@ -1,3 +1,12 @@
+app-order {
+  @media (max-width: 906px) {
+    .row {
+      margin-left: 0px;
+      margin-right: 0px;
+    }
+  }
+}
+
 // Sidebar styles
 $sidebar-background-color: #FCFCFC;
 $sidebar-shadow: 0px 0px 0px 0px rgba(0,0,0,0.50);
@@ -864,21 +873,6 @@ $footer-links-text-letter-spacing: 0.08px;
     }
   }
   @media (max-width: 906px) {
-    // .sidebar-container {
-    //   // margin-bottom: 60px;
-    //   overflow-y: visible;
-    //   padding-left: 7px;
-    //   padding-right: 7px;
-    // }
-    // .sidebar-container .sidebar-block {
-    //   position: relative;
-    //   padding: 43px 16px 20px 16px;
-    // }
-    .row {
-      // margin-right: 0;
-      margin-left: 0px;
-      margin-right: 0px;
-    }
     .main {
       padding-right: 0px;
       padding-left: 0px;

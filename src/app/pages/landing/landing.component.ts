@@ -34,8 +34,6 @@ export class LandingComponent implements OnInit {
   }
 
   ngOnInit() {
-
-    // TO USE FOR A/B TESTING
     this.route.queryParams.subscribe((params: Params) => {
       this.testPage = params['action']
     });
@@ -74,7 +72,7 @@ export class LandingComponent implements OnInit {
   /////// SEARCH //////////
   /////////////////////////
   searchMore() {
-
+    this.search(this.query)
   }
 
   ///////////////////////////////
