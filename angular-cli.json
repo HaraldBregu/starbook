@@ -9,7 +9,7 @@
       "outDir": "dist/client",
       "assets": [
         "assets",
-        "favicon.ico"
+        "favicon.png"
       ],
       "index": "index.html",
       "main": "client.ts",
