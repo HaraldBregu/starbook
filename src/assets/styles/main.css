@@ -3292,12 +3292,12 @@ app-home {
       font-size: 19px;
       font-weight: 400;
       color: white;
-      padding: 20px; }
+      margin: 20px 20px 10px 20px; }
     app-home .header-cover .description {
-      font-size: 16px;
-      font-weight: 400;
+      font-size: 17px;
+      font-weight: 300;
       color: rgba(255, 255, 255, 0.7);
-      padding: 0 20px 20px 20px; }
+      margin: 0 20px 20px 20px; }
     app-home .header-cover img {
       width: 70%;
       height: 400px;
@@ -3355,8 +3355,7 @@ app-home {
     letter-spacing: 0.1px;
     text-align: left; }
   app-home .masonry-container {
-    display: block;
-    float: left; }
+    display: block; }
     app-home .masonry-container .services-block {
       display: block;
       float: left;
@@ -3375,7 +3374,7 @@ app-home {
       app-home .masonry-container .services-block .header .content-header span {
         display: block;
         width: 100%;
-        font-size: 20px;
+        font-size: 24px;
         letter-spacing: 0.13px;
         color: black;
         margin-bottom: 15px; }
@@ -3416,7 +3415,7 @@ app-home {
         position: relative;
         width: 100%;
         padding: 3px 130px 10px 50px;
-        font-size: 15px;
+        font-size: 18px;
         color: black;
         letter-spacing: 0.1px;
         cursor: pointer;
@@ -3455,7 +3454,7 @@ app-home {
         color: black;
         font-size: 14px;
         letter-spacing: 0.09px;
-        padding: 0 130px 0 50px; }
+        padding: 0 50px 0 50px; }
       app-home .masonry-container .services-block .service .item-container .item-image {
         display: block;
         position: absolute;
@@ -3562,6 +3561,9 @@ app-home {
       display: inherit; }
     app-home .large-cover {
       display: none; } }
+  @media (max-width: 1024px) {
+    app-home .masonry-container .services-block {
+      padding: 25px; } }
   @media (max-width: 906px) {
     app-home .home-page .main {
       padding: 0px; }
@@ -3579,12 +3581,14 @@ app-home {
     app-home .tablet-mobile {
       display: inherit; } }
   @media (max-width: 645px) {
-    app-home .home-page .main {
-      padding-right: 15px; }
+    app-home .home-page .row {
+      padding: 70px 0 0 0; }
     app-home .home-page .tab-container {
       display: block;
       width: 525px;
       margin: 0 auto; }
+      app-home .home-page .tab-container .header-cover {
+        margin-bottom: 10px; }
     app-home .header-cover {
       margin-left: 0;
       margin-right: 0; }
@@ -3592,16 +3596,15 @@ app-home {
       height: 240px; }
     app-home .masonry-container {
       padding: 0px;
-      margin-left: 0;
-      margin-right: 0; } }
+      margin-left: 10px;
+      margin-right: 10px; }
+      app-home .masonry-container .services-block {
+        margin-bottom: 10px; } }
   @media (max-width: 534px) {
     app-home .home-page .tab-container {
       display: block;
       width: 100%;
-      margin: 0 auto; }
-    app-home .masonry-container {
-      margin-left: 10px;
-      margin-right: 10px; } }
+      margin: 0 auto; } }
 
 @media (max-width: 906px) {
   app-order .row {
@@ -5705,7 +5708,7 @@ app-landing {
       position: relative;
       z-index: 2;
       font-weight: 400;
-      color: rgba(0, 0, 0, 0.8);
+      color: #4a4a4a;
       font-size: 16px;
       letter-spacing: 0.09px;
       white-space: normal !important;
@@ -5779,15 +5782,9 @@ app-landing {
       font-size: 26px !important;
       line-height: 30px;
       text-align: justify; }
-  app-landing .reviews {
-    background: #959595;
-    padding: 150px 200px;
-    text-align: center;
-    min-height: 200px;
-    color: white; }
   app-landing .recruiting {
     text-align: center;
-    color: #646464;
+    color: #4a4a4a;
     height: 600px;
     text-align: left; }
     app-landing .recruiting .join-box, app-landing .recruiting .partner-box {

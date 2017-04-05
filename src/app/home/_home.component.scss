@@ -41,13 +41,13 @@ app-home {
       font-size: 19px;
       font-weight: 400;
       color: white;
-      padding: 20px;
+      margin: 20px 20px 10px 20px;
     }
     .description {
-      font-size: 16px;
-      font-weight: 400;
+      font-size: 17px;
+      font-weight: 300;
       color: rgba(255,255,255,0.7);
-      padding: 0 20px 20px 20px;
+      margin: 0 20px 20px 20px;
     }
     img {
       width: 70%;
@@ -118,7 +118,7 @@ app-home {
   }
   .masonry-container {
     display: block;
-    float: left;
+    // float: left;
 
     .services-block {
       display: block;
@@ -140,7 +140,7 @@ app-home {
       .header .content-header span {
         display: block;
         width: 100%;
-        font-size: 20px;
+        font-size: 24px;
         letter-spacing: 0.13px;
         color: black;
         margin-bottom: 15px;
@@ -189,7 +189,7 @@ app-home {
         position: relative;
         width: 100%;
         padding: 3px 130px 10px 50px;
-        font-size: 15px;
+        font-size: 18px;
         color: black;
         letter-spacing: 0.1px;
         cursor: pointer;
@@ -234,7 +234,7 @@ app-home {
         color: black;
         font-size: 14px;
         letter-spacing: 0.09px;
-        padding: 0 130px 0 50px;
+        padding: 0 50px 0 50px;
       }
       .service .item-container .item-image {
         display: block;
@@ -369,6 +369,13 @@ app-home {
       display: none;
     }
   }
+  @media (max-width: 1024px) {
+    .masonry-container {
+      .services-block {
+        padding: 25px;
+      }
+    }
+  }
   @media (max-width: 906px) {
     .home-page {
       .main {
@@ -395,13 +402,17 @@ app-home {
   }
   @media (max-width: 645px) {
     .home-page {
-      .main {
-        padding-right: 15px;
+      .row {
+        padding: 70px 0 0 0;
       }
       .tab-container {
         display: block;
         width: 525px;
         margin: 0 auto;
+
+        .header-cover {
+          margin-bottom: 10px;
+        }
       }
     }
     .header-cover {
@@ -413,8 +424,11 @@ app-home {
     }
     .masonry-container {
       padding: 0px;
-      margin-left: 0;
-      margin-right: 0;
+      margin-left: 10px;
+      margin-right: 10px;
+      .services-block {
+        margin-bottom: 10px;
+      }
     }
   }
   @media (max-width: 534px) {
@@ -424,11 +438,12 @@ app-home {
         width: 100%;
         margin: 0 auto;
       }
+
     }
-    .masonry-container {
-      margin-left: 10px;
-      margin-right: 10px;
-    }
+    // .masonry-container {
+    //   margin-left: 10px;
+    //   margin-right: 10px;
+    // }
   }
 }
 

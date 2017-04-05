@@ -202,7 +202,7 @@ app-landing {
       position: relative;
       z-index: 2;
       font-weight: 400;
-      color: rgba(0, 0, 0, 0.8);
+      color: #4a4a4a;
       font-size: 16px;
       letter-spacing: 0.09px;
       white-space: normal !important;
@@ -294,16 +294,9 @@ app-landing {
       text-align: justify;
     }
   }
-  .reviews {
-    background: #959595;
-    padding: 150px 200px;
-    text-align: center;
-    min-height: 200px;
-    color: white;
-  }
   .recruiting {
     text-align: center;
-    color: #646464;
+    color: #4a4a4a;
     height: 600px;
     text-align: left;
     .join-box, .partner-box {
