@@ -58,7 +58,7 @@ app-home {
       display: block;
       float: left;
       width: 100%;
-      padding: 23px 3px 23px 4px;
+      padding: 30px 20px;
       background-color: #F7F7F7;
       border: 1px solid #CCCCCC;
     }
@@ -66,7 +66,7 @@ app-home {
       display: block;
       float: left;
       width: 50%;
-      padding: 16px 31px;
+      margin: 0 0 20px;
     }
   }
   .cover-footer {
@@ -87,7 +87,8 @@ app-home {
       float: left;
       width: 100%;
       color: black;
-      font-size: 13px;
+      font-size: 14px;
+      font-weight: 500;
       letter-spacing: 0.1px;
       text-transform: uppercase;
       text-align: right;
@@ -111,9 +112,8 @@ app-home {
       padding-left: 173px;
       font-weight: 300;
       color: black;
-      font-size: 13px;
+      font-size: 14px;
       letter-spacing: 0.1px;
-      text-align: left;
     }
   }
   .masonry-container {

@@ -11,6 +11,7 @@ import { HelpComponent } from './pages/help/help.component';
 import { LegalComponent } from './pages/legal/legal.component';
 import { AccountComponent } from './pages/account/account.component';
 import { RecruiterComponent } from './pages/recruiter/recruiter.component';
+import { MarketingComponent } from './pages/marketing/marketing.component';
 
 const routes: Routes = [
   {
@@ -61,6 +62,14 @@ const routes: Routes = [
   {
     path: 'recruiter/:page',
     component: RecruiterComponent
+  },
+  {
+    path: 'marketing',
+    component: MarketingComponent
+  },
+  {
+    path: 'marketing/:page',
+    component: MarketingComponent
   }
 ];
 
