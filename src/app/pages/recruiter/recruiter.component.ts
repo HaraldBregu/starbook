@@ -63,11 +63,17 @@ export class RecruiterComponent implements OnInit {
   /////////////////////////
   public contacts = '';
   public sharelink = '';
+  public currentUser;
 
   constructor(private router: Router, private route: ActivatedRoute, private navigationService: NavigationService, private joinService: JoinService, private authService: AuthService) {
     this.emailPattern = /^[a-z0-9!#$%&'*+\/=?^_`{|}~.-]+@[a-z0-9]([a-z0-9-]*[a-z0-9])?(\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)*$/i;
     this.numPattern = /^\d+$/;
-    this.sharelink = "https://www.starbook.co/?codice=codicedelpromozione";
+
+    if (localStorage.getItem('auth')) {
+      this.currentUser = JSON.parse(localStorage.getItem('auth'));
+      // console.log('host: ' + document.location.protocol + '//'+ document.location.hostname + '/?affiliato=' + '3324r4gr');
+      this.sharelink =  document.location.protocol + '//'+ document.location.hostname + '/?affiliato=' + this.currentUser._id;
+    }
   }
 
   ngOnInit() {
@@ -79,7 +85,10 @@ export class RecruiterComponent implements OnInit {
       } else if (this.page === 'partnerjoin') {
         this.navigationService.updateMessage("Diventa partner con noi");
       } else if (this.page === 'share') {
-        this.navigationService.updateMessage("Programma di riferimento");
+        this.navigationService.updateMessage("Programma di affiliazione");
+        if (!this.currentUser) {
+          this.router.navigate(['']);
+        }
       } else {
         this.router.navigate(['']);
       }
