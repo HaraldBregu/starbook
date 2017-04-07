@@ -12,6 +12,7 @@ import { AuthService } from '../../shared/auth.service';
 export class RecruiterComponent implements OnInit {
   public page = '';
   public emailPattern: any;
+  public numPattern: any;
 
   ////////////////////////////
   /////// Recruiter //////////
@@ -65,13 +66,14 @@ export class RecruiterComponent implements OnInit {
 
   constructor(private router: Router, private route: ActivatedRoute, private navigationService: NavigationService, private joinService: JoinService, private authService: AuthService) {
     this.emailPattern = /^[a-z0-9!#$%&'*+\/=?^_`{|}~.-]+@[a-z0-9]([a-z0-9-]*[a-z0-9])?(\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)*$/i;
+    this.numPattern = /^\d+$/;
+    this.sharelink = "https://www.starbook.co/?codice=codicedelpromozione";
   }
 
   ngOnInit() {
     this.route.params.subscribe((params: Params) => {
       this.page = params['page']
       window.scrollTo(0, 0);
-      // console.log('this page is:' + this.page);
       if (this.page === 'workerjoin') {
         this.navigationService.updateMessage("Lavoriamo insieme");
       } else if (this.page === 'partnerjoin') {
@@ -161,48 +163,56 @@ export class RecruiterComponent implements OnInit {
   /////// Share  //////////
   /////////////////////////
   sendInvitations() {
-    console.log('sendInvitations');
+    var phone_numbers = [];
+    var email_addresses = [];
+    var strings = this.contacts.split(',');
+    for (var i = 0; i < strings.length; i++) {
+      var string = strings[i];
+      string = string.replace(/\s/g, '');
+      if (this.emailPattern.test(string)) {
+        email_addresses.push(string);
+      } else if (this.numPattern.test(string)) {
+        phone_numbers.push(string);
+      }
+    }
+    // console.log('email_addresses are: ' + email_addresses);
+    // console.log('phone_numbers are: ' + phone_numbers);
+    // console.log('sendInvitations: ' + this.contacts);
   }
   shareOnFacebook() {
     let left = Math.round((document.documentElement.clientWidth / 2) - 285);
-    window.open(
-      "http://www.facebook.com/sharer/sharer.php?s=100&u=https://www.starbook.co/?codice=codicedelpromozione",
-      '_blank',
-      'location=yes,height=570,width=520,left=' + left + ', top=100,scrollbars=yes,status=yes');
+    window.open("http://www.facebook.com/sharer/sharer.php?s=100&u=" + this.sharelink,
+    '_blank', 'location=yes,height=570,width=520,left=' + left + ', top=100,scrollbars=yes,status=yes');
     return false
   }
   shareOnTwitter() {
     let left = Math.round((document.documentElement.clientWidth / 2) - 285);
-    window.open(
-      "https://twitter.com/home?status=https://www.starbook.co/?codice=codicedelpromozion",
-      '_blank',
-      'location=yes,height=570,width=520,left=' + left + ', top=100,scrollbars=yes,status=yes');
+    window.open("https://twitter.com/home?status=" + this.sharelink,
+    '_blank', 'location=yes,height=570,width=520,left=' + left + ', top=100,scrollbars=yes,status=yes');
     return false
   }
   shareOnLinkedin() {
+    let link = this.sharelink;
+    let title = "Titolo";
+    let summary = "Summary";
+    let source = "";
     let left = Math.round((document.documentElement.clientWidth / 2) - 285);
-    window.open(
-      "https://www.linkedin.com/shareArticle?mini=true&url=https%3A//www.starbook.co/&title=Prova%20Starbook&summary=&source=",
-      '_blank',
-      'location=yes,height=570,width=520,left=' + left + ', top=100,scrollbars=yes,status=yes');
+    window.open("https://www.linkedin.com/shareArticle?mini=true&url=" + link + "&title=" + title + "&summary=" + summary + "&source=" + source,
+    '_blank', 'location=yes,height=570,width=520,left=' + left + ', top=100,scrollbars=yes,status=yes');
     return false
   }
   shareOnGoogle() {
+    let link = this.sharelink;
     let left = Math.round((document.documentElement.clientWidth / 2) - 285);
-    window.open(
-      "https://plus.google.com/share?url=https%3A//www.starbook.co/",
-      '_blank',
-      'location=yes,height=570,width=520,left=' + left + ', top=100,scrollbars=yes,status=yes');
+    window.open("https://plus.google.com/share?url=" + link,
+    '_blank', 'location=yes,height=570,width=520,left=' + left + ', top=100,scrollbars=yes,status=yes');
     return false
   }
-
   shareWithEmail() {
-    console.log('shareWithEmail');
+    let subject = "Ciao, questo è una mail"
     let left = Math.round((document.documentElement.clientWidth / 2) - 285);
-    window.open(
-      "mailto:?Subject=Simple",
-      '_blank',
-      'location=yes,height=570,width=520,left=' + left + ', top=100,scrollbars=yes,status=yes');
+    window.open("mailto:?Subject=" + subject,
+    '_blank', 'location=yes,height=570,width=520,left=' + left + ', top=100,scrollbars=yes,status=yes');
     return false
   }
   copyLink() {
@@ -210,9 +220,7 @@ export class RecruiterComponent implements OnInit {
     // Object.assign({}, 'copyLink link  link');
     // var successful = document.execCommand('copy');
     // window.prompt("Copy to clipboard: Ctrl+C", text);
-
-    window.prompt("Copy to clipboard: Ctrl+C", 'this is a texts');
-
+    // window.prompt("Copy to clipboard: Ctrl+C", 'this is a texts');
   }
 
 
