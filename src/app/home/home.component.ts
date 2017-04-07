@@ -95,6 +95,7 @@ export class HomeComponent implements AfterViewInit, OnInit, OnDestroy {
   public isLoading = false;
   public masonry: any;
   subscription: Subscription;
+  // public ref;
 
   constructor(private homeService: HomeService, private navigationService: NavigationService, private router: Router, private route: ActivatedRoute, private orderService: OrderService, private analyticsService: AnalyticsService, private seoService: SeoService) {
   }
@@ -111,6 +112,9 @@ export class HomeComponent implements AfterViewInit, OnInit, OnDestroy {
     this.route.params.subscribe(params => {
       let serviceId = params['id'];
       let services = this.homeService.getServicesObject();
+      // console.log('service objec is: ' + JSON.stringify(services));
+      // this.ref = services.ref;
+
       if (serviceId) {
         window.scrollTo(0, 0);
         this.isServicesView = true;
@@ -119,16 +123,14 @@ export class HomeComponent implements AfterViewInit, OnInit, OnDestroy {
         } else {
           this.isLoading = true;
           let timeStart = Date.now();
-          this.homeService.getServiceById(serviceId)
-              .then((data) => {
-                this.analyticsService.sendTiming({category: 'Get service by id', timingVar: 'load', timingValue: Date.now()-timeStart});
-                this.renderPage(data.result);
-                this.isLoading = false;
-              })
-              .catch((error) => {
-                this.isLoading = false;
-                this.router.navigateByUrl('/');
-              });
+          this.homeService.getServiceById(serviceId).then((data) => {
+            this.analyticsService.sendTiming({category: 'Get service by id', timingVar: 'load', timingValue: Date.now()-timeStart});
+            this.renderPage(data.result);
+            this.isLoading = false;
+          }).catch((error) => {
+            this.isLoading = false;
+            this.router.navigateByUrl('/');
+          });
         }
       }
     });

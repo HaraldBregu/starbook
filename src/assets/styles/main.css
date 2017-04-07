@@ -4860,18 +4860,18 @@ app-profile .page-container {
       margin: 40px 0 20px; }
     app-profile .page-container form .actions {
       margin: 20px 0; }
-  app-profile .page-container .footer {
+  app-profile .page-container .footer-box {
     display: block;
     text-align: left !important;
     width: 100%;
     padding: 20px 0 40px;
     border-top: 1px solid #CCCCCC; }
-    app-profile .page-container .footer h5 {
+    app-profile .page-container .footer-box h5 {
       color: #4A4A4A;
       margin-top: 5px; }
-    app-profile .page-container .footer .actions {
+    app-profile .page-container .footer-box .actions {
       margin: 20px 0 0; }
-      app-profile .page-container .footer .actions .btn-danger {
+      app-profile .page-container .footer-box .actions .btn-danger {
         width: 100px; }
   app-profile .page-container .card-container {
     padding: 30px 0; }
@@ -4906,6 +4906,15 @@ app-profile .page-container {
 @media (max-width: 380px) {
   app-profile .top-bar li {
     padding: 0 10px; } }
+
+.footer {
+  background: #F7F7F7;
+  padding: 20px;
+  font-size: 16px; }
+
+.footer-container {
+  max-width: 1130px;
+  margin: auto; }
 
 .dark-screen {
   display: block;

@@ -68,11 +68,10 @@ export class RecruiterComponent implements OnInit {
   constructor(private router: Router, private route: ActivatedRoute, private navigationService: NavigationService, private joinService: JoinService, private authService: AuthService) {
     this.emailPattern = /^[a-z0-9!#$%&'*+\/=?^_`{|}~.-]+@[a-z0-9]([a-z0-9-]*[a-z0-9])?(\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)*$/i;
     this.numPattern = /^\d+$/;
-
     if (localStorage.getItem('auth')) {
       this.currentUser = JSON.parse(localStorage.getItem('auth'));
       // console.log('host: ' + document.location.protocol + '//'+ document.location.hostname + '/?affiliato=' + '3324r4gr');
-      this.sharelink =  document.location.protocol + '//'+ document.location.hostname + '/?affiliato=' + this.currentUser._id;
+      this.sharelink =  document.location.protocol + '//'+ document.location.hostname + '/?ref=' + this.currentUser._id;
     }
   }
 

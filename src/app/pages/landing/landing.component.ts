@@ -7,7 +7,7 @@ import { AnalyticsService } from '../../shared/analytics.service';
 import { PopupsService } from '../../popups/popups.service';
 import { AuthService } from '../../shared/auth.service';
 
-declare let Swiper: any;
+// declare let Swiper: any;
 declare const FB:any;
 
 @Component({
@@ -22,20 +22,20 @@ export class LandingComponent implements OnInit {
   public spinerView = false;
   public clearView = false;
   public isLoading = false;
-  public swiper: any;
-  public testPage;
+  // public swiper: any;
   public isAuthenticated = false;
-
   public newServiceRequest = {
     message: 'Richiedi?'
   };
+  public ref;
 
   constructor(private authServics: AuthService, private homeService: HomeService, private router: Router, private route: ActivatedRoute, private navigationService: NavigationService, private analyticsService: AnalyticsService, private popupsService: PopupsService) {
   }
 
   ngOnInit() {
     this.route.queryParams.subscribe((params: Params) => {
-      this.testPage = params['action']
+      this.ref = params['ref']
+      console.log('the ref is: ' + this.ref);
     });
 
     if (isBrowser) {
@@ -56,24 +56,18 @@ export class LandingComponent implements OnInit {
       this.analyticsService.sendTiming({category: 'Get list of featured', timingVar: 'load', timingValue: Date.now()-timeStart});
       this.isLoading = false;
       if (isBrowser) {
-          setTimeout(function () {
-              this.swiper = new Swiper('.swiper-container', {
-                  freeMode: true,
-                  direction: 'horizontal',
-                  slidesPerView: 'auto'
-              });
-          }, 1);
-      }}).catch((error) => {
+          // setTimeout(function () {
+          //     this.swiper = new Swiper('.swiper-container', {
+          //         freeMode: true,
+          //         direction: 'horizontal',
+          //         slidesPerView: 'auto'
+          //     });
+          // }, 1);
+      }
+    }).catch((error) => {
         this.isLoading = false;
       });
-  }
-
-  /////////////////////////
-  /////// SEARCH //////////
-  /////////////////////////
-  searchMore() {
-    this.search(this.query)
-  }
+    }
 
   ///////////////////////////////
   /////// PARTNERSHIP //////////
@@ -85,16 +79,12 @@ export class LandingComponent implements OnInit {
     this.router.navigate(['recruiter/partnerjoin']);
   }
 
-  cardHover(id, type) {
-    if (type === 'on') {
-      this.cardStyles[id] = '1';
-    } else {
-      if (id === 3) {
-        this.cardStyles[id] = '0.9';
-      } else {
-        this.cardStyles[id] = '0.95';
-      }
-    }
+
+  /////////////////////////
+  /////// SEARCH //////////
+  /////////////////////////
+  searchMore() {
+    this.search(this.query)
   }
 
   search(event) {
@@ -121,7 +111,11 @@ export class LandingComponent implements OnInit {
   }
 
   selectResult(servicesObj) {
-    this.homeService.sendServices(servicesObj);
+    var service = servicesObj;
+    service['ref'] = this.ref;
+    // console.log('service objec is: ' + JSON.stringify(service));
+
+    this.homeService.sendServices(service);
     this.router.navigate(['services', servicesObj.title.replace(/\s+/g, '-')]);
   }
 
@@ -140,75 +134,89 @@ export class LandingComponent implements OnInit {
   //***************** A/B TESTS **************************
   //******************************************************
 
-  callToActionLoginWithFacebook() {
-    this.analyticsService.sendEvent({category:'Landing page A/B button', action: 'login', label: 'facebook login'});
-    if (isBrowser) {
-      let left = Math.round((document.documentElement.clientWidth / 2) - 285);
-      let facebookPopup = window.open(
-        'https://www.facebook.com/v2.8/dialog/oauth?client_id=1108461325907277&response_type=token&scope=email,public_profile&redirect_uri=https://www.starbook.co/facebook',
-        // 'https://www.facebook.com/v2.8/dialog/oauth?client_id=1108461325907277&response_type=token&scope=email,public_profile&redirect_uri=http://localhost:4200/facebook',
-          '_blank', 'location=yes,height=570,width=520,left=' + left + ', top=100,scrollbars=yes,status=yes');
-      this.checkAccessToken(facebookPopup, 1);
-    }
-  }
 
-  checkAccessToken(facebookWindow: Window, context) {
-    if (facebookWindow.closed) {
-      let accessToken = localStorage.getItem('facebook_token');
-      this.authServics.facebookLogin(accessToken).then((userData) => {}).catch((error) => {});
-    } else {
-      let self = this;
-      setTimeout(function() {self.checkAccessToken(facebookWindow, context + 1)}, 200);
-    }
-  }
+  // cardHover(id, type) {
+  //   if (type === 'on') {
+  //     this.cardStyles[id] = '1';
+  //   } else {
+  //     if (id === 3) {
+  //       this.cardStyles[id] = '0.9';
+  //     } else {
+  //       this.cardStyles[id] = '0.95';
+  //     }
+  //   }
+  // }
 
-  callToActionRegisterCompany() {
-    this.analyticsService.sendEvent({category:'Landing page A/B button', action: 'register', label: 'register company'});
-    this.popupsService.activate({type: 'registerCompany'});
-  }
 
-  callToActionRecommendFriend() {
-    this.analyticsService.sendEvent({category:'Landing page A/B button', action: 'recommend', label: 'recommend to friend'});
-    this.popupsService.activate({type: 'recommendToFriend'});
-  }
+  // callToActionLoginWithFacebook() {
+  //   this.analyticsService.sendEvent({category:'Landing page A/B button', action: 'login', label: 'facebook login'});
+  //   if (isBrowser) {
+  //     let left = Math.round((document.documentElement.clientWidth / 2) - 285);
+  //     let facebookPopup = window.open(
+  //       'https://www.facebook.com/v2.8/dialog/oauth?client_id=1108461325907277&response_type=token&scope=email,public_profile&redirect_uri=https://www.starbook.co/facebook',
+  //       // 'https://www.facebook.com/v2.8/dialog/oauth?client_id=1108461325907277&response_type=token&scope=email,public_profile&redirect_uri=http://localhost:4200/facebook',
+  //         '_blank', 'location=yes,height=570,width=520,left=' + left + ', top=100,scrollbars=yes,status=yes');
+  //     this.checkAccessToken(facebookPopup, 1);
+  //   }
+  // }
+  //
+  // checkAccessToken(facebookWindow: Window, context) {
+  //   if (facebookWindow.closed) {
+  //     let accessToken = localStorage.getItem('facebook_token');
+  //     this.authServics.facebookLogin(accessToken).then((userData) => {}).catch((error) => {});
+  //   } else {
+  //     let self = this;
+  //     setTimeout(function() {self.checkAccessToken(facebookWindow, context + 1)}, 200);
+  //   }
+  // }
+  //
+  // callToActionRegisterCompany() {
+  //   this.analyticsService.sendEvent({category:'Landing page A/B button', action: 'register', label: 'register company'});
+  //   this.popupsService.activate({type: 'registerCompany'});
+  // }
+  //
+  // callToActionRecommendFriend() {
+  //   this.analyticsService.sendEvent({category:'Landing page A/B button', action: 'recommend', label: 'recommend to friend'});
+  //   this.popupsService.activate({type: 'recommendToFriend'});
+  // }
 
-  callToActionShareToEarn() {
-    this.analyticsService.sendEvent({category:'Landing page A/B button', action: 'share', label: 'share to earn'});
-    if (isBrowser) {
-      let left = Math.round((document.documentElement.clientWidth / 2) - 285);
-      let sharelink = 'https://www.facebook.com/sharer/sharer.php';
-      let urlToShare = 'https://www.starbook.co';
-      let name = "Starbook | Prenota servizi professionali";
-      let caption = 'Starbook';
-      let description = 'Preventivi diretti? Starbook è la piattaforma dei lavorazioni professionali. Puoi creare preventivi istantanei senza il bisogno di contattare il professionista.';
-      let facebookPopup = window.open(sharelink + "?u=" + encodeURI(urlToShare) + /*"&name=" + name +*/ "&caption=" + encodeURI(caption) + "&description=" + encodeURI(description),
-        '_blank', 'location=yes,height=570,width=520,left=' + left + ', top=100,scrollbars=yes,status=yes');
-      this.checkFacebookSharePage(facebookPopup, 1);
-    }
-    // FB.ui({
-    //   method: 'feed',
-    //   mobile_iframe: true,
-    //   name: "Starbook | Prenota servizi professionali",
-    //   link: "https://www.starbook.co",
-    //   caption: 'Starbook',
-    //   description: 'Preventivi diretti? Starbook è la piattaforma dei lavorazioni professionali. Puoi creare preventivi istantanei senza il bisogno di contattare il professionista.'
-    // }, function(response) {
-    //   console.log(JSON.stringify(response));
-    //   if (response && response.post_id) {
-    //     console.log('Post was published.');
-    //   } else {
-    //     console.log('Post was not published.');
-    //   }
-    // });
-  }
+  // callToActionShareToEarn() {
+  //   this.analyticsService.sendEvent({category:'Landing page A/B button', action: 'share', label: 'share to earn'});
+  //   if (isBrowser) {
+  //     let left = Math.round((document.documentElement.clientWidth / 2) - 285);
+  //     let sharelink = 'https://www.facebook.com/sharer/sharer.php';
+  //     let urlToShare = 'https://www.starbook.co';
+  //     let name = "Starbook | Prenota servizi professionali";
+  //     let caption = 'Starbook';
+  //     let description = 'Preventivi diretti? Starbook è la piattaforma dei lavorazioni professionali. Puoi creare preventivi istantanei senza il bisogno di contattare il professionista.';
+  //     let facebookPopup = window.open(sharelink + "?u=" + encodeURI(urlToShare) + /*"&name=" + name +*/ "&caption=" + encodeURI(caption) + "&description=" + encodeURI(description),
+  //       '_blank', 'location=yes,height=570,width=520,left=' + left + ', top=100,scrollbars=yes,status=yes');
+  //     this.checkFacebookSharePage(facebookPopup, 1);
+  //   }
+  //   // FB.ui({
+  //   //   method: 'feed',
+  //   //   mobile_iframe: true,
+  //   //   name: "Starbook | Prenota servizi professionali",
+  //   //   link: "https://www.starbook.co",
+  //   //   caption: 'Starbook',
+  //   //   description: 'Preventivi diretti? Starbook è la piattaforma dei lavorazioni professionali. Puoi creare preventivi istantanei senza il bisogno di contattare il professionista.'
+  //   // }, function(response) {
+  //   //   console.log(JSON.stringify(response));
+  //   //   if (response && response.post_id) {
+  //   //     console.log('Post was published.');
+  //   //   } else {
+  //   //     console.log('Post was not published.');
+  //   //   }
+  //   // });
+  // }
 
-  checkFacebookSharePage(facebookWindow: Window, context) {
-    if (facebookWindow.closed) {
-      this.popupsService.activate({type: 'getPromoCode'});
-    } else {
-      let self = this;
-      setTimeout(function() {self.checkFacebookSharePage(facebookWindow, context + 1)}, 200);
-    }
-  }
+  // checkFacebookSharePage(facebookWindow: Window, context) {
+  //   if (facebookWindow.closed) {
+  //     this.popupsService.activate({type: 'getPromoCode'});
+  //   } else {
+  //     let self = this;
+  //     setTimeout(function() {self.checkFacebookSharePage(facebookWindow, context + 1)}, 200);
+  //   }
+  // }
 
 }

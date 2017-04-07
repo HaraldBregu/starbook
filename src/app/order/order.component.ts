@@ -94,6 +94,38 @@ export class OrderComponent implements OnInit, OnDestroy {
     };
   }
 
+  ngOnInit() {
+    this.it = {
+      firstDayOfWeek: 1,
+      dayNames: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+      dayNamesShort: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
+      dayNamesMin: ['Do', 'Lu', 'Ma', 'Me', 'Gi', 'Ve', 'Sa'],
+      monthNames: ['Gennaio', 'Febbraio', 'Marzo', 'Aprile', 'Maggio', 'Giugno',
+        'Luglio', 'Agosto', 'Settembre', 'Ottobre', 'Novembre', 'Dicembre'],
+      monthNamesShort: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+    };
+
+    if (isBrowser) {
+      this.subscription = this.popupsService.getPopupResponse$.subscribe(action => {
+        if (action.type === 'confirm') {
+          this.finalPrice = action.data.price;
+          // this.createOrder();
+        }
+      });
+    }
+
+    if(isBrowser) {
+      if (document.querySelector('body').clientWidth > 480) {
+        this.isMobileCalendar = false;
+        this.maxOrderBlockSize = document.body.clientHeight - 450 + 'px';
+      } else {
+        this.isMobileCalendar = true;
+        this.maxOrderBlockSize = 'auto';
+      }
+    }
+  }
+
+
   changeTab(tab) {
     this.openedTab = tab;
     if (tab === 'TRADITIONAL') {
@@ -273,37 +305,6 @@ export class OrderComponent implements OnInit, OnDestroy {
     //     });
   }*/
 
-  ngOnInit() {
-    this.it = {
-      firstDayOfWeek: 1,
-      dayNames: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
-      dayNamesShort: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
-      dayNamesMin: ['Do', 'Lu', 'Ma', 'Me', 'Gi', 'Ve', 'Sa'],
-      monthNames: ['Gennaio', 'Febbraio', 'Marzo', 'Aprile', 'Maggio', 'Giugno',
-        'Luglio', 'Agosto', 'Settembre', 'Ottobre', 'Novembre', 'Dicembre'],
-      monthNamesShort: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
-    };
-
-    if (isBrowser) {
-      this.subscription = this.popupsService.getPopupResponse$.subscribe(action => {
-        if (action.type === 'confirm') {
-          this.finalPrice = action.data.price;
-          // this.createOrder();
-        }
-      });
-    }
-
-
-    if(isBrowser) {
-      if (document.querySelector('body').clientWidth > 480) {
-        this.isMobileCalendar = false;
-        this.maxOrderBlockSize = document.body.clientHeight - 450 + 'px';
-      } else {
-        this.isMobileCalendar = true;
-        this.maxOrderBlockSize = 'auto';
-      }
-    }
-  }
 
   onResize() {
     if (isBrowser) {
@@ -331,6 +332,8 @@ export class OrderComponent implements OnInit, OnDestroy {
       payment_method: this.openedTab,
       amount: this.multiplier * this.orderData.totalPrice
     };
+    // console.log('ref is: ' + this.ref);
+    // return;
     this.orderService.updateWizardData(wizardData);
     this.router.navigateByUrl('/order/summary');
     return false;
