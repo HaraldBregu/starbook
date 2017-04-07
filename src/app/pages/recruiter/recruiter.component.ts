@@ -57,6 +57,12 @@ export class RecruiterComponent implements OnInit {
     confirm_password_error: null
   };
 
+  /////////////////////////
+  /////// Share  //////////
+  /////////////////////////
+  public contacts = '';
+  public sharelink = '';
+
   constructor(private router: Router, private route: ActivatedRoute, private navigationService: NavigationService, private joinService: JoinService, private authService: AuthService) {
     this.emailPattern = /^[a-z0-9!#$%&'*+\/=?^_`{|}~.-]+@[a-z0-9]([a-z0-9-]*[a-z0-9])?(\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)*$/i;
   }
@@ -70,6 +76,8 @@ export class RecruiterComponent implements OnInit {
         this.navigationService.updateMessage("Lavoriamo insieme");
       } else if (this.page === 'partnerjoin') {
         this.navigationService.updateMessage("Diventa partner con noi");
+      } else if (this.page === 'share') {
+        this.navigationService.updateMessage("Programma di riferimento");
       } else {
         this.router.navigate(['']);
       }
@@ -148,6 +156,65 @@ export class RecruiterComponent implements OnInit {
       // console.log('error: ' + JSON.stringify(error));
     });
   }
+
+  /////////////////////////
+  /////// Share  //////////
+  /////////////////////////
+  sendInvitations() {
+    console.log('sendInvitations');
+  }
+  shareOnFacebook() {
+    let left = Math.round((document.documentElement.clientWidth / 2) - 285);
+    window.open(
+      "http://www.facebook.com/sharer/sharer.php?s=100&u=https://www.starbook.co/?codice=codicedelpromozione",
+      '_blank',
+      'location=yes,height=570,width=520,left=' + left + ', top=100,scrollbars=yes,status=yes');
+    return false
+  }
+  shareOnTwitter() {
+    let left = Math.round((document.documentElement.clientWidth / 2) - 285);
+    window.open(
+      "https://twitter.com/home?status=https://www.starbook.co/?codice=codicedelpromozion",
+      '_blank',
+      'location=yes,height=570,width=520,left=' + left + ', top=100,scrollbars=yes,status=yes');
+    return false
+  }
+  shareOnLinkedin() {
+    let left = Math.round((document.documentElement.clientWidth / 2) - 285);
+    window.open(
+      "https://www.linkedin.com/shareArticle?mini=true&url=https%3A//www.starbook.co/&title=Prova%20Starbook&summary=&source=",
+      '_blank',
+      'location=yes,height=570,width=520,left=' + left + ', top=100,scrollbars=yes,status=yes');
+    return false
+  }
+  shareOnGoogle() {
+    let left = Math.round((document.documentElement.clientWidth / 2) - 285);
+    window.open(
+      "https://plus.google.com/share?url=https%3A//www.starbook.co/",
+      '_blank',
+      'location=yes,height=570,width=520,left=' + left + ', top=100,scrollbars=yes,status=yes');
+    return false
+  }
+
+  shareWithEmail() {
+    console.log('shareWithEmail');
+    let left = Math.round((document.documentElement.clientWidth / 2) - 285);
+    window.open(
+      "mailto:?Subject=Simple",
+      '_blank',
+      'location=yes,height=570,width=520,left=' + left + ', top=100,scrollbars=yes,status=yes');
+    return false
+  }
+  copyLink() {
+    console.log('copyLink');
+    // Object.assign({}, 'copyLink link  link');
+    // var successful = document.execCommand('copy');
+    // window.prompt("Copy to clipboard: Ctrl+C", text);
+
+    window.prompt("Copy to clipboard: Ctrl+C", 'this is a texts');
+
+  }
+
 
   // joinAsPartner() {
   //   if (this.signup_state.loading) {return;}

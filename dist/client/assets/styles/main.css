@@ -431,7 +431,7 @@ p {
   font-size: 22px;
   font-family: Roboto, sans-serif;
   font-weight: 400;
-  outline: none;
+  outline: none !important;
   padding: 0;
   line-height: 50px; }
 
@@ -542,11 +542,38 @@ p {
   border-radius: 0;
   outline: none !important; }
 
-.input-group .form-control {
-  position: relative;
-  padding-left: 20px;
-  box-shadow: none;
-  background-color: #2A292B; }
+.btn-twitter {
+  background: #00aced !important;
+  color: white;
+  font-family: Roboto, sans-serif;
+  font-weight: 400;
+  letter-spacing: 0.1px;
+  padding: 11px 7px;
+  outline: none;
+  border-radius: 0;
+  outline: none !important; }
+
+.btn-linkedin {
+  background: #0077B5 !important;
+  color: white;
+  font-family: Roboto, sans-serif;
+  font-weight: 400;
+  letter-spacing: 0.1px;
+  padding: 11px 7px;
+  outline: none;
+  border-radius: 0;
+  outline: none !important; }
+
+.btn-google-plus {
+  background: #d34836 !important;
+  color: white;
+  font-family: Roboto, sans-serif;
+  font-weight: 400;
+  letter-spacing: 0.1px;
+  padding: 11px 7px;
+  outline: none;
+  border-radius: 0;
+  outline: none !important; }
 
 .form-group label {
   color: black;
@@ -621,6 +648,24 @@ textarea.form-control {
   border: 1px solid #DCDCDC;
   border-radius: 0;
   outline: none; }
+
+.input-group {
+  margin-bottom: 15px; }
+
+.input-group .form-control {
+  height: 50px !important;
+  border: 1px solid #DCDCDC;
+  box-shadow: none; }
+
+.input-group .error-input {
+  border: 2px solid #f75c4b !important; }
+
+.input-group .form-control:focus {
+  color: black; }
+
+.input-group .ui-inputtext {
+  height: 50px !important;
+  border: 1px solid #DCDCDC !important; }
 
 .animate {
   -webkit-animation: spin 1000ms infinite linear;
@@ -7010,32 +7055,39 @@ app-recruiter {
     margin: 1.5rem 0 0.5rem; }
   app-recruiter p {
     margin: 0 0 1rem; }
+  app-recruiter .referral-container {
+    text-align: center;
+    max-width: 1100px;
+    margin: auto;
+    padding: 50px; }
+    app-recruiter .referral-container .btn-facebook, app-recruiter .referral-container .btn-white, app-recruiter .referral-container .btn-twitter, app-recruiter .referral-container .btn-linkedin, app-recruiter .referral-container .btn-google-plus, app-recruiter .referral-container .btn-success {
+      width: 100%;
+      height: 50px;
+      font-size: 18px;
+      font-weight: 500;
+      border-radius: 3px; }
+    app-recruiter .referral-container .btn-facebook i, app-recruiter .referral-container .btn-white i, app-recruiter .referral-container .btn-twitter i, app-recruiter .referral-container .btn-success i, app-recruiter .referral-container .btn-google-plus i, app-recruiter .referral-container .btn-linkedin i {
+      position: absolute;
+      font-size: 30px;
+      left: 15px;
+      top: 10px; }
+    app-recruiter .referral-container .invitation {
+      max-width: 600px;
+      margin: auto; }
+      app-recruiter .referral-container .invitation .input-group-btn {
+        width: 20%; }
+      app-recruiter .referral-container .invitation .left {
+        float: left;
+        width: 80%; }
+      app-recruiter .referral-container .invitation .btn-success {
+        font-size: 22px; }
+    app-recruiter .referral-container .share-actions {
+      padding: 40px 0 40px; }
+  app-recruiter .input-group .form-control:focus {
+    border: 2px solid #7FC443 !important; }
   @media (max-width: 768px) {
     app-recruiter .recruiter-container {
       padding: 20px; } }
-
-app-marketing {
-  display: block;
-  position: relative;
-  width: 100%;
-  height: 100%;
-  background-color: #FFFFFF;
-  overflow: hidden;
-  padding: 70px 0 0; }
-  app-marketing .marketing-page  {
-    display: block;
-    max-width: 1130px;
-    padding: 30px 40px 0;
-    border-bottom: 1px solid #CCCCCC;
-    border: 1px solid #CCCCCC;
-    background: white;
-    margin: 100px auto 50px; }
-    app-marketing .marketing-page  input {
-      display: inline-block; }
-    app-marketing .marketing-page  button {
-      display: inline-block; }
-    app-marketing .marketing-page  h1 {
-      color: red; }
 
 ngb-datepicker,
 .datepicker {

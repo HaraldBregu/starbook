@@ -6,6 +6,7 @@ app-recruiter {
   background-color: #FFFFFF;
   overflow: hidden;
   padding: 70px 0 0;
+
   .btn-warning {
     width: 100%;
     height: 60px;
@@ -32,6 +33,48 @@ app-recruiter {
   }
   p {
     margin: 0 0 1rem;
+  }
+
+  .referral-container {
+    text-align: center;
+    max-width: 1100px;
+    margin: auto;
+    padding: 50px;
+    .btn-facebook, .btn-white, .btn-twitter, .btn-linkedin, .btn-google-plus, .btn-success {
+      width: 100%;
+      height: 50px;
+      font-size: 18px;
+      font-weight: 500;
+      border-radius: 3px;
+    }
+    .btn-facebook i, .btn-white i, .btn-twitter i, .btn-success i, .btn-google-plus i, .btn-linkedin i {
+      position: absolute;
+      font-size: 30px;
+      left: 15px;
+      top: 10px;
+    }
+    .invitation {
+      max-width: 600px;
+      margin: auto;
+      // height: 50px;
+      .input-group-btn {
+        width: 20%;
+      }
+      .left {
+        float: left;
+        width: 80%;
+      }
+      .btn-success{
+        font-size: 22px;
+      }
+    }
+    .share-actions {
+      padding: 40px 0 40px;
+    }
+  }
+
+  .input-group .form-control:focus {
+    border: 2px solid #7FC443 !important;
   }
 
   @media (max-width: 768px) {

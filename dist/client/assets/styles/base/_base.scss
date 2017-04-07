@@ -47,7 +47,7 @@ p {
   font-size: 22px;
   font-family: $font-name;
   font-weight: 400;
-  outline: none;
+  outline: none !important;
   padding: 0;
   line-height: 50px;
 }
@@ -168,12 +168,66 @@ p {
   // color: black !important;
   // background-color: #7FC443 !important;
 }
-.input-group .form-control {
-  position: relative;
-  padding-left: 20px;
-  box-shadow: none;
-  background-color: #2A292B;
+.btn-twitter {
+  background: #00aced !important;
+  color: white;
+  font-family: $font-name;
+  font-weight: 400;
+  letter-spacing: 0.1px;
+  padding: 11px 7px;
+  outline: none;
+  border-radius: 0;
+  outline: none !important;
 }
+.btn-twitter:active:focus {
+  // color: black !important;
+  // background-color: #FFC845 !important;
+}
+.btn-twitter:hover {
+  // color: black !important;
+  // background-color: #7FC443 !important;
+}
+.btn-linkedin {
+  background: #0077B5 !important;
+  color: white;
+  font-family: $font-name;
+  font-weight: 400;
+  letter-spacing: 0.1px;
+  padding: 11px 7px;
+  outline: none;
+  border-radius: 0;
+  outline: none !important;
+}
+.btn-linkedin:active:focus {
+  // color: black !important;
+  // background-color: #FFC845 !important;
+}
+.btn-linkedin:hover {
+  // color: black !important;
+  // background-color: #7FC443 !important;
+}
+.btn-google-plus {
+  background: #d34836 !important;
+  color: white;
+  font-family: $font-name;
+  font-weight: 400;
+  letter-spacing: 0.1px;
+  padding: 11px 7px;
+  outline: none;
+  border-radius: 0;
+  outline: none !important;
+}
+.btn-google-plus:active:focus {
+  // color: black !important;
+  // background-color: #FFC845 !important;
+}
+.btn-google-plus:hover {
+  // color: black !important;
+  // background-color: #7FC443 !important;
+}
+
+
+
 .form-group label {
   color: black;
   font-size: 16px;
@@ -263,6 +317,32 @@ textarea.form-control {
   border-radius: 0;
   outline: none;
 }
+
+.input-group {
+  margin-bottom: 15px;
+}
+.input-group .form-control {
+  height: 50px !important;
+  border: 1px solid #DCDCDC;
+  box-shadow: none;
+}
+.input-group .error-input {
+  border: 2px solid #f75c4b !important;
+}
+.input-group .form-control:focus {
+  color: black;
+}
+.input-group .ui-inputtext {
+  height: 50px !important;
+  border: 1px solid #DCDCDC !important;
+}
+// .input-group .form-control {
+//   position: relative;
+//   padding-left: 20px;
+//
+//   background-color: #2A292B;
+// }
+
 
 // LODER
 .animate {
