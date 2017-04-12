@@ -63,6 +63,10 @@ export class RecruiterComponent implements OnInit {
   /////////////////////////
   public contacts = '';
   public sharelink = '';
+  public invitation_state = {
+    message_success: null,
+    message_error: null
+  };
   public currentUser;
 
   constructor(private router: Router, private route: ActivatedRoute, private navigationService: NavigationService, private joinService: JoinService, private authService: AuthService) {
@@ -129,42 +133,6 @@ export class RecruiterComponent implements OnInit {
       // console.log('error: ' + JSON.stringify(error));
     });
   }
-  // joinAsPartner() {
-  //   if (this.recruiter_state.loading) {return;}
-  //   if (!this.Recruiter.firstname || !this.Recruiter.lastname || !this.Recruiter.phone || !this.Recruiter.email) {
-  //     this.recruiter_state.message_error = "Per favore inserisci tutti i campi richiesti";
-  //     this.recruiter_state.firstname_error = "Nome";
-  //     this.recruiter_state.lastname_error = "Cognome";
-  //     this.recruiter_state.phone_error = "Il numero del telefono";
-  //     this.recruiter_state.email_error = "La tua email";
-  //     // console.log('Recruiter object is: ' + JSON.stringify(this.Recruiter));
-  //     return;
-  //   }
-  //   this.recruiter_state.loading = true;
-  //   this.recruiter_state.message_success = null;
-  //   this.recruiter_state.message_error = null;
-  //   this.recruiter_state.firstname_error = null;
-  //   this.recruiter_state.lastname_error = null;
-  //   this.recruiter_state.phone_error = null;
-  //   this.recruiter_state.email_error = null;
-  //   this.Recruiter.type = "partner";
-  //   this.joinService.join(this.Recruiter).then((response) => {
-  //     // console.log('response: ' + JSON.stringify(response));
-  //     this.recruiter_state.message_success = "Complimenti, hai inviato una richiesta di iscrizione su Starbook con successo.";
-  //     this.recruiter_state.loading = false;
-  //     this.Recruiter.firstname = null;
-  //     this.Recruiter.lastname = null;
-  //     this.Recruiter.phone = null;
-  //     this.Recruiter.email = null;
-  //   }).catch((error) => {
-  //     this.recruiter_state.loading = false;
-  //     this.Recruiter.firstname = null;
-  //     this.Recruiter.lastname = null;
-  //     this.Recruiter.phone = null;
-  //     this.Recruiter.email = null;
-  //     // console.log('error: ' + JSON.stringify(error));
-  //   });
-  // }
   joinAsPartner() {
     if (this.signup_state.loading) {return;}
     if (this.Signup.email.length > 0 && this.Signup.firstname.length > 0 && this.Signup.lastname.length > 0 && this.Signup.phone.length > 0 && this.Signup.password.length > 0 && this.Signup.confirmPassword.length > 0) {
@@ -251,7 +219,6 @@ export class RecruiterComponent implements OnInit {
     });
   }
 
-
   /////////////////////////
   /////// Share  //////////
   /////////////////////////
@@ -268,9 +235,34 @@ export class RecruiterComponent implements OnInit {
         phone_numbers.push(string);
       }
     }
-    // console.log('email_addresses are: ' + email_addresses);
-    // console.log('phone_numbers are: ' + phone_numbers);
-    // console.log('sendInvitations: ' + this.contacts);
+
+    var phones = '';
+    for (var i = 0; i < phone_numbers.length; i++) {
+      var p = phone_numbers[i]
+      phones += (i != 0) ? ',' : ''
+      phones += p
+    }
+
+    var emails = '';
+    for (var i = 0; i < email_addresses.length; i++) {
+      var e = email_addresses[i]
+      emails += (i != 0) ? ',' : ''
+      emails += e
+    }
+    if (phones==='' && emails==='') {
+      this.invitation_state.message_success = null;
+      this.invitation_state.message_error = "Inserisci numeri di telefono e email validi";
+      return;
+    }
+    this.invitation_state.message_success = null;
+    this.invitation_state.message_error = null;
+    this.joinService.sendInvitations(this.sharelink, phones, emails).then((response) => {
+      // console.log('response: ' + JSON.stringify(response));
+      this.invitation_state.message_success = "Complimenti, hai inviato un codice sconto ai contatti inseriti";
+      this.contacts = '';
+    }).catch((error) => {
+      // console.log('error: ' + JSON.stringify(error));
+    });
   }
   shareOnFacebook() {
     let left = Math.round((document.documentElement.clientWidth / 2) - 285);
@@ -302,9 +294,10 @@ export class RecruiterComponent implements OnInit {
     return false
   }
   shareWithEmail() {
-    let subject = "Ciao, questo è una mail"
+    let message = "Ciao, utilizza il link sotto per ricevere 5% di scondo sui servizi Starbook. \n" + this.sharelink;
+    let subject = "Promozione Starbook"
     let left = Math.round((document.documentElement.clientWidth / 2) - 285);
-    window.open("mailto:?Subject=" + subject,
+    window.open("mailto:?Subject=" + subject + "&body=" + encodeURIComponent(message),
     '_blank', 'location=yes,height=570,width=520,left=' + left + ', top=100,scrollbars=yes,status=yes');
     return false
   }
