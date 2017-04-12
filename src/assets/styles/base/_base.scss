@@ -37,7 +37,6 @@ p {
   letter-spacing: 0.11px !important;
 }
 
-
 .btn-success {
   background: #7FC443 !important;
   border-radius: 0;
@@ -50,6 +49,14 @@ p {
   outline: none !important;
   padding: 0;
   line-height: 50px;
+}
+.btn-success:active:focus {
+  color: white !important;
+  background-color: #EBB431 !important;
+}
+.btn-success:hover {
+  color: white !important;
+  background-color: #EBB431 !important;
 }
 .btn-danger {
   border-radius: 0;

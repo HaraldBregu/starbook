@@ -27,6 +27,7 @@
     "@angular/platform-server": "2.2.3",
     "@angular/router": "3.2.3",
     "@ng-bootstrap/ng-bootstrap": "^1.0.0-alpha.13",
+    "angular2-clipboard": "^2.0.14",
     "angular2-express-engine": "2.1.0-rc.1",
     "angular2-masonry": "^0.3.1",
     "angular2-platform-node": "2.1.0-rc.1",

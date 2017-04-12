@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { OrderService, IAddress } from './order.service';
 import { PopupsService } from '../popups/popups.service';
 import { AnalyticsService } from '../shared/analytics.service';
+import { ProfileService } from '../shared/profile.service';
 import { Subscription }   from 'rxjs/Subscription';
 import { isBrowser } from "angular2-universal";
 
@@ -13,134 +14,81 @@ import { isBrowser } from "angular2-universal";
 export class OrderComponent implements OnInit, OnDestroy {
   @Input() orderData;
   @Input('orderIsFull') orderIsFull;
+  @Input() price_state;
 
-  public it: any;
-  public timePicker = [];
-  public months: {};
-  public timePickerIsShow = false;
-  public addresses = [];
-  public address = '';
-  public selectedAddress: IAddress = {
-    street: '',
-    street_number: null,
-    city: '',
-    postal_code: null,
-    province: '',
-    country: '',
-    country_code: '',
-    selected: false,
-    isFull: false,
-    // formattedAddress: ''
-    full: '',
-    street_number_city: 'string'
-
-  };
-  public isAddressOne = false;
-  public isAddressFull = false;
-  public isAddressDirty = false;
-  // public isEnable = true;
-  public Order = {
-    service_id: '',
-    delivery_details: [],
-    delivery_description: '',
-    applicant_fullname: 'none',
-    applicant_email: 'none',
-    applicant_phone: 'none',
-    delivery_address: '',
-    date: null,
-    time: '',
-    delivery_date: '',
-    street: '',
-    street_number: null,
-    city: '',
-    postal_code: null,
-    province: '',
-    country: '',
-    country_code: '',
-    formattedAddress: '',
-    payment: {amount: 0, currency: ''}
-  };
-  public minDate = new Date(new Date().getTime() + 24 * 60 * 60 * 1000);
-  public maxDate = new Date(new Date().getTime() + (24*21) * 60 * 60 * 1000);
-  public submitOrder = false;
-  public orderForm: any;
-  public isMobileCalendar: any = false;
-  public maxOrderBlockSize: number|string = 'auto';
-  public isLoading = false;
-  public browser = isBrowser;
-  public finalPrice = 0;
-
-  public openedTab = 'TRADITIONAL';
-  public multiplier = 1;
-  public message_0 = "Pagamento tradizionale. Hai la flessibilità di poter pagare il professionista a fine lavori nei modi tradizionali.";
-
-  subscription: Subscription;
-
-  constructor(private orderService: OrderService, private popupsService: PopupsService, private analyticsService: AnalyticsService, private router: Router) {
-    this.timePicker.push('08:00', '08:30', '09:00', '09:30', '10:00', '10:30', '11:00', '14:00', '14:30', '15:00');
-    this.months = {
-      1: 'Gennaio',
-      2: 'Febbraio',
-      3: 'Marzo',
-      4: 'Aprile',
-      5: 'Maggio',
-      6: 'Giugno',
-      7: 'Luglio',
-      8: 'Agosto',
-      9: 'Settembre',
-      10: 'Ottobre',
-      11: 'Novembre',
-      12: 'Dicembre'
-    };
+  constructor(private orderService: OrderService, private popupsService: PopupsService, private analyticsService: AnalyticsService, private profileService: ProfileService, private router: Router) {
   }
 
   ngOnInit() {
-    this.it = {
-      firstDayOfWeek: 1,
-      dayNames: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
-      dayNamesShort: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
-      dayNamesMin: ['Do', 'Lu', 'Ma', 'Me', 'Gi', 'Ve', 'Sa'],
-      monthNames: ['Gennaio', 'Febbraio', 'Marzo', 'Aprile', 'Maggio', 'Giugno',
-        'Luglio', 'Agosto', 'Settembre', 'Ottobre', 'Novembre', 'Dicembre'],
-      monthNamesShort: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+
+  }
+
+  ///////////////////////////
+  //// PRICE BLOCK //////////
+  ///////////////////////////
+  getFinalPrice() {
+    let total_price = this.orderData.totalPrice;
+    if (!this.price_state.is_referral) {
+      return total_price;
+    } else {
+      return (total_price - (total_price * 0.05));
+    }
+  }
+  getInitialPrice() {
+    return this.orderData.totalPrice;
+  }
+  getUpFront() {
+    return Math.round((this.getFinalPrice() * 0.3));
+  }
+  getTiming() {
+    var days = this.getInitialPrice()/45000;
+    if (days < 0.5) {
+      return "1/2 Giorno";
+    } else if (days > 0.5 && days < 1.5) {
+      return Math.round(days) + " Giorno";
+    } else {
+      return Math.round(days) + " Giorni";
+    }
+  }
+
+  startWizard() {
+    if (this.price_state.loading) {return;}
+    let wizardData = {
+      service_id: this.orderData.service_id,
+      title: this.orderData.service,
+      details: this.orderData.services,
+      referral_id: this.price_state.referral_id,
+      price: {
+        final: this.getFinalPrice(),
+        initial: this.getInitialPrice(),
+        currency: 'eur'
+      },
+      payment: {
+        upfront: this.getUpFront()
+      }
     };
 
-    if (isBrowser) {
-      this.subscription = this.popupsService.getPopupResponse$.subscribe(action => {
-        if (action.type === 'confirm') {
-          this.finalPrice = action.data.price;
-          // this.createOrder();
-        }
-      });
-    }
-
-    if(isBrowser) {
-      if (document.querySelector('body').clientWidth > 480) {
-        this.isMobileCalendar = false;
-        this.maxOrderBlockSize = document.body.clientHeight - 450 + 'px';
-      } else {
-        this.isMobileCalendar = true;
-        this.maxOrderBlockSize = 'auto';
-      }
-    }
+    this.orderService.updateWizardData(wizardData);
+    this.router.navigateByUrl('/order/summary');
+    return false;
   }
 
 
-  changeTab(tab) {
-    this.openedTab = tab;
-    if (tab === 'TRADITIONAL') {
-      this.multiplier = 1;
-      this.message_0 = "Pagamento tradizionale. Hai la flessibilità di poter pagare il professionista a fine lavori nei modi tradizionali.";
-    }
-    if (tab === 'CARD') {
-      this.multiplier = 0.98;
-      this.message_0 = "Pagamento con carta. Prezzo garantito e sicuro. Con questa modalità hai diritto di sconti e agevolazioni.";
-    }
-    if (tab === 'LOAN') {
-      this.multiplier = 0.99;
-      this.message_0 = "Puoi richiedere un prestito per il lavoro che ti serve. Consigliamo questa opzione per lavori con un totale più di 2000 euro.";
-    }
-  }
+  // changeTab(tab) {
+  //   this.openedTab = tab;
+  //   if (tab === 'TRADITIONAL') {
+  //     this.multiplier = 1;
+  //     this.message_0 = "Pagamento tradizionale. Hai la flessibilità di poter pagare il professionista a fine lavori nei modi tradizionali.";
+  //   }
+  //   if (tab === 'CARD') {
+  //     this.multiplier = 0.98;
+  //     this.message_0 = "Pagamento con carta. Prezzo garantito e sicuro. Con questa modalità hai diritto di sconti e agevolazioni.";
+  //   }
+  //   if (tab === 'LOAN') {
+  //     this.multiplier = 0.99;
+  //     this.message_0 = "Puoi richiedere un prestito per il lavoro che ti serve. Consigliamo questa opzione per lavori con un totale più di 2000 euro.";
+  //   }
+  // }
 
   getEstimatePrice(standardPrice) {
     // this.orderService.getEstimatePrice(event.query)
@@ -308,40 +256,25 @@ export class OrderComponent implements OnInit, OnDestroy {
 
   onResize() {
     if (isBrowser) {
-      if (document.querySelector('body').clientWidth > 480) {
-        this.isMobileCalendar = false;
-        this.maxOrderBlockSize = document.body.clientHeight - 450 + 'px';
-      } else {
-        this.isMobileCalendar = true;
-        this.maxOrderBlockSize = 'auto';
-      }
+      // if (document.querySelector('body').clientWidth > 480) {
+      //   this.isMobileCalendar = false;
+      //   this.maxOrderBlockSize = document.body.clientHeight - 450 + 'px';
+      // } else {
+      //   this.isMobileCalendar = true;
+      //   this.maxOrderBlockSize = 'auto';
+      // }
     }
   }
 
   ngOnDestroy() {
     if (isBrowser) {
-      this.subscription.unsubscribe();
+      // this.subscription.unsubscribe();
     }
   }
 
-  startWizard() {
-    let wizardData = {
-      service_id: this.orderData.service_id,
-      title: this.orderData.service,
-      details: this.orderData.services,
-      payment_method: this.openedTab,
-      amount: this.multiplier * this.orderData.totalPrice
-    };
-    // console.log('ref is: ' + this.ref);
-    // return;
-    this.orderService.updateWizardData(wizardData);
-    this.router.navigateByUrl('/order/summary');
-    return false;
-  }
-
-  selectDate() {
-    this.analyticsService.sendEvent({category:'Order creation form', action: 'modify', label: 'select date'});
-  }
+  // selectDate() {
+  //   this.analyticsService.sendEvent({category:'Order creation form', action: 'modify', label: 'select date'});
+  // }
 
   /*
   showPreviewOrder() {

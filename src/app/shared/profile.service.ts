@@ -61,6 +61,12 @@ export class ProfileService {
         .catch(this.handleError);
   }
 
+  getAccountById(id) {
+    return this.http.get(this.api + 'accounts/' + id).toPromise().then((response) => {
+      return response.json();
+    }).catch(this.handleError);
+  }
+
   private handleError(error: any): Promise<any> {
     return Promise.reject(error);
   }

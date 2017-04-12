@@ -1,3 +1,47 @@
+app-wizard {
+  .btn-back {
+    background: #d29f26 !important;
+    color: white;
+    font-size: 22px;
+    font-family: $font-name;
+    font-weight: 400;
+    letter-spacing: 0.1px;
+    padding: 0 20px;
+    outline: none;
+    border-radius: 0;
+    border: 0;
+    outline: none !important;
+    height: 50px;
+  }
+  .btn-back:active:focus {
+    color: white !important;
+    background-color: #EBB431 !important;
+  }
+  .btn-back:hover {
+    color: white !important;
+    background-color: #EBB431 !important;
+  }
+
+  .wizard {
+    .wizard-container {
+      .actions {
+        .undobutton {
+          .btn-back {
+            float: left;
+            width: 10%;
+            height: 60px;
+            padding: 0;
+          }
+          .btn-warning {
+            width: 90%;
+          }
+        }
+      }
+    }
+  }
+
+}
+
 // Wizard styles
 $wizard-background-color: #F7F7F7;
 $wizard-background-active-color: #27AE60;
@@ -293,7 +337,6 @@ app-wizard {
   display: block;
   float: left;
   width: 100%;
-
   color: $wizard-form-label-text-color;
   font-size: $wizard-form-label-text-size;
   letter-spacing: $wizard-form-label-text-letter-spacing;
@@ -772,14 +815,11 @@ app-wizard {
 }
 .breadcrumb li {
   float: left;
-  // width: 25%;
-  height: 50px;
+  height: 60px;
 }
 .breadcrumb li a {
   color: $wizard-header-text-color;
   text-decoration: none;
-  // padding: 14px 0;
-  // background: brown; /* fallback color */
   background: $wizard-background-color;
   position: relative;
   display: block;
@@ -787,7 +827,7 @@ app-wizard {
   width: 100%;
   height: 100%;
   text-align: center;
-  line-height: 50px;
+  line-height: 60px;
   padding-left: 35px;
 }
 .breadcrumb li a::after {

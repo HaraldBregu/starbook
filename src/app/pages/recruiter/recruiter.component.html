@@ -41,7 +41,7 @@
     </div>
   </form>
 </div>
-<div class="recruiter-container" *ngIf="page==='partnerjoin'">
+<!-- <div class="recruiter-container" *ngIf="page==='partnerjoin'">
   <div class="header">
     <h3>Un buon partnership è una garanzia per il futuro</h3>
     <p>Noi del team Starbook siamo sempre aperti a nuovi partnership e nuove collaborazioni e diamo il massimo del supporto per offrire il miglior servizio nel minor tempo e nel miglior prezzo possibile ai nostri clienti.</p>
@@ -84,8 +84,58 @@
       <button type="button" id="next" class="btn btn-warning" (click)="joinAsWorker()"><i class="fa fa-circle-o-notch animate" *ngIf="recruiter_state.loading"></i>Invia richiesta</button>
     </div>
   </form>
-</div>
+</div> -->
 <div class="referral-container" *ngIf="page==='share'">
+  <!-- <div class="row">
+    <div class="col-sm-12">
+      <h3>Copy from text -- text</h3> Click this button, it will copy the text from the input by referring to the <strong>text content</strong>
+      <div class="input-group">
+        <input type="text" class="form-control" [(ngModel)]="text" placeholder="content will be copy after click the copy button">
+        <span class="input-group-btn">
+          <button class="btn btn-default" [class.btn-success]= "isCopied1" type="button" ngxClipboard [cbContent]="text" (cbOnSuccess)="isCopied1 = true">copy</button>
+        </span>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-12">
+      <h3>Copy from text -- target</h3> Click this button, it will copy the text from the input by referring to the <strong>input element</strong>
+      <div class="input-group">
+        <input type="text" class="form-control" [(ngModel)]="text2" placeholder="content will be copy after click the copy button"
+          #inputTarget>
+        <span class="input-group-btn">
+          <button class="btn btn-default" [class.btn-success]= "isCopied2" type="button" [ngxClipboard]="inputTarget" (cbOnSuccess)="isCopied2 = true">copy</button>
+        </span>
+      </div>
+    </div>
+  </div> -->
+  <!-- <div class="content">
+    <div class="row">
+      <div class="col-sm-12">
+        <h3>Copy from text -- target</h3>
+        Click this button, it will copy the text from the input by referring to the <strong>input element</strong>
+        <div class="input-group">
+          <input type="text" class="form-control" [(ngModel)]="text2" placeholder="content will be copy after click the copy button"
+            #inputTarget>
+          <span class="input-group-btn">
+          <button class="btn btn-default" type="button" [ngxClipboard]="inputTarget">copy</button>
+        </span>
+        </div>
+      </div>
+    </div>
+  </div> -->
+  <!-- <div class="row">
+    <div class="col-sm-12">
+      Click this button, it will copy the text from the input by referring to the <strong>input element</strong>
+      <div class="input-group">
+        <input type="text" class="form-control"  placeholder="content will be copy after click the copy button" #inputTarget>
+        <span class="input-group-btn">
+          <button class="btn btn-default" type="button" [ngx-clipboard]="contacts">copy</button>
+        </span>
+      </div>
+    </div>
+  </div> -->
+
   <div class="header">
     <h1>Aiuta un amico e guadagnate insieme!</h1>
     <p>Condividi Starbook ai tuoi amici e per ogni servizio acquistato riceverete entrambi 5% del totale del servizio</p>
@@ -139,7 +189,7 @@
   </div>
 </div>
 
-<!-- <div class="recruiter-container" *ngIf="page==='partnerjoin'">
+<div class="recruiter-container" *ngIf="page==='partnerjoin'">
   <div class="header">
     <h3>Un buon partnership è una garanzia per il futuro</h3>
     <p>Noi del team Starbook siamo sempre aperti a nuovi partnership e nuove collaborazioni e diamo il massimo del supporto per offrire il miglior servizio nel minor tempo e nel miglior prezzo possibile ai nostri clienti.</p>
@@ -189,7 +239,7 @@
       <div class="alert alert-danger" role="alert">{{signup_state.message_error}}</div>
     </div>
     <div class="form-group">
-      <button type="button" id="next" class="btn btn-warning" (click)="joinAsPartner()"><i class="fa fa-circle-o-notch animate" *ngIf="signup_state.loading"></i>Invia richiesta</button>
+      <button type="button" id="next" class="btn btn-warning" (click)="joinAsPartner()"><i class="fa fa-circle-o-notch animate" *ngIf="signup_state.loading"></i>{{signup_state.button_title}}</button>
     </div>
   </form>
-</div> -->
+</div>

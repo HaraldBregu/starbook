@@ -29,7 +29,15 @@ export class WizardComponent implements OnInit {
     details: [],
     date: null,
     address: null,
-    payment: {method:'', amount:0, currency:'eur'}
+    referral_id: null,
+    price: {
+      final: 0,
+      initial: 0,
+      currency: 'eur'
+    },
+    payment: {
+      upfront:0
+    }
   };
   public order_status = {
     loading: false,
@@ -192,8 +200,9 @@ export class WizardComponent implements OnInit {
       this.Order.service_id = service_data.service_id;
       this.Order.title = service_data.title;
       this.Order.details = service_data.details;
-      this.Order.payment.method = service_data.payment_method;
-      this.Order.payment.amount = service_data.amount;
+      this.Order.referral_id = service_data.referral_id;
+      this.Order.price = service_data.price;
+      this.Order.payment = service_data.payment;
       this.saveOrderToLocal(this.Order)
     }
   }
@@ -228,16 +237,18 @@ export class WizardComponent implements OnInit {
       } else {
         //this.router.navigate(['services', this.wizardData.service_id]);
       }
-
-      // function checkData() {
-      //   if (!this.Order.address) {
-      //     this.router.navigate(['order/address']);
-      //   } else if (!this.Order.date) {
-      //     this.router.navigate(['order/date']);
-      //   }
-      // }
-
     })
+  }
+
+  back() {
+    if (this.step === 'address') {
+      this.router.navigate(['order/summary']);
+    } else if (this.step === 'date') {
+      this.router.navigate(['order/address']);
+    } else if (this.step === 'preview') {
+      this.router.navigate(['order/date']);
+    }
+    console.log('back');
   }
 
   ///////////////////////////////
@@ -324,6 +335,10 @@ export class WizardComponent implements OnInit {
       this.order_status.button_title = "Inviando l'ordine...";
       this.order_status.error_message = null;
       this.orderService.saveOrder(this.Order).then((response) => {
+
+        // var res = response.json()
+        // console.log('response: ' + JSON.stringify(res));
+
         this.order_status.loading = false;
         this.order_status.button_title = "Invia ordine";
         this.order_status.error_message = null;
@@ -334,6 +349,8 @@ export class WizardComponent implements OnInit {
           this.router.navigate(['order/end']);
         }
       }).catch((errorData) => {
+        console.log('errorData: ' + JSON.stringify(errorData));
+
         this.order_status.loading = false;
         this.order_status.button_title = "Invia ordine";
         this.router.navigate(['order/preview']);
@@ -346,6 +363,11 @@ export class WizardComponent implements OnInit {
             this.order_status.error_message = "Effetua l'accesso prima di creare un ordine";
           }
 
+        } else if (errorData.status === 402) {
+          if (_body.message === "no_cards") {
+            this.order_status.error_message = "Inserisci un metodo di pagamento.";
+            this.order_status.payment_error_message = "Vai alla pagina"
+          }
         } else if (errorData.status === 403) {
           this.order_status.error_message = "service not supported in your location";
         }

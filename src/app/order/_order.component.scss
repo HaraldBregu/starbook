@@ -1,4 +1,76 @@
 app-order {
+  .sidebar {
+    .order-header {
+      width: 100%;
+      height: 80px;
+      line-height: 80px;
+      padding: 0 20px;
+      text-align: center;
+      background: #2A292B;
+      span {
+        color: white;
+        font-weight: 300;
+        font-size: 30px;
+      }
+    }
+
+    .order-content {
+      .price-block {
+        display: block;
+        width: 100%;
+        text-align: center;
+        letter-spacing: 0.22px;
+        .loader-section {
+          padding: 40px 0;
+          i {
+            font-size: 30px;
+            color: white;
+          }
+          h2 {
+            margin: 20px 0 0;
+          }
+        }
+        h1, h2 {
+          color: #ffffff;
+          font-weight: 300;
+        }
+        h6 {
+          color: rgba(255, 255, 255, 0.7);
+          font-weight: 300;
+          margin-top: 10px;
+        }
+        .total {
+          margin: 40px 0 0;
+          span {
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 10px;
+          }
+          h1 {
+            color: #00B420;
+            font-weight: 500;
+          }
+          h2 {
+            font-weight: 300;
+            text-decoration: line-through;
+          }
+        }
+        .upfront {
+          margin: 40px 0 0;
+        }
+        .timing {
+          margin: 40px 0 0;
+        }
+        .description {
+          font-weight: 300;
+          font-size: 14px;
+          text-align: left;
+        }
+      }
+
+    }
+
+  }
   @media (max-width: 906px) {
     .row {
       margin-left: 0px;
@@ -200,23 +272,17 @@ $footer-links-text-letter-spacing: 0.08px;
     display: block;
     float: left;
     width: 100%;
-    padding: 0 15px 30px 15px;
-  }
-  .order-content .price-block {
-    display: block;
-    float: left;
-    width: 100%;
-    margin-top: 50px;
+    padding: 15px 20px 20px;
   }
   .order-content .price-block span {
     display: block;
     float: left;
     width: 100%;
     text-align: center;
-
-    color: $sidebar-color-first;
-    font-size: $sidebar-content-main-price-text-size;
-    letter-spacing: $sidebar-content-main-price-text-letter-spacing;
+    color: #ffffff;
+    font-size: 35px;
+    font-weight: 300;
+    letter-spacing: 0.22px;
   }
   .order-content .price-block .description {
     display: block;
@@ -226,7 +292,7 @@ $footer-links-text-letter-spacing: 0.08px;
     color: $sidebar-color-second;
     font-size: $sidebar-content-main-price-description-size;
     letter-spacing: $sidebar-content-main-price-description-letter-spacing;
-    margin-top: 5px;
+    margin-top: 0;
   }
   .order-content .price-block-second {
     display: block;
@@ -267,25 +333,27 @@ $footer-links-text-letter-spacing: 0.08px;
     float: left;
     width: 100%;
     margin-top: 30px;
-    padding: 0 35px;
+    // padding: 0 35px;
+    font-weight: 300;
     font-size: $sidebar-content-description-text-size;
     letter-spacing: $sidebar-content-description-text-letter-spacing;
     color: $sidebar-color-second;
-    text-align: center;
+    text-align: left;
   }
   .order-content .form-group {
     display: block;
     float: left;
     width: 100%;
-    padding: 0 5px;
+    padding: 0;
     margin-top: 30px;
     margin-bottom: 0;
   }
   .order-content .form-group .btn.btn-warning {
     width: 100%;
     height: 50px;
-    font-size: $sidebar-content-btn-text-size;
+    font-size: 18px;
     color: black;
+    font-weight: 600;
   }
   // .order-content .notice {
   //   display: block;
@@ -502,13 +570,13 @@ $footer-links-text-letter-spacing: 0.08px;
     // height: 44px;
     // margin-left: -17px;
     // margin-bottom: 20px;
-    padding: 17px 0 17px 20px;
+    // padding: 17px 0 17px 20px;
     color: $order-block-header-color;
     font-size: 19px;
     font-weight: 400;
     letter-spacing: $order-block-header-letter-spacing;
     // border-bottom: $sidebar-block-border;
-    padding: 20px;
+    // padding: 20px;
   }
   .order-container .category-group {
     display: block;
@@ -854,7 +922,7 @@ $footer-links-text-letter-spacing: 0.08px;
   }
   @media (max-width: 1024px) {
     .order-content .price-block {
-      margin-top: 60px;
+      margin-top: 40px;
     }
     .order-content .price-block-second {
       margin-top: 21px;

@@ -1,7 +1,9 @@
 import { ModuleWithProviders }  from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { HomeComponent } from './home/home.component';
+import { LandingComponent } from './landing/landing.component';
+
+import { HomeComponent } from './pages/home/home.component';
 import { OrdersComponent } from './pages/orders/orders.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { FacebookComponent } from './pages/facebook/facebook.component';
@@ -15,7 +17,7 @@ import { RecruiterComponent } from './pages/recruiter/recruiter.component';
 const routes: Routes = [
   {
     path: '',
-    component: HomeComponent
+    component: LandingComponent
   },
   {
     path: 'services/:id',

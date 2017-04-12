@@ -1,12 +1,12 @@
 import { isBrowser } from 'angular2-universal';
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Router, Event, NavigationEnd, ActivatedRoute } from '@angular/router';
+import { Router, Event, NavigationEnd, ActivatedRoute, Params } from '@angular/router';
 import { AnalyticsService } from './shared/analytics.service';
 import { AuthService } from './shared/auth.service';
 import { NavigationService } from './shared/navigation.service';
 import { PopupsService } from './popups/popups.service';
 import { Subscription }   from 'rxjs/Subscription';
-import { HomeService } from './home/home.service';
+import { HomeService } from './pages/home/home.service';
 declare let ga: Function;
 
 @Component({
@@ -38,6 +38,9 @@ export class AppComponent implements OnInit, OnDestroy {
 
   constructor (public router:Router, private route: ActivatedRoute, private authServics: AuthService, private navigationService: NavigationService, private popupsService: PopupsService, private homeService: HomeService, private analyticsService: AnalyticsService) {
     this.navbarState = false;
+    // this.route.params.subscribe((params: Params) => {
+    //   console.log('current route is: ' + this.route.root);
+    // })
 
     if (isBrowser) {
       this.router.events.subscribe((event:Event) => {

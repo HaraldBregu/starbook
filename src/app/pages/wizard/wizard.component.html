@@ -13,13 +13,14 @@
         </div>
       </div>
       <div class="payment">
-        <div class="method">
+        <!-- <div class="method">
           <h5 *ngIf="Order.payment.method === 'TRADITIONAL'">Pagamento: <span>Tradizionale</span></h5>
           <h5 *ngIf="Order.payment.method === 'CARD'">Pagamento: <span>Carta</span></h5>
           <h5 *ngIf="Order.payment.method === 'LOAN'">Pagamento: <span>Prestito</span></h5>
-        </div>
+        </div> -->
         <div class="total">
-          <h2><strong>Totale: <span>{{Order.payment.amount/100}}€</span></strong></h2>
+          <h2><strong>Totale: <span>{{Order.price.final/100}}€</span></strong></h2>
+          <h2><strong>Acconto: <span>{{Order.payment.upfront/100}}€</span></strong></h2>
         </div>
       </div>
       <div class="actions">
@@ -45,7 +46,10 @@
       </div>
       <div class="actions">
         <div class="form-group">
-          <button type="button" id="next" class="btn btn-warning" (click)="confirmAddress()">Continua</button>
+          <div class="undobutton">
+            <button type="button" id="next" class="btn btn-back" (click)="back()"><i class="fa fa-chevron-left" aria-hidden="true"></i></button>
+            <button type="button" id="next" class="btn btn-warning" (click)="confirmAddress()">Continua</button>
+          </div>
         </div>
       </div>
     </div>
@@ -68,7 +72,10 @@
       </div>
       <div class="actions">
         <div class="form-group">
-          <button type="button" id="next" class="btn btn-warning" (click)="confirmDate()">Continua</button>
+          <div class="undobutton">
+            <button type="button" id="next" class="btn btn-back" (click)="back()"><i class="fa fa-chevron-left" aria-hidden="true"></i></button>
+            <button type="button" id="next" class="btn btn-warning" (click)="confirmDate()">Continua</button>
+          </div>
         </div>
       </div>
     </div>
@@ -88,13 +95,14 @@
         <p><strong>Data: </strong><span>{{formated_date}}</span></p>
       </div>
       <div class="payment">
-        <div class="method">
+        <!-- <div class="method">
           <h5 *ngIf="Order.payment.method === 'TRADITIONAL'">Pagamento: <span>Tradizionale</span></h5>
           <h5 *ngIf="Order.payment.method === 'CARD'">Pagamento: <span>Carta</span></h5>
           <h5 *ngIf="Order.payment.method === 'LOAN'">Pagamento: <span>Prestito</span></h5>
-        </div>
+        </div> -->
         <div class="total">
-          <h2><strong>Totale: <span>{{Order.payment.amount/100}}€</span></strong></h2>
+          <h2><strong>Totale: <span>{{Order.price.final/100}}€</span></strong></h2>
+          <h2><strong>Acconto: <span>{{Order.payment.upfront/100}}€</span></strong></h2>
         </div>
       </div>
       <div class="messages" [hidden]="!order_status.error_message">
@@ -105,7 +113,10 @@
       </div>
       <div class="actions">
         <div class="form-group">
-          <button type="button" id="next" class="btn btn-warning" (click)="confirmOrder()"><i class="fa fa-circle-o-notch animate" *ngIf="order_status.loading"></i>{{order_status.button_title}}</button>
+          <div class="undobutton">
+            <button type="button" id="next" class="btn btn-back" (click)="back()"><i class="fa fa-chevron-left" aria-hidden="true"></i></button>
+            <button type="button" id="next" class="btn btn-warning" (click)="confirmOrder()"><i class="fa fa-circle-o-notch animate" *ngIf="order_status.loading"></i>{{order_status.button_title}}</button>
+          </div>
         </div>
       </div>
       <div class="footer">

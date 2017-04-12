@@ -1,153 +1,40 @@
 <div class="col-sm-3 col-md-2 sidebar">
   <form class="sidebar-container" #orderForm="ngForm" (window:resize)="onResize()">
     <div class="sidebar-block">
-      <div class="order-tabs">
-        <div class="tab" (click)="changeTab('TRADITIONAL')" [ngClass]="{'active': openedTab === 'TRADITIONAL'}">
-          <i class="tab-icon money"></i>
-          <span>Tradizionale</span>
-        </div>
-        <div class="tab" (click)="changeTab('CARD')" [ngClass]="{'active': openedTab === 'CARD'}">
-          <i class="tab-icon cards"></i>
-          <span>Carta</span>
-        </div>
-        <div class="tab" (click)="changeTab('LOAN')" [ngClass]="{'active': openedTab === 'LOAN'}">
-          <i class="tab-icon coins"></i>
-          <span>Prestito</span>
-        </div>
+      <div class="order-header">
+        <span>Costo del servizio</span>
       </div>
       <div class="order-content">
-        <!-- <div class="price-block">
-          <span>{{getEstimatePrice(orderData.totalPrice * multiplier)}}€</span>
-          <span>{{(orderData.totalPrice * multiplier) / 100 }}€</span>
-          <div class="description">
-            prezzo attuale del mercato
-          </div>
-        </div> -->
         <div class="price-block">
-          <span>{{(orderData.totalPrice * multiplier) / 100 }}€</span>
-          <div class="description">
-            totale
+          <div class="loader-section" *ngIf="price_state.loading">
+            <i class="fa fa-circle-o-notch animate"></i>
+            <h2>Applicando lo sconto...</h2>
+          </div>
+          <div *ngIf="!price_state.loading">
+            <div class="total">
+              <h1>{{getFinalPrice()/100}}€</h1>
+              <span>IVA COMPRESA</span>
+              <h2 *ngIf="price_state.is_referral">{{getInitialPrice()/100}}€</h2>
+              <h6>Totale del servizio</h6>
+            </div>
+            <div class="upfront">
+              <h1>{{getUpFront()/100}}€</h1>
+              <h6>Acconto da versare 30% del totale</h6>
+            </div>
+            <div class="timing">
+              <h2>{{getTiming()}}</h2>
+              <h6>Durata del lavoro approssimativo</h6>
+            </div>
           </div>
         </div>
         <div class="line"></div>
         <div class="description">
-          {{message_0}}
+          L’acconto versato garantisce il professionista che l’ordine è stato effetuato con successo. Può essere rimborsato in qualsiasi momento.
         </div>
         <div class="form-group">
-          <button class="btn btn-warning" (click)="startWizard()">Avanti</button>
-        </div>
-        <div class="description">
-          *Il totale indicato è il prezzo finale IVA compresa.
+          <button class="btn btn-warning" (click)="startWizard()">CONTINUA</button>
         </div>
       </div>
     </div>
-    <!-- commented old version
-    <div class="sidebar-block">
-      <!-- <h2>{{orderData.service}}</h2>
-      <h2>Disponbilità della lavorazione</h2>
-
-      <!-- <div class="order-container" *ngIf="!orderIsFull">
-        <div class="order-list-empty"><strong>Inserisci</strong> le informazioni necessari del appuntamento e invia la richiesta.</div>
-      </div> -->
-      <!-- <div class="order-container" *ngIf="orderData.order_options.min_amount > orderData.totalPrice">
-        <div class="order-list-empty"><strong></strong>Prezzo minimo del'ordine €{{ orderData.order_options.min_amount / 100 }}</div>
-      </div> -->
-      <!-- <div class="order-container selected-orders" [ngStyle]="{'max-height': maxOrderBlockSize}">
-        <div class="category-group category">
-          <span>{{ orderData.service }}</span>
-        </div>
-        <span  *ngFor="let orderService of orderData.services">
-          <div class="category-group">
-            <span *ngIf="orderService.price_type === 'BASE_AMOUNT_PER_INPUT'">{{ orderService.name }}<i>{{orderService.option.name}} {{orderService.option.symbol}}</i></span>
-            <span *ngIf="orderService.price_type !== 'BASE_AMOUNT_PER_INPUT'">{{ orderService.name }}<i>{{orderService.option.name}}</i></span>
-          </div>
-        </span>
-      </div>
-      end commented old version -->
-      <!-- <div class="category-group total">
-        <span>Totale <i>€{{ orderData.totalPrice / 100 }}</i></span>
-      </div> -->
-      <!-- commented old version
-          <div class="add-order-form">
-
-            <label>Quando vuoi svolgere questo lavoro?</label>
-            <div class="form-group calendar-part" [ngClass]="{isError: submitOrder && !Order.date}" *ngIf="isMobileCalendar">
-              <div class="input-group date datepicker-block">
-                <span class="fa fa-calendar-times-o calendar-box"></span>
-                <p-calendar name="dataOra" [(ngModel)]="Order.date" id="dataOraMobile" class="form-control" placeholder="Inserisci la data" autocomplete="off" dateFormat="dd MM yy" readonlyInput="readonlyInput" [locale]="it" [minDate]="minDate" [maxDate]="maxDate" (onSelect)="selectDate()">
-                </p-calendar>
-              </div>
-            </div>
-            <div class="form-group calendar-part" [ngClass]="{isError: submitOrder && !Order.date}" *ngIf="!isMobileCalendar">
-              <div class="input-group date datepicker-block">
-                <span class="fa fa-calendar-times-o calendar-box"></span>
-                <p-calendar name="dataOra" [(ngModel)]="Order.date" id="dataOra" class="form-control" placeholder="Inserisci la data" autocomplete="off" dateFormat="dd MM yy" [locale]="it" [minDate]="minDate" [maxDate]="maxDate" (onSelect)="selectDate()">
-                </p-calendar>
-              </div>
-            </div>
-            end commented old version -->
-        <!-- <div class="form-group time-part" [ngClass]="{isError: Order.time === '' && submitOrder}" *ngIf="browser">
-          <div class="input-group date" (clickOutside)="closeTimepicker()">
-            <span class="fa fa-clock-o" (click)="toggleTimepicker()"></span>
-            <input id="timeOra" class="form-control" type="text" name="timeOra" [(ngModel)]="Order.time" value="{{Order.time}}" placeholder="Ora" autocomplete="off" (click)="toggleTimepicker()">
-            <div class="mobileArea" (click)="toggleTimepicker()"></div>
-          </div>
-          <div class="time-picker" *ngIf="timePickerIsShow">
-            <div class="time-elem" *ngFor="let time of timePicker" (click)="selectTime(time)">
-              <span class="fa fa-clock-o"></span>
-              {{time}}
-            </div>
-          </div>
-        </div> -->
-        <!-- <div class="form-group time-part" [ngClass]="{isError: Order.time === '' && submitOrder}" *ngIf="!browser">
-          is not support if client != browser (clickOutside)="closeTimepicker()"
-          <div class="input-group date">
-            <span class="fa fa-clock-o" (click)="toggleTimepicker()"></span>
-            <input id="timeOraServer" class="form-control" type="text" name="timeOra" [(ngModel)]="Order.time" value="{{Order.time}}" placeholder="Ora" autocomplete="off" (click)="toggleTimepicker()">
-            <div class="mobileArea" (click)="toggleTimepicker()"></div>
-          </div>
-          <div class="time-picker" *ngIf="timePickerIsShow">
-            <div class="time-elem" *ngFor="let time of timePicker" (click)="selectTime(time)">{{time}}</div>
-          </div>
-        </div> -->
-        <!-- commented old version
-        <label>Inserisci l’indirizzo</label>
-        <div class="form-group" [ngClass]="{isError: !isAddressFull && submitOrder && isAddressDirty}">
-          <div class="input-group date">
-          end commented old version -->
-            <!-- <span class="fa fa-map-marker"></span> -->
-            <!--<input type="text" class="form-control" placeholder="Indirizzo" [ngClass]="{'isError':isAddressFull === false && isAddressDirty === true}" [(ngModel)]="address" [ngModelOptions]="{standalone: true}" (keyup)="modifyAddress()" (change)="modifyAddress()">-->
-
-        <!-- commented old version
-
-            <p-autoComplete id="luogo" class="form-control text-small" placeholder="Via Giuseppe Verdi 10 Milano" [ngClass]="{'isError':isAddressFull === false && isAddressDirty === true}" [(ngModel)]="Order.delivery_address" [ngModelOptions]="{standalone: true}" [suggestions]="addresses" field="formattedAddress" (completeMethod)="getAddresses($event)" (onSelect)="selectAddress($event)">
-            </p-autoComplete>
-          </div>
-          <div class="error-block" *ngIf="!isAddressFull && isAddressDirty && address === ''">Inserisci l'indirizzo esatto</div>
-          <div class="error-block" *ngIf="!isAddressFull && isAddressDirty && address !== '' && isAddressOne">Indirizzo non trovato</div>
-          end commented old version -->
-          <!--<div class="error-block" *ngIf="!isAddressOne && isAddressDirty && address !== ''">Indirizzo non è specifico</div>-->
-
-        <!-- commented old version
-
-        </div>
-        <label>Nota</label>
-        <div class="form-group">
-          <textarea class="form-control" id="nota" name="applicant_description" [(ngModel)]="Order.delivery_description" placeholder="Lascia una nota..."></textarea>
-        </div>
-        <div class="form-group">
-          <button class="btn btn-warning btn-block" (click)="showConfirmation()">Anteprima del progetto</button>
-        </div>
-        <div class="footer-links">
-          <p>
-            Starbook © 2017 •
-            <a routerLink="../../profile/privacy">Privacy</a> •
-            <a routerLink="../../profile/conditions">Condizioni</a> •
-            <a routerLink="../../profile/help">Assistenza</a>
-          </p>
-        </div>
-      </div>
-    </div>
-    end commented old version -->
   </form>
 </div>

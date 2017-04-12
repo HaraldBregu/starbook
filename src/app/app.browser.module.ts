@@ -15,10 +15,12 @@ import { RouterModule }   from '@angular/router';
 // import { AutoCompleteModule, CalendarModule } from 'primeng/primeng';
 // import { CalendarMockComponent } from './mocks/calendar.component';
 import { ClickOutsideModule } from 'ng2-click-outside';
+// import { ClipboarModule } from 'ngx-clipboard';
+
 // import { MasonryModule } from 'angular2-masonry';
 // import { NgbModule, NgbDateParserFormatter } from '@ng-bootstrap/ng-bootstrap';
 import { routing } from './app.routing';
-import { HomeService } from './home/home.service';
+import { HomeService } from './pages/home/home.service';
 import { AuthService } from './shared/auth.service';
 import { OrderService } from './order/order.service';
 import { ProfileService } from './shared/profile.service';
@@ -31,13 +33,13 @@ import { SeoService } from './shared/seo.service';
 import { JoinService } from './shared/join.service';
 
 import { AppComponent } from './app.component';
-import { HomeComponent } from './home/home.component';
+import { HomeComponent } from './pages/home/home.component';
 import { OrderComponent } from './order/order.component';
 import { OrdersComponent } from './pages/orders/orders.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { PopupsComponent } from './popups/popups.component';
 import { PhonePipe } from './pipes/phone.pipe';
-import { LandingComponent } from './pages/landing/landing.component';
+import { LandingComponent } from './landing/landing.component';
 import { ExpiryPipe } from './pipes/expiry.pipe';
 import { LoadingComponent } from './shared/loading/loading.component';
 import { FacebookComponent } from './pages/facebook/facebook.component';
@@ -67,6 +69,7 @@ let imports = [
   // AutoCompleteModule,
   // CalendarModule,
   ClickOutsideModule
+  // ClipboarModule
 ];
 let declarations = [
   AppComponent,
