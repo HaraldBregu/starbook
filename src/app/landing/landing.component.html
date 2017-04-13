@@ -36,8 +36,8 @@
   <div class="services-container">
     <div class="service-box" *ngFor="let service of services" (click)="selectResult(service)">
       <div class="service" [style.background-image]="'url(' + service.image_url + ')'">
+        <div class="title">{{ service.title }}</div>
       </div>
-      <div class="title">{{ service.title }}</div>
     </div>
   </div>
 </div>

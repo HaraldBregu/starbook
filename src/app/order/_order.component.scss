@@ -47,7 +47,7 @@ app-order {
             margin-bottom: 10px;
           }
           h1 {
-            color: #00B420;
+            color: #FFC845;
             font-weight: 500;
           }
           h2 {
@@ -355,6 +355,9 @@ $footer-links-text-letter-spacing: 0.08px;
     color: black;
     font-weight: 600;
   }
+  // .order-content .form-group .btn.btn-warning:hover {
+  //   color: black;
+  // }
   // .order-content .notice {
   //   display: block;
   //   float: left;
@@ -922,7 +925,7 @@ $footer-links-text-letter-spacing: 0.08px;
   }
   @media (max-width: 1024px) {
     .order-content .price-block {
-      margin-top: 40px;
+      // margin-top: 40px;
     }
     .order-content .price-block-second {
       margin-top: 21px;
@@ -963,12 +966,12 @@ $footer-links-text-letter-spacing: 0.08px;
       position: relative;
     }
     .sidebar-block h2 {
-      display: block;
-      position: absolute;
-      top: 0;
-      width: 100%;
-      right: 0;
-      text-align: center;
+      // display: block;
+      // position: absolute;
+      // top: 0;
+      // width: 100%;
+      // right: 0;
+      // text-align: center;
     }
     .sidebar-container .add-order-form {
       position: relative;
@@ -986,10 +989,10 @@ $footer-links-text-letter-spacing: 0.08px;
       // height: 50px;
     }
     .order-content .price-block {
-      display: block;
-      float: left;
-      width: 100%;
-      margin-top: 73px;
+      // display: block;
+      // float: left;
+      // width: 100%;
+      // margin-top: 73px;
     }
   }
   @media (max-width: 645px) {
@@ -1021,12 +1024,12 @@ $footer-links-text-letter-spacing: 0.08px;
       position: relative;
     }
     .sidebar-block h2 {
-      display: block;
-      position: absolute;
-      top: 0;
-      width: 100%;
-      right: 0;
-      text-align: center;
+      // display: block;
+      // position: absolute;
+      // top: 0;
+      // width: 100%;
+      // right: 0;
+      // text-align: center;
     }
     .sidebar-container .add-order-form {
       position: relative;

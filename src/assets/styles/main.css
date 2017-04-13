@@ -437,11 +437,11 @@ p {
 
 .btn-success:active:focus {
   color: white !important;
-  background-color: #EBB431 !important; }
+  background-color: #639835 !important; }
 
 .btn-success:hover {
   color: white !important;
-  background-color: #EBB431 !important; }
+  background-color: #639835 !important; }
 
 .btn-danger {
   border-radius: 0;
@@ -3082,7 +3082,7 @@ app-root .navbar-fixed-top {
 app-root .bg-inverse {
   background-color: #F7F7F7 !important;
   padding: 0 !important;
-  border-bottom: 1px solid #E8E8F2; }
+  border-bottom: 1px solid #CCCCCC; }
 app-root .navbar-brand {
   line-height: 70px;
   padding: 0;
@@ -3203,7 +3203,8 @@ app-root .container-starbook {
     margin-left: 1px;
     margin-right: 1px;
     line-height: 70px; }
-  app-root .container-starbook .nav-link:hover, app-root .container-starbook .nav-link.active {
+  app-root .container-starbook .nav-link:hover,
+  app-root .container-starbook .nav-link.active {
     background-color: #e8e8e8; }
   app-root .container-starbook .top-menu {
     padding-right: 0 !important;
@@ -3448,6 +3449,8 @@ app-landing {
   app-landing .services {
     padding: 50px 0px;
     text-align: center; }
+    app-landing .services h1 {
+      color: rgba(0, 0, 0, 0.7); }
     app-landing .services .services-container {
       overflow: hidden;
       margin: 40px 0 0;
@@ -3461,7 +3464,7 @@ app-landing {
       display: block;
       position: relative;
       width: 100%;
-      height: 300px;
+      height: 320px;
       border: none;
       cursor: pointer;
       background-repeat: no-repeat;
@@ -3469,7 +3472,7 @@ app-landing {
       background-position: top center; }
     app-landing .services .title {
       display: block;
-      position: relative;
+      position: absolute;
       z-index: 2;
       font-weight: 400;
       color: #4a4a4a;
@@ -3480,7 +3483,10 @@ app-landing {
       border-left: 1px solid #DCE0E0;
       border-right: 1px solid #DCE0E0;
       border-bottom: 1px solid #DCE0E0;
-      padding: 10px; }
+      padding: 10px;
+      bottom: 0;
+      width: 100%;
+      background: white; }
   app-landing .how-work {
     display: block;
     overflow: hidden;
@@ -3492,7 +3498,7 @@ app-landing {
       margin: 0 0 30px;
       width: 20%; }
     app-landing .how-work h1 {
-      margin: 0 0 60px; }
+      margin: 0 0 40px; }
     app-landing .how-work h3 {
       margin: 0 auto 10px;
       color: #0072BB;
@@ -4054,7 +4060,7 @@ app-home {
       display: inherit; } }
   @media (max-width: 645px) {
     app-home .home-page .row {
-      padding: 70px 0 0 0; }
+      padding: 80px 10px 0 10px; }
     app-home .home-page .tab-container {
       display: block;
       width: 525px;
@@ -4117,7 +4123,7 @@ app-order .sidebar .order-content .price-block {
       color: rgba(255, 255, 255, 0.7);
       margin-bottom: 10px; }
     app-order .sidebar .order-content .price-block .total h1 {
-      color: #00B420;
+      color: #FFC845;
       font-weight: 500; }
     app-order .sidebar .order-content .price-block .total h2 {
       font-weight: 300;
@@ -4585,9 +4591,6 @@ app-order .sidebar .order-content .price-block {
     right: 20px;
     margin-right: 0; } }
 @media (max-width: 1024px) {
-  .order-content .price-block {
-    margin-top: 40px; }
-
   .order-content .price-block-second {
     margin-top: 21px; }
 
@@ -4623,14 +4626,6 @@ app-order .sidebar .order-content .price-block {
   .sidebar-container .sidebar-block {
     position: relative; }
 
-  .sidebar-block h2 {
-    display: block;
-    position: absolute;
-    top: 0;
-    width: 100%;
-    right: 0;
-    text-align: center; }
-
   .sidebar-container .add-order-form {
     position: relative;
     right: 0;
@@ -4641,13 +4636,7 @@ app-order .sidebar .order-content .price-block {
     margin-top: 8px; }
 
   .order-container.selected-orders {
-    display: none; }
-
-  .order-content .price-block {
-    display: block;
-    float: left;
-    width: 100%;
-    margin-top: 73px; } }
+    display: none; } }
 @media (max-width: 645px) {
   .row {
     margin-right: 0;
@@ -4673,14 +4662,6 @@ app-order .sidebar .order-content .price-block {
 
   .sidebar-container .sidebar-block {
     position: relative; }
-
-  .sidebar-block h2 {
-    display: block;
-    position: absolute;
-    top: 0;
-    width: 100%;
-    right: 0;
-    text-align: center; }
 
   .sidebar-container .add-order-form {
     position: relative;
@@ -5282,7 +5263,7 @@ app-profile .page-container {
   padding: 30px 40px 0;
   border-bottom: 1px solid #CCCCCC;
   border: 1px solid #CCCCCC;
-  background: white;
+  background: #F7F7F7;
   margin: 120px auto; }
   app-profile .page-container .form-group .ui-inputtext:focus {
     border: 2px solid #7FC443 !important; }
@@ -6071,33 +6052,6 @@ app-profile .page-container {
 
   .dark-screen {
     background-color: transparent; } }
-app-wizard .btn-back {
-  background: #d29f26 !important;
-  color: white;
-  font-size: 22px;
-  font-family: Roboto, sans-serif;
-  font-weight: 400;
-  letter-spacing: 0.1px;
-  padding: 0 20px;
-  outline: none;
-  border-radius: 0;
-  border: 0;
-  outline: none !important;
-  height: 50px; }
-app-wizard .btn-back:active:focus {
-  color: white !important;
-  background-color: #EBB431 !important; }
-app-wizard .btn-back:hover {
-  color: white !important;
-  background-color: #EBB431 !important; }
-app-wizard .wizard .wizard-container .actions .undobutton .btn-back {
-  float: left;
-  width: 10%;
-  height: 60px;
-  padding: 0; }
-app-wizard .wizard .wizard-container .actions .undobutton .btn-warning {
-  width: 90%; }
-
 app-wizard {
   display: block;
   float: left;
@@ -6105,21 +6059,85 @@ app-wizard {
   height: 100%;
   min-height: 100vh;
   background-color: #FFFFFF; }
-
-.wizard {
-  display: block;
-  width: 100%;
-  max-width: 900px;
-  margin: 100px auto 50px; }
-
-.wizard .wizard-container {
-  display: block;
-  float: left;
-  width: 100%;
-  background-color: #F7F7F7;
-  border: 1px solid #CCCCCC;
-  padding: 50px 0;
-  margin: 0 0 50px; }
+  app-wizard .wizard {
+    display: block;
+    width: 100%;
+    max-width: 900px;
+    margin: 100px auto 50px; }
+    app-wizard .wizard .wizard-container {
+      display: block;
+      float: left;
+      width: 100%;
+      background-color: #F7F7F7;
+      border: 1px solid #CCCCCC;
+      padding: 50px 0;
+      margin: 0 0 50px; }
+      app-wizard .wizard .wizard-container .content-container {
+        display: block;
+        width: 100%;
+        max-width: 600px;
+        margin: 0 auto; }
+        app-wizard .wizard .wizard-container .content-container .header-summary {
+          text-align: left;
+          margin: auto; }
+          app-wizard .wizard .wizard-container .content-container .header-summary h3 {
+            margin-bottom: 10px; }
+        app-wizard .wizard .wizard-container .content-container .header {
+          padding-bottom: 20px;
+          text-align: center; }
+          app-wizard .wizard .wizard-container .content-container .header h1 {
+            margin-bottom: 20px; }
+          app-wizard .wizard .wizard-container .content-container .header p {
+            font-weight: 400; }
+        app-wizard .wizard .wizard-container .content-container .line {
+          display: block;
+          margin: 20px auto 20px;
+          height: 1px;
+          border-top: 0.5px solid #CCCCCC; }
+        app-wizard .wizard .wizard-container .content-container .payment {
+          margin: auto;
+          overflow: auto; }
+          app-wizard .wizard .wizard-container .content-container .payment .item {
+            float: left;
+            width: 50%;
+            font-size: 18px;
+            font-weight: 500;
+            line-height: 36px; }
+          app-wizard .wizard .wizard-container .content-container .payment .amount {
+            float: left;
+            width: 50%;
+            font-size: 28px;
+            text-align: right;
+            font-weight: 900; }
+          app-wizard .wizard .wizard-container .content-container .payment .initial .amount {
+            font-weight: 400;
+            text-decoration: line-through; }
+  app-wizard .btn-back {
+    background: #d29f26 !important;
+    color: white;
+    font-size: 22px;
+    font-family: Roboto, sans-serif;
+    font-weight: 400;
+    letter-spacing: 0.1px;
+    padding: 0 20px;
+    outline: none;
+    border-radius: 0;
+    border: 0;
+    outline: none !important;
+    height: 50px; }
+  app-wizard .btn-back:active:focus {
+    color: white !important;
+    background-color: #EBB431 !important; }
+  app-wizard .btn-back:hover {
+    color: white !important;
+    background-color: #EBB431 !important; }
+  app-wizard .wizard .wizard-container .actions .undobutton .btn-back {
+    float: left;
+    width: 10%;
+    height: 60px;
+    padding: 0; }
+  app-wizard .wizard .wizard-container .actions .undobutton .btn-warning {
+    width: 90%; }
 
 .wizard .wizard-container .header span {
   display: inline-block;
@@ -6156,12 +6174,6 @@ app-wizard {
   background-position: 50% 90%;
   max-width: 400px;
   margin: 40px auto 0; }
-
-.wizard-container .content-container {
-  display: block;
-  width: 100%;
-  max-width: 600px;
-  margin: 0 auto; }
 
 .wizard-container .content-container .title {
   display: block;
@@ -6515,27 +6527,11 @@ app-wizard {
   font-size: 12px;
   position: absolute; }
 
-.content-container .header {
-  padding-bottom: 20px;
-  text-align: center; }
-  .content-container .header h1 {
-    margin-bottom: 20px; }
-
 .content-container .address {
-  text-align: center; }
+  text-align: left; }
 
 .content-container .date {
-  text-align: center; }
-
-.content-container .payment {
-  text-align: center;
-  width: 400px;
-  margin: 0 auto;
-  padding: 20px 0; }
-  .content-container .payment .total {
-    margin: 10px 0 0; }
-    .content-container .payment .total span {
-      color: #00B420; }
+  text-align: left; }
 
 .content-container .messages {
   padding: 20px 0;
@@ -6602,8 +6598,7 @@ app-wizard {
   .content-container .actions .animate {
     display: block;
     position: absolute;
-    top: 18px;
-    left: 20px; }
+    top: 18px; }
 
 .content-container .footer {
   border-top: 1px solid #CCCCCC;
@@ -6783,7 +6778,7 @@ app-about {
   width: 100%;
   height: 100%;
   min-height: 100vh;
-  padding-top: 50px;
+  padding-top: 70px;
   background-color: white;
   font-family: HelveticaNeue, sans-serif; }
 

@@ -6,21 +6,25 @@
   </ul>
   <div class="wizard-container" *ngIf="step === 'summary'">
     <div class="content-container">
-      <div class="header">
-        <h1>{{Order.title}}</h1>
+      <div class="header-summary">
+        <h3>{{Order.title}}</h3>
         <div *ngFor="let item of Order.details">
           <p>{{item.title}}</p>
         </div>
       </div>
+      <div class="line"></div>
       <div class="payment">
-        <!-- <div class="method">
-          <h5 *ngIf="Order.payment.method === 'TRADITIONAL'">Pagamento: <span>Tradizionale</span></h5>
-          <h5 *ngIf="Order.payment.method === 'CARD'">Pagamento: <span>Carta</span></h5>
-          <h5 *ngIf="Order.payment.method === 'LOAN'">Pagamento: <span>Prestito</span></h5>
-        </div> -->
+        <div class="initial" *ngIf="Order.price.initial>Order.price.final">
+          <div class="item">PREZZO INIZIALE</div>
+          <div class="amount">{{Order.price.initial/100}}€</div>
+        </div>
         <div class="total">
-          <h2><strong>Totale: <span>{{Order.price.final/100}}€</span></strong></h2>
-          <h2><strong>Acconto: <span>{{Order.payment.upfront/100}}€</span></strong></h2>
+          <div class="item">PREZZO FINALE</div>
+          <div class="amount">{{Order.price.final/100}}€</div>
+        </div>
+        <div class="upfront">
+          <div class="item">ACCONTO</div>
+          <div class="amount">{{Order.payment.upfront/100}}€</div>
         </div>
       </div>
       <div class="actions">
@@ -82,28 +86,33 @@
   </div>
   <div class="wizard-container" *ngIf="step === 'preview'">
     <div class="content-container noselect">
-      <div class="header">
-        <h1>{{Order.title}}</h1>
+      <div class="header-summary">
+        <h3>{{Order.title}}</h3>
         <div *ngFor="let item of Order.details">
           <p>{{item.title}}</p>
         </div>
       </div>
+      <div class="line"></div>
+      <div class="payment">
+        <div class="initial" *ngIf="Order.price.initial>Order.price.final">
+          <div class="item">PREZZO INIZIALE</div>
+          <div class="amount">{{Order.price.initial/100}}€</div>
+        </div>
+        <div class="total">
+          <div class="item">PREZZO FINALE</div>
+          <div class="amount">{{Order.price.final/100}}€</div>
+        </div>
+        <div class="upfront">
+          <div class="item">ACCONTO </div>
+          <div class="amount">{{Order.payment.upfront/100}}€</div>
+        </div>
+      </div>
+      <div class="line"></div>
       <div class="address">
         <p><strong>Indirizzo: </strong><span>{{Order.address.street}} {{Order.address.street_number}}, {{Order.address.city}}</span></p>
       </div>
       <div class="date">
         <p><strong>Data: </strong><span>{{formated_date}}</span></p>
-      </div>
-      <div class="payment">
-        <!-- <div class="method">
-          <h5 *ngIf="Order.payment.method === 'TRADITIONAL'">Pagamento: <span>Tradizionale</span></h5>
-          <h5 *ngIf="Order.payment.method === 'CARD'">Pagamento: <span>Carta</span></h5>
-          <h5 *ngIf="Order.payment.method === 'LOAN'">Pagamento: <span>Prestito</span></h5>
-        </div> -->
-        <div class="total">
-          <h2><strong>Totale: <span>{{Order.price.final/100}}€</span></strong></h2>
-          <h2><strong>Acconto: <span>{{Order.payment.upfront/100}}€</span></strong></h2>
-        </div>
       </div>
       <div class="messages" [hidden]="!order_status.error_message">
         <p><small>{{order_status.error_message}}</small></p>
@@ -118,14 +127,6 @@
             <button type="button" id="next" class="btn btn-warning" (click)="confirmOrder()"><i class="fa fa-circle-o-notch animate" *ngIf="order_status.loading"></i>{{order_status.button_title}}</button>
           </div>
         </div>
-      </div>
-      <div class="footer">
-        <h6 *ngIf="Order.payment.method === 'TRADITIONAL'"><small>Carta: Il pagamento con la carta viene effetutato per dare una garanzia al professionista che la lavorazione richiesta verra pagata regolarmente.
-        In caso l’ordine verra annullato o per diversi imprevisti ricevera 100% rimborso.</small></h6>
-        <h6 *ngIf="Order.payment.method === 'CARD'"><small>Carta: Il pagamento con la carta viene effetutato per dare una garanzia al professionista che la lavorazione richiesta verra pagata regolarmente.
-        In caso l’ordine verra annullato o per diversi imprevisti ricevera 100% rimborso.</small></h6>
-        <h6 *ngIf="Order.payment.method === 'LOAN'"><small>Carta: Il pagamento con la carta viene effetutato per dare una garanzia al professionista che la lavorazione richiesta verra pagata regolarmente.
-        In caso l’ordine verra annullato o per diversi imprevisti ricevera 100% rimborso.</small></h6>
       </div>
     </div>
   </div>
