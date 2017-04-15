@@ -27,7 +27,7 @@
                 <img [ngStyle]="{'display': 'none'}">
               </div>
             </div>
-            <div class="service content noselect">
+            <div class="service content">
               <span *ngFor="let item of serviceCategory.options">
                 <div class="item-container" *ngIf="item.type === 'CHECKBOX' || item.type === 'RADIOBUTTON'" [ngClass]="{'checked':item.selected, 'image-item': item.image_url}" (click)="toggleService(serviceCategory.title, item.title)">
                   <div class="item">

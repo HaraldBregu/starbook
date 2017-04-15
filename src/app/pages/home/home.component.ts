@@ -40,10 +40,6 @@ export interface IServices {
   price: {
     base_amount: number;
   },
-  order_options: {
-    min_amount: number;
-    payment_methods: string[]
-  },
   forms: IServiceForm[];
   technical_details: any[];
 }
@@ -80,10 +76,6 @@ export class HomeComponent implements OnInit {
     service_image: '',
     price: {
       base_amount: 0
-    },
-    order_options: {
-      min_amount: 0,
-      payment_methods: []
     },
     service: '',
     services: [],
@@ -177,7 +169,6 @@ export class HomeComponent implements OnInit {
       service_id: services._id,
       service_image: this.image_url,
       price: services.price,
-      order_options: services.order_options,
       service: services.title,
       services: [],
       totalPrice: services.price.base_amount

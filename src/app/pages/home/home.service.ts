@@ -13,6 +13,7 @@ export class HomeService {
   private api: string;
   constructor(private http: Http/*, private navigationService: NavigationService*/) {
     this.api = 'https://api.starbook.co/v0.9.1/';
+    // this.api = 'http://localhost/v0.9.1/';
   }
 
   sendServices(services) {

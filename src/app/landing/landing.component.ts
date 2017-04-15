@@ -20,9 +20,12 @@ export class LandingComponent implements OnInit {
   public query: string = '';
   public results: string[] = [];
   public services = [];
+  public services_state = {
+    loading: false,
+    title: "Servizi piu richiesti"
+  };
   public spinerView = false;
   public clearView = false;
-  public isLoading = false;
   public isAuthenticated = false;
   public newServiceRequest = {
     message: 'Richiedi?'
@@ -45,6 +48,8 @@ export class LandingComponent implements OnInit {
     this.seoService.setOgElem('og:image', 'https://s3-eu-west-1.amazonaws.com/starbook-s3/lavorazioni%2Bcartongesso%2Bcontrosoffitti%2Bpareti%2Bcontropareti.png');
     this.seoService.setOgElem('og:image:secure_url', 'https://s3-eu-west-1.amazonaws.com/starbook-s3/lavorazioni%2Bcartongesso%2Bcontrosoffitti%2Bpareti%2Bcontropareti.png');
 
+    window.scrollTo(0, 0);
+
     this.route.queryParams.subscribe((params: Params) => {
       this.ref = params['ref']
       // console.log('the ref is: ' + this.ref);
@@ -61,23 +66,17 @@ export class LandingComponent implements OnInit {
     }
 
     this.navigationService.updateMessage('La cura per la casa');
-    this.isLoading = true;
+    this.services_state.loading = true;
+    this.services_state.title = "Caricando i servizi...";
     let timeStart = Date.now();
     this.homeService.getServices().then((services) => {
       this.services = services.result;
       this.analyticsService.sendTiming({category: 'Get list of featured', timingVar: 'load', timingValue: Date.now()-timeStart});
-      this.isLoading = false;
-      if (isBrowser) {
-          // setTimeout(function () {
-          //     this.swiper = new Swiper('.swiper-container', {
-          //         freeMode: true,
-          //         direction: 'horizontal',
-          //         slidesPerView: 'auto'
-          //     });
-          // }, 1);
-      }
+      this.services_state.loading = false;
+      this.services_state.title = "Servizi piu richiesti";
     }).catch((error) => {
-        this.isLoading = false;
+        this.services_state.loading = false;
+        this.services_state.title = "Servizi piu richiesti";
       });
     }
 
@@ -98,41 +97,35 @@ export class LandingComponent implements OnInit {
   searchMore() {
     this.search(this.query)
   }
-
   search(event) {
     this.newServiceRequest.message = 'Richiedi?';
     this.spinerView = true;
     this.clearView = false;
     let timeStart = Date.now();
-    this.homeService.search(event.query)
-        .then((results) => {
-          this.spinerView = false;
-          this.analyticsService.sendTiming({category: 'Search', timingVar: 'load', timingValue: Date.now()-timeStart});
-          if (event.query.length > 0) {
-            this.clearView = true;
-          }
-          this.results = results.result;
-        })
-        .catch((error) => {
-          this.spinerView = false;
-          if (event.query.length > 0) {
-            this.clearView = true;
-          }
-          this.results = [];
-        })
+    this.homeService.search(event.query).then((results) => {
+      this.spinerView = false;
+      this.analyticsService.sendTiming({category: 'Search', timingVar: 'load', timingValue: Date.now()-timeStart});
+      if (event.query.length > 0) {
+        this.clearView = true;
+      }
+      this.results = results.result;
+    }).catch((error) => {
+      this.spinerView = false;
+      if (event.query.length > 0) {
+        this.clearView = true;
+      }
+      this.results = [];
+    })
   }
-
   selectResult(service) {
     this.homeService.sendData(service, this.ref)
     this.router.navigate(['services', service.title.replace(/\s+/g, '-')]);
   }
-
   clearSearchForm() {
     this.query = '';
     this.results = [];
     this.clearView = false;
   }
-
   requireService() {
     this.newServiceRequest.message = 'Grazie!';
     this.analyticsService.sendEvent({category:'Services', action: 'request', label: this.query});

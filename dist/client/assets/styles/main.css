@@ -3322,7 +3322,7 @@ app-landing {
     background-image: url("/assets/images/lavori.png");
     background-size: cover;
     background-repeat: no-repeat;
-    background-position: center center;
+    background-position: center 100%;
     color: white;
     padding: 150px 0;
     max-height: 550px; }
@@ -3770,11 +3770,12 @@ app-home {
     app-home .header-cover img {
       width: 100%;
       height: 400px;
-      object-fit: cover; }
+      object-fit: cover;
+      object-position: center; }
     app-home .header-cover .details {
       padding: 20px; }
     app-home .header-cover .title {
-      font-size: 19px;
+      font-size: 25px;
       font-weight: 300;
       color: white; }
     app-home .header-cover .description {
@@ -4639,8 +4640,6 @@ app-order .sidebar .order-content .price-block {
     display: none; } }
 @media (max-width: 645px) {
   .row {
-    margin-right: 0;
-    margin-left: 0;
     padding-bottom: 0px; }
 
   .main {

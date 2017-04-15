@@ -32,7 +32,7 @@
   </div>
 </div>
 <div class="services">
-  <h1>Servizi piu richiesti</h1>
+  <h1><i class="fa fa-circle-o-notch animate" *ngIf="services_state.loading"></i>{{services_state.title}}</h1>
   <div class="services-container">
     <div class="service-box" *ngFor="let service of services" (click)="selectResult(service)">
       <div class="service" [style.background-image]="'url(' + service.image_url + ')'">
@@ -75,7 +75,7 @@
     <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
       <div class="box">
         <h1>Prezzo del mercato</h1>
-        <p>I prezzi dei servizi vengono calcolati usando un algoritmo che considera il prezzo del mercato. Noi ci assicuriamo che il cliente riceva il prezzo giusto del servizio e che il professionista sia pagato il giusto.</p>
+        <p>I prezzi dei servizi vengono calcolati usando un algoritmo che considera il prezzo del mercato. Noi ci assicuriamo che il cliente riceva il prezzo giusto del servizio e che il professionista sia pagato corretamente.</p>
       </div>
     </div>
   </div>
