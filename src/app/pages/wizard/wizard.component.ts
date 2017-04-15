@@ -405,11 +405,11 @@ export class WizardComponent implements OnInit {
     this.login_state.loading = true;
     this.login_state.button_title = "Accedendo...";
     this.authService.login(this.loginParameters.email, this.loginParameters.password).then((data) => {
-      this.router.navigate(['order/preview']);
-      this.confirmOrder();
       this.login_state.loading = false;
       this.login_state.button_title = "Accedi";
       this.login_state.error_message = null;
+      this.router.navigate(['order/preview']);
+      this.confirmOrder();
       }).catch((error) => {
         this.login_state.email_error = null;
         this.login_state.password_error = null;
@@ -493,11 +493,11 @@ export class WizardComponent implements OnInit {
     this.signup_state.button_title = "Registrando...";
     this.authService.signup(this.signupParameters.firstname, this.signupParameters.lastname, this.signupParameters.phone, this.signupParameters.email, this.signupParameters.password).then((data) => {
       this.navigationService.updatePersonalMenu(data);
-      this.router.navigate(['order/preview']);
-      this.confirmOrder();
       this.signup_state.error_message = null;
       this.signup_state.loading = false;
       this.signup_state.button_title = "Registrando...";
+      this.router.navigate(['order/preview']);
+      this.confirmOrder();
     }).catch((error) => {
       this.signup_state.loading = false;
       this.signup_state.button_title = "Registrati";
