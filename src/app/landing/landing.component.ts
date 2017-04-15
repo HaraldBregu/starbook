@@ -44,7 +44,7 @@ export class LandingComponent implements OnInit {
     this.seoService.setOgElem('og:title', 'Starbook | I servizi migliori per la tua casa');
     this.seoService.setMetaElem('description', 'Preventivi diretti? Starbook è la piattaforma dei lavorazioni professionali. Puoi creare preventivi istantanei direttamente senza contattare il professionista.');
     this.seoService.setOgElem('og:description', 'Preventivi diretti? Starbook è la piattaforma dei lavorazioni professionali. Puoi creare preventivi istantanei direttamente senza contattare il professionista.');
-    this.seoService.setOgElem('og:url', 'https://www.starbook.co/');
+    this.seoService.setOgElem('og:url', document.location.protocol + '//'+ document.location.hostname + '/');
     this.seoService.setOgElem('og:image', 'https://s3-eu-west-1.amazonaws.com/starbook-s3/lavorazioni%2Bcartongesso%2Bcontrosoffitti%2Bpareti%2Bcontropareti.png');
     this.seoService.setOgElem('og:image:secure_url', 'https://s3-eu-west-1.amazonaws.com/starbook-s3/lavorazioni%2Bcartongesso%2Bcontrosoffitti%2Bpareti%2Bcontropareti.png');
 
