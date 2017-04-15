@@ -174,7 +174,8 @@ app-landing {
     padding: 50px 0px;
     text-align: center;
     h1 {
-      color: rgba(0, 0, 0, 0.7);
+      font-weight: 300;
+      color: black;
     }
     .services-container {
       overflow: hidden;
@@ -202,8 +203,9 @@ app-landing {
       display: block;
       position: absolute;
       z-index: 2;
-      font-weight: 400;
-      color: #4a4a4a;
+      font-weight: 500;
+      // color: #4a4a4a;
+      color: black;
       font-size: 16px;
       letter-spacing: 0.09px;
       white-space: normal !important;
@@ -223,7 +225,7 @@ app-landing {
     position: relative;
     text-align: center;
     padding: 50px 0;
-    color: #646464;
+    color: black;
     img {
       margin: 0 0 30px;
       width: 20%;
@@ -238,7 +240,7 @@ app-landing {
     }
     h5 {
       margin: auto;
-      font-weight: 400;
+      font-weight: 300;
       max-width: 400px;
     }
   }

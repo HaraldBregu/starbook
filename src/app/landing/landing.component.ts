@@ -135,7 +135,6 @@ export class LandingComponent implements OnInit {
   //***************** A/B TESTS **************************
   //******************************************************
 
-
   // cardHover(id, type) {
   //   if (type === 'on') {
   //     this.cardStyles[id] = '1';
@@ -147,7 +146,6 @@ export class LandingComponent implements OnInit {
   //     }
   //   }
   // }
-
 
   // callToActionLoginWithFacebook() {
   //   this.analyticsService.sendEvent({category:'Landing page A/B button', action: 'login', label: 'facebook login'});

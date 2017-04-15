@@ -17,7 +17,7 @@ app-wizard {
       width: 100%;
       background-color: #F7F7F7;
       border: 1px solid #CCCCCC;
-      padding: 50px 0;
+      padding: 60px 0;
       margin: 0 0 50px;
       .content-container {
         display: block;
@@ -113,6 +113,26 @@ app-wizard {
             width: 90%;
           }
         }
+      }
+    }
+  }
+
+  @media (max-width: 768px) {
+    .wizard {
+      margin: 70px auto 0;
+      .wizard-container {
+        margin: 0;
+      }
+    }
+  }
+
+  @media (max-width: 645px) {
+    .wizard {
+      padding: 0;
+      margin: 70px auto 0;
+      .wizard-container {
+        margin: 0;
+        padding: 70px 0 0;
       }
     }
   }
@@ -776,7 +796,6 @@ $wizard-btn-facebook-icon: '/assets/images/fb-icon.png';
   border: $wizard-form-error-message-border-style;
   background-color: $wizard-form-error-message-background-color;
   border-radius: 3px;
-
   font-size: $wizard-form-error-message-text-size;
   color: $wizard-form-error-message-text-color;
   letter-spacing: $wizard-form-error-message-letter-spacing;
@@ -786,23 +805,43 @@ $wizard-btn-facebook-icon: '/assets/images/fb-icon.png';
 }
 
 @media (max-width: 906px) {
-  .wizard {
-    padding: 0 10px 10px;
-    margin: 60px auto 0;
-  }
-  .wizard .wizard-container {
-    margin-bottom: 10px;
-  }
+  // .wizard {
+  //   margin: 60px auto 0;
+  // }
+  // .wizard .wizard-container {
+  //   margin-bottom: 10px;
+  // }
 }
+// @media (max-width: 768px) {
+//   app-wizard {
+//     .wizard {
+//       margin: 70px auto 0;
+//       .wizard-container {
+//         margin: 0;
+//       }
+//     }
+//   }
+// }
 @media (max-width: 645px) {
-  .wizard {
-    padding: 0;
-    margin: 50px auto 0;
+  app-wizard {
+    .wizard {
+      padding: 0;
+      margin: 70px auto 0;
+      .wizard-container {
+        margin: 0;
+        padding: 70px 0 0;
+      }
+    }
   }
-  .wizard .wizard-container {
-    margin-bottom: 0;
-    margin-top: 50px;
-  }
+
+  // .wizard {
+  //   padding: 0;
+  //   margin: 50px auto 0;
+  // }
+  // .wizard .wizard-container {
+  //   margin-bottom: 0;
+  //   margin-top: 50px;
+  // }
   .breadcrumb {
     position: fixed;
     width: 100%;
