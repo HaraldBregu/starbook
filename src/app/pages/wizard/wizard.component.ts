@@ -405,6 +405,7 @@ export class WizardComponent implements OnInit {
     this.login_state.loading = true;
     this.login_state.button_title = "Accedendo...";
     this.authService.login(this.loginParameters.email, this.loginParameters.password).then((data) => {
+      this.navigationService.updatePersonalMenu(userData);
       this.router.navigate(['order/preview']);
       this.confirmOrder();
       this.login_state.loading = false;
@@ -541,16 +542,15 @@ export class WizardComponent implements OnInit {
       let accessToken = localStorage.getItem('facebook_token');
       this.authService.facebookLogin(accessToken).then((userData) => {
         this.navigationService.updatePersonalMenu(userData);
+        this.router.navigate(['order/preview']);
+        this.confirmOrder();
         this.facebook_state.loading = false;
         this.facebook_state.button_title = "Continua con Facebook";
         this.facebook_state.error_message = null;
-        this.confirmOrder();
-        console.log('confirmOrder');
       }).catch((error) => {
         this.facebook_state.loading = false;
         this.facebook_state.button_title = "Continua con Facebook";
         this.facebook_state.error_message = "Errore di accesso con Facebook!";
-        console.log('error');
       });
     } else {
       let self = this;
