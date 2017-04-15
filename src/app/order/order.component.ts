@@ -52,6 +52,8 @@ export class OrderComponent implements OnInit, OnDestroy {
   }
 
   startWizard() {
+    this.analyticsService.sendEvent({category:'Order', action: 'Wizard', label: "Start"});
+
     if (this.price_state.loading) {return;}
     let wizardData = {
       service_id: this.orderData.service_id,

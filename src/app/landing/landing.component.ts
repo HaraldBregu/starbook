@@ -26,7 +26,6 @@ export class LandingComponent implements OnInit {
   };
   public spinerView = false;
   public clearView = false;
-  public isAuthenticated = false;
   public newServiceRequest = {
     message: 'Richiedi?'
   };
@@ -40,6 +39,8 @@ export class LandingComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.navigationService.updateMessage('La cura per la casa');
+
     this.seoService.setTitle('Starbook | I servizi migliori per la tua casa');
     this.seoService.setOgElem('og:title', 'Starbook | I servizi migliori per la tua casa');
     this.seoService.setMetaElem('description', 'Preventivi diretti? Starbook è la piattaforma dei lavorazioni professionali. Puoi creare preventivi istantanei direttamente senza contattare il professionista.');
@@ -48,45 +49,31 @@ export class LandingComponent implements OnInit {
     this.seoService.setOgElem('og:image', 'https://s3-eu-west-1.amazonaws.com/starbook-s3/lavorazioni%2Bcartongesso%2Bcontrosoffitti%2Bpareti%2Bcontropareti.png');
     this.seoService.setOgElem('og:image:secure_url', 'https://s3-eu-west-1.amazonaws.com/starbook-s3/lavorazioni%2Bcartongesso%2Bcontrosoffitti%2Bpareti%2Bcontropareti.png');
 
-    // window.scrollTo(0, 0);
-
     this.route.queryParams.subscribe((params: Params) => {
       this.ref = params['ref']
-      // console.log('the ref is: ' + this.ref);
     });
 
-    if (isBrowser) {
-      if (localStorage.getItem('auth') !== null) {
-        this.isAuthenticated = true;
-      } else {
-        this.isAuthenticated = false;
-      }
-    } else {
-      this.isAuthenticated = false;
-    }
-
-    this.navigationService.updateMessage('La cura per la casa');
     this.services_state.loading = true;
     this.services_state.title = "Caricando i servizi...";
-    let timeStart = Date.now();
     this.homeService.getServices().then((services) => {
       this.services = services.result;
-      this.analyticsService.sendTiming({category: 'Get list of featured', timingVar: 'load', timingValue: Date.now()-timeStart});
       this.services_state.loading = false;
       this.services_state.title = "Servizi piu richiesti";
     }).catch((error) => {
-        this.services_state.loading = false;
-        this.services_state.title = "Servizi piu richiesti";
-      });
-    }
+      this.services_state.loading = false;
+      this.services_state.title = "Servizi piu richiesti";
+    });
+  }
 
   ///////////////////////////////
   /////// PARTNERSHIP //////////
   //////////////////////////////
   joinUs() {
+    this.analyticsService.sendEvent({category:'Landing Page', action: 'Join', label: "professional"});
     this.router.navigate(['recruiter/workerjoin']);
   }
   lernMore() {
+    this.analyticsService.sendEvent({category:'Landing Page', action: 'Join', label: "partnership"});
     this.router.navigate(['recruiter/partnerjoin']);
   }
 
@@ -95,6 +82,7 @@ export class LandingComponent implements OnInit {
   /////// SEARCH //////////
   /////////////////////////
   searchMore() {
+    this.analyticsService.sendEvent({category:'Landing Page', action: 'Search', label: "More"});
     this.search(this.query)
   }
   search(event) {
