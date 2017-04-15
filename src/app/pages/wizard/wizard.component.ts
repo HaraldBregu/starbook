@@ -338,13 +338,13 @@ export class WizardComponent implements OnInit {
       this.order_status.button_title = "Inviando l'ordine...";
       this.order_status.error_message = null;
       this.orderService.saveOrder(this.Order).then((response) => {
-        // this.order_status.loading = false;
+        this.order_status.loading = false;
         this.order_status.button_title = "Invia ordine";
         this.order_status.error_message = null;
         if (response.status === 201) {
           this.order_status.error_message = "Effetua l'accesso prima di creare un ordine";
           this.order_status.created = true;
-          // this.router.navigate(['order/end']);
+          this.router.navigate(['order/end']);
         }
       }).catch((errorData) => {
         this.order_status.loading = false;
