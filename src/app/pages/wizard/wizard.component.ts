@@ -405,7 +405,6 @@ export class WizardComponent implements OnInit {
     this.login_state.loading = true;
     this.login_state.button_title = "Accedendo...";
     this.authService.login(this.loginParameters.email, this.loginParameters.password).then((data) => {
-      this.navigationService.updatePersonalMenu(userData);
       this.router.navigate(['order/preview']);
       this.confirmOrder();
       this.login_state.loading = false;
