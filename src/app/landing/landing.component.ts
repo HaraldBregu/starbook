@@ -48,7 +48,7 @@ export class LandingComponent implements OnInit {
     this.seoService.setOgElem('og:image', 'https://s3-eu-west-1.amazonaws.com/starbook-s3/lavorazioni%2Bcartongesso%2Bcontrosoffitti%2Bpareti%2Bcontropareti.png');
     this.seoService.setOgElem('og:image:secure_url', 'https://s3-eu-west-1.amazonaws.com/starbook-s3/lavorazioni%2Bcartongesso%2Bcontrosoffitti%2Bpareti%2Bcontropareti.png');
 
-    window.scrollTo(0, 0);
+    // window.scrollTo(0, 0);
 
     this.route.queryParams.subscribe((params: Params) => {
       this.ref = params['ref']
