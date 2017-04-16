@@ -158,8 +158,8 @@ export class HomeComponent implements OnInit {
     this.navigationService.updateMessage(services.title);
 
     this.seoService.setTitle(services.title);
-    this.seoService.setMetaElem('description', services.description);
     this.seoService.setOgElem('og:title', services.title);
+    this.seoService.setMetaElem('description', services.description);
     this.seoService.setOgElem('og:description', services.description);
     this.seoService.setOgElem('og:url', document.location.protocol + '//'+ document.location.hostname + '/' + services.title.replace(/\s+/g, '-'));
     this.seoService.setOgElem('og:image', services.image_url);
