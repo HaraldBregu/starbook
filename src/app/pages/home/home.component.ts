@@ -93,13 +93,13 @@ export class HomeComponent implements OnInit {
   constructor(private homeService: HomeService, private navigationService: NavigationService, private router: Router, private route: ActivatedRoute, private orderService: OrderService, private analyticsService: AnalyticsService, private seoService: SeoService, private profileService: ProfileService) {}
 
   ngOnInit() {
-    this.seoService.setTitle('Starbook | Prenota lavorazioni professionali per la tua casa');
-    this.seoService.setOgElem('og:title', 'Starbook | Prenota lavorazioni professionali per la tua casa');
-    this.seoService.setMetaElem('description', 'Preventivi diretti? Starbook è la piattaforma dei lavorazioni professionali. Puoi creare preventivi istantanei senza il bisogno di contattare il professionista.');
-    this.seoService.setOgElem('og:description', 'Preventivi diretti? Starbook è la piattaforma dei lavorazioni professionali. Puoi creare preventivi istantanei senza il bisogno di contattare il professionista.');
+    this.seoService.setTitle('Starbook | I migliori servizi per la tua casa');
+    this.seoService.setOgElem('og:title', 'Starbook | I migliori servizi per la tua casa');
+    this.seoService.setMetaElem('description', 'Prezi del mercato. Preventivi diretti. I migliori professionisti alla tua disposizione.');
+    this.seoService.setOgElem('og:description', 'Prezi del mercato. Preventivi diretti. I migliori professionisti alla tua disposizione.');
     this.seoService.setOgElem('og:url', document.location.protocol + '//'+ document.location.hostname + '/');
-    this.seoService.setOgElem('og:image', 'https://s3-eu-west-1.amazonaws.com/starbook-s3/lavorazioni%2Bcartongesso%2Bcontrosoffitti%2Bpareti%2Bcontropareti.png');
-    this.seoService.setOgElem('og:image:secure_url', 'https://s3-eu-west-1.amazonaws.com/starbook-s3/lavorazioni%2Bcartongesso%2Bcontrosoffitti%2Bpareti%2Bcontropareti.png');
+    this.seoService.setOgElem('og:image', 'https://s3-eu-west-1.amazonaws.com/starbook-s3/starbook-servizi-per-la-casa.png');
+    this.seoService.setOgElem('og:image:secure_url', 'https://s3-eu-west-1.amazonaws.com/starbook-s3/starbook-servizi-per-la-casa.png');
 
     this.route.params.subscribe(params => {
       let service_id = params['id'];
@@ -136,12 +136,10 @@ export class HomeComponent implements OnInit {
         this.price_state.loading = true;
         this.price_state.is_referral = false;
         this.profileService.getAccountById(referral_id).then((profile) => {
-          // console.log('profile exist');
           this.price_state.loading = false;
           this.price_state.is_referral = true;
           this.price_state.referral_id = referral_id;
         }).catch((error) => {
-          // console.log('profile do not exist');
           this.price_state.loading = false;
           this.price_state.is_referral = false;
           this.price_state.referral_id = null;
@@ -158,7 +156,7 @@ export class HomeComponent implements OnInit {
 
   renderPage(services: IServices) {
     this.navigationService.updateMessage(services.title);
-    
+
     this.seoService.setTitle(services.title);
     this.seoService.setMetaElem('description', services.description);
     this.seoService.setOgElem('og:title', services.title);
