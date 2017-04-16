@@ -155,8 +155,6 @@ export class HomeComponent implements OnInit {
   }
 
   renderPage(services: IServices) {
-    this.navigationService.updateMessage(services.title);
-
     this.seoService.setTitle(services.title);
     this.seoService.setOgElem('og:title', services.title);
     this.seoService.setMetaElem('description', services.description);
@@ -164,6 +162,8 @@ export class HomeComponent implements OnInit {
     this.seoService.setOgElem('og:url', document.location.protocol + '//'+ document.location.hostname + '/' + services.title.replace(/\s+/g, '-'));
     this.seoService.setOgElem('og:image', services.image_url);
     this.seoService.setOgElem('og:image:secure_url', services.image_url);
+
+    this.navigationService.updateMessage(services.title);
 
     this.defaultServices = services;
     this.title = services.title;
