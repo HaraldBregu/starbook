@@ -198,22 +198,22 @@ app-landing {
       background-repeat: no-repeat;
       background-size: cover;
       background-position: top center;
+      border: 1px solid #DCE0E0;
     }
     .title {
       display: block;
       position: absolute;
       z-index: 2;
-      font-weight: 500;
-      // color: #4a4a4a;
+      font-weight: 400;
       color: black;
       font-size: 16px;
       letter-spacing: 0.09px;
       white-space: normal !important;
       text-align: left;
-      border-left: 1px solid #DCE0E0;
-      border-right: 1px solid #DCE0E0;
-      border-bottom: 1px solid #DCE0E0;
-      padding: 10px;
+      // border-left: 1px solid #DCE0E0;
+      // border-right: 1px solid #DCE0E0;
+      // border-bottom: 1px solid #DCE0E0;
+      padding: 15px;
       bottom: 0;
       width: 100%;
       background: white;
