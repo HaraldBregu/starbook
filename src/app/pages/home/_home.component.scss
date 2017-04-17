@@ -50,7 +50,7 @@ app-home {
     }
     .description {
       font-size: 16px;
-      font-weight: 300;
+      font-weight: 400;
       color: rgba(255,255,255,0.7);
       // margin: 0 20px 20px 20px;
     }
@@ -145,7 +145,7 @@ app-home {
       .header .content-header span {
         display: block;
         width: 100%;
-        font-size: 24px;
+        font-size: 25px;
         letter-spacing: 0.13px;
         color: black;
         margin-bottom: 15px;
@@ -154,10 +154,10 @@ app-home {
       .header .content-header .service-description {
         display: block;
         width: 100%;
-        font-weight: 300;
+        font-weight: 400;
         font-size: 16px;
         letter-spacing: 0.1px;
-        color: black;
+        color: rgba(0, 0, 0, 0.7);
       }
       .header img {
         width: 30%;
@@ -195,12 +195,13 @@ app-home {
         position: relative;
         width: 100%;
         padding: 0 0 10px 50px;
-        font-size: 18px;
+        font-size: 17px;
         color: black;
         letter-spacing: 0.1px;
         cursor: pointer;
         -webkit-font-smoothing: initial !important;
         border-radius: 3px;
+        font-weight: 600;
       }
       .service .item:hover {
         border-radius: 3px;
@@ -236,9 +237,9 @@ app-home {
       .service .item-container .item-description {
         display: block;
         width: 100%;
-        font-weight: 300;
-        color: black;
-        font-size: 14px;
+        font-weight: 400;
+        color: rgba(0, 0, 0, 0.7);
+        font-size: 16px;
         letter-spacing: 0.09px;
         padding: 0 0 0 50px;
       }

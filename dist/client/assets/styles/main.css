@@ -3252,7 +3252,7 @@ app-root .container-starbook {
   width: 100%;
   color: black;
   font-size: 18px;
-  font-weight: 300;
+  font-weight: 400;
   letter-spacing: 0.09px;
   text-align: center;
   z-index: 1;
@@ -3779,7 +3779,7 @@ app-home {
       color: white; }
     app-home .header-cover .description {
       font-size: 16px;
-      font-weight: 300;
+      font-weight: 400;
       color: rgba(255, 255, 255, 0.7); }
     app-home .header-cover .left-block {
       float: left;
@@ -3856,7 +3856,7 @@ app-home {
       app-home .masonry-container .services-block .header .content-header span {
         display: block;
         width: 100%;
-        font-size: 24px;
+        font-size: 25px;
         letter-spacing: 0.13px;
         color: black;
         margin-bottom: 15px;
@@ -3864,10 +3864,10 @@ app-home {
       app-home .masonry-container .services-block .header .content-header .service-description {
         display: block;
         width: 100%;
-        font-weight: 300;
+        font-weight: 400;
         font-size: 16px;
         letter-spacing: 0.1px;
-        color: black; }
+        color: rgba(0, 0, 0, 0.7); }
       app-home .masonry-container .services-block .header img {
         width: 30%;
         max-height: 140px;
@@ -3898,12 +3898,13 @@ app-home {
         position: relative;
         width: 100%;
         padding: 0 0 10px 50px;
-        font-size: 18px;
+        font-size: 17px;
         color: black;
         letter-spacing: 0.1px;
         cursor: pointer;
         -webkit-font-smoothing: initial !important;
-        border-radius: 3px; }
+        border-radius: 3px;
+        font-weight: 600; }
       app-home .masonry-container .services-block .service .item:hover {
         border-radius: 3px; }
       app-home .masonry-container .services-block .service .item-container .item i.checkbox {
@@ -3933,9 +3934,9 @@ app-home {
       app-home .masonry-container .services-block .service .item-container .item-description {
         display: block;
         width: 100%;
-        font-weight: 300;
-        color: black;
-        font-size: 14px;
+        font-weight: 400;
+        color: rgba(0, 0, 0, 0.7);
+        font-size: 16px;
         letter-spacing: 0.09px;
         padding: 0 0 0 50px; }
       app-home .masonry-container .services-block .service .item-container .item-image {
