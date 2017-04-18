@@ -3974,7 +3974,7 @@ app-home {
         color: black;
         outline: none; }
       app-home .masonry-container .services-block .service .input-group {
-        max-width: 70%; }
+        max-width: 50%; }
       app-home .masonry-container .services-block .service .input-group input {
         width: 100%;
         border-top: 1px solid #CCCCCC;
@@ -4005,7 +4005,7 @@ app-home {
         color: black;
         outline: none;
         background-color: #FAFAFA;
-        padding: 0px 14px;
+        padding: 0px 25px;
         border-radius: 0; }
     app-home .masonry-container .services-block-big {
       display: block;
