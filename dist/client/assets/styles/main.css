@@ -3319,7 +3319,7 @@ app-landing {
   max-width: 1440px;
   margin: 70px auto 0; }
   app-landing .header {
-    background-image: url("/assets/images/lavori.png");
+    background-image: url("https://s3-eu-west-1.amazonaws.com/starbook-s3/imbiancatura-parquet-vernicatura-carta-da-parati-dark.png");
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center 100%;
