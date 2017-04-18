@@ -13,26 +13,26 @@
           <div *ngIf="!price_state.loading">
             <div class="total">
               <h1>{{getFinalPrice()/100}}€</h1>
-              <span>IVA COMPRESA</span>
+              <span>IVA INCLUSA</span>
               <h2 *ngIf="price_state.is_referral">{{getInitialPrice()/100}}€</h2>
-              <h6>Totale del servizio</h6>
+              <h6>Totale Offerta</h6>
             </div>
             <div class="upfront">
               <h1>{{getUpFront()/100}}€</h1>
-              <h6>Acconto da versare (30% del totale)</h6>
+              <h6>Blocca Offerta (30% del totale)</h6>
             </div>
             <div class="timing">
               <h2>{{getTiming()}}</h2>
-              <h6>Durata del lavoro approssimativo</h6>
+              <h6>Durata Lavoro (Approssimativo)</h6>
             </div>
           </div>
         </div>
         <div class="line"></div>
-        <div class="description">
-          L'acconto versato garantisce il professionista che l'ordine è stato effettuato con successo. Può essere rimborsato in qualsiasi momento.
-        </div>
         <div class="form-group">
           <button class="btn btn-warning" (click)="startWizard()">CONTINUA</button>
+        </div>
+        <div class="description">
+          Le offerte del preventivo possono cambiare in base alle richieste del mercato. Blocca il prezzo versando un acconto.
         </div>
       </div>
     </div>

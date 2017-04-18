@@ -205,18 +205,15 @@ app-landing {
       position: absolute;
       z-index: 2;
       font-weight: 400;
-      color: black;
+      color: white;
       font-size: 16px;
       letter-spacing: 0.09px;
       white-space: normal !important;
       text-align: left;
-      // border-left: 1px solid #DCE0E0;
-      // border-right: 1px solid #DCE0E0;
-      // border-bottom: 1px solid #DCE0E0;
       padding: 15px;
       bottom: 0;
       width: 100%;
-      background: white;
+      background: #161517;
     }
   }
   .how-work {
@@ -224,7 +221,7 @@ app-landing {
     overflow: hidden;
     position: relative;
     text-align: center;
-    padding: 50px 0;
+    padding: 40px 0 90px;
     color: black;
     img {
       margin: 0 0 30px;
@@ -279,7 +276,7 @@ app-landing {
     color: #4a4a4a;
     .background {
       background: white;
-      background-image: url('/assets/images/Worker.jpg');
+      background-image: url('https://s3-eu-west-1.amazonaws.com/starbook-s3/professionista-su-starbook.jpg');
       background-repeat: no-repeat;
       background-position: center bottom;
       background-size: cover;
@@ -289,7 +286,7 @@ app-landing {
       padding: 120px 120px 0 120px;
     }
     h1 {
-      font-size: 40px;
+      // font-size: 40px;
       text-align: left;
       margin: 0 0 40px;
       font-weight: 700;
