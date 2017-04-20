@@ -18,6 +18,10 @@ import { ClickOutsideModule } from 'ng2-click-outside';
 // import { MasonryModule } from 'angular2-masonry';
 // import { NgbModule, NgbDateParserFormatter } from '@ng-bootstrap/ng-bootstrap';
 
+/* Feature Modules */
+import { ClipboardModule } from 'ngx-clipboard';
+
+
 import { routing } from './app.routing';
 import { HomeService } from './pages/home/home.service';
 import { AuthService } from './shared/auth.service';
@@ -48,6 +52,7 @@ import { HelpComponent } from './pages/help/help.component';
 import { LegalComponent } from './pages/legal/legal.component';
 import { AccountComponent } from './pages/account/account.component';
 import { RecruiterComponent } from './pages/recruiter/recruiter.component';
+import { ServicesComponent } from './pages/services/services.component';
 
 
 // import { RouterModule } from '@angular/router';
@@ -72,8 +77,8 @@ let imports = [
   // NgbModule.forRoot(),
   // AutoCompleteModule,
   // CalendarModule,
-  ClickOutsideModule
-  // ClipboardModule
+  ClickOutsideModule,
+  ClipboardModule
 ];
 let declarations = [
   AppComponent,
@@ -92,7 +97,8 @@ let declarations = [
   HelpComponent,
   LegalComponent,
   AccountComponent,
-  RecruiterComponent
+  RecruiterComponent,
+  ServicesComponent
 ];
 
 if (isBrowser) {

@@ -9,7 +9,6 @@
         <img *ngIf="collapsed" src="/assets/images/brand-logo-right.png" alt="starbook">
       </div>
     </a>
-
     <div class="center-container">
       <div class="search-block" *ngIf="isFindField">
         <p-autoComplete [(ngModel)]="findValue" [suggestions]="results" field="title" scrollHeight="170px" (completeMethod)="search($event)" (onSelect)="selectResult(findValue)" placeholder="Cerca" minLength="0">
@@ -52,6 +51,16 @@
     </ul>
     <!--  Collapsed not authenticated -->
     <ul class="nav navbar-nav float-xs-right" *ngIf="auth === false && browser" [ngClass]="{'collapse':!collapsed}">
+      <!-- <li class="nav-item">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><a href="#">Action</a></li>
+          <li><a href="#">Another action</a></li>
+          <li><a href="#">Something else here</a></li>
+          <li role="separator" class="divider"></li>
+          <li><a href="#">Separated link</a></li>
+        </ul>
+      </li> -->
       <li class="nav-item">
         <a class="nav-link profile" (click)="getRegistrationPopup()">Registrati</a>
       </li>

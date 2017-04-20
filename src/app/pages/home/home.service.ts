@@ -45,7 +45,11 @@ export class HomeService {
       })
       .catch(this.handleError);
   }
-
+  getAllServices() {
+    return this.http.get(this.api + 'services').toPromise().then((services) => {
+      return services.json();
+    }).catch(this.handleError);
+  }
   getServices() {
     // this.navigationService.updateLoadingStatus(true);
     return this.http.get(this.api + 'featured')

@@ -3764,7 +3764,8 @@ app-home {
     margin-bottom: 20px;
     background-color: #161517;
     color: white;
-    border: 1px solid #2A292B; }
+    border: 1px solid #2A292B;
+    width: 100%; }
     app-home .header-cover img {
       width: 100%;
       height: 400px;
@@ -3981,12 +3982,12 @@ app-home {
         border-bottom: 1px solid #CCCCCC;
         border-right: 0px solid #CCCCCC;
         display: block;
-        height: 40px;
+        height: 50px;
         padding: 9px 13px 8px 13px;
         text-align: right;
         background-color: white;
         font-weight: normal;
-        font-size: 16px;
+        font-size: 18px;
         letter-spacing: 0.1px;
         color: black;
         outline: none;
@@ -3999,7 +4000,7 @@ app-home {
         height: 35px;
         text-align: right;
         font-weight: 500;
-        font-size: 15px;
+        font-size: 18px;
         letter-spacing: 0.1px;
         color: black;
         outline: none;
@@ -6781,98 +6782,103 @@ app-about {
   height: 100%;
   min-height: 100vh;
   padding-top: 70px;
-  background-color: white; }
-  app-about .about-container {
+  background-color: white;
+  overflow-x: hidden; }
+  app-about .about-cover {
     background: white;
-    padding: 40px 100px 50px;
-    max-width: 1440px;
-    margin: auto; }
-    app-about .about-container .about-cover {
-      background: white;
-      position: relative;
+    position: relative;
+    width: 100%;
+    height: 400px;
+    margin-bottom: 30px; }
+    app-about .about-cover img {
       width: 100%;
-      height: 400px;
-      margin-bottom: 30px; }
-      app-about .about-container .about-cover img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        opacity: 0.8; }
-      app-about .about-container .about-cover .mission-overlay {
-        position: absolute;
-        top: 40px;
-        left: 40px;
-        bottom: 40px;
-        background-color: rgba(0, 0, 0, 0.8);
-        width: 400px;
-        padding: 30px;
-        color: white; }
-        app-about .about-container .about-cover .mission-overlay p {
-          font-weight: 300; }
-    app-about .about-container .member-box {
-      min-height: 260px;
-      margin: 0 auto 30px;
-      padding: 20px;
-      border: 1px solid #CCCCCC;
-      background-color: #F7F7F7; }
-      app-about .about-container .member-box img {
-        float: left;
-        width: 220px;
-        height: 220px;
-        object-fit: cover; }
-      app-about .about-container .member-box .content {
-        height: 100%;
-        padding-left: 240px; }
-        app-about .about-container .member-box .content h3 {
-          font-weight: 600; }
-        app-about .about-container .member-box .content h6 {
-          margin-top: 10px; }
-        app-about .about-container .member-box .content p {
-          margin-top: 10px;
-          font-weight: 300; }
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.8; }
+    app-about .about-cover .mission-overlay {
+      position: absolute;
+      top: 40px;
+      left: 40px;
+      bottom: 40px;
+      background-color: rgba(0, 0, 0, 0.8);
+      width: 400px;
+      padding: 30px;
+      color: white; }
+      app-about .about-cover .mission-overlay p {
+        font-weight: 300; }
+  app-about .container {
+    padding-top: 70px;
+    padding-bottom: 70px; }
+    app-about .container h1 {
+      text-align: center;
+      margin: 0 0 70px; }
+  app-about .member-box {
+    height: 300px;
+    margin: 0 auto 30px;
+    padding: 20px;
+    border: 1px solid #CCCCCC;
+    background-color: #F7F7F7; }
+    app-about .member-box img {
+      float: left;
+      width: 220px;
+      height: 220px;
+      object-fit: cover; }
+    app-about .member-box .content {
+      height: 100%;
+      padding-left: 240px; }
+      app-about .member-box .content h3 {
+        font-weight: 600; }
+      app-about .member-box .content h6 {
+        margin-top: 10px; }
+      app-about .member-box .content p {
+        font-size: 16px !important;
+        margin-top: 10px;
+        font-weight: 300; }
   @media (max-width: 1168px) {
-    app-about .about-container {
-      padding: 40px 40px 60px; }
-    app-about .about-container .about-cover .mission-overlay {
+    app-about .about-cover .mission-overlay {
       top: 20px;
       left: 20px;
       bottom: 20px; }
     app-about .member-box {
-      min-height: 180px; }
+      height: 300px; }
     app-about .member-box img {
       width: 140px;
       height: 140px; }
     app-about .member-box .content {
       padding-left: 160px; } }
   @media (max-width: 906px) {
-    app-about .about-container {
-      padding: 20px 20px 50px; }
-    app-about .about-container .about-cover {
+    app-about .about-cover {
       margin-bottom: 20px; }
     app-about .member-box {
-      margin-bottom: 20px; } }
+      margin-bottom: 20px;
+      height: 200px; } }
   @media (max-width: 645px) {
-    app-about .about-container .about-cover .mission-overlay {
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      width: 100%; } }
-  @media (max-width: 534px) {
-    app-about .about-container {
-      padding: 5px 5px 0px; }
-    app-about .about-container .about-cover {
-      margin-bottom: 5px; }
-    app-about .about-container .about-cover .mission-overlay {
+    app-about .about-cover .mission-overlay {
       top: 0;
       left: 0;
       right: 0;
       bottom: 0;
       width: 100%; }
     app-about .member-box {
-      margin-bottom: 5px; } }
+      height: 200px; } }
+  @media (max-width: 534px) {
+    app-about .about-cover {
+      margin-bottom: 5px; }
+    app-about .about-cover .mission-overlay {
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      width: 100%; }
+    app-about .member-box {
+      margin-bottom: 5px;
+      height: 340px; } }
+  @media (max-width: 375px) {
+    app-about .member-box {
+      height: 450px; } }
   @media (max-width: 320px) {
     app-about .member-box {
+      height: 420px;
       padding: 10px;
       margin-bottom: 5px;
       text-align: center; }
@@ -7136,6 +7142,51 @@ app-recruiter {
   @media (max-width: 320px) {
     app-recruiter .referral-container {
       padding: 10px; } }
+
+app-services {
+  display: block;
+  overflow: auto;
+  padding: 70px 0 0; }
+  app-services .services {
+    padding: 50px 0px;
+    text-align: center; }
+    app-services .services h1 {
+      font-weight: 300;
+      color: black; }
+    app-services .services .services-container {
+      overflow: hidden;
+      margin: 40px 0 0;
+      padding: 0 10px; }
+    app-services .services .service-box {
+      display: inline-block;
+      float: left;
+      width: 20%;
+      padding: 10px; }
+    app-services .services .service {
+      display: block;
+      position: relative;
+      width: 100%;
+      height: 320px;
+      border: none;
+      cursor: pointer;
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: top center;
+      border: 1px solid #DCE0E0; }
+    app-services .services .title {
+      display: block;
+      position: absolute;
+      z-index: 2;
+      font-weight: 400;
+      color: white;
+      font-size: 16px;
+      letter-spacing: 0.09px;
+      white-space: normal !important;
+      text-align: left;
+      padding: 15px;
+      bottom: 0;
+      width: 100%;
+      background: #161517; }
 
 ngb-datepicker,
 .datepicker {

@@ -1,0 +1,38 @@
+<div class="services">
+  <h1><i class="fa fa-circle-o-notch animate" *ngIf="services_state.loading"></i>{{services_state.title}}</h1>
+  <div class="services-container">
+    <div class="service-box" *ngFor="let service of services" (click)="selectResult(service)">
+      <div class="service" [style.background-image]="'url(' + service.image_url + ')'">
+        <div class="title">{{ service.title }}</div>
+      </div>
+    </div>
+  </div>
+</div>
+<footer class="footer">
+  <div class="footer-container">
+    <div class="row">
+      <div class="col-md-6 col-lg-3">
+        <ul>
+          <li>Starbook © 2017</li>
+          <li>Tutti i diritti riservati</li>
+        </ul>
+      </div>
+      <div class="col-md-6 col-lg-3">
+        <ul>
+          <li><a routerLink="../legal">Privacy e Condizioni</a></li>
+          <li><a routerLink="../help">Aiuto e Assistenza</a></li>
+        </ul>
+      </div>
+      <div class="col-md-6 col-lg-3">
+        <ul>
+          <li><a routerLink="../about">Chi siamo</a></li>
+        </ul>
+      </div>
+      <div class="col-md-6 col-lg-3">
+        <ul>
+          <li><a routerLink="../recruiter/share">Affiliazione</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</footer>

@@ -10,15 +10,16 @@
  * ];
  **/
 export const routes: string[] = [
-    'services/:id',
-    'orders',
-    'profile/:page',
-    'facebook',
-    'order/:step',
-    'about',
-    'help',
-    'legal',
-    'account/:page',
-    'recruiter',
-    'recruiter/:page'
+  'services',
+  'services/:id',
+  'orders',
+  'profile/:page',
+  'facebook',
+  'order/:step',
+  'about',
+  'help',
+  'legal',
+  'account/:page',
+  'recruiter',
+  'recruiter/:page'
 ];

@@ -90,7 +90,9 @@ export class RecruiterComponent implements OnInit {
         if (localStorage.getItem('auth')) {this.router.navigate(['']);}
       } else if (this.page === 'share') {
         this.navigationService.updateMessage("Programma di affiliazione");
-        if (!localStorage.getItem('auth')) {this.router.navigate(['']);}
+        if (!localStorage.getItem('auth')) {
+          this.router.navigate(['recruiter/partnerjoin']);
+        }
       } else {
         this.router.navigate(['']);
       }
