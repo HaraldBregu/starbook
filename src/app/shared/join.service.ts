@@ -33,7 +33,6 @@ export class JoinService {
       return services.json();
     }).catch(this.handleError);
   }
-
   sendInvitations(promolink, phones, emails) {
     return this.http.post(this.api + 'send_invitations', {link:promolink, phone_numbers:phones, email_addresses:emails}, {headers: this._makeHeaders()}).toPromise().then((data) => {
       return data;

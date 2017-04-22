@@ -72,16 +72,20 @@ export class RecruiterComponent implements OnInit {
   constructor(private router: Router, private route: ActivatedRoute, private navigationService: NavigationService, private joinService: JoinService, private authService: AuthService) {
     this.emailPattern = /^[a-z0-9!#$%&'*+\/=?^_`{|}~.-]+@[a-z0-9]([a-z0-9-]*[a-z0-9])?(\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)*$/i;
     this.numPattern = /^\d+$/;
-    if (localStorage.getItem('auth')) {
-      this.currentUser = JSON.parse(localStorage.getItem('auth'));
-      this.sharelink =  document.location.protocol + '//'+ document.location.hostname + '/?ref=' + this.currentUser._id;
+    if (isBrowser) {
+      if (localStorage.getItem('auth')) {
+        this.currentUser = JSON.parse(localStorage.getItem('auth'));
+        this.sharelink =  document.location.protocol + '//'+ document.location.hostname + '/?ref=' + this.currentUser._id;
+      }
     }
   }
 
   ngOnInit() {
     this.route.params.subscribe((params: Params) => {
       this.page = params['page']
-      window.scrollTo(0, 0);
+      if (isBrowser) {
+        window.scrollTo(0, 0);
+      }
       if (this.page === 'workerjoin') {
         this.navigationService.updateMessage("Lavoriamo insieme");
         if (localStorage.getItem('auth')) {this.router.navigate(['']);}
@@ -107,7 +111,6 @@ export class RecruiterComponent implements OnInit {
       this.recruiter_state.lastname_error = "Cognome";
       this.recruiter_state.phone_error = "Il numero del telefono";
       this.recruiter_state.email_error = "La tua email";
-      // console.log('Recruiter object is: ' + JSON.stringify(this.Recruiter));
       return;
     }
     this.recruiter_state.loading = true;
@@ -119,7 +122,6 @@ export class RecruiterComponent implements OnInit {
     this.recruiter_state.email_error = null;
     this.Recruiter.type = "professionista";
     this.joinService.join(this.Recruiter).then((response) => {
-      // console.log('response: ' + JSON.stringify(response));
       this.recruiter_state.message_success = "Complimenti, hai inviato una richiesta di iscrizione su Starbook con successo.";
       this.recruiter_state.loading = false;
       this.Recruiter.firstname = null;
@@ -267,44 +269,54 @@ export class RecruiterComponent implements OnInit {
     });
   }
   shareOnFacebook() {
-    let left = Math.round((document.documentElement.clientWidth / 2) - 285);
-    window.open("http://www.facebook.com/sharer/sharer.php?s=100&u=" + this.sharelink,
-    '_blank', 'location=yes,height=570,width=520,left=' + left + ', top=100,scrollbars=yes,status=yes');
-    return false
+    if (isBrowser) {
+      let left = Math.round((document.documentElement.clientWidth / 2) - 285);
+      window.open("http://www.facebook.com/sharer/sharer.php?s=100&u=" + this.sharelink,
+      '_blank', 'location=yes,height=570,width=520,left=' + left + ', top=100,scrollbars=yes,status=yes');
+      return false
+    }
   }
   shareOnTwitter() {
-    let left = Math.round((document.documentElement.clientWidth / 2) - 285);
-    window.open("https://twitter.com/home?status=" + this.sharelink,
-    '_blank', 'location=yes,height=570,width=520,left=' + left + ', top=100,scrollbars=yes,status=yes');
-    return false
+    if (isBrowser) {
+      let left = Math.round((document.documentElement.clientWidth / 2) - 285);
+      window.open("https://twitter.com/home?status=" + this.sharelink,
+      '_blank', 'location=yes,height=570,width=520,left=' + left + ', top=100,scrollbars=yes,status=yes');
+      return false
+    }
   }
   shareOnLinkedin() {
-    let link = this.sharelink;
-    let title = "Titolo";
-    let summary = "Summary";
-    let source = "";
-    let left = Math.round((document.documentElement.clientWidth / 2) - 285);
-    window.open("https://www.linkedin.com/shareArticle?mini=true&url=" + link + "&title=" + title + "&summary=" + summary + "&source=" + source,
-    '_blank', 'location=yes,height=570,width=520,left=' + left + ', top=100,scrollbars=yes,status=yes');
-    return false
+    if (isBrowser) {
+      let link = this.sharelink;
+      let title = "Titolo";
+      let summary = "Summary";
+      let source = "";
+      let left = Math.round((document.documentElement.clientWidth / 2) - 285);
+      window.open("https://www.linkedin.com/shareArticle?mini=true&url=" + link + "&title=" + title + "&summary=" + summary + "&source=" + source,
+      '_blank', 'location=yes,height=570,width=520,left=' + left + ', top=100,scrollbars=yes,status=yes');
+      return false
+    }
   }
   shareOnGoogle() {
-    let link = this.sharelink;
-    let left = Math.round((document.documentElement.clientWidth / 2) - 285);
-    window.open("https://plus.google.com/share?url=" + link,
-    '_blank', 'location=yes,height=570,width=520,left=' + left + ', top=100,scrollbars=yes,status=yes');
-    return false
+    if (isBrowser) {
+      let link = this.sharelink;
+      let left = Math.round((document.documentElement.clientWidth / 2) - 285);
+      window.open("https://plus.google.com/share?url=" + link,
+      '_blank', 'location=yes,height=570,width=520,left=' + left + ', top=100,scrollbars=yes,status=yes');
+      return false
+    }
   }
   shareWithEmail() {
-    let message = "Ciao, utilizza il link sotto per ricevere 5% di scondo sui servizi Starbook. \n" + this.sharelink;
-    let subject = "Promozione Starbook"
-    let left = Math.round((document.documentElement.clientWidth / 2) - 285);
-    window.open("mailto:?Subject=" + subject + "&body=" + encodeURIComponent(message),
-    '_blank', 'location=yes,height=570,width=520,left=' + left + ', top=100,scrollbars=yes,status=yes');
-    return false
+    if (isBrowser) {
+      let message = "Ciao, utilizza il link sotto per ricevere 5% di scondo sui servizi Starbook. \n" + this.sharelink;
+      let subject = "Promozione Starbook"
+      let left = Math.round((document.documentElement.clientWidth / 2) - 285);
+      window.open("mailto:?Subject=" + subject + "&body=" + encodeURIComponent(message),
+      '_blank', 'location=yes,height=570,width=520,left=' + left + ', top=100,scrollbars=yes,status=yes');
+      return false
+    }
   }
   copyLink() {
-    console.log('copyLink');
+    // console.log('copyLink');
     // Object.assign({}, 'copyLink link  link');
     // var successful = document.execCommand('copy');
     // window.prompt("Copy to clipboard: Ctrl+C", text);

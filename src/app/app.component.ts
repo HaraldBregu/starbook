@@ -71,7 +71,6 @@ export class AppComponent implements OnInit, OnDestroy {
     this.auth = this.authServics.authInit();
     if (isBrowser) {
       this.screenWidth = document.querySelector('body').clientWidth;
-
       this.subscription = this.navigationService.getMessage$.subscribe(message => {
         this.tagline = message;
         this.findValue = message;
@@ -159,8 +158,9 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   requireService() {
-    this.newServiceRequest.message = 'Grazie!';
+    // this.newServiceRequest.message = 'Grazie!';
     this.analyticsService.sendEvent({category:'Services', action: 'request', label: this.findValue});
+    this.router.navigate(['requests']);
   }
 
   selectResult(servicesObj) {

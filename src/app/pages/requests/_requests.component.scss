@@ -1,0 +1,36 @@
+app-requests {
+  display: block;
+  width: 100%;
+  height: 100%;
+  padding: 70px 0 0;
+
+  .btn-warning {
+    width: 100%;
+    height: 60px;
+    font-weight: 700;
+    font-size: 30px;
+    i {
+      position: absolute;
+      left: 20px;
+      line-height: 60px;
+      top: 0;
+      font-size: 30px;
+    }
+  }
+
+  .service {
+    max-width: 600px;
+    margin: auto;
+    padding: 50px 0;
+
+    .header {
+      margin: 0 0 40px;
+    }
+  }
+
+  @media (max-width: 425px) {
+    .service {
+      padding: 50px 10px;
+    }
+  }
+}

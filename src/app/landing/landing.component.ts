@@ -81,7 +81,7 @@ export class LandingComponent implements OnInit {
   /////////////////////////
   searchMore() {
     this.analyticsService.sendEvent({category:'Landing Page', action: 'Search', label: "More"});
-    this.search(this.query)
+    this.router.navigate(['services']);
   }
   search(event) {
     this.newServiceRequest.message = 'Richiedi?';
@@ -113,7 +113,8 @@ export class LandingComponent implements OnInit {
     this.clearView = false;
   }
   requireService() {
-    this.newServiceRequest.message = 'Grazie!';
+    // this.newServiceRequest.message = 'Grazie!';
     this.analyticsService.sendEvent({category:'Services', action: 'request', label: this.query});
+    this.router.navigate(['requests']);
   }
 }

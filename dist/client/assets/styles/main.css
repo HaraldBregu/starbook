@@ -591,11 +591,10 @@ p {
   margin-bottom: 4px; }
 
 .form-control {
-  height: 40px;
   color: black;
   font-size: 16px;
   letter-spacing: 0.1px;
-  padding: 7px 20px;
+  padding: 20px;
   border-radius: 1px !important;
   background-color: #FFFFFF;
   border: 1px solid rgba(220, 224, 224, 0.7); }
@@ -604,13 +603,10 @@ p {
   font-size: 12px; }
 
 textarea.form-control {
-  height: 80px;
   resize: none;
   font-size: 17px;
-  color: white;
   letter-spacing: 0.01px;
-  box-shadow: none;
-  background-color: #2A292B; }
+  box-shadow: none; }
 
 .form-control:focus {
   border: 1px solid rgba(220, 224, 224, 0.7);
@@ -620,7 +616,7 @@ textarea.form-control {
 .form-group {
   margin-bottom: 15px; }
 
-.form-group .form-control {
+.form-group input {
   height: 50px !important;
   border: 1px solid #DCDCDC; }
 
@@ -7187,6 +7183,32 @@ app-services {
       bottom: 0;
       width: 100%;
       background: #161517; }
+
+app-requests {
+  display: block;
+  width: 100%;
+  height: 100%;
+  padding: 70px 0 0; }
+  app-requests .btn-warning {
+    width: 100%;
+    height: 60px;
+    font-weight: 700;
+    font-size: 30px; }
+    app-requests .btn-warning i {
+      position: absolute;
+      left: 20px;
+      line-height: 60px;
+      top: 0;
+      font-size: 30px; }
+  app-requests .service {
+    max-width: 600px;
+    margin: auto;
+    padding: 50px 0; }
+    app-requests .service .header {
+      margin: 0 0 40px; }
+  @media (max-width: 425px) {
+    app-requests .service {
+      padding: 50px 10px; } }
 
 ngb-datepicker,
 .datepicker {

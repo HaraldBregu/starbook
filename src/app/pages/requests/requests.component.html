@@ -1,0 +1,51 @@
+<div class="service">
+  <div class="header">
+    <h1>Richiedi un servizio</h1>
+    <p>Vuoi un servizio che non hai trovato su Starbook? Inserisci il titolo e la descrizione. Ti contatteremo noi per i dettagli e il preventivo.</p>
+  </div>
+  <form>
+    <div class="form-group">
+      <label for="titleInput">Titolo</label>
+      <input type="text" placeholder="Titolo della richiesta" class="form-control" [ngClass]="{'error-input': request_state.title_error}" id="titleInput" [(ngModel)]="Request.title" [ngModelOptions]="{standalone: true}">
+    </div>
+    <div class="form-group">
+      <label for="descriptionInput">Descrizione</label>
+      <textarea class="form-control" placeholder="Descrizione della richiesta" rows="5" [ngClass]="{'error-input': request_state.description_error}" id="descriptionInput" [(ngModel)]="Request.description" [ngModelOptions]="{standalone: true}"></textarea>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="firstNameInput">Nome</label>
+          <input type="firstname" placeholder="Nome" class="form-control" [ngClass]="{'error-input': request_state.firstname_error}" id="firstNameInput" [(ngModel)]="Request.firstname" [ngModelOptions]="{standalone: true}">
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="lastNameInput">Cognome</label>
+          <input type="lastname" placeholder="Cognome" class="form-control" [ngClass]="{'error-input': request_state.lastname_error}" id="lastNameInput" [(ngModel)]="Request.lastname" [ngModelOptions]="{standalone: true}">
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="phoneInput">Telefono</label>
+      <input type="phone" placeholder="Numero di telefono" class="form-control" [ngClass]="{'error-input': request_state.phone_error}" id="phoneInput" [(ngModel)]="Request.phone" [ngModelOptions]="{standalone: true}">
+    </div>
+    <div class="form-group">
+      <label for="emailInput">Email</label>
+      <input type="email" placeholder="La tua mail" class="form-control" [ngClass]="{'error-input': request_state.email_error}" id="emailInput" [(ngModel)]="Request.email" [ngModelOptions]="{standalone: true}">
+    </div>
+    <div class="form-group" *ngIf="request_state.message_success">
+      <div class="alert alert-success" role="alert">
+        {{request_state.message_success}}
+      </div>
+    </div>
+    <div class="form-group" *ngIf="request_state.message_error">
+      <div class="alert alert-danger" role="alert">
+        {{request_state.message_error}}
+      </div>
+    </div>
+    <div class="form-group">
+      <button type="button" id="next" class="btn btn-warning" (click)="sendRequestForNewService()"><i class="fa fa-circle-o-notch animate" *ngIf="request_state.loading"></i>{{request_state.button_title}}</button>
+    </div>
+  </form>
+</div>

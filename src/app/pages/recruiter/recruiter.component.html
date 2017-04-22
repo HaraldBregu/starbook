@@ -150,7 +150,8 @@
           <div class="alert alert-success" role="alert">{{invitation_state.message_success}}</div>
         </div>
         <div class="input-group">
-          <input type="text" placeholder="telefono, email" class="form-control" id="contacts" [(ngModel)]="contacts" [ngModelOptions]="{standalone: true}">
+          <!-- <label for="contacts">Inserisci i numeri di telefono e email separati da (,)</label> -->
+          <input type="text" placeholder="Esempio: 3234565540, john@gmail.com, 343245366465, 23464262462" class="form-control" id="contacts" [(ngModel)]="contacts" [ngModelOptions]="{standalone: true}">
           <span class="input-group-btn">
             <button type="button" id="next" class="btn btn-success" (click)="sendInvitations()">Invia</button>
           </span>

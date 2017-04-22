@@ -243,11 +243,11 @@ p {
   margin-bottom: 4px;
 }
 .form-control {
-  height: 40px;
+  // height: 40px;
   color: black;
   font-size: 16px;
   letter-spacing: 0.1px;
-  padding: 7px 20px;
+  padding: 20px;
   border-radius: 1px !important;
   background-color: #FFFFFF;
   border: 1px solid rgba(220,224,224,0.7);
@@ -270,24 +270,24 @@ p {
   font-size: 12px;
 }
 textarea.form-control {
-  height: 80px;
-  resize:none;
+  resize: none;
   font-size: 17px;
-  color: white;
   letter-spacing: 0.01px;
   box-shadow: none;
-  background-color: #2A292B;
 }
 .form-control:focus {
   border: 1px solid rgba(220,224,224,0.7);
   outline: none;
   background-color: white;
-  // color: rgba(255,255,255,1.0);
 }
 .form-group {
   margin-bottom: 15px;
 }
-.form-group .form-control {
+// .form-group .form-control {
+//   height: 50px !important;
+//   border: 1px solid #DCDCDC;
+// }
+.form-group input {
   height: 50px !important;
   border: 1px solid #DCDCDC;
 }

@@ -53,6 +53,7 @@ import { LegalComponent } from './pages/legal/legal.component';
 import { AccountComponent } from './pages/account/account.component';
 import { RecruiterComponent } from './pages/recruiter/recruiter.component';
 import { ServicesComponent } from './pages/services/services.component';
+import { RequestsComponent } from './pages/requests/requests.component';
 
 
 // import { RouterModule } from '@angular/router';
@@ -98,7 +99,8 @@ let declarations = [
   LegalComponent,
   AccountComponent,
   RecruiterComponent,
-  ServicesComponent
+  ServicesComponent,
+  RequestsComponent
 ];
 
 if (isBrowser) {
