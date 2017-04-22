@@ -51,6 +51,7 @@ import { AccountComponent } from './pages/account/account.component';
 import { RecruiterComponent } from './pages/recruiter/recruiter.component';
 import { ServicesComponent } from './pages/services/services.component';
 import { RequestsComponent } from './pages/requests/requests.component';
+import { ShareComponent } from './pages/share/share.component';
 
 export class HammerConfig extends HammerGestureConfig  {
   overrides = <any> {
@@ -92,7 +93,8 @@ let declarations = [
   AccountComponent,
   RecruiterComponent,
   ServicesComponent,
-  RequestsComponent
+  RequestsComponent,
+  ShareComponent
 ];
 
 if (isBrowser) {

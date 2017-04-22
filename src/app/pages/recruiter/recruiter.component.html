@@ -41,160 +41,6 @@
     </div>
   </form>
 </div>
-<!-- <div class="recruiter-container" *ngIf="page==='partnerjoin'">
-  <div class="header">
-    <h3>Un buon partnership è una garanzia per il futuro</h3>
-    <p>Noi del team Starbook siamo sempre aperti a nuovi partnership e nuove collaborazioni e diamo il massimo del supporto per offrire il miglior servizio nel minor tempo e nel miglior prezzo possibile ai nostri clienti.</p>
-    <p>Per i nostri parter abbiamo un piano di affiliazione. Per ulteriori dettagli invia una richiesta e ti contatteremo subito.</p>
-  </div>
-  <form>
-    <div class="row">
-      <div class="col-md-6">
-        <div class="form-group">
-          <label for="firstNameInput">Nome</label>
-          <input type="firstname" placeholder="Nome" class="form-control" [ngClass]="{'error-input': recruiter_state.firstname_error}" id="firstNameInput" [(ngModel)]="Recruiter.firstname" [ngModelOptions]="{standalone: true}">
-        </div>
-      </div>
-      <div class="col-md-6">
-        <div class="form-group">
-          <label for="lastNameInput">Cognome</label>
-          <input type="lastname" placeholder="Cognome" class="form-control" [ngClass]="{'error-input': recruiter_state.lastname_error}" id="lastNameInput" [(ngModel)]="Recruiter.lastname" [ngModelOptions]="{standalone: true}">
-        </div>
-      </div>
-    </div>
-    <div class="form-group">
-      <label for="phoneInput">Telefono</label>
-      <input type="phone" placeholder="Numero di telefono" class="form-control" [ngClass]="{'error-input': recruiter_state.phone_error}" id="phoneInput" [(ngModel)]="Recruiter.phone" [ngModelOptions]="{standalone: true}">
-    </div>
-    <div class="form-group">
-      <label for="emailInput">Email</label>
-      <input type="email" placeholder="La tua mail" class="form-control" [ngClass]="{'error-input': recruiter_state.email_error}" id="emailInput" [(ngModel)]="Recruiter.email" [ngModelOptions]="{standalone: true}">
-    </div>
-    <div class="form-group" *ngIf="recruiter_state.message_success">
-      <div class="alert alert-success" role="alert">
-        {{recruiter_state.message_success}}
-      </div>
-    </div>
-    <div class="form-group" *ngIf="recruiter_state.message_error">
-      <div class="alert alert-danger" role="alert">
-        {{recruiter_state.message_error}}
-      </div>
-    </div>
-    <div class="form-group">
-      <button type="button" id="next" class="btn btn-warning" (click)="joinAsWorker()"><i class="fa fa-circle-o-notch animate" *ngIf="recruiter_state.loading"></i>Invia richiesta</button>
-    </div>
-  </form>
-</div> -->
-<div class="referral-container" *ngIf="page==='share'">
-  <!-- <div class="row">
-    <div class="col-sm-12">
-      <h3>Copy from text -- text</h3> Click this button, it will copy the text from the input by referring to the <strong>text content</strong>
-      <div class="input-group">
-        <input type="text" class="form-control" [(ngModel)]="text" placeholder="content will be copy after click the copy button">
-        <span class="input-group-btn">
-          <button class="btn btn-default" [class.btn-success]= "isCopied1" type="button" ngxClipboard [cbContent]="text" (cbOnSuccess)="isCopied1 = true">copy</button>
-        </span>
-      </div>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-sm-12">
-      <h3>Copy from text -- target</h3> Click this button, it will copy the text from the input by referring to the <strong>input element</strong>
-      <div class="input-group">
-        <input type="text" class="form-control" [(ngModel)]="text2" placeholder="content will be copy after click the copy button"
-          #inputTarget>
-        <span class="input-group-btn">
-          <button class="btn btn-default" [class.btn-success]= "isCopied2" type="button" [ngxClipboard]="inputTarget" (cbOnSuccess)="isCopied2 = true">copy</button>
-        </span>
-      </div>
-    </div>
-  </div> -->
-  <!-- <div class="content">
-    <div class="row">
-      <div class="col-sm-12">
-        <h3>Copy from text -- target</h3>
-        Click this button, it will copy the text from the input by referring to the <strong>input element</strong>
-        <div class="input-group">
-          <input type="text" class="form-control" [(ngModel)]="text2" placeholder="content will be copy after click the copy button"
-            #inputTarget>
-          <span class="input-group-btn">
-          <button class="btn btn-default" type="button" [ngxClipboard]="inputTarget">copy</button>
-        </span>
-        </div>
-      </div>
-    </div>
-  </div> -->
-  <!-- <div class="row">
-    <div class="col-sm-12">
-      Click this button, it will copy the text from the input by referring to the <strong>input element</strong>
-      <div class="input-group">
-        <input type="text" class="form-control"  placeholder="content will be copy after click the copy button" #inputTarget>
-        <span class="input-group-btn">
-          <button class="btn btn-default" type="button" [ngx-clipboard]="contacts">copy</button>
-        </span>
-      </div>
-    </div>
-  </div> -->
-
-  <div class="header">
-    <h1>Aiuta un amico e guadagnate insieme!</h1>
-    <p>Condividi Starbook ai tuoi amici e per ogni servizio acquistato riceverete entrambi 5% del totale del servizio</p>
-  </div>
-  <div class="invitation">
-    <div class="row">
-      <div class="col-lg-12">
-        <div class="form-group" *ngIf="invitation_state.message_error">
-          <div class="alert alert-danger" role="alert">{{invitation_state.message_error}}</div>
-        </div>
-        <div class="form-group" *ngIf="invitation_state.message_success">
-          <div class="alert alert-success" role="alert">{{invitation_state.message_success}}</div>
-        </div>
-        <div class="input-group">
-          <!-- <label for="contacts">Inserisci i numeri di telefono e email separati da (,)</label> -->
-          <input type="text" placeholder="Esempio: 3234565540, john@gmail.com, 343245366465, 23464262462" class="form-control" id="contacts" [(ngModel)]="contacts" [ngModelOptions]="{standalone: true}">
-          <span class="input-group-btn">
-            <button type="button" id="next" class="btn btn-success" (click)="sendInvitations()">Invia</button>
-          </span>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="share-actions">
-    <h1>Condividi sui social</h1>
-    <div class="row">
-      <div class="col-md-6 col-lg-4">
-        <div class="form-group">
-          <button type="button" id="next" class="btn btn-facebook" (click)="shareOnFacebook()"><i class="fa fa-facebook"></i>Facebook</button>
-        </div>
-      </div>
-      <div class="col-md-6 col-lg-4">
-        <div class="form-group">
-          <button type="button" id="next" class="btn btn-twitter" (click)="shareOnTwitter()"><i class="fa fa-twitter"></i>Twitter</button>
-        </div>
-      </div>
-      <div class="col-md-6 col-lg-4">
-        <div class="form-group">
-          <button type="button" id="next" class="btn btn-linkedin" (click)="shareOnLinkedin()"><i class="fa fa-linkedin"></i>Linkedin</button>
-        </div>
-      </div>
-      <div class="col-md-6 col-lg-4">
-        <div class="form-group">
-          <button type="button" id="next" class="btn btn-google-plus" (click)="shareOnGoogle()"><i class="fa fa-google-plus"></i>Google Plus</button>
-        </div>
-      </div>
-      <div class="col-md-6 col-lg-4">
-        <div class="form-group">
-          <button type="button" id="next" class="btn btn-white" (click)="shareWithEmail()"><i class="fa fa-envelope"></i>Email</button>
-        </div>
-      </div>
-      <!-- <div class="col-md-6 col-lg-4">
-        <div class="form-group">
-          <button type="button" id="next" class="btn btn-white" (click)="copyLink()"><i class="fa fa-link"></i>Copia link</button>
-        </div>
-      </div> -->
-    </div>
-  </div>
-</div>
 <div class="recruiter-container" *ngIf="page==='partnerjoin'">
   <div class="header">
     <h3>Un buon partnership è una garanzia per il futuro</h3>
@@ -249,3 +95,160 @@
     </div>
   </form>
 </div>
+
+
+
+
+<!-- <div class="recruiter-container" *ngIf="page==='partnerjoin'">
+  <div class="header">
+    <h3>Un buon partnership è una garanzia per il futuro</h3>
+    <p>Noi del team Starbook siamo sempre aperti a nuovi partnership e nuove collaborazioni e diamo il massimo del supporto per offrire il miglior servizio nel minor tempo e nel miglior prezzo possibile ai nostri clienti.</p>
+    <p>Per i nostri parter abbiamo un piano di affiliazione. Per ulteriori dettagli invia una richiesta e ti contatteremo subito.</p>
+  </div>
+  <form>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="firstNameInput">Nome</label>
+          <input type="firstname" placeholder="Nome" class="form-control" [ngClass]="{'error-input': recruiter_state.firstname_error}" id="firstNameInput" [(ngModel)]="Recruiter.firstname" [ngModelOptions]="{standalone: true}">
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="lastNameInput">Cognome</label>
+          <input type="lastname" placeholder="Cognome" class="form-control" [ngClass]="{'error-input': recruiter_state.lastname_error}" id="lastNameInput" [(ngModel)]="Recruiter.lastname" [ngModelOptions]="{standalone: true}">
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="phoneInput">Telefono</label>
+      <input type="phone" placeholder="Numero di telefono" class="form-control" [ngClass]="{'error-input': recruiter_state.phone_error}" id="phoneInput" [(ngModel)]="Recruiter.phone" [ngModelOptions]="{standalone: true}">
+    </div>
+    <div class="form-group">
+      <label for="emailInput">Email</label>
+      <input type="email" placeholder="La tua mail" class="form-control" [ngClass]="{'error-input': recruiter_state.email_error}" id="emailInput" [(ngModel)]="Recruiter.email" [ngModelOptions]="{standalone: true}">
+    </div>
+    <div class="form-group" *ngIf="recruiter_state.message_success">
+      <div class="alert alert-success" role="alert">
+        {{recruiter_state.message_success}}
+      </div>
+    </div>
+    <div class="form-group" *ngIf="recruiter_state.message_error">
+      <div class="alert alert-danger" role="alert">
+        {{recruiter_state.message_error}}
+      </div>
+    </div>
+    <div class="form-group">
+      <button type="button" id="next" class="btn btn-warning" (click)="joinAsWorker()"><i class="fa fa-circle-o-notch animate" *ngIf="recruiter_state.loading"></i>Invia richiesta</button>
+    </div>
+  </form>
+</div> -->
+<!-- <div class="referral-container" *ngIf="page==='share'">
+  <div class="row">
+    <div class="col-sm-12">
+      <h3>Copy from text -- text</h3> Click this button, it will copy the text from the input by referring to the <strong>text content</strong>
+      <div class="input-group">
+        <input type="text" class="form-control" [(ngModel)]="text" placeholder="content will be copy after click the copy button">
+        <span class="input-group-btn">
+          <button class="btn btn-default" [class.btn-success]= "isCopied1" type="button" ngxClipboard [cbContent]="text" (cbOnSuccess)="isCopied1 = true">copy</button>
+        </span>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-12">
+      <h3>Copy from text -- target</h3> Click this button, it will copy the text from the input by referring to the <strong>input element</strong>
+      <div class="input-group">
+        <input type="text" class="form-control" [(ngModel)]="text2" placeholder="content will be copy after click the copy button"
+          #inputTarget>
+        <span class="input-group-btn">
+          <button class="btn btn-default" [class.btn-success]= "isCopied2" type="button" [ngxClipboard]="inputTarget" (cbOnSuccess)="isCopied2 = true">copy</button>
+        </span>
+      </div>
+    </div>
+  </div>
+  <div class="content">
+    <div class="row">
+      <div class="col-sm-12">
+        <h3>Copy from text -- target</h3>
+        Click this button, it will copy the text from the input by referring to the <strong>input element</strong>
+        <div class="input-group">
+          <input type="text" class="form-control" [(ngModel)]="text2" placeholder="content will be copy after click the copy button"
+            #inputTarget>
+          <span class="input-group-btn">
+          <button class="btn btn-default" type="button" [ngxClipboard]="inputTarget">copy</button>
+        </span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-12">
+      Click this button, it will copy the text from the input by referring to the <strong>input element</strong>
+      <div class="input-group">
+        <input type="text" class="form-control"  placeholder="content will be copy after click the copy button" #inputTarget>
+        <span class="input-group-btn">
+          <button class="btn btn-default" type="button" [ngx-clipboard]="contacts">copy</button>
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <div class="header">
+    <h1>Aiuta un amico e guadagnate insieme!</h1>
+    <p>Condividi Starbook ai tuoi amici e per ogni servizio acquistato riceverete entrambi 5% del totale del servizio</p>
+  </div>
+  <div class="invitation">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="form-group" *ngIf="invitation_state.message_error">
+          <div class="alert alert-danger" role="alert">{{invitation_state.message_error}}</div>
+        </div>
+        <div class="form-group" *ngIf="invitation_state.message_success">
+          <div class="alert alert-success" role="alert">{{invitation_state.message_success}}</div>
+        </div>
+        <div class="input-group">
+          <input type="text" placeholder="Esempio: 3234565540, john@gmail.com, 343245366465, 23464262462" class="form-control" id="contacts" [(ngModel)]="contacts" [ngModelOptions]="{standalone: true}">
+          <span class="input-group-btn">
+            <button type="button" id="next" class="btn btn-success" (click)="sendInvitations()">Invia</button>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="share-actions">
+    <h1>Condividi sui social</h1>
+    <div class="row">
+      <div class="col-md-6 col-lg-4">
+        <div class="form-group">
+          <button type="button" id="next" class="btn btn-facebook" (click)="shareOnFacebook()"><i class="fa fa-facebook"></i>Facebook</button>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-4">
+        <div class="form-group">
+          <button type="button" id="next" class="btn btn-twitter" (click)="shareOnTwitter()"><i class="fa fa-twitter"></i>Twitter</button>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-4">
+        <div class="form-group">
+          <button type="button" id="next" class="btn btn-linkedin" (click)="shareOnLinkedin()"><i class="fa fa-linkedin"></i>Linkedin</button>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-4">
+        <div class="form-group">
+          <button type="button" id="next" class="btn btn-google-plus" (click)="shareOnGoogle()"><i class="fa fa-google-plus"></i>Google Plus</button>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-4">
+        <div class="form-group">
+          <button type="button" id="next" class="btn btn-white" (click)="shareWithEmail()"><i class="fa fa-envelope"></i>Email</button>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-4">
+        <div class="form-group">
+          <button type="button" id="next" class="btn btn-white" (click)="copyLink()"><i class="fa fa-link"></i>Copia link</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> -->

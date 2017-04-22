@@ -15,6 +15,7 @@ import { AccountComponent } from './pages/account/account.component';
 import { RecruiterComponent } from './pages/recruiter/recruiter.component';
 import { ServicesComponent } from './pages/services/services.component';
 import { RequestsComponent } from './pages/requests/requests.component';
+import { ShareComponent } from './pages/share/share.component';
 
 const routes: Routes = [
   {
@@ -73,6 +74,10 @@ const routes: Routes = [
   {
     path: 'requests',
     component: RequestsComponent
+  },
+  {
+    path: 'share',
+    component: ShareComponent
   }
 ];
 

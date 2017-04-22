@@ -7210,6 +7210,57 @@ app-requests {
     app-requests .service {
       padding: 50px 10px; } }
 
+app-share {
+  display: block;
+  width: 100%;
+  height: 100%;
+  padding: 70px 0 0; }
+  app-share .share-container {
+    text-align: center;
+    max-width: 1100px;
+    margin: auto;
+    padding: 50px; }
+    app-share .share-container .header {
+      padding: 0 0 10px;
+      margin: 0 0 50px; }
+    app-share .share-container h1 {
+      margin: 1.5rem 0 0.5rem; }
+    app-share .share-container p {
+      margin: 0 0 1rem; }
+    app-share .share-container .btn-facebook, app-share .share-container .btn-white, app-share .share-container .btn-twitter, app-share .share-container .btn-linkedin, app-share .share-container .btn-google-plus, app-share .share-container .btn-success {
+      width: 100%;
+      height: 50px;
+      font-size: 18px;
+      font-weight: 500;
+      border-radius: 3px; }
+    app-share .share-container .btn-facebook i, app-share .share-container .btn-white i, app-share .share-container .btn-twitter i, app-share .share-container .btn-success i, app-share .share-container .btn-google-plus i, app-share .share-container .btn-linkedin i {
+      position: absolute;
+      font-size: 30px;
+      left: 15px;
+      top: 10px; }
+    app-share .share-container .invitation {
+      max-width: 600px;
+      margin: auto; }
+      app-share .share-container .invitation .input-group-btn {
+        width: 20%; }
+      app-share .share-container .invitation .left {
+        float: left;
+        width: 80%; }
+      app-share .share-container .invitation .btn-success {
+        font-size: 22px; }
+    app-share .share-container .share-actions {
+      margin: 40px 0;
+      padding: 40px 0 40px; }
+      app-share .share-container .share-actions h1 {
+        margin: 0 0 40px 0;
+        font-weight: 300; }
+  @media (max-width: 425px) {
+    app-share .share-container {
+      padding: 20px; } }
+  @media (max-width: 320px) {
+    app-share .share-container {
+      padding: 10px; } }
+
 ngb-datepicker,
 .datepicker {
   border-radius: 3px;

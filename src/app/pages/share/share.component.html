@@ -1,0 +1,59 @@
+<div class="share-container">
+  <div class="header">
+    <h1>Aiuta un amico e guadagnate insieme!</h1>
+    <p>Condividi Starbook ai tuoi amici e per ogni servizio acquistato riceverete entrambi 5% del totale del servizio</p>
+  </div>
+  <div class="invitation">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="form-group" *ngIf="invitation_state.message_error">
+          <div class="alert alert-danger" role="alert">{{invitation_state.message_error}}</div>
+        </div>
+        <div class="form-group" *ngIf="invitation_state.message_success">
+          <div class="alert alert-success" role="alert">{{invitation_state.message_success}}</div>
+        </div>
+        <div class="input-group">
+          <input type="text" placeholder="Esempio: 3234565540, john@gmail.com, 343245366465, 23464262462" class="form-control" id="contacts" [(ngModel)]="contacts" [ngModelOptions]="{standalone: true}">
+          <span class="input-group-btn">
+            <button type="button" id="next" class="btn btn-success" (click)="sendInvitations()">Invia</button>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="share-actions">
+    <h1>Condividi sui social</h1>
+    <div class="row">
+      <div class="col-md-6 col-lg-4">
+        <div class="form-group">
+          <button type="button" id="next" class="btn btn-facebook" (click)="shareOnFacebook()"><i class="fa fa-facebook"></i>Facebook</button>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-4">
+        <div class="form-group">
+          <button type="button" id="next" class="btn btn-twitter" (click)="shareOnTwitter()"><i class="fa fa-twitter"></i>Twitter</button>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-4">
+        <div class="form-group">
+          <button type="button" id="next" class="btn btn-linkedin" (click)="shareOnLinkedin()"><i class="fa fa-linkedin"></i>Linkedin</button>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-4">
+        <div class="form-group">
+          <button type="button" id="next" class="btn btn-google-plus" (click)="shareOnGoogle()"><i class="fa fa-google-plus"></i>Google Plus</button>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-4">
+        <div class="form-group">
+          <button type="button" id="next" class="btn btn-white" (click)="shareWithEmail()"><i class="fa fa-envelope"></i>Email</button>
+        </div>
+      </div>
+      <!-- <div class="col-md-6 col-lg-4">
+        <div class="form-group">
+          <button type="button" id="next" class="btn btn-white" (click)="copyLink()"><i class="fa fa-link"></i>Copia link</button>
+        </div>
+      </div> -->
+    </div>
+  </div>
+</div>
