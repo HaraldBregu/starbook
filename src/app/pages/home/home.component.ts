@@ -111,7 +111,9 @@ export class HomeComponent implements OnInit {
       // SERVICE
       let service = data.service;
       if (service_id) {
-        window.scrollTo(0, 0);
+        if (isBrowser) {
+          window.scrollTo(0, 0);
+        }
         if (service) {
           this.renderPage(service);
         } else {

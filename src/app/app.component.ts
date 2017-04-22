@@ -69,8 +69,9 @@ export class AppComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.auth = this.authServics.authInit();
-    this.screenWidth = document.querySelector('body').clientWidth;
     if (isBrowser) {
+      this.screenWidth = document.querySelector('body').clientWidth;
+
       this.subscription = this.navigationService.getMessage$.subscribe(message => {
         this.tagline = message;
         this.findValue = message;

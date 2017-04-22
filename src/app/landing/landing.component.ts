@@ -31,8 +31,10 @@ export class LandingComponent implements OnInit {
 
   constructor(private authServics: AuthService, private homeService: HomeService, private router: Router, private route: ActivatedRoute, private navigationService: NavigationService, private analyticsService: AnalyticsService, private popupsService: PopupsService, private seoService: SeoService) {
     this.navigationService.updateMessage('La cura per la casa');
-    if (localStorage.getItem('auth')) {
-      this.currentUser = JSON.parse(localStorage.getItem('auth'));
+    if (isBrowser) {
+      if (localStorage.getItem('auth')) {
+        this.currentUser = JSON.parse(localStorage.getItem('auth'));
+      }
     }
   }
 
