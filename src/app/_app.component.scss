@@ -263,6 +263,8 @@ $search-navbar-close-icon-base-color: #8D9494;
   text-align: center;
   z-index: 1;
   line-height: 70px;
+  max-height: 70px;
+  overflow: hidden;
 }
 
 .navbar-toggler {

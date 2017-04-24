@@ -9,7 +9,9 @@
       <div class="header-summary">
         <h3>{{Order.title}}</h3>
         <div *ngFor="let item of Order.details">
-          <p>{{item.title}}</p>
+          <div *ngIf="item.type !== 'service'">
+            <p>{{item.title}}</p>
+          </div>
         </div>
       </div>
       <div class="line"></div>
@@ -32,6 +34,8 @@
           <button type="button" id="next" class="btn btn-warning" (click)="confirmPreview()">Continua</button>
         </div>
       </div>
+      <!-- <div class="line"></div> -->
+
     </div>
   </div>
   <div class="wizard-container" *ngIf="step === 'address'">
@@ -89,7 +93,9 @@
       <div class="header-summary">
         <h3>{{Order.title}}</h3>
         <div *ngFor="let item of Order.details">
-          <p>{{item.title}}</p>
+          <div *ngIf="item.type !== 'service'">
+            <p>{{item.title}}</p>
+          </div>
         </div>
       </div>
       <div class="line"></div>

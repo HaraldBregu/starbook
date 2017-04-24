@@ -94,6 +94,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
 
 
   constructor(private profileService: ProfileService, private router: Router, private navigationService: NavigationService, private route: ActivatedRoute, private popupsService: PopupsService, private paymentService: PaymentService, private analyticsService: AnalyticsService, private seoService: SeoService) {
+    this.navigationService.updateMessage('Profilo');
     if (isBrowser) {
       if (localStorage.getItem('auth') !== null) {
         let authData = JSON.parse(localStorage.getItem('auth'));
@@ -101,22 +102,6 @@ export class ProfileComponent implements OnInit, OnDestroy {
         this.User.lastname = authData.profile.lastname;
         this.User.phone_number = authData.phone_number;
         this.User.email = authData.email;
-        // console.log('authData: ' + JSON.stringify(authData));
-        // console.log('this User: ' + JSON.stringify(this.User));
-
-        // this.profileService.getProfile().then((profile) => {
-        //   this.User.firstname = profile.result.profile.firstname;
-        //   this.User.lastname = profile.result.profile.lastname;
-        //   this.User.email = profile.result.email;
-        //   this.User.phone_number = profile.result.phone_number;
-        // }).catch((error) => {
-        //   console.log('error message: ' + JSON.stringify(error));
-        //   if (error.json().message) {
-        //     this.popupsService.activate({type: 'error', data: {title:'Errore', message: error.json().message}});
-        //   } else {
-        //     this.popupsService.activate({type: 'error', data: {title:'Errore', message: 'An error has occurred'}});
-        //   }
-        // });
       } else {
         this.router.navigate(['/']);
       }
@@ -125,11 +110,10 @@ export class ProfileComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.route.params.subscribe(params => {
+      if (isBrowser) {window.scrollTo(0, 0);}
       this.page = params['page'];
       if (this.page ==='general') {
-        this.navigationService.updateMessage('Informazioni del mio account');
       } else if (this.page ==='payment') {
-        this.navigationService.updateMessage('Metodo di pagamento');
         this.paymentService.getCards().then((cards) => {
           this.defaultCard = cards.default_source;
           this.cards = [];
@@ -146,9 +130,9 @@ export class ProfileComponent implements OnInit, OnDestroy {
           }
         })
       } else if (this.page ==='settings') {
-        this.navigationService.updateMessage('Impostazioni');
+
       } else if (this.page ==='card') {
-        this.navigationService.updateMessage('Impostazioni');
+
       }
     });
 

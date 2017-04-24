@@ -179,40 +179,41 @@ export class WizardComponent implements OnInit {
     if (Object.keys(service_data).length === 0) {
       this.Order = this.readOrderFromLocal()
 
-      // To show in address step
-      if (this.Order.address && this.Order.address.street_number.length > 0) {
-        this.temp_address = this.Order.address.street + ', ' + this.Order.address.street_number + ' ' + this.Order.address.city;
-      } else {
-        this.temp_address = this.Order.address.street + ', ' + this.Order.address.city;
+      if (this.Order.address) {
+        if (this.Order.address.street_number.length > 0) {
+          this.temp_address = this.Order.address.street + ', ' + this.Order.address.street_number + ' ' + this.Order.address.city;
+        } else {
+          this.temp_address = this.Order.address.street + ', ' + this.Order.address.city;
+        }
       }
 
-      // To show in date step
-      if(this.Order.date) {
+      if (this.Order.date) {
         this.temp_date = new Date(this.Order.date);
+        let date = new Date(this.Order.date);
+        let day = date.getDate() > 9 ? date.getDate() : '0' + date.getDate();
+        this.formated_date =  day + ' ' + this.it.monthNames[date.getMonth()] + ' ' + date.getFullYear();
       }
 
-      // To show in preview order
-      let date = new Date(this.Order.date);
-      let day = date.getDate() > 9 ? date.getDate() : '0' + date.getDate();
-      this.formated_date =  day + ' ' + this.it.monthNames[date.getMonth()] + ' ' + date.getFullYear();
     } else {
+      // this.saveEstimateQuotationToLocal(service_data);
       this.Order.service_id = service_data.service_id;
       this.Order.title = service_data.title;
       this.Order.details = service_data.details;
       this.Order.referral_id = service_data.referral_id;
       this.Order.price = service_data.price;
       this.Order.payment = service_data.payment;
-      this.saveOrderToLocal(this.Order)
+      this.saveOrderToLocal(this.Order);
+      console.log('get from local');
     }
   }
 
   ngOnInit() {
     this.route.params.subscribe((params: Params) => {
       this.step = params['step']
-      window.scrollTo(0, 0);
+      if (isBrowser) {window.scrollTo(0, 0);}
 
       if (this.order_status.created && this.step !== 'end' && this.step !== 'info') {
-        this.router.navigate(['services', this.Order.service_id]);
+        this.router.navigate(['services', this.Order.title.replace(/\s+/g, '-')]);
       }
       if (this.step === 'summary') {
         this.navigationService.updateMessage("Sommario del servizio");
@@ -237,7 +238,7 @@ export class WizardComponent implements OnInit {
         this.navigationService.updateMessage("Informazioni profilo");
         this.wizardDataItems[4] = "Info";
       } else {
-        this.router.navigate(['services', this.Order.service_id]);
+        this.router.navigate(['services', this.Order.title.replace(/\s+/g, '-')]);
       }
     })
   }
@@ -261,7 +262,6 @@ export class WizardComponent implements OnInit {
   ///////////////////////////////
   confirmPreview() {
     this.analyticsService.sendEvent({category:'Order', action: 'Wizard', label: "Confirm Preview"});
-
     this.router.navigate(['order/address']);
   }
 
@@ -270,7 +270,6 @@ export class WizardComponent implements OnInit {
   ///////////////////////////////
   confirmAddress() {
     this.analyticsService.sendEvent({category:'Order', action: 'Wizard', label: "Confirm Address"});
-
     if (!this.Order.address) {
       this.address_state.error_message = "Per favore inserisci un indirizzo corretto";
       return;
@@ -316,7 +315,6 @@ export class WizardComponent implements OnInit {
   ////////////////////////////
   confirmDate() {
     this.analyticsService.sendEvent({category:'Order', action: 'Wizard', label: "Confirm Date"});
-
     if (!this.Order.date) {
       this.date_state.error_message = "Per favore inserisci una data";
       return;
@@ -387,12 +385,11 @@ export class WizardComponent implements OnInit {
   ///////////////////////////
   confirmEnd() {
     this.analyticsService.sendEvent({category:'Order', action: 'Wizard', label: "Confirm End"});
-
     let user = JSON.parse(localStorage.getItem('auth'));
     if (!user.phone_number || user.phone_number.length < 10) {
       this.router.navigate(['order/info']);
     } else {
-      this.router.navigate(['services', this.Order.service_id]);
+      this.router.navigate(['services', this.Order.title.replace(/\s+/g, '-')]);
     }
   }
 
@@ -603,7 +600,7 @@ export class WizardComponent implements OnInit {
       this.profile_info_state.loading = false;
       this.profile_info_state.phone_number_error = null;
       this.profile_info_state.button_title = "Salva";
-      this.router.navigate(['services', this.Order.service_id]);
+      this.router.navigate(['services', this.Order.title.replace(/\s+/g, '-')]);
     }).catch((error) => {
       this.profile_info_state.loading = false;
       this.profile_info_state.phone_number_error = null;
@@ -615,7 +612,9 @@ export class WizardComponent implements OnInit {
   ////////// ORDER //////////
   ///////////////////////////
   saveOrderToLocal(order) {
-    localStorage.setItem('order', JSON.stringify(order));
+    if (isBrowser) {
+      localStorage.setItem('order', JSON.stringify(order));
+    }
   }
   readOrderFromLocal() {
     let recovery
@@ -624,6 +623,22 @@ export class WizardComponent implements OnInit {
   }
   deleteLocalOrder() {
     localStorage.removeItem('order');
+  }
+  saveEstimateQuotationToLocal(estimate) {
+    if (isBrowser) {
+      var estimates = [];
+      if (!localStorage.getItem('estimates')) {
+        estimates.push(estimate);
+        localStorage.setItem('estimates', JSON.stringify(estimates));
+      } else {
+        estimates = JSON.parse(localStorage.getItem('estimates'))
+        estimates.push(estimate);
+        localStorage.setItem('estimates', JSON.stringify(estimates));
+      }
+      var es = JSON.stringify(localStorage.getItem('estimates'))
+
+      console.log('estimates: ' + es);
+    }
   }
 
 

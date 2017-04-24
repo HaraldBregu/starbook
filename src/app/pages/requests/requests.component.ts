@@ -4,6 +4,7 @@ import { Router, Route, ActivatedRoute, Params } from '@angular/router';
 import { NavigationService } from '../../shared/navigation.service';
 import { JoinService } from '../../shared/join.service';
 import { SeoService } from '../../shared/seo.service';
+import { AnalyticsService } from '../../shared/analytics.service';
 
 @Component({
   selector: 'app-requests',
@@ -37,8 +38,10 @@ export class RequestsComponent implements OnInit {
 
   public currentUser;
 
-  constructor(private router: Router, private route: ActivatedRoute, private navigationService: NavigationService, private joinService: JoinService, private seoService: SeoService) {
+  constructor(private router: Router, private route: ActivatedRoute, private navigationService: NavigationService, private joinService: JoinService, private seoService: SeoService, private analyticsService: AnalyticsService) {
     this.navigationService.updateMessage('Invia la tua richiesta');
+    this.analyticsService.sendPageViewUrl(this.router.url);
+    // console.log('this router is:'+ this.router.url);
     if (isBrowser) {
       if (localStorage.getItem('auth')) {
         this.currentUser = JSON.parse(localStorage.getItem('auth'));

@@ -57,8 +57,8 @@ export class OrderComponent implements OnInit, OnDestroy {
     if (this.price_state.loading) {return;}
     let wizardData = {
       service_id: this.orderData.service_id,
-      title: this.orderData.service,
-      details: this.orderData.services,
+      title: this.orderData.title,
+      details: this.orderData.details,
       referral_id: this.price_state.referral_id,
       price: {
         final: this.getFinalPrice(),
@@ -69,6 +69,8 @@ export class OrderComponent implements OnInit, OnDestroy {
         upfront: this.getUpFront()
       }
     };
+    
+    wizardData.details.unshift({title:this.orderData.title, type:"service"})
 
     this.orderService.updateWizardData(wizardData);
     this.router.navigateByUrl('/order/summary');

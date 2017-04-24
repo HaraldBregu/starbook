@@ -30,18 +30,13 @@ export class OrdersService {
   }
 
   getOrders(params) {
-    // this.navigationService.updateLoadingStatus(true);
     let paramsToRequest = new URLSearchParams();
     params.forEach((peram) => {
       paramsToRequest.set(peram.name, peram.value);
     });
-    return this.http.get(this.api + 'orders', {headers: this._makeHeaders(), search: paramsToRequest})
-      .toPromise()
-      .then((response) => {
-        // this.navigationService.updateLoadingStatus(false);
-        return response.json();
-      })
-      .catch(this.handleError);
+    return this.http.get(this.api + 'orders', {headers: this._makeHeaders(), search: paramsToRequest}).toPromise().then((response) => {
+      return response.json();
+    }).catch(this.handleError);
   }
 
   getCategories() {

@@ -1,5 +1,4 @@
 app-profile {
-
   .profile-page {
     display: block;
     width: 100%;
@@ -10,8 +9,8 @@ app-profile {
     display: block;
     position: fixed;
     width: 100%;
-    background: white;
-    height: 70px;
+    background: #383838;
+    height: 60px;
     border-bottom: 1px solid #CCCCCC;
     z-index: 1;
   }
@@ -27,17 +26,17 @@ app-profile {
   .top-bar li {
     color: #9B9B9B;
     float: left;
-    height: 70px;
-    line-height: 70px;
+    height: 60px;
+    line-height: 60px;
     padding-left: 40px;
     padding-right: 40px;
     text-align: center;
   }
   .top-bar li:hover {
-    color: black;
+    color: white;
   }
   .top-bar .active {
-    color: black;
+    color: white;
   }
   .page-container {
     display: block;
@@ -46,7 +45,7 @@ app-profile {
     border-bottom: 1px solid #CCCCCC;
     border: 1px solid #CCCCCC;
     background: #F7F7F7;
-    margin: 120px auto;
+    margin: 110px auto 50px;
     .form-group .ui-inputtext:focus {
       border: 2px solid #7FC443 !important;
     }

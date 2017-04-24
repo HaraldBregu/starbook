@@ -13,7 +13,6 @@ app-order {
         font-size: 30px;
       }
     }
-
     .order-content {
       .price-block {
         display: block;
@@ -540,29 +539,29 @@ $footer-links-text-letter-spacing: 0.08px;
     padding: 13px;
     border: none;
   }
-  .order-container {
-    display: block;
-    float: left;
-    width: 100%;
-    height: 100%;
-    overflow-y: scroll;
-  }
-  .order-container .order-list-empty {
-    display: block;
-    width:100%;
-    margin-bottom: 8px;
-    background-color: $order-block-alert-background;
-    border: $order-block-alert-border-style;
-
-    font-size: $order-block-alert-text-size;
-    letter-spacing: $order-block-alert-letter-spacing;
-    color: $order-block-alert-text-color;
-    padding: 10px 10px 12px 10px;
-    border-radius: 3px;
-  }
-  .order-container .order-list-empty strong {
-    font-weight: bold;
-  }
+  // .order-container {
+  //   display: block;
+  //   float: left;
+  //   width: 100%;
+  //   height: 100%;
+  //   overflow-y: scroll;
+  // }
+  // .order-container .order-list-empty {
+  //   display: block;
+  //   width:100%;
+  //   margin-bottom: 8px;
+  //   background-color: $order-block-alert-background;
+  //   border: $order-block-alert-border-style;
+  //
+  //   font-size: $order-block-alert-text-size;
+  //   letter-spacing: $order-block-alert-letter-spacing;
+  //   color: $order-block-alert-text-color;
+  //   padding: 10px 10px 12px 10px;
+  //   border-radius: 3px;
+  // }
+  // .order-container .order-list-empty strong {
+  //   font-weight: bold;
+  // }
   .sidebar-block h2 {
     display: block;
     background-color: $general-background-black-color;
@@ -579,52 +578,52 @@ $footer-links-text-letter-spacing: 0.08px;
     // border-bottom: $sidebar-block-border;
     // padding: 20px;
   }
-  .order-container .category-group {
-    display: block;
-    width: 100%;
-    margin-bottom: 10px;
-  }
-  .order-container .category-group span {
-    display: block;
-    position: relative;
-    padding-right: 60px;
-    width: 100%;
-    color: $order-block-category-header-color;
-    letter-spacing: $order-block-text-letter-spacing;
-
-    font-size: $order-block-text-size;
-    text-align: left;
-  }
-  .order-container .category-group span i {
-    display: block;
-    position: absolute;
-    top: 0;
-    right: 0;
-    text-align: right;
-    color: $order-block-category-header-color;
-    letter-spacing: $order-block-text-letter-spacing;
-    font-weight: 500;
-    font-size: $order-block-text-size;
-    font-style: normal;
-  }
-  .order-container .category-group.category span {
-    font-weight: 500;
-  }
-  .order-container .category-group.category span i {
-    font-weight: bold;
-  }
-  .order-container .category-group.total span {
-    font-weight: bold;
-  }
-  .order-container .category-group.total span i {
-    font-weight: bold;
-  }
-  .order-container .category-group span:after {
-    content: ', ';
-  }
-  .order-container .category-group span:last-child:after {
-    content: ' ';
-  }
+  // .order-container .category-group {
+  //   display: block;
+  //   width: 100%;
+  //   margin-bottom: 10px;
+  // }
+  // .order-container .category-group span {
+  //   display: block;
+  //   position: relative;
+  //   padding-right: 60px;
+  //   width: 100%;
+  //   color: $order-block-category-header-color;
+  //   letter-spacing: $order-block-text-letter-spacing;
+  //
+  //   font-size: $order-block-text-size;
+  //   text-align: left;
+  // }
+  // .order-container .category-group span i {
+  //   display: block;
+  //   position: absolute;
+  //   top: 0;
+  //   right: 0;
+  //   text-align: right;
+  //   color: $order-block-category-header-color;
+  //   letter-spacing: $order-block-text-letter-spacing;
+  //   font-weight: 500;
+  //   font-size: $order-block-text-size;
+  //   font-style: normal;
+  // }
+  // .order-container .category-group.category span {
+  //   font-weight: 500;
+  // }
+  // .order-container .category-group.category span i {
+  //   font-weight: bold;
+  // }
+  // .order-container .category-group.total span {
+  //   font-weight: bold;
+  // }
+  // .order-container .category-group.total span i {
+  //   font-weight: bold;
+  // }
+  // .order-container .category-group span:after {
+  //   content: ', ';
+  // }
+  // .order-container .category-group span:last-child:after {
+  //   content: ' ';
+  // }
   .form-group {
     position: relative;
   }

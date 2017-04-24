@@ -77,8 +77,8 @@ export class HomeComponent implements OnInit {
     price: {
       base_amount: 0
     },
-    service: '',
-    services: [],
+    title: '',
+    details: [],
     totalPrice: 0
   };
   public orderIsFull = false;
@@ -172,8 +172,9 @@ export class HomeComponent implements OnInit {
       service_id: services._id,
       service_image: this.image_url,
       price: services.price,
-      service: services.title,
-      services: [],
+      title: services.title,
+      details: [],
+      // details: [{title:services.title, type:"service"}],
       totalPrice: services.price.base_amount
     };
     this.baseAmount.start = services.price.base_amount;
@@ -410,7 +411,7 @@ export class HomeComponent implements OnInit {
 
   calculateOrder() {
     this.queueWorker();
-    this.orderData.services = [];
+    this.orderData.details = [];
     this.orderData.totalPrice = this.baseAmount.calculated;
     let currentOrderState = [];
     let serviceId = 0;
@@ -419,18 +420,18 @@ export class HomeComponent implements OnInit {
       service.options.forEach((item) => {
         if (service.type === 'RADIOBUTTON') {
           if (item.selected) {
-            currentOrderState.push({title: item.title});
+            currentOrderState.push({title: item.title, type:"detail"});
           }
         } else if (service.type === 'CHECKBOX') {
           if (item.selected) {
-            currentOrderState.push({title: item.title});
+            currentOrderState.push({title: item.title, type:"detail"});
           }
         } else if (service.type === 'INPUTTEXT') {
           if (service.price_type === 'BASE_AMOUNT_PER_INPUT' && item.input_value != 0) {
-            currentOrderState.push({title: item.title + ' ' + item.input_value});
+            currentOrderState.push({title: item.title + ' ' + item.input_value, type:"detail"});
           }
           if (service.price_type === 'AMOUNT_PER_INPUT' && item.input_value != 0) {
-            currentOrderState.push({title: item.title + ' ' + item.input_value});
+            currentOrderState.push({title: item.title + ' ' + item.input_value, type:"detail"});
           }
         }
         itemId++;
@@ -440,7 +441,7 @@ export class HomeComponent implements OnInit {
 
     currentOrderState.forEach((service) => {
       if (service.title) {
-        this.orderData.services.push(service);
+        this.orderData.details.push(service);
       }
     });
 

@@ -31,4 +31,9 @@ export class AnalyticsService {
     }
   }
 
+  sendPageViewUrl(url) {
+    if (isBrowser) {
+      ga('send', 'pageview', url);
+    }
+  }
 }

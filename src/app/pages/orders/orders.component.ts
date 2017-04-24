@@ -1,4 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Router, Route, ActivatedRoute, Params } from '@angular/router';
 import { NavigationService } from '../../shared/navigation.service';
 import { OrdersService } from '../../shared/orders.service';
 import { PopupsService } from '../../popups/popups.service';
@@ -9,9 +10,15 @@ import { isBrowser } from "angular2-universal";
 export interface IOrder {
   _id: string;
   status: number;
+  price: {
+    final: number,
+    initial: number,
+    currency: string
+  },
   payment?: {
-    amount?: number,
-    currency?: string
+    state?: string,
+    milestones?: string,
+    rest: string
   },
   category_type: number;
   delivery_details: string;
@@ -45,121 +52,114 @@ export interface IOrder {
 export class OrdersComponent implements OnInit, OnDestroy {
   public it: any;
   public selectTab: string|boolean = false;
-  public taglines = {
-    'Richieste dei clienti': 'Richieste dei clienti',
-    'I miei ordini': 'I miei ordini',
-    'Archivio': 'Archivio di tutti gli ordini'
-  };
   public tabs = [
-    {name: 'I miei ordini', selected: false},
-    {name: 'Archivio', selected: false}
+    {name: 'Lavorazioni', route: 'requests'},
+    {name: 'Preventivi', route: 'estimates'}
   ];
-  public categories = [];
   public pageData: IOrder[] = [];
-  public requestIsComplete = false;
-  public isVendor = false;
-  public emptyListTitle = ''
-  public isLoading = false;
-  public authData = {};
+  public currentUser;
+  public page = '';
   subscription: Subscription;
+  public estimates;
 
-  constructor(private navigationService: NavigationService, private ordersService: OrdersService, private popupsService: PopupsService, private analyticsService: AnalyticsService) { }
+  constructor(private router: Router, private route: ActivatedRoute, private navigationService: NavigationService, private ordersService: OrdersService, private popupsService: PopupsService, private analyticsService: AnalyticsService) {
+    this.navigationService.updateMessage("Ordini");
+    if (isBrowser) {
+      if (!localStorage.getItem('auth')) {
+        this.router.navigate(['']);
+        return;
+      }
+      this.currentUser = JSON.parse(localStorage.getItem('auth'));
+    }
+  }
 
   ngOnInit() {
-    if (isBrowser) {
-      if (localStorage.getItem('auth') !== null) {
-        let authData = JSON.parse(localStorage.getItem('auth'));
-        this.authData = authData;
-        authData.account_types.forEach((type) => {
-          if (type === 'VENDOR') {
-            this.isVendor = true;
-          }
+    this.route.params.subscribe(params => {
+      if (isBrowser) {window.scrollTo(0, 0);}
+      this.page = params['page']
+      if (this.page === 'requests') {
+        this.navigationService.updateMessage("Ordini...");
+        this.ordersService.getOrders([{name: 'order_type', value: 'REQUIRED'}]).then((response) => {
+          this.navigationService.updateMessage("Ordini");
+          this.pageData = response.result;
+        }).catch((error) => {
+          this.navigationService.updateMessage("Ordini");
         });
-        if (this.isVendor) {
-          this.tabs = [
-            {name: 'Richieste dei clienti', selected: false},
-            {name: 'I miei ordini', selected: false},
-            {name: 'Archivio', selected: false}
-          ];
-          this.renderPage('Richieste dei clienti');
-        } else {
-          this.renderPage('I miei ordini');
+      } else if (this.page === 'estimates') {
+        if (isBrowser) {
+          this.estimates = JSON.parse(localStorage.getItem('estimates'))
         }
       } else {
-        this.renderPage('I miei ordini');
+        this.router.navigate(['orders/requests']);
       }
-    } else {
-      this.renderPage('I miei ordini');
-    }
+    })
 
-
-    this.categories = this.ordersService.getCategories();
     if (isBrowser) {
       this.subscription = this.popupsService.getPopupResponse$.subscribe(action => {
         let orderIndex = 0;
         switch (action.type) {
           case 'confirmOrder':
             orderIndex = 0;
-            this.pageData.forEach((orderData) => {
-              if (orderData._id === action.data.orderId) {
-                this.pageData[orderIndex].status = 1;
-              }
-              orderIndex++;
-            });
+            // this.pageData.forEach((orderData) => {
+            //   if (orderData._id === action.data.orderId) {
+            //     this.pageData[orderIndex].status = 1;
+            //   }
+            //   orderIndex++;
+            // });
             break;
           case 'cancelOrder':
             orderIndex = 0;
-            this.pageData.forEach((orderData) => {
-              if (orderData._id === action.data.orderId) {
-                this.pageData[orderIndex].status = 99;
-              }
-              orderIndex++;
-            });
+            // this.pageData.forEach((orderData) => {
+            //   if (orderData._id === action.data.orderId) {
+            //     this.pageData[orderIndex].status = 99;
+            //   }
+            //   orderIndex++;
+            // });
             break;
           case 'reactivateOrder':
             orderIndex = 0;
-            this.pageData.forEach((orderData) => {
-              if (orderData._id === action.data.orderId) {
-                this.pageData[orderIndex].status = 0;
-              }
-              orderIndex++;
-            });
+            // this.pageData.forEach((orderData) => {
+            //   if (orderData._id === action.data.orderId) {
+            //     this.pageData[orderIndex].status = 0;
+            //   }
+            //   orderIndex++;
+            // });
             break;
           case 'addPrice':
-            if (action.data.isModified === 0)
-            {
-              this.renderPage(this.selectTab);
-            } else {
-              orderIndex = 0;
-              this.pageData.forEach((orderData) => {
-                if (orderData._id === action.data.orderId) {
-                  // this.pageData[orderIndex].status = 2;
-                  // this.pageData[orderIndex].payment = {amount: action.data.orderPrice, currency: 'eur'};
-                  this.pageData.splice(orderIndex,1);
-                }
-                orderIndex++;
-              });
-            }
+            // if (action.data.isModified === 0)
+            // {
+            //   this.renderPage(this.selectTab);
+            // } else {
+            //   orderIndex = 0;
+            //   this.pageData.forEach((orderData) => {
+            //     if (orderData._id === action.data.orderId) {
+            //       // this.pageData[orderIndex].status = 2;
+            //       // this.pageData[orderIndex].payment = {amount: action.data.orderPrice, currency: 'eur'};
+            //       this.pageData.splice(orderIndex,1);
+            //     }
+            //     orderIndex++;
+            //   });
+            // }
             break;
           case 'editPrice':
             orderIndex = 0;
-            this.pageData.forEach((orderData) => {
-              if (orderData._id === action.data.orderId) {
-                this.pageData[orderIndex].status = 2;
-                this.pageData[orderIndex].payment.amount = action.data.orderPrice;
-                this.pageData[orderIndex].payment.currency = 'eur';
-              }
-              orderIndex++;
-            });
+            // this.pageData.forEach((orderData) => {
+            //   if (orderData._id === action.data.orderId) {
+            //     this.pageData[orderIndex].status = 2;
+            //     this.pageData[orderIndex].payment.amount = action.data.orderPrice;
+            //     this.pageData[orderIndex].payment.currency = 'eur';
+            //   }
+            //   orderIndex++;
+            // });
             break;
           case 'continueOrder':
             orderIndex = 0;
-            this.pageData.forEach((orderData) => {
-              if (orderData._id === action.data.orderId) {
-                this.pageData.splice(orderIndex,1);
-              }
-              orderIndex++;
-            });
+            // this.pageData.forEach((orderData) => {
+            //   if (orderData._id === action.data.orderId) {
+            //     this.pageData.splice(orderIndex,1);
+            //   }
+            //   orderIndex++;
+            // });
             break;
         }
       });
@@ -182,61 +182,14 @@ export class OrdersComponent implements OnInit, OnDestroy {
     }
   }
 
-  renderPage(page) {
-    this.requestIsComplete = false;
-    this.selectTab = page;
-    let tabIndex = 0;
-    this.tabs.forEach((tab) => {
-      if (tab.name === page) {
-        this.tabs[tabIndex].selected = true;
-      } else {
-        this.tabs[tabIndex].selected = false;
-      }
-      tabIndex++;
-    });
-
-    let params = [];
-
-    if (page === 'Richieste dei clienti') {
-      this.requestIsComplete = false;
-      this.emptyListTitle = 'Non ci sono ordini richiesti dai clienti per il momento'
-      params = [];
-      params.push({name: 'order_type', value: 'RECEIVED'});
-    }
-
-    if (page === 'I miei ordini') {
-      this.requestIsComplete = false;
-      this.emptyListTitle = 'Non ci sono ordini effettuati'
-      params = [];
-      params.push({name: 'order_type', value: 'REQUIRED'});
-    }
-
-    if (page === 'Archivio') {
-      this.requestIsComplete = false;
-      this.emptyListTitle = "L'archivio degli ordini e vuota"
-      params = [];
-      params.push({name: 'order_type', value: 'ARCHIVE'});
-    }
-    this.isLoading = true;
-    let timeStart = Date.now();
-    this.ordersService.getOrders(params)
-      .then((response) => {
-        this.analyticsService.sendTiming({category: 'Get list of orders', timingVar: 'load', timingValue: Date.now()-timeStart});
-        this.isLoading = false;
-        this.requestIsComplete = true;
-        if (response.result !== null) {
-          this.pageData = response.result;
-        } else {
-          this.pageData = [];
-        }
-      })
-      .catch((error) => {
-        this.isLoading = false;
-    });
-    if (isBrowser) {
-      this.navigationService.updateMessage(this.taglines[page]);
-    }
+  renderPage(route) {
+    this.router.navigate(['orders/' + route]);
   }
+
+
+  ////////////////////////////////////////
+  ////////////// UNKNOWN /////////////////
+  ////////////////////////////////////////
 
   dateFormating(date) {
     let returnDate = '';
@@ -277,12 +230,12 @@ export class OrdersComponent implements OnInit, OnDestroy {
   itemsFormating(items) {
     let returnProducts = [];
     let products = items.split('||');
-    products.forEach((product) => {
-      let productComponents = product.split(':');
-      if (productComponents[0].length > 0) {
-        returnProducts.push({name: productComponents[0], items: productComponents[1]});
-      }
-    });
+    // products.forEach((product) => {
+    //   let productComponents = product.split(':');
+    //   if (productComponents[0].length > 0) {
+    //     returnProducts.push({name: productComponents[0], items: productComponents[1]});
+    //   }
+    // });
     return returnProducts;
   }
 

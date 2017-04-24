@@ -36,6 +36,10 @@ const routes: Routes = [
     component: OrdersComponent
   },
   {
+    path: 'orders/:page',
+    component: OrdersComponent
+  },
+  {
     path: 'profile/:page',
     component: ProfileComponent
   },
