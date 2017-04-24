@@ -39,9 +39,16 @@ export class RequestsComponent implements OnInit {
   public currentUser;
 
   constructor(private router: Router, private route: ActivatedRoute, private navigationService: NavigationService, private joinService: JoinService, private seoService: SeoService, private analyticsService: AnalyticsService) {
-    this.navigationService.updateMessage('Invia la tua richiesta');
     this.analyticsService.sendPageViewUrl(this.router.url);
-    // console.log('this router is:'+ this.router.url);
+    this.seoService.setTitle('Starbook | Devi fare lavori a casa?');
+    this.seoService.setOgElem('og:title', 'Starbook | Devi fare lavori a casa?');
+    this.seoService.setMetaElem('description', 'Inserisci il titolo e i dettagli del lavoro che vuoi svolgere. Ci occupiamo noi a trovare il miglior professionista con il miglior prezzo del mercato.');
+    this.seoService.setOgElem('og:description', 'Inserisci il titolo e i dettagli del lavoro che vuoi svolgere. Ci occupiamo noi a trovare il miglior professionista con il miglior prezzo del mercato.');
+    this.seoService.setOgElem('og:url', 'https://www.starbook.co' + this.router.url);
+    this.seoService.setOgElem('og:image', 'https://s3-eu-west-1.amazonaws.com/starbook-s3/operai-professionisti-artigiani.jpg');
+    this.seoService.setOgElem('og:image:secure_url', 'https://s3-eu-west-1.amazonaws.com/starbook-s3/operai-professionisti-artigiani.jpg');
+    this.navigationService.updateMessage('Invia la tua richiesta');
+
     if (isBrowser) {
       if (localStorage.getItem('auth')) {
         this.currentUser = JSON.parse(localStorage.getItem('auth'));
