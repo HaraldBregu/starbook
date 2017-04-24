@@ -40,8 +40,8 @@ export class RequestsComponent implements OnInit {
 
   constructor(private router: Router, private route: ActivatedRoute, private navigationService: NavigationService, private joinService: JoinService, private seoService: SeoService, private analyticsService: AnalyticsService) {
     this.analyticsService.sendPageViewUrl(this.router.url);
-    this.seoService.setTitle('Starbook | Devi fare lavori a casa?');
-    this.seoService.setOgElem('og:title', 'Starbook | Devi fare lavori a casa?');
+    this.seoService.setTitle('Lavori di casa? Chiedi di cosa hai bisogno');
+    this.seoService.setOgElem('og:title', 'Lavori di casa? Chiedi di cosa hai bisogno');
     this.seoService.setMetaElem('description', 'Inserisci il titolo e i dettagli del lavoro che vuoi svolgere. Ci occupiamo noi a trovare il miglior professionista con il miglior prezzo del mercato.');
     this.seoService.setOgElem('og:description', 'Inserisci il titolo e i dettagli del lavoro che vuoi svolgere. Ci occupiamo noi a trovare il miglior professionista con il miglior prezzo del mercato.');
     this.seoService.setOgElem('og:url', 'https://www.starbook.co' + this.router.url);
