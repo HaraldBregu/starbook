@@ -99,7 +99,7 @@ app.get('/robots.txt', function(req, res) {
 })
 app.get('/sitemap.xml', function(req, res) {
   res.type('text/xml')
-  res.send("<?xml version='1.0' encoding='UTF-8'?><urlset xmlns='http://www.sitemaps.org/schemas/sitemap/0.9' xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xsi:schemaLocation='http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd'><url><loc>https://www.starbook.co/</loc></url><url><loc>https://www.starbook.co/legal</loc></url><url><loc>https://www.starbook.co/about</loc></url><url><loc>https://www.starbook.co/help</loc></url><url><loc>https://www.starbook.co/legal</loc></url></urlset>");
+  res.send("<?xml version='1.0' encoding='UTF-8'?><urlset xmlns='http://www.sitemaps.org/schemas/sitemap/0.9' xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xsi:schemaLocation='http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd'><url><loc>https://www.starbook.co/</loc></url><url><loc>https://www.starbook.co/about</loc></url><url><loc>https://www.starbook.co/help</loc></url><url><loc>https://www.starbook.co/legal</loc></url><url><loc>https://www.starbook.co/services</loc></url><url><loc>https://www.starbook.co/recruiter/workerjoin</loc></url><url><loc>https://www.starbook.co/recruiter/partnerjoin</loc></url><url><loc>https://www.starbook.co/requests</loc></url></urlset>");
 })
 routes.forEach(route => {
   app.get(`/${route}`, ngApp);
