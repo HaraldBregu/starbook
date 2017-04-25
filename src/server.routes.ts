@@ -24,5 +24,7 @@ export const routes: string[] = [
   'recruiter',
   'recruiter/:page',
   'requests',
-  'share'
+  'requests/:page',
+  'share',
+  'share/:page'
 ];

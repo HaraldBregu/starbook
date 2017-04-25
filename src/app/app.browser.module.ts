@@ -31,6 +31,8 @@ import { PaymentService } from './shared/payment.service';
 import { AnalyticsService } from './shared/analytics.service';
 import { SeoService } from './shared/seo.service';
 import { JoinService } from './shared/join.service';
+import { ShareService } from './pages/share/share.service';
+import { ClipboardService } from './shared/clipboard.service';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './pages/home/home.component';
@@ -52,6 +54,8 @@ import { RecruiterComponent } from './pages/recruiter/recruiter.component';
 import { ServicesComponent } from './pages/services/services.component';
 import { RequestsComponent } from './pages/requests/requests.component';
 import { ShareComponent } from './pages/share/share.component';
+
+import { ClipboardDirective } from './directives/clipboard.directive';
 
 export class HammerConfig extends HammerGestureConfig  {
   overrides = <any> {
@@ -94,7 +98,9 @@ let declarations = [
   RecruiterComponent,
   ServicesComponent,
   RequestsComponent,
-  ShareComponent
+  ShareComponent,
+
+  ClipboardDirective
 ];
 
 if (isBrowser) {
@@ -135,7 +141,9 @@ else {
     PaymentService,
     AnalyticsService,
     SeoService,
-    JoinService
+    JoinService,
+    ShareService,
+    ClipboardService
   ]
 })
 export class AppModule {

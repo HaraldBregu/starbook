@@ -392,6 +392,7 @@ body {
   font-size: 4.0rem; }
 
 html, body {
+  position: relative;
   font-family: Roboto, sans-serif; }
 
 h1 {
@@ -3111,7 +3112,7 @@ app-root .center-container {
     outline: none;
     color: #212121;
     font-size: 20px;
-    font-weight: 300;
+    font-weight: 400;
     letter-spacing: 0.1px; }
   app-root .center-container input.ui-autocomplete-input::-webkit-input-placeholder,
   app-root .center-container input.search-block .ui-autocomplete-input:-moz-placeholder,
@@ -4135,6 +4136,17 @@ app-order .sidebar .order-content .price-block {
     font-weight: 300;
     font-size: 14px;
     text-align: left; }
+app-order .sidebar .order-content .links {
+  display: block;
+  float: left;
+  width: 100%;
+  padding: 20px 0 0;
+  color: #FFC845;
+  text-align: center; }
+  app-order .sidebar .order-content .links a {
+    padding: 0 5px; }
+  app-order .sidebar .order-content .links a:hover {
+    color: #FFC845; }
 @media (max-width: 906px) {
   app-order .row {
     margin-left: 0px;
@@ -4653,8 +4665,8 @@ app-orders {
     display: block;
     max-width: 1130px;
     padding: 50px;
-    border-bottom: 1px solid #CCCCCC;
     border: 1px solid #CCCCCC;
+    border-top: 5px solid #7FC443;
     background: #F7F7F7;
     margin: 50px auto; }
     app-orders .order-container .header h3 {
@@ -5371,6 +5383,13 @@ app-profile .page-container {
 @media (max-width: 380px) {
   app-profile .top-bar li {
     padding: 0 10px; } }
+
+.sticky-footer {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  overflow: hidden; }
 
 .footer {
   background: #F7F7F7;
@@ -7203,7 +7222,7 @@ app-requests {
   display: block;
   width: 100%;
   height: 100%;
-  padding: 70px 0 0; }
+  padding: 70px 0 100px; }
   app-requests .btn-warning {
     width: 100%;
     height: 60px;
@@ -7221,6 +7240,44 @@ app-requests {
     padding: 50px 0; }
     app-requests .service .header {
       margin: 0 0 40px; }
+  app-requests .estimate {
+    display: block;
+    max-width: 1130px;
+    margin: auto;
+    padding: 50px;
+    border-bottom: 1px solid #CCCCCC;
+    border: 1px solid #CCCCCC;
+    background: #F7F7F7;
+    margin: 50px auto; }
+    app-requests .estimate .header h3 {
+      margin-bottom: 10px; }
+    app-requests .estimate .line {
+      display: block;
+      margin: 20px auto 20px;
+      height: 1px;
+      border-top: 0.5px solid #CCCCCC; }
+    app-requests .estimate .counts {
+      overflow: auto; }
+      app-requests .estimate .counts .item {
+        float: left;
+        width: 50%;
+        font-size: 18px;
+        font-weight: 500;
+        line-height: 36px; }
+      app-requests .estimate .counts .amount {
+        float: left;
+        width: 50%;
+        font-size: 28px;
+        text-align: right;
+        font-weight: 900; }
+      app-requests .estimate .counts .initial {
+        font-weight: 400;
+        text-decoration: line-through; }
+    app-requests .estimate .actions {
+      text-align: right;
+      padding: 20px 0; }
+    app-requests .estimate .links {
+      text-align: center; }
   @media (max-width: 425px) {
     app-requests .service {
       padding: 50px 10px; } }
@@ -7269,9 +7326,101 @@ app-share {
       app-share .share-container .share-actions h1 {
         margin: 0 0 40px 0;
         font-weight: 300; }
+  app-share .estimate {
+    display: block;
+    max-width: 1130px;
+    padding: 50px;
+    border: 1px solid #CCCCCC;
+    border-top: 5px solid #7FC443;
+    background: #F7F7F7;
+    margin: 50px auto; }
+    app-share .estimate .btn-warning {
+      width: 50%;
+      font-size: 26px;
+      color: white;
+      height: 60px;
+      font-weight: 700; }
+    app-share .estimate .btn-facebook, app-share .estimate .btn-white, app-share .estimate .btn-twitter, app-share .estimate .btn-linkedin, app-share .estimate .btn-google-plus, app-share .estimate .btn-success {
+      width: 100%;
+      height: 50px;
+      font-size: 18px;
+      font-weight: 500;
+      border-radius: 3px; }
+    app-share .estimate .btn-facebook i, app-share .estimate .btn-white i, app-share .estimate .btn-twitter i, app-share .estimate .btn-success i, app-share .estimate .btn-google-plus i, app-share .estimate .btn-linkedin i {
+      position: absolute;
+      font-size: 30px;
+      left: 15px;
+      top: 10px; }
+    app-share .estimate .header h3 {
+      margin-bottom: 10px; }
+    app-share .estimate .line {
+      display: block;
+      margin: 20px auto 20px;
+      height: 1px;
+      border-top: 0.5px solid #CCCCCC; }
+    app-share .estimate .counts {
+      overflow: auto; }
+      app-share .estimate .counts .item {
+        float: left;
+        width: 50%;
+        font-size: 18px;
+        font-weight: 500;
+        line-height: 36px; }
+      app-share .estimate .counts .amount {
+        float: left;
+        width: 50%;
+        font-size: 28px;
+        text-align: right;
+        font-weight: 900; }
+      app-share .estimate .counts .initial {
+        font-weight: 400;
+        text-decoration: line-through; }
+      app-share .estimate .counts .time {
+        font-weight: 500;
+        font-size: 18px; }
+    app-share .estimate .actions {
+      text-align: center;
+      padding: 20px 0; }
+    app-share .estimate .invitation {
+      padding: 50px 0 0;
+      width: 50%;
+      margin: auto; }
+      app-share .estimate .invitation h3 {
+        text-align: center;
+        font-weight: 300;
+        margin-bottom: 20px; }
+      app-share .estimate .invitation .input-group-btn {
+        width: 20%; }
+      app-share .estimate .invitation .left {
+        float: left;
+        width: 80%; }
+      app-share .estimate .invitation .btn-success {
+        font-size: 22px; }
+    app-share .estimate .share-actions {
+      padding: 50px 0 0;
+      text-align: center; }
+      app-share .estimate .share-actions h3 {
+        margin: 0 0 40px 0;
+        font-weight: 300; }
+    app-share .estimate .links {
+      text-align: center; }
+  @media (max-width: 1024px) {
+    app-share .estimate {
+      margin: 0; }
+      app-share .estimate .invitation {
+        width: 70%; } }
+  @media (max-width: 768px) {
+    app-share .estimate {
+      margin: 0; }
+      app-share .estimate .invitation {
+        width: 70%; } }
   @media (max-width: 425px) {
     app-share .share-container {
-      padding: 20px; } }
+      padding: 20px; }
+    app-share .estimate {
+      padding: 20px; }
+      app-share .estimate .invitation {
+        width: 100%; } }
   @media (max-width: 320px) {
     app-share .share-container {
       padding: 10px; } }

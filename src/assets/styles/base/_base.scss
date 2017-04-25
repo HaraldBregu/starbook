@@ -6,6 +6,7 @@
 $font-name: Roboto, sans-serif;
 
 html, body {
+  position: relative;
   font-family: $font-name;
 }
 h1 {

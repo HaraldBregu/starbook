@@ -66,6 +66,20 @@ app-order {
           text-align: left;
         }
       }
+      .links {
+        display: block;
+        float: left;
+        width: 100%;
+        padding: 20px 0 0;
+        color: #FFC845;
+        text-align: center;
+        a {
+          padding: 0 5px;
+        }
+        a:hover {
+          color: #FFC845;
+        }
+      }
 
     }
 

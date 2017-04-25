@@ -80,7 +80,15 @@ const routes: Routes = [
     component: RequestsComponent
   },
   {
+    path: 'requests/:page',
+    component: RequestsComponent
+  },
+  {
     path: 'share',
+    component: ShareComponent
+  },
+  {
+    path: 'share/:page',
     component: ShareComponent
   }
 ];

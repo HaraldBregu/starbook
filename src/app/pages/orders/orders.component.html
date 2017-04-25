@@ -10,7 +10,7 @@
         <div *ngFor="let detail of order.details">
           <div *ngIf="detail.type==='service'">
             <h3>{{detail.title}}</h3>
-            <div class="line"></div>
+            <!-- <div class="line"></div> -->
           </div>
           <div *ngIf="detail.type==='detail'">
             <p>{{detail.title}}</p>
@@ -54,7 +54,7 @@
         <div *ngFor="let item of estimate.details">
           <div *ngIf="item.type === 'service'">
             <h3>{{estimate.title}}</h3>
-            <div class="line"></div>
+            <!-- <div class="line"></div> -->
           </div>
           <div *ngIf="item.type === 'detail'">
             <p>{{item.title}}</p>

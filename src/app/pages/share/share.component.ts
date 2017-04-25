@@ -1,8 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { isBrowser } from 'angular2-universal';
-import { Router, Route, ActivatedRoute, Params } from '@angular/router';
+import { Router, Route, ActivatedRoute, Params, NavigationExtras } from '@angular/router';
 import { NavigationService } from '../../shared/navigation.service';
 import { JoinService } from '../../shared/join.service';
+import { ShareService } from './share.service';
+import { AnalyticsService } from '../../shared/analytics.service';
+import { OrderService } from '../../order/order.service';
+
+// import * as jwt from 'jsonwebtoken';
 
 @Component({
   selector: 'app-share',
@@ -18,26 +23,65 @@ export class ShareComponent implements OnInit {
     message_success: null,
     message_error: null
   };
+  public serviceObject;
+  public page = '';
+  public Estimate = null;
 
-  constructor(private router: Router, private route: ActivatedRoute, private navigationService: NavigationService, private joinService: JoinService) {
+  constructor(
+    private router: Router,
+    private route: ActivatedRoute,
+    private navigationService: NavigationService,
+    private joinService: JoinService,
+    private shareService: ShareService,
+    private analyticsService: AnalyticsService,
+    private orderService: OrderService) {
+
     this.navigationService.updateMessage("Condividi");
-    // this.navigationService.updateMessage("Programma di affiliazione");
     this.emailPattern = /^[a-z0-9!#$%&'*+\/=?^_`{|}~.-]+@[a-z0-9]([a-z0-9-]*[a-z0-9])?(\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)*$/i;
     this.numPattern = /^\d+$/;
+    this.serviceObject = this.shareService.getObject();
     if (isBrowser) {
-      if (localStorage.getItem('auth')) {
-        this.currentUser = JSON.parse(localStorage.getItem('auth'));
-        this.sharelink =  document.location.protocol + '//'+ document.location.hostname + '/?ref=' + this.currentUser._id;
-      } else {
-        this.router.navigate(['recruiter/partnerjoin']);
-      }
+      this.route.params.subscribe((params: Params) => {
+        window.scrollTo(0, 0);
+        this.page = params['page']
+
+        if (this.page === 'starbook') {
+          this.navigationService.updateMessage("Condividi");
+          if (localStorage.getItem('auth')) {
+            this.currentUser = JSON.parse(localStorage.getItem('auth'));
+            this.sharelink =  document.location.protocol + '//'+ document.location.hostname + '/?ref=' + this.currentUser._id;
+          }
+        } else if (this.page === 'service') {
+          this.navigationService.updateMessage("Condividi servizio");
+          this.route.queryParams.subscribe(params => {
+            this.Estimate = JSON.parse(params['estimate'])
+            if (!this.Estimate || this.Estimate.length===0) {
+              this.router.navigate(['share/starbook']);
+            }
+            console.log('current url is: ' + document.location.protocol + '//'+ document.location.hostname + this.router.url);
+            console.log('current host is: ' + document.location.protocol + '//'+ document.location.hostname);
+
+            this.sharelink =  document.location.protocol + '//'+ document.location.hostname + this.router.url;
+
+            console.log('estimate: ' + JSON.stringify(this.Estimate));
+          });
+
+        } else {
+          this.router.navigate(['share/starbook']);
+        }
+      })
     }
+
   }
 
   ngOnInit() {
-    if (isBrowser) {
-      window.scrollTo(0, 0);
-    }
+  }
+
+  startWizard() {
+    this.analyticsService.sendEvent({category:'Share', action: 'Start Wizard', label: "Order Campain"});
+    this.orderService.updateWizardData(this.Estimate);
+    this.router.navigate(['order/summary']);
+    return false;
   }
 
   sendInvitations() {
@@ -76,7 +120,7 @@ export class ShareComponent implements OnInit {
     this.joinService.sendInvitations(this.sharelink, phones, emails).then((response) => {
       // console.log('response: ' + JSON.stringify(response));
       this.invitation_state.message_success = "Complimenti, hai inviato un codice sconto ai contatti inseriti";
-      this.contacts = '';
+      // this.contacts = '';
     }).catch((error) => {
       // console.log('error: ' + JSON.stringify(error));
     });
@@ -128,11 +172,15 @@ export class ShareComponent implements OnInit {
       return false
     }
   }
-  copyLink() {
-    // console.log('copyLink');
-    // Object.assign({}, 'copyLink link  link');
-    // var successful = document.execCommand('copy');
-    // window.prompt("Copy to clipboard: Ctrl+C", text);
-    // window.prompt("Copy to clipboard: Ctrl+C", 'this is a texts');
+  copyLink( value: string ) : void {
+    // console.group( "Clipboard Success" );
+    // console.log( value );
+    // console.groupEnd();
   }
+  copyError( error: Error ) : void {
+    // console.group( "Clipboard Error" );
+    // console.error( error );
+    // console.groupEnd();
+  }
+
 }

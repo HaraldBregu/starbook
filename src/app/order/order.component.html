@@ -31,11 +31,14 @@
         <div class="form-group">
           <button class="btn btn-warning" (click)="startWizard()">CONTINUA</button>
         </div>
-        <div class="description">
+        <!-- <div class="description">
           Le offerte del preventivo possono cambiare in base alle richieste del mercato. Blocca il prezzo versando un acconto.
+        </div> -->
+        <!-- <div class="line"></div> -->
+        <div class="links">
+          <a routerLink="/share" routerLinkActive="active" (click)="share()">Condividi</a>
+          <!-- <a routerLink="/share" routerLinkActive="active" (click)="share()">Invia</a> -->
         </div>
-        <!-- <div class="line"></div>
-        <a href="">Salva Preventivo</a> -->
       </div>
     </div>
   </form>

@@ -41,8 +41,8 @@ export class LandingComponent implements OnInit {
   ngOnInit() {
     this.seoService.setTitle('Starbook | I migliori servizi per la tua casa');
     this.seoService.setOgElem('og:title', 'Starbook | I migliori servizi per la tua casa');
-    this.seoService.setMetaElem('description', 'Prezi del mercato. Preventivi diretti. I migliori professionisti alla tua disposizione.');
-    this.seoService.setOgElem('og:description', 'Prezi del mercato. Preventivi diretti. I migliori professionisti alla tua disposizione.');
+    this.seoService.setMetaElem('description', 'Prezzi del mercato. Preventivi diretti. I migliori professionisti alla tua disposizione.');
+    this.seoService.setOgElem('og:description', 'Prezzi del mercato. Preventivi diretti. I migliori professionisti alla tua disposizione.');
     this.seoService.setOgElem('og:url', 'https://www.starbook.co/');
     this.seoService.setOgElem('og:image', 'https://s3-eu-west-1.amazonaws.com/starbook-s3/migliori-servizi-per-la-casa.jpg');
     this.seoService.setOgElem('og:image:secure_url', 'https://s3-eu-west-1.amazonaws.com/starbook-s3/migliori-servizi-per-la-casa.jpg');

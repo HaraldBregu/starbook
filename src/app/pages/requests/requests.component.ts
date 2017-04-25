@@ -11,6 +11,8 @@ import { AnalyticsService } from '../../shared/analytics.service';
   templateUrl: './requests.component.html'
 })
 export class RequestsComponent implements OnInit {
+  public page = '';
+  public currentUser;
 
   //////////////////////////
   /////// REQUEST  /////////
@@ -36,7 +38,23 @@ export class RequestsComponent implements OnInit {
     email_error: null
   };
 
-  public currentUser;
+  //////////////////////////
+  /////// ESTIMATE /////////
+  //////////////////////////
+  public Estimate = {
+    service_id: '',
+    title: 'Parete in cartongesso',
+    details: [{type:'service', title:"Parete in cartongesso"}, {type:'detail', title:"item 0"}, {type:'detail', title:"item 0"}],
+    referral_id: '23454678',
+    price: {
+      final: 0,
+      initial: 0,
+      currency: 'eur'
+    },
+    payment: {
+      upfront: 0
+    }
+  };
 
   constructor(private router: Router, private route: ActivatedRoute, private navigationService: NavigationService, private joinService: JoinService, private seoService: SeoService, private analyticsService: AnalyticsService) {
     this.analyticsService.sendPageViewUrl(this.router.url);
@@ -47,7 +65,6 @@ export class RequestsComponent implements OnInit {
     this.seoService.setOgElem('og:url', 'https://www.starbook.co' + this.router.url);
     this.seoService.setOgElem('og:image', 'https://s3-eu-west-1.amazonaws.com/starbook-s3/operai-professionisti-artigiani.jpg');
     this.seoService.setOgElem('og:image:secure_url', 'https://s3-eu-west-1.amazonaws.com/starbook-s3/operai-professionisti-artigiani.jpg');
-    this.navigationService.updateMessage('Invia la tua richiesta');
 
     if (isBrowser) {
       if (localStorage.getItem('auth')) {
@@ -64,16 +81,21 @@ export class RequestsComponent implements OnInit {
 
   ngOnInit() {
     if (isBrowser) {
-      window.scrollTo(0, 0);
-    }
-    // this.seoService.setTitle('Starbook | I migliori servizi per la tua casa');
-    // this.seoService.setOgElem('og:title', 'Starbook | I migliori servizi per la tua casa');
-    // this.seoService.setMetaElem('description', 'Prezi del mercato. Preventivi diretti. I migliori professionisti alla tua disposizione.');
-    // this.seoService.setOgElem('og:description', 'Prezi del mercato. Preventivi diretti. I migliori professionisti alla tua disposizione.');
-    // this.seoService.setOgElem('og:url', 'https://www.starbook.co/');
-    // this.seoService.setOgElem('og:image', 'https://s3-eu-west-1.amazonaws.com/starbook-s3/migliori-servizi-per-la-casa.jpg');
-    // this.seoService.setOgElem('og:image:secure_url', 'https://s3-eu-west-1.amazonaws.com/starbook-s3/migliori-servizi-per-la-casa.jpg');
+      this.route.params.subscribe((params: Params) => {
+        window.scrollTo(0, 0);
 
+        this.page = params['page']
+
+        if (this.page === 'service') {
+          this.navigationService.updateMessage("Richiedi un servizio");
+        } else if (this.page === 'estimate') {
+          this.navigationService.updateMessage("Preventivo");
+        } else {
+          this.router.navigate(['requests/service']);
+        }
+      })
+    }
+    console.log('page is: ' + this.page);
   }
 
   sendRequestForNewService() {

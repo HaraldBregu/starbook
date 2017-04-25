@@ -1,9 +1,11 @@
 import { Component, Input, OnInit, OnDestroy } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, NavigationExtras } from '@angular/router';
 import { OrderService, IAddress } from './order.service';
 import { PopupsService } from '../popups/popups.service';
 import { AnalyticsService } from '../shared/analytics.service';
 import { ProfileService } from '../shared/profile.service';
+import { ShareService } from '../pages/share/share.service';
+
 import { Subscription }   from 'rxjs/Subscription';
 import { isBrowser } from "angular2-universal";
 
@@ -16,7 +18,7 @@ export class OrderComponent implements OnInit, OnDestroy {
   @Input('orderIsFull') orderIsFull;
   @Input() price_state;
 
-  constructor(private orderService: OrderService, private popupsService: PopupsService, private analyticsService: AnalyticsService, private profileService: ProfileService, private router: Router) {
+  constructor(private orderService: OrderService, private popupsService: PopupsService, private analyticsService: AnalyticsService, private profileService: ProfileService, private router: Router, private shareService: ShareService) {
   }
 
   ngOnInit() {
@@ -51,11 +53,8 @@ export class OrderComponent implements OnInit, OnDestroy {
     }
   }
 
-  startWizard() {
-    this.analyticsService.sendEvent({category:'Order', action: 'Wizard', label: "Start"});
-
-    if (this.price_state.loading) {return;}
-    let wizardData = {
+  wizardData() {
+    var object = {
       service_id: this.orderData.service_id,
       title: this.orderData.title,
       details: this.orderData.details,
@@ -67,16 +66,32 @@ export class OrderComponent implements OnInit, OnDestroy {
       },
       payment: {
         upfront: this.getUpFront()
+      },
+      timing: {
+        days: this.getTiming()
       }
     };
-    
-    wizardData.details.unshift({title:this.orderData.title, type:"service"})
+    return object;
+  }
 
-    this.orderService.updateWizardData(wizardData);
-    this.router.navigateByUrl('/order/summary');
+  startWizard() {
+    this.analyticsService.sendEvent({category:'Order', action: 'Wizard', label: "Start"});
+    if (this.price_state.loading) {return;}
+    var newWizardData = this.wizardData();
+    newWizardData.details.unshift({title:this.orderData.title, type:"service"})
+    this.orderService.updateWizardData(newWizardData);
+    this.router.navigate(['order/summary']);
     return false;
   }
 
+  share() {
+    this.analyticsService.sendEvent({category:'Share Service', action: 'Click To Share', label: "Share Campain Research"});
+    this.shareService.setObject(this.wizardData());
+    var newWizardData = this.wizardData();
+    newWizardData.details.unshift({title:this.orderData.title, type:"service"})
+    let navigationExtras: NavigationExtras = {queryParams:{estimate:JSON.stringify(newWizardData)}};
+    this.router.navigate(['share/service'], navigationExtras);
+  }
 
   // changeTab(tab) {
   //   this.openedTab = tab;
