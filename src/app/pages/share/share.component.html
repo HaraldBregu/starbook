@@ -84,23 +84,6 @@
     <div class="amount">{{Estimate.price.final/100}}€</div>
   </div>
   <div class="line"></div>
-
-  <!-- <div class="counts">
-    <div class="item">ACCONTO (30% del totale)</div>
-    <div class="amount">{{Estimate.payment.upfront/100}}€</div>
-  </div>
-  <div class="actions">
-    <div class="form-group">
-      <button class="btn btn-warning" id="next" type="button" (click)="startWizard()">Continua</button>
-    </div>
-    <a routerLinkActive="active" (click)="saveEstimate()">Salva preventivo</a>
-  </div> -->
-  <!-- <div class="form-group">
-    <div class="undobutton">
-      <button type="button" id="next" class="btn btn-back" (click)="back()"><i class="fa fa-chevron-left" aria-hidden="true"></i></button>
-      <button type="button" id="next" class="btn btn-warning" (click)="confirmOrder()"><i class="fa fa-circle-o-notch animate" *ngIf="order_status.loading"></i>{{order_status.button_title}}</button>
-    </div>
-  </div> -->
   <div class="actions">
     <div class="form-group">
       <button type="button" id="next" class="btn btn-warning" (click)="startWizard()">Continua con l'ordine</button>
@@ -110,9 +93,6 @@
       <a *ngIf="currentUser && estimate_state.saved">Preventivo Salvato!</a>
     </div>
   </div>
-
-
-
   <div class="invitation">
     <h3>Invia preventivo a</h3>
     <div class="row">
@@ -169,7 +149,44 @@
   </div>
 </div>
 
-<footer class="footer">
+<div class="estimate" *ngIf="page==='estimate' && Estimate">
+  <div class="header">
+    <div *ngFor="let item of Estimate.details">
+      <div *ngIf="item.type==='service'">
+        <h3>{{item.title}}</h3>
+      </div>
+      <div *ngIf="item.type==='detail'">
+        <p>{{item.title}}</p>
+      </div>
+    </div>
+  </div>
+  <div class="line"></div>
+  <div class="counts">
+    <div class="item">DURATA DEL LAVORO (Approssimativo)</div>
+    <div class="amount time">{{Estimate.timing.days}}</div>
+  </div>
+  <div class="line"></div>
+  <div class="counts" *ngIf="Estimate.price.initial>Estimate.price.final">
+    <div class="item">PREZZO INIZIALE</div>
+    <div class="amount initial">{{Estimate.price.initial/100}}€</div>
+  </div>
+  <div class="counts">
+    <div class="item">PREZZO FINALE</div>
+    <div class="amount">{{Estimate.price.final/100}}€</div>
+  </div>
+  <div class="line"></div>
+  <div class="actions">
+    <div class="form-group">
+      <button type="button" id="next" class="btn btn-warning" (click)="startWizard()">Continua con l'ordine</button>
+    </div>
+    <div class="form-group">
+      <a *ngIf="currentUser && !estimate_state.saved" (click)="saveEstimate()">Salva preventivo</a>
+      <a *ngIf="currentUser && estimate_state.saved">Preventivo Salvato!</a>
+    </div>
+  </div>
+</div>
+
+<footer class="footer" *ngIf="page!==''">
   <div class="footer-container">
     <div class="row">
       <div class="col-md-6 col-lg-3">

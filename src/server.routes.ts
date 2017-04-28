@@ -10,6 +10,8 @@
  * ];
  **/
 export const routes: string[] = [
+  'landing',
+  'landing/:page',
   'services',
   'services/:id',
   'orders',

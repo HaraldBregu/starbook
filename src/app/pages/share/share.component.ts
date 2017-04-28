@@ -7,8 +7,6 @@ import { ShareService } from './share.service';
 import { AnalyticsService } from '../../shared/analytics.service';
 import { OrderService } from '../../order/order.service';
 
-// import * as jwt from 'jsonwebtoken';
-
 @Component({
   selector: 'app-share',
   templateUrl: './share.component.html'
@@ -58,8 +56,25 @@ export class ShareComponent implements OnInit {
           }
         } else if (this.page === 'service') {
           this.navigationService.updateMessage("Condividi servizio");
-          this.sharelink = document.location.protocol + '//'+ document.location.hostname + this.router.url;
-
+          // this.sharelink = document.location.protocol + '//'+ document.location.hostname + this.router.url;
+          // console.log('router url: ' + this.router.url);
+          this.route.queryParams.subscribe(params => {
+            var estimateParams = params['estimate'];
+            if (estimateParams) {
+              this.sharelink = document.location.protocol + '//'+ document.location.hostname + '/share/estimate?estimate=' + encodeURI(estimateParams);
+              console.log('share link is: ' + this.sharelink);
+              try {
+                var estimateObject = JSON.parse(estimateParams);
+                this.Estimate = estimateObject;
+              } catch (e) {
+                this.router.navigate(['share/starbook']);
+              }
+            } else {
+              this.router.navigate(['share/starbook']);
+            }
+          });
+        } else if (this.page === 'estimate') {
+          this.navigationService.updateMessage("Preventivo");
           this.route.queryParams.subscribe(params => {
             var estimateParams = params['estimate'];
             if (estimateParams) {
@@ -69,9 +84,12 @@ export class ShareComponent implements OnInit {
               } catch (e) {
                 this.router.navigate(['share/starbook']);
               }
+            } else {
+              this.router.navigate(['share/starbook']);
             }
           });
-        } else {
+
+        }  else {
           this.router.navigate(['share/starbook']);
         }
       })

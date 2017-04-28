@@ -1,0 +1,94 @@
+<div class="landing-container">
+
+  <div *ngIf="!page">
+    <div class="header">
+    </div>
+    <form>
+      this is the form
+    </form>
+  </div>
+
+  <div *ngIf="page">
+    <div class="header">
+      <div class="container">
+        <h1>Hai bisogno di un idraulico?</h1>
+        <p>Il migliore è il più affidabile nella tua zona.</p>
+      </div>
+    </div>
+    <div class="container advantages">
+      <div class="title">
+        <h2>Sei nel posto giusto. <br>Starbook è la piattaforma ideale per trovare il professionista piu adatto alle tue esigenze.</h2>
+      </div>
+      <div class="row">
+        <div class="col-md-4">
+          <h2><i class="fa fa-certificate" aria-hidden="true"></i> Certificato</h2>
+          <p>Assicuriamo che il professionista sia puntuale</p>
+        </div>
+        <div class="col-md-4">
+          <h2><i class="fa fa-shield" aria-hidden="true"></i> Sicuro</h2>
+          <p>Assicuriamo che il professionista sia puntuale</p>
+        </div>
+        <div class="col-md-4">
+          <h2><i class="fa fa-graduation-cap" aria-hidden="true"></i> Garantito</h2>
+          <p>Assicuriamo che il professionista sia puntuale</p>
+        </div>
+      </div>
+    </div>
+    <div class="container share">
+      <h1>Puoi sempre tornare qui per richiedere il tuo professionista ma un tuo amico o amica potrebbe avere bisogno proprio ora.</h1>
+      <h2>Inserisci il suo numero di telefono o i numeri e invia questa pagina a loro.</h2>
+    </div>
+    <div class="row">
+      <!-- <div class="col-md-2 background">
+      </div>
+      <div class="col-md-2 background">
+      </div>
+      <div class="col-md-2 background">
+      </div>
+      <div class="col-md-2 background">
+      </div>
+      <div class="col-md-2 background">
+      </div>
+      <div class="col-md-2 background">
+      </div> -->
+      <!-- <div class="col-md-6">
+        <p>Descrizione del professionista</p>
+      </div> -->
+    </div>
+
+    <form>
+
+    </form>
+  </div>
+
+</div>
+
+<footer class="footer" *ngIf="page && page!==''">
+  <div class="footer-container">
+    <div class="row">
+      <div class="col-md-6 col-lg-3">
+        <ul>
+          <li>Starbook © 2017</li>
+          <li>Tutti i diritti riservati</li>
+        </ul>
+      </div>
+      <div class="col-md-6 col-lg-3">
+        <ul>
+          <li><a routerLink="/legal" routerLinkActive="active">Privacy e Condizioni</a></li>
+          <li><a routerLink="/help" routerLinkActive="active">Aiuto e Assistenza</a></li>
+          <li><a routerLink="/requests/service" routerLinkActive="active">Richiedi un servizio</a></li>
+        </ul>
+      </div>
+      <div class="col-md-6 col-lg-3">
+        <ul>
+          <li><a routerLink="/about" routerLinkActive="active">Chi siamo</a></li>
+        </ul>
+      </div>
+      <div class="col-md-6 col-lg-3">
+        <ul>
+          <li><a routerLink="/share" routerLinkActive="active">Affiliazione</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</footer>

@@ -835,6 +835,9 @@ textarea.form-control {
 .date .dropdown-menu .day .bg-primary {
   background-color: #7FC443 !important; }
 
+.text-left {
+  text-align: left; }
+
 .text-center {
   text-align: center; }
 
@@ -3310,6 +3313,42 @@ app-root .container-starbook {
     margin-right: 8px;
     outline: none !important;
     box-shadow: none !important; } }
+app-landing {
+  display: block;
+  width: 100%;
+  height: 100%;
+  padding: 70px 0 0; }
+  app-landing .landing-container .header {
+    background-image: url(https://s3-eu-west-1.amazonaws.com/starbook-s3/imbiancatura-parquet-vernicatura-carta-da-parati-dark.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center 100%;
+    color: white;
+    padding: 100px 0;
+    text-align: center; }
+    app-landing .landing-container .header h1 {
+      font-weight: 900;
+      font-size: 42px;
+      margin-bottom: 30px; }
+    app-landing .landing-container .header p {
+      font-size: 20px !important; }
+  app-landing .landing-container .advantages {
+    padding: 100px 0; }
+    app-landing .landing-container .advantages .title {
+      padding: 0 0 60px;
+      max-width: 900px;
+      text-align: center;
+      margin: auto; }
+      app-landing .landing-container .advantages .title h2 {
+        font-weight: 300; }
+  app-landing .landing-container .background {
+    background: white;
+    background-image: url("https://s3-eu-west-1.amazonaws.com/starbook-s3/professionista-su-starbook.jpg");
+    background-repeat: no-repeat;
+    background-position: center bottom;
+    background-size: cover;
+    height: 500px; }
+
 app-home {
   display: block;
   position: relative;
@@ -3516,7 +3555,7 @@ app-home {
       background-repeat: no-repeat;
       background-position: center bottom;
       background-size: cover;
-      height: 600px; }
+      height: 500px; }
     app-home .market .box {
       padding: 120px 120px 0 120px; }
     app-home .market img {

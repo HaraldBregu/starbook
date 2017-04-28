@@ -2,6 +2,7 @@ import { ModuleWithProviders }  from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { HomeComponent } from './home/home.component';
+import { LandingComponent } from './landing/landing.component';
 
 import { ServiceComponent } from './pages/service/service.component';
 import { ServicesComponent } from './pages/services/services.component';
@@ -22,6 +23,14 @@ const routes: Routes = [
   {
     path: '',
     component: HomeComponent
+  },
+  {
+    path: 'landing',
+    component: LandingComponent
+  },
+  {
+    path: 'landing/:page',
+    component: LandingComponent
   },
   {
     path: 'services',

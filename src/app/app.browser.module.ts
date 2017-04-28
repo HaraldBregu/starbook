@@ -37,6 +37,7 @@ import { ClipboardService } from './shared/clipboard.service';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
+import { LandingComponent } from './landing/landing.component';
 
 import { ServiceComponent } from './pages/service/service.component';
 import { ServicesComponent } from './pages/services/services.component';
@@ -84,6 +85,7 @@ let imports = [
 let declarations = [
   AppComponent,
   HomeComponent,
+  LandingComponent,
   OrderComponent,
   OrdersComponent,
   ProfileComponent,

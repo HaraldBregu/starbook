@@ -120,8 +120,10 @@ export class OrderComponent implements OnInit, OnDestroy {
     this.analyticsService.sendEvent({category:'Share Service', action: 'Click To Share', label: "Share Campain Research"});
     this.shareService.setObject(this.wizardData());
     var newWizardData = this.wizardData();
-    let navigationExtras: NavigationExtras = {queryParams:{estimate:JSON.stringify(newWizardData)}};
+    var string = JSON.stringify(newWizardData);
+    let navigationExtras: NavigationExtras = {queryParams:{estimate:string}};
     this.router.navigate(['share/service'], navigationExtras);
+    return false;
   }
   saveEstimate() {
     if (this.estimate_state.saved === false) {
