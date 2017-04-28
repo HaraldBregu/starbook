@@ -1,6 +1,6 @@
 import { isBrowser } from 'angular2-universal';
 import { Component, ViewChild, AfterViewInit, OnInit, OnDestroy } from '@angular/core';
-import { HomeService } from './home.service';
+import { CommonService } from '../../shared/common.service';
 import { OrderService } from '../../order/order.service';
 import { NavigationService } from '../../shared/navigation.service';
 import { Subscription }   from 'rxjs/Subscription';
@@ -45,11 +45,11 @@ export interface IServices {
 }
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html'
+  selector: 'app-service',
+  templateUrl: './service.component.html'
 })
 
-export class HomeComponent implements OnInit {
+export class ServiceComponent implements OnInit {
   public baseAmount = {
     start: 0,
     calculated: 0
@@ -90,7 +90,7 @@ export class HomeComponent implements OnInit {
   }
   subscription: Subscription;
 
-  constructor(private homeService: HomeService, private navigationService: NavigationService, private router: Router, private route: ActivatedRoute, private orderService: OrderService, private analyticsService: AnalyticsService, private seoService: SeoService, private profileService: ProfileService) {}
+  constructor(private homeService: CommonService, private navigationService: NavigationService, private router: Router, private route: ActivatedRoute, private orderService: OrderService, private analyticsService: AnalyticsService, private seoService: SeoService, private profileService: ProfileService) {}
 
   ngOnInit() {
     this.route.params.subscribe(params => {

@@ -35,9 +35,10 @@
           Le offerte del preventivo possono cambiare in base alle richieste del mercato. Blocca il prezzo versando un acconto.
         </div> -->
         <!-- <div class="line"></div> -->
-        <div class="links">
-          <a routerLink="/share" routerLinkActive="active" (click)="share()">Condividi</a>
-          <!-- <a routerLink="/share" routerLinkActive="active" (click)="share()">Invia</a> -->
+        <div class="links noselect">
+          <a routerLink="/share" (click)="share()">Condividi</a>
+          <a *ngIf="currentUser && !estimate_state.saved" (click)="saveEstimate()">Salva</a>
+          <a *ngIf="currentUser && estimate_state.saved">Salvato!</a>
         </div>
       </div>
     </div>

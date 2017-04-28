@@ -109,34 +109,37 @@ export class ProfileComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.route.params.subscribe(params => {
-      if (isBrowser) {window.scrollTo(0, 0);}
-      this.page = params['page'];
-      if (this.page ==='general') {
-      } else if (this.page ==='payment') {
-        this.paymentService.getCards().then((cards) => {
-          this.defaultCard = cards.default_source;
-          this.cards = [];
-          cards.sources.data.forEach((cardData) => {
-            this.cards.push(cardData);
-          });
-          // console.log('cards: ' + JSON.stringify(this.cards));
-        }).catch((error) => {
-          // console.log('error: ' + JSON.stringify(error));
-          if (error.status === 404) {
-            // This Starbook account do not have a Stripe account
-            // When you add a new card, will be created a Stripe account
-            // and update the Starbook account
-          }
-        })
-      } else if (this.page ==='settings') {
-
-      } else if (this.page ==='card') {
-
-      }
-    });
-
     if (isBrowser) {
+
+      this.route.params.subscribe(params => {
+        window.scrollTo(0, 0);
+        this.page = params['page'];
+        if (this.page ==='general') {
+        } else if (this.page ==='payment') {
+          this.paymentService.getCards().then((cards) => {
+            this.defaultCard = cards.default_source;
+            this.cards = [];
+            cards.sources.data.forEach((cardData) => {
+              this.cards.push(cardData);
+            });
+          }).catch((error) => {
+            if (error.status === 404) {
+              // This Starbook account do not have a Stripe account
+              // When you add a new card, will be created a Stripe account
+              // and update the Starbook account
+            }
+          })
+        } else if (this.page ==='settings') {
+
+        } else if (this.page ==='card') {
+
+        } else {
+          console.log('this is nothing');
+          this.router.navigate(['profile/general']);
+        }
+      });
+
+
       this.subscription = this.popupsService.getPopupResponse$.subscribe(action => {
         switch (action.type) {
           case 'logout':

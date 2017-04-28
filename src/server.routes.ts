@@ -14,6 +14,7 @@ export const routes: string[] = [
   'services/:id',
   'orders',
   'orders/:page',
+  'profile',
   'profile/:page',
   'facebook',
   'order/:step',

@@ -6,7 +6,7 @@ import { AuthService } from './shared/auth.service';
 import { NavigationService } from './shared/navigation.service';
 import { PopupsService } from './popups/popups.service';
 import { Subscription }   from 'rxjs/Subscription';
-import { HomeService } from './pages/home/home.service';
+import { CommonService } from './shared/common.service';
 import { SeoService } from './shared/seo.service';
 
 declare let ga: Function;
@@ -38,7 +38,7 @@ export class AppComponent implements OnInit, OnDestroy {
   };
   public collapsed = false;
 
-  constructor (public router:Router, private route: ActivatedRoute, private authServics: AuthService, private navigationService: NavigationService, private popupsService: PopupsService, private homeService: HomeService, private analyticsService: AnalyticsService, private seoService: SeoService) {
+  constructor (public router:Router, private route: ActivatedRoute, private authServics: AuthService, private navigationService: NavigationService, private popupsService: PopupsService, private homeService: CommonService, private analyticsService: AnalyticsService, private seoService: SeoService) {
     this.navbarState = false;
     if (isBrowser) {
       this.router.events.subscribe((event:Event) => {
@@ -93,7 +93,9 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   clickBrandLogo() {
-    this.collapsed = !this.collapsed;
+    if (this.screenWidth <= 425) {
+      this.collapsed = !this.collapsed;
+    }
   }
 
   getLoginPopup() {

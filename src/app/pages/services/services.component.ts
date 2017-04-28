@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, Route, ActivatedRoute, Params } from '@angular/router';
 import { NavigationService } from '../../shared/navigation.service';
-import { HomeService } from '../home/home.service';
+import { CommonService } from '../../shared/common.service';
 
 @Component({
   selector: 'app-services',
@@ -14,7 +14,7 @@ export class ServicesComponent implements OnInit {
   };
   public services = [];
 
-  constructor(private router: Router, private navigationService: NavigationService, private homeService: HomeService) {
+  constructor(private router: Router, private navigationService: NavigationService, private homeService: CommonService) {
     this.navigationService.updateMessage('Servizi di Starbook');
   }
 

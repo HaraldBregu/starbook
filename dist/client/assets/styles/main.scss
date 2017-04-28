@@ -20,10 +20,14 @@
 @import "layout/_theme";
 @import "layout/_print";
 // Components
+
 // Pages
 @import "../../app/_app.component";
-@import "../../app/landing/_landing.component";
-@import "../../app/pages/home/_home.component";
+@import "../../app/home/_home.component";
+
+@import "../../app/pages/service/_service.component";
+@import "../../app/pages/services/_services.component";
+
 @import "../../app/order/_order.component";
 @import "../../app/pages/orders/_orders.component";
 @import "../../app/pages/profile/_profile.component";
@@ -35,7 +39,6 @@
 @import "../../app/pages/legal/_legal.component";
 @import "../../app/pages/account/_account.component";
 @import "../../app/pages/recruiter/_recruiter.component";
-@import "../../app/pages/services/_services.component";
 @import "../../app/pages/requests/_requests.component";
 @import "../../app/pages/share/_share.component";
 

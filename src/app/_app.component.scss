@@ -7,9 +7,9 @@ app-root {
     border: 0;
   }
   .bg-inverse {
-    background-color: #F7F7F7 !important;
+    background-color: white!important;
     padding: 0 !important;
-    border-bottom: 1px solid #CCCCCC;
+    border-bottom: 1px solid #DBDBDB;
   }
   .navbar-brand {
     line-height: 70px;
@@ -18,6 +18,7 @@ app-root {
     img {
       height: 50px;
       margin: 10px 0;
+      cursor: pointer;
     }
     .mobile {
       display: none;
@@ -160,12 +161,11 @@ app-root {
       z-index: 2;
       margin-left: 1px;
       margin-right: 1px;
-      line-height: 70px;
+      line-height: 50px;
     }
     .nav-link:hover,
     .nav-link.active {
-      background-color: #e8e8e8;
-      // border-bottom: 1px solid #CCCCCC;
+      background-color: #F7F7F7;
     }
     .top-menu {
       padding-right: 0 !important;
@@ -272,6 +272,7 @@ $search-navbar-close-icon-base-color: #8D9494;
 }
 .collapse {
   display: block;
+  padding: 10px 0;
 }
 
 // Search box

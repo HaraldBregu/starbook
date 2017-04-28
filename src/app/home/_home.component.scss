@@ -1,4 +1,4 @@
-app-landing {
+app-home {
   display: block;
   position: relative;
   width: 100%;
@@ -250,7 +250,7 @@ app-landing {
       background-repeat: no-repeat;
       background-position: center bottom;
       background-size: cover;
-      height: 600px;
+      height: 500px;
     }
     .box {
       padding: 120px 120px 0 120px;
@@ -395,6 +395,7 @@ app-landing {
   .footer {
     padding: 20px;
     background: #0C0B0D;
+    border: none;
     p {
       text-align: center;
       font-weight: 300;

@@ -76,6 +76,8 @@ export class RequestsComponent implements OnInit {
           this.Request.email = this.currentUser.email;
         }
       }
+
+
     }
   }
 
@@ -83,7 +85,6 @@ export class RequestsComponent implements OnInit {
     if (isBrowser) {
       this.route.params.subscribe((params: Params) => {
         window.scrollTo(0, 0);
-
         this.page = params['page']
 
         if (this.page === 'service') {

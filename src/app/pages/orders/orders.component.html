@@ -4,6 +4,9 @@
   </ul>
 </div>
 <div class="orders-container">
+  <div class="order-container" *ngIf="pageData && page==='requests' && pageData.length===0">
+    <p>Non ci lavorazioni prenotati. Per prenotare un lavoro vai alla pagina home e trova la lavorazione che ti serve.</p>
+  </div>
   <div *ngFor="let order of pageData">
     <div class="order-container" *ngIf="page==='requests'">
       <div class="header">
@@ -16,6 +19,11 @@
             <p>{{detail.title}}</p>
           </div>
         </div>
+      </div>
+      <div class="line"></div>
+      <div class="counts">
+        <div class="item">DURATA DEL LAVORO (Approssimativo)</div>
+        <div class="amount time">{{getTiming(order.price.initial)}}</div>
       </div>
       <div class="line"></div>
       <div class="counts">
@@ -48,6 +56,9 @@
     </div>
   </div>
 
+  <div class="order-container" *ngIf="page==='estimates' && estimates.length===0">
+    <p>Non ci sono preventivi salvati.</p>
+  </div>
   <div *ngFor="let estimate of estimates">
     <div class="order-container" *ngIf="page==='estimates'">
       <div class="header">
@@ -62,6 +73,11 @@
         </div>
       </div>
       <div class="line"></div>
+      <div class="counts">
+        <div class="item">DURATA DEL LAVORO (Approssimativo)</div>
+        <div class="amount time">{{getTiming(estimate.price.initial)}}</div>
+      </div>
+      <div class="line"></div>
       <div class="counts" *ngIf="estimate.price.initial>estimate.price.final">
         <div class="item">PREZZO INIZIALE</div>
         <div class="amount initial">{{estimate.price.initial/100}}€</div>
@@ -70,14 +86,17 @@
         <div class="item">PREZZO FINALE</div>
         <div class="amount">{{estimate.price.final/100}}€</div>
       </div>
-      <div class="counts">
+      <div class="line"></div>
+      <!-- <div class="counts">
         <div class="item">ACCONTO (30% del totale)</div>
         <div class="amount">{{estimate.payment.upfront/100}}€</div>
-      </div>
+      </div> -->
       <div class="actions">
         <div class="form-group">
-          <button class="btn btn-warning" id="next" type="button">Continua</button>
+          <button class="btn btn-warning" id="next" type="button" (click)="startWizard(estimate)">Continua con l'ordine</button>
         </div>
+        <a (click)="shareEstimate(estimate)">Condividi</a>
+        <a (click)="deleteEstimate(estimate)">Elimina</a>
       </div>
       <!-- <div class="line"></div>
       <div class="links">

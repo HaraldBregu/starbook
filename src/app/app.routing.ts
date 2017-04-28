@@ -1,9 +1,11 @@
 import { ModuleWithProviders }  from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { LandingComponent } from './landing/landing.component';
+import { HomeComponent } from './home/home.component';
 
-import { HomeComponent } from './pages/home/home.component';
+import { ServiceComponent } from './pages/service/service.component';
+import { ServicesComponent } from './pages/services/services.component';
+
 import { OrdersComponent } from './pages/orders/orders.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { FacebookComponent } from './pages/facebook/facebook.component';
@@ -13,14 +15,13 @@ import { HelpComponent } from './pages/help/help.component';
 import { LegalComponent } from './pages/legal/legal.component';
 import { AccountComponent } from './pages/account/account.component';
 import { RecruiterComponent } from './pages/recruiter/recruiter.component';
-import { ServicesComponent } from './pages/services/services.component';
 import { RequestsComponent } from './pages/requests/requests.component';
 import { ShareComponent } from './pages/share/share.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: LandingComponent
+    component: HomeComponent
   },
   {
     path: 'services',
@@ -28,7 +29,7 @@ const routes: Routes = [
   },
   {
     path: 'services/:id',
-    component: HomeComponent,
+    component: ServiceComponent,
     data: {isFindField: true}
   },
   {
@@ -38,6 +39,10 @@ const routes: Routes = [
   {
     path: 'orders/:page',
     component: OrdersComponent
+  },
+  {
+    path: 'profile',
+    component: ProfileComponent
   },
   {
     path: 'profile/:page',

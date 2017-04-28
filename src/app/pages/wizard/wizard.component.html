@@ -1,5 +1,5 @@
 <div class="wizard">
-  <ul class="breadcrumb noselect">
+  <ul class="breadcrumb noselect" *ngIf="step !== ''">
     <li *ngFor="let items of wizardDataItems"
         [ngStyle]="{'width': 100/wizardDataItems.length + '%'}"
         [ngClass]="{'active': (step === 'summary' && items === 'Sommario') || (step === 'address' && items === 'Indirizzo') || (step === 'date' && items === 'Data') || ((step === 'preview' || step === 'login' || step === 'signup' || step === 'card') && (items === 'Anteprima' || items === 'Login' || items === 'Signup' || items === 'Carta')) || ((step === 'end' || step === 'info') && (items === 'Fine' || items === 'Info'))}"><a>{{items}}</a></li>
@@ -13,6 +13,11 @@
             <p>{{item.title}}</p>
           </div>
         </div>
+      </div>
+      <div class="line"></div>
+      <div class="timing">
+        <div class="item">DURATA DEL LAVORO (Approssimativo)</div>
+        <div class="amount">{{Order.timing.days}}</div>
       </div>
       <div class="line"></div>
       <div class="payment">
@@ -99,6 +104,11 @@
         </div>
       </div>
       <div class="line"></div>
+      <div class="timing">
+        <div class="item">DURATA DEL LAVORO (Approssimativo)</div>
+        <div class="amount">{{Order.timing.days}}</div>
+      </div>
+      <div class="line"></div>
       <div class="payment">
         <div class="initial" *ngIf="Order.price.initial>Order.price.final">
           <div class="item">PREZZO INIZIALE</div>
@@ -123,7 +133,8 @@
       <div class="messages" [hidden]="!order_status.error_message">
         <p><small>{{order_status.error_message}}</small></p>
         <div *ngIf="order_status.payment_error_message">
-          <p><small>{{order_status.payment_error_message}} <a routerlink="profile/payment" ng-reflect-router-link="profile/payment" ng-reflect-href="profile/payment" href="/profile/payment" target="_blank">metodo di pagamento</a></small></p>
+          <!-- <p><small>{{order_status.payment_error_message}} <a routerlink="profile/payment" ng-reflect-router-link="profile/payment" ng-reflect-href="profile/payment" href="/profile/payment" target="_blank">metodo di pagamento</a></small></p> -->
+          <p><small>{{order_status.payment_error_message}} <a routerLink="/order/card">metodo di pagamento</a></small></p>
         </div>
       </div>
       <div class="actions">
@@ -266,36 +277,91 @@
   <div class="wizard-container" *ngIf="step === 'card'">
     <div class="content-container">
       <div class="header">
-        <h1>Accedi</h1>
-        <div *ngFor="let item of wizardData.details">
-          <p>{{item.title}}</p>
+        <h1>Inserisci un metodo di pagamento</h1>
+        <h6>Per continuare con l'ordine inserisci</h6>
+      </div>
+      <form>
+        <div class="card-form">
+          <div class="form-group">
+            <label for="numberInput">Numero carta</label>
+            <input autocomplete="off" type="text" placeholder="Numero" class="form-control" [ngClass]="{'error-input': card_state.message_error}" id="numberInput" [(ngModel)]="Card.number" [ngModelOptions]="{standalone: true}">
+            <!-- <small class="error-message" *ngIf="card_state.number_error">{{card_state.number_error}}</small> -->
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="dateInput">Scadenza</label>
+                <input autocomplete="off" type="text" placeholder="Scadenza" class="form-control" [ngClass]="{'error-input': card_state.message_error}" id="dateInput" [(ngModel)]="Card.exp_date" (keyup)="checkExpiry(Card.exp_date)" (change)="checkExpiry(Card.exp_date)" [ngModelOptions]="{standalone: true}">
+                <!-- <small class="error-message" *ngIf="card_state.exp_date_error">{{card_state.exp_date_error}}</small> -->
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="numberInput">CVC/CVV</label>
+                <input autocomplete="off" type="text" placeholder="CVC/CVV" class="form-control" [ngClass]="{'error-input': card_state.message_error}" id="numberInput" [(ngModel)]="Card.cvc" [ngModelOptions]="{standalone: true}">
+                <!-- <small class="error-message" *ngIf="card_state.cvc_error">{{card_state.cvc_error}}</small> -->
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="nameInput">Nome e cognome dell'intestatario</label>
+            <input type="name" name="name" placeholder="Nome e cognome" class="form-control" id="nameInput" [(ngModel)]="Card.name" [ngModelOptions]="{standalone: true}">
+          </div>
+          <div class="row">
+            <div class="col-md-8">
+              <div class="form-group">
+                <label for="addressInput">Indirizzo</label>
+                <input type="address" placeholder="Via" class="form-control" id="addressInput" [(ngModel)]="Card.address_line1" [ngModelOptions]="{standalone: true}">
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label for="addressNumberInput">Nr</label>
+                <input type="text" placeholder="Nr" class="form-control" id="addressNumberInput" [(ngModel)]="Card.address_line2" [ngModelOptions]="{standalone: true}">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-8">
+              <div class="form-group">
+                <label for="cittyInput">Città</label>
+                <input type="text" placeholder="Città" class="form-control" id="cittyInput" [(ngModel)]="Card.address_city" [ngModelOptions]="{standalone: true}">
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label for="capInput">CAP</label>
+                <input type="text" placeholder="CAP" class="form-control" id="capInput" [(ngModel)]="Card.address_zip" [ngModelOptions]="{standalone: true}">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="provinceInput">Provincia</label>
+                <input type="text" placeholder="Provincia" class="form-control" id="provinceInput" [(ngModel)]="Card.address_state" [ngModelOptions]="{standalone: true}">
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="countryInput">Paese</label>
+                <input type="text" placeholder="Paese" class="form-control" id="countryInput" [(ngModel)]="Card.address_country" [ngModelOptions]="{standalone: true}">
+              </div>
+            </div>
+          </div>
+          <div class="actions">
+            <div class="form-group" *ngIf="card_state.message_error">
+              <div class="alert alert-danger" role="alert">{{card_state.message_error}}</div>
+            </div>
+            <div class="form-group">
+              <div class="undobutton">
+                <button type="button" id="next" class="btn btn-back" (click)="back()"><i class="fa fa-chevron-left" aria-hidden="true"></i></button>
+                <button type="button" id="next" class="btn btn-warning" (click)="addCard()"><i class="fa fa-circle-o-notch animate" *ngIf="card_state.loading"></i>{{card_state.button_title}}</button>
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
-      <div class="address">
-        <p><strong>Indirizzo: </strong><span>Via Michelangelo 2, Milano</span></p>
-      </div>
-      <div class="date">
-        <p><strong>Data: </strong><span>23 Maggio 2017</span></p>
-      </div>
-      <div class="payment">
-        <div class="method">
-          <h5 *ngIf="wizardData.payment_method === 'TRADITIONAL'">Pagamento: <span>Tradizionale</span></h5>
-          <h5 *ngIf="wizardData.payment_method === 'CARD'">Pagamento: <span>Carta</span></h5>
-          <h5 *ngIf="wizardData.payment_method === 'LOAN'">Pagamento: <span>Prestito</span></h5>
-        </div>
-        <div class="total">
-          <h2><strong>Totale: <span>{{wizardData.amount/100}}€</span></strong></h2>
-        </div>
-      </div>
-      <div class="actions">
-        <div class="form-group">
-          <button type="button"  id="next" class="btn btn-yellow-green" (click)="confirmOrder()">Invia ordine</button>
-        </div>
-      </div>
-      <div class="footer">
-        <h6><small>Carta: Il pagamento con la carta viene effetutato per dare una garanzia al professionista che la lavorazione richiesta verra pagata regolarmente.
-        In caso l’ordine verra annullato o per diversi imprevisti ricevera 100% rimborso.</small></h6>
-      </div>
+      </form>
     </div>
   </div>
   <div class="wizard-container" *ngIf="step === 'info'">

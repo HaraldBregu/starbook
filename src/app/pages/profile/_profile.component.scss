@@ -9,9 +9,10 @@ app-profile {
     display: block;
     position: fixed;
     width: 100%;
-    background: #383838;
+    // background: #F7F7F7;
+    background: white;
     height: 60px;
-    border-bottom: 1px solid #CCCCCC;
+    border-bottom: 1px solid #DBDBDB;
     z-index: 1;
   }
   .top-bar {
@@ -31,12 +32,15 @@ app-profile {
     padding-left: 40px;
     padding-right: 40px;
     text-align: center;
+    font-weight: 300;
+    cursor: pointer;
   }
   .top-bar li:hover {
-    color: white;
+    color: black;
   }
   .top-bar .active {
-    color: white;
+    color: black;
+    border-bottom: 2px solid #324977;
   }
   .page-container {
     display: block;
@@ -165,13 +169,14 @@ app-profile {
     }
   }
 
-  @media (max-width: 1100px) {
+  @media (max-width: 1024px) {
     .page-container {
-      margin: 70px auto;
+      margin: 60px auto 0;
       border-top: 0;
       border-left: 0;
       border-right: 0;
       padding: 30px 30px 0;
+      background: white;
     }
   }
   @media (max-width: 780px) {
@@ -203,9 +208,10 @@ app-profile {
   overflow: hidden;
 }
 .footer {
-  background: #F7F7F7;
+  // background: #F7F7F7;
   padding: 20px;
   font-size: 16px;
+  border-top: 1px solid #dce0e0;
 }
 .footer-container {
   max-width: 1130px;

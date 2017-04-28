@@ -6,7 +6,7 @@ import 'rxjs/add/operator/toPromise';
 // import { NavigationService } from '../shared/navigation.service';
 
 @Injectable()
-export class HomeService {
+export class CommonService {
   private servicesObject;
   private service;
   private referral_id;

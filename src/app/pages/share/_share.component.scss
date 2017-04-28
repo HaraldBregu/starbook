@@ -95,7 +95,7 @@ app-share {
       display: block;
       margin: 20px auto 20px;
       height: 1px;
-      border-top: 0.5px solid #CCCCCC;
+      border-top: 0.5px solid #E6E8EB;
     }
     .counts {
       overflow: auto;
@@ -119,12 +119,22 @@ app-share {
       }
       .time {
         font-weight: 500;
-        font-size: 18px;
+        font-size: 20px;
       }
     }
     .actions {
       text-align: center;
       padding: 20px 0;
+      color: #324977;
+      text-align: center;
+      a {
+        font-weight: 500;
+        cursor: pointer;
+      }
+      a:hover {
+        color: #324977;
+        text-decoration: underline;
+      }
     }
     .invitation {
       padding: 50px 0 0;
@@ -157,13 +167,15 @@ app-share {
     .links {
       text-align: center;
     }
-
   }
 
   @media (max-width: 1024px) {
     .estimate {
       margin: 0;
       .invitation {
+        width: 70%;
+      }
+      .btn-warning {
         width: 70%;
       }
     }
@@ -183,6 +195,9 @@ app-share {
     .estimate {
       padding: 20px;
       .invitation {
+        width: 100%;
+      }
+      .btn-warning {
         width: 100%;
       }
     }

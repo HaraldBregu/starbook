@@ -23,7 +23,8 @@ import { ClipboardModule } from 'ngx-clipboard';
 
 
 import { routing } from './app.routing';
-import { HomeService } from './pages/home/home.service';
+import { CommonService } from './shared/common.service';
+
 import { AuthService } from './shared/auth.service';
 import { OrderService } from './order/order.service';
 import { ProfileService } from './shared/profile.service';
@@ -38,13 +39,16 @@ import { ShareService } from './pages/share/share.service';
 import { ClipboardService } from './shared/clipboard.service';
 
 import { AppComponent } from './app.component';
-import { HomeComponent } from './pages/home/home.component';
+import { HomeComponent } from './home/home.component';
+
+import { ServiceComponent } from './pages/service/service.component';
+import { ServicesComponent } from './pages/services/services.component';
+
 import { OrderComponent } from './order/order.component';
 import { OrdersComponent } from './pages/orders/orders.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { PopupsComponent } from './popups/popups.component';
 import { PhonePipe } from './pipes/phone.pipe';
-import { LandingComponent } from './landing/landing.component';
 import { ExpiryPipe } from './pipes/expiry.pipe';
 import { LoadingComponent } from './shared/loading/loading.component';
 import { FacebookComponent } from './pages/facebook/facebook.component';
@@ -54,7 +58,6 @@ import { HelpComponent } from './pages/help/help.component';
 import { LegalComponent } from './pages/legal/legal.component';
 import { AccountComponent } from './pages/account/account.component';
 import { RecruiterComponent } from './pages/recruiter/recruiter.component';
-import { ServicesComponent } from './pages/services/services.component';
 import { RequestsComponent } from './pages/requests/requests.component';
 import { ShareComponent } from './pages/share/share.component';
 
@@ -87,13 +90,13 @@ let imports = [
 ];
 let declarations = [
   AppComponent,
-  HomeComponent,
+  ServiceComponent,
   OrderComponent,
   OrdersComponent,
   ProfileComponent,
   PopupsComponent,
   PhonePipe,
-  LandingComponent,
+  HomeComponent,
   ExpiryPipe,
   LoadingComponent,
   FacebookComponent,
@@ -138,7 +141,7 @@ else {
     //   provide: HAMMER_GESTURE_CONFIG,
     //   useClass: HammerConfig
     // },
-    HomeService,
+    CommonService,
     AuthService,
     OrderService,
     ProfileService,

@@ -1,11 +1,13 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Router, Route, ActivatedRoute, Params } from '@angular/router';
+import { Router, Route, ActivatedRoute, Params, NavigationExtras } from '@angular/router';
 import { NavigationService } from '../../shared/navigation.service';
 import { OrdersService } from '../../shared/orders.service';
 import { PopupsService } from '../../popups/popups.service';
 import { Subscription }   from 'rxjs/Subscription';
 import { AnalyticsService } from '../../shared/analytics.service';
 import { isBrowser } from "angular2-universal";
+import { OrderService } from '../../order/order.service';
+import { ShareService } from '../share/share.service';
 
 export interface IOrder {
   _id: string;
@@ -56,13 +58,21 @@ export class OrdersComponent implements OnInit, OnDestroy {
     {name: 'Lavorazioni', route: 'requests'},
     {name: 'Preventivi', route: 'estimates'}
   ];
-  public pageData: IOrder[] = [];
+  public pageData;
   public currentUser;
   public page = '';
   subscription: Subscription;
   public estimates;
 
-  constructor(private router: Router, private route: ActivatedRoute, private navigationService: NavigationService, private ordersService: OrdersService, private popupsService: PopupsService, private analyticsService: AnalyticsService) {
+  constructor(
+    private router: Router,
+    private route: ActivatedRoute,
+    private navigationService: NavigationService,
+    private ordersService: OrdersService,
+    private popupsService: PopupsService,
+    private analyticsService: AnalyticsService,
+    private orderService: OrderService,
+    private shareService: ShareService) {
     this.navigationService.updateMessage("Ordini");
     if (isBrowser) {
       if (!localStorage.getItem('auth')) {
@@ -74,25 +84,27 @@ export class OrdersComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.route.params.subscribe(params => {
-      if (isBrowser) {window.scrollTo(0, 0);}
-      this.page = params['page']
-      if (this.page === 'requests') {
-        this.navigationService.updateMessage("Ordini...");
-        this.ordersService.getOrders([{name: 'order_type', value: 'REQUIRED'}]).then((response) => {
-          this.navigationService.updateMessage("Ordini");
-          this.pageData = response.result;
-        }).catch((error) => {
-          this.navigationService.updateMessage("Ordini");
-        });
-      } else if (this.page === 'estimates') {
-        if (isBrowser) {
-          this.estimates = JSON.parse(localStorage.getItem('estimates'))
+    if (isBrowser) {
+      this.route.params.subscribe(params => {
+        window.scrollTo(0, 0);
+        this.page = params['page']
+        if (this.page === 'requests') {
+          this.navigationService.updateMessage("Ordini...");
+          this.ordersService.getOrders([{name: 'order_type', value: 'REQUIRED'}]).then((response) => {
+            this.navigationService.updateMessage("Ordini");
+            this.pageData = response.result;
+          }).catch((error) => {
+            this.navigationService.updateMessage("Ordini");
+          });
+        } else if (this.page === 'estimates') {
+          if (isBrowser) {
+            this.estimates = JSON.parse(localStorage.getItem('estimates'))
+          }
+        } else {
+          this.router.navigate(['orders/requests']);
         }
-      } else {
-        this.router.navigate(['orders/requests']);
-      }
-    })
+      })
+    }
 
     if (isBrowser) {
       this.subscription = this.popupsService.getPopupResponse$.subscribe(action => {
@@ -186,6 +198,52 @@ export class OrdersComponent implements OnInit, OnDestroy {
     this.router.navigate(['orders/' + route]);
   }
 
+  getTiming(initial_price) {
+    var days = initial_price/45000;
+    if (days < 0.5) {
+      return "1/2 Giorno";
+    } else if (days > 0.5 && days < 1.5) {
+      return Math.round(days) + " Giorno";
+    } else {
+      return Math.round(days) + " Giorni";
+    }
+  }
+
+  startWizard(estimate) {
+    this.orderService.updateWizardData(estimate);
+    this.router.navigate(['order/summary']);
+    return false;
+  }
+  shareEstimate(estimate) {
+    console.log('estimate: ' + estimate);
+    this.shareService.setObject(estimate);
+    var newWizardData = estimate;
+    let navigationExtras: NavigationExtras = {queryParams:{estimate:JSON.stringify(estimate)}};
+    this.router.navigate(['share/service'], navigationExtras);
+  }
+  deleteEstimate(estimate) {
+    this.deleteEstimateQuotationFromLocal(estimate);
+    if (isBrowser) {
+      this.estimates = JSON.parse(localStorage.getItem('estimates'));
+    }
+  }
+
+  ///////////////////////////
+  ////////// ORDER //////////
+  ///////////////////////////
+  deleteEstimateQuotationFromLocal(object) {
+    if (isBrowser) {
+      var estimates = JSON.parse(localStorage.getItem('estimates'))
+      var new_estimates = [];
+      for (var i in estimates) {
+        var estimate = estimates[i];
+        if (JSON.stringify(object) !== JSON.stringify(estimate)) {
+          new_estimates.push(estimate)
+        }
+      }
+      localStorage.setItem('estimates', JSON.stringify(new_estimates));
+    }
+  }
 
   ////////////////////////////////////////
   ////////////// UNKNOWN /////////////////

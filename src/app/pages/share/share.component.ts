@@ -26,6 +26,9 @@ export class ShareComponent implements OnInit {
   public serviceObject;
   public page = '';
   public Estimate = null;
+  public estimate_state = {
+    saved: false
+  };
 
   constructor(
     private router: Router,
@@ -41,6 +44,9 @@ export class ShareComponent implements OnInit {
     this.numPattern = /^\d+$/;
     this.serviceObject = this.shareService.getObject();
     if (isBrowser) {
+      if (localStorage.getItem('auth')) {
+        this.currentUser = JSON.parse(localStorage.getItem('auth'));
+      }
       this.route.params.subscribe((params: Params) => {
         window.scrollTo(0, 0);
         this.page = params['page']
@@ -48,33 +54,32 @@ export class ShareComponent implements OnInit {
         if (this.page === 'starbook') {
           this.navigationService.updateMessage("Condividi");
           if (localStorage.getItem('auth')) {
-            this.currentUser = JSON.parse(localStorage.getItem('auth'));
             this.sharelink =  document.location.protocol + '//'+ document.location.hostname + '/?ref=' + this.currentUser._id;
           }
         } else if (this.page === 'service') {
           this.navigationService.updateMessage("Condividi servizio");
+          this.sharelink = document.location.protocol + '//'+ document.location.hostname + this.router.url;
+
           this.route.queryParams.subscribe(params => {
-            this.Estimate = JSON.parse(params['estimate'])
-            if (!this.Estimate || this.Estimate.length===0) {
-              this.router.navigate(['share/starbook']);
+            var estimateParams = params['estimate'];
+            if (estimateParams) {
+              try {
+                var estimateObject = JSON.parse(estimateParams);
+                this.Estimate = estimateObject;
+              } catch (e) {
+                this.router.navigate(['share/starbook']);
+              }
             }
-            console.log('current url is: ' + document.location.protocol + '//'+ document.location.hostname + this.router.url);
-            console.log('current host is: ' + document.location.protocol + '//'+ document.location.hostname);
-
-            this.sharelink =  document.location.protocol + '//'+ document.location.hostname + this.router.url;
-
-            console.log('estimate: ' + JSON.stringify(this.Estimate));
           });
-
         } else {
           this.router.navigate(['share/starbook']);
         }
       })
     }
-
   }
 
   ngOnInit() {
+    // console.log('Estimate is: ' + JSON.stringify(this.Estimate));
   }
 
   startWizard() {
@@ -82,6 +87,12 @@ export class ShareComponent implements OnInit {
     this.orderService.updateWizardData(this.Estimate);
     this.router.navigate(['order/summary']);
     return false;
+  }
+  saveEstimate() {
+    if (this.estimate_state.saved === false) {
+      this.estimate_state.saved = true;
+      this.saveEstimateQuotationToLocal(this.Estimate)
+    }
   }
 
   sendInvitations() {
@@ -136,6 +147,7 @@ export class ShareComponent implements OnInit {
   shareOnTwitter() {
     if (isBrowser) {
       let left = Math.round((document.documentElement.clientWidth / 2) - 285);
+      console.log('share link is: ' + this.sharelink);
       window.open("https://twitter.com/home?status=" + this.sharelink,
       '_blank', 'location=yes,height=570,width=520,left=' + left + ', top=100,scrollbars=yes,status=yes');
       return false
@@ -183,4 +195,29 @@ export class ShareComponent implements OnInit {
     // console.groupEnd();
   }
 
+  ///////////////////////////
+  ////////// ORDER //////////
+  ///////////////////////////
+  saveEstimateQuotationToLocal(object) {
+    if (isBrowser) {
+      if (!localStorage.getItem('estimates')) {
+        var estimates = [];
+        estimates.push(object);
+        localStorage.setItem('estimates', JSON.stringify(estimates));
+      } else {
+        var estimates = [];
+        estimates = JSON.parse(localStorage.getItem('estimates'))
+        var objectExist = false;
+        for (var i in estimates) {
+          if (JSON.stringify(object) === JSON.stringify(estimates[i])) {
+            objectExist = true;
+          }
+        }
+        if (objectExist===false) {
+          estimates.push(object);
+          localStorage.setItem('estimates', JSON.stringify(estimates));
+        }
+      }
+    }
+  }
 }

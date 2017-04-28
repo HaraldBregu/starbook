@@ -77,7 +77,8 @@ export class OrderService {
       address: orderData.address,
       referral_id: orderData.referral_id,
       price: orderData.price,
-      payment: orderData.payment
+      payment: orderData.payment,
+      timing: orderData.timing
     }, this._makeHeaders())
       .toPromise()
       .then((response) => {

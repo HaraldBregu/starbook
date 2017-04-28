@@ -75,9 +75,11 @@ app-order {
         text-align: center;
         a {
           padding: 0 5px;
+          cursor: pointer;
         }
         a:hover {
           color: #FFC845;
+          text-decoration: underline;
         }
       }
 

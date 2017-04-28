@@ -58,16 +58,21 @@
   </div>
 </div>
 
-<div class="estimate" *ngIf="page==='service'">
+<div class="estimate" *ngIf="page==='service' && Estimate">
   <div class="header">
     <div *ngFor="let item of Estimate.details">
-      <div *ngIf="item.type === 'service'">
+      <div *ngIf="item.type==='service'">
         <h3>{{item.title}}</h3>
       </div>
-      <div *ngIf="item.type === 'detail'">
+      <div *ngIf="item.type==='detail'">
         <p>{{item.title}}</p>
       </div>
     </div>
+  </div>
+  <div class="line"></div>
+  <div class="counts">
+    <div class="item">DURATA DEL LAVORO (Approssimativo)</div>
+    <div class="amount time">{{Estimate.timing.days}}</div>
   </div>
   <div class="line"></div>
   <div class="counts" *ngIf="Estimate.price.initial>Estimate.price.final">
@@ -79,10 +84,6 @@
     <div class="amount">{{Estimate.price.final/100}}€</div>
   </div>
   <div class="line"></div>
-  <div class="counts">
-    <div class="item">DURATA DEL LAVORO (Approssimativo)</div>
-    <div class="amount time">{{Estimate.timing.days}}</div>
-  </div>
 
   <!-- <div class="counts">
     <div class="item">ACCONTO (30% del totale)</div>
@@ -94,9 +95,26 @@
     </div>
     <a routerLinkActive="active" (click)="saveEstimate()">Salva preventivo</a>
   </div> -->
-  <div class="line"></div>
+  <!-- <div class="form-group">
+    <div class="undobutton">
+      <button type="button" id="next" class="btn btn-back" (click)="back()"><i class="fa fa-chevron-left" aria-hidden="true"></i></button>
+      <button type="button" id="next" class="btn btn-warning" (click)="confirmOrder()"><i class="fa fa-circle-o-notch animate" *ngIf="order_status.loading"></i>{{order_status.button_title}}</button>
+    </div>
+  </div> -->
+  <div class="actions">
+    <div class="form-group">
+      <button type="button" id="next" class="btn btn-warning" (click)="startWizard()">Continua con l'ordine</button>
+    </div>
+    <div class="form-group">
+      <a *ngIf="currentUser && !estimate_state.saved" (click)="saveEstimate()">Salva preventivo</a>
+      <a *ngIf="currentUser && estimate_state.saved">Preventivo Salvato!</a>
+    </div>
+  </div>
+
+
+
   <div class="invitation">
-    <h3>Invia ad un amico</h3>
+    <h3>Invia preventivo a</h3>
     <div class="row">
       <div class="col-lg-12">
         <div class="form-group" *ngIf="invitation_state.message_error">
@@ -150,3 +168,33 @@
     </div>
   </div>
 </div>
+
+<footer class="footer">
+  <div class="footer-container">
+    <div class="row">
+      <div class="col-md-6 col-lg-3">
+        <ul>
+          <li>Starbook © 2017</li>
+          <li>Tutti i diritti riservati</li>
+        </ul>
+      </div>
+      <div class="col-md-6 col-lg-3">
+        <ul>
+          <li><a routerLink="/legal" routerLinkActive="active">Privacy e Condizioni</a></li>
+          <li><a routerLink="/help" routerLinkActive="active">Aiuto e Assistenza</a></li>
+          <li><a routerLink="/requests/service" routerLinkActive="active">Richiedi un servizio</a></li>
+        </ul>
+      </div>
+      <div class="col-md-6 col-lg-3">
+        <ul>
+          <li><a routerLink="/about" routerLinkActive="active">Chi siamo</a></li>
+        </ul>
+      </div>
+      <div class="col-md-6 col-lg-3">
+        <ul>
+          <li><a routerLink="/share" routerLinkActive="active">Affiliazione</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</footer>

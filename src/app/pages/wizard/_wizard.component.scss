@@ -8,9 +8,8 @@ app-wizard {
   .wizard {
     display: block;
     width: 100%;
-    max-width: 900px;
+    max-width: 1130px;
     margin: 100px auto 50px;
-    // overflow: auto;
     .wizard-container {
       display: block;
       float: left;
@@ -48,6 +47,24 @@ app-wizard {
           height: 1px;
           border-top: 0.5px solid #CCCCCC;
         }
+        .timing {
+          margin: auto;
+          overflow: auto;
+          .item {
+            float: left;
+            width: 50%;
+            font-size: 18px;
+            font-weight: 500;
+            line-height: 36px;
+          }
+          .amount {
+            float: left;
+            width: 50%;
+            font-size: 20px;
+            text-align: right;
+            font-weight: 500;
+          }
+        }
         .payment {
           margin: auto;
           overflow: auto;
@@ -70,6 +87,21 @@ app-wizard {
               font-weight: 400;
               text-decoration: line-through;
             }
+          }
+        }
+        .actions {
+          width: 100%;
+          text-align: center;
+          padding: 20px 0;
+          .alert {
+            text-align: center;
+          }
+          .btn-warning {
+            width: 100%;
+            font-size: 26px;
+            color: white;
+            height: 60px;
+            font-weight: 700;
           }
         }
       }
