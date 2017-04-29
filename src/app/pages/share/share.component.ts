@@ -62,7 +62,7 @@ export class ShareComponent implements OnInit {
             var estimateParams = params['estimate'];
             if (estimateParams) {
               this.sharelink = document.location.protocol + '//'+ document.location.hostname + '/share/estimate?estimate=' + encodeURI(estimateParams);
-              console.log('share link is: ' + this.sharelink);
+              // console.log('share link is: ' + this.sharelink);
               try {
                 var estimateObject = JSON.parse(estimateParams);
                 this.Estimate = estimateObject;

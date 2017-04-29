@@ -7,14 +7,14 @@
         <h3>{{data.texts[2]}}</h3>
         <div class="actions">
           <div class="form-group">
-            <button class="btn btn-yellow-blue">Prenota subito</button>
+            <button class="btn btn-yellow-blue">Prenota adesso</button>
           </div>
         </div>
       </div>
     </div>
     <div class="container advantages">
       <div class="title">
-        <h3>{{data.texts[3]}}</h3>
+        <h2>{{data.texts[3]}}</h2>
         <h2>{{data.texts[4]}}</h2>
       </div>
       <div class="row">
@@ -41,7 +41,7 @@
       </div>
       <div class="actions">
         <div class="form-group">
-          <button class="btn btn-yellow-blue">Prenota subito</button>
+          <button class="btn btn-yellow-blue">Prenota adesso</button>
         </div>
       </div>
     </div>
@@ -97,8 +97,13 @@
     </div>
     <div class="container share">
       <h1>Aiuta un amico o amica che ha bisogno!</h1>
-      <p>Puoi sempre aiutare un amico o amica che ha bisogno di un idraulico per qualsiasi intervento. Invia questa pagina usando un numero di telefono o indirizzo email.</p>
-      <!-- <p>Puoi sempre tornare qui per richiedere il tuo professionista ma un tuo amico o amica potrebbe avere bisogno proprio ora. Inserisci il suo numero di telefono o i numeri e invia questa pagina a loro.</p> -->
+      <p>Puoi sempre aiutare un amico o amica che ha bisogno di un idraulico per qualsiasi intervento. Inserisci il numero di telefono insieme alla mail e invia questa pagina.</p>
+      <div class="input-group">
+        <input type="text" placeholder="Esempio: 3234565540, john@gmail.com" class="form-control" id="contacts" [(ngModel)]="contacts" [ngModelOptions]="{standalone: true}">
+        <span class="input-group-btn">
+          <button type="button" id="next" class="btn btn-success" (click)="sendInvitations()">Invia</button>
+        </span>
+      </div>
     </div>
   </div>
 </div>
@@ -116,7 +121,6 @@
         <ul>
           <li><a routerLink="/legal" routerLinkActive="active">Privacy e Condizioni</a></li>
           <li><a routerLink="/help" routerLinkActive="active">Aiuto e Assistenza</a></li>
-          <li><a routerLink="/requests/service" routerLinkActive="active">Richiedi un servizio</a></li>
         </ul>
       </div>
       <div class="col-md-6 col-lg-3">

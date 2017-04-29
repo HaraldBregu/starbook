@@ -3419,10 +3419,19 @@ app-landing {
     text-align: center; }
     app-landing .landing-container .share h1 {
       max-width: 900px;
-      margin: auto; }
+      margin: auto;
+      margin-bottom: 30px; }
     app-landing .landing-container .share p {
       max-width: 700px;
+      margin: auto;
+      margin-bottom: 30px; }
+    app-landing .landing-container .share .input-group {
+      max-width: 700px;
       margin: auto; }
+      app-landing .landing-container .share .input-group .input-group-btn {
+        width: 20%; }
+        app-landing .landing-container .share .input-group .input-group-btn .btn {
+          width: 100%; }
   app-landing .landing-container .background {
     background: white;
     background-image: url("https://s3-eu-west-1.amazonaws.com/starbook-s3/professionista-su-starbook.jpg");
