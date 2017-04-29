@@ -4,6 +4,7 @@ import { SeoService } from '../shared/seo.service';
 import { NavigationService } from '../shared/navigation.service';
 import { AnalyticsService } from '../shared/analytics.service';
 import { isBrowser } from 'angular2-universal';
+import { CommonService } from '../shared/common.service';
 
 @Component({
   selector: 'app-landing',
@@ -12,6 +13,30 @@ import { isBrowser } from 'angular2-universal';
 export class LandingComponent implements OnInit {
   public page;
   public currentUser;
+  public emailPattern: any;
+  public numPattern: any;
+  public contacts = '';
+  public invitation_state = {
+    message_success: null,
+    message_error: null
+  };
+  public services = [
+    {
+      title:"Idraulico",
+      color:"blue",
+      image:"https://s3-eu-west-1.amazonaws.com/starbook-s3/plumbing/idraulica-attrezzi.png"
+    },
+    {
+      title:"Falegname",
+      color:"brown",
+      image:"https://s3-eu-west-1.amazonaws.com/starbook-s3/plumbing/idraulica-attrezzi.png"
+    },
+    {
+      title:"Muratore",
+      color:"Black",
+      image:"https://s3-eu-west-1.amazonaws.com/starbook-s3/plumbing/idraulica-attrezzi.png"
+    }
+  ];
   public data = {
     pictures:[
       "https://s3-eu-west-1.amazonaws.com/starbook-s3/plumbing/idraulica-attrezzi.png"
@@ -69,7 +94,6 @@ export class LandingComponent implements OnInit {
     ],
   };
   public Request = {
-    title: '',
     description: '',
     phone: '',
     email: '',
@@ -88,7 +112,6 @@ export class LandingComponent implements OnInit {
     phone_error: null,
     email_error: null
   };
-  public contacts = '';
   public seoObject = {
     title: "",
     description: "",
@@ -100,8 +123,12 @@ export class LandingComponent implements OnInit {
     private route: ActivatedRoute,
     private navigationService: NavigationService,
     private analyticsService: AnalyticsService,
-    private seoService: SeoService) {
-      this.navigationService.updateMessage('Il professionista');
+    private seoService: SeoService,
+    private commonService: CommonService) {
+      this.emailPattern = /^[a-z0-9!#$%&'*+\/=?^_`{|}~.-]+@[a-z0-9]([a-z0-9-]*[a-z0-9])?(\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)*$/i;
+      this.numPattern = /^\d+$/;
+      this.navigationService.updateMessage('Il professionista sempre con te');
+      this.analyticsService.sendPageViewUrl(this.router.url)
 
       if (isBrowser) {
         if (localStorage.getItem('auth')) {
@@ -114,7 +141,8 @@ export class LandingComponent implements OnInit {
 
         this.page = params['page'];
         if (this.page==='idraulico') {
-          this.navigationService.updateMessage('Idraulico');
+          this.navigationService.updateMessage('Ti serve un idraulico?');
+
           this.data.pictures = [
             "https://s3-eu-west-1.amazonaws.com/starbook-s3/plumbing/idraulica-attrezzi.png"
           ];
@@ -165,21 +193,15 @@ export class LandingComponent implements OnInit {
           this.seoObject.description = "Tutti sappiamo che trovare l'idraulico giusto nel momento giusto non è mai cosi semplice. Ora ci pensiamo noi al posto tuo!";
           this.seoObject.url = 'https://www.starbook.co' + this.router.url;
           this.seoObject.image_url = "https://s3-eu-west-1.amazonaws.com/starbook-s3/plumbing/idraulica-attrezzi.png";
-          
         } else if (this.page==='falegname') {
           this.navigationService.updateMessage('Falegname');
 
         } else if (this.page==='muratore') {
           this.navigationService.updateMessage('Muratore');
 
-        } else if (this.page==='energy_certificator') {
-          this.navigationService.updateMessage('Certificatore energetico');
-
-        } else if (this.page==='serramentist') {
-          this.navigationService.updateMessage('Serramentista');
-
+        } else {
+          // this.router.navigate(['']);
         }
-
         this.seoService.setTitle(this.seoObject.title);
         this.seoService.setOgElem('og:title', this.seoObject.title);
         this.seoService.setMetaElem('description', this.seoObject.description);
@@ -188,11 +210,100 @@ export class LandingComponent implements OnInit {
         this.seoService.setOgElem('og:image', this.seoObject.image_url);
         this.seoService.setOgElem('og:image:secure_url', this.seoObject.image_url);
       })
-
   }
 
   ngOnInit() {
 
   }
 
+  selectService(service) {
+    this.router.navigate(['landing/' + service.title.toLowerCase()]);
+  }
+
+  showService() {
+    // this.analyticsService.sendEvent({category:'Order', action: 'Wizard', label: "Start"});
+    this.router.navigate(['services', this.page.replace(/\s+/g, '-')]);
+    return false;
+  }
+  sendRequestForNewService() {
+    // this.analyticsService.sendEvent({category:'Order', action: 'Wizard', label: "Start"});
+    if (this.request_state.loading) {return;}
+    if (!this.Request.firstname || !this.Request.lastname || !this.Request.phone || !this.Request.email || !this.Request.description) {
+      this.request_state.message_success = null;
+      this.request_state.message_error = "Per favore inserisci tutti i campi richiesti";
+      this.request_state.title_error = "errore";
+      this.request_state.description_error = "errore";
+      this.request_state.firstname_error = "errore";
+      this.request_state.lastname_error = "errore";
+      this.request_state.phone_error = "errore";
+      this.request_state.email_error = "errore";
+      return;
+    }
+    this.request_state.message_success = null;
+    this.request_state.message_error = null;
+    this.request_state.title_error = null;
+    this.request_state.description_error = null;
+    this.request_state.firstname_error = null;
+    this.request_state.lastname_error = null;
+    this.request_state.phone_error = null;
+    this.request_state.email_error = null;
+    this.request_state.loading = true;
+    this.request_state.button_title = "Inviando...";
+
+    this.Request['category'] = this.page.charAt(0).toUpperCase() + this.page.slice(1);
+    this.commonService.requireNewService(this.Request).then((response) => {
+      this.request_state.message_success = "Complimenti, hai inviato una richiesta di servizio su Starbook. La contatteremo al più presto!";
+      this.request_state.loading = false;
+      this.request_state.button_title = "Invia richiesta";
+      this.Request.description = null;
+    }).catch((error) => {
+      this.Request.description = null;
+    });
+  }
+  sendInvitations() {
+    // this.analyticsService.sendEvent({category:'Order', action: 'Wizard', label: "Start"});
+    var phone_numbers = [];
+    var email_addresses = [];
+    var strings = this.contacts.split(',');
+    for (var i = 0; i < strings.length; i++) {
+      var string = strings[i];
+      string = string.replace(/\s/g, '');
+      if (this.emailPattern.test(string)) {
+        email_addresses.push(string);
+      } else if (this.numPattern.test(string)) {
+        phone_numbers.push(string);
+      }
+    }
+    var phones = '';
+    for (var i = 0; i < phone_numbers.length; i++) {
+      var p = phone_numbers[i]
+      phones += (i != 0) ? ',' : ''
+      phones += p
+    }
+
+    var emails = '';
+    for (var i = 0; i < email_addresses.length; i++) {
+      var e = email_addresses[i]
+      emails += (i != 0) ? ',' : ''
+      emails += e
+    }
+    if (phones==='' && emails==='') {
+      this.invitation_state.message_success = null;
+      this.invitation_state.message_error = "Inserisci numeri di telefono e email validi";
+      return;
+    }
+    this.invitation_state.message_success = null;
+    this.invitation_state.message_error = null;
+
+    var link = "Hey, ti ho trovato un " + this.page.charAt(0).toUpperCase() + this.page.slice(1) + " ";
+    if (isBrowser) {
+      link += document.location.protocol + '//'+ document.location.hostname + this.router.url;
+    }
+
+    this.commonService.sendNotifications(link, phones, emails).then((response) => {
+      this.invitation_state.message_success = "Complimenti, hai inviato un codice sconto ai contatti inseriti";
+    }).catch((error) => {
+      // console.log('error: ' + JSON.stringify(error));
+    });
+  }
 }

@@ -1,4 +1,19 @@
 <div class="landing-container">
+  <div *ngIf="!page">
+    <div class="services-container">
+      <div class="row">
+        <div *ngFor="let service of services">
+          <div class="col-md-4 service-container">
+            <div class="service" (click)="selectService(service)" [ngStyle]="{'background-image': 'url(' + service.image + ')'}">
+              <div class="overlay">
+                {{service.title}}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
   <div *ngIf="page">
     <div class="header" [ngStyle]="{'background-image': 'url(' + data.pictures[0] + ')'}">
       <div class="container">
@@ -7,7 +22,7 @@
         <h3>{{data.texts[2]}}</h3>
         <div class="actions">
           <div class="form-group">
-            <button class="btn btn-yellow-blue">Prenota adesso</button>
+            <button class="btn btn-yellow-blue" (click)="showService()">Prenota adesso</button>
           </div>
         </div>
       </div>
@@ -41,7 +56,7 @@
       </div>
       <div class="actions">
         <div class="form-group">
-          <button class="btn btn-yellow-blue">Prenota adesso</button>
+          <button class="btn btn-yellow-blue" (click)="showService()">Prenota adesso</button>
         </div>
       </div>
     </div>
@@ -98,6 +113,14 @@
     <div class="container share">
       <h1>Aiuta un amico o amica che ha bisogno!</h1>
       <p>Puoi sempre aiutare un amico o amica che ha bisogno di un idraulico per qualsiasi intervento. Inserisci il numero di telefono insieme alla mail e invia questa pagina.</p>
+      <div class="alerts">
+        <div class="form-group" *ngIf="invitation_state.message_error">
+          <div class="alert alert-danger" role="alert">{{invitation_state.message_error}}</div>
+        </div>
+        <div class="form-group" *ngIf="invitation_state.message_success">
+          <div class="alert alert-success" role="alert">{{invitation_state.message_success}}</div>
+        </div>
+      </div>
       <div class="input-group">
         <input type="text" placeholder="Esempio: 3234565540, john@gmail.com" class="form-control" id="contacts" [(ngModel)]="contacts" [ngModelOptions]="{standalone: true}">
         <span class="input-group-btn">

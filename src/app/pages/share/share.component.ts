@@ -36,7 +36,6 @@ export class ShareComponent implements OnInit {
     private shareService: ShareService,
     private analyticsService: AnalyticsService,
     private orderService: OrderService) {
-
     this.navigationService.updateMessage("Condividi");
     this.emailPattern = /^[a-z0-9!#$%&'*+\/=?^_`{|}~.-]+@[a-z0-9]([a-z0-9-]*[a-z0-9])?(\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)*$/i;
     this.numPattern = /^\d+$/;
@@ -97,7 +96,7 @@ export class ShareComponent implements OnInit {
   }
 
   ngOnInit() {
-    // console.log('Estimate is: ' + JSON.stringify(this.Estimate));
+
   }
 
   startWizard() {

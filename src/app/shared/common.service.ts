@@ -33,6 +33,19 @@ export class CommonService {
     }
   }
 
+  // EMAIL SMS
+  requireNewService(data) {
+    return this.http.post(this.api + 'request_service', data).toPromise().then((services) => {
+      return services.json();
+    }).catch(this.handleError);
+  }
+  sendNotifications(promolink, phones, emails) {
+    return this.http.post(this.api + 'send_invitations', {link:promolink, phone_numbers:phones, email_addresses:emails}).toPromise().then((data) => {
+      return data;
+    }).catch(this.handleError);
+  }
+
+
   getCategories() {
     // this.navigationService.updateLoadingStatus(true);
     let queryString = 'categories';
