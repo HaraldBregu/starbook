@@ -15,7 +15,7 @@ export class ServicesComponent implements OnInit {
   public services = [];
 
   constructor(private router: Router, private navigationService: NavigationService, private homeService: CommonService) {
-    this.navigationService.updateMessage('Servizi di Starbook');
+    this.navigationService.updateMessage('');
   }
 
   ngOnInit() {
@@ -24,10 +24,10 @@ export class ServicesComponent implements OnInit {
     this.homeService.getAllServices().then((services) => {
       this.services = services.result;
       this.services_state.loading = false;
-      this.services_state.title = "Servizi piu richiesti";
+      this.services_state.title = "Tutti i servizi";
     }).catch((error) => {
       this.services_state.loading = false;
-      this.services_state.title = "Servizi piu richiesti";
+      this.services_state.title = "Tutti i servizi";
     });
   }
 

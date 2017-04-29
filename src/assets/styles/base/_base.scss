@@ -137,6 +137,26 @@ p {
   color: white !important;
   background-color: #7FC443 !important;
 }
+.btn-yellow-blue {
+  background: #FFC845 !important;
+  color: white;
+  font-family: $font-name;
+  font-weight: 400;
+  letter-spacing: 0.1px;
+  padding: 11px 7px;
+  outline: none;
+  border-radius: 0;
+  border: 0;
+  outline: none !important;
+}
+.btn-yellow-blue:active:focus {
+  color: white !important;
+  background-color: #324977 !important;
+}
+.btn-yellow-blue:hover {
+  color: white !important;
+  background-color: #324977 !important;
+}
 .btn-white {
   background: white !important;
   color: black;

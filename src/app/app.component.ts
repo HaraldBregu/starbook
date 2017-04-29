@@ -153,7 +153,7 @@ export class AppComponent implements OnInit, OnDestroy {
   requireService() {
     // this.newServiceRequest.message = 'Grazie!';
     this.analyticsService.sendEvent({category:'Services', action: 'request', label: this.findValue});
-    this.router.navigate(['requests']);
+    this.router.navigate(['requests/service']);
   }
 
   selectResult(servicesObj) {

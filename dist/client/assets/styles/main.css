@@ -522,6 +522,26 @@ p {
   color: white !important;
   background-color: #7FC443 !important; }
 
+.btn-yellow-blue {
+  background: #FFC845 !important;
+  color: white;
+  font-family: Roboto, sans-serif;
+  font-weight: 400;
+  letter-spacing: 0.1px;
+  padding: 11px 7px;
+  outline: none;
+  border-radius: 0;
+  border: 0;
+  outline: none !important; }
+
+.btn-yellow-blue:active:focus {
+  color: white !important;
+  background-color: #324977 !important; }
+
+.btn-yellow-blue:hover {
+  color: white !important;
+  background-color: #324977 !important; }
+
 .btn-white {
   background: white !important;
   color: black;
@@ -3319,28 +3339,90 @@ app-landing {
   height: 100%;
   padding: 70px 0 0; }
   app-landing .landing-container .header {
-    background-image: url(https://s3-eu-west-1.amazonaws.com/starbook-s3/imbiancatura-parquet-vernicatura-carta-da-parati-dark.png);
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center 100%;
     color: white;
-    padding: 100px 0;
+    padding: 100px 0 50px;
     text-align: center; }
+    app-landing .landing-container .header .actions {
+      padding: 40px 0 0; }
+      app-landing .landing-container .header .actions .btn {
+        border-radius: 30px;
+        height: 60px;
+        padding: 0 80px;
+        font-weight: 700;
+        font-size: 26px; }
     app-landing .landing-container .header h1 {
       font-weight: 900;
-      font-size: 42px;
+      font-size: 46px;
+      max-width: 900px;
+      margin: auto;
+      margin-bottom: 30px; }
+    app-landing .landing-container .header h2, app-landing .landing-container .header h3 {
+      max-width: 700px;
+      margin: auto;
+      font-weight: 400;
       margin-bottom: 30px; }
     app-landing .landing-container .header p {
-      font-size: 20px !important; }
+      font-size: 24px !important; }
   app-landing .landing-container .advantages {
-    padding: 100px 0; }
+    padding: 60px 0;
+    text-align: center; }
     app-landing .landing-container .advantages .title {
       padding: 0 0 60px;
       max-width: 900px;
-      text-align: center;
       margin: auto; }
       app-landing .landing-container .advantages .title h2 {
-        font-weight: 300; }
+        font-weight: 300;
+        max-width: 900px;
+        margin: auto;
+        margin-bottom: 30px; }
+      app-landing .landing-container .advantages .title h3 {
+        font-weight: 300;
+        line-height: inherit;
+        max-width: 700px;
+        margin: auto;
+        margin-bottom: 30px; }
+    app-landing .landing-container .advantages p {
+      margin: 20px 0; }
+  app-landing .landing-container .request-form {
+    margin: auto;
+    padding: 50px;
+    background: #f5f7f9; }
+    app-landing .landing-container .request-form .btn {
+      width: 100%;
+      height: 60px;
+      font-weight: 700;
+      font-size: 26px; }
+    app-landing .landing-container .request-form h1 {
+      margin-bottom: 40px;
+      text-align: center; }
+  app-landing .landing-container .reviews {
+    padding: 80px 0;
+    text-align: center; }
+    app-landing .landing-container .reviews h5 {
+      color: #FFE16A; }
+    app-landing .landing-container .reviews .btn {
+      border-radius: 30px;
+      height: 60px;
+      padding: 0 80px;
+      font-weight: 700;
+      font-size: 26px;
+      margin-top: 50px; }
+    app-landing .landing-container .reviews .title {
+      margin-bottom: 50px; }
+    app-landing .landing-container .reviews .row {
+      text-align: left; }
+  app-landing .landing-container .share {
+    padding: 100px 0;
+    text-align: center; }
+    app-landing .landing-container .share h1 {
+      max-width: 900px;
+      margin: auto; }
+    app-landing .landing-container .share p {
+      max-width: 700px;
+      margin: auto; }
   app-landing .landing-container .background {
     background: white;
     background-image: url("https://s3-eu-west-1.amazonaws.com/starbook-s3/professionista-su-starbook.jpg");
@@ -3385,7 +3467,7 @@ app-home {
     app-home .header h1 {
       font-size: 46px;
       margin: 0 auto 10px;
-      font-weight: 700; }
+      font-weight: 900; }
     app-home .header h4 {
       font-weight: 400;
       font-style: italic; }

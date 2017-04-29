@@ -14,13 +14,13 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule }   from '@angular/router';
 // import { AutoCompleteModule, CalendarModule } from 'primeng/primeng';
 import { ClickOutsideModule } from 'ng2-click-outside';
+
 // import { ClipboardModule } from 'ngx-clipboard';
 // import { MasonryModule } from 'angular2-masonry';
 // import { NgbModule, NgbDateParserFormatter } from '@ng-bootstrap/ng-bootstrap';
 
 /* Feature Modules */
 import { ClipboardModule } from 'ngx-clipboard';
-
 
 import { routing } from './app.routing';
 import { CommonService } from './shared/common.service';

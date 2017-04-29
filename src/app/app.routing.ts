@@ -34,7 +34,8 @@ const routes: Routes = [
   },
   {
     path: 'services',
-    component: ServicesComponent
+    component: ServicesComponent,
+    data: {isFindField: true}
   },
   {
     path: 'services/:id',

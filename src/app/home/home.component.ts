@@ -75,13 +75,22 @@ export class HomeComponent implements OnInit {
     this.router.navigate(['recruiter/partnerjoin']);
   }
 
-
   /////////////////////////
   /////// SEARCH //////////
   /////////////////////////
   searchMore() {
     this.analyticsService.sendEvent({category:'Landing Page', action: 'Search', label: "More"});
-    this.router.navigate(['services']);
+    if (this.query.length>0 && this.results.length===0) {
+      this.router.navigate(['requests/service']);
+    } else if (this.query.length>0 && this.results.length>0) {
+      let service = this.results[0];
+      this.homeService.sendData(service, this.ref)
+      let title = service['title'];
+      this.router.navigate(['services', title.replace(/\s+/g, '-')]);
+    } else if (this.query.length===0) {
+      this.router.navigate(['services']);
+    }
+
   }
   search(event) {
     this.newServiceRequest.message = 'Richiedi?';
@@ -115,6 +124,6 @@ export class HomeComponent implements OnInit {
   requireService() {
     // this.newServiceRequest.message = 'Grazie!';
     this.analyticsService.sendEvent({category:'Services', action: 'request', label: this.query});
-    this.router.navigate(['requests']);
+    this.router.navigate(['requests/service']);
   }
 }
