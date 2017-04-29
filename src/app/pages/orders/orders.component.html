@@ -4,7 +4,7 @@
   </ul>
 </div>
 <div class="orders-container">
-  <div class="order-container" *ngIf="pageData && page==='requests' && pageData.length===0">
+  <div class="order-container" *ngIf="page==='requests' && pageData && pageData.length===0">
     <p>Non ci lavorazioni prenotati. Per prenotare un lavoro vai alla pagina home e trova la lavorazione che ti serve.</p>
   </div>
   <div *ngFor="let order of pageData">
@@ -56,7 +56,7 @@
     </div>
   </div>
 
-  <div class="order-container" *ngIf="page==='estimates' && estimates.length===0">
+  <div class="order-container" *ngIf="page==='estimates' && estimates && estimates.length===0">
     <p>Non ci sono preventivi salvati.</p>
   </div>
   <div *ngFor="let estimate of estimates">
