@@ -103,7 +103,7 @@ export class LandingComponent implements OnInit {
           this.currentUser = JSON.parse(localStorage.getItem('auth'));
         }
         this.route.params.subscribe((params: Params) => {
-          window.scrollTo(0, 0);
+          // window.scrollTo(0, 0);
           this.page = params['page'];
           if (this.page==='idraulico') {
             this.navigationService.updateMessage('Idraulico');
