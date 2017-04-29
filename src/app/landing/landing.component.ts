@@ -89,7 +89,12 @@ export class LandingComponent implements OnInit {
     email_error: null
   };
   public contacts = '';
-
+  public seoObject = {
+    title: "",
+    description: "",
+    url: "",
+    image_url: ""
+  };
   constructor(
     private router: Router,
     private route: ActivatedRoute,
@@ -102,79 +107,88 @@ export class LandingComponent implements OnInit {
         if (localStorage.getItem('auth')) {
           this.currentUser = JSON.parse(localStorage.getItem('auth'));
         }
-        this.route.params.subscribe((params: Params) => {
-          // window.scrollTo(0, 0);
-          this.page = params['page'];
-          if (this.page==='idraulico') {
-            this.navigationService.updateMessage('Idraulico');
-            this.data.pictures = [
-              "https://s3-eu-west-1.amazonaws.com/starbook-s3/plumbing/idraulica-attrezzi.png"
-            ];
-            this.data.texts = [
-              "Hai bisogno di un idraulico? Ti aiutiamo noi!",
-              "Tutti sappiamo che trovare l'idraulico giusto nel momento giusto non è mai cosi semplice.",
-              "Ora ci pensiamo noi al posto tuo!",
-              "Starbook è il miglior sistema per trovare il tuo idraulico nel modo piu semplice, veloce e sicuro.",
-              "Ecco perché devi scegliere Starbook",
-              "Cosa dicono i clienti",
-            ];
-            this.data.bullets = [
-              {
-                title: "Professionalità",
-                description: "La serietà prima di tutto e noi ci assicuriamo di portare il miglior idraulico della zona e che abbia una solida esperienza nel campo in cui opera.",
-                icon_name: "fa-certificate"
-              },
-              {
-                title: "Puntualità",
-                description: "Portare l'idraulico nel giorno e l'ora che si desidera è uno dei nostri valori piu importanti.",
-                icon_name: "fa-clock-o"
-              },
-              {
-                title: "Pagamento online",
-                description: "La massima comodità anche nei metodi di pagamento, utilizando la carta di credito o prepagata puoi pagare l'idraulico direttamente online.",
-                icon_name: "fa-credit-card"
-              }
-            ];
-            this.data.reviews = [
-              {
-                username: "John D.",
-                text: "Assurdo! Dopo aver richiesto un particolare lavoro a casa mia, nel arco di pochi minuti ho ricevuto il miglior preventivo e il miglior professionista della zona.",
-                rating: 5
-              },
-              {
-                username: "John D.",
-                text: "Gli addetti alle pulizie sono arrivati puntuali al mattino e sono rimasti a lavorare fino a tarda sera pur di finire il lavoro. L'appartamento era in pessime condizioni. Hanno fatto un ottimo lavoro pulendo a fondo, il loro aiuto è stato fondamentale.",
-                rating: 5
-              },
-              {
-                username: "John D.",
-                text: "Gli addetti alle pulizie sono arrivati puntuali al mattino e sono rimasti a lavorare fino a tarda sera pur di finire il lavoro. L'appartamento era in pessime condizioni. Hanno fatto un ottimo lavoro pulendo a fondo, il loro aiuto è stato fondamentale.",
-                rating: 5
-              }
-            ];
-
-            this.seoService.setTitle("Hai bisogno di un idraulico? Ti aiutiamo noi!");
-            this.seoService.setOgElem('og:title', "Hai bisogno di un idraulico? Ti aiutiamo noi!");
-            this.seoService.setMetaElem('description', "Tutti sappiamo che trovare l'idraulico giusto nel momento giusto non è mai cosi semplice. Ora ci pensiamo noi al posto tuo!");
-            this.seoService.setOgElem('og:description', "Tutti sappiamo che trovare l'idraulico giusto nel momento giusto non è mai cosi semplice. Ora ci pensiamo noi al posto tuo!");
-            this.seoService.setOgElem('og:url', 'https://www.starbook.co/' + this.router.url);
-            this.seoService.setOgElem('og:image', "https://s3-eu-west-1.amazonaws.com/starbook-s3/plumbing/idraulica-attrezzi.png");
-            this.seoService.setOgElem('og:image:secure_url', "https://s3-eu-west-1.amazonaws.com/starbook-s3/plumbing/idraulica-attrezzi.png");
-          } else if (this.page==='falegname') {
-            this.navigationService.updateMessage('Falegname');
-
-          } else if (this.page==='muratore') {
-            this.navigationService.updateMessage('Muratore');
-
-          } else if (this.page==='energy_certificator') {
-            this.navigationService.updateMessage('Certificatore energetico');
-
-          } else if (this.page==='serramentist') {
-            this.navigationService.updateMessage('Serramentista');
-
-          }
-        })
       }
+
+      this.route.params.subscribe((params: Params) => {
+        if (isBrowser) {window.scrollTo(0, 0);}
+
+        this.page = params['page'];
+        if (this.page==='idraulico') {
+          this.navigationService.updateMessage('Idraulico');
+          this.data.pictures = [
+            "https://s3-eu-west-1.amazonaws.com/starbook-s3/plumbing/idraulica-attrezzi.png"
+          ];
+          this.data.texts = [
+            "Hai bisogno di un idraulico? Ti aiutiamo noi!",
+            "Tutti sappiamo che trovare l'idraulico giusto nel momento giusto non è mai cosi semplice.",
+            "Ora ci pensiamo noi al posto tuo!",
+            "Starbook è il miglior sistema per trovare il tuo idraulico nel modo piu semplice, veloce e sicuro.",
+            "Ecco perché devi scegliere Starbook",
+            "Cosa dicono i clienti",
+          ];
+          this.data.bullets = [
+            {
+              title: "Professionalità",
+              description: "La serietà prima di tutto e noi ci assicuriamo di portare il miglior idraulico della zona e che abbia una solida esperienza nel campo in cui opera.",
+              icon_name: "fa-certificate"
+            },
+            {
+              title: "Puntualità",
+              description: "Portare l'idraulico nel giorno e l'ora che si desidera è uno dei nostri valori piu importanti.",
+              icon_name: "fa-clock-o"
+            },
+            {
+              title: "Pagamento online",
+              description: "La massima comodità anche nei metodi di pagamento, utilizando la carta di credito o prepagata puoi pagare l'idraulico direttamente online.",
+              icon_name: "fa-credit-card"
+            }
+          ];
+          this.data.reviews = [
+            {
+              username: "John D.",
+              text: "Assurdo! Dopo aver richiesto un particolare lavoro a casa mia, nel arco di pochi minuti ho ricevuto il miglior preventivo e il miglior professionista della zona.",
+              rating: 5
+            },
+            {
+              username: "John D.",
+              text: "Gli addetti alle pulizie sono arrivati puntuali al mattino e sono rimasti a lavorare fino a tarda sera pur di finire il lavoro. L'appartamento era in pessime condizioni. Hanno fatto un ottimo lavoro pulendo a fondo, il loro aiuto è stato fondamentale.",
+              rating: 5
+            },
+            {
+              username: "John D.",
+              text: "Gli addetti alle pulizie sono arrivati puntuali al mattino e sono rimasti a lavorare fino a tarda sera pur di finire il lavoro. L'appartamento era in pessime condizioni. Hanno fatto un ottimo lavoro pulendo a fondo, il loro aiuto è stato fondamentale.",
+              rating: 5
+            }
+          ];
+
+          this.seoObject.title = "Hai bisogno di un idraulico? Ti aiutiamo noi!";
+          this.seoObject.description = "Tutti sappiamo che trovare l'idraulico giusto nel momento giusto non è mai cosi semplice. Ora ci pensiamo noi al posto tuo!";
+          this.seoObject.url = 'https://www.starbook.co' + this.router.url;
+          this.seoObject.image_url = "https://s3-eu-west-1.amazonaws.com/starbook-s3/plumbing/idraulica-attrezzi.png";
+          
+        } else if (this.page==='falegname') {
+          this.navigationService.updateMessage('Falegname');
+
+        } else if (this.page==='muratore') {
+          this.navigationService.updateMessage('Muratore');
+
+        } else if (this.page==='energy_certificator') {
+          this.navigationService.updateMessage('Certificatore energetico');
+
+        } else if (this.page==='serramentist') {
+          this.navigationService.updateMessage('Serramentista');
+
+        }
+
+        this.seoService.setTitle(this.seoObject.title);
+        this.seoService.setOgElem('og:title', this.seoObject.title);
+        this.seoService.setMetaElem('description', this.seoObject.description);
+        this.seoService.setOgElem('og:description', this.seoObject.description);
+        this.seoService.setOgElem('og:url', this.seoObject.url);
+        this.seoService.setOgElem('og:image', this.seoObject.image_url);
+        this.seoService.setOgElem('og:image:secure_url', this.seoObject.image_url);
+      })
+
   }
 
   ngOnInit() {
