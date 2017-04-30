@@ -24,7 +24,7 @@ export class LandingComponent implements OnInit {
     {
       title:"Idraulico",
       color:"blue",
-      image:"https://s3-eu-west-1.amazonaws.com/starbook-s3/plumbing/idraulica-attrezzi.png"
+      image: "https://s3-eu-west-1.amazonaws.com/starbook-s3/plumbing/idraulica-tutti-attrezzi.png"
     },
     {
       title:"Falegname",
@@ -118,6 +118,7 @@ export class LandingComponent implements OnInit {
     url: "",
     image_url: ""
   };
+
   constructor(
     private router: Router,
     private route: ActivatedRoute,
@@ -142,9 +143,8 @@ export class LandingComponent implements OnInit {
         this.page = params['page'];
         if (this.page==='idraulico') {
           this.navigationService.updateMessage('Ti serve un idraulico?');
-
           this.data.pictures = [
-            "https://s3-eu-west-1.amazonaws.com/starbook-s3/plumbing/idraulica-attrezzi.png"
+            "https://s3-eu-west-1.amazonaws.com/starbook-s3/plumbing/idraulica-tutti-attrezzi.png"
           ];
           this.data.texts = [
             "Hai bisogno di un idraulico? Ti aiutiamo noi!",
@@ -162,7 +162,7 @@ export class LandingComponent implements OnInit {
             },
             {
               title: "Puntualità",
-              description: "Portare l'idraulico nel giorno e l'ora che si desidera è uno dei nostri valori piu importanti.",
+              description: "Portare l'idraulico nel giorno e l'ora che si desidera è uno dei nostri valori piu importanti. Noi puntiamo solo all'efficienza.",
               icon_name: "fa-clock-o"
             },
             {
@@ -173,18 +173,23 @@ export class LandingComponent implements OnInit {
           ];
           this.data.reviews = [
             {
-              username: "John D.",
-              text: "Assurdo! Dopo aver richiesto un particolare lavoro a casa mia, nel arco di pochi minuti ho ricevuto il miglior preventivo e il miglior professionista della zona.",
+              username: "Giacomo P.",
+              text: "Ottimo! Dopo aver richiesto un particolare lavoro a casa mia, nel arco di pochi minuti ho ricevuto il miglior preventivo di tanti altri professionisti.",
               rating: 5
             },
             {
-              username: "John D.",
-              text: "Gli addetti alle pulizie sono arrivati puntuali al mattino e sono rimasti a lavorare fino a tarda sera pur di finire il lavoro. L'appartamento era in pessime condizioni. Hanno fatto un ottimo lavoro pulendo a fondo, il loro aiuto è stato fondamentale.",
+              username: "Mario B.",
+              text: "Servizio veloce, professionale e decisamente con un ottimo prezzo. Assistenza clienti molto efficiente e disponibile. Consiglio assolutamente.",
               rating: 5
             },
             {
-              username: "John D.",
-              text: "Gli addetti alle pulizie sono arrivati puntuali al mattino e sono rimasti a lavorare fino a tarda sera pur di finire il lavoro. L'appartamento era in pessime condizioni. Hanno fatto un ottimo lavoro pulendo a fondo, il loro aiuto è stato fondamentale.",
+              username: "Anna F.",
+              text: "Dopo aver trascorso più di una settimana a cercare su social media ho trovato Starbook e in meno di pochi minuti ho prenotato l’idraulico e il servizio che mi serviva. Davvero bravi!",
+              rating: 5
+            },
+            {
+              username: "Alberto G.",
+              text: "É stato semplice comunicare al telefono con il professionista dopo aver fatto la richiesta di intervento. Altri vantaggi: è stato puntuale e ordinato.",
               rating: 5
             }
           ];
@@ -192,7 +197,7 @@ export class LandingComponent implements OnInit {
           this.seoObject.title = "Hai bisogno di un idraulico? Ti aiutiamo noi!";
           this.seoObject.description = "Tutti sappiamo che trovare l'idraulico giusto nel momento giusto non è mai cosi semplice. Ora ci pensiamo noi al posto tuo!";
           this.seoObject.url = 'https://www.starbook.co' + this.router.url;
-          this.seoObject.image_url = "https://s3-eu-west-1.amazonaws.com/starbook-s3/plumbing/idraulica-attrezzi.png";
+          this.seoObject.image_url = this.data.pictures[0];
         } else if (this.page==='falegname') {
           this.navigationService.updateMessage('Falegname');
 
@@ -202,6 +207,7 @@ export class LandingComponent implements OnInit {
         } else {
           // this.router.navigate(['']);
         }
+
         this.seoService.setTitle(this.seoObject.title);
         this.seoService.setOgElem('og:title', this.seoObject.title);
         this.seoService.setMetaElem('description', this.seoObject.description);

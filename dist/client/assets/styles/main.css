@@ -3426,15 +3426,19 @@ app-landing {
   app-landing .landing-container .reviews {
     padding: 50px 0;
     text-align: center; }
-    app-landing .landing-container .reviews h5 {
+    app-landing .landing-container .reviews .review-container {
+      padding: 20px 10px; }
+    app-landing .landing-container .reviews i {
       color: #FFE16A; }
+    app-landing .landing-container .reviews h5 {
+      margin-bottom: 10px; }
     app-landing .landing-container .reviews .btn {
       border-radius: 30px;
       height: 60px;
       padding: 0 80px;
       font-weight: 700;
       font-size: 26px;
-      margin-top: 50px; }
+      margin-top: 100px; }
     app-landing .landing-container .reviews .title {
       margin-bottom: 80px; }
     app-landing .landing-container .reviews .row {
