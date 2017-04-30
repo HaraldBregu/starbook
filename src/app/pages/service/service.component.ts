@@ -152,8 +152,8 @@ export class ServiceComponent implements OnInit {
   }
 
   renderPage(services: IServices) {
-    this.seoService.setTitle(services.title);
-    this.seoService.setOgElem('og:title', services.title);
+    this.seoService.setTitle(services.title + "| Preventivo Online");
+    this.seoService.setOgElem('og:title', services.title + "| Preventivo Online");
     this.seoService.setMetaElem('description', services.description);
     this.seoService.setOgElem('og:description', services.description);
     this.seoService.setOgElem('og:url', 'https://www.starbook.co/services/' + services.title.replace(/\s+/g, '-'));
@@ -221,13 +221,6 @@ export class ServiceComponent implements OnInit {
       formId ++;
     });
     this.calculateOrder();
-
-
-    // this.service_state.visible = true;
-    // if (services.ref) {
-    //   this.orderData.ref = services.ref;
-    //   // console.log('ref is: ' + services.ref);
-    // }
   }
 
   toggleService(serviceName, itemName) {

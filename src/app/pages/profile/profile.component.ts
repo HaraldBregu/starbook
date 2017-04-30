@@ -21,9 +21,9 @@ export class ProfileComponent implements OnInit, OnDestroy {
   //////////////////////////
   public page = '';
   public tabs = [
-    {name: 'Generali', route: 'general'},
-    {name: 'Pagamento', route: 'payment'},
-    {name: 'Impostazioni', route: 'settings'}
+    {name: 'Generali', route: 'general', icon:"fa-info"},
+    {name: 'Pagamento', route: 'payment', icon: "fa-credit-card"},
+    {name: 'Impostazioni', route: 'settings', icon:"fa-cog"}
   ];
 
   ///////////////////////

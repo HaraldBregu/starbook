@@ -3414,7 +3414,7 @@ app-landing {
   app-landing .landing-container .request-form {
     margin: auto;
     padding: 50px;
-    background: #f5f7f9; }
+    background: #ebedef; }
     app-landing .landing-container .request-form .btn {
       width: 100%;
       height: 60px;
@@ -3424,7 +3424,7 @@ app-landing {
       margin-bottom: 40px;
       text-align: center; }
   app-landing .landing-container .reviews {
-    padding: 80px 0;
+    padding: 50px 0;
     text-align: center; }
     app-landing .landing-container .reviews h5 {
       color: #FFE16A; }
@@ -3436,7 +3436,7 @@ app-landing {
       font-size: 26px;
       margin-top: 50px; }
     app-landing .landing-container .reviews .title {
-      margin-bottom: 50px; }
+      margin-bottom: 80px; }
     app-landing .landing-container .reviews .row {
       text-align: left; }
   app-landing .landing-container .share {
@@ -3928,19 +3928,26 @@ app-service {
     width: 100%; }
     app-service .header-cover img {
       width: 100%;
-      height: 400px;
+      height: 500px;
       object-fit: cover;
       object-position: center center; }
     app-service .header-cover .details {
       padding: 20px; }
-    app-service .header-cover .title {
-      font-size: 25px;
-      font-weight: 300;
-      color: white; }
-    app-service .header-cover .description {
-      font-size: 16px;
-      font-weight: 400;
-      color: rgba(255, 255, 255, 0.7); }
+      app-service .header-cover .details h2 {
+        font-weight: 300;
+        color: white; }
+      app-service .header-cover .details p {
+        font-weight: 400;
+        color: rgba(255, 255, 255, 0.7);
+        font-size: 16px !important; }
+      app-service .header-cover .details .title {
+        font-size: 25px;
+        font-weight: 300;
+        color: white; }
+      app-service .header-cover .details .description {
+        font-size: 16px;
+        font-weight: 400;
+        color: rgba(255, 255, 255, 0.7); }
     app-service .header-cover .left-block {
       float: left;
       width: 30%; }
@@ -4013,24 +4020,23 @@ app-service {
       app-service .masonry-container .services-block .header .content-header {
         float: left;
         padding-right: 10px; }
-      app-service .masonry-container .services-block .header .content-header span {
-        display: block;
-        width: 100%;
-        font-size: 25px;
-        letter-spacing: 0.13px;
-        color: black;
-        margin-bottom: 15px;
-        font-weight: 500; }
-      app-service .masonry-container .services-block .header .content-header .service-description {
-        display: block;
-        width: 100%;
-        font-weight: 400;
-        font-size: 16px;
-        letter-spacing: 0.1px;
-        color: rgba(0, 0, 0, 0.7); }
+        app-service .masonry-container .services-block .header .content-header h3 {
+          display: block;
+          width: 100%;
+          letter-spacing: 0.13px;
+          color: black;
+          margin-bottom: 15px;
+          font-weight: 500; }
+        app-service .masonry-container .services-block .header .content-header p {
+          display: block;
+          width: 100%;
+          font-weight: 400;
+          font-size: 16px !important;
+          letter-spacing: 0.1px;
+          color: rgba(0, 0, 0, 0.7); }
       app-service .masonry-container .services-block .header img {
-        width: 30%;
-        max-height: 140px;
+        width: 40%;
+        max-height: 200px;
         object-fit: cover; }
       app-service .masonry-container .services-block .header .service-image {
         display: block;
@@ -4048,7 +4054,8 @@ app-service {
         display: block;
         position: relative;
         width: 100%;
-        padding: 20px; }
+        padding: 20px;
+        cursor: pointer; }
       app-service .masonry-container .services-block .service .item-container:hover {
         box-sizing: border-box; }
       app-service .masonry-container .services-block .service .item-container.image-item {
@@ -4099,6 +4106,10 @@ app-service {
         font-size: 16px;
         letter-spacing: 0.09px;
         padding: 0 0 0 50px; }
+        app-service .masonry-container .services-block .service .item-container .item-description p {
+          font-weight: 400;
+          color: rgba(0, 0, 0, 0.7);
+          font-size: 16px !important; }
       app-service .masonry-container .services-block .service .item-container .item-image {
         display: block;
         position: absolute;

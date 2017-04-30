@@ -55,8 +55,8 @@ export class OrdersComponent implements OnInit, OnDestroy {
   public it: any;
   public selectTab: string|boolean = false;
   public tabs = [
-    {name: 'Lavorazioni', route: 'requests'},
-    {name: 'Preventivi', route: 'estimates'}
+    {name: 'Lavorazioni', route: 'requests', icon: "fa-tasks"},
+    {name: 'Preventivi', route: 'estimates', icon: "fa-file"}
   ];
   public pageData;
   public currentUser;

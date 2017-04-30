@@ -5,20 +5,20 @@
         <div class="header-cover">
           <img src="{{image_url}}" alt="{{title}}">
           <div class="details">
-            <div class="title">{{ title }}</div>
-            <div class="description">{{ description }}</div>
+            <h2>{{ title }}</h2>
+            <p>{{ description }}</p>
           </div>
         </div>
         <div class="masonry-container">
           <div class="services-block" *ngFor="let serviceCategory of servicesData">
             <div class="header">
-              <div class="content-header" *ngIf="serviceCategory.image_url && serviceCategory.image_url !== ''" [ngStyle]="{'width': '70%'}">
-                <span>{{serviceCategory.title}}</span>
-                <div class="service-description" *ngIf="serviceCategory.description !== ''">{{serviceCategory.description}}</div>
+              <div class="content-header" *ngIf="serviceCategory.image_url && serviceCategory.image_url !== ''" [ngStyle]="{'width': '60%'}">
+                <h3>{{serviceCategory.title}}</h3>
+                <p *ngIf="serviceCategory.description !== ''">{{serviceCategory.description}}</p>
               </div>
               <div class="content-header" *ngIf="!serviceCategory.image_url || serviceCategory.image_url === ''" [ngStyle]="{'width': '100%', 'padding-right' : '0px'}">
-                <span>{{serviceCategory.title}}</span>
-                <div class="service-description" *ngIf="serviceCategory.description !== ''">{{serviceCategory.description}}</div>
+                <h3>{{serviceCategory.title}}</h3>
+                <p *ngIf="serviceCategory.description !== ''">{{serviceCategory.description}}</p>
               </div>
               <div *ngIf="serviceCategory.image_url && serviceCategory.image_url !== ''">
                 <img src="{{serviceCategory.image_url}}" alt="{{serviceCategory.title}}">
@@ -27,15 +27,17 @@
                 <img [ngStyle]="{'display': 'none'}">
               </div>
             </div>
-            <div class="service content">
+            <div class="service content noselect">
               <span *ngFor="let item of serviceCategory.options">
                 <div class="item-container" *ngIf="item.type === 'CHECKBOX' || item.type === 'RADIOBUTTON'" [ngClass]="{'checked':item.selected, 'image-item': item.image_url}" (click)="toggleService(serviceCategory.title, item.title)">
                   <div class="item">
                     <i *ngIf="item.selected===true" class="checkbox"><span></span></i>
                     <i *ngIf="item.selected===false" class="checkbox empty"></i>
-                    {{item.title}}
+                    <h4>{{item.title}}</h4>
                   </div>
-                  <div class="item-description" *ngIf="item.description !== ''">{{ item.description }}</div>
+                  <div class="item-description" *ngIf="item.description !== ''">
+                    <p>{{ item.description }}</p>
+                  </div>
                   <div class="item-image" *ngIf="item.image_url !== ''" [ngStyle]="{'background-image': 'url(' + item.image_url + ')'}"></div>
                   <div class="item-image" *ngIf="item.image_url == ''" [ngStyle]="{'display': 'none'}"></div>
                 </div>

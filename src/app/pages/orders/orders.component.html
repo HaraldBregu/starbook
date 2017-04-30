@@ -1,6 +1,6 @@
 <div class="top-bar-container noselect">
   <ul class="top-bar">
-    <li *ngFor="let tab of tabs" [ngClass]="{'active':tab.route === page}" (click)="renderPage(tab.route)">{{tab.name}}</li>
+    <li *ngFor="let tab of tabs" [ngClass]="{'active':tab.route === page}" (click)="renderPage(tab.route)"><i class="fa {{tab.icon}}" aria-hidden="true"></i>  {{tab.name}}</li>
   </ul>
 </div>
 <div class="orders-container">

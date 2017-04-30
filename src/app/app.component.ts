@@ -85,6 +85,9 @@ export class AppComponent implements OnInit, OnDestroy {
   onResize() {
     if (isBrowser) {
       this.screenWidth = document.querySelector('body').clientWidth;
+      if (this.screenWidth > 768) {
+        this.collapsed = false;
+      }
     }
   }
 
