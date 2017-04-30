@@ -3365,7 +3365,7 @@ app-landing {
         transition: background-color 0.2s ease;
         background-color: rgba(22, 65, 112, 0.85); }
       app-landing .landing-container .services-container .service-container .service .overlay:hover {
-        background-color: rgba(22, 65, 112, 0.7); }
+        background-color: rgba(22, 65, 112, 0.4); }
       app-landing .landing-container .services-container .service-container .service h1 {
         line-height: 300px;
         text-align: center;

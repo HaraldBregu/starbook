@@ -24,7 +24,7 @@ export class LandingComponent implements OnInit {
     {
       title:"Idraulico",
       color:"blue",
-      image: "https://s3-eu-west-1.amazonaws.com/starbook-s3/plumbing/idraulica-tutti-attrezzi-normal.png"
+      image: "https://s3-eu-west-1.amazonaws.com/starbook-s3/plumbing/idraulico-normal.png"
     },
     {
       title:"Falegname",
@@ -194,11 +194,10 @@ export class LandingComponent implements OnInit {
             }
           ];
 
-          this.seoObject.title = "Hai bisogno di un idraulico? Ti aiutiamo noi!";
-          this.seoObject.description = "Tutti sappiamo che trovare l'idraulico giusto nel momento giusto non è mai cosi semplice. Ora ci pensiamo noi al posto tuo!";
+          this.seoObject.title = this.data.texts[0];
+          this.seoObject.description = this.data.texts[1] + " " + this.data.texts[2];
           this.seoObject.url = 'https://www.starbook.co' + this.router.url;
-          this.seoObject.image_url = this.data.pictures[0];
-
+          this.seoObject.image_url = "https://s3-eu-west-1.amazonaws.com/starbook-s3/plumbing/idraulico-normal.png";
         } else if (this.page==='falegname') {
           this.navigationService.updateMessage('Falegname');
 
