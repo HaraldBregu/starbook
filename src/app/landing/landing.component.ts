@@ -24,17 +24,17 @@ export class LandingComponent implements OnInit {
     {
       title:"Idraulico",
       color:"blue",
-      image: "https://s3-eu-west-1.amazonaws.com/starbook-s3/plumbing/idraulica-tutti-attrezzi.png"
+      image: "https://s3-eu-west-1.amazonaws.com/starbook-s3/plumbing/idraulica-tutti-attrezzi-normal.png"
     },
     {
       title:"Falegname",
       color:"brown",
-      image:"https://s3-eu-west-1.amazonaws.com/starbook-s3/plumbing/idraulica-attrezzi.png"
+      image: "https://s3-eu-west-1.amazonaws.com/starbook-s3/plumbing/idraulica-tutti-attrezzi-normal.png"
     },
     {
       title:"Muratore",
       color:"Black",
-      image:"https://s3-eu-west-1.amazonaws.com/starbook-s3/plumbing/idraulica-attrezzi.png"
+      image: "https://s3-eu-west-1.amazonaws.com/starbook-s3/plumbing/idraulica-tutti-attrezzi-normal.png"
     }
   ];
   public data = {
@@ -149,9 +149,9 @@ export class LandingComponent implements OnInit {
           this.data.texts = [
             "Hai bisogno di un idraulico? Ti aiutiamo noi!",
             "Tutti sappiamo che trovare l'idraulico giusto nel momento giusto non è mai cosi semplice.",
-            "Ora ci pensiamo noi al posto tuo!",
+            "Pensiamo noi al posto tuo!",
             "Starbook è il miglior sistema per trovare il tuo idraulico nel modo piu semplice, veloce e sicuro.",
-            "Ecco perché devi scegliere Starbook",
+            "Perché l'idraulico di Starbook?",
             "Cosa dicono i clienti",
           ];
           this.data.bullets = [
@@ -198,14 +198,7 @@ export class LandingComponent implements OnInit {
           this.seoObject.description = "Tutti sappiamo che trovare l'idraulico giusto nel momento giusto non è mai cosi semplice. Ora ci pensiamo noi al posto tuo!";
           this.seoObject.url = 'https://www.starbook.co' + this.router.url;
           this.seoObject.image_url = this.data.pictures[0];
-          
-          this.seoService.setTitle(this.seoObject.title);
-          this.seoService.setOgElem('og:title', this.seoObject.title);
-          this.seoService.setMetaElem('description', this.seoObject.description);
-          this.seoService.setOgElem('og:description', this.seoObject.description);
-          this.seoService.setOgElem('og:url', this.seoObject.url);
-          this.seoService.setOgElem('og:image', this.seoObject.image_url);
-          this.seoService.setOgElem('og:image:secure_url', this.seoObject.image_url);
+
         } else if (this.page==='falegname') {
           this.navigationService.updateMessage('Falegname');
 
@@ -215,6 +208,20 @@ export class LandingComponent implements OnInit {
         } else {
           // this.router.navigate(['']);
         }
+
+        this.seoService.setTitle(this.seoObject.title);
+        this.seoService.setOgElem('og:title', this.seoObject.title);
+        this.seoService.setMetaElem('description', this.seoObject.description);
+        this.seoService.setOgElem('og:description', this.seoObject.description);
+        this.seoService.setOgElem('og:url', this.seoObject.url);
+        this.seoService.setOgElem('og:image', this.seoObject.image_url);
+        this.seoService.setOgElem('og:image:secure_url', this.seoObject.image_url);
+        this.seoService.setOgElem('twitter:card', "summary_large_image");
+        this.seoService.setOgElem('twitter:title', this.seoObject.title);
+        this.seoService.setOgElem('twitter:site', "@starbookco");
+        this.seoService.setOgElem('twitter:creator', "@HaraldBregu");
+        this.seoService.setOgElem('twitter:description', this.seoObject.description);
+        this.seoService.setOgElem('twitter:image', this.seoObject.image_url);
       })
   }
 

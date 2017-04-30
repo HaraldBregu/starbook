@@ -171,6 +171,7 @@ app-home {
     }
   }
   .services {
+    background: #fafafb;
     padding: 50px 0px;
     text-align: center;
     h1 {
@@ -222,6 +223,7 @@ app-home {
     text-align: center;
     padding: 40px 0 90px;
     color: black;
+    background: #fafafb;
     img {
       margin: 0 0 30px;
       width: 30%;
@@ -242,7 +244,7 @@ app-home {
     }
   }
   .market {
-    background: #f1f1f2;
+    background: white;
     color: #646464;
     .background {
       background: white;
@@ -266,7 +268,7 @@ app-home {
       font-weight: 700;
     }
     p {
-      font-size: 26px !important;
+      font-size: 20px !important;
       line-height: 30px;
       text-align: justify;
     }
@@ -292,7 +294,7 @@ app-home {
       font-weight: 700;
     }
     p {
-      font-size: 26px !important;
+      font-size: 20px !important;
       line-height: 30px;
       text-align: justify;
     }

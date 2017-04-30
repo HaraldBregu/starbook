@@ -393,7 +393,8 @@ body {
 
 html, body {
   position: relative;
-  font-family: Roboto, sans-serif; }
+  font-family: Roboto, sans-serif;
+  overflow-x: hidden; }
 
 h1 {
   font-size: 36px;
@@ -3348,7 +3349,8 @@ app-landing {
       background-repeat: no-repeat;
       background-position: center 100%;
       height: 300px;
-      cursor: pointer; }
+      cursor: pointer;
+      border-radius: 10px; }
       app-landing .landing-container .services-container .service-container .service .overlay {
         position: absolute;
         top: 0;
@@ -3356,13 +3358,18 @@ app-landing {
         width: 100%;
         height: 100%;
         z-index: 10;
+        border-radius: 10px;
         -webkit-transition: background-color 0.2s ease;
         -moz-transition: background-color 0.2s ease;
         -o-transition: background-color 0.2s ease;
         transition: background-color 0.2s ease;
-        background-color: rgba(0, 0, 0, 0.1); }
+        background-color: rgba(22, 65, 112, 0.85); }
       app-landing .landing-container .services-container .service-container .service .overlay:hover {
-        background-color: rgba(0, 0, 0, 0.2); }
+        background-color: rgba(22, 65, 112, 0.7); }
+      app-landing .landing-container .services-container .service-container .service h1 {
+        line-height: 300px;
+        text-align: center;
+        color: white; }
   app-landing .landing-container .header {
     background-size: cover;
     background-repeat: no-repeat;
@@ -3391,13 +3398,30 @@ app-landing {
       margin-bottom: 30px; }
     app-landing .landing-container .header p {
       font-size: 24px !important; }
+  app-landing .landing-container .slogan {
+    padding: 60px 0;
+    text-align: center;
+    background: #164170;
+    color: white; }
+    app-landing .landing-container .slogan .title {
+      max-width: 600px;
+      margin: auto; }
+      app-landing .landing-container .slogan .title h1 {
+        font-weight: 400;
+        margin: auto; }
   app-landing .landing-container .advantages {
     padding: 60px 0;
-    text-align: center; }
+    text-align: center;
+    border-bottom: 1px solid rgba(221, 221, 221, 0.8); }
     app-landing .landing-container .advantages .title {
       padding: 0 0 60px;
       max-width: 900px;
       margin: auto; }
+      app-landing .landing-container .advantages .title h1 {
+        font-weight: 300;
+        max-width: 900px;
+        margin: auto;
+        margin-bottom: 30px; }
       app-landing .landing-container .advantages .title h2 {
         font-weight: 300;
         max-width: 900px;
@@ -3411,6 +3435,13 @@ app-landing {
         margin-bottom: 30px; }
     app-landing .landing-container .advantages p {
       margin: 20px 0; }
+    app-landing .landing-container .advantages .btn {
+      border-radius: 30px;
+      height: 60px;
+      padding: 0 80px;
+      font-weight: 700;
+      font-size: 26px;
+      margin-top: 100px; }
   app-landing .landing-container .request-form {
     margin: auto;
     padding: 50px;
@@ -3424,7 +3455,7 @@ app-landing {
       margin-bottom: 40px;
       text-align: center; }
   app-landing .landing-container .reviews {
-    padding: 50px 0;
+    padding: 60px 0;
     text-align: center; }
     app-landing .landing-container .reviews .review-container {
       padding: 20px 10px; }
@@ -3440,7 +3471,7 @@ app-landing {
       font-size: 26px;
       margin-top: 100px; }
     app-landing .landing-container .reviews .title {
-      margin-bottom: 80px; }
+      margin-bottom: 60px; }
     app-landing .landing-container .reviews .row {
       text-align: left; }
   app-landing .landing-container .share {
@@ -3610,6 +3641,7 @@ app-home {
         height: 60px;
         width: 100%; }
   app-home .services {
+    background: #fafafb;
     padding: 50px 0px;
     text-align: center; }
     app-home .services h1 {
@@ -3654,7 +3686,8 @@ app-home {
     position: relative;
     text-align: center;
     padding: 40px 0 90px;
-    color: black; }
+    color: black;
+    background: #fafafb; }
     app-home .how-work img {
       margin: 0 0 30px;
       width: 30%; }
@@ -3670,7 +3703,7 @@ app-home {
       font-weight: 300;
       max-width: 400px; }
   app-home .market {
-    background: #f1f1f2;
+    background: white;
     color: #646464; }
     app-home .market .background {
       background: white;
@@ -3690,7 +3723,7 @@ app-home {
       font-size: 40px;
       font-weight: 700; }
     app-home .market p {
-      font-size: 26px !important;
+      font-size: 20px !important;
       line-height: 30px;
       text-align: justify; }
   app-home .professional {
@@ -3710,7 +3743,7 @@ app-home {
       margin: 0 0 40px;
       font-weight: 700; }
     app-home .professional p {
-      font-size: 26px !important;
+      font-size: 20px !important;
       line-height: 30px;
       text-align: justify; }
   app-home .recruiting {
@@ -4337,18 +4370,16 @@ app-order .sidebar .order-content .price-block {
     color: rgba(255, 255, 255, 0.7);
     font-weight: 300;
     margin-top: 10px; }
-  app-order .sidebar .order-content .price-block .total {
-    margin: 40px 0 0; }
-    app-order .sidebar .order-content .price-block .total span {
-      font-size: 12px;
-      color: rgba(255, 255, 255, 0.7);
-      margin-bottom: 10px; }
-    app-order .sidebar .order-content .price-block .total h1 {
-      color: #FFC845;
-      font-weight: 500; }
-    app-order .sidebar .order-content .price-block .total h2 {
-      font-weight: 300;
-      text-decoration: line-through; }
+  app-order .sidebar .order-content .price-block .total span {
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 10px; }
+  app-order .sidebar .order-content .price-block .total h1 {
+    color: #FFC845;
+    font-weight: 500; }
+  app-order .sidebar .order-content .price-block .total h2 {
+    font-weight: 300;
+    text-decoration: line-through; }
   app-order .sidebar .order-content .price-block .upfront {
     margin: 40px 0 0; }
   app-order .sidebar .order-content .price-block .timing {
@@ -4448,7 +4479,7 @@ app-order .sidebar .order-content .links {
   display: block;
   float: left;
   width: 100%;
-  padding: 15px 20px 20px; }
+  padding: 40px 20px 30px; }
 
 .order-content .price-block span {
   display: block;

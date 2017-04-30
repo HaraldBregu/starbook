@@ -8,6 +8,7 @@ $font-name: Roboto, sans-serif;
 html, body {
   position: relative;
   font-family: $font-name;
+  overflow-x: hidden;
 }
 h1 {
   font-size: 36px;

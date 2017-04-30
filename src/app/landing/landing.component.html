@@ -6,7 +6,7 @@
           <div class="col-md-4 service-container">
             <div class="service" (click)="selectService(service)" [ngStyle]="{'background-image': 'url(' + service.image + ')'}">
               <div class="overlay">
-                {{service.title}}
+                <h1><strong>{{service.title}}</strong></h1>
               </div>
             </div>
           </div>
@@ -27,10 +27,16 @@
         </div>
       </div>
     </div>
+    <div class="slogan">
+      <div class="container">
+        <div class="title">
+          <h1>{{data.texts[3]}}</h1>
+        </div>
+      </div>
+    </div>
     <div class="container advantages">
       <div class="title">
-        <h2>{{data.texts[3]}}</h2>
-        <h2>{{data.texts[4]}}</h2>
+        <h1>{{data.texts[4]}}</h1>
       </div>
       <div class="row">
         <div *ngFor="let bullet of data.bullets">
@@ -38,6 +44,11 @@
             <h3><i class="fa {{bullet['icon_name']}}" aria-hidden="true"></i> {{bullet['title']}}</h3>
             <p>{{bullet['description']}}</p>
           </div>
+        </div>
+      </div>
+      <div class="actions">
+        <div class="form-group">
+          <button class="btn btn-yellow-blue" (click)="showService()">Prenota adesso</button>
         </div>
       </div>
     </div>
