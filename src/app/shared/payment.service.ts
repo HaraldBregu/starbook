@@ -10,16 +10,35 @@ export interface stripeResponse {
 
 @Injectable()
 export class PaymentService {
-  private api = 'https://api.starbook.co/v0.9.1/';
+  private protocol = "https"
+  private hostname = "api.starbook.co"
+  private api_version = "v0.9.1"
+
+  private api = ""; //'https://api.starbook.co/v0.9.1/';
   // private api = 'http://localhost/v0.9.1/';
+
   private auth;
 
   constructor(private http: Http) {
     if (isBrowser) {
-      console.log('hostname: ' + document.location.hostname);
-      console.log('protocol: ' + document.location.protocol);
-      console.log('port: ' + document.location.port);
+      if (document.location.hostname === "www.starbook.co") {
+        this.api_version = "v0.9.1"
+      } else {
+        this.api_version = "t0.9.1"
+      }
+
+      // https:
+      // console.log('protocol: ' + document.location.protocol);
+
+      // glacial-shore-66987.herokuapp.com
+      // www.starbook.co
+      // console.log('hostname: ' + document.location.hostname);
+
+      //
+      // console.log('port: ' + document.location.port);
     }
+
+    this.api = this.protocol + "://" + this.hostname + "/" + this.api_version + "/";
   }
 
   private _makeHeaders() {
