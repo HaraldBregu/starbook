@@ -14,7 +14,13 @@ export class PaymentService {
   // private api = 'http://localhost/v0.9.1/';
   private auth;
 
-  constructor(private http: Http) { }
+  constructor(private http: Http) {
+    if (isBrowser) {
+      console.log('hostname: ' + document.location.hostname);
+      console.log('protocol: ' + document.location.protocol);
+      console.log('port: ' + document.location.port);
+    }
+  }
 
   private _makeHeaders() {
     let headers;

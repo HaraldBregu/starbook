@@ -43,21 +43,11 @@ export class LandingComponent implements OnInit {
       "https://s3-eu-west-1.amazonaws.com/starbook-s3/plumbing/idraulica-attrezzi.png"
     ],
     texts:[
-      "Hai bisogno di un professionista? Ti aiutiamo noi!",
-      "Tutti sappiamo che trovare il professionista giusto nel momento giusto non è mai cosi semplice.",
-      "Ora ci pensiamo noi al posto tuo!",
-      "Starbook è il miglior sistema per trovare il tuo professionista nel modo piu semplice, veloce e sicuro.",
-      "Ecco perché devi scegliere Starbook",
-      "Cosa dicono i clienti",
-      // "Starbook è la piattaforma ideale per trovare il professionista piu adatto alle tue esigenze.",
-      // "Perché i clienti parlano bene",
-      // "Il miglior professionista della tua città",
-      // "Richiedi gratis preventivi per idraulico a Busto Arsizio",
-      // "La miglior piattaforma web per prenotare il tuo idraulico di fiducia",
-      // "Te lo diamo noi. Il migliore è il più affidabile nella tua zona quando vuoi tu. Basta che decidi",
-      // "Perché su di noi dicono molto",
-      // "Perché di noi parlano bene",
-      // "Perchè le recensioni parlano da solo"
+      "Hai bisogno di un idraulico? Prenotalo!",
+      "Sappiamo bene che trovare l'idraulico giusto al momento giusto non è mai semplice. D'ora in poi lo facciamo noi al tuo posto!",
+      "La migliore piattaforma per trovare il tuo idraulico in modo semplice, veloce e sicuro.",
+      "Tre ottimi motivi per prenotare l'idraulico su Starbook.",
+      "Cosa dicono i clienti"
     ],
     bullets:[
       {
@@ -157,7 +147,7 @@ export class LandingComponent implements OnInit {
           ];
           this.data.texts = [
             "Hai bisogno di un idraulico? Prenotalo!",
-            "Sappiamo bene che trovare l'idraulico giusto nel momento giusto non è mai semplice. D'ora in poi lo facciamo noi al tuo posto!",
+            "Sappiamo bene che trovare l'idraulico giusto al momento giusto non è mai semplice. D'ora in poi lo facciamo noi al tuo posto!",
             "La migliore piattaforma per trovare il tuo idraulico in modo semplice, veloce e sicuro.",
             "Tre ottimi motivi per prenotare l'idraulico su Starbook.",
             "Cosa dicono i clienti"
