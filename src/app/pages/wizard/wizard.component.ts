@@ -451,6 +451,8 @@ export class WizardComponent implements OnInit {
       this.router.navigate(['order/preview']);
       this.confirmOrder();
       }).catch((error) => {
+        this.analyticsService.sendException(error)
+
         this.login_state.email_error = null;
         this.login_state.password_error = null;
         this.login_state.loading = false;
@@ -541,6 +543,8 @@ export class WizardComponent implements OnInit {
       this.router.navigate(['order/preview']);
       this.confirmOrder();
     }).catch((error) => {
+      this.analyticsService.sendException(error)
+
       this.signup_state.loading = false;
       this.signup_state.button_title = "Registrati";
       switch (error) {
@@ -591,6 +595,7 @@ export class WizardComponent implements OnInit {
         this.facebook_state.button_title = "Continua con Facebook";
         this.facebook_state.error_message = null;
       }).catch((error) => {
+        this.analyticsService.sendException(error)
         this.facebook_state.loading = false;
         this.facebook_state.button_title = "Continua con Facebook";
         this.facebook_state.error_message = "Errore di accesso con Facebook!";
@@ -642,6 +647,8 @@ export class WizardComponent implements OnInit {
       this.router.navigate(['order/preview']);
       this.confirmOrder();
     }).catch((error) => {
+      this.analyticsService.sendException(error)
+
       this.card_state.loading = false;
       this.card_state.button_title = "Continua";
       this.card_state.message_error = null;
@@ -650,13 +657,8 @@ export class WizardComponent implements OnInit {
       this.card_state.cvc_error = null;
       if (error === 400) {
         this.card_state.message_error = "Inserisci correttamente i dati della carta";
-        // this.card_state.message_error = "Errore nel inserimento del codice della sicurezza";
-        // this.card_state.cvc_error = "Inserisci un codice corretto";
       } else if (error === 402) {
         this.card_state.message_error = "Inserisci correttamente i dati della carta";
-        // this.card_state.message_error = "Errore nel inserimento del numero della carta o della data di scadenza";
-        // this.card_state.number_error = "Inserisci un numero corretto";
-        // this.card_state.exp_date_error = "Inserisci una data corretta";
       } else {
         this.card_state.message_error = "Errore sconosciuto. Controlla i campi inseriti e riprova.";
       }
@@ -748,6 +750,7 @@ export class WizardComponent implements OnInit {
       this.profile_info_state.button_title = "Salva";
       this.router.navigate(['services', this.Order.title.replace(/\s+/g, '-')]);
     }).catch((error) => {
+      this.analyticsService.sendException(error)
       this.profile_info_state.loading = false;
       this.profile_info_state.phone_number_error = null;
       this.profile_info_state.button_title = "Salva";

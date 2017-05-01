@@ -36,4 +36,8 @@ export class AnalyticsService {
       ga('send', 'pageview', url);
     }
   }
+
+  sendException(error) {
+    ga('send', 'exception', {'exDescription': error,'exFatal': false});
+  }
 }
