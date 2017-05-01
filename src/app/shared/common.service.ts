@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
+import { Http, URLSearchParams, Headers } from '@angular/http';
+import { isBrowser } from 'angular2-universal';
 
 import 'rxjs/add/operator/toPromise';
 
@@ -11,6 +12,8 @@ export class CommonService {
   private service;
   private referral_id;
   private api: string;
+  private auth;
+
   constructor(private http: Http/*, private navigationService: NavigationService*/) {
     this.api = 'https://api.starbook.co/v0.9.1/';
     // this.api = 'http://localhost/v0.9.1/';
@@ -92,6 +95,23 @@ export class CommonService {
           .catch(this.handleError);
   }
 
+  private _makeHeaders() {
+    let headers;
+    if(isBrowser) {
+      if (localStorage.getItem('auth') !== null) {
+        this.auth = JSON.parse(localStorage.getItem('auth'));
+        headers = new Headers({'Token': this.auth.token});
+      } else {
+        this.auth = false;
+        headers = new Headers({'Token': ''});
+      }
+    } else {
+      this.auth = false;
+      headers = new Headers({'Token': ''});
+    }
+
+    return {headers: headers};
+  }
   private handleError(error: any): Promise<any> {
     // this.navigationService.updateLoadingStatus(false);
     return Promise.reject(error.message || error);

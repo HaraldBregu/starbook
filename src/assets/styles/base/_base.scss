@@ -9,6 +9,9 @@ html, body {
   position: relative;
   font-family: $font-name;
   overflow-x: hidden;
+  // width: 100%;
+  // height: 100%;
+  background: #fafafb;
 }
 h1 {
   font-size: 36px;
@@ -265,14 +268,13 @@ p {
   margin-bottom: 4px;
 }
 .form-control {
-  // height: 40px;
   color: black;
   font-size: 16px;
   letter-spacing: 0.1px;
   padding: 20px;
   border-radius: 1px !important;
   background-color: #FFFFFF;
-  border: 1px solid rgba(220,224,224,0.7);
+  border: 1px solid #cbd3d5;
 }
 
 // .input-group .form-control .ui-autocomplete-input {
@@ -321,7 +323,7 @@ textarea.form-control {
 }
 .form-group .ui-inputtext {
   height: 50px !important;
-  border: 1px solid #DCDCDC !important;
+  border: 1px solid #cbd3d5 !important;
 }
 .form-group label {
   color: #212121 !important;

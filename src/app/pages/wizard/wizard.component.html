@@ -1,8 +1,11 @@
-<div class="wizard">
+<div class="wizard" (window:resize)="onResize()">
   <ul class="breadcrumb noselect" *ngIf="step !== ''">
-    <li *ngFor="let items of wizardDataItems"
+    <li *ngFor="let items of wizardDataItems; let i = index;"
         [ngStyle]="{'width': 100/wizardDataItems.length + '%'}"
-        [ngClass]="{'active': (step === 'summary' && items === 'Sommario') || (step === 'address' && items === 'Indirizzo') || (step === 'date' && items === 'Data') || ((step === 'preview' || step === 'login' || step === 'signup' || step === 'card') && (items === 'Anteprima' || items === 'Login' || items === 'Signup' || items === 'Carta')) || ((step === 'end' || step === 'info') && (items === 'Fine' || items === 'Info'))}"><a>{{items}}</a></li>
+        [ngClass]="{'active': (step === 'summary' && items === 'Sommario') || (step === 'address' && items === 'Indirizzo') || (step === 'date' && items === 'Data') || ((step === 'preview' || step === 'login' || step === 'signup' || step === 'card') && (items === 'Anteprima' || items === 'Login' || items === 'Signup' || items === 'Carta')) || ((step === 'end' || step === 'info') && (items === 'Fine' || items === 'Info'))}">
+        <a><div *ngIf="screenWidth<=425">{{i+1}}</div><div *ngIf="screenWidth>425">{{items}}</div></a>
+        <!-- <a>{{items}}</a> -->
+      </li>
   </ul>
   <div class="wizard-container" *ngIf="step === 'summary'">
     <div class="content-container">
@@ -14,33 +17,39 @@
           </div>
         </div>
       </div>
-      <div class="line"></div>
-      <div class="timing">
-        <div class="item">DURATA DEL LAVORO (Approssimativo)</div>
-        <div class="amount">{{Order.timing.days}}</div>
+      <div class="line" *ngIf="Order.timing.days > 1"></div>
+      <div class="timing" *ngIf="Order.timing.days > 1">
+        <div class="item">Durata del lavoro</div>
+        <div class="amount">{{daysString(Order.timing.days)}}</div>
       </div>
       <div class="line"></div>
       <div class="payment">
         <div class="initial" *ngIf="Order.price.initial>Order.price.final">
-          <div class="item">PREZZO INIZIALE</div>
+          <div class="item">Totale iniziale</div>
           <div class="amount">{{Order.price.initial/100}}€</div>
         </div>
         <div class="total">
-          <div class="item">PREZZO FINALE</div>
+          <div class="item">Totale</div>
           <div class="amount">{{Order.price.final/100}}€</div>
         </div>
-        <div class="upfront">
-          <div class="item">ACCONTO</div>
+        <div class="upfront" *ngIf="Order.price.final!==Order.payment.upfront">
+          <div class="item">Acconto</div>
           <div class="amount">{{Order.payment.upfront/100}}€</div>
         </div>
       </div>
-      <div class="actions">
+      <form>
         <div class="form-group">
-          <button type="button" id="next" class="btn btn-warning" (click)="confirmPreview()">Continua</button>
+          <textarea class="form-control" placeholder="Inserisci dei dati aggiuntivi alla tua richiesta" rows="5" id="descriptionInput" [(ngModel)]="Order.description" [ngModelOptions]="{standalone: true}"></textarea>
         </div>
-      </div>
-      <!-- <div class="line"></div> -->
-
+        <div class="actions">
+          <div class="form-group">
+            <button type="button" id="next" class="btn btn-warning" (click)="confirmPreview()">Continua</button>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="container footer-details">
+      <p><i class="fa fa-info-circle" aria-hidden="true"></i> Inserisci una descrizione più dettagliata della richiesta. Cosi ci assicuriamo che il tecnico avra piu informazioni prima del intervento.</p>
     </div>
   </div>
   <div class="wizard-container" *ngIf="step === 'address'">
@@ -65,6 +74,9 @@
           </div>
         </div>
       </div>
+    </div>
+    <div class="container footer-details">
+      <p><i class="fa fa-map-marker" aria-hidden="true"></i> Inserisci l'indirizzo esatto della sua abitazione o locale dove vuole effetuare l'intervento.</p>
     </div>
   </div>
   <div class="wizard-container" *ngIf="step === 'date'">
@@ -92,6 +104,9 @@
         </div>
       </div>
     </div>
+    <div class="container footer-details">
+      <p><i class="fa fa-calendar" aria-hidden="true"></i> Inserisci una data ideale per quando vuoi effetuare l'intervento del tecnico.</p>
+    </div>
   </div>
   <div class="wizard-container" *ngIf="step === 'preview'">
     <div class="content-container noselect">
@@ -102,24 +117,25 @@
             <p>{{item.title}}</p>
           </div>
         </div>
+        <p>{{Order.description}}</p>
       </div>
-      <div class="line"></div>
-      <div class="timing">
-        <div class="item">DURATA DEL LAVORO (Approssimativo)</div>
-        <div class="amount">{{Order.timing.days}}</div>
+      <div class="line" *ngIf="Order.timing.days > 1"></div>
+      <div class="timing" *ngIf="Order.timing.days > 1">
+        <div class="item">Durata del lavoro</div>
+        <div class="amount">{{daysString(Order.timing.days)}}</div>
       </div>
       <div class="line"></div>
       <div class="payment">
         <div class="initial" *ngIf="Order.price.initial>Order.price.final">
-          <div class="item">PREZZO INIZIALE</div>
+          <div class="item">Totale iniziale</div>
           <div class="amount">{{Order.price.initial/100}}€</div>
         </div>
         <div class="total">
-          <div class="item">PREZZO FINALE</div>
+          <div class="item">Totale</div>
           <div class="amount">{{Order.price.final/100}}€</div>
         </div>
-        <div class="upfront">
-          <div class="item">ACCONTO </div>
+        <div class="upfront" *ngIf="Order.price.final!==Order.payment.upfront">
+          <div class="item">Acconto</div>
           <div class="amount">{{Order.payment.upfront/100}}€</div>
         </div>
       </div>
@@ -146,6 +162,9 @@
         </div>
       </div>
     </div>
+    <div class="container footer-details">
+      <p>Controlla l'ordine richiesto e tutti i dati inseriti, l'indirizzo, la data, la descrizione della richiesta prima di continuare.</p>
+    </div>
   </div>
   <div class="wizard-container" *ngIf="step === 'end'">
     <div class="content-container">
@@ -162,6 +181,9 @@
           <button type="button" id="next" class="btn btn-warning" (click)="confirmEnd()">Fatto</button>
         </div>
       </div>
+    </div>
+    <div class="container footer-details">
+      <p>Fatto! Nei prossimi minuti verrai contattato da noi per ulteriori dettagli e per confermare l'ordine. Per sucurezza controlla che sia inserito il numero del telefono nel tuo account.</p>
     </div>
   </div>
   <div class="wizard-container" *ngIf="step === 'login'">
@@ -204,6 +226,9 @@
       <div class="footer noselect">
         <h6><small>Continuando dichiari di aver letto e accetti le <a routerlink="legal" ng-reflect-router-link="legal" ng-reflect-href="legal" href="/legal" target="_blank">condizioni generali</a> e <a routerlink="legal" ng-reflect-router-link="legal" ng-reflect-href="legal" href="/legal" target="_blank">l’informativa sulla privacy</a></small></h6>
       </div>
+    </div>
+    <div class="container footer-details">
+      <p>Se hai gia un account su Starbook accedi e poi continua con l'ordine. In alternativa puoi usare anche Facebook per continuare.</p>
     </div>
   </div>
   <div class="wizard-container" *ngIf="step === 'signup'">
@@ -273,12 +298,15 @@
         <h6><small>Continuando dichiari di aver letto e accetti le <a routerlink="legal" ng-reflect-router-link="legal" ng-reflect-href="legal" href="/legal" target="_blank">condizioni generali</a> e <a routerlink="legal" ng-reflect-router-link="legal" ng-reflect-href="legal" href="/legal" target="_blank">l’informativa sulla privacy</a></small></h6>
       </div>
     </div>
+    <div class="container footer-details">
+      <p>Crea un account su Starbook inserendo i dati più importanti e poi proseguì inviando l'ordine. In alternativa puoi usare anche Facebook per continuare.</p>
+    </div>
   </div>
   <div class="wizard-container" *ngIf="step === 'card'">
     <div class="content-container">
       <div class="header">
         <h1>Inserisci un metodo di pagamento</h1>
-        <h6>Per continuare con l'ordine inserisci</h6>
+        <h6>Per continuare con l'ordine inserisci un metodo di pagamento</h6>
       </div>
       <form>
         <div class="card-form">
@@ -363,6 +391,9 @@
         </div>
       </form>
     </div>
+    <div class="container footer-details">
+      <p><i class="fa fa-credit-card" aria-hidden="true"></i> Inserisci un metodo di pagamento per inviare l'ordine. In questo modo assicuriamo che il pagamento del professionista sia garantio. Puo richiedere il rimborso delle spese in qualsiasi momento contatandoci.</p>
+    </div>
   </div>
   <div class="wizard-container" *ngIf="step === 'info'">
     <div class="content-container">
@@ -383,291 +414,44 @@
         </div>
       </div>
     </div>
+    <div class="container footer-details">
+      <p>Inserisci il tuo numero di telefono per essere contattato da noi per ulteriori dettagli sul ordine effetuato.</p>
+    </div>
   </div>
 
-
-  <!--
-
-  <div class="wizard-container" *ngIf="wizardData.type !== '' && step === 'confirmation'">
-    <div class="image-block" [ngStyle]="{'background-image': 'url(' + wizardData.order.service_image + ')'}"></div>
-    <div class="content-container">
-      <div class="title">{{ wizardData.order.service }}</div>
-      <div class="items">
-        <div class="element" *ngFor="let item of wizardData.order.services">
-          <div *ngIf="item.price_type === 'BASE_AMOUNT_PER_INPUT'">
-            <p>{{ item.option.name }} {{item.option.symbol}}</p>
+  <div class="container-fluid wizard-footer">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-15 col-sm-15">
+          <div class="box">
+            <h4><i class="fa fa-info-circle" aria-hidden="true"></i> Informazioni</h4>
+            <h6>Le informazioni sono importanti per poter inviare un ordine più dettagliata.</h6>
           </div>
-          <div *ngIf="item.price_type !== 'BASE_AMOUNT_PER_INPUT'">
-            <p>{{ item.option.name }}</p>
+        </div>
+        <div class="col-md-15 col-sm-15">
+          <div class="box">
+            <h4><i class="fa fa-map-marker" aria-hidden="true"></i> Indirizzo</h4>
+            <h6>Inserisci l'indirizzo della sua abitazione o locale dove vuoi svolgere il lavoro.</h6>
+          </div>
+        </div>
+        <div class="col-md-15 col-sm-15">
+          <div class="box">
+            <h4><i class="fa fa-calendar" aria-hidden="true"></i> Data</h4>
+            <h6>Decidi la data del lavoro. Inserisci una data ideale per te.</h6>
+          </div>
+        </div>
+        <div class="col-md-15 col-sm-15">
+          <div class="box">
+            <h4><i class="fa fa-credit-card" aria-hidden="true"></i> Pagamento</h4>
+            <h6>Inserisci un metodo di pagamento per poter pagare il lavoro comodamente online.</h6>
+          </div>
+        </div>
+        <div class="col-md-15 col-sm-15">
+          <div class="box">
+            <h4><i class="fa fa-calendar-check-o" aria-hidden="true"></i> Fine</h4>
+            <h6>Dopo aver inviato l'ordine noi faremo il resto. Invieremo il tecnico nella data prestabilita.</h6>
           </div>
         </div>
       </div>
-      <div class="summary">
-        <div class="item">
-          Totale: <span class="big">{{(wizardData.order.totalPrice * wizardData.multiplier) / 100 }}€</span>
-        </div>
-        <div class="item-small">
-          Metodo di pagamento: <span>{{ wizardData.type }}</span>
-        </div>
-      </div>
-      <form class="wizard-form" #wizardForm="ngForm">
-        <div class="form-group" [ngClass]="{'isError': isDataError}">
-          <label>Inserisci la data</label>
-          <p-calendar name="data" [(ngModel)]="Order.date" id="data" class="date" autocomplete="off" dateFormat="dd MM yy" [locale]="it" [minDate]="minDate" [maxDate]="maxDate" (onSelect)="selectDate()" placeholder="Inserisci la data">
-          </p-calendar>
-        </div>
-        <div class="form-group" [ngClass]="{'isError': isAddressDirty && !isAddressFull}">
-          <label>Inserisci l’indirizzo</label>
-          <p-autoComplete id="luogo" class="form-control" [ngClass]="{'isError':isAddressFull === false && isAddressDirty === true}" [(ngModel)]="Order.delivery_address" [ngModelOptions]="{standalone: true}" [suggestions]="addresses" field="formattedAddress" (completeMethod)="getAddresses($event)" (onSelect)="selectAddress($event)" placeholder="Via Luigi Settembrini, 4, Milano">
-          </p-autoComplete>
-          <div class="error-message" *ngIf="errorMessage !== null">{{ errorMessage }}</div>
-        </div>
-        <div class="popup-spinner" *ngIf="createOrderDisabled">
-          <svg width='40px' height='40px' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid" class="uil-ring">
-            <rect x="0" y="0" width="100" height="100" fill="none" class="bk"></rect>
-            <circle cx="50" cy="50" r="45" stroke-dasharray="169.64600329384882 113.09733552923257" stroke="#3B568D" fill="none" stroke-width="10">
-              <animateTransform attributeName="transform" type="rotate" values="0 50 50;180 50 50;360 50 50;" keyTimes="0;0.5;1" dur="1s" repeatCount="indefinite" begin="0s"></animateTransform>
-            </circle>
-          </svg>
-        </div>
-        <div class="form-group">
-          <button type="button" class="btn btn-warning" (click)="createOrder()" [disabled]="createOrderDisabled">Continua</button>
-        </div>
-      </form>
     </div>
   </div>
-  <div class="wizard-container" *ngIf="wizardData.type !== '' && step === 'registration'">
-    <div class="content-container registration">
-      <div class="title action-title">Crea un account</div>
-      <form class="wizard-form" #wizardRegistrationForm="ngForm">
-        <div class="form-group" *ngIf="formError !== false">
-          <div class="error-message">
-            <span>{{ formError.title }}</span> {{ formError.message }}
-          </div>
-        </div>
-        <div class="form-group">
-          <div class="part-group first" [ngClass]="{'isError': registrationError.firstname}">
-            <label>Nome</label>
-            <input name="firstname" class="form-control" [(ngModel)]="registrationData.firstname" (keyup)="checkNonEmpty('registrationName', registrationData.firstname)" (change)="checkNonEmpty('registrationName', registrationData.firstname)">
-          </div>
-          <div class="part-group last" [ngClass]="{'isError': registrationError.lastname}">
-            <label>Cognome</label>
-            <input name="lastname" class="form-control" [(ngModel)]="registrationData.lastname" (keyup)="checkNonEmpty('registrationName', registrationData.lastname)" (change)="checkNonEmpty('registrationName', registrationData.lastname)">
-          </div>
-        </div>
-        <div class="form-group" [ngClass]="{'isError': registrationError.phone}">
-          <label>Telefono</label>
-          <input name="phone" class="form-control" [(ngModel)]="registrationData.phone" (keyup)="checkNonEmpty('registrationPhone', registrationData.phone)" (change)="checkNonEmpty('registrationPhone', registrationData.phone)">
-        </div>
-        <div class="form-group" [ngClass]="{'isError': registrationError.email}">
-          <label>Email</label>
-          <input name="email" class="form-control" [(ngModel)]="registrationData.email" (keyup)="checkEmail('registration', registrationData.email)" (change)="checkEmail('registration', registrationData.email)">
-        </div>
-        <div class="form-group" [ngClass]="{'isError': registrationError.password}">
-          <label>Password</label>
-          <input type="password" name="password" class="form-control" [(ngModel)]="registrationData.password" (keyup)="checkPassword('registration', registrationData.password, registrationData.confirmPassword)" (change)="checkPassword('registration', registrationData.password, registrationData.confirmPassword)">
-        </div>
-        <div class="form-group" [ngClass]="{'isError': registrationError.confirmPassword}">
-          <label>Di nuovo la password</label>
-          <input type="password" name="confirmPassword" class="form-control" [(ngModel)]="registrationData.confirmPassword" (keyup)="checkPassword('registrationConfirm', registrationData.password, registrationData.confirmPassword)" (change)="checkPassword('registrationConfirm', registrationData.password, registrationData.confirmPassword)">
-        </div>
-        <div class="form-group">
-          <button type="button" class="btn btn-warning" (click)="registration()">Crea account</button>
-          <button type="button" class="btn btn-secondary" (click)="openLogin()">Accedi al tuo account</button>
-        </div>
-        <div class="form-description">
-          <span>o</span>
-        </div>
-        <div class="form-group">
-          <a class="btn btn-primary facebook" (click)="facebookLogin()">
-            <i></i>
-            Continua con Facebook
-          </a>
-        </div>
-        <div class="form-footer">
-          Accedendo dichiari di aver letto e accetti le <a>condizioni generali</a> e <a>l’informativa sulla privacy</a>
-        </div>
-      </form>
-    </div>
-  </div>
-  <div class="wizard-container" *ngIf="wizardData.type !== '' && step === 'login'">
-    <div class="content-container login-step">
-      <div class="title action-title">Accedi</div>
-      <form class="wizard-form" #wizardLoginForm="ngForm">
-        <div class="form-group" *ngIf="formError !== false">
-          <div class="error-message">
-            <span>{{ formError.title }}</span> {{ formError.message }}
-          </div>
-        </div>
-        <div class="form-group" [ngClass]="{'isError': loginError.email}">
-          <label>Email</label>
-          <input name="email" class="form-control" [(ngModel)]="loginData.email" (keyup)="checkEmail('login', loginData.email)" (change)="checkEmail('login', loginData.email)">
-        </div>
-        <div class="form-group" [ngClass]="{'isError': loginError.password}">
-          <label>Password</label>
-          <input type="password" name="password" class="form-control" [(ngModel)]="loginData.password" (keyup)="checkPassword('login', loginData.password)" (change)="checkPassword('login', loginData.password)">
-        </div>
-        <div class="form-group">
-          <button type="button" class="btn btn-warning" (click)="login()">Accedi</button>
-          <button type="button" class="btn btn-secondary" (click)="openRegistration()">Crea un account</button>
-        </div>
-        <div class="form-description">
-          <span>o</span>
-        </div>
-        <div class="form-group">
-          <a class="btn btn-primary facebook" (click)="facebookLogin()">
-            <i></i>
-            Continua con Facebook
-          </a>
-        </div>
-      </form>
-    </div>
-  </div>
-  <div class="wizard-container" *ngIf="wizardData.type !== '' && step === 'confirm-user-info'">
-    <div class="content-container confirm-user-info">
-      <div class="title action-title">Conferma la tua Info</div>
-      <form class="wizard-form" #wizardForm="ngForm">
-        <div class="form-group" *ngIf="formError !== false">
-          <div class="error-message">
-            <span>{{ formError.title }}</span> {{ formError.message }}
-          </div>
-        </div>
-        <div class="form-group" *ngIf="showConfirmPhone" [ngClass]="{'isError': confirmationError.phone}">
-          <label>Telefono</label>
-          <input name="phone" class="form-control" [(ngModel)]="confirmationData.phone" (keyup)="checkNonEmpty('confirmationPhone', confirmationData.phone)" (change)="checkNonEmpty('confirmationPhone', confirmationData.phone)">
-        </div>
-        <div class="form-group">
-          <button type="button" class="btn btn-warning" (click)="confirmUserInfo()">Continua</button>
-        </div>
-      </form>
-    </div>
-  </div>
-  <div class="wizard-container" *ngIf="wizardData.type !== '' && step === 'addcard'">
-    <div class="content-container registration">
-      <div class="title action-title">Metodo di pagamento</div>
-      <form class="wizard-form" #wizardCardForm="ngForm">
-        <div class="form-group" *ngIf="formError !== false">
-          <div class="error-message">
-            <span>{{ formError.title }}</span> {{ formError.message }}
-          </div>
-        </div>
-        <div class="form-group cards-logo">
-          <div class="card-item visa"></div>
-          <div class="card-item mastercard"></div>
-          <div class="card-item amex"></div>
-        </div>
-        <div class="form-group" [ngClass]="{'isError': addCardError.number}">
-          <label>Numero carta</label>
-          <input name="number" class="form-control" [(ngModel)]="addCardData.number" (keyup)="checkCardNumber(addCardData.number)" (change)="checkCardNumber(addCardData.number)">
-        </div>
-        <div class="form-group" [ngClass]="{'isError': registrationError.phone}">
-          <div class="part-group first" [ngClass]="{'isError': addCardError.exp_date}">
-            <label>Scadenza</label>
-            <input class="form-control" type="text" name="exp_date" placeholder="MM/AA" maxlength="5" [(ngModel)]="addCardData.exp_date" (keyup)="checkExpiry(addCardData.exp_date)" (change)="checkExpiry(addCardData.exp_date)">
-          </div>
-          <div class="part-group last" [ngClass]="{'isError': addCardError.cvc}">
-            <label>CVV</label>
-            <input class="form-control" type="text" name="cvc" [(ngModel)]="addCardData.cvc" (keyup)="checkNonEmpty('cardCvv', addCardData.cvc)">
-            <span class="fa fa-question-circle" data-toggle="tooltip" data-placement="right" title="Tooltip on right"></span>
-          </div>
-        </div>
-        <div class="form-group subheader">
-          Informazioni facoltativi
-        </div>
-        <div class="form-group">
-          <label>Nome intestatario</label>
-          <input class="form-control" type="text" name="name" placeholder="Nome Cognome" [(ngModel)]="addCardData.name">
-        </div>
-        <div class="form-group">
-          <div class="part-group first-big">
-            <label>Via</label>
-            <input class="form-control" type="text" name="address_line1" [(ngModel)]="addCardData.address_line1">
-          </div>
-          <div class="part-group last-small">
-            <label>Nr</label>
-            <input class="form-control" type="text" name="address_line2" [(ngModel)]="addCardData.address_line2">
-          </div>
-        </div>
-        <div class="form-group">
-          <div class="part-group first-big">
-            <label>Città</label>
-            <input class="form-control" type="text" name="address_city" [(ngModel)]="addCardData.address_city">
-          </div>
-          <div class="part-group last-small">
-            <label>CAP</label>
-            <input class="form-control" type="text" name="address_zip" [(ngModel)]="addCardData.address_zip">
-          </div>
-        </div>
-        <div class="form-group">
-          <div class="part-group first">
-            <label>Provincia</label>
-            <input class="form-control" type="text" name="address_state" [(ngModel)]="addCardData.address_state">
-          </div>
-          <div class="part-group last">
-            <label>Paese</label>
-            <input class="form-control" type="text" name="address_country" [(ngModel)]="addCardData.address_country">
-          </div>
-        </div>
-
-        <div class="form-group">
-          <button type="button" class="btn btn-warning" (click)="addCard()">Continua</button>
-        </div>
-        <div class="form-footer">
-          Accedendo dichiari di aver letto e accetti le <a>condizioni generali</a> e <a>l’informativa sulla privacy</a>
-        </div>
-      </form>
-    </div>
-  </div>
-  <div class="wizard-container" *ngIf="wizardData.type !== '' && step === 'loan'">
-    <div class="content-container loan">
-      <div class="title action-title">Gli ultimi dettagli</div>
-      <form class="wizard-form" #wizardLoanForm="ngForm">
-        <div class="form-group" *ngIf="formError !== false">
-          <div class="error-message">
-            <span>{{ formError.title }}</span> {{ formError.message }}
-          </div>
-        </div>
-        <div class="form-group" [ngClass]="{'isError': loanError.name}">
-          <label>Nome</label>
-          <input name="name" class="form-control" [(ngModel)]="loanData.name" (keyup)="checkNonEmpty('loanName', loanData.name)" (change)="checkNonEmpty('loanName', loanData.name)">
-        </div>
-        <div class="form-group" [ngClass]="{'isError': loanError.name}">
-          <label>Cognome</label>
-          <input name="name" class="form-control" [(ngModel)]="loanData.name" (keyup)="checkNonEmpty('loanName', loanData.name)" (change)="checkNonEmpty('loanName', loanData.name)">
-        </div>
-        <div class="form-group" [ngClass]="{'isError': loanError.email}">
-          <label>Email</label>
-          <input name="email" class="form-control" [(ngModel)]="loanData.email" (keyup)="checkEmail('loanEmail', loanData.email)" (change)="checkEmail('loanEmail', loanData.email)">
-        </div>
-        <div class="form-group" [ngClass]="{'isError': loanError.phone}">
-          <label>Telefono</label>
-          <input name="phone" class="form-control" [(ngModel)]="loanData.phone" (keyup)="checkNonEmpty('loanPhone', loanData.phone)" (change)="checkNonEmpty('loanPhone', loanData.phone)">
-        </div>
-        <div class="form-group" [ngClass]="{'isError': loanError.tax}">
-          <label>Partita iva</label>
-          <input name="tax" class="form-control" [(ngModel)]="loanData.tax" (keyup)="checkNonEmpty('loanTax', loanData.tax)" (change)="checkNonEmpty('loanTax', loanData.tax)">
-        </div>
-        <div class="form-group" [ngClass]="{'isError': loanError.codice}">
-          <label>Codice fiscale</label>
-          <input name="codice" class="form-control" [(ngModel)]="loanData.codice" (keyup)="checkNonEmpty('loanCodice', loanData.codice)" (change)="checkNonEmpty('loanCodice', loanData.codice)">
-        </div>
-        <div class="form-group">
-          <button type="button" class="btn btn-warning" (click)="createLoan()">Continua</button>
-        </div>
-      </form>
-    </div>
-  </div>
-  <div class="wizard-container" *ngIf="wizardData.type !== '' && step === 'success'">
-    <div class="content-container">
-      <div class="title">Ordine effettuato con successo</div>
-      <form class="wizard-form" #wizardForm="ngForm">
-        <div class="success-icon"><span></span></div>
-        <div class="form-group">
-          <button type="button" class="btn btn-warning" (click)="success()">Fatto</button>
-        </div>
-      </form>
-    </div>
-  </div>
-</div>
-
--->

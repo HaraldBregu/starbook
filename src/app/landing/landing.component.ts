@@ -5,6 +5,7 @@ import { NavigationService } from '../shared/navigation.service';
 import { AnalyticsService } from '../shared/analytics.service';
 import { isBrowser } from 'angular2-universal';
 import { CommonService } from '../shared/common.service';
+import { OrderService } from '../order/order.service';
 
 @Component({
   selector: 'app-landing',
@@ -118,6 +119,7 @@ export class LandingComponent implements OnInit {
     url: "",
     image_url: ""
   };
+  public order = {};
 
   constructor(
     private router: Router,
@@ -125,7 +127,8 @@ export class LandingComponent implements OnInit {
     private navigationService: NavigationService,
     private analyticsService: AnalyticsService,
     private seoService: SeoService,
-    private commonService: CommonService) {
+    private commonService: CommonService,
+    private orderService: OrderService) {
       this.emailPattern = /^[a-z0-9!#$%&'*+\/=?^_`{|}~.-]+@[a-z0-9]([a-z0-9-]*[a-z0-9])?(\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)*$/i;
       this.numPattern = /^\d+$/;
       this.navigationService.updateMessage('Il professionista sempre con te');
@@ -143,16 +146,21 @@ export class LandingComponent implements OnInit {
         this.page = params['page'];
         if (this.page==='idraulico') {
           this.navigationService.updateMessage('Ti serve un idraulico?');
+
+          this.order['service_id'] = "5904d0c06c8dd682c65e99b6"
+          this.order['title'] = this.page.charAt(0).toUpperCase() + this.page.slice(1);
+          this.order['details'] = [{title:"Idraulico", type:"service"},{title:"Intervento idraulico uscita", type:"detail"}]
+          this.order['description'] = ""
+
           this.data.pictures = [
             "https://s3-eu-west-1.amazonaws.com/starbook-s3/plumbing/idraulica-tutti-attrezzi.png"
           ];
           this.data.texts = [
-            "Hai bisogno di un idraulico? Ti aiutiamo noi!",
-            "Tutti sappiamo che trovare l'idraulico giusto nel momento giusto non è mai cosi semplice.",
-            "Pensiamo noi al posto tuo!",
-            "Starbook è il miglior sistema per trovare il tuo idraulico nel modo piu semplice, veloce e sicuro.",
-            "Perché l'idraulico di Starbook?",
-            "Cosa dicono i clienti",
+            "Hai bisogno di un idraulico? Prenotalo!",
+            "Sappiamo bene che trovare l'idraulico giusto nel momento giusto non è mai semplice. D'ora in poi lo faciamo noi al tuo posto!",
+            "La miglior piattaforma per trovare il tuo idraulico in modo semplice, veloce e sicuro.",
+            "Tre ottimi motivi per prenotare l'idraulico su Starbook.",
+            "Cosa dicono i clienti"
           ];
           this.data.bullets = [
             {
@@ -195,32 +203,28 @@ export class LandingComponent implements OnInit {
           ];
 
           this.seoObject.title = this.data.texts[0];
-          this.seoObject.description = this.data.texts[1] + " " + this.data.texts[2];
+          this.seoObject.description = this.data.texts[1];
           this.seoObject.url = 'https://www.starbook.co' + this.router.url;
           this.seoObject.image_url = "https://s3-eu-west-1.amazonaws.com/starbook-s3/plumbing/idraulico-normal.png";
-        } else if (this.page==='falegname') {
-          this.navigationService.updateMessage('Falegname');
-
-        } else if (this.page==='muratore') {
-          this.navigationService.updateMessage('Muratore');
-
         } else {
-          // this.router.navigate(['']);
+          this.router.navigate(['landing/idraulico']);
         }
 
         this.seoService.setTitle(this.seoObject.title);
-        this.seoService.setOgElem('og:title', this.seoObject.title);
         this.seoService.setMetaElem('description', this.seoObject.description);
-        this.seoService.setOgElem('og:description', this.seoObject.description);
-        this.seoService.setOgElem('og:url', this.seoObject.url);
-        this.seoService.setOgElem('og:image', this.seoObject.image_url);
-        this.seoService.setOgElem('og:image:secure_url', this.seoObject.image_url);
+
         this.seoService.setOgElem('twitter:card', "summary_large_image");
         this.seoService.setOgElem('twitter:title', this.seoObject.title);
         this.seoService.setOgElem('twitter:site', "@starbookco");
         this.seoService.setOgElem('twitter:creator', "@HaraldBregu");
         this.seoService.setOgElem('twitter:description', this.seoObject.description);
         this.seoService.setOgElem('twitter:image', this.seoObject.image_url);
+
+        this.seoService.setOgElem('og:title', this.seoObject.title);
+        this.seoService.setOgElem('og:description', this.seoObject.description);
+        this.seoService.setOgElem('og:url', this.seoObject.url);
+        this.seoService.setOgElem('og:image', this.seoObject.image_url);
+        this.seoService.setOgElem('og:image:secure_url', this.seoObject.image_url);
       })
   }
 
@@ -231,14 +235,27 @@ export class LandingComponent implements OnInit {
   selectService(service) {
     this.router.navigate(['landing/' + service.title.toLowerCase()]);
   }
-
-  showService() {
-    // this.analyticsService.sendEvent({category:'Order', action: 'Wizard', label: "Start"});
-    this.router.navigate(['services', this.page.replace(/\s+/g, '-')]);
+  checkoutService() {
+    this.analyticsService.sendEvent({category:'Service', action: 'Order now', label: this.router.url});
+    this.order['referral_id'] = null
+    this.order['price'] = {
+      final: 4000,
+      initial: 4000,
+      currency: 'eur'
+    }
+    this.order['payment'] = {
+      upfront: 4000
+    }
+    this.order['timing'] = {
+      days: 0
+    }
+    this.orderService.updateWizardData(this.order);
+    this.router.navigate(['order/summary']);
     return false;
   }
   sendRequestForNewService() {
-    // this.analyticsService.sendEvent({category:'Order', action: 'Wizard', label: "Start"});
+    this.analyticsService.sendEvent({category:'Request service', action: 'Send', label: this.router.url});
+
     if (this.request_state.loading) {return;}
     if (!this.Request.firstname || !this.Request.lastname || !this.Request.phone || !this.Request.email || !this.Request.description) {
       this.request_state.message_success = null;
@@ -273,7 +290,7 @@ export class LandingComponent implements OnInit {
     });
   }
   sendInvitations() {
-    // this.analyticsService.sendEvent({category:'Order', action: 'Wizard', label: "Start"});
+    this.analyticsService.sendEvent({category:'Share service', action: 'Share', label: this.router.url});
     var phone_numbers = [];
     var email_addresses = [];
     var strings = this.contacts.split(',');

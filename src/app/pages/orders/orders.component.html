@@ -1,341 +1,139 @@
-<div class="top-bar-container noselect">
-  <ul class="top-bar">
-    <li *ngFor="let tab of tabs" [ngClass]="{'active':tab.route === page}" (click)="renderPage(tab.route)"><i class="fa {{tab.icon}}" aria-hidden="true"></i>  {{tab.name}}</li>
-  </ul>
-</div>
-<div class="orders-container">
-  <div class="order-container" *ngIf="page==='requests' && pageData && pageData.length===0">
-    <p>Non ci lavorazioni prenotati. Per prenotare un lavoro vai alla pagina home e trova la lavorazione che ti serve.</p>
+<div class="orders-page">
+  <div class="top-bar-container noselect">
+    <ul class="top-bar">
+      <li *ngFor="let tab of tabs" [ngClass]="{'active':tab.route === page}" (click)="renderPage(tab.route)"><i class="fa {{tab.icon}}" aria-hidden="true"></i>  {{tab.name}}</li>
+    </ul>
   </div>
-  <div *ngFor="let order of pageData">
-    <div class="order-container" *ngIf="page==='requests'">
-      <div class="header">
-        <div *ngFor="let detail of order.details">
-          <div *ngIf="detail.type==='service'">
-            <h3>{{detail.title}}</h3>
-            <!-- <div class="line"></div> -->
-          </div>
-          <div *ngIf="detail.type==='detail'">
-            <p>{{detail.title}}</p>
-          </div>
-        </div>
-      </div>
-      <div class="line"></div>
-      <div class="counts">
-        <div class="item">DURATA DEL LAVORO (Approssimativo)</div>
-        <div class="amount time">{{getTiming(order.price.initial)}}</div>
-      </div>
-      <div class="line"></div>
-      <div class="counts">
-        <div class="item">TOTALE</div>
-        <div class="amount">{{order.price.final/100}}€</div>
-      </div>
-      <div class="counts">
-        <div *ngFor="let milestone of order.payment.milestones; let i=index">
-          <div class="item">{{i+1}} ACCONTO</div>
-          <div class="amount">{{milestone.amount/100}}€</div>
-        </div>
-      </div>
-      <div class="counts">
-        <div class="item">RESTO</div>
-        <div class="amount">{{order.payment.rest/100}}€</div>
-      </div>
-      <!-- <div class="line"></div> -->
-
-      <!-- <div class="actions">
-        <div class="form-group">
-          <button class="btn btn-warning" id="next" type="button">Continua</button>
-          <button class="btn btn-warning" id="next" type="button">Continua</button>
-          <button class="btn btn-warning" id="next" type="button">Continua</button>
-        </div>
-      </div> -->
-      <!-- <div class="links">
-        <a href="#">Cancella preventivo</a>
-        <a href="#">Invia ad un amico</a>
-      </div> -->
+  <div class="orders-container">
+    <div class="order-container" *ngIf="page==='requests' && pageData && pageData.length===0">
+      <p>Non ci lavorazioni prenotati. Per prenotare un lavoro vai alla pagina home e trova la lavorazione che ti serve.</p>
     </div>
-  </div>
-
-  <div class="order-container" *ngIf="page==='estimates' && estimates && estimates.length===0">
-    <p>Non ci sono preventivi salvati.</p>
-  </div>
-  <div *ngFor="let estimate of estimates">
-    <div class="order-container" *ngIf="page==='estimates'">
-      <div class="header">
-        <div *ngFor="let item of estimate.details">
-          <div *ngIf="item.type === 'service'">
-            <h3>{{estimate.title}}</h3>
-            <!-- <div class="line"></div> -->
-          </div>
-          <div *ngIf="item.type === 'detail'">
-            <p>{{item.title}}</p>
-          </div>
-        </div>
-      </div>
-      <div class="line"></div>
-      <div class="counts">
-        <div class="item">DURATA DEL LAVORO (Approssimativo)</div>
-        <div class="amount time">{{getTiming(estimate.price.initial)}}</div>
-      </div>
-      <div class="line"></div>
-      <div class="counts" *ngIf="estimate.price.initial>estimate.price.final">
-        <div class="item">PREZZO INIZIALE</div>
-        <div class="amount initial">{{estimate.price.initial/100}}€</div>
-      </div>
-      <div class="counts">
-        <div class="item">PREZZO FINALE</div>
-        <div class="amount">{{estimate.price.final/100}}€</div>
-      </div>
-      <div class="line"></div>
-      <!-- <div class="counts">
-        <div class="item">ACCONTO (30% del totale)</div>
-        <div class="amount">{{estimate.payment.upfront/100}}€</div>
-      </div> -->
-      <div class="actions">
-        <div class="form-group">
-          <button class="btn btn-warning" id="next" type="button" (click)="startWizard(estimate)">Continua con l'ordine</button>
-        </div>
-        <a (click)="shareEstimate(estimate)">Condividi</a>
-        <a (click)="deleteEstimate(estimate)">Elimina</a>
-      </div>
-      <!-- <div class="line"></div>
-      <div class="links">
-        <a href="#">Cancella preventivo</a>
-        <a href="#">Invia ad un amico</a>
-      </div> -->
-    </div>
-  </div>
-</div>
-
-<!-- <div class="container-starbook without-tabs">
-  <div class="row">
-    <div class="left-navigate">
-      <a *ngFor="let tab of tabs" [ngClass]="{'active':tab.selected}" (click)="renderPage(tab.name)">
-        <span></span>
-        <div>{{tab.name}}</div>
-      </a>
-    </div>
-    <div class="col-xl-12 orders-container">
-      <app-loading *ngIf="isLoading"></app-loading>
-      <div class="orders-error" *ngIf="pageData.length === 0 && requestIsComplete">{{emptyListTitle}}</div>
-      <div class="order-information" *ngFor="let order of pageData">
+    <div *ngFor="let order of pageData">
+      <div class="order-container" *ngIf="page==='requests'">
         <div class="header">
-          <div class="category-services-state" *ngIf="order.status === 1 && dateCompare(dateFormating('now'), order.date) && selectTab === 'Richieste dei clienti'">
-            <span class="orange"></span> Servizio in corso...
-          </div>
-          <div class="category-services-state" *ngIf="order.status === 2 && selectTab === 'Richieste dei clienti'">
-            <span class="orange"></span> In attesa di pagamento...
-          </div>
-          <div class="category-services-state" *ngIf="order.status === 0 && selectTab === 'Richieste dei clienti'">
-            <span class="green"></span> In attesa di conferma
-          </div>
-          <div class="category-services-state" *ngIf="order.status === 1 && dateCompare(order.date, dateFormating('now')) && selectTab === 'Richieste dei clienti'">
-            <span class="orange"></span> Assegnato
-          </div>
-          <div class="category-services-state" *ngIf="order.status === 99 && selectTab === 'I miei ordini'">
-            <span class="red"></span> Annullato
-          </div>
-          <div class="category-services-state" *ngIf="order.status === 0 && selectTab === 'I miei ordini'">
-            <span class="green"></span> In attesa di conferma
-          </div>
-          <div class="category-services-state" *ngIf="order.status === 1 && dateCompare(order.date, dateFormating('now')) && selectTab === 'I miei ordini'">
-            <span class="orange"></span> Assegnato
-          </div>
-          <div class="category-services-state" *ngIf="order.status === 2 && selectTab === 'Richiesti'">
-            <span class="orange"></span> In attesa di pagamento...
-          </div>
-          <div class="category-services-state" *ngIf="order.status === 1 && dateCompare(dateFormating('now'), order.date) && selectTab === 'I miei ordini'">
-            <span class="orange"></span> Servizio in corso...
-          </div>
-          <div class="category-services-state" *ngIf="order.status === 0 && selectTab === 'Archivio'">
-            <span class="black"></span> Scaduto
-          </div>
-          <div class="category-services-state" *ngIf="order.status === 98 && selectTab === 'Archivio'">
-            <span class="orange"></span> Completato
-          </div>
-          <div class="category-services-state" *ngIf="order.status === 99 && selectTab === 'Archivio'">
-            <span class="red"></span> Annullato
-          </div>
-          <div class="category-name">
-            {{ categories[order.category_type] }}
-          </div>
-          <div class="order-date">
-            {{ dateFormating(order.date) }}
-          </div>
-        </div>
-        <div class="order-body">
-          <div class="row">
-            <div class="order-row products col-xl-4">
-              <div class="item" *ngFor="let product of order.details" [ngClass]="{'service':product.type === 'service'}">{{ product.title }} <i *ngIf="product.type !== 'service' && product.amount > 0">€{{ product.amount / 100 }}</i></div>
-              <div class="item total">Totale <i>€{{ order.payment.amount / 100 }}</i></div>
-              <div class="item" *ngFor="let product of order.details" [ngClass]="{'service':product.type === 'service'}">{{ product.title }} <i *ngIf="product.type !== 'service'">{{ product.description }}</i></div>
-              <div class="item total">Totale <i>€{{ order.payment.amount / 100 }}</i></div>
+          <div *ngFor="let detail of order.details">
+            <div *ngIf="detail.type==='service'">
+              <h3>{{detail.title}}</h3>
+              <!-- <div class="line"></div> -->
             </div>
-
-            <div class="client-info col-xl-4" *ngIf="selectTab === 'Richieste dei clienti'">
-              <div *ngIf="order.status===0">
-              </div>
-              <div class="item">
-                <div class="field-name">Cliente:</div>
-                <div class="field-value"><strong>{{ order.customer.profile.fullname }}</strong></div>
-              </div>
-              <div class="item">
-                <div class="field-name">Cellulare:</div>
-                <div class="field-value">{{ order.customer.phone_number | phone }}</div>
-              </div>
-              <div class="item">
-                <div class="field-name">Email:</div>
-                <div class="field-value">{{ order.customer.email }}</div>
-              </div>
-
-              <div *ngIf="order.status===1">
-                <div class="item">
-                  <div class="field-name">Cliente:</div>
-                  <div class="field-value"><strong>{{ order.merchant.profile.fullname }}</strong></div>
-                </div>
-                <div class="item">
-                  <div class="field-name">Cellulare:</div>
-                  <div class="field-value">{{ order.customer.phone_number | phone }}</div>
-                </div>
-                <div class="item">
-                  <div class="field-name">Email:</div>
-                  <div class="field-value">{{ order.customer.email }}</div>
-                </div>
-              </div>
-
-              <div class="item">
-                <div class="field-name">Indirizzo:</div>
-                <div class="field-value">
-                  {{ order.address.street }}, {{ order.address.street_number }}<br>
-                  {{ order.address.city }}, {{ order.address.postal_code }}<br>
-                  {{ order.address.province }}, {{ order.address.country }}
-                </div>
-              </div>
-            </div>
-
-            <div class="client-info col-xl-4" *ngIf="selectTab === 'I miei ordini'">
-              <div *ngIf="!order.merchant || order.merchant === null || order.status===0">
-                <div class="item">
-                  <div class="field-name">Professionista:</div>
-                  <div class="field-value"><strong>In attesa di conferma...</strong></div>
-                </div>
-              </div>
-              <div *ngIf="order.merchant && order.merchant !== null && order.status===1">
-                <div class="item">
-                  <div class="field-name">Professionista:</div>
-                  <div class="field-value"><strong>{{ order.merchant.profile.fullname }}</strong></div>
-                </div>
-                <div class="item">
-                  <div class="field-name">Cellulare:</div>
-                  <div class="field-value">{{ order.merchant.phone_number | phone }}</div>
-                </div>
-                <div class="item">
-                  <div class="field-name">Email:</div>
-                  <div class="field-value">{{ order.merchant.email }}</div>
-                </div>
-              </div>
-              <div class="item">
-                <div class="field-name">Indirizzo:</div>
-                <div class="field-value">
-                  {{ order.address.street }}, {{ order.address.street_number }}<br>
-                  {{ order.address.city }}, {{ order.address.postal_code }}<br>
-                  {{ order.address.province }}, {{ order.address.country }}
-                </div>
-              </div>
-            </div>
-
-            <div class="client-info col-xl-4" *ngIf="selectTab === 'Archivio'">
-              <div *ngIf="(order.customer || order.customer !== null) && order.status===98 && currentUser._id !== order.customer_id">
-                <div class="item">
-                  <div class="field-name">Cliente:</div>
-                  <div class="field-value"><strong>{{ order.customer.profile.fullname }}</strong></div>
-                </div>
-                <div class="item">
-                  <div class="field-name">Cellulare:</div>
-                  <div class="field-value">{{ order.customer.phone_number | phone }}</div>
-                </div>
-                <div class="item">
-                  <div class="field-name">Email:</div>
-                  <div class="field-value">{{ order.customer.email }}</div>
-                </div>
-              </div>
-              <div *ngIf="(order.customer || order.customer !== null) && order.status===98 && currentUser._id === order.customer_id">
-                <div class="item">
-                  <div class="field-name">Professionista:</div>
-                  <div class="field-value"><strong>{{ order.merchant.profile.fullname }}</strong></div>
-                </div>
-                <div class="item">
-                  <div class="field-name">Cellulare:</div>
-                  <div class="field-value">{{ order.merchant.phone_number | phone }}</div>
-                </div>
-                <div class="item">
-                  <div class="field-name">Email:</div>
-                  <div class="field-value">{{ order.merchant.email }}</div>
-                </div>
-              </div>
-              <div *ngIf="order.customer && order.customer !== null && (!order.merchant || order.merchant === null) && order.status===0">
-                <div class="item">
-                  <div class="field-name">Cliente:</div>
-                  <div class="field-value"><strong>{{ order.customer.profile.fullname }}</strong></div>
-                </div>
-                <div class="item">
-                  <div class="field-name">Cellulare:</div>
-                  <div class="field-value">{{ order.customer.phone_number | phone }}</div>
-                </div>
-                <div class="item">
-                  <div class="field-name">Email:</div>
-                  <div class="field-value">{{ order.customer.email }}</div>
-                </div>
-              </div>
-              <div *ngIf="order.status===99">
-                <div class="item">
-                  <div class="field-name">Cliente:</div>
-                  <div class="field-value"><strong>{{ order.customer.profile.fullname }}</strong></div>
-                </div>
-                <div class="item">
-                  <div class="field-name">Cellulare:</div>
-                  <div class="field-value">{{ order.customer.phone_number | phone }}</div>
-                </div>
-                <div class="item">
-                  <div class="field-name">Email:</div>
-                  <div class="field-value">{{ order.customer.email }}</div>
-                </div>
-              </div>
-              <div class="item">
-                <div class="field-name">Indirizzo:</div>
-                <div class="field-value">
-                  {{ order.address.street }}, {{ order.address.street_number }}<br>
-                  {{ order.address.city }}, {{ order.address.postal_code }}<br>
-                  {{ order.address.province }}, {{ order.address.country }}
-                </div>
-              </div>
-            </div>
-
-            <div class="order-row description col-xl-4">
-              {{ order.description }}
+            <div *ngIf="detail.type==='detail'">
+              <p>{{detail.title}}</p>
             </div>
           </div>
         </div>
-        <div class="order-footer">
-          <div class="code">
-            <span>CODICE:</span>
-            {{ order._id }}
-          </div>
-          <div class="buttons">
-            <button class="btn btn-primary" *ngIf="order.status === 1 && dateCompare(dateFormating('now'), order.date) && selectTab === 'Richieste dei clienti' && isVendor === true" (click)="completaOrder(order._id)">Completa servizio</button>
-            <div class="price-block"><div class="content-price">Preventivo: <span>{{ order.payment.amount / 100 }}€</span></div></div>
-            <div class="price-block" *ngIf="order.status === 2 && selectTab === 'Richieste dei clienti'"><div class="content-price">Importo: <span>{{ order.payment.amount / 100 }}€</span></div></div>
-            <button class="btn btn-secondary" *ngIf="order.status === 2 && selectTab === 'Richieste dei clienti'" (click)="editOrder(order._id, order.payment.amount)">Modifica</button>
-            <button class="btn btn-primary" *ngIf="order.status === 0 && selectTab === 'Richieste dei clienti' && isVendor === true" (click)="confirmOrder(order._id)">Conferma servizio</button>
-
-            <button class="btn btn-primary" *ngIf="order.status === 99 && selectTab === 'I miei ordini'" (click)="reactivateOrder(order._id)">Reattiva servizio</button>
-            <button class="btn btn-secondary" *ngIf="order.status === 0 && selectTab === 'I miei ordini'" (click)="cancelOrder(order._id)">Annulla servizio</button>
-            <div class="price-block" *ngIf="order.status === 2 && selectTab === 'I miei ordini'"><div class="content-price">Importo: <span>{{ order.payment.amount / 100 }}€</span></div></div>
-            <button class="btn btn-warning" *ngIf="order.status === 2 && selectTab === 'I miei ordini'" (click)="continueOrder(order._id, order.payment.amount)"><i class="fa fa-lock"></i> Procedi</button>
-            <div class="price-block archive" *ngIf="order.status === 3 && selectTab === 'Archivio'"><div class="content-price">Importo: <span>{{ order.payment.amount / 100 }}€</span></div></div>
+        <div class="line"></div>
+        <div class="counts">
+          <div class="item">DURATA DEL LAVORO (Approssimativo)</div>
+          <div class="amount time">{{getTiming(order.price.initial)}}</div>
+        </div>
+        <div class="line"></div>
+        <div class="counts">
+          <div class="item">TOTALE</div>
+          <div class="amount">{{order.price.final/100}}€</div>
+        </div>
+        <div class="counts">
+          <div *ngFor="let milestone of order.payment.milestones; let i=index">
+            <div class="item">{{i+1}} ACCONTO</div>
+            <div class="amount">{{milestone.amount/100}}€</div>
           </div>
         </div>
+        <div class="counts">
+          <div class="item">RESTO</div>
+          <div class="amount">{{order.payment.rest/100}}€</div>
+        </div>
+        <!-- <div class="line"></div> -->
+
+        <!-- <div class="actions">
+          <div class="form-group">
+            <button class="btn btn-warning" id="next" type="button">Continua</button>
+            <button class="btn btn-warning" id="next" type="button">Continua</button>
+            <button class="btn btn-warning" id="next" type="button">Continua</button>
+          </div>
+        </div> -->
+        <!-- <div class="links">
+          <a href="#">Cancella preventivo</a>
+          <a href="#">Invia ad un amico</a>
+        </div> -->
+      </div>
+    </div>
+
+    <div class="order-container" *ngIf="page==='estimates' && estimates && estimates.length===0">
+      <p>Non ci sono preventivi salvati.</p>
+    </div>
+    <div *ngFor="let estimate of estimates">
+      <div class="order-container" *ngIf="page==='estimates'">
+        <div class="header">
+          <div *ngFor="let item of estimate.details">
+            <div *ngIf="item.type === 'service'">
+              <h3>{{estimate.title}}</h3>
+              <!-- <div class="line"></div> -->
+            </div>
+            <div *ngIf="item.type === 'detail'">
+              <p>{{item.title}}</p>
+            </div>
+          </div>
+        </div>
+        <div class="line"></div>
+        <div class="counts">
+          <div class="item">DURATA DEL LAVORO (Approssimativo)</div>
+          <div class="amount time">{{getTiming(estimate.price.initial)}}</div>
+        </div>
+        <div class="line"></div>
+        <div class="counts" *ngIf="estimate.price.initial>estimate.price.final">
+          <div class="item">PREZZO INIZIALE</div>
+          <div class="amount initial">{{estimate.price.initial/100}}€</div>
+        </div>
+        <div class="counts">
+          <div class="item">PREZZO FINALE</div>
+          <div class="amount">{{estimate.price.final/100}}€</div>
+        </div>
+        <div class="line"></div>
+        <!-- <div class="counts">
+          <div class="item">ACCONTO (30% del totale)</div>
+          <div class="amount">{{estimate.payment.upfront/100}}€</div>
+        </div> -->
+        <div class="actions">
+          <div class="form-group">
+            <button class="btn btn-warning" id="next" type="button" (click)="startWizard(estimate)">Continua con l'ordine</button>
+          </div>
+          <a (click)="shareEstimate(estimate)">Condividi</a>
+          <a (click)="deleteEstimate(estimate)">Elimina</a>
+        </div>
+        <!-- <div class="line"></div>
+        <div class="links">
+          <a href="#">Cancella preventivo</a>
+          <a href="#">Invia ad un amico</a>
+        </div> -->
       </div>
     </div>
   </div>
-</div> -->
+  <!-- <footer class="footer sticky-footer">
+    <div class="footer-container">
+      <div class="row">
+        <div class="col-md-6 col-lg-3">
+          <ul>
+            <li>Starbook © 2017</li>
+            <li>Tutti i diritti riservati</li>
+          </ul>
+        </div>
+        <div class="col-md-6 col-lg-3">
+          <ul>
+            <li><a routerLink="/legal" routerLinkActive="active">Privacy e Condizioni</a></li>
+            <li><a routerLink="/help" routerLinkActive="active">Aiuto e Assistenza</a></li>
+            <li><a routerLink="/requests/service" routerLinkActive="active">Richiedi un servizio</a></li>
+          </ul>
+        </div>
+        <div class="col-md-6 col-lg-3">
+          <ul>
+            <li><a routerLink="/about" routerLinkActive="active">Chi siamo</a></li>
+          </ul>
+        </div>
+        <div class="col-md-6 col-lg-3">
+          <ul>
+            <li><a routerLink="/share" routerLinkActive="active">Affiliazione</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </footer>   -->
+</div>

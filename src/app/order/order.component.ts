@@ -88,7 +88,7 @@ export class OrderComponent implements OnInit, OnDestroy {
         upfront: this.getUpFront()
       },
       timing: {
-        days: this.getTiming()
+        days: this.getInitialPrice()/45000
       }
     };
     // var newObject = object;

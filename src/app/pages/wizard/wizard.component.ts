@@ -19,6 +19,7 @@ export class WizardComponent implements OnInit {
   public formError: boolean|{title: string, message: string} = false;
   public step = '';
   public service_data;
+  public screenWidth;
 
   ////////////////////////////
   //// ORDER OBJECT //////////
@@ -26,6 +27,7 @@ export class WizardComponent implements OnInit {
   public Order = {
     service_id: '',
     title: '',
+    description: '',
     details: [],
     date: null,
     address: null,
@@ -201,6 +203,7 @@ export class WizardComponent implements OnInit {
       } else {
         this.Order.service_id = this.service_data.service_id;
         this.Order.title = this.service_data.title;
+        this.Order.description = this.service_data.description;
         this.Order.details = this.service_data.details;
         this.Order.referral_id = this.service_data.referral_id;
         this.Order.price = this.service_data.price;
@@ -213,39 +216,46 @@ export class WizardComponent implements OnInit {
 
   ngOnInit() {
     if (isBrowser) {
-      this.route.params.subscribe((params: Params) => {
-        this.step = params['step']
-        window.scrollTo(0, 0);
+      this.screenWidth = document.querySelector('body').clientWidth;
+    }
+    this.route.params.subscribe((params: Params) => {
+      this.step = params['step'];
+      if (isBrowser) {window.scrollTo(0, 0);}
 
-        if (this.order_status.created && this.step !== 'end' && this.step !== 'info') {
-          this.router.navigate(['services', this.Order.title.replace(/\s+/g, '-')]);
-        }
-        if (this.step === 'summary') {
-          this.navigationService.updateMessage("Sommario del servizio");
-        } else if (this.step === 'address') {
-          this.navigationService.updateMessage("Inserisci l'indirizzo");
-        } else if (this.step === 'date') {
-          this.navigationService.updateMessage("Inserisci la data");
-        } else if (this.step === 'preview') {
-          this.navigationService.updateMessage("Anteprima ordine");
-        } else if (this.step === 'end') {
-          this.navigationService.updateMessage("Ordine effetuato");
-        } else if (this.step === 'login') {
-          this.navigationService.updateMessage("Accedi");
-          this.wizardDataItems[3] = "Login";
-        } else if (this.step === 'signup') {
-          this.navigationService.updateMessage("Registrazione");
-          this.wizardDataItems[3] = "Signup";
-        } else if (this.step === 'card') {
-          this.navigationService.updateMessage("Metodo di pagamento");
-          this.wizardDataItems[3] = "Carta";
-        } else if (this.step === 'info') {
-          this.navigationService.updateMessage("Informazioni profilo");
-          this.wizardDataItems[4] = "Info";
-        } else {
-          this.router.navigate(['services', this.Order.title.replace(/\s+/g, '-')]);
-        }
-      })
+      if (this.order_status.created && this.step !== 'end' && this.step !== 'info') {
+        this.router.navigate(['services', this.Order.title.replace(/\s+/g, '-')]);
+      }
+      if (this.step === 'summary') {
+        this.navigationService.updateMessage("Sommario del servizio");
+      } else if (this.step === 'address') {
+        this.navigationService.updateMessage("Inserisci l'indirizzo");
+      } else if (this.step === 'date') {
+        this.navigationService.updateMessage("Inserisci la data");
+      } else if (this.step === 'preview') {
+        this.navigationService.updateMessage("Anteprima ordine");
+      } else if (this.step === 'end') {
+        this.navigationService.updateMessage("Ordine effetuato");
+      } else if (this.step === 'login') {
+        this.navigationService.updateMessage("Accedi");
+        this.wizardDataItems[3] = "Login";
+      } else if (this.step === 'signup') {
+        this.navigationService.updateMessage("Registrazione");
+        this.wizardDataItems[3] = "Signup";
+      } else if (this.step === 'card') {
+        this.navigationService.updateMessage("Metodo di pagamento");
+        this.wizardDataItems[3] = "Carta";
+      } else if (this.step === 'info') {
+        this.navigationService.updateMessage("Informazioni profilo");
+        this.wizardDataItems[4] = "Info";
+      } else {
+        this.router.navigate(['services', this.Order.title.replace(/\s+/g, '-')]);
+      }
+    })
+  }
+
+  onResize() {
+    if (isBrowser) {
+      this.screenWidth = document.querySelector('body').clientWidth;
     }
   }
 
@@ -272,6 +282,15 @@ export class WizardComponent implements OnInit {
   confirmPreview() {
     this.analyticsService.sendEvent({category:'Order', action: 'Wizard', label: "Confirm Preview"});
     this.router.navigate(['order/address']);
+  }
+  daysString(days) {
+    if (days < 0.5) {
+      return "1/2 Giorno";
+    } else if (days > 0.5 && days < 1.5) {
+      return Math.round(days) + " Giorno";
+    } else {
+      return Math.round(days) + " Giorni";
+    }
   }
 
   ///////////////////////////////
@@ -399,7 +418,8 @@ export class WizardComponent implements OnInit {
     if (!user.phone_number || user.phone_number.length < 10) {
       this.router.navigate(['order/info']);
     } else {
-      this.router.navigate(['services', this.Order.title.replace(/\s+/g, '-')]);
+      this.router.navigate(['']);
+      // this.router.navigate(['services', this.Order.title.replace(/\s+/g, '-')]);
     }
   }
 
@@ -625,7 +645,6 @@ export class WizardComponent implements OnInit {
       this.router.navigate(['order/preview']);
       this.confirmOrder();
     }).catch((error) => {
-      console.log('errore è : ' + error);
       this.card_state.loading = false;
       this.card_state.button_title = "Continua";
       this.card_state.message_error = null;

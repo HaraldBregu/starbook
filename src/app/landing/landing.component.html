@@ -19,10 +19,9 @@
       <div class="container">
         <h1>{{data.texts[0]}}</h1>
         <h3>{{data.texts[1]}}</h3>
-        <h3>{{data.texts[2]}}</h3>
         <div class="actions">
           <div class="form-group">
-            <button class="btn btn-yellow-blue" (click)="showService()">Prenota adesso</button>
+            <button class="btn btn-yellow-green" (click)="checkoutService()">Prenota adesso</button>
           </div>
         </div>
       </div>
@@ -30,31 +29,33 @@
     <div class="slogan">
       <div class="container">
         <div class="title">
-          <h1>{{data.texts[3]}}</h1>
+          <h1>{{data.texts[2]}}</h1>
         </div>
       </div>
     </div>
     <div class="container advantages">
-      <div class="title">
-        <h1>{{data.texts[4]}}</h1>
-      </div>
-      <div class="row">
-        <div *ngFor="let bullet of data.bullets">
-          <div class="col-md-4">
-            <h3><i class="fa {{bullet['icon_name']}}" aria-hidden="true"></i> {{bullet['title']}}</h3>
-            <p>{{bullet['description']}}</p>
+      <div class="advantages-container">
+        <div class="title">
+          <h1>{{data.texts[3]}}</h1>
+        </div>
+        <div class="row">
+          <div *ngFor="let bullet of data.bullets">
+            <div class="col-md-4">
+              <h3><i class="fa {{bullet['icon_name']}}" aria-hidden="true"></i> {{bullet['title']}}</h3>
+              <p>{{bullet['description']}}</p>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="actions">
-        <div class="form-group">
-          <button class="btn btn-yellow-blue" (click)="showService()">Prenota adesso</button>
+        <div class="actions">
+          <div class="form-group">
+            <button class="btn btn-yellow-blue" (click)="checkoutService()">Prenota adesso</button>
+          </div>
         </div>
       </div>
     </div>
     <div class="container reviews">
       <div class="title">
-        <h1>{{data.texts[5]}}</h1>
+        <h1>{{data.texts[4]}}</h1>
       </div>
       <div class="row">
         <div *ngFor="let review of data.reviews">
@@ -71,7 +72,7 @@
       </div>
       <div class="actions">
         <div class="form-group">
-          <button class="btn btn-yellow-blue" (click)="showService()">Prenota adesso</button>
+          <button class="btn btn-yellow-blue" (click)="checkoutService()">Prenota adesso</button>
         </div>
       </div>
     </div>
@@ -124,6 +125,7 @@
           <button type="button" id="next" class="btn btn-warning" (click)="sendRequestForNewService()"><i class="fa fa-circle-o-notch animate" *ngIf="request_state.loading"></i>{{request_state.button_title}}</button>
         </div>
       </form>
+      <p>Continuando accetti le condizioni di <a routerLink="/legal" target="_blank">Privacy Policy</a>.</p>
     </div>
     <div class="container share">
       <h1>Aiuta un amico o amica che ha bisogno!</h1>

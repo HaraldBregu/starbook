@@ -394,7 +394,8 @@ body {
 html, body {
   position: relative;
   font-family: Roboto, sans-serif;
-  overflow-x: hidden; }
+  overflow-x: hidden;
+  background: #fafafb; }
 
 h1 {
   font-size: 36px;
@@ -619,7 +620,7 @@ p {
   padding: 20px;
   border-radius: 1px !important;
   background-color: #FFFFFF;
-  border: 1px solid rgba(220, 224, 224, 0.7); }
+  border: 1px solid #cbd3d5; }
 
 .form-control.text-small {
   font-size: 12px; }
@@ -650,7 +651,7 @@ textarea.form-control {
 
 .form-group .ui-inputtext {
   height: 50px !important;
-  border: 1px solid #DCDCDC !important; }
+  border: 1px solid #cbd3d5 !important; }
 
 .form-group label {
   color: #212121 !important;
@@ -3339,169 +3340,194 @@ app-landing {
   width: 100%;
   height: 100%;
   padding: 70px 0 0; }
-  app-landing .landing-container .services-container {
-    padding: 40px;
-    max-width: 1440px;
-    margin: auto; }
-    app-landing .landing-container .services-container .service-container .service {
-      position: relative;
+  app-landing .landing-container {
+    background: white; }
+    app-landing .landing-container .services-container {
+      padding: 40px;
+      max-width: 1440px;
+      margin: auto; }
+      app-landing .landing-container .services-container .service-container .service {
+        position: relative;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center 100%;
+        height: 300px;
+        cursor: pointer;
+        border-radius: 10px; }
+        app-landing .landing-container .services-container .service-container .service .overlay {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          z-index: 10;
+          border-radius: 10px;
+          -webkit-transition: background-color 0.2s ease;
+          -moz-transition: background-color 0.2s ease;
+          -o-transition: background-color 0.2s ease;
+          transition: background-color 0.2s ease;
+          background-color: rgba(22, 65, 112, 0.85); }
+        app-landing .landing-container .services-container .service-container .service .overlay:hover {
+          background-color: rgba(22, 65, 112, 0.4); }
+        app-landing .landing-container .services-container .service-container .service h1 {
+          line-height: 300px;
+          text-align: center;
+          color: white; }
+    app-landing .landing-container .header {
       background-size: cover;
       background-repeat: no-repeat;
       background-position: center 100%;
-      height: 300px;
-      cursor: pointer;
-      border-radius: 10px; }
-      app-landing .landing-container .services-container .service-container .service .overlay {
-        position: absolute;
-        top: 0;
-        left: 0;
+      color: white;
+      padding: 100px 0;
+      text-align: center; }
+      app-landing .landing-container .header .actions {
+        padding: 40px 0 0; }
+        app-landing .landing-container .header .actions .btn {
+          border-radius: 30px;
+          height: 60px;
+          padding: 0 80px;
+          font-weight: 700;
+          font-size: 26px; }
+      app-landing .landing-container .header h1 {
+        font-weight: 900;
+        font-size: 46px;
+        max-width: 900px;
+        margin: auto;
+        margin-bottom: 30px; }
+      app-landing .landing-container .header h2, app-landing .landing-container .header h3 {
+        max-width: 700px;
+        margin: auto;
+        font-weight: 400;
+        margin-bottom: 30px; }
+      app-landing .landing-container .header p {
+        font-size: 24px !important; }
+    app-landing .landing-container .slogan {
+      padding: 60px 0;
+      text-align: center;
+      background: #164170;
+      color: white; }
+      app-landing .landing-container .slogan .title {
+        max-width: 600px;
+        margin: auto; }
+        app-landing .landing-container .slogan .title h1 {
+          font-weight: 300;
+          margin: auto;
+          line-height: initial; }
+    app-landing .landing-container .advantages {
+      padding: 100px 10px;
+      text-align: center;
+      border-bottom: 1px solid rgba(221, 221, 221, 0.8); }
+      app-landing .landing-container .advantages .advantages-container {
+        padding: 20px 10px; }
+        app-landing .landing-container .advantages .advantages-container .row {
+          text-align: left; }
+        app-landing .landing-container .advantages .advantages-container .title {
+          padding: 0 0 60px;
+          max-width: 900px;
+          margin: auto; }
+          app-landing .landing-container .advantages .advantages-container .title h1 {
+            font-weight: 300;
+            max-width: 900px;
+            margin: auto;
+            margin-bottom: 30px; }
+          app-landing .landing-container .advantages .advantages-container .title h2 {
+            font-weight: 300;
+            max-width: 900px;
+            margin: auto;
+            margin-bottom: 30px; }
+          app-landing .landing-container .advantages .advantages-container .title h3 {
+            font-weight: 300;
+            line-height: inherit;
+            max-width: 700px;
+            margin: auto;
+            margin-bottom: 30px; }
+        app-landing .landing-container .advantages .advantages-container p {
+          margin: 20px 0; }
+        app-landing .landing-container .advantages .advantages-container .btn {
+          border-radius: 30px;
+          height: 60px;
+          padding: 0 80px;
+          font-weight: 700;
+          font-size: 26px;
+          margin-top: 100px; }
+    app-landing .landing-container .request-form {
+      margin: auto;
+      padding: 50px;
+      background: #ebedef; }
+      app-landing .landing-container .request-form .btn {
         width: 100%;
-        height: 100%;
-        z-index: 10;
-        border-radius: 10px;
-        -webkit-transition: background-color 0.2s ease;
-        -moz-transition: background-color 0.2s ease;
-        -o-transition: background-color 0.2s ease;
-        transition: background-color 0.2s ease;
-        background-color: rgba(22, 65, 112, 0.85); }
-      app-landing .landing-container .services-container .service-container .service .overlay:hover {
-        background-color: rgba(22, 65, 112, 0.4); }
-      app-landing .landing-container .services-container .service-container .service h1 {
-        line-height: 300px;
-        text-align: center;
-        color: white; }
-  app-landing .landing-container .header {
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center 100%;
-    color: white;
-    padding: 100px 0 50px;
-    text-align: center; }
-    app-landing .landing-container .header .actions {
-      padding: 40px 0 0; }
-      app-landing .landing-container .header .actions .btn {
+        height: 60px;
+        font-weight: 700;
+        font-size: 26px; }
+      app-landing .landing-container .request-form h1 {
+        margin-bottom: 40px;
+        text-align: center; }
+      app-landing .landing-container .request-form p {
+        text-align: center; }
+    app-landing .landing-container .reviews {
+      padding: 100px 10px;
+      text-align: center; }
+      app-landing .landing-container .reviews .review-container {
+        padding: 20px 10px; }
+      app-landing .landing-container .reviews i {
+        color: #FFE16A; }
+      app-landing .landing-container .reviews h5 {
+        margin-bottom: 10px; }
+      app-landing .landing-container .reviews .btn {
         border-radius: 30px;
         height: 60px;
         padding: 0 80px;
         font-weight: 700;
-        font-size: 26px; }
-    app-landing .landing-container .header h1 {
-      font-weight: 900;
-      font-size: 46px;
-      max-width: 900px;
-      margin: auto;
-      margin-bottom: 30px; }
-    app-landing .landing-container .header h2, app-landing .landing-container .header h3 {
-      max-width: 700px;
-      margin: auto;
-      font-weight: 400;
-      margin-bottom: 30px; }
-    app-landing .landing-container .header p {
-      font-size: 24px !important; }
-  app-landing .landing-container .slogan {
-    padding: 60px 0;
-    text-align: center;
-    background: #164170;
-    color: white; }
-    app-landing .landing-container .slogan .title {
-      max-width: 600px;
-      margin: auto; }
-      app-landing .landing-container .slogan .title h1 {
-        font-weight: 400;
+        font-size: 26px;
+        margin-top: 100px; }
+      app-landing .landing-container .reviews .title {
+        margin-bottom: 60px; }
+      app-landing .landing-container .reviews .row {
+        text-align: left; }
+    app-landing .landing-container .share {
+      padding: 100px 10px;
+      text-align: center; }
+      app-landing .landing-container .share .alerts {
+        max-width: 700px;
         margin: auto; }
-  app-landing .landing-container .advantages {
-    padding: 60px 0;
-    text-align: center;
-    border-bottom: 1px solid rgba(221, 221, 221, 0.8); }
-    app-landing .landing-container .advantages .title {
-      padding: 0 0 60px;
-      max-width: 900px;
-      margin: auto; }
-      app-landing .landing-container .advantages .title h1 {
-        font-weight: 300;
+      app-landing .landing-container .share h1 {
         max-width: 900px;
         margin: auto;
         margin-bottom: 30px; }
-      app-landing .landing-container .advantages .title h2 {
-        font-weight: 300;
-        max-width: 900px;
-        margin: auto;
-        margin-bottom: 30px; }
-      app-landing .landing-container .advantages .title h3 {
-        font-weight: 300;
-        line-height: inherit;
+      app-landing .landing-container .share p {
         max-width: 700px;
         margin: auto;
         margin-bottom: 30px; }
-    app-landing .landing-container .advantages p {
-      margin: 20px 0; }
-    app-landing .landing-container .advantages .btn {
-      border-radius: 30px;
-      height: 60px;
-      padding: 0 80px;
-      font-weight: 700;
-      font-size: 26px;
-      margin-top: 100px; }
-  app-landing .landing-container .request-form {
-    margin: auto;
-    padding: 50px;
-    background: #ebedef; }
-    app-landing .landing-container .request-form .btn {
-      width: 100%;
-      height: 60px;
-      font-weight: 700;
-      font-size: 26px; }
-    app-landing .landing-container .request-form h1 {
-      margin-bottom: 40px;
-      text-align: center; }
-  app-landing .landing-container .reviews {
-    padding: 60px 0;
-    text-align: center; }
-    app-landing .landing-container .reviews .review-container {
-      padding: 20px 10px; }
-    app-landing .landing-container .reviews i {
-      color: #FFE16A; }
-    app-landing .landing-container .reviews h5 {
-      margin-bottom: 10px; }
-    app-landing .landing-container .reviews .btn {
-      border-radius: 30px;
-      height: 60px;
-      padding: 0 80px;
-      font-weight: 700;
-      font-size: 26px;
-      margin-top: 100px; }
-    app-landing .landing-container .reviews .title {
-      margin-bottom: 60px; }
-    app-landing .landing-container .reviews .row {
-      text-align: left; }
-  app-landing .landing-container .share {
-    padding: 100px 0;
-    text-align: center; }
-    app-landing .landing-container .share .alerts {
-      max-width: 700px;
-      margin: auto; }
-    app-landing .landing-container .share h1 {
-      max-width: 900px;
-      margin: auto;
-      margin-bottom: 30px; }
-    app-landing .landing-container .share p {
-      max-width: 700px;
-      margin: auto;
-      margin-bottom: 30px; }
-    app-landing .landing-container .share .input-group {
-      max-width: 700px;
-      margin: auto; }
-      app-landing .landing-container .share .input-group .input-group-btn {
-        width: 20%; }
-        app-landing .landing-container .share .input-group .input-group-btn .btn {
-          width: 100%; }
-  app-landing .landing-container .background {
-    background: white;
-    background-image: url("https://s3-eu-west-1.amazonaws.com/starbook-s3/professionista-su-starbook.jpg");
-    background-repeat: no-repeat;
-    background-position: center bottom;
-    background-size: cover;
-    height: 500px; }
+      app-landing .landing-container .share .input-group {
+        max-width: 700px;
+        margin: auto; }
+        app-landing .landing-container .share .input-group .input-group-btn {
+          width: 20%; }
+          app-landing .landing-container .share .input-group .input-group-btn .btn {
+            width: 100%; }
+  @media (max-width: 425px) {
+    app-landing .landing-container .header {
+      padding: 50px 10px; }
+    app-landing .landing-container .advantages {
+      padding: 50px 10px; }
+      app-landing .landing-container .advantages .advantages-container .title {
+        padding: 0 0 20px; }
+      app-landing .landing-container .advantages .advantages-container .btn {
+        margin-top: 40px; }
+      app-landing .landing-container .advantages .advantages-container .row {
+        text-align: center; }
+    app-landing .landing-container .reviews {
+      padding: 50px 10px; }
+      app-landing .landing-container .reviews .title {
+        margin-bottom: 20px; }
+      app-landing .landing-container .reviews .review-container {
+        text-align: center; }
+      app-landing .landing-container .reviews .btn {
+        margin-top: 50px; }
+    app-landing .landing-container .request-form {
+      padding: 50px 20px; }
+    app-landing .landing-container .share {
+      padding: 50px 10px; } }
 
 app-home {
   display: block;
@@ -4877,7 +4903,14 @@ app-orders {
   display: block;
   width: 100%;
   height: 100%;
-  padding-top: 70px; }
+  padding-top: 70px;
+  padding-bottom: 50px;
+  background: #fafafb; }
+  app-orders .orders-page {
+    display: block;
+    width: 100%;
+    height: 100%;
+    background: #fafafb; }
   app-orders .btn-warning {
     width: 100%;
     font-size: 26px;
@@ -4923,9 +4956,9 @@ app-orders {
     display: block;
     max-width: 1130px;
     padding: 50px;
-    border: 1px solid #CCCCCC;
+    border: 1px solid #e4e4e4;
     border-top: 2px solid #7FC443;
-    background: #F7F7F7;
+    background: white;
     margin: 50px auto; }
     app-orders .order-container .header h3 {
       margin-bottom: 10px; }
@@ -4933,7 +4966,7 @@ app-orders {
       display: block;
       margin: 20px auto 20px;
       height: 1px;
-      border-top: 0.5px solid #E6E8EB; }
+      border-top: 1px solid #e4e4e4; }
     app-orders .order-container .counts {
       overflow: auto; }
       app-orders .order-container .counts .item {
@@ -5526,7 +5559,8 @@ app-profile .profile-page {
   display: block;
   width: 100%;
   height: 100%;
-  padding-top: 70px; }
+  padding-top: 70px;
+  background: #fafafb; }
 app-profile .top-bar-container {
   display: block;
   position: fixed;
@@ -5562,9 +5596,8 @@ app-profile .page-container {
   display: block;
   max-width: 1130px;
   padding: 30px 40px 0;
-  border-bottom: 1px solid #CCCCCC;
-  border: 1px solid #CCCCCC;
-  background: #F7F7F7;
+  border: 1px solid #e3e3e3;
+  background: white;
   margin: 110px auto 50px; }
   app-profile .page-container .form-group .ui-inputtext:focus {
     border: 2px solid #7FC443 !important; }
@@ -5576,7 +5609,7 @@ app-profile .page-container {
     display: block;
     width: 100%;
     padding: 0 0 30px;
-    border-bottom: 1px solid #CCCCCC;
+    border-bottom: 1px solid #e4e4e4;
     text-align: center; }
     app-profile .page-container .header h6 {
       color: #4A4A4A;
@@ -5621,7 +5654,7 @@ app-profile .page-container {
     text-align: left !important;
     width: 100%;
     padding: 20px 0 40px;
-    border-top: 1px solid #CCCCCC; }
+    border-top: 1px solid #e4e4e4; }
     app-profile .page-container .footer-box h5 {
       color: #4A4A4A;
       margin-top: 5px; }
@@ -5672,6 +5705,7 @@ app-profile .page-container {
   overflow: hidden; }
 
 .footer {
+  background: white;
   padding: 20px;
   font-size: 16px;
   border-top: 1px solid #dce0e0; }
@@ -6367,20 +6401,21 @@ app-wizard {
   width: 100%;
   height: 100%;
   min-height: 100vh;
-  background-color: #FFFFFF; }
+  background-color: #FFFFFF;
+  padding: 70px 0 0; }
   app-wizard .wizard {
     display: block;
     width: 100%;
-    max-width: 1130px;
-    margin: 100px auto 50px; }
+    padding: 40px 0 0;
+    background: #fafafb; }
     app-wizard .wizard .wizard-container {
       display: block;
-      float: left;
       width: 100%;
-      background-color: #F7F7F7;
-      border: 1px solid #CCCCCC;
-      padding: 50px 0;
-      margin: 0 0 50px; }
+      background-color: white;
+      border: 1px solid #e3e3e3;
+      padding: 50px 0 0;
+      max-width: 1130px;
+      margin: 0 auto 50px; }
       app-wizard .wizard .wizard-container .content-container {
         display: block;
         width: 100%;
@@ -6400,9 +6435,9 @@ app-wizard {
             font-weight: 400; }
         app-wizard .wizard .wizard-container .content-container .line {
           display: block;
-          margin: 20px auto 20px;
+          margin: 10px auto;
           height: 1px;
-          border-top: 0.5px solid #CCCCCC; }
+          border-top: 1px solid #e4e4e4; }
         app-wizard .wizard .wizard-container .content-container .timing {
           margin: auto;
           overflow: auto; }
@@ -6420,7 +6455,8 @@ app-wizard {
             font-weight: 500; }
         app-wizard .wizard .wizard-container .content-container .payment {
           margin: auto;
-          overflow: auto; }
+          overflow: auto;
+          padding: 10px 0; }
           app-wizard .wizard .wizard-container .content-container .payment .item {
             float: left;
             width: 50%;
@@ -6448,6 +6484,23 @@ app-wizard {
             color: white;
             height: 60px;
             font-weight: 700; }
+      app-wizard .wizard .wizard-container .footer-details {
+        padding: 20px;
+        border-top: 1px solid #e4e4e4; }
+        app-wizard .wizard .wizard-container .footer-details p {
+          font-size: 16px !important;
+          text-align: center; }
+    app-wizard .wizard .wizard-footer {
+      background: white;
+      border-top: 1px solid #dce0e0; }
+      app-wizard .wizard .wizard-footer .box {
+        padding: 40px 0; }
+        app-wizard .wizard .wizard-footer .box h4 {
+          font-weight: 400;
+          margin-top: 10px; }
+        app-wizard .wizard .wizard-footer .box h6 {
+          font-weight: 400;
+          margin-top: 10px; }
   app-wizard .btn-back {
     background: #d29f26 !important;
     color: white;
@@ -6474,18 +6527,18 @@ app-wizard {
     padding: 0; }
   app-wizard .wizard .wizard-container .actions .undobutton .btn-warning {
     width: 90%; }
-  @media (max-width: 768px) {
+  @media (max-width: 1024px) {
     app-wizard .wizard {
-      margin: 70px auto 0; }
+      padding: 20px 0 0; }
       app-wizard .wizard .wizard-container {
-        margin: 0; } }
-  @media (max-width: 645px) {
+        margin: 0 auto 20px; } }
+  @media (max-width: 425px) {
     app-wizard .wizard {
-      padding: 0;
-      margin: 70px auto 0; }
+      padding: 0; }
       app-wizard .wizard .wizard-container {
-        margin: 0;
-        padding: 70px 0 0; } }
+        padding: 100px 0 0; }
+      app-wizard .wizard .wizard-footer .box {
+        padding: 20px; } }
 
 .wizard .wizard-container .header span {
   display: inline-block;
@@ -6941,7 +6994,7 @@ app-wizard {
     color: #8D8D8D;
     font-size: 12px;
     letter-spacing: 0.08px;
-    background-color: #F7F7F7;
+    background-color: white;
     padding: 4px 10px; }
   .content-container .actions .animate {
     display: block;
@@ -6950,7 +7003,7 @@ app-wizard {
 
 .content-container .footer {
   border-top: 1px solid #CCCCCC;
-  padding: 20px 0 0; }
+  padding: 20px 0; }
   .content-container .footer h6 {
     text-align: left; }
   .content-container .footer a {
@@ -6987,13 +7040,6 @@ app-wizard {
   letter-spacing: 0.08px; }
 
 @media (max-width: 645px) {
-  app-wizard .wizard {
-    padding: 0;
-    margin: 70px auto 0; }
-    app-wizard .wizard .wizard-container {
-      margin: 0;
-      padding: 70px 0 0; }
-
   .breadcrumb {
     position: fixed;
     width: 100%;
@@ -7024,24 +7070,25 @@ app-wizard {
 .breadcrumb {
   list-style: none;
   overflow: hidden;
-  font: 18px Sans-Serif;
+  font-size: 18px;
   padding: 0;
   margin-bottom: 0;
-  background-color: #F7F7F7;
-  border-top: 1px solid #CCCCCC;
-  border-left: 1px solid #CCCCCC;
-  border-right: 1px solid #CCCCCC;
+  background-color: white;
+  border-top: 1px solid #e3e3e3;
+  border-left: 1px solid #e3e3e3;
+  border-right: 1px solid #e3e3e3;
   border-radius: 0;
-  z-index: 1; }
+  z-index: 1;
+  max-width: 1130px;
+  margin: auto; }
 
 .breadcrumb li {
   float: left;
   height: 60px; }
 
 .breadcrumb li a {
-  color: #000000;
   text-decoration: none;
-  background: #F7F7F7;
+  background: white;
   position: relative;
   display: block;
   float: left;
@@ -7059,7 +7106,7 @@ app-wizard {
   border-top: 50px solid transparent;
   /* Go big on the size, and let overflow hide */
   border-bottom: 50px solid transparent;
-  border-left: 30px solid #F7F7F7;
+  border-left: 30px solid white;
   position: absolute;
   top: 50%;
   margin-top: -50px;
@@ -7073,7 +7120,7 @@ app-wizard {
   height: 0;
   border-top: 50px solid transparent;
   border-bottom: 50px solid transparent;
-  border-left: 30px solid #CCCCCC;
+  border-left: 30px solid #e3e3e3;
   position: absolute;
   top: 50%;
   margin-top: -50px;
@@ -7083,11 +7130,11 @@ app-wizard {
 
 .breadcrumb li.active a, .breadcrumb li.active:hover a {
   color: white;
-  background: #7FC443;
+  background: #446CB3;
   font-weight: 600; }
 
 .breadcrumb li.active a::after {
-  border-left: 30px solid #7FC443; }
+  border-left: 30px solid #446CB3; }
 
 .breadcrumb li.active a::before {
   border-left: 30px solid white; }
@@ -7096,7 +7143,7 @@ app-wizard {
   padding-left: 25px; }
 
 .breadcrumb li:last-child a {
-  background: transparent !important;
+  background: transparent;
   color: black;
   pointer-events: none;
   cursor: default;
@@ -7104,7 +7151,7 @@ app-wizard {
 
 .breadcrumb li:last-child.active a {
   color: white;
-  background: #7FC443 !important;
+  background: #446CB3;
   pointer-events: none;
   cursor: default;
   padding-left: 15px; }
@@ -7112,6 +7159,31 @@ app-wizard {
 .breadcrumb li:last-child a::after {
   border: 0; }
 
+.col-xs-15,
+.col-sm-15,
+.col-md-15,
+.col-lg-15 {
+  position: relative;
+  min-height: 1px;
+  padding-right: 10px;
+  padding-left: 10px; }
+
+.col-xs-15 {
+  width: 20%;
+  float: left; }
+
+@media (min-width: 768px) {
+  .col-sm-15 {
+    width: 20%;
+    float: left; } }
+@media (min-width: 992px) {
+  .col-md-15 {
+    width: 20%;
+    float: left; } }
+@media (min-width: 1200px) {
+  .col-lg-15 {
+    width: 20%;
+    float: left; } }
 app-about {
   display: block;
   position: relative;
