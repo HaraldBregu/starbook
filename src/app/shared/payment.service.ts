@@ -17,6 +17,7 @@ export class PaymentService {
   private api = ""; //'https://api.starbook.co/v0.9.1/';
   // private api = 'http://localhost/v0.9.1/';
 
+
   private auth;
 
   constructor(private http: Http) {
@@ -37,7 +38,6 @@ export class PaymentService {
       //
       // console.log('port: ' + document.location.port);
     }
-
     this.api = this.protocol + "://" + this.hostname + "/" + this.api_version + "/";
   }
 
