@@ -14,7 +14,7 @@ app-home {
     background-position: center 100%;
     color: white;
     padding: 150px 0;
-    max-height: 550px;
+    height: 550px;
     .shadow {
       display: block;
       position: absolute;
@@ -518,7 +518,7 @@ app-home {
   @media (max-width: 576px) {
     .header {
       padding: 40px 30px;
-      height: 500px;
+      height: 600px;
 
       .search {
         .ui-autocomplete-panel {
@@ -580,7 +580,7 @@ app-home {
   }
   @media (max-width: 375px) {
     .header {
-      height: 550px;
+      // height: 550px;
     }
     .recruiting {
       .partner-box {
@@ -591,9 +591,8 @@ app-home {
   }
   @media (max-width: 320px) {
     .header {
-      max-height: 650px;
       padding: 40px 30px;
-      height: 600px;
+      height: 680px;
     }
     .recruiting {
       .partner-box {

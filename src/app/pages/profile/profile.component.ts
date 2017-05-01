@@ -134,7 +134,6 @@ export class ProfileComponent implements OnInit, OnDestroy {
         } else if (this.page ==='card') {
 
         } else {
-          console.log('this is nothing');
           this.router.navigate(['profile/general']);
         }
       });
@@ -165,20 +164,16 @@ export class ProfileComponent implements OnInit, OnDestroy {
   /////// USER //////////
   ///////////////////////
   saveProfile() {
-    console.log('Current object User: ' + JSON.stringify(this.User));
     this.user_state.loading = true;
     this.user_state.button_title = "Salvando..."
     this.profileService.updateProfile(this.User).then((data) => {
       this.user_state.loading = false;
       this.user_state.button_title = "Salva"
       if (data.success) {
-        console.log(' data: ' + JSON.stringify(data));
-
         let profileData = {};
         if (isBrowser) {
           if (localStorage.getItem('auth') !== null) {
             let authData = JSON.parse(localStorage.getItem('auth'));
-            console.log('auth data: ' + JSON.stringify(authData));
             authData.profile.firstname = this.User.firstname;
             authData.profile.lastname = this.User.lastname;
             authData.profile.fullname = this.User.firstname + ' ' + this.User.lastname;
@@ -319,8 +314,6 @@ export class ProfileComponent implements OnInit, OnDestroy {
       this.card_state.number_error = null;
       this.card_state.exp_date_error = null;
       this.card_state.cvc_error = null;
-      console.log('error: ' + error);
-      console.log('error status: ' + error.status);
       if (error === 400) {
         this.card_state.message_error = "Errore nel inserimento del codice della sicurezza";
         this.card_state.cvc_error = "Inserisci un codice corretto";
@@ -389,8 +382,6 @@ export class ProfileComponent implements OnInit, OnDestroy {
         this.card_state.exp_date_error = null;
       }
     }
-    console.log('exp date: ' + result);
-    // this.addCardData.exp_date = result;
     this.Card.exp_date = result
     return result;
   }

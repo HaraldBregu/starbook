@@ -157,8 +157,8 @@ export class LandingComponent implements OnInit {
           ];
           this.data.texts = [
             "Hai bisogno di un idraulico? Prenotalo!",
-            "Sappiamo bene che trovare l'idraulico giusto nel momento giusto non è mai semplice. D'ora in poi lo faciamo noi al tuo posto!",
-            "La miglior piattaforma per trovare il tuo idraulico in modo semplice, veloce e sicuro.",
+            "Sappiamo bene che trovare l'idraulico giusto nel momento giusto non è mai semplice. D'ora in poi lo facciamo noi al tuo posto!",
+            "La migliore piattaforma per trovare il tuo idraulico in modo semplice, veloce e sicuro.",
             "Tre ottimi motivi per prenotare l'idraulico su Starbook.",
             "Cosa dicono i clienti"
           ];
@@ -175,7 +175,7 @@ export class LandingComponent implements OnInit {
             },
             {
               title: "Pagamento online",
-              description: "La massima comodità anche nei metodi di pagamento, utilizando la carta di credito o prepagata puoi pagare l'idraulico direttamente online.",
+              description: "La massima comodità anche nei metodi di pagamento, utilizzando la carta di credito o prepagata puoi pagare l'idraulico direttamente online.",
               icon_name: "fa-credit-card"
             }
           ];
@@ -192,7 +192,7 @@ export class LandingComponent implements OnInit {
             },
             {
               username: "Anna F.",
-              text: "Dopo aver trascorso più di una settimana a cercare su social media ho trovato Starbook e in meno di pochi minuti ho prenotato l’idraulico e il servizio che mi serviva. Davvero bravi!",
+              text: "Dopo aver trascorso più di una settimana a cercare sui social media ho trovato Starbook e in meno di pochi minuti ho prenotato l’idraulico e il servizio che mi serviva. Davvero bravi!",
               rating: 5
             },
             {

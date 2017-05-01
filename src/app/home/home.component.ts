@@ -67,11 +67,11 @@ export class HomeComponent implements OnInit {
   /////// PARTNERSHIP //////////
   //////////////////////////////
   joinUs() {
-    this.analyticsService.sendEvent({category:'Landing Page', action: 'Join', label: "professional"});
+    this.analyticsService.sendEvent({category:'Partnership', action: 'Join to us', label: this.router.url});
     this.router.navigate(['recruiter/workerjoin']);
   }
   lernMore() {
-    this.analyticsService.sendEvent({category:'Landing Page', action: 'Join', label: "partnership"});
+    this.analyticsService.sendEvent({category:'Partnership', action: 'Learn more', label: this.router.url});
     this.router.navigate(['recruiter/partnerjoin']);
   }
 
@@ -79,7 +79,7 @@ export class HomeComponent implements OnInit {
   /////// SEARCH //////////
   /////////////////////////
   searchMore() {
-    this.analyticsService.sendEvent({category:'Landing Page', action: 'Search', label: "More"});
+    this.analyticsService.sendEvent({category:'Home action', action: 'Search', label: this.router.url});
     if (this.query.length>0 && this.results.length===0) {
       this.router.navigate(['requests/service']);
     } else if (this.query.length>0 && this.results.length>0) {

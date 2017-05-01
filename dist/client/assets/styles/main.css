@@ -3546,7 +3546,7 @@ app-home {
     background-position: center 100%;
     color: white;
     padding: 150px 0;
-    max-height: 550px; }
+    height: 550px; }
     app-home .header .shadow {
       display: block;
       position: absolute;
@@ -3909,7 +3909,7 @@ app-home {
   @media (max-width: 576px) {
     app-home .header {
       padding: 40px 30px;
-      height: 500px; }
+      height: 600px; }
       app-home .header .search .ui-autocomplete-panel {
         width: 100% !important; }
       app-home .header .search .spinner {
@@ -3945,16 +3945,13 @@ app-home {
       background-position: 165% 89%;
       background-size: 376px; } }
   @media (max-width: 375px) {
-    app-home .header {
-      height: 550px; }
     app-home .recruiting .partner-box {
       background-position: 165% 105%;
       background-size: 376px; } }
   @media (max-width: 320px) {
     app-home .header {
-      max-height: 650px;
       padding: 40px 30px;
-      height: 600px; }
+      height: 680px; }
     app-home .recruiting .partner-box {
       background-position: 39% 116%;
       background-size: 386px; } }

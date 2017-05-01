@@ -11,7 +11,9 @@ export interface stripeResponse {
 @Injectable()
 export class PaymentService {
   private api = 'https://api.starbook.co/v0.9.1/';
+  // private api = 'http://localhost/v0.9.1/';
   private auth;
+
   constructor(private http: Http) { }
 
   private _makeHeaders() {
