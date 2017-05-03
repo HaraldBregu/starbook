@@ -5,7 +5,6 @@ import { PopupsService } from '../popups/popups.service';
 import { AnalyticsService } from '../shared/analytics.service';
 import { ProfileService } from '../shared/profile.service';
 import { ShareService } from '../pages/share/share.service';
-
 import { Subscription }   from 'rxjs/Subscription';
 import { isBrowser } from "angular2-universal";
 
@@ -91,6 +90,8 @@ export class OrderComponent implements OnInit, OnDestroy {
         days: this.getInitialPrice()/45000
       }
     };
+
+    // console.log('details are: ' + JSON.stringify(this.orderData.details));
     // var newObject = object;
     // newObject.details.push({title:this.orderData.title, type:"service"});
     // newObject.details.push(this.orderData.details)
@@ -104,7 +105,6 @@ export class OrderComponent implements OnInit, OnDestroy {
     if (hasTitle===false) {
       object.details.unshift({title:this.orderData.title, type:"service"})
     }
-
     return object;
   }
 
@@ -122,7 +122,7 @@ export class OrderComponent implements OnInit, OnDestroy {
     var newWizardData = this.wizardData();
     var string = JSON.stringify(newWizardData);
     let navigationExtras: NavigationExtras = {queryParams:{estimate:string}};
-    this.router.navigate(['share/service'], navigationExtras);
+    this.router.navigate(['share/estimate'], navigationExtras);
     return false;
   }
   saveEstimate() {

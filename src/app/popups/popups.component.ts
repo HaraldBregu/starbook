@@ -486,7 +486,6 @@ export class PopupsComponent implements OnInit, OnDestroy {
       this.isPopupLoading = true;
       let timeStart = Date.now();
       this.authServics.login(email, password).then((data) => {
-        console.log('logged in');
           this.analyticsService.sendTiming({category: 'Login', timingVar: 'load', timingValue: Date.now()-timeStart});
           this.isPopupLoading = false;
           this.auth = data;
@@ -498,8 +497,6 @@ export class PopupsComponent implements OnInit, OnDestroy {
             // this.router.navigate(['/']);
           }
         }).catch((error) => {
-          console.log('error loggin');
-
           this.isPopupLoading = false;
           switch (error) {
             case 404:
@@ -1055,7 +1052,7 @@ export class PopupsComponent implements OnInit, OnDestroy {
           this.popupService.actionComplete({type: 'editPrice', data: {orderId: orderId, orderPrice: orderPrice, isModified: response.nModified}});
         })
         .catch((error) => {
-          console.log(error);
+          //console.log(error);
         });
   }
   continueOrder(orderId) {
@@ -1070,7 +1067,7 @@ export class PopupsComponent implements OnInit, OnDestroy {
           this.popupService.actionComplete({type: 'continueOrder', data: {orderId: orderId}});
         })
         .catch((error) => {
-          console.log(error);
+          //console.log(error);
         });
 
   }
@@ -1108,7 +1105,7 @@ export class PopupsComponent implements OnInit, OnDestroy {
           })
           .catch((error) => {
             this.closePopup();
-            console.log(error);
+            //console.log(error);
           });
     } else {
       this.enterPhoneFormError.phone = true;

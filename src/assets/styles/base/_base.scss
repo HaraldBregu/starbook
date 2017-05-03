@@ -436,6 +436,7 @@ $datepicker-hover-text-color: #ffffff;
 }
 .date .ui-datepicker {
   position: absolute;
+  top: 50px !important;
   width: 100%;
   background-color: $datepicker-background-color;
   box-shadow: $datepicker-shadow;
@@ -582,6 +583,43 @@ $datepicker-hover-text-color: #ffffff;
   .visibility-hidden {
     visibility: hidden;
   }
+}
+
+
+
+.col-xs-15,
+.col-sm-15,
+.col-md-15,
+.col-lg-15 {
+    position: relative;
+    min-height: 1px;
+    padding-right: 10px;
+    padding-left: 10px;
+}
+.col-xs-15 {
+    width: 20%;
+    float: left;
+}
+
+@media (min-width: 768px) {
+.col-sm-15 {
+        width: 20%;
+        float: left;
+    }
+}
+
+@media (min-width: 992px) {
+    .col-md-15 {
+        width: 20%;
+        float: left;
+    }
+}
+
+@media (min-width: 1200px) {
+    .col-lg-15 {
+        width: 20%;
+        float: left;
+    }
 }
 
 /* Remove inner shadow from inputs on mobile iOS */

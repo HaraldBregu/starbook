@@ -24,19 +24,34 @@ export class LandingComponent implements OnInit {
   public services = [
     {
       title:"Idraulico",
-      color:"blue",
+      color:"#164170",
       image: "https://s3-eu-west-1.amazonaws.com/starbook-s3/plumbing/idraulico-normal.png"
     },
     {
       title:"Falegname",
-      color:"brown",
-      image: "https://s3-eu-west-1.amazonaws.com/starbook-s3/plumbing/idraulica-tutti-attrezzi-normal.png"
+      color:"#4E311C",
+      image: "https://st.depositphotos.com/1769672/2236/i/950/depositphotos_22367589-stock-photo-carpenter-working.jpg"
     },
     {
       title:"Muratore",
-      color:"Black",
-      image: "https://s3-eu-west-1.amazonaws.com/starbook-s3/plumbing/idraulica-tutti-attrezzi-normal.png"
-    }
+      color:"#F09765",
+      image: "https://www.masonrymagazine.com/wp-content/uploads/2017/04/shutterstock_462881602.jpg"
+    },
+    // {
+    //   title:"Idraulico",
+    //   color:"#164170",
+    //   image: "https://s3-eu-west-1.amazonaws.com/starbook-s3/plumbing/idraulico-normal.png"
+    // },
+    // {
+    //   title:"Falegname",
+    //   color:"#4E311C",
+    //   image: "https://st.depositphotos.com/1769672/2236/i/950/depositphotos_22367589-stock-photo-carpenter-working.jpg"
+    // },
+    // {
+    //   title:"Muratore",
+    //   color:"#F09765",
+    //   image: "https://www.masonrymagazine.com/wp-content/uploads/2017/04/shutterstock_462881602.jpg"
+    // },
   ];
   public data = {
     pictures:[
@@ -121,7 +136,6 @@ export class LandingComponent implements OnInit {
     private orderService: OrderService) {
       this.emailPattern = /^[a-z0-9!#$%&'*+\/=?^_`{|}~.-]+@[a-z0-9]([a-z0-9-]*[a-z0-9])?(\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)*$/i;
       this.numPattern = /^\d+$/;
-      this.navigationService.updateMessage('Il professionista sempre con te');
       this.analyticsService.sendPageViewUrl(this.router.url)
 
       if (isBrowser) {
@@ -139,7 +153,7 @@ export class LandingComponent implements OnInit {
 
           this.order['service_id'] = "5904d0c06c8dd682c65e99b6"
           this.order['title'] = this.page.charAt(0).toUpperCase() + this.page.slice(1);
-          this.order['details'] = [{title:"Idraulico", type:"service"},{title:"Intervento idraulico uscita", type:"detail"}]
+          this.order['details'] = [{title:"Idraulico", type:"service"},{title:"Intervento idraulico (costo uscita)", type:"detail", value:"40€"}]
           this.order['description'] = ""
 
           this.data.pictures = [
@@ -198,6 +212,9 @@ export class LandingComponent implements OnInit {
           this.seoObject.image_url = "https://s3-eu-west-1.amazonaws.com/starbook-s3/plumbing/idraulico-normal.png";
         } else {
           this.router.navigate(['landing/idraulico']);
+
+          // this.navigationService.updateMessage('Il professionista con un click');
+          // this.router.navigate(['landing']);
         }
 
         this.seoService.setTitle(this.seoObject.title);
@@ -216,7 +233,7 @@ export class LandingComponent implements OnInit {
         this.seoService.setOgElem('og:image', this.seoObject.image_url);
         this.seoService.setOgElem('og:image:secure_url', this.seoObject.image_url);
       })
-  }
+    }
 
   ngOnInit() {
 

@@ -22,10 +22,14 @@ export interface IAddress {
 
 @Injectable()
 export class OrderService {
+  private protocol = "https"
+  private hostname = "api.starbook.co"
+  private api_version = "v0.9.1"
+  private api = "";
+
   private orderEvent = new Subject<string>();
   public getOrderEvent$;
 
-  private api: string;
   private auth;
   private wizardData:any = {};
   private googleApi: string;
@@ -35,6 +39,15 @@ export class OrderService {
     if(isBrowser) {
       this.getOrderEvent$ = this.orderEvent.asObservable();
     }
+
+    if (isBrowser) {
+      if (document.location.hostname === "www.starbook.co") {
+        this.api_version = "v0.9.1"
+      } else {
+        this.api_version = "t0.9.1"
+      }
+    }
+    this.api = this.protocol + "://" + this.hostname + "/" + this.api_version + "/";
   }
 
   makeEvent(event) {

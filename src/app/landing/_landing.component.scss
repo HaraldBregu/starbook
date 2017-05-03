@@ -6,10 +6,12 @@ app-landing {
   .landing-container {
     background: white;
     .services-container {
-      padding: 40px;
+      padding: 30px;
       max-width: 1440px;
       margin: auto;
       .service-container {
+        padding-top: 15px;
+        padding-bottom: 15px;
         .service {
           position: relative;
           background-size: cover;
@@ -26,14 +28,23 @@ app-landing {
             height: 100%;
             z-index: 10;
             border-radius: 10px;
-            -webkit-transition: background-color 0.2s ease;
-            -moz-transition: background-color 0.2s ease;
-            -o-transition: background-color 0.2s ease;
-            transition: background-color 0.2s ease;
-            background-color: rgba(22, 65, 112, 0.85);
+            // background-color: rgba(22, 65, 112, 1.0);
+
+            // -webkit-transition: background-color 1.0s ease;
+            // -moz-transition: background-color 1.0s ease;
+            // -o-transition: background-color 1.0s ease;
+            // transition: background-color 1.0s ease;
+            // background-color: rgba(22, 65, 112, 0.85);
+
+            -webkit-transition: opacity 1.0s ease;
+            -moz-transition: opacity 1.0s ease;
+            -o-transition: opacity 1.0s ease;
+            transition: opacity 1.0s ease;
+            opacity: 0.85;
           }
           .overlay:hover {
-            background-color: rgba(22, 65, 112, 0.40);
+            // background-color: rgba(22, 65, 112, 0.5);
+            opacity: 0.5;
           }
           h1 {
             line-height: 300px;

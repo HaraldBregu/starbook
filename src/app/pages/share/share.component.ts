@@ -6,6 +6,7 @@ import { JoinService } from '../../shared/join.service';
 import { ShareService } from './share.service';
 import { AnalyticsService } from '../../shared/analytics.service';
 import { OrderService } from '../../order/order.service';
+import { SeoService } from '../../shared/seo.service';
 
 @Component({
   selector: 'app-share',
@@ -27,6 +28,12 @@ export class ShareComponent implements OnInit {
   public estimate_state = {
     saved: false
   };
+  public seoObject = {
+    title: "",
+    description: "",
+    url: "",
+    image_url: ""
+  };
 
   constructor(
     private router: Router,
@@ -35,68 +42,107 @@ export class ShareComponent implements OnInit {
     private joinService: JoinService,
     private shareService: ShareService,
     private analyticsService: AnalyticsService,
-    private orderService: OrderService) {
+    private orderService: OrderService,
+    private seoService: SeoService) {
     this.navigationService.updateMessage("Condividi");
     this.emailPattern = /^[a-z0-9!#$%&'*+\/=?^_`{|}~.-]+@[a-z0-9]([a-z0-9-]*[a-z0-9])?(\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)*$/i;
     this.numPattern = /^\d+$/;
     this.serviceObject = this.shareService.getObject();
+
     if (isBrowser) {
+      this.sharelink =  document.location.protocol + '//'+ document.location.hostname;
       if (localStorage.getItem('auth')) {
         this.currentUser = JSON.parse(localStorage.getItem('auth'));
       }
-      this.route.params.subscribe((params: Params) => {
-        window.scrollTo(0, 0);
-        this.page = params['page']
-
-        if (this.page === 'starbook') {
-          this.navigationService.updateMessage("Condividi");
-          if (localStorage.getItem('auth')) {
-            this.sharelink =  document.location.protocol + '//'+ document.location.hostname + '/?ref=' + this.currentUser._id;
-          }
-        } else if (this.page === 'service') {
-          this.navigationService.updateMessage("Condividi servizio");
-          // this.sharelink = document.location.protocol + '//'+ document.location.hostname + this.router.url;
-          // console.log('router url: ' + this.router.url);
-          this.route.queryParams.subscribe(params => {
-            var estimateParams = params['estimate'];
-            if (estimateParams) {
-              this.sharelink = document.location.protocol + '//'+ document.location.hostname + '/share/estimate?estimate=' + encodeURI(estimateParams);
-              // console.log('share link is: ' + this.sharelink);
-              try {
-                var estimateObject = JSON.parse(estimateParams);
-                this.Estimate = estimateObject;
-              } catch (e) {
-                this.router.navigate(['share/starbook']);
-              }
-            } else {
-              this.router.navigate(['share/starbook']);
-            }
-          });
-        } else if (this.page === 'estimate') {
-          this.navigationService.updateMessage("Preventivo");
-          this.route.queryParams.subscribe(params => {
-            var estimateParams = params['estimate'];
-            if (estimateParams) {
-              try {
-                var estimateObject = JSON.parse(estimateParams);
-                this.Estimate = estimateObject;
-              } catch (e) {
-                this.router.navigate(['share/starbook']);
-              }
-            } else {
-              this.router.navigate(['share/starbook']);
-            }
-          });
-
-        }  else {
-          this.router.navigate(['share/starbook']);
-        }
-      })
     }
+
+    this.route.params.subscribe((params: Params) => {
+      if (isBrowser) {window.scrollTo(0, 0);}
+      this.page = params['page'];
+      
+      if (this.page === 'estimate') {
+        this.navigationService.updateMessage("Preventivo");
+
+        this.route.queryParams.subscribe(params => {
+          var estimateParams = params['estimate'];
+          if (estimateParams) {
+            this.sharelink += '/share/estimate?estimate=' + encodeURI(estimateParams);
+            try {
+              var estimateObject = JSON.parse(estimateParams);
+              this.Estimate = estimateObject;
+            } catch (e) {
+              this.router.navigate(['']);
+            }
+          } else {
+            this.router.navigate(['']);
+          }
+
+          this.seoObject.title = "Preventivo | " + this.Estimate.title;
+          this.seoObject.description = "";
+          this.seoObject.url = 'https://www.starbook.co' + this.router.url;
+          this.seoObject.image_url = "https://st.depositphotos.com/1006214/4163/i/950/depositphotos_41638005-stock-photo-contractors-estimate-form.jpg";
+        });
+      } else {
+        this.router.navigate(['']);
+      }
+
+      this.seoService.setTitle(this.seoObject.title);
+      this.seoService.setMetaElem('description', this.seoObject.description);
+
+      this.seoService.setOgElem('twitter:card', "summary_large_image");
+      this.seoService.setOgElem('twitter:title', this.seoObject.title);
+      this.seoService.setOgElem('twitter:site', "@starbookco");
+      this.seoService.setOgElem('twitter:creator', "@HaraldBregu");
+      this.seoService.setOgElem('twitter:description', this.seoObject.description);
+      this.seoService.setOgElem('twitter:image', this.seoObject.image_url);
+
+      this.seoService.setOgElem('og:title', this.seoObject.title);
+      this.seoService.setOgElem('og:description', this.seoObject.description);
+      this.seoService.setOgElem('og:url', this.seoObject.url);
+      this.seoService.setOgElem('og:image', this.seoObject.image_url);
+      this.seoService.setOgElem('og:image:secure_url', this.seoObject.image_url);
+
+      // if (this.page === 'starbook') {
+      //   this.navigationService.updateMessage("Condividi");
+      //   this.sharelink += '/?ref=' + this.currentUser._id;
+      // } else if (this.page === 'service') {
+      //   this.navigationService.updateMessage("Condividi servizio");
+      //
+      //   this.route.queryParams.subscribe(params => {
+      //     var estimateParams = params['estimate'];
+      //     if (estimateParams) {
+      //       this.sharelink += '/share/estimate?estimate=' + encodeURI(estimateParams);
+      //       try {
+      //         var estimateObject = JSON.parse(estimateParams);
+      //         this.Estimate = estimateObject;
+      //       } catch (e) {
+      //         this.router.navigate(['share/starbook']);
+      //       }
+      //     } else {
+      //       this.router.navigate(['share/starbook']);
+      //     }
+      //
+      //     this.seoObject.title = "Preventivo | " + this.Estimate.title;
+      //     this.seoObject.description = "";
+      //     this.seoObject.url = 'https://www.starbook.co' + this.router.url;
+      //     this.seoObject.image_url = "https://st.depositphotos.com/1006214/4163/i/950/depositphotos_41638005-stock-photo-contractors-estimate-form.jpg";
+      //   });
+      // }
+    })
   }
 
   ngOnInit() {
 
+  }
+
+  daysString(days) {
+    if (days < 0.5) {
+      return "1/2 Giorno";
+    } else if (days > 0.5 && days < 1.5) {
+      return Math.round(days) + " Giorno";
+    } else {
+      return Math.round(days) + " Giorni";
+    }
   }
 
   startWizard() {

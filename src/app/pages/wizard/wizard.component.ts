@@ -183,8 +183,12 @@ export class WizardComponent implements OnInit {
         'Luglio', 'Agosto', 'Settembre', 'Ottobre', 'Novembre', 'Dicembre'],
       monthNamesShort: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
     };
+    this.analyticsService.sendPageViewUrl(this.router.url)
+
     if (isBrowser) {
       this.service_data = this.orderService.getWizardData();
+      console.log('details are: ' + JSON.stringify(this.service_data));
+
       if (Object.keys(this.service_data).length===0) {
         this.Order = this.readOrderFromLocal()
         if (this.Order.address) {

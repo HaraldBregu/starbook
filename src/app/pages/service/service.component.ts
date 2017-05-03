@@ -104,16 +104,14 @@ export class ServiceComponent implements OnInit {
           }
         }
         if (params['estimated']) {
-          console.log('estimated: ' + params['estimated']);
+          // console.log('estimated: ' + params['estimated']);
         }
       });
 
       // SERVICE
       let service = data.service;
       if (service_id) {
-        if (isBrowser) {
-          window.scrollTo(0, 0);
-        }
+        if (isBrowser) {window.scrollTo(0, 0);}
         if (service) {
           this.renderPage(service);
         } else {
@@ -152,6 +150,8 @@ export class ServiceComponent implements OnInit {
   }
 
   renderPage(services: IServices) {
+    this.navigationService.updateMessage(services.title);
+
     this.seoService.setTitle(services.title + "| Preventivo Online");
     this.seoService.setOgElem('og:title', services.title + "| Preventivo Online");
     this.seoService.setMetaElem('description', services.description);
@@ -159,8 +159,6 @@ export class ServiceComponent implements OnInit {
     this.seoService.setOgElem('og:url', 'https://www.starbook.co/services/' + services.title.replace(/\s+/g, '-'));
     this.seoService.setOgElem('og:image', services.image_url);
     this.seoService.setOgElem('og:image:secure_url', services.image_url);
-
-    this.navigationService.updateMessage(services.title);
 
     this.defaultServices = services;
     this.title = services.title;
@@ -190,7 +188,6 @@ export class ServiceComponent implements OnInit {
         price_type: form.price_type,
         options: []
       };
-
       let optionId = 0;
       form.options.forEach((item: IServiceFormItem) => {
         var option = {
@@ -233,28 +230,22 @@ export class ServiceComponent implements OnInit {
             let currentValue = item.selected;
             if (currentValue && service.required === true) {
               if (service.type === 'RADIOBUTTON') {
-                this.analyticsService.sendEvent({category:'Order creation form', action: 'modify', label: 'radiobutton'});
               } else {
-                this.analyticsService.sendEvent({category:'Order creation form', action: 'modify', label: 'checkbox'});
                 if (this.checkNotEmptyForm(item.formId, item.optionId)) {
                   this.servicesData[serviceId].options[itemId].selected = !currentValue;
                 }
               }
             } else if (!currentValue && service.required === true) {
               if (service.type === 'RADIOBUTTON') {
-                this.analyticsService.sendEvent({category:'Order creation form', action: 'modify', label: 'radiobutton'});
                 this.uncheckAllItems(serviceName);
                 this.servicesData[serviceId].options[itemId].selected = !currentValue;
               } else {
-                this.analyticsService.sendEvent({category:'Order creation form', action: 'modify', label: 'checkbox'});
                 this.servicesData[serviceId].options[itemId].selected = !currentValue;
               }
             } else {
               if (service.type === 'RADIOBUTTON') {
-                this.analyticsService.sendEvent({category:'Order creation form', action: 'modify', label: 'radiobutton'});
                 this.uncheckAllItems(serviceName);
               } else {
-                this.analyticsService.sendEvent({category:'Order creation form', action: 'modify', label: 'checkbox'});
               }
               this.servicesData[serviceId].options[itemId].selected = !currentValue;
             }
@@ -276,20 +267,16 @@ export class ServiceComponent implements OnInit {
         }
       }
     });
-
     return result;
   }
 
   changeValue(formId, optionId) {
     let value = parseInt(this.servicesData[formId].options[optionId].input_value);
-    this.analyticsService.sendEvent({category:'Order creation form', action: 'modify', label: 'input'});
-
     if (isNaN(value) || value === 0) {
       this.servicesData[formId].options[optionId].input_value = 0;
     } else {
       this.servicesData[formId].options[optionId].input_value = value;
     }
-
     this.calculateOrder();
   }
 
@@ -413,18 +400,18 @@ export class ServiceComponent implements OnInit {
       service.options.forEach((item) => {
         if (service.type === 'RADIOBUTTON') {
           if (item.selected) {
-            currentOrderState.push({title: item.title, type:"detail"});
+            currentOrderState.push({title: item.title, type:"detail", value:item.input_value});
           }
         } else if (service.type === 'CHECKBOX') {
           if (item.selected) {
-            currentOrderState.push({title: item.title, type:"detail"});
+            currentOrderState.push({title: item.title, type:"detail", value:item.input_value});
           }
         } else if (service.type === 'INPUTTEXT') {
           if (service.price_type === 'BASE_AMOUNT_PER_INPUT' && item.input_value != 0) {
-            currentOrderState.push({title: item.title + ' ' + item.input_value, type:"detail"});
+            currentOrderState.push({title: item.title, type:"detail", value:item.input_value});
           }
           if (service.price_type === 'AMOUNT_PER_INPUT' && item.input_value != 0) {
-            currentOrderState.push({title: item.title + ' ' + item.input_value, type:"detail"});
+            currentOrderState.push({title: item.title, type:"detail", value:item.input_value});
           }
         }
         itemId++;
@@ -434,6 +421,7 @@ export class ServiceComponent implements OnInit {
 
     currentOrderState.forEach((service) => {
       if (service.title) {
+        // console.log('serivces is: ' + JSON.stringify(service));
         this.orderData.details.push(service);
       }
     });

@@ -18,6 +18,7 @@ import { AccountComponent } from './pages/account/account.component';
 import { RecruiterComponent } from './pages/recruiter/recruiter.component';
 import { RequestsComponent } from './pages/requests/requests.component';
 import { ShareComponent } from './pages/share/share.component';
+import { BlogComponent } from './pages/blog/blog.component';
 
 const routes: Routes = [
   {
@@ -105,6 +106,14 @@ const routes: Routes = [
   {
     path: 'share/:page',
     component: ShareComponent
+  },
+  {
+    path: 'blog',
+    component: BlogComponent
+  },
+  {
+    path: 'blog/:page',
+    component: BlogComponent
   }
 ];
 

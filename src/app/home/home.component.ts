@@ -31,6 +31,8 @@ export class HomeComponent implements OnInit {
 
   constructor(private authServics: AuthService, private homeService: CommonService, private router: Router, private route: ActivatedRoute, private navigationService: NavigationService, private analyticsService: AnalyticsService, private popupsService: PopupsService, private seoService: SeoService) {
     this.navigationService.updateMessage('La cura per la casa');
+    this.analyticsService.sendPageViewUrl(this.router.url)
+
     if (isBrowser) {
       if (localStorage.getItem('auth')) {
         this.currentUser = JSON.parse(localStorage.getItem('auth'));
@@ -79,7 +81,7 @@ export class HomeComponent implements OnInit {
   /////// SEARCH //////////
   /////////////////////////
   searchMore() {
-    this.analyticsService.sendEvent({category:'Home action', action: 'Search', label: this.router.url});
+    this.analyticsService.sendEvent({category:'Button', action: 'Search', label: this.router.url});
     if (this.query.length>0 && this.results.length===0) {
       this.router.navigate(['requests/service']);
     } else if (this.query.length>0 && this.results.length>0) {
@@ -93,6 +95,7 @@ export class HomeComponent implements OnInit {
 
   }
   search(event) {
+    this.analyticsService.sendEvent({category:'Search', action: 'typing: ' + event.query, label: this.router.url});
     this.newServiceRequest.message = 'Richiedi?';
     this.spinerView = true;
     this.clearView = false;
@@ -113,6 +116,7 @@ export class HomeComponent implements OnInit {
     })
   }
   selectResult(service) {
+    this.analyticsService.sendEvent({category:'Search result', action: 'Select service', label: this.router.url});
     this.homeService.sendData(service, this.ref)
     this.router.navigate(['services', service.title.replace(/\s+/g, '-')]);
   }
@@ -123,7 +127,7 @@ export class HomeComponent implements OnInit {
   }
   requireService() {
     // this.newServiceRequest.message = 'Grazie!';
-    this.analyticsService.sendEvent({category:'Services', action: 'request', label: this.query});
+    this.analyticsService.sendEvent({category:'Search result', action: 'Require service', label: this.router.url});
     this.router.navigate(['requests/service']);
   }
 }

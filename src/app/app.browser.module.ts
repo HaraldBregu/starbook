@@ -58,6 +58,7 @@ import { AccountComponent } from './pages/account/account.component';
 import { RecruiterComponent } from './pages/recruiter/recruiter.component';
 import { RequestsComponent } from './pages/requests/requests.component';
 import { ShareComponent } from './pages/share/share.component';
+import { BlogComponent } from './pages/blog/blog.component';
 
 import { ClipboardDirective } from './directives/clipboard.directive';
 
@@ -104,6 +105,7 @@ let declarations = [
   ServicesComponent,
   RequestsComponent,
   ShareComponent,
+  BlogComponent,
 
   ClipboardDirective
 ];

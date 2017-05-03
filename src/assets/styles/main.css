@@ -733,6 +733,7 @@ textarea.form-control {
 
 .date .ui-datepicker {
   position: absolute;
+  top: 50px !important;
   width: 100%;
   background-color: #ffffff;
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.25);
@@ -876,6 +877,31 @@ textarea.form-control {
 @media (max-width: 480px) {
   .visibility-hidden {
     visibility: hidden; } }
+.col-xs-15,
+.col-sm-15,
+.col-md-15,
+.col-lg-15 {
+  position: relative;
+  min-height: 1px;
+  padding-right: 10px;
+  padding-left: 10px; }
+
+.col-xs-15 {
+  width: 20%;
+  float: left; }
+
+@media (min-width: 768px) {
+  .col-sm-15 {
+    width: 20%;
+    float: left; } }
+@media (min-width: 992px) {
+  .col-md-15 {
+    width: 20%;
+    float: left; } }
+@media (min-width: 1200px) {
+  .col-lg-15 {
+    width: 20%;
+    float: left; } }
 /* Remove inner shadow from inputs on mobile iOS */
 textarea, input[type="text"] {
   -webkit-appearance: none;
@@ -3344,36 +3370,39 @@ app-landing {
   app-landing .landing-container {
     background: white; }
     app-landing .landing-container .services-container {
-      padding: 40px;
+      padding: 30px;
       max-width: 1440px;
       margin: auto; }
-      app-landing .landing-container .services-container .service-container .service {
-        position: relative;
-        background-size: cover;
-        background-repeat: no-repeat;
-        background-position: center 100%;
-        height: 300px;
-        cursor: pointer;
-        border-radius: 10px; }
-        app-landing .landing-container .services-container .service-container .service .overlay {
-          position: absolute;
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 100%;
-          z-index: 10;
-          border-radius: 10px;
-          -webkit-transition: background-color 0.2s ease;
-          -moz-transition: background-color 0.2s ease;
-          -o-transition: background-color 0.2s ease;
-          transition: background-color 0.2s ease;
-          background-color: rgba(22, 65, 112, 0.85); }
-        app-landing .landing-container .services-container .service-container .service .overlay:hover {
-          background-color: rgba(22, 65, 112, 0.4); }
-        app-landing .landing-container .services-container .service-container .service h1 {
-          line-height: 300px;
-          text-align: center;
-          color: white; }
+      app-landing .landing-container .services-container .service-container {
+        padding-top: 15px;
+        padding-bottom: 15px; }
+        app-landing .landing-container .services-container .service-container .service {
+          position: relative;
+          background-size: cover;
+          background-repeat: no-repeat;
+          background-position: center 100%;
+          height: 300px;
+          cursor: pointer;
+          border-radius: 10px; }
+          app-landing .landing-container .services-container .service-container .service .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 10;
+            border-radius: 10px;
+            -webkit-transition: opacity 1.0s ease;
+            -moz-transition: opacity 1.0s ease;
+            -o-transition: opacity 1.0s ease;
+            transition: opacity 1.0s ease;
+            opacity: 0.85; }
+          app-landing .landing-container .services-container .service-container .service .overlay:hover {
+            opacity: 0.5; }
+          app-landing .landing-container .services-container .service-container .service h1 {
+            line-height: 300px;
+            text-align: center;
+            color: white; }
     app-landing .landing-container .header {
       background-size: cover;
       background-repeat: no-repeat;
@@ -3961,7 +3990,6 @@ app-service {
   float: left;
   width: 100%;
   height: 100%;
-  background-color: #FFFFFF;
   overflow: auto; }
   app-service .home-page {
     max-width: 1440px;
@@ -4073,7 +4101,7 @@ app-service {
       padding: 50px;
       border: 1px solid #CCCCCC;
       margin-bottom: 20px;
-      background-color: #F7F7F7; }
+      background-color: white; }
       app-service .masonry-container .services-block .header {
         display: inline-block;
         width: 100%;
@@ -4281,19 +4309,15 @@ app-service {
     app-service .home-page .tab-container {
       display: block;
       width: 100%;
-      padding: 0;
-      margin: 0 auto; }
-    app-service .header-cover {
-      margin-left: 20px;
-      margin-right: 20px; }
+      padding: 0 20px; }
     app-service .masonry-container {
-      margin-left: 20px;
-      margin-right: 20px; }
+      margin-left: 0px;
+      margin-right: 0px; }
     app-service .tablet-mobile {
       display: inherit; } }
   @media (max-width: 645px) {
     app-service .home-page .row {
-      padding: 80px 10px 0 10px; }
+      padding: 80px 0 0; }
     app-service .home-page .tab-container {
       display: block;
       width: 525px;
@@ -4307,15 +4331,15 @@ app-service {
       height: 240px; }
     app-service .masonry-container {
       padding: 0px;
-      margin-left: 10px;
-      margin-right: 10px; }
+      margin-left: 0px;
+      margin-right: 0px; }
       app-service .masonry-container .services-block {
         margin-bottom: 10px; } }
   @media (max-width: 534px) {
     app-service .home-page .tab-container {
       display: block;
       width: 100%;
-      margin: 0 auto; }
+      padding: 0 10px; }
     app-service .masonry-container .services-block .service .input-group {
       max-width: 100%; } }
 
@@ -6421,9 +6445,24 @@ app-wizard {
         margin: 0 auto; }
         app-wizard .wizard .wizard-container .content-container .header-summary {
           text-align: left;
-          margin: auto; }
+          margin: auto;
+          overflow: auto; }
+          app-wizard .wizard .wizard-container .content-container .header-summary .summary-details {
+            overflow: auto; }
           app-wizard .wizard .wizard-container .content-container .header-summary h3 {
             margin-bottom: 10px; }
+          app-wizard .wizard .wizard-container .content-container .header-summary .item {
+            float: left;
+            width: 50%;
+            font-size: 18px;
+            font-weight: 300;
+            line-height: 36px; }
+          app-wizard .wizard .wizard-container .content-container .header-summary .amount {
+            float: left;
+            width: 50%;
+            font-size: 20px;
+            text-align: right;
+            font-weight: 500; }
         app-wizard .wizard .wizard-container .content-container .header {
           padding-bottom: 20px;
           text-align: center; }
@@ -6443,7 +6482,7 @@ app-wizard {
             float: left;
             width: 50%;
             font-size: 18px;
-            font-weight: 500;
+            font-weight: 400;
             line-height: 36px; }
           app-wizard .wizard .wizard-container .content-container .timing .amount {
             float: left;
@@ -6458,8 +6497,8 @@ app-wizard {
           app-wizard .wizard .wizard-container .content-container .payment .item {
             float: left;
             width: 50%;
-            font-size: 18px;
-            font-weight: 500;
+            font-size: 20px;
+            font-weight: 400;
             line-height: 36px; }
           app-wizard .wizard .wizard-container .content-container .payment .amount {
             float: left;
@@ -6484,7 +6523,8 @@ app-wizard {
             font-weight: 700; }
       app-wizard .wizard .wizard-container .footer-details {
         padding: 20px;
-        border-top: 1px solid #e4e4e4; }
+        border-top: 1px solid #e4e4e4;
+        font-weight: 300; }
         app-wizard .wizard .wizard-container .footer-details p {
           font-size: 16px !important;
           text-align: center; }
@@ -6497,6 +6537,7 @@ app-wizard {
           font-weight: 400;
           margin-top: 10px; }
         app-wizard .wizard .wizard-footer .box h6 {
+          font-size: 14px;
           font-weight: 400;
           margin-top: 10px; }
   app-wizard .btn-back {
@@ -7157,31 +7198,6 @@ app-wizard {
 .breadcrumb li:last-child a::after {
   border: 0; }
 
-.col-xs-15,
-.col-sm-15,
-.col-md-15,
-.col-lg-15 {
-  position: relative;
-  min-height: 1px;
-  padding-right: 10px;
-  padding-left: 10px; }
-
-.col-xs-15 {
-  width: 20%;
-  float: left; }
-
-@media (min-width: 768px) {
-  .col-sm-15 {
-    width: 20%;
-    float: left; } }
-@media (min-width: 992px) {
-  .col-md-15 {
-    width: 20%;
-    float: left; } }
-@media (min-width: 1200px) {
-  .col-lg-15 {
-    width: 20%;
-    float: left; } }
 app-about {
   display: block;
   position: relative;
@@ -7189,14 +7205,13 @@ app-about {
   height: 100%;
   min-height: 100vh;
   padding-top: 70px;
-  background-color: white;
+  background-color: #fafafb;
   overflow-x: hidden; }
   app-about .about-cover {
     background: white;
     position: relative;
     width: 100%;
-    height: 400px;
-    margin-bottom: 30px; }
+    height: 400px; }
     app-about .about-cover img {
       width: 100%;
       height: 100%;
@@ -7224,7 +7239,7 @@ app-about {
     margin: 0 auto 30px;
     padding: 20px;
     border: 1px solid #CCCCCC;
-    background-color: #F7F7F7; }
+    background-color: white; }
     app-about .member-box img {
       float: left;
       width: 220px;
@@ -7662,10 +7677,10 @@ app-share {
     display: block;
     max-width: 1130px;
     padding: 50px;
-    border: 1px solid #CCCCCC;
+    border: 1px solid #e3e3e3;
     border-top: 5px solid #7FC443;
-    background: #F7F7F7;
-    margin: 50px auto; }
+    background: white;
+    margin: 50px auto 140px; }
     app-share .estimate .btn-warning {
       width: 50%;
       font-size: 26px;
@@ -7689,7 +7704,7 @@ app-share {
       display: block;
       margin: 20px auto 20px;
       height: 1px;
-      border-top: 0.5px solid #E6E8EB; }
+      border-top: 1px solid #e3e3e3; }
     app-share .estimate .counts {
       overflow: auto; }
       app-share .estimate .counts .item {
@@ -7768,6 +7783,25 @@ app-share {
   @media (max-width: 320px) {
     app-share .share-container {
       padding: 10px; } }
+
+app-blog {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background-color: #FFFFFF;
+  padding: 70px 0 0; }
+  app-blog h1 {
+    font-size: 54px;
+    font-weight: 700; }
+  app-blog .blog {
+    display: block;
+    width: 100%;
+    height: 100%;
+    background-color: #FFFFFF; }
+    app-blog .blog .header {
+      color: white;
+      padding: 100px 0;
+      background: #164170; }
 
 ngb-datepicker,
 .datepicker {

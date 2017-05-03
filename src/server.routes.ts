@@ -29,5 +29,7 @@ export const routes: string[] = [
   'requests',
   'requests/:page',
   'share',
-  'share/:page'
+  'share/:page',
+  'blog',
+  'blog/:page'
 ];

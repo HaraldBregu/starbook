@@ -13,11 +13,8 @@ export class PaymentService {
   private protocol = "https"
   private hostname = "api.starbook.co"
   private api_version = "v0.9.1"
-
   private api = ""; //'https://api.starbook.co/v0.9.1/';
   // private api = 'http://localhost/v0.9.1/';
-
-
   private auth;
 
   constructor(private http: Http) {
@@ -27,15 +24,11 @@ export class PaymentService {
       } else {
         this.api_version = "t0.9.1"
       }
-
       // https:
       // console.log('protocol: ' + document.location.protocol);
-
       // glacial-shore-66987.herokuapp.com
       // www.starbook.co
       // console.log('hostname: ' + document.location.hostname);
-
-      //
       // console.log('port: ' + document.location.port);
     }
     this.api = this.protocol + "://" + this.hostname + "/" + this.api_version + "/";
