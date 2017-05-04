@@ -15,6 +15,8 @@ import { RouterModule }   from '@angular/router';
 // import { AutoCompleteModule, CalendarModule } from 'primeng/primeng';
 import { ClickOutsideModule } from 'ng2-click-outside';
 
+import {Ng2PageScrollModule} from 'ng2-page-scroll';
+
 // import { ClipboardModule } from 'ngx-clipboard';
 // import { MasonryModule } from 'angular2-masonry';
 // import { NgbModule, NgbDateParserFormatter } from '@ng-bootstrap/ng-bootstrap';
@@ -88,7 +90,8 @@ let imports = [
   // AutoCompleteModule,
   // CalendarModule,
   ClickOutsideModule,
-  ClipboardModule
+  ClipboardModule,
+  Ng2PageScrollModule.forRoot()
 ];
 let declarations = [
   AppComponent,

@@ -16,6 +16,7 @@ import { RouterModule }   from '@angular/router';
 // import { CalendarMockComponent } from './mocks/calendar.component';
 import { ClickOutsideModule } from 'ng2-click-outside';
 // import { ClipboarModule } from 'ngx-clipboard';
+import {Ng2PageScrollModule} from 'ng2-page-scroll';
 
 // import { MasonryModule } from 'angular2-masonry';
 // import { NgbModule, NgbDateParserFormatter } from '@ng-bootstrap/ng-bootstrap';
@@ -80,8 +81,10 @@ let imports = [
   // NgbModule.forRoot(),
   // AutoCompleteModule,
   // CalendarModule,
-  ClickOutsideModule
+  ClickOutsideModule,
+  Ng2PageScrollModule.forRoot()
   // ClipboarModule
+
 ];
 let declarations = [
   AppComponent,

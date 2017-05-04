@@ -55,7 +55,7 @@ export class LandingComponent implements OnInit {
   ];
   public data = {
     pictures:[
-      "https://s3-eu-west-1.amazonaws.com/starbook-s3/plumbing/idraulica-attrezzi.png"
+      "https://s3-eu-west-1.amazonaws.com/starbook-s3/plumbing/idraulica-tutti-attrezzi.png"
     ],
     texts:[
       "Hai bisogno di un idraulico? Prenotalo!",
@@ -146,7 +146,6 @@ export class LandingComponent implements OnInit {
 
       this.route.params.subscribe((params: Params) => {
         if (isBrowser) {window.scrollTo(0, 0);}
-
         this.page = params['page'];
         if (this.page==='idraulico') {
           this.navigationService.updateMessage('Ti serve un idraulico?');
@@ -210,8 +209,54 @@ export class LandingComponent implements OnInit {
           this.seoObject.description = this.data.texts[1];
           this.seoObject.url = 'https://www.starbook.co' + this.router.url;
           this.seoObject.image_url = "https://s3-eu-west-1.amazonaws.com/starbook-s3/plumbing/idraulico-normal.png";
+        } else if (this.page==='extensions') {
+          this.navigationService.updateMessage('Estensioni Starbook');
+          this.data.pictures = [
+            "https://s3-eu-west-1.amazonaws.com/starbook-s3/starbook-servizi-professionali-on-demand.png"
+          ];
+          this.data.texts = [
+            "Professionisti on demand",
+            "Hai mai pensato ad una funzione che ti permette di prenotare direttamene il professionista che ti serve? Una funzione inserito nella tua web app o mobile app? Bene, è arrivato il momento di crearla!",
+            "Con le estensioni add-on di Starbook puoi soddisfare le richieste dei tuoi clienti direttamente dalla tua app, web o mobile.",
+            // "Una piattaforma web o mobile fatta solo di servizi on demand secondo le esigenze del utente. Chiara, diretta e sicura al 100%",
+            "Quali vantaggi ci sono nelle estensioni add-on di Starbook?",
+            "Starbook ti offre la possibilità di implementare sulla tua pagina web le estensioni dei professionisti on demand. Con un click l’utente verra reindirizzato direttamente alla prenotazione del professionista.",
+            "Immagina un bottone che premendolo ti aiuta a prenotare l’artigiano che vuoi nel giorno che vuoi e dove vuoi.",
+
+            "Sappiamo bene che trovare l'idraulico giusto al momento giusto non è mai semplice. D'ora in poi lo facciamo noi al tuo posto!",
+            "La migliore piattaforma per trovare il tuo idraulico in modo semplice, veloce e sicuro.",
+            "Tre ottimi motivi per prenotare l'idraulico su Starbook.",
+            "Cosa dicono i clienti"
+          ];
+          this.data.bullets = [
+            {
+              title: "On Demand",
+              description: "Siamo nell'era dell'industria on demand, ora basta un click per prenotare un ordine e noi siamo molto focalizzati in questo.",
+              icon_name: "fa-play-circle"
+            },
+            {
+              title: "Efficienza",
+              description: "Offriamo determinazione e soddisfiamo le esigenze dei clienti offrendo il professionista più bravo e serio della zona richiesta.",
+              icon_name: "fa-clock-o"
+            },
+            {
+              title: "Pagamenti",
+              description: "Utilizziamo sistemi di pagamenti online per poter aumentare la sicurezza dei clienti e il pagamento dei professionisti.",
+              icon_name: "fa-credit-card"
+            },
+            {
+              title: "Assistenza",
+              description: "Offriamo la nostra assistenza nello sviluppo e creazione di nuove funzionalità on demand in linea con le richieste dei clienti.",
+              icon_name: "fa-assistive-listening-systems"
+            }
+          ];
+
+          this.seoObject.title = this.data.texts[0];
+          this.seoObject.description = this.data.texts[1];
+          this.seoObject.url = 'https://www.starbook.co' + this.router.url;
+          this.seoObject.image_url = "https://s3-eu-west-1.amazonaws.com/starbook-s3/plumbing/idraulico-normal.png";
         } else {
-          this.router.navigate(['landing/idraulico']);
+          // this.router.navigate(['landing/idraulico']);
 
           // this.navigationService.updateMessage('Il professionista con un click');
           // this.router.navigate(['landing']);

@@ -28,14 +28,6 @@ app-landing {
             height: 100%;
             z-index: 10;
             border-radius: 10px;
-            // background-color: rgba(22, 65, 112, 1.0);
-
-            // -webkit-transition: background-color 1.0s ease;
-            // -moz-transition: background-color 1.0s ease;
-            // -o-transition: background-color 1.0s ease;
-            // transition: background-color 1.0s ease;
-            // background-color: rgba(22, 65, 112, 0.85);
-
             -webkit-transition: opacity 1.0s ease;
             -moz-transition: opacity 1.0s ease;
             -o-transition: opacity 1.0s ease;
@@ -43,7 +35,6 @@ app-landing {
             opacity: 0.85;
           }
           .overlay:hover {
-            // background-color: rgba(22, 65, 112, 0.5);
             opacity: 0.5;
           }
           h1 {
@@ -97,7 +88,7 @@ app-landing {
       .title {
         max-width: 600px;
         margin: auto;
-        h1 {
+        h1,h2 {
           font-weight: 300;
           margin: auto;
           line-height: initial;
@@ -107,7 +98,6 @@ app-landing {
     .advantages {
       padding: 100px 10px;
       text-align: center;
-      border-bottom: 1px solid rgba(221, 221, 221, 0.8);
       .advantages-container {
         padding: 20px 10px;
         .row {
@@ -139,6 +129,7 @@ app-landing {
         }
         p {
           margin: 20px 0;
+          text-align: justify;
         }
         .btn {
           border-radius: 30px;
@@ -150,22 +141,246 @@ app-landing {
         }
       }
     }
-    .request-form {
-      margin: auto;
-      padding: 50px;
-      background: #ebedef;
-      .btn {
-        width: 100%;
-        height: 60px;
-        font-weight: 700;
-        font-size: 26px;
+    .extensions {
+      padding: 100px 10px;
+      text-align: center;
+      .extensions-container {
+        .implementation {
+          text-align: center;
+          .title {
+            padding: 80px 0 0;
+          }
+        }
+        .row {
+          text-align: left;
+          i {
+            float: left;
+            width: 100%;
+            border-bottom: 1px solid rgba(221, 221, 221, 0.8);
+          }
+        }
+        .title {
+          padding: 0 0 60px;
+          max-width: 900px;
+          margin: auto;
+          h1 {
+            font-weight: 300;
+            max-width: 900px;
+            margin: auto;
+            margin-bottom: 30px;
+          }
+          h2 {
+            font-weight: 300;
+            max-width: 900px;
+            margin: auto;
+            margin-bottom: 30px;
+          }
+          h3 {
+            font-weight: 300;
+            line-height: inherit;
+            max-width: 700px;
+            margin: auto;
+            margin-bottom: 30px;
+          }
+        }
+        p {
+          margin: 20px 0;
+          text-align: justify;
+        }
+        .btn {
+          border-radius: 30px;
+          height: 60px;
+          padding: 0 80px;
+          font-weight: 700;
+          font-size: 26px;
+          margin-top: 100px;
+        }
+        .ext-container {
+          padding: 10px 0;
+          .ext-box {
+            position: relative;
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center 100%;
+            height: 100px;
+            border-radius: 5px;
+            text-align: center;
+            .overlay {
+              position: absolute;
+              top: 0;
+              left: 0;
+              width: 100%;
+              height: 100%;
+              z-index: 10;
+              border-radius: 5px;
+              color: white;
+              line-height: 100px;
+              font-size: 20px;
+              font-weight: 600;
+            }
+            .plumber {
+              -webkit-transition: background-color 0.6s ease;
+              -moz-transition: background-color 0.6s ease;
+              -o-transition: background-color 0.6s ease;
+              transition: background-color 0.6s ease;
+              background-color : rgba(22, 65, 112, 0.90);
+            }
+            .plumber:hover {
+              background-color : rgba(22, 65, 112, 0.80);
+            }
+            .carpenter {
+              -webkit-transition: background-color 0.6s ease;
+              -moz-transition: background-color 0.6s ease;
+              -o-transition: background-color 0.6s ease;
+              transition: background-color 0.6s ease;
+              background-color : rgba(78, 49, 28, 0.90);
+            }
+            .carpenter:hover {
+              background-color : rgba(78, 49, 28, 0.80);
+            }
+            .brick {
+              -webkit-transition: background-color 0.6s ease;
+              -moz-transition: background-color 0.6s ease;
+              -o-transition: background-color 0.6s ease;
+              transition: background-color 0.6s ease;
+              background-color:rgba(126, 51, 19, 0.90);
+            }
+            .brick:hover {
+              background-color:rgba(126, 51, 19, 0.80);
+            }
+            .blacksmith {
+              -webkit-transition: background-color 0.6s ease;
+              -moz-transition: background-color 0.6s ease;
+              -o-transition: background-color 0.6s ease;
+              transition: background-color 0.6s ease;
+              background-color:rgba(4, 1, 2, 0.90);
+            }
+            .blacksmith:hover {
+              background-color:rgba(4, 1, 2, 0.80);
+            }
+            .eletrical {
+              -webkit-transition: background-color 0.6s ease;
+              -moz-transition: background-color 0.6s ease;
+              -o-transition: background-color 0.6s ease;
+              transition: background-color 0.6s ease;
+              background-color:rgba(42, 135, 246, 0.90);
+            }
+            .eletrical:hover {
+              background-color:rgba(42, 135, 246, 0.80);
+            }
+            .painter {
+              -webkit-transition: background-color 0.6s ease;
+              -moz-transition: background-color 0.6s ease;
+              -o-transition: background-color 0.6s ease;
+              transition: background-color 0.6s ease;
+              background-color:rgba(242, 206, 30, 0.90);
+            }
+            .painter:hover {
+              background-color:rgba(242, 206, 30, 0.80);
+            }
+          }
+        }
+        h5 {
+          margin-bottom: 20px;
+        }
+        .checkout-container {
+          padding: 10px;
+          .checkout-box {
+            padding: 40px;
+            border: 1px solid #dce0e0;
+            .line {
+              display: block;
+              margin: 10px auto;
+              height: 1px;
+              border-top: 1px solid #e4e4e4;
+            }
+            .btn {
+              margin: 0;
+              border-radius: 0;
+              width: 100%;
+            }
+            .header-summary {
+              text-align: left;
+              margin: auto;
+              overflow: auto;
+              .summary-details {
+                overflow: auto;
+                p {
+                  margin: 0;
+                  text-align: left;
+                }
+              }
+              h3 {
+                margin-bottom: 10px;
+              }
+              .item {
+                float: left;
+                width: 50%;
+                font-size: 18px;
+                font-weight: 300;
+                line-height: 36px;
+              }
+              .amount {
+                float: left;
+                width: 50%;
+                font-size: 20px;
+                text-align: right;
+                font-weight: 500;
+              }
+            }
+            .payment {
+              margin: auto;
+              overflow: auto;
+              padding: 10px 0;
+              .item {
+                float: left;
+                width: 50%;
+                font-size: 20px;
+                font-weight: 400;
+                line-height: 36px;
+                text-align: left;
+              }
+              .amount {
+                float: left;
+                width: 50%;
+                font-size: 28px;
+                text-align: right;
+                font-weight: 900;
+              }
+              .initial {
+                .amount {
+                  font-weight: 400;
+                  text-decoration: line-through;
+                }
+              }
+            }
+          }
+        }
       }
-      h1 {
-        margin-bottom: 40px;
-        text-align: center;
-      }
-      p {
-        text-align: center;
+    }
+    .payment {
+      padding: 100px 10px;
+      text-align: center;
+    }
+    .request {
+      padding: 50px 0;
+      .request-container {
+        margin: auto;
+        background: #ebedef;
+        padding: 50px;
+        .btn {
+          width: 100%;
+          height: 60px;
+          font-weight: 700;
+          font-size: 26px;
+        }
+        h1 {
+          margin-bottom: 40px;
+          text-align: center;
+        }
+        p {
+          text-align: center;
+        }
       }
     }
     .reviews {
@@ -222,6 +437,10 @@ app-landing {
           }
         }
       }
+    }
+    .contacts {
+      padding: 50px 0;
+      border-top: 1px solid #dce0e0;
     }
   }
 
