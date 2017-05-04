@@ -145,7 +145,7 @@ export class LandingComponent implements OnInit {
       }
 
       this.route.params.subscribe((params: Params) => {
-        // if (isBrowser) {window.scrollTo(0, 0);}
+        if (isBrowser) {window.scrollTo(0, 0);}
         this.page = params['page'];
         if (this.page==='idraulico') {
           this.navigationService.updateMessage('Ti serve un idraulico?');

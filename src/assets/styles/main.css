@@ -3535,6 +3535,7 @@ app-landing {
           text-align: center; }
           app-landing .landing-container .extensions .extensions-container .ext-container .ext-box .overlay {
             position: absolute;
+            cursor: pointer;
             top: 0;
             left: 0;
             width: 100%;
