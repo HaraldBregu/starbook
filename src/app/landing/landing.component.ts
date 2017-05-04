@@ -145,15 +145,10 @@ export class LandingComponent implements OnInit {
       }
 
       this.route.params.subscribe((params: Params) => {
-        if (isBrowser) {window.scrollTo(0, 0);}
+        // if (isBrowser) {window.scrollTo(0, 0);}
         this.page = params['page'];
         if (this.page==='idraulico') {
           this.navigationService.updateMessage('Ti serve un idraulico?');
-
-          this.order['service_id'] = "5904d0c06c8dd682c65e99b6"
-          this.order['title'] = this.page.charAt(0).toUpperCase() + this.page.slice(1);
-          this.order['details'] = [{title:"Idraulico", type:"service"},{title:"Intervento idraulico (costo uscita)", type:"detail", value:"40€"}]
-          this.order['description'] = ""
 
           this.data.pictures = [
             "https://s3-eu-west-1.amazonaws.com/starbook-s3/plumbing/idraulica-tutti-attrezzi.png"
@@ -218,15 +213,8 @@ export class LandingComponent implements OnInit {
             "Professionisti on demand",
             "Hai mai pensato ad una funzione che ti permette di prenotare direttamene il professionista che ti serve? Una funzione inserito nella tua web app o mobile app? Bene, è arrivato il momento di crearla!",
             "Con le estensioni add-on di Starbook puoi soddisfare le richieste dei tuoi clienti direttamente dalla tua app, web o mobile.",
-            // "Una piattaforma web o mobile fatta solo di servizi on demand secondo le esigenze del utente. Chiara, diretta e sicura al 100%",
             "Quali vantaggi ci sono nelle estensioni add-on di Starbook?",
-            "Starbook ti offre la possibilità di implementare sulla tua pagina web le estensioni dei professionisti on demand. Con un click l’utente verra reindirizzato direttamente alla prenotazione del professionista.",
-            "Immagina un bottone che premendolo ti aiuta a prenotare l’artigiano che vuoi nel giorno che vuoi e dove vuoi.",
-
-            "Sappiamo bene che trovare l'idraulico giusto al momento giusto non è mai semplice. D'ora in poi lo facciamo noi al tuo posto!",
-            "La migliore piattaforma per trovare il tuo idraulico in modo semplice, veloce e sicuro.",
-            "Tre ottimi motivi per prenotare l'idraulico su Starbook.",
-            "Cosa dicono i clienti"
+            "Le estensioni add-on di Starbook sono facili da implementare. Inserisci il blocco di codice che ti inviamo sulla tua web app, sito web o mobile app."
           ];
           this.data.bullets = [
             {
@@ -254,10 +242,9 @@ export class LandingComponent implements OnInit {
           this.seoObject.title = this.data.texts[0];
           this.seoObject.description = this.data.texts[1];
           this.seoObject.url = 'https://www.starbook.co' + this.router.url;
-          this.seoObject.image_url = this.data.pictures[0];
+          this.seoObject.image_url = "https://s3-eu-west-1.amazonaws.com/starbook-s3/starbook-servizi-professionali-on-demand-normal.png";
         } else {
-          // this.router.navigate(['landing/idraulico']);
-
+          this.router.navigate(['landing/idraulico']);
           // this.navigationService.updateMessage('Il professionista con un click');
           // this.router.navigate(['landing']);
         }
@@ -287,20 +274,89 @@ export class LandingComponent implements OnInit {
   selectService(service) {
     this.router.navigate(['landing/' + service.title.toLowerCase()]);
   }
-  checkoutService() {
+  checkoutService(service) {
     this.analyticsService.sendEvent({category:'Service', action: 'Order now', label: this.router.url});
-    this.order['referral_id'] = null
-    this.order['price'] = {
-      final: 4000,
-      initial: 4000,
-      currency: 'eur'
+    if (service === 'plumber') {
+      this.order['service_id'] = "5904d0c06c8dd682c65e99b6"
+      // this.order['title'] = this.page.charAt(0).toUpperCase() + this.page.slice(1);
+      this.order['title'] = 'Idraulico';
+      this.order['details'] = [{title:"Idraulico", type:"service"},{title:"Intervento idraulico (costo uscita)", type:"detail", value:"35€"}]
+      this.order['description'] = ""
+      this.order['referral_id'] = null
+      this.order['price'] = {
+        final: 3500,
+        initial: 3500,
+        currency: 'eur'
+      }
+      this.order['payment'] = {upfront: 3500}
+      this.order['timing'] = {days: 0}
+    } else if (service === 'carpenter') {
+      this.order['service_id'] = "590b330c6c8dd682c65e99b7"
+      this.order['title'] = 'Falegname';
+      this.order['details'] = [{title:"Falegname", type:"service"},{title:"Richiesta intervento falegname", type:"detail", value:""}]
+      this.order['description'] = ""
+      this.order['referral_id'] = null
+      this.order['price'] = {
+        final: 0,
+        initial: 0,
+        currency: 'eur'
+      }
+      this.order['payment'] = {upfront: 0}
+      this.order['timing'] = {days: 0}
+    } else if (service === 'brick') {
+      this.order['service_id'] = "590b33a86c8dd682c65e99b8"
+      this.order['title'] = 'Muratore';
+      this.order['details'] = [{title:"Muratore", type:"service"},{title:"Richiesta intervento muratore", type:"detail", value:""}]
+      this.order['description'] = ""
+      this.order['referral_id'] = null
+      this.order['price'] = {
+        final: 0,
+        initial: 0,
+        currency: 'eur'
+      }
+      this.order['payment'] = {upfront: 0}
+      this.order['timing'] = {days: 0}
+    } else if (service === 'blacksmith') {
+      this.order['service_id'] = "590b34366c8dd682c65e99b9";
+      this.order['title'] = 'Fabbro';
+      this.order['details'] = [{title:"Fabbro", type:"service"},{title:"Richiesta intervento fabbro", type:"detail", value:""}]
+      this.order['description'] = ""
+      this.order['referral_id'] = null
+      this.order['price'] = {
+        final: 0,
+        initial: 0,
+        currency: 'eur'
+      }
+      this.order['payment'] = {upfront: 0}
+      this.order['timing'] = {days: 0}
+    }  else if (service === 'eletrical') {
+      this.order['service_id'] = "590b34826c8dd682c65e99ba";
+      this.order['title'] = 'Elettricista';
+      this.order['details'] = [{title:"Elettricista", type:"service"},{title:"Richiesta intervento elettricista", type:"detail", value:""}]
+      this.order['description'] = ""
+      this.order['referral_id'] = null
+      this.order['price'] = {
+        final: 0,
+        initial: 0,
+        currency: 'eur'
+      }
+      this.order['payment'] = {upfront: 0}
+      this.order['timing'] = {days: 0}
+    } else if (service === 'painter') {
+      this.order['service_id'] = "590b34bf6c8dd682c65e99bb";
+      this.order['title'] = 'Imbianchino';
+      this.order['details'] = [{title:"Imbianchino", type:"service"},{title:"Richiesta intervento imbianchino", type:"detail", value:""}]
+      this.order['description'] = ""
+      this.order['referral_id'] = null
+      this.order['price'] = {
+        final: 0,
+        initial: 0,
+        currency: 'eur'
+      }
+      this.order['payment'] = {upfront: 0}
+      this.order['timing'] = {days: 0}
     }
-    this.order['payment'] = {
-      upfront: 4000
-    }
-    this.order['timing'] = {
-      days: 0
-    }
+
     this.orderService.updateWizardData(this.order);
     this.router.navigate(['order/summary']);
     return false;

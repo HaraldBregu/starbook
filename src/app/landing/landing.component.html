@@ -86,7 +86,7 @@
     <div class="slogan">
       <div class="container">
         <div class="title">
-          <h1>{{data.texts[2]}}</h1>
+          <h2>{{data.texts[4]}}</h2>
         </div>
       </div>
     </div>
@@ -103,54 +103,66 @@
               <div class="col-md-6 col-lg-4">
                 <div class="ext-container">
                   <div class="ext-box" [ngStyle]="{'background-image': 'url(https://s3-eu-west-1.amazonaws.com/starbook-s3/plumbing/idraulico-normal.png)'}">
-                    <div class="overlay plumber">
-                      Idraulico
-                    </div>
+                    <a (click)="checkoutService('plumber')">
+                      <div class="overlay plumber">
+                        Idraulico
+                      </div>
+                    </a>
                   </div>
                 </div>
               </div>
               <div class="col-md-6 col-lg-4">
                 <div class="ext-container">
                   <div class="ext-box" [ngStyle]="{'background-image': 'url(https://st.depositphotos.com/1769672/2236/i/950/depositphotos_22367589-stock-photo-carpenter-working.jpg)'}">
-                    <div class="overlay carpenter">
-                      Falegname
-                    </div>
+                    <a (click)="checkoutService('carpenter')">
+                      <div class="overlay carpenter">
+                        Falegname
+                      </div>
+                    </a>
                   </div>
                 </div>
               </div>
               <div class="col-md-6 col-lg-4">
                 <div class="ext-container">
                   <div class="ext-box" [ngStyle]="{'background-image': 'url(https://www.masonrymagazine.com/wp-content/uploads/2017/04/shutterstock_462881602.jpg)'}">
-                    <div class="overlay brick">
-                      Muratore
-                    </div>
+                    <a (click)="checkoutService('brick')">
+                      <div class="overlay brick">
+                        Muratore
+                      </div>
+                    </a>
                   </div>
                 </div>
               </div>
               <div class="col-md-6 col-lg-4">
                 <div class="ext-container">
                   <div class="ext-box" [ngStyle]="{'background-image': 'url(https://static8.depositphotos.com/1477006/953/i/950/depositphotos_9532007-stock-photo-blacksmith-at-work.jpg)'}">
-                    <div class="overlay blacksmith">
-                      Fabbro
-                    </div>
+                    <a (click)="checkoutService('blacksmith')">
+                      <div class="overlay blacksmith">
+                        Fabbro
+                      </div>
+                    </a>
                   </div>
                 </div>
               </div>
               <div class="col-md-6 col-lg-4">
                 <div class="ext-container">
                   <div class="ext-box" [ngStyle]="{'background-image': 'url(https://st.depositphotos.com/1158045/3013/i/950/depositphotos_30136813-stock-photo-portrait-of-an-electrician-at.jpg)'}">
-                    <div class="overlay eletrical">
-                      Elettricista
-                    </div>
+                    <a (click)="checkoutService('eletrical')">
+                      <div class="overlay eletrical">
+                        Elettricista
+                      </div>
+                    </a>
                   </div>
                 </div>
               </div>
               <div class="col-md-6 col-lg-4">
                 <div class="ext-container">
-                  <div class="ext-box" [ngStyle]="{'background-image': 'url(https://st.depositphotos.com/1158045/3013/i/950/depositphotos_30136813-stock-photo-portrait-of-an-electrician-at.jpg)'}">
-                    <div class="overlay painter">
-                      Imbianchino
-                    </div>
+                  <div class="ext-box" [ngStyle]="{'background-image': 'url(https://s3-eu-west-1.amazonaws.com/starbook-s3/professionista-su-starbook.jpg)'}">
+                    <a (click)="checkoutService('painter')">
+                      <div class="overlay painter">
+                        Imbianchino
+                      </div>
+                    </a>
                   </div>
                 </div>
               </div>
@@ -163,15 +175,15 @@
                   <div class="header-summary">
                     <h3>Idraulico</h3>
                     <div class="summary-details">
-                      <div class="item"><p>Intervento idraulico</p></div>
-                      <div class="amount">30€</div>
+                      <div class="item"><p>Intervento idraulico (uscita)</p></div>
+                      <div class="amount">34€</div>
                     </div>
                   </div>
                   <div class="line"></div>
                   <div class="payment">
                     <div class="total">
                       <div class="item">Totale</div>
-                      <div class="amount">30€</div>
+                      <div class="amount">34€</div>
                     </div>
                   </div>
                   <div class="form-group">
@@ -293,7 +305,7 @@
         <h3>{{data.texts[1]}}</h3>
         <div class="actions">
           <div class="form-group">
-            <button class="btn btn-yellow-green" (click)="checkoutService()">Prenota adesso</button>
+            <button class="btn btn-yellow-green" (click)="checkoutService('plumber')">Prenota adesso</button>
           </div>
         </div>
       </div>
@@ -320,7 +332,7 @@
         </div>
         <div class="actions">
           <div class="form-group">
-            <button class="btn btn-yellow-blue" (click)="checkoutService()">Prenota adesso</button>
+            <button class="btn btn-yellow-blue" (click)="checkoutService('plumber')">Prenota adesso</button>
           </div>
         </div>
       </div>
@@ -344,7 +356,7 @@
       </div>
       <div class="actions">
         <div class="form-group">
-          <button class="btn btn-yellow-blue" (click)="checkoutService()">Prenota adesso</button>
+          <button class="btn btn-yellow-blue" (click)="checkoutService('plumber')">Prenota adesso</button>
         </div>
       </div>
     </div>

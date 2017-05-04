@@ -1,5 +1,5 @@
 <div class="wizard" (window:resize)="onResize()">
-  <ul class="breadcrumb noselect" *ngIf="step !== ''">
+  <ul class="breadcrumb" *ngIf="step !== ''">
     <li *ngFor="let items of wizardDataItems; let i = index;"
         [ngStyle]="{'width': 100/wizardDataItems.length + '%'}"
         [ngClass]="{'active': (step === 'summary' && items === 'Sommario') || (step === 'address' && items === 'Indirizzo') || (step === 'date' && items === 'Data') || ((step === 'preview' || step === 'login' || step === 'signup' || step === 'card') && (items === 'Anteprima' || items === 'Login' || items === 'Signup' || items === 'Carta')) || ((step === 'end' || step === 'info') && (items === 'Fine' || items === 'Info'))}">
@@ -56,7 +56,7 @@
   </div>
   <div class="wizard-container" *ngIf="step === 'address'">
     <div class="content-container">
-      <div class="header noselect">
+      <div class="header">
         <h1 class="text-center">Dove si trova la sua abitazione?</h1>
         <p class="text-center">Inserisci l'indirizzo e la città della sua abitazione</p>
       </div>
@@ -82,7 +82,7 @@
     </div>
   </div>
   <div class="wizard-container" *ngIf="step === 'date'">
-    <div class="content-container noselect">
+    <div class="content-container">
       <div class="header">
         <h1 class="text-center">Quando vuoi realizare questo lavoro?</h1>
         <p class="text-center">Inserisci la data che vuoi realizzare questo servizio</p>
@@ -111,7 +111,7 @@
     </div>
   </div>
   <div class="wizard-container" *ngIf="step === 'preview'">
-    <div class="content-container noselect">
+    <div class="content-container">
       <div class="header-summary">
         <h3>{{Order.title}}</h3>
         <div class="summary-details" *ngFor="let item of Order.details">
@@ -192,8 +192,8 @@
     </div>
   </div>
   <div class="wizard-container" *ngIf="step === 'login'">
-    <div class="content-container noselect">
-      <div class="header noselect">
+    <div class="content-container">
+      <div class="header">
         <h1>Accedi al tuo account</h1>
       </div>
       <form>
@@ -228,7 +228,7 @@
           <button type="button" id="next"class="btn btn-facebook" (click)="continueWithFacebook()"><i></i>{{facebook_state.button_title}}</button>
         </div>
       </div>
-      <div class="footer noselect">
+      <div class="footer">
         <h6><small>Continuando dichiari di aver letto e accetti le <a routerlink="legal" ng-reflect-router-link="legal" ng-reflect-href="legal" href="/legal" target="_blank">condizioni generali</a> e <a routerlink="legal" ng-reflect-router-link="legal" ng-reflect-href="legal" href="/legal" target="_blank">l’informativa sulla privacy</a></small></h6>
       </div>
     </div>
@@ -237,7 +237,7 @@
     </div>
   </div>
   <div class="wizard-container" *ngIf="step === 'signup'">
-    <div class="content-container noselect">
+    <div class="content-container">
       <div class="header">
         <h1>Crea un account</h1>
       </div>
@@ -299,7 +299,7 @@
           <button type="button" id="next"class="btn btn-facebook" (click)="continueWithFacebook()"><i></i>{{facebook_state.button_title}}</button>
         </div>
       </div>
-      <div class="footer noselect">
+      <div class="footer">
         <h6><small>Continuando dichiari di aver letto e accetti le <a routerlink="legal" ng-reflect-router-link="legal" ng-reflect-href="legal" href="/legal" target="_blank">condizioni generali</a> e <a routerlink="legal" ng-reflect-router-link="legal" ng-reflect-href="legal" href="/legal" target="_blank">l’informativa sulla privacy</a></small></h6>
       </div>
     </div>
