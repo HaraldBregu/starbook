@@ -254,7 +254,7 @@ export class LandingComponent implements OnInit {
           this.seoObject.title = this.data.texts[0];
           this.seoObject.description = this.data.texts[1];
           this.seoObject.url = 'https://www.starbook.co' + this.router.url;
-          this.seoObject.image_url = "https://s3-eu-west-1.amazonaws.com/starbook-s3/plumbing/idraulico-normal.png";
+          this.seoObject.image_url = this.data.pictures[0];
         } else {
           // this.router.navigate(['landing/idraulico']);
 

@@ -4,7 +4,6 @@
         [ngStyle]="{'width': 100/wizardDataItems.length + '%'}"
         [ngClass]="{'active': (step === 'summary' && items === 'Sommario') || (step === 'address' && items === 'Indirizzo') || (step === 'date' && items === 'Data') || ((step === 'preview' || step === 'login' || step === 'signup' || step === 'card') && (items === 'Anteprima' || items === 'Login' || items === 'Signup' || items === 'Carta')) || ((step === 'end' || step === 'info') && (items === 'Fine' || items === 'Info'))}">
         <a><div *ngIf="screenWidth<=425">{{i+1}}</div><div *ngIf="screenWidth>425">{{items}}</div></a>
-        <!-- <a>{{items}}</a> -->
       </li>
   </ul>
   <div class="wizard-container" *ngIf="step === 'summary'">
@@ -175,8 +174,8 @@
   <div class="wizard-container" *ngIf="step === 'end'">
     <div class="content-container">
       <div class="header">
-        <h1 class="text-center">Complimenti!</h1>
-        <h1 class="text-center">Ordine effettuato con successo!</h1>
+        <!-- <h1 class="text-center">Complimenti!</h1> -->
+        <h1 class="text-center">Complimenti, hai prenotato con successo un tecnico.</h1>
         <p class="text-center">La contatteremo per ulteriori informazioni.</p>
       </div>
       <div class="messages">
