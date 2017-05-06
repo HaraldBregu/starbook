@@ -6,8 +6,8 @@
   </div>
   <div class="page-container" *ngIf="page === 'general'">
     <div class="header">
-      <h1>Informazioni generali</h1>
-      <h6>Aggiorna le informazioni del tuo account per rimanere in contatto</h6>
+      <h3>Informazioni generali</h3>
+      <p>Aggiorna le informazioni del tuo account per rimanere in contatto</p>
     </div>
     <form>
       <div class="row">
@@ -44,8 +44,8 @@
   </div>
   <div class="page-container" *ngIf="page === 'payment'">
     <div class="header">
-      <h1>Metodo di pagamento</h1>
-      <h6>Aggiorna le informazioni del tuo metodo di pagamento</h6>
+      <h3>Metodo di pagamento</h3>
+      <p>Aggiorna le informazioni del tuo metodo di pagamento</p>
     </div>
     <div class="card-container" *ngFor="let card of cards">
       <div class="row">
@@ -94,8 +94,8 @@
   </div>
   <div class="page-container" *ngIf="page === 'settings'">
     <div class="header">
-      <h1>Impostazioni</h1>
-      <h6>Modifica le informazioni</h6>
+      <h3>Impostazioni</h3>
+      <p>Modifica le informazioni</p>
     </div>
     <form>
       <h4>Aggiorna Email</h4>
@@ -155,6 +155,84 @@
       </div>
     </div>
   </div>
+  <div class="page-container" *ngIf="page === 'affiliate'">
+    <div class="header">
+      <h3>Programma di affiliazione Starbook</h3>
+      <p>Condividi Starbook ai tuoi amici e per ogni servizio acquistato riceverete entrambi 5% del totale del servizio</p>
+    </div>
+    <div class="card-container">
+      <div class="row">
+        <div class="col-lg-7 col-md-7">
+          <div class="link-container">
+            <div class="input-group">
+              <div class="link">
+                {{sharelink}}
+              </div>
+              <span class="input-group-btn">
+                <button type="button" id="next" class="btn btn-white" [clipboard]="sharelink" (clipboardCopy)="copyLink($event)" (clipboardError)="copyError($event)">{{copy_link_state.title}}</button>
+              </span>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-5 col-md-5">
+          <p><small>Questo è un link unico per la tua affiliazione. Condividi l link e inizia a guadagnare per ogni lavoro svolto.</small></p>
+        </div>
+      </div>
+      <div class="row share-buttons">
+        <h3>Condividi</h3>
+        <div class="col-md-6 col-lg-15">
+          <div class="form-group">
+            <button type="button" id="next" class="btn btn-facebook" (click)="shareOnFacebook()"><i class="fa fa-facebook"></i>Facebook</button>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-15">
+          <div class="form-group">
+            <button type="button" id="next" class="btn btn-twitter" (click)="shareOnTwitter()"><i class="fa fa-twitter"></i>Twitter</button>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-15">
+          <div class="form-group">
+            <button type="button" id="next" class="btn btn-linkedin" (click)="shareOnLinkedin()"><i class="fa fa-linkedin"></i>Linkedin</button>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-15">
+          <div class="form-group">
+            <button type="button" id="next" class="btn btn-google-plus" (click)="shareOnGoogle()"><i class="fa fa-google-plus"></i>Google</button>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-15">
+          <div class="form-group">
+            <button type="button" id="next" class="btn btn-white" (click)="shareWithEmail()"><i class="fa fa-envelope"></i>Email</button>
+          </div>
+        </div>
+      </div>
+      <div class="row send-buttons">
+        <h3>Invia a</h3>
+        <div class="col-lg-7 col-md-7">
+          <div class="form-group" *ngIf="invitation_state.message_error">
+            <div class="alert alert-danger" role="alert">{{invitation_state.message_error}}</div>
+          </div>
+          <div class="form-group" *ngIf="invitation_state.message_success">
+            <div class="alert alert-success" role="alert">{{invitation_state.message_success}}</div>
+          </div>
+          <div class="input-group">
+            <input type="text" placeholder="Esempio: 3234565540, john@gmail.com" class="form-control" id="contacts" [(ngModel)]="contacts" [ngModelOptions]="{standalone: true}">
+            <span class="input-group-btn">
+              <button type="button" id="next" class="btn btn-success" (click)="sendInvitations()">Invia</button>
+            </span>
+          </div>
+        </div>
+        <div class="col-lg-5 col-md-5">
+          <p><small>Invia il link diretto a un numero di telefono e indirizzo email. Inserisci numeri di telefono e email separando con una virgola.</small></p>
+        </div>
+      </div>
+    </div>
+    <div class="footer-box">
+      <h5>Privacy del account</h5>
+      <h6><small>Le informazioni degli utenti consentono a Starbook di fornire agli utenti stessi l’accesso alle sezioni del Sito cui sono interessati e di fornire il Servizio. Esse mettono inoltre Starbook in grado di fatturare gli importi dovuti e consentono a Starbook o ad un professionista cui l’utente abbia inoltrato un Ordine di contattare l’utente in merito al Servizio.</small></h6>
+    </div>
+  </div>
+
   <div class="page-container" *ngIf="page === 'card'">
     <div class="header">
       <h1>Inserisci un metodo di pagamento</h1>
@@ -240,33 +318,3 @@
       </div>
     </form>
   </div>
-
-  <footer class="footer">
-    <div class="footer-container">
-      <div class="row">
-        <div class="col-md-6 col-lg-3">
-          <ul>
-            <li>Starbook © 2017</li>
-            <li>Tutti i diritti riservati</li>
-          </ul>
-        </div>
-        <div class="col-md-6 col-lg-3">
-          <ul>
-            <li><a routerLink="/legal" routerLinkActive="active">Privacy e Condizioni</a></li>
-            <li><a routerLink="/help" routerLinkActive="active">Aiuto e Assistenza</a></li>
-          </ul>
-        </div>
-        <div class="col-md-6 col-lg-3">
-          <ul>
-            <li><a routerLink="/about" routerLinkActive="active">Chi siamo</a></li>
-          </ul>
-        </div>
-        <div class="col-md-6 col-lg-3">
-          <ul>
-            <li><a routerLink="/requests/service" routerLinkActive="active">Richiedi un servizio</a></li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </footer>
-</div>

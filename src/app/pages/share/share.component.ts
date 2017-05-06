@@ -59,7 +59,7 @@ export class ShareComponent implements OnInit {
     this.route.params.subscribe((params: Params) => {
       if (isBrowser) {window.scrollTo(0, 0);}
       this.page = params['page'];
-      
+
       if (this.page === 'estimate') {
         this.navigationService.updateMessage("Preventivo");
 
