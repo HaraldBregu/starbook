@@ -23,8 +23,13 @@ import { BlogComponent } from './pages/blog/blog.component';
 const routes: Routes = [
   {
     path: '',
-    component: HomeComponent
+    component: LandingComponent,
+    data: {isFindField: true}
   },
+  // {
+  //   path: '',
+  //   component: HomeComponent
+  // },
   {
     path: 'landing',
     component: LandingComponent

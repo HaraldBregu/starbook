@@ -244,7 +244,7 @@ export class LandingComponent implements OnInit {
           this.seoObject.url = 'https://www.starbook.co' + this.router.url;
           this.seoObject.image_url = "https://s3-eu-west-1.amazonaws.com/starbook-s3/starbook-servizi-professionali-on-demand-normal.png";
         } else {
-          this.router.navigate(['landing/idraulico']);
+          // this.router.navigate(['landing/idraulico']);
           // this.navigationService.updateMessage('Il professionista con un click');
           // this.router.navigate(['landing']);
         }

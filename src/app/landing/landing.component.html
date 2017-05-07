@@ -1,57 +1,141 @@
-<div class="landing-container">
-
-  <div *ngIf="!page">
-    <div class="services-container">
-      <div class="row">
-        <div *ngFor="let service of services">
-          <div class="col-md-4 col-sm-6 service-container">
-            <div class="service" (click)="selectService(service)" [ngStyle]="{'background-image': 'url(' + service.image + ')'}">
-              <div class="overlay" [ngStyle]="{'background-color': service.color}">
-                <h1><strong>{{service.title}}</strong></h1>
-              </div>
+<div *ngIf="!page" class="landing-container">
+  <div class="header-container" [ngStyle]="{'background-image': 'url(https://s3-eu-west-1.amazonaws.com/starbook-s3/starbook-la-cura-per-la-casa.png)'}">
+    <div class="header">
+      <h1 [ngStyle]="{'font-size': '46px'}">Trova il miglior servizio per la tua casa.<br>Al prezzo giusto e senza attese.</h1>
+    </div>
+    <div class="bottom-container">
+      <div class="arrow"></div>
+    </div>
+  </div>
+  <div class="container-fluid services-container">
+    <h1>I nostri servizi</h1>
+    <div class="row services">
+      <div *ngFor="let service of services">
+        <div class="col-md-4 col-sm-6 service-container">
+          <div class="service" (click)="selectService(service)" [ngStyle]="{'background-image': 'url(' + service.image + ')'}">
+            <div class="overlay" [ngStyle]="{'background-color': service.color}">
+              <h1><strong>{{service.title}}</strong></h1>
             </div>
           </div>
         </div>
       </div>
     </div>
-    <footer class="footer sticky-footer">
-      <div class="footer-container">
+  </div>
+  <div class="container-fluid bullets-container">
+    <h1>Come funziona</h1>
+    <div class="row bullets">
+      <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12">
+        <div class="box">
+          <img src="../../../assets/images/service-list.png" class="rounded mx-auto d-block" alt="Seleziona il servizio">
+          <h3>Seleziona un servizio</h3>
+          <h5>Trova un servizio di cui hai bisogno e seleziona le carateristiche.</h5>
+        </div>
+      </div>
+      <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12">
+        <div class="box">
+          <img src="../../../assets/images/service-time.png" class="rounded mx-auto d-block" alt="Calcola preventivo">
+          <h3>Ricevi il preventivo immediato</h3>
+          <h5>Ricevi in tempo reale un unico prezzo per il servizio, niente attese e niente intermediari.</h5>
+        </div>
+      </div>
+      <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12">
+        <div class="box">
+          <img src="../../../assets/images/service-booking.png" class="rounded mx-auto d-block" alt="Ordina il servizio">
+          <h3>Ordina il servizio</h3>
+          <h5>Scegli il giorno quando vuoi iniziare i lavori, l'indirizzo dove si trova la tua casa e ordina direttamente.</h5>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container-fluid professional-container">
+    <div class="row professional">
+      <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 text">
+        <h1>Il miglior professionista</h1>
+        <p>Noi lavoriamo solo con i migliori professionisti del settore per assicurarti il miglior risultato finale. Non importa dove abitate o quando avete bisogno, il nostro compito è quello di darvi il meglio.</p>
+      </div>
+      <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 image">
+        <!-- <img src="https://s3-eu-west-1.amazonaws.com/starbook-s3/professionista-su-starbook-icon.png" alt="professionista su starbook"> -->
+      </div>
+    </div>
+  </div>
+  <div class="container-fluid price-container">
+    <div class="row price">
+      <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 image">
+      </div>
+      <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 text">
+        <h1>Il prezzo giusto</h1>
+        <p>Noi assicuriamo che il cliente acquisti un servizio con il miglior prezzo sul mercato. In più il nostro algoritmo permette di cambiare il prezzo in modo dinamico in relazione della quantità delle richieste ricevute.</p>
+      </div>
+    </div>
+  </div>
+  <div class="recruiting" *ngIf="!currentUser">
+    <div class="join-box">
+      <h1>Sei un professionista in cerca di clienti?</h1>
+      <p>Iscriviti a Starbook gratuitamente e diventa parte del nostro team.</p>
+      <button type="button" class="btn btn-primary" name="button" routerLink="/recruiter/workerjoin">Unisciti adesso</button>
+    </div>
+    <div class="partner-box">
+      <h1>Programma partnership</h1>
+      <p>Scopri il nostro programma partnership per Agenzie Immobiliari, Agenti Immobiliari, Amministratori Condominiali, Architetti, Fornitori Edili.</p>
+      <button type="button" class="btn btn-warning" name="button" routerLink="/recruiter/partnerjoin">Scopri di più</button>
+    </div>
+  </div>
+  <div class="pre-footer">
+    <div class="container-fluid">
+      <div class="pre">
         <div class="row">
-          <div class="col-md-6 col-lg-3">
-            <ul>
-              <li>Starbook © 2017</li>
-              <li>Tutti i diritti riservati</li>
-            </ul>
+          <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12">
+            <p>Sicurezza del sito</p>
+            <div class="list-security">
+              <img src="../../../assets/images/norton.png" alt="Norton Security">
+              <img src="../../../assets/images/secure.png" alt="100% Secure">
+              <img src="../../../assets/images/trust.png" alt="Trusted Website">
+            </div>
           </div>
-          <div class="col-md-6 col-lg-3">
-            <ul>
-              <li><a routerLink="/legal">Privacy e Condizioni</a></li>
-              <li><a routerLink="/help">Aiuto e Assistenza</a></li>
-            </ul>
+          <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12">
+            <p>Sistemi di pagamento</p>
+            <div class="list-payment-methods">
+              <img src="../../../assets/images/mastercard.png" alt="Mastercard">
+              <img src="../../../assets/images/visa.png" alt="Visa">
+              <img src="../../../assets/images/americanexpress.png" alt="American Express">
+              <img src="../../../assets/images/stripe.png" alt="Stripe">
+            </div>
           </div>
-          <div class="col-md-6 col-lg-3">
-            <ul>
-              <li><a routerLink="/about">Chi siamo</a></li>
-            </ul>
+          <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12">
+            <p><a routerLink="/about" routerLinkActive="active">Chi siamo</a></p>
+            <p><a routerLink="/help" routerLinkActive="active">Aiuto e Assistenza</a></p>
+            <p><a routerLink="/legal" routerLinkActive="active">Privacy e Condizioni</a></p>
+            <p><a routerLink="/landing/extensions" routerLinkActive="active">Estensioni</a></p>
           </div>
-          <div class="col-md-6 col-lg-3">
-            <ul>
-              <li><a routerLink="/requests/service">Richiedi un servizio</a></li>
-            </ul>
+          <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12">
+            <p>Seguici su</p>
+            <div class="list-socials">
+              <a href="https://www.facebook.com/starbook.co/" target="_blank"><img src="../../../assets/images/facebook.png" alt="Facebook"></a>
+              <a href="https://twitter.com/starbookco/" target="_blank"><img src="../../../assets/images/twitter.png" alt="Twitter"></a>
+              <a href="https://www.instagram.com/starbook.co/" target="_blank"><img src="../../../assets/images/instagram.png" alt="Instagram"></a>
+            </div>
           </div>
         </div>
       </div>
-    </footer>
+    </div>
   </div>
+  <div class="footer">
+    <p><a routerLink="/"><strong>Starbook</strong> © 2017 Tutti i diritti riservati</a></p>
+  </div>
+</div>
+
+<div *ngIf="page" class="landing-container">
 
   <div *ngIf="page==='extensions'">
-    <div class="header" [ngStyle]="{'background-image': 'url(' + data.pictures[0] + ')'}">
-      <div class="container">
-        <h1>{{data.texts[0]}}</h1>
-        <h3>{{data.texts[1]}}</h3>
-        <div class="actions">
-          <div class="form-group">
-            <button pageScroll href="#applysection" [pageScrollDuration]="500" class="btn btn-yellow-green">Applica</button>
+    <div class="header-container" [ngStyle]="{'background-image': 'url(' + data.pictures[0] + ')'}">
+      <div class="header">
+        <div class="container">
+          <h1>{{data.texts[0]}}</h1>
+          <h3>{{data.texts[1]}}</h3>
+          <div class="actions">
+            <div class="form-group">
+              <button pageScroll href="#applysection" [pageScrollDuration]="500" class="btn btn-yellow-green">Applica</button>
+            </div>
           </div>
         </div>
       </div>
@@ -299,13 +383,15 @@
   </div>
 
   <div *ngIf="page==='idraulico'">
-    <div class="header" [ngStyle]="{'background-image': 'url(' + data.pictures[0] + ')'}">
-      <div class="container">
-        <h1>{{data.texts[0]}}</h1>
-        <h3>{{data.texts[1]}}</h3>
-        <div class="actions">
-          <div class="form-group">
-            <button class="btn btn-yellow-green" (click)="checkoutService('plumber')">Prenota adesso</button>
+    <div class="header-container" [ngStyle]="{'background-image': 'url(' + data.pictures[0] + ')'}">
+      <div class="header">
+        <div class="container">
+          <h1>{{data.texts[0]}}</h1>
+          <h3>{{data.texts[1]}}</h3>
+          <div class="actions">
+            <div class="form-group">
+              <button class="btn btn-yellow-green" (click)="checkoutService('plumber')">Prenota adesso</button>
+            </div>
           </div>
         </div>
       </div>
@@ -460,4 +546,51 @@
       </div>
     </footer>
   </div>
+
 </div>
+
+<!--
+<div *ngIf="!page">
+  <div class="services-container">
+    <div class="row">
+      <div *ngFor="let service of services">
+        <div class="col-md-4 col-sm-6 service-container">
+          <div class="service" (click)="selectService(service)" [ngStyle]="{'background-image': 'url(' + service.image + ')'}">
+            <div class="overlay" [ngStyle]="{'background-color': service.color}">
+              <h1><strong>{{service.title}}</strong></h1>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <footer class="footer sticky-footer">
+    <div class="footer-container">
+      <div class="row">
+        <div class="col-md-6 col-lg-3">
+          <ul>
+            <li>Starbook © 2017</li>
+            <li>Tutti i diritti riservati</li>
+          </ul>
+        </div>
+        <div class="col-md-6 col-lg-3">
+          <ul>
+            <li><a routerLink="/legal">Privacy e Condizioni</a></li>
+            <li><a routerLink="/help">Aiuto e Assistenza</a></li>
+          </ul>
+        </div>
+        <div class="col-md-6 col-lg-3">
+          <ul>
+            <li><a routerLink="/about">Chi siamo</a></li>
+          </ul>
+        </div>
+        <div class="col-md-6 col-lg-3">
+          <ul>
+            <li><a routerLink="/requests/service">Richiedi un servizio</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </footer>
+</div>
+-->

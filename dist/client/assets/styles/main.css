@@ -3144,7 +3144,7 @@ app-root .center-container {
   height: 70px;
   padding: 10px;
   margin: auto;
-  max-width: 720px; }
+  max-width: 500px; }
   app-root .center-container .search-block {
     width: 100%;
     height: 70px; }
@@ -3364,10 +3364,71 @@ app-landing {
   padding: 70px 0 0; }
   app-landing .landing-container {
     background: white; }
+    app-landing .landing-container .header-container {
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center 100%; }
+      app-landing .landing-container .header-container .header {
+        color: white;
+        padding: 160px 0;
+        text-align: center; }
+        app-landing .landing-container .header-container .header .actions {
+          padding: 40px 0 0; }
+          app-landing .landing-container .header-container .header .actions .btn {
+            border-radius: 30px;
+            height: 60px;
+            padding: 0 80px;
+            font-weight: 700;
+            font-size: 26px; }
+        app-landing .landing-container .header-container .header h1 {
+          font-weight: 900;
+          font-size: 46px;
+          max-width: 900px;
+          margin: auto;
+          line-height: inherit; }
+        app-landing .landing-container .header-container .header h2, app-landing .landing-container .header-container .header h3 {
+          max-width: 700px;
+          margin: auto;
+          font-weight: 400;
+          margin-bottom: 30px; }
+        app-landing .landing-container .header-container .header p {
+          font-size: 24px !important; }
+      app-landing .landing-container .header-container .bottom-container {
+        position: relative;
+        overflow: hidden;
+        width: 100%;
+        height: 20px; }
+        app-landing .landing-container .header-container .bottom-container .arrow {
+          position: absolute;
+          bottom: 0;
+          width: 100%;
+          height: 20px;
+          background-color: transparent; }
+        app-landing .landing-container .header-container .bottom-container .arrow:before, app-landing .landing-container .header-container .bottom-container .arrow:after {
+          content: '';
+          position: absolute;
+          bottom: 0%;
+          width: 50%;
+          box-sizing: border-box; }
+        app-landing .landing-container .header-container .bottom-container .arrow:before {
+          right: 50%;
+          border-bottom: 20px solid white;
+          border-right: 20px solid transparent; }
+        app-landing .landing-container .header-container .bottom-container .arrow:after {
+          left: 50%;
+          border-bottom: 20px solid white;
+          border-left: 20px solid transparent; }
     app-landing .landing-container .services-container {
-      padding: 30px;
-      max-width: 1440px;
+      display: block;
+      text-align: center;
+      padding: 30px 0;
+      max-width: 1250px;
       margin: auto; }
+      app-landing .landing-container .services-container h1 {
+        text-align: center;
+        color: #324978; }
+      app-landing .landing-container .services-container .services {
+        padding-top: 20px; }
       app-landing .landing-container .services-container .service-container {
         padding-top: 15px;
         padding-bottom: 15px; }
@@ -3398,34 +3459,152 @@ app-landing {
             line-height: 300px;
             text-align: center;
             color: white; }
-    app-landing .landing-container .header {
-      background-size: cover;
-      background-repeat: no-repeat;
-      background-position: center 100%;
-      color: white;
-      padding: 100px 0;
-      text-align: center; }
-      app-landing .landing-container .header .actions {
-        padding: 40px 0 0; }
-        app-landing .landing-container .header .actions .btn {
-          border-radius: 30px;
-          height: 60px;
-          padding: 0 80px;
-          font-weight: 700;
-          font-size: 26px; }
-      app-landing .landing-container .header h1 {
-        font-weight: 900;
-        font-size: 46px;
-        max-width: 900px;
+    app-landing .landing-container .bullets-container {
+      display: block;
+      text-align: center;
+      padding: 50px 0;
+      max-width: 1250px;
+      margin: auto; }
+      app-landing .landing-container .bullets-container h1 {
+        text-align: center;
+        color: #324978; }
+      app-landing .landing-container .bullets-container img {
+        margin: 0 0 30px;
+        width: 30%; }
+      app-landing .landing-container .bullets-container h3 {
+        margin: 0 auto 10px;
+        color: #324976;
+        max-width: 300px;
+        font-weight: 400; }
+      app-landing .landing-container .bullets-container h5 {
         margin: auto;
-        margin-bottom: 30px; }
-      app-landing .landing-container .header h2, app-landing .landing-container .header h3 {
-        max-width: 700px;
+        font-weight: 300;
+        max-width: 310px; }
+      app-landing .landing-container .bullets-container .bullets {
+        padding-top: 40px; }
+    app-landing .landing-container .professional-container {
+      display: block;
+      background: #fafcfe;
+      border-top: 1px solid #edf5fc;
+      border-bottom: 1px solid #edf5fc; }
+      app-landing .landing-container .professional-container .professional {
+        max-width: 1250px;
+        margin: auto; }
+      app-landing .landing-container .professional-container .text {
+        padding: 120px; }
+        app-landing .landing-container .professional-container .text h1 {
+          color: #324976;
+          font-weight: 700; }
+      app-landing .landing-container .professional-container .image {
+        background-image: url("https://s3-eu-west-1.amazonaws.com/starbook-s3/professionista-su-starbook-icon.png");
+        background-repeat: no-repeat;
+        background-position: center 10%;
+        background-size: cover;
+        height: 600px; }
+    app-landing .landing-container .price-container {
+      display: block;
+      background: #fafcfe;
+      border-top: 1px solid #edf5fc;
+      border-bottom: 1px solid #edf5fc; }
+      app-landing .landing-container .price-container .price {
+        max-width: 1250px;
+        margin: auto; }
+      app-landing .landing-container .price-container .text {
+        padding: 120px;
+        text-align: right; }
+        app-landing .landing-container .price-container .text h1 {
+          color: #324976;
+          font-weight: 700; }
+      app-landing .landing-container .price-container .image {
+        background-image: url("https://s3-eu-west-1.amazonaws.com/starbook-s3/professionista-su-starbook-icon.png");
+        background-repeat: no-repeat;
+        background-position: center 10%;
+        background-size: cover;
+        height: 600px; }
+    app-landing .landing-container .recruiting {
+      text-align: center;
+      color: #4a4a4a;
+      height: 600px;
+      text-align: left; }
+      app-landing .landing-container .recruiting .join-box, app-landing .landing-container .recruiting .partner-box {
+        display: inline-block;
+        float: left;
+        width: 50%;
+        height: 100%;
+        padding: 100px; }
+        app-landing .landing-container .recruiting .join-box h1, app-landing .landing-container .recruiting .partner-box h1 {
+          margin: 0 0 20px;
+          font-weight: 700; }
+        app-landing .landing-container .recruiting .join-box p, app-landing .landing-container .recruiting .partner-box p {
+          font-weight: 400; }
+        app-landing .landing-container .recruiting .join-box .btn-primary, app-landing .landing-container .recruiting .join-box .btn-warning, app-landing .landing-container .recruiting .partner-box .btn-primary, app-landing .landing-container .recruiting .partner-box .btn-warning {
+          margin: 100px 0 0;
+          border-radius: 3px;
+          font-weight: 500; }
+      app-landing .landing-container .recruiting .join-box {
+        background: #ebebeb;
+        background-image: url("/assets/images/invite-workers.png");
+        background-repeat: no-repeat;
+        background-position: center bottom; }
+      app-landing .landing-container .recruiting .partner-box {
+        background: white;
+        background-image: url("/assets/images/Handshake.png");
+        background-repeat: no-repeat;
+        background-position: 116% 64%;
+        background-size: 496px; }
+    app-landing .landing-container .pre-footer {
+      overflow: auto;
+      color: rgba(255, 255, 255, 0.7);
+      text-align: left;
+      background: #161517;
+      padding: 50px;
+      font-weight: 300; }
+      app-landing .landing-container .pre-footer h6 {
+        font-weight: 300; }
+      app-landing .landing-container .pre-footer a, app-landing .landing-container .pre-footer a:hover {
+        text-decoration: none; }
+      app-landing .landing-container .pre-footer .list-security {
+        display: inline-block;
+        max-width: 280px;
         margin: auto;
-        font-weight: 400;
-        margin-bottom: 30px; }
-      app-landing .landing-container .header p {
-        font-size: 24px !important; }
+        padding-top: 10px;
+        padding-bottom: 10px; }
+      app-landing .landing-container .pre-footer .list-security img {
+        max-height: 40px;
+        margin: 5px;
+        float: left; }
+      app-landing .landing-container .pre-footer .list-payment-methods {
+        display: inline-block;
+        max-width: 280px;
+        margin: auto;
+        padding-top: 10px;
+        padding-bottom: 10px; }
+      app-landing .landing-container .pre-footer .list-payment-methods img {
+        max-height: 40px;
+        margin: 5px;
+        float: left; }
+      app-landing .landing-container .pre-footer .list-socials {
+        display: inline-block;
+        max-width: 280px;
+        margin: auto;
+        padding-top: 10px;
+        padding-bottom: 10px; }
+      app-landing .landing-container .pre-footer .list-socials img {
+        max-height: 40px;
+        margin: 5px;
+        float: left; }
+    app-landing .landing-container .footer {
+      padding: 20px;
+      background: #0C0B0D;
+      border: none; }
+      app-landing .landing-container .footer p {
+        text-align: center;
+        font-weight: 300;
+        color: rgba(255, 255, 255, 0.7); }
+      app-landing .landing-container .footer a, app-landing .landing-container .footer a:hover {
+        display: inline;
+        color: rgba(255, 255, 255, 0.7);
+        text-decoration: none; }
     app-landing .landing-container .slogan {
       padding: 60px 0;
       text-align: center;

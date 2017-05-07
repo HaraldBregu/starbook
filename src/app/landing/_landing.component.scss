@@ -5,10 +5,87 @@ app-landing {
   padding: 70px 0 0;
   .landing-container {
     background: white;
+
+    .header-container {
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center 100%;
+      .header {
+        color: white;
+        padding: 160px 0;
+        text-align: center;
+        .actions {
+          padding: 40px 0 0;
+          .btn {
+            border-radius: 30px;
+            height: 60px;
+            padding: 0 80px;
+            font-weight: 700;
+            font-size: 26px;
+          }
+        }
+        h1 {
+          font-weight: 900;
+          font-size: 46px;
+          max-width: 900px;
+          margin: auto;
+          line-height: inherit;
+          // margin-bottom: 30px;
+        }
+        h2, h3 {
+          max-width: 700px;
+          margin: auto;
+          font-weight: 400;
+          margin-bottom: 30px;
+        }
+        p {
+          font-size: 24px !important;
+        }
+      }
+      .bottom-container {
+        position: relative;
+        overflow: hidden;
+        width: 100%;
+        height: 20px;
+        .arrow {
+          position: absolute;
+          bottom: 0;
+          width: 100%;
+          height: 20px;
+          background-color: rgba(0, 0, 0, 0.0);
+        }
+        .arrow:before, .arrow:after {
+          content:'';
+          position: absolute;
+          bottom: 0%;
+          width: 50%;
+          box-sizing: border-box;
+        }
+        .arrow:before {
+          right: 50%;
+          border-bottom: 20px solid white;
+          border-right: 20px solid transparent;
+        }
+        .arrow:after {
+          left: 50%;
+          border-bottom: 20px solid white;
+          border-left: 20px solid transparent;
+        }
+      }
+    }
     .services-container {
-      padding: 30px;
-      max-width: 1440px;
+      display: block;
+      text-align: center;
+      padding: 30px 0;
+      max-width: 1250px;
       margin: auto;
+      h1 {
+        text-align: center;
+        color: #324978;
+      }
+      .services {
+        padding-top: 20px;
+      }
       .service-container {
         padding-top: 15px;
         padding-bottom: 15px;
@@ -45,41 +122,190 @@ app-landing {
         }
       }
     }
-
-    .header {
-      background-size: cover;
-      background-repeat: no-repeat;
-      background-position: center 100%;
-      color: white;
-      padding: 100px 0;
+    .bullets-container {
+      display: block;
       text-align: center;
-      .actions {
-        padding: 40px 0 0;
-        .btn {
-          border-radius: 30px;
-          height: 60px;
-          padding: 0 80px;
-          font-weight: 700;
-          font-size: 26px;
-        }
-      }
+      padding: 50px 0;
+      max-width: 1250px;
+      margin: auto;
       h1 {
-        font-weight: 900;
-        font-size: 46px;
-        max-width: 900px;
-        margin: auto;
-        margin-bottom: 30px;
+        text-align: center;
+        color: #324978;
       }
-      h2, h3 {
-        max-width: 700px;
-        margin: auto;
+      img {
+        margin: 0 0 30px;
+        width: 30%;
+      }
+      h3 {
+        margin: 0 auto 10px;
+        color: #324976;
+        max-width: 300px;
         font-weight: 400;
-        margin-bottom: 30px;
       }
-      p {
-        font-size: 24px !important;
+      h5 {
+        margin: auto;
+        font-weight: 300;
+        max-width: 310px;
+      }
+      .bullets {
+        padding-top: 40px;
       }
     }
+
+    .professional-container {
+      display: block;
+      background: #fafcfe;
+      border-top: 1px solid #edf5fc;
+      border-bottom: 1px solid #edf5fc;
+      .professional {
+        max-width: 1250px;
+        margin: auto;
+      }
+      .text {
+        padding: 120px;
+        h1 {
+          color: #324976;
+          font-weight: 700;
+        }
+      }
+      .image {
+        background-image: url('https://s3-eu-west-1.amazonaws.com/starbook-s3/professionista-su-starbook-icon.png');
+        background-repeat: no-repeat;
+        background-position: center 10%;
+        background-size: cover;
+        height: 600px;
+      }
+    }
+    .price-container {
+      display: block;
+      background: #fafcfe;
+      border-top: 1px solid #edf5fc;
+      border-bottom: 1px solid #edf5fc;
+      .price {
+        max-width: 1250px;
+        margin: auto;
+      }
+      .text {
+        padding: 120px;
+        text-align: right;
+        h1 {
+          color: #324976;
+          font-weight: 700;
+        }
+      }
+      .image {
+        background-image: url('https://s3-eu-west-1.amazonaws.com/starbook-s3/professionista-su-starbook-icon.png');
+        background-repeat: no-repeat;
+        background-position: center 10%;
+        background-size: cover;
+        height: 600px;
+      }
+    }
+    .recruiting {
+      text-align: center;
+      color: #4a4a4a;
+      height: 600px;
+      text-align: left;
+      .join-box, .partner-box {
+        display: inline-block;
+        float: left;
+        width: 50%;
+        height: 100%;
+        padding: 100px;
+        h1 {
+          margin: 0 0 20px;
+          font-weight: 700;
+        }
+        p {
+          font-weight: 400;
+        }
+        .btn-primary, .btn-warning {
+          margin: 100px 0 0;
+          border-radius: 3px;
+          font-weight: 500;
+        }
+      }
+      .join-box {
+        background: #ebebeb;
+        background-image: url('/assets/images/invite-workers.png');
+        background-repeat: no-repeat;
+        background-position: center bottom;
+      }
+      .partner-box {
+        background: white;
+        background-image: url('/assets/images/Handshake.png');
+        background-repeat: no-repeat;
+        background-position: 116% 64%;
+        background-size: 496px;
+      }
+    }
+    .pre-footer {
+      overflow: auto;
+      color: rgba(255, 255, 255, 0.7);
+      text-align: left;
+      background: #161517;
+      padding: 50px;
+      font-weight: 300;
+      h6 {
+        font-weight: 300;
+      }
+      a, a:hover {
+        text-decoration: none;
+      }
+
+      .list-security {
+        display: inline-block;
+        max-width: 280px;
+        margin: auto;
+        padding-top: 10px;
+        padding-bottom: 10px;
+      }
+      .list-security img {
+        max-height: 40px;
+        margin: 5px;
+        float: left;
+      }
+      .list-payment-methods {
+        display: inline-block;
+        max-width: 280px;
+        margin: auto;
+        padding-top: 10px;
+        padding-bottom: 10px;
+      }
+      .list-payment-methods img {
+        max-height: 40px;
+        margin: 5px;
+        float: left;
+      }
+      .list-socials {
+        display: inline-block;
+        max-width: 280px;
+        margin: auto;
+        padding-top: 10px;
+        padding-bottom: 10px;
+      }
+      .list-socials img {
+        max-height: 40px;
+        margin: 5px;
+        float: left;
+      }
+    }
+    .footer {
+      padding: 20px;
+      background: #0C0B0D;
+      border: none;
+      p {
+        text-align: center;
+        font-weight: 300;
+        color: rgba(255, 255, 255, 0.7);
+      }
+      a, a:hover {
+         display: inline;
+         color: rgba(255, 255, 255, 0.7);
+         text-decoration: none;
+       }
+    }
+
     .slogan {
       padding: 60px 0;
       text-align: center;

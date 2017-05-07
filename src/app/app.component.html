@@ -12,7 +12,7 @@
 
     <div class="center-container">
       <div class="search-block" *ngIf="isFindField">
-        <p-autoComplete [(ngModel)]="findValue" [suggestions]="results" field="title" scrollHeight="170px" (completeMethod)="search($event)" (onSelect)="selectResult(findValue)" placeholder="Cerca" minLength="0">
+        <p-autoComplete [(ngModel)]="findValue" [suggestions]="results" field="title" scrollHeight="170px" (completeMethod)="search($event)" (onSelect)="selectResult(findValue)" placeholder="Cerca un servizio" minLength="0">
           <template let-res>
             <div class="search-result" (click)="selectResult(res)">{{ res.title }}</div>
           </template>
