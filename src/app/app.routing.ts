@@ -4,6 +4,8 @@ import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { LandingComponent } from './landing/landing.component';
 
+import { CategoryComponent } from './pages/category/category.component';
+
 import { ServiceComponent } from './pages/service/service.component';
 import { ServicesComponent } from './pages/services/services.component';
 
@@ -23,13 +25,18 @@ import { BlogComponent } from './pages/blog/blog.component';
 const routes: Routes = [
   {
     path: '',
-    component: LandingComponent,
-    data: {isFindField: true}
+    component: LandingComponent
   },
-  // {
-  //   path: '',
-  //   component: HomeComponent
-  // },
+  {
+    path: 'category/:category',
+    component: CategoryComponent
+  },
+  {
+    path: 'account/:page',
+    component: AccountComponent
+  },
+
+  // For test
   {
     path: 'landing',
     component: LandingComponent
@@ -38,6 +45,7 @@ const routes: Routes = [
     path: 'landing/:page',
     component: LandingComponent
   },
+
   {
     path: 'services',
     component: ServicesComponent,
@@ -83,10 +91,6 @@ const routes: Routes = [
   {
     path: 'legal',
     component: LegalComponent
-  },
-  {
-    path: 'account/:page',
-    component: AccountComponent
   },
   {
     path: 'recruiter',

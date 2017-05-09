@@ -90,7 +90,9 @@ export class ServiceComponent implements OnInit {
   }
   subscription: Subscription;
 
-  constructor(private homeService: CommonService, private navigationService: NavigationService, private router: Router, private route: ActivatedRoute, private orderService: OrderService, private analyticsService: AnalyticsService, private seoService: SeoService, private profileService: ProfileService) {}
+  constructor(private homeService: CommonService, private navigationService: NavigationService, private router: Router, private route: ActivatedRoute, private orderService: OrderService, private analyticsService: AnalyticsService, private seoService: SeoService, private profileService: ProfileService) {
+    
+  }
 
   ngOnInit() {
     this.route.params.subscribe(params => {

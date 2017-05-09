@@ -148,15 +148,21 @@ app-root {
     padding: 0 20px;
     max-width: 1440px;
     margin: auto;
-
+    overflow: auto;
     .navbar-nav .nav-item+.nav-item {
       margin-left: 0 !important;
     }
+    .navbar-nav .register-item {
+      background-color: #324978;
+    }
+    .register-item .nav-link {
+      color: white !important;
+    }
     .nav-link {
       position: relative;
-      font-weight: 400;
+      font-weight: 500;
       font-size: 16px;
-      color: black !important;
+      color: #324978 !important;
       padding: 0 15px;
       z-index: 2;
       margin-left: 1px;
@@ -166,6 +172,10 @@ app-root {
     .nav-link:hover,
     .nav-link.active {
       background-color: #F7F7F7;
+    }
+    .register-item .nav-link:hover,
+    .register-item .nav-link.active {
+      background-color: #324977;
     }
     .top-menu {
       padding-right: 0 !important;

@@ -40,6 +40,8 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { LandingComponent } from './landing/landing.component';
 
+import { CategoryComponent } from './pages/category/category.component';
+
 import { ServiceComponent } from './pages/service/service.component';
 import { ServicesComponent } from './pages/services/services.component';
 
@@ -84,7 +86,6 @@ let imports = [
   ClickOutsideModule,
   Ng2PageScrollModule.forRoot()
   // ClipboarModule
-
 ];
 let declarations = [
   AppComponent,
@@ -109,7 +110,7 @@ let declarations = [
   RequestsComponent,
   ShareComponent,
   BlogComponent,
-
+  CategoryComponent,
   ClipboardDirective
 ];
 

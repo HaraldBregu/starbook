@@ -1,15 +1,101 @@
-<div class="account">
-  <div class="new-password" *ngIf="page === 'login'">
-    <p>
-      Login
-    </p>
+<div class="account-container">
+  <div class="account" *ngIf="page==='login'">
+    <h1>Accedi al tuo account</h1>
+    <form>
+      <div class="form-group">
+        <label for="emailInput">Email</label>
+        <input type="email" placeholder="La tua mail" class="form-control" [ngClass]="{'error-input': login_state.email_error}" id="emailInput" [(ngModel)]="loginParameters.email" [ngModelOptions]="{standalone: true}">
+        <small class="error-message" *ngIf="login_state.email_error">{{login_state.email_error}}</small>
+      </div>
+      <div class="form-group">
+        <label for="passwordInput">Password</label>
+        <input type="password" placeholder="Password" class="form-control" [ngClass]="{'error-input': login_state.password_error}" id="passwordInput" [(ngModel)]="loginParameters.password" [ngModelOptions]="{standalone: true}">
+        <small class="error-message" *ngIf="login_state.password_error">{{login_state.password_error}}</small>
+      </div>
+      <div class="form-group" *ngIf="login_state.error_message">
+        <div class="alert alert-danger" role="alert">{{login_state.error_message}}</div>
+      </div>
+      <div class="form-group" *ngIf="facebook_state.error_message">
+        <div class="alert alert-danger" role="alert">{{facebook_state.error_message}}</div>
+      </div>
+      <div class="form-group">
+        <button type="button" id="next" class="btn btn-warning" (click)="login()"><i class="fa fa-circle-o-notch animate" *ngIf="login_state.loading"></i>{{login_state.button_title}}</button>
+      </div>
+      <div class="form-group">
+        <button type="button" id="next"class="btn btn-white" (click)="changeToSignup()">Sei nuovo? Crea un account</button>
+      </div>
+      <div class="form-group">
+        <button type="button" id="next"class="btn btn-facebook" (click)="continueWithFacebook()"><i></i>{{facebook_state.button_title}}</button>
+      </div>
+      <div class="form-group">
+        <h6><small>Continuando dichiari di aver letto e accetti le <a routerlink="/legal" href="/legal" target="_blank">condizioni generali e l’informativa sulla privacy</a></small></h6>
+      </div>
+    </form>
   </div>
-  <div class="new-password" *ngIf="page === 'signup'">
-    <p>
-      Signup
-    </p>
+  <div class="account" *ngIf="page==='signup'">
+    <h1>Crea un account</h1>
+    <form>
+      <div class="form-group">
+        <label for="emailInput">Email</label>
+        <input type="email" placeholder="La tua mail" class="form-control" [ngClass]="{'error-input': signup_state.email_error}" id="emailInput" [(ngModel)]="signupParameters.email" [ngModelOptions]="{standalone: true}">
+        <small class="error-message" *ngIf="signup_state.email_error">{{signup_state.email_error}}</small>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="firstNameInput">Nome</label>
+            <input type="firstname" placeholder="Nome" class="form-control" [ngClass]="{'error-input': signup_state.first_name_error}" id="firstNameInput" [(ngModel)]="signupParameters.firstname" [ngModelOptions]="{standalone: true}">
+            <small class="error-message" *ngIf="signup_state.first_name_error">{{signup_state.first_name_error}}</small>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="lastNameInput">Cognome</label>
+            <input type="lastname" placeholder="Cognome" class="form-control" [ngClass]="{'error-input': signup_state.last_name_error}" id="lastNameInput" [(ngModel)]="signupParameters.lastname" [ngModelOptions]="{standalone: true}">
+            <small class="error-message" *ngIf="signup_state.last_name_error">{{signup_state.last_name_error}}</small>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="phoneInput">Telefono</label>
+        <input type="phone" placeholder="Numero di telefono" class="form-control" [ngClass]="{'error-input': signup_state.phone_error}" id="phoneInput" [(ngModel)]="signupParameters.phone" [ngModelOptions]="{standalone: true}">
+        <small class="error-message" *ngIf="signup_state.phone_error">{{signup_state.phone_error}}</small>
+      </div>
+      <div class="form-group">
+        <label for="passwordInput">Password</label>
+        <input type="password" placeholder="Password" class="form-control" [ngClass]="{'error-input': signup_state.password_error}" id="passwordInput" [(ngModel)]="signupParameters.password" [ngModelOptions]="{standalone: true}">
+        <small class="error-message" *ngIf="signup_state.password_error">{{signup_state.password_error}}</small>
+      </div>
+      <div class="form-group">
+        <label for="confirmPasswordInput">Di nuovo la password</label>
+        <input type="password" placeholder="Password" class="form-control" [ngClass]="{'error-input': signup_state.confirm_password_error}" id="confirmPasswordInput" [(ngModel)]="signupParameters.confirmPassword" [ngModelOptions]="{standalone: true}">
+        <small class="error-message" *ngIf="signup_state.confirm_password_error">{{signup_state.confirm_password_error}}</small>
+      </div>
+      <div class="form-group" *ngIf="login_state.error_message">
+        <div class="alert alert-danger" role="alert">{{login_state.error_message}}</div>
+      </div>
+      <div class="form-group" *ngIf="facebook_state.error_message">
+        <div class="alert alert-danger" role="alert">{{facebook_state.error_message}}</div>
+      </div>
+      <div class="form-group">
+        <button type="button" id="next" class="btn btn-warning" (click)="signup()"><i class="fa fa-circle-o-notch animate" *ngIf="signup_state.loading"></i>{{signup_state.button_title}}</button>
+      </div>
+      <div class="form-group">
+        <button type="button" id="next"class="btn btn-white" (click)="changeToLogin()">Accedi</button>
+      </div>
+      <div class="form-group">
+        <button type="button" id="next"class="btn btn-facebook" (click)="continueWithFacebook()"><i></i>{{facebook_state.button_title}}</button>
+      </div>
+      <div class="form-group">
+        <h6><small>Continuando dichiari di aver letto e accetti le <a routerlink="/legal" href="/legal" target="_blank">condizioni generali e l’informativa sulla privacy</a></small></h6>
+      </div>
+    </form>
   </div>
-  <div class="email-verification" *ngIf="page === 'email_verification'">
+  <div class="account" *ngIf="page==='professional'">
+    <i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i> da
+
+  </div>
+  <div class="email-verification" *ngIf="page==='email_verification'">
     <h1>{{email_verification.title}}</h1>
     <div class="popup-spinner" *ngIf="email_verification.spinner.visible">
       <svg width='100px' height='100px' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid" class="uil-ring">
@@ -24,7 +110,7 @@
       <button class="btn btn-warning" type="button" (click)="goToHomePage()" *ngIf="email_verification.button.visible">{{email_verification.button.title}}</button>
     </div>
   </div>
-  <div class="password-verification" *ngIf="page === 'password_verification'">
+  <div class="password-verification" *ngIf="page==='password_verification'">
     <h1>{{password_verification.title}}</h1>
     <div class="popup-spinner" *ngIf="password_verification.spinner.visible">
       <svg width='100px' height='100px' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid" class="uil-ring">
@@ -39,7 +125,7 @@
       <button class="btn btn-warning" type="button" (click)="goToHomePage()" *ngIf="password_verification.button.visible">{{password_verification.button.title}}</button>
     </div>
   </div>
-  <div class="new-password" *ngIf="page === 'create_new_password'">
+  <div class="new-password" *ngIf="page==='create_new_password'">
     <h1>{{new_password_creation.title}}</h1>
     <div class="form-group" *ngIf="new_password_creation.password_field.visible">
       <label>{{new_password_creation.password_field.title}}</label>
@@ -48,14 +134,5 @@
     <div class="form-group" *ngIf="new_password_creation.button.visible">
       <button class="btn btn-warning" type="button" (click)="createNewPassword(new_password_creation.password_field.value)">{{new_password_creation.button.title}}</button>
     </div>
-  </div>
-</div>
-
-<div class="footer-container light-footer">
-  <div class="container">
-    <div class="copyright"><a routerLink="/"><strong>Starbook</strong> © 2017 Tutti i diritti riservati</a></div>
-    <span> • </span><a routerLink="../../legal">Privacy e Condizioni</a>
-    <span> • </span><a routerLink="../../about">Chi siamo</a>
-    <span> • </span><a routerLink="../../help">Aiuto e Assistenza</a>
   </div>
 </div>

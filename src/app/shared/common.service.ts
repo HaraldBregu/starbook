@@ -52,15 +52,16 @@ export class CommonService {
   getCategories() {
     // this.navigationService.updateLoadingStatus(true);
     let queryString = 'categories';
-    return this.http
-      .get(this.api + queryString)
-      .toPromise()
-      .then((response) => {
-        // this.navigationService.updateLoadingStatus(false);
-        return response.json();
-      })
-      .catch(this.handleError);
+    return this.http.get(this.api + queryString).toPromise().then((response) => {
+      return response.json();
+    }).catch(this.handleError);
   }
+  getCategoryById(id) {
+    return this.http.get(this.api + 'categories/' + id).toPromise().then((results) => {
+      return results.json();
+    }).catch(this.handleError);
+  }
+
   getAllServices() {
     return this.http.get(this.api + 'services').toPromise().then((services) => {
       return services.json();

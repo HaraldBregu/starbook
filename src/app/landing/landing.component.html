@@ -1,7 +1,36 @@
 <div *ngIf="!page" class="landing-container">
   <div class="header-container" [ngStyle]="{'background-image': 'url(https://s3-eu-west-1.amazonaws.com/starbook-s3/starbook-la-cura-per-la-casa.png)'}">
     <div class="header">
-      <h1 [ngStyle]="{'font-size': '46px'}">Trova il miglior servizio per la tua casa.<br>Al prezzo giusto e senza attese.</h1>
+      <h1>Trova il miglior servizio per la tua casa.<br>Al prezzo giusto e senza attese.</h1>
+      <div class="search">
+        <div class="search-field">
+          <p-autoComplete [(ngModel)]="query" [suggestions]="results" field="title" scrollHeight="275px" (completeMethod)="search($event)" (onSelect)="selectResult(query)" placeholder="Cerca una lavorazione..." minLength="0">
+            <template let-res>
+              <div class="search-result" (click)="selectResult(res)">{{ res.title }}</div>
+            </template>
+          </p-autoComplete>
+          <div class="spinner" *ngIf="spinerView">
+            <svg width='21px' height='21px' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid" class="uil-ring">
+              <rect x="0" y="0" width="100" height="100" fill="none" class="bk"></rect>
+              <circle cx="50" cy="50" r="45" stroke-dasharray="169.64600329384882 113.09733552923257" stroke="#3B568D" fill="none" stroke-width="10">
+                <animateTransform attributeName="transform" type="rotate" values="0 50 50;180 50 50;360 50 50;" keyTimes="0;0.5;1" dur="1s" repeatCount="indefinite" begin="0s"></animateTransform>
+              </circle>
+            </svg>
+          </div>
+          <div class="close-container" *ngIf="!spinerView && clearView">
+            <span class="close rounded thick" (click)="clearSearchForm()"></span>
+          </div>
+          <div class="ui-autocomplete-panel empty" *ngIf="results.length === 0 && query.length > 0">
+            <div class="no-result noselect">
+              Il servizio "{{query}}" non è disponibile
+              <button class="suggess-service" (click)="requireService()">{{newServiceRequest.message}}</button>
+            </div>
+          </div>
+        </div>
+        <div class="search-button">
+          <button class="btn btn-primary" (click)="searchMore()"><i class="fa fa-search" aria-hidden="true"></i></button>
+        </div>
+      </div>
     </div>
     <div class="bottom-container">
       <div class="arrow"></div>
@@ -10,11 +39,20 @@
   <div class="container-fluid services-container">
     <h1>I nostri servizi</h1>
     <div class="row services">
-      <div *ngFor="let service of services">
+      <!-- <div *ngFor="let service of services">
         <div class="col-md-4 col-sm-6 service-container">
           <div class="service" (click)="selectService(service)" [ngStyle]="{'background-image': 'url(' + service.image + ')'}">
             <div class="overlay" [ngStyle]="{'background-color': service.color}">
               <h1><strong>{{service.title}}</strong></h1>
+            </div>
+          </div>
+        </div>
+      </div> -->
+      <div *ngFor="let category of categories">
+        <div class="col-md-4 col-sm-6 service-container">
+          <div class="service" (click)="selectCategory(category)" [ngStyle]="{'background-image': 'url(' + category.image_url + ')'}">
+            <div class="overlay">
+              <h1><strong>{{category.title}}</strong></h1>
             </div>
           </div>
         </div>
@@ -51,10 +89,10 @@
     <div class="row professional">
       <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 text">
         <h1>Il miglior professionista</h1>
+        <img src="../../../assets/images/star.png" alt="Starbook professionisti"><img src="../../../assets/images/star.png" alt="Starbook professionisti"><img src="../../../assets/images/star.png" alt="Starbook professionisti"><img src="../../../assets/images/star.png" alt="Starbook professionisti"><img src="../../../assets/images/star.png" alt="Starbook professionisti">
         <p>Noi lavoriamo solo con i migliori professionisti del settore per assicurarti il miglior risultato finale. Non importa dove abitate o quando avete bisogno, il nostro compito è quello di darvi il meglio.</p>
       </div>
       <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 image">
-        <!-- <img src="https://s3-eu-west-1.amazonaws.com/starbook-s3/professionista-su-starbook-icon.png" alt="professionista su starbook"> -->
       </div>
     </div>
   </div>
@@ -64,7 +102,8 @@
       </div>
       <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 text">
         <h1>Il prezzo giusto</h1>
-        <p>Noi assicuriamo che il cliente acquisti un servizio con il miglior prezzo sul mercato. In più il nostro algoritmo permette di cambiare il prezzo in modo dinamico in relazione della quantità delle richieste ricevute.</p>
+        <p>Nella nostra piattaforma smetterai di chiedere prenventivi per un servizio. Il nostro obiettivo è di offrire un prezzo equo per i clienti e professionisti. Un servizio con grande qualità a prezzo giusto.</p>
+        <!-- <p>Noi assicuriamo che il cliente acquisti un servizio con il miglior prezzo sul mercato. In più il nostro algoritmo permette di cambiare il prezzo in modo dinamico in relazione della quantità delle richieste ricevute.</p> -->
       </div>
     </div>
   </div>

@@ -10,6 +10,8 @@
  * ];
  **/
 export const routes: string[] = [
+  'category/:category',
+  'account/:page',
   'landing',
   'landing/:page',
   'services',
@@ -23,7 +25,6 @@ export const routes: string[] = [
   'about',
   'help',
   'legal',
-  'account/:page',
   'recruiter',
   'recruiter/:page',
   'requests',

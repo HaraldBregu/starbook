@@ -46,12 +46,10 @@ app-home {
     .search {
       display: block;
       position: relative;
-      // overflow: auto;
       float: none;
       max-width: 800px;
       width: 100%;
       margin: 40px auto 0;
-
       .search-field {
         display: inline-block;
         float: left;

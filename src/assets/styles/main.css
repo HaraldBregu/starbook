@@ -3235,14 +3235,19 @@ app-root .center-container {
 app-root .container-starbook {
   padding: 0 20px;
   max-width: 1440px;
-  margin: auto; }
+  margin: auto;
+  overflow: auto; }
   app-root .container-starbook .navbar-nav .nav-item + .nav-item {
     margin-left: 0 !important; }
+  app-root .container-starbook .navbar-nav .register-item {
+    background-color: #324978; }
+  app-root .container-starbook .register-item .nav-link {
+    color: white !important; }
   app-root .container-starbook .nav-link {
     position: relative;
-    font-weight: 400;
+    font-weight: 500;
     font-size: 16px;
-    color: black !important;
+    color: #324978 !important;
     padding: 0 15px;
     z-index: 2;
     margin-left: 1px;
@@ -3251,6 +3256,9 @@ app-root .container-starbook {
   app-root .container-starbook .nav-link:hover,
   app-root .container-starbook .nav-link.active {
     background-color: #F7F7F7; }
+  app-root .container-starbook .register-item .nav-link:hover,
+  app-root .container-starbook .register-item .nav-link.active {
+    background-color: #324977; }
   app-root .container-starbook .top-menu {
     padding-right: 0 !important;
     overflow-x: visible !important; }
@@ -3367,7 +3375,7 @@ app-landing {
     app-landing .landing-container .header-container {
       background-size: cover;
       background-repeat: no-repeat;
-      background-position: center 100%; }
+      background-position: center top; }
       app-landing .landing-container .header-container .header {
         color: white;
         padding: 160px 0;
@@ -3385,7 +3393,9 @@ app-landing {
           font-size: 46px;
           max-width: 900px;
           margin: auto;
-          line-height: inherit; }
+          line-height: inherit;
+          text-align: left;
+          margin-bottom: 20px; }
         app-landing .landing-container .header-container .header h2, app-landing .landing-container .header-container .header h3 {
           max-width: 700px;
           margin: auto;
@@ -3393,6 +3403,104 @@ app-landing {
           margin-bottom: 30px; }
         app-landing .landing-container .header-container .header p {
           font-size: 24px !important; }
+        app-landing .landing-container .header-container .header .search {
+          display: block;
+          position: relative;
+          max-width: 900px;
+          width: 100%;
+          margin: auto;
+          height: 60px; }
+          app-landing .landing-container .header-container .header .search .search-field {
+            display: inline-block;
+            float: left;
+            width: 90%; }
+          app-landing .landing-container .header-container .header .search .search-button {
+            display: inline-block;
+            float: left;
+            width: 10%; }
+          app-landing .landing-container .header-container .header .search .ui-autocomplete-input {
+            display: block;
+            width: 100%;
+            height: 60px;
+            padding: 15px 46px 15px 30px;
+            background-color: #FFFFFF;
+            border: none;
+            border-radius: 1px;
+            box-shadow: none;
+            outline: none;
+            color: #212121;
+            font-size: 18px;
+            letter-spacing: 0.11px; }
+          app-landing .landing-container .header-container .header .search .close-container {
+            display: block;
+            position: absolute;
+            top: 17px;
+            right: 13%; }
+          app-landing .landing-container .header-container .header .search .close-container .close {
+            position: relative;
+            display: inline-block;
+            width: 25px;
+            height: 25px;
+            overflow: hidden; }
+            app-landing .landing-container .header-container .header .search .close-container .close::before, app-landing .landing-container .header-container .header .search .close-container .close::after {
+              content: '';
+              position: absolute;
+              height: 2px;
+              width: 100%;
+              top: 50%;
+              left: 0;
+              margin-top: -1px;
+              background: #3498db; }
+            app-landing .landing-container .header-container .header .search .close-container .close::before {
+              transform: rotate(45deg); }
+            app-landing .landing-container .header-container .header .search .close-container .close::after {
+              transform: rotate(-45deg); }
+            app-landing .landing-container .header-container .header .search .close-container .close.thick::before, app-landing .landing-container .header-container .header .search .close-container .close.thick::after {
+              height: 4px;
+              margin-top: -2px; }
+            app-landing .landing-container .header-container .header .search .close-container .close.rounded::before, app-landing .landing-container .header-container .header .search .close-container .close.rounded::after {
+              border-radius: 5px; }
+          app-landing .landing-container .header-container .header .search .ui-autocomplete-panel {
+            display: block;
+            position: absolute;
+            overflow-y: auto;
+            width: 90% !important;
+            background-color: #FFFFFF;
+            border-left: 1px solid #DCDCDC;
+            border-right: 1px solid #DCDCDC;
+            border-bottom: 1px solid #DCDCDC;
+            outline: none;
+            border-radius: 1px;
+            text-align: left; }
+          app-landing .landing-container .header-container .header .search .ui-autocomplete-panel .ui-state-highlight .search-result {
+            color: white;
+            background-color: #506795; }
+          app-landing .landing-container .header-container .header .search .ui-autocomplete-panel .search-result {
+            display: block;
+            width: 100%;
+            color: #212121;
+            font-size: 16px;
+            letter-spacing: 0.1px;
+            padding: 20px 30px; }
+          app-landing .landing-container .header-container .header .search .ui-autocomplete-panel.empty {
+            margin-top: 0; }
+          app-landing .landing-container .header-container .header .search .ui-autocomplete-panel.empty .no-result {
+            display: block;
+            width: 100%;
+            color: #8D9494;
+            font-size: 14px;
+            letter-spacing: 0.1px;
+            padding: 15px 30px; }
+          app-landing .landing-container .header-container .header .search .spinner {
+            display: block;
+            position: absolute;
+            top: 15px;
+            right: 13%;
+            width: 25px;
+            height: 25px; }
+          app-landing .landing-container .header-container .header .search .btn-primary {
+            height: 60px;
+            width: 100%; }
       app-landing .landing-container .header-container .bottom-container {
         position: relative;
         overflow: hidden;
@@ -3438,8 +3546,7 @@ app-landing {
           background-repeat: no-repeat;
           background-position: center 100%;
           height: 300px;
-          cursor: pointer;
-          border-radius: 10px; }
+          cursor: pointer; }
           app-landing .landing-container .services-container .service-container .service .overlay {
             position: absolute;
             top: 0;
@@ -3447,14 +3554,13 @@ app-landing {
             width: 100%;
             height: 100%;
             z-index: 10;
-            border-radius: 10px;
-            -webkit-transition: opacity 1.0s ease;
-            -moz-transition: opacity 1.0s ease;
-            -o-transition: opacity 1.0s ease;
-            transition: opacity 1.0s ease;
-            opacity: 0.85; }
+            -webkit-transition: background 1.0s ease;
+            -moz-transition: background 1.0s ease;
+            -o-transition: background 1.0s ease;
+            transition: background 1.0s ease;
+            background: rgba(24, 66, 145, 0.8); }
           app-landing .landing-container .services-container .service-container .service .overlay:hover {
-            opacity: 0.5; }
+            background: rgba(24, 66, 145, 0.8); }
           app-landing .landing-container .services-container .service-container .service h1 {
             line-height: 300px;
             text-align: center;
@@ -3494,13 +3600,19 @@ app-landing {
         padding: 120px; }
         app-landing .landing-container .professional-container .text h1 {
           color: #324976;
-          font-weight: 700; }
+          font-weight: 700;
+          margin-bottom: 30px; }
+        app-landing .landing-container .professional-container .text p {
+          color: #4a4a4a; }
       app-landing .landing-container .professional-container .image {
         background-image: url("https://s3-eu-west-1.amazonaws.com/starbook-s3/professionista-su-starbook-icon.png");
         background-repeat: no-repeat;
-        background-position: center 10%;
+        background-position: center top;
         background-size: cover;
         height: 600px; }
+      app-landing .landing-container .professional-container img {
+        max-width: 40px;
+        margin-bottom: 30px; }
     app-landing .landing-container .price-container {
       display: block;
       background: #fafcfe;
@@ -3514,11 +3626,14 @@ app-landing {
         text-align: right; }
         app-landing .landing-container .price-container .text h1 {
           color: #324976;
-          font-weight: 700; }
+          font-weight: 700;
+          margin-bottom: 40px; }
+        app-landing .landing-container .price-container .text p {
+          color: #4a4a4a; }
       app-landing .landing-container .price-container .image {
-        background-image: url("https://s3-eu-west-1.amazonaws.com/starbook-s3/professionista-su-starbook-icon.png");
+        background-image: url("/assets/images/MarketChart.jpg");
         background-repeat: no-repeat;
-        background-position: center 10%;
+        background-position: center top;
         background-size: cover;
         height: 600px; }
     app-landing .landing-container .recruiting {
@@ -3540,7 +3655,9 @@ app-landing {
         app-landing .landing-container .recruiting .join-box .btn-primary, app-landing .landing-container .recruiting .join-box .btn-warning, app-landing .landing-container .recruiting .partner-box .btn-primary, app-landing .landing-container .recruiting .partner-box .btn-warning {
           margin: 100px 0 0;
           border-radius: 3px;
-          font-weight: 500; }
+          font-weight: 600;
+          height: 60px;
+          padding: 0 40px; }
       app-landing .landing-container .recruiting .join-box {
         background: #ebebeb;
         background-image: url("/assets/images/invite-workers.png");
@@ -3890,6 +4007,11 @@ app-landing {
     app-landing .landing-container .contacts {
       padding: 50px 0;
       border-top: 1px solid #dce0e0; }
+  @media (max-width: 1024px) {
+    app-landing .landing-container .header-container .header {
+      padding: 90px 0; }
+    app-landing .landing-container .services-container {
+      padding: 30px; } }
   @media (max-width: 425px) {
     app-landing .landing-container .header {
       padding: 50px 10px; }
@@ -4339,6 +4461,38 @@ app-home {
     app-home .recruiting .partner-box {
       background-position: 39% 116%;
       background-size: 386px; } }
+
+app-category {
+  display: block;
+  width: 100%;
+  height: 100%;
+  padding: 70px 0 0; }
+  app-category .category-container {
+    max-width: 1440px;
+    margin: auto; }
+    app-category .category-container .category-header {
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+      color: white;
+      text-align: left; }
+      app-category .category-container .category-header .overlay {
+        background-color: rgba(0, 0, 0, 0.4); }
+      app-category .category-container .category-header .header-content {
+        padding: 40px; }
+        app-category .category-container .category-header .header-content h1 {
+          font-size: 46px;
+          font-weight: 600;
+          margin-bottom: 10px; }
+        app-category .category-container .category-header .header-content h5 {
+          font-weight: 400; }
+        app-category .category-container .category-header .header-content img {
+          max-width: 30px; }
+    app-category .category-container .description-container {
+      background-color: #161517;
+      color: white;
+      padding: 50px 0;
+      text-align: center; }
 
 app-service {
   display: block;
@@ -7811,14 +7965,41 @@ app-legal {
 .legal-container .legal-content {
   padding-bottom: 100px; }
 
-.account {
-  padding: 50px 0 0 0; }
+app-account {
+  display: block;
+  width: 100%;
+  height: 100%;
+  padding: 70px 0 0; }
+  app-account .account-container .account {
+    background: white;
+    max-width: 600px;
+    padding: 40px;
+    margin: 40px auto; }
+    app-account .account-container .account .btn {
+      width: 100%;
+      font-size: 22px;
+      color: white;
+      height: 60px;
+      font-weight: 400; }
+    app-account .account-container .account .btn.btn-white {
+      color: black; }
+    app-account .account-container .account .btn-facebook i {
+      display: block;
+      position: absolute;
+      top: 10px;
+      left: 12px;
+      width: 40px;
+      height: 40px;
+      background-image: url("/assets/images/fb-icon.png");
+      background-repeat: no-repeat;
+      background-size: contain; }
+    app-account .account-container .account h1 {
+      margin-bottom: 20px; }
 
 .account h1 {
   font-family: HelveticaNeue, sans-serif;
   font-size: 32px;
-  letter-spacing: 0.22px;
-  margin-top: 40px; }
+  letter-spacing: 0.22px; }
 
 .account h2 {
   font-size: 26px;
@@ -7841,26 +8022,6 @@ app-legal {
 .account .popup-spinner {
   text-align: center;
   margin: 50px auto 0px; }
-
-.account .form-group {
-  margin-top: 20px; }
-
-.account .form-group .btn-warning {
-  margin-top: 50px;
-  border-radius: 0;
-  height: 50px;
-  width: 400px;
-  height: 50px;
-  border: 0;
-  color: white;
-  font-size: 22px;
-  font-family: HelveticaNeue-Bold, sans-serif;
-  font-weight: 700;
-  outline: none; }
-
-.account .form-group .form-control {
-  width: 400px;
-  margin: auto; }
 
 .account .form-group label {
   width: 400px;

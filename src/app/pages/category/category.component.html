@@ -1,0 +1,14 @@
+<div class="category-container" *ngIf="category">
+  <div class="category-header" [ngStyle]="{'background-image' : ' url(' + category.image_url + ')'}">
+    <div class="overlay">
+      <div class="header-content">
+        <h1>{{category.title}}</h1>
+        <h5>{{category.description}}</h5>
+        <img src="../../../assets/images/star.png" alt="Starbook professionisti"><img src="../../../assets/images/star.png" alt="Starbook professionisti"><img src="../../../assets/images/star.png" alt="Starbook professionisti"><img src="../../../assets/images/star.png" alt="Starbook professionisti"><img src="../../../assets/images/star.png" alt="Starbook professionisti">
+      </div>
+    </div>
+  </div>
+  <div class="description-container">
+    <p>Questo è la descrizione ideale</p>
+  </div>
+</div>

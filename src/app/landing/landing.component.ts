@@ -9,7 +9,7 @@ import { OrderService } from '../order/order.service';
 
 @Component({
   selector: 'app-landing',
-  templateUrl: './landing.component.html',
+  templateUrl: './landing.component.html'
 })
 export class LandingComponent implements OnInit {
   public page;
@@ -17,6 +17,16 @@ export class LandingComponent implements OnInit {
   public emailPattern: any;
   public numPattern: any;
   public contacts = '';
+  public spinerView = false;
+  public clearView = false;
+  public query: string = '';
+  public results: string[] = [];
+  public newServiceRequest = {
+    message: 'Richiedi?'
+  };
+  public ref;
+  public categories = []
+
   public invitation_state = {
     message_success: null,
     message_error: null
@@ -132,8 +142,8 @@ export class LandingComponent implements OnInit {
     private navigationService: NavigationService,
     private analyticsService: AnalyticsService,
     private seoService: SeoService,
-    private commonService: CommonService,
-    private orderService: OrderService) {
+    private orderService: OrderService,
+    private commonService: CommonService) {
       this.emailPattern = /^[a-z0-9!#$%&'*+\/=?^_`{|}~.-]+@[a-z0-9]([a-z0-9-]*[a-z0-9])?(\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)*$/i;
       this.numPattern = /^\d+$/;
       this.analyticsService.sendPageViewUrl(this.router.url)
@@ -143,6 +153,14 @@ export class LandingComponent implements OnInit {
           this.currentUser = JSON.parse(localStorage.getItem('auth'));
         }
       }
+
+      this.commonService.getCategories().then((categories) => {
+        this.categories = categories.result;
+        // console.log('categories: ' + JSON.stringify(this.categories));
+      }).catch((error) => {
+        // console.log('error: ' + error);
+        this.categories = null;
+      });
 
       this.route.params.subscribe((params: Params) => {
         if (isBrowser) {window.scrollTo(0, 0);}
@@ -271,8 +289,73 @@ export class LandingComponent implements OnInit {
 
   }
 
+  ////////////////////////////////////////////
+  ////////////// LANDING SEARCH //////////////
+  ////////////////////////////////////////////
+  search(event) {
+    this.analyticsService.sendEvent({category:'Search', action: 'typing: ' + event.query, label: this.router.url});
+    this.newServiceRequest.message = 'Richiedi?';
+    this.spinerView = true;
+    this.clearView = false;
+    let timeStart = Date.now();
+    this.commonService.search(event.query).then((results) => {
+      this.spinerView = false;
+      this.analyticsService.sendTiming({category: 'Search', timingVar: 'load', timingValue: Date.now()-timeStart});
+      if (event.query.length > 0) {
+        this.clearView = true;
+      }
+      this.results = results.result;
+    }).catch((error) => {
+      this.spinerView = false;
+      if (event.query.length > 0) {
+        this.clearView = true;
+      }
+      this.results = [];
+    })
+  }
+  selectResult(service) {
+    this.analyticsService.sendEvent({category:'Search result', action: 'Select service', label: this.router.url});
+    this.commonService.sendData(service, this.ref)
+    this.router.navigate(['services', service.title.replace(/\s+/g, '-')]);
+  }
+  clearSearchForm() {
+    this.query = '';
+    this.results = [];
+    this.clearView = false;
+  }
+  requireService() {
+    this.analyticsService.sendEvent({category:'Search result', action: 'Require service', label: this.router.url});
+    this.router.navigate(['requests/service']);
+  }
+  searchMore() {
+    this.analyticsService.sendEvent({category:'Button', action: 'Search', label: this.router.url});
+    if (this.query.length>0 && this.results.length===0) {
+      this.router.navigate(['requests/service']);
+    } else if (this.query.length>0 && this.results.length>0) {
+      let service = this.results[0];
+      this.commonService.sendData(service, this.ref)
+      let title = service['title'];
+      this.router.navigate(['services', title.replace(/\s+/g, '-')]);
+    } else if (this.query.length===0) {
+      this.router.navigate(['services']);
+    }
+  }
+
+  ////////////////////////////////////////////
+  ////////////// SELECT CATEGORY /////////////
+  ////////////////////////////////////////////
+  selectCategory(category) {
+    this.analyticsService.sendEvent({category:'Search result', action: 'Select service', label: this.router.url});
+    this.commonService.sendData(category, this.ref)
+    this.router.navigate(['category/', category.title.replace(/\s+/g, '-').toLowerCase()]);
+  }
+
+
+
+
   selectService(service) {
-    this.router.navigate(['landing/' + service.title.toLowerCase()]);
+    // this.router.navigate(['landing/' + service.title.toLowerCase()]);
+    this.router.navigate(['category/' + service.title.toLowerCase()]);
   }
   checkoutService(service) {
     this.analyticsService.sendEvent({category:'Service', action: 'Order now', label: this.router.url});

@@ -9,7 +9,7 @@ app-landing {
     .header-container {
       background-size: cover;
       background-repeat: no-repeat;
-      background-position: center 100%;
+      background-position: center top;
       .header {
         color: white;
         padding: 160px 0;
@@ -30,7 +30,8 @@ app-landing {
           max-width: 900px;
           margin: auto;
           line-height: inherit;
-          // margin-bottom: 30px;
+          text-align: left;
+          margin-bottom: 20px;
         }
         h2, h3 {
           max-width: 700px;
@@ -40,6 +41,126 @@ app-landing {
         }
         p {
           font-size: 24px !important;
+        }
+        .search {
+          display: block;
+          position: relative;
+          max-width: 900px;
+          width: 100%;
+          margin: auto;
+          height: 60px;
+          .search-field {
+            display: inline-block;
+            float: left;
+            width: 90%;
+          }
+          .search-button {
+            display: inline-block;
+            float: left;
+            width: 10%;
+          }
+          .ui-autocomplete-input {
+            display: block;
+            width: 100%;
+            height: 60px;
+            padding: 15px 46px 15px 30px;
+            background-color: #FFFFFF;
+            border: none;
+            border-radius: 1px;
+            box-shadow: none;
+            outline: none;
+            color: #212121;
+            font-size: 18px;
+            letter-spacing: 0.11px;
+          }
+          .close-container {
+            display: block;
+            position: absolute;
+            top: 17px;
+            right: 13%;
+          }
+          .close-container .close{
+            position: relative;
+            display: inline-block;
+            width: 25px;
+            height: 25px;
+            overflow: hidden;
+            &::before, &::after {
+              content: '';
+              position: absolute;
+              height: 2px;
+              width: 100%;
+              top: 50%;
+              left: 0;
+              margin-top: -1px;
+              background: #3498db;
+            }
+            &::before {
+             transform: rotate(45deg);
+            }
+            &::after {
+              transform: rotate(-45deg);
+            }
+            &.thick {
+              &::before, &::after {
+                height: 4px;
+                margin-top: -2px;
+              }
+            }
+            &.rounded {
+              &::before, &::after {
+                border-radius: 5px;
+              }
+            }
+          }
+          .ui-autocomplete-panel {
+            display: block;
+            position: absolute;
+            overflow-y: auto;
+            width: 90% !important;
+            background-color: #FFFFFF;
+            border-left: 1px solid #DCDCDC;
+            border-right: 1px solid #DCDCDC;
+            border-bottom: 1px solid #DCDCDC;
+            outline: none;
+            border-radius: 1px;
+            text-align: left;
+          }
+          .ui-autocomplete-panel .ui-state-highlight .search-result {
+            color: white;
+            background-color: #506795;
+          }
+          .ui-autocomplete-panel .search-result {
+            display: block;
+            width: 100%;
+            color: #212121;
+            font-size: 16px;
+            letter-spacing: 0.1px;
+            padding: 20px 30px;
+          }
+          .ui-autocomplete-panel.empty {
+            margin-top: 0;
+          }
+          .ui-autocomplete-panel.empty .no-result {
+            display: block;
+            width: 100%;
+            color: #8D9494;
+            font-size: 14px;
+            letter-spacing: 0.1px;
+            padding: 15px 30px;
+          }
+          .spinner {
+            display: block;
+            position: absolute;
+            top: 15px;
+            right: 13%;
+            width: 25px;
+            height: 25px;
+          }
+          .btn-primary {
+            height: 60px;
+            width: 100%;
+          }
         }
       }
       .bottom-container {
@@ -96,7 +217,6 @@ app-landing {
           background-position: center 100%;
           height: 300px;
           cursor: pointer;
-          border-radius: 10px;
           .overlay {
             position: absolute;
             top: 0;
@@ -104,15 +224,16 @@ app-landing {
             width: 100%;
             height: 100%;
             z-index: 10;
-            border-radius: 10px;
-            -webkit-transition: opacity 1.0s ease;
-            -moz-transition: opacity 1.0s ease;
-            -o-transition: opacity 1.0s ease;
-            transition: opacity 1.0s ease;
-            opacity: 0.85;
+            -webkit-transition: background 1.0s ease;
+            -moz-transition: background 1.0s ease;
+            -o-transition: background 1.0s ease;
+            transition: background 1.0s ease;
+            // opacity: 0.85;
+            background: rgba(24, 66, 145, 0.8);
           }
           .overlay:hover {
-            opacity: 0.5;
+            // opacity: 0.5;
+            background: rgba(24, 66, 145, 0.8);
           }
           h1 {
             line-height: 300px;
@@ -166,14 +287,22 @@ app-landing {
         h1 {
           color: #324976;
           font-weight: 700;
+          margin-bottom: 30px;
+        }
+        p {
+          color: #4a4a4a;
         }
       }
       .image {
         background-image: url('https://s3-eu-west-1.amazonaws.com/starbook-s3/professionista-su-starbook-icon.png');
         background-repeat: no-repeat;
-        background-position: center 10%;
+        background-position: center top;
         background-size: cover;
         height: 600px;
+      }
+      img {
+        max-width: 40px;
+        margin-bottom: 30px;
       }
     }
     .price-container {
@@ -191,12 +320,16 @@ app-landing {
         h1 {
           color: #324976;
           font-weight: 700;
+          margin-bottom: 40px;
+        }
+        p {
+          color: #4a4a4a;
         }
       }
       .image {
-        background-image: url('https://s3-eu-west-1.amazonaws.com/starbook-s3/professionista-su-starbook-icon.png');
+        background-image: url('/assets/images/MarketChart.jpg');
         background-repeat: no-repeat;
-        background-position: center 10%;
+        background-position: center top;
         background-size: cover;
         height: 600px;
       }
@@ -222,7 +355,9 @@ app-landing {
         .btn-primary, .btn-warning {
           margin: 100px 0 0;
           border-radius: 3px;
-          font-weight: 500;
+          font-weight: 600;
+          height: 60px;
+          padding: 0 40px;
         }
       }
       .join-box {
@@ -671,6 +806,18 @@ app-landing {
     }
   }
 
+  @media (max-width: 1024px) {
+    .landing-container {
+      .header-container {
+        .header {
+          padding: 90px 0;
+        }
+      }
+      .services-container {
+        padding: 30px;
+      }
+    }
+  }
   @media (max-width: 425px) {
     .landing-container {
       .header {

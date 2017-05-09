@@ -1,4 +1,45 @@
+app-account {
+  display: block;
+  width: 100%;
+  height: 100%;
+  padding: 70px 0 0;
+  .account-container {
+    // background: white;
+    .account {
+      background: white;
+      max-width: 600px;
+      padding: 40px;
+      margin: 40px auto;
+      .btn {
+        width: 100%;
+        font-size: 22px;
+        color: white;
+        height: 60px;
+        font-weight: 400;
+      }
+      .btn.btn-white {
+        color: black;
+      }
+      .btn-facebook i {
+        display: block;
+        position: absolute;
+        top: 10px;
+        left: 12px;
+        width: 40px;
+        height: 40px;
+        background-image: url('/assets/images/fb-icon.png');
+        background-repeat: no-repeat;
+        background-size: contain;
+      }
+      h1 {
+        margin-bottom: 20px;
+      }
+    }
+  }
+}
+
 // General styles
+
 $font-name: HelveticaNeue, sans-serif;
 $font-name-medium: HelveticaNeue-Medium, sans-serif;
 $font-name-bold: HelveticaNeue-Bold, sans-serif;
@@ -15,14 +56,13 @@ $btn-gradient-color-yellow-dark: #FEC751;
 $success-icon: '/assets/images/success.png';
 
 .account {
-  padding: 50px 0 0 0;
+  // padding: 50px 0 0 0;
 }
 
 .account h1 {
   font-family: $font-name;
   font-size: $account-header-font-size;
   letter-spacing: $account-header-letter-spacing;
-  margin-top: 40px;
 }
 .account h2 {
   font-size: 26px;
@@ -47,25 +87,25 @@ $success-icon: '/assets/images/success.png';
   margin: 50px auto 0px;
 }
 .account .form-group {
-  margin-top: 20px;
+  // margin-top: 20px;
 }
-.account .form-group .btn-warning {
-  margin-top: 50px;
-  border-radius: 0;
-  height: 50px;
-  width: 400px;
-  height: 50px;
-  border: 0;
-  color: white;
-  font-size: 22px;
-  font-family: $font-name-bold;
-  font-weight: 700;
-  outline: none;
-}
+// .account .form-group .btn-warning {
+//   margin-top: 50px;
+//   border-radius: 0;
+//   height: 50px;
+//   width: 400px;
+//   height: 50px;
+//   border: 0;
+//   color: white;
+//   font-size: 22px;
+//   font-family: $font-name-bold;
+//   font-weight: 700;
+//   outline: none;
+// }
 .account .form-group .form-control {
-  width: 400px;
+  // width: 400px;
   // text-align: left;
-  margin: auto;
+  // margin: auto;
 }
 .account .form-group label {
   width: 400px;

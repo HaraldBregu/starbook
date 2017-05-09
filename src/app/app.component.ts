@@ -48,6 +48,9 @@ export class AppComponent implements OnInit, OnDestroy {
           while (currentRoute.children[0] !== undefined) {
             currentRoute = currentRoute.children[0];
           }
+
+          // console.log('this currentRoute: ' + currentRoute);
+
           if ('isFindField' in currentRoute.snapshot.data) {
             this.isFindField = true;
           } else {
