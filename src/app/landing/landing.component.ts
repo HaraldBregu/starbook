@@ -147,6 +147,7 @@ export class LandingComponent implements OnInit {
       this.emailPattern = /^[a-z0-9!#$%&'*+\/=?^_`{|}~.-]+@[a-z0-9]([a-z0-9-]*[a-z0-9])?(\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)*$/i;
       this.numPattern = /^\d+$/;
       this.analyticsService.sendPageViewUrl(this.router.url)
+      this.navigationService.updateMessage('');
 
       if (isBrowser) {
         if (localStorage.getItem('auth')) {

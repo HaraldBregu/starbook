@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { isBrowser } from 'angular2-universal';
 import { Router, Route, ActivatedRoute, Params } from '@angular/router';
 import { NavigationService } from '../../shared/navigation.service';
-import { JoinService } from '../../shared/join.service';
+import { ContactService } from '../../shared/contact.service';
 import { SeoService } from '../../shared/seo.service';
 import { AnalyticsService } from '../../shared/analytics.service';
 
@@ -56,7 +56,7 @@ export class RequestsComponent implements OnInit {
     }
   };
 
-  constructor(private router: Router, private route: ActivatedRoute, private navigationService: NavigationService, private joinService: JoinService, private seoService: SeoService, private analyticsService: AnalyticsService) {
+  constructor(private router: Router, private route: ActivatedRoute, private navigationService: NavigationService, private joinService: ContactService, private seoService: SeoService, private analyticsService: AnalyticsService) {
     this.analyticsService.sendPageViewUrl(this.router.url);
     this.seoService.setTitle('Lavori di casa? Chiedi di cosa hai bisogno');
     this.seoService.setOgElem('og:title', 'Lavori di casa? Chiedi di cosa hai bisogno');
@@ -96,7 +96,6 @@ export class RequestsComponent implements OnInit {
         }
       })
     }
-    console.log('page is: ' + this.page);
   }
 
   sendRequestForNewService() {

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { isBrowser } from 'angular2-universal';
 import { Router, Route, ActivatedRoute, Params, NavigationExtras } from '@angular/router';
 import { NavigationService } from '../../shared/navigation.service';
-import { JoinService } from '../../shared/join.service';
+import { ContactService } from '../../shared/contact.service';
 import { ShareService } from './share.service';
 import { AnalyticsService } from '../../shared/analytics.service';
 import { OrderService } from '../../order/order.service';
@@ -39,7 +39,7 @@ export class ShareComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private navigationService: NavigationService,
-    private joinService: JoinService,
+    private joinService: ContactService,
     private shareService: ShareService,
     private analyticsService: AnalyticsService,
     private orderService: OrderService,

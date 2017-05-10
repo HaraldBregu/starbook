@@ -5,7 +5,6 @@ app-landing {
   padding: 70px 0 0;
   .landing-container {
     background: white;
-
     .header-container {
       background-size: cover;
       background-repeat: no-repeat;
@@ -229,11 +228,11 @@ app-landing {
             -o-transition: background 1.0s ease;
             transition: background 1.0s ease;
             // opacity: 0.85;
-            background: rgba(24, 66, 145, 0.8);
+            background: rgba(24, 66, 145, 0.4);
           }
           .overlay:hover {
             // opacity: 0.5;
-            background: rgba(24, 66, 145, 0.8);
+            background: rgba(24, 66, 145, 1.0);
           }
           h1 {
             line-height: 300px;
@@ -246,7 +245,7 @@ app-landing {
     .bullets-container {
       display: block;
       text-align: center;
-      padding: 50px 0;
+      padding: 100px 0;
       max-width: 1250px;
       margin: auto;
       h1 {
@@ -296,8 +295,8 @@ app-landing {
       .image {
         background-image: url('https://s3-eu-west-1.amazonaws.com/starbook-s3/professionista-su-starbook-icon.png');
         background-repeat: no-repeat;
-        background-position: center top;
-        background-size: cover;
+        background-position: center bottom;
+        background-size: 90%;
         height: 600px;
       }
       img {
@@ -307,33 +306,128 @@ app-landing {
     }
     .price-container {
       display: block;
-      background: #fafcfe;
-      border-top: 1px solid #edf5fc;
-      border-bottom: 1px solid #edf5fc;
-      .price {
-        max-width: 1250px;
-        margin: auto;
-      }
+      background-image: url('https://s3-eu-west-1.amazonaws.com/starbook-s3/website/illustration-city-blue.png');
+      background-repeat: no-repeat;
+      background-position: center bottom;
+      background-size: 100%;
+      height: 450px;
+      padding: 100px;
       .text {
-        padding: 120px;
-        text-align: right;
+        max-width: 700px;
+        margin: auto;
         h1 {
+          text-align: center;
           color: #324976;
           font-weight: 700;
-          margin-bottom: 40px;
+          margin-bottom: 30px;
         }
         p {
+          text-align: center;
           color: #4a4a4a;
         }
       }
-      .image {
-        background-image: url('/assets/images/MarketChart.jpg');
-        background-repeat: no-repeat;
-        background-position: center top;
-        background-size: cover;
-        height: 600px;
+    }
+    .partnership-container {
+      display: block;
+      background-image: url('https://s3-eu-west-1.amazonaws.com/starbook-s3/website/illustration-city-blue.png');
+      background-repeat: no-repeat;
+      background-position: center bottom;
+      background-size: 80%;
+      height: 500px;
+      padding: 100px;
+      max-width: 1440px;
+      text-align: center;
+      .text {
+        max-width: 700px;
+        margin: auto;
+        h1 {
+          text-align: center;
+          color: #324976;
+          font-weight: 700;
+          margin-bottom: 30px;
+        }
+        p {
+          text-align: center;
+          color: #4a4a4a;
+        }
+      }
+      button {
+        margin-top: 30px;
+        padding: 0 40px;
+        font-weight: 700;
       }
     }
+    .prefooter-container {
+      overflow: auto;
+      color: rgba(255, 255, 255, 0.7);
+      text-align: left;
+      background: #161517;
+      padding: 50px;
+      font-weight: 300;
+      .prefooter {
+        max-width: 1440px;
+        margin: auto;
+        h6 {
+          font-weight: 300;
+        }
+        a, a:hover {
+          text-decoration: none;
+        }
+        .list-security {
+          display: inline-block;
+          max-width: 280px;
+          margin: auto;
+          padding-top: 10px;
+          padding-bottom: 10px;
+        }
+        .list-security img {
+          max-height: 40px;
+          margin: 5px;
+          float: left;
+        }
+        .list-payment-methods {
+          display: inline-block;
+          max-width: 280px;
+          margin: auto;
+          padding-top: 10px;
+          padding-bottom: 10px;
+        }
+        .list-payment-methods img {
+          max-height: 40px;
+          margin: 5px;
+          float: left;
+        }
+        .list-socials {
+          display: inline-block;
+          max-width: 280px;
+          margin: auto;
+          padding-top: 10px;
+          padding-bottom: 10px;
+        }
+        .list-socials img {
+          max-height: 40px;
+          margin: 5px;
+          float: left;
+        }
+      }
+    }
+    .footer {
+      padding: 20px;
+      background: #0C0B0D;
+      border: none;
+      p {
+        text-align: center;
+        font-weight: 300;
+        color: rgba(255, 255, 255, 0.7);
+      }
+      a, a:hover {
+         display: inline;
+         color: rgba(255, 255, 255, 0.7);
+         text-decoration: none;
+       }
+    }
+
+
     .recruiting {
       text-align: center;
       color: #4a4a4a;
@@ -374,72 +468,7 @@ app-landing {
         background-size: 496px;
       }
     }
-    .pre-footer {
-      overflow: auto;
-      color: rgba(255, 255, 255, 0.7);
-      text-align: left;
-      background: #161517;
-      padding: 50px;
-      font-weight: 300;
-      h6 {
-        font-weight: 300;
-      }
-      a, a:hover {
-        text-decoration: none;
-      }
 
-      .list-security {
-        display: inline-block;
-        max-width: 280px;
-        margin: auto;
-        padding-top: 10px;
-        padding-bottom: 10px;
-      }
-      .list-security img {
-        max-height: 40px;
-        margin: 5px;
-        float: left;
-      }
-      .list-payment-methods {
-        display: inline-block;
-        max-width: 280px;
-        margin: auto;
-        padding-top: 10px;
-        padding-bottom: 10px;
-      }
-      .list-payment-methods img {
-        max-height: 40px;
-        margin: 5px;
-        float: left;
-      }
-      .list-socials {
-        display: inline-block;
-        max-width: 280px;
-        margin: auto;
-        padding-top: 10px;
-        padding-bottom: 10px;
-      }
-      .list-socials img {
-        max-height: 40px;
-        margin: 5px;
-        float: left;
-      }
-    }
-    .footer {
-      padding: 20px;
-      background: #0C0B0D;
-      border: none;
-      p {
-        text-align: center;
-        font-weight: 300;
-        color: rgba(255, 255, 255, 0.7);
-      }
-      a, a:hover {
-         display: inline;
-         color: rgba(255, 255, 255, 0.7);
-         text-decoration: none;
-       }
-    }
 
     .slogan {
       padding: 60px 0;

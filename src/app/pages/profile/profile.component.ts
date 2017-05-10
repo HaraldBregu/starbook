@@ -7,7 +7,7 @@ import { PaymentService } from '../../shared/payment.service';
 import { Subscription }   from 'rxjs/Subscription';
 import { AnalyticsService } from '../../shared/analytics.service';
 import { SeoService } from '../../shared/seo.service';
-import { JoinService } from '../../shared/join.service';
+import { ContactService } from '../../shared/contact.service';
 import { isBrowser } from "angular2-universal";
 
 @Component({
@@ -116,7 +116,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
     private popupsService: PopupsService,
     private paymentService: PaymentService,
     private analyticsService: AnalyticsService,
-    private joinService: JoinService,
+    private joinService: ContactService,
     private seoService: SeoService) {
     this.navigationService.updateMessage('Profilo');
     this.emailPattern = /^[a-z0-9!#$%&'*+\/=?^_`{|}~.-]+@[a-z0-9]([a-z0-9-]*[a-z0-9])?(\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)*$/i;

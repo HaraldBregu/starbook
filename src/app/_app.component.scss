@@ -153,11 +153,18 @@ app-root {
       margin-left: 0 !important;
     }
     .navbar-nav .register-item {
-      background-color: #324978;
+      // background-color: #324978;
+      border: 1px solid #324978;
     }
     .register-item .nav-link {
-      color: white !important;
+      // color: white !important;
+      color: #324978 !important;
     }
+    .register-item .nav-link:hover,
+    .register-item .nav-link.active {
+      // background-color: #324977;
+    }
+
     .nav-link {
       position: relative;
       font-weight: 500;
@@ -172,10 +179,6 @@ app-root {
     .nav-link:hover,
     .nav-link.active {
       background-color: #F7F7F7;
-    }
-    .register-item .nav-link:hover,
-    .register-item .nav-link.active {
-      background-color: #324977;
     }
     .top-menu {
       padding-right: 0 !important;

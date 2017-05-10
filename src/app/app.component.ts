@@ -48,9 +48,6 @@ export class AppComponent implements OnInit, OnDestroy {
           while (currentRoute.children[0] !== undefined) {
             currentRoute = currentRoute.children[0];
           }
-
-          // console.log('this currentRoute: ' + currentRoute);
-
           if ('isFindField' in currentRoute.snapshot.data) {
             this.isFindField = true;
           } else {
@@ -98,6 +95,10 @@ export class AppComponent implements OnInit, OnDestroy {
 
   }
 
+  signupAsProfessional() {
+    this.router.navigate(['account/signup']);
+  }
+
   clickBrandLogo() {
     if (this.screenWidth <= 425) {
       this.collapsed = !this.collapsed;
@@ -122,7 +123,6 @@ export class AppComponent implements OnInit, OnDestroy {
 
   toggleMenu() {
     this.collapsed = false;
-
     this.navbarState = !this.navbarState;
   }
 

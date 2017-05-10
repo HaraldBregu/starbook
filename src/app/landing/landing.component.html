@@ -39,15 +39,6 @@
   <div class="container-fluid services-container">
     <h1>I nostri servizi</h1>
     <div class="row services">
-      <!-- <div *ngFor="let service of services">
-        <div class="col-md-4 col-sm-6 service-container">
-          <div class="service" (click)="selectService(service)" [ngStyle]="{'background-image': 'url(' + service.image + ')'}">
-            <div class="overlay" [ngStyle]="{'background-color': service.color}">
-              <h1><strong>{{service.title}}</strong></h1>
-            </div>
-          </div>
-        </div>
-      </div> -->
       <div *ngFor="let category of categories">
         <div class="col-md-4 col-sm-6 service-container">
           <div class="service" (click)="selectCategory(category)" [ngStyle]="{'background-image': 'url(' + category.image_url + ')'}">
@@ -96,18 +87,16 @@
       </div>
     </div>
   </div>
-  <div class="container-fluid price-container">
-    <div class="row price">
-      <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 image">
-      </div>
-      <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 text">
-        <h1>Il prezzo giusto</h1>
-        <p>Nella nostra piattaforma smetterai di chiedere prenventivi per un servizio. Il nostro obiettivo è di offrire un prezzo equo per i clienti e professionisti. Un servizio con grande qualità a prezzo giusto.</p>
-        <!-- <p>Noi assicuriamo che il cliente acquisti un servizio con il miglior prezzo sul mercato. In più il nostro algoritmo permette di cambiare il prezzo in modo dinamico in relazione della quantità delle richieste ricevute.</p> -->
-      </div>
+  <div class="container-fluid partnership-container">
+    <div class="text">
+      <h1>Programma partnership</h1>
+      <p>Il programma partner di Starbook consente alle aziende, agenzie immobiliari, piattaforme software e startup di monetizzare utilizando i nostri servizi tramite potenziali clienti.</p>
     </div>
+    <button type="button" class="btn btn-warning" name="button" routerLink="/contact/partner">Scopri di più</button>
   </div>
-  <div class="recruiting" *ngIf="!currentUser">
+
+
+  <!-- <div class="recruiting" *ngIf="!currentUser">
     <div class="join-box">
       <h1>Sei un professionista in cerca di clienti?</h1>
       <p>Iscriviti a Starbook gratuitamente e diventa parte del nostro team.</p>
@@ -118,42 +107,38 @@
       <p>Scopri il nostro programma partnership per Agenzie Immobiliari, Agenti Immobiliari, Amministratori Condominiali, Architetti, Fornitori Edili.</p>
       <button type="button" class="btn btn-warning" name="button" routerLink="/recruiter/partnerjoin">Scopri di più</button>
     </div>
-  </div>
-  <div class="pre-footer">
-    <div class="container-fluid">
-      <div class="pre">
-        <div class="row">
-          <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12">
-            <p>Sicurezza del sito</p>
-            <div class="list-security">
-              <img src="../../../assets/images/norton.png" alt="Norton Security">
-              <img src="../../../assets/images/secure.png" alt="100% Secure">
-              <img src="../../../assets/images/trust.png" alt="Trusted Website">
-            </div>
-          </div>
-          <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12">
-            <p>Sistemi di pagamento</p>
-            <div class="list-payment-methods">
-              <img src="../../../assets/images/mastercard.png" alt="Mastercard">
-              <img src="../../../assets/images/visa.png" alt="Visa">
-              <img src="../../../assets/images/americanexpress.png" alt="American Express">
-              <img src="../../../assets/images/stripe.png" alt="Stripe">
-            </div>
-          </div>
-          <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12">
-            <p><a routerLink="/about" routerLinkActive="active">Chi siamo</a></p>
-            <p><a routerLink="/help" routerLinkActive="active">Aiuto e Assistenza</a></p>
-            <p><a routerLink="/legal" routerLinkActive="active">Privacy e Condizioni</a></p>
-            <p><a routerLink="/landing/extensions" routerLinkActive="active">Estensioni</a></p>
-          </div>
-          <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12">
-            <p>Seguici su</p>
-            <div class="list-socials">
-              <a href="https://www.facebook.com/starbook.co/" target="_blank"><img src="../../../assets/images/facebook.png" alt="Facebook"></a>
-              <a href="https://twitter.com/starbookco/" target="_blank"><img src="../../../assets/images/twitter.png" alt="Twitter"></a>
-              <a href="https://www.instagram.com/starbook.co/" target="_blank"><img src="../../../assets/images/instagram.png" alt="Instagram"></a>
-            </div>
-          </div>
+  </div> -->
+  <div class="container-fluid prefooter-container">
+    <div class="row prefooter">
+      <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12">
+        <p>Sicurezza del sito</p>
+        <div class="list-security">
+          <img src="../../../assets/images/norton.png" alt="Norton Security">
+          <img src="../../../assets/images/secure.png" alt="100% Secure">
+          <img src="../../../assets/images/trust.png" alt="Trusted Website">
+        </div>
+      </div>
+      <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12">
+        <p>Sistemi di pagamento</p>
+        <div class="list-payment-methods">
+          <img src="../../../assets/images/mastercard.png" alt="Mastercard">
+          <img src="../../../assets/images/visa.png" alt="Visa">
+          <img src="../../../assets/images/americanexpress.png" alt="American Express">
+          <img src="../../../assets/images/stripe.png" alt="Stripe">
+        </div>
+      </div>
+      <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12">
+        <p><a routerLink="/about" routerLinkActive="active">Chi siamo</a></p>
+        <p><a routerLink="/help" routerLinkActive="active">Aiuto e Assistenza</a></p>
+        <p><a routerLink="/legal" routerLinkActive="active">Privacy e Condizioni</a></p>
+        <p><a routerLink="/landing/extensions" routerLinkActive="active">Estensioni</a></p>
+      </div>
+      <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12">
+        <p>Seguici su</p>
+        <div class="list-socials">
+          <a href="https://www.facebook.com/starbook.co/" target="_blank"><img src="../../../assets/images/facebook.png" alt="Facebook"></a>
+          <a href="https://twitter.com/starbookco/" target="_blank"><img src="../../../assets/images/twitter.png" alt="Twitter"></a>
+          <a href="https://www.instagram.com/starbook.co/" target="_blank"><img src="../../../assets/images/instagram.png" alt="Instagram"></a>
         </div>
       </div>
     </div>

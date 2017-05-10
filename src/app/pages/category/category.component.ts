@@ -28,11 +28,15 @@ export class CategoryComponent implements OnInit {
       // console.log('category is: ' + JSON.stringify(data));
       if (data.service) {
         this.category = data.service;
+        this.navigationService.updateMessage(this.category.title);
+
       } else {
         this.route.params.subscribe(params => {
           let category = params['category'];
           this.commonService.getCategoryById(category).then((data) => {
             this.category = data.result;
+            this.navigationService.updateMessage(this.category.title);
+
             // console.log('category from server is: ' + JSON.stringify(data));
           }).catch((error) => {
             this.router.navigateByUrl('/');

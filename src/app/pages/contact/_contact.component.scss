@@ -1,0 +1,42 @@
+app-contact {
+  display: block;
+  padding: 70px 0 0;
+  max-width: 1440px;
+
+  .btn {
+    width: 100%;
+    font-weight: 600;
+  }
+
+  .page-container {
+    position: absolute;
+    background-image: url('https://s3-eu-west-1.amazonaws.com/starbook-s3/website/illustration-city-blue.png');
+    background-repeat: no-repeat;
+    background-position: center bottom;
+    background-size: 100%;
+    top: 70px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow: scroll;
+    .contact-container {
+      padding: 40px 0;
+      .contact-block-container {
+        max-width: 600px;
+        margin: auto;
+        background: white;
+        padding: 40px;
+        .header {
+          padding-bottom: 30px;
+          h3 {
+            margin-bottom: 20px;
+          }
+          h6 {
+            font-weight: 300;
+            line-height: inherit;
+          }
+        }
+      }
+    }
+  }
+}

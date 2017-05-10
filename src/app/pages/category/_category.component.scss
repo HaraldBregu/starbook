@@ -13,7 +13,7 @@ app-category {
       color: white;
       text-align: left;
       .overlay {
-        background-color: rgba(0, 0, 0, 0.4);
+        background-color: rgba(0, 0, 0, 0.7);
       }
       .header-content {
         padding: 80px 60px;
@@ -23,7 +23,7 @@ app-category {
           margin-bottom: 10px;
         }
         h5 {
-          font-weight: 400;
+          font-weight: 300;
         }
         img {
           max-width: 30px;
@@ -35,6 +35,16 @@ app-category {
       color: white;
       padding: 50px 0;
       text-align: center;
+    }
+    .how-to-container {
+      max-width: 1440px;
+      margin: auto;
+      .box-container {
+        padding: 20px;
+        .box {
+          background: white;
+        }
+      }
     }
   }
 }

@@ -36,7 +36,7 @@ import { PopupsService } from './popups/popups.service';
 import { PaymentService } from './shared/payment.service';
 import { AnalyticsService } from './shared/analytics.service';
 import { SeoService } from './shared/seo.service';
-import { JoinService } from './shared/join.service';
+import { ContactService } from './shared/contact.service';
 import { ShareService } from './pages/share/share.service';
 import { ClipboardService } from './shared/clipboard.service';
 
@@ -62,10 +62,10 @@ import { AboutComponent } from './pages/about/about.component';
 import { HelpComponent } from './pages/help/help.component';
 import { LegalComponent } from './pages/legal/legal.component';
 import { AccountComponent } from './pages/account/account.component';
-import { RecruiterComponent } from './pages/recruiter/recruiter.component';
 import { RequestsComponent } from './pages/requests/requests.component';
 import { ShareComponent } from './pages/share/share.component';
 import { BlogComponent } from './pages/blog/blog.component';
+import { ContactComponent } from './pages/contact/contact.component';
 
 import { ClipboardDirective } from './directives/clipboard.directive';
 
@@ -113,13 +113,13 @@ let declarations = [
   HelpComponent,
   LegalComponent,
   AccountComponent,
-  RecruiterComponent,
   ServicesComponent,
   RequestsComponent,
   ShareComponent,
   BlogComponent,
   CategoryComponent,
-  
+  ContactComponent,
+
   ClipboardDirective
 ];
 
@@ -161,7 +161,7 @@ else {
     PaymentService,
     AnalyticsService,
     SeoService,
-    JoinService,
+    ContactService,
     ShareService,
     ClipboardService
   ]
