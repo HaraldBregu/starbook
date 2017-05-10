@@ -48,20 +48,11 @@ export class ContactComponent implements OnInit {
   ngOnInit() {
     this.route.params.subscribe((params: Params) => {
       if (isBrowser) {window.scrollTo(0, 0);}
-
       this.page = params['page']
-      if (this.page === 'workerjoin') {
-        this.navigationService.updateMessage("Lavoriamo insieme");
-        if (isBrowser) {
-          if (localStorage.getItem('auth')) {this.router.navigate(['']);}
-        }
-      } else if (this.page === 'partner') {
-        this.navigationService.updateMessage("Diventa partner con noi");
-        if (isBrowser) {
-          if (localStorage.getItem('auth')) {this.router.navigate(['']);}
-        }
+      if (this.page === 'partner') {
+        this.navigationService.updateMessage("Diventiamo partner");
       } else {
-        // this.router.navigate(['']);
+        this.router.navigate(['']);
       }
     })
   }
