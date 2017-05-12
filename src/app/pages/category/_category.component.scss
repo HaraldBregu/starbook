@@ -3,6 +3,14 @@ app-category {
   width: 100%;
   height: 100%;
   padding: 70px 0 0;
+
+  .btn {
+    padding: 0 40px;
+    margin: 10px;
+    font-size: 20px;
+    height: 50px;
+    border-radius: 3px;
+  }
   .category-container {
     max-width: 1440px;
     margin: auto;
@@ -11,16 +19,16 @@ app-category {
       background-repeat: no-repeat;
       background-position: center;
       color: white;
-      text-align: left;
+      text-align: center;
       .overlay {
-        background-color: rgba(0, 0, 0, 0.7);
+        background-color: rgba(18, 18, 18, 0.7);
       }
       .header-content {
-        padding: 80px 60px;
+        padding: 60px 0 0;
         h1 {
-          font-size: 46px;
-          font-weight: 600;
-          margin-bottom: 10px;
+          font-size: 48px;
+          font-weight: 500;
+          margin-bottom: 20px;
         }
         h5 {
           font-weight: 300;
@@ -28,12 +36,25 @@ app-category {
         img {
           max-width: 30px;
         }
+        .picture {
+          background-image: url('https://s3-eu-west-1.amazonaws.com/starbook-s3/plumbing/avatar/0.jpg');
+          background-size: cover;
+          background-repeat: no-repeat;
+          background-position: center top;
+          width: 250px;
+          height: 300px;
+          margin: auto;
+          border: 1px solid white;
+        }
+        .actions {
+          padding: 20px 0;
+        }
       }
     }
     .description-container {
       background-color: #161517;
       color: white;
-      padding: 50px 0;
+      // padding: 50px 0;
       text-align: center;
     }
     .how-to-container {
@@ -45,6 +66,9 @@ app-category {
           background: white;
         }
       }
+    }
+    .footer-container {
+      padding: 100px 0;
     }
   }
 }

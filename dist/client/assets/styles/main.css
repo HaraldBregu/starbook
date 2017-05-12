@@ -394,8 +394,7 @@ body {
 html, body {
   position: relative;
   font-family: Roboto, sans-serif;
-  overflow-x: hidden;
-  background: #fafafb; }
+  overflow-x: hidden; }
 
 h1 {
   font-size: 36px;
@@ -447,6 +446,7 @@ p {
   background-color: #639835 !important; }
 
 .btn-danger {
+  background: #c00;
   border-radius: 0;
   height: 50px;
   border: 0;
@@ -454,9 +454,15 @@ p {
   font-size: 22px;
   font-family: Roboto, sans-serif;
   font-weight: 400;
-  outline: none;
+  outline: none !important;
   padding: 0;
   line-height: 50px; }
+
+.btn-danger:active:focus {
+  background-color: #bf0000; }
+
+.btn-danger:hover {
+  background-color: #bf0000; }
 
 .btn-primary {
   border-radius: 0;
@@ -3370,9 +3376,12 @@ app-landing {
   app-landing .landing-container {
     background: white; }
     app-landing .landing-container .header-container {
+      background-image: url("https://s3-eu-west-1.amazonaws.com/starbook-s3/website/starbook-la-cura-per-la-casa.jpeg");
       background-size: cover;
       background-repeat: no-repeat;
       background-position: center top; }
+      app-landing .landing-container .header-container .overlay {
+        background-color: rgba(0, 0, 0, 0.5); }
       app-landing .landing-container .header-container .header {
         color: white;
         padding: 160px 0;
@@ -3527,7 +3536,7 @@ app-landing {
       display: block;
       text-align: center;
       padding: 30px 0;
-      max-width: 1250px;
+      max-width: 1380px;
       margin: auto; }
       app-landing .landing-container .services-container h1 {
         text-align: center;
@@ -3542,7 +3551,7 @@ app-landing {
           background-size: cover;
           background-repeat: no-repeat;
           background-position: center 100%;
-          height: 300px;
+          height: 250px;
           cursor: pointer; }
           app-landing .landing-container .services-container .service-container .service .overlay {
             position: absolute;
@@ -3551,15 +3560,15 @@ app-landing {
             width: 100%;
             height: 100%;
             z-index: 10;
-            -webkit-transition: background 1.0s ease;
-            -moz-transition: background 1.0s ease;
-            -o-transition: background 1.0s ease;
-            transition: background 1.0s ease;
+            -webkit-transition: background 0.4s ease;
+            -moz-transition: background 0.4s ease;
+            -o-transition: background 0.4s ease;
+            transition: background 0.4s ease;
             background: rgba(24, 66, 145, 0.4); }
           app-landing .landing-container .services-container .service-container .service .overlay:hover {
             background: #184291; }
           app-landing .landing-container .services-container .service-container .service h1 {
-            line-height: 300px;
+            line-height: 250px;
             text-align: center;
             color: white; }
     app-landing .landing-container .bullets-container {
@@ -3635,7 +3644,7 @@ app-landing {
       background-repeat: no-repeat;
       background-position: center bottom;
       background-size: 80%;
-      height: 500px;
+      height: 550px;
       padding: 100px;
       max-width: 1440px;
       text-align: center; }
@@ -4488,6 +4497,12 @@ app-category {
   width: 100%;
   height: 100%;
   padding: 70px 0 0; }
+  app-category .btn {
+    padding: 0 40px;
+    margin: 10px;
+    font-size: 20px;
+    height: 50px;
+    border-radius: 3px; }
   app-category .category-container {
     max-width: 1440px;
     margin: auto; }
@@ -4496,23 +4511,33 @@ app-category {
       background-repeat: no-repeat;
       background-position: center;
       color: white;
-      text-align: left; }
+      text-align: center; }
       app-category .category-container .category-header .overlay {
-        background-color: rgba(0, 0, 0, 0.7); }
+        background-color: rgba(18, 18, 18, 0.7); }
       app-category .category-container .category-header .header-content {
-        padding: 80px 60px; }
+        padding: 60px 0 0; }
         app-category .category-container .category-header .header-content h1 {
-          font-size: 46px;
-          font-weight: 600;
-          margin-bottom: 10px; }
+          font-size: 48px;
+          font-weight: 500;
+          margin-bottom: 20px; }
         app-category .category-container .category-header .header-content h5 {
           font-weight: 300; }
         app-category .category-container .category-header .header-content img {
           max-width: 30px; }
+        app-category .category-container .category-header .header-content .picture {
+          background-image: url("https://s3-eu-west-1.amazonaws.com/starbook-s3/plumbing/avatar/0.jpg");
+          background-size: cover;
+          background-repeat: no-repeat;
+          background-position: center top;
+          width: 250px;
+          height: 300px;
+          margin: auto;
+          border: 1px solid white; }
+        app-category .category-container .category-header .header-content .actions {
+          padding: 20px 0; }
     app-category .category-container .description-container {
       background-color: #161517;
       color: white;
-      padding: 50px 0;
       text-align: center; }
     app-category .category-container .how-to-container {
       max-width: 1440px;
@@ -4521,6 +4546,8 @@ app-category {
         padding: 20px; }
         app-category .category-container .how-to-container .box-container .box {
           background: white; }
+    app-category .category-container .footer-container {
+      padding: 100px 0; }
 
 app-service {
   display: block;
@@ -5462,14 +5489,11 @@ app-orders {
   display: block;
   width: 100%;
   height: 100%;
-  padding-top: 70px;
-  padding-bottom: 50px;
-  background: #fafafb; }
+  padding-top: 70px; }
   app-orders .orders-page {
     display: block;
     width: 100%;
-    height: 100%;
-    background: #fafafb; }
+    height: 100%; }
   app-orders .btn-warning {
     width: 100%;
     font-size: 26px;
@@ -8348,7 +8372,8 @@ app-contact {
         max-width: 600px;
         margin: auto;
         background: white;
-        padding: 40px; }
+        padding: 40px;
+        border: 1px solid #DBDBDB; }
         app-contact .page-container .contact-container .contact-block-container .header {
           padding-bottom: 30px; }
           app-contact .page-container .contact-container .contact-block-container .header h3 {
@@ -8356,6 +8381,12 @@ app-contact {
           app-contact .page-container .contact-container .contact-block-container .header h6 {
             font-weight: 300;
             line-height: inherit; }
+  @media (max-width: 425px) {
+    app-contact .page-container .contact-container {
+      padding: 0; } }
+  @media (max-width: 375px) {
+    app-contact .page-container .contact-container .contact-block-container {
+      padding: 20px; } }
 
 ngb-datepicker,
 .datepicker {

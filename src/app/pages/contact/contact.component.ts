@@ -42,7 +42,7 @@ export class ContactComponent implements OnInit {
     private contactService: ContactService) {
       this.emailPattern = /^[a-z0-9!#$%&'*+\/=?^_`{|}~.-]+@[a-z0-9]([a-z0-9-]*[a-z0-9])?(\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)*$/i;
       this.navigationService.updateMessage("Contattaci");
-
+      
   }
 
   ngOnInit() {

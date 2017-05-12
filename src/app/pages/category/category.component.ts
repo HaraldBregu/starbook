@@ -26,12 +26,15 @@ export class CategoryComponent implements OnInit {
 
       let data = this.commonService.getData();
       // console.log('category is: ' + JSON.stringify(data));
+      if (isBrowser) {window.scrollTo(0, 0);}
+
       if (data.service) {
         this.category = data.service;
         this.navigationService.updateMessage(this.category.title);
 
       } else {
         this.route.params.subscribe(params => {
+
           let category = params['category'];
           this.commonService.getCategoryById(category).then((data) => {
             this.category = data.result;
@@ -40,6 +43,7 @@ export class CategoryComponent implements OnInit {
             // console.log('category from server is: ' + JSON.stringify(data));
           }).catch((error) => {
             this.router.navigateByUrl('/');
+
           });
         })
       }
