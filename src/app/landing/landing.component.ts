@@ -14,6 +14,7 @@ import { OrderService } from '../order/order.service';
 export class LandingComponent implements OnInit {
   public page;
   public currentUser;
+  public images_url = "https://s3-eu-west-1.amazonaws.com/starbook-s3/";
   public emailPattern: any;
   public numPattern: any;
   public contacts = '';

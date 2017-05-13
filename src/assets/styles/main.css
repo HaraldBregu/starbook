@@ -3573,7 +3573,8 @@ app-landing {
             font-weight: 700;
             position: absolute;
             bottom: 20px;
-            left: 20px; }
+            left: 20px;
+            text-shadow: 0 0 3px rgba(0, 0, 0, 0.4); }
     app-landing .landing-container .bullets-container {
       display: block;
       text-align: center;
@@ -4529,7 +4530,6 @@ app-category {
         app-category .category-container .category-header .header-content img {
           max-width: 30px; }
         app-category .category-container .category-header .header-content .picture {
-          background-image: url("https://s3-eu-west-1.amazonaws.com/starbook-s3/plumbing/avatar/0.jpg");
           background-size: cover;
           background-repeat: no-repeat;
           background-position: center top;

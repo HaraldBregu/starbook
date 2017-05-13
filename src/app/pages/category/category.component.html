@@ -1,10 +1,10 @@
 <div class="category-container" *ngIf="category">
-  <div class="category-header" [ngStyle]="{'background-image' : ' url(' + category.image_url + ')'}">
+  <div class="category-header" [ngStyle]="{'background-image' : ' url(' + images_url + 'categories/'+ category._id + '/cover/0' + ')'}">
     <div class="overlay">
       <div class="header-content">
         <h1>{{category.title}}</h1>
         <!-- <h5>{{category.description}}</h5> -->
-        <div class="picture"></div>
+        <div class="picture" [ngStyle]="{'background-image' : ' url(' + images_url + 'categories/'+ category._id + '/avatar/0' + ')'}"></div>
         <div class="actions">
           <button class="btn btn-success" type="button" name="button" (click)="checkOut()">Sopraluogo</button>
           <button class="btn btn-danger" type="button" name="button" (click)="checkOut()">Prenota</button>

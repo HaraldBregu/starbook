@@ -14,6 +14,7 @@ import { OrderService } from '../../order/order.service';
 export class CategoryComponent implements OnInit {
   public page;
   public category;
+  public images_url = "https://s3-eu-west-1.amazonaws.com/starbook-s3/";
 
   constructor(
     private router: Router,
@@ -40,7 +41,7 @@ export class CategoryComponent implements OnInit {
             this.category = data.result;
             this.navigationService.updateMessage(this.category.title);
 
-            // console.log('category from server is: ' + JSON.stringify(data));
+            console.log('category from server is: ' + JSON.stringify(data));
           }).catch((error) => {
             this.router.navigate(['']);
 
