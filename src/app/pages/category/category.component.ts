@@ -42,7 +42,7 @@ export class CategoryComponent implements OnInit {
 
             // console.log('category from server is: ' + JSON.stringify(data));
           }).catch((error) => {
-            this.router.navigateByUrl('/');
+            this.router.navigate(['']);
 
           });
         })
@@ -51,6 +51,11 @@ export class CategoryComponent implements OnInit {
 
   ngOnInit() {
 
+  }
+
+  checkOut() {
+    this.router.navigate(['order/summary']);
+    return false;
   }
 
 }

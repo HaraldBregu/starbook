@@ -3550,7 +3550,7 @@ app-landing {
           position: relative;
           background-size: cover;
           background-repeat: no-repeat;
-          background-position: center 100%;
+          background-position: center top;
           height: 250px;
           cursor: pointer; }
           app-landing .landing-container .services-container .service-container .service .overlay {
@@ -3568,9 +3568,12 @@ app-landing {
           app-landing .landing-container .services-container .service-container .service .overlay:hover {
             background: #184291; }
           app-landing .landing-container .services-container .service-container .service h1 {
-            line-height: 250px;
             text-align: center;
-            color: white; }
+            color: white;
+            font-weight: 700;
+            position: absolute;
+            bottom: 20px;
+            left: 20px; }
     app-landing .landing-container .bullets-container {
       display: block;
       text-align: center;
@@ -4502,7 +4505,8 @@ app-category {
     margin: 10px;
     font-size: 20px;
     height: 50px;
-    border-radius: 3px; }
+    border-radius: 3px;
+    min-width: 200px; }
   app-category .category-container {
     max-width: 1440px;
     margin: auto; }
@@ -4539,6 +4543,25 @@ app-category {
       background-color: #161517;
       color: white;
       text-align: center; }
+    app-category .category-container .services-container {
+      overflow: auto;
+      padding: 10px; }
+      app-category .category-container .services-container .search-container {
+        padding: 10px;
+        width: 50%;
+        margin: auto; }
+      app-category .category-container .services-container .service-container {
+        float: left;
+        padding: 10px;
+        width: 25%;
+        height: 120px; }
+        app-category .category-container .services-container .service-container .service {
+          background: #6b6bd6;
+          width: 100%;
+          height: 100%;
+          border-radius: 3px;
+          padding: 20px;
+          color: white; }
     app-category .category-container .how-to-container {
       max-width: 1440px;
       margin: auto; }

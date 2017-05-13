@@ -34,6 +34,7 @@ export class ServicesComponent implements OnInit {
   selectResult(service) {
     // this.homeService.sendData(service, this.ref)
     this.router.navigate(['services', service.title.replace(/\s+/g, '-')]);
+    // this.router.navigate(['services', service.title]);
   }
 
 }

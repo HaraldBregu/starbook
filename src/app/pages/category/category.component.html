@@ -6,14 +6,75 @@
         <!-- <h5>{{category.description}}</h5> -->
         <div class="picture"></div>
         <div class="actions">
-          <button class="btn btn-danger" type="button" name="button">Sopraluogo</button>
-          <button class="btn btn-warning" type="button" name="button">Preventivo</button>
-          <button class="btn btn-danger" type="button" name="button">Urgente</button>
+          <button class="btn btn-success" type="button" name="button" (click)="checkOut()">Sopraluogo</button>
+          <button class="btn btn-danger" type="button" name="button" (click)="checkOut()">Prenota</button>
+          <button class="btn btn-warning" type="button" name="button" (click)="checkOut()">Preventivo</button>
+          <button class="btn btn-warning" type="button" name="button" (click)="checkOut()">Consulenza</button>
         </div>
       </div>
     </div>
   </div>
   <div class="description-container">
+  </div>
+  <div class="services-container">
+    <div class="search-container">
+      <div class="form-group">
+        <input type="search" placeholder="Cerca" class="form-control" id="lastNameInput" [(ngModel)]="page" [ngModelOptions]="{standalone: true}">
+      </div>
+    </div>
+    <div class="service-container">
+      <div class="service">
+        <p>Riparazione rubinetti</p>
+      </div>
+    </div>
+    <div class="service-container">
+      <div class="service">
+        <p>Riparazione rubinetti</p>
+      </div>
+    </div>
+    <div class="service-container">
+      <div class="service">
+        <p>Riparazione rubinetti</p>
+      </div>
+    </div>
+    <div class="service-container">
+      <div class="service">
+        <p>Riparazione rubinetti</p>
+      </div>
+    </div>
+    <div class="service-container">
+      <div class="service">
+        <p>Riparazione rubinetti</p>
+      </div>
+    </div>
+    <div class="service-container">
+      <div class="service">
+        <p>Riparazione rubinetti</p>
+      </div>
+    </div>
+    <div class="service-container">
+      <div class="service">
+        <p>Riparazione rubinetti</p>
+      </div>
+    </div>
+    <div class="service-container">
+      <div class="service">
+        <p>Riparazione rubinetti</p>
+      </div>
+    </div>
+    <div class="service-container">
+      <div class="service">
+        <p>Riparazione rubinetti</p>
+      </div>
+    </div>
+    <div class="service-container">
+      <div class="service">
+        <p>Riparazione rubinetti</p>
+      </div>
+    </div>
+  </div>
+  <div class="contact-container">
+
   </div>
   <div class="how-to-container">
     <!-- <div class="row">

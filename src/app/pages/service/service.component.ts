@@ -91,7 +91,7 @@ export class ServiceComponent implements OnInit {
   subscription: Subscription;
 
   constructor(private homeService: CommonService, private navigationService: NavigationService, private router: Router, private route: ActivatedRoute, private orderService: OrderService, private analyticsService: AnalyticsService, private seoService: SeoService, private profileService: ProfileService) {
-    
+
   }
 
   ngOnInit() {
@@ -117,12 +117,10 @@ export class ServiceComponent implements OnInit {
         if (service) {
           this.renderPage(service);
         } else {
-          let timeStart = Date.now();
           this.homeService.getServiceById(service_id).then((data) => {
-            this.analyticsService.sendTiming({category: 'Get service by id', timingVar: 'load', timingValue: Date.now()-timeStart});
             this.renderPage(data.result);
           }).catch((error) => {
-            this.router.navigateByUrl('/');
+            this.router.navigate(['']);
           });
         }
       }
