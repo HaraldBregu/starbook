@@ -15,6 +15,29 @@ export class CategoryComponent implements OnInit {
   public page;
   public category;
   public images_url = "https://s3-eu-west-1.amazonaws.com/starbook-s3/";
+  public Request = {
+    description: '',
+    phone: '',
+    email: '',
+    firstname: '',
+    lastname: ''
+  };
+  public request_state = {
+    loading: false,
+    button_title: "Invia richiesta",
+    message_success: null,
+    message_error: null,
+    title_error: null,
+    description_error: null,
+    firstname_error: null,
+    lastname_error: null,
+    phone_error: null,
+    email_error: null
+  };
+  public spinerView = false;
+  public clearView = false;
+  public query: string = '';
+  public results: string[] = [];
 
   constructor(
     private router: Router,

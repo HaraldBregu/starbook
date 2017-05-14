@@ -16,12 +16,38 @@
   </div>
   <div class="description-container">
   </div>
-  <div class="services-container">
-    <div class="search-container">
-      <div class="form-group">
-        <input type="search" placeholder="Cerca" class="form-control" id="lastNameInput" [(ngModel)]="page" [ngModelOptions]="{standalone: true}">
+  <div class="search-container">
+    <div class="search">
+      <div class="search-field">
+        <p-autoComplete [(ngModel)]="query" [suggestions]="results" field="title" scrollHeight="275px" (completeMethod)="search($event)" (onSelect)="selectResult(query)" placeholder="Cerca una servizio" minLength="0">
+          <template let-res>
+            <div class="search-result" (click)="selectResult(res)">{{ res.title }}</div>
+          </template>
+        </p-autoComplete>
+        <div class="spinner" *ngIf="spinerView">
+          <svg width='21px' height='21px' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid" class="uil-ring">
+            <rect x="0" y="0" width="100" height="100" fill="none" class="bk"></rect>
+            <circle cx="50" cy="50" r="45" stroke-dasharray="169.64600329384882 113.09733552923257" stroke="#3B568D" fill="none" stroke-width="10">
+              <animateTransform attributeName="transform" type="rotate" values="0 50 50;180 50 50;360 50 50;" keyTimes="0;0.5;1" dur="1s" repeatCount="indefinite" begin="0s"></animateTransform>
+            </circle>
+          </svg>
+        </div>
+        <div class="close-container" *ngIf="!spinerView && clearView">
+          <span class="close rounded thick" (click)="clearSearchForm()"></span>
+        </div>
+        <div class="ui-autocomplete-panel empty" *ngIf="results.length === 0 && query.length > 0">
+          <div class="no-result noselect">
+            Il servizio "{{query}}" non è disponibile
+            <button class="suggess-service" (click)="requireService()">{{newServiceRequest.message}}</button>
+          </div>
+        </div>
+      </div>
+      <div class="search-button">
+        <button class="btn btn-primary" (click)="searchMore()"><i class="fa fa-search" aria-hidden="true"></i></button>
       </div>
     </div>
+  </div>
+  <div class="services-container">
     <div class="service-container">
       <div class="service">
         <p>Riparazione rubinetti</p>
@@ -73,8 +99,69 @@
       </div>
     </div>
   </div>
+  <div class="bullets-container">
+    <div class="row bullets">
+      <div class="col-lg-3 col-md-6 col-sm-12">
+        <p><strong>1.</strong> Scegli i servizi più adatti alla tua piattaforma web o mobile. Ti consigliamo di scegliere servizi che si addattano più alla tua app.</p>
+      </div>
+      <div class="col-lg-3 col-md-6 col-sm-12">
+        <p><strong>1.</strong> Scegli i servizi più adatti alla tua piattaforma web o mobile. Ti consigliamo di scegliere servizi che si addattano più alla tua app.</p>
+      </div>
+      <div class="col-lg-3 col-md-6 col-sm-12">
+        <p><strong>1.</strong> Scegli i servizi più adatti alla tua piattaforma web o mobile. Ti consigliamo di scegliere servizi che si addattano più alla tua app.</p>
+      </div>
+      <div class="col-lg-3 col-md-6 col-sm-12">
+        <p><strong>1.</strong> Scegli i servizi più adatti alla tua piattaforma web o mobile. Ti consigliamo di scegliere servizi che si addattano più alla tua app.</p>
+      </div>
+    </div>
+  </div>
   <div class="contact-container">
-
+    <div class="form-container">
+      <div class="header">
+        <h3>Hai bisogno di qualcosa in particolare? Fai una richiesta.</h3>
+      </div>
+      <form>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="firstNameInput">Nome</label>
+              <input type="firstname" placeholder="Nome" class="form-control" [ngClass]="{'error-input': request_state.firstname_error}" id="firstNameInput" [(ngModel)]="Request.firstname" [ngModelOptions]="{standalone: true}">
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="lastNameInput">Cognome</label>
+              <input type="lastname" placeholder="Cognome" class="form-control" [ngClass]="{'error-input': request_state.lastname_error}" id="lastNameInput" [(ngModel)]="Request.lastname" [ngModelOptions]="{standalone: true}">
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="phoneInput">Telefono</label>
+          <input type="phone" placeholder="Numero di telefono" class="form-control" [ngClass]="{'error-input': request_state.phone_error}" id="phoneInput" [(ngModel)]="Request.phone" [ngModelOptions]="{standalone: true}">
+        </div>
+        <div class="form-group">
+          <label for="emailInput">Email</label>
+          <input type="email" placeholder="La tua mail" class="form-control" [ngClass]="{'error-input': request_state.email_error}" id="emailInput" [(ngModel)]="Request.email" [ngModelOptions]="{standalone: true}">
+        </div>
+        <div class="form-group">
+          <label for="emailInput">Messaggio</label>
+          <textarea class="form-control" placeholder="Inserisci il motivo della richiesta" rows="5" id="descriptionInput" [(ngModel)]="Request.message" [ngModelOptions]="{standalone: true}"></textarea>
+        </div>
+        <div class="form-group" *ngIf="request_state.message_success">
+          <div class="alert alert-success" role="alert">
+            {{request_state.message_success}}
+          </div>
+        </div>
+        <div class="form-group" *ngIf="request_state.message_error">
+          <div class="alert alert-danger" role="alert">
+            {{request_state.message_error}}
+          </div>
+        </div>
+        <div class="form-group">
+          <button type="button" id="next" class="btn btn-warning" (click)="joinPartner()"><i class="fa fa-circle-o-notch animate" *ngIf="request_state.loading"></i>Invia</button>
+        </div>
+      </form>
+    </div>
   </div>
   <div class="how-to-container">
     <!-- <div class="row">

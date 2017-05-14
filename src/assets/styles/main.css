@@ -3431,11 +3431,9 @@ app-landing {
             padding: 15px 46px 15px 30px;
             background-color: #FFFFFF;
             border: none;
-            border-radius: 1px;
             box-shadow: none;
             outline: none;
-            color: #212121;
-            font-size: 18px;
+            font-size: 20px;
             letter-spacing: 0.11px; }
           app-landing .landing-container .header-container .header .search .close-container {
             display: block;
@@ -4501,13 +4499,6 @@ app-category {
   width: 100%;
   height: 100%;
   padding: 70px 0 0; }
-  app-category .btn {
-    padding: 0 40px;
-    margin: 10px;
-    font-size: 20px;
-    height: 50px;
-    border-radius: 3px;
-    min-width: 200px; }
   app-category .category-container {
     max-width: 1440px;
     margin: auto; }
@@ -4517,6 +4508,13 @@ app-category {
       background-position: center;
       color: white;
       text-align: center; }
+      app-category .category-container .category-header .btn {
+        padding: 0 40px;
+        margin: 10px;
+        font-size: 20px;
+        height: 50px;
+        border-radius: 3px;
+        min-width: 200px; }
       app-category .category-container .category-header .overlay {
         background-color: rgba(18, 18, 18, 0.7); }
       app-category .category-container .category-header .header-content {
@@ -4543,13 +4541,109 @@ app-category {
       background-color: #161517;
       color: white;
       text-align: center; }
+    app-category .category-container .search-container {
+      padding: 20px;
+      background: black; }
+      app-category .category-container .search-container .search {
+        display: block;
+        position: relative;
+        max-width: 900px;
+        width: 100%;
+        margin: auto;
+        height: 60px; }
+        app-category .category-container .search-container .search .search-field {
+          display: inline-block;
+          float: left;
+          width: 90%; }
+        app-category .category-container .search-container .search .search-button {
+          display: inline-block;
+          float: left;
+          width: 10%;
+          height: 60px; }
+          app-category .category-container .search-container .search .search-button .btn {
+            width: 100%;
+            height: 100%; }
+        app-category .category-container .search-container .search .ui-autocomplete-input {
+          display: block;
+          width: 100%;
+          height: 60px;
+          padding: 15px 46px 15px 30px;
+          background-color: #FFFFFF;
+          border: none;
+          box-shadow: none;
+          outline: none;
+          font-size: 20px;
+          letter-spacing: 0.11px; }
+        app-category .category-container .search-container .search .close-container {
+          display: block;
+          position: absolute;
+          top: 17px;
+          right: 13%; }
+        app-category .category-container .search-container .search .close-container .close {
+          position: relative;
+          display: inline-block;
+          width: 25px;
+          height: 25px;
+          overflow: hidden; }
+          app-category .category-container .search-container .search .close-container .close::before, app-category .category-container .search-container .search .close-container .close::after {
+            content: '';
+            position: absolute;
+            height: 2px;
+            width: 100%;
+            top: 50%;
+            left: 0;
+            margin-top: -1px;
+            background: #3498db; }
+          app-category .category-container .search-container .search .close-container .close::before {
+            transform: rotate(45deg); }
+          app-category .category-container .search-container .search .close-container .close::after {
+            transform: rotate(-45deg); }
+          app-category .category-container .search-container .search .close-container .close.thick::before, app-category .category-container .search-container .search .close-container .close.thick::after {
+            height: 4px;
+            margin-top: -2px; }
+          app-category .category-container .search-container .search .close-container .close.rounded::before, app-category .category-container .search-container .search .close-container .close.rounded::after {
+            border-radius: 5px; }
+        app-category .category-container .search-container .search .ui-autocomplete-panel {
+          display: block;
+          position: absolute;
+          overflow-y: auto;
+          width: 90% !important;
+          background-color: #FFFFFF;
+          border-left: 1px solid #DCDCDC;
+          border-right: 1px solid #DCDCDC;
+          border-bottom: 1px solid #DCDCDC;
+          outline: none;
+          border-radius: 1px;
+          text-align: left; }
+        app-category .category-container .search-container .search .ui-autocomplete-panel .ui-state-highlight .search-result {
+          color: white;
+          background-color: #506795; }
+        app-category .category-container .search-container .search .ui-autocomplete-panel .search-result {
+          display: block;
+          width: 100%;
+          color: #212121;
+          font-size: 16px;
+          letter-spacing: 0.1px;
+          padding: 20px 30px; }
+        app-category .category-container .search-container .search .ui-autocomplete-panel.empty {
+          margin-top: 0; }
+        app-category .category-container .search-container .search .ui-autocomplete-panel.empty .no-result {
+          display: block;
+          width: 100%;
+          color: #8D9494;
+          font-size: 14px;
+          letter-spacing: 0.1px;
+          padding: 15px 30px; }
+        app-category .category-container .search-container .search .spinner {
+          display: block;
+          position: absolute;
+          top: 15px;
+          right: 13%;
+          width: 25px;
+          height: 25px; }
     app-category .category-container .services-container {
       overflow: auto;
-      padding: 10px; }
-      app-category .category-container .services-container .search-container {
-        padding: 10px;
-        width: 50%;
-        margin: auto; }
+      padding: 50px 10px; }
       app-category .category-container .services-container .service-container {
         float: left;
         padding: 10px;
@@ -4562,6 +4656,34 @@ app-category {
           border-radius: 3px;
           padding: 20px;
           color: white; }
+    app-category .category-container .bullets-container {
+      padding: 20px;
+      background: #3e3e6b; }
+      app-category .category-container .bullets-container .bullets {
+        color: white;
+        max-width: 1440px;
+        margin: auto; }
+        app-category .category-container .bullets-container .bullets p {
+          font-size: 16px !important; }
+    app-category .category-container .contact-container {
+      max-width: 1440px;
+      margin: auto;
+      padding: 50px 10px; }
+      app-category .category-container .contact-container .form-container {
+        max-width: 900px;
+        margin: auto;
+        background: white;
+        padding: 40px;
+        border: 1px solid #DBDBDB; }
+        app-category .category-container .contact-container .form-container .btn {
+          padding: 0;
+          margin: 0;
+          font-size: 20px;
+          height: 50px;
+          border-radius: 0px;
+          width: 100%; }
+        app-category .category-container .contact-container .form-container .header {
+          padding-bottom: 30px; }
     app-category .category-container .how-to-container {
       max-width: 1440px;
       margin: auto; }

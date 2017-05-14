@@ -5,7 +5,7 @@
         <h1>Trova il miglior servizio per la tua casa.<br>Al prezzo giusto e senza attese.</h1>
         <div class="search">
           <div class="search-field">
-            <p-autoComplete [(ngModel)]="query" [suggestions]="results" field="title" scrollHeight="275px" (completeMethod)="search($event)" (onSelect)="selectResult(query)" placeholder="Cerca una lavorazione..." minLength="0">
+            <p-autoComplete [(ngModel)]="query" [suggestions]="results" field="title" scrollHeight="275px" (completeMethod)="search($event)" (onSelect)="selectResult(query)" placeholder="Cerca una servizio" minLength="0">
               <template let-res>
                 <div class="search-result" (click)="selectResult(res)">{{ res.title }}</div>
               </template>
