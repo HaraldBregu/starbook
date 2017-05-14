@@ -4644,6 +4644,9 @@ app-category {
     app-category .category-container .services-container {
       overflow: auto;
       padding: 50px 10px; }
+      app-category .category-container .services-container h3 {
+        text-align: center;
+        margin-bottom: 30px; }
       app-category .category-container .services-container .service-container {
         float: left;
         padding: 10px;

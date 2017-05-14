@@ -19,7 +19,7 @@
   <div class="search-container">
     <div class="search">
       <div class="search-field">
-        <p-autoComplete [(ngModel)]="query" [suggestions]="results" field="title" scrollHeight="275px" (completeMethod)="search($event)" (onSelect)="selectResult(query)" placeholder="Cerca una servizio" minLength="0">
+        <p-autoComplete [(ngModel)]="query" [suggestions]="results" field="title" scrollHeight="275px" (completeMethod)="search($event)" (onSelect)="selectResult(query)" placeholder="Cerca un servizio" minLength="0">
           <template let-res>
             <div class="search-result" (click)="selectResult(res)">{{ res.title }}</div>
           </template>
@@ -48,6 +48,7 @@
     </div>
   </div>
   <div class="services-container">
+    <h3>Servizi</h3>
     <div class="service-container">
       <div class="service">
         <p>Riparazione rubinetti</p>
@@ -118,7 +119,7 @@
   <div class="contact-container">
     <div class="form-container">
       <div class="header">
-        <h3>Hai bisogno di qualcosa in particolare? Fai una richiesta.</h3>
+        <h3>Hai bisogno di un servizio particolare? Invia una richiesta.</h3>
       </div>
       <form>
         <div class="row">

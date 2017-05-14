@@ -183,6 +183,10 @@ app-category {
     .services-container {
       overflow: auto;
       padding: 50px 10px;
+      h3 {
+        text-align: center;
+        margin-bottom: 30px;
+      }
       .service-container {
         float: left;
         padding: 10px;
