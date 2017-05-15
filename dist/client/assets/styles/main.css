@@ -8227,91 +8227,52 @@ app-account {
   width: 100%;
   height: 100%;
   padding: 70px 0 0; }
-  app-account .account-container .account {
-    background: white;
-    max-width: 600px;
-    padding: 40px;
-    margin: 40px auto; }
-    app-account .account-container .account .btn {
-      width: 100%;
-      font-size: 22px;
-      color: white;
-      height: 60px;
-      font-weight: 400; }
-    app-account .account-container .account .btn.btn-white {
-      color: black; }
-    app-account .account-container .account .btn-facebook i {
-      display: block;
-      position: absolute;
-      top: 10px;
-      left: 12px;
-      width: 40px;
-      height: 40px;
-      background-image: url("/assets/images/fb-icon.png");
-      background-repeat: no-repeat;
-      background-size: contain; }
-    app-account .account-container .account h1 {
-      margin-bottom: 20px; }
-
-.account h1 {
-  font-family: HelveticaNeue, sans-serif;
-  font-size: 32px;
-  letter-spacing: 0.22px; }
-
-.account h2 {
-  font-size: 26px;
-  letter-spacing: 0.22px; }
-
-.account h3 {
-  font-size: 20px;
-  letter-spacing: 0.22px; }
-
-.account h4 {
-  font-size: 14px;
-  letter-spacing: 0.22px; }
-
-.account h6 {
-  width: 100%;
-  font-family: HelveticaNeue, sans-serif;
-  font-size: 16px;
-  letter-spacing: 0.22px; }
-
-.account .popup-spinner {
-  text-align: center;
-  margin: 50px auto 0px; }
-
-.account .form-group label {
-  width: 400px;
-  text-align: left;
-  padding: 0;
-  font-family: HelveticaNeue, sans-serif;
-  font-weight: 400;
-  font-size: 14px; }
-
-.email-verification {
-  text-align: center; }
-
-.email-verification h1 {
-  text-align: center; }
-
-.password-verification {
-  text-align: center; }
-
-.password-verification h1 {
-  text-align: center; }
-
-.new-password {
-  text-align: center; }
-
-.new-password h1 {
-  text-align: center;
-  margin-bottom: 40px; }
-
-.new-password .form-group {
-  margin-top: 0px; }
-
-.new-password .form-group .btn-warning {
-  margin-top: 20px; }
+  app-account .account-container {
+    position: absolute;
+    background-image: url("https://s3-eu-west-1.amazonaws.com/starbook-s3/website/illustration-city-blue.png");
+    background-repeat: no-repeat;
+    background-position: center bottom;
+    background-size: 100%;
+    top: 70px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow: scroll; }
+    app-account .account-container .account {
+      border: 1px solid #DBDBDB;
+      background: white;
+      max-width: 600px;
+      padding: 40px;
+      margin: 40px auto; }
+      app-account .account-container .account .btn {
+        width: 100%;
+        font-size: 20px;
+        color: white;
+        height: 50px;
+        font-weight: 500; }
+      app-account .account-container .account .btn.btn-white {
+        color: black; }
+      app-account .account-container .account .btn-facebook i {
+        display: block;
+        position: absolute;
+        top: 10px;
+        left: 12px;
+        width: 30px;
+        height: 30px;
+        background-image: url("/assets/images/fb-icon.png");
+        background-repeat: no-repeat;
+        background-size: contain; }
+      app-account .account-container .account .header {
+        padding-bottom: 30px; }
+        app-account .account-container .account .header h3 {
+          margin-bottom: 20px; }
+        app-account .account-container .account .header h6 {
+          font-weight: 300;
+          line-height: inherit; }
+  @media (max-width: 425px) {
+    app-account .account-container .account {
+      margin: 0;
+      padding: 20px; } }
 
 app-requests {
   display: block;

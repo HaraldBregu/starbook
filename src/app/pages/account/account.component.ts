@@ -6,6 +6,7 @@ import { isBrowser } from "angular2-universal";
 import { AnalyticsService } from '../../shared/analytics.service';
 import { AuthService } from '../../shared/auth.service';
 import { Location } from '@angular/common';
+import { ContactService } from '../../shared/contact.service';
 
 @Component({
   selector: 'app-account',
@@ -105,23 +106,35 @@ export class AccountComponent implements OnInit {
     error_message: null,
   }
 
+  public profession = '';
+  public currentUser;
+
   constructor(
     private route: ActivatedRoute,
     private router: Router,
     private navigationService: NavigationService,
     private profileService: ProfileService,
     private analyticsService: AnalyticsService,
-    private authService: AuthService, private _location: Location) {
+    private authService: AuthService,
+    private _location: Location,
+    private contactService: ContactService) {
       this.emailPattern = /^[a-z0-9!#$%&'*+\/=?^_`{|}~.-]+@[a-z0-9]([a-z0-9-]*[a-z0-9])?(\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)*$/i;
+      if (isBrowser) {
+        this.currentUser = JSON.parse(localStorage.getItem('auth'));
+      }
+
       this.route.params.subscribe(params => {
         this.page = params['page']
         this.route.queryParams.subscribe((params: Params) => {
           if (this.page === 'login') {
             this.navigationService.updateMessage('Accedi al tuo account');
-
+            if (this.currentUser) {this.router.navigate(['']);}
           } else if (this.page === 'signup') {
             this.navigationService.updateMessage('Crea un nuovo account');
-
+            if (this.currentUser) {this.router.navigate(['']);}
+          }  else if (this.page === 'professional') {
+            this.navigationService.updateMessage('Registrati come professionista');
+            if (this.currentUser) {this.router.navigate(['']);}
           } else if (this.page === 'email_verification') {
             this.navigationService.updateMessage('Verifica della email');
             var code = params['code']
@@ -141,8 +154,7 @@ export class AccountComponent implements OnInit {
                 this.email_verification.spinner.visible = false;
               });
             }
-          } else
-           if (this.page === 'password_verification') {
+          } else if (this.page === 'password_verification') {
             this.navigationService.updateMessage('Verifica della nuova password');
             var code = params['code']
             if (!code) {
@@ -313,6 +325,100 @@ export class AccountComponent implements OnInit {
       }
     });
   }
+  signupAsProfessional() {
+    this.analyticsService.sendEvent({category:'Account', action: 'Signup', label: this.router.url});
+    if (this.signup_state.loading || this.facebook_state.loading) {return;}
+    if (this.signupParameters.email.length > 0 && this.signupParameters.firstname.length > 0 && this.signupParameters.lastname.length > 0 && this.signupParameters.phone.length > 0 && this.signupParameters.password.length > 0 && this.signupParameters.confirmPassword.length > 0) {
+      if (this.signupParameters.password !== this.signupParameters.confirmPassword) {
+        this.signup_state.password_error = null;
+        this.signup_state.confirm_password_error = "Inserisci una password uguale alla prima";
+        return;
+      } else {
+        this.signup_state.password_error = null;
+        this.signup_state.confirm_password_error = null;
+      }
+      if (!this.emailPattern.test(this.signupParameters.email)) {
+        this.signup_state.email_error = "Inserisci un indirizzo email corretto";
+        return;
+      }
+    } else {
+      if (this.signupParameters.email.length === 0) {
+        this.signup_state.email_error = "Inserisci un indirizzo email";
+      } else if (this.signupParameters.email.length > 0 && !this.emailPattern.test(this.signupParameters.email)) {
+        this.signup_state.email_error = "Inserisci un indirizzo email corretto";
+      } else {
+        this.signup_state.email_error = null;
+      }
+      if (this.signupParameters.firstname.length === 0) {
+        this.signup_state.first_name_error = "Inserisci un nome";
+      } else {
+        this.signup_state.first_name_error = null;
+      }
+      if (this.signupParameters.lastname.length === 0) {
+        this.signup_state.last_name_error = "Inserisci un cognome";
+      } else {
+        this.signup_state.last_name_error = null;
+      }
+      if (this.signupParameters.phone.length < 9) {
+        this.signup_state.phone_error = "Inserisci un numero di telefono corretto";
+        if (this.signupParameters.phone.length === 0) {
+          this.signup_state.phone_error = "Inserisci un numero di telefono";
+        }
+      } else {
+        this.signup_state.phone_error = null;
+      }
+      if (this.signupParameters.password.length === 0) {
+        this.signup_state.password_error = "Inserisci una password";
+      } else {
+        this.signup_state.password_error = null;
+      }
+      if (this.signupParameters.confirmPassword.length === 0) {
+        this.signup_state.confirm_password_error = "Inserisci di nuovo la password";
+      } else {
+        this.signup_state.confirm_password_error = null;
+      }
+      if (this.signupParameters.password.length > 0 &&
+        this.signupParameters.confirmPassword.length > 0
+        && this.signupParameters.password !== this.signupParameters.confirmPassword) {
+        this.signup_state.password_error = null;
+        this.signup_state.confirm_password_error = "Inserisci una password uguale alla prima";
+      }
+      return;
+    }
+    this.signup_state.loading = true;
+    this.signup_state.button_title = "Registrando...";
+    this.authService.signup(this.signupParameters.firstname, this.signupParameters.lastname, this.signupParameters.phone, this.signupParameters.email, this.signupParameters.password).then((data) => {
+      this.navigationService.updatePersonalMenu(data);
+      this.signup_state.error_message = null;
+      this.signup_state.loading = false;
+      this.signup_state.button_title = "Registrando...";
+      var message =
+      'Nome: ' + this.signupParameters.firstname +
+      '<br>Cognome: ' + this.signupParameters.lastname +
+      '<br>Telefono: ' + this.signupParameters.phone +
+      '<br>Email: ' + this.signupParameters.email +
+      '<br>Message: ' + this.profession
+      this.sendEmail('Registrazione come professionista', message)
+      this.router.navigate(['']);
+    }).catch((error) => {
+      this.analyticsService.sendException(error)
+      this.signup_state.loading = false;
+      this.signup_state.button_title = "Registrati";
+      switch (error) {
+        case 409:
+        this.signup_state.error_message = "Questo indirizzo email è gia in uso. Prova ad accedere.";
+          break;
+        case 422:
+        this.signup_state.error_message = "Inserisci tutti i campi richiesti";
+          break;
+        case 404:
+        this.signup_state.error_message = "C'è stato un errore sconosciuto, per favore riprova più tardi";
+          break;
+        default:
+        this.signup_state.error_message = null;
+      }
+    });
+  }
   changeToLogin() {
     this.analyticsService.sendEvent({category:'Account', action: 'Change to login', label: this.router.url});
     if (this.signup_state.loading) {return;}
@@ -353,6 +459,16 @@ export class AccountComponent implements OnInit {
       let self = this;
       setTimeout(function() {self.checkAccessToken(facebookWindow, context + 1, timeStart)}, 200);
     }
+  }
+
+
+  // EMAIL
+  sendEmail(subject, message) {
+    var email = {
+      subject : subject,
+      message : message
+    }
+    this.contactService.sendEmail(email).then((response) => {}).catch((error) => {});
   }
 
 

@@ -187,7 +187,7 @@ export class WizardComponent implements OnInit {
 
     if (isBrowser) {
       this.service_data = this.orderService.getWizardData();
-      console.log('details are: ' + JSON.stringify(this.service_data));
+      //console.log('details are: ' + JSON.stringify(this.service_data));
 
       if (Object.keys(this.service_data).length===0) {
         this.Order = this.readOrderFromLocal()

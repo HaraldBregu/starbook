@@ -96,7 +96,7 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   signupAsProfessional() {
-    this.router.navigate(['account/signup']);
+    this.router.navigate(['account/professional']);
   }
 
   clickBrandLogo() {

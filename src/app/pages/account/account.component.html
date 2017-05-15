@@ -1,6 +1,8 @@
 <div class="account-container">
   <div class="account" *ngIf="page==='login'">
-    <h1>Accedi al tuo account</h1>
+    <div class="header">
+      <h3>Accedi al tuo account</h3>
+    </div>
     <form>
       <div class="form-group">
         <label for="emailInput">Email</label>
@@ -33,7 +35,10 @@
     </form>
   </div>
   <div class="account" *ngIf="page==='signup'">
-    <h1>Crea un account</h1>
+    <div class="header">
+      <h3>Crea un account</h3>
+      <h6>Sei nuovo su Starbook? Crea un account per poter navigare liberamente e ordinare i servizi che ti servono per la tua casa.</h6>
+    </div>
     <form>
       <div class="form-group">
         <label for="emailInput">Email</label>
@@ -92,9 +97,68 @@
     </form>
   </div>
   <div class="account" *ngIf="page==='professional'">
-    <i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i> da
-
+    <div class="header">
+      <h3>Crea un account professionale</h3>
+      <h6>Sei un artigiano e hai partita IVA? Iscriviti gratuitamente su Starbook e ti contatteremo per maggiori verifiche. Lavoreremo insieme.</h6>
+    </div>
+    <form>
+      <div class="form-group">
+        <label for="emailInput">Email</label>
+        <input type="email" placeholder="La tua mail" class="form-control" [ngClass]="{'error-input': signup_state.email_error}" id="emailInput" [(ngModel)]="signupParameters.email" [ngModelOptions]="{standalone: true}">
+        <small class="error-message" *ngIf="signup_state.email_error">{{signup_state.email_error}}</small>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="firstNameInput">Nome</label>
+            <input type="firstname" placeholder="Nome" class="form-control" [ngClass]="{'error-input': signup_state.first_name_error}" id="firstNameInput" [(ngModel)]="signupParameters.firstname" [ngModelOptions]="{standalone: true}">
+            <small class="error-message" *ngIf="signup_state.first_name_error">{{signup_state.first_name_error}}</small>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="lastNameInput">Cognome</label>
+            <input type="lastname" placeholder="Cognome" class="form-control" [ngClass]="{'error-input': signup_state.last_name_error}" id="lastNameInput" [(ngModel)]="signupParameters.lastname" [ngModelOptions]="{standalone: true}">
+            <small class="error-message" *ngIf="signup_state.last_name_error">{{signup_state.last_name_error}}</small>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="professionInput">Professione</label>
+        <input type="profession" placeholder="La tua professione" class="form-control" id="professionInput" [(ngModel)]="profession" [ngModelOptions]="{standalone: true}">
+      </div>
+      <div class="form-group">
+        <label for="phoneInput">Telefono</label>
+        <input type="phone" placeholder="Numero di telefono" class="form-control" [ngClass]="{'error-input': signup_state.phone_error}" id="phoneInput" [(ngModel)]="signupParameters.phone" [ngModelOptions]="{standalone: true}">
+        <small class="error-message" *ngIf="signup_state.phone_error">{{signup_state.phone_error}}</small>
+      </div>
+      <div class="form-group">
+        <label for="passwordInput">Password</label>
+        <input type="password" placeholder="Password" class="form-control" [ngClass]="{'error-input': signup_state.password_error}" id="passwordInput" [(ngModel)]="signupParameters.password" [ngModelOptions]="{standalone: true}">
+        <small class="error-message" *ngIf="signup_state.password_error">{{signup_state.password_error}}</small>
+      </div>
+      <div class="form-group">
+        <label for="confirmPasswordInput">Di nuovo la password</label>
+        <input type="password" placeholder="Password" class="form-control" [ngClass]="{'error-input': signup_state.confirm_password_error}" id="confirmPasswordInput" [(ngModel)]="signupParameters.confirmPassword" [ngModelOptions]="{standalone: true}">
+        <small class="error-message" *ngIf="signup_state.confirm_password_error">{{signup_state.confirm_password_error}}</small>
+      </div>
+      <div class="form-group" *ngIf="signup_state.error_message">
+        <div class="alert alert-danger" role="alert">{{signup_state.error_message}}</div>
+      </div>
+      <!-- <div class="form-group" *ngIf="signup_state.message_success">
+        <div class="alert alert-success" role="alert">
+          {{recruiter_state.message_success}}
+        </div>
+      </div> -->
+      <div class="form-group">
+        <button type="button" id="next" class="btn btn-warning" (click)="signupAsProfessional()"><i class="fa fa-circle-o-notch animate" *ngIf="signup_state.loading"></i>{{signup_state.button_title}}</button>
+      </div>
+      <div class="form-group">
+        <h6><small>Continuando dichiari di aver letto e accetti le <a routerlink="/legal" href="/legal" target="_blank">condizioni generali e l’informativa sulla privacy</a></small></h6>
+      </div>
+    </form>
   </div>
+
   <div class="email-verification" *ngIf="page==='email_verification'">
     <h1>{{email_verification.title}}</h1>
     <div class="popup-spinner" *ngIf="email_verification.spinner.visible">
