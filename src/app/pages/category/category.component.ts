@@ -38,6 +38,7 @@ export class CategoryComponent implements OnInit {
   public clearView = false;
   public query: string = '';
   public results: string[] = [];
+  public services = [];
 
   constructor(
     private router: Router,
@@ -55,16 +56,15 @@ export class CategoryComponent implements OnInit {
       if (data.service) {
         this.category = data.service;
         this.navigationService.updateMessage(this.category.title);
-
-      } else {
+        this.loadServicesForCategoryId(this.category._id);
+       } else {
         this.route.params.subscribe(params => {
-
           let category = params['category'];
           this.commonService.getCategoryById(category).then((data) => {
             this.category = data.result;
             this.navigationService.updateMessage(this.category.title);
-
-            console.log('category from server is: ' + JSON.stringify(data));
+            this.loadServicesForCategoryId(this.category._id);
+            // console.log('category from server is: ' + JSON.stringify(data));
           }).catch((error) => {
             this.router.navigate(['']);
 
@@ -75,6 +75,19 @@ export class CategoryComponent implements OnInit {
 
   ngOnInit() {
 
+  }
+
+  loadServicesForCategoryId(category_id) {
+    this.commonService.getAllServices({'category': category_id}).then((data) => {
+      this.services = data.result;
+      // console.log('services from category is: ' + JSON.stringify(this.services));
+    }).catch((error) => {
+      // console.log('error: ' + error);
+    });
+  }
+
+  showServicePage(service) {
+    this.router.navigate(['services', service.title.replace(/\s+/g, '-')]);
   }
 
   checkOut() {

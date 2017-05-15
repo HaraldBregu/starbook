@@ -4,8 +4,8 @@ app-category {
   height: 100%;
   padding: 70px 0 0;
   .category-container {
-    max-width: 1440px;
-    margin: auto;
+    // max-width: 1440px;
+    // margin: auto;
     .category-header {
       background-size: cover;
       background-repeat: no-repeat;
@@ -24,11 +24,21 @@ app-category {
         background-color: rgba(18, 18, 18, 0.7);
       }
       .header-content {
-        padding: 60px 0 0;
+        padding: 60px 0;
+        .header {
+          max-width: 700px;
+          margin: auto;
+        }
+        .professional-container {
+          // padding: 40px;
+          // background: rgba(0, 0, 0, 0.2);
+          // max-width: 900px;
+          // margin: auto;
+        }
         h1 {
-          font-size: 48px;
+          // font-size: 48px;
           font-weight: 500;
-          margin-bottom: 20px;
+          // margin-bottom: 20px;
         }
         h5 {
           font-weight: 300;
@@ -40,8 +50,8 @@ app-category {
           background-size: cover;
           background-repeat: no-repeat;
           background-position: center top;
-          width: 250px;
-          height: 300px;
+          width: 200px;
+          height: 250px;
           margin: auto;
           border: 1px solid white;
         }
@@ -50,15 +60,9 @@ app-category {
         }
       }
     }
-    .description-container {
-      background-color: #161517;
-      color: white;
-      // padding: 50px 0;
-      text-align: center;
-    }
     .search-container {
       padding: 20px;
-      background: black;
+      background: #161517;
       .search {
         display: block;
         position: relative;
@@ -181,6 +185,8 @@ app-category {
       }
     }
     .services-container {
+      max-width: 1440px;
+      margin: auto;
       overflow: auto;
       padding: 50px 10px;
       h3 {
@@ -191,26 +197,44 @@ app-category {
         float: left;
         padding: 10px;
         width: 25%;
-        height: 120px;
+        height: 150px;
         .service {
-          background: #6b6bd6;
+          background-size: cover;
+          background-repeat: no-repeat;
+          background-position: center;
+          color: white;
+          text-align: center;
+          // background: #6b6bd6;
           width: 100%;
           height: 100%;
           border-radius: 3px;
-          padding: 20px;
           color: white;
+          cursor: pointer;
+          .overlay {
+            width: 100%;
+            height: 100%;
+            padding: 20px;
+            background-color: rgba(7, 43, 88, 0.60);
+          }
+          .overlay:hover {
+            background-color: rgba(7, 43, 88, 1);
+          }
+        }
+        .service:hover {
+          // background: rgba(107, 107, 214, 0.5);
         }
       }
     }
     .bullets-container {
       padding: 20px;
-      background: #3e3e6b;
+      background: #161517;
       .bullets {
         color: white;
         max-width: 1440px;
         margin: auto;
         p {
-          font-size: 16px !important;
+          font-size: 14px !important;
+          color: rgba(255, 255, 255, 0.8);
         }
       }
     }
@@ -235,6 +259,15 @@ app-category {
         background: white;
         padding: 40px;
         border: 1px solid #DBDBDB;
+      }
+    }
+    .share-container {
+      padding: 50px 10px;
+      border-top: 1px solid #DBDBDB;
+      .share {
+        max-width: 1440px;
+        margin: auto;
+
       }
     }
     .how-to-container {

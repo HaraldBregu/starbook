@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Http, URLSearchParams, Headers } from '@angular/http';
 import { isBrowser } from 'angular2-universal';
+import { Http, Headers, URLSearchParams } from '@angular/http';
 
 import 'rxjs/add/operator/toPromise';
 
@@ -62,8 +62,14 @@ export class CommonService {
     }).catch(this.handleError);
   }
 
-  getAllServices() {
-    return this.http.get(this.api + 'services').toPromise().then((services) => {
+  getAllServices(query) {
+    let params: URLSearchParams = new URLSearchParams();
+    if (query) {
+      for(let key in query) {
+        params.set(key.toString(), query[key]);
+      }
+    }
+    return this.http.get(this.api + 'services', {search: params}).toPromise().then((services) => {
       return services.json();
     }).catch(this.handleError);
   }

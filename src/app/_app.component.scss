@@ -152,33 +152,48 @@ app-root {
     .navbar-nav .nav-item+.nav-item {
       margin-left: 0 !important;
     }
-    .navbar-nav .register-item {
-      // background-color: #324978;
-      border: 1px solid #324978;
-    }
-    .register-item .nav-link {
-      // color: white !important;
-      color: #324978 !important;
-    }
-    .register-item .nav-link:hover,
-    .register-item .nav-link.active {
-      // background-color: #324977;
-    }
 
-    .nav-link {
-      position: relative;
-      font-weight: 500;
-      font-size: 16px;
-      color: #324978 !important;
-      padding: 0 15px;
-      z-index: 2;
-      margin-left: 1px;
-      margin-right: 1px;
-      line-height: 50px;
-    }
-    .nav-link:hover,
-    .nav-link.active {
-      background-color: #F7F7F7;
+    .navbar-nav {
+      .nav-link {
+        position: relative;
+        font-weight: 500;
+        font-size: 16px;
+        color: #324978 !important;
+        padding: 0 15px;
+        z-index: 2;
+        margin-left: 1px;
+        margin-right: 1px;
+        line-height: 50px;
+      }
+      .nav-link:hover,
+      .nav-link.active {
+        background-color: #F7F7F7;
+      }
+
+      .register-item {
+        background: #f7941e;
+        padding: 0 10px;
+        .nav-link {
+          position: relative;
+          font-weight: 500;
+          font-size: 16px;
+          color: #324978 !important;
+          padding: 0 15px;
+          z-index: 2;
+          margin-left: 1px;
+          margin-right: 1px;
+          line-height: 50px;
+          color: white !important;
+          font-weight: 600;
+        }
+        .nav-link:hover,
+        .nav-link.active {
+          background: transparent;
+        }
+      }
+      .register-item:hover {
+        background: #da7a08 !important;
+      }
     }
     .top-menu {
       padding-right: 0 !important;
