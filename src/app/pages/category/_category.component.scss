@@ -7,6 +7,8 @@ app-category {
     // max-width: 1440px;
     // margin: auto;
     .category-header {
+      max-width: 1440px;
+      margin: auto;
       background-size: cover;
       background-repeat: no-repeat;
       background-position: center;
@@ -21,10 +23,10 @@ app-category {
         min-width: 200px;
       }
       .overlay {
-        background-color: rgba(18, 18, 18, 0.7);
+        background-color: rgba(18, 18, 18, 0.5);
       }
       .header-content {
-        padding: 60px 0;
+        padding: 100px 0;
         .header {
           max-width: 700px;
           margin: auto;

@@ -4516,6 +4516,8 @@ app-category {
   height: 100%;
   padding: 70px 0 0; }
   app-category .category-container .category-header {
+    max-width: 1440px;
+    margin: auto;
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
@@ -4529,9 +4531,9 @@ app-category {
       border-radius: 3px;
       min-width: 200px; }
     app-category .category-container .category-header .overlay {
-      background-color: rgba(18, 18, 18, 0.7); }
+      background-color: rgba(18, 18, 18, 0.5); }
     app-category .category-container .category-header .header-content {
-      padding: 60px 0; }
+      padding: 100px 0; }
       app-category .category-container .category-header .header-content .header {
         max-width: 700px;
         margin: auto; }
