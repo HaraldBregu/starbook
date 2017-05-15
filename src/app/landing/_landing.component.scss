@@ -217,7 +217,7 @@ app-landing {
           background-size: cover;
           background-repeat: no-repeat;
           background-position: center top;
-          height: 250px;
+          height: 300px;
           cursor: pointer;
           .overlay {
             position: absolute;
@@ -233,7 +233,7 @@ app-landing {
             background: rgba(24, 66, 145, 0.4);
           }
           .overlay:hover {
-            background: rgba(24, 66, 145, 1.0);
+            background: rgba(24, 66, 145, 0.0);
           }
           h1 {
             text-align: center;

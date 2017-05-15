@@ -90,56 +90,78 @@ export class ServiceComponent implements OnInit {
   }
   subscription: Subscription;
 
-  constructor(private homeService: CommonService, private navigationService: NavigationService, private router: Router, private route: ActivatedRoute, private orderService: OrderService, private analyticsService: AnalyticsService, private seoService: SeoService, private profileService: ProfileService) {
+  constructor(private commonService: CommonService, private navigationService: NavigationService, private router: Router, private route: ActivatedRoute, private orderService: OrderService, private analyticsService: AnalyticsService, private seoService: SeoService, private profileService: ProfileService) {
 
   }
 
   ngOnInit() {
     this.route.params.subscribe(params => {
-      let service_id = params['id'];
-      let data = this.homeService.getData();
-
-      this.route.queryParams.subscribe((params: Params) => {
-        if (!data.referral_id || data.referral_id.length===0) {
-          if (params['ref']) {
-            data['referral_id'] = params['ref'];
-          }
-        }
-        if (params['estimated']) {
-          // console.log('estimated: ' + params['estimated']);
-        }
-      });
+      // this.route.queryParams.subscribe((params: Params) => {
+      //   if (!data.referral_id || data.referral_id.length===0) {
+      //     if (params['ref']) {
+      //       data['referral_id'] = params['ref'];
+      //     }
+      //   }
+      //   if (params['estimated']) {
+      //     // console.log('estimated: ' + params['estimated']);
+      //   }
+      // });
 
       // SERVICE
-      let service = data.service;
-      if (service_id) {
+      let service_id = params['id'];
+      if (!service_id) {
+        this.router.navigate(['']);
+      } else {
         if (isBrowser) {window.scrollTo(0, 0);}
-        if (service) {
-          this.renderPage(service);
-        } else {
-          this.homeService.getServiceById(service_id).then((data) => {
-            this.renderPage(data.result);
-          }).catch((error) => {
-            this.router.navigate(['']);
-          });
-        }
-      }
-
-      // REFERRAL
-      let referral_id = data.referral_id;
-      if (referral_id) {
-        this.price_state.loading = true;
-        this.price_state.is_referral = false;
-        this.profileService.getAccountById(referral_id).then((profile) => {
-          this.price_state.loading = false;
-          this.price_state.is_referral = true;
-          this.price_state.referral_id = referral_id;
+        this.commonService.getServiceById(service_id).then((data) => {
+          this.renderPage(data.result);
         }).catch((error) => {
-          this.price_state.loading = false;
-          this.price_state.is_referral = false;
-          this.price_state.referral_id = null;
+          let service = this.commonService.getService();
+          if (!service) {
+            this.router.navigate(['']);
+          } else {
+            this.renderPage(service);
+          }
         });
       }
+
+      // this.commonService.getServiceById(service_id).then((data) => {
+      //   this.renderPage(data.result);
+      // }).catch((error) => {
+      //   this.router.navigate(['']);
+      // });
+      //
+      // let service = this.commonService.getService();
+      //
+      // let service = data.service;
+      // if (service_id) {
+      //   if (isBrowser) {window.scrollTo(0, 0);}
+      //   if (service) {
+      //     this.renderPage(service);
+      //   } else {
+      //     this.commonService.getServiceById(service_id).then((data) => {
+      //       this.renderPage(data.result);
+      //     }).catch((error) => {
+      //       this.router.navigate(['']);
+      //     });
+      //   }
+      // }
+
+      // REFERRAL
+      // let referral_id = data.referral_id;
+      // if (referral_id) {
+      //   this.price_state.loading = true;
+      //   this.price_state.is_referral = false;
+      //   this.profileService.getAccountById(referral_id).then((profile) => {
+      //     this.price_state.loading = false;
+      //     this.price_state.is_referral = true;
+      //     this.price_state.referral_id = referral_id;
+      //   }).catch((error) => {
+      //     this.price_state.loading = false;
+      //     this.price_state.is_referral = false;
+      //     this.price_state.referral_id = null;
+      //   });
+      // }
     });
 
     if (isBrowser) {
@@ -150,6 +172,7 @@ export class ServiceComponent implements OnInit {
   }
 
   renderPage(services: IServices) {
+    this.commonService.setService(services);
     this.navigationService.updateMessage(services.title);
 
     this.seoService.setTitle(services.title + "| Preventivo Online");

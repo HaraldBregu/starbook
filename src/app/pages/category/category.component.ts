@@ -49,12 +49,12 @@ export class CategoryComponent implements OnInit {
     private orderService: OrderService,
     private commonService: CommonService) {
 
-      let data = this.commonService.getData();
+      let category = this.commonService.getCategory();
       // console.log('category is: ' + JSON.stringify(data));
       if (isBrowser) {window.scrollTo(0, 0);}
 
-      if (data.service) {
-        this.category = data.service;
+      if (category) {
+        this.category = category;
         this.navigationService.updateMessage(this.category.title);
         this.loadServicesForCategoryId(this.category._id);
        } else {
@@ -87,6 +87,7 @@ export class CategoryComponent implements OnInit {
   }
 
   showServicePage(service) {
+    this.commonService.setService(service)
     this.router.navigate(['services', service.title.replace(/\s+/g, '-')]);
   }
 

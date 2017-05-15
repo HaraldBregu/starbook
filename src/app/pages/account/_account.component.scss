@@ -4,7 +4,17 @@ app-account {
   height: 100%;
   padding: 70px 0 0;
   .account-container {
-    // background: white;
+    position: absolute;
+    background-image: url("https://s3-eu-west-1.amazonaws.com/starbook-s3/website/illustration-city-blue.png");
+    background-repeat: no-repeat;
+    background-position: center bottom;
+    background-size: 100%;
+    top: 70px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow: scroll;
+
     .account {
       background: white;
       max-width: 600px;

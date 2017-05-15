@@ -348,7 +348,7 @@ export class LandingComponent implements OnInit {
   ////////////////////////////////////////////
   selectCategory(category) {
     this.analyticsService.sendEvent({category:'Search result', action: 'Select service', label: this.router.url});
-    this.commonService.sendData(category, this.ref)
+    this.commonService.setCategory(category)
     this.router.navigate(['category/', category.title.replace(/\s+/g, '-').toLowerCase()]);
   }
 

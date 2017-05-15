@@ -38,7 +38,7 @@ export class AppComponent implements OnInit, OnDestroy {
   };
   public collapsed = false;
 
-  constructor (public router:Router, private route: ActivatedRoute, private authServics: AuthService, private navigationService: NavigationService, private popupsService: PopupsService, private homeService: CommonService, private analyticsService: AnalyticsService, private seoService: SeoService) {
+  constructor (public router:Router, private route: ActivatedRoute, private authServics: AuthService, private navigationService: NavigationService, private popupsService: PopupsService, private commonService: CommonService, private analyticsService: AnalyticsService, private seoService: SeoService) {
     this.navbarState = false;
     if (isBrowser) {
       this.router.events.subscribe((event:Event) => {
@@ -139,7 +139,7 @@ export class AppComponent implements OnInit, OnDestroy {
     this.isSearched = true;
     this.spinerView = true;
     this.clearView = false;
-    this.homeService.search(event.query)
+    this.commonService.search(event.query)
       .then((results) => {
         this.spinerView = false;
         if (event.query.length > 0) {
@@ -162,8 +162,8 @@ export class AppComponent implements OnInit, OnDestroy {
     this.router.navigate(['requests/service']);
   }
 
-  selectResult(servicesObj) {
-    this.homeService.sendServices(servicesObj);
+  selectResult(service) {
+    this.commonService.setService(service)
     this.results = [];
     this.clearView = false;
     this.navbarState = false;
@@ -172,7 +172,7 @@ export class AppComponent implements OnInit, OnDestroy {
     // var str = 'hello     world  !!';
     // str = servicesObj.title.replace(/\s+/g, '-');
     // console.log('space replaced: ' + str);
-    this.router.navigate(['services', servicesObj.title.replace(/\s+/g, '-')]);
+    this.router.navigate(['services', service.title.replace(/\s+/g, '-')]);
   }
 
   clearSearchForm() {

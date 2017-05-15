@@ -53,9 +53,11 @@
     <h3>Scegli un servizio</h3>
     <div class="service-container" *ngFor="let service of services">
       <div class="service noselect" (click)="showServicePage(service)" [ngStyle]="{'background-image' : ' url(' +  service.image_url + ')'}">
-        <div class="overlay">
+        <div class="title">
           <p>{{service.title}}</p>
         </div>
+        <!-- <div class="overlay">
+        </div> -->
       </div>
     </div>
   </div>

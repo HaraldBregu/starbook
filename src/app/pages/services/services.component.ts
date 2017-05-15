@@ -14,14 +14,14 @@ export class ServicesComponent implements OnInit {
   };
   public services = [];
 
-  constructor(private router: Router, private navigationService: NavigationService, private homeService: CommonService) {
+  constructor(private router: Router, private navigationService: NavigationService, private commonService: CommonService) {
     this.navigationService.updateMessage('');
   }
 
   ngOnInit() {
     this.services_state.loading = true;
     this.services_state.title = "Caricando i servizi...";
-    this.homeService.getAllServices({}).then((services) => {
+    this.commonService.getAllServices({}).then((services) => {
       this.services = services.result;
       this.services_state.loading = false;
       this.services_state.title = "Tutti i servizi";
@@ -32,9 +32,8 @@ export class ServicesComponent implements OnInit {
   }
 
   selectResult(service) {
-    // this.homeService.sendData(service, this.ref)
+    this.commonService.setService(service)
     this.router.navigate(['services', service.title.replace(/\s+/g, '-')]);
-    // this.router.navigate(['services', service.title]);
   }
 
 }

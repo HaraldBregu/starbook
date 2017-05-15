@@ -3565,7 +3565,7 @@ app-landing {
           background-size: cover;
           background-repeat: no-repeat;
           background-position: center top;
-          height: 250px;
+          height: 300px;
           cursor: pointer; }
           app-landing .landing-container .services-container .service-container .service .overlay {
             position: absolute;
@@ -3580,7 +3580,7 @@ app-landing {
             transition: background 0.4s ease;
             background: rgba(24, 66, 145, 0.4); }
           app-landing .landing-container .services-container .service-container .service .overlay:hover {
-            background: #184291; }
+            background: rgba(24, 66, 145, 0); }
           app-landing .landing-container .services-container .service-container .service h1 {
             text-align: center;
             color: white;
@@ -4536,7 +4536,8 @@ app-category {
         max-width: 700px;
         margin: auto; }
       app-category .category-container .category-header .header-content h1 {
-        font-weight: 500; }
+        font-weight: 500;
+        margin-bottom: 10px; }
       app-category .category-container .category-header .header-content h5 {
         font-weight: 300; }
       app-category .category-container .category-header .header-content img {
@@ -4664,18 +4665,32 @@ app-category {
       padding: 10px;
       width: 25%; }
       app-category .category-container .services-container .service-container .service {
-        height: 200px;
+        position: relative;
         background-size: cover;
         background-repeat: no-repeat;
         background-position: center;
         color: white;
         text-align: center;
-        width: 100%;
-        height: 100%;
+        height: 300px;
         border-radius: 3px;
         color: white;
         cursor: pointer;
-        white-space: nowrap; }
+        white-space: nowrap;
+        overflow: hidden; }
+        app-category .category-container .services-container .service-container .service .title {
+          display: block;
+          position: absolute;
+          z-index: 2;
+          font-weight: 400;
+          color: white;
+          font-size: 16px;
+          letter-spacing: 0.09px;
+          white-space: normal !important;
+          text-align: left;
+          padding: 15px;
+          bottom: 0;
+          width: 100%;
+          background: #161517; }
         app-category .category-container .services-container .service-container .service .overlay {
           line-height: 200px;
           border-radius: 3px;
@@ -4774,8 +4789,9 @@ app-service {
     app-service .header-cover .details {
       padding: 20px; }
       app-service .header-cover .details h2 {
-        font-weight: 300;
-        color: white; }
+        font-weight: 400;
+        color: white;
+        margin-bottom: 5px; }
       app-service .header-cover .details p {
         font-weight: 400;
         color: rgba(255, 255, 255, 0.7);

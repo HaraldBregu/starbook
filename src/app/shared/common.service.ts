@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { isBrowser } from 'angular2-universal';
 import { Http, Headers, URLSearchParams } from '@angular/http';
-
 import 'rxjs/add/operator/toPromise';
 
 // import { NavigationService } from '../shared/navigation.service';
@@ -13,6 +12,7 @@ export class CommonService {
   private referral_id;
   private api: string;
   private auth;
+  private category;
 
   constructor(private http: Http/*, private navigationService: NavigationService*/) {
     this.api = 'https://api.starbook.co/v0.9.1/';
@@ -34,6 +34,19 @@ export class CommonService {
       service:this.service,
       referral_id: this.referral_id
     }
+  }
+
+  setService(service) {
+    this.service = service;
+  }
+  getService() {
+    return this.service;
+  }
+  setCategory(category) {
+    this.category = category;
+  }
+  getCategory() {
+    return this.category;
   }
 
   // EMAIL SMS
