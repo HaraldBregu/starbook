@@ -197,8 +197,8 @@ app-category {
         float: left;
         padding: 10px;
         width: 25%;
-        height: 150px;
         .service {
+          height: 200px;
           background-size: cover;
           background-repeat: no-repeat;
           background-position: center;
@@ -210,7 +210,10 @@ app-category {
           border-radius: 3px;
           color: white;
           cursor: pointer;
+          white-space: nowrap;
           .overlay {
+            line-height: 200px;
+            border-radius: 3px;
             width: 100%;
             height: 100%;
             padding: 20px;
@@ -284,4 +287,29 @@ app-category {
       padding: 100px 0;
     }
   }
+
+  @media (max-width: 1024px) {
+    .category-container {
+
+    }
+  }
+  @media (max-width: 768px) {
+    .category-container {
+      .services-container {
+        .service-container {
+          width: 50%;
+        }
+      }
+    }
+  }
+  @media (max-width: 425px) {
+    .category-container {
+      .services-container {
+        .service-container {
+          width: 100%;
+        }
+      }
+    }
+  }
+
 }

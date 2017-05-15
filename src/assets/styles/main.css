@@ -4662,9 +4662,9 @@ app-category {
     app-category .category-container .services-container .service-container {
       float: left;
       padding: 10px;
-      width: 25%;
-      height: 150px; }
+      width: 25%; }
       app-category .category-container .services-container .service-container .service {
+        height: 200px;
         background-size: cover;
         background-repeat: no-repeat;
         background-position: center;
@@ -4674,8 +4674,11 @@ app-category {
         height: 100%;
         border-radius: 3px;
         color: white;
-        cursor: pointer; }
+        cursor: pointer;
+        white-space: nowrap; }
         app-category .category-container .services-container .service-container .service .overlay {
+          line-height: 200px;
+          border-radius: 3px;
           width: 100%;
           height: 100%;
           padding: 20px;
@@ -4726,6 +4729,12 @@ app-category {
         background: white; }
   app-category .category-container .footer-container {
     padding: 100px 0; }
+  @media (max-width: 768px) {
+    app-category .category-container .services-container .service-container {
+      width: 50%; } }
+  @media (max-width: 425px) {
+    app-category .category-container .services-container .service-container {
+      width: 100%; } }
 
 app-service {
   display: block;
