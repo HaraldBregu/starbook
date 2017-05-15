@@ -21,7 +21,7 @@ export class ServicesComponent implements OnInit {
   ngOnInit() {
     this.services_state.loading = true;
     this.services_state.title = "Caricando i servizi...";
-    this.homeService.getAllServices().then((services) => {
+    this.homeService.getAllServices({}).then((services) => {
       this.services = services.result;
       this.services_state.loading = false;
       this.services_state.title = "Tutti i servizi";
