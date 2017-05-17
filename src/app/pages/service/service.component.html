@@ -3,7 +3,8 @@
     <div class="col-sm-9 col-md-10 main">
       <div class="tab-container">
         <div class="header-cover">
-          <img src="{{image_url}}" alt="{{title}}">
+          <div class="header-image" [ngStyle]="{'background-image' : ' url(' + image_url + ')'}"></div>
+          <!-- <img src="{{image_url}}" alt="{{title}}"> -->
           <div class="details">
             <h2>{{ title }}</h2>
             <p>{{ description }}</p>

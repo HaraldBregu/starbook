@@ -45,14 +45,14 @@ const routes: Routes = [
   },
 
   // For test
-  {
-    path: 'landing',
-    component: LandingComponent
-  },
-  {
-    path: 'landing/:page',
-    component: LandingComponent
-  },
+  // {
+  //   path: 'landing',
+  //   component: LandingComponent
+  // },
+  // {
+  //   path: 'landing/:page',
+  //   component: LandingComponent
+  // },
 
   {
     path: 'services',
@@ -89,18 +89,6 @@ const routes: Routes = [
     component: WizardComponent
   },
   {
-    path: 'about',
-    component: AboutComponent
-  },
-  {
-    path: 'help',
-    component: HelpComponent
-  },
-  {
-    path: 'legal',
-    component: LegalComponent
-  },
-  {
     path: 'requests',
     component: RequestsComponent
   },
@@ -123,7 +111,22 @@ const routes: Routes = [
   {
     path: 'blog/:page',
     component: BlogComponent
+  },
+
+  {
+    path: 'info/help',
+    component: HelpComponent
+  },
+  {
+    path: 'info/legal',
+    component: LegalComponent
+  },
+
+  {
+    path: 'info/about',
+    component: AboutComponent
   }
+
 ];
 
 export const routing: ModuleWithProviders = RouterModule.forRoot(routes);

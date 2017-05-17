@@ -96,20 +96,6 @@
     </div>
     <button type="button" class="btn btn-warning" name="button" routerLink="/contact/partner">Scopri di più</button>
   </div>
-
-
-  <!-- <div class="recruiting" *ngIf="!currentUser">
-    <div class="join-box">
-      <h1>Sei un professionista in cerca di clienti?</h1>
-      <p>Iscriviti a Starbook gratuitamente e diventa parte del nostro team.</p>
-      <button type="button" class="btn btn-primary" name="button" routerLink="/recruiter/workerjoin">Unisciti adesso</button>
-    </div>
-    <div class="partner-box">
-      <h1>Programma partnership</h1>
-      <p>Scopri il nostro programma partnership per Agenzie Immobiliari, Agenti Immobiliari, Amministratori Condominiali, Architetti, Fornitori Edili.</p>
-      <button type="button" class="btn btn-warning" name="button" routerLink="/recruiter/partnerjoin">Scopri di più</button>
-    </div>
-  </div> -->
   <div class="container-fluid prefooter-container">
     <div class="row prefooter">
       <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12">
@@ -130,10 +116,10 @@
         </div>
       </div>
       <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12">
-        <p><a routerLink="/about" routerLinkActive="active">Chi siamo</a></p>
-        <p><a routerLink="/help" routerLinkActive="active">Aiuto e Assistenza</a></p>
-        <p><a routerLink="/legal" routerLinkActive="active">Privacy e Condizioni</a></p>
-        <p><a routerLink="/landing/extensions" routerLinkActive="active">Estensioni</a></p>
+        <p><a routerLink="/info/about">Chi siamo</a></p>
+        <p><a routerLink="/info/help">Aiuto e Assistenza</a></p>
+        <p><a routerLink="/info/legal">Privacy e Condizioni</a></p>
+        <!-- <p><a routerLink="/landing/extensions">Estensioni</a></p> -->
       </div>
       <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12">
         <p>Seguici su</p>
@@ -554,18 +540,18 @@
           </div>
           <div class="col-md-6 col-lg-3">
             <ul>
-              <li><a routerLink="/legal" target="_blank">Privacy e Condizioni</a></li>
-              <li><a routerLink="/help" target="_blank">Aiuto e Assistenza</a></li>
+              <li><a routerLink="/info/legal">Privacy e Condizioni</a></li>
+              <li><a routerLink="/info/help">Aiuto e Assistenza</a></li>
             </ul>
           </div>
           <div class="col-md-6 col-lg-3">
             <ul>
-              <li><a routerLink="/about" target="_blank">Chi siamo</a></li>
+              <li><a routerLink="/info/about">Chi siamo</a></li>
             </ul>
           </div>
           <div class="col-md-6 col-lg-3">
             <ul>
-              <li><a routerLink="/requests/service" target="_blank">Richiedi un servizio</a></li>
+              <li><a routerLink="/requests/service">Richiedi un servizio</a></li>
             </ul>
           </div>
         </div>
@@ -574,49 +560,3 @@
   </div>
 
 </div>
-
-<!--
-<div *ngIf="!page">
-  <div class="services-container">
-    <div class="row">
-      <div *ngFor="let service of services">
-        <div class="col-md-4 col-sm-6 service-container">
-          <div class="service" (click)="selectService(service)" [ngStyle]="{'background-image': 'url(' + service.image + ')'}">
-            <div class="overlay" [ngStyle]="{'background-color': service.color}">
-              <h1><strong>{{service.title}}</strong></h1>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <footer class="footer sticky-footer">
-    <div class="footer-container">
-      <div class="row">
-        <div class="col-md-6 col-lg-3">
-          <ul>
-            <li>Starbook © 2017</li>
-            <li>Tutti i diritti riservati</li>
-          </ul>
-        </div>
-        <div class="col-md-6 col-lg-3">
-          <ul>
-            <li><a routerLink="/legal">Privacy e Condizioni</a></li>
-            <li><a routerLink="/help">Aiuto e Assistenza</a></li>
-          </ul>
-        </div>
-        <div class="col-md-6 col-lg-3">
-          <ul>
-            <li><a routerLink="/about">Chi siamo</a></li>
-          </ul>
-        </div>
-        <div class="col-md-6 col-lg-3">
-          <ul>
-            <li><a routerLink="/requests/service">Richiedi un servizio</a></li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </footer>
-</div>
--->

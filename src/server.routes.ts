@@ -11,28 +11,40 @@
  **/
 export const routes: string[] = [
   'category/:category',
+
   'account/:page',
+
   'landing',
   'landing/:page',
+
   'services',
   'services/:id',
+
   'orders',
   'orders/:page',
+  'order/:step',
+
   'profile',
   'profile/:page',
+
   'facebook',
-  'order/:step',
-  'about',
-  'help',
-  'legal',
+
   'recruiter',
   'recruiter/:page',
+
   'requests',
   'requests/:page',
+
   'share',
   'share/:page',
+
   'blog',
   'blog/:page',
+
   'contact',
-  'contact/:page'
+  'contact/:page',
+
+  'info/help',
+  'info/legal',
+  'info/about'
 ];

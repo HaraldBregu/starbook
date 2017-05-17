@@ -7,68 +7,120 @@ app-about {
   padding-top: 70px;
   background-color: #fafafb;
   overflow-x: hidden;
-
-  .about-cover {
-    background: white;
-    position: relative;
-    width: 100%;
-    height: 400px;
-    img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      opacity: 0.8;
-    }
-    .mission-overlay {
-      position: absolute;
-      top: 40px;
-      left: 40px;
-      bottom: 40px;
-      background-color: rgba(0, 0, 0, 0.8);
-      width: 400px;
-      padding: 30px;
-      color: white;
-      p {
-        font-weight: 300;
-      }
-    }
-  }
-  .container {
-    padding-top: 70px;
-    padding-bottom: 70px;
-    h1 {
-      text-align: center;
-      margin: 0 0 70px;
-    }
-  }
-  .member-box {
-    height: 300px;
-    margin: 0 auto 30px;
-    padding: 20px;
-    border: 1px solid #CCCCCC;
-    background-color: white;
-    img {
-      float: left;
-      width: 220px;
-      height: 220px;
-      object-fit: cover;
-    }
-    .content {
-      height: 100%;
-      padding-left: 240px;
+  .about-container {
+    .members-container {
+      max-width: 1100px;
+      margin: auto;
+      padding: 50px 10px;
+      overflow: auto;
       h3 {
-        font-weight: 600;
+        text-align: center;
       }
-      h6 {
-        margin-top: 10px;
-      }
-      p {
-        font-size: 16px !important;
-        margin-top: 10px;
-        font-weight: 300;
+      .members {
+        overflow: auto;
+        padding-top: 30px;
+        .member-container {
+          float: left;
+          width: 25%;
+          padding: 20px;
+          text-align: center;
+          .member {
+            h5 {
+              font-weight: 500;
+              margin-bottom: 5px;
+            }
+            p {
+              font-weight: 300;
+              margin-bottom: 5px;
+            }
+            img {
+              height: 220px;
+              width: 220px;
+              object-fit: cover;
+              border: 1px solid #ececec;
+              margin-bottom: 10px;
+              border-radius: 5px;
+            }
+          }
+        }
       }
     }
+
+    // .about-cover {
+    //   background: white;
+    //   position: relative;
+    //   width: 100%;
+    //   height: 400px;
+    //   img {
+    //     width: 100%;
+    //     height: 100%;
+    //     object-fit: cover;
+    //     opacity: 0.8;
+    //   }
+    //   .mission-overlay {
+    //     position: absolute;
+    //     top: 40px;
+    //     left: 40px;
+    //     bottom: 40px;
+    //     background-color: rgba(0, 0, 0, 0.8);
+    //     width: 400px;
+    //     padding: 30px;
+    //     color: white;
+    //     p {
+    //       font-weight: 300;
+    //     }
+    //   }
+    // }
+    // .container {
+    //   padding-top: 70px;
+    //   padding-bottom: 70px;
+    //   h1 {
+    //     text-align: center;
+    //     margin: 0 0 70px;
+    //   }
+    // }
+    // .member-box {
+    //   height: 300px;
+    //   margin: 0 auto 30px;
+    //   padding: 20px;
+    //   border: 1px solid #CCCCCC;
+    //   background-color: white;
+    //   img {
+    //     float: left;
+    //     width: 220px;
+    //     height: 220px;
+    //     object-fit: cover;
+    //   }
+    //   .content {
+    //     height: 100%;
+    //     padding-left: 240px;
+    //     h3 {
+    //       font-weight: 600;
+    //     }
+    //     h6 {
+    //       margin-top: 10px;
+    //     }
+    //     p {
+    //       font-size: 16px !important;
+    //       margin-top: 10px;
+    //       font-weight: 300;
+    //     }
+    //   }
+    // }
   }
+
+  @media (max-width: 768px) {
+    .about-container .members-container .members .member-container {
+      width: calc(100%/2);
+    }
+  }
+
+  @media (max-width: 425px) {
+    .about-container .members-container .members .member-container {
+      width: 100%;
+    }
+  }
+
 
   @media (max-width: 1168px) {
     .about-cover .mission-overlay {
