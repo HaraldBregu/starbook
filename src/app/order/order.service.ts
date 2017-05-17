@@ -44,24 +44,25 @@ export class OrderService {
       if (document.location.hostname === "www.starbook.co") {
         this.api_version = "v0.9.1"
       } else {
+        // this.protocol = "http"
+        // this.hostname = "localhost"
         this.api_version = "t0.9.1"
       }
     }
     this.api = this.protocol + "://" + this.hostname + "/" + this.api_version + "/";
+
+    console.log('this api is: ' + this.api );
   }
 
   makeEvent(event) {
     this.orderEvent.next(event);
   }
-
   updateWizardData(wizardData) {
     this.wizardData = wizardData;
   }
-
   getWizardData() {
     return this.wizardData;
   }
-
   private _makeHeaders() {
     let headers;
     if(isBrowser) {
@@ -76,7 +77,6 @@ export class OrderService {
       this.auth = false;
       headers = new Headers({'Token': ''});
     }
-
     return {headers: headers};
   }
 
@@ -92,12 +92,9 @@ export class OrderService {
       price: orderData.price,
       payment: orderData.payment,
       timing: orderData.timing
-    }, this._makeHeaders())
-      .toPromise()
-      .then((response) => {
+    }, this._makeHeaders()).toPromise().then((response) => {
         return response;
-      })
-      .catch(this.handleError);
+      }).catch(this.handleError);
   }
 
   getAddresses(key: string) {

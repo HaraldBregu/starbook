@@ -2,7 +2,7 @@ app-requests {
   display: block;
   width: 100%;
   height: 100%;
-  padding: 70px 0 100px;
+  padding: 70px 0 0;
 
   .btn-warning {
     width: 100%;
@@ -19,16 +19,16 @@ app-requests {
   }
 
   .service-container {
-    position: absolute;
-    background-image: url("https://s3-eu-west-1.amazonaws.com/starbook-s3/website/illustration-city-blue.png");
-    background-repeat: no-repeat;
-    background-position: center bottom;
-    background-size: 100%;
-    top: 70px;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    overflow: scroll;
+    // position: absolute;
+    // background-image: url("https://s3-eu-west-1.amazonaws.com/starbook-s3/website/illustration-city-blue.png");
+    // background-repeat: no-repeat;
+    // background-position: center bottom;
+    // background-size: 100%;
+    // top: 70px;
+    // left: 0;
+    // right: 0;
+    // bottom: 0;
+    // overflow: scroll;
     .service {
       border: 1px solid #DBDBDB;
       background: white;

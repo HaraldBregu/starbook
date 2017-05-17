@@ -13,17 +13,17 @@
           <div *ngIf="!price_state.loading">
             <div class="total">
               <h1>{{getFinalPrice()/100}}€</h1>
-              <span>IVA INCLUSA</span>
+              <span>TOTALE IVA INCLUSA</span>
               <h2 *ngIf="price_state.is_referral">{{getInitialPrice()/100}}€</h2>
-              <h6>Totale Offerta</h6>
+              <!-- <h6>Totale Offerta</h6> -->
             </div>
             <div class="upfront">
               <h1>{{getUpFront()/100}}€</h1>
-              <h6>Blocca Offerta (30% del totale)</h6>
+              <h6>Acconto (30% del totale)</h6>
             </div>
             <div class="timing">
               <h2>{{getTiming()}}</h2>
-              <h6>Durata Lavoro</h6>
+              <h6>Durata</h6>
             </div>
           </div>
         </div>
