@@ -393,10 +393,9 @@ export class WizardComponent implements OnInit {
         if (errorData.status === 400) {
           if (_body.message === "no_stripe_customer") {
             this.order_status.error_message = "Inserisci un metodo di pagamento.";
-            // this.order_status.payment_error_message = "Vai alla pagina";
             this.router.navigate(['order/card']);
           } else {
-            this.order_status.error_message = "Effetua l'accesso prima di creare un ordine";
+            this.order_status.error_message = "C'è stato un errore, per favore effettua di nuovo l'accesso al account.";
           }
         } else if (errorData.status === 402) {
           if (_body.message === "no_cards") {

@@ -3581,7 +3581,7 @@ app-landing {
           background-size: cover;
           background-repeat: no-repeat;
           background-position: center top;
-          height: 300px;
+          height: 340px;
           cursor: pointer; }
           app-landing .landing-container .services-container .service-container .service .overlay {
             position: absolute;
