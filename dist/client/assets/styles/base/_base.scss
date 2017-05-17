@@ -404,6 +404,24 @@ textarea.form-control {
   }
 }
 
+// FOOTER
+.footer-container {
+  position: relative;
+  background: white;
+  border-top: 1px solid #dce0e0;
+  padding: 20px;
+  .footer {
+    max-width: 1440px;
+    margin: auto;
+  }
+}
+.sticky-footer {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  overflow: hidden;
+}
 
 // COMMON
 $success-icon: '/assets/images/success.png';

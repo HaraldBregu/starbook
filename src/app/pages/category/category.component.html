@@ -6,14 +6,14 @@
           <h1>{{category.title}}</h1>
           <p>{{category.description}}</p>
         </div>
-        <div class="professional-container">
-          <!-- <div class="picture" [ngStyle]="{'background-image' : ' url(' + images_url + 'categories/'+ category._id + '/avatar/0' + ')'}"></div> -->
-          <!-- <div class="actions">
-            <button class="btn btn-success" type="button" name="button" (click)="checkOut()">Sopraluogo</button>
-            <button class="btn btn-danger" type="button" name="button" (click)="checkOut()">Prenota</button>
-            <button class="btn btn-warning" type="button" name="button" (click)="checkOut()">Preventivo</button>
-            <button class="btn btn-warning" type="button" name="button" (click)="checkOut()">Consulenza</button>
-          </div> -->
+      </div>
+      <div class="tabs-container">
+        <div class="tabs">
+          <div class="tab-container" *ngFor="let action of category.direct_actions">
+            <div class="tab" (click)="showDirectAction(action)" [ngClass]="action.type">
+              {{action.title}}
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -52,66 +52,20 @@
   <div class="services-container">
     <h3>Scegli un servizio</h3>
     <div class="service-container" *ngFor="let service of services">
-      <div class="service noselect" (click)="showServicePage(service)" [ngStyle]="{'background-image' : ' url(' +  service.image_url + ')'}">
+      <div class="service" (click)="showServicePage(service)" [ngStyle]="{'background-image' : ' url(' +  service.image_url + ')'}">
         <div class="title">
           <p>{{service.title}}</p>
         </div>
-        <!-- <div class="overlay">
-        </div> -->
       </div>
     </div>
   </div>
-  <!-- <div class="contact-container">
-    <div class="form-container">
-      <div class="header">
-        <h3>Hai bisogno di un servizio particolare? Invia una richiesta.</h3>
-      </div>
-      <form>
-        <div class="row">
-          <div class="col-md-6">
-            <div class="form-group">
-              <label for="firstNameInput">Nome</label>
-              <input type="firstname" placeholder="Nome" class="form-control" [ngClass]="{'error-input': request_state.firstname_error}" id="firstNameInput" [(ngModel)]="Request.firstname" [ngModelOptions]="{standalone: true}">
-            </div>
-          </div>
-          <div class="col-md-6">
-            <div class="form-group">
-              <label for="lastNameInput">Cognome</label>
-              <input type="lastname" placeholder="Cognome" class="form-control" [ngClass]="{'error-input': request_state.lastname_error}" id="lastNameInput" [(ngModel)]="Request.lastname" [ngModelOptions]="{standalone: true}">
-            </div>
-          </div>
-        </div>
-        <div class="form-group">
-          <label for="phoneInput">Telefono</label>
-          <input type="phone" placeholder="Numero di telefono" class="form-control" [ngClass]="{'error-input': request_state.phone_error}" id="phoneInput" [(ngModel)]="Request.phone" [ngModelOptions]="{standalone: true}">
-        </div>
-        <div class="form-group">
-          <label for="emailInput">Email</label>
-          <input type="email" placeholder="La tua mail" class="form-control" [ngClass]="{'error-input': request_state.email_error}" id="emailInput" [(ngModel)]="Request.email" [ngModelOptions]="{standalone: true}">
-        </div>
-        <div class="form-group">
-          <label for="emailInput">Messaggio</label>
-          <textarea class="form-control" placeholder="Inserisci il motivo della richiesta" rows="5" id="descriptionInput" [(ngModel)]="Request.message" [ngModelOptions]="{standalone: true}"></textarea>
-        </div>
-        <div class="form-group" *ngIf="request_state.message_success">
-          <div class="alert alert-success" role="alert">
-            {{request_state.message_success}}
-          </div>
-        </div>
-        <div class="form-group" *ngIf="request_state.message_error">
-          <div class="alert alert-danger" role="alert">
-            {{request_state.message_error}}
-          </div>
-        </div>
-        <div class="form-group">
-          <button type="button" id="next" class="btn btn-warning" (click)="joinPartner()"><i class="fa fa-circle-o-notch animate" *ngIf="request_state.loading"></i>Invia</button>
-        </div>
-      </form>
+  <div class="footer-container">
+    <div class="footer">
+      <ul>
+        <li><a routerLink="/help">Aiuto e Assistenza</a></li>
+        <li><a routerLink="/requests/service">Chiedi un servizio</a></li>
+        <li><a routerLink="/about">Chi siamo</a></li>
+      </ul>
     </div>
-  </div> -->
-  <!-- <div class="share-container">
-    <div class="share">
-      Un tuo amico potrebbe avere bisogno, invia questo servizio a lui.
-    </div>
-  </div> -->
+  </div>
 </div>

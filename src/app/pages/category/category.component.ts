@@ -39,6 +39,7 @@ export class CategoryComponent implements OnInit {
   public query: string = '';
   public results: string[] = [];
   public services = [];
+  public order = {};
 
   constructor(
     private router: Router,
@@ -77,6 +78,25 @@ export class CategoryComponent implements OnInit {
 
   }
 
+  showDirectAction(action) {
+    console.log('action: ' + JSON.stringify(action));
+    this.order['service_id'] = this.category._id
+    this.order['title'] = this.category.title;
+    this.order['details'] = [{title:this.category.title, type:"service"},{title:"Richiesta di " + action.title.toLowerCase(), type:"detail", value:""}]
+    this.order['description'] = ""
+    this.order['referral_id'] = null
+    this.order['price'] = {
+      final: 0,
+      initial: 0,
+      currency: 'eur'
+    }
+    this.order['payment'] = {upfront: action.amount}
+    this.order['timing'] = {days: 0}
+    console.log('order is: ' + JSON.stringify(this.order));
+    this.orderService.updateWizardData(this.order);
+    this.router.navigate(['order/summary']);
+    return false;
+  }
   loadServicesForCategoryId(category_id) {
     this.commonService.getAllServices({'category': category_id}).then((data) => {
       this.services = data.result;

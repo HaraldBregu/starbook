@@ -3,11 +3,13 @@ app-services {
   overflow: auto;
   padding: 70px 0 0;
   .services {
+    max-width: 1440px;
+    margin: auto;
     padding: 50px 0px;
     text-align: center;
     h1 {
-      font-weight: 300;
-      color: black;
+      // font-weight: 300;
+      color: #324978;
     }
     .services-container {
       overflow: hidden;
@@ -17,7 +19,7 @@ app-services {
     .service-box {
       display: inline-block;
       float: left;
-      width: 20%;
+      width: 25%;
       padding: 10px;
     }
     .service {

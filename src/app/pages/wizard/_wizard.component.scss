@@ -17,7 +17,7 @@ app-wizard {
       background-color: white;
       border: 1px solid #e3e3e3;
       padding: 50px 0 0;
-      max-width: 1130px;
+      max-width: 900px;
       margin: 0 auto 50px;
       .content-container {
         display: block;
@@ -28,6 +28,7 @@ app-wizard {
           text-align: left;
           margin: auto;
           overflow: auto;
+          margin-bottom: 20px;
           .summary-details {
             overflow: auto;
           }
@@ -36,14 +37,14 @@ app-wizard {
           }
           .item {
             float: left;
-            width: 50%;
+            width: 70%;
             font-size: 18px;
             font-weight: 300;
             line-height: 36px;
           }
           .amount {
             float: left;
-            width: 50%;
+            width: 30%;
             font-size: 20px;
             text-align: right;
             font-weight: 500;
@@ -70,14 +71,14 @@ app-wizard {
           overflow: auto;
           .item {
             float: left;
-            width: 50%;
+            width: 70%;
             font-size: 18px;
             font-weight: 400;
             line-height: 36px;
           }
           .amount {
             float: left;
-            width: 50%;
+            width: 30%;
             font-size: 20px;
             text-align: right;
             font-weight: 500;
@@ -89,14 +90,14 @@ app-wizard {
           padding: 10px 0;
           .item {
             float: left;
-            width: 50%;
+            width: 70%;
             font-size: 20px;
             font-weight: 400;
             line-height: 36px;
           }
           .amount {
             float: left;
-            width: 50%;
+            width: 30%;
             font-size: 28px;
             text-align: right;
             font-weight: 900;
@@ -983,7 +984,7 @@ $wizard-btn-facebook-icon: '/assets/images/fb-icon.png';
   border-right: 1px solid #e3e3e3;
   border-radius: 0;
   z-index: 1;
-  max-width: 1130px;
+  max-width: 900px;
   margin: auto;
 }
 .breadcrumb li {

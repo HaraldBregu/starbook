@@ -714,6 +714,22 @@ textarea.form-control {
   100% {
     -webkit-transform: rotate(359deg);
     transform: rotate(359deg); } }
+.footer-container {
+  position: relative;
+  background: white;
+  border-top: 1px solid #dce0e0;
+  padding: 20px; }
+  .footer-container .footer {
+    max-width: 1440px;
+    margin: auto; }
+
+.sticky-footer {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  overflow: hidden; }
+
 .success-icon {
   display: block;
   width: 100%;
@@ -4533,7 +4549,7 @@ app-category {
     app-category .category-container .category-header .overlay {
       background-color: rgba(18, 18, 18, 0.5); }
     app-category .category-container .category-header .header-content {
-      padding: 100px 0; }
+      padding: 100px 0 0; }
       app-category .category-container .category-header .header-content .header {
         max-width: 700px;
         margin: auto; }
@@ -4554,6 +4570,123 @@ app-category {
         border: 1px solid white; }
       app-category .category-container .category-header .header-content .actions {
         padding: 20px 0; }
+    app-category .category-container .category-header .tabs-container {
+      overflow: auto;
+      padding: 50px 10px; }
+      app-category .category-container .category-header .tabs-container .tabs {
+        overflow: auto;
+        height: 100%;
+        max-width: 900px;
+        margin: auto; }
+        app-category .category-container .category-header .tabs-container .tabs .tab-container {
+          display: inline-block;
+          height: 100%;
+          padding: 10px; }
+          app-category .category-container .category-header .tabs-container .tabs .tab-container .tab {
+            background: #3498db;
+            border-radius: 3px;
+            color: white;
+            padding: 15px 40px;
+            cursor: pointer;
+            font-size: 20px;
+            font-weight: 500; }
+          app-category .category-container .category-header .tabs-container .tabs .tab-container .tab:hover {
+            background: #3687bd; }
+          app-category .category-container .category-header .tabs-container .tabs .tab-container .danger {
+            background: #c0392b; }
+          app-category .category-container .category-header .tabs-container .tabs .tab-container .danger:hover {
+            background: #b62f21; }
+          app-category .category-container .category-header .tabs-container .tabs .tab-container .warning {
+            background: #f1c40f; }
+          app-category .category-container .category-header .tabs-container .tabs .tab-container .warning:hover {
+            background: #e7ba05; }
+  app-category .category-container .services-container {
+    max-width: 1440px;
+    margin: auto;
+    overflow: auto;
+    padding: 50px 10px; }
+    app-category .category-container .services-container h3 {
+      text-align: center;
+      margin-bottom: 40px; }
+    app-category .category-container .services-container .service-container {
+      float: left;
+      padding: 10px;
+      width: 25%; }
+      app-category .category-container .services-container .service-container .service {
+        position: relative;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+        color: white;
+        text-align: center;
+        height: 300px;
+        border-radius: 3px;
+        color: white;
+        cursor: pointer;
+        white-space: nowrap;
+        overflow: hidden; }
+        app-category .category-container .services-container .service-container .service .title {
+          display: block;
+          position: absolute;
+          z-index: 2;
+          font-weight: 400;
+          color: white;
+          font-size: 16px;
+          letter-spacing: 0.09px;
+          white-space: normal !important;
+          text-align: left;
+          padding: 15px;
+          bottom: 0;
+          width: 100%;
+          background: #161517; }
+        app-category .category-container .services-container .service-container .service .overlay {
+          line-height: 200px;
+          border-radius: 3px;
+          width: 100%;
+          height: 100%;
+          padding: 20px;
+          background-color: rgba(7, 43, 88, 0.6); }
+        app-category .category-container .services-container .service-container .service .overlay:hover {
+          background-color: #072b58; }
+    app-category .category-container .services-container .big-container {
+      float: left;
+      padding: 10px;
+      width: 75%; }
+  app-category .category-container .share-container {
+    padding: 50px 10px;
+    border-top: 1px solid #DBDBDB;
+    background: #f6f7f8; }
+    app-category .category-container .share-container .share {
+      padding: 10px;
+      max-width: 1440px;
+      margin: auto; }
+      app-category .category-container .share-container .share .title {
+        text-align: center; }
+  app-category .category-container .footer-container .footer ul {
+    text-align: center; }
+    app-category .category-container .footer-container .footer ul li {
+      display: inline-block;
+      padding: 0 10px;
+      font-size: 18px; }
+  app-category .category-container .contact-container {
+    max-width: 1440px;
+    margin: auto;
+    padding: 50px 10px; }
+    app-category .category-container .contact-container .form-container {
+      max-width: 900px;
+      margin: auto;
+      background: white;
+      padding: 40px;
+      border: 1px solid #DBDBDB; }
+      app-category .category-container .contact-container .form-container .btn {
+        padding: 0;
+        margin: 0;
+        font-size: 20px;
+        height: 50px;
+        border-radius: 0px;
+        width: 100%; }
+      app-category .category-container .contact-container .form-container .header {
+        padding-bottom: 30px; }
   app-category .category-container .search-container {
     padding: 20px;
     background: #161517; }
@@ -4654,98 +4787,6 @@ app-category {
         right: 13%;
         width: 25px;
         height: 25px; }
-  app-category .category-container .services-container {
-    max-width: 1440px;
-    margin: auto;
-    overflow: auto;
-    padding: 50px 10px; }
-    app-category .category-container .services-container h3 {
-      text-align: center;
-      margin-bottom: 30px; }
-    app-category .category-container .services-container .service-container {
-      float: left;
-      padding: 10px;
-      width: 25%; }
-      app-category .category-container .services-container .service-container .service {
-        position: relative;
-        background-size: cover;
-        background-repeat: no-repeat;
-        background-position: center;
-        color: white;
-        text-align: center;
-        height: 300px;
-        border-radius: 3px;
-        color: white;
-        cursor: pointer;
-        white-space: nowrap;
-        overflow: hidden; }
-        app-category .category-container .services-container .service-container .service .title {
-          display: block;
-          position: absolute;
-          z-index: 2;
-          font-weight: 400;
-          color: white;
-          font-size: 16px;
-          letter-spacing: 0.09px;
-          white-space: normal !important;
-          text-align: left;
-          padding: 15px;
-          bottom: 0;
-          width: 100%;
-          background: #161517; }
-        app-category .category-container .services-container .service-container .service .overlay {
-          line-height: 200px;
-          border-radius: 3px;
-          width: 100%;
-          height: 100%;
-          padding: 20px;
-          background-color: rgba(7, 43, 88, 0.6); }
-        app-category .category-container .services-container .service-container .service .overlay:hover {
-          background-color: #072b58; }
-  app-category .category-container .bullets-container {
-    padding: 20px;
-    background: #161517; }
-    app-category .category-container .bullets-container .bullets {
-      color: white;
-      max-width: 1440px;
-      margin: auto; }
-      app-category .category-container .bullets-container .bullets p {
-        font-size: 14px !important;
-        color: rgba(255, 255, 255, 0.8); }
-  app-category .category-container .contact-container {
-    max-width: 1440px;
-    margin: auto;
-    padding: 50px 10px; }
-    app-category .category-container .contact-container .form-container {
-      max-width: 900px;
-      margin: auto;
-      background: white;
-      padding: 40px;
-      border: 1px solid #DBDBDB; }
-      app-category .category-container .contact-container .form-container .btn {
-        padding: 0;
-        margin: 0;
-        font-size: 20px;
-        height: 50px;
-        border-radius: 0px;
-        width: 100%; }
-      app-category .category-container .contact-container .form-container .header {
-        padding-bottom: 30px; }
-  app-category .category-container .share-container {
-    padding: 50px 10px;
-    border-top: 1px solid #DBDBDB; }
-    app-category .category-container .share-container .share {
-      max-width: 1440px;
-      margin: auto; }
-  app-category .category-container .how-to-container {
-    max-width: 1440px;
-    margin: auto; }
-    app-category .category-container .how-to-container .box-container {
-      padding: 20px; }
-      app-category .category-container .how-to-container .box-container .box {
-        background: white; }
-  app-category .category-container .footer-container {
-    padding: 100px 0; }
   @media (max-width: 768px) {
     app-category .category-container .services-container .service-container {
       width: 50%; } }
@@ -4781,11 +4822,10 @@ app-service {
     margin-bottom: 20px;
     background-color: #161517;
     color: white;
-    border: 1px solid #2A292B;
     width: 100%; }
     app-service .header-cover img {
       width: 100%;
-      height: 500px;
+      height: 400px;
       object-fit: cover;
       object-position: center center; }
     app-service .header-cover .details {
@@ -5117,11 +5157,12 @@ app-services {
   overflow: auto;
   padding: 70px 0 0; }
   app-services .services {
+    max-width: 1440px;
+    margin: auto;
     padding: 50px 0px;
     text-align: center; }
     app-services .services h1 {
-      font-weight: 300;
-      color: black; }
+      color: #324978; }
     app-services .services .services-container {
       overflow: hidden;
       margin: 40px 0 0;
@@ -5129,7 +5170,7 @@ app-services {
     app-services .services .service-box {
       display: inline-block;
       float: left;
-      width: 20%;
+      width: 25%;
       padding: 10px; }
     app-services .services .service {
       display: block;
@@ -6534,23 +6575,6 @@ app-profile .page-container {
   app-profile .top-bar li {
     padding: 0 10px; } }
 
-.sticky-footer {
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  overflow: hidden; }
-
-.footer {
-  background: white;
-  padding: 20px;
-  font-size: 16px;
-  border-top: 1px solid #dce0e0; }
-
-.footer-container {
-  max-width: 1130px;
-  margin: auto; }
-
 .dark-screen {
   display: block;
   position: fixed;
@@ -7253,7 +7277,7 @@ app-wizard {
       background-color: white;
       border: 1px solid #e3e3e3;
       padding: 50px 0 0;
-      max-width: 1130px;
+      max-width: 900px;
       margin: 0 auto 50px; }
       app-wizard .wizard .wizard-container .content-container {
         display: block;
@@ -7263,20 +7287,21 @@ app-wizard {
         app-wizard .wizard .wizard-container .content-container .header-summary {
           text-align: left;
           margin: auto;
-          overflow: auto; }
+          overflow: auto;
+          margin-bottom: 20px; }
           app-wizard .wizard .wizard-container .content-container .header-summary .summary-details {
             overflow: auto; }
           app-wizard .wizard .wizard-container .content-container .header-summary h3 {
             margin-bottom: 10px; }
           app-wizard .wizard .wizard-container .content-container .header-summary .item {
             float: left;
-            width: 50%;
+            width: 70%;
             font-size: 18px;
             font-weight: 300;
             line-height: 36px; }
           app-wizard .wizard .wizard-container .content-container .header-summary .amount {
             float: left;
-            width: 50%;
+            width: 30%;
             font-size: 20px;
             text-align: right;
             font-weight: 500; }
@@ -7297,13 +7322,13 @@ app-wizard {
           overflow: auto; }
           app-wizard .wizard .wizard-container .content-container .timing .item {
             float: left;
-            width: 50%;
+            width: 70%;
             font-size: 18px;
             font-weight: 400;
             line-height: 36px; }
           app-wizard .wizard .wizard-container .content-container .timing .amount {
             float: left;
-            width: 50%;
+            width: 30%;
             font-size: 20px;
             text-align: right;
             font-weight: 500; }
@@ -7313,13 +7338,13 @@ app-wizard {
           padding: 10px 0; }
           app-wizard .wizard .wizard-container .content-container .payment .item {
             float: left;
-            width: 50%;
+            width: 70%;
             font-size: 20px;
             font-weight: 400;
             line-height: 36px; }
           app-wizard .wizard .wizard-container .content-container .payment .amount {
             float: left;
-            width: 50%;
+            width: 30%;
             font-size: 28px;
             text-align: right;
             font-weight: 900; }
@@ -7935,7 +7960,7 @@ app-wizard {
   border-right: 1px solid #e3e3e3;
   border-radius: 0;
   z-index: 1;
-  max-width: 1130px;
+  max-width: 900px;
   margin: auto; }
 
 .breadcrumb li {

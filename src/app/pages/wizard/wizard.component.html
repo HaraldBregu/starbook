@@ -24,13 +24,13 @@
         <div class="item">Durata del lavoro</div>
         <div class="amount">{{daysString(Order.timing.days)}}</div>
       </div>
-      <div class="line"></div>
+      <!-- <div class="line"></div>
       <div class="payment">
         <div class="initial" *ngIf="Order.price.initial>Order.price.final">
           <div class="item">Totale iniziale</div>
           <div class="amount">{{Order.price.initial/100}}€</div>
         </div>
-        <div class="total">
+        <div class="total" *ngIf="Order.price.final>0">
           <div class="item">Totale</div>
           <div class="amount">{{Order.price.final/100}}€</div>
         </div>
@@ -38,10 +38,10 @@
           <div class="item">Acconto</div>
           <div class="amount">{{Order.payment.upfront/100}}€</div>
         </div>
-      </div>
+      </div> -->
       <form>
         <div class="form-group">
-          <textarea class="form-control" placeholder="Inserisci dei dati aggiuntivi alla tua richiesta" rows="5" id="descriptionInput" [(ngModel)]="Order.description" [ngModelOptions]="{standalone: true}"></textarea>
+          <textarea class="form-control" placeholder="Inserisci una descrizione" rows="5" id="descriptionInput" [(ngModel)]="Order.description" [ngModelOptions]="{standalone: true}"></textarea>
         </div>
         <div class="actions">
           <div class="form-group">
@@ -51,7 +51,7 @@
       </form>
     </div>
     <div class="container footer-details">
-      <p><i class="fa fa-info-circle" aria-hidden="true"></i> Inserisci una descrizione più dettagliata della richiesta. In questo modo ci assicuriamo che il tecnico avra più informazioni prima i effetuare l'intervento. Se nel corso del opera si richiedono altri interventi, il tecnico può incrementare il totale.</p>
+      <p><i class="fa fa-info-circle" aria-hidden="true"></i> Inserisci una descrizione più dettagliata della richiesta. In questo modo ci assicuriamo che il tecnico avra più informazioni prima di effetuare l'intervento. Se nel corso del opera si richiedono altri interventi, il tecnico può incrementare il totale.</p>
     </div>
   </div>
   <div class="wizard-container" *ngIf="step === 'address'">
@@ -130,12 +130,19 @@
         <div class="amount">{{daysString(Order.timing.days)}}</div>
       </div>
       <div class="line"></div>
+      <div class="address">
+        <p><strong>Indirizzo: </strong><span>{{Order.address.street}} {{Order.address.street_number}}, {{Order.address.city}}</span></p>
+      </div>
+      <div class="date">
+        <p><strong>Data: </strong><span>{{formated_date}}</span></p>
+      </div>
+      <div class="line"></div>
       <div class="payment">
         <div class="initial" *ngIf="Order.price.initial>Order.price.final">
           <div class="item">Totale iniziale</div>
           <div class="amount">{{Order.price.initial/100}}€</div>
         </div>
-        <div class="total">
+        <div class="total" *ngIf="Order.price.final>0">
           <div class="item">Totale</div>
           <div class="amount">{{Order.price.final/100}}€</div>
         </div>
@@ -143,13 +150,6 @@
           <div class="item">Acconto</div>
           <div class="amount">{{Order.payment.upfront/100}}€</div>
         </div>
-      </div>
-      <div class="line"></div>
-      <div class="address">
-        <p><strong>Indirizzo: </strong><span>{{Order.address.street}} {{Order.address.street_number}}, {{Order.address.city}}</span></p>
-      </div>
-      <div class="date">
-        <p><strong>Data: </strong><span>{{formated_date}}</span></p>
       </div>
       <div class="messages" [hidden]="!order_status.error_message">
         <p><small>{{order_status.error_message}}</small></p>

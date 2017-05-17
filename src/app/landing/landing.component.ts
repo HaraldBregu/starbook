@@ -352,9 +352,6 @@ export class LandingComponent implements OnInit {
     this.router.navigate(['category/', category.title.replace(/\s+/g, '-').toLowerCase()]);
   }
 
-
-
-
   selectService(service) {
     // this.router.navigate(['landing/' + service.title.toLowerCase()]);
     this.router.navigate(['category/' + service.title.toLowerCase()]);

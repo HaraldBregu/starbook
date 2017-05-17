@@ -269,21 +269,3 @@ app-profile {
     }
   }
 }
-
-.sticky-footer {
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  overflow: hidden;
-}
-.footer {
-  background: white;
-  padding: 20px;
-  font-size: 16px;
-  border-top: 1px solid #dce0e0;
-}
-.footer-container {
-  max-width: 1130px;
-  margin: auto;
-}
