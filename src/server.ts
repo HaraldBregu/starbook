@@ -48,23 +48,23 @@ if (environment.production) {
   //   port: 443,
   //   trustProxy: true
   // }))
-  app.all('/*', function(req: any, res: any, next) {
-    // console.log('prot: ' + req.protocol);
-    // console.log('host: ' + req.headers.host);
-    // console.log('headers: ' + req.headers);
-    // console.log('headers: ' + JSON.stringify(req.headers));
-
-    if (!/https/.test(req.protocol) && req.headers.host === "www.starbook.co"){
-      res.status(301).redirect("https://" + req.headers.host + req.url);
-    } else {
-      next()
-    }
-    // if(!/^www\./.test(req.headers.host)) {
-    //   res.status(301).redirect(req.protocol + '://www.' + req.headers.host + req.url)
-    // } else {
-    //   next()
-    // }
-  })
+  // app.all('/*', function(req: any, res: any, next) {
+  //   // console.log('prot: ' + req.protocol);
+  //   // console.log('host: ' + req.headers.host);
+  //   // console.log('headers: ' + req.headers);
+  //   // console.log('headers: ' + JSON.stringify(req.headers));
+  //
+  //   if (!/https/.test(req.protocol) && req.headers.host === "www.starbook.co"){
+  //     res.status(301).redirect("https://" + req.headers.host + req.url);
+  //   } else {
+  //     next()
+  //   }
+  //   // if(!/^www\./.test(req.headers.host)) {
+  //   //   res.status(301).redirect(req.protocol + '://www.' + req.headers.host + req.url)
+  //   // } else {
+  //   //   next()
+  //   // }
+  // })
 }
 
 /**
