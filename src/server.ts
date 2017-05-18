@@ -42,20 +42,20 @@ app.set('views', path.join(ROOT, 'client'));
 app.set('view engine', 'html');
 
 /* There are code from old server */
-// if (environment.production) {
-//   app.use('/', require('redirect-https')({
-//     body: '',
-//     port: 443,
-//     trustProxy: true
-//   }))
-//   app.all('/*', function(req: any, res: any, next) {
-//     if(!/^www\./.test(req.headers.host)) {
-//       res.status(301).redirect(req.protocol + '://www.' + req.headers.host + req.url)
-//     } else {
-//       next()
-//     }
-//   })
-// }
+if (environment.production) {
+  // app.use('/', require('redirect-https')({
+  //   body: '',
+  //   port: 443,
+  //   trustProxy: true
+  // }))
+  app.all('/*', function(req: any, res: any, next) {
+    if(!/^www\./.test(req.headers.host)) {
+      res.status(301).redirect(req.protocol + '://www.' + req.headers.host + req.url)
+    } else {
+      next()
+    }
+  })
+}
 
 /**
  * Enable compression
