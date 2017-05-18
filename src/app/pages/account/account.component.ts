@@ -202,7 +202,7 @@ export class AccountComponent implements OnInit {
       })
 
       this.seoObject['url'] = 'https://www.starbook.co' + this.router.url;
-      this.seoObject['image_url'] = "https://s3-eu-west-1.amazonaws.com/starbook-s3/website/icon_512.png";
+      this.seoObject['image_url'] = "https://s3-eu-west-1.amazonaws.com/starbook-s3/website/icon_256.png";
 
       this.seoService.setTitle(this.seoObject['title']);
       this.seoService.setMetaElem('description', this.seoObject['description']);
