@@ -3416,7 +3416,7 @@ app-landing {
         background-color: rgba(0, 0, 0, 0.5); }
       app-landing .landing-container .header-container .header {
         color: white;
-        padding: 160px 0;
+        padding: 160px 30px;
         text-align: center; }
         app-landing .landing-container .header-container .header .actions {
           padding: 40px 0 0; }
@@ -3637,7 +3637,7 @@ app-landing {
         max-width: 1250px;
         margin: auto; }
       app-landing .landing-container .professional-container .text {
-        padding: 120px; }
+        padding: 80px; }
         app-landing .landing-container .professional-container .text h1 {
           color: #324976;
           font-weight: 700;
@@ -3695,8 +3695,9 @@ app-landing {
           color: #4a4a4a; }
       app-landing .landing-container .partnership-container button {
         margin-top: 30px;
-        padding: 0 40px;
-        font-weight: 700; }
+        padding: 0 50px;
+        font-weight: 700;
+        height: 60px; }
     app-landing .landing-container .prefooter-container {
       overflow: auto;
       color: rgba(255, 255, 255, 0.7);
@@ -4073,10 +4074,27 @@ app-landing {
       border-top: 1px solid #dce0e0; }
   @media (max-width: 1024px) {
     app-landing .landing-container .header-container .header {
-      padding: 90px 0; }
+      padding: 70px 30px; }
     app-landing .landing-container .services-container {
       padding: 30px; } }
+  @media (max-width: 768px) {
+    app-landing .landing-container .professional-container .text {
+      padding: 50px; }
+    app-landing .landing-container .professional-container .image {
+      height: 455px; }
+    app-landing .landing-container .partnership-container {
+      height: 450px; } }
   @media (max-width: 425px) {
+    app-landing .landing-container .professional-container .text {
+      padding: 30px 20px; }
+    app-landing .landing-container .professional-container .image {
+      height: 321px; }
+    app-landing .landing-container .partnership-container {
+      padding: 30px; }
+    app-landing .landing-container .header-container .header .search .search-field {
+      width: 80%; }
+    app-landing .landing-container .header-container .header .search .search-button {
+      width: 20%; }
     app-landing .landing-container .header {
       padding: 50px 10px; }
     app-landing .landing-container .advantages {
@@ -4099,6 +4117,11 @@ app-landing {
       padding: 50px 20px; }
     app-landing .landing-container .share {
       padding: 50px 10px; } }
+  @media (max-width: 375px) {
+    app-landing .landing-container .header-container .header .search .search-field {
+      width: 70%; }
+    app-landing .landing-container .header-container .header .search .search-button {
+      width: 30%; } }
 
 app-home {
   display: block;

@@ -27,14 +27,48 @@ const routes: Routes = [
     path: '',
     component: LandingComponent
   },
+
   {
     path: 'category/:category',
     component: CategoryComponent
+  },
+
+  {
+    path: 'account',
+    component: AccountComponent
   },
   {
     path: 'account/:page',
     component: AccountComponent
   },
+
+  {
+    path: 'orders',
+    component: OrdersComponent
+  },
+  {
+    path: 'orders/:page',
+    component: OrdersComponent
+  },
+  {
+    path: 'order/:step',
+    component: WizardComponent
+  },
+
+  {
+    path: 'profile',
+    component: ProfileComponent
+  },
+  {
+    path: 'profile/:page',
+    component: ProfileComponent
+  },
+
+  {
+    path: 'facebook',
+    component: FacebookComponent
+  },
+
   {
     path: 'contact',
     component: ContactComponent
@@ -65,30 +99,6 @@ const routes: Routes = [
     data: {isFindField: true}
   },
   {
-    path: 'orders',
-    component: OrdersComponent
-  },
-  {
-    path: 'orders/:page',
-    component: OrdersComponent
-  },
-  {
-    path: 'profile',
-    component: ProfileComponent
-  },
-  {
-    path: 'profile/:page',
-    component: ProfileComponent
-  },
-  {
-    path: 'facebook',
-    component: FacebookComponent
-  },
-  {
-    path: 'order/:step',
-    component: WizardComponent
-  },
-  {
     path: 'requests',
     component: RequestsComponent
   },
@@ -104,14 +114,14 @@ const routes: Routes = [
     path: 'share/:page',
     component: ShareComponent
   },
-  {
-    path: 'blog',
-    component: BlogComponent
-  },
-  {
-    path: 'blog/:page',
-    component: BlogComponent
-  },
+  // {
+  //   path: 'blog',
+  //   component: BlogComponent
+  // },
+  // {
+  //   path: 'blog/:page',
+  //   component: BlogComponent
+  // },
 
   {
     path: 'info/help',
@@ -121,12 +131,10 @@ const routes: Routes = [
     path: 'info/legal',
     component: LegalComponent
   },
-
   {
     path: 'info/about',
     component: AboutComponent
   }
-
 ];
 
 export const routing: ModuleWithProviders = RouterModule.forRoot(routes);

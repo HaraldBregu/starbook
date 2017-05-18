@@ -120,6 +120,8 @@ if (isBrowser) {
   imports.push(CalendarModule);
   let AutoCompleteModule = require('primeng/components/autocomplete/autocomplete').AutoCompleteModule;
   imports.push(AutoCompleteModule);
+  // let ClickOutsideModule = require('ng2-click-outside/src/click-outside.module').ClickOutsideModule;
+  // imports.push(ClickOutsideModule);
 }
 else {
   let CalendarMockComponent = require('./mocks/calendar.component').CalendarMockComponent;

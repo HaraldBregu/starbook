@@ -15,7 +15,7 @@ app-landing {
       }
       .header {
         color: white;
-        padding: 160px 0;
+        padding: 160px 30px;
         text-align: center;
         .actions {
           padding: 40px 0 0;
@@ -286,7 +286,7 @@ app-landing {
         margin: auto;
       }
       .text {
-        padding: 120px;
+        padding: 80px;
         h1 {
           color: #324976;
           font-weight: 700;
@@ -357,8 +357,9 @@ app-landing {
       }
       button {
         margin-top: 30px;
-        padding: 0 40px;
+        padding: 0 50px;
         font-weight: 700;
+        height: 60px;
       }
     }
     .prefooter-container {
@@ -841,7 +842,7 @@ app-landing {
     .landing-container {
       .header-container {
         .header {
-          padding: 90px 0;
+          padding: 70px 30px;
         }
       }
       .services-container {
@@ -849,7 +850,33 @@ app-landing {
       }
     }
   }
+  @media (max-width: 768px) {
+    .landing-container .professional-container .text {
+      padding: 50px;
+    }
+    .landing-container .professional-container .image {
+      height: 455px;
+    }
+    .landing-container .partnership-container {
+      height: 450px;
+    }
+  }
   @media (max-width: 425px) {
+    .landing-container .professional-container .text {
+      padding: 30px 20px;
+    }
+    .landing-container .professional-container .image {
+      height: 321px;
+    }
+    .landing-container .partnership-container {
+      padding: 30px;
+    }
+    .landing-container .header-container .header .search .search-field {
+      width: 80%;
+    }
+    .landing-container .header-container .header .search .search-button {
+      width: 20%;
+    }
     .landing-container {
       .header {
         padding: 50px 10px;
@@ -888,5 +915,12 @@ app-landing {
       }
     }
   }
-
+  @media (max-width: 375px) {
+    .landing-container .header-container .header .search .search-field {
+      width: 70%;
+    }
+    .landing-container .header-container .header .search .search-button {
+      width: 30%;
+    }
+  }
 }

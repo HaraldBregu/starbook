@@ -40,6 +40,7 @@ export class CategoryComponent implements OnInit {
   public results: string[] = [];
   public services = [];
   public order = {};
+  public seoObject = {}
 
   constructor(
     private router: Router,
@@ -51,24 +52,22 @@ export class CategoryComponent implements OnInit {
     private commonService: CommonService) {
 
       let category = this.commonService.getCategory();
-      // console.log('category is: ' + JSON.stringify(data));
       if (isBrowser) {window.scrollTo(0, 0);}
-
       if (category) {
         this.category = category;
         this.navigationService.updateMessage(this.category.title);
         this.loadServicesForCategoryId(this.category._id);
+        this.updateSeoForObject(this.category);
        } else {
         this.route.params.subscribe(params => {
           let category = params['category'];
           this.commonService.getCategoryById(category).then((data) => {
             this.category = data.result;
+            this.updateSeoForObject(this.category);
             this.navigationService.updateMessage(this.category.title);
             this.loadServicesForCategoryId(this.category._id);
-            // console.log('category from server is: ' + JSON.stringify(data));
           }).catch((error) => {
             this.router.navigate(['']);
-
           });
         })
       }
@@ -77,9 +76,26 @@ export class CategoryComponent implements OnInit {
   ngOnInit() {
 
   }
-
+  updateSeoForObject(category) {
+    this.seoObject['title'] = category.title;
+    this.seoObject['description'] = category.description;
+    this.seoObject['url'] = 'https://www.starbook.co' + this.router.url;
+    this.seoObject['image_url'] = category.image_url;
+    this.seoService.setTitle(this.seoObject['title']);
+    this.seoService.setMetaElem('description', this.seoObject['description']);
+    this.seoService.setOgElem('twitter:card', "summary_large_image");
+    this.seoService.setOgElem('twitter:title', this.seoObject['title']);
+    this.seoService.setOgElem('twitter:site', "@starbookco");
+    this.seoService.setOgElem('twitter:creator', "@HaraldBregu");
+    this.seoService.setOgElem('twitter:description', this.seoObject['description']);
+    this.seoService.setOgElem('twitter:image', this.seoObject['image_url']);
+    this.seoService.setOgElem('og:title', this.seoObject['title']);
+    this.seoService.setOgElem('og:description', this.seoObject['description']);
+    this.seoService.setOgElem('og:url', this.seoObject['url']);
+    this.seoService.setOgElem('og:image', this.seoObject['image_url']);
+    this.seoService.setOgElem('og:image:secure_url', this.seoObject['image_url']);
+  }
   showDirectAction(action) {
-    console.log('action: ' + JSON.stringify(action));
     this.order['service_id'] = this.category._id
     this.order['title'] = this.category.title;
     this.order['details'] = [{title:this.category.title, type:"service"},{title:"Richiesta di " + action.title.toLowerCase(), type:"detail", value:""}]
@@ -92,7 +108,6 @@ export class CategoryComponent implements OnInit {
     }
     this.order['payment'] = {upfront: action.amount}
     this.order['timing'] = {days: 0}
-    console.log('order is: ' + JSON.stringify(this.order));
     this.orderService.updateWizardData(this.order);
     this.router.navigate(['order/summary']);
     return false;
@@ -100,17 +115,13 @@ export class CategoryComponent implements OnInit {
   loadServicesForCategoryId(category_id) {
     this.commonService.getAllServices({'category': category_id}).then((data) => {
       this.services = data.result;
-      // console.log('services from category is: ' + JSON.stringify(this.services));
     }).catch((error) => {
-      // console.log('error: ' + error);
     });
   }
-
   showServicePage(service) {
     this.commonService.setService(service)
     this.router.navigate(['services', service.title.replace(/\s+/g, '-')]);
   }
-
   checkOut() {
     this.router.navigate(['order/summary']);
     return false;

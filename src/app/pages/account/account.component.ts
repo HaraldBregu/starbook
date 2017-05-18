@@ -196,6 +196,7 @@ export class AccountComponent implements OnInit {
              }
              this.new_password_creation.code = code;
            } else {
+             this.goToHomePage()
            }
         });
       })
@@ -205,14 +206,12 @@ export class AccountComponent implements OnInit {
 
       this.seoService.setTitle(this.seoObject['title']);
       this.seoService.setMetaElem('description', this.seoObject['description']);
-
       this.seoService.setOgElem('twitter:card', "summary_large_image");
       this.seoService.setOgElem('twitter:title', this.seoObject['title']);
       this.seoService.setOgElem('twitter:site', "@starbookco");
       this.seoService.setOgElem('twitter:creator', "@HaraldBregu");
       this.seoService.setOgElem('twitter:description', this.seoObject['description']);
       this.seoService.setOgElem('twitter:image', this.seoObject['image_url']);
-
       this.seoService.setOgElem('og:title', this.seoObject['title']);
       this.seoService.setOgElem('og:description', this.seoObject['description']);
       this.seoService.setOgElem('og:url', this.seoObject['url']);

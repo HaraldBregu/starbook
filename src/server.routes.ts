@@ -12,10 +12,8 @@
 export const routes: string[] = [
   'category/:category',
 
+  'account',
   'account/:page',
-
-  'landing',
-  'landing/:page',
 
   'services',
   'services/:id',
@@ -29,17 +27,14 @@ export const routes: string[] = [
 
   'facebook',
 
-  'recruiter',
-  'recruiter/:page',
-
   'requests',
   'requests/:page',
 
   'share',
   'share/:page',
 
-  'blog',
-  'blog/:page',
+  // 'blog',
+  // 'blog/:page',
 
   'contact',
   'contact/:page',
