@@ -8279,7 +8279,8 @@ app-account {
     left: 0;
     right: 0;
     bottom: 0;
-    overflow: auto; }
+    overflow: auto;
+    -webkit-overflow-scrolling: touch; }
     app-account .account-container .account {
       border: 1px solid #DBDBDB;
       background: white;
