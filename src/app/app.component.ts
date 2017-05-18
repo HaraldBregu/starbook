@@ -102,6 +102,8 @@ export class AppComponent implements OnInit, OnDestroy {
   clickBrandLogo() {
     if (this.screenWidth <= 425) {
       this.collapsed = !this.collapsed;
+    } else {
+      this.router.navigate(['']);
     }
   }
 

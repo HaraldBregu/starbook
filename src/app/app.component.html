@@ -50,28 +50,15 @@
         <a class="nav-link profile" routerLink="/profile/general" routerLinkActive="active" (click)="toggleMenu()"><i class="fa fa-user-circle-o" aria-hidden="true"> </i> {{auth.profile.fullname}}</a>
       </li>
     </ul>
+
     <!--  Collapsed not authenticated -->
     <ul class="nav navbar-nav float-xs-right" *ngIf="auth === false && browser" [ngClass]="{'collapse':!collapsed}">
-      <!-- <li class="nav-item">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
-        <ul class="dropdown-menu">
-          <li><a href="#">Action</a></li>
-          <li><a href="#">Another action</a></li>
-          <li><a href="#">Something else here</a></li>
-          <li role="separator" class="divider"></li>
-          <li><a href="#">Separated link</a></li>
-        </ul>
-      </li> -->
+      <li class="nav-item" *ngIf="collapsed">
+        <a class="nav-link home" routerLink="" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" (click)="updateTabMenu(true)">Home</a>
+      </li>
       <li class="nav-item register-item">
         <a class="nav-link profile" (click)="signupAsProfessional()">Iscriviti come professionista</a>
       </li>
-
-      <!-- <li class="nav-item register-item">
-        <a class="nav-link profile" (click)="signupAsProfessional()">Iscriviti come professionista</a>
-      </li> -->
-      <!-- <li class="nav-item register-item">
-        <a class="nav-link profile" (click)="getRegistrationPopup()">Registrati</a>
-      </li> -->
       <li class="nav-item">
         <a class="nav-link profile" (click)="getLoginPopup()">Accedi</a>
       </li>

@@ -52,6 +52,9 @@ app-account {
           line-height: inherit;
         }
       }
+      .loader {
+        padding: 30px;
+      }
     }
   }
 
@@ -60,6 +63,7 @@ app-account {
       .account {
         margin: 0;
         padding: 20px;
+        height: 100%;
       }
     }
   }

@@ -8319,10 +8319,13 @@ app-account {
         app-account .account-container .account .header h6 {
           font-weight: 300;
           line-height: inherit; }
+      app-account .account-container .account .loader {
+        padding: 30px; }
   @media (max-width: 425px) {
     app-account .account-container .account {
       margin: 0;
-      padding: 20px; } }
+      padding: 20px;
+      height: 100%; } }
 
 app-requests {
   display: block;

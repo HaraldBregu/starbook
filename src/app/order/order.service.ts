@@ -50,8 +50,6 @@ export class OrderService {
       }
     }
     this.api = this.protocol + "://" + this.hostname + "/" + this.api_version + "/";
-
-    console.log('this api is: ' + this.api );
   }
 
   makeEvent(event) {

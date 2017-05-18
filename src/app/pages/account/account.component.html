@@ -158,42 +158,53 @@
       </div>
     </form>
   </div>
-
-  <div class="email-verification" *ngIf="page==='email_verification'">
-    <h1>{{email_verification.title}}</h1>
-    <div class="popup-spinner" *ngIf="email_verification.spinner.visible">
-      <svg width='100px' height='100px' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid" class="uil-ring">
-        <rect x="0" y="0" width="100" height="100" fill="none" class="bk"></rect>
-        <circle cx="50" cy="50" r="45" stroke-dasharray="169.64600329384882 113.09733552923257" stroke="#7FC443" fill="none" stroke-width="4">
-          <animateTransform attributeName="transform" type="rotate" values="0 50 50;180 50 50;360 50 50;" keyTimes="0;0.5;1" dur="1s" repeatCount="indefinite" begin="0s"></animateTransform>
-        </circle>
-      </svg>
+  <div class="account" *ngIf="page==='email_verification'">
+    <div class="header text-center">
+      <h3>{{email_verification.title}}</h3>
     </div>
-    <div class="success-icon" *ngIf="email_verification.success.visible"><span></span></div>
+    <div class="loader text-center">
+      <div class="popup-spinner" *ngIf="email_verification.spinner.visible">
+        <svg width='100px' height='100px' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid" class="uil-ring">
+          <rect x="0" y="0" width="100" height="100" fill="none" class="bk"></rect>
+          <circle cx="50" cy="50" r="45" stroke-dasharray="169.64600329384882 113.09733552923257" stroke="#7FC443" fill="none" stroke-width="4">
+            <animateTransform attributeName="transform" type="rotate" values="0 50 50;180 50 50;360 50 50;" keyTimes="0;0.5;1" dur="1s" repeatCount="indefinite" begin="0s"></animateTransform>
+          </circle>
+        </svg>
+      </div>
+      <div class="success-icon" *ngIf="email_verification.success.visible"><span></span></div>
+    </div>
     <div class="form-group">
       <button class="btn btn-warning" type="button" (click)="goToHomePage()" *ngIf="email_verification.button.visible">{{email_verification.button.title}}</button>
     </div>
   </div>
-  <div class="password-verification" *ngIf="page==='password_verification'">
-    <h1>{{password_verification.title}}</h1>
-    <div class="popup-spinner" *ngIf="password_verification.spinner.visible">
-      <svg width='100px' height='100px' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid" class="uil-ring">
-        <rect x="0" y="0" width="100" height="100" fill="none" class="bk"></rect>
-        <circle cx="50" cy="50" r="45" stroke-dasharray="169.64600329384882 113.09733552923257" stroke="#7FC443" fill="none" stroke-width="4">
-          <animateTransform attributeName="transform" type="rotate" values="0 50 50;180 50 50;360 50 50;" keyTimes="0;0.5;1" dur="1s" repeatCount="indefinite" begin="0s"></animateTransform>
-        </circle>
-      </svg>
+  <div class="account" *ngIf="page==='password_verification'">
+    <div class="header text-center">
+      <h1>{{password_verification.title}}</h1>
     </div>
-    <div class="success-icon" *ngIf="password_verification.success.visible"><span></span></div>
+    <div class="loader text-center">
+      <div class="popup-spinner" *ngIf="password_verification.spinner.visible">
+        <svg width='100px' height='100px' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid" class="uil-ring">
+          <rect x="0" y="0" width="100" height="100" fill="none" class="bk"></rect>
+          <circle cx="50" cy="50" r="45" stroke-dasharray="169.64600329384882 113.09733552923257" stroke="#7FC443" fill="none" stroke-width="4">
+            <animateTransform attributeName="transform" type="rotate" values="0 50 50;180 50 50;360 50 50;" keyTimes="0;0.5;1" dur="1s" repeatCount="indefinite" begin="0s"></animateTransform>
+          </circle>
+        </svg>
+      </div>
+      <div class="success-icon" *ngIf="password_verification.success.visible"><span></span></div>
+    </div>
     <div class="form-group">
       <button class="btn btn-warning" type="button" (click)="goToHomePage()" *ngIf="password_verification.button.visible">{{password_verification.button.title}}</button>
     </div>
   </div>
-  <div class="new-password" *ngIf="page==='create_new_password'">
-    <h1>{{new_password_creation.title}}</h1>
-    <div class="form-group" *ngIf="new_password_creation.password_field.visible">
-      <label>{{new_password_creation.password_field.title}}</label>
-      <input class="form-control" type="password" name="password" placeholder="" required [(ngModel)]="new_password_creation.password_field.value">
+  <div class="account" *ngIf="page==='create_new_password'">
+    <div class="header text-center">
+      <h1>{{new_password_creation.title}}</h1>
+    </div>
+    <div class="loader text-center">
+      <div class="form-group" *ngIf="new_password_creation.password_field.visible">
+        <label>{{new_password_creation.password_field.title}}</label>
+        <input class="form-control" type="password" name="password" placeholder="" required [(ngModel)]="new_password_creation.password_field.value">
+      </div>
     </div>
     <div class="form-group" *ngIf="new_password_creation.button.visible">
       <button class="btn btn-warning" type="button" (click)="createNewPassword(new_password_creation.password_field.value)">{{new_password_creation.button.title}}</button>
