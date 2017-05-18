@@ -23,22 +23,22 @@
         </div>
         <div class="line"></div>
         <div class="counts">
-          <div class="item">DURATA DEL LAVORO (Approssimativo)</div>
+          <div class="item">Durata (Approssimativo)</div>
           <div class="amount time">{{getTiming(order.price.initial)}}</div>
         </div>
         <div class="line"></div>
         <div class="counts">
-          <div class="item">TOTALE</div>
+          <div class="item">Totale</div>
           <div class="amount">{{order.price.final/100}}€</div>
         </div>
         <div class="counts">
           <div *ngFor="let milestone of order.payment.milestones; let i=index">
-            <div class="item">{{i+1}} ACCONTO</div>
+            <div class="item">{{i+1}} Acconto</div>
             <div class="amount">{{milestone.amount/100}}€</div>
           </div>
         </div>
         <div class="counts">
-          <div class="item">RESTO</div>
+          <div class="item">Resto</div>
           <div class="amount">{{order.payment.rest/100}}€</div>
         </div>
         <!-- <div class="line"></div> -->
@@ -75,16 +75,16 @@
         </div>
         <div class="line"></div>
         <div class="counts">
-          <div class="item">DURATA DEL LAVORO (Approssimativo)</div>
+          <div class="item">Durata (Approssimativo)</div>
           <div class="amount time">{{getTiming(estimate.price.initial)}}</div>
         </div>
         <div class="line"></div>
         <div class="counts" *ngIf="estimate.price.initial>estimate.price.final">
-          <div class="item">PREZZO INIZIALE</div>
+          <div class="item">Totale iniziale</div>
           <div class="amount initial">{{estimate.price.initial/100}}€</div>
         </div>
         <div class="counts">
-          <div class="item">PREZZO FINALE</div>
+          <div class="item">Totale</div>
           <div class="amount">{{estimate.price.final/100}}€</div>
         </div>
         <div class="line"></div>

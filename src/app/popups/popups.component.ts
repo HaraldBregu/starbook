@@ -549,7 +549,7 @@ export class PopupsComponent implements OnInit, OnDestroy {
               this.closePopup(true);
               this.finishPopupState = 'active';
               this.finishPopupData.title = 'Completa il profilo';
-              this.finishPopupData.text.push('Per restare in contatto con i professionisti inserisci il suo numero di telefono.');
+              this.finishPopupData.text.push('Per restare in contatto con i professionisti inserisci il tuo numero di telefono.');
               this.finishPopupData.type = 'phone';
               this.finishPopupData.data = { userData: userData };
               if (this.loginData.type === 'fromOrder') {
@@ -1086,7 +1086,7 @@ export class PopupsComponent implements OnInit, OnDestroy {
 
   setPhoneNumber() {
     this.enterPhoneFormError.phone = false;
-    if (this.enterPhoneForm.phone.length > 10) {
+    if (this.enterPhoneForm.phone.length > 9) {
       this.authServics.addPhone(this.enterPhoneForm.phone)
           .then((userData) => {
             if (userData) {
@@ -1097,7 +1097,7 @@ export class PopupsComponent implements OnInit, OnDestroy {
               } else {
                 this.finishPopupState = 'active';
                 this.finishPopupData.title = 'Complimenti!';
-                this.finishPopupData.text.push('Hai registrato con successo il suo account Starbook.');
+                this.finishPopupData.text.push('Hai registrato con successo il tuo account Starbook.');
                 this.finishPopupData.type = 'finishFacebookRegistration';
                 this.finishPopupData.data = { userData: userData };
               }

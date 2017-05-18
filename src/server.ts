@@ -11,7 +11,6 @@ import * as fs from 'fs';
 import * as http from 'http';
 import * as https from 'https';
 
-
 import { createEngine } from 'angular2-express-engine';
 import { enableProdMode } from '@angular/core';
 import { AppModule } from './app/app.node.module';
@@ -41,54 +40,6 @@ app.engine('.html', createEngine({}));
 app.set('views', path.join(ROOT, 'client'));
 app.set('view engine', 'html');
 
-/* There are code from old server */
-// if (environment.production) {
-//   // app.use('/', require('redirect-https')({
-//   //   body: '',
-//   //   port: 443,
-//   //   trustProxy: true
-//   // }))
-//   app.all('/*', function(req: any, res: any, next) {
-//     // console.log('prot: ' + req.protocol);
-//     // console.log('host: ' + req.headers.host);
-//     // console.log('headers: ' + req.headers);
-//     // console.log('headers: ' + JSON.stringify(req.headers));
-//     // console.log('url: ' + JSON.stringify(req.url));
-//
-//     if (!/https/.test(req.protocol) && (req.headers.host === "www.starbook.co")){
-//       res.redirect("https://" + req.headers.host + req.url);
-//     } else {
-//       next()
-//     }
-//     // if(!/^www\./.test(req.headers.host)) {
-//     //   res.status(301).redirect(req.protocol + '://www.' + req.headers.host + req.url)
-//     // } else {
-//     //   next()
-//     // }
-//   })
-// } else {
-//   app.all('/*', function(req: any, res: any, next) {
-//     // console.log('prot: ' + req.protocol);
-//     console.log('host: ' + req.headers.host);
-//     // console.log('headers: ' + req.headers);
-//     // console.log('headers: ' + JSON.stringify(req.headers));
-//     console.log('url: ' + JSON.stringify(req.url));
-//
-//     if (!/https/.test(req.protocol) && (req.headers.host === "localhost:4200")){
-//       // res.redirect("http://" + req.headers.host + req.url);
-//     } else {
-//       next()
-//     }
-//     next()
-//
-//     // if(!/^www\./.test(req.headers.host)) {
-//     //   res.status(301).redirect(req.protocol + '://www.' + req.headers.host + req.url)
-//     // } else {
-//     //   next()
-//     // }
-//   })
-// }
-
 /**
  * Enable compression
  */
@@ -99,10 +50,33 @@ app.use(compression());
  */
 app.use('/', express.static(path.join(ROOT, 'client'), {index: false}));
 
-/**
- * place your api routes here
- */
-// app.use('/api', api);
+
+/* There are code from old server */
+if (environment.production) {
+  // app.use('/', require('redirect-https')({
+  //   body: '',
+  //   port: 443,
+  //   trustProxy: true
+  // }))
+  // app.all('/*', function(req: any, res: any, next) {
+  //   if(!/^www\./.test(req.headers.host)) {
+  //     res.status(301).redirect(req.protocol + '://www.' + req.headers.host + req.url)
+  //   } else {
+  //     next()
+  //   }
+  // })
+} else {
+  // app.all('/*', function(req: any, res: any, next) {
+  //   console.log('host: ' + req.headers.host);
+  //   console.log('url: ' + JSON.stringify(req.url));
+  //   if (!/https/.test(req.protocol) && (req.headers.host === "localhost:4200")){
+  //     res.redirect("http://" + req.headers.host + req.url);
+  //   } else {
+  //     next()
+  //   }
+  // })
+}
+
 
 /**
  * bootstrap universal app
@@ -110,6 +84,11 @@ app.use('/', express.static(path.join(ROOT, 'client'), {index: false}));
  * @param res
  */
 function ngApp(req: any, res: any) {
+
+  // console.log('protocol: ' + req.protocol);
+  // console.log('host: ' + req.headers.host);
+  // console.log('url: ' + JSON.stringify(req.url));
+
   res.render('index', {
     req,
     res,
@@ -124,11 +103,7 @@ function ngApp(req: any, res: any) {
 /**
  * use universal for specific routes
  */
-app.get('/', ngApp, function(req, res) {
-  console.log('req: ' + req);
-  console.log('res: ' + res);
-
-});
+app.get('/', ngApp);
 app.get('/robots.txt', function(req, res) {
   res.type('text/plain')
   res.send("User-agent: *\nDisallow: \nSitemap: https://www.starbook.co/sitemap.xml");
@@ -145,13 +120,14 @@ routes.forEach(route => {
 /**
  * if you want to use universal for all routes, you can use the '*' wildcard
  */
-
 app.get('*', function (req: any, res: any) {
   res.setHeader('Content-Type', 'application/json');
   const pojo = {status: 404, message: 'No Content'};
   const json = JSON.stringify(pojo, null, 2);
   res.status(404).send(json);
 });
+
+
 
 
 /* There are code from old server (app.js) */
