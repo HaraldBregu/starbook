@@ -50,4 +50,15 @@ app-services {
       background: #161517;
     }
   }
+
+  @media (max-width: 768px) {
+    .services .service-box {
+      width: 50%;
+    }
+  }
+  @media (max-width: 425px) {
+    .services .service-box {
+      width: 100%;
+    }
+  }
 }

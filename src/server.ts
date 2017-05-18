@@ -42,30 +42,52 @@ app.set('views', path.join(ROOT, 'client'));
 app.set('view engine', 'html');
 
 /* There are code from old server */
-if (environment.production) {
-  // app.use('/', require('redirect-https')({
-  //   body: '',
-  //   port: 443,
-  //   trustProxy: true
-  // }))
-  // app.all('/*', function(req: any, res: any, next) {
-  //   // console.log('prot: ' + req.protocol);
-  //   // console.log('host: ' + req.headers.host);
-  //   // console.log('headers: ' + req.headers);
-  //   // console.log('headers: ' + JSON.stringify(req.headers));
-  //
-  //   if (!/https/.test(req.protocol) && req.headers.host === "www.starbook.co"){
-  //     res.status(301).redirect("https://" + req.headers.host + req.url);
-  //   } else {
-  //     next()
-  //   }
-  //   // if(!/^www\./.test(req.headers.host)) {
-  //   //   res.status(301).redirect(req.protocol + '://www.' + req.headers.host + req.url)
-  //   // } else {
-  //   //   next()
-  //   // }
-  // })
-}
+// if (environment.production) {
+//   // app.use('/', require('redirect-https')({
+//   //   body: '',
+//   //   port: 443,
+//   //   trustProxy: true
+//   // }))
+//   app.all('/*', function(req: any, res: any, next) {
+//     // console.log('prot: ' + req.protocol);
+//     // console.log('host: ' + req.headers.host);
+//     // console.log('headers: ' + req.headers);
+//     // console.log('headers: ' + JSON.stringify(req.headers));
+//     // console.log('url: ' + JSON.stringify(req.url));
+//
+//     if (!/https/.test(req.protocol) && (req.headers.host === "www.starbook.co")){
+//       res.redirect("https://" + req.headers.host + req.url);
+//     } else {
+//       next()
+//     }
+//     // if(!/^www\./.test(req.headers.host)) {
+//     //   res.status(301).redirect(req.protocol + '://www.' + req.headers.host + req.url)
+//     // } else {
+//     //   next()
+//     // }
+//   })
+// } else {
+//   app.all('/*', function(req: any, res: any, next) {
+//     // console.log('prot: ' + req.protocol);
+//     console.log('host: ' + req.headers.host);
+//     // console.log('headers: ' + req.headers);
+//     // console.log('headers: ' + JSON.stringify(req.headers));
+//     console.log('url: ' + JSON.stringify(req.url));
+//
+//     if (!/https/.test(req.protocol) && (req.headers.host === "localhost:4200")){
+//       // res.redirect("http://" + req.headers.host + req.url);
+//     } else {
+//       next()
+//     }
+//     next()
+//
+//     // if(!/^www\./.test(req.headers.host)) {
+//     //   res.status(301).redirect(req.protocol + '://www.' + req.headers.host + req.url)
+//     // } else {
+//     //   next()
+//     // }
+//   })
+// }
 
 /**
  * Enable compression
@@ -102,7 +124,11 @@ function ngApp(req: any, res: any) {
 /**
  * use universal for specific routes
  */
-app.get('/', ngApp);
+app.get('/', ngApp, function(req, res) {
+  console.log('req: ' + req);
+  console.log('res: ' + res);
+
+});
 app.get('/robots.txt', function(req, res) {
   res.type('text/plain')
   res.send("User-agent: *\nDisallow: \nSitemap: https://www.starbook.co/sitemap.xml");
