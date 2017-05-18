@@ -7,6 +7,7 @@ import { AnalyticsService } from '../../shared/analytics.service';
 import { AuthService } from '../../shared/auth.service';
 import { Location } from '@angular/common';
 import { ContactService } from '../../shared/contact.service';
+import { SeoService } from '../../shared/seo.service';
 
 @Component({
   selector: 'app-account',
@@ -108,6 +109,7 @@ export class AccountComponent implements OnInit {
 
   public profession = '';
   public currentUser;
+  public seoObject = {}
 
   constructor(
     private route: ActivatedRoute,
@@ -116,6 +118,7 @@ export class AccountComponent implements OnInit {
     private profileService: ProfileService,
     private analyticsService: AnalyticsService,
     private authService: AuthService,
+    private seoService: SeoService,
     private _location: Location,
     private contactService: ContactService) {
       this.emailPattern = /^[a-z0-9!#$%&'*+\/=?^_`{|}~.-]+@[a-z0-9]([a-z0-9-]*[a-z0-9])?(\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)*$/i;
@@ -128,15 +131,25 @@ export class AccountComponent implements OnInit {
         this.route.queryParams.subscribe((params: Params) => {
           if (this.page === 'login') {
             this.navigationService.updateMessage('Accedi al tuo account');
+            this.seoObject['title'] = "Iscriviti a starbook";
+            this.seoObject['description'] = "Su Starbook troverai i migliori servizi per la tua casa e i migliori professionisti della tua zona.";
+
             if (this.currentUser) {this.router.navigate(['']);}
           } else if (this.page === 'signup') {
             this.navigationService.updateMessage('Crea un nuovo account');
+            this.seoObject['title'] = "Iscriviti a starbook";
+            this.seoObject['description'] = "Su Starbook troverai i migliori servizi per la tua casa e i migliori professionisti della tua zona.";
+
             if (this.currentUser) {this.router.navigate(['']);}
           }  else if (this.page === 'professional') {
-            this.navigationService.updateMessage('Registrati come professionista');
+            this.navigationService.updateMessage('Iscriviti come professionista');
+            this.seoObject['title'] = "Registra la tua attività gratuitamente";
+            this.seoObject['description'] = "Lavori nel mondo dell'edilizia, idraulica, sei un elettrico e esegui lavori particolari artigianali nelle case? Unisciti a noi e collaboreremo per aumentare la professionalità e la clientela in modo smart.";
+
             if (this.currentUser) {this.router.navigate(['']);}
           } else if (this.page === 'email_verification') {
             this.navigationService.updateMessage('Verifica della email');
+
             var code = params['code']
             if (!code) {
               // this.goToHomePage()
@@ -156,6 +169,7 @@ export class AccountComponent implements OnInit {
             }
           } else if (this.page === 'password_verification') {
             this.navigationService.updateMessage('Verifica della nuova password');
+
             var code = params['code']
             if (!code) {
               this.goToHomePage()
@@ -185,6 +199,25 @@ export class AccountComponent implements OnInit {
            }
         });
       })
+
+      this.seoObject['url'] = 'https://www.starbook.co' + this.router.url;
+      this.seoObject['image_url'] = "https://s3-eu-west-1.amazonaws.com/starbook-s3/website/icon_512.png";
+
+      this.seoService.setTitle(this.seoObject['title']);
+      this.seoService.setMetaElem('description', this.seoObject['description']);
+
+      this.seoService.setOgElem('twitter:card', "summary_large_image");
+      this.seoService.setOgElem('twitter:title', this.seoObject['title']);
+      this.seoService.setOgElem('twitter:site', "@starbookco");
+      this.seoService.setOgElem('twitter:creator', "@HaraldBregu");
+      this.seoService.setOgElem('twitter:description', this.seoObject['description']);
+      this.seoService.setOgElem('twitter:image', this.seoObject['image_url']);
+
+      this.seoService.setOgElem('og:title', this.seoObject['title']);
+      this.seoService.setOgElem('og:description', this.seoObject['description']);
+      this.seoService.setOgElem('og:url', this.seoObject['url']);
+      this.seoService.setOgElem('og:image', this.seoObject['image_url']);
+      this.seoService.setOgElem('og:image:secure_url', this.seoObject['image_url']);
     }
 
   ngOnInit() {
