@@ -98,12 +98,13 @@ export class CategoryComponent implements OnInit {
   showDirectAction(action) {
     this.order['service_id'] = this.category._id
     this.order['title'] = this.category.title;
-    this.order['details'] = [{title:this.category.title, type:"service"},{title:"Richiesta di " + action.title.toLowerCase(), type:"detail", value:""}]
+    var title = "Richiesta di " + action.title.toLowerCase() + ""
+    this.order['details'] = [{title:this.category.title, type:"service"},{title:title, type:"detail", value:""}]
     this.order['description'] = ""
     this.order['referral_id'] = null
     this.order['price'] = {
-      final: 0,
-      initial: 0,
+      final: action.amount,
+      initial: action.amount,
       currency: 'eur'
     }
     this.order['payment'] = {upfront: action.amount}
@@ -121,6 +122,9 @@ export class CategoryComponent implements OnInit {
   showServicePage(service) {
     this.commonService.setService(service)
     this.router.navigate(['services', service.title.replace(/\s+/g, '-')]);
+  }
+  requireService() {
+    this.router.navigate(['requests/service']);
   }
   checkOut() {
     this.router.navigate(['order/summary']);

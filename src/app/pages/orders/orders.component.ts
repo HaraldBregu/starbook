@@ -95,11 +95,14 @@ export class OrdersComponent implements OnInit, OnDestroy {
             this.pageData = response.result;
           }).catch((error) => {
             this.navigationService.updateMessage("Ordini");
+            this.pageData = [];
           });
         } else if (this.page === 'estimates') {
-          if (isBrowser) {
-            this.estimates = JSON.parse(localStorage.getItem('estimates'))
-          }
+          this.router.navigate(['orders/requests']);
+
+          // if (isBrowser) {
+          //   this.estimates = JSON.parse(localStorage.getItem('estimates'))
+          // }
         } else {
           this.router.navigate(['orders/requests']);
         }
@@ -201,11 +204,11 @@ export class OrdersComponent implements OnInit, OnDestroy {
   getTiming(initial_price) {
     var days = initial_price/45000;
     if (days < 0.5) {
-      return "1/2 Giorno";
+      return "metà giornata";
     } else if (days > 0.5 && days < 1.5) {
-      return Math.round(days) + " Giorno";
+      return Math.round(days) + " giorno";
     } else {
-      return Math.round(days) + " Giorni";
+      return Math.round(days) + " giorni";
     }
   }
 

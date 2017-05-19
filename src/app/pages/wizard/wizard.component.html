@@ -41,7 +41,7 @@
       </div> -->
       <form>
         <div class="form-group">
-          <textarea class="form-control" placeholder="Inserisci una descrizione" rows="5" id="descriptionInput" [(ngModel)]="Order.description" [ngModelOptions]="{standalone: true}"></textarea>
+          <textarea class="form-control" placeholder="Inserisci una descrizione" rows="3" id="descriptionInput" [(ngModel)]="Order.description" [ngModelOptions]="{standalone: true}"></textarea>
         </div>
         <div class="actions">
           <div class="form-group">
@@ -51,7 +51,7 @@
       </form>
     </div>
     <div class="container footer-details">
-      <p><i class="fa fa-info-circle" aria-hidden="true"></i> Inserisci una descrizione più dettagliata della richiesta. In questo modo ci assicuriamo che il tecnico avra più informazioni prima di effetuare l'intervento. Se nel corso del opera si richiedono altri interventi, il tecnico può incrementare il totale.</p>
+      <p>Inserisci una descrizione più dettagliata della richiesta. In questo modo ci assicuriamo che il tecnico avra più informazioni prima di effetuare l'intervento.</p>
     </div>
   </div>
   <div class="wizard-container" *ngIf="step === 'address'">
@@ -78,7 +78,7 @@
       </div>
     </div>
     <div class="container footer-details">
-      <p><i class="fa fa-map-marker" aria-hidden="true"></i> Inserisci l'indirizzo esatto della sua abitazione o locale dove vuole effetuare l'intervento.</p>
+      <p>Inserisci l'indirizzo esatto della sua abitazione o locale dove vuole effetuare l'intervento.</p>
     </div>
   </div>
   <div class="wizard-container" *ngIf="step === 'date'">
@@ -107,7 +107,7 @@
       </div>
     </div>
     <div class="container footer-details">
-      <p><i class="fa fa-calendar" aria-hidden="true"></i> Inserisci una data ideale per quando vuoi effetuare l'intervento del tecnico.</p>
+      <p>Inserisci una data ideale per quando vuoi effetuare l'intervento del tecnico.</p>
     </div>
   </div>
   <div class="wizard-container" *ngIf="step === 'preview'">
@@ -397,7 +397,7 @@
       </form>
     </div>
     <div class="container footer-details">
-      <p><i class="fa fa-credit-card" aria-hidden="true"></i> Inserisci un metodo di pagamento per inviare l'ordine. In questo modo assicuriamo che il pagamento del professionista sia garantio. Puo richiedere il rimborso delle spese in qualsiasi momento contatandoci.</p>
+      <p>Inserisci un metodo di pagamento per inviare l'ordine. In questo modo assicuriamo che il pagamento del professionista sia garantio. Puo richiedere il rimborso delle spese in qualsiasi momento contatandoci.</p>
     </div>
   </div>
   <div class="wizard-container" *ngIf="step === 'info'">

@@ -58,13 +58,11 @@
         </div>
       </div>
     </div>
-    <!-- <div class="service-container">
-      <div class="service" (click)="requestService()">
-        <div class="title">
-          <p>Title</p>
-        </div>
+    <div class="service-container" *ngIf="services.length>0">
+      <div class="service custom" (click)="requireService()">
+        <i class="fa fa-plus" aria-hidden="true"></i>
       </div>
-    </div> -->
+    </div>
   </div>
   <div class="footer-container">
     <div class="footer">

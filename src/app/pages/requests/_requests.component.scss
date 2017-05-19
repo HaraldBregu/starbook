@@ -99,8 +99,9 @@ app-requests {
   }
 
   @media (max-width: 425px) {
-    .service {
-      padding: 50px 10px;
+    .service-container .service {
+      padding: 20px;
+      margin: 0;
     }
   }
 }

@@ -19,6 +19,7 @@ app-contact {
     right: 0;
     bottom: 0;
     overflow: scroll;
+    -webkit-overflow-scrolling: touch;
     .contact-container {
       padding: 40px 0;
       .contact-block-container {

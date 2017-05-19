@@ -3151,6 +3151,7 @@ app-root .bg-inverse {
   border-bottom: 1px solid #DBDBDB; }
 app-root .navbar-brand {
   line-height: 70px;
+  max-height: 70px;
   padding: 0;
   margin: 0; }
   app-root .navbar-brand img {
@@ -3263,9 +3264,9 @@ app-root .container-starbook {
     margin-left: 0 !important; }
   app-root .container-starbook .navbar-nav .nav-link {
     position: relative;
-    font-weight: 500;
+    font-weight: 400;
     font-size: 16px;
-    color: #324978 !important;
+    color: rgba(33, 33, 33, 0.8) !important;
     padding: 0 15px;
     z-index: 2;
     margin-left: 1px;
@@ -4663,6 +4664,8 @@ app-category {
           bottom: 0;
           width: 100%;
           background: #161517; }
+          app-category .category-container .services-container .service-container .service .title p {
+            font-size: 20px !important; }
         app-category .category-container .services-container .service-container .service .overlay {
           line-height: 200px;
           border-radius: 3px;
@@ -4672,6 +4675,17 @@ app-category {
           background-color: rgba(7, 43, 88, 0.6); }
         app-category .category-container .services-container .service-container .service .overlay:hover {
           background-color: #072b58; }
+      app-category .category-container .services-container .service-container .custom {
+        line-height: 300px;
+        border-radius: 3px;
+        cursor: pointer;
+        padding: 0 15px;
+        text-align: center;
+        color: black;
+        font-size: 30px;
+        background: rgba(0, 0, 0, 0.2); }
+      app-category .category-container .services-container .service-container .custom:hover {
+        background: rgba(0, 0, 0, 0.1); }
     app-category .category-container .services-container .big-container {
       float: left;
       padding: 10px;
@@ -5219,7 +5233,7 @@ app-services {
       z-index: 2;
       font-weight: 400;
       color: white;
-      font-size: 16px;
+      font-size: 20px;
       letter-spacing: 0.09px;
       white-space: normal !important;
       text-align: left;
@@ -5772,654 +5786,164 @@ app-orders {
   width: 100%;
   height: 100%;
   padding-top: 70px; }
-  app-orders .orders-page {
+  app-orders .noitems {
+    text-align: center;
+    font-size: 50px;
+    color: rgba(33, 33, 33, 0.7); }
+  app-orders .orders-container {
     display: block;
     width: 100%;
     height: 100%; }
-  app-orders .btn-warning {
-    width: 100%;
-    font-size: 26px;
-    color: white;
-    height: 60px;
-    font-weight: 700;
-    padding: 0 50px; }
-  app-orders .top-bar-container {
-    display: block;
-    position: fixed;
-    width: 100%;
-    background: white;
-    height: 60px;
-    border-bottom: 1px solid #DBDBDB;
-    z-index: 1; }
-    app-orders .top-bar-container .top-bar {
-      list-style: none;
-      overflow: hidden;
-      font: 18px Sans-Serif;
-      padding: 0;
-      z-index: 1;
-      max-width: 1130px;
-      margin: 0 auto; }
-    app-orders .top-bar-container .top-bar li {
-      color: #9B9B9B;
-      float: left;
-      height: 60px;
-      line-height: 60px;
-      padding-left: 40px;
-      padding-right: 40px;
-      text-align: center;
-      font-weight: 300;
-      cursor: pointer; }
-    app-orders .top-bar-container .top-bar li:hover {
-      color: black; }
-    app-orders .top-bar-container .top-bar .active {
-      color: black;
-      border-bottom: 2px solid #324977; }
-  app-orders .orders-container {
-    display: block;
-    padding: 60px 0 0; }
-  app-orders .order-container {
-    display: block;
-    max-width: 1130px;
-    padding: 50px;
-    border: 1px solid #e4e4e4;
-    border-top: 2px solid #7FC443;
-    background: white;
-    margin: 50px auto; }
-    app-orders .order-container .header h3 {
-      margin-bottom: 10px; }
-    app-orders .order-container .line {
+    app-orders .orders-container .top-bar-container {
       display: block;
-      margin: 20px auto 20px;
-      height: 1px;
-      border-top: 1px solid #e4e4e4; }
-    app-orders .order-container .counts {
-      overflow: auto; }
-      app-orders .order-container .counts .item {
+      position: fixed;
+      top: 70px;
+      width: 100%;
+      background: white;
+      height: 60px;
+      border-bottom: 1px solid #DBDBDB;
+      z-index: 1; }
+      app-orders .orders-container .top-bar-container .top-bar {
+        list-style: none;
+        overflow: hidden;
+        font: 18px Sans-Serif;
+        padding: 0;
+        z-index: 1;
+        max-width: 1100px;
+        margin: 0 auto; }
+      app-orders .orders-container .top-bar-container .top-bar li {
+        color: rgba(33, 33, 33, 0.7);
         float: left;
-        width: 50%;
-        font-size: 18px;
-        font-weight: 500;
-        line-height: 36px; }
-      app-orders .order-container .counts .amount {
-        float: left;
-        width: 50%;
-        font-size: 28px;
-        text-align: right;
-        font-weight: 900; }
-      app-orders .order-container .counts .initial {
-        font-weight: 400;
-        text-decoration: line-through; }
-      app-orders .order-container .counts .time {
-        font-weight: 500;
-        font-size: 20px; }
-    app-orders .order-container .actions {
-      width: 50%;
-      text-align: center;
-      padding: 20px 0;
-      margin: auto;
-      color: #324977; }
-      app-orders .order-container .actions a {
-        font-weight: 500;
-        cursor: pointer;
-        padding: 0 5px; }
-      app-orders .order-container .actions a:hover {
-        color: #324977;
-        text-decoration: underline; }
-    app-orders .order-container .links {
-      text-align: center; }
+        height: 60px;
+        line-height: 60px;
+        padding-left: 40px;
+        padding-right: 40px;
+        text-align: center;
+        font-weight: 300;
+        cursor: pointer; }
+      app-orders .orders-container .top-bar-container .top-bar li:hover {
+        color: #212121; }
+      app-orders .orders-container .top-bar-container .top-bar .active {
+        color: #212121;
+        border-bottom: 4px solid #324977; }
+    app-orders .orders-container .orders {
+      margin-top: 40px; }
+      app-orders .orders-container .orders .order-container {
+        display: block;
+        max-width: 1100px;
+        border: 1px solid #9b9c9d;
+        background: white;
+        margin: 0px auto 40px; }
+        app-orders .orders-container .orders .order-container .order .top-container {
+          background: #ececec;
+          padding: 10px 20px;
+          overflow: auto;
+          font-size: 16px; }
+          app-orders .orders-container .orders .order-container .order .top-container span {
+            font-weight: 600;
+            color: #eb8102; }
+        app-orders .orders-container .orders .order-container .order .nav-container {
+          color: white;
+          font-weight: 500;
+          background: #989ca4;
+          padding: 10px 20px;
+          font-size: 16px;
+          overflow: auto;
+          word-wrap: break-word; }
+          app-orders .orders-container .orders .order-container .order .nav-container .item {
+            float: left;
+            width: 70%; }
+          app-orders .orders-container .orders .order-container .order .nav-container .quantity, app-orders .orders-container .orders .order-container .order .nav-container .price, app-orders .orders-container .orders .order-container .order .nav-container .total {
+            float: left;
+            width: 10%;
+            text-align: right; }
+        app-orders .orders-container .orders .order-container .order .content-container {
+          padding: 20px; }
+          app-orders .orders-container .orders .order-container .order .content-container .content {
+            overflow: auto; }
+            app-orders .orders-container .orders .order-container .order .content-container .content span {
+              font-size: 18px;
+              display: block; }
+            app-orders .orders-container .orders .order-container .order .content-container .content .item {
+              float: left;
+              width: 70%; }
+            app-orders .orders-container .orders .order-container .order .content-container .content .quantity, app-orders .orders-container .orders .order-container .order .content-container .content .price, app-orders .orders-container .orders .order-container .order .content-container .content .total {
+              float: left;
+              width: 10%;
+              text-align: right; }
+            app-orders .orders-container .orders .order-container .order .content-container .content .items span {
+              font-size: 20px; }
+            app-orders .orders-container .orders .order-container .order .content-container .content .timing {
+              padding-top: 20px; }
+              app-orders .orders-container .orders .order-container .order .content-container .content .timing span {
+                font-size: 18px; }
+            app-orders .orders-container .orders .order-container .order .content-container .content .payment {
+              overflow: auto;
+              float: right;
+              width: 30%; }
+              app-orders .orders-container .orders .order-container .order .content-container .content .payment .counts span {
+                font-size: 18px; }
+              app-orders .orders-container .orders .order-container .order .content-container .content .payment .counts .line-break {
+                float: right;
+                width: 30%;
+                margin-top: 10px;
+                margin-bottom: 10px;
+                border-top: 1px solid #9b9c9d; }
+              app-orders .orders-container .orders .order-container .order .content-container .content .payment .counts .item {
+                text-align: right; }
+              app-orders .orders-container .orders .order-container .order .content-container .content .payment .counts .amount {
+                text-align: right; }
+              app-orders .orders-container .orders .order-container .order .content-container .content .payment .buttons {
+                text-align: right;
+                padding: 20px 0 0; }
+                app-orders .orders-container .orders .order-container .order .content-container .content .payment .buttons .btn {
+                  font-size: 18px;
+                  padding: 0 40px;
+                  font-weight: 500; }
+            app-orders .orders-container .orders .order-container .order .content-container .content .text {
+              overflow: auto;
+              float: left;
+              width: 50%; }
+              app-orders .orders-container .orders .order-container .order .content-container .content .text span {
+                font-size: 14px; }
+        app-orders .orders-container .orders .order-container .order .line {
+          margin: 0 20px;
+          display: block;
+          height: 1px;
+          border-top: 1px solid #9b9c9d; }
+        app-orders .orders-container .orders .order-container .counts {
+          overflow: auto; }
+          app-orders .orders-container .orders .order-container .counts .item {
+            float: left;
+            width: 70%; }
+          app-orders .orders-container .orders .order-container .counts .amount {
+            float: left;
+            width: 30%; }
+          app-orders .orders-container .orders .order-container .counts .initial {
+            font-weight: 400;
+            text-decoration: line-through; }
+          app-orders .orders-container .orders .order-container .counts .time {
+            font-weight: 500;
+            font-size: 20px; }
+        app-orders .orders-container .orders .order-container .actions {
+          width: 50%;
+          text-align: center;
+          padding: 20px 0;
+          margin: auto;
+          color: #324977; }
+          app-orders .orders-container .orders .order-container .actions a {
+            font-weight: 500;
+            cursor: pointer;
+            padding: 0 5px; }
+          app-orders .orders-container .orders .order-container .actions a:hover {
+            color: #324977;
+            text-decoration: underline; }
+        app-orders .orders-container .orders .order-container .links {
+          text-align: center; }
   @media (max-width: 1024px) {
-    app-orders .orders-container {
-      padding: 60px 20px 0; }
-    app-orders .order-container {
-      margin: 20px auto; } }
+    app-orders .orders-container .orders {
+      margin-top: 0; } }
 
-.container-starbook.without-tabs .row {
-  padding: 70px 0 0 0; }
-
-.container-starbook .orders-container {
-  padding: 34px 38px 50px 238px; }
-
-.orders-container .order-information {
-  display: block;
-  width: 100%;
-  background-color: #ffffff;
-  border: 1px solid #DCDCDC;
-  border-radius: 3px;
-  margin-bottom: 34px; }
-
-.orders-container .order-information .header {
-  display: block;
-  position: relative;
-  width: 100%;
-  height: 50px;
-  border-bottom: 1px solid #DCDCDC; }
-
-.order-information .header .category-services-state {
-  display: inline-block;
-  position: relative;
-  float: left;
-  width: 50%;
-  padding: 15px 17px 15px 42px;
-  color: #212121;
-  font-size: 16px;
-  letter-spacing: 0.1px;
-  font-weight: 400; }
-
-.order-information .header .category-services-state span {
-  display: block;
-  position: absolute;
-  left: 17px;
-  top: 16px;
-  width: 18px;
-  height: 18px;
-  margin-right: 7px;
-  border-radius: 100%; }
-
-.order-information .header .category-services-state span.orange {
-  background-color: #F5A623; }
-
-.order-information .header .category-services-state span.green {
-  background-color: #7ED321; }
-
-.order-information .header .category-services-state span.red {
-  background-color: #D0021B; }
-
-.order-information .header .category-services-state span.black {
-  background-color: #4A4A4A; }
-
-.order-information .header .order-date {
-  display: inline-block;
-  float: right;
-  width: 50%;
-  text-align: right;
-  padding: 16px 22px 14px 33px;
-  color: #212121;
-  font-size: 16px;
-  letter-spacing: 0.1px;
-  font-weight: normal; }
-
-.order-information .header .category-name {
-  display: block;
-  position: absolute;
-  width: 100%;
-  text-align: center;
-  padding: 14px 0 14px 0;
-  color: #212121;
-  font-size: 18px;
-  letter-spacing: 0.11px;
-  font-weight: 400; }
-
-.order-information .order-body {
-  display: block;
-  width: 100%;
-  padding: 16px 0 24px 0; }
-
-.order-body .row {
-  padding: 0 !important;
-  min-height: 0;
-  margin-left: 0 !important;
-  margin-right: 0 !important; }
-
-.order-body .order-row.products {
-  float: left;
-  width: 33.333333% !important;
-  max-width: 354px;
-  padding-left: 19px;
-  letter-spacing: 0.1px; }
-
-.order-body .order-row.products .item {
-  display: block;
-  position: relative;
-  width: 100%;
-  margin-bottom: 10px;
-  padding-right: 50px;
-  font-size: 15px;
-  color: #212121;
-  letter-spacing: 0.1px; }
-
-.order-body .order-row.products .item i {
-  display: block;
-  position: absolute;
-  top: 0;
-  right: 0;
-  text-align: right;
-  font-size: 15px;
-  color: #212121;
-  letter-spacing: 0.1px;
-  font-style: normal; }
-
-.order-body .order-row.products .item.total {
-  font-weight: 600;
-  font-size: 16px; }
-
-.order-body .order-row.products .item.total i {
-  font-weight: 600;
-  font-size: 16px; }
-
-.order-body .order-row.description {
-  display: block;
-  width: 310px;
-  position: absolute;
-  top: 0;
-  left: 50%;
-  margin-left: -155px;
-  letter-spacing: 0.1px;
-  font-weight: 400;
-  color: #212121;
-  padding-left: 0;
-  text-align: left; }
-
-.order-body .client-info {
-  float: right;
-  width: 33.333333% !important;
-  padding-left: 45px;
-  color: #212121; }
-
-.order-body .client-info .item {
-  display: block;
-  width: 100%;
-  height: 25px;
-  padding-bottom: 8px; }
-
-.order-body .client-info .item .field-name {
-  display: block;
-  float: left;
-  text-align: right;
-  width: 100px;
-  font-size: 14px;
-  font-weight: 400;
-  letter-spacing: 0.09px;
-  color: #9B9B9B;
-  padding-right: 20px; }
-
-.order-body .client-info .item .field-value {
-  display: block;
-  float: left;
-  width: 100%;
-  margin-left: -100px;
-  padding-left: 100px;
-  font-size: 14px;
-  font-weight: 400;
-  letter-spacing: 0.09px;
-  color: #212121; }
-
-.order-body .client-info .item .field-value strong {
-  font-weight: normal; }
-
-.order-information .order-footer {
-  display: block;
-  width: 100%;
-  height: 50px;
-  border-top: 1px solid #DCDCDC;
-  padding: 10px 11px; }
-
-.order-information .order-footer .code {
-  display: block;
-  float: left;
-  width: 40%;
-  padding: 8px 6px;
-  letter-spacing: 0.08px;
-  color: #212121;
-  font-size: 12px;
-  font-weight: 400; }
-
-.order-information .order-footer .code span {
-  color: #9B9B9B; }
-
-.order-information .order-footer .buttons {
-  display: block;
-  float: right;
-  width: 60%;
-  text-align: right; }
-
-.order-footer .buttons .btn-primary {
-  height: 28px;
-  font-size: 16px;
-  padding: 0 8px;
-  margin-left: 10px;
-  outline: none; }
-
-.order-footer .buttons .btn-secondary {
-  height: 28px;
-  background-color: #F6F7F9;
-  border: 1px solid #DDDFE2;
-  color: #212121;
-  font-size: 12px;
-  letter-spacing: 0.08px;
-  font-weight: normal;
-  border-radius: 3px;
-  padding: 6px 8px;
-  margin-left: 10px;
-  outline: none; }
-
-.order-footer .buttons .btn-secondary:focus,
-.order-footer .buttons .btn-secondary:hover {
-  height: 28px;
-  background-color: #E4E7ED;
-  border: 1px solid #DDDFE2;
-  color: #212121;
-  font-size: 12px;
-  letter-spacing: 0.08px;
-  font-weight: normal;
-  border-radius: 3px;
-  padding: 6px 8px;
-  margin-left: 10px;
-  outline: none; }
-
-.order-footer .buttons .btn-secondary:active {
-  height: 28px;
-  background-color: #F6F7F9;
-  border: 1px solid #DDDFE2;
-  color: #212121;
-  font-size: 12px;
-  letter-spacing: 0.08px;
-  font-weight: normal;
-  border-radius: 3px;
-  padding: 6px 8px;
-  margin-left: 10px;
-  outline: none; }
-
-.order-footer .buttons .btn-warning {
-  height: 28px;
-  font-weight: 600;
-  background: #FFE589;
-  background: -moz-linear-gradient(top, #FFE589 0%, #FEC751 100%);
-  background: -webkit-linear-gradient(top, #FFE589 0%, #FEC751 100%);
-  background: linear-gradient(to bottom, #FFE589 0%, #FEC751 100%);
-  border: 1px solid #A6A6A6;
-  color: #212121;
-  font-size: 12px;
-  letter-spacing: 0.08px;
-  border-radius: 3px;
-  padding: 6px 15px;
-  margin-left: 10px;
-  outline: none; }
-
-.order-footer .buttons .btn-warning i {
-  color: #000000;
-  font-size: 14px;
-  padding-right: 4px; }
-
-.container-starbook .left-navigate {
-  display: block;
-  position: fixed;
-  width: 200px;
-  height: 100%;
-  top: 10px;
-  left: 50%;
-  margin-left: -720px;
-  padding: 70px 0 0 0;
-  z-index: 10; }
-
-.container-starbook .left-navigate a {
-  display: block;
-  float: left;
-  position: relative;
-  width: 100%;
-  height: 40px;
-  margin: 5px 0 0 0;
-  padding-left: 5px;
-  padding-right: 4px;
-  text-decoration: none;
-  border: 1px solid transparent; }
-
-.container-starbook .left-navigate a div {
-  display: block;
-  position: relative;
-  font-weight: 400;
-  padding: 10px 10px 10px 20px;
-  color: #212121;
-  font-size: 15px;
-  letter-spacing: 0.09px;
-  cursor: pointer !important;
-  border-radius: 1px;
-  background-color: transparent; }
-
-.container-starbook .left-navigate a span {
-  display: block;
-  position: absolute;
-  top: 0;
-  left: 0;
-  background-color: transparent;
-  height: 100%;
-  width: 5px;
-  border-radius: 2px 0 0 2px; }
-
-.container-starbook .left-navigate a:hover div {
-  cursor: pointer !important;
-  background-color: transparent; }
-
-.container-starbook .left-navigate a.active {
-  border-top: 1px solid #DDDFE2;
-  border-right: 1px solid #DDDFE2;
-  border-bottom: 1px solid #DDDFE2;
-  background-color: #FFFFFF; }
-
-.container-starbook .left-navigate a:hover {
-  border: 1px solid #DDDFE2;
-  background-color: #FFFFFF; }
-
-.container-starbook .left-navigate a.active div {
-  font-weight: 600;
-  padding: 10px 5px 10px 20px;
-  background-color: transparent; }
-
-.container-starbook .left-navigate a.active span,
-.container-starbook .left-navigate a.active:hover span {
-  display: block;
-  position: absolute;
-  top: -1px;
-  left: 0;
-  height: 39.5px;
-  background-color: #324977; }
-
-.orders-container .orders-error {
-  display: block;
-  width: 100%;
-  padding: 20px;
-  background-color: #ffffff;
-  border: 1px solid #DCDCDC;
-  text-align: center;
-  border-radius: 3px;
-  font-size: 16px;
-  font-weight: 400;
-  letter-spacing: 0.09px;
-  color: #212121; }
-
-.order-footer .buttons .price-block {
-  display: inline-block;
-  position: relative;
-  height: 18px; }
-
-.order-footer .buttons .price-block.archive {
-  margin-right: 10px; }
-
-.order-footer .buttons .price-block .content-price {
-  display: block;
-  position: absolute;
-  top: 0;
-  right: 0;
-  font-size: 20px;
-  letter-spacing: 0.13px;
-  color: #212121;
-  white-space: nowrap;
-  max-height: 30px; }
-
-.order-footer .buttons .price-block .content-price span {
-  font-weight: bold;
-  letter-spacing: 0.14px; }
-
-.orders-container .loader {
-  display: block;
-  width: 100%;
-  height: 100%;
-  z-index: 100; }
-
-.orders-container .loader svg {
-  display: block;
-  width: 50px;
-  height: 50px;
-  margin: 20px auto; }
-
-@media (max-width: 1440px) {
-  .container-starbook .left-navigate {
-    top: 0;
-    left: 0;
-    margin-left: 0;
-    white-space: nowrap; } }
-@media (max-width: 1280px) {
-  .order-body .client-info {
-    padding-left: 0; }
-
-  .order-body .order-row.description {
-    padding-left: 15px; } }
-@media (max-width: 1150px) {
-  .order-body .order-row.description {
-    width: 100% !important;
-    position: static;
-    margin-left: 0;
-    float: left; }
-
-  .order-body .order-row.products {
-    width: 320px !important;
-    padding-left: 15px; }
-
-  .order-body .client-info {
-    width: 100% !important;
-    float: left;
-    margin-left: -320px;
-    padding-left: 345px; } }
-@media (max-width: 980px) {
-  .order-body .order-row.description {
-    margin-top: 20px; }
-
-  .order-body .order-row.products {
-    width: 100% !important; }
-
-  .order-body .client-info {
-    width: 100% !important;
-    float: left;
-    margin-left: 0;
-    margin-top: 30px;
-    padding-left: 15px; } }
-@media (max-width: 780px) {
-  .container-starbook .left-navigate {
-    width: 100%;
-    height: 30px;
-    top: 50px !important;
-    padding: 0;
-    border-right: none;
-    background-color: #ffffff; }
-
-  .container-starbook .left-navigate a.active {
-    border-top: none;
-    border-right: none;
-    border-bottom: none;
-    border-left: none;
-    background-color: transparent; }
-
-  .container-starbook .orders-container {
-    padding: 60px 15px 0; }
-
-  .order-body .order-row.description {
-    width: 100% !important;
-    position: static;
-    margin-left: 0;
-    float: left;
-    margin-top: 0; }
-
-  .order-body .order-row.products {
-    width: 320px !important;
-    padding-left: 15px; }
-
-  .order-body .client-info {
-    width: 100% !important;
-    float: left;
-    margin-left: -320px;
-    padding-left: 345px;
-    margin-top: 0; }
-
-  .container-starbook .left-navigate a {
-    position: relative;
-    display: inline-block;
-    float: none;
-    width: auto !important;
-    margin: 0;
-    padding-left: 0;
-    padding-right: 0; }
-
-  .container-starbook .left-navigate a div {
-    border-bottom: 3px solid transparent;
-    padding: 4px 20px; }
-
-  .container-starbook .left-navigate a.active div {
-    border-bottom: 3px solid #324977;
-    padding: 4px 20px; }
-
-  .container-starbook .left-navigate a.active span, .container-starbook .left-navigate a.active:hover span {
-    display: none; } }
-@media (max-width: 645px) {
-  .container-starbook .orders-container {
-    padding: 60px 0 0 15px; }
-
-  .order-body .order-row.description {
-    width: 100% !important;
-    margin-top: 30px; }
-
-  .order-body .order-row.products {
-    width: 100% !important; }
-
-  .order-body .client-info {
-    margin-top: 30px;
-    margin-left: 0;
-    padding-left: 0; }
-
-  .order-information .order-footer .code {
-    width: 70%; }
-
-  .order-information .order-footer .buttons {
-    width: 30%; } }
-@media (max-width: 540px) {
-  .orders-container .order-information .header {
-    height: 65px; }
-
-  .order-information .header .category-services-state {
-    width: 60%;
-    font-size: 14px;
-    padding: 15px 0 15px 30px; }
-
-  .order-information .header .category-services-state span {
-    width: 15px;
-    height: 15px;
-    left: 8px; }
-
-  .order-information .header .order-date {
-    width: 100%;
-    padding: 0 22px 0 30px;
-    text-align: left;
-    font-size: 13px;
-    margin-top: -12px;
-    color: #9B9B9B; }
-
-  .order-information .header .category-name {
-    position: relative;
-    width: 40%;
-    float: right;
-    text-align: right;
-    padding-right: 15px;
-    margin-left: 0;
-    font-size: 14px; }
-
-  .order-information .order-footer {
-    height: auto; }
-
-  .order-information .order-footer .code {
-    width: 100%;
-    float: none; }
-
-  .order-information .order-footer .buttons {
-    width: 100%;
-    float: none; } }
 app-profile .profile-page {
   display: block;
   width: 100%;
@@ -6440,10 +5964,10 @@ app-profile .top-bar {
   font: 18px Sans-Serif;
   padding: 0;
   z-index: 1;
-  max-width: 1130px;
+  max-width: 1100px;
   margin: 0 auto; }
 app-profile .top-bar li {
-  color: #9B9B9B;
+  color: rgba(33, 33, 33, 0.7);
   float: left;
   height: 60px;
   line-height: 60px;
@@ -6455,11 +5979,11 @@ app-profile .top-bar li {
 app-profile .top-bar li:hover {
   color: black; }
 app-profile .top-bar .active {
-  color: black;
-  border-bottom: 2px solid #324977; }
+  color: #212121;
+  border-bottom: 4px solid #324977; }
 app-profile .page-container {
   display: block;
-  max-width: 1130px;
+  max-width: 1100px;
   padding: 50px;
   border: 1px solid #e3e3e3;
   background: white;
@@ -8395,8 +7919,9 @@ app-requests {
     app-requests .service-container .estimate .links {
       text-align: center; }
   @media (max-width: 425px) {
-    app-requests .service {
-      padding: 50px 10px; } }
+    app-requests .service-container .service {
+      padding: 20px;
+      margin: 0; } }
 
 app-share {
   display: block;
@@ -8589,7 +8114,8 @@ app-contact {
     left: 0;
     right: 0;
     bottom: 0;
-    overflow: scroll; }
+    overflow: scroll;
+    -webkit-overflow-scrolling: touch; }
     app-contact .page-container .contact-container {
       padding: 40px 0; }
       app-contact .page-container .contact-container .contact-block-container {

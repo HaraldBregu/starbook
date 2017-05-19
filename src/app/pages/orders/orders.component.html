@@ -1,63 +1,108 @@
-<div class="orders-page">
-  <div class="top-bar-container noselect">
+<div class="orders-container">
+
+  <!-- <div class="top-bar-container noselect">
     <ul class="top-bar">
       <li *ngFor="let tab of tabs" [ngClass]="{'active':tab.route === page}" (click)="renderPage(tab.route)"><i class="fa {{tab.icon}}" aria-hidden="true"></i>  {{tab.name}}</li>
     </ul>
-  </div>
-  <div class="orders-container">
-    <div class="order-container" *ngIf="page==='requests' && pageData && pageData.length===0">
-      <p>Non ci lavorazioni prenotati. Per prenotare un lavoro vai alla pagina home e trova la lavorazione che ti serve.</p>
-    </div>
-    <div *ngFor="let order of pageData">
-      <div class="order-container" *ngIf="page==='requests'">
-        <div class="header">
-          <div *ngFor="let detail of order.details">
-            <div *ngIf="detail.type==='service'">
-              <h3>{{detail.title}}</h3>
-              <!-- <div class="line"></div> -->
-            </div>
-            <div *ngIf="detail.type==='detail'">
-              <p>{{detail.title}}</p>
-            </div>
-          </div>
-        </div>
-        <div class="line"></div>
-        <div class="counts">
-          <div class="item">Durata (Approssimativo)</div>
-          <div class="amount time">{{getTiming(order.price.initial)}}</div>
-        </div>
-        <div class="line"></div>
-        <div class="counts">
-          <div class="item">Totale</div>
-          <div class="amount">{{order.price.final/100}}€</div>
-        </div>
-        <div class="counts">
-          <div *ngFor="let milestone of order.payment.milestones; let i=index">
-            <div class="item">{{i+1}} Acconto</div>
-            <div class="amount">{{milestone.amount/100}}€</div>
-          </div>
-        </div>
-        <div class="counts">
-          <div class="item">Resto</div>
-          <div class="amount">{{order.payment.rest/100}}€</div>
-        </div>
-        <!-- <div class="line"></div> -->
+  </div> -->
 
-        <!-- <div class="actions">
-          <div class="form-group">
-            <button class="btn btn-warning" id="next" type="button">Continua</button>
-            <button class="btn btn-warning" id="next" type="button">Continua</button>
-            <button class="btn btn-warning" id="next" type="button">Continua</button>
+  <div class="orders" *ngIf="page==='requests'">
+    <div class="noitems" *ngIf="pageData?.length===0">
+      <i class="fa fa-frown-o" aria-hidden="true"></i>
+      <p>Non ci sono ordini</p>
+    </div>
+    <div class="order-container" *ngFor="let order of pageData">
+      <div class="order">
+        <div class="top-container">
+          <span>Ordine in attesa</span>
+        </div>
+        <div class="nav-container">
+          <span class="item">Articolo</span>
+          <span class="quantity">Quantità</span>
+          <span class="price">Prezzo</span>
+          <span class="total">Totale</span>
+        </div>
+        <div class="content-container">
+          <div class="content">
+            <div class="items" *ngFor="let detail of order.details">
+              <div class="item" *ngIf="detail.type==='service'">
+                <strong><span>{{detail.title}}</span></strong>
+              </div>
+              <div class="item" *ngIf="detail.type==='detail'">
+                <span>{{detail.title}}</span>
+              </div>
+              <div *ngIf="detail.type==='detail'">
+                <span class="quantity">{{detail.count}}</span>
+                <span class="price">{{detail.item_amount/100}}€</span>
+                <span class="total">{{detail.total_amount/100}}€</span>
+              </div>
+            </div>
           </div>
-        </div> -->
-        <!-- <div class="links">
-          <a href="#">Cancella preventivo</a>
-          <a href="#">Invia ad un amico</a>
-        </div> -->
+        </div>
+        <div class="line"></div>
+        <div class="content-container">
+          <div class="content">
+            <div class="payment">
+              <div class="counts">
+                <span class="item">Subtotale:</span><span class="amount">{{order.price.final/100}}€</span>
+              </div>
+              <div class="counts">
+                <div class="line-break"></div>
+              </div>
+              <div class="counts">
+                <span class="item"><strong>Totale:</strong></span><span class="amount"><strong>{{order.price.final/100}}€</strong></span>
+              </div>
+              <!-- <div class="counts">
+                <div *ngFor="let milestone of order.payment.milestones; let i=index">
+                  <span class="item">{{i+1}} Acconto:</span><span class="amount">{{milestone.amount/100}}€</span>
+                </div>
+              </div>
+              <div class="counts">
+                <span class="item">Resto</span>
+                <span class="amount">{{order.payment.rest/100}}€</span>
+              </div> -->
+            </div>
+          </div>
+        </div>
+        <div class="line"></div>
+        <div class="content-container">
+          <div class="content">
+            <span><strong>Data:</strong> 23 Agosto 2017</span>
+            <span><strong>Indirizzo:</strong> Via Battista 43, Milano</span>
+          </div>
+        </div>
+        <div class="line"></div>
+        <div class="content-container">
+          <div class="content">
+            <div class="payment">
+              <div class="counts">
+                <span class="item">Acconto:</span><span class="amount">124€</span>
+                <span class="item">Acconto:</span><span class="amount">4€</span>
+                <span class="item">Acconto:</span><span class="amount">67€</span>
+                <span class="item">Acconto:</span><span class="amount">9€</span>
+              </div>
+              <!-- <div class="counts">
+                <div class="line-break"></div>
+              </div>
+              <div class="counts">
+                <span class="item"><strong>Resto:</strong></span><span class="amount"><strong>{{order.price.final/100}}€</strong></span>
+              </div> -->
+              <div class="counts buttons">
+                <button class="btn btn-primary" (click)="upfront()">Acconto</button>
+                <button class="btn btn-warning" (click)="pay()">Paga</button>
+              </div>
+            </div>
+            <div class="text">
+              <span><strong>Pagamento: </strong> Tieni traccia di tutti gli acconti e i pagmenti effetuati. Puoi decidere di pagare il totale al inizio o alla fine del lavoro.</span>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
+  </div>
 
-    <div class="order-container" *ngIf="page==='estimates' && estimates && estimates.length===0">
+  <div class="order-container" *ngIf="page==='estimates' && estimates && estimates.length===0">
+    <div class="header">
       <p>Non ci sono preventivi salvati.</p>
     </div>
     <div *ngFor="let estimate of estimates">
@@ -107,33 +152,4 @@
       </div>
     </div>
   </div>
-  <!-- <footer class="footer sticky-footer">
-    <div class="footer-container">
-      <div class="row">
-        <div class="col-md-6 col-lg-3">
-          <ul>
-            <li>Starbook © 2017</li>
-            <li>Tutti i diritti riservati</li>
-          </ul>
-        </div>
-        <div class="col-md-6 col-lg-3">
-          <ul>
-            <li><a routerLink="/legal" routerLinkActive="active">Privacy e Condizioni</a></li>
-            <li><a routerLink="/help" routerLinkActive="active">Aiuto e Assistenza</a></li>
-            <li><a routerLink="/requests/service" routerLinkActive="active">Richiedi un servizio</a></li>
-          </ul>
-        </div>
-        <div class="col-md-6 col-lg-3">
-          <ul>
-            <li><a routerLink="/about" routerLinkActive="active">Chi siamo</a></li>
-          </ul>
-        </div>
-        <div class="col-md-6 col-lg-3">
-          <ul>
-            <li><a routerLink="/share" routerLinkActive="active">Affiliazione</a></li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </footer>   -->
 </div>

@@ -141,6 +141,9 @@ app-category {
             bottom: 0;
             width: 100%;
             background: #161517;
+            p {
+              font-size: 20px !important;
+            }
           }
           .overlay {
             line-height: 200px;
@@ -156,6 +159,19 @@ app-category {
         }
         .service:hover {
           // background: rgba(107, 107, 214, 0.5);
+        }
+        .custom {
+          line-height: 300px;
+          border-radius: 3px;
+          cursor: pointer;
+          padding: 0 15px;
+          text-align: center;
+          color: black;
+          font-size: 30px;
+          background: rgba(0, 0, 0, 0.2);
+        }
+        .custom:hover {
+          background: rgba(0, 0, 0, 0.1);
         }
       }
       .big-container {
