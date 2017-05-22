@@ -104,6 +104,7 @@ export class OrderService {
     let addresses = [];
     params.set('address', key);
     params.set('language', 'it');
+    params.set('components', 'country:IT');
     params.set('key', 'AIzaSyCLc5etDSrqieAn4lPCsvFDpkM3-F7-c5M');
     return this.http.get(this.googleApi, {search: params})
       .toPromise()

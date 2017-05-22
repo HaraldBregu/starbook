@@ -181,6 +181,8 @@ export class WizardComponent implements OnInit {
       this.service_data = this.orderService.getWizardData();
       if (Object.keys(this.service_data).length===0) {
         this.Order = this.readOrderFromLocal()
+        console.log();
+
         if (this.Order.address) {
           if (this.Order.address.street_number.length > 0) {
             this.temp_address = this.Order.address.street + ', ' + this.Order.address.street_number + ' ' + this.Order.address.city;
@@ -202,7 +204,7 @@ export class WizardComponent implements OnInit {
         this.Order.referral_id = this.service_data.referral_id;
         this.Order.upfront_amount = this.service_data.upfront_amount;
         this.Order.timing = this.service_data.timing;
-        // this.saveOrderToLocal(this.Order);
+        this.saveOrderToLocal(this.Order);
       }
     }
   }
@@ -296,11 +298,14 @@ export class WizardComponent implements OnInit {
       return;
     }
     this.address_state.error_message = null;
-    // this.saveOrderToLocal(this.Order)
     this.router.navigate(['order/date']);
   }
   getAddresses(event) {
     this.address_state.error_message = null;
+    // if (event.query.length === 0) {
+    //   this.address_state.error_message = "Per favore inserisci un indirizzo per procedere";
+    //   return;
+    // }
     if (this.temp_address_street_number_city !== event.query) {
       this.address_state.error_message = "Per favore inserisci un indirizzo corretto";
     } else if (!this.temp_address || this.temp_address === "") {
@@ -311,6 +316,10 @@ export class WizardComponent implements OnInit {
     this.orderService.getAddresses(event.query).then((addresses) => {
       this.addresses = [];
       this.addresses = addresses;
+
+
+
+
     }).catch((error) => {
       // console.log(error);
     });
@@ -350,7 +359,7 @@ export class WizardComponent implements OnInit {
     this.date = date.getFullYear() + '-' + month + '-' + day + 'T' + '08:00' + ':00.000Z';
     this.date_state.error_message = null;
     this.Order.date = this.date;
-    // this.saveOrderToLocal(this.Order);
+    this.saveOrderToLocal(this.Order);
     let _date = new Date(this.Order.date);
     let _day = _date.getDate() > 9 ? _date.getDate() : '0' + _date.getDate();
     this.formated_date =  _day + ' ' + this.it.monthNames[_date.getMonth()] + ' ' + _date.getFullYear();
