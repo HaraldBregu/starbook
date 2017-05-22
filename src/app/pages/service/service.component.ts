@@ -90,9 +90,7 @@ export class ServiceComponent implements OnInit {
   }
   subscription: Subscription;
 
-  constructor(private commonService: CommonService, private navigationService: NavigationService, private router: Router, private route: ActivatedRoute, private orderService: OrderService, private analyticsService: AnalyticsService, private seoService: SeoService, private profileService: ProfileService) {
-
-  }
+  constructor(private commonService: CommonService, private navigationService: NavigationService, private router: Router, private route: ActivatedRoute, private orderService: OrderService, private analyticsService: AnalyticsService, private seoService: SeoService, private profileService: ProfileService) {}
 
   ngOnInit() {
     this.route.params.subscribe(params => {
@@ -240,6 +238,9 @@ export class ServiceComponent implements OnInit {
       this.servicesData.push(serviceForm);
       formId ++;
     });
+
+    console.log('servicesData: ' + JSON.stringify(this.servicesData));
+
     this.calculateOrder();
   }
 
@@ -423,18 +424,18 @@ export class ServiceComponent implements OnInit {
       service.options.forEach((item) => {
         if (service.type === 'RADIOBUTTON') {
           if (item.selected) {
-            currentOrderState.push({title: item.title, type:"detail", value:item.input_value});
+            currentOrderState.push({title: item.title, type:"detail", count:item.input_value, amount:0});
           }
         } else if (service.type === 'CHECKBOX') {
           if (item.selected) {
-            currentOrderState.push({title: item.title, type:"detail", value:item.input_value});
+            currentOrderState.push({title: item.title, type:"detail", count:item.input_value, amount:0});
           }
         } else if (service.type === 'INPUTTEXT') {
           if (service.price_type === 'BASE_AMOUNT_PER_INPUT' && item.input_value != 0) {
-            currentOrderState.push({title: item.title, type:"detail", value:item.input_value});
+            currentOrderState.push({title: item.title, type:"detail", count:item.input_value, amount:0});
           }
           if (service.price_type === 'AMOUNT_PER_INPUT' && item.input_value != 0) {
-            currentOrderState.push({title: item.title, type:"detail", value:item.input_value});
+            currentOrderState.push({title: item.title, type:"detail", count:item.input_value, amount:0});
           }
         }
         itemId++;
@@ -444,7 +445,6 @@ export class ServiceComponent implements OnInit {
 
     currentOrderState.forEach((service) => {
       if (service.title) {
-        // console.log('serivces is: ' + JSON.stringify(service));
         this.orderData.details.push(service);
       }
     });

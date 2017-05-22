@@ -31,7 +31,8 @@ export class OrderComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-
+    if (isBrowser) {
+    }
   }
 
   onResize() {
@@ -78,14 +79,14 @@ export class OrderComponent implements OnInit, OnDestroy {
       title: this.orderData.title,
       details: this.orderData.details,
       referral_id: this.price_state.referral_id,
-      price: {
-        final: this.getFinalPrice(),
-        initial: this.getInitialPrice(),
-        currency: 'eur'
-      },
-      payment: {
-        upfront: this.getUpFront()
-      },
+      // price: {
+      //   amount: this.getFinalPrice(),
+      //   currency: 'eur'
+      // },
+      // payment: {
+      //   upfront: this.getUpFront()
+      // },
+      upfront_amount:this.getUpFront(),
       timing: {
         days: this.getInitialPrice()/45000
       }

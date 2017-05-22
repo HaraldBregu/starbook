@@ -14,30 +14,16 @@
           <div *ngIf="item.type !== 'service'">
             <div class="item"><p>{{item.title}}</p></div>
             <div class="amount">
-              <div *ngIf="item.value">{{item.value}}</div>
+              <div *ngIf="item.count">{{item.count}}</div>
+              <div *ngIf="item.amount">{{item.amount}}</div>
             </div>
           </div>
         </div>
       </div>
-      <div class="line" *ngIf="Order.timing.days > 1"></div>
+      <!-- <div class="line" *ngIf="Order.timing.days > 1"></div>
       <div class="timing" *ngIf="Order.timing.days > 1">
         <div class="item">Durata del lavoro</div>
         <div class="amount">{{daysString(Order.timing.days)}}</div>
-      </div>
-      <!-- <div class="line"></div>
-      <div class="payment">
-        <div class="initial" *ngIf="Order.price.initial>Order.price.final">
-          <div class="item">Totale iniziale</div>
-          <div class="amount">{{Order.price.initial/100}}€</div>
-        </div>
-        <div class="total" *ngIf="Order.price.final>0">
-          <div class="item">Totale</div>
-          <div class="amount">{{Order.price.final/100}}€</div>
-        </div>
-        <div class="upfront" *ngIf="Order.price.final!==Order.payment.upfront">
-          <div class="item">Acconto</div>
-          <div class="amount">{{Order.payment.upfront/100}}€</div>
-        </div>
       </div> -->
       <form>
         <div class="form-group">
@@ -118,17 +104,18 @@
           <div *ngIf="item.type !== 'service'">
             <div class="item"><p>{{item.title}}</p></div>
             <div class="amount">
-              <div *ngIf="item.value">{{item.value}}</div>
+              <div *ngIf="item.count">{{item.count}}</div>
+              <div *ngIf="item.amount">{{item.amount}}</div>
             </div>
           </div>
         </div>
         <p>{{Order.description}}</p>
       </div>
-      <div class="line" *ngIf="Order.timing.days > 1"></div>
+      <!-- <div class="line" *ngIf="Order.timing.days > 1"></div>
       <div class="timing" *ngIf="Order.timing.days > 1">
         <div class="item">Durata del lavoro</div>
         <div class="amount">{{daysString(Order.timing.days)}}</div>
-      </div>
+      </div> -->
       <div class="line"></div>
       <div class="address">
         <p><strong>Indirizzo: </strong><span>{{Order.address.street}} {{Order.address.street_number}}, {{Order.address.city}}</span></p>
@@ -138,7 +125,12 @@
       </div>
       <div class="line"></div>
       <div class="payment">
-        <div class="initial" *ngIf="Order.price.initial>Order.price.final">
+        <div class="upfront" *ngIf="Order.upfront_amount">
+          <div class="item">Acconto</div>
+          <div class="amount">{{Order.upfront_amount/100}}€</div>
+        </div>
+
+        <!-- <div class="initial" *ngIf="Order.price.initial>Order.price.final">
           <div class="item">Totale iniziale</div>
           <div class="amount">{{Order.price.initial/100}}€</div>
         </div>
@@ -149,7 +141,7 @@
         <div class="upfront" *ngIf="Order.price.final!==Order.payment.upfront">
           <div class="item">Acconto</div>
           <div class="amount">{{Order.payment.upfront/100}}€</div>
-        </div>
+        </div> -->
       </div>
       <div class="messages" [hidden]="!order_status.error_message">
         <p><small>{{order_status.error_message}}</small></p>
@@ -174,9 +166,8 @@
   <div class="wizard-container" *ngIf="step === 'end'">
     <div class="content-container">
       <div class="header">
-        <!-- <h1 class="text-center">Complimenti!</h1> -->
         <h1 class="text-center">Complimenti, hai prenotato con successo un tecnico.</h1>
-        <p class="text-center">La contatteremo per ulteriori informazioni.</p>
+        <p class="text-center">Ti contatteremo per ulteriori informazioni.</p>
       </div>
       <div class="messages">
         <div class="success-icon"><span></span></div>

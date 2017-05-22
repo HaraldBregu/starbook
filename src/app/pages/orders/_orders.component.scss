@@ -58,93 +58,97 @@ app-orders {
         background: white;
         margin: 0px auto 40px;
         .order {
-          .top-container {
-            background: #ececec;
-            padding: 10px 20px;
-            overflow: auto;
+          .order-header {
             font-size: 16px;
-            span {
+            .top {
+              padding: 20px;
+              background: #ececec;
+              overflow: auto;
               font-weight: 600;
               color: #eb8102
             }
-          }
-          .nav-container {
-            color: white;
-            font-weight: 500;
-            background: #989ca4;
-            padding: 10px 20px;
-            font-size: 16px;
-            overflow: auto;
-            word-wrap: break-word;
+            .client {
+              padding-top: 0;
+              color: black;
+              font-weight: 400;
+              span {
+                display: block;
+              }
+            }
+            .table-header {
+              padding: 10px 20px;
+              color: white;
+              font-weight: 500;
+              // background: #989ca4;
+              background: #324977;
+              overflow: auto;
+              word-wrap: break-word;
+            }
             .item {
               float: left;
               width: 70%;
             }
             .quantity, .price, .total {
               float: left;
-              width: 10%;
+              width: 30%;
               text-align: right;
             }
           }
-          .content-container {
+          .order-body {
             padding: 20px;
             .content {
               overflow: auto;
-              span {
-                font-size: 18px;
-                display: block;
-              }
-              .item {
-                float: left;
-                width: 70%;
-              }
-              .quantity, .price, .total {
-                float: left;
-                width: 10%;
-                text-align: right;
-              }
-
+              font-size: 20px;
               .items {
-                span {
-                  font-size: 20px;
-                }
-              }
-              .timing {
-                padding-top: 20px;
-                span {
-                  font-size: 18px;
-                }
-              }
-              .payment {
                 overflow: auto;
-                float: right;
-                width: 30%;
-                .counts {
-                  span {
-                    font-size: 18px;
-                  }
-                  .line-break {
-                    float: right;
-                    width: 30%;
-                    margin-top: 10px;
-                    margin-bottom: 10px;
-                    border-top: 1px solid #9b9c9d;
-                  }
+                font-size: 20px;
+                .item {
+                  float: left;
+                  width: 70%;
+                }
+                .quantity, .price, .total {
+                  float: left;
+                  width: 30%;
+                  text-align: right;
+                }
+              }
+              .description {
+                font-size: 20px;
+                display: block;
+                width: 100%;
+                overflow: auto;
+              }
+              .price {
+                overflow: auto;
+                .items {
+                  text-align: right;
                   .item {
                     text-align: right;
+                    width: 85%;
+                    float: left;
                   }
                   .amount {
                     text-align: right;
+                    width: 15%;
+                    float: left;
                   }
                 }
-                .buttons {
+              }
+
+              .payment {
+                overflow: auto;
+                .items {
                   text-align: right;
-                  .btn {
-                    font-size: 18px;
-                    padding: 0 40px;
-                    font-weight: 500;
+                  .item {
+                    text-align: right;
+                    width: 85%;
+                    float: left;
                   }
-                  padding: 20px 0 0;
+                  .amount {
+                    text-align: right;
+                    width: 15%;
+                    float: left;
+                  }
                 }
               }
               .text {
@@ -155,63 +159,174 @@ app-orders {
                   font-size: 14px;
                 }
               }
+              .actions {
+                width: 100%;
+                text-align: right;
+                overflow: auto;
+                .btn {
+                  font-size: 18px;
+                  padding: 0 40px;
+                  font-weight: 500;
+                }
+              }
             }
           }
-          .line {
-            margin: 0 20px;
-            display: block;
-            height: 1px;
+          .order-footer {
+            background: #ececec;
+            padding: 10px 20px;
             border-top: 1px solid #9b9c9d;
           }
-        }
-
-
-
-        .counts {
-          overflow: auto;
-          .item {
-            float: left;
-            width: 70%;
+          .line {
+            display: block;
+            height: 1px;
+            margin: 20px 0;
+            border-top: 1px solid #9b9c9d;
           }
-          .amount {
-            float: left;
-            width: 30%;
+          .dashed {
+            border-top: 1px dashed #9b9c9d;
           }
-          .initial {
-            font-weight: 400;
-            text-decoration: line-through;
+          .dashed:before {
+            background-color: #FFFFFF;
+            content: "";
+            height: 10px;
+            position: absolute;
+            top: -2px;
+            width: 100%;
           }
-          .time {
-            font-weight: 500;
-            font-size: 20px;
+          .dashed:after {
+            background-color: #FFFFFF;
+            content: "";
+            height: 10px;
+            position: absolute;
+            top: -13px;
+            width: 100%;
           }
-        }
-        .actions {
-          width: 50%;
-          text-align: center;
-          padding: 20px 0;
-          margin: auto;
-          color: #324977;
-          a {
-            font-weight: 500;
-            cursor: pointer;
-            padding: 0 5px;
-          }
-          a:hover {
-            color: #324977;
-            text-decoration: underline;
-          }
-        }
-        .links {
-          text-align: center;
         }
       }
+    }
+
+    .popup-shadow {
+      position: fixed;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      z-index: 1050;
+      display: none;
+      overflow: hidden;
+      -webkit-overflow-scrolling: touch;
+      outline: 0;
+      overflow-x: hidden;
+      overflow-y: auto;
+      background: rgba(0, 0, 0, 0.3);
+    }
+    .popup-container {
+      position: fixed;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      z-index: 1050;
+      display: none;
+      overflow: hidden;
+      -webkit-overflow-scrolling: touch;
+      outline: 0;
+      overflow-x: hidden;
+      overflow-y: auto;
+      background: rgba(0, 0, 0, 0.3);
+      .popup {
+        background: white;
+        width: 500px;
+        margin: 80px auto;
+        overflow-x: hidden;
+        overflow-y: scroll;
+        box-shadow: 0 5px 15px rgba(0,0,0,.5);
+        .popup-header {
+          padding: 30px;
+        }
+        .popup-body {
+          padding: 30px;
+          .btn {
+            width: 100%;
+            font-weight: 500;
+            outline: none;
+          }
+          .btn-warning {
+            color: black;
+          }
+          .btn-warning:hover {
+            color: black !important;
+          }
+          .details {
+            overflow: auto;
+            .item {
+              float: left;
+              width: 80%;
+            }
+            .amount {
+              float: left;
+              width: 20%;
+              .form-control {
+                text-align: center;
+              }
+            }
+          }
+        }
+        .popup-footer {
+          padding: 30px;
+        }
+      }
+      // background: red;
+      // position: fixed;
+      // width: 300px;
+      // // height: 1700px;
+      // top: 70px;
+      // left: 50%;
+      // margin-left: -150px;
     }
   }
 
   @media (max-width: 1024px) {
     .orders-container .orders {
-      margin-top: 0;
+      margin-top: 10px;
+      padding: 0 10px;
     }
   }
+  @media (max-width: 425px) {
+    .orders-container .popup-container {
+      padding: 10px;
+    }
+    .orders-container .popup-container .popup {
+      width: 100%;
+      margin-top: 70px;
+
+      // width: 100%;
+      // position: absolute;
+      // top: 0;
+      // left: 0;
+      // right: 0;
+      // bottom: 0;
+      // margin: 0;
+    }
+    // .orders-container .orders .order-container .order .order-header .item {
+    //   width: 55%;
+    // }
+    // .orders-container .orders .order-container .order .order-header .quantity,
+    // .orders-container .orders .order-container .order .order-header .price,
+    // .orders-container .orders .order-container .order .order-header .total {
+    //   width: 15%;
+    // }
+    // .orders-container .orders .order-container .order .order-body .content .items .item {
+    //   width: 55%;
+    // }
+    // .orders-container .orders .order-container .order .order-body .content .items .quantity,
+    // .orders-container .orders .order-container .order .order-body .content .items .price,
+    // .orders-container .orders .order-container .order .order-body .content .items .total {
+    //   width: 15%;
+    // }
+    .orders-container .orders .order-container .order .order-body .content .price {
+      width: 100%;
+    }
+  }
+
 }

@@ -30,8 +30,8 @@ export const routes: string[] = [
   'requests',
   'requests/:page',
 
-  'share',
-  'share/:page',
+  // 'share',
+  // 'share/:page',
 
   // 'blog',
   // 'blog/:page',

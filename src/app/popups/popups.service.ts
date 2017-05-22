@@ -17,7 +17,7 @@ export class PopupsService {
   }
   activate(popup) {
     if (popup && popup['type'] && popup['type'].length > 0) {
-      console.log('popup is open');
+      // console.log('popup is open');
       $('body').addClass('disable-body-scroll');
       $('app-home').addClass('visibility-hidden');
       $('app-profile').addClass('visibility-hidden');

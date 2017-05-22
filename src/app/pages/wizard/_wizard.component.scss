@@ -229,602 +229,444 @@ app-wizard {
       }
     }
   }
-}
 
-// Wizard styles
-$wizard-background-color: #F7F7F7;
-$wizard-background-active-color: #27AE60;
-$wizard-border-style: 1px solid #CCCCCC;
-$wizard-border-color: #CCCCCC;
-$wizard-header-text-color: #000000;
-$wizard-header-text-size: 18px;
-$wizard-header-text-letter-spacing: 0.11px;
-$wizard-content-header-text-color: #000000;
-$wizard-content-header-text-size: 28px;
-$wizard-content-header-text-letter-spacing: 0.16px;
-$wizard-content-action-header-text-letter-spacing: 0.18px;
-$wizard-content-item-text-color: #000000;
-$wizard-content-item-text-size: 18px;
-$wizard-content-item-text-letter-spacing: 0.11px;
-$wizard-content-summary-item-text-color: #000000;
-$wizard-content-summary-item-text-size: 25px;
-$wizard-content-summary-item-big-text-size: 25px;
-$wizard-content-summary-item-text-letter-spacing: 0.13px;
 
-// font-family: 'Roboto', sans-serif;
+  // Wizard styles
+  $wizard-background-color: #F7F7F7;
+  $wizard-background-active-color: #27AE60;
+  $wizard-border-style: 1px solid #CCCCCC;
+  $wizard-border-color: #CCCCCC;
+  $wizard-header-text-color: #000000;
+  $wizard-header-text-size: 18px;
+  $wizard-header-text-letter-spacing: 0.11px;
+  $wizard-content-header-text-color: #000000;
+  $wizard-content-header-text-size: 28px;
+  $wizard-content-header-text-letter-spacing: 0.16px;
+  $wizard-content-action-header-text-letter-spacing: 0.18px;
+  $wizard-content-item-text-color: #000000;
+  $wizard-content-item-text-size: 18px;
+  $wizard-content-item-text-letter-spacing: 0.11px;
+  $wizard-content-summary-item-text-color: #000000;
+  $wizard-content-summary-item-text-size: 25px;
+  $wizard-content-summary-item-big-text-size: 25px;
+  $wizard-content-summary-item-text-letter-spacing: 0.13px;
 
-// Wizard form
-$wizard-form-label-text-color: #000000;
-$wizard-form-label-text-size: 16px;
-$wizard-form-label-text-letter-spacing: 0.1px;
-$wizard-form-input-text-color: #000000;
-$wizard-form-input-text-size: 16px;
-$wizard-form-input-text-letter-spacing: 0.1px;
-$wizard-form-input-background-color: #FFFFFF;
-$wizard-form-input-border-style: 1px solid #E1E1E1;
-$wizard-form-input-button-letter-spacing: 0.11px;
-$wizard-form-input-warning-border: 1px solid #DB4F4F;
-$wizard-form-error-text-color: #DB4F4F;
-$wizard-form-error-text-size: 14px;
-$wizard-form-error-text-letter-spacing: 0.1px;
-$wizard-form-footer-text-color: #212121;
-$wizard-form-footer-link-color: #0066C0;
-$wizard-form-footer-text-size: 12px;
-$wizard-form-footer-text-letter-spacing: 0.08px;
-$wizard-form-error-message-border-style: 1px solid #C40000;
-$wizard-form-error-message-background-color: #F2DEDE;
-$wizard-form-error-message-text-size: 13px;
-$wizard-form-error-message-text-color: #AB433F;
-$wizard-form-error-message-letter-spacing: 0.08px;
-$wizard-cards-subheader-color: #0066C0;
-$wizard-cards-subheader-font-size: 12px;
-$wizard-cards-subheader-letter-spacing: 0.08px;
-$wizard-form-button-secondary-background-color: #ffffff;
-$wizard-form-button-secondary-text-color: #212121;
-$wizard-form-button-secondary-text-size: 18px;
-$wizard-form-button-secondary-letter-spacing: 0.11px;
-$wizard-form-description-border: 1px solid #E7E7E7;
-$wizard-form-description-text-color: #8D8D8D;
-$wizard-form-description-font-size: 12px;
-$wizard-form-letter-spacing: 0.08px;
-$wizard-btn-font-size: 16px;
+  // font-family: 'Roboto', sans-serif;
 
-// Facebook btn
-$wizard-btn-facebook-background: #3B5998;
-$wizard-btn-facebook-border: 1px solid #3B5998;
-$wizard-btn-facebook-text-color: #FFFFFF;
-$wizard-btn-facebook-letter-spacing: 0.1px;
-$wizard-btn-facebook-icon: '/assets/images/fb-icon.png';
+  // Wizard form
+  $wizard-form-label-text-color: #000000;
+  $wizard-form-label-text-size: 16px;
+  $wizard-form-label-text-letter-spacing: 0.1px;
+  $wizard-form-input-text-color: #000000;
+  $wizard-form-input-text-size: 16px;
+  $wizard-form-input-text-letter-spacing: 0.1px;
+  $wizard-form-input-background-color: #FFFFFF;
+  $wizard-form-input-border-style: 1px solid #E1E1E1;
+  $wizard-form-input-button-letter-spacing: 0.11px;
+  $wizard-form-input-warning-border: 1px solid #DB4F4F;
+  $wizard-form-error-text-color: #DB4F4F;
+  $wizard-form-error-text-size: 14px;
+  $wizard-form-error-text-letter-spacing: 0.1px;
+  $wizard-form-footer-text-color: #212121;
+  $wizard-form-footer-link-color: #0066C0;
+  $wizard-form-footer-text-size: 12px;
+  $wizard-form-footer-text-letter-spacing: 0.08px;
+  $wizard-form-error-message-border-style: 1px solid #C40000;
+  $wizard-form-error-message-background-color: #F2DEDE;
+  $wizard-form-error-message-text-size: 13px;
+  $wizard-form-error-message-text-color: #AB433F;
+  $wizard-form-error-message-letter-spacing: 0.08px;
+  $wizard-cards-subheader-color: #0066C0;
+  $wizard-cards-subheader-font-size: 12px;
+  $wizard-cards-subheader-letter-spacing: 0.08px;
+  $wizard-form-button-secondary-background-color: #ffffff;
+  $wizard-form-button-secondary-text-color: #212121;
+  $wizard-form-button-secondary-text-size: 18px;
+  $wizard-form-button-secondary-letter-spacing: 0.11px;
+  $wizard-form-description-border: 1px solid #E7E7E7;
+  $wizard-form-description-text-color: #8D8D8D;
+  $wizard-form-description-font-size: 12px;
+  $wizard-form-letter-spacing: 0.08px;
+  $wizard-btn-font-size: 16px;
 
-// .wizard .wizard-container .header {
-//   display: block;
-//   float: left;
-//   width: 100%;
-//   border-bottom: $wizard-border-style;
-//   padding-left: 10px;
-// }
-.wizard .wizard-container .header span {
-  display: inline-block;
-  float: left;
-  position: relative;
-  padding: 16px 30px 19px 20px;
-  overflow: hidden;
+  // Facebook btn
+  $wizard-btn-facebook-background: #3B5998;
+  $wizard-btn-facebook-border: 1px solid #3B5998;
+  $wizard-btn-facebook-text-color: #FFFFFF;
+  $wizard-btn-facebook-letter-spacing: 0.1px;
+  $wizard-btn-facebook-icon: '/assets/images/fb-icon.png';
 
-  color: $wizard-header-text-color;
-  font-size: $wizard-header-text-size;
-  letter-spacing: $wizard-header-text-letter-spacing;
-}
-.wizard .wizard-container .header span i {
-  display: block;
-  position: absolute;
-  width: 60px;
-  height: 60px;
-  top: 2px;
-  right: 7px;
-  -moz-transform: rotate(54deg) skewX(20deg);
-  -ms-transform: rotate(54deg) skewX(20deg);
-  -webkit-transform: rotate(54deg) skewX(20deg);
-  -o-transform: rotate(54deg) skewX(20deg);
-  transform: rotate(54deg) skewX(20deg);
-  background-color: transparent;
-  border-top: $wizard-border-style;
-  border-right: $wizard-border-style;
-}
-.wizard-container .image-block {
-  display: block;
-  width: 100%;
-  height: 250px;
-  // float: left;
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: 50% 90%;
-  max-width: 400px;
-  margin: 40px auto 0;
-}
-// .wizard-container .content-container {
-//   display: block;
-//   width: 100%;
-//   max-width: 600px;
-//   margin: 0 auto;
-// }
-.wizard-container .content-container .title {
-  display: block;
-  float: left;
-  width: 100%;
+  // .wizard .wizard-container .header {
+  //   display: block;
+  //   float: left;
+  //   width: 100%;
+  //   border-bottom: $wizard-border-style;
+  //   padding-left: 10px;
+  // }
+  .wizard .wizard-container .header span {
+    display: inline-block;
+    float: left;
+    position: relative;
+    padding: 16px 30px 19px 20px;
+    overflow: hidden;
 
-  color: $wizard-content-header-text-color;
-  font-size: $wizard-content-header-text-size;
-  letter-spacing: $wizard-content-header-text-letter-spacing;
-  margin-top: 40px;
-}
-.wizard-container .content-container .title.action-title {
-  letter-spacing: $wizard-content-action-header-text-letter-spacing;
-  margin-top: 48px;
-  text-align: center;
-}
-.wizard-container .content-container.loan .title.action-title {
-  margin-top: 45px;
-}
-.wizard-container .content-container .items {
-  display: block;
-  float: left;
-  width: 100%;
-  margin-top: 18px;
-}
-.wizard-container .content-container .items .item {
-  display: block;
-  float: left;
-  position: relative;
-  width: 100%;
-  padding-top: 5px;
-
-  color: $wizard-content-item-text-color;
-  font-size: $wizard-content-item-text-size;
-  letter-spacing: $wizard-content-item-text-letter-spacing;
-}
-.wizard-container .content-container .items .item span {
-  display: block;
-  position: absolute;
-  max-width: 120px;
-  top: 0;
-  right: 0;
-  text-align: right;
-  padding-top: 5px;
-
-  color: $wizard-content-item-text-color;
-  font-size: $wizard-content-item-text-size;
-  letter-spacing: $wizard-content-item-text-letter-spacing;
-}
-.wizard-container .content-container .items .element {
-  display: block;
-  float: left;
-  width: 100%;
-  padding-top: 5px;
-}
-.wizard-container .content-container .items .element p {
-  display: block;
-  float: left;
-  width: 68%;
-
-  color: $wizard-content-item-text-color;
-  font-size: $wizard-content-item-text-size;
-  letter-spacing: $wizard-content-item-text-letter-spacing;
-  padding: 0 10px 0 0;
-  margin: 0;
-}
-.wizard-container .content-container .items .element span {
-  display: block;
-  position: static;
-  float: left;
-  width: 32%;
-  text-align: right;
-
-  color: $wizard-content-item-text-color;
-  font-size: $wizard-content-item-text-size;
-  letter-spacing: $wizard-content-item-text-letter-spacing;
-}
-.wizard-container .content-container .summary {
-  display: block;
-  float: left;
-  width: 100%;
-  margin-top: 30px;
-  padding: 5px 0;
-  // border-top: 0.5px solid #E1E1E1;
-  // border-bottom: 0.5px solid #E1E1E1;
-}
-.wizard-container .content-container .summary .item {
-  display: block;
-  float: left;
-  position: relative;
-  width: 100%;
-  padding: 5px 0;
-
-  color: $wizard-content-summary-item-text-color;
-  font-size: $wizard-content-summary-item-text-size;
-  letter-spacing: $wizard-content-summary-item-text-letter-spacing;
-}
-.wizard-container .content-container .summary .item-small {
-  display: block;
-  float: left;
-  position: relative;
-  width: 100%;
-  padding: 5px 0;
-
-  color: $wizard-content-summary-item-text-color;
-  font-size: 18px;
-  letter-spacing: $wizard-content-summary-item-text-letter-spacing;
-}
-.wizard-container .content-container .summary .item span {
-  display: block;
-  position: absolute;
-  top: 10px;
-  right: 0;
-  text-align: right;
-
-  color: $wizard-content-summary-item-text-color;
-  font-size: $wizard-content-summary-item-text-size;
-  letter-spacing: $wizard-content-summary-item-text-letter-spacing;
-  text-transform: capitalize;
-}
-.wizard-container .content-container .summary .item-small span {
-  display: block;
-  position: absolute;
-  top: 10px;
-  right: 0;
-  text-align: right;
-
-  color: $wizard-content-summary-item-text-color;
-  font-size: 18px;
-  letter-spacing: $wizard-content-summary-item-text-letter-spacing;
-  text-transform: capitalize;
-}
-.wizard-container .content-container .summary .item span.big {
-  top: 5px;
-  font-size: $wizard-content-summary-item-big-text-size;
-}
-.wizard-container .content-container .wizard-form {
-  display: block;
-  float: left;
-  width: 100%;
-  margin-top: 22px;
-}
-.wizard-container .content-container.registration .wizard-form {
-  margin-top: 45px;
-}
-.wizard-container .content-container .wizard-form .form-group {
-  display: block;
-  float: left;
-  position: relative;
-  width: 100%;
-  margin-top: 10px;
-  margin-bottom: 0;
-}
-.wizard-container .content-container .wizard-form .form-group label {
-  display: block;
-  float: left;
-  width: 100%;
-  color: $wizard-form-label-text-color;
-  font-size: $wizard-form-label-text-size;
-  letter-spacing: $wizard-form-label-text-letter-spacing;
-  font-weight: normal;
-  padding: 0 0 5px 0;
-  margin-bottom: 0;
-}
-.wizard-container .content-container .wizard-form .form-group button.btn.btn-warning {
-  display: block;
-  float: left;
-  width: 100%;
-  margin-top: 20px;
-
-  letter-spacing: $wizard-form-input-button-letter-spacing;
-  border: none;
-  margin-bottom: 80px;
-  outline: none;
-}
-.wizard-container .content-container .wizard-form .form-group button.btn.btn-secondary {
-  display: block;
-  float: left;
-  width: 100%;
-  height: 45px;
-  padding: 11px 7px;
-  margin-top: 10px;
-  color: $wizard-form-button-secondary-text-color;
-
-  font-size: $wizard-form-button-secondary-text-size;
-  letter-spacing: $wizard-form-input-button-letter-spacing;
-  border: none;
-  outline: none;
-  background-color: $wizard-form-button-secondary-background-color;
-  margin-bottom: 20px;
-}
-.wizard-container .content-container.login-step .wizard-form .form-group button.btn.btn-warning,
-.wizard-container .content-container.confirm-user-info .wizard-form .form-group button.btn.btn-warning {
-  margin-bottom: 0;
-  margin-top: 10px;
-}
-.wizard-container .content-container.confirm-user-info .wizard-form .form-group button.btn.btn-warning {
-  margin-bottom: 80px;
-}
-.wizard-container .content-container.registration .wizard-form .form-group button.btn.btn-warning {
-  margin-top: 10px;
-  margin-bottom: 0;
-}
-.wizard-container .content-container.loan .wizard-form .form-group button.btn.btn-warning {
-  margin-top: 35px;
-  margin-bottom: 139px;
-}
-.wizard-container .content-container .wizard-form .form-group .date {
-  display: block;
-  position: relative;
-  float: left;
-  width: 100%;
-}
-.wizard-container .content-container .wizard-form .form-group .date .ui-datepicker {
-  margin-left: 0;
-}
-.wizard-container .content-container .wizard-form .form-group .ui-inputtext {
-  display: block;
-  position: relative;
-  float: left;
-  width: 100%;
-  height: 40px;
-  padding: 7px 12px;
-
-  color: $wizard-form-input-text-color;
-  font-size: $wizard-form-input-text-size;
-  letter-spacing: $wizard-form-input-text-letter-spacing;
-  border-radius: 0;
-  border: $wizard-form-input-border-style;
-  background-color: $wizard-form-input-background-color;
-  outline: none;
-}
-.wizard-container .content-container .wizard-form .form-group.isError .ui-inputtext {
-  border: $wizard-form-input-warning-border;
-}
-.wizard-container .content-container .wizard-form .form-group .date .ui-datepicker .ui-datepicker-next {
-  right: 10px;
-}
-.wizard-container .content-container .wizard-form .form-group .ui-datepicker-calendar td a.ui-state-default {
-  padding: 6px 2px;
-  height: 30px;
-}
-.wizard-container .content-container .wizard-form .form-group .form-control {
-  display: block;
-  position: relative;
-  float: left;
-  width: 100%;
-  padding: 0;
-  background-color: transparent;
-  border: none;
-}
-// .wizard .error-message {
-//   display: block;
-//   float: left;
-//   width: 100%;
-//   margin-top: 10px;
-//
-//   color: $wizard-form-error-text-color;
-//   font-size: $wizard-form-error-text-size;
-//   letter-spacing: $wizard-form-error-text-letter-spacing;
-//   text-transform: capitalize;
-// }
-.wizard-container .content-container.registration .form-group .form-control,
-.wizard-container .content-container.login-step .form-group .form-control,
-.wizard-container .content-container.loan .form-group .form-control,
-.wizard-container .content-container.confirm-user-info .form-group .form-control {
-  display: block;
-  position: relative;
-  float: left;
-  width: 100%;
-  height: 38px;
-  padding: 7px 12px;
-
-  color: $wizard-form-input-text-color;
-  font-size: $wizard-form-input-text-size;
-  letter-spacing: $wizard-form-input-text-letter-spacing;
-  border-radius: 0;
-  border: $wizard-form-input-border-style;
-  background-color: $wizard-form-input-background-color;
-  outline: none;
-}
-.wizard-container .content-container.registration .isError .form-control,
-.wizard-container .content-container.login-step .isError .form-control,
-.wizard-container .content-container.loan .isError .form-control,
-.wizard-container .content-container.confirm-user-info .isError .form-control {
-  border: $wizard-form-input-warning-border;
-}
-.wizard-container .content-container.registration .form-footer,
-.wizard-container .content-container.login-step .form-footer,
-.wizard-container .content-container.loan .form-footer {
-  display: block;
-  float: left;
-  width: 100%;
-  margin-bottom: 115px;
-
-  color: $wizard-form-footer-text-color;
-  font-size: $wizard-form-footer-text-size;
-  letter-spacing: $wizard-form-footer-text-letter-spacing;
-}
-.wizard-container .content-container.registration .form-footer a,
-.wizard-container .content-container.registration .form-footer a:hover,
-.wizard-container .content-container.login-step .form-footer a,
-.wizard-container .content-container.login-step .form-footer a:hover,
-.wizard-container .content-container.loan .form-footer a,
-.wizard-container .content-container.loan .form-footer a:hover {
-  color: $wizard-form-footer-link-color;
-  text-decoration: none;
-}
-
-.wizard-container .content-container.registration .form-description,
-.wizard-container .content-container.login-step .form-description {
-  display: block;
-  position: relative;
-  width: 100%;
-  margin-top: 23px;
-  border-top: $wizard-form-description-border;
-  float: left;
-}
-
-.wizard-container .content-container.login-step .form-description span,
-.wizard-container .content-container.registration .form-description span {
-  display: block;
-  position: absolute;
-  top: -12px;
-  left: 50%;
-  margin-left: -15px;
-  width: 30px;
-  text-align: center;
-
-  color: $wizard-form-description-text-color;
-  font-size: $wizard-form-description-font-size;
-  letter-spacing: $wizard-form-letter-spacing;
-  background-color: $wizard-background-color;
-  padding: 4px 10px;
-}
-
-.wizard-container .content-container.login-step .form-group .btn.btn-primary.facebook i,
-.wizard-container .content-container.registration .form-group .btn.btn-primary.facebook i {
-  display: block;
-  position: absolute;
-  top: 9px;
-  left: 12px;
-  width: 25px;
-  height: 25px;
-  background-image: url($wizard-btn-facebook-icon);
-  background-repeat: no-repeat;
-  background-size: contain;
-}
-
-.wizard-container .content-container.login-step .form-group .btn.btn-primary.facebook,
-.wizard-container .content-container.registration .form-group .btn.btn-primary.facebook {
-  position: relative;
-  width: 100%;
-  height: 45px;
-
-  border: $wizard-btn-facebook-border;
-  border-radius: 0px;
-  font-size: $wizard-btn-font-size;
-  color: $wizard-btn-facebook-text-color;
-  letter-spacing: $wizard-btn-facebook-letter-spacing;
-  font-weight: 600;
-  padding: 10px 7px;
-  background-color: $wizard-btn-facebook-background;
-  text-align: center;
-  margin-top: 30px;
-  outline: none;
-  line-height: 24px;
-}
-
-.wizard-container .content-container.registration .form-group .btn.btn-primary.facebook {
-  margin-bottom: 20px;
-}
-
-.wizard-container .content-container.login-step .form-group .btn.btn-primary.facebook {
-  margin-bottom: 80px;
-}
-
-// CONTENT CONTAINER
-.content-container {
-  .form-group .ui-inputtext:focus {
-    border: 2px solid #7FC443 !important;
+    color: $wizard-header-text-color;
+    font-size: $wizard-header-text-size;
+    letter-spacing: $wizard-header-text-letter-spacing;
   }
-  .form-group .form-control:focus {
-    border: 2px solid #7FC443 !important;
-  }
-  .form-group .error-input {
-    border: 2px solid #f75c4b !important;
-  }
-}
-.content-container form {
-  .error-message {
-    color: #f75c4b;
-    font-size: 12px;
+  .wizard .wizard-container .header span i {
+    display: block;
     position: absolute;
+    width: 60px;
+    height: 60px;
+    top: 2px;
+    right: 7px;
+    -moz-transform: rotate(54deg) skewX(20deg);
+    -ms-transform: rotate(54deg) skewX(20deg);
+    -webkit-transform: rotate(54deg) skewX(20deg);
+    -o-transform: rotate(54deg) skewX(20deg);
+    transform: rotate(54deg) skewX(20deg);
+    background-color: transparent;
+    border-top: $wizard-border-style;
+    border-right: $wizard-border-style;
   }
-}
-.content-container .address {
-  text-align: left;
-  // width: 400px;
-  // margin: 0 auto;
-}
-.content-container .date {
-  text-align: left;
-  // width: 400px;
-  // margin: 0 auto;
-}
-// .content-container .payment {
-//   text-align: center;
-//   width: 400px;
-//   margin: 0 auto;
-//   padding: 20px 0;
-//   .method {
-//     // margin: 20px 0 0;
-//   }
-//   .total {
-//     margin: 10px 0 0;
-//     span {
-//       color: #00B420;
-//     }
-//   }
-// }
-.content-container .messages {
-  padding: 20px 0;
-  text-align: center;
-  p {
-    color: red;
+  .wizard-container .image-block {
+    display: block;
+    width: 100%;
+    height: 250px;
+    // float: left;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 50% 90%;
+    max-width: 400px;
+    margin: 40px auto 0;
   }
-  a {
-    color: #0066C0 !important;
-    cursor: pointer;
+  // .wizard-container .content-container {
+  //   display: block;
+  //   width: 100%;
+  //   max-width: 600px;
+  //   margin: 0 auto;
+  // }
+  .wizard-container .content-container .title {
+    display: block;
+    float: left;
+    width: 100%;
+
+    color: $wizard-content-header-text-color;
+    font-size: $wizard-content-header-text-size;
+    letter-spacing: $wizard-content-header-text-letter-spacing;
+    margin-top: 40px;
   }
-}
-.content-container .forms {
-  padding: 20px 0;
-  height: 70px;
-  .form-group .ui-inputtext {
+  .wizard-container .content-container .title.action-title {
+    letter-spacing: $wizard-content-action-header-text-letter-spacing;
+    margin-top: 48px;
     text-align: center;
   }
-}
-.content-container .actions {
-  width: 100%;
-  text-align: center;
-  padding: 20px 0;
-  .btn-warning {
-    width: 100%;
-    font-size: 26px;
-    color: white;
-    height: 60px;
-    font-weight: 700;
+  .wizard-container .content-container.loan .title.action-title {
+    margin-top: 45px;
   }
-  .btn-white {
+  .wizard-container .content-container .items {
+    display: block;
+    float: left;
     width: 100%;
-    font-size: 20px;
-    height: 60px;
+    margin-top: 18px;
   }
-  .btn-facebook {
+  .wizard-container .content-container .items .item {
+    display: block;
+    float: left;
+    position: relative;
     width: 100%;
-    font-size: 20px;
-    height: 60px;
+    padding-top: 5px;
+
+    color: $wizard-content-item-text-color;
+    font-size: $wizard-content-item-text-size;
+    letter-spacing: $wizard-content-item-text-letter-spacing;
   }
-  .btn-facebook i {
+  .wizard-container .content-container .items .item span {
+    display: block;
+    position: absolute;
+    max-width: 120px;
+    top: 0;
+    right: 0;
+    text-align: right;
+    padding-top: 5px;
+
+    color: $wizard-content-item-text-color;
+    font-size: $wizard-content-item-text-size;
+    letter-spacing: $wizard-content-item-text-letter-spacing;
+  }
+  .wizard-container .content-container .items .element {
+    display: block;
+    float: left;
+    width: 100%;
+    padding-top: 5px;
+  }
+  .wizard-container .content-container .items .element p {
+    display: block;
+    float: left;
+    width: 68%;
+
+    color: $wizard-content-item-text-color;
+    font-size: $wizard-content-item-text-size;
+    letter-spacing: $wizard-content-item-text-letter-spacing;
+    padding: 0 10px 0 0;
+    margin: 0;
+  }
+  .wizard-container .content-container .items .element span {
+    display: block;
+    position: static;
+    float: left;
+    width: 32%;
+    text-align: right;
+
+    color: $wizard-content-item-text-color;
+    font-size: $wizard-content-item-text-size;
+    letter-spacing: $wizard-content-item-text-letter-spacing;
+  }
+  .wizard-container .content-container .summary {
+    display: block;
+    float: left;
+    width: 100%;
+    margin-top: 30px;
+    padding: 5px 0;
+    // border-top: 0.5px solid #E1E1E1;
+    // border-bottom: 0.5px solid #E1E1E1;
+  }
+  .wizard-container .content-container .summary .item {
+    display: block;
+    float: left;
+    position: relative;
+    width: 100%;
+    padding: 5px 0;
+
+    color: $wizard-content-summary-item-text-color;
+    font-size: $wizard-content-summary-item-text-size;
+    letter-spacing: $wizard-content-summary-item-text-letter-spacing;
+  }
+  .wizard-container .content-container .summary .item-small {
+    display: block;
+    float: left;
+    position: relative;
+    width: 100%;
+    padding: 5px 0;
+
+    color: $wizard-content-summary-item-text-color;
+    font-size: 18px;
+    letter-spacing: $wizard-content-summary-item-text-letter-spacing;
+  }
+  .wizard-container .content-container .summary .item span {
     display: block;
     position: absolute;
     top: 10px;
-    left: 12px;
-    width: 40px;
-    height: 40px;
-    background-image: url('/assets/images/fb-icon.png');
-    background-repeat: no-repeat;
-    background-size: contain;
+    right: 0;
+    text-align: right;
+
+    color: $wizard-content-summary-item-text-color;
+    font-size: $wizard-content-summary-item-text-size;
+    letter-spacing: $wizard-content-summary-item-text-letter-spacing;
+    text-transform: capitalize;
   }
-  .form-divider {
+  .wizard-container .content-container .summary .item-small span {
+    display: block;
+    position: absolute;
+    top: 10px;
+    right: 0;
+    text-align: right;
+
+    color: $wizard-content-summary-item-text-color;
+    font-size: 18px;
+    letter-spacing: $wizard-content-summary-item-text-letter-spacing;
+    text-transform: capitalize;
+  }
+  .wizard-container .content-container .summary .item span.big {
+    top: 5px;
+    font-size: $wizard-content-summary-item-big-text-size;
+  }
+  .wizard-container .content-container .wizard-form {
+    display: block;
+    float: left;
+    width: 100%;
+    margin-top: 22px;
+  }
+  .wizard-container .content-container.registration .wizard-form {
+    margin-top: 45px;
+  }
+  .wizard-container .content-container .wizard-form .form-group {
+    display: block;
+    float: left;
+    position: relative;
+    width: 100%;
+    margin-top: 10px;
+    margin-bottom: 0;
+  }
+  .wizard-container .content-container .wizard-form .form-group label {
+    display: block;
+    float: left;
+    width: 100%;
+    color: $wizard-form-label-text-color;
+    font-size: $wizard-form-label-text-size;
+    letter-spacing: $wizard-form-label-text-letter-spacing;
+    font-weight: normal;
+    padding: 0 0 5px 0;
+    margin-bottom: 0;
+  }
+  .wizard-container .content-container .wizard-form .form-group button.btn.btn-warning {
+    display: block;
+    float: left;
+    width: 100%;
+    margin-top: 20px;
+
+    letter-spacing: $wizard-form-input-button-letter-spacing;
+    border: none;
+    margin-bottom: 80px;
+    outline: none;
+  }
+  .wizard-container .content-container .wizard-form .form-group button.btn.btn-secondary {
+    display: block;
+    float: left;
+    width: 100%;
+    height: 45px;
+    padding: 11px 7px;
+    margin-top: 10px;
+    color: $wizard-form-button-secondary-text-color;
+
+    font-size: $wizard-form-button-secondary-text-size;
+    letter-spacing: $wizard-form-input-button-letter-spacing;
+    border: none;
+    outline: none;
+    background-color: $wizard-form-button-secondary-background-color;
+    margin-bottom: 20px;
+  }
+  .wizard-container .content-container.login-step .wizard-form .form-group button.btn.btn-warning,
+  .wizard-container .content-container.confirm-user-info .wizard-form .form-group button.btn.btn-warning {
+    margin-bottom: 0;
+    margin-top: 10px;
+  }
+  .wizard-container .content-container.confirm-user-info .wizard-form .form-group button.btn.btn-warning {
+    margin-bottom: 80px;
+  }
+  .wizard-container .content-container.registration .wizard-form .form-group button.btn.btn-warning {
+    margin-top: 10px;
+    margin-bottom: 0;
+  }
+  .wizard-container .content-container.loan .wizard-form .form-group button.btn.btn-warning {
+    margin-top: 35px;
+    margin-bottom: 139px;
+  }
+  .wizard-container .content-container .wizard-form .form-group .date {
+    display: block;
+    position: relative;
+    float: left;
+    width: 100%;
+  }
+  .wizard-container .content-container .wizard-form .form-group .date .ui-datepicker {
+    margin-left: 0;
+  }
+  .wizard-container .content-container .wizard-form .form-group .ui-inputtext {
+    display: block;
+    position: relative;
+    float: left;
+    width: 100%;
+    height: 40px;
+    padding: 7px 12px;
+
+    color: $wizard-form-input-text-color;
+    font-size: $wizard-form-input-text-size;
+    letter-spacing: $wizard-form-input-text-letter-spacing;
+    border-radius: 0;
+    border: $wizard-form-input-border-style;
+    background-color: $wizard-form-input-background-color;
+    outline: none;
+  }
+  .wizard-container .content-container .wizard-form .form-group.isError .ui-inputtext {
+    border: $wizard-form-input-warning-border;
+  }
+  .wizard-container .content-container .wizard-form .form-group .date .ui-datepicker .ui-datepicker-next {
+    right: 10px;
+  }
+  .wizard-container .content-container .wizard-form .form-group .ui-datepicker-calendar td a.ui-state-default {
+    padding: 6px 2px;
+    height: 30px;
+  }
+  .wizard-container .content-container .wizard-form .form-group .form-control {
+    display: block;
+    position: relative;
+    float: left;
+    width: 100%;
+    padding: 0;
+    background-color: transparent;
+    border: none;
+  }
+  // .wizard .error-message {
+  //   display: block;
+  //   float: left;
+  //   width: 100%;
+  //   margin-top: 10px;
+  //
+  //   color: $wizard-form-error-text-color;
+  //   font-size: $wizard-form-error-text-size;
+  //   letter-spacing: $wizard-form-error-text-letter-spacing;
+  //   text-transform: capitalize;
+  // }
+  .wizard-container .content-container.registration .form-group .form-control,
+  .wizard-container .content-container.login-step .form-group .form-control,
+  .wizard-container .content-container.loan .form-group .form-control,
+  .wizard-container .content-container.confirm-user-info .form-group .form-control {
+    display: block;
+    position: relative;
+    float: left;
+    width: 100%;
+    height: 38px;
+    padding: 7px 12px;
+
+    color: $wizard-form-input-text-color;
+    font-size: $wizard-form-input-text-size;
+    letter-spacing: $wizard-form-input-text-letter-spacing;
+    border-radius: 0;
+    border: $wizard-form-input-border-style;
+    background-color: $wizard-form-input-background-color;
+    outline: none;
+  }
+  .wizard-container .content-container.registration .isError .form-control,
+  .wizard-container .content-container.login-step .isError .form-control,
+  .wizard-container .content-container.loan .isError .form-control,
+  .wizard-container .content-container.confirm-user-info .isError .form-control {
+    border: $wizard-form-input-warning-border;
+  }
+  .wizard-container .content-container.registration .form-footer,
+  .wizard-container .content-container.login-step .form-footer,
+  .wizard-container .content-container.loan .form-footer {
+    display: block;
+    float: left;
+    width: 100%;
+    margin-bottom: 115px;
+
+    color: $wizard-form-footer-text-color;
+    font-size: $wizard-form-footer-text-size;
+    letter-spacing: $wizard-form-footer-text-letter-spacing;
+  }
+  .wizard-container .content-container.registration .form-footer a,
+  .wizard-container .content-container.registration .form-footer a:hover,
+  .wizard-container .content-container.login-step .form-footer a,
+  .wizard-container .content-container.login-step .form-footer a:hover,
+  .wizard-container .content-container.loan .form-footer a,
+  .wizard-container .content-container.loan .form-footer a:hover {
+    color: $wizard-form-footer-link-color;
+    text-decoration: none;
+  }
+
+  .wizard-container .content-container.registration .form-description,
+  .wizard-container .content-container.login-step .form-description {
     display: block;
     position: relative;
     width: 100%;
-    margin: 50px 0;
-    border-top: 1px solid #E7E7E7;
+    margin-top: 23px;
+    border-top: $wizard-form-description-border;
+    float: left;
   }
-  .form-divider span {
+
+  .wizard-container .content-container.login-step .form-description span,
+  .wizard-container .content-container.registration .form-description span {
     display: block;
     position: absolute;
     top: -12px;
@@ -832,252 +674,412 @@ $wizard-btn-facebook-icon: '/assets/images/fb-icon.png';
     margin-left: -15px;
     width: 30px;
     text-align: center;
-    color: #8D8D8D;
-    font-size: 12px;
-    letter-spacing: 0.08px;
-    background-color: white;
+
+    color: $wizard-form-description-text-color;
+    font-size: $wizard-form-description-font-size;
+    letter-spacing: $wizard-form-letter-spacing;
+    background-color: $wizard-background-color;
     padding: 4px 10px;
   }
-  .animate {
+
+  .wizard-container .content-container.login-step .form-group .btn.btn-primary.facebook i,
+  .wizard-container .content-container.registration .form-group .btn.btn-primary.facebook i {
     display: block;
     position: absolute;
-    top: 18px;
+    top: 9px;
+    left: 12px;
+    width: 25px;
+    height: 25px;
+    background-image: url($wizard-btn-facebook-icon);
+    background-repeat: no-repeat;
+    background-size: contain;
   }
-}
-.content-container .footer {
-  border-top: 1px solid #CCCCCC;
-  padding: 20px 0;
-  h6 {
+
+  .wizard-container .content-container.login-step .form-group .btn.btn-primary.facebook,
+  .wizard-container .content-container.registration .form-group .btn.btn-primary.facebook {
+    position: relative;
+    width: 100%;
+    height: 45px;
+
+    border: $wizard-btn-facebook-border;
+    border-radius: 0px;
+    font-size: $wizard-btn-font-size;
+    color: $wizard-btn-facebook-text-color;
+    letter-spacing: $wizard-btn-facebook-letter-spacing;
+    font-weight: 600;
+    padding: 10px 7px;
+    background-color: $wizard-btn-facebook-background;
+    text-align: center;
+    margin-top: 30px;
+    outline: none;
+    line-height: 24px;
+  }
+
+  .wizard-container .content-container.registration .form-group .btn.btn-primary.facebook {
+    margin-bottom: 20px;
+  }
+
+  .wizard-container .content-container.login-step .form-group .btn.btn-primary.facebook {
+    margin-bottom: 80px;
+  }
+
+  // CONTENT CONTAINER
+  .content-container {
+    .form-group .ui-inputtext:focus {
+      border: 2px solid #7FC443 !important;
+    }
+    .form-group .form-control:focus {
+      border: 2px solid #7FC443 !important;
+    }
+    .form-group .error-input {
+      border: 2px solid #f75c4b !important;
+    }
+  }
+  .content-container form {
+    .error-message {
+      color: #f75c4b;
+      font-size: 12px;
+      position: absolute;
+    }
+  }
+  .content-container .address {
     text-align: left;
+    // width: 400px;
+    // margin: 0 auto;
   }
-  a {
-    color: #0066C0 !important;
-    font-size: 12px;
-    letter-spacing: 0.08px;
-    text-decoration: none;
-    cursor: pointer;
+  .content-container .date {
+    text-align: left;
+    // width: 400px;
+    // margin: 0 auto;
   }
-}
-
-
-
-.wizard-container .form-group.subheader {
-  display: block;
-  width: 100%;
-  text-align: center;
-  margin-top: 33px;
-  margin-bottom: 27px;
-
-  color: $wizard-cards-subheader-color;
-  font-size: $wizard-cards-subheader-font-size;
-  letter-spacing: $wizard-cards-subheader-letter-spacing;
-}
-.wizard-container .form-group .part-group span.fa {
-  top: 37px;
-  right: 11px;
-}
-
-.wizard-form .error-message {
-  display: block;
-  float: left;
-  width: 100%;
-  padding: 11px 15px 12px;
-  border: $wizard-form-error-message-border-style;
-  background-color: $wizard-form-error-message-background-color;
-  border-radius: 3px;
-  font-size: $wizard-form-error-message-text-size;
-  color: $wizard-form-error-message-text-color;
-  letter-spacing: $wizard-form-error-message-letter-spacing;
-}
-.wizard-form .error-message span {
-
-}
-
-@media (max-width: 906px) {
-  // .wizard {
-  //   margin: 60px auto 0;
-  // }
-  // .wizard .wizard-container {
-  //   margin-bottom: 10px;
-  // }
-}
-// @media (max-width: 768px) {
-//   app-wizard {
-//     .wizard {
-//       margin: 70px auto 0;
-//       .wizard-container {
-//         margin: 0;
-//       }
-//     }
-//   }
-// }
-// Out
-@media (max-width: 645px) {
-  // app-wizard {
-  //   .wizard {
-  //     padding: 0;
-  //     margin: 70px auto 0;
-  //     .wizard-container {
-  //       margin: 0;
-  //       padding: 70px 0 0;
+  // .content-container .payment {
+  //   text-align: center;
+  //   width: 400px;
+  //   margin: 0 auto;
+  //   padding: 20px 0;
+  //   .method {
+  //     // margin: 20px 0 0;
+  //   }
+  //   .total {
+  //     margin: 10px 0 0;
+  //     span {
+  //       color: #00B420;
   //     }
   //   }
   // }
-
-  // .wizard {
-  //   padding: 0;
-  //   margin: 50px auto 0;
-  // }
-  // .wizard .wizard-container {
-  //   margin-bottom: 0;
-  //   margin-top: 50px;
-  // }
-  .breadcrumb {
-    position: fixed;
+  .content-container .messages {
+    padding: 20px 0;
+    text-align: center;
+    p {
+      color: red;
+    }
+    a {
+      color: #0066C0 !important;
+      cursor: pointer;
+    }
+  }
+  .content-container .forms {
+    padding: 20px 0;
+    height: 70px;
+    .form-group .ui-inputtext {
+      text-align: center;
+    }
+  }
+  .content-container .actions {
     width: 100%;
-    border-bottom: 1px solid #CCCCCC;
+    text-align: center;
+    padding: 20px 0;
+    .btn-warning {
+      width: 100%;
+      font-size: 26px;
+      color: white;
+      height: 60px;
+      font-weight: 700;
+    }
+    .btn-white {
+      width: 100%;
+      font-size: 20px;
+      height: 60px;
+    }
+    .btn-facebook {
+      width: 100%;
+      font-size: 20px;
+      height: 60px;
+    }
+    .btn-facebook i {
+      display: block;
+      position: absolute;
+      top: 10px;
+      left: 12px;
+      width: 40px;
+      height: 40px;
+      background-image: url('/assets/images/fb-icon.png');
+      background-repeat: no-repeat;
+      background-size: contain;
+    }
+    .form-divider {
+      display: block;
+      position: relative;
+      width: 100%;
+      margin: 50px 0;
+      border-top: 1px solid #E7E7E7;
+    }
+    .form-divider span {
+      display: block;
+      position: absolute;
+      top: -12px;
+      left: 50%;
+      margin-left: -15px;
+      width: 30px;
+      text-align: center;
+      color: #8D8D8D;
+      font-size: 12px;
+      letter-spacing: 0.08px;
+      background-color: white;
+      padding: 4px 10px;
+    }
+    .animate {
+      display: block;
+      position: absolute;
+      top: 18px;
+    }
   }
-  .wizard-container .image-block {
-    margin: 60px auto 0;
+  .content-container .footer {
+    border-top: 1px solid #CCCCCC;
+    padding: 20px 0;
+    h6 {
+      text-align: left;
+    }
+    a {
+      color: #0066C0 !important;
+      font-size: 12px;
+      letter-spacing: 0.08px;
+      text-decoration: none;
+      cursor: pointer;
+    }
   }
-  .wizard-container .content-container {
-    padding: 10px;
-  }
-  .wizard-container .content-container .title {
-    margin-top: 20px;
-  }
-  .wizard-container .content-container .wizard-form .form-group button.btn.btn-warning {
-    margin-bottom: 30px;
-  }
-}
-@media (max-width: 400px) {
-  .wizard-container .image-block {
-    margin: 50px auto 0;
-  }
-}
 
 
-// Spinner
 
-.wizard-form .popup-spinner {
-  display: block;
-  width: 100%;
-  height: 40px;
-  margin-top: 3px;
-  margin-bottom: 10px;
-  text-align: center;
-}
+  .wizard-container .form-group.subheader {
+    display: block;
+    width: 100%;
+    text-align: center;
+    margin-top: 33px;
+    margin-bottom: 27px;
+
+    color: $wizard-cards-subheader-color;
+    font-size: $wizard-cards-subheader-font-size;
+    letter-spacing: $wizard-cards-subheader-letter-spacing;
+  }
+  .wizard-container .form-group .part-group span.fa {
+    top: 37px;
+    right: 11px;
+  }
+
+  .wizard-form .error-message {
+    display: block;
+    float: left;
+    width: 100%;
+    padding: 11px 15px 12px;
+    border: $wizard-form-error-message-border-style;
+    background-color: $wizard-form-error-message-background-color;
+    border-radius: 3px;
+    font-size: $wizard-form-error-message-text-size;
+    color: $wizard-form-error-message-text-color;
+    letter-spacing: $wizard-form-error-message-letter-spacing;
+  }
+  .wizard-form .error-message span {
+
+  }
+
+  @media (max-width: 906px) {
+    // .wizard {
+    //   margin: 60px auto 0;
+    // }
+    // .wizard .wizard-container {
+    //   margin-bottom: 10px;
+    // }
+  }
+  // @media (max-width: 768px) {
+  //   app-wizard {
+  //     .wizard {
+  //       margin: 70px auto 0;
+  //       .wizard-container {
+  //         margin: 0;
+  //       }
+  //     }
+  //   }
+  // }
+  // Out
+  @media (max-width: 645px) {
+    // app-wizard {
+    //   .wizard {
+    //     padding: 0;
+    //     margin: 70px auto 0;
+    //     .wizard-container {
+    //       margin: 0;
+    //       padding: 70px 0 0;
+    //     }
+    //   }
+    // }
+
+    // .wizard {
+    //   padding: 0;
+    //   margin: 50px auto 0;
+    // }
+    // .wizard .wizard-container {
+    //   margin-bottom: 0;
+    //   margin-top: 50px;
+    // }
+    .breadcrumb {
+      position: fixed;
+      width: 100%;
+      border-bottom: 1px solid #CCCCCC;
+    }
+    .wizard-container .image-block {
+      margin: 60px auto 0;
+    }
+    .wizard-container .content-container {
+      padding: 10px;
+    }
+    .wizard-container .content-container .title {
+      margin-top: 20px;
+    }
+    .wizard-container .content-container .wizard-form .form-group button.btn.btn-warning {
+      margin-bottom: 30px;
+    }
+  }
+  @media (max-width: 400px) {
+    .wizard-container .image-block {
+      margin: 50px auto 0;
+    }
+  }
 
 
-////////////////////////////////////////////////////
-// BREADCRUMB
-////////////////////////////////////////////////////
+  // Spinner
 
-.breadcrumb {
-  list-style: none;
-  overflow: hidden;
-  font-size: 18px;
-  padding: 0;
-  margin-bottom: 0;
-  background-color: white;
-  border-top: 1px solid #e3e3e3;
-  border-left: 1px solid #e3e3e3;
-  border-right: 1px solid #e3e3e3;
-  border-radius: 0;
-  z-index: 1;
-  max-width: 900px;
-  margin: auto;
+  .wizard-form .popup-spinner {
+    display: block;
+    width: 100%;
+    height: 40px;
+    margin-top: 3px;
+    margin-bottom: 10px;
+    text-align: center;
+  }
+
+
+  ////////////////////////////////////////////////////
+  // BREADCRUMB
+  ////////////////////////////////////////////////////
+
+  .breadcrumb {
+    list-style: none;
+    overflow: hidden;
+    font-size: 18px;
+    padding: 0;
+    margin-bottom: 0;
+    background-color: white;
+    border-top: 1px solid #e3e3e3;
+    border-left: 1px solid #e3e3e3;
+    border-right: 1px solid #e3e3e3;
+    border-radius: 0;
+    z-index: 1;
+    max-width: 900px;
+    margin: auto;
+  }
+  .breadcrumb li {
+    float: left;
+    height: 60px;
+  }
+  .breadcrumb li a {
+    text-decoration: none;
+    background: white;
+    position: relative;
+    display: block;
+    float: left;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    line-height: 60px;
+    padding-left: 35px;
+  }
+  .breadcrumb li a::after {
+    content: " ";
+    display: block;
+    width: 0;
+    height: 0;
+    border-top: 50px solid transparent; /* Go big on the size, and let overflow hide */
+    border-bottom: 50px solid transparent;
+    border-left: 30px solid white;
+    position: absolute;
+    top: 50%;
+    margin-top: -50px;
+    left: 100%;
+    z-index: 2;
+  }
+  .breadcrumb li a::before {
+    content: " ";
+    display: block;
+    width: 0;
+    height: 0;
+    border-top: 50px solid transparent;
+    border-bottom: 50px solid transparent;
+    border-left: 30px solid #e3e3e3;
+    position: absolute;
+    top: 50%;
+    margin-top: -50px;
+    margin-left: 1px;
+    left: 100%;
+    z-index: 1;
+  }
+  .breadcrumb li.active a, .breadcrumb li.active:hover a {
+    color: white;
+    background: #446CB3;
+    font-weight: 600;
+  }
+  .breadcrumb li.active a::after {
+    border-left: 30px solid #446CB3;
+  }
+  .breadcrumb li.active a::before {
+    border-left: 30px solid white;
+  }
+  .breadcrumb li:first-child a {
+    // padding-left: 10px;
+    // width: 100%;
+    // height: 100%;
+    padding-left: 25px;
+  }
+  //.breadcrumb li:nth-child(2) a       { background:        hsla(34,85%,45%,1); }
+  //.breadcrumb li:nth-child(2) a:after { border-left-color: hsla(34,85%,45%,1); }
+  //.breadcrumb li:nth-child(3) a       { background:        hsla(34,85%,55%,1); }
+  //.breadcrumb li:nth-child(3) a:after { border-left-color: hsla(34,85%,55%,1); }
+  //.breadcrumb li:nth-child(4) a       { background:        hsla(34,85%,65%,1); }
+  //.breadcrumb li:nth-child(4) a:after { border-left-color: hsla(34,85%,65%,1); }
+  //.breadcrumb li:nth-child(5) a       { background:        hsla(34,85%,75%,1); }
+  //.breadcrumb li:nth-child(5) a:after { border-left-color: hsla(34,85%,75%,1); }
+  .breadcrumb li:last-child a {
+    background: transparent;
+    color: black;
+    pointer-events: none;
+    cursor: default;
+    padding-left: 15px;
+  }
+  .breadcrumb li:last-child.active a {
+    color: white;
+    background: #446CB3;
+    pointer-events: none;
+    cursor: default;
+    padding-left: 15px;
+  }
+  .breadcrumb li:last-child a::after {
+    border: 0;
+  }
+  // .breadcrumb li a:hover {
+  //   background: hsla(34, 85%, 25%, 1);
+  // }
+  // .breadcrumb li a:hover:after {
+  //   border-left-color: hsla(34, 85%, 25%, 1) !important;
+  // }
+
 }
-.breadcrumb li {
-  float: left;
-  height: 60px;
-}
-.breadcrumb li a {
-  text-decoration: none;
-  background: white;
-  position: relative;
-  display: block;
-  float: left;
-  width: 100%;
-  height: 100%;
-  text-align: center;
-  line-height: 60px;
-  padding-left: 35px;
-}
-.breadcrumb li a::after {
-  content: " ";
-  display: block;
-  width: 0;
-  height: 0;
-  border-top: 50px solid transparent; /* Go big on the size, and let overflow hide */
-  border-bottom: 50px solid transparent;
-  border-left: 30px solid white;
-  position: absolute;
-  top: 50%;
-  margin-top: -50px;
-  left: 100%;
-  z-index: 2;
-}
-.breadcrumb li a::before {
-  content: " ";
-  display: block;
-  width: 0;
-  height: 0;
-  border-top: 50px solid transparent;
-  border-bottom: 50px solid transparent;
-  border-left: 30px solid #e3e3e3;
-  position: absolute;
-  top: 50%;
-  margin-top: -50px;
-  margin-left: 1px;
-  left: 100%;
-  z-index: 1;
-}
-.breadcrumb li.active a, .breadcrumb li.active:hover a {
-  color: white;
-  background: #446CB3;
-  font-weight: 600;
-}
-.breadcrumb li.active a::after {
-  border-left: 30px solid #446CB3;
-}
-.breadcrumb li.active a::before {
-  border-left: 30px solid white;
-}
-.breadcrumb li:first-child a {
-  // padding-left: 10px;
-  // width: 100%;
-  // height: 100%;
-  padding-left: 25px;
-}
-//.breadcrumb li:nth-child(2) a       { background:        hsla(34,85%,45%,1); }
-//.breadcrumb li:nth-child(2) a:after { border-left-color: hsla(34,85%,45%,1); }
-//.breadcrumb li:nth-child(3) a       { background:        hsla(34,85%,55%,1); }
-//.breadcrumb li:nth-child(3) a:after { border-left-color: hsla(34,85%,55%,1); }
-//.breadcrumb li:nth-child(4) a       { background:        hsla(34,85%,65%,1); }
-//.breadcrumb li:nth-child(4) a:after { border-left-color: hsla(34,85%,65%,1); }
-//.breadcrumb li:nth-child(5) a       { background:        hsla(34,85%,75%,1); }
-//.breadcrumb li:nth-child(5) a:after { border-left-color: hsla(34,85%,75%,1); }
-.breadcrumb li:last-child a {
-  background: transparent;
-  color: black;
-  pointer-events: none;
-  cursor: default;
-  padding-left: 15px;
-}
-.breadcrumb li:last-child.active a {
-  color: white;
-  background: #446CB3;
-  pointer-events: none;
-  cursor: default;
-  padding-left: 15px;
-}
-.breadcrumb li:last-child a::after {
-  border: 0;
-}
-// .breadcrumb li a:hover {
-//   background: hsla(34, 85%, 25%, 1);
-// }
-// .breadcrumb li a:hover:after {
-//   border-left-color: hsla(34, 85%, 25%, 1) !important;
-// }

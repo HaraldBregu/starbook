@@ -13,16 +13,25 @@
     </div>
     <div class="order-container" *ngFor="let order of pageData">
       <div class="order">
-        <div class="top-container">
-          <span>Ordine in attesa</span>
+        <div class="order-header">
+          <div class="top">
+            <span *ngIf="order.status===0 && order.customer_id===currentUser._id">Servizio in attesa di conferma</span>
+            <span *ngIf="order.status===1 && order.customer_id===currentUser._id" [ngStyle]="{'color':'green'}">Servizio assegnato</span>
+            <span *ngIf="order.status===0 && order.customer_id!==currentUser._id">Servizio in attesa di conferma</span>
+            <span *ngIf="order.status===1 && order.customer_id!==currentUser._id" [ngStyle]="{'color':'green'}">Servizio assegnato</span>
+          </div>
+          <div class="top client">
+            <span><strong>Cliente: </strong>{{order.customer.profile.fullname}}</span>
+            <span><strong>Telefono: </strong>{{order.customer.phone_number}}</span>
+            <span><strong>Indirizzo: </strong>{{formatedAddressFromObject(order.address)}}</span>
+            <span><strong>Inizio lavoro: </strong>{{formatedDateFromString(order.date)}}</span>
+          </div>
+          <div class="table-header">
+            <span class="item">Articolo</span>
+            <span class="price">Importo</span>
+          </div>
         </div>
-        <div class="nav-container">
-          <span class="item">Articolo</span>
-          <span class="quantity">Quantità</span>
-          <span class="price">Prezzo</span>
-          <span class="total">Totale</span>
-        </div>
-        <div class="content-container">
+        <div class="order-body">
           <div class="content">
             <div class="items" *ngFor="let detail of order.details">
               <div class="item" *ngIf="detail.type==='service'">
@@ -32,124 +41,165 @@
                 <span>{{detail.title}}</span>
               </div>
               <div *ngIf="detail.type==='detail'">
-                <span class="quantity">{{detail.count}}</span>
-                <span class="price">{{detail.item_amount/100}}€</span>
-                <span class="total">{{detail.total_amount/100}}€</span>
+                <span class="price"><div *ngIf="!detail.amount || detail.amount===0">-</div><div *ngIf="detail.amount && detail.amount>0">{{detail.amount/100}}€</div></span>
+              </div>
+            </div>
+            <div class="description">
+              <span>{{order.description}}</span>
+            </div>
+            <div class="price" *ngIf="getTotalAmount(order.details)>0">
+              <div class="line dashed"></div>
+              <div class="items">
+                <span class="item"><strong>Totale importo:</strong></span><span class="amount">{{getTotalAmount(order.details)/100}}€</span>
+              </div>
+            </div>
+            <div class="payment" *ngIf="order.milestones?.length>0">
+              <div class="line dashed"></div>
+              <div class="items" *ngFor="let milestone of order.milestones">
+                <span class="item">Acconto:</span><span class="amount">{{milestone.amount/100}}€</span>
+              </div>
+            </div>
+            <div class="price" *ngIf="getTotalMilestones(order.milestones)>0 && order.milestones.length>1">
+              <div class="line dashed"></div>
+              <div class="items">
+                <span class="item"><strong>Totale acconti:</strong></span><span class="amount">{{getTotalMilestones(order.milestones)/100}}€</span>
+              </div>
+            </div>
+            <div class="actions" *ngIf="order.status===0 || order.status===1">
+              <div *ngIf="order.status===0 && order.customer_id!==currentUser._id">
+                <div class="line"></div>
+                <button class="btn btn-success" (click)="openPopup('ACCEPT_WORK', order)">Conferma la richiesta</button>
+              </div>
+              <div *ngIf="order.status===1 && order.customer_id===currentUser._id">
+                <div class="line"></div>
+                <button class="btn btn-warning" (click)="openPopup('PAY_UPFRONT', order)"><i class="fa fa-lock" aria-hidden="true"></i> Pagamento</button>
+              </div>
+              <div *ngIf="order.status===1 && order.customer_id!==currentUser._id">
+                <div class="line"></div>
+                <button class="btn btn-primary" (click)="openPopup('UPDATE_TOTAL', order)">Modifica fattura</button>
               </div>
             </div>
           </div>
         </div>
-        <div class="line"></div>
-        <div class="content-container">
-          <div class="content">
-            <div class="payment">
-              <div class="counts">
-                <span class="item">Subtotale:</span><span class="amount">{{order.price.final/100}}€</span>
-              </div>
-              <div class="counts">
-                <div class="line-break"></div>
-              </div>
-              <div class="counts">
-                <span class="item"><strong>Totale:</strong></span><span class="amount"><strong>{{order.price.final/100}}€</strong></span>
-              </div>
-              <!-- <div class="counts">
-                <div *ngFor="let milestone of order.payment.milestones; let i=index">
-                  <span class="item">{{i+1}} Acconto:</span><span class="amount">{{milestone.amount/100}}€</span>
-                </div>
-              </div>
-              <div class="counts">
-                <span class="item">Resto</span>
-                <span class="amount">{{order.payment.rest/100}}€</span>
-              </div> -->
-            </div>
-          </div>
-        </div>
-        <div class="line"></div>
-        <div class="content-container">
-          <div class="content">
-            <span><strong>Data:</strong> 23 Agosto 2017</span>
-            <span><strong>Indirizzo:</strong> Via Battista 43, Milano</span>
-          </div>
-        </div>
-        <div class="line"></div>
-        <div class="content-container">
-          <div class="content">
-            <div class="payment">
-              <div class="counts">
-                <span class="item">Acconto:</span><span class="amount">124€</span>
-                <span class="item">Acconto:</span><span class="amount">4€</span>
-                <span class="item">Acconto:</span><span class="amount">67€</span>
-                <span class="item">Acconto:</span><span class="amount">9€</span>
-              </div>
-              <!-- <div class="counts">
-                <div class="line-break"></div>
-              </div>
-              <div class="counts">
-                <span class="item"><strong>Resto:</strong></span><span class="amount"><strong>{{order.price.final/100}}€</strong></span>
-              </div> -->
-              <div class="counts buttons">
-                <button class="btn btn-primary" (click)="upfront()">Acconto</button>
-                <button class="btn btn-warning" (click)="pay()">Paga</button>
-              </div>
-            </div>
-            <div class="text">
-              <span><strong>Pagamento: </strong> Tieni traccia di tutti gli acconti e i pagmenti effetuati. Puoi decidere di pagare il totale al inizio o alla fine del lavoro.</span>
-            </div>
-          </div>
+        <div class="order-footer">
+          <p><small><i class="fa fa-info" aria-hidden="true"></i> Per asistenza tecnica, annullamenti del ordine o per segnalare problemi vai nella pagina dei <a routerLink="/info/help" target="_blank">contatti.</a></small></p>
         </div>
       </div>
     </div>
   </div>
 
-  <div class="order-container" *ngIf="page==='estimates' && estimates && estimates.length===0">
-    <div class="header">
-      <p>Non ci sono preventivi salvati.</p>
-    </div>
-    <div *ngFor="let estimate of estimates">
-      <div class="order-container" *ngIf="page==='estimates'">
-        <div class="header">
-          <div *ngFor="let item of estimate.details">
-            <div *ngIf="item.type === 'service'">
-              <h3>{{estimate.title}}</h3>
-              <!-- <div class="line"></div> -->
-            </div>
-            <div *ngIf="item.type === 'detail'">
-              <p>{{item.title}}</p>
-            </div>
-          </div>
-        </div>
-        <div class="line"></div>
-        <div class="counts">
-          <div class="item">Durata (Approssimativo)</div>
-          <div class="amount time">{{getTiming(estimate.price.initial)}}</div>
-        </div>
-        <div class="line"></div>
-        <div class="counts" *ngIf="estimate.price.initial>estimate.price.final">
-          <div class="item">Totale iniziale</div>
-          <div class="amount initial">{{estimate.price.initial/100}}€</div>
-        </div>
-        <div class="counts">
-          <div class="item">Totale</div>
-          <div class="amount">{{estimate.price.final/100}}€</div>
-        </div>
-        <div class="line"></div>
-        <!-- <div class="counts">
-          <div class="item">ACCONTO (30% del totale)</div>
-          <div class="amount">{{estimate.payment.upfront/100}}€</div>
-        </div> -->
-        <div class="actions">
-          <div class="form-group">
-            <button class="btn btn-warning" id="next" type="button" (click)="startWizard(estimate)">Continua con l'ordine</button>
-          </div>
-          <a (click)="shareEstimate(estimate)">Condividi</a>
-          <a (click)="deleteEstimate(estimate)">Elimina</a>
-        </div>
-        <!-- <div class="line"></div>
-        <div class="links">
-          <a href="#">Cancella preventivo</a>
-          <a href="#">Invia ad un amico</a>
-        </div> -->
+
+  <!--  POPUP -->
+  <!-- <div class="popup-shadow" [ngStyle]="{'display' : popup ? 'block' : 'none'}" (click)="closePopup()"></div> -->
+  <div class="popup-container" [ngStyle]="{'display' : popup ? 'block' : 'none'}">
+    <div class="popup" *ngIf="popup==='ACCEPT_WORK'">
+      <div class="popup-header">
+        <h3>Conferma il servizio richiesto</h3>
+        <p>Confermando prendi l'impegno per effettuare il lavoro richiesto dal cliente.</p>
       </div>
+      <div class="popup-body">
+        <div class="form-group">
+          <button type="button" id="next" class="btn btn-warning" (click)="acceptOrder()">Conferma</button>
+        </div>
+        <div class="form-group">
+          <button type="button" id="next" class="btn btn-secondary" (click)="closePopup()">Chiudi</button>
+        </div>
+      </div>
+    </div>
+    <div class="popup" *ngIf="popup==='UPDATE_TOTAL'">
+      <div class="popup-header">
+        <h3>Aggiorna la fattura della lavorazione</h3>
+      </div>
+      <div class="popup-body">
+        <div class="details">
+          <div class="form-group item">
+            <input type="text" id="descriptionInput"  placeholder="articolo" class="form-control" [(ngModel)]="detail.title" [ngModelOptions]="{standalone: true}">
+          </div>
+          <div class="form-group amount">
+            <input type="text" id="amountInput" placeholder="importo" class="form-control" [(ngModel)]="detail.amount" [ngModelOptions]="{standalone: true}">
+          </div>
+        </div>
+        <div class="form-group">
+          <button type="button" id="next" class="btn btn-warning" (click)="updateDetailsOrder()">Aggiorna</button>
+        </div>
+        <div class="form-group">
+          <button type="button" id="next" class="btn btn-secondary" (click)="closePopup()">Chiudi</button>
+        </div>
+      </div>
+    </div>
+    <div class="popup" *ngIf="popup==='PAY_UPFRONT'">
+      <div class="popup-header">
+        <h3>Pagamento lavorazione</h3>
+        <p>Inserisci l'importo che vuoi pagare come acconto per la alvorazione o paga il totale importo del lavoro.</p>
+
+      </div>
+      <div class="popup-body">
+        <div class="form-group">
+          <input type="text" id="amountUpfront" placeholder="" class="form-control"  [(ngModel)]="upfront" [ngModelOptions]="{standalone: true}">
+        </div>
+        <div class="form-group">
+          <button type="button" id="next" class="btn btn-primary" (click)="payUpfront()">Acconto</button>
+        </div>
+        <div class="form-group" *ngIf="getRestToPay()>0">
+          <button type="button" id="next" class="btn btn-warning" (click)="payRestAmount(getRestToPay())">{{getRestToPay()/100}}€ Resto del totale</button>
+        </div>
+        <div class="form-group">
+          <button type="button" id="next" class="btn btn-secondary" (click)="closePopup()">Chiudi</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="order-container" *ngIf="page==='estimates' && estimates && estimates.length===0">
+  <div class="header">
+    <p>Non ci sono preventivi salvati.</p>
+  </div>
+  <div *ngFor="let estimate of estimates">
+    <div class="order-container" *ngIf="page==='estimates'">
+      <div class="header">
+        <div *ngFor="let item of estimate.details">
+          <div *ngIf="item.type === 'service'">
+            <h3>{{estimate.title}}</h3>
+            <!-- <div class="line"></div> -->
+          </div>
+          <div *ngIf="item.type === 'detail'">
+            <p>{{item.title}}</p>
+          </div>
+        </div>
+      </div>
+      <div class="line"></div>
+      <div class="counts">
+        <div class="item">Durata (Approssimativo)</div>
+        <div class="amount time">{{getTiming(estimate.price.initial)}}</div>
+      </div>
+      <div class="line"></div>
+      <div class="counts" *ngIf="estimate.price.initial>estimate.price.final">
+        <div class="item">Totale iniziale</div>
+        <div class="amount initial">{{estimate.price.initial/100}}€</div>
+      </div>
+      <div class="counts">
+        <div class="item">Totale</div>
+        <div class="amount">{{estimate.price.final/100}}€</div>
+      </div>
+      <div class="line"></div>
+      <!-- <div class="counts">
+        <div class="item">ACCONTO (30% del totale)</div>
+        <div class="amount">{{estimate.payment.upfront/100}}€</div>
+      </div> -->
+      <div class="actions">
+        <div class="form-group">
+          <button class="btn btn-warning" id="next" type="button" (click)="startWizard(estimate)">Continua con l'ordine</button>
+        </div>
+        <a (click)="shareEstimate(estimate)">Condividi</a>
+        <a (click)="deleteEstimate(estimate)">Elimina</a>
+      </div>
+      <!-- <div class="line"></div>
+      <div class="links">
+        <a href="#">Cancella preventivo</a>
+        <a href="#">Invia ad un amico</a>
+      </div> -->
     </div>
   </div>
 </div>

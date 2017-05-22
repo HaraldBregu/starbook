@@ -32,14 +32,7 @@ export class WizardComponent implements OnInit {
     date: null,
     address: null,
     referral_id: null,
-    price: {
-      final: 0,
-      initial: 0,
-      currency: 'eur'
-    },
-    payment: {
-      upfront:0
-    },
+    upfront_amount: 0,
     timing: {
       days: ''
     }
@@ -148,7 +141,6 @@ export class WizardComponent implements OnInit {
   /////// PAYMENT //////////
   //////////////////////////
   public Card = {
-    // object: 'card',
     number: null,
     exp_month: null,
     exp_year: null,
@@ -187,8 +179,6 @@ export class WizardComponent implements OnInit {
 
     if (isBrowser) {
       this.service_data = this.orderService.getWizardData();
-      //console.log('details are: ' + JSON.stringify(this.service_data));
-
       if (Object.keys(this.service_data).length===0) {
         this.Order = this.readOrderFromLocal()
         if (this.Order.address) {
@@ -210,10 +200,9 @@ export class WizardComponent implements OnInit {
         this.Order.description = this.service_data.description;
         this.Order.details = this.service_data.details;
         this.Order.referral_id = this.service_data.referral_id;
-        this.Order.price = this.service_data.price;
-        this.Order.payment = this.service_data.payment;
+        this.Order.upfront_amount = this.service_data.upfront_amount;
         this.Order.timing = this.service_data.timing;
-        this.saveOrderToLocal(this.Order);
+        // this.saveOrderToLocal(this.Order);
       }
     }
   }
@@ -307,7 +296,7 @@ export class WizardComponent implements OnInit {
       return;
     }
     this.address_state.error_message = null;
-    this.saveOrderToLocal(this.Order)
+    // this.saveOrderToLocal(this.Order)
     this.router.navigate(['order/date']);
   }
   getAddresses(event) {
@@ -361,7 +350,7 @@ export class WizardComponent implements OnInit {
     this.date = date.getFullYear() + '-' + month + '-' + day + 'T' + '08:00' + ':00.000Z';
     this.date_state.error_message = null;
     this.Order.date = this.date;
-    this.saveOrderToLocal(this.Order);
+    // this.saveOrderToLocal(this.Order);
     let _date = new Date(this.Order.date);
     let _day = _date.getDate() > 9 ? _date.getDate() : '0' + _date.getDate();
     this.formated_date =  _day + ' ' + this.it.monthNames[_date.getMonth()] + ' ' + _date.getFullYear();
@@ -376,6 +365,8 @@ export class WizardComponent implements OnInit {
       this.order_status.loading = true;
       this.order_status.button_title = "Inviando l'ordine...";
       this.order_status.error_message = null;
+      // console.log('this.Order is: ' + JSON.stringify(this.Order));
+
       this.orderService.saveOrder(this.Order).then((response) => {
         this.order_status.loading = false;
         this.order_status.button_title = "Invia ordine";
@@ -421,7 +412,7 @@ export class WizardComponent implements OnInit {
     if (!user.phone_number || user.phone_number.length < 10) {
       this.router.navigate(['order/info']);
     } else {
-      this.router.navigate(['']);
+      this.router.navigate(['orders/requests']);
       // this.router.navigate(['services', this.Order.title.replace(/\s+/g, '-')]);
     }
   }

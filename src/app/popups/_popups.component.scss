@@ -1,930 +1,932 @@
-// Popups styles
-$dark-background-color: rgba(0, 0, 0, 0.53);
-$popup-background-color: #ffffff;
-$popup-text-color: #4A4A4A;
-$popup-text-size: 14px;
-$popup-text-letter-spacing: 0.09px;
-$popup-text-font-weight: 400;
-$popup-shadow-style: 0px 2px 4px 0px rgba(0,0,0,0.50);
-$popup-header-color: #212121;
-$popup-header-font-size: 28px;
-$popup-header-letter-spacing: 0.18px;
-$popup-form-font-size: 14px;
-$popup-form-error-font-size: 12px;
-$popup-form-font-color: #212121;
-$popup-form-letter-spacing: 0.08px;
-$popup-input-border: 1px solid #A6A6A6;
-$popup-input-warning-border: 1px solid #DB4F4F;
-$popup-link-color: #0066C0;
-$popup-btn-font-size: 16px;
-$popup-btn-text-color: #424242;
-$popup-btn-gradient-color-yellow-light: #FFC845;
-$popup-btn-gradient-color-yellow-dark: rgba(254,199,81,1);
-$popup-btn-background-color-gray: #EFF1F3;
-$popup-form-description-border: 1px solid #E7E7E7;
-$popup-form-description-text-color: #8D8D8D;
-$popup-form-description-font-size: 12px;
-$popup-form-description-background-color: #ffffff;
-$popup-notice-text-color: #212121;
-$popup-notice-font-size: 12px;
-$popup-notice-letter-spacing: 0.08px;
-$popup-notice-link-color: #0066C0;
-$popup-login-offer-text-color: #212121;
-$popup-login-offer-font-size: 12px;
-$popup-login-offer-letter-spacing: 0.08px;
-$popup-login-offer-link-color: #0066C0;
-$popup-login-offer-border-style: 1px solid #E7E7E7;
-$popup-form-error-color: #DB4F4F;
-$popup-finish-header-font-size: 24px;
-$popup-finish-header-color: $popup-header-color;
-$popup-finish-header-letter-spacing: 0.15px;
-$popup-finish-text-font-size: 16px;
-$popup-finish-text-color: $popup-header-color;
-$popup-finish-text-letter-spacing: 0.1px;
-$popup-finish-close-background: '/assets/images/cancel.png';
-$popup-order-confirm-gray-background: #EFF1F3;
-$tooltip-font-size: 12px;
-$popup-order-confirm-item-color: #212121;
-$popup-order-confirm-item-text-size: 15px;
-$popup-order-confirm-item-total-text-size: 16px;
-$popup-order-confirm-item-letter-spacing: 0.1px;
-$popup-order-confirm-information-color: #000000;
-$popup-order-confirm-information-text-size: 15px;
-$popup-order-confirm-information-letter-spacing: 0.1px;
-$popup-order-confirm-button-notice-color: #212121;
-$popup-order-confirm-button-notice-text-size: 12px;
-$popup-order-confirm-button-notice-letter-spacing: 0.08px;
-$popup-order-confirm-end-color: #212121;
-$popup-order-confirm-end-text-size: 16px;
-$popup-order-confirm-end-letter-spacing: 0.1px;
-$popup-confirm-header-text-size: 16px;
-$popup-confirm-header-letter-spacing: 0.1px;
-$popup-confirm-message-text-color: #212121;
-$popup-confirm-message-text-size: 12px;
-$popup-confirm-message-letter-spacing: 0.08px;
-$popup-success-icon: '/assets/images/success-icon.png';
-$popup-completa-header-text-size: 20px;
-$popup-completa-header-text-color: #212121;
-$popup-completa-header-letter-spacing: 0.13px;
-$popup-completa-message-text-size: 14px;
-$popup-completa-message-text-color: #212121;
-$popup-completa-message-letter-spacing: 0.09px;
+app-popups {
+  // Popups styles
+  $dark-background-color: rgba(0, 0, 0, 0.53);
+  $popup-background-color: #ffffff;
+  $popup-text-color: #4A4A4A;
+  $popup-text-size: 14px;
+  $popup-text-letter-spacing: 0.09px;
+  $popup-text-font-weight: 400;
+  $popup-shadow-style: 0px 2px 4px 0px rgba(0,0,0,0.50);
+  $popup-header-color: #212121;
+  $popup-header-font-size: 28px;
+  $popup-header-letter-spacing: 0.18px;
+  $popup-form-font-size: 14px;
+  $popup-form-error-font-size: 12px;
+  $popup-form-font-color: #212121;
+  $popup-form-letter-spacing: 0.08px;
+  $popup-input-border: 1px solid #A6A6A6;
+  $popup-input-warning-border: 1px solid #DB4F4F;
+  $popup-link-color: #0066C0;
+  $popup-btn-font-size: 16px;
+  $popup-btn-text-color: #424242;
+  $popup-btn-gradient-color-yellow-light: #FFC845;
+  $popup-btn-gradient-color-yellow-dark: rgba(254,199,81,1);
+  $popup-btn-background-color-gray: #EFF1F3;
+  $popup-form-description-border: 1px solid #E7E7E7;
+  $popup-form-description-text-color: #8D8D8D;
+  $popup-form-description-font-size: 12px;
+  $popup-form-description-background-color: #ffffff;
+  $popup-notice-text-color: #212121;
+  $popup-notice-font-size: 12px;
+  $popup-notice-letter-spacing: 0.08px;
+  $popup-notice-link-color: #0066C0;
+  $popup-login-offer-text-color: #212121;
+  $popup-login-offer-font-size: 12px;
+  $popup-login-offer-letter-spacing: 0.08px;
+  $popup-login-offer-link-color: #0066C0;
+  $popup-login-offer-border-style: 1px solid #E7E7E7;
+  $popup-form-error-color: #DB4F4F;
+  $popup-finish-header-font-size: 24px;
+  $popup-finish-header-color: $popup-header-color;
+  $popup-finish-header-letter-spacing: 0.15px;
+  $popup-finish-text-font-size: 16px;
+  $popup-finish-text-color: $popup-header-color;
+  $popup-finish-text-letter-spacing: 0.1px;
+  $popup-finish-close-background: '/assets/images/cancel.png';
+  $popup-order-confirm-gray-background: #EFF1F3;
+  $tooltip-font-size: 12px;
+  $popup-order-confirm-item-color: #212121;
+  $popup-order-confirm-item-text-size: 15px;
+  $popup-order-confirm-item-total-text-size: 16px;
+  $popup-order-confirm-item-letter-spacing: 0.1px;
+  $popup-order-confirm-information-color: #000000;
+  $popup-order-confirm-information-text-size: 15px;
+  $popup-order-confirm-information-letter-spacing: 0.1px;
+  $popup-order-confirm-button-notice-color: #212121;
+  $popup-order-confirm-button-notice-text-size: 12px;
+  $popup-order-confirm-button-notice-letter-spacing: 0.08px;
+  $popup-order-confirm-end-color: #212121;
+  $popup-order-confirm-end-text-size: 16px;
+  $popup-order-confirm-end-letter-spacing: 0.1px;
+  $popup-confirm-header-text-size: 16px;
+  $popup-confirm-header-letter-spacing: 0.1px;
+  $popup-confirm-message-text-color: #212121;
+  $popup-confirm-message-text-size: 12px;
+  $popup-confirm-message-letter-spacing: 0.08px;
+  $popup-success-icon: '/assets/images/success-icon.png';
+  $popup-completa-header-text-size: 20px;
+  $popup-completa-header-text-color: #212121;
+  $popup-completa-header-letter-spacing: 0.13px;
+  $popup-completa-message-text-size: 14px;
+  $popup-completa-message-text-color: #212121;
+  $popup-completa-message-letter-spacing: 0.09px;
 
-// New order price style
-$popup-order-confirm-spiner-text-color: #212121;
-$popup-order-confirm-spiner-text-size: 20px;
-$popup-order-confirm-spiner-text-letter-spacing: 0.11px;
-$popup-order-confirm-price-area-color: #212121;
-$popup-order-confirm-price-area-green-color: #00B420;
-$popup-order-confirm-price-area-text-size: 28px;
-$popup-order-confirm-price-area-text-letter-spacing: 0.18px;
+  // New order price style
+  $popup-order-confirm-spiner-text-color: #212121;
+  $popup-order-confirm-spiner-text-size: 20px;
+  $popup-order-confirm-spiner-text-letter-spacing: 0.11px;
+  $popup-order-confirm-price-area-color: #212121;
+  $popup-order-confirm-price-area-green-color: #00B420;
+  $popup-order-confirm-price-area-text-size: 28px;
+  $popup-order-confirm-price-area-text-letter-spacing: 0.18px;
 
-// Facebook btn
-$popup-btn-facebook-background: #3B5998;
-$popup-btn-facebook-border: 1px solid #3B5998;
-$popup-btn-facebook-text-color: #FFFFFF;
-$popup-btn-facebook-letter-spacing: 0.1px;
-$popup-btn-facebook-icon: '/assets/images/fb-icon.png';
+  // Facebook btn
+  $popup-btn-facebook-background: #3B5998;
+  $popup-btn-facebook-border: 1px solid #3B5998;
+  $popup-btn-facebook-text-color: #FFFFFF;
+  $popup-btn-facebook-letter-spacing: 0.1px;
+  $popup-btn-facebook-icon: '/assets/images/fb-icon.png';
 
-// Alert styles
-$alert-border-style: 1px solid #C40000;
-$alert-background: #F2DEDE;
-$alert-header-text-color: #DB4F4F;
-$alert-header-font-size: 17px;
-$alert-header-letter-spacing: 0.11px;
-$alert-content-text-color: #000000;
-$alert-text-color: #AB433F;
-$alert-content-font-size: 13px;
-$alert-content-letter-spacing: 0.08px;
-$alert-warning-image: '/assets/images/warning.png';
+  // Alert styles
+  $alert-border-style: 1px solid #C40000;
+  $alert-background: #F2DEDE;
+  $alert-header-text-color: #DB4F4F;
+  $alert-header-font-size: 17px;
+  $alert-header-letter-spacing: 0.11px;
+  $alert-content-text-color: #000000;
+  $alert-text-color: #AB433F;
+  $alert-content-font-size: 13px;
+  $alert-content-letter-spacing: 0.08px;
+  $alert-warning-image: '/assets/images/warning.png';
 
-// Cards styles
-$cards-amex-mini: '/assets/images/amex-mini.png';
-$cards-mastercard-mini: '/assets/images/mastercard-mini.png';
-$cards-visa-mini: '/assets/images/visa-mini.png';
-$cards-icon-color: #000000;
-$cards-subheader-color: #0066C0;
-$cards-subheader-font-size: 12px;
-$cards-subheader-letter-spacing: 0.08px;
+  // Cards styles
+  $cards-amex-mini: '/assets/images/amex-mini.png';
+  $cards-mastercard-mini: '/assets/images/mastercard-mini.png';
+  $cards-visa-mini: '/assets/images/visa-mini.png';
+  $cards-icon-color: #000000;
+  $cards-subheader-color: #0066C0;
+  $cards-subheader-font-size: 12px;
+  $cards-subheader-letter-spacing: 0.08px;
 
-// Action form
-$action-form-text-size: 16px;
-$action-form-information-text-size: 22px;
-$action-form-information-icon-size: 17px;
-$action-form-color: #212121;
-$action-form-letter-spacing: 0.1px;
-$action-form-information-letter-spacing: 0.14px;
-$action-form-icon-size: 20px;
-$action-form-border-color: #A6A6A6;
-$action-form-background-color: #FFFFFF;
-$action-form-icon-background-color: #EFF1F3;
-$action-form-description-color: #4A4A4A;
-$action-form-description-text-size: 12px;
-$action-form-description-letter-spacing: 0.08px;
+  // Action form
+  $action-form-text-size: 16px;
+  $action-form-information-text-size: 22px;
+  $action-form-information-icon-size: 17px;
+  $action-form-color: #212121;
+  $action-form-letter-spacing: 0.1px;
+  $action-form-information-letter-spacing: 0.14px;
+  $action-form-icon-size: 20px;
+  $action-form-border-color: #A6A6A6;
+  $action-form-background-color: #FFFFFF;
+  $action-form-icon-background-color: #EFF1F3;
+  $action-form-description-color: #4A4A4A;
+  $action-form-description-text-size: 12px;
+  $action-form-description-letter-spacing: 0.08px;
 
-// Phone enter form
-$popup-phone-enter-form-header-size: 28px;
-$popup-phone-enter-form-header-letter-spacing: 0.18px;
-$popup-phone-enter-form-label-letter-spacing: 0.09px;
+  // Phone enter form
+  $popup-phone-enter-form-header-size: 28px;
+  $popup-phone-enter-form-header-letter-spacing: 0.18px;
+  $popup-phone-enter-form-label-letter-spacing: 0.09px;
 
-.dark-screen {
-  display: block;
-  position: fixed;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: $dark-background-color;
-  z-index: 1040;
-}
-.popup {
-  display: block;
-  position: fixed;
-  background: $popup-background-color;
-  box-shadow: $popup-shadow-style;
-  width: 500px;
-  top: 42px;
-  left: 50%;
-  // bottom: 0;
-  overflow: auto;
-  margin-left: -240px;
-  padding: 35px 30px 27px;
-  z-index: 1041;
-  // border-radius: 3px;
-  .popup-container {
-    height: 100%;
-  }
-}
-.popup .header {
-  display: block;
-  width: 100%;
-  margin-bottom: 20px;
-  text-align: center;
-  // font-size: $popup-header-font-size;
-  // letter-spacing: $popup-header-letter-spacing;
-  // color: $popup-header-color;
-  h1 {
-    font-weight: 400;
-  }
-}
-.popup .double-form {
-
-  font-size: $popup-form-font-size;
-  color: $popup-form-font-color;
-  letter-spacing: $popup-form-letter-spacing;
-  font-weight: 500;
-  padding: 0 0 0 2px;
-  margin-bottom: 1rem;
-  height: 61px;
-}
-.popup .form-group label {
-
-  font-size: $popup-form-font-size;
-  color: $popup-form-font-color;
-  letter-spacing: $popup-form-letter-spacing;
-  font-weight: 500;
-  padding: 0 0 0 2px;
-  margin-bottom: 2px;
-}
-.popup .form-group label a.recovery {
-  position: absolute;
-  top: 0;
-  right: 0;
-  padding-right: 5px;
-
-  font-size: $popup-form-font-size;
-  color: $popup-link-color;
-  letter-spacing: $popup-form-letter-spacing;
-  font-weight: 500;
-  text-align: right;
-  text-decoration: none;
-  cursor: pointer;
-}
-.popup .form-group .form-control {
-  height: 45px !important;
-}
-.form-group .form-control:focus {
-  border: 2px solid #7FC443 !important;
-
-}
-// .pupup .form-control:focus {
-//   border: 2px solid #7FC443 !important;
-// }
-// .popup .form-group .form-control {
-//   height: 40px;
-//   border: $popup-input-border;
-//   border-radius: 3px;
-//   font-size: $popup-form-font-size;
-//   color: $popup-form-font-color;
-//   letter-spacing: $popup-form-letter-spacing;
-//   font-weight: 400;
-//   padding: 5px 7px;
-//   box-shadow: none !important;
-// }
-.popup .form-group .error {
-  display: none;
-}
-.popup .form-group.isError .error, .popup .form-group .isError .error {
-  display: block;
-
-  font-size: $popup-form-error-font-size;
-  color: $popup-form-error-color;
-  letter-spacing: $popup-form-letter-spacing;
-  font-weight: 400;
-  margin-left: 2px;
-  line-height: 16px;
-}
-.popup .form-group .form-control.ng-invalid.ng-dirty,
-.popup .form-group .form-control.ng-invalid.ng-touched,
-.popup .form-group.isError .form-control
-{
-  border: $popup-input-warning-border;
-}
-.popup .form-group .isError .form-control
-{
-  border: $popup-input-warning-border;
-}
-.popup .form-group .btn.btn-warning {
-  width: 100%;
-  height: 50px;
-  font-size: 22px;
-  letter-spacing: 0.08px;
-  font-weight: 800;
-  outline: none;
-  line-height: 50px;
-}
-.popup .form-group a.btn.btn-warning {
-  // padding: 9px 7px;
-}
-.popup .form-group .btn.btn-warning.new-order-btn {
-  position: relative;
-}
-.popup .form-group .btn.btn-warning.new-order-btn .fa.fa-lock {
-  position: absolute;
-  top: 11px;
-  left: 19px;
-  font-size: 19px;
-}
-.recovery-form .form-group .btn.btn-warning {
-  margin-top: 10px;
-}
-.popup .form-group .btn.btn-secondary {
-  width: 100%;
-  height: 50px;
-  outline: none;
-  background-color: $popup-btn-background-color-gray;
-}
-.popup .login-form .form-group .btn.btn-secondary {
-  // margin-top: 7px;
-}
-.popup .form-group a.btn.btn-secondary {
-  // padding: 9px 7px;
-}
-
-.popup .form-group .btn.btn-facebook {
-  position: relative;
-  width: 100%;
-  height: 50px;
-  font-size: 20px;
-  color: white;
-  outline: none;
-  line-height: 50px;
-  padding: 0;
-}
-.popup .form-group.registration .btn.btn-facebook {
-  // margin-top: 20px;
-}
-.popup .form-group .btn.btn-facebook i {
-  display: block;
-  position: absolute;
-  top: 10px;
-  left: 12px;
-  width: 30px;
-  height: 30px;
-  background-image: url($popup-btn-facebook-icon);
-  background-repeat: no-repeat;
-  background-size: contain;
-}
-.popup .form-group a.btn.btn-warning {
-  // padding: 9px 7px;
-}
-
-.popup .form-description {
-  display: block;
-  position: relative;
-  width: 100%;
-  margin-top: 10px;
-  border-top: 1px solid #E7E7E7;
-}
-.popup .form-description span {
-  display: block;
-  position: absolute;
-  top: -12px;
-  left: 50%;
-  margin-left: -15px;
-  width: 30px;
-  text-align: center;
-
-  color: $popup-form-description-text-color;
-  font-size: $popup-form-description-font-size;
-  letter-spacing: $popup-form-letter-spacing;
-  background-color: $popup-form-description-background-color;
-  padding: 4px 10px;
-}
-.alert-block {
-  display: block;
-  position: relative;
-  width: 100%;
-  border-radius: 3px;
-  border: $alert-border-style;
-  padding: 0;
-  margin-bottom: 17px;
-  background-color: $alert-background;
-}
-//.alert-block .alert-icn {
-//  display: block;
-//  position: absolute;
-//  top: 8px;
-//  left: 16px;
-//  width: 31px;
-//  height: 31px;
-//  background-image: url($alert-warning-image);
-//  background-repeat: no-repeat;
-//}
-.alert-block .alert-container {
-  display: block;
-  width: 100%;
-  padding: 11px 15px 12px;
-
-  color: $alert-text-color;
-  font-size: $alert-content-font-size;
-  letter-spacing: $alert-content-letter-spacing;
-}
-.alert-block .alert-container span {
-   font-weight: 500;
-}
-//.alert-block .alert-container .header {
-//  display: block;
-//  width: 100%;
-//  color: $alert-header-text-color;
-//
-//  font-size: $alert-header-font-size;
-//  letter-spacing: $alert-header-letter-spacing;
-//  margin-bottom: 11px;
-//  font-weight: 400;
-//}
-//.alert-block .alert-container p {
-//  display: block;
-//  width: 100%;
-//  color: $alert-content-text-color;
-//
-//  font-size: $alert-content-font-size;
-//  letter-spacing: $alert-content-letter-spacing;
-//  font-weight: 400;
-//}
-.form-notice {
-  display: block;
-  width: 100%;
-  color: $popup-notice-text-color;
-  font-size: $popup-notice-font-size;
-  letter-spacing: $popup-notice-letter-spacing;
-}
-.form-notice a {
-
-  color: $popup-notice-link-color !important;
-  font-size: $popup-notice-font-size;
-  letter-spacing: $popup-notice-letter-spacing;
-  text-decoration: none;
-  cursor: pointer;
-}
-.login-offer {
-  display: block;
-  width: 100%;
-  margin-top: 20px;
-  margin-bottom: -12px;
-  padding-top: 11px;
-  color: $popup-login-offer-text-color;
-
-  font-size: $popup-login-offer-font-size;
-  letter-spacing: $popup-login-offer-letter-spacing;
-  border-top: $popup-login-offer-border-style;
-  text-align: center;
-}
-.login-offer.registration {
-  margin-top: 31px;
-}
-.login-offer a {
-  color: $popup-login-offer-link-color !important;
-
-  font-size: $popup-login-offer-font-size;
-  letter-spacing: $popup-login-offer-letter-spacing;
-  text-decoration: none;
-  cursor: pointer;
-}
-.popup .finish-message {
-  display: block;
-  width: 100%;
-  position: relative;
-}
-.popup .finish-message .header {
-  display: block;
-  width: 100%;
-  text-align: left;
-
-  font-size: $popup-finish-header-font-size;
-  color: $popup-finish-header-color;
-  letter-spacing: $popup-finish-header-letter-spacing;
-  font-weight: 400;
-}
-
-.popup .finish-message.isForm .header {
-  font-size: $popup-phone-enter-form-header-size;
-  letter-spacing: $popup-phone-enter-form-header-letter-spacing;
-  margin-bottom: 0;
-  margin-top: 4px;
-  padding-bottom: 0;
-}
-.popup .finish-message.isLeft .header {
-  text-align: left;
-  font-size: $popup-header-font-size;
-  letter-spacing: $popup-header-letter-spacing;
-  margin-top: 5px;
-}
-.popup .finish-message p {
-  display: block;
-  width: 100%;
-  text-align: left;
-
-  font-size: $popup-finish-text-font-size;
-  color: $popup-finish-text-color;
-  letter-spacing: $popup-finish-text-letter-spacing;
-  font-weight: 400;
-}
-.popup .finish-message.isForm p {
-  margin-top: 14px;
-}
-.popup .finish-message.isLeft p {
-  text-align: left;
-  font-size: $popup-form-font-size;
-  letter-spacing: $popup-text-letter-spacing;
-  margin-top: 13px;
-  margin-bottom: 17px;
-}
-.popup .finish-message.isForm .form-group.phone-field {
-  margin-top: 46px;
-}
-.popup .finish-message.isForm .form-group label {
-  letter-spacing: $popup-phone-enter-form-label-letter-spacing;
-}
-.popup .finish-message.isForm .form-group .form-control {
-  border-radius: 3px;
-}
-.popup .finish-message.isForm .form-group .btn.btn-warning {
-  margin-top: 22px;
-}
-.popup .finish-message.isForm .form-group .btn.btn-secondary {
-  margin-top: 38px;
-}
-.popup .finish-message .close-popup {
-  display: block;
-  position: absolute;
-  top:-19px;
-  right: -5px;
-  width: 18px;
-  height: 18px;
-  background-image: url($popup-finish-close-background);
-  background-repeat: no-repeat;
-  cursor: pointer;
-}
-.popup .finish-message.isForm .close-popup {
-  display: none;
-}
-.confirm-order-form .btn-secondary {
-  margin-top: 14px !important;
-}
-.confirm-order-form p {
-  display: block;
-
-  color: $popup-text-color;
-  font-size: $popup-text-size;
-  letter-spacing: $popup-text-letter-spacing;
-  font-weight: $popup-text-font-weight;
-  margin-top: -11px;
-  margin-bottom: 27px;
-}
-.confirm-order-form p.confirm-end {
-  display: block;
-
-  color: $popup-order-confirm-end-color;
-  font-size: $popup-order-confirm-end-text-size;
-  letter-spacing: $popup-order-confirm-end-letter-spacing;
-  font-weight: normal;
-  margin-top: 3px;
-  margin-bottom: 29px;
-}
-.confirm-order-form .orders-list {
-  display: block;
-  margin-top: -4px;
-  max-height: 300px;
-  overflow: auto;
-}
-.confirm-order-form .orders-list .order-item {
-  display: block;
-  width: 100%;
-  margin-bottom: 10px;
-}
-.confirm-order-form .orders-list .order-item span {
-  display: block;
-  position: relative;
-  width: 100%;
-  padding-right: 50px;
-
-  color: $popup-order-confirm-item-color;
-  font-size: $popup-order-confirm-item-text-size;
-  letter-spacing: $popup-order-confirm-item-letter-spacing;
-  font-weight: normal;
-}
-.confirm-order-form .orders-list .order-item span i {
-  display: block;
-  position: absolute;
-  top: 0;
-  right: 0;
-   font-weight: 500;
-  color: $popup-order-confirm-item-color;
-  font-size: $popup-order-confirm-item-text-size;
-  letter-spacing: $popup-order-confirm-item-letter-spacing;
-  font-weight: normal;
-  font-style: normal;
-}
-.confirm-order-form .orders-list .order-item span.service-item {
-
-  font-size: $popup-order-confirm-item-total-text-size;
-}
-.confirm-order-form .orders-list .order-item span.service-item i {
-
-}
-.confirm-order-form .orders-list .order-item span.total-item {
-
-  font-size: $popup-order-confirm-item-total-text-size;
-}
-.confirm-order-form .orders-list .order-item span.total-item i {
-
-  font-size: $popup-order-confirm-item-total-text-size;
-}
-.confirm-order-form .price-loader {
-  display: block;
-  margin-top: 55px;
-  width: 100%;
-  position: relative;
-}
-.confirm-order-form .price-loader .spinner {
-  display: block;
-  position: absolute;
-  top: 0;
-  left: 50%;
-  margin-left: -16px;
-  width: 32px;
-  height: 32px;
-}
-.confirm-order-form .price-loader span {
-  display: block;
-  padding-top: 49px;
-  width: 100%;
-  color: $popup-order-confirm-spiner-text-color;
-
-  font-size: $popup-order-confirm-spiner-text-size;
-  letter-spacing: $popup-order-confirm-spiner-text-letter-spacing;
-  text-align: center;
-}
-.confirm-order-form .price-area {
-  display: block;
-  width: 100%;
-  text-align: center;
-
-  color: $popup-order-confirm-price-area-color;
-  font-size: $popup-order-confirm-price-area-text-size;
-  letter-spacing: $popup-order-confirm-price-area-text-letter-spacing;
-  margin: 30px 0 10px;
-}
-.confirm-order-form .price-area span {
-  color: $popup-order-confirm-price-area-green-color;
-  padding-left: 20px;
-}
-.confirm-order-form .information-list {
-  display: block;
-  width: 100%;
-  margin-top: 10px;
-  margin-bottom: -3px;
-}
-.confirm-order-form .information-list .information-item {
-  display: block;
-  width: 100%;
-  margin-bottom: 1px;
-  color: $popup-order-confirm-information-color;
-
-  font-size: $popup-order-confirm-information-text-size;
-  letter-spacing: $popup-order-confirm-information-letter-spacing;
-}
-.confirm-order-form .information-list .information-item span {
-
-}
-.confirm-button-notice {
-  display: block;
-  width: 100%;
-  text-align: left;
-  color: $popup-order-confirm-button-notice-color;
-
-  font-size: $popup-order-confirm-button-notice-text-size;
-  letter-spacing: $popup-order-confirm-button-notice-letter-spacing;
-  margin-top: 20px;
-  margin-bottom: 1px;
-}
-.popup .confirm-order-form .form-group .btn.btn-secondary {
-  background-color: $popup-order-confirm-gray-background;
-}
-.add-card-form .cards-logo {
-  display: block;
-  width: 100%;
-  height: 29px;
-  margin-top: 29px;
-  margin-bottom: 29px;
-}
-.add-card-form .cards-logo .card-item {
-  display: block;
-  float: left;
-  width: 48px;
-  height: 29px;
-  margin-right: 5px;
-  background-repeat: no-repeat;
-  background-size: contain;
-  background-position: center;
-}
-.add-card-form .cards-logo .card-item.amex {
-  background-image: url($cards-amex-mini);
-}
-.add-card-form .cards-logo .card-item.visa {
-  background-image: url($cards-visa-mini);
-}
-.add-card-form .cards-logo .card-item.mastercard {
-  background-image: url($cards-mastercard-mini);
-}
-.popup .add-card-form .form-group label {
-   font-weight: 500;
-  letter-spacing: $popup-text-letter-spacing;
-}
-.popup .add-card-form .form-group .btn.btn-secondary {
-  margin-top: 15px;
-}
-.popup .add-card-form .form-group {
-  min-height: 56px;
-}
-.popup .add-card-form .subheader {
-  display: block;
-  width: 100%;
-  text-align: center;
-  margin-top: 33px;
-  margin-bottom: 27px;
-   font-weight: 500;
-  color: $cards-subheader-color;
-  font-size: $cards-subheader-font-size;
-  letter-spacing: $cards-subheader-letter-spacing;
-}
-.form-group .part-group {
-  display: block;
-  position: relative;
-  float: left;
-  width: 50%;
-}
-.form-group .part-group.first {
-  padding-right: 6px;
-}
-.form-group .part-group.last {
-  padding-left: 6px;
-}
-.form-group .part-group.first-big {
-  width: 66%;
-  padding-right: 6px;
-}
-.form-group .part-group.last-small {
-  width: 34%;
-  padding-left: 6px;
-}
-.form-group .part-group span.fa {
-  color: $cards-icon-color;
-  font-size: 18px;
-  position: absolute;
-  top: 30px;
-  right: 8px;
-}
-
-.confirm-action .btn-secondary {
-  margin-top: 14px !important;
-}
-.confirm-action p {
-  display: block;
-
-  color: $action-form-color;
-  font-size: $popup-text-size;
-  letter-spacing: $popup-text-letter-spacing;
-  font-weight: $popup-text-font-weight;
-  margin-top: -11px;
-  margin-bottom: 22px;
-}
-.popup .confirm-action .form-group .btn.btn-secondary {
-  background-color: $popup-order-confirm-gray-background;
-}
-.confirm-action .action {
-  display: block;
-  width: 100%;
-}
-.confirm-action .action .form-group label {
-   font-weight: 500;
-  color: $action-form-color;
-  font-size: $popup-text-size;
-  letter-spacing: $popup-text-letter-spacing;
-}
-.confirm-action .action .form-group .input-group .form-control {
-
-  padding: 9px 8px 9px 9px !important;
-  font-size: $action-form-text-size;
-  color: $action-form-color;
-  letter-spacing: $action-form-letter-spacing;
-  outline: none;
-  text-align: right;
-  border-radius: 3px 0 0 3px;
-  border: 1px solid $action-form-border-color;
-  border-right: none;
-}
-.confirm-action .action .form-group .input-group .input-group-addon {
-
-  padding: 7px 7px 6px 7px !important;
-  font-size: $action-form-text-size;
-  color: $action-form-color;
-  letter-spacing: $action-form-letter-spacing;
-  text-align: center;
-  border-radius: 0;
-  border: 1px solid $action-form-border-color;
-  background-color: $action-form-icon-background-color;
-}
-.confirm-action .action .form-group .input-group .input-group-addon.euro {
-   font-weight: 500;
-  padding: 3px 11px 4px 12px !important;
-  font-size: $action-form-icon-size;
-  color: $action-form-color;
-  text-align: center;
-  border-radius: 0 3px 3px 0;
-  border: 1px solid $action-form-border-color;
-  border-left: none;
-  background-color: $action-form-icon-background-color;
-}
-.confirm-action .action .form-group .price-description {
-  display: block;
-  width: 100%;
-  margin-top: 6px;
-  margin-bottom: 0;
-  padding: 0;
-
-  color: $action-form-description-color;
-  font-size: $action-form-description-text-size;
-  letter-spacing: $action-form-description-letter-spacing;
-}
-.confirm-action .action .payment-information {
-  display: block;
-  width: 100%;
-  margin-top: 17px;
-  margin-bottom: 9px;
-  padding: 0;
-   font-weight: 500;
-  color: $action-form-color;
-  font-size: $action-form-information-text-size;
-  letter-spacing: $action-form-information-letter-spacing;
-  text-align: right;
-}
-.confirm-action .buttons-block {
-  margin-top: 7px;
-}
-.confirm-action .buttons-block .btn-warning i {
-  font-size: $action-form-information-icon-size;
-  padding-right: 5px;
-}
-.tooltip {
-
-  font-size: $tooltip-font-size;
-  letter-spacing: $popup-text-letter-spacing;
-}
-.popup.new-version .popup-spinner {
-  display: block;
-  width: 100%;
-  height: 40px;
-  margin-top: 3px;
-  margin-bottom: 10px;
-  text-align: center;
-}
-.popup.new-version .success-icon {
-  display: block;
-  width: 100%;
-  height: 40px;
-  margin-top: 3px;
-  margin-bottom: 10px;
-  text-align: center;
-}
-.popup.new-version .success-icon span {
-  display: block;
-  width: 40px;
-  height: 40px;
-  margin: 0 auto;
-  background-image: url($popup-success-icon);
-  background-repeat: no-repeat;
-  background-size: contain;
-}
-.popup.new-version .header {
-
-  font-weight: normal;
-  text-align: center;
-  font-size: $popup-confirm-header-text-size;
-  letter-spacing: $popup-confirm-header-letter-spacing;
-  margin-bottom: 33px;
-}
-.popup.new-version .confirm-order-form p {
-  margin-top: 0;
-
-  font-weight: normal;
-  text-align: left;
-  color: $popup-confirm-message-text-color;
-  font-size: $popup-confirm-message-text-size;
-  letter-spacing: $popup-confirm-message-letter-spacing;
-  margin-bottom: 13px;
-}
-.popup.new-version .confirm-order-form p.conferma-finish {
-  margin-bottom: 26px;
-}
-.popup.add-price .header {
-
-  font-weight: normal;
-  font-size: $popup-completa-header-text-size;
-  color: $popup-completa-header-text-color;
-  letter-spacing: $popup-completa-header-letter-spacing;
-  margin-top: 2px;
-  margin-bottom: 21px;
-}
-.popup.add-price .confirm-action p {
-
-  font-weight: normal;
-  font-size: $popup-completa-message-text-size;
-  color: $popup-completa-message-text-color;
-  letter-spacing: $popup-completa-message-letter-spacing;
-  margin-top: 0;
-  margin-bottom: 24px;
-}
-.popup.new-version .header.without-message {
-  margin-bottom: 27px;
-}
-.popup .form-group .btn-warning.logout-btn {
-  // margin-top: -16px;
-}
-
-// Loading style
-.popup .loader {
-  display: block;
-  width: 100%;
-  height: 40px;
-}
-.popup .loader svg {
-  display: block;
-  width: 40px;
-  height: 40px;
-  margin: 10px auto;
-}
-.popup.add-price .loader {
-  margin-bottom: 20px;
-}
-@media (max-width: 480px) {
-  .popup {
-    width: 100%;
+  .dark-screen {
+    display: block;
     position: fixed;
+    width: 100%;
+    height: 100%;
     top: 0;
     left: 0;
     right: 0;
-    bottom: -100px;
-    margin-left: 0;
-    border-radius: 0;
+    bottom: 0;
+    background-color: $dark-background-color;
+    z-index: 1040;
+  }
+  .popup {
+    display: block;
+    position: fixed;
+    background: $popup-background-color;
+    box-shadow: $popup-shadow-style;
+    width: 500px;
+    top: 42px;
+    left: 50%;
+    // bottom: 0;
     overflow: auto;
-    padding: 15px 10px 20px;
-    box-shadow: none;
-    height: 100%;
+    margin-left: -240px;
+    padding: 35px 30px 27px;
+    z-index: 1041;
+    // border-radius: 3px;
+    .popup-container {
+      height: 100%;
+    }
   }
-  .popup .add-card-form .form-group .btn.btn-secondary {
-    margin-bottom: 70px;
+  .popup .header {
+    display: block;
+    width: 100%;
+    margin-bottom: 20px;
+    text-align: center;
+    // font-size: $popup-header-font-size;
+    // letter-spacing: $popup-header-letter-spacing;
+    // color: $popup-header-color;
+    h1 {
+      font-weight: 400;
+    }
   }
-  .login-offer {
-    margin-bottom: 70px;
+  .popup .double-form {
+
+    font-size: $popup-form-font-size;
+    color: $popup-form-font-color;
+    letter-spacing: $popup-form-letter-spacing;
+    font-weight: 500;
+    padding: 0 0 0 2px;
+    margin-bottom: 1rem;
+    height: 61px;
+  }
+  .popup .form-group label {
+
+    font-size: $popup-form-font-size;
+    color: $popup-form-font-color;
+    letter-spacing: $popup-form-letter-spacing;
+    font-weight: 500;
+    padding: 0 0 0 2px;
+    margin-bottom: 2px;
+  }
+  .popup .form-group label a.recovery {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding-right: 5px;
+
+    font-size: $popup-form-font-size;
+    color: $popup-link-color;
+    letter-spacing: $popup-form-letter-spacing;
+    font-weight: 500;
+    text-align: right;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  .popup .form-group .form-control {
+    height: 45px !important;
+  }
+  .form-group .form-control:focus {
+    border: 2px solid #7FC443 !important;
+
+  }
+  // .pupup .form-control:focus {
+  //   border: 2px solid #7FC443 !important;
+  // }
+  // .popup .form-group .form-control {
+  //   height: 40px;
+  //   border: $popup-input-border;
+  //   border-radius: 3px;
+  //   font-size: $popup-form-font-size;
+  //   color: $popup-form-font-color;
+  //   letter-spacing: $popup-form-letter-spacing;
+  //   font-weight: 400;
+  //   padding: 5px 7px;
+  //   box-shadow: none !important;
+  // }
+  .popup .form-group .error {
+    display: none;
+  }
+  .popup .form-group.isError .error, .popup .form-group .isError .error {
+    display: block;
+
+    font-size: $popup-form-error-font-size;
+    color: $popup-form-error-color;
+    letter-spacing: $popup-form-letter-spacing;
+    font-weight: 400;
+    margin-left: 2px;
+    line-height: 16px;
+  }
+  .popup .form-group .form-control.ng-invalid.ng-dirty,
+  .popup .form-group .form-control.ng-invalid.ng-touched,
+  .popup .form-group.isError .form-control
+  {
+    border: $popup-input-warning-border;
+  }
+  .popup .form-group .isError .form-control
+  {
+    border: $popup-input-warning-border;
+  }
+  .popup .form-group .btn.btn-warning {
+    width: 100%;
+    height: 50px;
+    font-size: 22px;
+    letter-spacing: 0.08px;
+    font-weight: 800;
+    outline: none;
+    line-height: 50px;
+  }
+  .popup .form-group a.btn.btn-warning {
+    // padding: 9px 7px;
+  }
+  .popup .form-group .btn.btn-warning.new-order-btn {
+    position: relative;
+  }
+  .popup .form-group .btn.btn-warning.new-order-btn .fa.fa-lock {
+    position: absolute;
+    top: 11px;
+    left: 19px;
+    font-size: 19px;
+  }
+  .recovery-form .form-group .btn.btn-warning {
+    margin-top: 10px;
   }
   .popup .form-group .btn.btn-secondary {
-    // margin-bottom: 70px;
+    width: 100%;
+    height: 50px;
+    outline: none;
+    background-color: $popup-btn-background-color-gray;
   }
-  .dark-screen {
-    background-color: transparent;
+  .popup .login-form .form-group .btn.btn-secondary {
+    // margin-top: 7px;
+  }
+  .popup .form-group a.btn.btn-secondary {
+    // padding: 9px 7px;
+  }
+
+  .popup .form-group .btn.btn-facebook {
+    position: relative;
+    width: 100%;
+    height: 50px;
+    font-size: 20px;
+    color: white;
+    outline: none;
+    line-height: 50px;
+    padding: 0;
+  }
+  .popup .form-group.registration .btn.btn-facebook {
+    // margin-top: 20px;
+  }
+  .popup .form-group .btn.btn-facebook i {
+    display: block;
+    position: absolute;
+    top: 10px;
+    left: 12px;
+    width: 30px;
+    height: 30px;
+    background-image: url($popup-btn-facebook-icon);
+    background-repeat: no-repeat;
+    background-size: contain;
+  }
+  .popup .form-group a.btn.btn-warning {
+    // padding: 9px 7px;
+  }
+
+  .popup .form-description {
+    display: block;
+    position: relative;
+    width: 100%;
+    margin-top: 10px;
+    border-top: 1px solid #E7E7E7;
+  }
+  .popup .form-description span {
+    display: block;
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    margin-left: -15px;
+    width: 30px;
+    text-align: center;
+
+    color: $popup-form-description-text-color;
+    font-size: $popup-form-description-font-size;
+    letter-spacing: $popup-form-letter-spacing;
+    background-color: $popup-form-description-background-color;
+    padding: 4px 10px;
+  }
+  .alert-block {
+    display: block;
+    position: relative;
+    width: 100%;
+    border-radius: 3px;
+    border: $alert-border-style;
+    padding: 0;
+    margin-bottom: 17px;
+    background-color: $alert-background;
+  }
+  //.alert-block .alert-icn {
+  //  display: block;
+  //  position: absolute;
+  //  top: 8px;
+  //  left: 16px;
+  //  width: 31px;
+  //  height: 31px;
+  //  background-image: url($alert-warning-image);
+  //  background-repeat: no-repeat;
+  //}
+  .alert-block .alert-container {
+    display: block;
+    width: 100%;
+    padding: 11px 15px 12px;
+
+    color: $alert-text-color;
+    font-size: $alert-content-font-size;
+    letter-spacing: $alert-content-letter-spacing;
+  }
+  .alert-block .alert-container span {
+     font-weight: 500;
+  }
+  //.alert-block .alert-container .header {
+  //  display: block;
+  //  width: 100%;
+  //  color: $alert-header-text-color;
+  //
+  //  font-size: $alert-header-font-size;
+  //  letter-spacing: $alert-header-letter-spacing;
+  //  margin-bottom: 11px;
+  //  font-weight: 400;
+  //}
+  //.alert-block .alert-container p {
+  //  display: block;
+  //  width: 100%;
+  //  color: $alert-content-text-color;
+  //
+  //  font-size: $alert-content-font-size;
+  //  letter-spacing: $alert-content-letter-spacing;
+  //  font-weight: 400;
+  //}
+  .form-notice {
+    display: block;
+    width: 100%;
+    color: $popup-notice-text-color;
+    font-size: $popup-notice-font-size;
+    letter-spacing: $popup-notice-letter-spacing;
+  }
+  .form-notice a {
+
+    color: $popup-notice-link-color !important;
+    font-size: $popup-notice-font-size;
+    letter-spacing: $popup-notice-letter-spacing;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  .login-offer {
+    display: block;
+    width: 100%;
+    margin-top: 20px;
+    margin-bottom: -12px;
+    padding-top: 11px;
+    color: $popup-login-offer-text-color;
+
+    font-size: $popup-login-offer-font-size;
+    letter-spacing: $popup-login-offer-letter-spacing;
+    border-top: $popup-login-offer-border-style;
+    text-align: center;
+  }
+  .login-offer.registration {
+    margin-top: 31px;
+  }
+  .login-offer a {
+    color: $popup-login-offer-link-color !important;
+
+    font-size: $popup-login-offer-font-size;
+    letter-spacing: $popup-login-offer-letter-spacing;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  .popup .finish-message {
+    display: block;
+    width: 100%;
+    position: relative;
+  }
+  .popup .finish-message .header {
+    display: block;
+    width: 100%;
+    text-align: left;
+
+    font-size: $popup-finish-header-font-size;
+    color: $popup-finish-header-color;
+    letter-spacing: $popup-finish-header-letter-spacing;
+    font-weight: 400;
+  }
+
+  .popup .finish-message.isForm .header {
+    font-size: $popup-phone-enter-form-header-size;
+    letter-spacing: $popup-phone-enter-form-header-letter-spacing;
+    margin-bottom: 0;
+    margin-top: 4px;
+    padding-bottom: 0;
+  }
+  .popup .finish-message.isLeft .header {
+    text-align: left;
+    font-size: $popup-header-font-size;
+    letter-spacing: $popup-header-letter-spacing;
+    margin-top: 5px;
+  }
+  .popup .finish-message p {
+    display: block;
+    width: 100%;
+    text-align: left;
+
+    font-size: $popup-finish-text-font-size;
+    color: $popup-finish-text-color;
+    letter-spacing: $popup-finish-text-letter-spacing;
+    font-weight: 400;
+  }
+  .popup .finish-message.isForm p {
+    margin-top: 14px;
+  }
+  .popup .finish-message.isLeft p {
+    text-align: left;
+    font-size: $popup-form-font-size;
+    letter-spacing: $popup-text-letter-spacing;
+    margin-top: 13px;
+    margin-bottom: 17px;
+  }
+  .popup .finish-message.isForm .form-group.phone-field {
+    margin-top: 46px;
+  }
+  .popup .finish-message.isForm .form-group label {
+    letter-spacing: $popup-phone-enter-form-label-letter-spacing;
+  }
+  .popup .finish-message.isForm .form-group .form-control {
+    border-radius: 3px;
+  }
+  .popup .finish-message.isForm .form-group .btn.btn-warning {
+    margin-top: 22px;
+  }
+  .popup .finish-message.isForm .form-group .btn.btn-secondary {
+    margin-top: 38px;
+  }
+  .popup .finish-message .close-popup {
+    display: block;
+    position: absolute;
+    top:-19px;
+    right: -5px;
+    width: 18px;
+    height: 18px;
+    background-image: url($popup-finish-close-background);
+    background-repeat: no-repeat;
+    cursor: pointer;
+  }
+  .popup .finish-message.isForm .close-popup {
+    display: none;
+  }
+  .confirm-order-form .btn-secondary {
+    margin-top: 14px !important;
+  }
+  .confirm-order-form p {
+    display: block;
+
+    color: $popup-text-color;
+    font-size: $popup-text-size;
+    letter-spacing: $popup-text-letter-spacing;
+    font-weight: $popup-text-font-weight;
+    margin-top: -11px;
+    margin-bottom: 27px;
+  }
+  .confirm-order-form p.confirm-end {
+    display: block;
+
+    color: $popup-order-confirm-end-color;
+    font-size: $popup-order-confirm-end-text-size;
+    letter-spacing: $popup-order-confirm-end-letter-spacing;
+    font-weight: normal;
+    margin-top: 3px;
+    margin-bottom: 29px;
+  }
+  .confirm-order-form .orders-list {
+    display: block;
+    margin-top: -4px;
+    max-height: 300px;
+    overflow: auto;
+  }
+  .confirm-order-form .orders-list .order-item {
+    display: block;
+    width: 100%;
+    margin-bottom: 10px;
+  }
+  .confirm-order-form .orders-list .order-item span {
+    display: block;
+    position: relative;
+    width: 100%;
+    padding-right: 50px;
+
+    color: $popup-order-confirm-item-color;
+    font-size: $popup-order-confirm-item-text-size;
+    letter-spacing: $popup-order-confirm-item-letter-spacing;
+    font-weight: normal;
+  }
+  .confirm-order-form .orders-list .order-item span i {
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 0;
+     font-weight: 500;
+    color: $popup-order-confirm-item-color;
+    font-size: $popup-order-confirm-item-text-size;
+    letter-spacing: $popup-order-confirm-item-letter-spacing;
+    font-weight: normal;
+    font-style: normal;
+  }
+  .confirm-order-form .orders-list .order-item span.service-item {
+
+    font-size: $popup-order-confirm-item-total-text-size;
+  }
+  .confirm-order-form .orders-list .order-item span.service-item i {
+
+  }
+  .confirm-order-form .orders-list .order-item span.total-item {
+
+    font-size: $popup-order-confirm-item-total-text-size;
+  }
+  .confirm-order-form .orders-list .order-item span.total-item i {
+
+    font-size: $popup-order-confirm-item-total-text-size;
+  }
+  .confirm-order-form .price-loader {
+    display: block;
+    margin-top: 55px;
+    width: 100%;
+    position: relative;
+  }
+  .confirm-order-form .price-loader .spinner {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    margin-left: -16px;
+    width: 32px;
+    height: 32px;
+  }
+  .confirm-order-form .price-loader span {
+    display: block;
+    padding-top: 49px;
+    width: 100%;
+    color: $popup-order-confirm-spiner-text-color;
+
+    font-size: $popup-order-confirm-spiner-text-size;
+    letter-spacing: $popup-order-confirm-spiner-text-letter-spacing;
+    text-align: center;
+  }
+  .confirm-order-form .price-area {
+    display: block;
+    width: 100%;
+    text-align: center;
+
+    color: $popup-order-confirm-price-area-color;
+    font-size: $popup-order-confirm-price-area-text-size;
+    letter-spacing: $popup-order-confirm-price-area-text-letter-spacing;
+    margin: 30px 0 10px;
+  }
+  .confirm-order-form .price-area span {
+    color: $popup-order-confirm-price-area-green-color;
+    padding-left: 20px;
+  }
+  .confirm-order-form .information-list {
+    display: block;
+    width: 100%;
+    margin-top: 10px;
+    margin-bottom: -3px;
+  }
+  .confirm-order-form .information-list .information-item {
+    display: block;
+    width: 100%;
+    margin-bottom: 1px;
+    color: $popup-order-confirm-information-color;
+
+    font-size: $popup-order-confirm-information-text-size;
+    letter-spacing: $popup-order-confirm-information-letter-spacing;
+  }
+  .confirm-order-form .information-list .information-item span {
+
+  }
+  .confirm-button-notice {
+    display: block;
+    width: 100%;
+    text-align: left;
+    color: $popup-order-confirm-button-notice-color;
+
+    font-size: $popup-order-confirm-button-notice-text-size;
+    letter-spacing: $popup-order-confirm-button-notice-letter-spacing;
+    margin-top: 20px;
+    margin-bottom: 1px;
+  }
+  .popup .confirm-order-form .form-group .btn.btn-secondary {
+    background-color: $popup-order-confirm-gray-background;
+  }
+  .add-card-form .cards-logo {
+    display: block;
+    width: 100%;
+    height: 29px;
+    margin-top: 29px;
+    margin-bottom: 29px;
+  }
+  .add-card-form .cards-logo .card-item {
+    display: block;
+    float: left;
+    width: 48px;
+    height: 29px;
+    margin-right: 5px;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+  }
+  .add-card-form .cards-logo .card-item.amex {
+    background-image: url($cards-amex-mini);
+  }
+  .add-card-form .cards-logo .card-item.visa {
+    background-image: url($cards-visa-mini);
+  }
+  .add-card-form .cards-logo .card-item.mastercard {
+    background-image: url($cards-mastercard-mini);
+  }
+  .popup .add-card-form .form-group label {
+     font-weight: 500;
+    letter-spacing: $popup-text-letter-spacing;
+  }
+  .popup .add-card-form .form-group .btn.btn-secondary {
+    margin-top: 15px;
+  }
+  .popup .add-card-form .form-group {
+    min-height: 56px;
+  }
+  .popup .add-card-form .subheader {
+    display: block;
+    width: 100%;
+    text-align: center;
+    margin-top: 33px;
+    margin-bottom: 27px;
+     font-weight: 500;
+    color: $cards-subheader-color;
+    font-size: $cards-subheader-font-size;
+    letter-spacing: $cards-subheader-letter-spacing;
+  }
+  .form-group .part-group {
+    display: block;
+    position: relative;
+    float: left;
+    width: 50%;
+  }
+  .form-group .part-group.first {
+    padding-right: 6px;
+  }
+  .form-group .part-group.last {
+    padding-left: 6px;
+  }
+  .form-group .part-group.first-big {
+    width: 66%;
+    padding-right: 6px;
+  }
+  .form-group .part-group.last-small {
+    width: 34%;
+    padding-left: 6px;
+  }
+  .form-group .part-group span.fa {
+    color: $cards-icon-color;
+    font-size: 18px;
+    position: absolute;
+    top: 30px;
+    right: 8px;
+  }
+
+  .confirm-action .btn-secondary {
+    margin-top: 14px !important;
+  }
+  .confirm-action p {
+    display: block;
+
+    color: $action-form-color;
+    font-size: $popup-text-size;
+    letter-spacing: $popup-text-letter-spacing;
+    font-weight: $popup-text-font-weight;
+    margin-top: -11px;
+    margin-bottom: 22px;
+  }
+  .popup .confirm-action .form-group .btn.btn-secondary {
+    background-color: $popup-order-confirm-gray-background;
+  }
+  .confirm-action .action {
+    display: block;
+    width: 100%;
+  }
+  .confirm-action .action .form-group label {
+     font-weight: 500;
+    color: $action-form-color;
+    font-size: $popup-text-size;
+    letter-spacing: $popup-text-letter-spacing;
+  }
+  .confirm-action .action .form-group .input-group .form-control {
+
+    padding: 9px 8px 9px 9px !important;
+    font-size: $action-form-text-size;
+    color: $action-form-color;
+    letter-spacing: $action-form-letter-spacing;
+    outline: none;
+    text-align: right;
+    border-radius: 3px 0 0 3px;
+    border: 1px solid $action-form-border-color;
+    border-right: none;
+  }
+  .confirm-action .action .form-group .input-group .input-group-addon {
+
+    padding: 7px 7px 6px 7px !important;
+    font-size: $action-form-text-size;
+    color: $action-form-color;
+    letter-spacing: $action-form-letter-spacing;
+    text-align: center;
+    border-radius: 0;
+    border: 1px solid $action-form-border-color;
+    background-color: $action-form-icon-background-color;
+  }
+  .confirm-action .action .form-group .input-group .input-group-addon.euro {
+     font-weight: 500;
+    padding: 3px 11px 4px 12px !important;
+    font-size: $action-form-icon-size;
+    color: $action-form-color;
+    text-align: center;
+    border-radius: 0 3px 3px 0;
+    border: 1px solid $action-form-border-color;
+    border-left: none;
+    background-color: $action-form-icon-background-color;
+  }
+  .confirm-action .action .form-group .price-description {
+    display: block;
+    width: 100%;
+    margin-top: 6px;
+    margin-bottom: 0;
+    padding: 0;
+
+    color: $action-form-description-color;
+    font-size: $action-form-description-text-size;
+    letter-spacing: $action-form-description-letter-spacing;
+  }
+  .confirm-action .action .payment-information {
+    display: block;
+    width: 100%;
+    margin-top: 17px;
+    margin-bottom: 9px;
+    padding: 0;
+     font-weight: 500;
+    color: $action-form-color;
+    font-size: $action-form-information-text-size;
+    letter-spacing: $action-form-information-letter-spacing;
+    text-align: right;
+  }
+  .confirm-action .buttons-block {
+    margin-top: 7px;
+  }
+  .confirm-action .buttons-block .btn-warning i {
+    font-size: $action-form-information-icon-size;
+    padding-right: 5px;
+  }
+  .tooltip {
+
+    font-size: $tooltip-font-size;
+    letter-spacing: $popup-text-letter-spacing;
+  }
+  .popup.new-version .popup-spinner {
+    display: block;
+    width: 100%;
+    height: 40px;
+    margin-top: 3px;
+    margin-bottom: 10px;
+    text-align: center;
+  }
+  .popup.new-version .success-icon {
+    display: block;
+    width: 100%;
+    height: 40px;
+    margin-top: 3px;
+    margin-bottom: 10px;
+    text-align: center;
+  }
+  .popup.new-version .success-icon span {
+    display: block;
+    width: 40px;
+    height: 40px;
+    margin: 0 auto;
+    background-image: url($popup-success-icon);
+    background-repeat: no-repeat;
+    background-size: contain;
+  }
+  .popup.new-version .header {
+
+    font-weight: normal;
+    text-align: center;
+    font-size: $popup-confirm-header-text-size;
+    letter-spacing: $popup-confirm-header-letter-spacing;
+    margin-bottom: 33px;
+  }
+  .popup.new-version .confirm-order-form p {
+    margin-top: 0;
+
+    font-weight: normal;
+    text-align: left;
+    color: $popup-confirm-message-text-color;
+    font-size: $popup-confirm-message-text-size;
+    letter-spacing: $popup-confirm-message-letter-spacing;
+    margin-bottom: 13px;
+  }
+  .popup.new-version .confirm-order-form p.conferma-finish {
+    margin-bottom: 26px;
+  }
+  .popup.add-price .header {
+
+    font-weight: normal;
+    font-size: $popup-completa-header-text-size;
+    color: $popup-completa-header-text-color;
+    letter-spacing: $popup-completa-header-letter-spacing;
+    margin-top: 2px;
+    margin-bottom: 21px;
+  }
+  .popup.add-price .confirm-action p {
+
+    font-weight: normal;
+    font-size: $popup-completa-message-text-size;
+    color: $popup-completa-message-text-color;
+    letter-spacing: $popup-completa-message-letter-spacing;
+    margin-top: 0;
+    margin-bottom: 24px;
+  }
+  .popup.new-version .header.without-message {
+    margin-bottom: 27px;
+  }
+  .popup .form-group .btn-warning.logout-btn {
+    // margin-top: -16px;
+  }
+
+  // Loading style
+  .popup .loader {
+    display: block;
+    width: 100%;
+    height: 40px;
+  }
+  .popup .loader svg {
+    display: block;
+    width: 40px;
+    height: 40px;
+    margin: 10px auto;
+  }
+  .popup.add-price .loader {
+    margin-bottom: 20px;
+  }
+  @media (max-width: 480px) {
+    .popup {
+      width: 100%;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: -100px;
+      margin-left: 0;
+      border-radius: 0;
+      overflow: auto;
+      padding: 15px 10px 20px;
+      box-shadow: none;
+      height: 100%;
+    }
+    .popup .add-card-form .form-group .btn.btn-secondary {
+      margin-bottom: 70px;
+    }
+    .login-offer {
+      margin-bottom: 70px;
+    }
+    .popup .form-group .btn.btn-secondary {
+      // margin-bottom: 70px;
+    }
+    .dark-screen {
+      background-color: transparent;
+    }
   }
 }

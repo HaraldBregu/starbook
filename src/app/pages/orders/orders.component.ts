@@ -63,6 +63,16 @@ export class OrdersComponent implements OnInit, OnDestroy {
   public page = '';
   subscription: Subscription;
   public estimates;
+  public popup;
+  public selectedOrder;
+  public upfront;
+  public detail = {
+    title : "",
+    type : "detail",
+    count : 0,
+    amount : 0
+  };
+  public details = [];
 
   constructor(
     private router: Router,
@@ -80,6 +90,7 @@ export class OrdersComponent implements OnInit, OnDestroy {
         return;
       }
       this.currentUser = JSON.parse(localStorage.getItem('auth'));
+      // console.log('currentUser: ' + JSON.stringify(this.currentUser));
     }
   }
 
@@ -90,7 +101,7 @@ export class OrdersComponent implements OnInit, OnDestroy {
         this.page = params['page']
         if (this.page === 'requests') {
           this.navigationService.updateMessage("Ordini...");
-          this.ordersService.getOrders([{name: 'order_type', value: 'REQUIRED'}]).then((response) => {
+          this.ordersService.getOrders([{name: 'order_type', value: 'ACTIVE'}]).then((response) => {
             this.navigationService.updateMessage("Ordini");
             this.pageData = response.result;
           }).catch((error) => {
@@ -196,11 +207,9 @@ export class OrdersComponent implements OnInit, OnDestroy {
       this.subscription.unsubscribe();
     }
   }
-
   renderPage(route) {
     this.router.navigate(['orders/' + route]);
   }
-
   getTiming(initial_price) {
     var days = initial_price/45000;
     if (days < 0.5) {
@@ -211,14 +220,12 @@ export class OrdersComponent implements OnInit, OnDestroy {
       return Math.round(days) + " giorni";
     }
   }
-
   startWizard(estimate) {
     this.orderService.updateWizardData(estimate);
     this.router.navigate(['order/summary']);
     return false;
   }
   shareEstimate(estimate) {
-    console.log('estimate: ' + estimate);
     this.shareService.setObject(estimate);
     var newWizardData = estimate;
     let navigationExtras: NavigationExtras = {queryParams:{estimate:JSON.stringify(estimate)}};
@@ -251,6 +258,115 @@ export class OrdersComponent implements OnInit, OnDestroy {
   ////////////////////////////////////////
   ////////////// UNKNOWN /////////////////
   ////////////////////////////////////////
+
+  formatedAddressFromObject(address) {
+    let returnAddress = '';
+    if (address.street) {
+      returnAddress += address.street
+    }
+    if (address.street_number) {
+      returnAddress += ' ' + address.street_number
+    }
+    if (address.city) {
+      returnAddress += ', ' + address.city
+    }
+    return returnAddress;
+  }
+  formatedDateFromString(date) {
+    let returnDate = '';
+    if (date !== 'now') {
+      let dateString = date.substring(0, date.length - 5);
+      dateString = dateString.split('T');
+      let dateComponents = dateString[0].split('-');
+      let hourComponents = dateString[1].split(':');
+      // returnDate = dateComponents[2] + ' ' + this.it.monthNames[dateComponents[1]-1] + ' ' + dateComponents[0] + ' ' + hourComponents[0] + ':' + hourComponents[1];
+      returnDate = dateComponents[2] + ' ' + this.it.monthNames[dateComponents[1]-1] + ' ' + dateComponents[0];
+    } else {
+      let currentDate = new Date();
+      let day = currentDate.getDate();
+      let month = 1 + currentDate.getMonth();
+      let year = currentDate.getFullYear();
+      let hours = currentDate.getHours();
+      let minutes = currentDate.getMinutes();
+      let seconds = currentDate.getSeconds();
+      returnDate += year;
+      returnDate += month > 9 ? '-' + month : '-0' + month;
+      returnDate += day > 9 ? '-' + day : '-0' + day;
+      returnDate += hours > 9 ? 'T' + hours : 'T0' + hours;
+      returnDate += minutes > 9 ? ':' + minutes : ':0' + minutes;
+      returnDate += seconds > 9 ? ':' + seconds  + '.000Z' : ':0' + seconds + '.000Z';
+    }
+    return returnDate;
+  }
+
+  acceptOrder() {
+    this.ordersService.acceptWork(this.selectedOrder._id, 'ACCEPT').then((response) => {
+      this.popup = null;
+      // console.log('Response: ' + JSON.stringify(response));
+    }).catch((error) => {
+      this.popup = null;
+      // console.log('Error: ' + JSON.stringify(error));
+    });
+  }
+  updateDetailsOrder() {
+    this.detail.amount = Number(this.detail.amount)
+    this.details.push(this.detail)
+    this.ordersService.updateOrder(this.selectedOrder._id, {action: 'UPDATE_TOTAL', details:this.details}).then((response) => {
+      this.popup = null;
+      // console.log('Response: ' + JSON.stringify(response));
+    }).catch((error) => {
+      this.popup = null;
+      // console.log('Error: ' + JSON.stringify(error));
+    });
+  }
+  payUpfront() {
+    this.ordersService.updateOrder(this.selectedOrder._id, {action: 'PAY_UPFRONT', upfront:this.upfront}).then((response) => {
+      this.popup = null;
+      // console.log('Response: ' + JSON.stringify(response));
+    }).catch((error) => {
+      this.popup = null;
+      // console.log('Error: ' + JSON.stringify(error));
+    });
+  }
+  payRestAmount(rest) {
+    this.ordersService.updateOrder(this.selectedOrder._id, {action: 'PAY_UPFRONT', upfront:rest}).then((response) => {
+      this.popup = null;
+      // console.log('Response: ' + JSON.stringify(response));
+    }).catch((error) => {
+      this.popup = null;
+      // console.log('Error: ' + JSON.stringify(error));
+    });
+  }
+
+  getTotalAmount(details) {
+    var newValue = 0
+    for (var i = 0; i < details.length; i++) {
+      var detail = details[i]
+      newValue += parseInt(detail.amount)
+    }
+    return newValue;
+  }
+  getTotalMilestones(milestones) {
+    var newValue = 0
+    for (var i = 0; i < milestones.length; i++) {
+      var detail = milestones[i]
+      newValue += detail.amount
+    }
+    return newValue;
+  }
+  getRestToPay() {
+    var milestones = this.selectedOrder.milestones
+    var details = this.selectedOrder.details
+    return this.getTotalAmount(details) - this.getTotalMilestones(milestones)
+  }
+
+  openPopup(popup, order) {
+    this.selectedOrder = order;
+    this.popup = popup;
+  }
+  closePopup() {
+    this.popup = null;
+  }
 
   dateFormating(date) {
     let returnDate = '';

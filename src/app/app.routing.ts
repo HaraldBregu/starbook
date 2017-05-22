@@ -106,14 +106,14 @@ const routes: Routes = [
     path: 'requests/:page',
     component: RequestsComponent
   },
-  {
-    path: 'share',
-    component: ShareComponent
-  },
-  {
-    path: 'share/:page',
-    component: ShareComponent
-  },
+  // {
+  //   path: 'share',
+  //   component: ShareComponent
+  // },
+  // {
+  //   path: 'share/:page',
+  //   component: ShareComponent
+  // },
   // {
   //   path: 'blog',
   //   component: BlogComponent

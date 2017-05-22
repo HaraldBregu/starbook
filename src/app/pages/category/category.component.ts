@@ -99,15 +99,9 @@ export class CategoryComponent implements OnInit {
     this.order['service_id'] = this.category._id
     this.order['title'] = this.category.title;
     var title = "Richiesta di " + action.title.toLowerCase() + ""
-    this.order['details'] = [{title:this.category.title, type:"service"},{title:title, type:"detail", value:""}]
+    this.order['details'] = [{title:this.category.title, type:"service", count:0, amount:0},{title:title, type:"detail", count:0, amount:0}]
     this.order['description'] = ""
-    this.order['referral_id'] = null
-    this.order['price'] = {
-      final: action.amount,
-      initial: action.amount,
-      currency: 'eur'
-    }
-    this.order['payment'] = {upfront: action.amount}
+    this.order['upfront_amount'] = action.amount
     this.order['timing'] = {days: 0}
     this.orderService.updateWizardData(this.order);
     this.router.navigate(['order/summary']);

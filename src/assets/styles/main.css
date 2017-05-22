@@ -5834,115 +5834,188 @@ app-orders {
         border: 1px solid #9b9c9d;
         background: white;
         margin: 0px auto 40px; }
-        app-orders .orders-container .orders .order-container .order .top-container {
-          background: #ececec;
-          padding: 10px 20px;
-          overflow: auto;
+        app-orders .orders-container .orders .order-container .order .order-header {
           font-size: 16px; }
-          app-orders .orders-container .orders .order-container .order .top-container span {
+          app-orders .orders-container .orders .order-container .order .order-header .top {
+            padding: 20px;
+            background: #ececec;
+            overflow: auto;
             font-weight: 600;
             color: #eb8102; }
-        app-orders .orders-container .orders .order-container .order .nav-container {
-          color: white;
-          font-weight: 500;
-          background: #989ca4;
-          padding: 10px 20px;
-          font-size: 16px;
-          overflow: auto;
-          word-wrap: break-word; }
-          app-orders .orders-container .orders .order-container .order .nav-container .item {
+          app-orders .orders-container .orders .order-container .order .order-header .client {
+            padding-top: 0;
+            color: black;
+            font-weight: 400; }
+            app-orders .orders-container .orders .order-container .order .order-header .client span {
+              display: block; }
+          app-orders .orders-container .orders .order-container .order .order-header .table-header {
+            padding: 10px 20px;
+            color: white;
+            font-weight: 500;
+            background: #324977;
+            overflow: auto;
+            word-wrap: break-word; }
+          app-orders .orders-container .orders .order-container .order .order-header .item {
             float: left;
             width: 70%; }
-          app-orders .orders-container .orders .order-container .order .nav-container .quantity, app-orders .orders-container .orders .order-container .order .nav-container .price, app-orders .orders-container .orders .order-container .order .nav-container .total {
+          app-orders .orders-container .orders .order-container .order .order-header .quantity, app-orders .orders-container .orders .order-container .order .order-header .price, app-orders .orders-container .orders .order-container .order .order-header .total {
             float: left;
-            width: 10%;
+            width: 30%;
             text-align: right; }
-        app-orders .orders-container .orders .order-container .order .content-container {
+        app-orders .orders-container .orders .order-container .order .order-body {
           padding: 20px; }
-          app-orders .orders-container .orders .order-container .order .content-container .content {
-            overflow: auto; }
-            app-orders .orders-container .orders .order-container .order .content-container .content span {
-              font-size: 18px;
-              display: block; }
-            app-orders .orders-container .orders .order-container .order .content-container .content .item {
-              float: left;
-              width: 70%; }
-            app-orders .orders-container .orders .order-container .order .content-container .content .quantity, app-orders .orders-container .orders .order-container .order .content-container .content .price, app-orders .orders-container .orders .order-container .order .content-container .content .total {
-              float: left;
-              width: 10%;
-              text-align: right; }
-            app-orders .orders-container .orders .order-container .order .content-container .content .items span {
-              font-size: 20px; }
-            app-orders .orders-container .orders .order-container .order .content-container .content .timing {
-              padding-top: 20px; }
-              app-orders .orders-container .orders .order-container .order .content-container .content .timing span {
-                font-size: 18px; }
-            app-orders .orders-container .orders .order-container .order .content-container .content .payment {
+          app-orders .orders-container .orders .order-container .order .order-body .content {
+            overflow: auto;
+            font-size: 20px; }
+            app-orders .orders-container .orders .order-container .order .order-body .content .items {
               overflow: auto;
-              float: right;
-              width: 30%; }
-              app-orders .orders-container .orders .order-container .order .content-container .content .payment .counts span {
-                font-size: 18px; }
-              app-orders .orders-container .orders .order-container .order .content-container .content .payment .counts .line-break {
-                float: right;
+              font-size: 20px; }
+              app-orders .orders-container .orders .order-container .order .order-body .content .items .item {
+                float: left;
+                width: 70%; }
+              app-orders .orders-container .orders .order-container .order .order-body .content .items .quantity, app-orders .orders-container .orders .order-container .order .order-body .content .items .price, app-orders .orders-container .orders .order-container .order .order-body .content .items .total {
+                float: left;
                 width: 30%;
-                margin-top: 10px;
-                margin-bottom: 10px;
-                border-top: 1px solid #9b9c9d; }
-              app-orders .orders-container .orders .order-container .order .content-container .content .payment .counts .item {
                 text-align: right; }
-              app-orders .orders-container .orders .order-container .order .content-container .content .payment .counts .amount {
+            app-orders .orders-container .orders .order-container .order .order-body .content .description {
+              font-size: 20px;
+              display: block;
+              width: 100%;
+              overflow: auto; }
+            app-orders .orders-container .orders .order-container .order .order-body .content .price {
+              overflow: auto; }
+              app-orders .orders-container .orders .order-container .order .order-body .content .price .items {
                 text-align: right; }
-              app-orders .orders-container .orders .order-container .order .content-container .content .payment .buttons {
-                text-align: right;
-                padding: 20px 0 0; }
-                app-orders .orders-container .orders .order-container .order .content-container .content .payment .buttons .btn {
-                  font-size: 18px;
-                  padding: 0 40px;
-                  font-weight: 500; }
-            app-orders .orders-container .orders .order-container .order .content-container .content .text {
+                app-orders .orders-container .orders .order-container .order .order-body .content .price .items .item {
+                  text-align: right;
+                  width: 85%;
+                  float: left; }
+                app-orders .orders-container .orders .order-container .order .order-body .content .price .items .amount {
+                  text-align: right;
+                  width: 15%;
+                  float: left; }
+            app-orders .orders-container .orders .order-container .order .order-body .content .payment {
+              overflow: auto; }
+              app-orders .orders-container .orders .order-container .order .order-body .content .payment .items {
+                text-align: right; }
+                app-orders .orders-container .orders .order-container .order .order-body .content .payment .items .item {
+                  text-align: right;
+                  width: 85%;
+                  float: left; }
+                app-orders .orders-container .orders .order-container .order .order-body .content .payment .items .amount {
+                  text-align: right;
+                  width: 15%;
+                  float: left; }
+            app-orders .orders-container .orders .order-container .order .order-body .content .text {
               overflow: auto;
               float: left;
               width: 50%; }
-              app-orders .orders-container .orders .order-container .order .content-container .content .text span {
+              app-orders .orders-container .orders .order-container .order .order-body .content .text span {
                 font-size: 14px; }
+            app-orders .orders-container .orders .order-container .order .order-body .content .actions {
+              width: 100%;
+              text-align: right;
+              overflow: auto; }
+              app-orders .orders-container .orders .order-container .order .order-body .content .actions .btn {
+                font-size: 18px;
+                padding: 0 40px;
+                font-weight: 500; }
+        app-orders .orders-container .orders .order-container .order .order-footer {
+          background: #ececec;
+          padding: 10px 20px;
+          border-top: 1px solid #9b9c9d; }
         app-orders .orders-container .orders .order-container .order .line {
-          margin: 0 20px;
           display: block;
           height: 1px;
+          margin: 20px 0;
           border-top: 1px solid #9b9c9d; }
-        app-orders .orders-container .orders .order-container .counts {
-          overflow: auto; }
-          app-orders .orders-container .orders .order-container .counts .item {
-            float: left;
-            width: 70%; }
-          app-orders .orders-container .orders .order-container .counts .amount {
-            float: left;
-            width: 30%; }
-          app-orders .orders-container .orders .order-container .counts .initial {
-            font-weight: 400;
-            text-decoration: line-through; }
-          app-orders .orders-container .orders .order-container .counts .time {
+        app-orders .orders-container .orders .order-container .order .dashed {
+          border-top: 1px dashed #9b9c9d; }
+        app-orders .orders-container .orders .order-container .order .dashed:before {
+          background-color: #FFFFFF;
+          content: "";
+          height: 10px;
+          position: absolute;
+          top: -2px;
+          width: 100%; }
+        app-orders .orders-container .orders .order-container .order .dashed:after {
+          background-color: #FFFFFF;
+          content: "";
+          height: 10px;
+          position: absolute;
+          top: -13px;
+          width: 100%; }
+    app-orders .orders-container .popup-shadow {
+      position: fixed;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      z-index: 1050;
+      display: none;
+      overflow: hidden;
+      -webkit-overflow-scrolling: touch;
+      outline: 0;
+      overflow-x: hidden;
+      overflow-y: auto;
+      background: rgba(0, 0, 0, 0.3); }
+    app-orders .orders-container .popup-container {
+      position: fixed;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      z-index: 1050;
+      display: none;
+      overflow: hidden;
+      -webkit-overflow-scrolling: touch;
+      outline: 0;
+      overflow-x: hidden;
+      overflow-y: auto;
+      background: rgba(0, 0, 0, 0.3); }
+      app-orders .orders-container .popup-container .popup {
+        background: white;
+        width: 500px;
+        margin: 80px auto;
+        overflow-x: hidden;
+        overflow-y: scroll;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5); }
+        app-orders .orders-container .popup-container .popup .popup-header {
+          padding: 30px; }
+        app-orders .orders-container .popup-container .popup .popup-body {
+          padding: 30px; }
+          app-orders .orders-container .popup-container .popup .popup-body .btn {
+            width: 100%;
             font-weight: 500;
-            font-size: 20px; }
-        app-orders .orders-container .orders .order-container .actions {
-          width: 50%;
-          text-align: center;
-          padding: 20px 0;
-          margin: auto;
-          color: #324977; }
-          app-orders .orders-container .orders .order-container .actions a {
-            font-weight: 500;
-            cursor: pointer;
-            padding: 0 5px; }
-          app-orders .orders-container .orders .order-container .actions a:hover {
-            color: #324977;
-            text-decoration: underline; }
-        app-orders .orders-container .orders .order-container .links {
-          text-align: center; }
+            outline: none; }
+          app-orders .orders-container .popup-container .popup .popup-body .btn-warning {
+            color: black; }
+          app-orders .orders-container .popup-container .popup .popup-body .btn-warning:hover {
+            color: black !important; }
+          app-orders .orders-container .popup-container .popup .popup-body .details {
+            overflow: auto; }
+            app-orders .orders-container .popup-container .popup .popup-body .details .item {
+              float: left;
+              width: 80%; }
+            app-orders .orders-container .popup-container .popup .popup-body .details .amount {
+              float: left;
+              width: 20%; }
+              app-orders .orders-container .popup-container .popup .popup-body .details .amount .form-control {
+                text-align: center; }
+        app-orders .orders-container .popup-container .popup .popup-footer {
+          padding: 30px; }
   @media (max-width: 1024px) {
     app-orders .orders-container .orders {
-      margin-top: 0; } }
+      margin-top: 10px;
+      padding: 0 10px; } }
+  @media (max-width: 425px) {
+    app-orders .orders-container .popup-container {
+      padding: 10px; }
+    app-orders .orders-container .popup-container .popup {
+      width: 100%;
+      margin-top: 70px; }
+    app-orders .orders-container .orders .order-container .order .order-body .content .price {
+      width: 100%; } }
 
 app-profile .profile-page {
   display: block;
@@ -6135,7 +6208,7 @@ app-profile .page-container {
   app-profile .top-bar li {
     padding: 0 10px; } }
 
-.dark-screen {
+app-popups .dark-screen {
   display: block;
   position: fixed;
   width: 100%;
@@ -6146,8 +6219,7 @@ app-profile .page-container {
   bottom: 0;
   background-color: rgba(0, 0, 0, 0.53);
   z-index: 1040; }
-
-.popup {
+app-popups .popup {
   display: block;
   position: fixed;
   background: #ffffff;
@@ -6159,18 +6231,16 @@ app-profile .page-container {
   margin-left: -240px;
   padding: 35px 30px 27px;
   z-index: 1041; }
-  .popup .popup-container {
+  app-popups .popup .popup-container {
     height: 100%; }
-
-.popup .header {
+app-popups .popup .header {
   display: block;
   width: 100%;
   margin-bottom: 20px;
   text-align: center; }
-  .popup .header h1 {
+  app-popups .popup .header h1 {
     font-weight: 400; }
-
-.popup .double-form {
+app-popups .popup .double-form {
   font-size: 14px;
   color: #212121;
   letter-spacing: 0.08px;
@@ -6178,16 +6248,14 @@ app-profile .page-container {
   padding: 0 0 0 2px;
   margin-bottom: 1rem;
   height: 61px; }
-
-.popup .form-group label {
+app-popups .popup .form-group label {
   font-size: 14px;
   color: #212121;
   letter-spacing: 0.08px;
   font-weight: 500;
   padding: 0 0 0 2px;
   margin-bottom: 2px; }
-
-.popup .form-group label a.recovery {
+app-popups .popup .form-group label a.recovery {
   position: absolute;
   top: 0;
   right: 0;
@@ -6199,17 +6267,13 @@ app-profile .page-container {
   text-align: right;
   text-decoration: none;
   cursor: pointer; }
-
-.popup .form-group .form-control {
+app-popups .popup .form-group .form-control {
   height: 45px !important; }
-
-.form-group .form-control:focus {
+app-popups .form-group .form-control:focus {
   border: 2px solid #7FC443 !important; }
-
-.popup .form-group .error {
+app-popups .popup .form-group .error {
   display: none; }
-
-.popup .form-group.isError .error, .popup .form-group .isError .error {
+app-popups .popup .form-group.isError .error, app-popups .popup .form-group .isError .error {
   display: block;
   font-size: 12px;
   color: #DB4F4F;
@@ -6217,16 +6281,13 @@ app-profile .page-container {
   font-weight: 400;
   margin-left: 2px;
   line-height: 16px; }
-
-.popup .form-group .form-control.ng-invalid.ng-dirty,
-.popup .form-group .form-control.ng-invalid.ng-touched,
-.popup .form-group.isError .form-control {
+app-popups .popup .form-group .form-control.ng-invalid.ng-dirty,
+app-popups .popup .form-group .form-control.ng-invalid.ng-touched,
+app-popups .popup .form-group.isError .form-control {
   border: 1px solid #DB4F4F; }
-
-.popup .form-group .isError .form-control {
+app-popups .popup .form-group .isError .form-control {
   border: 1px solid #DB4F4F; }
-
-.popup .form-group .btn.btn-warning {
+app-popups .popup .form-group .btn.btn-warning {
   width: 100%;
   height: 50px;
   font-size: 22px;
@@ -6234,26 +6295,21 @@ app-profile .page-container {
   font-weight: 800;
   outline: none;
   line-height: 50px; }
-
-.popup .form-group .btn.btn-warning.new-order-btn {
+app-popups .popup .form-group .btn.btn-warning.new-order-btn {
   position: relative; }
-
-.popup .form-group .btn.btn-warning.new-order-btn .fa.fa-lock {
+app-popups .popup .form-group .btn.btn-warning.new-order-btn .fa.fa-lock {
   position: absolute;
   top: 11px;
   left: 19px;
   font-size: 19px; }
-
-.recovery-form .form-group .btn.btn-warning {
+app-popups .recovery-form .form-group .btn.btn-warning {
   margin-top: 10px; }
-
-.popup .form-group .btn.btn-secondary {
+app-popups .popup .form-group .btn.btn-secondary {
   width: 100%;
   height: 50px;
   outline: none;
   background-color: #EFF1F3; }
-
-.popup .form-group .btn.btn-facebook {
+app-popups .popup .form-group .btn.btn-facebook {
   position: relative;
   width: 100%;
   height: 50px;
@@ -6262,8 +6318,7 @@ app-profile .page-container {
   outline: none;
   line-height: 50px;
   padding: 0; }
-
-.popup .form-group .btn.btn-facebook i {
+app-popups .popup .form-group .btn.btn-facebook i {
   display: block;
   position: absolute;
   top: 10px;
@@ -6273,15 +6328,13 @@ app-profile .page-container {
   background-image: url("/assets/images/fb-icon.png");
   background-repeat: no-repeat;
   background-size: contain; }
-
-.popup .form-description {
+app-popups .popup .form-description {
   display: block;
   position: relative;
   width: 100%;
   margin-top: 10px;
   border-top: 1px solid #E7E7E7; }
-
-.popup .form-description span {
+app-popups .popup .form-description span {
   display: block;
   position: absolute;
   top: -12px;
@@ -6294,8 +6347,7 @@ app-profile .page-container {
   letter-spacing: 0.08px;
   background-color: #ffffff;
   padding: 4px 10px; }
-
-.alert-block {
+app-popups .alert-block {
   display: block;
   position: relative;
   width: 100%;
@@ -6304,33 +6356,28 @@ app-profile .page-container {
   padding: 0;
   margin-bottom: 17px;
   background-color: #F2DEDE; }
-
-.alert-block .alert-container {
+app-popups .alert-block .alert-container {
   display: block;
   width: 100%;
   padding: 11px 15px 12px;
   color: #AB433F;
   font-size: 13px;
   letter-spacing: 0.08px; }
-
-.alert-block .alert-container span {
+app-popups .alert-block .alert-container span {
   font-weight: 500; }
-
-.form-notice {
+app-popups .form-notice {
   display: block;
   width: 100%;
   color: #212121;
   font-size: 12px;
   letter-spacing: 0.08px; }
-
-.form-notice a {
+app-popups .form-notice a {
   color: #0066C0 !important;
   font-size: 12px;
   letter-spacing: 0.08px;
   text-decoration: none;
   cursor: pointer; }
-
-.login-offer {
+app-popups .login-offer {
   display: block;
   width: 100%;
   margin-top: 20px;
@@ -6341,23 +6388,19 @@ app-profile .page-container {
   letter-spacing: 0.08px;
   border-top: 1px solid #E7E7E7;
   text-align: center; }
-
-.login-offer.registration {
+app-popups .login-offer.registration {
   margin-top: 31px; }
-
-.login-offer a {
+app-popups .login-offer a {
   color: #0066C0 !important;
   font-size: 12px;
   letter-spacing: 0.08px;
   text-decoration: none;
   cursor: pointer; }
-
-.popup .finish-message {
+app-popups .popup .finish-message {
   display: block;
   width: 100%;
   position: relative; }
-
-.popup .finish-message .header {
+app-popups .popup .finish-message .header {
   display: block;
   width: 100%;
   text-align: left;
@@ -6365,21 +6408,18 @@ app-profile .page-container {
   color: #212121;
   letter-spacing: 0.15px;
   font-weight: 400; }
-
-.popup .finish-message.isForm .header {
+app-popups .popup .finish-message.isForm .header {
   font-size: 28px;
   letter-spacing: 0.18px;
   margin-bottom: 0;
   margin-top: 4px;
   padding-bottom: 0; }
-
-.popup .finish-message.isLeft .header {
+app-popups .popup .finish-message.isLeft .header {
   text-align: left;
   font-size: 28px;
   letter-spacing: 0.18px;
   margin-top: 5px; }
-
-.popup .finish-message p {
+app-popups .popup .finish-message p {
   display: block;
   width: 100%;
   text-align: left;
@@ -6387,33 +6427,25 @@ app-profile .page-container {
   color: #212121;
   letter-spacing: 0.1px;
   font-weight: 400; }
-
-.popup .finish-message.isForm p {
+app-popups .popup .finish-message.isForm p {
   margin-top: 14px; }
-
-.popup .finish-message.isLeft p {
+app-popups .popup .finish-message.isLeft p {
   text-align: left;
   font-size: 14px;
   letter-spacing: 0.09px;
   margin-top: 13px;
   margin-bottom: 17px; }
-
-.popup .finish-message.isForm .form-group.phone-field {
+app-popups .popup .finish-message.isForm .form-group.phone-field {
   margin-top: 46px; }
-
-.popup .finish-message.isForm .form-group label {
+app-popups .popup .finish-message.isForm .form-group label {
   letter-spacing: 0.09px; }
-
-.popup .finish-message.isForm .form-group .form-control {
+app-popups .popup .finish-message.isForm .form-group .form-control {
   border-radius: 3px; }
-
-.popup .finish-message.isForm .form-group .btn.btn-warning {
+app-popups .popup .finish-message.isForm .form-group .btn.btn-warning {
   margin-top: 22px; }
-
-.popup .finish-message.isForm .form-group .btn.btn-secondary {
+app-popups .popup .finish-message.isForm .form-group .btn.btn-secondary {
   margin-top: 38px; }
-
-.popup .finish-message .close-popup {
+app-popups .popup .finish-message .close-popup {
   display: block;
   position: absolute;
   top: -19px;
@@ -6423,14 +6455,11 @@ app-profile .page-container {
   background-image: url("/assets/images/cancel.png");
   background-repeat: no-repeat;
   cursor: pointer; }
-
-.popup .finish-message.isForm .close-popup {
+app-popups .popup .finish-message.isForm .close-popup {
   display: none; }
-
-.confirm-order-form .btn-secondary {
+app-popups .confirm-order-form .btn-secondary {
   margin-top: 14px !important; }
-
-.confirm-order-form p {
+app-popups .confirm-order-form p {
   display: block;
   color: #4A4A4A;
   font-size: 14px;
@@ -6438,8 +6467,7 @@ app-profile .page-container {
   font-weight: 400;
   margin-top: -11px;
   margin-bottom: 27px; }
-
-.confirm-order-form p.confirm-end {
+app-popups .confirm-order-form p.confirm-end {
   display: block;
   color: #212121;
   font-size: 16px;
@@ -6447,19 +6475,16 @@ app-profile .page-container {
   font-weight: normal;
   margin-top: 3px;
   margin-bottom: 29px; }
-
-.confirm-order-form .orders-list {
+app-popups .confirm-order-form .orders-list {
   display: block;
   margin-top: -4px;
   max-height: 300px;
   overflow: auto; }
-
-.confirm-order-form .orders-list .order-item {
+app-popups .confirm-order-form .orders-list .order-item {
   display: block;
   width: 100%;
   margin-bottom: 10px; }
-
-.confirm-order-form .orders-list .order-item span {
+app-popups .confirm-order-form .orders-list .order-item span {
   display: block;
   position: relative;
   width: 100%;
@@ -6468,8 +6493,7 @@ app-profile .page-container {
   font-size: 15px;
   letter-spacing: 0.1px;
   font-weight: normal; }
-
-.confirm-order-form .orders-list .order-item span i {
+app-popups .confirm-order-form .orders-list .order-item span i {
   display: block;
   position: absolute;
   top: 0;
@@ -6480,23 +6504,18 @@ app-profile .page-container {
   letter-spacing: 0.1px;
   font-weight: normal;
   font-style: normal; }
-
-.confirm-order-form .orders-list .order-item span.service-item {
+app-popups .confirm-order-form .orders-list .order-item span.service-item {
   font-size: 16px; }
-
-.confirm-order-form .orders-list .order-item span.total-item {
+app-popups .confirm-order-form .orders-list .order-item span.total-item {
   font-size: 16px; }
-
-.confirm-order-form .orders-list .order-item span.total-item i {
+app-popups .confirm-order-form .orders-list .order-item span.total-item i {
   font-size: 16px; }
-
-.confirm-order-form .price-loader {
+app-popups .confirm-order-form .price-loader {
   display: block;
   margin-top: 55px;
   width: 100%;
   position: relative; }
-
-.confirm-order-form .price-loader .spinner {
+app-popups .confirm-order-form .price-loader .spinner {
   display: block;
   position: absolute;
   top: 0;
@@ -6504,8 +6523,7 @@ app-profile .page-container {
   margin-left: -16px;
   width: 32px;
   height: 32px; }
-
-.confirm-order-form .price-loader span {
+app-popups .confirm-order-form .price-loader span {
   display: block;
   padding-top: 49px;
   width: 100%;
@@ -6513,8 +6531,7 @@ app-profile .page-container {
   font-size: 20px;
   letter-spacing: 0.11px;
   text-align: center; }
-
-.confirm-order-form .price-area {
+app-popups .confirm-order-form .price-area {
   display: block;
   width: 100%;
   text-align: center;
@@ -6522,26 +6539,22 @@ app-profile .page-container {
   font-size: 28px;
   letter-spacing: 0.18px;
   margin: 30px 0 10px; }
-
-.confirm-order-form .price-area span {
+app-popups .confirm-order-form .price-area span {
   color: #00B420;
   padding-left: 20px; }
-
-.confirm-order-form .information-list {
+app-popups .confirm-order-form .information-list {
   display: block;
   width: 100%;
   margin-top: 10px;
   margin-bottom: -3px; }
-
-.confirm-order-form .information-list .information-item {
+app-popups .confirm-order-form .information-list .information-item {
   display: block;
   width: 100%;
   margin-bottom: 1px;
   color: #000000;
   font-size: 15px;
   letter-spacing: 0.1px; }
-
-.confirm-button-notice {
+app-popups .confirm-button-notice {
   display: block;
   width: 100%;
   text-align: left;
@@ -6550,18 +6563,15 @@ app-profile .page-container {
   letter-spacing: 0.08px;
   margin-top: 20px;
   margin-bottom: 1px; }
-
-.popup .confirm-order-form .form-group .btn.btn-secondary {
+app-popups .popup .confirm-order-form .form-group .btn.btn-secondary {
   background-color: #EFF1F3; }
-
-.add-card-form .cards-logo {
+app-popups .add-card-form .cards-logo {
   display: block;
   width: 100%;
   height: 29px;
   margin-top: 29px;
   margin-bottom: 29px; }
-
-.add-card-form .cards-logo .card-item {
+app-popups .add-card-form .cards-logo .card-item {
   display: block;
   float: left;
   width: 48px;
@@ -6570,27 +6580,20 @@ app-profile .page-container {
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center; }
-
-.add-card-form .cards-logo .card-item.amex {
+app-popups .add-card-form .cards-logo .card-item.amex {
   background-image: url("/assets/images/amex-mini.png"); }
-
-.add-card-form .cards-logo .card-item.visa {
+app-popups .add-card-form .cards-logo .card-item.visa {
   background-image: url("/assets/images/visa-mini.png"); }
-
-.add-card-form .cards-logo .card-item.mastercard {
+app-popups .add-card-form .cards-logo .card-item.mastercard {
   background-image: url("/assets/images/mastercard-mini.png"); }
-
-.popup .add-card-form .form-group label {
+app-popups .popup .add-card-form .form-group label {
   font-weight: 500;
   letter-spacing: 0.09px; }
-
-.popup .add-card-form .form-group .btn.btn-secondary {
+app-popups .popup .add-card-form .form-group .btn.btn-secondary {
   margin-top: 15px; }
-
-.popup .add-card-form .form-group {
+app-popups .popup .add-card-form .form-group {
   min-height: 56px; }
-
-.popup .add-card-form .subheader {
+app-popups .popup .add-card-form .subheader {
   display: block;
   width: 100%;
   text-align: center;
@@ -6600,38 +6603,30 @@ app-profile .page-container {
   color: #0066C0;
   font-size: 12px;
   letter-spacing: 0.08px; }
-
-.form-group .part-group {
+app-popups .form-group .part-group {
   display: block;
   position: relative;
   float: left;
   width: 50%; }
-
-.form-group .part-group.first {
+app-popups .form-group .part-group.first {
   padding-right: 6px; }
-
-.form-group .part-group.last {
+app-popups .form-group .part-group.last {
   padding-left: 6px; }
-
-.form-group .part-group.first-big {
+app-popups .form-group .part-group.first-big {
   width: 66%;
   padding-right: 6px; }
-
-.form-group .part-group.last-small {
+app-popups .form-group .part-group.last-small {
   width: 34%;
   padding-left: 6px; }
-
-.form-group .part-group span.fa {
+app-popups .form-group .part-group span.fa {
   color: #000000;
   font-size: 18px;
   position: absolute;
   top: 30px;
   right: 8px; }
-
-.confirm-action .btn-secondary {
+app-popups .confirm-action .btn-secondary {
   margin-top: 14px !important; }
-
-.confirm-action p {
+app-popups .confirm-action p {
   display: block;
   color: #212121;
   font-size: 14px;
@@ -6639,21 +6634,17 @@ app-profile .page-container {
   font-weight: 400;
   margin-top: -11px;
   margin-bottom: 22px; }
-
-.popup .confirm-action .form-group .btn.btn-secondary {
+app-popups .popup .confirm-action .form-group .btn.btn-secondary {
   background-color: #EFF1F3; }
-
-.confirm-action .action {
+app-popups .confirm-action .action {
   display: block;
   width: 100%; }
-
-.confirm-action .action .form-group label {
+app-popups .confirm-action .action .form-group label {
   font-weight: 500;
   color: #212121;
   font-size: 14px;
   letter-spacing: 0.09px; }
-
-.confirm-action .action .form-group .input-group .form-control {
+app-popups .confirm-action .action .form-group .input-group .form-control {
   padding: 9px 8px 9px 9px !important;
   font-size: 16px;
   color: #212121;
@@ -6663,8 +6654,7 @@ app-profile .page-container {
   border-radius: 3px 0 0 3px;
   border: 1px solid #A6A6A6;
   border-right: none; }
-
-.confirm-action .action .form-group .input-group .input-group-addon {
+app-popups .confirm-action .action .form-group .input-group .input-group-addon {
   padding: 7px 7px 6px 7px !important;
   font-size: 16px;
   color: #212121;
@@ -6673,8 +6663,7 @@ app-profile .page-container {
   border-radius: 0;
   border: 1px solid #A6A6A6;
   background-color: #EFF1F3; }
-
-.confirm-action .action .form-group .input-group .input-group-addon.euro {
+app-popups .confirm-action .action .form-group .input-group .input-group-addon.euro {
   font-weight: 500;
   padding: 3px 11px 4px 12px !important;
   font-size: 20px;
@@ -6684,8 +6673,7 @@ app-profile .page-container {
   border: 1px solid #A6A6A6;
   border-left: none;
   background-color: #EFF1F3; }
-
-.confirm-action .action .form-group .price-description {
+app-popups .confirm-action .action .form-group .price-description {
   display: block;
   width: 100%;
   margin-top: 6px;
@@ -6694,8 +6682,7 @@ app-profile .page-container {
   color: #4A4A4A;
   font-size: 12px;
   letter-spacing: 0.08px; }
-
-.confirm-action .action .payment-information {
+app-popups .confirm-action .action .payment-information {
   display: block;
   width: 100%;
   margin-top: 17px;
@@ -6706,35 +6693,29 @@ app-profile .page-container {
   font-size: 22px;
   letter-spacing: 0.14px;
   text-align: right; }
-
-.confirm-action .buttons-block {
+app-popups .confirm-action .buttons-block {
   margin-top: 7px; }
-
-.confirm-action .buttons-block .btn-warning i {
+app-popups .confirm-action .buttons-block .btn-warning i {
   font-size: 17px;
   padding-right: 5px; }
-
-.tooltip {
+app-popups .tooltip {
   font-size: 12px;
   letter-spacing: 0.09px; }
-
-.popup.new-version .popup-spinner {
+app-popups .popup.new-version .popup-spinner {
   display: block;
   width: 100%;
   height: 40px;
   margin-top: 3px;
   margin-bottom: 10px;
   text-align: center; }
-
-.popup.new-version .success-icon {
+app-popups .popup.new-version .success-icon {
   display: block;
   width: 100%;
   height: 40px;
   margin-top: 3px;
   margin-bottom: 10px;
   text-align: center; }
-
-.popup.new-version .success-icon span {
+app-popups .popup.new-version .success-icon span {
   display: block;
   width: 40px;
   height: 40px;
@@ -6742,15 +6723,13 @@ app-profile .page-container {
   background-image: url("/assets/images/success-icon.png");
   background-repeat: no-repeat;
   background-size: contain; }
-
-.popup.new-version .header {
+app-popups .popup.new-version .header {
   font-weight: normal;
   text-align: center;
   font-size: 16px;
   letter-spacing: 0.1px;
   margin-bottom: 33px; }
-
-.popup.new-version .confirm-order-form p {
+app-popups .popup.new-version .confirm-order-form p {
   margin-top: 0;
   font-weight: normal;
   text-align: left;
@@ -6758,45 +6737,37 @@ app-profile .page-container {
   font-size: 12px;
   letter-spacing: 0.08px;
   margin-bottom: 13px; }
-
-.popup.new-version .confirm-order-form p.conferma-finish {
+app-popups .popup.new-version .confirm-order-form p.conferma-finish {
   margin-bottom: 26px; }
-
-.popup.add-price .header {
+app-popups .popup.add-price .header {
   font-weight: normal;
   font-size: 20px;
   color: #212121;
   letter-spacing: 0.13px;
   margin-top: 2px;
   margin-bottom: 21px; }
-
-.popup.add-price .confirm-action p {
+app-popups .popup.add-price .confirm-action p {
   font-weight: normal;
   font-size: 14px;
   color: #212121;
   letter-spacing: 0.09px;
   margin-top: 0;
   margin-bottom: 24px; }
-
-.popup.new-version .header.without-message {
+app-popups .popup.new-version .header.without-message {
   margin-bottom: 27px; }
-
-.popup .loader {
+app-popups .popup .loader {
   display: block;
   width: 100%;
   height: 40px; }
-
-.popup .loader svg {
+app-popups .popup .loader svg {
   display: block;
   width: 40px;
   height: 40px;
   margin: 10px auto; }
-
-.popup.add-price .loader {
+app-popups .popup.add-price .loader {
   margin-bottom: 20px; }
-
 @media (max-width: 480px) {
-  .popup {
+  app-popups .popup {
     width: 100%;
     position: fixed;
     top: 0;
@@ -6809,15 +6780,13 @@ app-profile .page-container {
     padding: 15px 10px 20px;
     box-shadow: none;
     height: 100%; }
-
-  .popup .add-card-form .form-group .btn.btn-secondary {
+  app-popups .popup .add-card-form .form-group .btn.btn-secondary {
     margin-bottom: 70px; }
-
-  .login-offer {
+  app-popups .login-offer {
     margin-bottom: 70px; }
-
-  .dark-screen {
+  app-popups .dark-screen {
     background-color: transparent; } }
+
 app-wizard {
   display: block;
   float: left;
@@ -6981,451 +6950,293 @@ app-wizard {
         padding: 100px 0 0; }
       app-wizard .wizard .wizard-footer .box {
         padding: 20px; } }
-
-.wizard .wizard-container .header span {
-  display: inline-block;
-  float: left;
-  position: relative;
-  padding: 16px 30px 19px 20px;
-  overflow: hidden;
-  color: #000000;
-  font-size: 18px;
-  letter-spacing: 0.11px; }
-
-.wizard .wizard-container .header span i {
-  display: block;
-  position: absolute;
-  width: 60px;
-  height: 60px;
-  top: 2px;
-  right: 7px;
-  -moz-transform: rotate(54deg) skewX(20deg);
-  -ms-transform: rotate(54deg) skewX(20deg);
-  -webkit-transform: rotate(54deg) skewX(20deg);
-  -o-transform: rotate(54deg) skewX(20deg);
-  transform: rotate(54deg) skewX(20deg);
-  background-color: transparent;
-  border-top: 1px solid #CCCCCC;
-  border-right: 1px solid #CCCCCC; }
-
-.wizard-container .image-block {
-  display: block;
-  width: 100%;
-  height: 250px;
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: 50% 90%;
-  max-width: 400px;
-  margin: 40px auto 0; }
-
-.wizard-container .content-container .title {
-  display: block;
-  float: left;
-  width: 100%;
-  color: #000000;
-  font-size: 28px;
-  letter-spacing: 0.16px;
-  margin-top: 40px; }
-
-.wizard-container .content-container .title.action-title {
-  letter-spacing: 0.18px;
-  margin-top: 48px;
-  text-align: center; }
-
-.wizard-container .content-container.loan .title.action-title {
-  margin-top: 45px; }
-
-.wizard-container .content-container .items {
-  display: block;
-  float: left;
-  width: 100%;
-  margin-top: 18px; }
-
-.wizard-container .content-container .items .item {
-  display: block;
-  float: left;
-  position: relative;
-  width: 100%;
-  padding-top: 5px;
-  color: #000000;
-  font-size: 18px;
-  letter-spacing: 0.11px; }
-
-.wizard-container .content-container .items .item span {
-  display: block;
-  position: absolute;
-  max-width: 120px;
-  top: 0;
-  right: 0;
-  text-align: right;
-  padding-top: 5px;
-  color: #000000;
-  font-size: 18px;
-  letter-spacing: 0.11px; }
-
-.wizard-container .content-container .items .element {
-  display: block;
-  float: left;
-  width: 100%;
-  padding-top: 5px; }
-
-.wizard-container .content-container .items .element p {
-  display: block;
-  float: left;
-  width: 68%;
-  color: #000000;
-  font-size: 18px;
-  letter-spacing: 0.11px;
-  padding: 0 10px 0 0;
-  margin: 0; }
-
-.wizard-container .content-container .items .element span {
-  display: block;
-  position: static;
-  float: left;
-  width: 32%;
-  text-align: right;
-  color: #000000;
-  font-size: 18px;
-  letter-spacing: 0.11px; }
-
-.wizard-container .content-container .summary {
-  display: block;
-  float: left;
-  width: 100%;
-  margin-top: 30px;
-  padding: 5px 0; }
-
-.wizard-container .content-container .summary .item {
-  display: block;
-  float: left;
-  position: relative;
-  width: 100%;
-  padding: 5px 0;
-  color: #000000;
-  font-size: 25px;
-  letter-spacing: 0.13px; }
-
-.wizard-container .content-container .summary .item-small {
-  display: block;
-  float: left;
-  position: relative;
-  width: 100%;
-  padding: 5px 0;
-  color: #000000;
-  font-size: 18px;
-  letter-spacing: 0.13px; }
-
-.wizard-container .content-container .summary .item span {
-  display: block;
-  position: absolute;
-  top: 10px;
-  right: 0;
-  text-align: right;
-  color: #000000;
-  font-size: 25px;
-  letter-spacing: 0.13px;
-  text-transform: capitalize; }
-
-.wizard-container .content-container .summary .item-small span {
-  display: block;
-  position: absolute;
-  top: 10px;
-  right: 0;
-  text-align: right;
-  color: #000000;
-  font-size: 18px;
-  letter-spacing: 0.13px;
-  text-transform: capitalize; }
-
-.wizard-container .content-container .summary .item span.big {
-  top: 5px;
-  font-size: 25px; }
-
-.wizard-container .content-container .wizard-form {
-  display: block;
-  float: left;
-  width: 100%;
-  margin-top: 22px; }
-
-.wizard-container .content-container.registration .wizard-form {
-  margin-top: 45px; }
-
-.wizard-container .content-container .wizard-form .form-group {
-  display: block;
-  float: left;
-  position: relative;
-  width: 100%;
-  margin-top: 10px;
-  margin-bottom: 0; }
-
-.wizard-container .content-container .wizard-form .form-group label {
-  display: block;
-  float: left;
-  width: 100%;
-  color: #000000;
-  font-size: 16px;
-  letter-spacing: 0.1px;
-  font-weight: normal;
-  padding: 0 0 5px 0;
-  margin-bottom: 0; }
-
-.wizard-container .content-container .wizard-form .form-group button.btn.btn-warning {
-  display: block;
-  float: left;
-  width: 100%;
-  margin-top: 20px;
-  letter-spacing: 0.11px;
-  border: none;
-  margin-bottom: 80px;
-  outline: none; }
-
-.wizard-container .content-container .wizard-form .form-group button.btn.btn-secondary {
-  display: block;
-  float: left;
-  width: 100%;
-  height: 45px;
-  padding: 11px 7px;
-  margin-top: 10px;
-  color: #212121;
-  font-size: 18px;
-  letter-spacing: 0.11px;
-  border: none;
-  outline: none;
-  background-color: #ffffff;
-  margin-bottom: 20px; }
-
-.wizard-container .content-container.login-step .wizard-form .form-group button.btn.btn-warning,
-.wizard-container .content-container.confirm-user-info .wizard-form .form-group button.btn.btn-warning {
-  margin-bottom: 0;
-  margin-top: 10px; }
-
-.wizard-container .content-container.confirm-user-info .wizard-form .form-group button.btn.btn-warning {
-  margin-bottom: 80px; }
-
-.wizard-container .content-container.registration .wizard-form .form-group button.btn.btn-warning {
-  margin-top: 10px;
-  margin-bottom: 0; }
-
-.wizard-container .content-container.loan .wizard-form .form-group button.btn.btn-warning {
-  margin-top: 35px;
-  margin-bottom: 139px; }
-
-.wizard-container .content-container .wizard-form .form-group .date {
-  display: block;
-  position: relative;
-  float: left;
-  width: 100%; }
-
-.wizard-container .content-container .wizard-form .form-group .date .ui-datepicker {
-  margin-left: 0; }
-
-.wizard-container .content-container .wizard-form .form-group .ui-inputtext {
-  display: block;
-  position: relative;
-  float: left;
-  width: 100%;
-  height: 40px;
-  padding: 7px 12px;
-  color: #000000;
-  font-size: 16px;
-  letter-spacing: 0.1px;
-  border-radius: 0;
-  border: 1px solid #E1E1E1;
-  background-color: #FFFFFF;
-  outline: none; }
-
-.wizard-container .content-container .wizard-form .form-group.isError .ui-inputtext {
-  border: 1px solid #DB4F4F; }
-
-.wizard-container .content-container .wizard-form .form-group .date .ui-datepicker .ui-datepicker-next {
-  right: 10px; }
-
-.wizard-container .content-container .wizard-form .form-group .ui-datepicker-calendar td a.ui-state-default {
-  padding: 6px 2px;
-  height: 30px; }
-
-.wizard-container .content-container .wizard-form .form-group .form-control {
-  display: block;
-  position: relative;
-  float: left;
-  width: 100%;
-  padding: 0;
-  background-color: transparent;
-  border: none; }
-
-.wizard-container .content-container.registration .form-group .form-control,
-.wizard-container .content-container.login-step .form-group .form-control,
-.wizard-container .content-container.loan .form-group .form-control,
-.wizard-container .content-container.confirm-user-info .form-group .form-control {
-  display: block;
-  position: relative;
-  float: left;
-  width: 100%;
-  height: 38px;
-  padding: 7px 12px;
-  color: #000000;
-  font-size: 16px;
-  letter-spacing: 0.1px;
-  border-radius: 0;
-  border: 1px solid #E1E1E1;
-  background-color: #FFFFFF;
-  outline: none; }
-
-.wizard-container .content-container.registration .isError .form-control,
-.wizard-container .content-container.login-step .isError .form-control,
-.wizard-container .content-container.loan .isError .form-control,
-.wizard-container .content-container.confirm-user-info .isError .form-control {
-  border: 1px solid #DB4F4F; }
-
-.wizard-container .content-container.registration .form-footer,
-.wizard-container .content-container.login-step .form-footer,
-.wizard-container .content-container.loan .form-footer {
-  display: block;
-  float: left;
-  width: 100%;
-  margin-bottom: 115px;
-  color: #212121;
-  font-size: 12px;
-  letter-spacing: 0.08px; }
-
-.wizard-container .content-container.registration .form-footer a,
-.wizard-container .content-container.registration .form-footer a:hover,
-.wizard-container .content-container.login-step .form-footer a,
-.wizard-container .content-container.login-step .form-footer a:hover,
-.wizard-container .content-container.loan .form-footer a,
-.wizard-container .content-container.loan .form-footer a:hover {
-  color: #0066C0;
-  text-decoration: none; }
-
-.wizard-container .content-container.registration .form-description,
-.wizard-container .content-container.login-step .form-description {
-  display: block;
-  position: relative;
-  width: 100%;
-  margin-top: 23px;
-  border-top: 1px solid #E7E7E7;
-  float: left; }
-
-.wizard-container .content-container.login-step .form-description span,
-.wizard-container .content-container.registration .form-description span {
-  display: block;
-  position: absolute;
-  top: -12px;
-  left: 50%;
-  margin-left: -15px;
-  width: 30px;
-  text-align: center;
-  color: #8D8D8D;
-  font-size: 12px;
-  letter-spacing: 0.08px;
-  background-color: #F7F7F7;
-  padding: 4px 10px; }
-
-.wizard-container .content-container.login-step .form-group .btn.btn-primary.facebook i,
-.wizard-container .content-container.registration .form-group .btn.btn-primary.facebook i {
-  display: block;
-  position: absolute;
-  top: 9px;
-  left: 12px;
-  width: 25px;
-  height: 25px;
-  background-image: url("/assets/images/fb-icon.png");
-  background-repeat: no-repeat;
-  background-size: contain; }
-
-.wizard-container .content-container.login-step .form-group .btn.btn-primary.facebook,
-.wizard-container .content-container.registration .form-group .btn.btn-primary.facebook {
-  position: relative;
-  width: 100%;
-  height: 45px;
-  border: 1px solid #3B5998;
-  border-radius: 0px;
-  font-size: 16px;
-  color: #FFFFFF;
-  letter-spacing: 0.1px;
-  font-weight: 600;
-  padding: 10px 7px;
-  background-color: #3B5998;
-  text-align: center;
-  margin-top: 30px;
-  outline: none;
-  line-height: 24px; }
-
-.wizard-container .content-container.registration .form-group .btn.btn-primary.facebook {
-  margin-bottom: 20px; }
-
-.wizard-container .content-container.login-step .form-group .btn.btn-primary.facebook {
-  margin-bottom: 80px; }
-
-.content-container .form-group .ui-inputtext:focus {
-  border: 2px solid #7FC443 !important; }
-.content-container .form-group .form-control:focus {
-  border: 2px solid #7FC443 !important; }
-.content-container .form-group .error-input {
-  border: 2px solid #f75c4b !important; }
-
-.content-container form .error-message {
-  color: #f75c4b;
-  font-size: 12px;
-  position: absolute; }
-
-.content-container .address {
-  text-align: left; }
-
-.content-container .date {
-  text-align: left; }
-
-.content-container .messages {
-  padding: 20px 0;
-  text-align: center; }
-  .content-container .messages p {
-    color: red; }
-  .content-container .messages a {
-    color: #0066C0 !important;
-    cursor: pointer; }
-
-.content-container .forms {
-  padding: 20px 0;
-  height: 70px; }
-  .content-container .forms .form-group .ui-inputtext {
-    text-align: center; }
-
-.content-container .actions {
-  width: 100%;
-  text-align: center;
-  padding: 20px 0; }
-  .content-container .actions .btn-warning {
-    width: 100%;
-    font-size: 26px;
-    color: white;
+  app-wizard .wizard .wizard-container .header span {
+    display: inline-block;
+    float: left;
+    position: relative;
+    padding: 16px 30px 19px 20px;
+    overflow: hidden;
+    color: #000000;
+    font-size: 18px;
+    letter-spacing: 0.11px; }
+  app-wizard .wizard .wizard-container .header span i {
+    display: block;
+    position: absolute;
+    width: 60px;
     height: 60px;
-    font-weight: 700; }
-  .content-container .actions .btn-white {
+    top: 2px;
+    right: 7px;
+    -moz-transform: rotate(54deg) skewX(20deg);
+    -ms-transform: rotate(54deg) skewX(20deg);
+    -webkit-transform: rotate(54deg) skewX(20deg);
+    -o-transform: rotate(54deg) skewX(20deg);
+    transform: rotate(54deg) skewX(20deg);
+    background-color: transparent;
+    border-top: 1px solid #CCCCCC;
+    border-right: 1px solid #CCCCCC; }
+  app-wizard .wizard-container .image-block {
+    display: block;
     width: 100%;
-    font-size: 20px;
-    height: 60px; }
-  .content-container .actions .btn-facebook {
+    height: 250px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 50% 90%;
+    max-width: 400px;
+    margin: 40px auto 0; }
+  app-wizard .wizard-container .content-container .title {
+    display: block;
+    float: left;
     width: 100%;
-    font-size: 20px;
-    height: 60px; }
-  .content-container .actions .btn-facebook i {
+    color: #000000;
+    font-size: 28px;
+    letter-spacing: 0.16px;
+    margin-top: 40px; }
+  app-wizard .wizard-container .content-container .title.action-title {
+    letter-spacing: 0.18px;
+    margin-top: 48px;
+    text-align: center; }
+  app-wizard .wizard-container .content-container.loan .title.action-title {
+    margin-top: 45px; }
+  app-wizard .wizard-container .content-container .items {
+    display: block;
+    float: left;
+    width: 100%;
+    margin-top: 18px; }
+  app-wizard .wizard-container .content-container .items .item {
+    display: block;
+    float: left;
+    position: relative;
+    width: 100%;
+    padding-top: 5px;
+    color: #000000;
+    font-size: 18px;
+    letter-spacing: 0.11px; }
+  app-wizard .wizard-container .content-container .items .item span {
+    display: block;
+    position: absolute;
+    max-width: 120px;
+    top: 0;
+    right: 0;
+    text-align: right;
+    padding-top: 5px;
+    color: #000000;
+    font-size: 18px;
+    letter-spacing: 0.11px; }
+  app-wizard .wizard-container .content-container .items .element {
+    display: block;
+    float: left;
+    width: 100%;
+    padding-top: 5px; }
+  app-wizard .wizard-container .content-container .items .element p {
+    display: block;
+    float: left;
+    width: 68%;
+    color: #000000;
+    font-size: 18px;
+    letter-spacing: 0.11px;
+    padding: 0 10px 0 0;
+    margin: 0; }
+  app-wizard .wizard-container .content-container .items .element span {
+    display: block;
+    position: static;
+    float: left;
+    width: 32%;
+    text-align: right;
+    color: #000000;
+    font-size: 18px;
+    letter-spacing: 0.11px; }
+  app-wizard .wizard-container .content-container .summary {
+    display: block;
+    float: left;
+    width: 100%;
+    margin-top: 30px;
+    padding: 5px 0; }
+  app-wizard .wizard-container .content-container .summary .item {
+    display: block;
+    float: left;
+    position: relative;
+    width: 100%;
+    padding: 5px 0;
+    color: #000000;
+    font-size: 25px;
+    letter-spacing: 0.13px; }
+  app-wizard .wizard-container .content-container .summary .item-small {
+    display: block;
+    float: left;
+    position: relative;
+    width: 100%;
+    padding: 5px 0;
+    color: #000000;
+    font-size: 18px;
+    letter-spacing: 0.13px; }
+  app-wizard .wizard-container .content-container .summary .item span {
     display: block;
     position: absolute;
     top: 10px;
-    left: 12px;
-    width: 40px;
+    right: 0;
+    text-align: right;
+    color: #000000;
+    font-size: 25px;
+    letter-spacing: 0.13px;
+    text-transform: capitalize; }
+  app-wizard .wizard-container .content-container .summary .item-small span {
+    display: block;
+    position: absolute;
+    top: 10px;
+    right: 0;
+    text-align: right;
+    color: #000000;
+    font-size: 18px;
+    letter-spacing: 0.13px;
+    text-transform: capitalize; }
+  app-wizard .wizard-container .content-container .summary .item span.big {
+    top: 5px;
+    font-size: 25px; }
+  app-wizard .wizard-container .content-container .wizard-form {
+    display: block;
+    float: left;
+    width: 100%;
+    margin-top: 22px; }
+  app-wizard .wizard-container .content-container.registration .wizard-form {
+    margin-top: 45px; }
+  app-wizard .wizard-container .content-container .wizard-form .form-group {
+    display: block;
+    float: left;
+    position: relative;
+    width: 100%;
+    margin-top: 10px;
+    margin-bottom: 0; }
+  app-wizard .wizard-container .content-container .wizard-form .form-group label {
+    display: block;
+    float: left;
+    width: 100%;
+    color: #000000;
+    font-size: 16px;
+    letter-spacing: 0.1px;
+    font-weight: normal;
+    padding: 0 0 5px 0;
+    margin-bottom: 0; }
+  app-wizard .wizard-container .content-container .wizard-form .form-group button.btn.btn-warning {
+    display: block;
+    float: left;
+    width: 100%;
+    margin-top: 20px;
+    letter-spacing: 0.11px;
+    border: none;
+    margin-bottom: 80px;
+    outline: none; }
+  app-wizard .wizard-container .content-container .wizard-form .form-group button.btn.btn-secondary {
+    display: block;
+    float: left;
+    width: 100%;
+    height: 45px;
+    padding: 11px 7px;
+    margin-top: 10px;
+    color: #212121;
+    font-size: 18px;
+    letter-spacing: 0.11px;
+    border: none;
+    outline: none;
+    background-color: #ffffff;
+    margin-bottom: 20px; }
+  app-wizard .wizard-container .content-container.login-step .wizard-form .form-group button.btn.btn-warning,
+  app-wizard .wizard-container .content-container.confirm-user-info .wizard-form .form-group button.btn.btn-warning {
+    margin-bottom: 0;
+    margin-top: 10px; }
+  app-wizard .wizard-container .content-container.confirm-user-info .wizard-form .form-group button.btn.btn-warning {
+    margin-bottom: 80px; }
+  app-wizard .wizard-container .content-container.registration .wizard-form .form-group button.btn.btn-warning {
+    margin-top: 10px;
+    margin-bottom: 0; }
+  app-wizard .wizard-container .content-container.loan .wizard-form .form-group button.btn.btn-warning {
+    margin-top: 35px;
+    margin-bottom: 139px; }
+  app-wizard .wizard-container .content-container .wizard-form .form-group .date {
+    display: block;
+    position: relative;
+    float: left;
+    width: 100%; }
+  app-wizard .wizard-container .content-container .wizard-form .form-group .date .ui-datepicker {
+    margin-left: 0; }
+  app-wizard .wizard-container .content-container .wizard-form .form-group .ui-inputtext {
+    display: block;
+    position: relative;
+    float: left;
+    width: 100%;
     height: 40px;
-    background-image: url("/assets/images/fb-icon.png");
-    background-repeat: no-repeat;
-    background-size: contain; }
-  .content-container .actions .form-divider {
+    padding: 7px 12px;
+    color: #000000;
+    font-size: 16px;
+    letter-spacing: 0.1px;
+    border-radius: 0;
+    border: 1px solid #E1E1E1;
+    background-color: #FFFFFF;
+    outline: none; }
+  app-wizard .wizard-container .content-container .wizard-form .form-group.isError .ui-inputtext {
+    border: 1px solid #DB4F4F; }
+  app-wizard .wizard-container .content-container .wizard-form .form-group .date .ui-datepicker .ui-datepicker-next {
+    right: 10px; }
+  app-wizard .wizard-container .content-container .wizard-form .form-group .ui-datepicker-calendar td a.ui-state-default {
+    padding: 6px 2px;
+    height: 30px; }
+  app-wizard .wizard-container .content-container .wizard-form .form-group .form-control {
+    display: block;
+    position: relative;
+    float: left;
+    width: 100%;
+    padding: 0;
+    background-color: transparent;
+    border: none; }
+  app-wizard .wizard-container .content-container.registration .form-group .form-control,
+  app-wizard .wizard-container .content-container.login-step .form-group .form-control,
+  app-wizard .wizard-container .content-container.loan .form-group .form-control,
+  app-wizard .wizard-container .content-container.confirm-user-info .form-group .form-control {
+    display: block;
+    position: relative;
+    float: left;
+    width: 100%;
+    height: 38px;
+    padding: 7px 12px;
+    color: #000000;
+    font-size: 16px;
+    letter-spacing: 0.1px;
+    border-radius: 0;
+    border: 1px solid #E1E1E1;
+    background-color: #FFFFFF;
+    outline: none; }
+  app-wizard .wizard-container .content-container.registration .isError .form-control,
+  app-wizard .wizard-container .content-container.login-step .isError .form-control,
+  app-wizard .wizard-container .content-container.loan .isError .form-control,
+  app-wizard .wizard-container .content-container.confirm-user-info .isError .form-control {
+    border: 1px solid #DB4F4F; }
+  app-wizard .wizard-container .content-container.registration .form-footer,
+  app-wizard .wizard-container .content-container.login-step .form-footer,
+  app-wizard .wizard-container .content-container.loan .form-footer {
+    display: block;
+    float: left;
+    width: 100%;
+    margin-bottom: 115px;
+    color: #212121;
+    font-size: 12px;
+    letter-spacing: 0.08px; }
+  app-wizard .wizard-container .content-container.registration .form-footer a,
+  app-wizard .wizard-container .content-container.registration .form-footer a:hover,
+  app-wizard .wizard-container .content-container.login-step .form-footer a,
+  app-wizard .wizard-container .content-container.login-step .form-footer a:hover,
+  app-wizard .wizard-container .content-container.loan .form-footer a,
+  app-wizard .wizard-container .content-container.loan .form-footer a:hover {
+    color: #0066C0;
+    text-decoration: none; }
+  app-wizard .wizard-container .content-container.registration .form-description,
+  app-wizard .wizard-container .content-container.login-step .form-description {
     display: block;
     position: relative;
     width: 100%;
-    margin: 50px 0;
-    border-top: 1px solid #E7E7E7; }
-  .content-container .actions .form-divider span {
+    margin-top: 23px;
+    border-top: 1px solid #E7E7E7;
+    float: left; }
+  app-wizard .wizard-container .content-container.login-step .form-description span,
+  app-wizard .wizard-container .content-container.registration .form-description span {
     display: block;
     position: absolute;
     top: -12px;
@@ -7436,170 +7247,255 @@ app-wizard {
     color: #8D8D8D;
     font-size: 12px;
     letter-spacing: 0.08px;
-    background-color: white;
+    background-color: #F7F7F7;
     padding: 4px 10px; }
-  .content-container .actions .animate {
+  app-wizard .wizard-container .content-container.login-step .form-group .btn.btn-primary.facebook i,
+  app-wizard .wizard-container .content-container.registration .form-group .btn.btn-primary.facebook i {
     display: block;
     position: absolute;
-    top: 18px; }
-
-.content-container .footer {
-  border-top: 1px solid #CCCCCC;
-  padding: 20px 0; }
-  .content-container .footer h6 {
-    text-align: left; }
-  .content-container .footer a {
-    color: #0066C0 !important;
-    font-size: 12px;
-    letter-spacing: 0.08px;
-    text-decoration: none;
-    cursor: pointer; }
-
-.wizard-container .form-group.subheader {
-  display: block;
-  width: 100%;
-  text-align: center;
-  margin-top: 33px;
-  margin-bottom: 27px;
-  color: #0066C0;
-  font-size: 12px;
-  letter-spacing: 0.08px; }
-
-.wizard-container .form-group .part-group span.fa {
-  top: 37px;
-  right: 11px; }
-
-.wizard-form .error-message {
-  display: block;
-  float: left;
-  width: 100%;
-  padding: 11px 15px 12px;
-  border: 1px solid #C40000;
-  background-color: #F2DEDE;
-  border-radius: 3px;
-  font-size: 13px;
-  color: #AB433F;
-  letter-spacing: 0.08px; }
-
-@media (max-width: 645px) {
-  .breadcrumb {
-    position: fixed;
+    top: 9px;
+    left: 12px;
+    width: 25px;
+    height: 25px;
+    background-image: url("/assets/images/fb-icon.png");
+    background-repeat: no-repeat;
+    background-size: contain; }
+  app-wizard .wizard-container .content-container.login-step .form-group .btn.btn-primary.facebook,
+  app-wizard .wizard-container .content-container.registration .form-group .btn.btn-primary.facebook {
+    position: relative;
     width: 100%;
-    border-bottom: 1px solid #CCCCCC; }
-
-  .wizard-container .image-block {
-    margin: 60px auto 0; }
-
-  .wizard-container .content-container {
-    padding: 10px; }
-
-  .wizard-container .content-container .title {
-    margin-top: 20px; }
-
-  .wizard-container .content-container .wizard-form .form-group button.btn.btn-warning {
-    margin-bottom: 30px; } }
-@media (max-width: 400px) {
-  .wizard-container .image-block {
-    margin: 50px auto 0; } }
-.wizard-form .popup-spinner {
-  display: block;
-  width: 100%;
-  height: 40px;
-  margin-top: 3px;
-  margin-bottom: 10px;
-  text-align: center; }
-
-.breadcrumb {
-  list-style: none;
-  overflow: hidden;
-  font-size: 18px;
-  padding: 0;
-  margin-bottom: 0;
-  background-color: white;
-  border-top: 1px solid #e3e3e3;
-  border-left: 1px solid #e3e3e3;
-  border-right: 1px solid #e3e3e3;
-  border-radius: 0;
-  z-index: 1;
-  max-width: 900px;
-  margin: auto; }
-
-.breadcrumb li {
-  float: left;
-  height: 60px; }
-
-.breadcrumb li a {
-  text-decoration: none;
-  background: white;
-  position: relative;
-  display: block;
-  float: left;
-  width: 100%;
-  height: 100%;
-  text-align: center;
-  line-height: 60px;
-  padding-left: 35px; }
-
-.breadcrumb li a::after {
-  content: " ";
-  display: block;
-  width: 0;
-  height: 0;
-  border-top: 50px solid transparent;
-  /* Go big on the size, and let overflow hide */
-  border-bottom: 50px solid transparent;
-  border-left: 30px solid white;
-  position: absolute;
-  top: 50%;
-  margin-top: -50px;
-  left: 100%;
-  z-index: 2; }
-
-.breadcrumb li a::before {
-  content: " ";
-  display: block;
-  width: 0;
-  height: 0;
-  border-top: 50px solid transparent;
-  border-bottom: 50px solid transparent;
-  border-left: 30px solid #e3e3e3;
-  position: absolute;
-  top: 50%;
-  margin-top: -50px;
-  margin-left: 1px;
-  left: 100%;
-  z-index: 1; }
-
-.breadcrumb li.active a, .breadcrumb li.active:hover a {
-  color: white;
-  background: #446CB3;
-  font-weight: 600; }
-
-.breadcrumb li.active a::after {
-  border-left: 30px solid #446CB3; }
-
-.breadcrumb li.active a::before {
-  border-left: 30px solid white; }
-
-.breadcrumb li:first-child a {
-  padding-left: 25px; }
-
-.breadcrumb li:last-child a {
-  background: transparent;
-  color: black;
-  pointer-events: none;
-  cursor: default;
-  padding-left: 15px; }
-
-.breadcrumb li:last-child.active a {
-  color: white;
-  background: #446CB3;
-  pointer-events: none;
-  cursor: default;
-  padding-left: 15px; }
-
-.breadcrumb li:last-child a::after {
-  border: 0; }
+    height: 45px;
+    border: 1px solid #3B5998;
+    border-radius: 0px;
+    font-size: 16px;
+    color: #FFFFFF;
+    letter-spacing: 0.1px;
+    font-weight: 600;
+    padding: 10px 7px;
+    background-color: #3B5998;
+    text-align: center;
+    margin-top: 30px;
+    outline: none;
+    line-height: 24px; }
+  app-wizard .wizard-container .content-container.registration .form-group .btn.btn-primary.facebook {
+    margin-bottom: 20px; }
+  app-wizard .wizard-container .content-container.login-step .form-group .btn.btn-primary.facebook {
+    margin-bottom: 80px; }
+  app-wizard .content-container .form-group .ui-inputtext:focus {
+    border: 2px solid #7FC443 !important; }
+  app-wizard .content-container .form-group .form-control:focus {
+    border: 2px solid #7FC443 !important; }
+  app-wizard .content-container .form-group .error-input {
+    border: 2px solid #f75c4b !important; }
+  app-wizard .content-container form .error-message {
+    color: #f75c4b;
+    font-size: 12px;
+    position: absolute; }
+  app-wizard .content-container .address {
+    text-align: left; }
+  app-wizard .content-container .date {
+    text-align: left; }
+  app-wizard .content-container .messages {
+    padding: 20px 0;
+    text-align: center; }
+    app-wizard .content-container .messages p {
+      color: red; }
+    app-wizard .content-container .messages a {
+      color: #0066C0 !important;
+      cursor: pointer; }
+  app-wizard .content-container .forms {
+    padding: 20px 0;
+    height: 70px; }
+    app-wizard .content-container .forms .form-group .ui-inputtext {
+      text-align: center; }
+  app-wizard .content-container .actions {
+    width: 100%;
+    text-align: center;
+    padding: 20px 0; }
+    app-wizard .content-container .actions .btn-warning {
+      width: 100%;
+      font-size: 26px;
+      color: white;
+      height: 60px;
+      font-weight: 700; }
+    app-wizard .content-container .actions .btn-white {
+      width: 100%;
+      font-size: 20px;
+      height: 60px; }
+    app-wizard .content-container .actions .btn-facebook {
+      width: 100%;
+      font-size: 20px;
+      height: 60px; }
+    app-wizard .content-container .actions .btn-facebook i {
+      display: block;
+      position: absolute;
+      top: 10px;
+      left: 12px;
+      width: 40px;
+      height: 40px;
+      background-image: url("/assets/images/fb-icon.png");
+      background-repeat: no-repeat;
+      background-size: contain; }
+    app-wizard .content-container .actions .form-divider {
+      display: block;
+      position: relative;
+      width: 100%;
+      margin: 50px 0;
+      border-top: 1px solid #E7E7E7; }
+    app-wizard .content-container .actions .form-divider span {
+      display: block;
+      position: absolute;
+      top: -12px;
+      left: 50%;
+      margin-left: -15px;
+      width: 30px;
+      text-align: center;
+      color: #8D8D8D;
+      font-size: 12px;
+      letter-spacing: 0.08px;
+      background-color: white;
+      padding: 4px 10px; }
+    app-wizard .content-container .actions .animate {
+      display: block;
+      position: absolute;
+      top: 18px; }
+  app-wizard .content-container .footer {
+    border-top: 1px solid #CCCCCC;
+    padding: 20px 0; }
+    app-wizard .content-container .footer h6 {
+      text-align: left; }
+    app-wizard .content-container .footer a {
+      color: #0066C0 !important;
+      font-size: 12px;
+      letter-spacing: 0.08px;
+      text-decoration: none;
+      cursor: pointer; }
+  app-wizard .wizard-container .form-group.subheader {
+    display: block;
+    width: 100%;
+    text-align: center;
+    margin-top: 33px;
+    margin-bottom: 27px;
+    color: #0066C0;
+    font-size: 12px;
+    letter-spacing: 0.08px; }
+  app-wizard .wizard-container .form-group .part-group span.fa {
+    top: 37px;
+    right: 11px; }
+  app-wizard .wizard-form .error-message {
+    display: block;
+    float: left;
+    width: 100%;
+    padding: 11px 15px 12px;
+    border: 1px solid #C40000;
+    background-color: #F2DEDE;
+    border-radius: 3px;
+    font-size: 13px;
+    color: #AB433F;
+    letter-spacing: 0.08px; }
+  @media (max-width: 645px) {
+    app-wizard .breadcrumb {
+      position: fixed;
+      width: 100%;
+      border-bottom: 1px solid #CCCCCC; }
+    app-wizard .wizard-container .image-block {
+      margin: 60px auto 0; }
+    app-wizard .wizard-container .content-container {
+      padding: 10px; }
+    app-wizard .wizard-container .content-container .title {
+      margin-top: 20px; }
+    app-wizard .wizard-container .content-container .wizard-form .form-group button.btn.btn-warning {
+      margin-bottom: 30px; } }
+  @media (max-width: 400px) {
+    app-wizard .wizard-container .image-block {
+      margin: 50px auto 0; } }
+  app-wizard .wizard-form .popup-spinner {
+    display: block;
+    width: 100%;
+    height: 40px;
+    margin-top: 3px;
+    margin-bottom: 10px;
+    text-align: center; }
+  app-wizard .breadcrumb {
+    list-style: none;
+    overflow: hidden;
+    font-size: 18px;
+    padding: 0;
+    margin-bottom: 0;
+    background-color: white;
+    border-top: 1px solid #e3e3e3;
+    border-left: 1px solid #e3e3e3;
+    border-right: 1px solid #e3e3e3;
+    border-radius: 0;
+    z-index: 1;
+    max-width: 900px;
+    margin: auto; }
+  app-wizard .breadcrumb li {
+    float: left;
+    height: 60px; }
+  app-wizard .breadcrumb li a {
+    text-decoration: none;
+    background: white;
+    position: relative;
+    display: block;
+    float: left;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    line-height: 60px;
+    padding-left: 35px; }
+  app-wizard .breadcrumb li a::after {
+    content: " ";
+    display: block;
+    width: 0;
+    height: 0;
+    border-top: 50px solid transparent;
+    /* Go big on the size, and let overflow hide */
+    border-bottom: 50px solid transparent;
+    border-left: 30px solid white;
+    position: absolute;
+    top: 50%;
+    margin-top: -50px;
+    left: 100%;
+    z-index: 2; }
+  app-wizard .breadcrumb li a::before {
+    content: " ";
+    display: block;
+    width: 0;
+    height: 0;
+    border-top: 50px solid transparent;
+    border-bottom: 50px solid transparent;
+    border-left: 30px solid #e3e3e3;
+    position: absolute;
+    top: 50%;
+    margin-top: -50px;
+    margin-left: 1px;
+    left: 100%;
+    z-index: 1; }
+  app-wizard .breadcrumb li.active a, app-wizard .breadcrumb li.active:hover a {
+    color: white;
+    background: #446CB3;
+    font-weight: 600; }
+  app-wizard .breadcrumb li.active a::after {
+    border-left: 30px solid #446CB3; }
+  app-wizard .breadcrumb li.active a::before {
+    border-left: 30px solid white; }
+  app-wizard .breadcrumb li:first-child a {
+    padding-left: 25px; }
+  app-wizard .breadcrumb li:last-child a {
+    background: transparent;
+    color: black;
+    pointer-events: none;
+    cursor: default;
+    padding-left: 15px; }
+  app-wizard .breadcrumb li:last-child.active a {
+    color: white;
+    background: #446CB3;
+    pointer-events: none;
+    cursor: default;
+    padding-left: 15px; }
+  app-wizard .breadcrumb li:last-child a::after {
+    border: 0; }
 
 app-about {
   display: block;

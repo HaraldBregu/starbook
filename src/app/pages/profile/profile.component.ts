@@ -37,7 +37,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
     {name: 'Generali', route: 'general', icon:"fa-info"},
     {name: 'Pagamento', route: 'payment', icon: "fa-credit-card"},
     {name: 'Impostazioni', route: 'settings', icon:"fa-cog"},
-    {name: 'Affiliazione', route: 'affiliate', icon:"fa-bullhorn"}
+    // {name: 'Affiliazione', route: 'affiliate', icon:"fa-bullhorn"}
   ];
 
   ///////////////////////
@@ -162,6 +162,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
         } else if (this.page ==='settings') {
 
         } else if (this.page ==='affiliate') {
+          this.router.navigate(['profile/general']);
 
         } else if (this.page ==='card') {
 

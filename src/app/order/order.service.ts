@@ -25,7 +25,7 @@ export class OrderService {
   private protocol = "https"
   private hostname = "api.starbook.co"
   private api_version = "v0.9.1"
-  private api = "";
+  private api = 'https://api.starbook.co/v0.9.1/';
 
   private orderEvent = new Subject<string>();
   public getOrderEvent$;
@@ -34,7 +34,8 @@ export class OrderService {
   private wizardData:any = {};
   private googleApi: string;
   constructor(private http: Http/*, private navigationService: NavigationService*/) {
-    this.api = 'https://api.starbook.co/v0.9.1/';
+    // this.api = 'https://api.starbook.co/v0.9.1/';
+
     this.googleApi = 'https://maps.googleapis.com/maps/api/geocode/json';
     if(isBrowser) {
       this.getOrderEvent$ = this.orderEvent.asObservable();
@@ -50,6 +51,9 @@ export class OrderService {
       }
     }
     this.api = this.protocol + "://" + this.hostname + "/" + this.api_version + "/";
+
+    // this.api = 'http://localhost/t0.9.1/';
+
   }
 
   makeEvent(event) {
@@ -79,6 +83,7 @@ export class OrderService {
   }
 
   saveOrder(orderData) {
+    // console.log('orderData is: ' + JSON.stringify(orderData));
     // this.navigationService.updateLoadingStatus(true);
     return this.http.post(this.api + 'orders', {
       service_id: orderData.service_id,
@@ -87,9 +92,7 @@ export class OrderService {
       date: orderData.date,
       address: orderData.address,
       referral_id: orderData.referral_id,
-      price: orderData.price,
-      payment: orderData.payment,
-      timing: orderData.timing
+      upfront_amount: orderData.upfront_amount
     }, this._makeHeaders()).toPromise().then((response) => {
         return response;
       }).catch(this.handleError);
