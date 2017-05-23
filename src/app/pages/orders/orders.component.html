@@ -15,9 +15,9 @@
       <div class="order">
         <div class="order-header">
           <div class="top">
-            <span *ngIf="order.status===0 && order.customer_id===currentUser._id">Servizio in attesa di conferma</span>
+            <span *ngIf="order.status===0 && order.customer_id===currentUser._id">Servizio in attesa di conferma<span class="saving"><span>.</span><span>.</span><span>.</span></span></span>
             <span *ngIf="order.status===1 && order.customer_id===currentUser._id" [ngStyle]="{'color':'green'}">Servizio assegnato</span>
-            <span *ngIf="order.status===0 && order.customer_id!==currentUser._id">Servizio in attesa di conferma</span>
+            <span *ngIf="order.status===0 && order.customer_id!==currentUser._id">Servizio in attesa di conferma<span class="saving"><span>.</span><span>.</span><span>.</span></span></span>
             <span *ngIf="order.status===1 && order.customer_id!==currentUser._id" [ngStyle]="{'color':'green'}">Servizio assegnato</span>
           </div>
           <div class="top client">

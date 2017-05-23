@@ -129,12 +129,7 @@ export class LandingComponent implements OnInit {
     phone_error: null,
     email_error: null
   };
-  public seoObject = {
-    title: "",
-    description: "",
-    url: "",
-    image_url: ""
-  };
+  public seoObject = {};
   public order = {};
 
   constructor(
@@ -150,6 +145,8 @@ export class LandingComponent implements OnInit {
       this.analyticsService.sendPageViewUrl(this.router.url)
       this.navigationService.updateMessage('');
 
+      if (isBrowser) {window.scrollTo(0, 0);}
+
       if (isBrowser) {
         if (localStorage.getItem('auth')) {
           this.currentUser = JSON.parse(localStorage.getItem('auth'));
@@ -164,127 +161,24 @@ export class LandingComponent implements OnInit {
         this.categories = null;
       });
 
-      this.route.params.subscribe((params: Params) => {
-        if (isBrowser) {window.scrollTo(0, 0);}
-        this.page = params['page'];
-        if (this.page==='idraulico') {
-          this.navigationService.updateMessage('Ti serve un idraulico?');
+      this.seoObject['title'] = "Starbook";
+      this.seoObject['description'] = "Starbook è una piattaforma che mette in contatto gli artigiani e professionisti con i clienti in modo piu diretto e sicuro gratis per sempre.";
+      this.seoObject['url'] = 'https://www.starbook.co' + this.router.url;
+      this.seoObject['image_url'] = "https://s3-eu-west-1.amazonaws.com/starbook-s3/website/icon_256.png";
 
-          this.data.pictures = [
-            "https://s3-eu-west-1.amazonaws.com/starbook-s3/plumbing/idraulica-tutti-attrezzi.png"
-          ];
-          this.data.texts = [
-            "Hai bisogno di un idraulico? Prenotalo!",
-            "Sappiamo bene che trovare l'idraulico giusto al momento giusto non è mai semplice. D'ora in poi lo facciamo noi al tuo posto!",
-            "La migliore piattaforma per trovare il tuo idraulico in modo semplice, veloce e sicuro.",
-            "Tre ottimi motivi per prenotare l'idraulico su Starbook.",
-            "Cosa dicono i clienti"
-          ];
-          this.data.bullets = [
-            {
-              title: "Professionalità",
-              description: "La serietà prima di tutto e noi ci assicuriamo di portare il miglior idraulico della zona e che abbia una solida esperienza nel campo in cui opera.",
-              icon_name: "fa-certificate"
-            },
-            {
-              title: "Puntualità",
-              description: "Portare l'idraulico nel giorno e l'ora che si desidera è uno dei nostri valori piu importanti. Noi puntiamo solo all'efficienza.",
-              icon_name: "fa-clock-o"
-            },
-            {
-              title: "Pagamento online",
-              description: "La massima comodità anche nei metodi di pagamento, utilizzando la carta di credito o prepagata puoi pagare l'idraulico direttamente online.",
-              icon_name: "fa-credit-card"
-            }
-          ];
-          this.data.reviews = [
-            {
-              username: "Giacomo P.",
-              text: "Ottimo! Dopo aver richiesto un particolare lavoro a casa mia, nel arco di pochi minuti ho ricevuto il miglior preventivo di tanti altri professionisti.",
-              rating: 5
-            },
-            {
-              username: "Mario B.",
-              text: "Servizio veloce, professionale e decisamente con un ottimo prezzo. Assistenza clienti molto efficiente e disponibile. Consiglio assolutamente.",
-              rating: 5
-            },
-            {
-              username: "Anna F.",
-              text: "Dopo aver trascorso più di una settimana a cercare sui social media ho trovato Starbook e in meno di pochi minuti ho prenotato l’idraulico e il servizio che mi serviva. Davvero bravi!",
-              rating: 5
-            },
-            {
-              username: "Alberto G.",
-              text: "É stato semplice comunicare al telefono con il professionista dopo aver fatto la richiesta di intervento. Altri vantaggi: è stato puntuale e ordinato.",
-              rating: 5
-            }
-          ];
-
-          this.seoObject.title = this.data.texts[0];
-          this.seoObject.description = this.data.texts[1];
-          this.seoObject.url = 'https://www.starbook.co' + this.router.url;
-          this.seoObject.image_url = "https://s3-eu-west-1.amazonaws.com/starbook-s3/plumbing/idraulico-normal.png";
-        } else if (this.page==='extensions') {
-          this.navigationService.updateMessage('Estensioni Starbook');
-          this.data.pictures = [
-            "https://s3-eu-west-1.amazonaws.com/starbook-s3/starbook-servizi-professionali-on-demand.png"
-          ];
-          this.data.texts = [
-            "Professionisti on demand",
-            "Hai mai pensato ad una funzione che ti permette di prenotare direttamene il professionista che ti serve? Una funzione inserito nella tua web app o mobile app? Bene, è arrivato il momento di crearla!",
-            "Con le estensioni add-on di Starbook puoi soddisfare le richieste dei tuoi clienti direttamente dalla tua app, web o mobile.",
-            "Quali vantaggi ci sono nelle estensioni add-on di Starbook?",
-            "Le estensioni add-on di Starbook sono facili da implementare. Inserisci il blocco di codice che ti inviamo sulla tua web app, sito web o mobile app."
-          ];
-          this.data.bullets = [
-            {
-              title: "On Demand",
-              description: "Siamo nell'era dell'industria on demand, ora basta un click per prenotare un ordine e noi siamo molto focalizzati in questo.",
-              icon_name: "fa-play-circle"
-            },
-            {
-              title: "Efficienza",
-              description: "Offriamo determinazione e soddisfiamo le esigenze dei clienti offrendo il professionista più bravo e serio della zona richiesta.",
-              icon_name: "fa-clock-o"
-            },
-            {
-              title: "Pagamenti",
-              description: "Utilizziamo sistemi di pagamenti online per poter aumentare la sicurezza dei clienti e il pagamento dei professionisti.",
-              icon_name: "fa-credit-card"
-            },
-            {
-              title: "Assistenza",
-              description: "Offriamo la nostra assistenza nello sviluppo e creazione di nuove funzionalità on demand in linea con le richieste dei clienti.",
-              icon_name: "fa-assistive-listening-systems"
-            }
-          ];
-
-          this.seoObject.title = this.data.texts[0];
-          this.seoObject.description = this.data.texts[1];
-          this.seoObject.url = 'https://www.starbook.co' + this.router.url;
-          this.seoObject.image_url = "https://s3-eu-west-1.amazonaws.com/starbook-s3/starbook-servizi-professionali-on-demand-normal.png";
-        } else {
-          // this.router.navigate(['landing/idraulico']);
-          // this.navigationService.updateMessage('Il professionista con un click');
-          // this.router.navigate(['landing']);
-        }
-
-        this.seoService.setTitle(this.seoObject.title);
-        this.seoService.setMetaElem('description', this.seoObject.description);
-
-        this.seoService.setOgElem('twitter:card', "summary_large_image");
-        this.seoService.setOgElem('twitter:title', this.seoObject.title);
-        this.seoService.setOgElem('twitter:site', "@starbookco");
-        this.seoService.setOgElem('twitter:creator', "@HaraldBregu");
-        this.seoService.setOgElem('twitter:description', this.seoObject.description);
-        this.seoService.setOgElem('twitter:image', this.seoObject.image_url);
-
-        this.seoService.setOgElem('og:title', this.seoObject.title);
-        this.seoService.setOgElem('og:description', this.seoObject.description);
-        this.seoService.setOgElem('og:url', this.seoObject.url);
-        this.seoService.setOgElem('og:image', this.seoObject.image_url);
-        this.seoService.setOgElem('og:image:secure_url', this.seoObject.image_url);
-      })
+      this.seoService.setTitle(this.seoObject['title']);
+      this.seoService.setMetaElem('description', this.seoObject['description']);
+      this.seoService.setOgElem('twitter:card', "summary_large_image");
+      this.seoService.setOgElem('twitter:title', this.seoObject['title']);
+      this.seoService.setOgElem('twitter:site', "@starbookco");
+      this.seoService.setOgElem('twitter:creator', "@HaraldBregu");
+      this.seoService.setOgElem('twitter:description', this.seoObject['description']);
+      this.seoService.setOgElem('twitter:image', this.seoObject['image_url']);
+      this.seoService.setOgElem('og:title', this.seoObject['title']);
+      this.seoService.setOgElem('og:description', this.seoObject['description']);
+      this.seoService.setOgElem('og:url', this.seoObject['url']);
+      this.seoService.setOgElem('og:image', this.seoObject['image_url']);
+      this.seoService.setOgElem('og:image:secure_url', this.seoObject['image_url']);
     }
 
   ngOnInit() {

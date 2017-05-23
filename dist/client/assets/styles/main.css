@@ -943,6 +943,63 @@ input::-ms-clear {
   /* Non-prefixed version, currently
      supported by Chrome and Opera */ }
 
+@keyframes blink {
+  /**
+   * At the start of the animation the dot
+   * has an opacity of .2
+   */
+  0% {
+    opacity: .2; }
+  /**
+   * At 20% the dot is fully visible and
+   * then fades out slowly
+   */
+  20% {
+    opacity: 1; }
+  /**
+   * Until it reaches an opacity of .2 and
+   * the animation can start again
+   */
+  100% {
+    opacity: .2; } }
+.saving span {
+  /**
+   * Use the blink animation, which is defined above
+   */
+  animation-name: blink;
+  /**
+   * The animation should take 1.4 seconds
+   */
+  animation-duration: 1.4s;
+  /**
+   * It will repeat itself forever
+   */
+  animation-iteration-count: infinite;
+  /**
+   * This makes sure that the starting style (opacity: .2)
+   * of the animation is applied before the animation starts.
+   * Otherwise we would see a short flash or would have
+   * to set the default styling of the dots to the same
+   * as the animation. Same applies for the ending styles.
+   */
+  animation-fill-mode: both; }
+
+.saving span:nth-child(2) {
+  /**
+   * Starts the animation of the third dot
+   * with a delay of .2s, otherwise all dots
+   * would animate at the same time
+   */
+  animation-delay: .2s; }
+
+.saving span:nth-child(3) {
+  /**
+   * Starts the animation of the third dot
+   * with a delay of .4s, otherwise all dots
+   * would animate at the same time
+   */
+  animation-delay: .4s; }
+
 @font-face {
   font-family: 'FontAwesome';
   src: url("/assets/fonts/fontawesome-webfont.eot?v=4.7.0");
@@ -5278,16 +5335,18 @@ app-order .sidebar .order-content .price-block {
     color: rgba(255, 255, 255, 0.7);
     font-weight: 300;
     margin-top: 10px; }
-  app-order .sidebar .order-content .price-block .total span {
-    font-size: 12px;
-    color: rgba(255, 255, 255, 0.7);
-    margin-bottom: 10px; }
-  app-order .sidebar .order-content .price-block .total h1 {
-    color: #FFC845;
-    font-weight: 500; }
-  app-order .sidebar .order-content .price-block .total h2 {
-    font-weight: 300;
-    text-decoration: line-through; }
+  app-order .sidebar .order-content .price-block .total {
+    overflow: auto; }
+    app-order .sidebar .order-content .price-block .total span {
+      font-size: 12px;
+      color: rgba(255, 255, 255, 0.7);
+      margin-bottom: 10px; }
+    app-order .sidebar .order-content .price-block .total h1 {
+      color: #FFC845;
+      font-weight: 500; }
+    app-order .sidebar .order-content .price-block .total h2 {
+      font-weight: 300;
+      text-decoration: line-through; }
   app-order .sidebar .order-content .price-block .upfront {
     margin: 40px 0 0; }
   app-order .sidebar .order-content .price-block .timing {
@@ -5835,7 +5894,7 @@ app-orders {
         background: white;
         margin: 0px auto 40px; }
         app-orders .orders-container .orders .order-container .order .order-header {
-          font-size: 16px; }
+          font-size: 18px; }
           app-orders .orders-container .orders .order-container .order .order-header .top {
             padding: 20px;
             background: #ececec;
@@ -6908,10 +6967,14 @@ app-wizard {
         app-wizard .wizard .wizard-footer .box h4 {
           font-weight: 400;
           margin-top: 10px; }
+        app-wizard .wizard .wizard-footer .box h5 {
+          color: #5ca800;
+          font-weight: 800; }
         app-wizard .wizard .wizard-footer .box h6 {
           font-size: 14px;
-          font-weight: 300;
-          margin-top: 10px; }
+          font-weight: 400;
+          margin-top: 10px;
+          color: rgba(0, 0, 0, 0.7); }
   app-wizard .btn-back {
     background: #d29f26 !important;
     color: white;
@@ -8033,6 +8096,14 @@ app-contact {
   @media (max-width: 375px) {
     app-contact .page-container .contact-container .contact-block-container {
       padding: 20px; } }
+
+app-notfound {
+  display: block;
+  width: 100%;
+  height: 100%;
+  padding: 70px 0 0; }
+  app-notfound .notfound-container {
+    margin-top: 50px; }
 
 ngb-datepicker,
 .datepicker {

@@ -131,13 +131,13 @@ export class AccountComponent implements OnInit {
         this.route.queryParams.subscribe((params: Params) => {
           if (this.page === 'login') {
             this.navigationService.updateMessage('Accedi al tuo account');
-            this.seoObject['title'] = "Iscriviti a starbook";
+            this.seoObject['title'] = "Iscriviti a Starbook";
             this.seoObject['description'] = "Su Starbook troverai i migliori servizi per la tua casa e i migliori professionisti della tua zona.";
 
             if (this.currentUser) {this.router.navigate(['']);}
           } else if (this.page === 'signup') {
             this.navigationService.updateMessage('Crea un nuovo account');
-            this.seoObject['title'] = "Iscriviti a starbook";
+            this.seoObject['title'] = "Iscriviti a Starbook";
             this.seoObject['description'] = "Su Starbook troverai i migliori servizi per la tua casa e i migliori professionisti della tua zona.";
 
             if (this.currentUser) {this.router.navigate(['']);}

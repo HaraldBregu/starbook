@@ -21,18 +21,17 @@ import { RequestsComponent } from './pages/requests/requests.component';
 import { ShareComponent } from './pages/share/share.component';
 import { BlogComponent } from './pages/blog/blog.component';
 import { ContactComponent } from './pages/contact/contact.component';
+import { NotfoundComponent } from './pages/notfound/notfound.component';
 
 const routes: Routes = [
   {
     path: '',
     component: LandingComponent
   },
-
   {
     path: 'category/:category',
     component: CategoryComponent
   },
-
   {
     path: 'account',
     component: AccountComponent
@@ -54,7 +53,6 @@ const routes: Routes = [
     path: 'order/:step',
     component: WizardComponent
   },
-
   {
     path: 'profile',
     component: ProfileComponent
@@ -77,17 +75,6 @@ const routes: Routes = [
     path: 'contact/:page',
     component: ContactComponent
   },
-
-  // For test
-  // {
-  //   path: 'landing',
-  //   component: LandingComponent
-  // },
-  // {
-  //   path: 'landing/:page',
-  //   component: LandingComponent
-  // },
-
   {
     path: 'services',
     component: ServicesComponent,
@@ -106,23 +93,6 @@ const routes: Routes = [
     path: 'requests/:page',
     component: RequestsComponent
   },
-  // {
-  //   path: 'share',
-  //   component: ShareComponent
-  // },
-  // {
-  //   path: 'share/:page',
-  //   component: ShareComponent
-  // },
-  // {
-  //   path: 'blog',
-  //   component: BlogComponent
-  // },
-  // {
-  //   path: 'blog/:page',
-  //   component: BlogComponent
-  // },
-
   {
     path: 'info/help',
     component: HelpComponent
@@ -134,7 +104,9 @@ const routes: Routes = [
   {
     path: 'info/about',
     component: AboutComponent
-  }
+  },
+  { path: '404', component: NotfoundComponent },
+  { path: '**', redirectTo: '' }
 ];
 
 export const routing: ModuleWithProviders = RouterModule.forRoot(routes);

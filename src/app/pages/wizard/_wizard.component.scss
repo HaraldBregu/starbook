@@ -146,10 +146,15 @@ app-wizard {
           font-weight: 400;
           margin-top: 10px;
         }
+        h5 {
+          color: rgba(92, 168, 0, 1);
+          font-weight: 800;
+        }
         h6 {
           font-size: 14px;
-          font-weight: 300;
+          font-weight: 400;
           margin-top: 10px;
+          color: rgba(0, 0, 0, 0.7);
         }
       }
     }

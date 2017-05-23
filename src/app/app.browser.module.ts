@@ -62,6 +62,7 @@ import { RequestsComponent } from './pages/requests/requests.component';
 import { ShareComponent } from './pages/share/share.component';
 import { BlogComponent } from './pages/blog/blog.component';
 import { ContactComponent } from './pages/contact/contact.component';
+import { NotfoundComponent } from './pages/notfound/notfound.component';
 
 import { ClipboardDirective } from './directives/clipboard.directive';
 
@@ -111,6 +112,7 @@ let declarations = [
   BlogComponent,
   CategoryComponent,
   ContactComponent,
+  NotfoundComponent,
 
   ClipboardDirective
 ];
