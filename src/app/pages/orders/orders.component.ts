@@ -74,6 +74,10 @@ export class OrdersComponent implements OnInit, OnDestroy {
   };
   public details = [];
 
+  public payment_state = {
+    loading : false,
+  }
+
   constructor(
     private router: Router,
     private route: ActivatedRoute,
@@ -256,8 +260,116 @@ export class OrdersComponent implements OnInit, OnDestroy {
   }
 
   ////////////////////////////////////////
-  ////////////// UNKNOWN /////////////////
+  ////////////// PAYMENT /////////////////
   ////////////////////////////////////////
+
+  acceptOrder() {
+    this.ordersService.acceptWork(this.selectedOrder._id, 'ACCEPT').then((response) => {
+      this.popup = null;
+      // console.log('Response: ' + JSON.stringify(response));
+    }).catch((error) => {
+      this.popup = null;
+      // console.log('Error: ' + JSON.stringify(error));
+    });
+  }
+  updateDetailsOrder() {
+    this.detail.amount = Number(this.detail.amount)
+    this.details.push(this.detail)
+    this.ordersService.updateOrder(this.selectedOrder._id, {action: 'UPDATE_TOTAL', details:this.details}).then((response) => {
+      this.popup = null;
+      // console.log('Response: ' + JSON.stringify(response));
+    }).catch((error) => {
+      this.popup = null;
+      // console.log('Error: ' + JSON.stringify(error));
+    });
+  }
+  payUpfront() {
+    if (this.payment_state.loading) {return;}
+    this.payment_state.loading = true;
+    this.ordersService.updateOrder(this.selectedOrder._id, {action: 'PAY_UPFRONT', upfront:this.upfront}).then((response) => {
+      this.popup = null;
+      this.payment_state.loading = false;
+    }).catch((error) => {
+      this.popup = null;
+      this.payment_state.loading = false;
+    });
+  }
+  payRestAmount(rest) {
+    if (this.payment_state.loading) {return;}
+    this.payment_state.loading = true;
+    this.ordersService.updateOrder(this.selectedOrder._id, {action: 'PAY_UPFRONT', upfront:rest}).then((response) => {
+      this.popup = null;
+      this.payment_state.loading = false;
+    }).catch((error) => {
+      this.popup = null;
+      this.payment_state.loading = false;
+    });
+  }
+
+  getTotalAmount(details) {
+    var newValue = 0
+    for (var i = 0; i < details.length; i++) {
+      var detail = details[i]
+      var price;
+      if (isNaN(detail.amount)) {
+        price = 0;
+      } else {
+        price = detail.amount;
+      }
+      newValue += parseInt(price)
+    }
+    return newValue;
+  }
+  getTotalMilestones(milestones) {
+    var newValue = 0
+    for (var i = 0; i < milestones.length; i++) {
+      var detail = milestones[i]
+      var price;
+      if (isNaN(detail.amount)) {
+        price = 0;
+      } else {
+        price = detail.amount;
+      }
+      newValue += price;
+    }
+    return newValue;
+  }
+  getRestToPay() {
+    var milestones = this.selectedOrder.milestones
+    var details = this.selectedOrder.details
+    return this.getTotalAmount(details) - this.getTotalMilestones(milestones)
+  }
+
+  openPopup(popup, order) {
+    this.selectedOrder = order;
+    this.popup = popup;
+  }
+  closePopup() {
+    this.popup = null;
+  }
+
+  onAmountChange() {
+    console.log('amount change');
+  }
+
+  confirmOrder(id) {
+    this.popupsService.activate({type: 'confirmOrder', data: {orderId: id}});
+  }
+  cancelOrder(id) {
+    this.popupsService.activate({type: 'cancelOrder', data: {orderId: id}});
+  }
+  reactivateOrder(id) {
+    this.popupsService.activate({type: 'reactivateOrder', data: {orderId: id}});
+  }
+  completaOrder(id) {
+    this.popupsService.activate({type: 'addPrice', data: {orderId: id}});
+  }
+  editOrder(id, payment) {
+    this.popupsService.activate({type: 'editPrice', data: {orderId: id, payment: payment}});
+  }
+  continueOrder(id, payment) {
+    this.popupsService.activate({type: 'continueOrder', data: {orderId: id, payment: payment, information: '120€ + 6.6€ = 126.6€'}});
+  }
 
   formatedAddressFromObject(address) {
     let returnAddress = '';
@@ -298,82 +410,6 @@ export class OrdersComponent implements OnInit, OnDestroy {
     }
     return returnDate;
   }
-
-  acceptOrder() {
-    this.ordersService.acceptWork(this.selectedOrder._id, 'ACCEPT').then((response) => {
-      this.popup = null;
-      // console.log('Response: ' + JSON.stringify(response));
-    }).catch((error) => {
-      this.popup = null;
-      // console.log('Error: ' + JSON.stringify(error));
-    });
-  }
-  updateDetailsOrder() {
-    this.detail.amount = Number(this.detail.amount)
-    this.details.push(this.detail)
-    this.ordersService.updateOrder(this.selectedOrder._id, {action: 'UPDATE_TOTAL', details:this.details}).then((response) => {
-      this.popup = null;
-      // console.log('Response: ' + JSON.stringify(response));
-    }).catch((error) => {
-      this.popup = null;
-      // console.log('Error: ' + JSON.stringify(error));
-    });
-  }
-  payUpfront() {
-    this.ordersService.updateOrder(this.selectedOrder._id, {action: 'PAY_UPFRONT', upfront:this.upfront}).then((response) => {
-      this.popup = null;
-      // console.log('Response: ' + JSON.stringify(response));
-    }).catch((error) => {
-      this.popup = null;
-      // console.log('Error: ' + JSON.stringify(error));
-    });
-  }
-  payRestAmount(rest) {
-    this.ordersService.updateOrder(this.selectedOrder._id, {action: 'PAY_UPFRONT', upfront:rest}).then((response) => {
-      this.popup = null;
-      // console.log('Response: ' + JSON.stringify(response));
-    }).catch((error) => {
-      this.popup = null;
-      // console.log('Error: ' + JSON.stringify(error));
-    });
-  }
-
-  getTotalAmount(details) {
-    var newValue = 0
-    for (var i = 0; i < details.length; i++) {
-      var detail = details[i]
-      var price;
-      if (isNaN(detail.amount)) {
-        price = 0;
-      } else {
-        price = detail.amount;
-      }
-      newValue += parseInt(price)
-    }
-    return newValue;
-  }
-  getTotalMilestones(milestones) {
-    var newValue = 0
-    for (var i = 0; i < milestones.length; i++) {
-      var detail = milestones[i]
-      newValue += detail.amount
-    }
-    return newValue;
-  }
-  getRestToPay() {
-    var milestones = this.selectedOrder.milestones
-    var details = this.selectedOrder.details
-    return this.getTotalAmount(details) - this.getTotalMilestones(milestones)
-  }
-
-  openPopup(popup, order) {
-    this.selectedOrder = order;
-    this.popup = popup;
-  }
-  closePopup() {
-    this.popup = null;
-  }
-
   dateFormating(date) {
     let returnDate = '';
     if (date !== 'now') {
@@ -399,7 +435,6 @@ export class OrdersComponent implements OnInit, OnDestroy {
     }
     return returnDate;
   }
-
   dateCompare(date1, date2) {
     let date1Obj = Date.parse(date1);
     let date2Obj = Date.parse(date2);
@@ -409,7 +444,6 @@ export class OrdersComponent implements OnInit, OnDestroy {
       return false;
     }
   }
-
   itemsFormating(items) {
     let returnProducts = [];
     let products = items.split('||');
@@ -420,24 +454,5 @@ export class OrdersComponent implements OnInit, OnDestroy {
     //   }
     // });
     return returnProducts;
-  }
-
-  confirmOrder(id) {
-    this.popupsService.activate({type: 'confirmOrder', data: {orderId: id}});
-  }
-  cancelOrder(id) {
-    this.popupsService.activate({type: 'cancelOrder', data: {orderId: id}});
-  }
-  reactivateOrder(id) {
-    this.popupsService.activate({type: 'reactivateOrder', data: {orderId: id}});
-  }
-  completaOrder(id) {
-    this.popupsService.activate({type: 'addPrice', data: {orderId: id}});
-  }
-  editOrder(id, payment) {
-    this.popupsService.activate({type: 'editPrice', data: {orderId: id, payment: payment}});
-  }
-  continueOrder(id, payment) {
-    this.popupsService.activate({type: 'continueOrder', data: {orderId: id, payment: payment, information: '120€ + 6.6€ = 126.6€'}});
   }
 }

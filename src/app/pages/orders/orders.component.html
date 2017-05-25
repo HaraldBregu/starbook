@@ -48,7 +48,6 @@
               <span>{{order.description}}</span>
             </div>
             <div class="price" *ngIf="getTotalAmount(order.details)>0">
-              <div class="line dashed"></div>
               <div class="items">
                 <span class="item"><strong>Totale importo:</strong></span><span class="amount">{{getTotalAmount(order.details)/100}}€</span>
               </div>
@@ -60,7 +59,6 @@
               </div>
             </div>
             <div class="price" *ngIf="getTotalMilestones(order.milestones)>0 && order.milestones.length>1">
-              <div class="line dashed"></div>
               <div class="items">
                 <span class="item"><strong>Totale acconti:</strong></span><span class="amount">{{getTotalMilestones(order.milestones)/100}}€</span>
               </div>
@@ -130,18 +128,28 @@
     <div class="popup" *ngIf="popup==='PAY_UPFRONT'">
       <div class="popup-header">
         <h3>Pagamento lavorazione</h3>
-        <p>Inserisci l'importo che vuoi pagare come acconto per la alvorazione o paga il totale importo del lavoro.</p>
-
       </div>
       <div class="popup-body">
-        <div class="form-group">
-          <input type="text" id="amountUpfront" placeholder="" class="form-control"  [(ngModel)]="upfront" [ngModelOptions]="{standalone: true}">
+        <div class="total">
+          <span class="top-title">Prezzo stimato</span>
+          <span class="price">{{getTotalAmount(selectedOrder.details)/100}}€</span>
+        </div>
+        <div class="rest" *ngIf="getRestToPay()>0">
+          <span class="top-title">Resto</span>
+          <span class="price">{{getRestToPay()/100}}€</span>
+        </div>
+        <div class="input-group">
+          <input type="text" class="form-control" placeholder="0.00" [(ngModel)]="upfront" (ngModelChange)="onAmountChange($event)" [ngModelOptions]="{standalone: true}">
+          <span class="input-group-addon">€</span>
         </div>
         <div class="form-group">
-          <button type="button" id="next" class="btn btn-primary" (click)="payUpfront()">Acconto</button>
+          <button type="button" id="next" class="btn btn-primary" (click)="payUpfront()"><i class="fa fa-circle-o-notch animate" *ngIf="payment_state.loading"></i> Acconto</button>
+        </div>
+        <div class="message">
+          <span>o procedi con il resto</span>
         </div>
         <div class="form-group" *ngIf="getRestToPay()>0">
-          <button type="button" id="next" class="btn btn-warning" (click)="payRestAmount(getRestToPay())">{{getRestToPay()/100}}€ Resto del totale</button>
+          <button type="button" id="next" class="btn btn-warning" (click)="payRestAmount(getRestToPay())"><i class="fa fa-circle-o-notch animate" *ngIf="payment_state.loading"></i> Paga il resto {{getRestToPay()/100}}€</button>
         </div>
         <div class="form-group">
           <button type="button" id="next" class="btn btn-secondary" (click)="closePopup()">Chiudi</button>

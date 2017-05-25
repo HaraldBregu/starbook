@@ -243,9 +243,15 @@ app-orders {
         box-shadow: 0 5px 15px rgba(0,0,0,.5);
         .popup-header {
           padding: 30px;
+          text-align: center;
         }
         .popup-body {
           padding: 30px;
+          .input-group-addon {
+            padding: 0 20px;
+            font-size: 24px;
+            font-weight: 600;
+          }
           .btn {
             width: 100%;
             font-weight: 500;
@@ -256,6 +262,34 @@ app-orders {
           }
           .btn-warning:hover {
             color: black !important;
+          }
+          .total {
+            padding: 0 0 30px;
+            text-align: center;
+            .top-title {
+              display: block;
+              font-weight: 400;
+            }
+            .price {
+              font-size: 48px;
+              font-weight: 500;
+            }
+          }
+          .rest {
+            padding: 0 0 30px;
+            text-align: center;
+            .top-title {
+              display: block;
+              font-weight: 400;
+            }
+            .price {
+              font-size: 38px;
+              font-weight: 500;
+            }
+          }
+          .message {
+            text-align: center;
+            padding: 20px 0;
           }
           .details {
             overflow: auto;
