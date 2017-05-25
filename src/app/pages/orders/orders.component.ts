@@ -342,7 +342,13 @@ export class OrdersComponent implements OnInit, OnDestroy {
     var newValue = 0
     for (var i = 0; i < details.length; i++) {
       var detail = details[i]
-      newValue += parseInt(detail.amount)
+      var price;
+      if (isNaN(detail.amount)) {
+        price = 0;
+      } else {
+        price = detail.amount;
+      }
+      newValue += parseInt(price)
     }
     return newValue;
   }

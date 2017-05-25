@@ -6,13 +6,26 @@ import 'rxjs/add/operator/toPromise';
 
 @Injectable()
 export class OrdersService {
-  private api: string;
+  private protocol = "https"
+  private hostname = "api.starbook.co"
+  private api_version = "v0.9.1"
+  private api = 'https://api.starbook.co/v0.9.1/';
+
   private auth;
+
   constructor(
     private http: Http,
     private navigationService: NavigationService) {
-    this.api = 'https://api.starbook.co/v0.9.1/';
-    // this.api = 'http://localhost/t0.9.1/';
+
+    if (isBrowser) {
+      if (document.location.hostname === "www.starbook.co") {
+        this.api_version = "v0.9.1"
+      } else {
+        this.api_version = "t0.9.1"
+      }
+    }
+    this.api = this.protocol + "://" + this.hostname + "/" + this.api_version + "/";
+
   }
 
   private _makeHeaders() {
