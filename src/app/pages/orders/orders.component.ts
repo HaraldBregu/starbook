@@ -391,11 +391,15 @@ export class OrdersComponent implements OnInit, OnDestroy {
       newDetail.title = ""
       newDetail.amount = 0
 
-      console.log('detail is: ' + JSON.stringify(newDetail));
-      console.log('new details are: ' + JSON.stringify(this.newDetails));
+      // console.log('detail is: ' + JSON.stringify(newDetail));
+      // console.log('new details are: ' + JSON.stringify(this.newDetails));
     } else {
       // Detail is not complete
     }
+  }
+
+  onAmountChange() {
+
   }
 
   updateDetailsOrder() {
@@ -405,12 +409,12 @@ export class OrdersComponent implements OnInit, OnDestroy {
     this.ordersService.updateOrder(this.selectedOrder._id, {action: 'UPDATE_DETAILS', details:this.newDetails}).then((response) => {
       this.popup = null;
       this.update_state.loading = false;
-      console.log('Response: ' + JSON.stringify(response));
+      // console.log('Response: ' + JSON.stringify(response));
       // this.getActiveOrders()
     }).catch((error) => {
       this.popup = null;
       this.update_state.loading = false;
-      console.log('Error: ' + JSON.stringify(error));
+      // console.log('Error: ' + JSON.stringify(error));
     });
   }
 

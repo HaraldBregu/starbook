@@ -6004,20 +6004,6 @@ app-orders {
           position: absolute;
           top: -13px;
           width: 100%; }
-    app-orders .orders-container .popup-shadow {
-      position: fixed;
-      top: 0;
-      right: 0;
-      bottom: 0;
-      left: 0;
-      z-index: 1050;
-      display: none;
-      overflow: hidden;
-      -webkit-overflow-scrolling: touch;
-      outline: 0;
-      overflow-x: hidden;
-      overflow-y: auto;
-      background: rgba(0, 0, 0, 0.3); }
     app-orders .orders-container .popup-container {
       position: fixed;
       top: 0;
@@ -6030,8 +6016,21 @@ app-orders {
       -webkit-overflow-scrolling: touch;
       outline: 0;
       overflow-x: hidden;
-      overflow-y: auto;
-      background: rgba(0, 0, 0, 0.3); }
+      overflow-y: auto; }
+      app-orders .orders-container .popup-container .popup-shadow {
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        z-index: -1;
+        display: none;
+        overflow: hidden;
+        -webkit-overflow-scrolling: touch;
+        outline: 0;
+        overflow-x: hidden;
+        overflow-y: auto;
+        background: rgba(0, 0, 0, 0.3); }
       app-orders .orders-container .popup-container .popup {
         background: white;
         width: 500px;
@@ -6066,6 +6065,8 @@ app-orders {
             app-orders .orders-container .popup-container .popup .popup-body .rest .price {
               font-size: 38px;
               font-weight: 500; }
+          app-orders .orders-container .popup-container .popup .popup-body .price-field {
+            text-align: right; }
           app-orders .orders-container .popup-container .popup .popup-body .message {
             text-align: center;
             padding: 20px 0; }
@@ -6133,6 +6134,18 @@ app-orders {
     app-orders .orders-container .popup-container .popup {
       width: 100%;
       margin-top: 70px; }
+    app-orders .orders-container .orders .order-container .order .order-body .content .payment .items .item {
+      width: 50%; }
+    app-orders .orders-container .orders .order-container .order .order-body .content .payment .items .amount {
+      width: 50%; }
+    app-orders .orders-container .orders .order-container .order .order-body .content .price .items .item {
+      width: 50%; }
+    app-orders .orders-container .orders .order-container .order .order-body .content .price .items .amount {
+      width: 50%; }
+    app-orders .orders-container .orders .order-container .order .order-body .content .price .items .item {
+      width: 50%; }
+    app-orders .orders-container .orders .order-container .order .order-body .content .price .items .amount {
+      width: 50%; }
     app-orders .orders-container .orders .order-container .order .order-body .content .price {
       width: 100%; } }
 

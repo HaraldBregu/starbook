@@ -88,8 +88,8 @@
 
 
   <!--  POPUP -->
-  <!-- <div class="popup-shadow" [ngStyle]="{'display' : popup ? 'block' : 'none'}" (click)="closePopup()"></div> -->
   <div class="popup-container" [ngStyle]="{'display' : popup ? 'block' : 'none'}">
+    <div class="popup-shadow" [ngStyle]="{'display' : popup ? 'block' : 'none'}" (click)="closePopup()"></div>
     <div class="popup" *ngIf="popup==='ACCEPT_WORK'">
       <div class="popup-header">
         <h3>Conferma il servizio richiesto</h3>
@@ -128,7 +128,7 @@
 
           <div class="input-group new">
             <input type="text" id="descriptionInput" placeholder="Titolo" class="form-control item" [(ngModel)]="newDetail.title" [ngModelOptions]="{standalone: true}">
-            <input type="text" id="amountInput" placeholder="0.00" class="form-control amount" [(ngModel)]="newDetail.amount" [ngModelOptions]="{standalone: true}">
+            <input type="text" id="amountInput" placeholder="0" class="form-control amount" [(ngModel)]="newDetail.amount" [ngModelOptions]="{standalone: true}">
           </div>
 
           <div class="actions">
@@ -159,7 +159,7 @@
           <span class="price">{{getRestToPay()/100}}€</span>
         </div>
         <div class="input-group">
-          <input type="text" class="form-control" placeholder="0.00" [(ngModel)]="upfront" (ngModelChange)="onAmountChange($event)" [ngModelOptions]="{standalone: true}">
+          <input type="text" class="form-control price-field" placeholder="0" [(ngModel)]="upfront" (ngModelChange)="onAmountChange($event)" [ngModelOptions]="{standalone: true}">
           <span class="input-group-addon">€</span>
         </div>
         <div class="actions">
