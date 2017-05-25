@@ -239,7 +239,7 @@ export class ServiceComponent implements OnInit {
       formId ++;
     });
 
-    console.log('servicesData: ' + JSON.stringify(this.servicesData));
+    // console.log('servicesData: ' + JSON.stringify(this.servicesData));
 
     this.calculateOrder();
   }

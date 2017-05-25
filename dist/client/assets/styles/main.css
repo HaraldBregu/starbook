@@ -6035,27 +6035,19 @@ app-orders {
       app-orders .orders-container .popup-container .popup {
         background: white;
         width: 500px;
+        padding: 30px;
         margin: 80px auto;
         overflow-x: hidden;
         overflow-y: scroll;
         box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5); }
         app-orders .orders-container .popup-container .popup .popup-header {
-          padding: 30px;
           text-align: center; }
         app-orders .orders-container .popup-container .popup .popup-body {
-          padding: 30px; }
+          padding-top: 30px; }
           app-orders .orders-container .popup-container .popup .popup-body .input-group-addon {
             padding: 0 20px;
             font-size: 24px;
             font-weight: 600; }
-          app-orders .orders-container .popup-container .popup .popup-body .btn {
-            width: 100%;
-            font-weight: 500;
-            outline: none; }
-          app-orders .orders-container .popup-container .popup .popup-body .btn-warning {
-            color: black; }
-          app-orders .orders-container .popup-container .popup .popup-body .btn-warning:hover {
-            color: black !important; }
           app-orders .orders-container .popup-container .popup .popup-body .total {
             padding: 0 0 30px;
             text-align: center; }
@@ -6079,14 +6071,56 @@ app-orders {
             padding: 20px 0; }
           app-orders .orders-container .popup-container .popup .popup-body .details {
             overflow: auto; }
-            app-orders .orders-container .popup-container .popup .popup-body .details .item {
-              float: left;
-              width: 80%; }
-            app-orders .orders-container .popup-container .popup .popup-body .details .amount {
-              float: left;
-              width: 20%; }
-              app-orders .orders-container .popup-container .popup .popup-body .details .amount .form-control {
-                text-align: center; }
+            app-orders .orders-container .popup-container .popup .popup-body .details .form-group {
+              overflow: auto;
+              margin-bottom: 5px; }
+              app-orders .orders-container .popup-container .popup .popup-body .details .form-group .item {
+                float: left;
+                width: 70%; }
+              app-orders .orders-container .popup-container .popup .popup-body .details .form-group .amount {
+                float: left;
+                width: 20%;
+                text-align: center;
+                border-left: none; }
+            app-orders .orders-container .popup-container .popup .popup-body .details .list {
+              overflow: auto;
+              margin-bottom: 5px; }
+              app-orders .orders-container .popup-container .popup .popup-body .details .list .item {
+                float: left;
+                width: 75%; }
+              app-orders .orders-container .popup-container .popup .popup-body .details .list .amount {
+                float: left;
+                width: 15%;
+                text-align: center;
+                border-left: none;
+                border-right: none;
+                padding: 5px; }
+              app-orders .orders-container .popup-container .popup .popup-body .details .list button {
+                width: 10%;
+                outline: none; }
+            app-orders .orders-container .popup-container .popup .popup-body .details .new {
+              overflow: auto;
+              margin-bottom: 5px; }
+              app-orders .orders-container .popup-container .popup .popup-body .details .new .item {
+                float: left;
+                width: 75%; }
+              app-orders .orders-container .popup-container .popup .popup-body .details .new .amount {
+                float: left;
+                width: 25%;
+                text-align: center;
+                border-left: none; }
+            app-orders .orders-container .popup-container .popup .popup-body .details .actions {
+              padding: 0 0 30px; }
+              app-orders .orders-container .popup-container .popup .popup-body .details .actions .btn-link {
+                font-size: 18px; }
+          app-orders .orders-container .popup-container .popup .popup-body .actions .btn {
+            width: 100%;
+            font-weight: 500;
+            outline: none; }
+          app-orders .orders-container .popup-container .popup .popup-body .actions .btn-warning {
+            color: black; }
+          app-orders .orders-container .popup-container .popup .popup-body .actions .btn-warning:hover {
+            color: black !important; }
         app-orders .orders-container .popup-container .popup .popup-footer {
           padding: 30px; }
   @media (max-width: 1024px) {

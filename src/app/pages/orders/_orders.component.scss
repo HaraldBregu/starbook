@@ -237,31 +237,20 @@ app-orders {
       .popup {
         background: white;
         width: 500px;
+        padding: 30px;
         margin: 80px auto;
         overflow-x: hidden;
         overflow-y: scroll;
         box-shadow: 0 5px 15px rgba(0,0,0,.5);
         .popup-header {
-          padding: 30px;
           text-align: center;
         }
         .popup-body {
-          padding: 30px;
+          padding-top: 30px;
           .input-group-addon {
             padding: 0 20px;
             font-size: 24px;
             font-weight: 600;
-          }
-          .btn {
-            width: 100%;
-            font-weight: 500;
-            outline: none;
-          }
-          .btn-warning {
-            color: black;
-          }
-          .btn-warning:hover {
-            color: black !important;
           }
           .total {
             padding: 0 0 30px;
@@ -293,16 +282,72 @@ app-orders {
           }
           .details {
             overflow: auto;
-            .item {
-              float: left;
-              width: 80%;
-            }
-            .amount {
-              float: left;
-              width: 20%;
-              .form-control {
-                text-align: center;
+            .form-group {
+              overflow: auto;
+              margin-bottom: 5px;
+              .item {
+                float: left;
+                width: 70%;
               }
+              .amount {
+                float: left;
+                width: 20%;
+                text-align: center;
+                border-left: none;
+              }
+            }
+            .list {
+              overflow: auto;
+              margin-bottom: 5px;
+              .item {
+                float: left;
+                width: 75%;
+              }
+              .amount {
+                float: left;
+                width: 15%;
+                text-align: center;
+                border-left: none;
+                border-right: none;
+                padding: 5px;
+              }
+              button {
+                width: 10%;
+                outline: none;
+              }
+            }
+            .new {
+              overflow: auto;
+              margin-bottom: 5px;
+              .item {
+                float: left;
+                width: 75%;
+              }
+              .amount {
+                float: left;
+                width: 25%;
+                text-align: center;
+                border-left: none;
+              }
+            }
+            .actions {
+              padding: 0 0 30px;
+              .btn-link {
+                font-size: 18px;
+              }
+            }
+          }
+          .actions {
+            .btn {
+              width: 100%;
+              font-weight: 500;
+              outline: none;
+            }
+            .btn-warning {
+              color: black;
+            }
+            .btn-warning:hover {
+              color: black !important;
             }
           }
         }

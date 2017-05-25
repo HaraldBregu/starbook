@@ -72,9 +72,19 @@ export class OrdersComponent implements OnInit, OnDestroy {
     count : 0,
     amount : 0
   };
+  public newDetail = {
+    title : "",
+    type : "detail",
+    count : 0,
+    amount : 0
+  };
   public details = [];
+  public newDetails = [];
 
   public payment_state = {
+    loading : false,
+  }
+  public update_state = {
     loading : false,
   }
 
@@ -104,17 +114,9 @@ export class OrdersComponent implements OnInit, OnDestroy {
         window.scrollTo(0, 0);
         this.page = params['page']
         if (this.page === 'requests') {
-          this.navigationService.updateMessage("Ordini...");
-          this.ordersService.getOrders([{name: 'order_type', value: 'ACTIVE'}]).then((response) => {
-            this.navigationService.updateMessage("Ordini");
-            this.pageData = response.result;
-          }).catch((error) => {
-            this.navigationService.updateMessage("Ordini");
-            this.pageData = [];
-          });
+          this.getActiveOrders()
         } else if (this.page === 'estimates') {
           this.router.navigate(['orders/requests']);
-
           // if (isBrowser) {
           //   this.estimates = JSON.parse(localStorage.getItem('estimates'))
           // }
@@ -245,6 +247,16 @@ export class OrdersComponent implements OnInit, OnDestroy {
   ///////////////////////////
   ////////// ORDER //////////
   ///////////////////////////
+  getActiveOrders() {
+    this.navigationService.updateMessage("Ordini...");
+    this.ordersService.getOrders([{name: 'order_type', value: 'ACTIVE'}]).then((response) => {
+      this.navigationService.updateMessage("Ordini");
+      this.pageData = response.result;
+    }).catch((error) => {
+      this.navigationService.updateMessage("Ordini");
+      this.pageData = [];
+    });
+  }
   deleteEstimateQuotationFromLocal(object) {
     if (isBrowser) {
       var estimates = JSON.parse(localStorage.getItem('estimates'))
@@ -259,23 +271,22 @@ export class OrdersComponent implements OnInit, OnDestroy {
     }
   }
 
-  ////////////////////////////////////////
-  ////////////// PAYMENT /////////////////
-  ////////////////////////////////////////
+  //////////////////////////////////////
+  ////////////// POPUP /////////////////
+  //////////////////////////////////////
+  openPopup(popup, order) {
+    this.selectedOrder = order;
+    this.popup = popup;
+    this.newDetails = [];
+    this.newDetails = this.newDetails.concat(order.details);
+  }
+  closePopup() {
+    this.popup = null;
+    this.getActiveOrders()
+  }
 
   acceptOrder() {
     this.ordersService.acceptWork(this.selectedOrder._id, 'ACCEPT').then((response) => {
-      this.popup = null;
-      // console.log('Response: ' + JSON.stringify(response));
-    }).catch((error) => {
-      this.popup = null;
-      // console.log('Error: ' + JSON.stringify(error));
-    });
-  }
-  updateDetailsOrder() {
-    this.detail.amount = Number(this.detail.amount)
-    this.details.push(this.detail)
-    this.ordersService.updateOrder(this.selectedOrder._id, {action: 'UPDATE_TOTAL', details:this.details}).then((response) => {
       this.popup = null;
       // console.log('Response: ' + JSON.stringify(response));
     }).catch((error) => {
@@ -340,18 +351,71 @@ export class OrdersComponent implements OnInit, OnDestroy {
     return this.getTotalAmount(details) - this.getTotalMilestones(milestones)
   }
 
-  openPopup(popup, order) {
-    this.selectedOrder = order;
-    this.popup = popup;
+  // updateNewDetailTitle(title) {
+  //   console.log('title is : ' + title);
+  // }
+  detailItemTitleChangeAtIndex(index) {
+    // var newDetail = this.newDetails[index]
+    // this.newDetails[index] = newDetail;
+    // console.log('detail title is: ' + newDetail.title);
+    // console.log('detail change change: ' + newDetail);
   }
-  closePopup() {
-    this.popup = null;
+  detailItemAmountChangeAtIndex(index) {
+    // console.log('detail amount change');
+    // return 2300;
+  }
+  getAmountItem(amount) {
+    if (isNaN(amount)) {return 0;}
+    return amount/100;
+  }
+  deleteDetailAtIndex(index) {
+    this.newDetails.splice(index,1);
+  }
+  newDetailItemChange() {
+
+  }
+  newDetailAmountChange() {
+
+  }
+  addNewItem(newDetail) {
+    if (newDetail.title) {
+      newDetail.amount = Number(newDetail.amount)
+      var detail = {
+        title : newDetail.title,
+        type : newDetail.type,
+        count : newDetail.count,
+        amount : newDetail.amount
+      }
+      this.newDetails.push(detail)
+
+      newDetail.title = ""
+      newDetail.amount = 0
+
+      console.log('detail is: ' + JSON.stringify(newDetail));
+      console.log('new details are: ' + JSON.stringify(this.newDetails));
+    } else {
+      // Detail is not complete
+    }
   }
 
-  onAmountChange() {
-    console.log('amount change');
+  updateDetailsOrder() {
+    if (this.update_state.loading) {return;}
+    this.update_state.loading = true;
+    // this.detail.amount = Number(this.detail.amount)
+    this.ordersService.updateOrder(this.selectedOrder._id, {action: 'UPDATE_DETAILS', details:this.newDetails}).then((response) => {
+      this.popup = null;
+      this.update_state.loading = false;
+      console.log('Response: ' + JSON.stringify(response));
+      // this.getActiveOrders()
+    }).catch((error) => {
+      this.popup = null;
+      this.update_state.loading = false;
+      console.log('Error: ' + JSON.stringify(error));
+    });
   }
 
+
+  // old
   confirmOrder(id) {
     this.popupsService.activate({type: 'confirmOrder', data: {orderId: id}});
   }

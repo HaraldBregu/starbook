@@ -45,12 +45,10 @@ export class OrderService {
       if (document.location.hostname === "www.starbook.co") {
         this.api_version = "v0.9.1"
       } else {
-        // this.protocol = "http"
-        // this.hostname = "localhost"
         this.api_version = "t0.9.1"
       }
     }
-  
+
     this.api = this.protocol + "://" + this.hostname + "/" + this.api_version + "/";
 
     // this.api = 'http://localhost/t0.9.1/';

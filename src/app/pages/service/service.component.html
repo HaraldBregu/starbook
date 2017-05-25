@@ -36,7 +36,7 @@
                     <i *ngIf="item.selected===false" class="checkbox empty"></i>
                     <h4>{{item.title}}</h4>
                   </div>
-                  <div class="item-description" *ngIf="item.description !== ''">
+                  <div class="item-description" *ngIf="item.description!==''">
                     <p>{{ item.description }}</p>
                   </div>
                   <div class="item-image" *ngIf="item.image_url !== ''" [ngStyle]="{'background-image': 'url(' + item.image_url + ')'}"></div>

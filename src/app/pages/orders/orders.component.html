@@ -45,7 +45,7 @@
               </div>
             </div>
             <div class="description">
-              <span>{{order.description}}</span>
+              <span>Messaggio: {{order.description}}</span>
             </div>
             <div class="price" *ngIf="getTotalAmount(order.details)>0">
               <div class="items">
@@ -96,32 +96,52 @@
         <p>Confermando prendi l'impegno per effettuare il lavoro richiesto dal cliente.</p>
       </div>
       <div class="popup-body">
-        <div class="form-group">
-          <button type="button" id="next" class="btn btn-warning" (click)="acceptOrder()">Conferma</button>
-        </div>
-        <div class="form-group">
-          <button type="button" id="next" class="btn btn-secondary" (click)="closePopup()">Chiudi</button>
+        <div class="actions">
+          <div class="form-group">
+            <button type="button" id="next" class="btn btn-warning" (click)="acceptOrder()">Conferma</button>
+          </div>
+          <div class="form-group">
+            <button type="button" id="next" class="btn btn-secondary" (click)="closePopup()">Chiudi</button>
+          </div>
         </div>
       </div>
     </div>
     <div class="popup" *ngIf="popup==='UPDATE_TOTAL'">
       <div class="popup-header">
-        <h3>Aggiorna la fattura della lavorazione</h3>
+        <h3>Aggiorna la fattura</h3>
+        <p>Inserisci l'articolo e il prezzo in euro. Il totale verra calcolato in base agli articoli inseriti.</p>
       </div>
       <div class="popup-body">
         <div class="details">
-          <div class="form-group item">
-            <input type="text" id="descriptionInput"  placeholder="articolo" class="form-control" [(ngModel)]="detail.title" [ngModelOptions]="{standalone: true}">
+
+          <div class="input-group list" *ngFor="let detail of newDetails; let i=index">
+            <input type="text" id="descriptionInput"  placeholder="Titolo" class="form-control item" [(ngModel)]="detail.title" (ngModelChange)="detailItemTitleChangeAtIndex(i)" [ngModelOptions]="{standalone: true}">
+            <input type="text" id="amountInput" placeholder="0.00" class="form-control amount" [(ngModel)]="detail.amount" (ngModelChange)="detailItemAmountChangeAtIndex(i)" [ngModelOptions]="{standalone: true}">
+            <button type="button" id="next" class="btn btn-secondary" (click)="deleteDetailAtIndex(i)">-</button>
           </div>
-          <div class="form-group amount">
-            <input type="text" id="amountInput" placeholder="importo" class="form-control" [(ngModel)]="detail.amount" [ngModelOptions]="{standalone: true}">
+
+          <!-- <div class="input-group list" *ngFor="let detail of selectedOrder.details; let i=index">
+            <input type="text" id="descriptionInput"  placeholder="Titolo" class="form-control item" value="{{detail.title}}" (ngModelChange)="detailItemTitleChangeAtIndex(i)" [ngModelOptions]="{standalone: true}">
+            <input type="text" id="amountInput" placeholder="0.00" class="form-control amount" value="{{detail.amount/100}}" (ngModelChange)="detailItemAmountChangeAtIndex(i)" [ngModelOptions]="{standalone: true}">
+            <button type="button" id="next" class="btn btn-secondary" (click)="deleteDetailAtIndex(i)">-</button>
+          </div> -->
+
+          <div class="input-group new">
+            <input type="text" id="descriptionInput" placeholder="Titolo" class="form-control item" [(ngModel)]="newDetail.title" [ngModelOptions]="{standalone: true}">
+            <input type="text" id="amountInput" placeholder="0.00" class="form-control amount" [(ngModel)]="newDetail.amount" [ngModelOptions]="{standalone: true}">
+          </div>
+
+          <div class="actions">
+            <button type="button" id="next" class="btn btn-link" (click)="addNewItem(newDetail)">+ Aggiungi articolo</button>
           </div>
         </div>
-        <div class="form-group">
-          <button type="button" id="next" class="btn btn-warning" (click)="updateDetailsOrder()">Aggiorna</button>
-        </div>
-        <div class="form-group">
-          <button type="button" id="next" class="btn btn-secondary" (click)="closePopup()">Chiudi</button>
+        <div class="actions">
+          <div class="form-group">
+            <button type="button" id="next" class="btn btn-warning" (click)="updateDetailsOrder()"><i class="fa fa-circle-o-notch animate" *ngIf="update_state.loading"></i> Aggiorna</button>
+          </div>
+          <div class="form-group">
+            <button type="button" id="next" class="btn btn-secondary" (click)="closePopup()">Chiudi</button>
+          </div>
         </div>
       </div>
     </div>
@@ -142,17 +162,19 @@
           <input type="text" class="form-control" placeholder="0.00" [(ngModel)]="upfront" (ngModelChange)="onAmountChange($event)" [ngModelOptions]="{standalone: true}">
           <span class="input-group-addon">€</span>
         </div>
-        <div class="form-group">
-          <button type="button" id="next" class="btn btn-primary" (click)="payUpfront()"><i class="fa fa-circle-o-notch animate" *ngIf="payment_state.loading"></i> Acconto</button>
-        </div>
-        <div class="message">
-          <span>o procedi con il resto</span>
-        </div>
-        <div class="form-group" *ngIf="getRestToPay()>0">
-          <button type="button" id="next" class="btn btn-warning" (click)="payRestAmount(getRestToPay())"><i class="fa fa-circle-o-notch animate" *ngIf="payment_state.loading"></i> Paga il resto {{getRestToPay()/100}}€</button>
-        </div>
-        <div class="form-group">
-          <button type="button" id="next" class="btn btn-secondary" (click)="closePopup()">Chiudi</button>
+        <div class="actions">
+          <div class="form-group">
+            <button type="button" id="next" class="btn btn-primary" (click)="payUpfront()"><i class="fa fa-circle-o-notch animate" *ngIf="payment_state.loading"></i> Acconto</button>
+          </div>
+          <div class="message" *ngIf="getRestToPay()>0">
+            <span>o procedi con il resto</span>
+          </div>
+          <div class="form-group" *ngIf="getRestToPay()>0">
+            <button type="button" id="next" class="btn btn-warning" (click)="payRestAmount(getRestToPay())"><i class="fa fa-circle-o-notch animate" *ngIf="payment_state.loading"></i> Paga il resto {{getRestToPay()/100}}€</button>
+          </div>
+          <div class="form-group">
+            <button type="button" id="next" class="btn btn-secondary" (click)="closePopup()">Chiudi</button>
+          </div>
         </div>
       </div>
     </div>
