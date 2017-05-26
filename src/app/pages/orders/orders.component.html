@@ -115,8 +115,10 @@
         <div class="details">
 
           <div class="input-group list" *ngFor="let detail of newDetails; let i=index">
-            <input type="text" id="descriptionInput"  placeholder="Titolo" class="form-control item" [(ngModel)]="detail.title" (ngModelChange)="detailItemTitleChangeAtIndex(i)" [ngModelOptions]="{standalone: true}">
-            <input type="text" id="amountInput" placeholder="0.00" class="form-control amount" [(ngModel)]="detail.amount" (ngModelChange)="detailItemAmountChangeAtIndex(i)" [ngModelOptions]="{standalone: true}">
+            <input type="text" id="descriptionInput"  placeholder="Titolo" class="form-control item" [(ngModel)]="detail.title" [ngModelOptions]="{standalone: true}">
+            <input type="text" id="amountInput" placeholder="0" class="form-control amount" [(ngModel)]="detail.amount" (ngModelChange)="detailItemAmountChangeAtIndex(i)" [ngModelOptions]="{standalone: true}">
+            <!-- <input type="text" id="amountInput" placeholder="0" class="form-control amount" [value]="formatAmount(detail)" [ngModel]="detail.amount" (ngModelChange)="detailItemAmountChangeAtIndex(i)" [ngModelOptions]="{standalone: true}"> -->
+            <!-- <input type="text" id="amountInput" placeholder="0" class="form-control amount" [ngModel]="formatAmount(detail)" appFormatter (ngModelChange)="detailItemAmountChangeAtIndex(detail, i)" [ngModelOptions]="{standalone: true}"> -->
             <button type="button" id="next" class="btn btn-secondary" (click)="deleteDetailAtIndex(i)">-</button>
           </div>
 
@@ -126,13 +128,10 @@
             <button type="button" id="next" class="btn btn-secondary" (click)="deleteDetailAtIndex(i)">-</button>
           </div> -->
 
-          <div class="input-group new">
+          <div class="input-group list">
             <input type="text" id="descriptionInput" placeholder="Titolo" class="form-control item" [(ngModel)]="newDetail.title" [ngModelOptions]="{standalone: true}">
             <input type="text" id="amountInput" placeholder="0" class="form-control amount" [(ngModel)]="newDetail.amount" [ngModelOptions]="{standalone: true}">
-          </div>
-
-          <div class="actions">
-            <button type="button" id="next" class="btn btn-link" (click)="addNewItem(newDetail)">+ Aggiungi articolo</button>
+            <button type="button" id="next" class="btn btn-secondary" (click)="addNewItem(newDetail)">+</button>
           </div>
         </div>
         <div class="actions">
@@ -158,9 +157,15 @@
           <span class="top-title">Resto</span>
           <span class="price">{{getRestToPay()/100}}€</span>
         </div>
-        <div class="input-group">
-          <input type="text" class="form-control price-field" placeholder="0" [(ngModel)]="upfront" (ngModelChange)="onAmountChange($event)" [ngModelOptions]="{standalone: true}">
-          <span class="input-group-addon">€</span>
+        <div class="input">
+          <div class="input-group">
+            <!-- <input type="text" class="form-control price-field"  placeholder="0" [value]="upfront" [(ngModel)]="upfront" (ngModelChange)="onUpfrontChange($event)" [ngModelOptions]="{standalone: true}"> -->
+            <!-- <input type="text" class="form-control price-field" placeholder="0" [(ngModel)]="upfront" (keyup)="onUpfrontChange()" (change)="onUpfrontChange()" (focus)="selectAllContent($event)"> -->
+            <!-- <input type="text" class="form-control price-field" placeholder="0" value="upfront/100" [ngModel]="upfront" (ngModelChange)="changeUpFrontValue($event)"/> -->
+            <input type="text" class="form-control price-field" placeholder="0" [ngModel]="upfront" appFormatter (ngModelChange)="changeUpFrontValue($event)"/>
+            <!-- <span class="input-group-addon">.00</span> -->
+            <span class="input-group-addon">€</span>
+          </div>
         </div>
         <div class="actions">
           <div class="form-group">

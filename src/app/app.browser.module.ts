@@ -66,6 +66,9 @@ import { NotfoundComponent } from './pages/notfound/notfound.component';
 
 import { ClipboardDirective } from './directives/clipboard.directive';
 
+import { FormatterDirective } from './directives/formatter.directive';
+import { CurrencyPipe } from './pipes/currency.pipe';
+
 export class HammerConfig extends HammerGestureConfig  {
   overrides = <any> {
     'swipe': {velocity: 0.4, threshold: 20}
@@ -96,9 +99,7 @@ let declarations = [
   OrdersComponent,
   ProfileComponent,
   PopupsComponent,
-  PhonePipe,
   ServiceComponent,
-  ExpiryPipe,
   LoadingComponent,
   FacebookComponent,
   WizardComponent,
@@ -114,7 +115,16 @@ let declarations = [
   ContactComponent,
   NotfoundComponent,
 
-  ClipboardDirective
+  ClipboardDirective,
+  FormatterDirective,
+
+  CurrencyPipe,
+  PhonePipe,
+  ExpiryPipe,
+];
+let exp = [
+  FormatterDirective,
+  CurrencyPipe,
 ];
 
 if (isBrowser) {
@@ -159,8 +169,10 @@ else {
     SeoService,
     ContactService,
     ShareService,
-    ClipboardService
-  ]
+    ClipboardService,
+    CurrencyPipe
+  ],
+  exports:exp
 })
 export class AppModule {
 

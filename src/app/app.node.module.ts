@@ -79,6 +79,10 @@ import { ClipboardDirective } from './directives/clipboard.directive';
 //   };
 // }
 
+import { FormatterDirective } from './directives/formatter.directive';
+import { CurrencyPipe } from './pipes/currency.pipe';
+
+
 let imports = [
   NodeHttpModule,
   UniversalModule,
@@ -103,10 +107,8 @@ let declarations = [
   OrdersComponent,
   ProfileComponent,
   PopupsComponent,
-  PhonePipe,
   HomeComponent,
   LandingComponent,
-  ExpiryPipe,
   LoadingComponent,
   FacebookComponent,
   WizardComponent,
@@ -122,8 +124,18 @@ let declarations = [
   ContactComponent,
   NotfoundComponent,
 
-  ClipboardDirective
+  ClipboardDirective,
+  FormatterDirective,
+
+  CurrencyPipe,
+  PhonePipe,
+  ExpiryPipe,
 ];
+let exp = [
+  FormatterDirective,
+  CurrencyPipe,
+];
+
 
 if (isBrowser) {
   let CalendarModule = require('primeng/components/calendar/calendar').CalendarModule;
@@ -167,8 +179,10 @@ else {
     SeoService,
     ContactService,
     ShareService,
-    ClipboardService
-  ]
+    ClipboardService,
+    CurrencyPipe
+  ],
+  exports:exp
 })
 export class AppModule {
 

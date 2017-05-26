@@ -6045,8 +6045,7 @@ app-orders {
           padding-top: 30px; }
           app-orders .orders-container .popup-container .popup .popup-body .input-group-addon {
             padding: 0 20px;
-            font-size: 24px;
-            font-weight: 600; }
+            font-size: 18px; }
           app-orders .orders-container .popup-container .popup .popup-body .total {
             padding: 0 0 30px;
             text-align: center; }
@@ -6114,14 +6113,19 @@ app-orders {
               padding: 0 0 30px; }
               app-orders .orders-container .popup-container .popup .popup-body .details .actions .btn-link {
                 font-size: 18px; }
-          app-orders .orders-container .popup-container .popup .popup-body .actions .btn {
-            width: 100%;
-            font-weight: 500;
-            outline: none; }
-          app-orders .orders-container .popup-container .popup .popup-body .actions .btn-warning {
-            color: black; }
-          app-orders .orders-container .popup-container .popup .popup-body .actions .btn-warning:hover {
-            color: black !important; }
+          app-orders .orders-container .popup-container .popup .popup-body .actions {
+            padding-top: 30px; }
+            app-orders .orders-container .popup-container .popup .popup-body .actions .btn {
+              width: 100%;
+              font-weight: 500;
+              outline: none; }
+            app-orders .orders-container .popup-container .popup .popup-body .actions .btn-warning {
+              color: black; }
+            app-orders .orders-container .popup-container .popup .popup-body .actions .btn-warning:hover {
+              color: black !important; }
+          app-orders .orders-container .popup-container .popup .popup-body .input {
+            max-width: 200px;
+            margin: auto; }
         app-orders .orders-container .popup-container .popup .popup-footer {
           padding: 30px; }
   @media (max-width: 1024px) {
@@ -6146,6 +6150,8 @@ app-orders {
       width: 50%; }
     app-orders .orders-container .orders .order-container .order .order-body .content .price .items .amount {
       width: 50%; }
+    app-orders .orders-container .popup-container .popup {
+      padding: 30px 10px; }
     app-orders .orders-container .orders .order-container .order .order-body .content .price {
       width: 100%; } }
 

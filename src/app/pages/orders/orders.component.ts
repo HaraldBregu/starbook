@@ -8,6 +8,7 @@ import { AnalyticsService } from '../../shared/analytics.service';
 import { isBrowser } from "angular2-universal";
 import { OrderService } from '../../order/order.service';
 import { ShareService } from '../share/share.service';
+import { CurrencyPipe } from "../../pipes/currency.pipe";
 
 export interface IOrder {
   _id: string;
@@ -96,7 +97,8 @@ export class OrdersComponent implements OnInit, OnDestroy {
     private popupsService: PopupsService,
     private analyticsService: AnalyticsService,
     private orderService: OrderService,
-    private shareService: ShareService) {
+    private shareService: ShareService,
+    private currencyPipe: CurrencyPipe) {
     this.navigationService.updateMessage("Ordini");
     if (isBrowser) {
       if (!localStorage.getItem('auth')) {
@@ -272,51 +274,8 @@ export class OrdersComponent implements OnInit, OnDestroy {
   }
 
   //////////////////////////////////////
-  ////////////// POPUP /////////////////
+  ////////////// UTILS /////////////////
   //////////////////////////////////////
-  openPopup(popup, order) {
-    this.selectedOrder = order;
-    this.popup = popup;
-    this.newDetails = [];
-    this.newDetails = this.newDetails.concat(order.details);
-  }
-  closePopup() {
-    this.popup = null;
-    this.getActiveOrders()
-  }
-
-  acceptOrder() {
-    this.ordersService.acceptWork(this.selectedOrder._id, 'ACCEPT').then((response) => {
-      this.popup = null;
-      // console.log('Response: ' + JSON.stringify(response));
-    }).catch((error) => {
-      this.popup = null;
-      // console.log('Error: ' + JSON.stringify(error));
-    });
-  }
-  payUpfront() {
-    if (this.payment_state.loading) {return;}
-    this.payment_state.loading = true;
-    this.ordersService.updateOrder(this.selectedOrder._id, {action: 'PAY_UPFRONT', upfront:this.upfront}).then((response) => {
-      this.popup = null;
-      this.payment_state.loading = false;
-    }).catch((error) => {
-      this.popup = null;
-      this.payment_state.loading = false;
-    });
-  }
-  payRestAmount(rest) {
-    if (this.payment_state.loading) {return;}
-    this.payment_state.loading = true;
-    this.ordersService.updateOrder(this.selectedOrder._id, {action: 'PAY_UPFRONT', upfront:rest}).then((response) => {
-      this.popup = null;
-      this.payment_state.loading = false;
-    }).catch((error) => {
-      this.popup = null;
-      this.payment_state.loading = false;
-    });
-  }
-
   getTotalAmount(details) {
     var newValue = 0
     for (var i = 0; i < details.length; i++) {
@@ -351,31 +310,50 @@ export class OrdersComponent implements OnInit, OnDestroy {
     return this.getTotalAmount(details) - this.getTotalMilestones(milestones)
   }
 
-  // updateNewDetailTitle(title) {
-  //   console.log('title is : ' + title);
-  // }
-  detailItemTitleChangeAtIndex(index) {
-    // var newDetail = this.newDetails[index]
-    // this.newDetails[index] = newDetail;
-    // console.log('detail title is: ' + newDetail.title);
-    // console.log('detail change change: ' + newDetail);
+  //////////////////////////////////////
+  ////////////// POPUP /////////////////
+  //////////////////////////////////////
+  openPopup(popup, order) {
+    this.upfront = 0;
+    this.selectedOrder = order;
+    this.popup = popup;
+    this.newDetails = [];
+    this.newDetails = this.newDetails.concat(order.details);
   }
-  detailItemAmountChangeAtIndex(index) {
-    // console.log('detail amount change');
-    // return 2300;
+  closePopup() {
+    this.popup = null;
+    this.getActiveOrders()
   }
-  getAmountItem(amount) {
-    if (isNaN(amount)) {return 0;}
-    return amount/100;
+
+  ////////////////////////////////////////
+  ///////////// ACEPT ORDER //////////////
+  ////////////////////////////////////////
+  acceptOrder() {
+    this.ordersService.acceptWork(this.selectedOrder._id, 'ACCEPT').then((response) => {
+      this.popup = null;
+      // console.log('Response: ' + JSON.stringify(response));
+    }).catch((error) => {
+      this.popup = null;
+      // console.log('Error: ' + JSON.stringify(error));
+    });
+  }
+
+  ////////////////////////////////////////
+  ///////////// UPDATE ORDER /////////////
+  ////////////////////////////////////////
+  formatAmount(detail){
+    // return this.currencyPipe.transform(detail.amount);
+    return detail.amount/100;
+  }
+
+  detailItemAmountChangeAtIndex(detail, index) {
+    // var dtl = this.newDetails[index];
+    // console.log('detail before is; ' + JSON.stringify(dtl));
+    // dtl.amount = Number(detail.amount)
+    // console.log('detail after is; ' + JSON.stringify(dtl));
   }
   deleteDetailAtIndex(index) {
     this.newDetails.splice(index,1);
-  }
-  newDetailItemChange() {
-
-  }
-  newDetailAmountChange() {
-
   }
   addNewItem(newDetail) {
     if (newDetail.title) {
@@ -387,36 +365,81 @@ export class OrdersComponent implements OnInit, OnDestroy {
         amount : newDetail.amount
       }
       this.newDetails.push(detail)
-
       newDetail.title = ""
       newDetail.amount = 0
-
-      // console.log('detail is: ' + JSON.stringify(newDetail));
-      // console.log('new details are: ' + JSON.stringify(this.newDetails));
     } else {
       // Detail is not complete
+      // return;
     }
   }
-
-  onAmountChange() {
-
-  }
-
   updateDetailsOrder() {
     if (this.update_state.loading) {return;}
     this.update_state.loading = true;
-    // this.detail.amount = Number(this.detail.amount)
+    if (this.newDetail.title) {
+      this.newDetail.amount = Number(this.newDetail.amount)
+      var detail = {
+        title : this.newDetail.title,
+        type : this.newDetail.type,
+        count : this.newDetail.count,
+        amount : this.newDetail.amount
+      }
+      this.newDetails.push(detail)
+      this.newDetail.title = ""
+      this.newDetail.amount = 0
+    }
+
     this.ordersService.updateOrder(this.selectedOrder._id, {action: 'UPDATE_DETAILS', details:this.newDetails}).then((response) => {
       this.popup = null;
       this.update_state.loading = false;
-      // console.log('Response: ' + JSON.stringify(response));
-      // this.getActiveOrders()
+      this.selectedOrder.details = this.newDetails;
     }).catch((error) => {
       this.popup = null;
       this.update_state.loading = false;
-      // console.log('Error: ' + JSON.stringify(error));
     });
   }
+
+  //////////////////////////////////////////
+  ///////////// PAYMENT ////////////////////
+  //////////////////////////////////////////
+  changeUpFrontValue(ev) {
+    this.upfront = ev;
+  }
+  payUpfront() {
+    if (this.payment_state.loading) {return;}
+    this.payment_state.loading = true;
+
+    var fl =  parseFloat(this.upfront).toFixed(2)
+    var flString = fl.toString();
+    var thenum = flString.replace(/[^0-9]/, '');
+
+    this.ordersService.updateOrder(this.selectedOrder._id, {action: 'PAY_UPFRONT', upfront:thenum}).then((response) => {
+      this.popup = null;
+      this.payment_state.loading = false;
+
+      this.selectedOrder.milestones.push({
+        "amount" : Number(thenum),
+      });
+
+    }).catch((error) => {
+      this.popup = null;
+      this.payment_state.loading = false;
+    });
+  }
+  payRestAmount(rest) {
+    if (this.payment_state.loading) {return;}
+    this.payment_state.loading = true;
+    this.ordersService.updateOrder(this.selectedOrder._id, {action: 'PAY_UPFRONT', upfront:rest}).then((response) => {
+      this.popup = null;
+      this.payment_state.loading = false;
+    }).catch((error) => {
+      this.popup = null;
+      this.payment_state.loading = false;
+    });
+  }
+
+
+
+
 
 
   // old

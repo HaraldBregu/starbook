@@ -249,8 +249,7 @@ app-orders {
           padding-top: 30px;
           .input-group-addon {
             padding: 0 20px;
-            font-size: 24px;
-            font-weight: 600;
+            font-size: 18px;
           }
           .total {
             padding: 0 0 30px;
@@ -341,6 +340,7 @@ app-orders {
             }
           }
           .actions {
+            padding-top: 30px;
             .btn {
               width: 100%;
               font-weight: 500;
@@ -352,6 +352,10 @@ app-orders {
             .btn-warning:hover {
               color: black !important;
             }
+          }
+          .input {
+            max-width: 200px;
+            margin: auto;
           }
         }
         .popup-footer {
@@ -392,6 +396,9 @@ app-orders {
     }
     .orders-container .orders .order-container .order .order-body .content .price .items .amount {
       width: 50%;
+    }
+    .orders-container .popup-container .popup {
+      padding: 30px 10px;
     }
     // .orders-container .orders .order-container .order .order-header .item {
     //   width: 55%;
