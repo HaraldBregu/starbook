@@ -68,6 +68,7 @@ import { ClipboardDirective } from './directives/clipboard.directive';
 
 import { FormatterDirective } from './directives/formatter.directive';
 import { CurrencyPipe } from './pipes/currency.pipe';
+import { CurrencyFormatPipe } from './pipes/currency-format.pipe';
 
 export class HammerConfig extends HammerGestureConfig  {
   overrides = <any> {
@@ -121,10 +122,12 @@ let declarations = [
   CurrencyPipe,
   PhonePipe,
   ExpiryPipe,
+  CurrencyFormatPipe
 ];
 let exp = [
   FormatterDirective,
   CurrencyPipe,
+  CurrencyFormatPipe
 ];
 
 if (isBrowser) {

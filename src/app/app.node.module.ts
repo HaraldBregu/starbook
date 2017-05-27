@@ -81,6 +81,7 @@ import { ClipboardDirective } from './directives/clipboard.directive';
 
 import { FormatterDirective } from './directives/formatter.directive';
 import { CurrencyPipe } from './pipes/currency.pipe';
+import { CurrencyFormatPipe } from './pipes/currency-format.pipe';
 
 
 let imports = [
@@ -128,14 +129,15 @@ let declarations = [
   FormatterDirective,
 
   CurrencyPipe,
+  CurrencyFormatPipe,
   PhonePipe,
   ExpiryPipe,
 ];
 let exp = [
   FormatterDirective,
   CurrencyPipe,
+  CurrencyFormatPipe
 ];
-
 
 if (isBrowser) {
   let CalendarModule = require('primeng/components/calendar/calendar').CalendarModule;
@@ -180,7 +182,8 @@ else {
     ContactService,
     ShareService,
     ClipboardService,
-    CurrencyPipe
+    CurrencyPipe,
+    CurrencyFormatPipe
   ],
   exports:exp
 })

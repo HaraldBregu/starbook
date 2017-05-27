@@ -113,10 +113,13 @@
       </div>
       <div class="popup-body">
         <div class="details">
+          <!-- <input [textMask]="{mask: mask}" [(ngModel)]="myModel" type="text"/> -->
+          <!-- <input [mask]="'money2'" type="text" formControlName="zipCode"> -->
 
           <div class="input-group list" *ngFor="let detail of newDetails; let i=index">
             <input type="text" id="descriptionInput"  placeholder="Titolo" class="form-control item" [(ngModel)]="detail.title" [ngModelOptions]="{standalone: true}">
             <input type="text" id="amountInput" placeholder="0" class="form-control amount" [(ngModel)]="detail.amount" (ngModelChange)="detailItemAmountChangeAtIndex(i)" [ngModelOptions]="{standalone: true}">
+            <!-- <input type="text" id="amountInput" placeholder="0" class="form-control amount" [ngModel]="detail.amount | currencyFormat" (ngModelChange)="detailItemAmountChangeAtIndex(i)" [ngModelOptions]="{standalone: true}"> -->
             <!-- <input type="text" id="amountInput" placeholder="0" class="form-control amount" [value]="formatAmount(detail)" [ngModel]="detail.amount" (ngModelChange)="detailItemAmountChangeAtIndex(i)" [ngModelOptions]="{standalone: true}"> -->
             <!-- <input type="text" id="amountInput" placeholder="0" class="form-control amount" [ngModel]="formatAmount(detail)" appFormatter (ngModelChange)="detailItemAmountChangeAtIndex(detail, i)" [ngModelOptions]="{standalone: true}"> -->
             <button type="button" id="next" class="btn btn-secondary" (click)="deleteDetailAtIndex(i)">-</button>

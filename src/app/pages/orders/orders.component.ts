@@ -373,6 +373,7 @@ export class OrdersComponent implements OnInit, OnDestroy {
     }
   }
   updateDetailsOrder() {
+    // console.log('Detail are: ' + JSON.stringify(this.newDetails));
     if (this.update_state.loading) {return;}
     this.update_state.loading = true;
     if (this.newDetail.title) {
@@ -387,7 +388,6 @@ export class OrdersComponent implements OnInit, OnDestroy {
       this.newDetail.title = ""
       this.newDetail.amount = 0
     }
-
     this.ordersService.updateOrder(this.selectedOrder._id, {action: 'UPDATE_DETAILS', details:this.newDetails}).then((response) => {
       this.popup = null;
       this.update_state.loading = false;
