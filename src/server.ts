@@ -144,8 +144,8 @@ http.createServer(app).listen(port, () => {
 
 if (environment.production) {
   let options = {
-    // key: fs.readFileSync(__dirname + '/cert/key.pem', 'utf8'),
-    // cert: fs.readFileSync(__dirname + '/cert/server.crt', 'utf8')
+    key: fs.readFileSync(__dirname + '/cert/key.pem', 'utf8'),
+    cert: fs.readFileSync(__dirname + '/cert/server.crt', 'utf8')
   };
   https.createServer(options, app).listen(443, () => {
     console.log(`Listening on port 443`);
