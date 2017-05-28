@@ -44,9 +44,9 @@ app.set('view engine', 'html');
  * Enable compression
  */
 app.use(compression());
-app.use(function(req, res) {
-  return res.redirect('https://' + req.hostname + req.originalUrl);
-}) 
+// app.use(function(req, res) {
+//   return res.redirect('https://' + req.hostname + req.originalUrl);
+// }) 
 /**
  * serve static files
  */
