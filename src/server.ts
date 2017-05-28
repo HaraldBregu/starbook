@@ -55,28 +55,33 @@ app.use('/', express.static(path.join(ROOT, 'client'), {index: false}));
 
 /* There are code from old server */
 if (environment.production) {
-  // app.use('/', require('redirect-https')({
-  //   body: '',
-  //   port: 443,
-  //   trustProxy: true
-  // }))
-  // app.all('/*', function(req: any, res: any, next) {
-  //   if(!/^www\./.test(req.headers.host)) {
-  //     res.status(301).redirect(req.protocol + '://www.' + req.headers.host + req.url)
-  //   } else {
-  //     next()
-  //   }
-  // })
+  app.use('/', require('redirect-https')({
+    body: '',
+    port: 443,
+    trustProxy: true
+  }))
+  app.all('/*', function(req: any, res: any, next) {
+    if(!/^www\./.test(req.headers.host)) {
+      res.status(301).redirect(req.protocol + '://www.' + req.headers.host + req.url)
+    } else {
+      next()
+    }
+  })
 } else {
-  // app.all('/*', function(req: any, res: any, next) {
-  //   console.log('host: ' + req.headers.host);
-  //   console.log('url: ' + JSON.stringify(req.url));
-  //   if (!/https/.test(req.protocol) && (req.headers.host === "localhost:4200")){
-  //     res.redirect("http://" + req.headers.host + req.url);
-  //   } else {
-  //     next()
-  //   }
-  // })
+  app.use('/', require('redirect-https')({
+    body: '',
+    port: 443,
+    trustProxy: true
+  }))
+  app.all('/*', function(req: any, res: any, next) {
+    console.log('host: ' + req.headers.host);
+    console.log('url: ' + JSON.stringify(req.url));
+    if (!/https/.test(req.protocol) && (req.headers.host === "localhost:4200")){
+      res.redirect("http://" + req.headers.host + req.url);
+    } else {
+      next()
+    }
+  })
 }
 
 
@@ -138,11 +143,11 @@ http.createServer(app).listen(port, () => {
 });
 
 // if (environment.production) {
-//   let options = {
-//     key: fs.readFileSync(__dirname + '/cert/key.pem', 'utf8'),
-//     cert: fs.readFileSync(__dirname + '/cert/server.crt', 'utf8')
-//   };
-//   https.createServer(options, app).listen(443, () => {
-//     console.log(`Listening on port 443`);
-//   });
+  let options = {
+    key: fs.readFileSync(__dirname + '/cert/key.pem', 'utf8'),
+    cert: fs.readFileSync(__dirname + '/cert/server.crt', 'utf8')
+  };
+  https.createServer(options, app).listen(443, () => {
+    console.log(`Listening on port 443`);
+  });
 // }
