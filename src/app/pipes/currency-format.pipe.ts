@@ -8,8 +8,8 @@ export class CurrencyFormatPipe implements PipeTransform {
   transform(value: number,
       currencySign: string = '€ ',
       decimalLength: number = 2,
-      chunkDelimiter: string = '.',
-      decimalDelimiter:string = ',',
+      chunkDelimiter: string = ',',
+      decimalDelimiter:string = '.',
       chunkLength: number = 3): string {
 
       value /= 100;

@@ -9,6 +9,7 @@ import { isBrowser } from "angular2-universal";
 import { OrderService } from '../../order/order.service';
 import { ShareService } from '../share/share.service';
 import { CurrencyPipe } from "../../pipes/currency.pipe";
+import { CurrencyCentPipe } from "../../pipes/currency-cent.pipe";
 
 export interface IOrder {
   _id: string;
@@ -50,7 +51,8 @@ export interface IOrder {
 
 @Component({
   selector: 'app-orders',
-  templateUrl: './orders.component.html'
+  templateUrl: './orders.component.html',
+  providers: [CurrencyCentPipe]
 })
 export class OrdersComponent implements OnInit, OnDestroy {
   public it: any;
@@ -98,7 +100,8 @@ export class OrdersComponent implements OnInit, OnDestroy {
     private analyticsService: AnalyticsService,
     private orderService: OrderService,
     private shareService: ShareService,
-    private currencyPipe: CurrencyPipe) {
+    private currencyPipe: CurrencyPipe,
+    private currencyCentPipe: CurrencyCentPipe) {
     this.navigationService.updateMessage("Ordini");
     if (isBrowser) {
       if (!localStorage.getItem('auth')) {
@@ -341,15 +344,24 @@ export class OrdersComponent implements OnInit, OnDestroy {
   ////////////////////////////////////////
   ///////////// UPDATE ORDER /////////////
   ////////////////////////////////////////
-  formatAmount(detail){
+  formatAmount(amount){
     // return this.currencyPipe.transform(detail.amount);
-    return detail.amount/100;
+    // return detail.amount/100;
+    return this.currencyCentPipe.transform(amount);
   }
 
-  detailItemAmountChangeAtIndex(detail, index) {
+  detailItemAmountChangeAtIndex($event,detail, index) {
+
+    // console.log(parseFloat($event.target.value));
+    var amount = (parseFloat($event.target.value) * 100).toFixed(2);
+    // console.log('amount is: ' + amount);
+    // console.log('detail before is; ' + JSON.stringify(this.newDetails[index]));
+    this.newDetails[index].amount = amount;
+    // console.log('detail after is; ' + JSON.stringify(this.newDetails[index]));
+
     // var dtl = this.newDetails[index];
-    // console.log('detail before is; ' + JSON.stringify(dtl));
-    // dtl.amount = Number(detail.amount)
+    // console.log('detail amount is; ' + dtl.amount);
+    // dtl.amount = Number(dtl.amount)
     // console.log('detail after is; ' + JSON.stringify(dtl));
   }
   deleteDetailAtIndex(index) {

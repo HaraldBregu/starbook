@@ -82,6 +82,7 @@ import { ClipboardDirective } from './directives/clipboard.directive';
 import { FormatterDirective } from './directives/formatter.directive';
 import { CurrencyPipe } from './pipes/currency.pipe';
 import { CurrencyFormatPipe } from './pipes/currency-format.pipe';
+import { CurrencyCentPipe } from "./pipes/currency-cent.pipe";
 
 
 let imports = [
@@ -130,6 +131,7 @@ let declarations = [
 
   CurrencyPipe,
   CurrencyFormatPipe,
+  CurrencyCentPipe,
   PhonePipe,
   ExpiryPipe,
 ];
@@ -183,7 +185,8 @@ else {
     ShareService,
     ClipboardService,
     CurrencyPipe,
-    CurrencyFormatPipe
+    CurrencyFormatPipe,
+    CurrencyCentPipe
   ],
   exports:exp
 })
