@@ -46,7 +46,7 @@ app.set('view engine', 'html');
 app.use(compression());
 // app.use(function(req, res) {
 //   return res.redirect('https://' + req.hostname + req.originalUrl);
-// }) 
+// })
 /**
  * serve static files
  */

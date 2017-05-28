@@ -4630,7 +4630,7 @@ app-category {
     app-category .category-container .category-header .overlay {
       background-color: rgba(18, 18, 18, 0.5); }
     app-category .category-container .category-header .header-content {
-      padding: 100px 0 0; }
+      padding: 50px 10px; }
       app-category .category-container .category-header .header-content .header {
         max-width: 700px;
         margin: auto; }
@@ -4652,6 +4652,9 @@ app-category {
         border: 1px solid white; }
       app-category .category-container .category-header .header-content .actions {
         padding: 20px 0; }
+    app-category .category-container .category-header .fast-services {
+      background: #161517;
+      padding: 20px; }
     app-category .category-container .category-header .tabs-container {
       overflow: auto;
       padding: 50px 10px; }

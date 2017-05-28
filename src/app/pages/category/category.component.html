@@ -4,10 +4,13 @@
       <div class="header-content">
         <div class="header">
           <h1>{{category.title}}</h1>
-          <p>{{category.description}}</p>
+          <!-- <p>{{category.description}}</p> -->
         </div>
       </div>
-      <div class="tabs-container">
+      <div class="fast-services">
+        <button class="btn btn-primary">Pronto intervento <i class="fa fa-arrow-right" aria-hidden="true"></i></button>
+      </div>
+      <!-- <div class="tabs-container">
         <div class="tabs">
           <div class="tab-container" *ngFor="let action of category.direct_actions">
             <div class="tab" (click)="showDirectAction(action)" [ngClass]="action.type">
@@ -15,7 +18,7 @@
             </div>
           </div>
         </div>
-      </div>
+      </div> -->
     </div>
   </div>
   <!-- <div class="search-container">

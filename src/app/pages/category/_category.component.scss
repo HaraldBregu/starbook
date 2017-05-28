@@ -24,7 +24,7 @@ app-category {
         background-color: rgba(18, 18, 18, 0.5);
       }
       .header-content {
-        padding: 100px 0 0;
+        padding: 50px 10px;
         .header {
           max-width: 700px;
           margin: auto;
@@ -59,6 +59,10 @@ app-category {
         .actions {
           padding: 20px 0;
         }
+      }
+      .fast-services {
+        background: #161517;
+        padding: 20px
       }
       .tabs-container {
         overflow: auto;

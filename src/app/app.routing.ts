@@ -30,7 +30,8 @@ const routes: Routes = [
   },
   {
     path: 'category/:category',
-    component: CategoryComponent
+    component: CategoryComponent,
+    data: {isFindField: true}
   },
   {
     path: 'account',
