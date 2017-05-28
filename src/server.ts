@@ -52,7 +52,6 @@ app.use(compression());
  */
 app.use('/', express.static(path.join(ROOT, 'client'), {index: false}));
 
-
 /* There are code from old server */
 if (environment.production) {
   app.use('/', require('redirect-https')({
@@ -137,12 +136,12 @@ http.createServer(app).listen(port, () => {
   console.log(`Listening on port ${port}`);
 });
 
-if (environment.production) {
-  // let options = {
-  //   key: fs.readFileSync(__dirname + '/cert/key.pem', 'utf8'),
-  //   cert: fs.readFileSync(__dirname + '/cert/server.crt', 'utf8')
-  // };
-  // https.createServer(options, app).listen(443, () => {
-  //   console.log(`Listening on port 443`);
-  // });
+if (environment.production) { // This do not work for heroku
+  let options = {
+    key: fs.readFileSync(__dirname + '/cert/key.pem', 'utf8'),
+    cert: fs.readFileSync(__dirname + '/cert/server.crt', 'utf8')
+  };
+  https.createServer(options, app).listen(443, () => {
+    console.log(`Listening on port 443`);
+  });
 }
