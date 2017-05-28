@@ -68,20 +68,20 @@ if (environment.production) {
     }
   })
 } else {
-  app.use('/', require('redirect-https')({
-    body: '',
-    port: 443,
-    trustProxy: true
-  }))
-  app.all('/*', function(req: any, res: any, next) {
-    console.log('host: ' + req.headers.host);
-    console.log('url: ' + JSON.stringify(req.url));
-    if (!/https/.test(req.protocol) && (req.headers.host === "localhost:4200")){
-      res.redirect("http://" + req.headers.host + req.url);
-    } else {
-      next()
-    }
-  })
+  // app.use('/', require('redirect-https')({
+  //   body: '',
+  //   port: 443,
+  //   trustProxy: true
+  // }))
+  // app.all('/*', function(req: any, res: any, next) {
+  //   console.log('host: ' + req.headers.host);
+  //   console.log('url: ' + JSON.stringify(req.url));
+  //   if (!/https/.test(req.protocol) && (req.headers.host === "localhost:4200")){
+  //     res.redirect("http://" + req.headers.host + req.url);
+  //   } else {
+  //     next()
+  //   }
+  // })
 }
 
 
@@ -142,12 +142,12 @@ http.createServer(app).listen(port, () => {
   console.log(`Listening on port ${port}`);
 });
 
-// if (environment.production) {
+if (environment.production) {
   let options = {
-    // key: fs.readFileSync(__dirname + '/cert/key.pem', 'utf8'),
-    // cert: fs.readFileSync(__dirname + '/cert/server.crt', 'utf8')
+    key: fs.readFileSync(__dirname + '/cert/key.pem', 'utf8'),
+    cert: fs.readFileSync(__dirname + '/cert/server.crt', 'utf8')
   };
   https.createServer(options, app).listen(443, () => {
     console.log(`Listening on port 443`);
   });
-// }
+}

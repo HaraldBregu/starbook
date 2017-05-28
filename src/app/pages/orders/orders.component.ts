@@ -3,7 +3,7 @@ import { Router, Route, ActivatedRoute, Params, NavigationExtras } from '@angula
 import { NavigationService } from '../../shared/navigation.service';
 import { OrdersService } from '../../shared/orders.service';
 import { PopupsService } from '../../popups/popups.service';
-import { Subscription }   from 'rxjs/Subscription';
+import { Subscription } from 'rxjs/Subscription';
 import { AnalyticsService } from '../../shared/analytics.service';
 import { isBrowser } from "angular2-universal";
 import { OrderService } from '../../order/order.service';
@@ -56,10 +56,10 @@ export interface IOrder {
 })
 export class OrdersComponent implements OnInit, OnDestroy {
   public it: any;
-  public selectTab: string|boolean = false;
+  public selectTab: string | boolean = false;
   public tabs = [
-    {name: 'Lavorazioni', route: 'requests', icon: "fa-tasks"},
-    {name: 'Preventivi', route: 'estimates', icon: "fa-file"}
+    { name: 'Lavorazioni', route: 'requests', icon: "fa-tasks" },
+    { name: 'Preventivi', route: 'estimates', icon: "fa-file" }
   ];
   public pageData;
   public currentUser;
@@ -70,25 +70,25 @@ export class OrdersComponent implements OnInit, OnDestroy {
   public selectedOrder;
   public upfront;
   public detail = {
-    title : "",
-    type : "detail",
-    count : 0,
-    amount : 0
+    title: "",
+    type: "detail",
+    count: 0,
+    amount: 0
   };
   public newDetail = {
-    title : "",
-    type : "detail",
-    count : 0,
-    amount : 0
+    title: "",
+    type: "detail",
+    count: 0,
+    amount: 0
   };
   public details = [];
   public newDetails = [];
 
   public payment_state = {
-    loading : false,
+    loading: false,
   }
   public update_state = {
-    loading : false,
+    loading: false,
   }
 
   constructor(
@@ -222,7 +222,7 @@ export class OrdersComponent implements OnInit, OnDestroy {
     this.router.navigate(['orders/' + route]);
   }
   getTiming(initial_price) {
-    var days = initial_price/45000;
+    var days = initial_price / 45000;
     if (days < 0.5) {
       return "metà giornata";
     } else if (days > 0.5 && days < 1.5) {
@@ -239,7 +239,7 @@ export class OrdersComponent implements OnInit, OnDestroy {
   shareEstimate(estimate) {
     this.shareService.setObject(estimate);
     var newWizardData = estimate;
-    let navigationExtras: NavigationExtras = {queryParams:{estimate:JSON.stringify(estimate)}};
+    let navigationExtras: NavigationExtras = { queryParams: { estimate: JSON.stringify(estimate) } };
     this.router.navigate(['share/service'], navigationExtras);
   }
   deleteEstimate(estimate) {
@@ -254,7 +254,7 @@ export class OrdersComponent implements OnInit, OnDestroy {
   ///////////////////////////
   getActiveOrders() {
     this.navigationService.updateMessage("Ordini...");
-    this.ordersService.getOrders([{name: 'order_type', value: 'ACTIVE'}]).then((response) => {
+    this.ordersService.getOrders([{ name: 'order_type', value: 'ACTIVE' }]).then((response) => {
       this.navigationService.updateMessage("Ordini");
       this.pageData = response.result;
     }).catch((error) => {
@@ -344,20 +344,25 @@ export class OrdersComponent implements OnInit, OnDestroy {
   ////////////////////////////////////////
   ///////////// UPDATE ORDER /////////////
   ////////////////////////////////////////
-  formatAmount(amount){
+  formatAmount(amount) {
     // return this.currencyPipe.transform(detail.amount);
     // return detail.amount/100;
     return this.currencyCentPipe.transform(amount);
   }
 
-  detailItemAmountChangeAtIndex($event,detail, index) {
+  detailItemAmountChangeAtIndex($event, detail, index) {
 
     // console.log(parseFloat($event.target.value));
-    var amount = (parseFloat($event.target.value) * 100).toFixed(2);
-    // console.log('amount is: ' + amount);
-    // console.log('detail before is; ' + JSON.stringify(this.newDetails[index]));
+    var amount;
+    console.log('detail before is; ' + JSON.stringify(this.newDetails[index]));
+    if (isNaN($event.target.value)) {
+      amount = 0;
+    } else {
+      amount = (Number($event.target.value) * 100).toFixed()
+    }
+    console.log('amount is: ' + amount);
     this.newDetails[index].amount = amount;
-    // console.log('detail after is; ' + JSON.stringify(this.newDetails[index]));
+    console.log('detail after is; ' + JSON.stringify(this.newDetails[index]));
 
     // var dtl = this.newDetails[index];
     // console.log('detail amount is; ' + dtl.amount);
@@ -365,16 +370,16 @@ export class OrdersComponent implements OnInit, OnDestroy {
     // console.log('detail after is; ' + JSON.stringify(dtl));
   }
   deleteDetailAtIndex(index) {
-    this.newDetails.splice(index,1);
+    this.newDetails.splice(index, 1);
   }
   addNewItem(newDetail) {
     if (newDetail.title) {
       newDetail.amount = Number(newDetail.amount)
       var detail = {
-        title : newDetail.title,
-        type : newDetail.type,
-        count : newDetail.count,
-        amount : newDetail.amount
+        title: newDetail.title,
+        type: newDetail.type,
+        count: newDetail.count,
+        amount: newDetail.amount
       }
       this.newDetails.push(detail)
       newDetail.title = ""
@@ -386,21 +391,21 @@ export class OrdersComponent implements OnInit, OnDestroy {
   }
   updateDetailsOrder() {
     // console.log('Detail are: ' + JSON.stringify(this.newDetails));
-    if (this.update_state.loading) {return;}
+    if (this.update_state.loading) { return; }
     this.update_state.loading = true;
     if (this.newDetail.title) {
       this.newDetail.amount = Number(this.newDetail.amount)
       var detail = {
-        title : this.newDetail.title,
-        type : this.newDetail.type,
-        count : this.newDetail.count,
-        amount : this.newDetail.amount
+        title: this.newDetail.title,
+        type: this.newDetail.type,
+        count: this.newDetail.count,
+        amount: this.newDetail.amount
       }
       this.newDetails.push(detail)
       this.newDetail.title = ""
       this.newDetail.amount = 0
     }
-    this.ordersService.updateOrder(this.selectedOrder._id, {action: 'UPDATE_DETAILS', details:this.newDetails}).then((response) => {
+    this.ordersService.updateOrder(this.selectedOrder._id, { action: 'UPDATE_DETAILS', details: this.newDetails }).then((response) => {
       this.popup = null;
       this.update_state.loading = false;
       this.selectedOrder.details = this.newDetails;
@@ -417,19 +422,19 @@ export class OrdersComponent implements OnInit, OnDestroy {
     this.upfront = ev;
   }
   payUpfront() {
-    if (this.payment_state.loading) {return;}
+    if (this.payment_state.loading) { return; }
     this.payment_state.loading = true;
 
-    var fl =  parseFloat(this.upfront).toFixed(2)
+    var fl = parseFloat(this.upfront).toFixed(2)
     var flString = fl.toString();
     var thenum = flString.replace(/[^0-9]/, '');
 
-    this.ordersService.updateOrder(this.selectedOrder._id, {action: 'PAY_UPFRONT', upfront:thenum}).then((response) => {
+    this.ordersService.updateOrder(this.selectedOrder._id, { action: 'PAY_UPFRONT', upfront: thenum }).then((response) => {
       this.popup = null;
       this.payment_state.loading = false;
 
       this.selectedOrder.milestones.push({
-        "amount" : Number(thenum),
+        "amount": Number(thenum),
       });
 
     }).catch((error) => {
@@ -438,9 +443,9 @@ export class OrdersComponent implements OnInit, OnDestroy {
     });
   }
   payRestAmount(rest) {
-    if (this.payment_state.loading) {return;}
+    if (this.payment_state.loading) { return; }
     this.payment_state.loading = true;
-    this.ordersService.updateOrder(this.selectedOrder._id, {action: 'PAY_UPFRONT', upfront:rest}).then((response) => {
+    this.ordersService.updateOrder(this.selectedOrder._id, { action: 'PAY_UPFRONT', upfront: rest }).then((response) => {
       this.popup = null;
       this.payment_state.loading = false;
     }).catch((error) => {
@@ -456,22 +461,22 @@ export class OrdersComponent implements OnInit, OnDestroy {
 
   // old
   confirmOrder(id) {
-    this.popupsService.activate({type: 'confirmOrder', data: {orderId: id}});
+    this.popupsService.activate({ type: 'confirmOrder', data: { orderId: id } });
   }
   cancelOrder(id) {
-    this.popupsService.activate({type: 'cancelOrder', data: {orderId: id}});
+    this.popupsService.activate({ type: 'cancelOrder', data: { orderId: id } });
   }
   reactivateOrder(id) {
-    this.popupsService.activate({type: 'reactivateOrder', data: {orderId: id}});
+    this.popupsService.activate({ type: 'reactivateOrder', data: { orderId: id } });
   }
   completaOrder(id) {
-    this.popupsService.activate({type: 'addPrice', data: {orderId: id}});
+    this.popupsService.activate({ type: 'addPrice', data: { orderId: id } });
   }
   editOrder(id, payment) {
-    this.popupsService.activate({type: 'editPrice', data: {orderId: id, payment: payment}});
+    this.popupsService.activate({ type: 'editPrice', data: { orderId: id, payment: payment } });
   }
   continueOrder(id, payment) {
-    this.popupsService.activate({type: 'continueOrder', data: {orderId: id, payment: payment, information: '120€ + 6.6€ = 126.6€'}});
+    this.popupsService.activate({ type: 'continueOrder', data: { orderId: id, payment: payment, information: '120€ + 6.6€ = 126.6€' } });
   }
 
   formatedAddressFromObject(address) {
@@ -495,7 +500,7 @@ export class OrdersComponent implements OnInit, OnDestroy {
       let dateComponents = dateString[0].split('-');
       let hourComponents = dateString[1].split(':');
       // returnDate = dateComponents[2] + ' ' + this.it.monthNames[dateComponents[1]-1] + ' ' + dateComponents[0] + ' ' + hourComponents[0] + ':' + hourComponents[1];
-      returnDate = dateComponents[2] + ' ' + this.it.monthNames[dateComponents[1]-1] + ' ' + dateComponents[0];
+      returnDate = dateComponents[2] + ' ' + this.it.monthNames[dateComponents[1] - 1] + ' ' + dateComponents[0];
     } else {
       let currentDate = new Date();
       let day = currentDate.getDate();
@@ -509,7 +514,7 @@ export class OrdersComponent implements OnInit, OnDestroy {
       returnDate += day > 9 ? '-' + day : '-0' + day;
       returnDate += hours > 9 ? 'T' + hours : 'T0' + hours;
       returnDate += minutes > 9 ? ':' + minutes : ':0' + minutes;
-      returnDate += seconds > 9 ? ':' + seconds  + '.000Z' : ':0' + seconds + '.000Z';
+      returnDate += seconds > 9 ? ':' + seconds + '.000Z' : ':0' + seconds + '.000Z';
     }
     return returnDate;
   }
@@ -520,7 +525,7 @@ export class OrdersComponent implements OnInit, OnDestroy {
       dateString = dateString.split('T');
       let dateComponents = dateString[0].split('-');
       let hourComponents = dateString[1].split(':');
-      returnDate = dateComponents[2] + ' ' + this.it.monthNames[dateComponents[1]-1] + ' ' + dateComponents[0] + ' ' + hourComponents[0] + ':' + hourComponents[1];
+      returnDate = dateComponents[2] + ' ' + this.it.monthNames[dateComponents[1] - 1] + ' ' + dateComponents[0] + ' ' + hourComponents[0] + ':' + hourComponents[1];
     } else {
       let currentDate = new Date();
       let day = currentDate.getDate();
@@ -534,7 +539,7 @@ export class OrdersComponent implements OnInit, OnDestroy {
       returnDate += day > 9 ? '-' + day : '-0' + day;
       returnDate += hours > 9 ? 'T' + hours : 'T0' + hours;
       returnDate += minutes > 9 ? ':' + minutes : ':0' + minutes;
-      returnDate += seconds > 9 ? ':' + seconds  + '.000Z' : ':0' + seconds + '.000Z';
+      returnDate += seconds > 9 ? ':' + seconds + '.000Z' : ':0' + seconds + '.000Z';
     }
     return returnDate;
   }
