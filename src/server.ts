@@ -91,11 +91,9 @@ if (environment.production) {
  * @param res
  */
 function ngApp(req: any, res: any) {
-
   // console.log('protocol: ' + req.protocol);
   // console.log('host: ' + req.headers.host);
   // console.log('url: ' + JSON.stringify(req.url));
-
   res.render('index', {
     req,
     res,
@@ -133,9 +131,6 @@ app.get('*', function (req: any, res: any) {
   const json = JSON.stringify(pojo, null, 2);
   res.status(404).send(json);
 });
-
-
-
 
 /* There are code from old server (app.js) */
 http.createServer(app).listen(port, () => {
