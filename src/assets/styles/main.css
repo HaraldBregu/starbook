@@ -6137,10 +6137,16 @@ app-orders {
       padding: 0 10px; } }
   @media (max-width: 425px) {
     app-orders .orders-container .popup-container {
-      padding: 10px; }
+      padding: 0; }
     app-orders .orders-container .popup-container .popup {
+      position: fixed;
       width: 100%;
-      margin-top: 70px; }
+      height: 100%;
+      margin-top: 0;
+      bottom: 0;
+      top: 0;
+      left: 0;
+      right: 0; }
     app-orders .orders-container .orders .order-container .order .order-body .content .payment .items .item {
       width: 50%; }
     app-orders .orders-container .orders .order-container .order .order-body .content .payment .items .amount {
