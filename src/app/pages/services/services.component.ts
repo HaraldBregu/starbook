@@ -13,6 +13,7 @@ export class ServicesComponent implements OnInit {
     title: "Servizi piu richiesti"
   };
   public services = [];
+  public images_url = "https://s3-eu-west-1.amazonaws.com/starbook-s3/";
 
   constructor(private router: Router, private navigationService: NavigationService, private commonService: CommonService) {
     this.navigationService.updateMessage('');

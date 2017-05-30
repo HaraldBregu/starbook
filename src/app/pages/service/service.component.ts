@@ -66,6 +66,7 @@ export class ServiceComponent implements OnInit {
   };
   public finalPrice = 0;
   public defaultServices;
+  public service;
   public title;
   public description;
   public image_url;
@@ -172,20 +173,24 @@ export class ServiceComponent implements OnInit {
   renderPage(services: IServices) {
     this.commonService.setService(services);
     this.navigationService.updateMessage(services.title);
+    this.service = services;
+    // console.log('services is: ' + JSON.stringify(services));
+    var service_image_url = 'https://s3-eu-west-1.amazonaws.com/starbook-s3/services/' + this.service._id + '/cover/0'
 
     this.seoService.setTitle(services.title + "| Preventivo Online");
     this.seoService.setOgElem('og:title', services.title + "| Preventivo Online");
     this.seoService.setMetaElem('description', services.description);
     this.seoService.setOgElem('og:description', services.description);
     this.seoService.setOgElem('og:url', 'https://www.starbook.co/services/' + services.title.replace(/\s+/g, '-'));
-    this.seoService.setOgElem('og:image', services.image_url);
-    this.seoService.setOgElem('og:image:secure_url', services.image_url);
+    this.seoService.setOgElem('og:image', service_image_url);
+    this.seoService.setOgElem('og:image:secure_url', service_image_url);
 
     this.defaultServices = services;
     this.title = services.title;
     this.description = services.description;
     this.technical_details = services.technical_details;
-    this.image_url = this.defaultServices.image_url;
+    this.image_url = service_image_url;
+
     this.servicesData = [];
     this.orderData = {
       service_id: services._id,

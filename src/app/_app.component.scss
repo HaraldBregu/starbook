@@ -47,7 +47,7 @@ app-root {
       padding: 6px 46px 5px 15px;
       background-color: white;
       border: none;
-      border-radius: 3px;
+      // border-radius: 3px;
       border: 1px solid #DCE0E0;
       outline: none;
       color: #212121;
@@ -63,7 +63,7 @@ app-root {
     .search-block .spinner {
       display: block;
       position: absolute;
-      top: 24px;
+      top: 26px;
       right: 28px;
       width: 20px;
       height: 20px;
@@ -71,7 +71,7 @@ app-root {
     .search-block .close-container {
       display: block;
       position: absolute;
-      top: 24px;
+      top: 26px;
       right: 28px;
     }
     .search-block .close-container .close{
@@ -123,13 +123,14 @@ app-root {
     }
     .search-block .ui-autocomplete-panel .ui-state-highlight .search-result {
       color: white;
-      background-color: #506795;
+      // background-color: #506795;
+      background-color: #3498db;
     }
     .search-block .ui-autocomplete-panel .search-result {
       display: block;
       width: 100%;
       color: rgba(0, 0, 0, 0.8);
-      font-size: 16;
+      font-size: 18px;
       letter-spacing: 0.1px;
       padding: 15px;
     }

@@ -2,7 +2,7 @@
   <h1><i class="fa fa-circle-o-notch animate" *ngIf="services_state.loading"></i>{{services_state.title}}</h1>
   <div class="services-container">
     <div class="service-box" *ngFor="let service of services" (click)="selectResult(service)">
-      <div class="service" [style.background-image]="'url(' + service.image_url + ')'">
+      <div class="service" [ngStyle]="{'background-image' : ' url(' + images_url + 'services/'+ service._id + '/cover/0' + ')'}">
         <div class="title">{{ service.title }}</div>
       </div>
     </div>

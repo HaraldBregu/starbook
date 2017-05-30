@@ -27,108 +27,6 @@ export class LandingComponent implements OnInit {
   };
   public ref;
   public categories = []
-
-  public invitation_state = {
-    message_success: null,
-    message_error: null
-  };
-  public services = [
-    {
-      title:"Idraulico",
-      color:"#164170",
-      image: "https://s3-eu-west-1.amazonaws.com/starbook-s3/plumbing/idraulico-normal.png"
-    },
-    {
-      title:"Falegname",
-      color:"#4E311C",
-      image: "https://st.depositphotos.com/1769672/2236/i/950/depositphotos_22367589-stock-photo-carpenter-working.jpg"
-    },
-    {
-      title:"Muratore",
-      color:"#F09765",
-      image: "https://www.masonrymagazine.com/wp-content/uploads/2017/04/shutterstock_462881602.jpg"
-    },
-    // {
-    //   title:"Idraulico",
-    //   color:"#164170",
-    //   image: "https://s3-eu-west-1.amazonaws.com/starbook-s3/plumbing/idraulico-normal.png"
-    // },
-    // {
-    //   title:"Falegname",
-    //   color:"#4E311C",
-    //   image: "https://st.depositphotos.com/1769672/2236/i/950/depositphotos_22367589-stock-photo-carpenter-working.jpg"
-    // },
-    // {
-    //   title:"Muratore",
-    //   color:"#F09765",
-    //   image: "https://www.masonrymagazine.com/wp-content/uploads/2017/04/shutterstock_462881602.jpg"
-    // },
-  ];
-  public data = {
-    pictures:[
-      "https://s3-eu-west-1.amazonaws.com/starbook-s3/plumbing/idraulica-tutti-attrezzi.png"
-    ],
-    texts:[
-      "Hai bisogno di un idraulico? Prenotalo!",
-      "Sappiamo bene che trovare l'idraulico giusto al momento giusto non è mai semplice. D'ora in poi lo facciamo noi al tuo posto!",
-      "La migliore piattaforma per trovare il tuo idraulico in modo semplice, veloce e sicuro.",
-      "Tre ottimi motivi per prenotare l'idraulico su Starbook.",
-      "Cosa dicono i clienti"
-    ],
-    bullets:[
-      {
-        title: "Professionalità",
-        description: "La serietà prima di tutto e noi ci assicuriamo di portare il miglior professionista della zona e che abbia una solida esperienza nel campo in cui opera.",
-        icon_name: "fa-certificate"
-      },
-      {
-        title: "Puntualità",
-        description: "Portare il professionista nel giorno e l'ora che si desidera è uno dei nostri valori piu importanti.",
-        icon_name: "fa-clock-o"
-      },
-      {
-        title: "Pagamento online",
-        description: "La massima comodità anche nei metodi di pagamento, utilizando la carta di credito o prepagata puoi pagare il professionista direttamente online.",
-        icon_name: "fa-credit-card"
-      }
-    ],
-    reviews:[
-      {
-        username: "John D.",
-        text: "Assurdo! Dopo aver richiesto un particolare lavoro a casa mia, nel arco di pochi minuti ho ricevuto il miglior preventivo e il miglior professionista della zona.",
-        rating: 5
-      },
-      {
-        username: "John D.",
-        text: "Gli addetti alle pulizie sono arrivati puntuali al mattino e sono rimasti a lavorare fino a tarda sera pur di finire il lavoro. L'appartamento era in pessime condizioni. Hanno fatto un ottimo lavoro pulendo a fondo, il loro aiuto è stato fondamentale.",
-        rating: 5
-      },
-      {
-        username: "John D.",
-        text: "Gli addetti alle pulizie sono arrivati puntuali al mattino e sono rimasti a lavorare fino a tarda sera pur di finire il lavoro. L'appartamento era in pessime condizioni. Hanno fatto un ottimo lavoro pulendo a fondo, il loro aiuto è stato fondamentale.",
-        rating: 5
-      }
-    ],
-  };
-  public Request = {
-    description: '',
-    phone: '',
-    email: '',
-    firstname: '',
-    lastname: ''
-  };
-  public request_state = {
-    loading: false,
-    button_title: "Invia richiesta",
-    message_success: null,
-    message_error: null,
-    title_error: null,
-    description_error: null,
-    firstname_error: null,
-    lastname_error: null,
-    phone_error: null,
-    email_error: null
-  };
   public seoObject = {};
   public order = {};
 
@@ -143,7 +41,7 @@ export class LandingComponent implements OnInit {
       this.emailPattern = /^[a-z0-9!#$%&'*+\/=?^_`{|}~.-]+@[a-z0-9]([a-z0-9-]*[a-z0-9])?(\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)*$/i;
       this.numPattern = /^\d+$/;
       this.analyticsService.sendPageViewUrl(this.router.url)
-      this.navigationService.updateMessage('');
+      this.navigationService.updateMessage("");
 
       if (isBrowser) {window.scrollTo(0, 0);}
 
@@ -153,8 +51,9 @@ export class LandingComponent implements OnInit {
         }
       }
 
-      this.commonService.getCategories().then((categories) => {
-        this.categories = categories.result;
+      this.commonService.getServicesForCategoryTitle('Artigiani').then((categories) => {
+        this.categories = categories.result[0].services;
+        // console.log('categories: ' + JSON.stringify(categories.result[0]));
         // console.log('categories: ' + JSON.stringify(this.categories));
       }).catch((error) => {
         // console.log('error: ' + error);
@@ -247,176 +146,6 @@ export class LandingComponent implements OnInit {
   }
 
   selectService(service) {
-    // this.router.navigate(['landing/' + service.title.toLowerCase()]);
     this.router.navigate(['category/' + service.title.toLowerCase()]);
-  }
-  checkoutService(service) {
-    this.analyticsService.sendEvent({category:'Service', action: 'Order now', label: this.router.url});
-    if (service === 'plumber') {
-      this.order['service_id'] = "5904d0c06c8dd682c65e99b6"
-      // this.order['title'] = this.page.charAt(0).toUpperCase() + this.page.slice(1);
-      this.order['title'] = 'Idraulico';
-      this.order['details'] = [{title:"Idraulico", type:"service"},{title:"Intervento idraulico (costo uscita)", type:"detail", value:"35€"}]
-      this.order['description'] = ""
-      this.order['referral_id'] = null
-      this.order['price'] = {
-        final: 3500,
-        initial: 3500,
-        currency: 'eur'
-      }
-      this.order['payment'] = {upfront: 3500}
-      this.order['timing'] = {days: 0}
-    } else if (service === 'carpenter') {
-      this.order['service_id'] = "590b330c6c8dd682c65e99b7"
-      this.order['title'] = 'Falegname';
-      this.order['details'] = [{title:"Falegname", type:"service"},{title:"Richiesta intervento falegname", type:"detail", value:""}]
-      this.order['description'] = ""
-      this.order['referral_id'] = null
-      this.order['price'] = {
-        final: 0,
-        initial: 0,
-        currency: 'eur'
-      }
-      this.order['payment'] = {upfront: 0}
-      this.order['timing'] = {days: 0}
-    } else if (service === 'brick') {
-      this.order['service_id'] = "590b33a86c8dd682c65e99b8"
-      this.order['title'] = 'Muratore';
-      this.order['details'] = [{title:"Muratore", type:"service"},{title:"Richiesta intervento muratore", type:"detail", value:""}]
-      this.order['description'] = ""
-      this.order['referral_id'] = null
-      this.order['price'] = {
-        final: 0,
-        initial: 0,
-        currency: 'eur'
-      }
-      this.order['payment'] = {upfront: 0}
-      this.order['timing'] = {days: 0}
-    } else if (service === 'blacksmith') {
-      this.order['service_id'] = "590b34366c8dd682c65e99b9";
-      this.order['title'] = 'Fabbro';
-      this.order['details'] = [{title:"Fabbro", type:"service"},{title:"Richiesta intervento fabbro", type:"detail", value:""}]
-      this.order['description'] = ""
-      this.order['referral_id'] = null
-      this.order['price'] = {
-        final: 0,
-        initial: 0,
-        currency: 'eur'
-      }
-      this.order['payment'] = {upfront: 0}
-      this.order['timing'] = {days: 0}
-    }  else if (service === 'eletrical') {
-      this.order['service_id'] = "590b34826c8dd682c65e99ba";
-      this.order['title'] = 'Elettricista';
-      this.order['details'] = [{title:"Elettricista", type:"service"},{title:"Richiesta intervento elettricista", type:"detail", value:""}]
-      this.order['description'] = ""
-      this.order['referral_id'] = null
-      this.order['price'] = {
-        final: 0,
-        initial: 0,
-        currency: 'eur'
-      }
-      this.order['payment'] = {upfront: 0}
-      this.order['timing'] = {days: 0}
-    } else if (service === 'painter') {
-      this.order['service_id'] = "590b34bf6c8dd682c65e99bb";
-      this.order['title'] = 'Imbianchino';
-      this.order['details'] = [{title:"Imbianchino", type:"service"},{title:"Richiesta intervento imbianchino", type:"detail", value:""}]
-      this.order['description'] = ""
-      this.order['referral_id'] = null
-      this.order['price'] = {
-        final: 0,
-        initial: 0,
-        currency: 'eur'
-      }
-      this.order['payment'] = {upfront: 0}
-      this.order['timing'] = {days: 0}
-    }
-
-    this.orderService.updateWizardData(this.order);
-    this.router.navigate(['order/summary']);
-    return false;
-  }
-  sendRequestForNewService() {
-    this.analyticsService.sendEvent({category:'Request service', action: 'Send', label: this.router.url});
-
-    if (this.request_state.loading) {return;}
-    if (!this.Request.firstname || !this.Request.lastname || !this.Request.phone || !this.Request.email || !this.Request.description) {
-      this.request_state.message_success = null;
-      this.request_state.message_error = "Per favore inserisci tutti i campi richiesti";
-      this.request_state.title_error = "errore";
-      this.request_state.description_error = "errore";
-      this.request_state.firstname_error = "errore";
-      this.request_state.lastname_error = "errore";
-      this.request_state.phone_error = "errore";
-      this.request_state.email_error = "errore";
-      return;
-    }
-    this.request_state.message_success = null;
-    this.request_state.message_error = null;
-    this.request_state.title_error = null;
-    this.request_state.description_error = null;
-    this.request_state.firstname_error = null;
-    this.request_state.lastname_error = null;
-    this.request_state.phone_error = null;
-    this.request_state.email_error = null;
-    this.request_state.loading = true;
-    this.request_state.button_title = "Inviando...";
-
-    this.Request['category'] = this.page.charAt(0).toUpperCase() + this.page.slice(1);
-    this.commonService.requireNewService(this.Request).then((response) => {
-      this.request_state.message_success = "Complimenti, hai inviato una richiesta di servizio su Starbook. La contatteremo al più presto!";
-      this.request_state.loading = false;
-      this.request_state.button_title = "Invia richiesta";
-      this.Request.description = null;
-    }).catch((error) => {
-      this.Request.description = null;
-    });
-  }
-  sendInvitations() {
-    this.analyticsService.sendEvent({category:'Share service', action: 'Share', label: this.router.url});
-    var phone_numbers = [];
-    var email_addresses = [];
-    var strings = this.contacts.split(',');
-    for (var i = 0; i < strings.length; i++) {
-      var string = strings[i];
-      string = string.replace(/\s/g, '');
-      if (this.emailPattern.test(string)) {
-        email_addresses.push(string);
-      } else if (this.numPattern.test(string)) {
-        phone_numbers.push(string);
-      }
-    }
-    var phones = '';
-    for (var i = 0; i < phone_numbers.length; i++) {
-      var p = phone_numbers[i]
-      phones += (i != 0) ? ',' : ''
-      phones += p
-    }
-
-    var emails = '';
-    for (var i = 0; i < email_addresses.length; i++) {
-      var e = email_addresses[i]
-      emails += (i != 0) ? ',' : ''
-      emails += e
-    }
-    if (phones==='' && emails==='') {
-      this.invitation_state.message_success = null;
-      this.invitation_state.message_error = "Inserisci numeri di telefono e email validi";
-      return;
-    }
-    this.invitation_state.message_success = null;
-    this.invitation_state.message_error = null;
-
-    var link = "Hey, ti ho trovato un " + this.page.charAt(0).toUpperCase() + this.page.slice(1) + " ";
-    if (isBrowser) {
-      link += document.location.protocol + '//'+ document.location.hostname + this.router.url;
-    }
-
-    this.commonService.sendNotifications(link, phones, emails).then((response) => {
-      this.invitation_state.message_success = "Complimenti, hai inviato un codice sconto ai contatti inseriti";
-    }).catch((error) => {
-      // console.log('error: ' + JSON.stringify(error));
-    });
   }
 }

@@ -3235,7 +3235,6 @@ app-root .center-container {
     padding: 6px 46px 5px 15px;
     background-color: white;
     border: none;
-    border-radius: 3px;
     border: 1px solid #DCE0E0;
     outline: none;
     color: #212121;
@@ -3249,14 +3248,14 @@ app-root .center-container {
   app-root .center-container .search-block .spinner {
     display: block;
     position: absolute;
-    top: 24px;
+    top: 26px;
     right: 28px;
     width: 20px;
     height: 20px; }
   app-root .center-container .search-block .close-container {
     display: block;
     position: absolute;
-    top: 24px;
+    top: 26px;
     right: 28px; }
   app-root .center-container .search-block .close-container .close {
     position: relative;
@@ -3295,12 +3294,12 @@ app-root .center-container {
     overflow-y: scroll; }
   app-root .center-container .search-block .ui-autocomplete-panel .ui-state-highlight .search-result {
     color: white;
-    background-color: #506795; }
+    background-color: #3498db; }
   app-root .center-container .search-block .ui-autocomplete-panel .search-result {
     display: block;
     width: 100%;
     color: rgba(0, 0, 0, 0.8);
-    font-size: 16;
+    font-size: 18px;
     letter-spacing: 0.1px;
     padding: 15px; }
   app-root .center-container .search-block .ui-autocomplete-panel.empty {
@@ -3469,13 +3468,12 @@ app-landing {
       background-image: url("https://s3-eu-west-1.amazonaws.com/starbook-s3/website/starbook-la-cura-per-la-casa.jpeg");
       background-size: cover;
       background-repeat: no-repeat;
-      background-position: center top; }
+      background-position: center; }
       app-landing .landing-container .header-container .overlay {
         background-color: rgba(0, 0, 0, 0.5); }
       app-landing .landing-container .header-container .header {
         color: white;
-        padding: 160px 30px;
-        text-align: center; }
+        padding: 100px 30px; }
         app-landing .landing-container .header-container .header .actions {
           padding: 40px 0 0; }
           app-landing .landing-container .header-container .header .actions .btn {
@@ -3568,12 +3566,12 @@ app-landing {
             text-align: left; }
           app-landing .landing-container .header-container .header .search .ui-autocomplete-panel .ui-state-highlight .search-result {
             color: white;
-            background-color: #506795; }
+            background-color: #3498db; }
           app-landing .landing-container .header-container .header .search .ui-autocomplete-panel .search-result {
             display: block;
             width: 100%;
             color: #212121;
-            font-size: 16px;
+            font-size: 18px;
             letter-spacing: 0.1px;
             padding: 20px 30px; }
           app-landing .landing-container .header-container .header .search .ui-autocomplete-panel.empty {
@@ -4618,19 +4616,12 @@ app-category {
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
-    color: white;
-    text-align: center; }
-    app-category .category-container .category-header .btn {
-      padding: 0 40px;
-      margin: 10px;
-      font-size: 20px;
-      height: 50px;
-      border-radius: 3px;
-      min-width: 200px; }
+    color: white; }
     app-category .category-container .category-header .overlay {
       background-color: rgba(18, 18, 18, 0.5); }
     app-category .category-container .category-header .header-content {
-      padding: 50px 10px; }
+      padding: 50px 10px;
+      text-align: center; }
       app-category .category-container .category-header .header-content .header {
         max-width: 700px;
         margin: auto; }
@@ -4652,9 +4643,31 @@ app-category {
         border: 1px solid white; }
       app-category .category-container .category-header .header-content .actions {
         padding: 20px 0; }
-    app-category .category-container .category-header .fast-services {
+    app-category .category-container .category-header .shortcut-services {
       background: #161517;
-      padding: 20px; }
+      padding: 20px 0; }
+      app-category .category-container .category-header .shortcut-services .btn {
+        padding: 0 40px;
+        font-size: 26px;
+        height: 60px;
+        border-radius: 30px;
+        min-width: 200px;
+        color: black;
+        line-height: 60px; }
+      app-category .category-container .category-header .shortcut-services .shortcut {
+        overflow: auto;
+        max-width: 900px;
+        margin: auto; }
+        app-category .category-container .category-header .shortcut-services .shortcut .details {
+          float: left; }
+          app-category .category-container .category-header .shortcut-services .shortcut .details span {
+            font-size: 18px; }
+          app-category .category-container .category-header .shortcut-services .shortcut .details .price {
+            color: #FFC845;
+            font-size: 36px;
+            font-weight: 500; }
+        app-category .category-container .category-header .shortcut-services .shortcut .actions {
+          float: right; }
     app-category .category-container .category-header .tabs-container {
       overflow: auto;
       padding: 50px 10px; }
@@ -4741,9 +4754,8 @@ app-category {
         cursor: pointer;
         padding: 0 15px;
         text-align: center;
-        color: black;
         font-size: 30px;
-        background: rgba(0, 0, 0, 0.2); }
+        background: rgba(0, 0, 0, 0.05); }
       app-category .category-container .services-container .service-container .custom:hover {
         background: rgba(0, 0, 0, 0.1); }
     app-category .category-container .services-container .big-container {
@@ -5341,9 +5353,15 @@ app-order .sidebar .order-content .price-block {
   app-order .sidebar .order-content .price-block .total {
     overflow: auto; }
     app-order .sidebar .order-content .price-block .total span {
-      font-size: 12px;
-      color: rgba(255, 255, 255, 0.7);
-      margin-bottom: 10px; }
+      display: block;
+      float: left;
+      width: 100%;
+      text-align: center;
+      color: #ffffff;
+      font-weight: 600;
+      letter-spacing: 0.22px;
+      font-size: 14px;
+      color: rgba(255, 255, 255, 0.7); }
     app-order .sidebar .order-content .price-block .total h1 {
       color: #FFC845;
       font-weight: 500; }
@@ -5351,9 +5369,25 @@ app-order .sidebar .order-content .price-block {
       font-weight: 300;
       text-decoration: line-through; }
   app-order .sidebar .order-content .price-block .upfront {
+    overflow: auto;
     margin: 40px 0 0; }
+    app-order .sidebar .order-content .price-block .upfront span {
+      display: block;
+      text-align: center;
+      font-weight: 400;
+      letter-spacing: 0.22px;
+      font-size: 16px;
+      color: rgba(255, 255, 255, 0.7); }
   app-order .sidebar .order-content .price-block .timing {
+    overflow: auto;
     margin: 40px 0 0; }
+    app-order .sidebar .order-content .price-block .timing span {
+      display: block;
+      text-align: center;
+      font-weight: 400;
+      letter-spacing: 0.22px;
+      font-size: 18px;
+      color: rgba(255, 255, 255, 0.7); }
   app-order .sidebar .order-content .price-block .description {
     font-weight: 300;
     font-size: 14px;
@@ -5450,16 +5484,6 @@ app-order .sidebar .order-content .links {
   float: left;
   width: 100%;
   padding: 40px 20px 30px; }
-
-.order-content .price-block span {
-  display: block;
-  float: left;
-  width: 100%;
-  text-align: center;
-  color: #ffffff;
-  font-size: 35px;
-  font-weight: 600;
-  letter-spacing: 0.22px; }
 
 .order-content .price-block .description {
   display: block;

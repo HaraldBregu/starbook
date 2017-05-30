@@ -11,20 +11,12 @@ app-category {
       background-repeat: no-repeat;
       background-position: center;
       color: white;
-      text-align: center;
-      .btn {
-        padding: 0 40px;
-        margin: 10px;
-        font-size: 20px;
-        height: 50px;
-        border-radius: 3px;
-        min-width: 200px;
-      }
       .overlay {
         background-color: rgba(18, 18, 18, 0.5);
       }
       .header-content {
         padding: 50px 10px;
+        text-align: center;
         .header {
           max-width: 700px;
           margin: auto;
@@ -60,9 +52,37 @@ app-category {
           padding: 20px 0;
         }
       }
-      .fast-services {
+      .shortcut-services {
         background: #161517;
-        padding: 20px
+        padding: 20px 0;
+        .btn {
+          padding: 0 40px;
+          font-size: 26px;
+          height: 60px;
+          border-radius: 30px;
+          min-width: 200px;
+          color: black;
+          line-height: 60px;
+        }
+        .shortcut {
+          overflow: auto;
+          max-width: 900px;
+          margin: auto;
+          .details {
+            float: left;
+            span {
+              font-size: 18px;
+            }
+            .price {
+              color: #FFC845;
+              font-size: 36px;
+              font-weight: 500;
+            }
+          }
+          .actions {
+            float: right;
+          }
+        }
       }
       .tabs-container {
         overflow: auto;
@@ -170,9 +190,8 @@ app-category {
           cursor: pointer;
           padding: 0 15px;
           text-align: center;
-          color: black;
           font-size: 30px;
-          background: rgba(0, 0, 0, 0.2);
+          background: rgba(0, 0, 0, 0.05);
         }
         .custom:hover {
           background: rgba(0, 0, 0, 0.1);

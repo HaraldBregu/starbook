@@ -2,7 +2,7 @@
   <form class="sidebar-container" #orderForm="ngForm" (window:resize)="onResize()">
     <div class="sidebar-block">
       <div class="order-header">
-        <span>Costo del servizio</span>
+        <span>Costi del servizio</span>
       </div>
       <div class="order-content">
         <div class="price-block">
@@ -13,24 +13,21 @@
           <div *ngIf="!price_state.loading">
             <div class="total">
               <h1>{{getFinalPrice()/100}}€</h1>
-              <span>TOTALE IVA INCLUSA</span>
+              <span>A PARTIRE DA</span>
               <h2 *ngIf="price_state.is_referral">{{getInitialPrice()/100}}€</h2>
-              <!-- <h6>Totale Offerta</h6> -->
             </div>
             <div class="upfront">
               <h1>{{getUpFront()/100}}€</h1>
-              <!-- <h6>Acconto (30% del totale)</h6> -->
-              <h6>Acconto</h6>
+              <span>Acconto in garanzia</span>
             </div>
             <div class="timing">
-              <h2>{{getTiming()}}</h2>
-              <h6>Durata</h6>
+              <span>Durata minima - {{getTiming()}}</span>
             </div>
           </div>
         </div>
         <div class="line"></div>
         <div class="form-group">
-          <button class="btn btn-warning" (click)="startWizard()">CONTINUA</button>
+          <button class="btn btn-warning" (click)="startWizard()">CONTINUA <i class="fa fa-arrow-right" aria-hidden="true"></i></button>
         </div>
         <!-- <div class="description">
           Le offerte del preventivo possono cambiare in base alle richieste del mercato. Blocca il prezzo versando un acconto.

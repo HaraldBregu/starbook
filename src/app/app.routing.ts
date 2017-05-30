@@ -24,15 +24,8 @@ import { ContactComponent } from './pages/contact/contact.component';
 import { NotfoundComponent } from './pages/notfound/notfound.component';
 
 const routes: Routes = [
-  {
-    path: '',
-    component: LandingComponent
-  },
-  {
-    path: 'category/:category',
-    component: CategoryComponent,
-    data: {isFindField: true}
-  },
+  { path: '', component: LandingComponent },
+  { path: 'category/:category', component: CategoryComponent, data: {isFindField: true} },
   {
     path: 'account',
     component: AccountComponent
@@ -102,10 +95,7 @@ const routes: Routes = [
     path: 'info/legal',
     component: LegalComponent
   },
-  {
-    path: 'info/about',
-    component: AboutComponent
-  },
+  { path: 'info/about', component: AboutComponent },
   { path: '404', component: NotfoundComponent },
   { path: '**', redirectTo: '' }
 ];

@@ -65,11 +65,11 @@ export class OrderComponent implements OnInit, OnDestroy {
   getTiming() {
     var days = this.getInitialPrice()/45000;
     if (days < 0.5) {
-      return "1/2 Giorno";
+      return "mezza giornata";
     } else if (days > 0.5 && days < 1.5) {
-      return Math.round(days) + " Giorno";
+      return Math.round(days) + " giorno";
     } else {
-      return Math.round(days) + " Giorni";
+      return Math.round(days) + " giorni";
     }
   }
 

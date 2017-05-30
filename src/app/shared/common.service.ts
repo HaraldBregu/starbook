@@ -16,7 +16,7 @@ export class CommonService {
 
   constructor(private http: Http/*, private navigationService: NavigationService*/) {
     this.api = 'https://api.starbook.co/v0.9.1/';
-    // this.api = 'http://localhost/v0.9.1/';
+    // this.api = 'http://localhost/t0.9.1/';
   }
 
   sendServices(services) {
@@ -75,6 +75,19 @@ export class CommonService {
     }).catch(this.handleError);
   }
 
+  getServicesForCategoryTitle(title) {
+    // this.navigationService.updateLoadingStatus(true);
+    // let queryString = 'category_services';
+    // return this.http.get(this.api + queryString).toPromise().then((response) => {
+    //   return response.json();
+    // }).catch(this.handleError);
+
+    let queryString = 'categories/' + title + '/services';
+    return this.http.get(this.api + queryString).toPromise().then((response) => {
+      return response.json();
+    }).catch(this.handleError);
+  }
+
   getAllServices(query) {
     let params: URLSearchParams = new URLSearchParams();
     if (query) {
@@ -88,31 +101,32 @@ export class CommonService {
   }
   getServices() {
     // this.navigationService.updateLoadingStatus(true);
-    return this.http.get(this.api + 'featured')
-        .toPromise()
-        .then((services) => {
-          // this.navigationService.updateLoadingStatus(false);
-          return services.json();
-        })
-        .catch(this.handleError);
+    return this.http.get(this.api + 'featured').toPromise().then((services) => {
+      return services.json();
+    }).catch(this.handleError);
   }
 
   search(query) {
-    return this.http.get(this.api + 'search?title=' + query)
-        .toPromise()
-        .then((results) => {
-          return results.json();
-        })
-        .catch(this.handleError);
+    return this.http.get(this.api + 'search?title=' + query).toPromise().then((results) => {
+      return results.json();
+    }).catch(this.handleError);
   }
 
   getServiceById(id) {
-      return this.http.get(this.api + 'services/' + id)
-          .toPromise()
-          .then((results) => {
-              return results.json();
-          })
-          .catch(this.handleError);
+    return this.http.get(this.api + 'services/' + id).toPromise().then((results) => {
+      return results.json();
+    }).catch(this.handleError);
+  }
+  getRelatedServicesByServiceId(id, query) {
+    let params: URLSearchParams = new URLSearchParams();
+    if (query) {
+      for(let key in query) {
+        params.set(key.toString(), query[key]);
+      }
+    }
+    return this.http.get(this.api + 'services/' + id + '/services', {search: params}).toPromise().then((results) => {
+      return results.json();
+    }).catch(this.handleError);
   }
 
   private _makeHeaders() {

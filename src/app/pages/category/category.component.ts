@@ -52,7 +52,6 @@ export class CategoryComponent implements OnInit {
     private commonService: CommonService) {
 
       let category = this.commonService.getCategory();
-      if (isBrowser) {window.scrollTo(0, 0);}
       if (category) {
         this.category = category;
         this.navigationService.updateMessage(this.category.title);
@@ -61,7 +60,7 @@ export class CategoryComponent implements OnInit {
        } else {
         this.route.params.subscribe(params => {
           let category = params['category'];
-          this.commonService.getCategoryById(category).then((data) => {
+          this.commonService.getServiceById(category).then((data) => {
             this.category = data.result;
             this.updateSeoForObject(this.category);
             this.navigationService.updateMessage(this.category.title);
@@ -74,8 +73,9 @@ export class CategoryComponent implements OnInit {
     }
 
   ngOnInit() {
-
+    if (isBrowser) {window.scrollTo(0, 0);}
   }
+
   updateSeoForObject(category) {
     this.seoObject['title'] = category.title;
     this.seoObject['description'] = category.description;
@@ -108,10 +108,16 @@ export class CategoryComponent implements OnInit {
     return false;
   }
   loadServicesForCategoryId(category_id) {
-    this.commonService.getAllServices({'category': category_id}).then((data) => {
-      this.services = data.result;
+    this.commonService.getRelatedServicesByServiceId(category_id, null).then((data) => {
+      this.services = data.result[0].services;
+      console.log('services are: ' + JSON.stringify(data.result));
     }).catch((error) => {
+      console.log('error are: ' + JSON.stringify(error));
     });
+    // this.commonService.getAllServices({'category': category_id}).then((data) => {
+    //   this.services = data.result;
+    // }).catch((error) => {
+    // });
   }
   showServicePage(service) {
     this.commonService.setService(service)

@@ -40,11 +40,16 @@ app-order {
         }
         .total {
           overflow: auto;
-          // margin: 40px 0 0;
           span {
-            font-size: 12px;
+            display: block;
+            float: left;
+            width: 100%;
+            text-align: center;
+            color: #ffffff;
+            font-weight: 600;
+            letter-spacing: 0.22px;
+            font-size: 14px;
             color: rgba(255, 255, 255, 0.7);
-            margin-bottom: 10px;
           }
           h1 {
             color: #FFC845;
@@ -56,10 +61,28 @@ app-order {
           }
         }
         .upfront {
+          overflow: auto;
           margin: 40px 0 0;
+          span {
+            display: block;
+            text-align: center;
+            font-weight: 400;
+            letter-spacing: 0.22px;
+            font-size: 16px;
+            color: rgba(255, 255, 255, 0.7);
+          }
         }
         .timing {
+          overflow: auto;
           margin: 40px 0 0;
+          span {
+            display: block;
+            text-align: center;
+            font-weight: 400;
+            letter-spacing: 0.22px;
+            font-size: 18px;
+            color: rgba(255, 255, 255, 0.7);
+          }
         }
         .description {
           font-weight: 300;
@@ -287,16 +310,6 @@ $footer-links-text-letter-spacing: 0.08px;
     float: left;
     width: 100%;
     padding: 40px 20px 30px;
-  }
-  .order-content .price-block span {
-    display: block;
-    float: left;
-    width: 100%;
-    text-align: center;
-    color: #ffffff;
-    font-size: 35px;
-    font-weight: 600;
-    letter-spacing: 0.22px;
   }
   .order-content .price-block .description {
     display: block;
