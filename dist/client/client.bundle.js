@@ -1498,14 +1498,10 @@ var CategoryComponent = (function () {
         var _this = this;
         this.commonService.getRelatedServicesByServiceId(category_id, null).then(function (data) {
             _this.services = data.result[0].services;
-            console.log('services are: ' + JSON.stringify(data.result));
+            // console.log('services are: ' + JSON.stringify(data.result));
         }).catch(function (error) {
-            console.log('error are: ' + JSON.stringify(error));
+            // console.log('error are: ' + JSON.stringify(error));
         });
-        // this.commonService.getAllServices({'category': category_id}).then((data) => {
-        //   this.services = data.result;
-        // }).catch((error) => {
-        // });
     };
     CategoryComponent.prototype.showServicePage = function (service) {
         this.commonService.setService(service);
@@ -3234,6 +3230,10 @@ var ServiceComponent = (function () {
             is_referral: false,
             referral_id: null
         };
+        this.Services = [];
+        this.Order = {};
+        this.Service = {};
+        this.OrderService = {};
     }
     ServiceComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -3254,18 +3254,21 @@ var ServiceComponent = (function () {
                 _this.router.navigate(['']);
             }
             else {
+                _this.Service = {};
                 if (__WEBPACK_IMPORTED_MODULE_0_angular2_universal__["isBrowser"]) {
                     window.scrollTo(0, 0);
                 }
                 _this.commonService.getServiceById(service_id).then(function (data) {
-                    _this.renderPage(data.result);
+                    // this.renderPage(data.result);
+                    _this.showService(data.result);
                 }).catch(function (error) {
                     var service = _this.commonService.getService();
                     if (!service) {
                         _this.router.navigate(['']);
                     }
                     else {
-                        _this.renderPage(service);
+                        // this.renderPage(service);
+                        _this.showService(service);
                     }
                 });
             }
@@ -3312,43 +3315,146 @@ var ServiceComponent = (function () {
             });
         }
     };
-    ServiceComponent.prototype.renderPage = function (services) {
+    ServiceComponent.prototype.showService = function (service) {
+        this.Service = service;
+        this.commonService.setService(this.Service);
+        this.navigationService.updateMessage(this.Service['title']);
+        this.seoService.setTitle(this.Service['title']);
+        this.seoService.setOgElem('og:title', this.Service['title']);
+        this.seoService.setMetaElem('description', this.Service['description']);
+        this.seoService.setOgElem('og:description', this.Service['description']);
+        this.seoService.setOgElem('og:url', 'https://www.starbook.co/services/' + this.Service['title'].replace(/\s+/g, '-'));
+        this.seoService.setOgElem('og:image', 'https://s3-eu-west-1.amazonaws.com/starbook-s3/services/' + this.Service['_id'] + '/cover/0');
+        this.seoService.setOgElem('og:image:secure_url', 'https://s3-eu-west-1.amazonaws.com/starbook-s3/services/' + this.Service['_id'] + '/cover/0');
+        this.buildOrderService(this.Service);
+    };
+    ServiceComponent.prototype.buildOrderService = function (service) {
+        this.OrderService['_id'] = service['_id'];
+        this.OrderService['title'] = service['title'];
+        this.OrderService['details'] = [];
+        var detail = {};
+        detail['title'] = service['pricing']['unit']['title'];
+        detail['quantity'] = 0;
+        detail['price'] = service['pricing']['unit']['price'];
+        detail['total'] = detail['quantity'] * service['pricing']['unit']['price'];
+        this.OrderService['details'].push(detail);
+        // console.log('order service is: ' + JSON.stringify(this.OrderService));
+    };
+    ServiceComponent.prototype.quantityForOrderService = function (orderService) {
+        return orderService['details'][0].quantity;
+    };
+    ServiceComponent.prototype.changeQuantityForOrderService = function () {
+        var value = parseInt(this.OrderService['details'][0].quantity);
+        if (isNaN(value) || value === 0) {
+            this.OrderService['details'][0].quantity = 0;
+        }
+        else {
+            this.OrderService['details'][0].quantity = value;
+            this.OrderService['details'][0]['total'] = value * this.OrderService['details'][0]['price'];
+        }
+    };
+    ServiceComponent.prototype.toggleItemOption = function (item, option) {
+        var found = false;
+        var index = 0;
+        var details = this.OrderService['details'];
+        for (var i = 0; i < details.length; i++) {
+            if (details[i].title === item.title) {
+                found = true;
+                index = i;
+                break;
+            }
+        }
+        if (found) {
+            this.OrderService['details'].splice(index, 1);
+            this.OrderService['details'][0]['price'] -= item.price;
+            this.OrderService['details'][0]['total'] = this.OrderService['details'][0]['quantity'] * this.OrderService['details'][0]['price'];
+        }
+        else {
+            var detail = {};
+            detail['title'] = item.title;
+            detail['quantity'] = 0;
+            detail['price'] = 0;
+            detail['total'] = 0;
+            this.OrderService['details'][0]['price'] += item.price;
+            this.OrderService['details'][0]['total'] = this.OrderService['details'][0]['quantity'] * this.OrderService['details'][0]['price'];
+            this.OrderService['details'].push(detail);
+        }
+        // console.log('order service is: ' + JSON.stringify(this.OrderService));
+    };
+    ServiceComponent.prototype.orderServiceDetailsContainItem = function (item) {
+        var details = this.OrderService['details'];
+        for (var i in details) {
+            var detail = details[i];
+            if (detail.title === item.title) {
+                return true;
+            }
+        }
+        return false;
+    };
+    ServiceComponent.prototype.getTotalEstimateQuotation = function () {
+        // console.log('est: ' + JSON.stringify(this.OrderService['details']));
+        var details = this.OrderService['details'];
+        var newValue = 0;
+        if (details) {
+            for (var i = 0; i < details.length; i++) {
+                var detail = details[i];
+                var price;
+                if (isNaN(detail.total)) {
+                    price = 0;
+                }
+                else {
+                    price = detail.total;
+                }
+                newValue += parseInt(price);
+            }
+            return newValue;
+        }
+        return newValue;
+    };
+    ServiceComponent.prototype.renderPage = function (service) {
         var _this = this;
-        this.commonService.setService(services);
-        this.navigationService.updateMessage(services.title);
-        this.service = services;
-        // console.log('services is: ' + JSON.stringify(services));
-        var service_image_url = 'https://s3-eu-west-1.amazonaws.com/starbook-s3/services/' + this.service._id + '/cover/0';
-        this.seoService.setTitle(services.title + "| Preventivo Online");
-        this.seoService.setOgElem('og:title', services.title + "| Preventivo Online");
-        this.seoService.setMetaElem('description', services.description);
-        this.seoService.setOgElem('og:description', services.description);
-        this.seoService.setOgElem('og:url', 'https://www.starbook.co/services/' + services.title.replace(/\s+/g, '-'));
-        this.seoService.setOgElem('og:image', service_image_url);
-        this.seoService.setOgElem('og:image:secure_url', service_image_url);
-        this.defaultServices = services;
-        this.title = services.title;
-        this.description = services.description;
-        this.technical_details = services.technical_details;
-        this.image_url = service_image_url;
+        this.commonService.setService(service);
+        this.navigationService.updateMessage(service.title);
+        this.service = service;
+        this.image_url = 'https://s3-eu-west-1.amazonaws.com/starbook-s3/services/' + this.service._id + '/cover/0';
+        this.seoService.setTitle(service.title + "| Preventivo Online");
+        this.seoService.setOgElem('og:title', service.title + "| Preventivo Online");
+        this.seoService.setMetaElem('description', service.description);
+        this.seoService.setOgElem('og:description', service.description);
+        this.seoService.setOgElem('og:url', 'https://www.starbook.co/services/' + service.title.replace(/\s+/g, '-'));
+        this.seoService.setOgElem('og:image', this.image_url);
+        this.seoService.setOgElem('og:image:secure_url', this.image_url);
+        this.defaultServices = service;
+        this.title = service.title;
+        this.description = service.description;
+        this.Service['_id'] = service._id;
+        this.Service['title'] = service.title;
+        // this.Order['services'] = [this.Service]
+        var detail = {
+            title: "",
+            quantity: 0,
+            price: 0,
+            total: 0
+        };
+        this.Service['details'] = [detail];
         this.servicesData = [];
         this.orderData = {
-            service_id: services._id,
+            service_id: service._id,
             service_image: this.image_url,
-            price: services.price,
-            title: services.title,
+            price: service.price,
+            title: service.title,
             details: [],
-            // details: [{title:services.title, type:"service"}],
-            totalPrice: services.price.base_amount
+            totalPrice: service.price.base_amount
         };
-        this.baseAmount.start = services.price.base_amount;
-        this.baseAmount.calculated = services.price.base_amount;
+        this.baseAmount.start = service.price.base_amount;
+        this.baseAmount.calculated = service.price.base_amount;
         var formId = 0;
-        services.forms.forEach(function (form) {
+        // console.log('form length: ' + service.forms.length);
+        service.forms.forEach(function (form) {
+            // console.log('form is: ' + JSON.stringify(form));
             var serviceForm = {
                 title: form.title,
                 description: form.description,
-                image_url: form.image_url,
                 type: form.type,
                 required: form.required,
                 price_type: form.price_type,
@@ -3361,7 +3467,6 @@ var ServiceComponent = (function () {
                     optionId: optionId,
                     title: item.title,
                     description: item.description,
-                    image_url: item.image_url,
                     type: form.type,
                     amount: item.amount
                 };
@@ -3382,7 +3487,8 @@ var ServiceComponent = (function () {
             _this.servicesData.push(serviceForm);
             formId++;
         });
-        // console.log('servicesData: ' + JSON.stringify(this.servicesData));
+        this.Services.push(this.Service);
+        // console.log('this services: ' + JSON.stringify(this.Services));
         this.calculateOrder();
     };
     ServiceComponent.prototype.toggleService = function (serviceName, itemName) {
@@ -3450,6 +3556,7 @@ var ServiceComponent = (function () {
         this.calculateOrder();
     };
     ServiceComponent.prototype.selectAllContent = function ($event) {
+        // console.log('select: ' + JSON.stringify($event));
         $event.target.select();
     };
     ServiceComponent.prototype.uncheckAllItems = function (serviceName) {
@@ -5962,19 +6069,50 @@ var OrderComponent = (function () {
     //// PRICE BLOCK //////////
     ///////////////////////////
     OrderComponent.prototype.getFinalPrice = function () {
-        var total_price = this.orderData.totalPrice;
-        if (!this.price_state.is_referral) {
-            return total_price;
+        // let total_price = this.orderData.totalPrice;
+        // if (!this.price_state.is_referral) {
+        //   return total_price;
+        // } else {
+        //   return (total_price - (total_price * 0.05));
+        // }
+        // console.log('order services: ' + this.orderServices);
+        // console.log('service: ' + JSON.stringify(this.Service));
+        // {{Service.pricing.unit.symbol}}['unit']['symbol']
+        return 19000;
+    };
+    OrderComponent.prototype.getPriceUnit = function () {
+        var pricing = this.Service['pricing'];
+        if (pricing) {
+            var unit = pricing['unit'];
+            if (unit) {
+                var price = unit['price'];
+                return price;
+            }
         }
-        else {
-            return (total_price - (total_price * 0.05));
+    };
+    OrderComponent.prototype.getUnit = function () {
+        var pricing = this.Service['pricing'];
+        if (pricing) {
+            var unit = pricing['unit'];
+            if (unit) {
+                var symbol = unit['symbol'];
+                return symbol;
+            }
+        }
+    };
+    OrderComponent.prototype.getMinPrice = function () {
+        var pricing = this.Service['pricing'];
+        if (pricing) {
+            var min = pricing['min'];
+            return min;
         }
     };
     OrderComponent.prototype.getInitialPrice = function () {
         return this.orderData.totalPrice;
     };
     OrderComponent.prototype.getUpFront = function () {
-        return Math.round((this.getFinalPrice() * 0.3));
+        // return Math.round((this.getFinalPrice() * 0.3));
+        return 1500;
     };
     OrderComponent.prototype.getTiming = function () {
         var days = this.getInitialPrice() / 45000;
@@ -5994,13 +6132,6 @@ var OrderComponent = (function () {
             title: this.orderData.title,
             details: this.orderData.details,
             referral_id: this.price_state.referral_id,
-            // price: {
-            //   amount: this.getFinalPrice(),
-            //   currency: 'eur'
-            // },
-            // payment: {
-            //   upfront: this.getUpFront()
-            // },
             upfront_amount: this.getUpFront(),
             timing: {
                 days: this.getInitialPrice() / 45000
@@ -6048,9 +6179,6 @@ var OrderComponent = (function () {
             this.saveEstimateQuotationToLocal(newWizardData);
         }
     };
-    ///////////////////////////
-    ////////// ORDER //////////
-    ///////////////////////////
     OrderComponent.prototype.saveEstimateQuotationToLocal = function (object) {
         if (__WEBPACK_IMPORTED_MODULE_7_angular2_universal__["isBrowser"]) {
             if (!localStorage.getItem('estimates')) {
@@ -6086,6 +6214,14 @@ var OrderComponent = (function () {
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(), 
         __metadata('design:type', Object)
     ], OrderComponent.prototype, "price_state", void 0);
+    __decorate([
+        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(), 
+        __metadata('design:type', Object)
+    ], OrderComponent.prototype, "orderServices", void 0);
+    __decorate([
+        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(), 
+        __metadata('design:type', Object)
+    ], OrderComponent.prototype, "Service", void 0);
     OrderComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'app-order',
@@ -8506,7 +8642,7 @@ module.exports = "<div *ngIf=\"!page\" class=\"landing-container\">\n  <div clas
 /***/ 711:
 /***/ function(module, exports) {
 
-module.exports = "<div class=\"col-sm-3 col-md-2 sidebar\">\n  <form class=\"sidebar-container\" #orderForm=\"ngForm\" (window:resize)=\"onResize()\">\n    <div class=\"sidebar-block\">\n      <div class=\"order-header\">\n        <span>Costi del servizio</span>\n      </div>\n      <div class=\"order-content\">\n        <div class=\"price-block\">\n          <div class=\"loader-section\" *ngIf=\"price_state.loading\">\n            <i class=\"fa fa-circle-o-notch animate\"></i>\n            <h2>Applicando lo sconto...</h2>\n          </div>\n          <div *ngIf=\"!price_state.loading\">\n            <div class=\"total\">\n              <h1>{{getFinalPrice()/100}}€</h1>\n              <span>A PARTIRE DA</span>\n              <h2 *ngIf=\"price_state.is_referral\">{{getInitialPrice()/100}}€</h2>\n            </div>\n            <div class=\"upfront\">\n              <h1>{{getUpFront()/100}}€</h1>\n              <span>Acconto in garanzia</span>\n            </div>\n            <div class=\"timing\">\n              <span>Durata minima - {{getTiming()}}</span>\n            </div>\n          </div>\n        </div>\n        <div class=\"line\"></div>\n        <div class=\"form-group\">\n          <button class=\"btn btn-warning\" (click)=\"startWizard()\">CONTINUA <i class=\"fa fa-arrow-right\" aria-hidden=\"true\"></i></button>\n        </div>\n        <!-- <div class=\"description\">\n          Le offerte del preventivo possono cambiare in base alle richieste del mercato. Blocca il prezzo versando un acconto.\n        </div> -->\n        <!-- <div class=\"line\"></div> -->\n        <!-- <div class=\"links noselect\">\n          <a routerLink=\"/share\" (click)=\"share()\">Condividi</a>\n          <a *ngIf=\"currentUser && !estimate_state.saved\" (click)=\"saveEstimate()\">Salva</a>\n          <a *ngIf=\"currentUser && estimate_state.saved\">Salvato!</a>\n        </div> -->\n      </div>\n    </div>\n  </form>\n</div>\n"
+module.exports = "<div class=\"col-sm-3 col-md-2 sidebar\">\n  <form class=\"sidebar-container\" #orderForm=\"ngForm\" (window:resize)=\"onResize()\">\n    <div class=\"sidebar-block\">\n      <div class=\"order-header\">\n        <span>Costi del servizio</span>\n      </div>\n      <div class=\"order-content\">\n        <div class=\"price-block\">\n          <!-- <div class=\"loader-section\" *ngIf=\"price_state.loading\">\n            <i class=\"fa fa-circle-o-notch animate\"></i>\n            <h2>Applicando lo sconto...</h2>\n          </div> -->\n          <!-- <div class=\"total\" *ngIf=\"!price_state.loading\">\n            <h1>{{getFinalPrice()/100}}€</h1>\n            <span>Costo minimo del servizio</span>\n            <span>PREZZO MINIMO DEL SERVIZIO</span>\n            <h2 *ngIf=\"price_state.is_referral\">{{getInitialPrice()/100}}€</h2>\n          </div> -->\n          <!-- <div class=\"item\">\n            <span class=\"text\">Unità di misura</span> <span class=\"value\">ORE</span>\n          </div> -->\n          <div class=\"item\">\n            <span class=\"text\">A partire da</span><span class=\"value\">{{getMinPrice()/100}}€</span>\n          </div>\n          <div class=\"item\">\n            <span *ngIf=\"getPriceUnit()\"><span class=\"text\">Prezzo medio</span><span class=\"amount\">{{getPriceUnit()/100}}<span class=\"unit\">€/{{getUnit()}}</span></span></span>\n          </div>\n          <div class=\"item\">\n            <span class=\"text\">Acconto</span><span class=\"value\">15€</span>\n          </div>\n\n          <!-- <div class=\"total\" *ngIf=\"!price_state.loading\">\n            <span class=\"text\">Prezzo minimo</span> <span class=\"price\">567€</span>\n          </div>\n          <div class=\"total\" *ngIf=\"!price_state.loading\">\n            <span>PREZZO</span>\n            <h1>941€</h1>\n          </div>\n          <div class=\"upfront\" *ngIf=\"!price_state.loading\">\n            <span>Garanzia</span>\n            <h1>{{getUpFront()/100}}€</h1>\n          </div> -->\n          <div class=\"item\" *ngIf=\"!price_state.loading\">\n          </div>\n\n          <!-- <div class=\"item\">\n            <span class=\"text\"><i class=\"fa fa-calendar-check-o\" aria-hidden=\"true\"></i> Disponibilità su prenotazione</span><br>\n          </div>\n          <div class=\"item\">\n            <span class=\"text\"><i class=\"fa fa-clock-o\" aria-hidden=\"true\"></i> Durata minima</span>\n          </div>\n          <div class=\"item\">\n            <span class=\"text\"><i class=\"fa fa-map-marker\" aria-hidden=\"true\"></i> Sopraluogo</span><br>\n          </div>\n          <div class=\"item\">\n            <span class=\"text\"><i class=\"fa fa-credit-card-alt\" aria-hidden=\"true\"></i> Modalità di pagamento con carta</span>\n          </div> -->\n        </div>\n        <!-- <div class=\"form-group\">\n          <button class=\"btn btn-warning\" (click)=\"startWizard()\">Fissa un sopralluogo</button>\n        </div> -->\n\n        <!-- <div class=\"line\"></div> -->\n        <!-- <div class=\"form-group\">\n          <button class=\"btn btn-warning\" (click)=\"startWizard()\">CONTINUA <i class=\"fa fa-arrow-right\" aria-hidden=\"true\"></i></button>\n        </div> -->\n        <!-- <div class=\"form-group\">\n          <button class=\"btn btn-danger\" (click)=\"startWizard()\">PRONTO INTERVENTO <i class=\"fa fa-arrow-right\" aria-hidden=\"true\"></i></button>\n        </div>\n        <div class=\"form-group\">\n          <button class=\"btn btn-success\" (click)=\"startWizard()\">SALVA <i class=\"fa fa-arrow-right\" aria-hidden=\"true\"></i></button>\n        </div> -->\n\n        <!-- <div class=\"description\">\n          Le offerte del preventivo possono cambiare in base alle richieste del mercato. Blocca il prezzo versando un acconto.\n        </div> -->\n        <!-- <div class=\"line\"></div> -->\n        <!-- <div class=\"links noselect\">\n          <a routerLink=\"/share\" (click)=\"share()\">Condividi</a>\n          <a *ngIf=\"currentUser && !estimate_state.saved\" (click)=\"saveEstimate()\">Salva</a>\n          <a *ngIf=\"currentUser && estimate_state.saved\">Salvato!</a>\n        </div> -->\n      </div>\n    </div>\n  </form>\n</div>\n"
 
 /***/ },
 
@@ -8534,7 +8670,7 @@ module.exports = "<div class=\"blog\">\n  <div class=\"header\">\n    <div class
 /***/ 715:
 /***/ function(module, exports) {
 
-module.exports = "<div class=\"category-container\" *ngIf=\"category\">\n  <div class=\"category-header\" [ngStyle]=\"{'background-image' : ' url(' + images_url + 'services/'+ category._id + '/cover/0' + ')'}\">\n    <div class=\"overlay\">\n      <div class=\"header-content\">\n        <div class=\"header\">\n          <h1>{{category.title}}</h1>\n          <!-- <p>{{category.description}}</p> -->\n        </div>\n      </div>\n      <!-- <div class=\"shortcut-services\" *ngFor=\"let shortcut of category.shortcut_services\">\n        <div class=\"shortcut\">\n          <div class=\"details\">\n            <h2>{{shortcut.title}}</h2>\n            <span>A partire da </span><span class=\"price\">{{shortcut.min_amount/100}}€</span>\n          </div>\n          <div class=\"actions\">\n            <button class=\"btn btn-warning\" (click)=\"pushShortcut(shortcut)\">Ordina ora <i class=\"fa fa-arrow-right\" aria-hidden=\"true\"></i></button>\n          </div>\n        </div>\n      </div> -->\n      <!-- <div class=\"tabs-container\">\n        <div class=\"tabs\">\n          <div class=\"tab-container\" *ngFor=\"let action of category.direct_actions\">\n            <div class=\"tab\" (click)=\"showDirectAction(action)\" [ngClass]=\"action.type\">\n              {{action.title}}\n            </div>\n          </div>\n        </div>\n      </div> -->\n    </div>\n  </div>\n  <!-- <div class=\"search-container\">\n    <div class=\"search\">\n      <div class=\"search-field\">\n        <p-autoComplete [(ngModel)]=\"query\" [suggestions]=\"results\" field=\"title\" scrollHeight=\"275px\" (completeMethod)=\"search($event)\" (onSelect)=\"selectResult(query)\" placeholder=\"Cerca un servizio\" minLength=\"0\">\n          <template let-res>\n            <div class=\"search-result\" (click)=\"selectResult(res)\">{{ res.title }}</div>\n          </template>\n        </p-autoComplete>\n        <div class=\"spinner\" *ngIf=\"spinerView\">\n          <svg width='21px' height='21px' xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\" preserveAspectRatio=\"xMidYMid\" class=\"uil-ring\">\n            <rect x=\"0\" y=\"0\" width=\"100\" height=\"100\" fill=\"none\" class=\"bk\"></rect>\n            <circle cx=\"50\" cy=\"50\" r=\"45\" stroke-dasharray=\"169.64600329384882 113.09733552923257\" stroke=\"#3B568D\" fill=\"none\" stroke-width=\"10\">\n              <animateTransform attributeName=\"transform\" type=\"rotate\" values=\"0 50 50;180 50 50;360 50 50;\" keyTimes=\"0;0.5;1\" dur=\"1s\" repeatCount=\"indefinite\" begin=\"0s\"></animateTransform>\n            </circle>\n          </svg>\n        </div>\n        <div class=\"close-container\" *ngIf=\"!spinerView && clearView\">\n          <span class=\"close rounded thick\" (click)=\"clearSearchForm()\"></span>\n        </div>\n        <div class=\"ui-autocomplete-panel empty\" *ngIf=\"results.length === 0 && query.length > 0\">\n          <div class=\"no-result noselect\">\n            Il servizio \"{{query}}\" non è disponibile\n            <button class=\"suggess-service\" (click)=\"requireService()\">{{newServiceRequest.message}}</button>\n          </div>\n        </div>\n      </div>\n      <div class=\"search-button\">\n        <button class=\"btn btn-primary\" (click)=\"searchMore()\"><i class=\"fa fa-search\" aria-hidden=\"true\"></i></button>\n      </div>\n    </div>\n  </div> -->\n  <div class=\"services-container\">\n    <h3>Servizi correlati</h3>\n    <div class=\"service-container\" *ngFor=\"let service of services\">\n      <div class=\"service\" (click)=\"showServicePage(service)\" [ngStyle]=\"{'background-image' : ' url(' +  images_url + 'services/'+ service._id + '/cover/0' + ')'}\">\n        <div class=\"title\">\n          <p>{{service.title}}</p>\n        </div>\n      </div>\n    </div>\n    <div class=\"service-container\" *ngIf=\"services && services.length>0\">\n      <div class=\"service custom\" (click)=\"requireService()\">\n        <i class=\"fa fa-plus\" aria-hidden=\"true\"></i>\n      </div>\n    </div>\n  </div>\n  <div class=\"footer-container\">\n    <div class=\"footer\">\n      <ul>\n        <li><a routerLink=\"/info/help\">Aiuto e Assistenza</a></li>\n        <li><a routerLink=\"/requests/service\">Chiedi un servizio</a></li>\n        <li><a routerLink=\"/info/about\">Chi siamo</a></li>\n      </ul>\n    </div>\n  </div>\n</div>\n"
+module.exports = "<div class=\"category-container\" *ngIf=\"category\">\n  <div class=\"category-header\" [ngStyle]=\"{'background-image' : ' url(' + images_url + 'services/'+ category._id + '/cover/0' + ')'}\">\n    <div class=\"overlay\">\n      <div class=\"header-content\">\n        <div class=\"header\">\n          <h1>{{category.title}}</h1>\n          <!-- <p>{{category.description}}</p> -->\n        </div>\n      </div>\n      <!-- <div class=\"shortcut-services\" *ngFor=\"let shortcut of category.shortcut_services\">\n        <div class=\"shortcut\">\n          <div class=\"details\">\n            <h2>{{shortcut.title}}</h2>\n            <span>A partire da </span><span class=\"price\">{{shortcut.min_amount/100}}€</span>\n          </div>\n          <div class=\"actions\">\n            <button class=\"btn btn-warning\" (click)=\"pushShortcut(shortcut)\">Ordina ora <i class=\"fa fa-arrow-right\" aria-hidden=\"true\"></i></button>\n          </div>\n        </div>\n      </div> -->\n      <!-- <div class=\"tabs-container\">\n        <div class=\"tabs\">\n          <div class=\"tab-container\" *ngFor=\"let action of category.direct_actions\">\n            <div class=\"tab\" (click)=\"showDirectAction(action)\" [ngClass]=\"action.type\">\n              {{action.title}}\n            </div>\n          </div>\n        </div>\n      </div> -->\n    </div>\n  </div>\n  <!-- <div class=\"search-container\">\n    <div class=\"search\">\n      <div class=\"search-field\">\n        <p-autoComplete [(ngModel)]=\"query\" [suggestions]=\"results\" field=\"title\" scrollHeight=\"275px\" (completeMethod)=\"search($event)\" (onSelect)=\"selectResult(query)\" placeholder=\"Cerca un servizio\" minLength=\"0\">\n          <template let-res>\n            <div class=\"search-result\" (click)=\"selectResult(res)\">{{ res.title }}</div>\n          </template>\n        </p-autoComplete>\n        <div class=\"spinner\" *ngIf=\"spinerView\">\n          <svg width='21px' height='21px' xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\" preserveAspectRatio=\"xMidYMid\" class=\"uil-ring\">\n            <rect x=\"0\" y=\"0\" width=\"100\" height=\"100\" fill=\"none\" class=\"bk\"></rect>\n            <circle cx=\"50\" cy=\"50\" r=\"45\" stroke-dasharray=\"169.64600329384882 113.09733552923257\" stroke=\"#3B568D\" fill=\"none\" stroke-width=\"10\">\n              <animateTransform attributeName=\"transform\" type=\"rotate\" values=\"0 50 50;180 50 50;360 50 50;\" keyTimes=\"0;0.5;1\" dur=\"1s\" repeatCount=\"indefinite\" begin=\"0s\"></animateTransform>\n            </circle>\n          </svg>\n        </div>\n        <div class=\"close-container\" *ngIf=\"!spinerView && clearView\">\n          <span class=\"close rounded thick\" (click)=\"clearSearchForm()\"></span>\n        </div>\n        <div class=\"ui-autocomplete-panel empty\" *ngIf=\"results.length === 0 && query.length > 0\">\n          <div class=\"no-result noselect\">\n            Il servizio \"{{query}}\" non è disponibile\n            <button class=\"suggess-service\" (click)=\"requireService()\">{{newServiceRequest.message}}</button>\n          </div>\n        </div>\n      </div>\n      <div class=\"search-button\">\n        <button class=\"btn btn-primary\" (click)=\"searchMore()\"><i class=\"fa fa-search\" aria-hidden=\"true\"></i></button>\n      </div>\n    </div>\n  </div> -->\n  <div class=\"services-container\" *ngIf=\"services.length>0\">\n    <h3>Servizi correlati</h3>\n    <div class=\"service-container\" *ngFor=\"let service of services\">\n      <div class=\"service\" (click)=\"showServicePage(service)\" [ngStyle]=\"{'background-image' : ' url(' +  images_url + 'services/'+ service._id + '/cover/0' + ')'}\">\n        <div class=\"title\">\n          <p>{{service.title}}</p>\n        </div>\n      </div>\n    </div>\n    <div class=\"service-container\" *ngIf=\"services && services.length>0\">\n      <div class=\"service custom\" (click)=\"requireService()\">\n        <i class=\"fa fa-plus\" aria-hidden=\"true\"></i>\n      </div>\n    </div>\n  </div>\n  <div class=\"footer-container\">\n    <div class=\"footer\">\n      <ul>\n        <li><a routerLink=\"/info/help\">Aiuto e Assistenza</a></li>\n        <li><a routerLink=\"/requests/service\">Chiedi un servizio</a></li>\n        <li><a routerLink=\"/info/about\">Chi siamo</a></li>\n      </ul>\n    </div>\n  </div>\n</div>\n"
 
 /***/ },
 
@@ -8597,7 +8733,7 @@ module.exports = "<div class=\"service-container\">\n  <div class=\"service\" *n
 /***/ 724:
 /***/ function(module, exports) {
 
-module.exports = "<div class=\"home-page\">\n  <div class=\"row\">\n    <div class=\"col-sm-9 col-md-10 main\">\n      <div class=\"tab-container\">\n        <div class=\"header-cover\">\n          <div class=\"header-image\" [ngStyle]=\"{'background-image' : ' url(' + image_url + ')'}\"></div>\n          <!-- <div class=\"header-image\" [ngStyle]=\"{'background-image' : ' url(' + 'https://s3-eu-west-1.amazonaws.com/starbook-s3/' + 'services/'+ service._id + '/cover/0' + ')'}\"></div> -->\n          <!-- <img src=\"{{image_url}}\" alt=\"{{title}}\"> -->\n          <div class=\"details\">\n            <h2>{{ title }}</h2>\n            <p>{{ description }}</p>\n          </div>\n        </div>\n        <div class=\"masonry-container\">\n          <div class=\"services-block\" *ngFor=\"let serviceCategory of servicesData\">\n            <div class=\"header\">\n              <div class=\"content-header\" *ngIf=\"serviceCategory.image_url && serviceCategory.image_url !== ''\" [ngStyle]=\"{'width': '60%'}\">\n                <h3>{{serviceCategory.title}}</h3>\n                <p *ngIf=\"serviceCategory.description !== ''\">{{serviceCategory.description}}</p>\n              </div>\n              <div class=\"content-header\" *ngIf=\"!serviceCategory.image_url || serviceCategory.image_url === ''\" [ngStyle]=\"{'width': '100%', 'padding-right' : '0px'}\">\n                <h3>{{serviceCategory.title}}</h3>\n                <p *ngIf=\"serviceCategory.description !== ''\">{{serviceCategory.description}}</p>\n              </div>\n              <div *ngIf=\"serviceCategory.image_url && serviceCategory.image_url !== ''\">\n                <img src=\"{{serviceCategory.image_url}}\" alt=\"{{serviceCategory.title}}\">\n              </div>\n              <div *ngIf=\"!serviceCategory.image_url || serviceCategory.image_url == ''\">\n                <img [ngStyle]=\"{'display': 'none'}\">\n              </div>\n            </div>\n            <div class=\"service content noselect\">\n              <span *ngFor=\"let item of serviceCategory.options\">\n                <div class=\"item-container\" *ngIf=\"item.type === 'CHECKBOX' || item.type === 'RADIOBUTTON'\" [ngClass]=\"{'checked':item.selected, 'image-item': item.image_url}\" (click)=\"toggleService(serviceCategory.title, item.title)\">\n                  <div class=\"item\">\n                    <i *ngIf=\"item.selected===true\" class=\"checkbox\"><span></span></i>\n                    <i *ngIf=\"item.selected===false\" class=\"checkbox empty\"></i>\n                    <h4>{{item.title}}</h4>\n                  </div>\n                  <div class=\"item-description\" *ngIf=\"item.description!==''\">\n                    <p>{{ item.description }}</p>\n                  </div>\n                  <div class=\"item-image\" *ngIf=\"item.image_url !== ''\" [ngStyle]=\"{'background-image': 'url(' + item.image_url + ')'}\"></div>\n                  <div class=\"item-image\" *ngIf=\"item.image_url == ''\" [ngStyle]=\"{'display': 'none'}\"></div>\n                </div>\n                <div class=\"input-group\" *ngIf=\"item.type === 'INPUTTEXT'\">\n                  <input type=\"text\" [(ngModel)]=\"servicesData[item.formId].options[item.optionId].input_value\" (keyup)=\"changeValue(item.formId, item.optionId)\" (change)=\"changeValue(item.formId, item.optionId)\" (focus)=\"selectAllContent($event)\">\n                  <span class=\"input-group-addon\">{{servicesData[item.formId].options[item.optionId].value_symbol}}</span>\n                </div>\n              </span>\n            </div>\n          </div>\n        </div>\n      </div>\n      <app-order [orderData]=\"orderData\" [orderIsFull]=\"orderIsFull\" [price_state] = \"price_state\"></app-order>\n    </div>\n  </div>\n</div>\n"
+module.exports = "<div class=\"service-container\" *ngIf=\"Service\">\n  <div class=\"service\">\n    <div class=\"picture-container\">\n      <div class=\"picture\"[ngStyle]=\"{'background-image' : ' url(' + 'https://s3-eu-west-1.amazonaws.com/starbook-s3/services/' + Service._id + '/cover/0' + ')'}\"></div>\n      <i class=\"fa fa-facebook\" aria-hidden=\"true\"></i><i class=\"fa fa-twitter\" aria-hidden=\"true\"></i><i class=\"fa fa-envelope\" aria-hidden=\"true\"></i>\n      <span><a href=\"#\">Invia ad un amico</a></span>\n      <!-- <div class=\"description\">\n        <span>{{Service.description}}</span>\n      </div> -->\n    </div>\n    <div class=\"content-container\">\n      <div class=\"content-header\">\n        <span class=\"title\">{{Service.title}}</span>\n        <span class=\"subtitle\">{{Service.description}}</span>\n      </div>\n      <div class=\"content-body\">\n        <!-- <div class=\"title-container\">\n          <span>Costi</span>\n        </div> -->\n        <div class=\"items\">\n          <div class=\"item\"><i class=\"fa fa-car\" aria-hidden=\"true\"></i><span class=\"text\">Automunito</span></div>\n          <div class=\"item\"><i class=\"fa fa-calendar-check-o\" aria-hidden=\"true\"></i><span class=\"text\">Disponibilità su prenotazione</span></div>\n          <div class=\"item\"><i class=\"fa fa-clock-o\" aria-hidden=\"true\"></i><span class=\"text\">Durata del lavoro da stabilire</span></div>\n          <div class=\"item\"><i class=\"fa fa-map-marker\" aria-hidden=\"true\"></i><span class=\"text\">Sopralluogo gratuito</span></div>\n          <div class=\"item\"><i class=\"fa fa-credit-card-alt\" aria-hidden=\"true\"></i><span class=\"text\">Pagamento: Carta, Prepagata</span></div>\n        </div>\n      </div>\n      <div class=\"content-pricing\">\n        <div class=\"pricing-header\">\n          <span>Calcola il preventivo</span>\n        </div>\n        <div class=\"pricing-body\">\n          <form *ngIf=\"Service.pricing\">\n            <div class=\"input-group\">\n              <span class=\"input-group-addon\">{{Service.pricing.unit.title}}</span>\n              <input class=\"form-control\" type=\"text\" [(ngModel)]=\"OrderService['details'][0].quantity\" (keyup)=\"changeQuantityForOrderService()\" (change)=\"changeQuantityForOrderService()\" [ngModelOptions]=\"{standalone: true}\">\n            </div>\n            <div class=\"option\" *ngFor=\"let option of Service.pricing.options\">\n              <div class=\"title\">\n                <span>{{option.title}}</span>\n              </div>\n              <div class=\"items\">\n                <div class=\"item-container noselect\" *ngFor=\"let item of option.items\" (click)=\"toggleItemOption(item, option)\">\n                  <div class=\"item\" [ngClass]=\"{'checked':orderServiceDetailsContainItem(item)}\">\n                    <span>{{item.title}}</span>\n                  </div>\n                </div>\n              </div>\n            </div>\n          </form>\n        </div>\n        <div class=\"pricing-footer\">\n          <span>Prezzo {{getTotalEstimateQuotation()/100}}€</span>\n        </div>\n        <div class=\"pricing-actions\">\n          <a class=\"btn btn-danger\" name=\"button\">Prenota</a>\n        </div>\n      </div>\n    </div>\n  </div>\n  <!-- <div class=\"review-container\">\n    <p>This is a review</p>\n  </div> -->\n</div>\n<div class=\"footer-container\">\n  <div class=\"footer\">\n    This is the footer\n  </div>\n</div>\n\n\n<!-- <div class=\"service-container\">\n  <div class=\"row\">\n    <div class=\"col-sm-9 col-md-10 main\">\n      <div class=\"tab-container\">\n        <div class=\"cover-container\" *ngIf=\"Service.pricing\">\n          <div class=\"cover-header\">\n            <i class=\"fa fa-facebook\" aria-hidden=\"true\"></i><i class=\"fa fa-twitter\" aria-hidden=\"true\"></i><i class=\"fa fa-envelope\" aria-hidden=\"true\"></i>\n            <span>{{Service.title}}</span>\n          </div>\n          <div class=\"cover-body\" [ngStyle]=\"{'background-image' : ' url(' + 'https://s3-eu-west-1.amazonaws.com/starbook-s3/services/' + Service._id + '/cover/0' + ')'}\"></div>\n          <div class=\"cover-footer\">\n            <div class=\"item\">\n              <span class=\"icon\"><i class=\"fa fa-calendar-check-o\" aria-hidden=\"true\"></i></span><span class=\"text\">Disponibilità su prenotazione</span><br>\n            </div>\n            <div class=\"item\">\n              <span class=\"text\"><i class=\"fa fa-clock-o\" aria-hidden=\"true\"></i> Durata minima</span>\n            </div>\n            <div class=\"item\">\n              <span class=\"text\"><i class=\"fa fa-map-marker\" aria-hidden=\"true\"></i> Sopraluogo</span><br>\n            </div>\n            <div class=\"item\">\n              <span class=\"text\"><i class=\"fa fa-credit-card-alt\" aria-hidden=\"true\"></i> Modalità di pagamento con carta</span>\n            </div>\n          </div>\n        </div>\n        <div class=\"quotation-container\" *ngIf=\"Service.pricing\">\n          <div class=\"quotation-header\">\n            <div class=\"item-container\">\n              <i class=\"fa fa-calendar-check-o\" aria-hidden=\"true\"></i><span class=\"text\">Disponibilità su prenotazione</span><br>\n            </div>\n            <div class=\"item-container\">\n              <i class=\"fa fa-clock-o\" aria-hidden=\"true\"></i><span class=\"text\">Durata lavoro</span>\n            </div>\n            <div class=\"item-container\">\n              <i class=\"fa fa-map-marker\" aria-hidden=\"true\"></i><span class=\"text\">Sopralluogo gratuito</span>\n            </div>\n            <div class=\"item-container\">\n              <i class=\"fa fa-credit-card-alt\" aria-hidden=\"true\"></i><span class=\"text\">Pagamento: Carta, Prepagata</span>\n            </div>\n            <span class=\"left\">Calcola il preventivo</span><span class=\"right\">345€</span>\n          </div>\n          <div class=\"quotation-body\">\n            <div class=\"quantity\">\n              <div class=\"input-group\">\n                <span class=\"input-group-addon\">{{Service.pricing.unit.title}}</span>\n                <input class=\"form-control\" type=\"text\" [(ngModel)]=\"OrderService['details'][0].quantity\" (keyup)=\"changeQuantityForOrderService()\" (change)=\"changeQuantityForOrderService()\">\n              </div>\n            </div>\n            <div class=\"option\" *ngFor=\"let option of Service.pricing.options\">\n              <div class=\"title\">\n                <span>{{option.title}}</span>\n              </div>\n              <div class=\"items\">\n                <div class=\"item-container noselect\" *ngFor=\"let item of option.items\" (click)=\"toggleItemOption(item, option)\">\n                  <div class=\"item\" [ngClass]=\"{'checked':orderServiceDetailsContainItem(item)}\">\n                    <span>{{item.title}}</span>\n                  </div>\n                </div>\n              </div>\n            </div>\n            <div class=\"quantity\" *ngIf=\"control.type==='QUANTITY'\">\n              <span>{{pricing.unit.title}}</span>\n              <div class=\"input-group\">\n                <span class=\"input-group-addon\">{{form.title}}</span>\n                <input class=\"form-control\" type=\"text\" [(ngModel)]=\"control.value\" (keyup)=\"changeValue()\" (change)=\"changeValue()\" (focus)=\"selectAllContent($event)\">\n              </div>\n            </div>\n            <div class=\"price\" *ngIf=\"control.type==='PRICE'\">\n              <div class=\"items-container\">\n                <span class=\"title\">{{form.title}}</span>\n                <div class=\"items\">\n                  <div class=\"item-container\" *ngFor=\"let item of control.items\">\n                    <div class=\"item\">\n                      <span>{{control.title}}</span>\n                    </div>\n                  </div>\n                </div>\n              </div>\n            </div>\n          </div>\n          <div class=\"quotation-footer\">\n            <div class=\"form-group\">\n              <button class=\"btn btn-warning\">{{getTotalEstimateQuotation()/100}}€ CONTINUA</button>\n            </div>\n          </div>\n        </div>\n        <div class=\"masonry-container\">\n          <div class=\"services-block\" *ngFor=\"let serviceCategory of servicesData\">\n            <div class=\"header\">\n              <div class=\"content-header\" *ngIf=\"serviceCategory.image_url && serviceCategory.image_url !== ''\" [ngStyle]=\"{'width': '60%'}\">\n                <h3>{{serviceCategory.title}}</h3>\n                <p *ngIf=\"serviceCategory.description !== ''\">{{serviceCategory.description}}</p>\n              </div>\n              <div class=\"content-header\" *ngIf=\"!serviceCategory.image_url || serviceCategory.image_url === ''\" [ngStyle]=\"{'width': '100%', 'padding-right' : '0px'}\">\n                <h3>{{serviceCategory.title}}</h3>\n                <p *ngIf=\"serviceCategory.description !== ''\">{{serviceCategory.description}}</p>\n              </div>\n              <div *ngIf=\"serviceCategory.image_url && serviceCategory.image_url !== ''\">\n                <img src=\"{{serviceCategory.image_url}}\" alt=\"{{serviceCategory.title}}\">\n              </div>\n              <div *ngIf=\"!serviceCategory.image_url || serviceCategory.image_url == ''\">\n                <img [ngStyle]=\"{'display': 'none'}\">\n              </div>\n            </div>\n            <div class=\"service content noselect\">\n              <span *ngFor=\"let item of serviceCategory.options\">\n                <div class=\"item-container\" *ngIf=\"item.type === 'CHECKBOX' || item.type === 'RADIOBUTTON'\" [ngClass]=\"{'checked':item.selected, 'image-item': item.image_url}\" (click)=\"toggleService(serviceCategory.title, item.title)\">\n                  <div class=\"item\">\n                    <i *ngIf=\"item.selected===true\" class=\"checkbox\"><span></span></i>\n                    <i *ngIf=\"item.selected===false\" class=\"checkbox empty\"></i>\n                    <h4>{{item.title}}</h4>\n                  </div>\n                  <div class=\"item-description\" *ngIf=\"item.description!==''\">\n                    <p>{{ item.description }}</p>\n                  </div>\n                  <div class=\"item-image\" *ngIf=\"item.image_url !== ''\" [ngStyle]=\"{'background-image': 'url(' + item.image_url + ')'}\"></div>\n                  <div class=\"item-image\" *ngIf=\"item.image_url == ''\" [ngStyle]=\"{'display': 'none'}\"></div>\n                </div>\n                <div class=\"input-group\" *ngIf=\"item.type === 'INPUTTEXT'\">\n                  <input type=\"text\" [(ngModel)]=\"servicesData[item.formId].options[item.optionId].input_value\" (keyup)=\"changeValue(item.formId, item.optionId)\" (change)=\"changeValue(item.formId, item.optionId)\" (focus)=\"selectAllContent($event)\">\n                  <span class=\"input-group-addon\">{{servicesData[item.formId].options[item.optionId].value_symbol}}</span>\n                </div>\n              </span>\n            </div>\n          </div>\n        </div>\n      </div>\n      <app-order *ngIf=\"Service.pricing\" [Service]=\"Service\" [orderServices]=\"OrderService\" [orderData]=\"orderData\" [orderIsFull]=\"orderIsFull\" [price_state] = \"price_state\"></app-order>\n    </div>\n  </div>\n</div> -->\n"
 
 /***/ },
 

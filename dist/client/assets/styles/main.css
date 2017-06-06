@@ -489,7 +489,7 @@ p {
   line-height: 50px; }
 
 .btn-warning {
-  background: #FFC845 !important;
+  background: #FFC845;
   color: white;
   font-size: 22px;
   font-family: Roboto, sans-serif;
@@ -502,13 +502,16 @@ p {
   outline: none !important;
   height: 50px; }
 
+.btn-warning:focus {
+  background: #FFC845; }
+
 .btn-warning:active:focus {
-  color: white !important;
-  background-color: #EBB431 !important; }
+  color: white;
+  background-color: #EBB431; }
 
 .btn-warning:hover {
-  color: white !important;
-  background-color: #EBB431 !important; }
+  color: white;
+  background-color: #EBB431; }
 
 .btn-yellow-green {
   background: #FFC845 !important;
@@ -619,7 +622,7 @@ p {
   font-size: 16px;
   letter-spacing: 0.1px;
   padding: 0 20px;
-  border-radius: 1px !important;
+  border-radius: 1px;
   background-color: #FFFFFF;
   border: 1px solid #cbd3d5; }
 
@@ -717,7 +720,7 @@ textarea.form-control {
 .footer-container {
   position: relative;
   background: white;
-  border-top: 1px solid #dce0e0;
+  border-top: 1px solid #DBDBDB;
   padding: 20px; }
   .footer-container .footer {
     max-width: 1440px;
@@ -4718,7 +4721,6 @@ app-category {
         color: white;
         text-align: center;
         height: 300px;
-        border-radius: 3px;
         color: white;
         cursor: pointer;
         white-space: nowrap;
@@ -4910,113 +4912,304 @@ app-service {
   width: 100%;
   height: 100%;
   overflow: auto; }
-  app-service .home-page {
+  app-service .service-container {
     max-width: 1440px;
-    margin: auto; }
-    app-service .home-page .main {
+    margin: auto;
+    padding: 120px 50px 50px;
+    overflow: auto; }
+    app-service .service-container .service {
+      overflow: auto; }
+      app-service .service-container .service .picture-container {
+        overflow: auto;
+        float: left;
+        width: 30%; }
+        app-service .service-container .service .picture-container .picture {
+          background-size: cover;
+          background-repeat: no-repeat;
+          background-position: center;
+          width: 100%;
+          height: 500px; }
+      app-service .service-container .service .content-container {
+        float: left;
+        width: 70%;
+        padding: 10px 40px 0; }
+        app-service .service-container .service .content-container .content-header {
+          border-bottom: 1px solid #DBDBDB;
+          padding-bottom: 10px; }
+          app-service .service-container .service .content-container .content-header span {
+            display: block; }
+          app-service .service-container .service .content-container .content-header .title {
+            font-weight: 500;
+            font-size: 36px; }
+          app-service .service-container .service .content-container .content-header .subtitle {
+            font-weight: 300;
+            font-size: 18px; }
+        app-service .service-container .service .content-container .content-body {
+          padding: 20px 0; }
+          app-service .service-container .service .content-container .content-body .items {
+            padding: 10px 0;
+            font-size: 18px;
+            font-weight: 300; }
+            app-service .service-container .service .content-container .content-body .items .item {
+              padding: 5px 0; }
+            app-service .service-container .service .content-container .content-body .items i {
+              width: 30px;
+              text-align: center; }
+            app-service .service-container .service .content-container .content-body .items .text {
+              padding-left: 10px; }
+          app-service .service-container .service .content-container .content-body .title-container {
+            border-bottom: 1px solid #dce0e0;
+            padding: 40px 0 10px; }
+            app-service .service-container .service .content-container .content-body .title-container span {
+              font-weight: 500;
+              font-size: 20px; }
+        app-service .service-container .service .content-container .content-pricing .pricing-header {
+          padding: 10px 20px;
+          background-color: #3c3f40;
+          color: white;
+          font-weight: 500;
+          font-size: 20px; }
+        app-service .service-container .service .content-container .content-pricing .pricing-body {
+          padding: 20px;
+          border-left: 1px solid #DBDBDB;
+          border-right: 1px solid #DBDBDB;
+          border-bottom: 1px solid #DBDBDB; }
+          app-service .service-container .service .content-container .content-pricing .pricing-body .input-group .input-group-addon {
+            font-size: 16px;
+            padding: 0 40px;
+            text-transform: uppercase;
+            font-weight: 600;
+            background: white; }
+          app-service .service-container .service .content-container .content-pricing .pricing-body .input-group .form-control {
+            font-size: 18px; }
+          app-service .service-container .service .content-container .content-pricing .pricing-body .option {
+            padding-top: 20px; }
+            app-service .service-container .service .content-container .content-pricing .pricing-body .option .title {
+              margin-bottom: 10px; }
+              app-service .service-container .service .content-container .content-pricing .pricing-body .option .title span {
+                font-size: 22px;
+                font-weight: 700;
+                color: #484848; }
+            app-service .service-container .service .content-container .content-pricing .pricing-body .option .items {
+              overflow: auto;
+              text-align: left;
+              margin: -10px; }
+              app-service .service-container .service .content-container .content-pricing .pricing-body .option .items .item-container {
+                box-sizing: border-box;
+                float: left;
+                margin: auto;
+                padding: 10px;
+                width: calc(100% / 4);
+                cursor: pointer; }
+                app-service .service-container .service .content-container .content-pricing .pricing-body .option .items .item-container .item {
+                  box-sizing: border-box;
+                  border-radius: 5px;
+                  border: 1px solid #DCDCDC;
+                  padding: 25px 10px;
+                  text-align: center;
+                  color: #484848;
+                  text-transform: uppercase; }
+                  app-service .service-container .service .content-container .content-pricing .pricing-body .option .items .item-container .item span {
+                    font-size: 14px;
+                    font-weight: 600; }
+                app-service .service-container .service .content-container .content-pricing .pricing-body .option .items .item-container .item:hover {
+                  border: 1px solid #3C3F42; }
+                app-service .service-container .service .content-container .content-pricing .pricing-body .option .items .item-container .item:hover.checked, app-service .service-container .service .content-container .content-pricing .pricing-body .option .items .item-container .checked {
+                  border: 1px solid #3498db;
+                  background: #3498db;
+                  color: white; }
+        app-service .service-container .service .content-container .content-pricing .pricing-footer {
+          border-left: 1px solid #DBDBDB;
+          border-right: 1px solid #DBDBDB;
+          border-bottom: 1px solid #DBDBDB;
+          padding: 10px 20px;
+          font-weight: 500;
+          font-size: 20px; }
+        app-service .service-container .service .content-container .content-pricing .pricing-actions {
+          padding: 15px 0; }
+          app-service .service-container .service .content-container .content-pricing .pricing-actions .btn {
+            padding: 0 40px;
+            font-size: 18px;
+            border-radius: 3px;
+            background: #D91E18; }
+        app-service .service-container .service .content-container .contentactions  {
+          padding: 20px 0;
+          overflow: auto; }
+          app-service .service-container .service .content-container .contentactions  .btn {
+            padding: 0 20px;
+            font-size: 20px;
+            border-radius: 3px;
+            background: #D91E18; }
+    app-service .service-container .review-container {
+      padding: 50px 0 0;
+      overflow: auto;
+      width: 100%; }
+    app-service .service-container .main {
       display: block;
       width: 100%;
       padding-right: 410px;
       padding-left: 0px; }
-    app-service .home-page .tab-container {
+    app-service .service-container .tab-container {
+      overflow: auto;
       padding: 0 10px 0 20px; }
-    app-service .home-page .row {
+    app-service .service-container .row {
       position: relative;
       min-height: 100vh;
       padding: 90px 0 0 0;
       margin: 0; }
-  app-service .header-cover {
+  app-service .footer-container {
+    padding: 100px 50px; }
+    app-service .footer-container .footer {
+      max-width: 1440px;
+      margin: auto;
+      overflow: auto; }
+  app-service .cover-container {
     display: block;
     float: left;
-    background-color: red;
-    margin-bottom: 20px;
     background-color: #161517;
     color: white;
     width: 100%; }
-    app-service .header-cover .header-image {
+    app-service .cover-container .cover-header {
+      padding: 20px;
+      background: #161517;
+      text-align: center; }
+      app-service .cover-container .cover-header span {
+        font-size: 36px;
+        font-weight: 500; }
+    app-service .cover-container .cover-body {
       background-size: cover;
       background-repeat: no-repeat;
       background-position: center;
       width: 100%;
-      height: 400px; }
-    app-service .header-cover img {
-      width: 100%;
-      height: 400px;
-      object-fit: cover;
-      object-position: center center; }
-    app-service .header-cover .details {
+      height: 500px; }
+      app-service .cover-container .cover-body .details {
+        padding: 20px; }
+        app-service .cover-container .cover-body .details h2 {
+          font-weight: 400;
+          color: white;
+          margin-bottom: 5px; }
+        app-service .cover-container .cover-body .details p {
+          font-weight: 400;
+          color: rgba(255, 255, 255, 0.7);
+          font-size: 16px !important; }
+        app-service .cover-container .cover-body .details .title {
+          font-size: 25px;
+          font-weight: 300;
+          color: white; }
+        app-service .cover-container .cover-body .details .description {
+          font-size: 16px;
+          font-weight: 400;
+          color: rgba(255, 255, 255, 0.7); }
+    app-service .cover-container .cover-footer {
+      background: #161517;
       padding: 20px; }
-      app-service .header-cover .details h2 {
-        font-weight: 400;
-        color: white;
-        margin-bottom: 5px; }
-      app-service .header-cover .details p {
-        font-weight: 400;
-        color: rgba(255, 255, 255, 0.7);
-        font-size: 16px !important; }
-      app-service .header-cover .details .title {
-        font-size: 25px;
+  app-service .quotation-container {
+    display: block;
+    overflow: auto;
+    width: 100%;
+    background-color: white;
+    margin-bottom: 20px; }
+    app-service .quotation-container .quotation-header {
+      padding: 20px;
+      background: #161517;
+      color: white;
+      border: 1px solid #161517;
+      overflow: auto; }
+      app-service .quotation-container .quotation-header .item-container {
+        font-size: 18px;
         font-weight: 300;
-        color: white; }
-      app-service .header-cover .details .description {
-        font-size: 16px;
-        font-weight: 400;
-        color: rgba(255, 255, 255, 0.7); }
-    app-service .header-cover .left-block {
-      float: left;
-      width: 30%; }
-    app-service .header-cover .cover-footer {
+        margin-bottom: 10px; }
+        app-service .quotation-container .quotation-header .item-container i {
+          width: 30px;
+          text-align: center; }
+        app-service .quotation-container .quotation-header .item-container .text {
+          padding-left: 10px; }
+      app-service .quotation-container .quotation-header .left {
+        float: left; }
+      app-service .quotation-container .quotation-header .right {
+        float: right; }
+    app-service .quotation-container .quotation-body {
       display: block;
-      float: left;
-      width: 100%;
-      padding: 30px 20px;
-      background-color: #F7F7F7;
-      border: 1px solid #CCCCCC; }
-    app-service .header-cover .cover-footer .item {
-      display: block;
-      float: left;
-      width: 50%;
-      margin: 0 0 20px; }
-  app-service .cover-footer .item .left-area {
-    display: block;
-    float: left;
-    width: 158px; }
-  app-service .cover-footer .item .content {
-    display: block;
-    float: left;
-    width: 100%;
-    margin-left: -158px;
-    padding-left: 173px; }
-  app-service .cover-footer .item .left-area .header {
-    display: block;
-    float: left;
-    width: 100%;
-    color: black;
-    font-size: 14px;
-    font-weight: 500;
-    letter-spacing: 0.1px;
-    text-transform: uppercase;
-    text-align: right; }
-  app-service .cover-footer .item .left-area .specifications {
-    display: block;
-    float: left;
-    width: 100%;
-    margin-top: 5px;
-    font-weight: 700;
-    color: #4990E2;
-    font-size: 28px;
-    letter-spacing: 0.13px;
-    text-align: right; }
-  app-service .cover-footer .item .content {
-    display: block;
-    float: left;
-    width: 100%;
-    margin-left: -158px;
-    padding-left: 173px;
-    font-weight: 300;
-    color: black;
-    font-size: 14px;
-    letter-spacing: 0.1px; }
+      padding: 0 40px 40px;
+      border: 1px solid #161517;
+      border-top: none;
+      border-bottom: none; }
+      app-service .quotation-container .quotation-body .quantity {
+        padding-top: 40px; }
+        app-service .quotation-container .quotation-body .quantity .title {
+          margin-bottom: 20px; }
+          app-service .quotation-container .quotation-body .quantity .title span {
+            font-size: 20px;
+            font-weight: 500;
+            color: #29384d; }
+        app-service .quotation-container .quotation-body .quantity .input-group .input-group-addon {
+          font-size: 16px;
+          padding: 0 40px;
+          text-transform: uppercase;
+          font-weight: 600;
+          background: white;
+          border: 1px solid #808080;
+          border-right: 0;
+          border-top-left-radius: 5px;
+          border-bottom-left-radius: 5px;
+          color: black; }
+        app-service .quotation-container .quotation-body .quantity .input-group .form-control {
+          font-size: 18px;
+          border: 1px solid #808080;
+          border-top-right-radius: 5px;
+          border-bottom-right-radius: 5px; }
+      app-service .quotation-container .quotation-body .option {
+        padding-top: 20px; }
+        app-service .quotation-container .quotation-body .option .title {
+          margin-bottom: 20px; }
+          app-service .quotation-container .quotation-body .option .title span {
+            font-size: 26px;
+            font-weight: 900; }
+        app-service .quotation-container .quotation-body .option .items {
+          overflow: auto;
+          text-align: left;
+          margin: -10px; }
+          app-service .quotation-container .quotation-body .option .items .item-container {
+            box-sizing: border-box;
+            float: left;
+            margin: auto;
+            padding: 10px;
+            width: calc(100% / 4);
+            cursor: pointer; }
+            app-service .quotation-container .quotation-body .option .items .item-container .item {
+              box-sizing: border-box;
+              border-radius: 5px;
+              border: 1px solid #808080;
+              padding: 25px 10px;
+              text-align: center;
+              color: black;
+              text-transform: uppercase; }
+              app-service .quotation-container .quotation-body .option .items .item-container .item span {
+                font-size: 16px;
+                font-weight: 600; }
+            app-service .quotation-container .quotation-body .option .items .item-container .item:hover {
+              border: 1px solid #2980b9; }
+            app-service .quotation-container .quotation-body .option .items .item-container .item:hover.checked, app-service .quotation-container .quotation-body .option .items .item-container .checked {
+              border: 1px solid #2980b9;
+              background: #2980b9;
+              color: white; }
+    app-service .quotation-container .quotation-footer {
+      padding: 0 40px 40px;
+      border: 1px solid #161517;
+      border-top: none;
+      text-align: right; }
+      app-service .quotation-container .quotation-footer .btn {
+        width: 100%;
+        height: 60px;
+        font-size: 24px;
+        color: black;
+        font-weight: 600;
+        padding: 0; }
+      app-service .quotation-container .quotation-footer .btn.btn-warning:hover {
+        color: black;
+        font-weight: 600; }
+      app-service .quotation-container .quotation-footer .form-group {
+        margin-bottom: 0; }
   app-service .masonry-container {
     display: block; }
     app-service .masonry-container .services-block {
@@ -5208,16 +5401,16 @@ app-service {
   app-service .tablet-mobile {
     display: none; }
   @media (max-width: 1430px) {
-    app-service .home-page .tab-container {
+    app-service .service-container .tab-container {
       display: block;
       width: 100%;
       margin: 0 auto 20px auto; } }
   @media (max-width: 1168px) {
-    app-service .home-page .tab-container {
+    app-service .service-container .tab-container {
       display: block;
       width: 100%;
       margin: 0 auto 0 auto; }
-    app-service .header-cover img {
+    app-service .header-container img {
       width: 100%;
       height: 400px;
       object-position: bottom; }
@@ -5226,12 +5419,14 @@ app-service {
     app-service .large-cover {
       display: none; } }
   @media (max-width: 1024px) {
+    app-service .quotation-container .quotation-body .option .items .item-container {
+      width: calc(100% / 2); }
     app-service .masonry-container .services-block {
       padding: 25px; } }
   @media (max-width: 906px) {
-    app-service .home-page .main {
+    app-service .service-container .main {
       padding: 0px; }
-    app-service .home-page .tab-container {
+    app-service .service-container .tab-container {
       display: block;
       width: 100%;
       padding: 0 20px; }
@@ -5241,18 +5436,18 @@ app-service {
     app-service .tablet-mobile {
       display: inherit; } }
   @media (max-width: 645px) {
-    app-service .home-page .row {
+    app-service .service-container .row {
       padding: 80px 0 0; }
-    app-service .home-page .tab-container {
+    app-service .service-container .tab-container {
       display: block;
       width: 525px;
       margin: 0 auto; }
-      app-service .home-page .tab-container .header-cover {
+      app-service .service-container .tab-container .header-container {
         margin-bottom: 10px; }
-    app-service .header-cover {
+    app-service .header-container {
       margin-left: 0;
       margin-right: 0; }
-    app-service .header-cover img {
+    app-service .header-container img {
       height: 240px; }
     app-service .masonry-container {
       padding: 0px;
@@ -5261,12 +5456,21 @@ app-service {
       app-service .masonry-container .services-block {
         margin-bottom: 10px; } }
   @media (max-width: 534px) {
-    app-service .home-page .tab-container {
+    app-service .service-container .tab-container {
       display: block;
       width: 100%;
       padding: 0 10px; }
     app-service .masonry-container .services-block .service .input-group {
       max-width: 100%; } }
+  @media (max-width: 425px) {
+    app-service .quotation-container .quotation-body .option .items .item-container {
+      width: 100%; }
+    app-service .quotation-container .quotation-body .quantity {
+      padding-top: 20px; }
+    app-service .quotation-container .quotation-body {
+      padding: 0 20px 20px; }
+    app-service .quotation-container .quotation-footer {
+      padding: 0 20px 20px; } }
 
 app-services {
   display: block;
@@ -5293,12 +5497,10 @@ app-services {
       position: relative;
       width: 100%;
       height: 320px;
-      border: none;
       cursor: pointer;
       background-repeat: no-repeat;
       background-size: cover;
-      background-position: top center;
-      border: 1px solid #DCE0E0; }
+      background-position: top center; }
     app-services .services .title {
       display: block;
       position: absolute;
@@ -5322,89 +5524,111 @@ app-services {
 
 app-order .sidebar .order-header {
   width: 100%;
-  height: 80px;
-  line-height: 80px;
-  padding: 0 20px;
-  text-align: center;
-  background: #2A292B; }
+  padding: 20px;
+  text-align: center; }
   app-order .sidebar .order-header span {
     color: white;
-    font-weight: 300;
+    font-weight: 400;
     font-size: 30px; }
-app-order .sidebar .order-content .price-block {
-  display: block;
-  width: 100%;
-  text-align: center;
-  letter-spacing: 0.22px; }
-  app-order .sidebar .order-content .price-block .loader-section {
-    padding: 40px 0; }
-    app-order .sidebar .order-content .price-block .loader-section i {
-      font-size: 30px;
-      color: white; }
-    app-order .sidebar .order-content .price-block .loader-section h2 {
-      margin: 20px 0 0; }
-  app-order .sidebar .order-content .price-block h1, app-order .sidebar .order-content .price-block h2 {
-    color: #ffffff;
-    font-weight: 300; }
-  app-order .sidebar .order-content .price-block h6 {
-    color: rgba(255, 255, 255, 0.7);
-    font-weight: 300;
-    margin-top: 10px; }
-  app-order .sidebar .order-content .price-block .total {
-    overflow: auto; }
-    app-order .sidebar .order-content .price-block .total span {
-      display: block;
-      float: left;
-      width: 100%;
-      text-align: center;
-      color: #ffffff;
-      font-weight: 600;
-      letter-spacing: 0.22px;
-      font-size: 14px;
-      color: rgba(255, 255, 255, 0.7); }
-    app-order .sidebar .order-content .price-block .total h1 {
-      color: #FFC845;
-      font-weight: 500; }
-    app-order .sidebar .order-content .price-block .total h2 {
-      font-weight: 300;
-      text-decoration: line-through; }
-  app-order .sidebar .order-content .price-block .upfront {
-    overflow: auto;
-    margin: 40px 0 0; }
-    app-order .sidebar .order-content .price-block .upfront span {
-      display: block;
-      text-align: center;
-      font-weight: 400;
-      letter-spacing: 0.22px;
-      font-size: 16px;
-      color: rgba(255, 255, 255, 0.7); }
-  app-order .sidebar .order-content .price-block .timing {
-    overflow: auto;
-    margin: 40px 0 0; }
-    app-order .sidebar .order-content .price-block .timing span {
-      display: block;
-      text-align: center;
-      font-weight: 400;
-      letter-spacing: 0.22px;
-      font-size: 18px;
-      color: rgba(255, 255, 255, 0.7); }
-  app-order .sidebar .order-content .price-block .description {
-    font-weight: 300;
-    font-size: 14px;
-    text-align: left; }
-app-order .sidebar .order-content .links {
+app-order .sidebar .order-content {
   display: block;
   float: left;
   width: 100%;
-  padding: 20px 0 0;
-  color: #FFC845;
-  text-align: center; }
-  app-order .sidebar .order-content .links a {
-    padding: 0 5px;
-    cursor: pointer; }
-  app-order .sidebar .order-content .links a:hover {
+  padding: 0 20px 20px; }
+  app-order .sidebar .order-content .form-group {
+    display: block;
+    float: left;
+    width: 100%;
+    padding: 0;
+    margin-top: 20px;
+    margin-bottom: 0; }
+    app-order .sidebar .order-content .form-group .btn {
+      width: 100%;
+      height: 50px;
+      font-size: 18px;
+      color: black;
+      font-weight: 600;
+      padding: 0; }
+    app-order .sidebar .order-content .form-group .btn.btn-warning:hover {
+      color: black;
+      font-weight: 600; }
+  app-order .sidebar .order-content .price-block {
+    display: block;
+    width: 100%;
+    text-align: center;
+    letter-spacing: 0.22px; }
+    app-order .sidebar .order-content .price-block .loader-section {
+      padding: 40px 0; }
+      app-order .sidebar .order-content .price-block .loader-section i {
+        font-size: 30px;
+        color: white; }
+      app-order .sidebar .order-content .price-block .loader-section h2 {
+        margin: 20px 0 0; }
+    app-order .sidebar .order-content .price-block .item {
+      padding: 20px 20px 0;
+      text-align: center; }
+      app-order .sidebar .order-content .price-block .item .text {
+        font-size: 16px;
+        font-weight: 400;
+        color: rgba(255, 255, 255, 0.7); }
+      app-order .sidebar .order-content .price-block .item .value {
+        display: block;
+        font-weight: 500;
+        font-size: 38px;
+        color: rgba(255, 255, 255, 0.7); }
+      app-order .sidebar .order-content .price-block .item .amount {
+        display: block;
+        color: #FFC845;
+        font-weight: 500;
+        font-size: 46px; }
+      app-order .sidebar .order-content .price-block .item .unit {
+        color: #FFC845;
+        font-weight: 400;
+        font-size: 22px;
+        color: rgba(255, 255, 255, 0.7); }
+    app-order .sidebar .order-content .price-block .total {
+      padding-top: 20px; }
+      app-order .sidebar .order-content .price-block .total span {
+        display: block;
+        width: 100%;
+        text-align: center;
+        font-weight: 400;
+        letter-spacing: 0.22px;
+        font-size: 14px;
+        color: rgba(255, 255, 255, 0.7); }
+      app-order .sidebar .order-content .price-block .total .price {
+        color: #FFC845;
+        font-weight: 500;
+        font-size: 29px; }
+      app-order .sidebar .order-content .price-block .total .text {
+        font-size: 20px; }
+      app-order .sidebar .order-content .price-block .total h1 {
+        color: #FFC845;
+        font-weight: 500; }
+      app-order .sidebar .order-content .price-block .total h2 {
+        font-weight: 300;
+        text-decoration: line-through; }
+    app-order .sidebar .order-content .price-block .upfront {
+      padding-top: 20px; }
+      app-order .sidebar .order-content .price-block .upfront span {
+        font-size: 16px;
+        color: rgba(255, 255, 255, 0.7); }
+      app-order .sidebar .order-content .price-block .upfront h1 {
+        color: #ffffff;
+        font-weight: 300; }
+  app-order .sidebar .order-content .links {
+    display: block;
+    float: left;
+    width: 100%;
+    padding: 20px 0 0;
     color: #FFC845;
-    text-decoration: underline; }
+    text-align: center; }
+    app-order .sidebar .order-content .links a {
+      padding: 0 5px;
+      cursor: pointer; }
+    app-order .sidebar .order-content .links a:hover {
+      color: #FFC845;
+      text-decoration: underline; }
 @media (max-width: 906px) {
   app-order .row {
     margin-left: 0px;
@@ -5419,7 +5643,8 @@ app-order .sidebar .order-content .links {
   right: 50%;
   bottom: 0;
   padding: 90px 20px 20px 10px;
-  margin-right: -720px; }
+  margin-right: -720px;
+  overflow: scroll; }
 
 .sidebar-container {
   display: block;
@@ -5478,81 +5703,6 @@ app-order .sidebar .order-content .links {
   color: #FFFFFF;
   font-size: 16px;
   letter-spacing: 0.19px; }
-
-.order-content {
-  display: block;
-  float: left;
-  width: 100%;
-  padding: 40px 20px 30px; }
-
-.order-content .price-block .description {
-  display: block;
-  float: left;
-  width: 100%;
-  text-align: center;
-  color: rgba(255, 255, 255, 0.7);
-  font-size: 16px;
-  letter-spacing: 0.19px;
-  margin-top: 0; }
-
-.order-content .price-block-second {
-  display: block;
-  float: left;
-  width: 100%;
-  margin-top: 30px; }
-
-.order-content .price-block-second span {
-  display: block;
-  float: left;
-  width: 100%;
-  text-align: center;
-  color: #ffffff;
-  font-size: 22px;
-  letter-spacing: 0.14px; }
-
-.order-content .price-block-second .description {
-  display: block;
-  float: left;
-  width: 100%;
-  text-align: center;
-  color: rgba(255, 255, 255, 0.7);
-  font-size: 16px;
-  letter-spacing: 0.19px;
-  margin-top: 5px; }
-
-.order-content .line {
-  display: block;
-  float: left;
-  width: 100%;
-  height: 1px;
-  border-top: 0.5px solid #4D4D4D;
-  margin-top: 30px; }
-
-.order-content .description {
-  display: block;
-  float: left;
-  width: 100%;
-  margin-top: 15px;
-  font-weight: 300;
-  font-size: 14px;
-  letter-spacing: 0.17px;
-  color: rgba(255, 255, 255, 0.7);
-  text-align: center; }
-
-.order-content .form-group {
-  display: block;
-  float: left;
-  width: 100%;
-  padding: 0;
-  margin-top: 20px;
-  margin-bottom: 0; }
-
-.order-content .form-group .btn.btn-warning {
-  width: 100%;
-  height: 50px;
-  font-size: 18px;
-  color: black;
-  font-weight: 600; }
 
 .sidebar-container .add-order-form {
   position: relative;
@@ -5843,7 +5993,7 @@ app-order .sidebar .order-content .links {
     width: 100%;
     height: auto;
     margin-right: 0;
-    padding: 0 0 36px 0; }
+    padding: 0; }
 
   .sidebar-container {
     overflow-y: visible;
@@ -6193,7 +6343,7 @@ app-profile .profile-page {
   width: 100%;
   height: 100%;
   padding-top: 70px;
-  background: #fafafb; }
+  background: white; }
 app-profile .top-bar-container {
   display: block;
   position: fixed;
@@ -6983,7 +7133,7 @@ app-wizard {
       app-wizard .wizard .wizard-container .content-container {
         display: block;
         width: 100%;
-        max-width: 600px;
+        max-width: 800px;
         margin: 0 auto; }
         app-wizard .wizard .wizard-container .content-container .header-summary {
           text-align: left;

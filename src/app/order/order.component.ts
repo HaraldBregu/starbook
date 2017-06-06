@@ -16,6 +16,8 @@ export class OrderComponent implements OnInit, OnDestroy {
   @Input() orderData;
   @Input('orderIsFull') orderIsFull;
   @Input() price_state;
+  @Input() orderServices;
+  @Input() Service;
 
   public currentUser;
   public estimate_state = {
@@ -45,22 +47,56 @@ export class OrderComponent implements OnInit, OnDestroy {
     }
   }
 
+
   ///////////////////////////
   //// PRICE BLOCK //////////
   ///////////////////////////
   getFinalPrice() {
-    let total_price = this.orderData.totalPrice;
-    if (!this.price_state.is_referral) {
-      return total_price;
-    } else {
-      return (total_price - (total_price * 0.05));
+    // let total_price = this.orderData.totalPrice;
+    // if (!this.price_state.is_referral) {
+    //   return total_price;
+    // } else {
+    //   return (total_price - (total_price * 0.05));
+    // }
+    // console.log('order services: ' + this.orderServices);
+    // console.log('service: ' + JSON.stringify(this.Service));
+
+// {{Service.pricing.unit.symbol}}['unit']['symbol']
+    return 19000;
+  }
+  getPriceUnit() {
+    var pricing = this.Service['pricing']
+    if (pricing) {
+      var unit = pricing['unit']
+      if (unit) {
+        var price = unit['price']
+        return price
+      }
+    }
+  }
+  getUnit() {
+    var pricing = this.Service['pricing']
+    if (pricing) {
+      var unit = pricing['unit']
+      if (unit) {
+        var symbol = unit['symbol']
+        return symbol
+      }
+    }
+  }
+  getMinPrice() {
+    var pricing = this.Service['pricing']
+    if (pricing) {
+      var min = pricing['min']
+      return min
     }
   }
   getInitialPrice() {
     return this.orderData.totalPrice;
   }
   getUpFront() {
-    return Math.round((this.getFinalPrice() * 0.3));
+    // return Math.round((this.getFinalPrice() * 0.3));
+    return 1500;
   }
   getTiming() {
     var days = this.getInitialPrice()/45000;
@@ -79,13 +115,6 @@ export class OrderComponent implements OnInit, OnDestroy {
       title: this.orderData.title,
       details: this.orderData.details,
       referral_id: this.price_state.referral_id,
-      // price: {
-      //   amount: this.getFinalPrice(),
-      //   currency: 'eur'
-      // },
-      // payment: {
-      //   upfront: this.getUpFront()
-      // },
       upfront_amount:this.getUpFront(),
       timing: {
         days: this.getInitialPrice()/45000
@@ -133,10 +162,6 @@ export class OrderComponent implements OnInit, OnDestroy {
       this.saveEstimateQuotationToLocal(newWizardData)
     }
   }
-
-  ///////////////////////////
-  ////////// ORDER //////////
-  ///////////////////////////
   saveEstimateQuotationToLocal(object) {
     if (isBrowser) {
       if (!localStorage.getItem('estimates')) {

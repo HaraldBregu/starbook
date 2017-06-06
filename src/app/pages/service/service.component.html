@@ -1,14 +1,158 @@
-<div class="home-page">
+<div class="service-container" *ngIf="Service">
+  <div class="service">
+    <div class="picture-container">
+      <div class="picture"[ngStyle]="{'background-image' : ' url(' + 'https://s3-eu-west-1.amazonaws.com/starbook-s3/services/' + Service._id + '/cover/0' + ')'}"></div>
+      <i class="fa fa-facebook" aria-hidden="true"></i><i class="fa fa-twitter" aria-hidden="true"></i><i class="fa fa-envelope" aria-hidden="true"></i>
+      <span><a href="#">Invia ad un amico</a></span>
+      <!-- <div class="description">
+        <span>{{Service.description}}</span>
+      </div> -->
+    </div>
+    <div class="content-container">
+      <div class="content-header">
+        <span class="title">{{Service.title}}</span>
+        <span class="subtitle">{{Service.description}}</span>
+      </div>
+      <div class="content-body">
+        <!-- <div class="title-container">
+          <span>Costi</span>
+        </div> -->
+        <div class="items">
+          <div class="item"><i class="fa fa-car" aria-hidden="true"></i><span class="text">Automunito</span></div>
+          <div class="item"><i class="fa fa-calendar-check-o" aria-hidden="true"></i><span class="text">Disponibilità su prenotazione</span></div>
+          <div class="item"><i class="fa fa-clock-o" aria-hidden="true"></i><span class="text">Durata del lavoro da stabilire</span></div>
+          <div class="item"><i class="fa fa-map-marker" aria-hidden="true"></i><span class="text">Sopralluogo gratuito</span></div>
+          <div class="item"><i class="fa fa-credit-card-alt" aria-hidden="true"></i><span class="text">Pagamento: Carta, Prepagata</span></div>
+        </div>
+      </div>
+      <div class="content-pricing">
+        <div class="pricing-header">
+          <span>Calcola il preventivo</span>
+        </div>
+        <div class="pricing-body">
+          <form *ngIf="Service.pricing">
+            <div class="input-group">
+              <span class="input-group-addon">{{Service.pricing.unit.title}}</span>
+              <input class="form-control" type="text" [(ngModel)]="OrderService['details'][0].quantity" (keyup)="changeQuantityForOrderService()" (change)="changeQuantityForOrderService()" [ngModelOptions]="{standalone: true}">
+            </div>
+            <div class="option" *ngFor="let option of Service.pricing.options">
+              <div class="title">
+                <span>{{option.title}}</span>
+              </div>
+              <div class="items">
+                <div class="item-container noselect" *ngFor="let item of option.items" (click)="toggleItemOption(item, option)">
+                  <div class="item" [ngClass]="{'checked':orderServiceDetailsContainItem(item)}">
+                    <span>{{item.title}}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="pricing-footer">
+          <span>Prezzo {{getTotalEstimateQuotation()/100}}€</span>
+        </div>
+        <div class="pricing-actions">
+          <a class="btn btn-danger" name="button">Prenota</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- <div class="review-container">
+    <p>This is a review</p>
+  </div> -->
+</div>
+<div class="footer-container">
+  <div class="footer">
+    This is the footer
+  </div>
+</div>
+
+
+<!-- <div class="service-container">
   <div class="row">
     <div class="col-sm-9 col-md-10 main">
       <div class="tab-container">
-        <div class="header-cover">
-          <div class="header-image" [ngStyle]="{'background-image' : ' url(' + image_url + ')'}"></div>
-          <!-- <div class="header-image" [ngStyle]="{'background-image' : ' url(' + 'https://s3-eu-west-1.amazonaws.com/starbook-s3/' + 'services/'+ service._id + '/cover/0' + ')'}"></div> -->
-          <!-- <img src="{{image_url}}" alt="{{title}}"> -->
-          <div class="details">
-            <h2>{{ title }}</h2>
-            <p>{{ description }}</p>
+        <div class="cover-container" *ngIf="Service.pricing">
+          <div class="cover-header">
+            <i class="fa fa-facebook" aria-hidden="true"></i><i class="fa fa-twitter" aria-hidden="true"></i><i class="fa fa-envelope" aria-hidden="true"></i>
+            <span>{{Service.title}}</span>
+          </div>
+          <div class="cover-body" [ngStyle]="{'background-image' : ' url(' + 'https://s3-eu-west-1.amazonaws.com/starbook-s3/services/' + Service._id + '/cover/0' + ')'}"></div>
+          <div class="cover-footer">
+            <div class="item">
+              <span class="icon"><i class="fa fa-calendar-check-o" aria-hidden="true"></i></span><span class="text">Disponibilità su prenotazione</span><br>
+            </div>
+            <div class="item">
+              <span class="text"><i class="fa fa-clock-o" aria-hidden="true"></i> Durata minima</span>
+            </div>
+            <div class="item">
+              <span class="text"><i class="fa fa-map-marker" aria-hidden="true"></i> Sopraluogo</span><br>
+            </div>
+            <div class="item">
+              <span class="text"><i class="fa fa-credit-card-alt" aria-hidden="true"></i> Modalità di pagamento con carta</span>
+            </div>
+          </div>
+        </div>
+        <div class="quotation-container" *ngIf="Service.pricing">
+          <div class="quotation-header">
+            <div class="item-container">
+              <i class="fa fa-calendar-check-o" aria-hidden="true"></i><span class="text">Disponibilità su prenotazione</span><br>
+            </div>
+            <div class="item-container">
+              <i class="fa fa-clock-o" aria-hidden="true"></i><span class="text">Durata lavoro</span>
+            </div>
+            <div class="item-container">
+              <i class="fa fa-map-marker" aria-hidden="true"></i><span class="text">Sopralluogo gratuito</span>
+            </div>
+            <div class="item-container">
+              <i class="fa fa-credit-card-alt" aria-hidden="true"></i><span class="text">Pagamento: Carta, Prepagata</span>
+            </div>
+            <span class="left">Calcola il preventivo</span><span class="right">345€</span>
+          </div>
+          <div class="quotation-body">
+            <div class="quantity">
+              <div class="input-group">
+                <span class="input-group-addon">{{Service.pricing.unit.title}}</span>
+                <input class="form-control" type="text" [(ngModel)]="OrderService['details'][0].quantity" (keyup)="changeQuantityForOrderService()" (change)="changeQuantityForOrderService()">
+              </div>
+            </div>
+            <div class="option" *ngFor="let option of Service.pricing.options">
+              <div class="title">
+                <span>{{option.title}}</span>
+              </div>
+              <div class="items">
+                <div class="item-container noselect" *ngFor="let item of option.items" (click)="toggleItemOption(item, option)">
+                  <div class="item" [ngClass]="{'checked':orderServiceDetailsContainItem(item)}">
+                    <span>{{item.title}}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="quantity" *ngIf="control.type==='QUANTITY'">
+              <span>{{pricing.unit.title}}</span>
+              <div class="input-group">
+                <span class="input-group-addon">{{form.title}}</span>
+                <input class="form-control" type="text" [(ngModel)]="control.value" (keyup)="changeValue()" (change)="changeValue()" (focus)="selectAllContent($event)">
+              </div>
+            </div>
+            <div class="price" *ngIf="control.type==='PRICE'">
+              <div class="items-container">
+                <span class="title">{{form.title}}</span>
+                <div class="items">
+                  <div class="item-container" *ngFor="let item of control.items">
+                    <div class="item">
+                      <span>{{control.title}}</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="quotation-footer">
+            <div class="form-group">
+              <button class="btn btn-warning">{{getTotalEstimateQuotation()/100}}€ CONTINUA</button>
+            </div>
           </div>
         </div>
         <div class="masonry-container">
@@ -52,7 +196,7 @@
           </div>
         </div>
       </div>
-      <app-order [orderData]="orderData" [orderIsFull]="orderIsFull" [price_state] = "price_state"></app-order>
+      <app-order *ngIf="Service.pricing" [Service]="Service" [orderServices]="OrderService" [orderData]="orderData" [orderIsFull]="orderIsFull" [price_state] = "price_state"></app-order>
     </div>
   </div>
-</div>
+</div> -->

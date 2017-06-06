@@ -107,7 +107,7 @@ p {
   line-height: 50px;
 }
 .btn-warning {
-  background: #FFC845 !important;
+  background: #FFC845;
   color: white;
   font-size: 22px;
   font-family: $font-name;
@@ -120,13 +120,16 @@ p {
   outline: none !important;
   height: 50px;
 }
+.btn-warning:focus {
+  background: #FFC845;
+}
 .btn-warning:active:focus {
-  color: white !important;
-  background-color: #EBB431 !important;
+  color: white;
+  background-color: #EBB431;
 }
 .btn-warning:hover {
-  color: white !important;
-  background-color: #EBB431 !important;
+  color: white;
+  background-color: #EBB431;
 }
 .btn-yellow-green {
   background: #FFC845 !important;
@@ -274,7 +277,7 @@ p {
   font-size: 16px;
   letter-spacing: 0.1px;
   padding: 0 20px;
-  border-radius: 1px !important;
+  border-radius: 1px;
   background-color: #FFFFFF;
   border: 1px solid #cbd3d5;
 }
@@ -408,7 +411,7 @@ textarea.form-control {
 .footer-container {
   position: relative;
   background: white;
-  border-top: 1px solid #dce0e0;
+  border-top: 1px solid #DBDBDB;
   padding: 20px;
   .footer {
     max-width: 1440px;

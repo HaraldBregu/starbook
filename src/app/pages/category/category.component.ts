@@ -110,14 +110,10 @@ export class CategoryComponent implements OnInit {
   loadServicesForCategoryId(category_id) {
     this.commonService.getRelatedServicesByServiceId(category_id, null).then((data) => {
       this.services = data.result[0].services;
-      console.log('services are: ' + JSON.stringify(data.result));
+      // console.log('services are: ' + JSON.stringify(data.result));
     }).catch((error) => {
-      console.log('error are: ' + JSON.stringify(error));
+      // console.log('error are: ' + JSON.stringify(error));
     });
-    // this.commonService.getAllServices({'category': category_id}).then((data) => {
-    //   this.services = data.result;
-    // }).catch((error) => {
-    // });
   }
   showServicePage(service) {
     this.commonService.setService(service)

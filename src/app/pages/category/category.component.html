@@ -60,7 +60,7 @@
       </div>
     </div>
   </div> -->
-  <div class="services-container">
+  <div class="services-container" *ngIf="services.length>0">
     <h3>Servizi correlati</h3>
     <div class="service-container" *ngFor="let service of services">
       <div class="service" (click)="showServicePage(service)" [ngStyle]="{'background-image' : ' url(' +  images_url + 'services/'+ service._id + '/cover/0' + ')'}">

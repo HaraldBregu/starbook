@@ -16,7 +16,6 @@ export interface IServiceFormItem {
   optionId?: number;
   title: string;
   description?: string;
-  image_url?: string;
   input_type?: string;
   input_value?: any;
   value_symbol?: string;
@@ -28,7 +27,6 @@ export interface IServiceForm {
   required: boolean;
   title: string;
   description?: string;
-  image_url?: string;
   price_type: string;
   options: IServiceFormItem[];
 }
@@ -36,10 +34,10 @@ export interface IServices {
   _id: string;
   title: string;
   description: string;
-  image_url: string;
   price: {
     base_amount: number;
   },
+
   forms: IServiceForm[];
   technical_details: any[];
 }
@@ -91,6 +89,13 @@ export class ServiceComponent implements OnInit {
   }
   subscription: Subscription;
 
+  public Services = []
+  public Order = {}
+
+
+  public Service = {}
+  public OrderService = {}
+
   constructor(private commonService: CommonService, private navigationService: NavigationService, private router: Router, private route: ActivatedRoute, private orderService: OrderService, private analyticsService: AnalyticsService, private seoService: SeoService, private profileService: ProfileService) {}
 
   ngOnInit() {
@@ -105,21 +110,23 @@ export class ServiceComponent implements OnInit {
       //     // console.log('estimated: ' + params['estimated']);
       //   }
       // });
-
       // SERVICE
       let service_id = params['id'];
       if (!service_id) {
         this.router.navigate(['']);
       } else {
+        this.Service = {}
         if (isBrowser) {window.scrollTo(0, 0);}
         this.commonService.getServiceById(service_id).then((data) => {
-          this.renderPage(data.result);
+          // this.renderPage(data.result);
+          this.showService(data.result);
         }).catch((error) => {
           let service = this.commonService.getService();
           if (!service) {
             this.router.navigate(['']);
           } else {
-            this.renderPage(service);
+            // this.renderPage(service);
+            this.showService(service);
           }
         });
       }
@@ -170,45 +177,154 @@ export class ServiceComponent implements OnInit {
     }
   }
 
-  renderPage(services: IServices) {
-    this.commonService.setService(services);
-    this.navigationService.updateMessage(services.title);
-    this.service = services;
-    // console.log('services is: ' + JSON.stringify(services));
-    var service_image_url = 'https://s3-eu-west-1.amazonaws.com/starbook-s3/services/' + this.service._id + '/cover/0'
+  showService(service) {
+    this.Service = service;
 
-    this.seoService.setTitle(services.title + "| Preventivo Online");
-    this.seoService.setOgElem('og:title', services.title + "| Preventivo Online");
-    this.seoService.setMetaElem('description', services.description);
-    this.seoService.setOgElem('og:description', services.description);
-    this.seoService.setOgElem('og:url', 'https://www.starbook.co/services/' + services.title.replace(/\s+/g, '-'));
-    this.seoService.setOgElem('og:image', service_image_url);
-    this.seoService.setOgElem('og:image:secure_url', service_image_url);
+    this.commonService.setService(this.Service);
+    this.navigationService.updateMessage(this.Service['title']);
 
-    this.defaultServices = services;
-    this.title = services.title;
-    this.description = services.description;
-    this.technical_details = services.technical_details;
-    this.image_url = service_image_url;
+    this.seoService.setTitle(this.Service['title']);
+    this.seoService.setOgElem('og:title', this.Service['title']);
+    this.seoService.setMetaElem('description', this.Service['description']);
+    this.seoService.setOgElem('og:description', this.Service['description']);
+    this.seoService.setOgElem('og:url', 'https://www.starbook.co/services/' + this.Service['title'].replace(/\s+/g, '-'));
+    this.seoService.setOgElem('og:image', 'https://s3-eu-west-1.amazonaws.com/starbook-s3/services/' + this.Service['_id'] + '/cover/0');
+    this.seoService.setOgElem('og:image:secure_url', 'https://s3-eu-west-1.amazonaws.com/starbook-s3/services/' + this.Service['_id'] + '/cover/0');
+
+    this.buildOrderService(this.Service)
+  }
+
+  buildOrderService(service) {
+    this.OrderService['_id'] = service['_id']
+    this.OrderService['title'] = service['title']
+    this.OrderService['details'] = []
+    var detail = {}
+    detail['title'] = service['pricing']['unit']['title']
+    detail['quantity'] = 0
+    detail['price'] = service['pricing']['unit']['price']
+    detail['total'] = detail['quantity'] * service['pricing']['unit']['price']
+    this.OrderService['details'].push(detail)
+    // console.log('order service is: ' + JSON.stringify(this.OrderService));
+  }
+
+  quantityForOrderService(orderService) {
+    return orderService['details'][0].quantity
+  }
+  changeQuantityForOrderService() {
+    let value = parseInt(this.OrderService['details'][0].quantity);
+    if (isNaN(value) || value === 0) {
+      this.OrderService['details'][0].quantity = 0
+    } else {
+      this.OrderService['details'][0].quantity = value
+      this.OrderService['details'][0]['total'] = value * this.OrderService['details'][0]['price']
+    }
+  }
+  toggleItemOption(item, option) {
+    var found = false;
+    var index = 0;
+    var details = this.OrderService['details']
+    for(var i = 0; i < details.length; i++) {
+      if (details[i].title === item.title) {
+        found = true;
+        index = i;
+        break;
+      }
+    }
+    if (found) {
+      this.OrderService['details'].splice(index, 1);
+      this.OrderService['details'][0]['price'] -= item.price
+      this.OrderService['details'][0]['total'] = this.OrderService['details'][0]['quantity'] * this.OrderService['details'][0]['price']
+    } else {
+      var detail = {}
+      detail['title'] = item.title
+      detail['quantity'] = 0
+      detail['price'] = 0
+      detail['total'] = 0
+      this.OrderService['details'][0]['price'] += item.price
+      this.OrderService['details'][0]['total'] = this.OrderService['details'][0]['quantity'] * this.OrderService['details'][0]['price']
+      this.OrderService['details'].push(detail)
+    }
+    // console.log('order service is: ' + JSON.stringify(this.OrderService));
+  }
+  orderServiceDetailsContainItem(item) {
+    var details = this.OrderService['details']
+    for (var i in details) {
+      var detail = details[i]
+      if (detail.title === item.title) {
+        return true;
+      }
+    }
+    return false;
+  }
+  getTotalEstimateQuotation() {
+    // console.log('est: ' + JSON.stringify(this.OrderService['details']));
+    var details = this.OrderService['details']
+    var newValue = 0
+    if (details) {
+      for (var i = 0; i < details.length; i++) {
+        var detail = details[i]
+        var price;
+        if (isNaN(detail.total)) {
+          price = 0;
+        } else {
+          price = detail.total;
+        }
+        newValue += parseInt(price)
+      }
+      return newValue;
+    }
+    return newValue;
+  }
+
+  renderPage(service: IServices) {
+    this.commonService.setService(service);
+    this.navigationService.updateMessage(service.title);
+
+    this.service = service;
+    this.image_url = 'https://s3-eu-west-1.amazonaws.com/starbook-s3/services/' + this.service._id + '/cover/0'
+    this.seoService.setTitle(service.title + "| Preventivo Online");
+    this.seoService.setOgElem('og:title', service.title + "| Preventivo Online");
+    this.seoService.setMetaElem('description', service.description);
+    this.seoService.setOgElem('og:description', service.description);
+    this.seoService.setOgElem('og:url', 'https://www.starbook.co/services/' + service.title.replace(/\s+/g, '-'));
+    this.seoService.setOgElem('og:image', this.image_url);
+    this.seoService.setOgElem('og:image:secure_url', this.image_url);
+
+    this.defaultServices = service;
+    this.title = service.title;
+    this.description = service.description;
+
+    this.Service['_id'] = service._id
+    this.Service['title'] = service.title
+    // this.Order['services'] = [this.Service]
+    var detail = {
+      title: "",
+      quantity: 0,
+      price: 0,
+      total: 0
+    }
+    this.Service['details'] = [detail]
+
 
     this.servicesData = [];
     this.orderData = {
-      service_id: services._id,
+      service_id: service._id,
       service_image: this.image_url,
-      price: services.price,
-      title: services.title,
+      price: service.price,
+      title: service.title,
       details: [],
-      // details: [{title:services.title, type:"service"}],
-      totalPrice: services.price.base_amount
+      totalPrice: service.price.base_amount
     };
-    this.baseAmount.start = services.price.base_amount;
-    this.baseAmount.calculated = services.price.base_amount;
+    this.baseAmount.start = service.price.base_amount;
+    this.baseAmount.calculated = service.price.base_amount;
+
     let formId = 0;
-    services.forms.forEach((form) => {
+    // console.log('form length: ' + service.forms.length);
+    service.forms.forEach((form) => {
+      // console.log('form is: ' + JSON.stringify(form));
       let serviceForm: IServiceForm = {
         title: form.title,
         description: form.description,
-        image_url: form.image_url,
         type: form.type,
         required: form.required,
         price_type: form.price_type,
@@ -221,7 +337,6 @@ export class ServiceComponent implements OnInit {
           optionId: optionId,
           title: item.title,
           description: item.description,
-          image_url: item.image_url,
           type: form.type,
           amount: item.amount
         };
@@ -243,9 +358,8 @@ export class ServiceComponent implements OnInit {
       this.servicesData.push(serviceForm);
       formId ++;
     });
-
-    // console.log('servicesData: ' + JSON.stringify(this.servicesData));
-
+    this.Services.push(this.Service)
+    // console.log('this services: ' + JSON.stringify(this.Services));
     this.calculateOrder();
   }
 
@@ -310,6 +424,7 @@ export class ServiceComponent implements OnInit {
   }
 
   selectAllContent($event) {
+    // console.log('select: ' + JSON.stringify($event));
     $event.target.select();
   }
 
