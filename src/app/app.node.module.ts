@@ -15,7 +15,7 @@ import { RouterModule }   from '@angular/router';
 // import { AutoCompleteModule, CalendarModule } from 'primeng/primeng';
 import { ClickOutsideModule } from 'ng2-click-outside';
 
-import {Ng2PageScrollModule} from 'ng2-page-scroll';
+import { Ng2PageScrollModule } from 'ng2-page-scroll';
 // import { ImageUploadModule } from 'angular2-image-upload';
 
 // import { ClipboardModule } from 'ngx-clipboard';

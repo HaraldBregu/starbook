@@ -33,6 +33,7 @@
     "angular2-platform-node": "2.1.0-rc.1",
     "angular2-universal": "2.1.0-rc.1",
     "angular2-universal-polyfills": "2.1.0-rc.1",
+    "aws-sdk": "^2.65.0",
     "body-parser": "^1.17.1",
     "codelyzer": "^2.1.1",
     "compression": "1.6.2",
