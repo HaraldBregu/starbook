@@ -113,7 +113,7 @@ export class ServiceComponent implements OnInit {
       // SERVICE
       let service_id = params['id'];
       if (!service_id) {
-        this.router.navigate(['']);
+        // this.router.navigate(['']);
       } else {
         this.Service = {}
         if (isBrowser) {window.scrollTo(0, 0);}
@@ -123,7 +123,7 @@ export class ServiceComponent implements OnInit {
         }).catch((error) => {
           let service = this.commonService.getService();
           if (!service) {
-            this.router.navigate(['']);
+            // this.router.navigate(['']);
           } else {
             // this.renderPage(service);
             this.showService(service);
@@ -361,6 +361,14 @@ export class ServiceComponent implements OnInit {
     this.Services.push(this.Service)
     // console.log('this services: ' + JSON.stringify(this.Services));
     this.calculateOrder();
+  }
+
+  bookService() {
+    // console.log('OrderService: ' + JSON.stringify(this.OrderService));
+
+    this.orderService.updateWizardData([this.OrderService]);
+    this.router.navigate(['order/summary']);
+    return false;
   }
 
   toggleService(serviceName, itemName) {

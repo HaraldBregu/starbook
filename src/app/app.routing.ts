@@ -8,6 +8,7 @@ import { CategoryComponent } from './pages/category/category.component';
 
 import { ServiceComponent } from './pages/service/service.component';
 import { ServicesComponent } from './pages/services/services.component';
+import { InsertComponent } from './pages/insert/insert.component';
 
 import { OrdersComponent } from './pages/orders/orders.component';
 import { ProfileComponent } from './pages/profile/profile.component';
@@ -26,49 +27,26 @@ import { NotfoundComponent } from './pages/notfound/notfound.component';
 const routes: Routes = [
   { path: '', component: LandingComponent },
   { path: 'category/:category', component: CategoryComponent, data: {isFindField: true} },
-  {
-    path: 'account',
-    component: AccountComponent
-  },
-  {
-    path: 'account/:page',
-    component: AccountComponent
-  },
+  { path: 'account', component: AccountComponent },
+  { path: 'account/:page', component: AccountComponent },
 
-  {
-    path: 'orders',
-    component: OrdersComponent
-  },
-  {
-    path: 'orders/:page',
-    component: OrdersComponent
-  },
+  { path: 'orders', component: OrdersComponent },
+  { path: 'orders/:page', component: OrdersComponent },
   {
     path: 'order/:step',
-    component: WizardComponent
+    component: WizardComponent,
+    data: {
+      name: 'Checkout'
+    }
   },
-  {
-    path: 'profile',
-    component: ProfileComponent
-  },
-  {
-    path: 'profile/:page',
-    component: ProfileComponent
-  },
+  { path: 'profile', component: ProfileComponent },
+  { path: 'profile/:page', component: ProfileComponent },
 
-  {
-    path: 'facebook',
-    component: FacebookComponent
-  },
+  { path: 'facebook', component: FacebookComponent },
 
-  {
-    path: 'contact',
-    component: ContactComponent
-  },
-  {
-    path: 'contact/:page',
-    component: ContactComponent
-  },
+  { path: 'contact', component: ContactComponent },
+  { path: 'contact/:page', component: ContactComponent },
+
   {
     path: 'services',
     component: ServicesComponent,
@@ -79,22 +57,30 @@ const routes: Routes = [
     component: ServiceComponent,
     data: {isFindField: true}
   },
-  {
-    path: 'requests',
-    component: RequestsComponent
-  },
-  {
-    path: 'requests/:page',
-    component: RequestsComponent
-  },
-  {
-    path: 'info/help',
-    component: HelpComponent
-  },
-  {
-    path: 'info/legal',
-    component: LegalComponent
-  },
+
+  { path: 'insert/:step', component: InsertComponent },
+  // {
+  //   path: 'services/:id',
+  //   component: ServiceComponent,
+  //   data: { isFindField: true },
+  //   children: [
+  //     { path: 'insert', component: InsertComponent }
+  //   ]
+  // },
+  // {
+  //   path: 'services',
+  //   component: ServicesComponent,
+  //   data: { isFindField: true },
+  //   children: [
+  //     { path: ':id', component: ServiceComponent },
+  //     { path: 'insert', component: InsertComponent }
+  //   ]
+  // },
+
+  { path: 'requests', component: RequestsComponent },
+  { path: 'requests/:page', component: RequestsComponent },
+  { path: 'info/help', component: HelpComponent },
+  { path: 'info/legal', component: LegalComponent },
   { path: 'info/about', component: AboutComponent },
   { path: '404', component: NotfoundComponent },
   { path: '**', redirectTo: '' }

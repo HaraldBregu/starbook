@@ -179,10 +179,9 @@ export class WizardComponent implements OnInit {
 
     if (isBrowser) {
       this.service_data = this.orderService.getWizardData();
+
       if (Object.keys(this.service_data).length===0) {
         this.Order = this.readOrderFromLocal()
-        console.log();
-
         if (this.Order.address) {
           if (this.Order.address.street_number.length > 0) {
             this.temp_address = this.Order.address.street + ', ' + this.Order.address.street_number + ' ' + this.Order.address.city;
@@ -197,13 +196,15 @@ export class WizardComponent implements OnInit {
           this.formated_date =  day + ' ' + this.it.monthNames[date.getMonth()] + ' ' + date.getFullYear();
         }
       } else {
-        this.Order.service_id = this.service_data.service_id;
-        this.Order.title = this.service_data.title;
-        this.Order.description = this.service_data.description;
-        this.Order.details = this.service_data.details;
-        this.Order.referral_id = this.service_data.referral_id;
-        this.Order.upfront_amount = this.service_data.upfront_amount;
-        this.Order.timing = this.service_data.timing;
+        // console.log('OrderService: ' + JSON.stringify(this.service_data));
+        var service = this.service_data[0]
+        this.Order.service_id = service._id;
+        this.Order.title = service.title;
+        // this.Order.description = this.service_data.description;
+        this.Order.details = service.details;
+        // this.Order.referral_id = this.service_data.referral_id;
+        // this.Order.upfront_amount = this.service_data.upfront_amount;
+        // this.Order.timing = this.service_data.timing;
         this.saveOrderToLocal(this.Order);
       }
     }

@@ -16,6 +16,7 @@ import { RouterModule }   from '@angular/router';
 import { ClickOutsideModule } from 'ng2-click-outside';
 
 import {Ng2PageScrollModule} from 'ng2-page-scroll';
+// import { ImageUploadModule } from 'angular2-image-upload';
 
 // import { ClipboardModule } from 'ngx-clipboard';
 // import { MasonryModule } from 'angular2-masonry';
@@ -48,6 +49,7 @@ import { CategoryComponent } from './pages/category/category.component';
 
 import { ServiceComponent } from './pages/service/service.component';
 import { ServicesComponent } from './pages/services/services.component';
+import { InsertComponent } from './pages/insert/insert.component';
 
 import { OrderComponent } from './order/order.component';
 import { OrdersComponent } from './pages/orders/orders.component';
@@ -100,7 +102,8 @@ let imports = [
   // CalendarModule,
   ClickOutsideModule,
   ClipboardModule,
-  Ng2PageScrollModule.forRoot()
+  Ng2PageScrollModule.forRoot(),
+  // ImageUploadModule.forRoot(),
 ];
 let declarations = [
   AppComponent,
@@ -119,6 +122,7 @@ let declarations = [
   LegalComponent,
   AccountComponent,
   ServicesComponent,
+  InsertComponent,
   RequestsComponent,
   ShareComponent,
   BlogComponent,

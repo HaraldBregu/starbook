@@ -425,7 +425,7 @@ p {
   letter-spacing: 0.11px !important; }
 
 .btn-success {
-  background: #7FC443 !important;
+  background: #1abc9c;
   border-radius: 0;
   height: 50px;
   border: 0;
@@ -437,13 +437,13 @@ p {
   padding: 0;
   line-height: 50px; }
 
-.btn-success:active:focus {
+.btn-success:active:focus, .btn-success:focus {
   color: white !important;
-  background-color: #639835 !important; }
+  background-color: #16a085 !important; }
 
 .btn-success:hover {
   color: white !important;
-  background-color: #639835 !important; }
+  background-color: #16a085 !important; }
 
 .btn-danger {
   background: #c00;
@@ -4941,6 +4941,9 @@ app-service {
           app-service .service-container .service .content-container .content-header .title {
             font-weight: 500;
             font-size: 36px; }
+          app-service .service-container .service .content-container .content-header .address {
+            font-weight: 300;
+            font-size: 18px; }
           app-service .service-container .service .content-container .content-header .subtitle {
             font-weight: 300;
             font-size: 18px; }
@@ -5522,6 +5525,34 @@ app-services {
     app-services .services .service-box {
       width: 100%; } }
 
+app-insert {
+  display: block;
+  float: left;
+  width: 100%;
+  height: 100%;
+  min-height: 100vh;
+  padding: 70px 0 0;
+  -webkit-overflow-scrolling: touch; }
+  app-insert .insert-container .progress-container {
+    width: 100%;
+    background: #edefed;
+    height: 10px;
+    z-index: 1; }
+    app-insert .insert-container .progress-container .progress {
+      height: 10px;
+      background: #1abc9c;
+      border-top-right-radius: 15px;
+      border-bottom-right-radius: 15px; }
+  app-insert .insert-container .insert-body {
+    margin: auto;
+    max-width: 600px;
+    padding: 50px 10px;
+    text-align: center; }
+    app-insert .insert-container .insert-body .btn {
+      padding: 0 40px; }
+    app-insert .insert-container .insert-body .title {
+      margin-bottom: 30px; }
+
 app-order .sidebar .order-header {
   width: 100%;
   padding: 20px;
@@ -5778,15 +5809,6 @@ app-order .sidebar .order-content {
 
 .add-order-form .form-group .btn-warning {
   margin-top: 30px; }
-
-.form-group .btn-success {
-  background-color: #58B076;
-  color: #FFFFFF;
-  font-size: 20px;
-  font-weight: 700;
-  letter-spacing: 0.11px;
-  padding: 13px;
-  border: none; }
 
 .sidebar-block h2 {
   display: block;
@@ -7114,15 +7136,25 @@ app-wizard {
   width: 100%;
   height: 100%;
   min-height: 100vh;
-  background-color: #FFFFFF;
   padding: 70px 0 0;
   -webkit-overflow-scrolling: touch; }
-  app-wizard .wizard {
+  app-wizard .wizard-container .progress-container {
+    position: fixed;
+    width: 100%;
+    background: #edefed;
+    height: 10px;
+    z-index: 1; }
+    app-wizard .wizard-container .progress-container .progress {
+      height: 10px;
+      width: 13%;
+      background: #446CB3;
+      border-top-right-radius: 15px;
+      border-bottom-right-radius: 15px; }
+  app-wizard .wizard-container .wizard {
     display: block;
     width: 100%;
-    padding: 40px 0 0;
-    background: #fafafb; }
-    app-wizard .wizard .wizard-container {
+    padding: 40px 0 0; }
+    app-wizard .wizard-container .wizard .wizard-container {
       display: block;
       width: 100%;
       background-color: white;
@@ -7130,114 +7162,114 @@ app-wizard {
       padding: 50px 0 0;
       max-width: 900px;
       margin: 0 auto 50px; }
-      app-wizard .wizard .wizard-container .content-container {
+      app-wizard .wizard-container .wizard .wizard-container .content-container {
         display: block;
         width: 100%;
         max-width: 800px;
         margin: 0 auto; }
-        app-wizard .wizard .wizard-container .content-container .header-summary {
+        app-wizard .wizard-container .wizard .wizard-container .content-container .header-summary {
           text-align: left;
           margin: auto;
           overflow: auto;
           margin-bottom: 20px; }
-          app-wizard .wizard .wizard-container .content-container .header-summary .summary-details {
+          app-wizard .wizard-container .wizard .wizard-container .content-container .header-summary .summary-details {
             overflow: auto; }
-          app-wizard .wizard .wizard-container .content-container .header-summary h3 {
+          app-wizard .wizard-container .wizard .wizard-container .content-container .header-summary h3 {
             margin-bottom: 10px; }
-          app-wizard .wizard .wizard-container .content-container .header-summary .item {
+          app-wizard .wizard-container .wizard .wizard-container .content-container .header-summary .item {
             float: left;
             width: 70%;
             font-size: 18px;
             font-weight: 300;
             line-height: 36px; }
-          app-wizard .wizard .wizard-container .content-container .header-summary .amount {
+          app-wizard .wizard-container .wizard .wizard-container .content-container .header-summary .amount {
             float: left;
             width: 30%;
             font-size: 20px;
             text-align: right;
             font-weight: 500; }
-        app-wizard .wizard .wizard-container .content-container .header {
+        app-wizard .wizard-container .wizard .wizard-container .content-container .header {
           padding-bottom: 20px;
           text-align: center; }
-          app-wizard .wizard .wizard-container .content-container .header h1 {
+          app-wizard .wizard-container .wizard .wizard-container .content-container .header h1 {
             margin-bottom: 20px; }
-          app-wizard .wizard .wizard-container .content-container .header p {
+          app-wizard .wizard-container .wizard .wizard-container .content-container .header p {
             font-weight: 400; }
-        app-wizard .wizard .wizard-container .content-container .line {
+        app-wizard .wizard-container .wizard .wizard-container .content-container .line {
           display: block;
           margin: 10px auto;
           height: 1px;
           border-top: 1px solid #e4e4e4; }
-        app-wizard .wizard .wizard-container .content-container .timing {
+        app-wizard .wizard-container .wizard .wizard-container .content-container .timing {
           margin: auto;
           overflow: auto; }
-          app-wizard .wizard .wizard-container .content-container .timing .item {
+          app-wizard .wizard-container .wizard .wizard-container .content-container .timing .item {
             float: left;
             width: 70%;
             font-size: 18px;
             font-weight: 400;
             line-height: 36px; }
-          app-wizard .wizard .wizard-container .content-container .timing .amount {
+          app-wizard .wizard-container .wizard .wizard-container .content-container .timing .amount {
             float: left;
             width: 30%;
             font-size: 20px;
             text-align: right;
             font-weight: 500; }
-        app-wizard .wizard .wizard-container .content-container .payment {
+        app-wizard .wizard-container .wizard .wizard-container .content-container .payment {
           margin: auto;
           overflow: auto;
           padding: 10px 0; }
-          app-wizard .wizard .wizard-container .content-container .payment .item {
+          app-wizard .wizard-container .wizard .wizard-container .content-container .payment .item {
             float: left;
             width: 70%;
             font-size: 20px;
             font-weight: 400;
             line-height: 36px; }
-          app-wizard .wizard .wizard-container .content-container .payment .amount {
+          app-wizard .wizard-container .wizard .wizard-container .content-container .payment .amount {
             float: left;
             width: 30%;
             font-size: 28px;
             text-align: right;
             font-weight: 900; }
-          app-wizard .wizard .wizard-container .content-container .payment .initial .amount {
+          app-wizard .wizard-container .wizard .wizard-container .content-container .payment .initial .amount {
             font-weight: 400;
             text-decoration: line-through; }
-        app-wizard .wizard .wizard-container .content-container .actions {
+        app-wizard .wizard-container .wizard .wizard-container .content-container .actions {
           width: 100%;
           text-align: center;
           padding: 20px 0; }
-          app-wizard .wizard .wizard-container .content-container .actions .alert {
+          app-wizard .wizard-container .wizard .wizard-container .content-container .actions .alert {
             text-align: center; }
-          app-wizard .wizard .wizard-container .content-container .actions .btn-warning {
+          app-wizard .wizard-container .wizard .wizard-container .content-container .actions .btn-warning {
             width: 100%;
             font-size: 26px;
             color: white;
             height: 60px;
             font-weight: 700; }
-      app-wizard .wizard .wizard-container .footer-details {
+      app-wizard .wizard-container .wizard .wizard-container .footer-details {
         padding: 20px;
         border-top: 1px solid #e4e4e4;
         font-weight: 300; }
-        app-wizard .wizard .wizard-container .footer-details p {
+        app-wizard .wizard-container .wizard .wizard-container .footer-details p {
           font-size: 16px !important;
           text-align: center; }
-    app-wizard .wizard .wizard-footer {
+    app-wizard .wizard-container .wizard .wizard-footer {
       background: white;
       border-top: 1px solid #dce0e0; }
-      app-wizard .wizard .wizard-footer .box {
+      app-wizard .wizard-container .wizard .wizard-footer .box {
         padding: 40px 0; }
-        app-wizard .wizard .wizard-footer .box h4 {
+        app-wizard .wizard-container .wizard .wizard-footer .box h4 {
           font-weight: 400;
           margin-top: 10px; }
-        app-wizard .wizard .wizard-footer .box h5 {
+        app-wizard .wizard-container .wizard .wizard-footer .box h5 {
           color: #5ca800;
           font-weight: 800; }
-        app-wizard .wizard .wizard-footer .box h6 {
+        app-wizard .wizard-container .wizard .wizard-footer .box h6 {
           font-size: 14px;
           font-weight: 400;
           margin-top: 10px;
           color: rgba(0, 0, 0, 0.7); }
-  app-wizard .btn-back {
+  app-wizard .wizard-container .btn-back {
     background: #d29f26 !important;
     color: white;
     font-size: 22px;
@@ -7250,18 +7282,18 @@ app-wizard {
     border: 0;
     outline: none !important;
     height: 50px; }
-  app-wizard .btn-back:active:focus {
+  app-wizard .wizard-container .btn-back:active:focus {
     color: white !important;
     background-color: #EBB431 !important; }
-  app-wizard .btn-back:hover {
+  app-wizard .wizard-container .btn-back:hover {
     color: white !important;
     background-color: #EBB431 !important; }
-  app-wizard .wizard .wizard-container .actions .undobutton .btn-back {
+  app-wizard .wizard-container .wizard .wizard-container .actions .undobutton .btn-back {
     float: left;
     width: 10%;
     height: 60px;
     padding: 0; }
-  app-wizard .wizard .wizard-container .actions .undobutton .btn-warning {
+  app-wizard .wizard-container .wizard .wizard-container .actions .undobutton .btn-warning {
     width: 90%; }
   @media (max-width: 1024px) {
     app-wizard .wizard {

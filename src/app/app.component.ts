@@ -37,6 +37,7 @@ export class AppComponent implements OnInit, OnDestroy {
     message: 'Richiedi?'
   };
   public collapsed = false;
+  public page = null;
 
   constructor (public router:Router, private route: ActivatedRoute, private authServics: AuthService, private navigationService: NavigationService, private popupsService: PopupsService, private commonService: CommonService, private analyticsService: AnalyticsService, private seoService: SeoService) {
     this.navbarState = false;
@@ -45,6 +46,25 @@ export class AppComponent implements OnInit, OnDestroy {
         if (event instanceof NavigationEnd) {
           ga('send', 'pageview', event.urlAfterRedirects);
           let currentRoute = this.route.root;
+          // console.log('current route is:' + currentRoute);
+          // var cache = [];
+          // console.log('current route snapshot:' + JSON.stringify(currentRoute.snapshot, function(key, value) {
+          //   if (typeof value === 'object' && value !== null) {
+          //     if (cache.indexOf(value) !== -1) {
+          //       return;
+          //     }
+          //     cache.push(value);
+          //   }
+          //   return value;
+          // }));
+          // cache = null; // Enable garbage collection
+
+          // console.log(this.route.component);
+
+          // let urlSegments = this.router.url.split('/');
+          // console.log('url is: ' + this.router.url);
+          // console.log('url segment is: ' + urlSegments[1]);
+
           while (currentRoute.children[0] !== undefined) {
             currentRoute = currentRoute.children[0];
           }
@@ -53,6 +73,19 @@ export class AppComponent implements OnInit, OnDestroy {
           } else {
             this.isFindField = false;
           }
+
+          if ('name' in currentRoute.snapshot.data) {
+            var data = currentRoute.snapshot.data;
+            var name = data['name'];
+            // console.log('data: ' + JSON.stringify(data));
+            // console.log('data: ' + data);
+            // console.log('data name: ' + name);
+            this.page = name;
+          } else {
+            this.page = null;
+          }
+
+          // console.log('page is: ' + this.page);
         }
       });
     }

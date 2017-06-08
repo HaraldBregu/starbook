@@ -1,7 +1,7 @@
 <div class="service-container" *ngIf="Service">
   <div class="service">
     <div class="picture-container">
-      <div class="picture"[ngStyle]="{'background-image' : ' url(' + 'https://s3-eu-west-1.amazonaws.com/starbook-s3/services/' + Service._id + '/cover/0' + ')'}"></div>
+      <div class="picture" *ngIf="Service._id"[ngStyle]="{'background-image' : ' url(' + 'https://s3-eu-west-1.amazonaws.com/starbook-s3/services/' + Service._id + '/cover/0' + ')'}"></div>
       <i class="fa fa-facebook" aria-hidden="true"></i><i class="fa fa-twitter" aria-hidden="true"></i><i class="fa fa-envelope" aria-hidden="true"></i>
       <span><a href="#">Invia ad un amico</a></span>
       <!-- <div class="description">
@@ -11,7 +11,8 @@
     <div class="content-container">
       <div class="content-header">
         <span class="title">{{Service.title}}</span>
-        <span class="subtitle">{{Service.description}}</span>
+        <span class="address"><strong>Milano</strong></span>
+        <!-- <span class="subtitle">{{Service.description}}</span> -->
       </div>
       <div class="content-body">
         <!-- <div class="title-container">
@@ -20,9 +21,9 @@
         <div class="items">
           <div class="item"><i class="fa fa-car" aria-hidden="true"></i><span class="text">Automunito</span></div>
           <div class="item"><i class="fa fa-calendar-check-o" aria-hidden="true"></i><span class="text">Disponibilità su prenotazione</span></div>
-          <div class="item"><i class="fa fa-clock-o" aria-hidden="true"></i><span class="text">Durata del lavoro da stabilire</span></div>
-          <div class="item"><i class="fa fa-map-marker" aria-hidden="true"></i><span class="text">Sopralluogo gratuito</span></div>
-          <div class="item"><i class="fa fa-credit-card-alt" aria-hidden="true"></i><span class="text">Pagamento: Carta, Prepagata</span></div>
+          <!-- <div class="item"><i class="fa fa-clock-o" aria-hidden="true"></i><span class="text">Durata del lavoro da stabilire</span></div> -->
+          <!-- <div class="item"><i class="fa fa-map-marker" aria-hidden="true"></i><span class="text">Sopralluogo gratuito</span></div> -->
+          <!-- <div class="item"><i class="fa fa-credit-card-alt" aria-hidden="true"></i><span class="text">Pagamento: Carta, Prepagata</span></div> -->
         </div>
       </div>
       <div class="content-pricing">
@@ -53,7 +54,7 @@
           <span>Prezzo {{getTotalEstimateQuotation()/100}}€</span>
         </div>
         <div class="pricing-actions">
-          <a class="btn btn-danger" name="button">Prenota</a>
+          <a class="btn btn-danger" name="button" (click)="bookService()">Prenota</a>
         </div>
       </div>
     </div>

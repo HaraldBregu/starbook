@@ -43,7 +43,7 @@ p {
 }
 
 .btn-success {
-  background: #7FC443 !important;
+  background: #1abc9c;
   border-radius: 0;
   height: 50px;
   border: 0;
@@ -55,14 +55,15 @@ p {
   padding: 0;
   line-height: 50px;
 }
-.btn-success:active:focus {
+.btn-success:active:focus, .btn-success:focus {
   color: white !important;
-  background-color: #639835 !important;
+  background-color: #16a085 !important;
 }
 .btn-success:hover {
   color: white !important;
-  background-color: #639835 !important;
+  background-color: #16a085 !important;
 }
+
 .btn-danger {
   background: #c00;
   border-radius: 0;
@@ -82,6 +83,7 @@ p {
 .btn-danger:hover {
   background-color: #bf0000;
 }
+
 .btn-primary {
   border-radius: 0;
   height: 50px;

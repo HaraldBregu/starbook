@@ -37,6 +37,10 @@ app-service {
             font-weight: 500;
             font-size: 36px;
           }
+          .address {
+            font-weight: 300;
+            font-size: 18px;
+          }
           .subtitle {
             font-weight: 300;
             font-size: 18px;
@@ -200,7 +204,6 @@ app-service {
       overflow: auto;
     }
   }
-
 
   .cover-container {
     display: block;
@@ -404,7 +407,6 @@ app-service {
       }
     }
   }
-
 
   .masonry-container {
     display: block;
