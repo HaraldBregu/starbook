@@ -3,6 +3,7 @@
     <div class="progress"
     [ngStyle]="{'width': setProgressWidth()}"></div>
   </div>
+  <button type="button" id="next" class="btn btn-success back" (click)="undoStep()">Indietro</button>
   <div class="insert-body" *ngIf="step==='title'">
     <div class="title">
       <h1>Inserisci il titolo del servizio</h1>

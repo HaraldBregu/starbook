@@ -42,12 +42,12 @@ p {
   letter-spacing: 0.11px !important;
 }
 
-.btn-success {
+.btn-success, .btn-success:focus {
   background: #1abc9c;
   border-radius: 0;
   height: 50px;
   border: 0;
-  color: white !important;
+  color: white;
   font-size: 22px;
   font-family: $font-name;
   font-weight: 400;
@@ -55,7 +55,7 @@ p {
   padding: 0;
   line-height: 50px;
 }
-.btn-success:active:focus, .btn-success:focus {
+.btn-success:active:focus {
   color: white !important;
   background-color: #16a085 !important;
 }

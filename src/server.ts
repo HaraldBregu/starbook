@@ -10,6 +10,7 @@ import * as compression from 'compression';
 import * as fs from 'fs';
 import * as http from 'http';
 import * as https from 'https';
+import * as cors from "cors";
 
 import { createEngine } from 'angular2-express-engine';
 import { enableProdMode } from '@angular/core';
@@ -18,7 +19,6 @@ import { environment } from './environments/environment';
 import { routes } from './server.routes';
 
 // App
-
 const app  = express();
 const ROOT = path.join(path.resolve(__dirname, '..'));
 const port = process.env.PORT || 80 || 8080;
@@ -39,6 +39,27 @@ const port = process.env.PORT || 80 || 8080;
 app.engine('.html', createEngine({}));
 app.set('views', path.join(ROOT, 'client'));
 app.set('view engine', 'html');
+
+/**
+ *cors
+*/
+// app.use(cors())
+//options for cors midddleware
+// const options:cors.CorsOptions = {
+//   allowedHeaders: ["Access-Control-Allow-Origin"],
+//   // credentials: true,
+//   methods: "GET,HEAD,OPTIONS,PUT,PATCH,POST,DELETE",
+//   // origin: API_URL,
+//   preflightContinue: false
+// };
+// //use cors middleware
+// app.use(cors(options));
+//
+// //add your routes
+//
+// //enable pre-flight
+// app.options("*", cors(options));
+
 
 /**
  * Enable compression
