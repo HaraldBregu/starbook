@@ -361,12 +361,12 @@ textarea.form-control {
   margin-bottom: 15px;
 }
 .input-group .form-control {
-  height: 50px !important;
+  height: 50px;
   border: 1px solid #DCDCDC;
   box-shadow: none;
 }
 .input-group .error-input {
-  border: 2px solid #f75c4b !important;
+  border: 2px solid #f75c4b;
 }
 .input-group .form-control:focus {
   color: black;

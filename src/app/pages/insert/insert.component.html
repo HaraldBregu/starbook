@@ -3,13 +3,14 @@
     <div class="progress"
     [ngStyle]="{'width': setProgressWidth()}"></div>
   </div>
-  <button type="button" id="next" class="btn btn-success back" (click)="undoStep()">Indietro</button>
+  <button type="button" id="next" class="btn btn-success back" (click)="undoStep()" *ngIf="step!=='title'">Indietro</button>
   <div class="insert-body" *ngIf="step==='title'">
     <div class="title">
       <h1>Inserisci il titolo del servizio</h1>
+      <p>Decidi un titolo breve e chiaro che rende il tuo servizio unico.</p>
     </div>
     <div class="input-group">
-      <input type="text" class="form-control" placeholder="Inserisci il titolo del servizio" [(ngModel)]="Service.title">
+      <input type="text" class="form-control" placeholder="titolo" [ngStyle]="{'text-align' : 'center'}" [(ngModel)]="Service.title">
     </div>
     <div class="form-group">
       <button type="button" id="next" class="btn btn-success" (click)="saveStep('title')">Avanti</button>
@@ -17,35 +18,36 @@
   </div>
   <div class="insert-body" *ngIf="step==='price'">
     <div class="title">
-      <h1>Inserisci il prezzo del suo servizio</h1>
+      <h1>Inserisci il prezzo</h1>
+      <p>Decidi il coso per unita di misura del servizio. L'unità di misura può essere: metri, ore, scatole ecc.</p>
     </div>
-    <div class="input-group">
-      <input type="text" class="form-control" placeholder="Inserisci il prezzo del suo servizio" [(ngModel)]="Service.price">
-      <input type="text" class="form-control" placeholder="Inserisci il prezzo del suo servizio" [(ngModel)]="Service.unit">
+    <div class="input-group" [ngStyle]="{'width' : '45%', 'float' : 'left'}">
+      <input type="text" class="form-control price" placeholder="0" [ngStyle]="{'text-align' : 'center'}" [(ngModel)]="Service.price">
     </div>
+    <div class="input-group" [ngStyle]="{'width' : '10%', 'float' : 'left', 'line-height' : '60px'}">
+      /
+    </div>
+    <span class="input-group" [ngStyle]="{'width' : '45%', 'float' : 'left'}">
+      <input type="text" class="form-control unit" placeholder="unità" [ngStyle]="{'text-align' : 'center'}" [(ngModel)]="Service.unit">
+    </span>
     <div class="form-group">
       <button type="button" id="next" class="btn btn-success" (click)="saveStep('price')">Avanti</button>
     </div>
   </div>
   <div class="insert-body" *ngIf="step==='picture'">
     <div class="title">
-      <h1>Inserisci l'immagine</h1>
+      <h1>Immagine del servizio</h1>
+      <p>Per poter vendere un servizio in modo più semplice e professionale è necessario un ottima immagine.</p>
     </div>
-    <!-- <image-upload [max]="100" [url]="'example.com/images/upload'"
-    [headers]="[
-      {header: 'Authorization', value: 'MyToken'}
-    ]"
-    [buttonCaption]="'Select Images!'"
-    [dropBoxMessage]="'Drop your images here!'"
-    (onFileUploadFinish)="imageUploaded($event)"
-    (onRemove)="imageRemoved($event)"
-    (isPending)="disableSendButton($event)"
-    ></image-upload> -->
-    <input type="file" (change)="fileEvent($event)">
-
-
+    <div class="picture-container" (click)="file.click()">
+      <input type="file" (change)="fileEvent($event)" style="display: none;" #file>
+      <div class="picture">
+        <i *ngIf="!logo" class="fa fa-camera" aria-hidden="true"></i>
+        <img class="img-responsive" [src]="logo" alt="Inserisci immagine">
+      </div>
+    </div>
     <div class="form-group">
-      <button type="button" id="next" class="btn btn-success" (click)="saveStep('price')">Avanti</button>
+      <button type="button" id="next" class="btn btn-success" (click)="saveStep('picture')">Avanti</button>
     </div>
   </div>
 </div>

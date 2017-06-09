@@ -685,12 +685,12 @@ textarea.form-control {
   margin-bottom: 15px; }
 
 .input-group .form-control {
-  height: 50px !important;
+  height: 50px;
   border: 1px solid #DCDCDC;
   box-shadow: none; }
 
 .input-group .error-input {
-  border: 2px solid #f75c4b !important; }
+  border: 2px solid #f75c4b; }
 
 .input-group .form-control:focus {
   color: black; }
@@ -5533,6 +5533,18 @@ app-insert {
   min-height: 100vh;
   padding: 70px 0 0;
   -webkit-overflow-scrolling: touch; }
+  app-insert .insert-container .input-group .form-control {
+    height: 60px;
+    font-size: 22px; }
+  app-insert .insert-container .input-group .form-control:focus {
+    border: 2px solid #16A084 !important; }
+  app-insert .insert-container .half-group {
+    float: left;
+    width: 50%; }
+    app-insert .insert-container .half-group .price {
+      text-align: center; }
+    app-insert .insert-container .half-group .unit {
+      text-align: center; }
   app-insert .insert-container .progress-container {
     position: fixed;
     width: 100%;
@@ -5556,13 +5568,37 @@ app-insert {
     color: #16A084; }
   app-insert .insert-container .insert-body {
     margin: auto;
-    max-width: 600px;
-    padding: 50px 10px;
+    max-width: 500px;
+    padding: 80px 10px;
     text-align: center; }
     app-insert .insert-container .insert-body .btn {
       padding: 0 40px; }
     app-insert .insert-container .insert-body .title {
       margin-bottom: 30px; }
+      app-insert .insert-container .insert-body .title h1 {
+        font-weight: 300; }
+      app-insert .insert-container .insert-body .title p {
+        font-weight: 300;
+        margin-top: 20px; }
+    app-insert .insert-container .insert-body .picture-container {
+      margin-bottom: 30px; }
+      app-insert .insert-container .insert-body .picture-container .picture {
+        max-width: 260px;
+        height: 360px;
+        background: #f1f1f1;
+        margin: auto;
+        border: 1px solid #DBDBDB;
+        font-size: 30px;
+        color: white; }
+        app-insert .insert-container .insert-body .picture-container .picture i {
+          position: absolute;
+          margin-left: 111px;
+          margin-top: 153px; }
+        app-insert .insert-container .insert-body .picture-container .picture img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          line-height: 440px; }
 
 app-order .sidebar .order-header {
   width: 100%;

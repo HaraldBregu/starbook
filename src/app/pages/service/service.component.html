@@ -1,7 +1,7 @@
 <div class="service-container" *ngIf="Service">
   <div class="service">
     <div class="picture-container">
-      <div class="picture" *ngIf="Service._id"[ngStyle]="{'background-image' : ' url(' + 'https://s3-eu-west-1.amazonaws.com/starbook-s3/services/' + Service._id + '/cover/0' + ')'}"></div>
+      <div class="picture" *ngIf="Service._id" [ngStyle]="{'background-image' : ' url(' + 'https://s3-eu-west-1.amazonaws.com/starbook-s3/services/' + Service._id + '/cover/0' + ')'}"></div>
       <i class="fa fa-facebook" aria-hidden="true"></i><i class="fa fa-twitter" aria-hidden="true"></i><i class="fa fa-envelope" aria-hidden="true"></i>
       <span><a href="#">Invia ad un amico</a></span>
       <!-- <div class="description">
