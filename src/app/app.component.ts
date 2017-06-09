@@ -38,6 +38,8 @@ export class AppComponent implements OnInit, OnDestroy {
   };
   public collapsed = false;
   public page = null;
+  public hasCenterContainer = true;
+  public hasRightContainer = true;
 
   constructor (public router:Router, private route: ActivatedRoute, private authServics: AuthService, private navigationService: NavigationService, private popupsService: PopupsService, private commonService: CommonService, private analyticsService: AnalyticsService, private seoService: SeoService) {
     this.navbarState = false;
@@ -74,17 +76,21 @@ export class AppComponent implements OnInit, OnDestroy {
             this.isFindField = false;
           }
 
+          this.page = null;
+          this.hasCenterContainer = true;
+          this.hasRightContainer = true;
           if ('name' in currentRoute.snapshot.data) {
             var data = currentRoute.snapshot.data;
             var name = data['name'];
-            // console.log('data: ' + JSON.stringify(data));
-            // console.log('data: ' + data);
-            // console.log('data name: ' + name);
             this.page = name;
-          } else {
-            this.page = null;
           }
-
+          if (this.page === "Insert") {
+            this.hasCenterContainer = false;
+            this.hasRightContainer = false;
+          }
+          if (this.page === "Account") {
+            this.hasRightContainer = false;
+          }
           // console.log('page is: ' + this.page);
         }
       });

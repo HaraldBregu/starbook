@@ -10,7 +10,7 @@
       </div>
     </a>
 
-    <div class="center-container">
+    <div *ngIf="hasCenterContainer" class="center-container">
       <div class="search-block" *ngIf="isFindField">
         <p-autoComplete [(ngModel)]="findValue" [suggestions]="results" field="title" scrollHeight="250px" (completeMethod)="search($event)" (onSelect)="selectResult(findValue)" placeholder="Cerca un servizio" minLength="0">
           <template let-res>
@@ -39,7 +39,7 @@
     </div>
 
     <!--  Collapsed -->
-    <ul class="nav navbar-nav float-xs-right" *ngIf="auth !== false" [ngClass]="{'collapse':!collapsed}">
+    <ul *ngIf="auth !== false && hasRightContainer" class="nav navbar-nav float-xs-right" [ngClass]="{'collapse':!collapsed}">
       <li class="nav-item">
         <a class="nav-link home" routerLink="" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" (click)="updateTabMenu(true)">Home</a>
       </li>
@@ -52,7 +52,7 @@
     </ul>
 
     <!--  Collapsed not authenticated -->
-    <ul class="nav navbar-nav float-xs-right" *ngIf="auth === false && browser" [ngClass]="{'collapse':!collapsed}">
+    <ul *ngIf="auth === false && browser && hasRightContainer" class="nav navbar-nav float-xs-right" [ngClass]="{'collapse':!collapsed}">
       <li class="nav-item" *ngIf="collapsed">
         <a class="nav-link home" routerLink="" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" (click)="updateTabMenu(true)">Home</a>
       </li>
@@ -63,6 +63,7 @@
         <a class="nav-link profile" (click)="getLoginPopup()">Accedi</a>
       </li>
     </ul>
+
   </div>
 </nav>
 <router-outlet></router-outlet>

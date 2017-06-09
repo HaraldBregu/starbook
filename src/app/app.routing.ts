@@ -28,7 +28,7 @@ const routes: Routes = [
   { path: '', component: LandingComponent },
   { path: 'category/:category', component: CategoryComponent, data: {isFindField: true} },
   { path: 'account', component: AccountComponent },
-  { path: 'account/:page', component: AccountComponent },
+  { path: 'account/:page', component: AccountComponent, data: { name: 'Account' } },
 
   { path: 'orders', component: OrdersComponent },
   { path: 'orders/:page', component: OrdersComponent },
@@ -58,7 +58,7 @@ const routes: Routes = [
     data: {isFindField: true}
   },
 
-  { path: 'insert/:step', component: InsertComponent },
+  { path: 'insert/:step', component: InsertComponent, data: { name: 'Insert' } },
   // {
   //   path: 'services/:id',
   //   component: ServiceComponent,

@@ -1795,9 +1795,29 @@ var InsertComponent = (function () {
         this.analyticsService = analyticsService;
         this.authService = authService;
         this.navigationService = navigationService;
+        this.steps = ['title', 'price', 'picture', 'register', 'end'];
         this.step = '';
         this.Service = {};
         this.logo = '';
+        this.signupParameters = {
+            firstname: '',
+            lastname: '',
+            phone: '',
+            email: '',
+            password: '',
+            confirmPassword: ''
+        };
+        this.signup_state = {
+            loading: false,
+            button_title: "Registrati",
+            error_message: null,
+            email_error: null,
+            first_name_error: null,
+            last_name_error: null,
+            phone_error: null,
+            password_error: null,
+            confirm_password_error: null
+        };
     }
     InsertComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -1807,26 +1827,15 @@ var InsertComponent = (function () {
                 window.scrollTo(0, 0);
             }
             if (_this.step === 'title') {
-                _this.navigationService.updateMessage("Titolo, Immagine, Prezzo");
             }
             else if (_this.step === 'price') {
-                _this.navigationService.updateMessage("Prezzo del servizio");
             }
         });
     };
     InsertComponent.prototype.setProgressWidth = function () {
-        if (this.step === 'title') {
-            return '25%';
-        }
-        else if (this.step === 'price') {
-            return '50%';
-        }
-        else if (this.step === 'picture') {
-            return '75%';
-        }
-        else {
-            return '0%';
-        }
+        var numSteps = this.steps.length;
+        var currentStep = this.steps.indexOf(this.step) + 1;
+        return 100 / numSteps * currentStep + '%';
     };
     InsertComponent.prototype.inputFile = function () {
         console.log('input file');
@@ -1863,23 +1872,32 @@ var InsertComponent = (function () {
         // })
     };
     InsertComponent.prototype.undoStep = function () {
-        if (this.step === "price") {
-            this.router.navigate(['insert/title']);
-        }
-        else if (this.step === "picture") {
-            this.router.navigate(['insert/price']);
-        }
+        var currentStepIndex = this.steps.indexOf(this.step);
+        var previousStep = this.steps[currentStepIndex - 1];
+        this.router.navigate(['insert/' + previousStep]);
+        // if (this.step === "price") {
+        //   this.router.navigate(['insert/title']);
+        // } else if (this.step === "picture") {
+        //   this.router.navigate(['insert/price']);
+        // }
     };
     InsertComponent.prototype.saveStep = function (step) {
-        if (step === 'title') {
-            this.router.navigate(['insert/price']);
-        }
-        if (step === 'price') {
-            this.router.navigate(['insert/picture']);
-        }
-        else {
-            console.log('Service is: ' + JSON.stringify(this.Service));
-        }
+        var currentStepIndex = this.steps.indexOf(this.step);
+        var nextStep = this.steps[currentStepIndex + 1];
+        this.router.navigate(['insert/' + nextStep]);
+        // if (step === 'title') {
+        //   this.router.navigate(['insert/price']);
+        // } if (step === 'price') {
+        //   this.router.navigate(['insert/picture']);
+        // }  if (step === 'picture') {
+        //   this.router.navigate(['insert/register']);
+        // } if (step === 'register') {
+        //   this.router.navigate(['insert/end']);
+        // } if (step === 'end') {
+        //   // this.router.navigate(['insert/end']);
+        // } else {
+        //   console.log('Service is: ' + JSON.stringify(this.Service));
+        // }
     };
     InsertComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
@@ -5455,6 +5473,8 @@ var AppComponent = (function () {
         };
         this.collapsed = false;
         this.page = null;
+        this.hasCenterContainer = true;
+        this.hasRightContainer = true;
         this.navbarState = false;
         if (__WEBPACK_IMPORTED_MODULE_0_angular2_universal__["isBrowser"]) {
             this.router.events.subscribe(function (event) {
@@ -5486,16 +5506,20 @@ var AppComponent = (function () {
                     else {
                         _this.isFindField = false;
                     }
+                    _this.page = null;
+                    _this.hasCenterContainer = true;
+                    _this.hasRightContainer = true;
                     if ('name' in currentRoute.snapshot.data) {
                         var data = currentRoute.snapshot.data;
                         var name = data['name'];
-                        // console.log('data: ' + JSON.stringify(data));
-                        // console.log('data: ' + data);
-                        // console.log('data name: ' + name);
                         _this.page = name;
                     }
-                    else {
-                        _this.page = null;
+                    if (_this.page === "Insert") {
+                        _this.hasCenterContainer = false;
+                        _this.hasRightContainer = false;
+                    }
+                    if (_this.page === "Account") {
+                        _this.hasRightContainer = false;
                     }
                 }
             });
@@ -5678,7 +5702,7 @@ var routes = [
     { path: '', component: __WEBPACK_IMPORTED_MODULE_1__landing_landing_component__["a" /* LandingComponent */] },
     { path: 'category/:category', component: __WEBPACK_IMPORTED_MODULE_2__pages_category_category_component__["a" /* CategoryComponent */], data: { isFindField: true } },
     { path: 'account', component: __WEBPACK_IMPORTED_MODULE_13__pages_account_account_component__["a" /* AccountComponent */] },
-    { path: 'account/:page', component: __WEBPACK_IMPORTED_MODULE_13__pages_account_account_component__["a" /* AccountComponent */] },
+    { path: 'account/:page', component: __WEBPACK_IMPORTED_MODULE_13__pages_account_account_component__["a" /* AccountComponent */], data: { name: 'Account' } },
     { path: 'orders', component: __WEBPACK_IMPORTED_MODULE_6__pages_orders_orders_component__["a" /* OrdersComponent */] },
     { path: 'orders/:page', component: __WEBPACK_IMPORTED_MODULE_6__pages_orders_orders_component__["a" /* OrdersComponent */] },
     {
@@ -5703,7 +5727,7 @@ var routes = [
         component: __WEBPACK_IMPORTED_MODULE_3__pages_service_service_component__["a" /* ServiceComponent */],
         data: { isFindField: true }
     },
-    { path: 'insert/:step', component: __WEBPACK_IMPORTED_MODULE_5__pages_insert_insert_component__["a" /* InsertComponent */] },
+    { path: 'insert/:step', component: __WEBPACK_IMPORTED_MODULE_5__pages_insert_insert_component__["a" /* InsertComponent */], data: { name: 'Insert' } },
     // {
     //   path: 'services/:id',
     //   component: ServiceComponent,
@@ -9083,7 +9107,7 @@ var CommonService = (function () {
 /***/ 714:
 /***/ function(module, exports) {
 
-module.exports = "<nav class=\"navbar navbar-dark navbar-fixed-top bg-inverse\" [ngClass]=\"{'is-search': isFindField}\" (window:resize)=\"onResize()\">\n  <div class=\"container-starbook top-menu\">\n    <a class=\"navbar-brand\" (click)=\"clickBrandLogo()\">\n      <div *ngIf=\"screenWidth > 768\" routerLink=\"\">\n        <img src=\"/assets/images/brand-logo-name-rotated.png\" alt=\"starbook\">\n      </div>\n      <div *ngIf=\"screenWidth < 769\">\n        <img *ngIf=\"!collapsed\" src=\"/assets/images/brand-logo-rotated.png\" alt=\"starbook\">\n        <img *ngIf=\"collapsed\" src=\"/assets/images/brand-logo-right.png\" alt=\"starbook\">\n      </div>\n    </a>\n\n    <div class=\"center-container\">\n      <div class=\"search-block\" *ngIf=\"isFindField\">\n        <p-autoComplete [(ngModel)]=\"findValue\" [suggestions]=\"results\" field=\"title\" scrollHeight=\"250px\" (completeMethod)=\"search($event)\" (onSelect)=\"selectResult(findValue)\" placeholder=\"Cerca un servizio\" minLength=\"0\">\n          <template let-res>\n            <div class=\"search-result\" (click)=\"selectResult(res)\">{{ res.title }}</div>\n          </template>\n        </p-autoComplete>\n        <div class=\"spinner\" *ngIf=\"spinerView\">\n          <svg width='20px' height='20px' xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\" preserveAspectRatio=\"xMidYMid\" class=\"uil-ring\">\n            <rect x=\"0\" y=\"0\" width=\"100\" height=\"100\" fill=\"none\" class=\"bk\"></rect>\n            <circle cx=\"50\" cy=\"50\" r=\"45\" stroke-dasharray=\"169.64600329384882 113.09733552923257\" stroke=\"#3B568D\" fill=\"none\" stroke-width=\"10\">\n              <animateTransform attributeName=\"transform\" type=\"rotate\" values=\"0 50 50;180 50 50;360 50 50;\" keyTimes=\"0;0.5;1\" dur=\"1s\" repeatCount=\"indefinite\" begin=\"0s\"></animateTransform>\n            </circle>\n          </svg>\n        </div>\n        <div class=\"close-container\" *ngIf=\"!spinerView && clearView\">\n          <span class=\"close rounded thick\" (click)=\"clearSearchForm()\"></span>\n        </div>\n        <div class=\"ui-autocomplete-panel empty\" *ngIf=\"results.length === 0 && findValue.length > 0 && isSearched\">\n          <div class=\"no-result\">\n            Il servizio \"{{findValue}}\" non è disponibile\n            <button class=\"suggess-service\" (click)=\"requireService()\">{{newServiceRequest.message}}</button>\n          </div>\n        </div>\n      </div>\n      <div *ngIf=\"!isFindField\" class=\"tagline\">{{tagline}}</div>\n    </div>\n\n    <!--  Collapsed -->\n    <ul class=\"nav navbar-nav float-xs-right\" *ngIf=\"auth !== false\" [ngClass]=\"{'collapse':!collapsed}\">\n      <li class=\"nav-item\">\n        <a class=\"nav-link home\" routerLink=\"\" routerLinkActive=\"active\" [routerLinkActiveOptions]=\"{exact:true}\" (click)=\"updateTabMenu(true)\">Home</a>\n      </li>\n      <li class=\"nav-item\">\n        <a class=\"nav-link orders\" routerLink=\"/orders/requests\" routerLinkActive=\"active\" (click)=\"toggleMenu()\">Ordini</a>\n      </li>\n      <li class=\"nav-item\">\n        <a class=\"nav-link profile\" routerLink=\"/profile/general\" routerLinkActive=\"active\" (click)=\"toggleMenu()\"><i class=\"fa fa-user-circle-o\" aria-hidden=\"true\"> </i> {{auth.profile.fullname}}</a>\n      </li>\n    </ul>\n\n    <!--  Collapsed not authenticated -->\n    <ul class=\"nav navbar-nav float-xs-right\" *ngIf=\"auth === false && browser\" [ngClass]=\"{'collapse':!collapsed}\">\n      <li class=\"nav-item\" *ngIf=\"collapsed\">\n        <a class=\"nav-link home\" routerLink=\"\" routerLinkActive=\"active\" [routerLinkActiveOptions]=\"{exact:true}\" (click)=\"updateTabMenu(true)\">Home</a>\n      </li>\n      <li class=\"nav-item register-item\">\n        <a class=\"nav-link profile\" (click)=\"signupAsProfessional()\">Iscriviti come professionista</a>\n      </li>\n      <li class=\"nav-item\">\n        <a class=\"nav-link profile\" (click)=\"getLoginPopup()\">Accedi</a>\n      </li>\n    </ul>\n  </div>\n</nav>\n<router-outlet></router-outlet>\n<app-popups></app-popups>\n"
+module.exports = "<nav class=\"navbar navbar-dark navbar-fixed-top bg-inverse\" [ngClass]=\"{'is-search': isFindField}\" (window:resize)=\"onResize()\">\n  <div class=\"container-starbook top-menu\">\n    <a class=\"navbar-brand\" (click)=\"clickBrandLogo()\">\n      <div *ngIf=\"screenWidth > 768\" routerLink=\"\">\n        <img src=\"/assets/images/brand-logo-name-rotated.png\" alt=\"starbook\">\n      </div>\n      <div *ngIf=\"screenWidth < 769\">\n        <img *ngIf=\"!collapsed\" src=\"/assets/images/brand-logo-rotated.png\" alt=\"starbook\">\n        <img *ngIf=\"collapsed\" src=\"/assets/images/brand-logo-right.png\" alt=\"starbook\">\n      </div>\n    </a>\n\n    <div *ngIf=\"hasCenterContainer\" class=\"center-container\">\n      <div class=\"search-block\" *ngIf=\"isFindField\">\n        <p-autoComplete [(ngModel)]=\"findValue\" [suggestions]=\"results\" field=\"title\" scrollHeight=\"250px\" (completeMethod)=\"search($event)\" (onSelect)=\"selectResult(findValue)\" placeholder=\"Cerca un servizio\" minLength=\"0\">\n          <template let-res>\n            <div class=\"search-result\" (click)=\"selectResult(res)\">{{ res.title }}</div>\n          </template>\n        </p-autoComplete>\n        <div class=\"spinner\" *ngIf=\"spinerView\">\n          <svg width='20px' height='20px' xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\" preserveAspectRatio=\"xMidYMid\" class=\"uil-ring\">\n            <rect x=\"0\" y=\"0\" width=\"100\" height=\"100\" fill=\"none\" class=\"bk\"></rect>\n            <circle cx=\"50\" cy=\"50\" r=\"45\" stroke-dasharray=\"169.64600329384882 113.09733552923257\" stroke=\"#3B568D\" fill=\"none\" stroke-width=\"10\">\n              <animateTransform attributeName=\"transform\" type=\"rotate\" values=\"0 50 50;180 50 50;360 50 50;\" keyTimes=\"0;0.5;1\" dur=\"1s\" repeatCount=\"indefinite\" begin=\"0s\"></animateTransform>\n            </circle>\n          </svg>\n        </div>\n        <div class=\"close-container\" *ngIf=\"!spinerView && clearView\">\n          <span class=\"close rounded thick\" (click)=\"clearSearchForm()\"></span>\n        </div>\n        <div class=\"ui-autocomplete-panel empty\" *ngIf=\"results.length === 0 && findValue.length > 0 && isSearched\">\n          <div class=\"no-result\">\n            Il servizio \"{{findValue}}\" non è disponibile\n            <button class=\"suggess-service\" (click)=\"requireService()\">{{newServiceRequest.message}}</button>\n          </div>\n        </div>\n      </div>\n      <div *ngIf=\"!isFindField\" class=\"tagline\">{{tagline}}</div>\n    </div>\n\n    <!--  Collapsed -->\n    <ul *ngIf=\"auth !== false && hasRightContainer\" class=\"nav navbar-nav float-xs-right\" [ngClass]=\"{'collapse':!collapsed}\">\n      <li class=\"nav-item\">\n        <a class=\"nav-link home\" routerLink=\"\" routerLinkActive=\"active\" [routerLinkActiveOptions]=\"{exact:true}\" (click)=\"updateTabMenu(true)\">Home</a>\n      </li>\n      <li class=\"nav-item\">\n        <a class=\"nav-link orders\" routerLink=\"/orders/requests\" routerLinkActive=\"active\" (click)=\"toggleMenu()\">Ordini</a>\n      </li>\n      <li class=\"nav-item\">\n        <a class=\"nav-link profile\" routerLink=\"/profile/general\" routerLinkActive=\"active\" (click)=\"toggleMenu()\"><i class=\"fa fa-user-circle-o\" aria-hidden=\"true\"> </i> {{auth.profile.fullname}}</a>\n      </li>\n    </ul>\n\n    <!--  Collapsed not authenticated -->\n    <ul *ngIf=\"auth === false && browser && hasRightContainer\" class=\"nav navbar-nav float-xs-right\" [ngClass]=\"{'collapse':!collapsed}\">\n      <li class=\"nav-item\" *ngIf=\"collapsed\">\n        <a class=\"nav-link home\" routerLink=\"\" routerLinkActive=\"active\" [routerLinkActiveOptions]=\"{exact:true}\" (click)=\"updateTabMenu(true)\">Home</a>\n      </li>\n      <li class=\"nav-item register-item\">\n        <a class=\"nav-link profile\" (click)=\"signupAsProfessional()\">Iscriviti come professionista</a>\n      </li>\n      <li class=\"nav-item\">\n        <a class=\"nav-link profile\" (click)=\"getLoginPopup()\">Accedi</a>\n      </li>\n    </ul>\n\n  </div>\n</nav>\n<router-outlet></router-outlet>\n<app-popups></app-popups>\n"
 
 /***/ },
 
@@ -9160,7 +9184,7 @@ module.exports = "<div class=\"help-container\">\n  <h1>Aiuto e Assistenza</h1>\
 /***/ 725:
 /***/ function(module, exports) {
 
-module.exports = "<div class=\"insert-container\">\n  <div class=\"progress-container\">\n    <div class=\"progress\"\n    [ngStyle]=\"{'width': setProgressWidth()}\"></div>\n  </div>\n  <button type=\"button\" id=\"next\" class=\"btn btn-success back\" (click)=\"undoStep()\" *ngIf=\"step!=='title'\">Indietro</button>\n  <div class=\"insert-body\" *ngIf=\"step==='title'\">\n    <div class=\"title\">\n      <h1>Inserisci il titolo del servizio</h1>\n      <p>Decidi un titolo breve e chiaro che rende il tuo servizio unico.</p>\n    </div>\n    <div class=\"input-group\">\n      <input type=\"text\" class=\"form-control\" placeholder=\"titolo\" [ngStyle]=\"{'text-align' : 'center'}\" [(ngModel)]=\"Service.title\">\n    </div>\n    <div class=\"form-group\">\n      <button type=\"button\" id=\"next\" class=\"btn btn-success\" (click)=\"saveStep('title')\">Avanti</button>\n    </div>\n  </div>\n  <div class=\"insert-body\" *ngIf=\"step==='price'\">\n    <div class=\"title\">\n      <h1>Inserisci il prezzo</h1>\n      <p>Decidi il coso per unita di misura del servizio. L'unità di misura può essere: metri, ore, scatole ecc.</p>\n    </div>\n    <div class=\"input-group\" [ngStyle]=\"{'width' : '45%', 'float' : 'left'}\">\n      <input type=\"text\" class=\"form-control price\" placeholder=\"0\" [ngStyle]=\"{'text-align' : 'center'}\" [(ngModel)]=\"Service.price\">\n    </div>\n    <div class=\"input-group\" [ngStyle]=\"{'width' : '10%', 'float' : 'left', 'line-height' : '60px'}\">\n      /\n    </div>\n    <span class=\"input-group\" [ngStyle]=\"{'width' : '45%', 'float' : 'left'}\">\n      <input type=\"text\" class=\"form-control unit\" placeholder=\"unità\" [ngStyle]=\"{'text-align' : 'center'}\" [(ngModel)]=\"Service.unit\">\n    </span>\n    <div class=\"form-group\">\n      <button type=\"button\" id=\"next\" class=\"btn btn-success\" (click)=\"saveStep('price')\">Avanti</button>\n    </div>\n  </div>\n  <div class=\"insert-body\" *ngIf=\"step==='picture'\">\n    <div class=\"title\">\n      <h1>Immagine del servizio</h1>\n      <p>Per poter vendere un servizio in modo più semplice e professionale è necessario un ottima immagine.</p>\n    </div>\n    <div class=\"picture-container\" (click)=\"file.click()\">\n      <input type=\"file\" (change)=\"fileEvent($event)\" style=\"display: none;\" #file>\n      <div class=\"picture\">\n        <i *ngIf=\"!logo\" class=\"fa fa-camera\" aria-hidden=\"true\"></i>\n        <img class=\"img-responsive\" [src]=\"logo\" alt=\"Inserisci immagine\">\n      </div>\n    </div>\n    <div class=\"form-group\">\n      <button type=\"button\" id=\"next\" class=\"btn btn-success\" (click)=\"saveStep('picture')\">Avanti</button>\n    </div>\n  </div>\n</div>\n"
+module.exports = "<div class=\"insert-container\">\n  <div class=\"progress-container\">\n    <div class=\"progress\"\n    [ngStyle]=\"{'width': setProgressWidth()}\"></div>\n  </div>\n  <button type=\"button\" id=\"next\" class=\"btn btn-success back\" (click)=\"undoStep()\" *ngIf=\"step!=='title'\">Indietro</button>\n  <div class=\"insert-body\" *ngIf=\"step==='title'\">\n    <div class=\"title\">\n      <h1>Inserisci il titolo del servizio</h1>\n      <p>Decidi un titolo breve e chiaro che rende il tuo servizio unico.</p>\n    </div>\n    <form (keyup.enter)=\"saveStep('title')\">\n      <div class=\"input-group\">\n        <input type=\"text\" class=\"form-control\" placeholder=\"titolo\" [ngStyle]=\"{'text-align' : 'center'}\" [(ngModel)]=\"Service.title\" [ngModelOptions]=\"{standalone: true}\">\n      </div>\n      <div class=\"form-group\">\n        <button type=\"button\" id=\"next\" class=\"btn btn-success\" (click)=\"saveStep('title')\">Avanti</button>\n      </div>\n    </form>\n  </div>\n  <div class=\"insert-body\" *ngIf=\"step==='price'\">\n    <div class=\"title\">\n      <h1>Inserisci il prezzo</h1>\n      <p>Decidi il costo per unita di misura del servizio. L'unità di misura può essere: metri, ore, scatole ecc.</p>\n    </div>\n    <div class=\"input-group\" [ngStyle]=\"{'width' : '45%', 'float' : 'left'}\">\n      <input type=\"text\" class=\"form-control price\" placeholder=\"0\" [ngStyle]=\"{'text-align' : 'center'}\" [(ngModel)]=\"Service.price\">\n    </div>\n    <div class=\"input-group\" [ngStyle]=\"{'width' : '10%', 'float' : 'left', 'line-height' : '60px'}\">\n      /\n    </div>\n    <span class=\"input-group\" [ngStyle]=\"{'width' : '45%', 'float' : 'left'}\">\n      <input type=\"text\" class=\"form-control unit\" placeholder=\"unità\" [ngStyle]=\"{'text-align' : 'center'}\" [(ngModel)]=\"Service.unit\">\n    </span>\n    <div class=\"form-group\">\n      <button type=\"button\" id=\"next\" class=\"btn btn-success\" (click)=\"saveStep('price')\">Avanti</button>\n    </div>\n  </div>\n  <div class=\"insert-body\" *ngIf=\"step==='picture'\">\n    <div class=\"title\">\n      <h1>Immagine del servizio</h1>\n      <p>Per poter vendere un servizio in modo più semplice e professionale è necessario un ottima immagine.</p>\n    </div>\n    <div class=\"picture-container\" (click)=\"file.click()\">\n      <input type=\"file\" (change)=\"fileEvent($event)\" style=\"display: none;\" #file>\n      <div class=\"picture\">\n        <i *ngIf=\"!logo\" class=\"fa fa-camera\" aria-hidden=\"true\"></i>\n        <img class=\"img-responsive\" [src]=\"logo\" alt=\"Inserisci immagine\">\n      </div>\n    </div>\n    <div class=\"form-group\">\n      <button type=\"button\" id=\"next\" class=\"btn btn-success\" (click)=\"saveStep('picture')\">Avanti</button>\n    </div>\n  </div>\n  <div class=\"insert-body\" *ngIf=\"step==='register'\">\n    <div class=\"title\">\n      <h1>Ultimo passo</h1>\n      <p>Crea il tuo profilo professionale e inizia subito a ricevere richieste.</p>\n    </div>\n    <form>\n      <div class=\"row\">\n        <div class=\"col-md-6\">\n          <div class=\"form-group\">\n            <label for=\"firstNameInput\">Nome</label>\n            <input type=\"firstname\" placeholder=\"Nome\" class=\"form-control\" [ngClass]=\"{'error-input': signup_state.first_name_error}\" id=\"firstNameInput\" [(ngModel)]=\"signupParameters.firstname\" [ngModelOptions]=\"{standalone: true}\">\n            <small class=\"error-message\" *ngIf=\"signup_state.first_name_error\">{{signup_state.first_name_error}}</small>\n          </div>\n        </div>\n        <div class=\"col-md-6\">\n          <div class=\"form-group\">\n            <label for=\"lastNameInput\">Cognome</label>\n            <input type=\"lastname\" placeholder=\"Cognome\" class=\"form-control\" [ngClass]=\"{'error-input': signup_state.last_name_error}\" id=\"lastNameInput\" [(ngModel)]=\"signupParameters.lastname\" [ngModelOptions]=\"{standalone: true}\">\n            <small class=\"error-message\" *ngIf=\"signup_state.last_name_error\">{{signup_state.last_name_error}}</small>\n          </div>\n        </div>\n      </div>\n      <div class=\"form-group\">\n        <label for=\"emailInput\">Email</label>\n        <input type=\"email\" placeholder=\"La tua mail\" class=\"form-control\" [ngClass]=\"{'error-input': signup_state.email_error}\" id=\"emailInput\" [(ngModel)]=\"signupParameters.email\" [ngModelOptions]=\"{standalone: true}\">\n        <small class=\"error-message\" *ngIf=\"signup_state.email_error\">{{signup_state.email_error}}</small>\n      </div>\n      <!-- <div class=\"form-group\">\n        <label for=\"professionInput\">Professione</label>\n        <input type=\"profession\" placeholder=\"La tua professione\" class=\"form-control\" id=\"professionInput\" [(ngModel)]=\"profession\" [ngModelOptions]=\"{standalone: true}\">\n      </div> -->\n      <div class=\"form-group\">\n        <label for=\"phoneInput\">Telefono</label>\n        <input type=\"phone\" placeholder=\"Numero di telefono\" class=\"form-control\" [ngClass]=\"{'error-input': signup_state.phone_error}\" id=\"phoneInput\" [(ngModel)]=\"signupParameters.phone\" [ngModelOptions]=\"{standalone: true}\">\n        <small class=\"error-message\" *ngIf=\"signup_state.phone_error\">{{signup_state.phone_error}}</small>\n      </div>\n      <div class=\"form-group\">\n        <label for=\"passwordInput\">Password</label>\n        <input type=\"password\" placeholder=\"Password\" class=\"form-control\" [ngClass]=\"{'error-input': signup_state.password_error}\" id=\"passwordInput\" [(ngModel)]=\"signupParameters.password\" [ngModelOptions]=\"{standalone: true}\">\n        <small class=\"error-message\" *ngIf=\"signup_state.password_error\">{{signup_state.password_error}}</small>\n      </div>\n      <!-- <div class=\"form-group\">\n        <label for=\"confirmPasswordInput\">Di nuovo la password</label>\n        <input type=\"password\" placeholder=\"Password\" class=\"form-control\" [ngClass]=\"{'error-input': signup_state.confirm_password_error}\" id=\"confirmPasswordInput\" [(ngModel)]=\"signupParameters.confirmPassword\" [ngModelOptions]=\"{standalone: true}\">\n        <small class=\"error-message\" *ngIf=\"signup_state.confirm_password_error\">{{signup_state.confirm_password_error}}</small>\n      </div> -->\n      <div class=\"form-group\" *ngIf=\"signup_state.error_message\">\n        <div class=\"alert alert-danger\" role=\"alert\">{{signup_state.error_message}}</div>\n      </div>\n      <div class=\"form-group\">\n        <button type=\"button\" id=\"next\" class=\"btn btn-success\" (click)=\"saveStep('register')\">Registrati</button>\n      </div>\n      <div class=\"form-group\">\n        <h6><small>Continuando dichiari di aver letto e accetti le <a routerlink=\"/info/legal\" href=\"/info/legal\" target=\"_blank\">condizioni generali e l’informativa sulla privacy</a></small></h6>\n      </div>\n    </form>\n    <!-- <div class=\"form-group\">\n      <button type=\"button\" id=\"next\" class=\"btn btn-success\" (click)=\"saveStep('register')\">Avanti</button>\n    </div> -->\n    <!-- <div class=\"signup-container\">\n      <div class=\"picture-container\" (click)=\"file.click()\">\n        <input type=\"file\" (change)=\"fileEvent($event)\" style=\"display: none;\" #file>\n        <div class=\"picture\">\n          <i *ngIf=\"!logo\" class=\"fa fa-camera\" aria-hidden=\"true\"></i>\n          <img class=\"img-responsive\" [src]=\"logo\" alt=\"Inserisci immagine\">\n        </div>\n      </div>\n    </div> -->\n  </div>\n  <div class=\"insert-body\" *ngIf=\"step==='login'\">\n    <div class=\"title\">\n      <h1>Immagine del servizio</h1>\n      <p>Per poter vendere un servizio in modo più semplice e professionale è necessario un ottima immagine.</p>\n    </div>\n    <div class=\"signup-container\">\n      <div class=\"picture-container\" (click)=\"file.click()\">\n        <input type=\"file\" (change)=\"fileEvent($event)\" style=\"display: none;\" #file>\n        <div class=\"picture\">\n          <i *ngIf=\"!logo\" class=\"fa fa-camera\" aria-hidden=\"true\"></i>\n          <img class=\"img-responsive\" [src]=\"logo\" alt=\"Inserisci immagine\">\n        </div>\n      </div>\n      <div class=\"form-group\">\n        <button type=\"button\" id=\"next\" class=\"btn btn-success\" (click)=\"saveStep('login')\">Avanti</button>\n      </div>\n    </div>\n  </div>\n  <div class=\"insert-body\" *ngIf=\"step==='end'\">\n    <div class=\"title\">\n      <h1>Fine</h1>\n      <p>Hai pubblicato con successo un servizio. Il servizio verra verificato.</p>\n    </div>\n  </div>\n</div>\n"
 
 /***/ },
 
