@@ -4946,11 +4946,12 @@ app-service {
   float: left;
   width: 100%;
   height: 100%;
-  overflow: auto; }
+  overflow: auto;
+  padding: 70px 0 0; }
   app-service .service-container {
     max-width: 1440px;
     margin: auto;
-    padding: 120px 50px 50px;
+    padding: 50px 120px 50px;
     overflow: auto; }
     app-service .service-container .service {
       overflow: auto; }
@@ -5624,12 +5625,17 @@ app-insert {
           color: #f75c4b; }
       app-insert .insert-container .insert .insert-body .actions {
         margin-top: 30px; }
-      app-insert .insert-container .insert .insert-body .price-per {
+      app-insert .insert-container .insert .insert-body .price-per-unit {
         overflow: auto; }
-        app-insert .insert-container .insert .insert-body .price-per .input-group {
+        app-insert .insert-container .insert .insert-body .price-per-unit .input-group {
           float: left;
           width: 47.5%; }
-        app-insert .insert-container .insert .insert-body .price-per span {
+        app-insert .insert-container .insert .insert-body .price-per-unit .euro {
+          font-size: 22px;
+          padding: 0 20px;
+          background: white;
+          border-radius: 0; }
+        app-insert .insert-container .insert .insert-body .price-per-unit .per {
           width: 5%;
           float: left;
           font-size: 20px;

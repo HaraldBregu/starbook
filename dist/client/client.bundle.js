@@ -1897,6 +1897,15 @@ var InsertComponent = (function () {
                     return;
                 }
             }
+            else {
+                if (!this.Service['picture_file']) {
+                    this.state.picture_file_error = "Per piacere, inserisci un immagine.";
+                    return;
+                }
+                else {
+                    this.state.picture_file_error = null;
+                }
+            }
         }
         else if (this.step === 'end') {
             this.router.navigate(['profile/general']);
@@ -1909,67 +1918,27 @@ var InsertComponent = (function () {
         if (this.signup_state.loading) {
             return;
         }
-        if (this.signupParameters.email.length > 0 &&
-            this.signupParameters.firstname.length > 0 &&
-            this.signupParameters.lastname.length > 0 &&
-            this.signupParameters.phone.length > 0 &&
-            this.signupParameters.password.length > 0) {
+        this.signup_state.email_error = null;
+        this.signup_state.first_name_error = null;
+        this.signup_state.last_name_error = null;
+        this.signup_state.phone_error = null;
+        this.signup_state.password_error = null;
+        if (this.signupParameters.email.length === 0 || this.signupParameters.firstname.length === 0 || this.signupParameters.lastname.length === 0 || this.signupParameters.phone.length === 0 || this.signupParameters.password.length === 0) {
             if (!this.emailPattern.test(this.signupParameters.email)) {
                 this.signup_state.email_error = "Inserisci un indirizzo email corretto";
-                return;
             }
-        }
-        else {
-            if (this.signupParameters.email.length === 0) {
-                this.signup_state.email_error = "Inserisci un indirizzo email";
-            }
-            else if (this.signupParameters.email.length > 0 && !this.emailPattern.test(this.signupParameters.email)) {
-                this.signup_state.email_error = "Inserisci un indirizzo email corretto";
-            }
-            else {
-                this.signup_state.email_error = null;
-            }
-            if (this.signupParameters.firstname.length === 0) {
-                this.signup_state.first_name_error = "Inserisci un nome";
-            }
-            else {
-                this.signup_state.first_name_error = null;
-            }
-            if (this.signupParameters.lastname.length === 0) {
-                this.signup_state.last_name_error = "Inserisci un cognome";
-            }
-            else {
-                this.signup_state.last_name_error = null;
-            }
-            if (this.signupParameters.phone.length < 9) {
-                this.signup_state.phone_error = "Inserisci un numero di telefono corretto";
-                if (this.signupParameters.phone.length === 0) {
-                    this.signup_state.phone_error = "Inserisci un numero di telefono";
-                }
-            }
-            else {
-                this.signup_state.phone_error = null;
-            }
-            if (this.signupParameters.password.length === 0) {
-                this.signup_state.password_error = "Inserisci una password";
-            }
-            else {
-                this.signup_state.password_error = null;
-            }
-            if (this.signupParameters.password.length > 0) {
-                this.signup_state.password_error = null;
-            }
+            this.signup_state.email_error = (this.signupParameters.email.length === 0) ? "Inserisci un indirizzo email" : null;
+            this.signup_state.first_name_error = (this.signupParameters.firstname.length === 0) ? "Inserisci un nome" : null;
+            this.signup_state.last_name_error = (this.signupParameters.lastname.length === 0) ? "Inserisci un cognome" : null;
+            this.signup_state.phone_error = (this.signupParameters.phone.length < 9) ? "Inserisci un numero di telefono corretto" : null;
+            this.signup_state.password_error = (this.signupParameters.password.length === 0) ? "Inserisci una password" : null;
             return;
         }
         this.signup_state.loading = true;
         this.signup_state.button_title = "Registrando...";
-        // account_type
         this.authService.signupProfessional(this.signupParameters.firstname, this.signupParameters.lastname, this.signupParameters.phone, this.signupParameters.email, this.signupParameters.password, "VENDOR").then(function (data) {
-            // this.router.navigate(['']);
             _this.navigationService.updatePersonalMenu(data);
-            _this.signup_state.error_message = null;
-            _this.signup_state.loading = false;
-            _this.signup_state.button_title = "Registrando...";
+            _this.saveServiceForAccountId(data._id);
         }).catch(function (error) {
             _this.analyticsService.sendException(error);
             _this.signup_state.loading = false;
@@ -1991,32 +1960,20 @@ var InsertComponent = (function () {
     };
     InsertComponent.prototype.login = function () {
         var _this = this;
-        this.analyticsService.sendEvent({ category: 'Booking', action: 'Login', label: this.router.url });
         if (this.login_state.loading) {
             return;
         }
+        this.login_state.email_error = null;
+        this.login_state.password_error = null;
         if (this.loginParameters.email.length === 0 || this.loginParameters.password.length === 0) {
-            if (this.loginParameters.email.length === 0) {
-                this.login_state.email_error = "Inserisci un indirizzo email";
-            }
-            else {
-                this.login_state.email_error = null;
-            }
-            if (this.loginParameters.password.length === 0) {
-                this.login_state.password_error = "Inserisci una password";
-            }
-            else {
-                this.login_state.password_error = null;
-            }
+            this.login_state.email_error = (this.loginParameters.email.length === 0) ? "Inserisci un indirizzo email" : null;
+            this.login_state.password_error = (this.loginParameters.password.length === 0) ? "Inserisci una password" : null;
             return;
         }
         this.login_state.loading = true;
         this.login_state.button_title = "Accedendo...";
         this.authService.login(this.loginParameters.email, this.loginParameters.password).then(function (data) {
             _this.navigationService.updatePersonalMenu(data);
-            _this.login_state.loading = false;
-            _this.login_state.button_title = "Accedi";
-            _this.login_state.error_message = null;
             _this.saveServiceForAccountId(data._id);
         }).catch(function (error) {
             _this.analyticsService.sendException(error);
@@ -2040,27 +1997,45 @@ var InsertComponent = (function () {
         this.state.picture_file_loading = true;
         this.state.picture_file_error = null;
         this.Service['supplier_id'] = account_id;
-        console.log('service is: ' + JSON.stringify(this.Service));
+        this.Service['price'] *= 100;
         this.commonService.createService(this.Service).then(function (data) {
-            _this.state.picture_file_loading = false;
-            // console.log('data is: ' + JSON.stringify(data));
             var file = _this.Service['picture_file'];
-            // var path = 'services/' + data.result._id + '/cover/0'
-            var path = 'test_services/' + data.result._id + '/cover/0';
+            var path = 'services/' + data.result._id + '/cover/0';
             _this.savePictureToPath(file, path);
         }).catch(function (error) {
             // console.log('error is: ' + JSON.stringify(error));
         });
     };
     InsertComponent.prototype.savePictureToPath = function (file, path) {
+        var _this = this;
         var AWSService = window.AWS;
         AWSService.config.accessKeyId = "AKIAI3TIRNH4DG7MGC7Q";
         AWSService.config.secretAccessKey = "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";
         var bucket = new AWSService.S3();
         var params = { Bucket: 'starbook-s3', Key: path, Body: file, ACL: "public-read" };
         bucket.upload(params, function (error, res) {
-            console.log('error: ' + error);
-            console.log('res: ' + JSON.stringify(res));
+            if (!error) {
+                console.log('res upload file: ' + JSON.stringify(res));
+                // LOGIN STATE
+                _this.login_state.loading = false;
+                _this.login_state.button_title = "Accedi";
+                _this.login_state.error_message = null;
+                // SIGNUP STATE
+                _this.signup_state.loading = false;
+                _this.signup_state.button_title = "Registrati";
+                _this.signup_state.error_message = null;
+                // PICTURE STATE
+                _this.state.picture_file_loading = false;
+                _this.state.picture_file_error = null;
+                _this.router.navigate(['insert/end']);
+            }
+            else {
+                console.log('error upload file: ' + error);
+                // PICTURE STATE
+                _this.state.picture_file_loading = false;
+                _this.state.picture_file_error = null;
+                _this.router.navigate(['insert/end']);
+            }
         });
     };
     InsertComponent.prototype.selectPicture = function (fileInput) {
@@ -2088,6 +2063,7 @@ var InsertComponent = (function () {
         this.step = 'recover';
         this.router.navigate(['insert/recover']);
     };
+    // UTILS
     InsertComponent.prototype.checkRouteAndService = function () {
         // if (!this.Service['title'] && this.step !== 'title') {
         //   // this.state.title_error = "Per favore, inserisci un titolo."
@@ -2106,6 +2082,15 @@ var InsertComponent = (function () {
         // } else if (this.step === 'end')  {
         //   this.router.navigate(['profile/general']);
         // }
+    };
+    InsertComponent.prototype.updatePrice = function () {
+        var value = parseInt(this.Service['price']);
+        if (isNaN(value) || value === 0) {
+            this.Service['price'] = null;
+        }
+        else {
+            this.Service['price'] = value;
+        }
     };
     InsertComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
@@ -9460,7 +9445,7 @@ module.exports = "<div class=\"help-container\">\n  <h1>Aiuto e Assistenza</h1>\
 /***/ 725:
 /***/ function(module, exports) {
 
-module.exports = "<div class=\"insert-container\">\n  <div class=\"progress-container\" *ngIf=\"step\">\n    <div class=\"progress\"\n    [ngStyle]=\"{'width': setProgressWidth()}\"></div>\n  </div>\n  <button type=\"button\" id=\"next\" class=\"btn btn-success back\" (click)=\"undoStep()\" *ngIf=\"step && step!=='title' && step!=='end'\">Indietro</button>\n\n  <div class=\"insert\" *ngIf=\"step==='intro'\">\n  </div>\n\n  <div class=\"insert\" *ngIf=\"step==='title'\">\n    <div class=\"insert-header\">\n      <h1>Inserisci il titolo del servizio</h1>\n      <p>Un titolo breve e chiaro può rendere il tuo servizio unico e più ricercato.</p>\n    </div>\n    <div class=\"insert-body\">\n      <form (keyup.enter)=\"nextStep()\">\n        <div class=\"input-group\">\n          <input type=\"text\" class=\"form-control\" placeholder=\"titolo\" [ngStyle]=\"{'text-align' : 'center'}\" [(ngModel)]=\"Service.title\" [ngModelOptions]=\"{standalone: true}\">\n        </div>\n        <div class=\"form-group error\">\n          <span class=\"error-text\" *ngIf=\"state.title_error\">{{state.title_error}}</span>\n        </div>\n        <div class=\"actions\">\n          <div class=\"form-group text-center\">\n            <button type=\"button\" id=\"next\" class=\"btn btn-success\" (click)=\"nextStep()\">Avanti</button>\n          </div>\n        </div>\n      </form>\n    </div>\n  </div>\n  <div class=\"insert\" *ngIf=\"step==='pricing'\">\n    <div class=\"insert-header\">\n      <h1>Prezzo per unità</h1>\n      <p>Inserisci il prezzo per unità di misura.</p>\n      <p>(es: 12€/ora, 34€/metro quadro, 51€/pezzo)</p>\n    </div>\n    <div class=\"insert-body\">\n      <form (keyup.enter)=\"nextStep()\">\n        <div class=\"price-per\">\n          <div class=\"input-group\">\n            <input id=\"pricePerUnitInput\" type=\"text\" class=\"form-control price text-center\" placeholder=\"0\" [(ngModel)]=\"Service.price\" [ngModelOptions]=\"{standalone: true}\">\n          </div>\n          <span>x</span>\n          <span class=\"input-group\">\n            <input id=\"unitInput\" type=\"text\" class=\"form-control unit text-center\" placeholder=\"unità\" [(ngModel)]=\"Service.unit\" [ngModelOptions]=\"{standalone: true}\">\n          </span>\n        </div>\n        <div class=\"form-group error\">\n          <span class=\"error-text\" *ngIf=\"state.pricing_error\">{{state.pricing_error}}</span>\n        </div>\n        <div class=\"actions\">\n          <div class=\"form-group text-center\">\n            <button type=\"button\" id=\"next\" class=\"btn btn-success\" (click)=\"nextStep()\">Avanti</button>\n          </div>\n        </div>\n      </form>\n    </div>\n  </div>\n  <div class=\"insert\" *ngIf=\"step==='unit'\">\n    <div class=\"insert-header\">\n      <h1>Inserisci unità di misura</h1>\n      <p>In base che cosa decidi il costo del tuo servizio?</p>\n    </div>\n    <div class=\"insert-body\">\n      <form (keyup.enter)=\"nextStep()\">\n        <span class=\"input-group\">\n          <input id=\"unitInput\" type=\"text\" class=\"form-control unit text-center\" placeholder=\"Ora, giorno, metro quadro o altro?\" [(ngModel)]=\"Service.unit\" [ngModelOptions]=\"{standalone: true}\">\n        </span>\n        <div class=\"form-group text-center\">\n          <button type=\"button\" id=\"next\" class=\"btn btn-success\" (click)=\"nextStep()\">Avanti</button>\n        </div>\n      </form>\n    </div>\n  </div>\n  <div class=\"insert\" *ngIf=\"step==='price'\">\n    <div class=\"insert-header\">\n      <h1>Inserisci un prezzo</h1>\n      <p>Qual è il prezzo del servizio per l'unità di misura che hai scelto?</p>\n    </div>\n    <div class=\"insert-body\">\n      <form (keyup.enter)=\"nextStep()\">\n        <div class=\"input-group\">\n          <input id=\"pricePerUnitInput\" type=\"text\" class=\"form-control price text-center\" placeholder=\"0 €\" [(ngModel)]=\"Service.price\" [ngModelOptions]=\"{standalone: true}\">\n        </div>\n        <div class=\"form-group text-center\">\n          <button type=\"button\" id=\"next\" class=\"btn btn-success\" (click)=\"nextStep()\">Avanti</button>\n        </div>\n      </form>\n    </div>\n  </div>\n  <div class=\"insert\" *ngIf=\"step==='picture'\">\n    <div class=\"insert-header\">\n      <h1>Inserisci un immagine</h1>\n      <p>Le possibilità di ricevere richieste da clienti aumentano significativamente inserendo un immagine di qualità.</p>\n    </div>\n    <div class=\"insert-body\">\n      <form>\n        <div class=\"picture-container\">\n          <input type=\"file\" (change)=\"selectPicture($event)\" style=\"display: none;\" #file>\n          <div class=\"picture\" (click)=\"file.click()\">\n            <i *ngIf=\"!logo\" class=\"fa fa-camera\" aria-hidden=\"true\"></i>\n            <img class=\"img-responsive\" [src]=\"logo\" alt=\"Inserisci immagine\">\n          </div>\n        </div>\n        <div class=\"form-group error\">\n          <span class=\"error-text\" *ngIf=\"state.picture_file_error\">{{state.picture_file_error}}</span>\n        </div>\n        <div class=\"actions\">\n          <div class=\"form-group text-center\">\n            <button type=\"button\" id=\"next\" class=\"btn btn-success\" (click)=\"nextStep()\"><i class=\"fa fa-circle-o-notch animate\" *ngIf=\"state.picture_file_loading\"></i>Pubblica</button>\n          </div>\n        </div>\n      </form>\n    </div>\n  </div>\n\n  <div class=\"insert\" *ngIf=\"step==='preview'\">\n    <div class=\"insert-header\">\n      <h1>Anteprima</h1>\n      <p></p>\n    </div>\n    <div class=\"insert-body\">\n      <form>\n        <div class=\"input-group\">\n          <input type=\"text\" class=\"form-control\" placeholder=\"titolo\" [ngStyle]=\"{'text-align' : 'center'}\" [(ngModel)]=\"Service.title\" [ngModelOptions]=\"{standalone: true}\">\n        </div>\n        <span class=\"input-group\">\n          <input id=\"unitInput\" type=\"text\" class=\"form-control unit text-center\" placeholder=\"Ora, giorno, metro quadro o altro?\" [(ngModel)]=\"Service.unit\" [ngModelOptions]=\"{standalone: true}\">\n        </span>\n        <div class=\"input-group\">\n          <input id=\"pricePerUnitInput\" type=\"text\" class=\"form-control price text-center\" placeholder=\"0\" [(ngModel)]=\"Service.price\" [ngModelOptions]=\"{standalone: true}\">\n        </div>\n        <div class=\"picture-container\">\n          <input type=\"file\" (change)=\"selectPicture($event)\" style=\"display: none;\" #file>\n          <div class=\"picture\" (click)=\"file.click()\">\n            <i *ngIf=\"!logo\" class=\"fa fa-camera\" aria-hidden=\"true\"></i>\n            <img class=\"img-responsive\" [src]=\"logo\" alt=\"Inserisci immagine\">\n          </div>\n        </div>\n        <div class=\"form-group text-center\">\n          <button type=\"button\" id=\"next\" class=\"btn btn-success\" (click)=\"nextStep()\">Pubblica</button>\n        </div>\n      </form>\n    </div>\n  </div>\n\n  <div class=\"insert\" *ngIf=\"step==='register'\">\n    <div class=\"insert-header\">\n      <h1>Ultimo passo</h1>\n      <p>Registrazione</p>\n    </div>\n    <div class=\"insert-body\">\n      <form>\n        <div class=\"form-group\">\n          <label for=\"emailInput\">Email</label>\n          <input type=\"email\" name=\"email\" placeholder=\"La tua mail\" class=\"form-control\" [ngClass]=\"{'error-input': signup_state.email_error}\" id=\"emailInput\" [(ngModel)]=\"signupParameters.email\" [ngModelOptions]=\"{standalone: true}\">\n          <small class=\"error-message\" *ngIf=\"signup_state.email_error\">{{signup_state.email_error}}</small>\n        </div>\n        <div class=\"row\">\n          <div class=\"col-md-6\">\n            <div class=\"form-group\">\n              <label for=\"firstNameInput\">Nome</label>\n              <input type=\"firstname\" name=\"firstnam\" placeholder=\"Nome\" class=\"form-control\" [ngClass]=\"{'error-input': signup_state.first_name_error}\" id=\"firstNameInput\" [(ngModel)]=\"signupParameters.firstname\" [ngModelOptions]=\"{standalone: true}\">\n              <small class=\"error-message\" *ngIf=\"signup_state.first_name_error\">{{signup_state.first_name_error}}</small>\n            </div>\n          </div>\n          <div class=\"col-md-6\">\n            <div class=\"form-group\">\n              <label for=\"lastNameInput\">Cognome</label>\n              <input type=\"lastname\" name=\"lastname\" placeholder=\"Cognome\" class=\"form-control\" [ngClass]=\"{'error-input': signup_state.last_name_error}\" id=\"lastNameInput\" [(ngModel)]=\"signupParameters.lastname\" [ngModelOptions]=\"{standalone: true}\">\n              <small class=\"error-message\" *ngIf=\"signup_state.last_name_error\">{{signup_state.last_name_error}}</small>\n            </div>\n          </div>\n        </div>\n        <div class=\"form-group\">\n          <label for=\"phone\">Telefono</label>\n          <input id=\"phone\" field=\"phone\" type=\"text\" name=\"phone\" placeholder=\"Numero di telefono\" class=\"form-control\" [ngClass]=\"{'error-input': signup_state.phone_error}\" [(ngModel)]=\"signupParameters.phone\" [ngModelOptions]=\"{standalone: true}\">\n          <small class=\"error-message\" *ngIf=\"signup_state.phone_error\">{{signup_state.phone_error}}</small>\n        </div>\n        <div class=\"form-group\">\n          <label for=\"passwordInput\">Crea una password</label>\n          <input type=\"password\" name=\"password\" placeholder=\"Password\" class=\"form-control\" [ngClass]=\"{'error-input': signup_state.password_error}\" id=\"passwordInput\" [(ngModel)]=\"signupParameters.password\" [ngModelOptions]=\"{standalone: true}\">\n          <small class=\"error-message\" *ngIf=\"signup_state.password_error\">{{signup_state.password_error}}</small>\n        </div>\n        <div class=\"form-group\" *ngIf=\"signup_state.error_message\">\n          <div class=\"alert alert-danger\" role=\"alert\">{{signup_state.error_message}}</div>\n        </div>\n        <div class=\"form-group text-center\">\n          <button type=\"button\" id=\"next\" class=\"btn btn-success\" (click)=\"signup()\"><i class=\"fa fa-circle-o-notch animate\" *ngIf=\"signup_state.loading\"></i>{{signup_state.button_title}}</button>\n        </div>\n        <div class=\"form-group footer-group\">\n          <span class=\"text\">Sei gia registrato?</span>\n          <span class=\"text enter\" (click)=\"changeToLogin()\">Entra</span>\n          <span class=\"text\">Continuando dichiari di aver letto e accetti le <a routerlink=\"/info/legal\" href=\"/info/legal\" target=\"_blank\">condizioni generali e l’informativa sulla privacy</a></span>\n        </div>\n      </form>\n    </div>\n  </div>\n  <div class=\"insert\" *ngIf=\"step==='login'\">\n    <div class=\"insert-header\">\n      <h1>Ultimo passo</h1>\n      <p>Entra</p>\n    </div>\n    <div class=\"insert-body\">\n      <form>\n        <div class=\"form-group\">\n          <label for=\"emailInput\">Email</label>\n          <input type=\"email\" placeholder=\"La tua mail\" class=\"form-control\" [ngClass]=\"{'error-input': login_state.email_error}\" id=\"emailInput\" [(ngModel)]=\"loginParameters.email\" [ngModelOptions]=\"{standalone: true}\">\n          <small class=\"error-message\" *ngIf=\"login_state.email_error\">{{login_state.email_error}}</small>\n        </div>\n        <div class=\"form-group\">\n          <label for=\"passwordInput\">Password</label>\n          <input type=\"password\" placeholder=\"Password\" class=\"form-control\" [ngClass]=\"{'error-input': login_state.password_error}\" id=\"passwordInput\" [(ngModel)]=\"loginParameters.password\" [ngModelOptions]=\"{standalone: true}\">\n          <small class=\"error-message\" *ngIf=\"login_state.password_error\">{{login_state.password_error}}</small>\n        </div>\n        <div class=\"form-group\" *ngIf=\"login_state.error_message\">\n          <div class=\"alert alert-danger\" role=\"alert\">{{login_state.error_message}}</div>\n        </div>\n        <div class=\"form-group text-center\">\n          <button type=\"button\" id=\"next\" class=\"btn btn-success\" (click)=\"login()\"><i class=\"fa fa-circle-o-notch animate\" *ngIf=\"login_state.loading\"></i>{{login_state.button_title}}</button>\n        </div>\n        <div class=\"form-group footer-group\">\n          <span class=\"text password-forget\" (click)=\"changeToRecoverPassword()\">Hai dimenticato la password?</span>\n          <span class=\"text\">Non sei ancora registrato?</span>\n          <span class=\"text enter\" (click)=\"changeToSignup()\">Registrati</span>\n        </div>\n      </form>\n    </div>\n  </div>\n  <div class=\"insert\" *ngIf=\"step==='recover'\">\n    <div class=\"insert-header\">\n      <h1>Recupera password</h1>\n      <p>Ti manderemo una mail con il link per cambiare la password.</p>\n    </div>\n    <div class=\"insert-body\">\n      <form>\n        <div class=\"form-group\">\n          <label for=\"emailInput\">Email</label>\n          <input type=\"email\" placeholder=\"La tua mail\" class=\"form-control\" [ngClass]=\"{'error-input': login_state.email_error}\" id=\"emailInput\" [(ngModel)]=\"loginParameters.email\" [ngModelOptions]=\"{standalone: true}\">\n          <small class=\"error-message\" *ngIf=\"login_state.email_error\">{{login_state.email_error}}</small>\n        </div>\n        <div class=\"form-group text-center\">\n          <button type=\"button\" id=\"next\" class=\"btn btn-success\" (click)=\"recoverPassword()\"><i class=\"fa fa-circle-o-notch animate\" *ngIf=\"login_state.loading\"></i>Recupera</button>\n        </div>\n        <div class=\"form-group footer-group\">\n          <span class=\"text enter\" (click)=\"changeToLogin()\">Accedi</span>\n        </div>\n      </form>\n    </div>\n  </div>\n\n  <div class=\"insert\" *ngIf=\"step==='end'\">\n    <div class=\"insert-header\">\n      <h1>Complimenti</h1>\n      <p>Il tuo servizio è stato aggiornato e pubblicato con successo.</p>\n    </div>\n    <div class=\"insert-body\">\n      <div class=\"form-group text-center\">\n        <button type=\"button\" id=\"next\" class=\"btn btn-success\" (click)=\"nextStep()\">Avanti</button>\n      </div>\n    </div>\n  </div>\n"
+module.exports = "<div class=\"insert-container\">\n  <div class=\"progress-container\" *ngIf=\"step\">\n    <div class=\"progress\"\n    [ngStyle]=\"{'width': setProgressWidth()}\"></div>\n  </div>\n  <button type=\"button\" id=\"next\" class=\"btn btn-success back\" (click)=\"undoStep()\" *ngIf=\"step && step!=='title' && step!=='end'\">Indietro</button>\n\n  <div class=\"insert\" *ngIf=\"step==='intro'\">\n  </div>\n\n  <div class=\"insert\" *ngIf=\"step==='title'\">\n    <div class=\"insert-header\">\n      <h1>Inserisci il titolo del servizio</h1>\n      <p>Un titolo breve e chiaro può rendere il tuo servizio unico e più ricercato.</p>\n    </div>\n    <div class=\"insert-body\">\n      <form (keyup.enter)=\"nextStep()\">\n        <div class=\"input-group\">\n          <input id=\"titleInput\" type=\"text\" class=\"form-control\" placeholder=\"titolo\" [autofocus]=\"!Service.title\" [ngStyle]=\"{'text-align' : 'center'}\" [(ngModel)]=\"Service.title\" [ngModelOptions]=\"{standalone: true}\">\n        </div>\n        <div class=\"form-group error\">\n          <span class=\"error-text\" *ngIf=\"state.title_error\">{{state.title_error}}</span>\n        </div>\n        <div class=\"actions\">\n          <div class=\"form-group text-center\">\n            <button type=\"button\" class=\"btn btn-success\" (click)=\"nextStep()\">Avanti</button>\n          </div>\n        </div>\n      </form>\n    </div>\n  </div>\n  <div class=\"insert\" *ngIf=\"step==='pricing'\">\n    <div class=\"insert-header\">\n      <h1>Prezzo per unità</h1>\n      <p>Inserisci il prezzo per unità di misura.</p>\n      <p>(es: 12€/ora, 34€/metro quadro, 51€/pezzo)</p>\n    </div>\n    <div class=\"insert-body\">\n      <form (keyup.enter)=\"nextStep()\">\n        <div class=\"price-per-unit\">\n          <div class=\"input-group\">\n            <span class=\"input-group-addon euro\">€</span>\n            <input id=\"pricePerUnitInput\" type=\"text\" class=\"form-control price text-center\" placeholder=\"\" [autofocus]=\"!Service.price\" [(ngModel)]=\"Service.price\" (keyup)=\"updatePrice()\" (change)=\"updatePrice()\"  [ngModelOptions]=\"{standalone: true}\">\n          </div>\n          <span class=\"per\">x</span>\n          <span class=\"input-group\">\n            <input id=\"unitInput\" type=\"text\" class=\"form-control unit text-center\" placeholder=\"unità\" [(ngModel)]=\"Service.unit\" [ngModelOptions]=\"{standalone: true}\">\n          </span>\n        </div>\n        <div class=\"form-group error\">\n          <span class=\"error-text\" *ngIf=\"state.pricing_error\">{{state.pricing_error}}</span>\n        </div>\n        <div class=\"actions\">\n          <div class=\"form-group text-center\">\n            <button type=\"button\" class=\"btn btn-success\" (click)=\"nextStep()\">Avanti</button>\n          </div>\n        </div>\n      </form>\n    </div>\n  </div>\n\n  <div class=\"insert\" *ngIf=\"step==='unit'\">\n    <div class=\"insert-header\">\n      <h1>Inserisci unità di misura</h1>\n      <p>In base che cosa decidi il costo del tuo servizio?</p>\n    </div>\n    <div class=\"insert-body\">\n      <form (keyup.enter)=\"nextStep()\">\n        <span class=\"input-group\">\n          <input id=\"unitInput\" type=\"text\" class=\"form-control unit text-center\" placeholder=\"Ora, giorno, metro quadro o altro?\" [(ngModel)]=\"Service.unit\" [ngModelOptions]=\"{standalone: true}\">\n        </span>\n        <div class=\"form-group text-center\">\n          <button type=\"button\" id=\"next\" class=\"btn btn-success\" (click)=\"nextStep()\">Avanti</button>\n        </div>\n      </form>\n    </div>\n  </div>\n  <div class=\"insert\" *ngIf=\"step==='price'\">\n    <div class=\"insert-header\">\n      <h1>Inserisci un prezzo</h1>\n      <p>Qual è il prezzo del servizio per l'unità di misura che hai scelto?</p>\n    </div>\n    <div class=\"insert-body\">\n      <form (keyup.enter)=\"nextStep()\">\n        <div class=\"input-group\">\n          <input id=\"pricePerUnitInput\" type=\"text\" class=\"form-control price text-center\" placeholder=\"0 €\" [(ngModel)]=\"Service.price\" [ngModelOptions]=\"{standalone: true}\">\n        </div>\n        <div class=\"form-group text-center\">\n          <button type=\"button\" id=\"next\" class=\"btn btn-success\" (click)=\"nextStep()\">Avanti</button>\n        </div>\n      </form>\n    </div>\n  </div>\n\n  <div class=\"insert\" *ngIf=\"step==='picture'\">\n    <div class=\"insert-header\">\n      <h1>Inserisci un immagine</h1>\n      <p>Le possibilità di ricevere richieste da clienti aumentano significativamente inserendo un immagine di qualità.</p>\n    </div>\n    <div class=\"insert-body\">\n      <form>\n        <div class=\"picture-container\">\n          <input type=\"file\" (change)=\"selectPicture($event)\" style=\"display: none;\" #file>\n          <div class=\"picture\" (click)=\"file.click()\">\n            <i *ngIf=\"!logo\" class=\"fa fa-camera\" aria-hidden=\"true\"></i>\n            <img class=\"img-responsive\" [src]=\"logo\" alt=\"Inserisci immagine\">\n          </div>\n        </div>\n        <div class=\"form-group error\">\n          <span class=\"error-text\" *ngIf=\"state.picture_file_error\">{{state.picture_file_error}}</span>\n        </div>\n        <div class=\"actions\">\n          <div class=\"form-group text-center\">\n            <button type=\"button\" id=\"next\" class=\"btn btn-success\" (click)=\"nextStep()\"><i class=\"fa fa-circle-o-notch animate\" *ngIf=\"state.picture_file_loading\"></i>Pubblica</button>\n          </div>\n        </div>\n      </form>\n    </div>\n  </div>\n\n  <div class=\"insert\" *ngIf=\"step==='preview'\">\n    <div class=\"insert-header\">\n      <h1>Anteprima</h1>\n      <p></p>\n    </div>\n    <div class=\"insert-body\">\n      <form>\n        <div class=\"input-group\">\n          <input type=\"text\" class=\"form-control\" placeholder=\"titolo\" [ngStyle]=\"{'text-align' : 'center'}\" [(ngModel)]=\"Service.title\" [ngModelOptions]=\"{standalone: true}\">\n        </div>\n        <span class=\"input-group\">\n          <input id=\"unitInput\" type=\"text\" class=\"form-control unit text-center\" placeholder=\"Ora, giorno, metro quadro o altro?\" [(ngModel)]=\"Service.unit\" [ngModelOptions]=\"{standalone: true}\">\n        </span>\n        <div class=\"input-group\">\n          <input id=\"pricePerUnitInput\" type=\"text\" class=\"form-control price text-center\" placeholder=\"0\" [(ngModel)]=\"Service.price\" [ngModelOptions]=\"{standalone: true}\">\n        </div>\n        <div class=\"picture-container\">\n          <input type=\"file\" (change)=\"selectPicture($event)\" style=\"display: none;\" #file>\n          <div class=\"picture\" (click)=\"file.click()\">\n            <i *ngIf=\"!logo\" class=\"fa fa-camera\" aria-hidden=\"true\"></i>\n            <img class=\"img-responsive\" [src]=\"logo\" alt=\"Inserisci immagine\">\n          </div>\n        </div>\n        <div class=\"form-group text-center\">\n          <button type=\"button\" id=\"next\" class=\"btn btn-success\" (click)=\"nextStep()\">Pubblica</button>\n        </div>\n      </form>\n    </div>\n  </div>\n\n  <div class=\"insert\" *ngIf=\"step==='register'\">\n    <div class=\"insert-header\">\n      <h1>Ultimo passo</h1>\n      <p>Registrazione</p>\n    </div>\n    <div class=\"insert-body\">\n      <form>\n        <div class=\"form-group\">\n          <label for=\"emailInput\">Email</label>\n          <input type=\"email\" name=\"email\" placeholder=\"La tua mail\" class=\"form-control\" [ngClass]=\"{'error-input': signup_state.email_error}\" id=\"emailInput\" [(ngModel)]=\"signupParameters.email\" [ngModelOptions]=\"{standalone: true}\">\n          <small class=\"error-message\" *ngIf=\"signup_state.email_error\">{{signup_state.email_error}}</small>\n        </div>\n        <div class=\"row\">\n          <div class=\"col-md-6\">\n            <div class=\"form-group\">\n              <label for=\"firstNameInput\">Nome</label>\n              <input type=\"firstname\" name=\"firstnam\" placeholder=\"Nome\" class=\"form-control\" [ngClass]=\"{'error-input': signup_state.first_name_error}\" id=\"firstNameInput\" [(ngModel)]=\"signupParameters.firstname\" [ngModelOptions]=\"{standalone: true}\">\n              <small class=\"error-message\" *ngIf=\"signup_state.first_name_error\">{{signup_state.first_name_error}}</small>\n            </div>\n          </div>\n          <div class=\"col-md-6\">\n            <div class=\"form-group\">\n              <label for=\"lastNameInput\">Cognome</label>\n              <input type=\"lastname\" name=\"lastname\" placeholder=\"Cognome\" class=\"form-control\" [ngClass]=\"{'error-input': signup_state.last_name_error}\" id=\"lastNameInput\" [(ngModel)]=\"signupParameters.lastname\" [ngModelOptions]=\"{standalone: true}\">\n              <small class=\"error-message\" *ngIf=\"signup_state.last_name_error\">{{signup_state.last_name_error}}</small>\n            </div>\n          </div>\n        </div>\n        <div class=\"form-group\">\n          <label for=\"phone\">Telefono</label>\n          <input id=\"phone\" field=\"phone\" type=\"text\" name=\"phone\" placeholder=\"Numero di telefono\" class=\"form-control\" [ngClass]=\"{'error-input': signup_state.phone_error}\" [(ngModel)]=\"signupParameters.phone\" [ngModelOptions]=\"{standalone: true}\">\n          <small class=\"error-message\" *ngIf=\"signup_state.phone_error\">{{signup_state.phone_error}}</small>\n        </div>\n        <div class=\"form-group\">\n          <label for=\"passwordInput\">Crea una password</label>\n          <input type=\"password\" name=\"password\" placeholder=\"Password\" class=\"form-control\" [ngClass]=\"{'error-input': signup_state.password_error}\" id=\"passwordInput\" [(ngModel)]=\"signupParameters.password\" [ngModelOptions]=\"{standalone: true}\">\n          <small class=\"error-message\" *ngIf=\"signup_state.password_error\">{{signup_state.password_error}}</small>\n        </div>\n        <div class=\"form-group\" *ngIf=\"signup_state.error_message\">\n          <div class=\"alert alert-danger\" role=\"alert\">{{signup_state.error_message}}</div>\n        </div>\n        <div class=\"form-group text-center\">\n          <button type=\"button\" id=\"next\" class=\"btn btn-success\" (click)=\"signup()\"><i class=\"fa fa-circle-o-notch animate\" *ngIf=\"signup_state.loading\"></i>{{signup_state.button_title}}</button>\n        </div>\n        <div class=\"form-group footer-group\">\n          <span class=\"text\">Sei gia registrato?</span>\n          <span class=\"text enter\" (click)=\"changeToLogin()\">Entra</span>\n          <span class=\"text\">Continuando dichiari di aver letto e accetti le <a routerlink=\"/info/legal\" href=\"/info/legal\" target=\"_blank\">condizioni generali e l’informativa sulla privacy</a></span>\n        </div>\n      </form>\n    </div>\n  </div>\n  <div class=\"insert\" *ngIf=\"step==='login'\">\n    <div class=\"insert-header\">\n      <h1>Ultimo passo</h1>\n      <p>Entra</p>\n    </div>\n    <div class=\"insert-body\">\n      <form>\n        <div class=\"form-group\">\n          <label for=\"emailInput\">Email</label>\n          <input type=\"email\" placeholder=\"La tua mail\" class=\"form-control\" [ngClass]=\"{'error-input': login_state.email_error}\" id=\"emailInput\" [(ngModel)]=\"loginParameters.email\" [ngModelOptions]=\"{standalone: true}\">\n          <small class=\"error-message\" *ngIf=\"login_state.email_error\">{{login_state.email_error}}</small>\n        </div>\n        <div class=\"form-group\">\n          <label for=\"passwordInput\">Password</label>\n          <input type=\"password\" placeholder=\"Password\" class=\"form-control\" [ngClass]=\"{'error-input': login_state.password_error}\" id=\"passwordInput\" [(ngModel)]=\"loginParameters.password\" [ngModelOptions]=\"{standalone: true}\">\n          <small class=\"error-message\" *ngIf=\"login_state.password_error\">{{login_state.password_error}}</small>\n        </div>\n        <div class=\"form-group\" *ngIf=\"login_state.error_message\">\n          <div class=\"alert alert-danger\" role=\"alert\">{{login_state.error_message}}</div>\n        </div>\n        <div class=\"form-group text-center\">\n          <button type=\"button\" id=\"next\" class=\"btn btn-success\" (click)=\"login()\"><i class=\"fa fa-circle-o-notch animate\" *ngIf=\"login_state.loading\"></i>{{login_state.button_title}}</button>\n        </div>\n        <div class=\"form-group footer-group\">\n          <span class=\"text password-forget\" (click)=\"changeToRecoverPassword()\">Hai dimenticato la password?</span>\n          <span class=\"text\">Non sei ancora registrato?</span>\n          <span class=\"text enter\" (click)=\"changeToSignup()\">Registrati</span>\n        </div>\n      </form>\n    </div>\n  </div>\n  <div class=\"insert\" *ngIf=\"step==='recover'\">\n    <div class=\"insert-header\">\n      <h1>Recupera password</h1>\n      <p>Ti manderemo una mail con il link per cambiare la password.</p>\n    </div>\n    <div class=\"insert-body\">\n      <form>\n        <div class=\"form-group\">\n          <label for=\"emailInput\">Email</label>\n          <input type=\"email\" placeholder=\"La tua mail\" class=\"form-control\" [ngClass]=\"{'error-input': login_state.email_error}\" id=\"emailInput\" [(ngModel)]=\"loginParameters.email\" [ngModelOptions]=\"{standalone: true}\">\n          <small class=\"error-message\" *ngIf=\"login_state.email_error\">{{login_state.email_error}}</small>\n        </div>\n        <div class=\"form-group text-center\">\n          <button type=\"button\" id=\"next\" class=\"btn btn-success\" (click)=\"recoverPassword()\"><i class=\"fa fa-circle-o-notch animate\" *ngIf=\"login_state.loading\"></i>Recupera</button>\n        </div>\n        <div class=\"form-group footer-group\">\n          <span class=\"text enter\" (click)=\"changeToLogin()\">Accedi</span>\n        </div>\n      </form>\n    </div>\n  </div>\n\n  <div class=\"insert\" *ngIf=\"step==='end'\">\n    <div class=\"insert-header\">\n      <h1>Complimenti</h1>\n      <p>Il tuo servizio è stato aggiornato e pubblicato con successo.</p>\n    </div>\n    <div class=\"insert-body\">\n      <div class=\"form-group text-center\">\n        <button type=\"button\" id=\"next\" class=\"btn btn-success\" (click)=\"nextStep()\">Avanti</button>\n      </div>\n    </div>\n  </div>\n"
 
 /***/ },
 

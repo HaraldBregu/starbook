@@ -115,6 +115,13 @@ export class InsertComponent implements OnInit {
           this.saveServiceForAccountId(this.currentUser._id);
           return;
         }
+      } else {
+        if (!this.Service['picture_file']) {
+          this.state.picture_file_error = "Per piacere, inserisci un immagine."
+          return;
+        } else {
+          this.state.picture_file_error = null
+        }
       }
     } else if (this.step === 'end') {
       this.router.navigate(['profile/general']);
@@ -124,63 +131,28 @@ export class InsertComponent implements OnInit {
   }
 
   signup() {
-    if (this.signup_state.loading) {return;}
-    if (this.signupParameters.email.length > 0 &&
-      this.signupParameters.firstname.length > 0 &&
-      this.signupParameters.lastname.length > 0 &&
-      this.signupParameters.phone.length > 0 &&
-      this.signupParameters.password.length > 0) {
+    if (this.signup_state.loading) { return; }
+    this.signup_state.email_error = null;
+    this.signup_state.first_name_error = null;
+    this.signup_state.last_name_error = null;
+    this.signup_state.phone_error = null;
+    this.signup_state.password_error = null;
+    if (this.signupParameters.email.length===0 || this.signupParameters.firstname.length===0 || this.signupParameters.lastname.length===0 || this.signupParameters.phone.length===0 || this.signupParameters.password.length===0) {
       if (!this.emailPattern.test(this.signupParameters.email)) {
         this.signup_state.email_error = "Inserisci un indirizzo email corretto";
-        return;
       }
-    } else {
-      if (this.signupParameters.email.length === 0) {
-        this.signup_state.email_error = "Inserisci un indirizzo email";
-      } else if (this.signupParameters.email.length > 0 && !this.emailPattern.test(this.signupParameters.email)) {
-        this.signup_state.email_error = "Inserisci un indirizzo email corretto";
-      } else {
-        this.signup_state.email_error = null;
-      }
-      if (this.signupParameters.firstname.length === 0) {
-        this.signup_state.first_name_error = "Inserisci un nome";
-      } else {
-        this.signup_state.first_name_error = null;
-      }
-      if (this.signupParameters.lastname.length === 0) {
-        this.signup_state.last_name_error = "Inserisci un cognome";
-      } else {
-        this.signup_state.last_name_error = null;
-      }
-      if (this.signupParameters.phone.length < 9) {
-        this.signup_state.phone_error = "Inserisci un numero di telefono corretto";
-        if (this.signupParameters.phone.length === 0) {
-          this.signup_state.phone_error = "Inserisci un numero di telefono";
-        }
-      } else {
-        this.signup_state.phone_error = null;
-      }
-      if (this.signupParameters.password.length === 0) {
-        this.signup_state.password_error = "Inserisci una password";
-      } else {
-        this.signup_state.password_error = null;
-      }
-      if (this.signupParameters.password.length > 0) {
-        this.signup_state.password_error = null;
-      }
+      this.signup_state.email_error = (this.signupParameters.email.length===0) ? "Inserisci un indirizzo email" : null;
+      this.signup_state.first_name_error = (this.signupParameters.firstname.length===0) ? "Inserisci un nome" : null;
+      this.signup_state.last_name_error = (this.signupParameters.lastname.length===0) ? "Inserisci un cognome" : null;
+      this.signup_state.phone_error = (this.signupParameters.phone.length<9) ? "Inserisci un numero di telefono corretto" : null;
+      this.signup_state.password_error = (this.signupParameters.password.length===0) ? "Inserisci una password" : null;
       return;
     }
     this.signup_state.loading = true;
     this.signup_state.button_title = "Registrando...";
-
-    // account_type
     this.authService.signupProfessional(this.signupParameters.firstname, this.signupParameters.lastname, this.signupParameters.phone, this.signupParameters.email, this.signupParameters.password, "VENDOR").then((data) => {
-      // this.router.navigate(['']);
       this.navigationService.updatePersonalMenu(data);
-      this.signup_state.error_message = null;
-      this.signup_state.loading = false;
-      this.signup_state.button_title = "Registrando...";
-
+      this.saveServiceForAccountId(data._id)
     }).catch((error) => {
       this.analyticsService.sendException(error)
       this.signup_state.loading = false;
@@ -201,28 +173,18 @@ export class InsertComponent implements OnInit {
     });
   }
   login() {
-    this.analyticsService.sendEvent({category:'Booking', action: 'Login', label: this.router.url});
-    if (this.login_state.loading) {return;}
+    if (this.login_state.loading) { return; }
+    this.login_state.email_error = null;
+    this.login_state.password_error = null;
     if (this.loginParameters.email.length === 0 || this.loginParameters.password.length === 0) {
-      if (this.loginParameters.email.length === 0) {
-        this.login_state.email_error = "Inserisci un indirizzo email";
-      } else {
-        this.login_state.email_error = null;
-      }
-      if (this.loginParameters.password.length === 0) {
-        this.login_state.password_error = "Inserisci una password";
-      } else {
-        this.login_state.password_error = null;
-      }
+      this.login_state.email_error = (this.loginParameters.email.length === 0) ? "Inserisci un indirizzo email" : null;
+      this.login_state.password_error = (this.loginParameters.password.length === 0) ? "Inserisci una password" : null;
       return;
     }
     this.login_state.loading = true;
     this.login_state.button_title = "Accedendo...";
     this.authService.login(this.loginParameters.email, this.loginParameters.password).then((data) => {
       this.navigationService.updatePersonalMenu(data);
-      this.login_state.loading = false;
-      this.login_state.button_title = "Accedi";
-      this.login_state.error_message = null;
       this.saveServiceForAccountId(data._id)
     }).catch((error) => {
       this.analyticsService.sendException(error)
@@ -246,15 +208,10 @@ export class InsertComponent implements OnInit {
     this.state.picture_file_loading = true;
     this.state.picture_file_error = null
     this.Service['supplier_id'] = account_id
-    console.log('service is: ' + JSON.stringify(this.Service));
+    this.Service['price'] *= 100
     this.commonService.createService(this.Service).then((data) => {
-      this.state.picture_file_loading = false;
-      // console.log('data is: ' + JSON.stringify(data));
-
       var file = this.Service['picture_file']
-
-      // var path = 'services/' + data.result._id + '/cover/0'
-      var path = 'test_services/' + data.result._id + '/cover/0'
+      var path = 'services/' + data.result._id + '/cover/0'
       this.savePictureToPath(file, path)
     }).catch((error) => {
       // console.log('error is: ' + JSON.stringify(error));
@@ -266,9 +223,33 @@ export class InsertComponent implements OnInit {
     AWSService.config.secretAccessKey = "sG7poULqhVhzjrGKTWaBbb0w322bez0hNMMqytOO";
     let bucket = new AWSService.S3()
     let params = {Bucket: 'starbook-s3', Key:path, Body:file, ACL:"public-read"}
-    bucket.upload(params, function(error, res){
-      console.log('error: ' + error);
-      console.log('res: ' + JSON.stringify(res));
+    bucket.upload(params, (error, res) => {
+      if (!error) {
+        console.log('res upload file: ' + JSON.stringify(res));
+        // LOGIN STATE
+        this.login_state.loading = false;
+        this.login_state.button_title = "Accedi";
+        this.login_state.error_message = null;
+
+        // SIGNUP STATE
+        this.signup_state.loading = false;
+        this.signup_state.button_title = "Registrati";
+        this.signup_state.error_message = null;
+
+        // PICTURE STATE
+        this.state.picture_file_loading = false;
+        this.state.picture_file_error = null
+
+        this.router.navigate(['insert/end'])
+      } else {
+        console.log('error upload file: ' + error);
+
+        // PICTURE STATE
+        this.state.picture_file_loading = false;
+        this.state.picture_file_error = null
+
+        this.router.navigate(['insert/end'])
+      }
     })
   }
   selectPicture(fileInput:any) {
@@ -297,6 +278,7 @@ export class InsertComponent implements OnInit {
     this.router.navigate(['insert/recover'])
   }
 
+  // UTILS
   checkRouteAndService() {
     // if (!this.Service['title'] && this.step !== 'title') {
     //   // this.state.title_error = "Per favore, inserisci un titolo."
@@ -315,5 +297,13 @@ export class InsertComponent implements OnInit {
     // } else if (this.step === 'end')  {
     //   this.router.navigate(['profile/general']);
     // }
+  }
+  updatePrice() {
+    let value = parseInt(this.Service['price']);
+    if (isNaN(value) || value === 0) {
+      this.Service['price'] = null
+    } else {
+      this.Service['price'] = value
+    }
   }
 }

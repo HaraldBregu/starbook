@@ -4,10 +4,11 @@ app-service {
   width: 100%;
   height: 100%;
   overflow: auto;
+  padding: 70px 0 0;
   .service-container {
     max-width: 1440px;
     margin: auto;
-    padding: 120px 50px 50px;
+    padding: 50px 120px 50px;
     overflow: auto;
     .service {
       overflow: auto;

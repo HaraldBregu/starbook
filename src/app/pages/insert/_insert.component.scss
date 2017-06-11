@@ -78,13 +78,19 @@ app-insert {
         .actions {
           margin-top: 30px;
         }
-        .price-per {
+        .price-per-unit {
           overflow: auto;
           .input-group {
             float: left;
             width: 47.5%;
           }
-          span {
+          .euro {
+            font-size: 22px;
+            padding: 0 20px;
+            background: white;
+            border-radius: 0;
+          }
+          .per {
             width: 5%;
             float: left;
             font-size: 20px;
