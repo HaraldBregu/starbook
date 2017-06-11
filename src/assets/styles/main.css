@@ -4764,18 +4764,20 @@ app-category {
           display: block;
           position: absolute;
           z-index: 2;
-          font-weight: 400;
+          font-weight: 900;
           color: white;
-          font-size: 16px;
-          letter-spacing: 0.09px;
+          font-size: 30px;
+          line-height: 120%;
           white-space: normal !important;
           text-align: left;
           padding: 15px;
           bottom: 0;
           width: 100%;
-          background: #161517; }
+          background: -webkit-linear-gradient(transparent 0%, rgba(0, 0, 0, 0.65) 100%) !important;
+          background: -moz-linear-gradient(transparent 0%, rgba(0, 0, 0, 0.65) 100%) !important;
+          background: linear-gradient(transparent 0%, rgba(0, 0, 0, 0.65) 100%) !important; }
           app-category .category-container .services-container .service-container .service .title p {
-            font-size: 20px !important; }
+            font-size: 30px !important; }
         app-category .category-container .services-container .service-container .service .overlay {
           line-height: 200px;
           border-radius: 3px;
@@ -5544,16 +5546,18 @@ app-services {
       display: block;
       position: absolute;
       z-index: 2;
-      font-weight: 400;
+      font-weight: 900;
       color: white;
-      font-size: 20px;
-      letter-spacing: 0.09px;
+      font-size: 30px;
+      line-height: 120%;
       white-space: normal !important;
       text-align: left;
       padding: 15px;
       bottom: 0;
       width: 100%;
-      background: #161517; }
+      background: -webkit-linear-gradient(transparent 0%, rgba(0, 0, 0, 0.65) 100%) !important;
+      background: -moz-linear-gradient(transparent 0%, rgba(0, 0, 0, 0.65) 100%) !important;
+      background: linear-gradient(transparent 0%, rgba(0, 0, 0, 0.65) 100%) !important; }
   @media (max-width: 768px) {
     app-services .services .service-box {
       width: 50%; } }

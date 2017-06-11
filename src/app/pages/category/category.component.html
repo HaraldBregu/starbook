@@ -65,7 +65,7 @@
     <div class="service-container" *ngFor="let service of services">
       <div class="service" (click)="showServicePage(service)" [ngStyle]="{'background-image' : ' url(' +  images_url + 'services/'+ service._id + '/cover/0' + ')'}">
         <div class="title">
-          <p>{{service.title}}</p>
+          <span>{{service.title}}</span>
         </div>
       </div>
     </div>
