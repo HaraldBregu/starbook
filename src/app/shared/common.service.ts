@@ -15,8 +15,8 @@ export class CommonService {
   private category;
 
   constructor(private http: Http/*, private navigationService: NavigationService*/) {
-    // this.api = 'https://api.starbook.co/v0.9.1/';
-    this.api = 'http://localhost/t0.9.1/';
+    this.api = 'https://api.starbook.co/v0.9.1/';
+    // this.api = 'http://localhost/t0.9.1/';
   }
 
   sendServices(services) {

@@ -5346,8 +5346,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var CommonService = (function () {
     function CommonService(http /*, private navigationService: NavigationService*/) {
         this.http = http;
-        // this.api = 'https://api.starbook.co/v0.9.1/';
-        this.api = 'http://localhost/t0.9.1/';
+        this.api = 'https://api.starbook.co/v0.9.1/';
+        // this.api = 'http://localhost/t0.9.1/';
     }
     CommonService.prototype.sendServices = function (services) {
         this.servicesObject = services;
@@ -9084,7 +9084,7 @@ var AuthService = (function () {
             }
         }
         this.api = this.protocol + "://" + this.hostname + "/" + this.api_version + "/";
-        this.api = 'http://localhost/t0.9.1/';
+        // this.api = 'http://localhost/t0.9.1/';
     }
     AuthService.prototype._makeHeadersFacebook = function (access_token) {
         return new __WEBPACK_IMPORTED_MODULE_2__angular_http__["Headers"]({ 'access_token': access_token });
