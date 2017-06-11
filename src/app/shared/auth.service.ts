@@ -7,14 +7,13 @@ import { NavigationService } from './navigation.service';
 
 @Injectable()
 export class AuthService {
-  private api: string;
+  private protocol = "https"
+  private hostname = "api.starbook.co"
+  private api_version = "v0.9.1"
+  private api = 'https://api.starbook.co/v0.9.1/';
   private auth;
+
   constructor(private http: Http, private navigationService: NavigationService) {
-    let remote = 'https://api.starbook.co/v0.9.1/';
-    // let local = 'http://localhost/t0.9.1/';
-
-    this.api = remote
-
     if (isBrowser) {
       if (localStorage.getItem('auth') !== null) {
         this.auth = JSON.parse(localStorage.getItem('auth'));
@@ -25,6 +24,15 @@ export class AuthService {
       this.auth = false;
     }
 
+    if (isBrowser) {
+      if (document.location.hostname === "www.starbook.co") {
+        this.api_version = "v0.9.1"
+      } else {
+        this.api_version = "t0.9.1"
+      }
+    }
+    this.api = this.protocol + "://" + this.hostname + "/" + this.api_version + "/";
+    this.api = 'http://localhost/t0.9.1/';
   }
 
   private _makeHeadersFacebook(access_token) {
@@ -45,7 +53,6 @@ export class AuthService {
       this.auth = false;
       headers = new Headers({'Token': ''});
     }
-
     return headers;
   }
 
@@ -115,6 +122,44 @@ export class AuthService {
           this.handleError(data.message);
         }
       }).catch(this.handleError);
+  }
+
+  signupProfessional(firstname: string, lastname: string, phone: string, email: string, password: string, account_type: string) {
+    // this.navigationService.updateLoadingStatus(true);
+    return this.http.post(this.api + 'signup', {
+      firstname: firstname, lastname: lastname, phone_number: phone, email: email, password: password, account_type: account_type})
+      .toPromise()
+      .then((response) => {
+        // this.navigationService.updateLoadingStatus(false);
+        let data = response.json();
+        // if (data.success === true) {
+          let authData = {
+            _id: data.result._id,
+            email: data.result.email,
+            email_verified: data.result.email_verified,
+            phone_number: '',
+            account_types: data.result.account_types,
+            profile: data.result.profile,
+            company: data.result.company,
+            address: data.result.address,
+            services: data.result.services,
+            locations: data.result.locations,
+            payment: data.result.payment,
+            created_at: data.result.created_at,
+            updated_at: data.result.updated_at,
+            token: data.token
+          };
+
+          if (isBrowser) {
+            localStorage.setItem('auth', JSON.stringify(authData));
+          }
+
+          return data.result;
+        // } else {
+        //   this.handleError(data.message);
+        // }
+      })
+      .catch(this.handleError);
   }
 
   signup(firstname: string, lastname: string, phone: string, email: string, password: string) {

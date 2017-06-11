@@ -91,6 +91,9 @@ export class AppComponent implements OnInit, OnDestroy {
           if (this.page === "Account") {
             this.hasRightContainer = false;
           }
+          if (this.page === "Order") {
+            this.hasRightContainer = false;
+          }
           // console.log('page is: ' + this.page);
         }
       });
@@ -134,6 +137,10 @@ export class AppComponent implements OnInit, OnDestroy {
 
   }
 
+  pubblishService() {
+    this.router.navigate(['insert/title']);
+    this.collapsed = false;
+  }
   signupAsProfessional() {
     this.router.navigate(['account/professional']);
     this.collapsed = false;

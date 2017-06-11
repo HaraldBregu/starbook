@@ -4,6 +4,7 @@ import { AnalyticsService } from '../../shared/analytics.service';
 import { AuthService } from '../../shared/auth.service';
 import { NavigationService } from '../../shared/navigation.service';
 import { isBrowser } from "angular2-universal";
+import { CommonService } from '../../shared/common.service';
 
 require('aws-sdk/dist/aws-sdk')
 
@@ -13,19 +14,26 @@ require('aws-sdk/dist/aws-sdk')
 })
 
 export class InsertComponent implements OnInit {
-  public steps = ['title', 'price', 'picture', 'register', 'end']
+  public emailPattern: any;
+  public steps = []
   public step = ''
   public Service = {}
+  public state = {
+    title_error: null,
+    pricing_error: null,
+    picture_file_loading: false,
+    picture_file_error: null,
+  }
   public logo = '';
+  public currentUser;
 
   public signupParameters = {
     firstname: '',
     lastname: '',
     phone: '',
     email: '',
-    password: '',
-    confirmPassword: ''
-  };
+    password: ''
+  }
   public signup_state = {
     loading: false,
     button_title: "Registrati",
@@ -34,22 +42,39 @@ export class InsertComponent implements OnInit {
     first_name_error: null,
     last_name_error: null,
     phone_error: null,
+    password_error: null
+  }
+  public loginParameters = {
+    email: '',
+    password: ''
+  }
+  public login_state = {
+    loading: false,
+    button_title: "Accedi",
+    error_message: null,
+    email_error: null,
     password_error: null,
-    confirm_password_error: null
-  };
+  }
 
-  constructor(private router: Router, private route: ActivatedRoute, private analyticsService: AnalyticsService, private authService: AuthService, private navigationService: NavigationService ) {
-
+  constructor(private router: Router, private route: ActivatedRoute, private analyticsService: AnalyticsService, private authService: AuthService, private navigationService: NavigationService, private commonService: CommonService) {
+    this.emailPattern = /^[a-z0-9!#$%&'*+\/=?^_`{|}~.-]+@[a-z0-9]([a-z0-9-]*[a-z0-9])?(\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)*$/i;
   }
 
   ngOnInit() {
     this.route.params.subscribe((params: Params) => {
-      this.step = params['step'];
-      if (isBrowser) {window.scrollTo(0, 0);}
-      if (this.step === 'title') {
-        // this.navigationService.updateMessage("Titolo, Immagine, Prezzo");
-      } else if (this.step === 'price') {
-        // this.navigationService.updateMessage("Prezzo del servizio");
+      if (isBrowser) {
+        window.scrollTo(0, 0)
+        this.currentUser = JSON.parse(localStorage.getItem('auth'))
+      }
+      // this.checkRouteAndService()
+      this.step = params['step']
+      if (this.currentUser) {
+        this.steps = ['title', 'pricing', 'picture', 'end']
+      } else {
+        this.steps = ['title', 'pricing', 'picture', 'register', 'end']
+        if (this.step==='register' || this.step==='login' || this.step==='recover') {
+          this.steps[3] = this.step
+        }
       }
     })
   }
@@ -60,71 +85,235 @@ export class InsertComponent implements OnInit {
     return 100/numSteps * currentStep + '%'
   }
 
-  inputFile() {
-    console.log('input file');
+  undoStep() {
+    var currentStepIndex = this.steps.indexOf(this.step)
+    var previousStep = this.steps[currentStepIndex-1]
+    this.router.navigate(['insert/' + previousStep]);
   }
-  fileEvent(fileInput:any) {
+  nextStep() {
+    var currentStepIndex = this.steps.indexOf(this.step)
+    var nextStep = this.steps[currentStepIndex+1]
+    if (this.step === 'title') {
+      this.state.title_error = null
+      if (!this.Service['title']) {
+        this.state.title_error = "Per favore, inserisci un titolo."
+        return;
+      }
+    } else if (this.step === 'pricing') {
+      this.state.pricing_error = null
+      if (!this.Service['price'] || !this.Service['unit']) {
+        this.state.pricing_error = "Per favore, compila i campi richiesti."
+        return;
+      }
+    } else if (this.step === 'picture') {
+      if (this.currentUser) {
+        if (!this.Service['picture_file']) {
+          this.state.picture_file_error = "Per piacere, inserisci un immagine."
+          return;
+        } else {
+          this.state.picture_file_error = null
+          this.saveServiceForAccountId(this.currentUser._id);
+          return;
+        }
+      }
+    } else if (this.step === 'end') {
+      this.router.navigate(['profile/general']);
+      return;
+    }
+    this.router.navigate(['insert/' + nextStep]);
+  }
+
+  signup() {
+    if (this.signup_state.loading) {return;}
+    if (this.signupParameters.email.length > 0 &&
+      this.signupParameters.firstname.length > 0 &&
+      this.signupParameters.lastname.length > 0 &&
+      this.signupParameters.phone.length > 0 &&
+      this.signupParameters.password.length > 0) {
+      if (!this.emailPattern.test(this.signupParameters.email)) {
+        this.signup_state.email_error = "Inserisci un indirizzo email corretto";
+        return;
+      }
+    } else {
+      if (this.signupParameters.email.length === 0) {
+        this.signup_state.email_error = "Inserisci un indirizzo email";
+      } else if (this.signupParameters.email.length > 0 && !this.emailPattern.test(this.signupParameters.email)) {
+        this.signup_state.email_error = "Inserisci un indirizzo email corretto";
+      } else {
+        this.signup_state.email_error = null;
+      }
+      if (this.signupParameters.firstname.length === 0) {
+        this.signup_state.first_name_error = "Inserisci un nome";
+      } else {
+        this.signup_state.first_name_error = null;
+      }
+      if (this.signupParameters.lastname.length === 0) {
+        this.signup_state.last_name_error = "Inserisci un cognome";
+      } else {
+        this.signup_state.last_name_error = null;
+      }
+      if (this.signupParameters.phone.length < 9) {
+        this.signup_state.phone_error = "Inserisci un numero di telefono corretto";
+        if (this.signupParameters.phone.length === 0) {
+          this.signup_state.phone_error = "Inserisci un numero di telefono";
+        }
+      } else {
+        this.signup_state.phone_error = null;
+      }
+      if (this.signupParameters.password.length === 0) {
+        this.signup_state.password_error = "Inserisci una password";
+      } else {
+        this.signup_state.password_error = null;
+      }
+      if (this.signupParameters.password.length > 0) {
+        this.signup_state.password_error = null;
+      }
+      return;
+    }
+    this.signup_state.loading = true;
+    this.signup_state.button_title = "Registrando...";
+
+    // account_type
+    this.authService.signupProfessional(this.signupParameters.firstname, this.signupParameters.lastname, this.signupParameters.phone, this.signupParameters.email, this.signupParameters.password, "VENDOR").then((data) => {
+      // this.router.navigate(['']);
+      this.navigationService.updatePersonalMenu(data);
+      this.signup_state.error_message = null;
+      this.signup_state.loading = false;
+      this.signup_state.button_title = "Registrando...";
+
+    }).catch((error) => {
+      this.analyticsService.sendException(error)
+      this.signup_state.loading = false;
+      this.signup_state.button_title = "Registrati";
+      switch (error) {
+        case 409:
+        this.signup_state.error_message = "Questo indirizzo email è gia in uso. Prova ad accedere.";
+          break;
+        case 422:
+        this.signup_state.error_message = "Inserisci tutti i campi richiesti";
+          break;
+        case 404:
+        this.signup_state.error_message = "C'è stato un errore sconosciuto, per favore riprova più tardi";
+          break;
+        default:
+        this.signup_state.error_message = null;
+      }
+    });
+  }
+  login() {
+    this.analyticsService.sendEvent({category:'Booking', action: 'Login', label: this.router.url});
+    if (this.login_state.loading) {return;}
+    if (this.loginParameters.email.length === 0 || this.loginParameters.password.length === 0) {
+      if (this.loginParameters.email.length === 0) {
+        this.login_state.email_error = "Inserisci un indirizzo email";
+      } else {
+        this.login_state.email_error = null;
+      }
+      if (this.loginParameters.password.length === 0) {
+        this.login_state.password_error = "Inserisci una password";
+      } else {
+        this.login_state.password_error = null;
+      }
+      return;
+    }
+    this.login_state.loading = true;
+    this.login_state.button_title = "Accedendo...";
+    this.authService.login(this.loginParameters.email, this.loginParameters.password).then((data) => {
+      this.navigationService.updatePersonalMenu(data);
+      this.login_state.loading = false;
+      this.login_state.button_title = "Accedi";
+      this.login_state.error_message = null;
+      this.saveServiceForAccountId(data._id)
+    }).catch((error) => {
+      this.analyticsService.sendException(error)
+      this.login_state.email_error = null;
+      this.login_state.password_error = null;
+      this.login_state.loading = false;
+      this.login_state.button_title = "Accedi";
+      switch (error) {
+        case 404:
+        this.login_state.error_message = "Non esiste un account con questa mail! Crea un nuovo account."
+          break;
+        case 401:
+        this.login_state.error_message = "La password non è corretta!"
+          break;
+        default:
+      }
+    })
+  }
+
+  saveServiceForAccountId(account_id) {
+    this.state.picture_file_loading = true;
+    this.state.picture_file_error = null
+    this.Service['supplier_id'] = account_id
+    console.log('service is: ' + JSON.stringify(this.Service));
+    this.commonService.createService(this.Service).then((data) => {
+      this.state.picture_file_loading = false;
+      // console.log('data is: ' + JSON.stringify(data));
+
+      var file = this.Service['picture_file']
+
+      // var path = 'services/' + data.result._id + '/cover/0'
+      var path = 'test_services/' + data.result._id + '/cover/0'
+      this.savePictureToPath(file, path)
+    }).catch((error) => {
+      // console.log('error is: ' + JSON.stringify(error));
+    })
+  }
+  savePictureToPath(file, path) {
+    let AWSService = (<any>window).AWS;
+    AWSService.config.accessKeyId = "AKIAI3TIRNH4DG7MGC7Q";
+    AWSService.config.secretAccessKey = "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";
+    let bucket = new AWSService.S3()
+    let params = {Bucket: 'starbook-s3', Key:path, Body:file, ACL:"public-read"}
+    bucket.upload(params, function(error, res){
+      console.log('error: ' + error);
+      console.log('res: ' + JSON.stringify(res));
+    })
+  }
+  selectPicture(fileInput:any) {
     this.logo = fileInput.target.files[0];
     let reader = new FileReader();
     reader.onload = (e: any) => {
       this.logo = e.target.result;
     }
     reader.readAsDataURL(fileInput.target.files[0]);
-
-    // let file = fileInput.target.files[0]
-    console.log('file: ' + this.logo);
-
-    // let AWSService = (<any>window).AWS;
-    // // console.log(AWSService);
-    // AWSService.config.accessKeyId = "AKIAI3TIRNH4DG7MGC7Q";
-    // AWSService.config.secretAccessKey = "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";
-    // function guid() {
-    //   function s4() {
-    //     return Math.floor((1 + Math.random()) * 0x10000)
-    //       .toString(16)
-    //       .substring(1);
-    //   }
-    //   return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
-    //     s4() + '-' + s4() + s4() + s4();
-    // }
-    //
-    // let bucket = new AWSService.S3()
-    // let params = {Bucket: 'starbook-s3', Key:'random_services/' + guid() + '.png', Body:file, ACL:"public-read"}
-    // bucket.upload(params, function(error, res){
-    //   console.log('error: ' + error);
-    //   console.log('res: ' + JSON.stringify(res));
-    // })
+    this.Service['picture_file'] = this.logo
   }
 
-  undoStep() {
-    var currentStepIndex = this.steps.indexOf(this.step)
-    var previousStep = this.steps[currentStepIndex-1]
-    this.router.navigate(['insert/' + previousStep]);
+  changeToLogin() {
+    this.steps[3] = 'login'
+    this.step = 'login'
+    this.router.navigate(['insert/login'])
+  }
+  changeToSignup() {
+    this.steps[3] = 'register'
+    this.step = 'register'
+    this.router.navigate(['insert/register'])
+  }
+  changeToRecoverPassword() {
+    this.steps[3] = 'recover'
+    this.step = 'recover'
+    this.router.navigate(['insert/recover'])
+  }
 
-    // if (this.step === "price") {
+  checkRouteAndService() {
+    // if (!this.Service['title'] && this.step !== 'title') {
+    //   // this.state.title_error = "Per favore, inserisci un titolo."
     //   this.router.navigate(['insert/title']);
-    // } else if (this.step === "picture") {
-    //   this.router.navigate(['insert/price']);
+    //   return;
     // }
-  }
-  saveStep(step) {
-    var currentStepIndex = this.steps.indexOf(this.step)
-    var nextStep = this.steps[currentStepIndex+1]
-    this.router.navigate(['insert/' + nextStep]);
-
-    // if (step === 'title') {
-    //   this.router.navigate(['insert/price']);
-    // } if (step === 'price') {
+    // else if ((!this.Service['unit'] || !this.Service['price']) && this.step !== 'pricing') {
+    //   // this.state.pricing_error = "Per favore, compila i campi richiesti."
+    //   this.router.navigate(['insert/pricing']);
+    //   return;
+    // }
+    // else if (!this.Service['picture_file']) {
+    //   // this.state.picture_file_error = "Per piacere, inserisci un immagine."
     //   this.router.navigate(['insert/picture']);
-    // }  if (step === 'picture') {
-    //   this.router.navigate(['insert/register']);
-    // } if (step === 'register') {
-    //   this.router.navigate(['insert/end']);
-    // } if (step === 'end') {
-    //   // this.router.navigate(['insert/end']);
-    // } else {
-    //   console.log('Service is: ' + JSON.stringify(this.Service));
+    //   return;
+    // } else if (this.step === 'end')  {
+    //   this.router.navigate(['profile/general']);
     // }
   }
-
 }

@@ -32,13 +32,7 @@ const routes: Routes = [
 
   { path: 'orders', component: OrdersComponent },
   { path: 'orders/:page', component: OrdersComponent },
-  {
-    path: 'order/:step',
-    component: WizardComponent,
-    data: {
-      name: 'Checkout'
-    }
-  },
+  { path: 'order/:step', component: WizardComponent, data: { name: 'Order' } },
   { path: 'profile', component: ProfileComponent },
   { path: 'profile/:page', component: ProfileComponent },
 
@@ -47,17 +41,10 @@ const routes: Routes = [
   { path: 'contact', component: ContactComponent },
   { path: 'contact/:page', component: ContactComponent },
 
-  {
-    path: 'services',
-    component: ServicesComponent,
-    data: {isFindField: true}
-  },
-  {
-    path: 'services/:id',
-    component: ServiceComponent,
-    data: {isFindField: true}
-  },
+  { path: 'services', component: ServicesComponent, data: {isFindField: true} },
+  { path: 'services/:id', component: ServiceComponent, data: {isFindField: true} },
 
+  { path: 'insert', component: InsertComponent, data: { name: 'Insert' } },
   { path: 'insert/:step', component: InsertComponent, data: { name: 'Insert' } },
   // {
   //   path: 'services/:id',

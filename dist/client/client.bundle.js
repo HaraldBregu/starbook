@@ -7,7 +7,7 @@ webpackJsonp([0,4],{
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_angular2_universal__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_angular2_universal___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_angular2_universal__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Subject__ = __webpack_require__(56);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Subject__ = __webpack_require__(57);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Subject___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_Subject__);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return NavigationService; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -556,7 +556,7 @@ var SeoService = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__shared_analytics_service__ = __webpack_require__(19);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_angular2_universal__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_angular2_universal___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_angular2_universal__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__shared_common_service__ = __webpack_require__(64);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__shared_common_service__ = __webpack_require__(51);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__order_order_service__ = __webpack_require__(50);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return LandingComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -791,7 +791,7 @@ var AboutComponent = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_angular2_universal__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_angular2_universal___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_angular2_universal__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__shared_analytics_service__ = __webpack_require__(19);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__shared_auth_service__ = __webpack_require__(63);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__shared_auth_service__ = __webpack_require__(64);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__angular_common__ = __webpack_require__(29);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__shared_contact_service__ = __webpack_require__(87);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__shared_seo_service__ = __webpack_require__(33);
@@ -1380,7 +1380,7 @@ var AccountComponent = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__shared_analytics_service__ = __webpack_require__(19);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_angular2_universal__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_angular2_universal___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_angular2_universal__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__shared_common_service__ = __webpack_require__(64);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__shared_common_service__ = __webpack_require__(51);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__order_order_service__ = __webpack_require__(50);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return CategoryComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -1664,8 +1664,8 @@ var ContactComponent = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_router__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_http__ = __webpack_require__(42);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__popups_popups_service__ = __webpack_require__(62);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__shared_auth_service__ = __webpack_require__(63);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__popups_popups_service__ = __webpack_require__(63);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__shared_auth_service__ = __webpack_require__(64);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return FacebookComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -1767,10 +1767,11 @@ var HelpComponent = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__shared_analytics_service__ = __webpack_require__(19);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__shared_auth_service__ = __webpack_require__(63);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__shared_auth_service__ = __webpack_require__(64);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__shared_navigation_service__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_angular2_universal__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_angular2_universal___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_angular2_universal__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__shared_common_service__ = __webpack_require__(51);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return InsertComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -1787,25 +1788,32 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 __webpack_require__(547);
 var InsertComponent = (function () {
-    function InsertComponent(router, route, analyticsService, authService, navigationService) {
+    function InsertComponent(router, route, analyticsService, authService, navigationService, commonService) {
         this.router = router;
         this.route = route;
         this.analyticsService = analyticsService;
         this.authService = authService;
         this.navigationService = navigationService;
-        this.steps = ['title', 'price', 'picture', 'register', 'end'];
+        this.commonService = commonService;
+        this.steps = [];
         this.step = '';
         this.Service = {};
+        this.state = {
+            title_error: null,
+            pricing_error: null,
+            picture_file_loading: false,
+            picture_file_error: null,
+        };
         this.logo = '';
         this.signupParameters = {
             firstname: '',
             lastname: '',
             phone: '',
             email: '',
-            password: '',
-            confirmPassword: ''
+            password: ''
         };
         this.signup_state = {
             loading: false,
@@ -1815,20 +1823,38 @@ var InsertComponent = (function () {
             first_name_error: null,
             last_name_error: null,
             phone_error: null,
-            password_error: null,
-            confirm_password_error: null
+            password_error: null
         };
+        this.loginParameters = {
+            email: '',
+            password: ''
+        };
+        this.login_state = {
+            loading: false,
+            button_title: "Accedi",
+            error_message: null,
+            email_error: null,
+            password_error: null,
+        };
+        this.emailPattern = /^[a-z0-9!#$%&'*+\/=?^_`{|}~.-]+@[a-z0-9]([a-z0-9-]*[a-z0-9])?(\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)*$/i;
     }
     InsertComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.route.params.subscribe(function (params) {
-            _this.step = params['step'];
             if (__WEBPACK_IMPORTED_MODULE_5_angular2_universal__["isBrowser"]) {
                 window.scrollTo(0, 0);
+                _this.currentUser = JSON.parse(localStorage.getItem('auth'));
             }
-            if (_this.step === 'title') {
+            // this.checkRouteAndService()
+            _this.step = params['step'];
+            if (_this.currentUser) {
+                _this.steps = ['title', 'pricing', 'picture', 'end'];
             }
-            else if (_this.step === 'price') {
+            else {
+                _this.steps = ['title', 'pricing', 'picture', 'register', 'end'];
+                if (_this.step === 'register' || _this.step === 'login' || _this.step === 'recover') {
+                    _this.steps[3] = _this.step;
+                }
             }
         });
     };
@@ -1837,10 +1863,207 @@ var InsertComponent = (function () {
         var currentStep = this.steps.indexOf(this.step) + 1;
         return 100 / numSteps * currentStep + '%';
     };
-    InsertComponent.prototype.inputFile = function () {
-        console.log('input file');
+    InsertComponent.prototype.undoStep = function () {
+        var currentStepIndex = this.steps.indexOf(this.step);
+        var previousStep = this.steps[currentStepIndex - 1];
+        this.router.navigate(['insert/' + previousStep]);
     };
-    InsertComponent.prototype.fileEvent = function (fileInput) {
+    InsertComponent.prototype.nextStep = function () {
+        var currentStepIndex = this.steps.indexOf(this.step);
+        var nextStep = this.steps[currentStepIndex + 1];
+        if (this.step === 'title') {
+            this.state.title_error = null;
+            if (!this.Service['title']) {
+                this.state.title_error = "Per favore, inserisci un titolo.";
+                return;
+            }
+        }
+        else if (this.step === 'pricing') {
+            this.state.pricing_error = null;
+            if (!this.Service['price'] || !this.Service['unit']) {
+                this.state.pricing_error = "Per favore, compila i campi richiesti.";
+                return;
+            }
+        }
+        else if (this.step === 'picture') {
+            if (this.currentUser) {
+                if (!this.Service['picture_file']) {
+                    this.state.picture_file_error = "Per piacere, inserisci un immagine.";
+                    return;
+                }
+                else {
+                    this.state.picture_file_error = null;
+                    this.saveServiceForAccountId(this.currentUser._id);
+                    return;
+                }
+            }
+        }
+        else if (this.step === 'end') {
+            this.router.navigate(['profile/general']);
+            return;
+        }
+        this.router.navigate(['insert/' + nextStep]);
+    };
+    InsertComponent.prototype.signup = function () {
+        var _this = this;
+        if (this.signup_state.loading) {
+            return;
+        }
+        if (this.signupParameters.email.length > 0 &&
+            this.signupParameters.firstname.length > 0 &&
+            this.signupParameters.lastname.length > 0 &&
+            this.signupParameters.phone.length > 0 &&
+            this.signupParameters.password.length > 0) {
+            if (!this.emailPattern.test(this.signupParameters.email)) {
+                this.signup_state.email_error = "Inserisci un indirizzo email corretto";
+                return;
+            }
+        }
+        else {
+            if (this.signupParameters.email.length === 0) {
+                this.signup_state.email_error = "Inserisci un indirizzo email";
+            }
+            else if (this.signupParameters.email.length > 0 && !this.emailPattern.test(this.signupParameters.email)) {
+                this.signup_state.email_error = "Inserisci un indirizzo email corretto";
+            }
+            else {
+                this.signup_state.email_error = null;
+            }
+            if (this.signupParameters.firstname.length === 0) {
+                this.signup_state.first_name_error = "Inserisci un nome";
+            }
+            else {
+                this.signup_state.first_name_error = null;
+            }
+            if (this.signupParameters.lastname.length === 0) {
+                this.signup_state.last_name_error = "Inserisci un cognome";
+            }
+            else {
+                this.signup_state.last_name_error = null;
+            }
+            if (this.signupParameters.phone.length < 9) {
+                this.signup_state.phone_error = "Inserisci un numero di telefono corretto";
+                if (this.signupParameters.phone.length === 0) {
+                    this.signup_state.phone_error = "Inserisci un numero di telefono";
+                }
+            }
+            else {
+                this.signup_state.phone_error = null;
+            }
+            if (this.signupParameters.password.length === 0) {
+                this.signup_state.password_error = "Inserisci una password";
+            }
+            else {
+                this.signup_state.password_error = null;
+            }
+            if (this.signupParameters.password.length > 0) {
+                this.signup_state.password_error = null;
+            }
+            return;
+        }
+        this.signup_state.loading = true;
+        this.signup_state.button_title = "Registrando...";
+        // account_type
+        this.authService.signupProfessional(this.signupParameters.firstname, this.signupParameters.lastname, this.signupParameters.phone, this.signupParameters.email, this.signupParameters.password, "VENDOR").then(function (data) {
+            // this.router.navigate(['']);
+            _this.navigationService.updatePersonalMenu(data);
+            _this.signup_state.error_message = null;
+            _this.signup_state.loading = false;
+            _this.signup_state.button_title = "Registrando...";
+        }).catch(function (error) {
+            _this.analyticsService.sendException(error);
+            _this.signup_state.loading = false;
+            _this.signup_state.button_title = "Registrati";
+            switch (error) {
+                case 409:
+                    _this.signup_state.error_message = "Questo indirizzo email è gia in uso. Prova ad accedere.";
+                    break;
+                case 422:
+                    _this.signup_state.error_message = "Inserisci tutti i campi richiesti";
+                    break;
+                case 404:
+                    _this.signup_state.error_message = "C'è stato un errore sconosciuto, per favore riprova più tardi";
+                    break;
+                default:
+                    _this.signup_state.error_message = null;
+            }
+        });
+    };
+    InsertComponent.prototype.login = function () {
+        var _this = this;
+        this.analyticsService.sendEvent({ category: 'Booking', action: 'Login', label: this.router.url });
+        if (this.login_state.loading) {
+            return;
+        }
+        if (this.loginParameters.email.length === 0 || this.loginParameters.password.length === 0) {
+            if (this.loginParameters.email.length === 0) {
+                this.login_state.email_error = "Inserisci un indirizzo email";
+            }
+            else {
+                this.login_state.email_error = null;
+            }
+            if (this.loginParameters.password.length === 0) {
+                this.login_state.password_error = "Inserisci una password";
+            }
+            else {
+                this.login_state.password_error = null;
+            }
+            return;
+        }
+        this.login_state.loading = true;
+        this.login_state.button_title = "Accedendo...";
+        this.authService.login(this.loginParameters.email, this.loginParameters.password).then(function (data) {
+            _this.navigationService.updatePersonalMenu(data);
+            _this.login_state.loading = false;
+            _this.login_state.button_title = "Accedi";
+            _this.login_state.error_message = null;
+            _this.saveServiceForAccountId(data._id);
+        }).catch(function (error) {
+            _this.analyticsService.sendException(error);
+            _this.login_state.email_error = null;
+            _this.login_state.password_error = null;
+            _this.login_state.loading = false;
+            _this.login_state.button_title = "Accedi";
+            switch (error) {
+                case 404:
+                    _this.login_state.error_message = "Non esiste un account con questa mail! Crea un nuovo account.";
+                    break;
+                case 401:
+                    _this.login_state.error_message = "La password non è corretta!";
+                    break;
+                default:
+            }
+        });
+    };
+    InsertComponent.prototype.saveServiceForAccountId = function (account_id) {
+        var _this = this;
+        this.state.picture_file_loading = true;
+        this.state.picture_file_error = null;
+        this.Service['supplier_id'] = account_id;
+        console.log('service is: ' + JSON.stringify(this.Service));
+        this.commonService.createService(this.Service).then(function (data) {
+            _this.state.picture_file_loading = false;
+            // console.log('data is: ' + JSON.stringify(data));
+            var file = _this.Service['picture_file'];
+            // var path = 'services/' + data.result._id + '/cover/0'
+            var path = 'test_services/' + data.result._id + '/cover/0';
+            _this.savePictureToPath(file, path);
+        }).catch(function (error) {
+            // console.log('error is: ' + JSON.stringify(error));
+        });
+    };
+    InsertComponent.prototype.savePictureToPath = function (file, path) {
+        var AWSService = window.AWS;
+        AWSService.config.accessKeyId = "AKIAI3TIRNH4DG7MGC7Q";
+        AWSService.config.secretAccessKey = "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";
+        var bucket = new AWSService.S3();
+        var params = { Bucket: 'starbook-s3', Key: path, Body: file, ACL: "public-read" };
+        bucket.upload(params, function (error, res) {
+            console.log('error: ' + error);
+            console.log('res: ' + JSON.stringify(res));
+        });
+    };
+    InsertComponent.prototype.selectPicture = function (fileInput) {
         var _this = this;
         this.logo = fileInput.target.files[0];
         var reader = new FileReader();
@@ -1848,55 +2071,40 @@ var InsertComponent = (function () {
             _this.logo = e.target.result;
         };
         reader.readAsDataURL(fileInput.target.files[0]);
-        // let file = fileInput.target.files[0]
-        console.log('file: ' + this.logo);
-        // let AWSService = (<any>window).AWS;
-        // // console.log(AWSService);
-        // AWSService.config.accessKeyId = "AKIAI3TIRNH4DG7MGC7Q";
-        // AWSService.config.secretAccessKey = "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";
-        // function guid() {
-        //   function s4() {
-        //     return Math.floor((1 + Math.random()) * 0x10000)
-        //       .toString(16)
-        //       .substring(1);
-        //   }
-        //   return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
-        //     s4() + '-' + s4() + s4() + s4();
-        // }
-        //
-        // let bucket = new AWSService.S3()
-        // let params = {Bucket: 'starbook-s3', Key:'random_services/' + guid() + '.png', Body:file, ACL:"public-read"}
-        // bucket.upload(params, function(error, res){
-        //   console.log('error: ' + error);
-        //   console.log('res: ' + JSON.stringify(res));
-        // })
+        this.Service['picture_file'] = this.logo;
     };
-    InsertComponent.prototype.undoStep = function () {
-        var currentStepIndex = this.steps.indexOf(this.step);
-        var previousStep = this.steps[currentStepIndex - 1];
-        this.router.navigate(['insert/' + previousStep]);
-        // if (this.step === "price") {
+    InsertComponent.prototype.changeToLogin = function () {
+        this.steps[3] = 'login';
+        this.step = 'login';
+        this.router.navigate(['insert/login']);
+    };
+    InsertComponent.prototype.changeToSignup = function () {
+        this.steps[3] = 'register';
+        this.step = 'register';
+        this.router.navigate(['insert/register']);
+    };
+    InsertComponent.prototype.changeToRecoverPassword = function () {
+        this.steps[3] = 'recover';
+        this.step = 'recover';
+        this.router.navigate(['insert/recover']);
+    };
+    InsertComponent.prototype.checkRouteAndService = function () {
+        // if (!this.Service['title'] && this.step !== 'title') {
+        //   // this.state.title_error = "Per favore, inserisci un titolo."
         //   this.router.navigate(['insert/title']);
-        // } else if (this.step === "picture") {
-        //   this.router.navigate(['insert/price']);
+        //   return;
         // }
-    };
-    InsertComponent.prototype.saveStep = function (step) {
-        var currentStepIndex = this.steps.indexOf(this.step);
-        var nextStep = this.steps[currentStepIndex + 1];
-        this.router.navigate(['insert/' + nextStep]);
-        // if (step === 'title') {
-        //   this.router.navigate(['insert/price']);
-        // } if (step === 'price') {
+        // else if ((!this.Service['unit'] || !this.Service['price']) && this.step !== 'pricing') {
+        //   // this.state.pricing_error = "Per favore, compila i campi richiesti."
+        //   this.router.navigate(['insert/pricing']);
+        //   return;
+        // }
+        // else if (!this.Service['picture_file']) {
+        //   // this.state.picture_file_error = "Per piacere, inserisci un immagine."
         //   this.router.navigate(['insert/picture']);
-        // }  if (step === 'picture') {
-        //   this.router.navigate(['insert/register']);
-        // } if (step === 'register') {
-        //   this.router.navigate(['insert/end']);
-        // } if (step === 'end') {
-        //   // this.router.navigate(['insert/end']);
-        // } else {
-        //   console.log('Service is: ' + JSON.stringify(this.Service));
+        //   return;
+        // } else if (this.step === 'end')  {
+        //   this.router.navigate(['profile/general']);
         // }
     };
     InsertComponent = __decorate([
@@ -1904,10 +2112,10 @@ var InsertComponent = (function () {
             selector: 'app-insert',
             template: __webpack_require__(725)
         }), 
-        __metadata('design:paramtypes', [(typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["d" /* Router */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__angular_router__["d" /* Router */]) === 'function' && _a) || Object, (typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["e" /* ActivatedRoute */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__angular_router__["e" /* ActivatedRoute */]) === 'function' && _b) || Object, (typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__shared_analytics_service__["a" /* AnalyticsService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_2__shared_analytics_service__["a" /* AnalyticsService */]) === 'function' && _c) || Object, (typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_3__shared_auth_service__["a" /* AuthService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_3__shared_auth_service__["a" /* AuthService */]) === 'function' && _d) || Object, (typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_4__shared_navigation_service__["a" /* NavigationService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_4__shared_navigation_service__["a" /* NavigationService */]) === 'function' && _e) || Object])
+        __metadata('design:paramtypes', [(typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["d" /* Router */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__angular_router__["d" /* Router */]) === 'function' && _a) || Object, (typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["e" /* ActivatedRoute */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__angular_router__["e" /* ActivatedRoute */]) === 'function' && _b) || Object, (typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__shared_analytics_service__["a" /* AnalyticsService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_2__shared_analytics_service__["a" /* AnalyticsService */]) === 'function' && _c) || Object, (typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_3__shared_auth_service__["a" /* AuthService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_3__shared_auth_service__["a" /* AuthService */]) === 'function' && _d) || Object, (typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_4__shared_navigation_service__["a" /* NavigationService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_4__shared_navigation_service__["a" /* NavigationService */]) === 'function' && _e) || Object, (typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_6__shared_common_service__["a" /* CommonService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_6__shared_common_service__["a" /* CommonService */]) === 'function' && _f) || Object])
     ], InsertComponent);
     return InsertComponent;
-    var _a, _b, _c, _d, _e;
+    var _a, _b, _c, _d, _e, _f;
 }());
 //# sourceMappingURL=/Users/haraldbregu/Dropbox/StarbookWebApp/src/insert.component.js.map
 
@@ -1997,7 +2205,7 @@ var NotfoundComponent = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__shared_navigation_service__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__shared_orders_service__ = __webpack_require__(219);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__popups_popups_service__ = __webpack_require__(62);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__popups_popups_service__ = __webpack_require__(63);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__shared_analytics_service__ = __webpack_require__(19);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_angular2_universal__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_angular2_universal___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_angular2_universal__);
@@ -2541,7 +2749,7 @@ var OrdersComponent = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__shared_profile_service__ = __webpack_require__(88);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_router__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__shared_navigation_service__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__popups_popups_service__ = __webpack_require__(62);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__popups_popups_service__ = __webpack_require__(63);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__shared_payment_service__ = __webpack_require__(149);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__shared_analytics_service__ = __webpack_require__(19);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__shared_seo_service__ = __webpack_require__(33);
@@ -3315,7 +3523,7 @@ var RequestsComponent = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_angular2_universal__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_angular2_universal___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_angular2_universal__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__shared_common_service__ = __webpack_require__(64);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__shared_common_service__ = __webpack_require__(51);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__order_order_service__ = __webpack_require__(50);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__shared_navigation_service__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_router__ = __webpack_require__(8);
@@ -3887,7 +4095,7 @@ var ServiceComponent = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__shared_navigation_service__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__shared_common_service__ = __webpack_require__(64);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__shared_common_service__ = __webpack_require__(51);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return ServicesComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -3954,7 +4162,7 @@ var ServicesComponent = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__shared_analytics_service__ = __webpack_require__(19);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__order_order_service__ = __webpack_require__(50);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__shared_auth_service__ = __webpack_require__(63);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__shared_auth_service__ = __webpack_require__(64);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__shared_navigation_service__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__shared_payment_service__ = __webpack_require__(149);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__shared_profile_service__ = __webpack_require__(88);
@@ -4930,7 +5138,7 @@ platformRef.bootstrapModule(__WEBPACK_IMPORTED_MODULE_6__app_app_browser_module_
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_angular2_universal___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_angular2_universal__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_http__ = __webpack_require__(42);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_Subject__ = __webpack_require__(56);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_Subject__ = __webpack_require__(57);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_Subject___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_rxjs_Subject__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_toPromise__ = __webpack_require__(78);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_toPromise___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_toPromise__);
@@ -5110,6 +5318,198 @@ var OrderService = (function () {
 
 /***/ },
 
+/***/ 51:
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_angular2_universal__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_angular2_universal___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_angular2_universal__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_http__ = __webpack_require__(42);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_toPromise__ = __webpack_require__(78);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_toPromise___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_toPromise__);
+/* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return CommonService; });
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+// import { NavigationService } from '../shared/navigation.service';
+var CommonService = (function () {
+    function CommonService(http /*, private navigationService: NavigationService*/) {
+        this.http = http;
+        // this.api = 'https://api.starbook.co/v0.9.1/';
+        this.api = 'http://localhost/t0.9.1/';
+    }
+    CommonService.prototype.sendServices = function (services) {
+        this.servicesObject = services;
+    };
+    CommonService.prototype.getServicesObject = function () {
+        return this.servicesObject;
+    };
+    CommonService.prototype.sendData = function (service, ref) {
+        this.service = service;
+        this.referral_id = ref;
+    };
+    CommonService.prototype.getData = function () {
+        return {
+            service: this.service,
+            referral_id: this.referral_id
+        };
+    };
+    CommonService.prototype.setService = function (service) {
+        this.service = service;
+    };
+    CommonService.prototype.getService = function () {
+        return this.service;
+    };
+    CommonService.prototype.setCategory = function (category) {
+        this.category = category;
+    };
+    CommonService.prototype.getCategory = function () {
+        return this.category;
+    };
+    // EMAIL SMS
+    CommonService.prototype.requireNewService = function (data) {
+        return this.http.post(this.api + 'request_service', data).toPromise().then(function (services) {
+            return services.json();
+        }).catch(this.handleError);
+    };
+    CommonService.prototype.sendNotifications = function (promolink, phones, emails) {
+        return this.http.post(this.api + 'send_invitations', { link: promolink, phone_numbers: phones, email_addresses: emails }).toPromise().then(function (data) {
+            return data;
+        }).catch(this.handleError);
+    };
+    CommonService.prototype.getCategories = function () {
+        // this.navigationService.updateLoadingStatus(true);
+        var queryString = 'categories';
+        return this.http.get(this.api + queryString).toPromise().then(function (response) {
+            return response.json();
+        }).catch(this.handleError);
+    };
+    CommonService.prototype.getCategoryById = function (id) {
+        return this.http.get(this.api + 'categories/' + id).toPromise().then(function (results) {
+            return results.json();
+        }).catch(this.handleError);
+    };
+    CommonService.prototype.getServicesForCategoryTitle = function (title) {
+        // this.navigationService.updateLoadingStatus(true);
+        // let queryString = 'category_services';
+        // return this.http.get(this.api + queryString).toPromise().then((response) => {
+        //   return response.json();
+        // }).catch(this.handleError);
+        var queryString = 'categories/' + title + '/services';
+        return this.http.get(this.api + queryString).toPromise().then(function (response) {
+            return response.json();
+        }).catch(this.handleError);
+    };
+    CommonService.prototype.createService = function (data) {
+        return this.http.post(this.api + 'services', data, { headers: this._makeHeaders() }).toPromise().then(function (services) {
+            return services.json();
+        }).catch(this.handleError);
+    };
+    CommonService.prototype.getAllServices = function (query) {
+        var params = new __WEBPACK_IMPORTED_MODULE_2__angular_http__["URLSearchParams"]();
+        if (query) {
+            for (var key in query) {
+                params.set(key.toString(), query[key]);
+            }
+        }
+        return this.http.get(this.api + 'services', { search: params }).toPromise().then(function (services) {
+            return services.json();
+        }).catch(this.handleError);
+    };
+    CommonService.prototype.getServices = function () {
+        return this.http.get(this.api + 'featured').toPromise().then(function (services) {
+            return services.json();
+        }).catch(this.handleError);
+    };
+    CommonService.prototype.search = function (query) {
+        return this.http.get(this.api + 'search?title=' + query).toPromise().then(function (results) {
+            return results.json();
+        }).catch(this.handleError);
+    };
+    CommonService.prototype.getServiceById = function (id) {
+        return this.http.get(this.api + 'services/' + id).toPromise().then(function (results) {
+            return results.json();
+        }).catch(this.handleError);
+    };
+    CommonService.prototype.getRelatedServicesByServiceId = function (id, query) {
+        var params = new __WEBPACK_IMPORTED_MODULE_2__angular_http__["URLSearchParams"]();
+        if (query) {
+            for (var key in query) {
+                params.set(key.toString(), query[key]);
+            }
+        }
+        return this.http.get(this.api + 'services/' + id + '/services', { search: params }).toPromise().then(function (results) {
+            return results.json();
+        }).catch(this.handleError);
+    };
+    CommonService.prototype._makeHeaders = function () {
+        var headers;
+        if (__WEBPACK_IMPORTED_MODULE_1_angular2_universal__["isBrowser"]) {
+            if (localStorage.getItem('auth') !== null) {
+                this.auth = JSON.parse(localStorage.getItem('auth'));
+                headers = new __WEBPACK_IMPORTED_MODULE_2__angular_http__["Headers"]({ 'Token': this.auth.token });
+            }
+            else {
+                this.auth = false;
+                headers = new __WEBPACK_IMPORTED_MODULE_2__angular_http__["Headers"]({ 'Token': '' });
+            }
+        }
+        else {
+            this.auth = false;
+            headers = new __WEBPACK_IMPORTED_MODULE_2__angular_http__["Headers"]({ 'Token': '' });
+        }
+        return headers;
+    };
+    CommonService.prototype.handleError = function (error) {
+        // this.navigationService.updateLoadingStatus(false);
+        return Promise.reject(error.message || error);
+    };
+    // UTILS
+    CommonService.prototype.saveObjectToLocalWithName = function (object, name) {
+        if (__WEBPACK_IMPORTED_MODULE_1_angular2_universal__["isBrowser"]) {
+            localStorage.setItem(name, JSON.stringify(object));
+        }
+    };
+    CommonService.prototype.readObjectFromLocalWithName = function (name) {
+        var recovery;
+        if (__WEBPACK_IMPORTED_MODULE_1_angular2_universal__["isBrowser"]) {
+            recovery = localStorage.getItem(name);
+        }
+        return JSON.parse(recovery);
+    };
+    CommonService.prototype.deleteObjectFromLocalWithName = function (name) {
+        if (__WEBPACK_IMPORTED_MODULE_1_angular2_universal__["isBrowser"]) {
+            localStorage.removeItem(name);
+        }
+    };
+    CommonService.prototype.guid = function () {
+        return this.s4() + this.s4() + '-' + this.s4() + '-' + this.s4() + '-' + this.s4() + '-' + this.s4() + this.s4() + this.s4();
+    };
+    CommonService.prototype.s4 = function () {
+        return Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(1);
+    };
+    CommonService = __decorate([
+        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(), 
+        __metadata('design:paramtypes', [(typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__angular_http__["Http"] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_2__angular_http__["Http"]) === 'function' && _a) || Object])
+    ], CommonService);
+    return CommonService;
+    var _a;
+}());
+//# sourceMappingURL=/Users/haraldbregu/Dropbox/StarbookWebApp/src/common.service.js.map
+
+/***/ },
+
 /***/ 520:
 /***/ function(module, exports, __webpack_require__) {
 
@@ -5180,13 +5580,13 @@ if (__compiler__ && __compiler__.SelectorMatcher && __compiler__.CssSelector) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_ng2_click_outside___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_ng2_click_outside__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_ng2_page_scroll__ = __webpack_require__(706);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__app_routing__ = __webpack_require__(524);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__shared_common_service__ = __webpack_require__(64);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__shared_auth_service__ = __webpack_require__(63);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__shared_common_service__ = __webpack_require__(51);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__shared_auth_service__ = __webpack_require__(64);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__order_order_service__ = __webpack_require__(50);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__shared_profile_service__ = __webpack_require__(88);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__shared_navigation_service__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__shared_orders_service__ = __webpack_require__(219);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__popups_popups_service__ = __webpack_require__(62);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__popups_popups_service__ = __webpack_require__(63);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__shared_payment_service__ = __webpack_require__(149);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__shared_analytics_service__ = __webpack_require__(19);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__shared_seo_service__ = __webpack_require__(33);
@@ -5422,10 +5822,10 @@ var AppModule = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_router__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__shared_analytics_service__ = __webpack_require__(19);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__shared_auth_service__ = __webpack_require__(63);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__shared_auth_service__ = __webpack_require__(64);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__shared_navigation_service__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__popups_popups_service__ = __webpack_require__(62);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__shared_common_service__ = __webpack_require__(64);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__popups_popups_service__ = __webpack_require__(63);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__shared_common_service__ = __webpack_require__(51);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__shared_seo_service__ = __webpack_require__(33);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return AppComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -5521,6 +5921,9 @@ var AppComponent = (function () {
                     if (_this.page === "Account") {
                         _this.hasRightContainer = false;
                     }
+                    if (_this.page === "Order") {
+                        _this.hasRightContainer = false;
+                    }
                 }
             });
         }
@@ -5559,6 +5962,10 @@ var AppComponent = (function () {
         }
     };
     AppComponent.prototype.ngAfterViewInit = function () {
+    };
+    AppComponent.prototype.pubblishService = function () {
+        this.router.navigate(['insert/title']);
+        this.collapsed = false;
     };
     AppComponent.prototype.signupAsProfessional = function () {
         this.router.navigate(['account/professional']);
@@ -5705,28 +6112,15 @@ var routes = [
     { path: 'account/:page', component: __WEBPACK_IMPORTED_MODULE_13__pages_account_account_component__["a" /* AccountComponent */], data: { name: 'Account' } },
     { path: 'orders', component: __WEBPACK_IMPORTED_MODULE_6__pages_orders_orders_component__["a" /* OrdersComponent */] },
     { path: 'orders/:page', component: __WEBPACK_IMPORTED_MODULE_6__pages_orders_orders_component__["a" /* OrdersComponent */] },
-    {
-        path: 'order/:step',
-        component: __WEBPACK_IMPORTED_MODULE_9__pages_wizard_wizard_component__["a" /* WizardComponent */],
-        data: {
-            name: 'Checkout'
-        }
-    },
+    { path: 'order/:step', component: __WEBPACK_IMPORTED_MODULE_9__pages_wizard_wizard_component__["a" /* WizardComponent */], data: { name: 'Order' } },
     { path: 'profile', component: __WEBPACK_IMPORTED_MODULE_7__pages_profile_profile_component__["a" /* ProfileComponent */] },
     { path: 'profile/:page', component: __WEBPACK_IMPORTED_MODULE_7__pages_profile_profile_component__["a" /* ProfileComponent */] },
     { path: 'facebook', component: __WEBPACK_IMPORTED_MODULE_8__pages_facebook_facebook_component__["a" /* FacebookComponent */] },
     { path: 'contact', component: __WEBPACK_IMPORTED_MODULE_15__pages_contact_contact_component__["a" /* ContactComponent */] },
     { path: 'contact/:page', component: __WEBPACK_IMPORTED_MODULE_15__pages_contact_contact_component__["a" /* ContactComponent */] },
-    {
-        path: 'services',
-        component: __WEBPACK_IMPORTED_MODULE_4__pages_services_services_component__["a" /* ServicesComponent */],
-        data: { isFindField: true }
-    },
-    {
-        path: 'services/:id',
-        component: __WEBPACK_IMPORTED_MODULE_3__pages_service_service_component__["a" /* ServiceComponent */],
-        data: { isFindField: true }
-    },
+    { path: 'services', component: __WEBPACK_IMPORTED_MODULE_4__pages_services_services_component__["a" /* ServicesComponent */], data: { isFindField: true } },
+    { path: 'services/:id', component: __WEBPACK_IMPORTED_MODULE_3__pages_service_service_component__["a" /* ServiceComponent */], data: { isFindField: true } },
+    { path: 'insert', component: __WEBPACK_IMPORTED_MODULE_5__pages_insert_insert_component__["a" /* InsertComponent */], data: { name: 'Insert' } },
     { path: 'insert/:step', component: __WEBPACK_IMPORTED_MODULE_5__pages_insert_insert_component__["a" /* InsertComponent */], data: { name: 'Insert' } },
     // {
     //   path: 'services/:id',
@@ -5897,11 +6291,11 @@ var FormatterDirective = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_angular2_universal___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_angular2_universal__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_router__ = __webpack_require__(8);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__shared_common_service__ = __webpack_require__(64);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__shared_common_service__ = __webpack_require__(51);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__shared_navigation_service__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__shared_analytics_service__ = __webpack_require__(19);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__popups_popups_service__ = __webpack_require__(62);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__shared_auth_service__ = __webpack_require__(63);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__popups_popups_service__ = __webpack_require__(63);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__shared_auth_service__ = __webpack_require__(64);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__shared_seo_service__ = __webpack_require__(33);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return HomeComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -6191,7 +6585,7 @@ var CalendarMockComponent = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__order_service__ = __webpack_require__(50);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__popups_popups_service__ = __webpack_require__(62);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__popups_popups_service__ = __webpack_require__(63);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__shared_analytics_service__ = __webpack_require__(19);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__shared_profile_service__ = __webpack_require__(88);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_share_share_service__ = __webpack_require__(148);
@@ -6424,7 +6818,7 @@ var OrderComponent = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__shared_seo_service__ = __webpack_require__(33);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__shared_navigation_service__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__shared_analytics_service__ = __webpack_require__(19);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__shared_common_service__ = __webpack_require__(64);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__shared_common_service__ = __webpack_require__(51);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return BlogComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -6966,9 +7360,9 @@ var PhonePipe = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_angular2_universal___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_angular2_universal__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_router__ = __webpack_require__(8);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__shared_auth_service__ = __webpack_require__(63);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__shared_auth_service__ = __webpack_require__(64);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__shared_navigation_service__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__popups_service__ = __webpack_require__(62);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__popups_service__ = __webpack_require__(63);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__shared_orders_service__ = __webpack_require__(219);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__order_order_service__ = __webpack_require__(50);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__shared_payment_service__ = __webpack_require__(149);
@@ -8580,14 +8974,14 @@ var environment = {
 
 /***/ },
 
-/***/ 62:
+/***/ 63:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_angular2_universal__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_angular2_universal___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_angular2_universal__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Subject__ = __webpack_require__(56);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Subject__ = __webpack_require__(57);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Subject___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_Subject__);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return PopupsService; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -8633,7 +9027,7 @@ var PopupsService = (function () {
 
 /***/ },
 
-/***/ 63:
+/***/ 64:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8666,9 +9060,10 @@ var AuthService = (function () {
     function AuthService(http, navigationService) {
         this.http = http;
         this.navigationService = navigationService;
-        var remote = 'https://api.starbook.co/v0.9.1/';
-        // let local = 'http://localhost/t0.9.1/';
-        this.api = remote;
+        this.protocol = "https";
+        this.hostname = "api.starbook.co";
+        this.api_version = "v0.9.1";
+        this.api = 'https://api.starbook.co/v0.9.1/';
         if (__WEBPACK_IMPORTED_MODULE_0_angular2_universal__["isBrowser"]) {
             if (localStorage.getItem('auth') !== null) {
                 this.auth = JSON.parse(localStorage.getItem('auth'));
@@ -8680,6 +9075,16 @@ var AuthService = (function () {
         else {
             this.auth = false;
         }
+        if (__WEBPACK_IMPORTED_MODULE_0_angular2_universal__["isBrowser"]) {
+            if (document.location.hostname === "www.starbook.co") {
+                this.api_version = "v0.9.1";
+            }
+            else {
+                this.api_version = "t0.9.1";
+            }
+        }
+        this.api = this.protocol + "://" + this.hostname + "/" + this.api_version + "/";
+        this.api = 'http://localhost/t0.9.1/';
     }
     AuthService.prototype._makeHeadersFacebook = function (access_token) {
         return new __WEBPACK_IMPORTED_MODULE_2__angular_http__["Headers"]({ 'access_token': access_token });
@@ -8770,6 +9175,41 @@ var AuthService = (function () {
                 _this.handleError(data.message);
             }
         }).catch(this.handleError);
+    };
+    AuthService.prototype.signupProfessional = function (firstname, lastname, phone, email, password, account_type) {
+        // this.navigationService.updateLoadingStatus(true);
+        return this.http.post(this.api + 'signup', {
+            firstname: firstname, lastname: lastname, phone_number: phone, email: email, password: password, account_type: account_type })
+            .toPromise()
+            .then(function (response) {
+            // this.navigationService.updateLoadingStatus(false);
+            var data = response.json();
+            // if (data.success === true) {
+            var authData = {
+                _id: data.result._id,
+                email: data.result.email,
+                email_verified: data.result.email_verified,
+                phone_number: '',
+                account_types: data.result.account_types,
+                profile: data.result.profile,
+                company: data.result.company,
+                address: data.result.address,
+                services: data.result.services,
+                locations: data.result.locations,
+                payment: data.result.payment,
+                created_at: data.result.created_at,
+                updated_at: data.result.updated_at,
+                token: data.token
+            };
+            if (__WEBPACK_IMPORTED_MODULE_0_angular2_universal__["isBrowser"]) {
+                localStorage.setItem('auth', JSON.stringify(authData));
+            }
+            return data.result;
+            // } else {
+            //   this.handleError(data.message);
+            // }
+        })
+            .catch(this.handleError);
     };
     AuthService.prototype.signup = function (firstname, lastname, phone, email, password) {
         // this.navigationService.updateLoadingStatus(true);
@@ -8940,174 +9380,10 @@ var AuthService = (function () {
 
 /***/ },
 
-/***/ 64:
-/***/ function(module, exports, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_angular2_universal__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_angular2_universal___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_angular2_universal__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_http__ = __webpack_require__(42);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_toPromise__ = __webpack_require__(78);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_toPromise___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_toPromise__);
-/* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return CommonService; });
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-
-// import { NavigationService } from '../shared/navigation.service';
-var CommonService = (function () {
-    function CommonService(http /*, private navigationService: NavigationService*/) {
-        this.http = http;
-        this.api = 'https://api.starbook.co/v0.9.1/';
-        // this.api = 'http://localhost/t0.9.1/';
-    }
-    CommonService.prototype.sendServices = function (services) {
-        this.servicesObject = services;
-    };
-    CommonService.prototype.getServicesObject = function () {
-        return this.servicesObject;
-    };
-    CommonService.prototype.sendData = function (service, ref) {
-        this.service = service;
-        this.referral_id = ref;
-    };
-    CommonService.prototype.getData = function () {
-        return {
-            service: this.service,
-            referral_id: this.referral_id
-        };
-    };
-    CommonService.prototype.setService = function (service) {
-        this.service = service;
-    };
-    CommonService.prototype.getService = function () {
-        return this.service;
-    };
-    CommonService.prototype.setCategory = function (category) {
-        this.category = category;
-    };
-    CommonService.prototype.getCategory = function () {
-        return this.category;
-    };
-    // EMAIL SMS
-    CommonService.prototype.requireNewService = function (data) {
-        return this.http.post(this.api + 'request_service', data).toPromise().then(function (services) {
-            return services.json();
-        }).catch(this.handleError);
-    };
-    CommonService.prototype.sendNotifications = function (promolink, phones, emails) {
-        return this.http.post(this.api + 'send_invitations', { link: promolink, phone_numbers: phones, email_addresses: emails }).toPromise().then(function (data) {
-            return data;
-        }).catch(this.handleError);
-    };
-    CommonService.prototype.getCategories = function () {
-        // this.navigationService.updateLoadingStatus(true);
-        var queryString = 'categories';
-        return this.http.get(this.api + queryString).toPromise().then(function (response) {
-            return response.json();
-        }).catch(this.handleError);
-    };
-    CommonService.prototype.getCategoryById = function (id) {
-        return this.http.get(this.api + 'categories/' + id).toPromise().then(function (results) {
-            return results.json();
-        }).catch(this.handleError);
-    };
-    CommonService.prototype.getServicesForCategoryTitle = function (title) {
-        // this.navigationService.updateLoadingStatus(true);
-        // let queryString = 'category_services';
-        // return this.http.get(this.api + queryString).toPromise().then((response) => {
-        //   return response.json();
-        // }).catch(this.handleError);
-        var queryString = 'categories/' + title + '/services';
-        return this.http.get(this.api + queryString).toPromise().then(function (response) {
-            return response.json();
-        }).catch(this.handleError);
-    };
-    CommonService.prototype.getAllServices = function (query) {
-        var params = new __WEBPACK_IMPORTED_MODULE_2__angular_http__["URLSearchParams"]();
-        if (query) {
-            for (var key in query) {
-                params.set(key.toString(), query[key]);
-            }
-        }
-        return this.http.get(this.api + 'services', { search: params }).toPromise().then(function (services) {
-            return services.json();
-        }).catch(this.handleError);
-    };
-    CommonService.prototype.getServices = function () {
-        // this.navigationService.updateLoadingStatus(true);
-        return this.http.get(this.api + 'featured').toPromise().then(function (services) {
-            return services.json();
-        }).catch(this.handleError);
-    };
-    CommonService.prototype.search = function (query) {
-        return this.http.get(this.api + 'search?title=' + query).toPromise().then(function (results) {
-            return results.json();
-        }).catch(this.handleError);
-    };
-    CommonService.prototype.getServiceById = function (id) {
-        return this.http.get(this.api + 'services/' + id).toPromise().then(function (results) {
-            return results.json();
-        }).catch(this.handleError);
-    };
-    CommonService.prototype.getRelatedServicesByServiceId = function (id, query) {
-        var params = new __WEBPACK_IMPORTED_MODULE_2__angular_http__["URLSearchParams"]();
-        if (query) {
-            for (var key in query) {
-                params.set(key.toString(), query[key]);
-            }
-        }
-        return this.http.get(this.api + 'services/' + id + '/services', { search: params }).toPromise().then(function (results) {
-            return results.json();
-        }).catch(this.handleError);
-    };
-    CommonService.prototype._makeHeaders = function () {
-        var headers;
-        if (__WEBPACK_IMPORTED_MODULE_1_angular2_universal__["isBrowser"]) {
-            if (localStorage.getItem('auth') !== null) {
-                this.auth = JSON.parse(localStorage.getItem('auth'));
-                headers = new __WEBPACK_IMPORTED_MODULE_2__angular_http__["Headers"]({ 'Token': this.auth.token });
-            }
-            else {
-                this.auth = false;
-                headers = new __WEBPACK_IMPORTED_MODULE_2__angular_http__["Headers"]({ 'Token': '' });
-            }
-        }
-        else {
-            this.auth = false;
-            headers = new __WEBPACK_IMPORTED_MODULE_2__angular_http__["Headers"]({ 'Token': '' });
-        }
-        return { headers: headers };
-    };
-    CommonService.prototype.handleError = function (error) {
-        // this.navigationService.updateLoadingStatus(false);
-        return Promise.reject(error.message || error);
-    };
-    CommonService = __decorate([
-        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(), 
-        __metadata('design:paramtypes', [(typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__angular_http__["Http"] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_2__angular_http__["Http"]) === 'function' && _a) || Object])
-    ], CommonService);
-    return CommonService;
-    var _a;
-}());
-//# sourceMappingURL=/Users/haraldbregu/Dropbox/StarbookWebApp/src/common.service.js.map
-
-/***/ },
-
 /***/ 714:
 /***/ function(module, exports) {
 
-module.exports = "<nav class=\"navbar navbar-dark navbar-fixed-top bg-inverse\" [ngClass]=\"{'is-search': isFindField}\" (window:resize)=\"onResize()\">\n  <div class=\"container-starbook top-menu\">\n    <a class=\"navbar-brand\" (click)=\"clickBrandLogo()\">\n      <div *ngIf=\"screenWidth > 768\" routerLink=\"\">\n        <img src=\"/assets/images/brand-logo-name-rotated.png\" alt=\"starbook\">\n      </div>\n      <div *ngIf=\"screenWidth < 769\">\n        <img *ngIf=\"!collapsed\" src=\"/assets/images/brand-logo-rotated.png\" alt=\"starbook\">\n        <img *ngIf=\"collapsed\" src=\"/assets/images/brand-logo-right.png\" alt=\"starbook\">\n      </div>\n    </a>\n\n    <div *ngIf=\"hasCenterContainer\" class=\"center-container\">\n      <div class=\"search-block\" *ngIf=\"isFindField\">\n        <p-autoComplete [(ngModel)]=\"findValue\" [suggestions]=\"results\" field=\"title\" scrollHeight=\"250px\" (completeMethod)=\"search($event)\" (onSelect)=\"selectResult(findValue)\" placeholder=\"Cerca un servizio\" minLength=\"0\">\n          <template let-res>\n            <div class=\"search-result\" (click)=\"selectResult(res)\">{{ res.title }}</div>\n          </template>\n        </p-autoComplete>\n        <div class=\"spinner\" *ngIf=\"spinerView\">\n          <svg width='20px' height='20px' xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\" preserveAspectRatio=\"xMidYMid\" class=\"uil-ring\">\n            <rect x=\"0\" y=\"0\" width=\"100\" height=\"100\" fill=\"none\" class=\"bk\"></rect>\n            <circle cx=\"50\" cy=\"50\" r=\"45\" stroke-dasharray=\"169.64600329384882 113.09733552923257\" stroke=\"#3B568D\" fill=\"none\" stroke-width=\"10\">\n              <animateTransform attributeName=\"transform\" type=\"rotate\" values=\"0 50 50;180 50 50;360 50 50;\" keyTimes=\"0;0.5;1\" dur=\"1s\" repeatCount=\"indefinite\" begin=\"0s\"></animateTransform>\n            </circle>\n          </svg>\n        </div>\n        <div class=\"close-container\" *ngIf=\"!spinerView && clearView\">\n          <span class=\"close rounded thick\" (click)=\"clearSearchForm()\"></span>\n        </div>\n        <div class=\"ui-autocomplete-panel empty\" *ngIf=\"results.length === 0 && findValue.length > 0 && isSearched\">\n          <div class=\"no-result\">\n            Il servizio \"{{findValue}}\" non è disponibile\n            <button class=\"suggess-service\" (click)=\"requireService()\">{{newServiceRequest.message}}</button>\n          </div>\n        </div>\n      </div>\n      <div *ngIf=\"!isFindField\" class=\"tagline\">{{tagline}}</div>\n    </div>\n\n    <!--  Collapsed -->\n    <ul *ngIf=\"auth !== false && hasRightContainer\" class=\"nav navbar-nav float-xs-right\" [ngClass]=\"{'collapse':!collapsed}\">\n      <li class=\"nav-item\">\n        <a class=\"nav-link home\" routerLink=\"\" routerLinkActive=\"active\" [routerLinkActiveOptions]=\"{exact:true}\" (click)=\"updateTabMenu(true)\">Home</a>\n      </li>\n      <li class=\"nav-item\">\n        <a class=\"nav-link orders\" routerLink=\"/orders/requests\" routerLinkActive=\"active\" (click)=\"toggleMenu()\">Ordini</a>\n      </li>\n      <li class=\"nav-item\">\n        <a class=\"nav-link profile\" routerLink=\"/profile/general\" routerLinkActive=\"active\" (click)=\"toggleMenu()\"><i class=\"fa fa-user-circle-o\" aria-hidden=\"true\"> </i> {{auth.profile.fullname}}</a>\n      </li>\n    </ul>\n\n    <!--  Collapsed not authenticated -->\n    <ul *ngIf=\"auth === false && browser && hasRightContainer\" class=\"nav navbar-nav float-xs-right\" [ngClass]=\"{'collapse':!collapsed}\">\n      <li class=\"nav-item\" *ngIf=\"collapsed\">\n        <a class=\"nav-link home\" routerLink=\"\" routerLinkActive=\"active\" [routerLinkActiveOptions]=\"{exact:true}\" (click)=\"updateTabMenu(true)\">Home</a>\n      </li>\n      <li class=\"nav-item register-item\">\n        <a class=\"nav-link profile\" (click)=\"signupAsProfessional()\">Iscriviti come professionista</a>\n      </li>\n      <li class=\"nav-item\">\n        <a class=\"nav-link profile\" (click)=\"getLoginPopup()\">Accedi</a>\n      </li>\n    </ul>\n\n  </div>\n</nav>\n<router-outlet></router-outlet>\n<app-popups></app-popups>\n"
+module.exports = "<nav class=\"navbar navbar-dark navbar-fixed-top bg-inverse\" [ngClass]=\"{'is-search': isFindField}\" (window:resize)=\"onResize()\">\n  <div class=\"container-starbook top-menu\">\n    <a class=\"navbar-brand\" (click)=\"clickBrandLogo()\">\n      <div *ngIf=\"screenWidth > 768\" routerLink=\"\">\n        <img src=\"/assets/images/brand-logo-name-rotated.png\" alt=\"starbook\">\n      </div>\n      <div *ngIf=\"screenWidth < 769\">\n        <img *ngIf=\"!collapsed\" src=\"/assets/images/brand-logo-rotated.png\" alt=\"starbook\">\n        <img *ngIf=\"collapsed\" src=\"/assets/images/brand-logo-right.png\" alt=\"starbook\">\n      </div>\n    </a>\n\n    <div *ngIf=\"hasCenterContainer\" class=\"center-container\">\n      <div class=\"search-block\" *ngIf=\"isFindField\">\n        <p-autoComplete [(ngModel)]=\"findValue\" [suggestions]=\"results\" field=\"title\" scrollHeight=\"250px\" (completeMethod)=\"search($event)\" (onSelect)=\"selectResult(findValue)\" placeholder=\"Cerca un servizio\" minLength=\"0\">\n          <template let-res>\n            <div class=\"search-result\" (click)=\"selectResult(res)\">{{ res.title }}</div>\n          </template>\n        </p-autoComplete>\n        <div class=\"spinner\" *ngIf=\"spinerView\">\n          <svg width='20px' height='20px' xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\" preserveAspectRatio=\"xMidYMid\" class=\"uil-ring\">\n            <rect x=\"0\" y=\"0\" width=\"100\" height=\"100\" fill=\"none\" class=\"bk\"></rect>\n            <circle cx=\"50\" cy=\"50\" r=\"45\" stroke-dasharray=\"169.64600329384882 113.09733552923257\" stroke=\"#3B568D\" fill=\"none\" stroke-width=\"10\">\n              <animateTransform attributeName=\"transform\" type=\"rotate\" values=\"0 50 50;180 50 50;360 50 50;\" keyTimes=\"0;0.5;1\" dur=\"1s\" repeatCount=\"indefinite\" begin=\"0s\"></animateTransform>\n            </circle>\n          </svg>\n        </div>\n        <div class=\"close-container\" *ngIf=\"!spinerView && clearView\">\n          <span class=\"close rounded thick\" (click)=\"clearSearchForm()\"></span>\n        </div>\n        <div class=\"ui-autocomplete-panel empty\" *ngIf=\"results.length === 0 && findValue.length > 0 && isSearched\">\n          <div class=\"no-result\">\n            Il servizio \"{{findValue}}\" non è disponibile\n            <button class=\"suggess-service\" (click)=\"requireService()\">{{newServiceRequest.message}}</button>\n          </div>\n        </div>\n      </div>\n      <div *ngIf=\"!isFindField\" class=\"tagline\">{{tagline}}</div>\n    </div>\n\n    <!--  Collapsed -->\n    <ul *ngIf=\"auth !== false && hasRightContainer\" class=\"nav navbar-nav float-xs-right\" [ngClass]=\"{'collapse':!collapsed}\">\n      <li class=\"nav-item publish-item\">\n        <a class=\"nav-link profile\" (click)=\"pubblishService()\">Pubblica un servizio</a>\n      </li>\n      <li class=\"nav-item\">\n        <a class=\"nav-link home\" routerLink=\"\" routerLinkActive=\"active\" [routerLinkActiveOptions]=\"{exact:true}\" (click)=\"updateTabMenu(true)\">Home</a>\n      </li>\n      <li class=\"nav-item\">\n        <a class=\"nav-link orders\" routerLink=\"/orders/requests\" routerLinkActive=\"active\" (click)=\"toggleMenu()\">Ordini</a>\n      </li>\n      <li class=\"nav-item\">\n        <a class=\"nav-link profile\" routerLink=\"/profile/general\" routerLinkActive=\"active\" (click)=\"toggleMenu()\"><i class=\"fa fa-user-circle-o\" aria-hidden=\"true\"> </i> {{auth.profile.fullname}}</a>\n      </li>\n    </ul>\n\n    <!--  Collapsed not authenticated -->\n    <ul *ngIf=\"auth === false && browser && hasRightContainer\" class=\"nav navbar-nav float-xs-right\" [ngClass]=\"{'collapse':!collapsed}\">\n      <li class=\"nav-item\" *ngIf=\"collapsed\">\n        <a class=\"nav-link home\" routerLink=\"\" routerLinkActive=\"active\" [routerLinkActiveOptions]=\"{exact:true}\" (click)=\"updateTabMenu(true)\">Home</a>\n      </li>\n      <li class=\"nav-item publish-item\">\n        <a class=\"nav-link profile\" (click)=\"pubblishService()\">Pubblica un servizio</a>\n      </li>\n      <!-- <li class=\"nav-item register-item\">\n        <a class=\"nav-link profile\" (click)=\"signupAsProfessional()\">Iscriviti come professionista</a>\n      </li> -->\n      <li class=\"nav-item\">\n        <a class=\"nav-link profile\" (click)=\"getLoginPopup()\">Accedi</a>\n      </li>\n    </ul>\n\n  </div>\n</nav>\n<router-outlet></router-outlet>\n<app-popups></app-popups>\n"
 
 /***/ },
 
@@ -9184,7 +9460,7 @@ module.exports = "<div class=\"help-container\">\n  <h1>Aiuto e Assistenza</h1>\
 /***/ 725:
 /***/ function(module, exports) {
 
-module.exports = "<div class=\"insert-container\">\n  <div class=\"progress-container\">\n    <div class=\"progress\"\n    [ngStyle]=\"{'width': setProgressWidth()}\"></div>\n  </div>\n  <button type=\"button\" id=\"next\" class=\"btn btn-success back\" (click)=\"undoStep()\" *ngIf=\"step!=='title'\">Indietro</button>\n  <div class=\"insert-body\" *ngIf=\"step==='title'\">\n    <div class=\"title\">\n      <h1>Inserisci il titolo del servizio</h1>\n      <p>Decidi un titolo breve e chiaro che rende il tuo servizio unico.</p>\n    </div>\n    <form (keyup.enter)=\"saveStep('title')\">\n      <div class=\"input-group\">\n        <input type=\"text\" class=\"form-control\" placeholder=\"titolo\" [ngStyle]=\"{'text-align' : 'center'}\" [(ngModel)]=\"Service.title\" [ngModelOptions]=\"{standalone: true}\">\n      </div>\n      <div class=\"form-group\">\n        <button type=\"button\" id=\"next\" class=\"btn btn-success\" (click)=\"saveStep('title')\">Avanti</button>\n      </div>\n    </form>\n  </div>\n  <div class=\"insert-body\" *ngIf=\"step==='price'\">\n    <div class=\"title\">\n      <h1>Inserisci il prezzo</h1>\n      <p>Decidi il costo per unita di misura del servizio. L'unità di misura può essere: metri, ore, scatole ecc.</p>\n    </div>\n    <div class=\"input-group\" [ngStyle]=\"{'width' : '45%', 'float' : 'left'}\">\n      <input type=\"text\" class=\"form-control price\" placeholder=\"0\" [ngStyle]=\"{'text-align' : 'center'}\" [(ngModel)]=\"Service.price\">\n    </div>\n    <div class=\"input-group\" [ngStyle]=\"{'width' : '10%', 'float' : 'left', 'line-height' : '60px'}\">\n      /\n    </div>\n    <span class=\"input-group\" [ngStyle]=\"{'width' : '45%', 'float' : 'left'}\">\n      <input type=\"text\" class=\"form-control unit\" placeholder=\"unità\" [ngStyle]=\"{'text-align' : 'center'}\" [(ngModel)]=\"Service.unit\">\n    </span>\n    <div class=\"form-group\">\n      <button type=\"button\" id=\"next\" class=\"btn btn-success\" (click)=\"saveStep('price')\">Avanti</button>\n    </div>\n  </div>\n  <div class=\"insert-body\" *ngIf=\"step==='picture'\">\n    <div class=\"title\">\n      <h1>Immagine del servizio</h1>\n      <p>Per poter vendere un servizio in modo più semplice e professionale è necessario un ottima immagine.</p>\n    </div>\n    <div class=\"picture-container\" (click)=\"file.click()\">\n      <input type=\"file\" (change)=\"fileEvent($event)\" style=\"display: none;\" #file>\n      <div class=\"picture\">\n        <i *ngIf=\"!logo\" class=\"fa fa-camera\" aria-hidden=\"true\"></i>\n        <img class=\"img-responsive\" [src]=\"logo\" alt=\"Inserisci immagine\">\n      </div>\n    </div>\n    <div class=\"form-group\">\n      <button type=\"button\" id=\"next\" class=\"btn btn-success\" (click)=\"saveStep('picture')\">Avanti</button>\n    </div>\n  </div>\n  <div class=\"insert-body\" *ngIf=\"step==='register'\">\n    <div class=\"title\">\n      <h1>Ultimo passo</h1>\n      <p>Crea il tuo profilo professionale e inizia subito a ricevere richieste.</p>\n    </div>\n    <form>\n      <div class=\"row\">\n        <div class=\"col-md-6\">\n          <div class=\"form-group\">\n            <label for=\"firstNameInput\">Nome</label>\n            <input type=\"firstname\" placeholder=\"Nome\" class=\"form-control\" [ngClass]=\"{'error-input': signup_state.first_name_error}\" id=\"firstNameInput\" [(ngModel)]=\"signupParameters.firstname\" [ngModelOptions]=\"{standalone: true}\">\n            <small class=\"error-message\" *ngIf=\"signup_state.first_name_error\">{{signup_state.first_name_error}}</small>\n          </div>\n        </div>\n        <div class=\"col-md-6\">\n          <div class=\"form-group\">\n            <label for=\"lastNameInput\">Cognome</label>\n            <input type=\"lastname\" placeholder=\"Cognome\" class=\"form-control\" [ngClass]=\"{'error-input': signup_state.last_name_error}\" id=\"lastNameInput\" [(ngModel)]=\"signupParameters.lastname\" [ngModelOptions]=\"{standalone: true}\">\n            <small class=\"error-message\" *ngIf=\"signup_state.last_name_error\">{{signup_state.last_name_error}}</small>\n          </div>\n        </div>\n      </div>\n      <div class=\"form-group\">\n        <label for=\"emailInput\">Email</label>\n        <input type=\"email\" placeholder=\"La tua mail\" class=\"form-control\" [ngClass]=\"{'error-input': signup_state.email_error}\" id=\"emailInput\" [(ngModel)]=\"signupParameters.email\" [ngModelOptions]=\"{standalone: true}\">\n        <small class=\"error-message\" *ngIf=\"signup_state.email_error\">{{signup_state.email_error}}</small>\n      </div>\n      <!-- <div class=\"form-group\">\n        <label for=\"professionInput\">Professione</label>\n        <input type=\"profession\" placeholder=\"La tua professione\" class=\"form-control\" id=\"professionInput\" [(ngModel)]=\"profession\" [ngModelOptions]=\"{standalone: true}\">\n      </div> -->\n      <div class=\"form-group\">\n        <label for=\"phoneInput\">Telefono</label>\n        <input type=\"phone\" placeholder=\"Numero di telefono\" class=\"form-control\" [ngClass]=\"{'error-input': signup_state.phone_error}\" id=\"phoneInput\" [(ngModel)]=\"signupParameters.phone\" [ngModelOptions]=\"{standalone: true}\">\n        <small class=\"error-message\" *ngIf=\"signup_state.phone_error\">{{signup_state.phone_error}}</small>\n      </div>\n      <div class=\"form-group\">\n        <label for=\"passwordInput\">Password</label>\n        <input type=\"password\" placeholder=\"Password\" class=\"form-control\" [ngClass]=\"{'error-input': signup_state.password_error}\" id=\"passwordInput\" [(ngModel)]=\"signupParameters.password\" [ngModelOptions]=\"{standalone: true}\">\n        <small class=\"error-message\" *ngIf=\"signup_state.password_error\">{{signup_state.password_error}}</small>\n      </div>\n      <!-- <div class=\"form-group\">\n        <label for=\"confirmPasswordInput\">Di nuovo la password</label>\n        <input type=\"password\" placeholder=\"Password\" class=\"form-control\" [ngClass]=\"{'error-input': signup_state.confirm_password_error}\" id=\"confirmPasswordInput\" [(ngModel)]=\"signupParameters.confirmPassword\" [ngModelOptions]=\"{standalone: true}\">\n        <small class=\"error-message\" *ngIf=\"signup_state.confirm_password_error\">{{signup_state.confirm_password_error}}</small>\n      </div> -->\n      <div class=\"form-group\" *ngIf=\"signup_state.error_message\">\n        <div class=\"alert alert-danger\" role=\"alert\">{{signup_state.error_message}}</div>\n      </div>\n      <div class=\"form-group\">\n        <button type=\"button\" id=\"next\" class=\"btn btn-success\" (click)=\"saveStep('register')\">Registrati</button>\n      </div>\n      <div class=\"form-group\">\n        <h6><small>Continuando dichiari di aver letto e accetti le <a routerlink=\"/info/legal\" href=\"/info/legal\" target=\"_blank\">condizioni generali e l’informativa sulla privacy</a></small></h6>\n      </div>\n    </form>\n    <!-- <div class=\"form-group\">\n      <button type=\"button\" id=\"next\" class=\"btn btn-success\" (click)=\"saveStep('register')\">Avanti</button>\n    </div> -->\n    <!-- <div class=\"signup-container\">\n      <div class=\"picture-container\" (click)=\"file.click()\">\n        <input type=\"file\" (change)=\"fileEvent($event)\" style=\"display: none;\" #file>\n        <div class=\"picture\">\n          <i *ngIf=\"!logo\" class=\"fa fa-camera\" aria-hidden=\"true\"></i>\n          <img class=\"img-responsive\" [src]=\"logo\" alt=\"Inserisci immagine\">\n        </div>\n      </div>\n    </div> -->\n  </div>\n  <div class=\"insert-body\" *ngIf=\"step==='login'\">\n    <div class=\"title\">\n      <h1>Immagine del servizio</h1>\n      <p>Per poter vendere un servizio in modo più semplice e professionale è necessario un ottima immagine.</p>\n    </div>\n    <div class=\"signup-container\">\n      <div class=\"picture-container\" (click)=\"file.click()\">\n        <input type=\"file\" (change)=\"fileEvent($event)\" style=\"display: none;\" #file>\n        <div class=\"picture\">\n          <i *ngIf=\"!logo\" class=\"fa fa-camera\" aria-hidden=\"true\"></i>\n          <img class=\"img-responsive\" [src]=\"logo\" alt=\"Inserisci immagine\">\n        </div>\n      </div>\n      <div class=\"form-group\">\n        <button type=\"button\" id=\"next\" class=\"btn btn-success\" (click)=\"saveStep('login')\">Avanti</button>\n      </div>\n    </div>\n  </div>\n  <div class=\"insert-body\" *ngIf=\"step==='end'\">\n    <div class=\"title\">\n      <h1>Fine</h1>\n      <p>Hai pubblicato con successo un servizio. Il servizio verra verificato.</p>\n    </div>\n  </div>\n</div>\n"
+module.exports = "<div class=\"insert-container\">\n  <div class=\"progress-container\" *ngIf=\"step\">\n    <div class=\"progress\"\n    [ngStyle]=\"{'width': setProgressWidth()}\"></div>\n  </div>\n  <button type=\"button\" id=\"next\" class=\"btn btn-success back\" (click)=\"undoStep()\" *ngIf=\"step && step!=='title' && step!=='end'\">Indietro</button>\n\n  <div class=\"insert\" *ngIf=\"step==='intro'\">\n  </div>\n\n  <div class=\"insert\" *ngIf=\"step==='title'\">\n    <div class=\"insert-header\">\n      <h1>Inserisci il titolo del servizio</h1>\n      <p>Un titolo breve e chiaro può rendere il tuo servizio unico e più ricercato.</p>\n    </div>\n    <div class=\"insert-body\">\n      <form (keyup.enter)=\"nextStep()\">\n        <div class=\"input-group\">\n          <input type=\"text\" class=\"form-control\" placeholder=\"titolo\" [ngStyle]=\"{'text-align' : 'center'}\" [(ngModel)]=\"Service.title\" [ngModelOptions]=\"{standalone: true}\">\n        </div>\n        <div class=\"form-group error\">\n          <span class=\"error-text\" *ngIf=\"state.title_error\">{{state.title_error}}</span>\n        </div>\n        <div class=\"actions\">\n          <div class=\"form-group text-center\">\n            <button type=\"button\" id=\"next\" class=\"btn btn-success\" (click)=\"nextStep()\">Avanti</button>\n          </div>\n        </div>\n      </form>\n    </div>\n  </div>\n  <div class=\"insert\" *ngIf=\"step==='pricing'\">\n    <div class=\"insert-header\">\n      <h1>Prezzo per unità</h1>\n      <p>Inserisci il prezzo per unità di misura.</p>\n      <p>(es: 12€/ora, 34€/metro quadro, 51€/pezzo)</p>\n    </div>\n    <div class=\"insert-body\">\n      <form (keyup.enter)=\"nextStep()\">\n        <div class=\"price-per\">\n          <div class=\"input-group\">\n            <input id=\"pricePerUnitInput\" type=\"text\" class=\"form-control price text-center\" placeholder=\"0\" [(ngModel)]=\"Service.price\" [ngModelOptions]=\"{standalone: true}\">\n          </div>\n          <span>x</span>\n          <span class=\"input-group\">\n            <input id=\"unitInput\" type=\"text\" class=\"form-control unit text-center\" placeholder=\"unità\" [(ngModel)]=\"Service.unit\" [ngModelOptions]=\"{standalone: true}\">\n          </span>\n        </div>\n        <div class=\"form-group error\">\n          <span class=\"error-text\" *ngIf=\"state.pricing_error\">{{state.pricing_error}}</span>\n        </div>\n        <div class=\"actions\">\n          <div class=\"form-group text-center\">\n            <button type=\"button\" id=\"next\" class=\"btn btn-success\" (click)=\"nextStep()\">Avanti</button>\n          </div>\n        </div>\n      </form>\n    </div>\n  </div>\n  <div class=\"insert\" *ngIf=\"step==='unit'\">\n    <div class=\"insert-header\">\n      <h1>Inserisci unità di misura</h1>\n      <p>In base che cosa decidi il costo del tuo servizio?</p>\n    </div>\n    <div class=\"insert-body\">\n      <form (keyup.enter)=\"nextStep()\">\n        <span class=\"input-group\">\n          <input id=\"unitInput\" type=\"text\" class=\"form-control unit text-center\" placeholder=\"Ora, giorno, metro quadro o altro?\" [(ngModel)]=\"Service.unit\" [ngModelOptions]=\"{standalone: true}\">\n        </span>\n        <div class=\"form-group text-center\">\n          <button type=\"button\" id=\"next\" class=\"btn btn-success\" (click)=\"nextStep()\">Avanti</button>\n        </div>\n      </form>\n    </div>\n  </div>\n  <div class=\"insert\" *ngIf=\"step==='price'\">\n    <div class=\"insert-header\">\n      <h1>Inserisci un prezzo</h1>\n      <p>Qual è il prezzo del servizio per l'unità di misura che hai scelto?</p>\n    </div>\n    <div class=\"insert-body\">\n      <form (keyup.enter)=\"nextStep()\">\n        <div class=\"input-group\">\n          <input id=\"pricePerUnitInput\" type=\"text\" class=\"form-control price text-center\" placeholder=\"0 €\" [(ngModel)]=\"Service.price\" [ngModelOptions]=\"{standalone: true}\">\n        </div>\n        <div class=\"form-group text-center\">\n          <button type=\"button\" id=\"next\" class=\"btn btn-success\" (click)=\"nextStep()\">Avanti</button>\n        </div>\n      </form>\n    </div>\n  </div>\n  <div class=\"insert\" *ngIf=\"step==='picture'\">\n    <div class=\"insert-header\">\n      <h1>Inserisci un immagine</h1>\n      <p>Le possibilità di ricevere richieste da clienti aumentano significativamente inserendo un immagine di qualità.</p>\n    </div>\n    <div class=\"insert-body\">\n      <form>\n        <div class=\"picture-container\">\n          <input type=\"file\" (change)=\"selectPicture($event)\" style=\"display: none;\" #file>\n          <div class=\"picture\" (click)=\"file.click()\">\n            <i *ngIf=\"!logo\" class=\"fa fa-camera\" aria-hidden=\"true\"></i>\n            <img class=\"img-responsive\" [src]=\"logo\" alt=\"Inserisci immagine\">\n          </div>\n        </div>\n        <div class=\"form-group error\">\n          <span class=\"error-text\" *ngIf=\"state.picture_file_error\">{{state.picture_file_error}}</span>\n        </div>\n        <div class=\"actions\">\n          <div class=\"form-group text-center\">\n            <button type=\"button\" id=\"next\" class=\"btn btn-success\" (click)=\"nextStep()\"><i class=\"fa fa-circle-o-notch animate\" *ngIf=\"state.picture_file_loading\"></i>Pubblica</button>\n          </div>\n        </div>\n      </form>\n    </div>\n  </div>\n\n  <div class=\"insert\" *ngIf=\"step==='preview'\">\n    <div class=\"insert-header\">\n      <h1>Anteprima</h1>\n      <p></p>\n    </div>\n    <div class=\"insert-body\">\n      <form>\n        <div class=\"input-group\">\n          <input type=\"text\" class=\"form-control\" placeholder=\"titolo\" [ngStyle]=\"{'text-align' : 'center'}\" [(ngModel)]=\"Service.title\" [ngModelOptions]=\"{standalone: true}\">\n        </div>\n        <span class=\"input-group\">\n          <input id=\"unitInput\" type=\"text\" class=\"form-control unit text-center\" placeholder=\"Ora, giorno, metro quadro o altro?\" [(ngModel)]=\"Service.unit\" [ngModelOptions]=\"{standalone: true}\">\n        </span>\n        <div class=\"input-group\">\n          <input id=\"pricePerUnitInput\" type=\"text\" class=\"form-control price text-center\" placeholder=\"0\" [(ngModel)]=\"Service.price\" [ngModelOptions]=\"{standalone: true}\">\n        </div>\n        <div class=\"picture-container\">\n          <input type=\"file\" (change)=\"selectPicture($event)\" style=\"display: none;\" #file>\n          <div class=\"picture\" (click)=\"file.click()\">\n            <i *ngIf=\"!logo\" class=\"fa fa-camera\" aria-hidden=\"true\"></i>\n            <img class=\"img-responsive\" [src]=\"logo\" alt=\"Inserisci immagine\">\n          </div>\n        </div>\n        <div class=\"form-group text-center\">\n          <button type=\"button\" id=\"next\" class=\"btn btn-success\" (click)=\"nextStep()\">Pubblica</button>\n        </div>\n      </form>\n    </div>\n  </div>\n\n  <div class=\"insert\" *ngIf=\"step==='register'\">\n    <div class=\"insert-header\">\n      <h1>Ultimo passo</h1>\n      <p>Registrazione</p>\n    </div>\n    <div class=\"insert-body\">\n      <form>\n        <div class=\"form-group\">\n          <label for=\"emailInput\">Email</label>\n          <input type=\"email\" name=\"email\" placeholder=\"La tua mail\" class=\"form-control\" [ngClass]=\"{'error-input': signup_state.email_error}\" id=\"emailInput\" [(ngModel)]=\"signupParameters.email\" [ngModelOptions]=\"{standalone: true}\">\n          <small class=\"error-message\" *ngIf=\"signup_state.email_error\">{{signup_state.email_error}}</small>\n        </div>\n        <div class=\"row\">\n          <div class=\"col-md-6\">\n            <div class=\"form-group\">\n              <label for=\"firstNameInput\">Nome</label>\n              <input type=\"firstname\" name=\"firstnam\" placeholder=\"Nome\" class=\"form-control\" [ngClass]=\"{'error-input': signup_state.first_name_error}\" id=\"firstNameInput\" [(ngModel)]=\"signupParameters.firstname\" [ngModelOptions]=\"{standalone: true}\">\n              <small class=\"error-message\" *ngIf=\"signup_state.first_name_error\">{{signup_state.first_name_error}}</small>\n            </div>\n          </div>\n          <div class=\"col-md-6\">\n            <div class=\"form-group\">\n              <label for=\"lastNameInput\">Cognome</label>\n              <input type=\"lastname\" name=\"lastname\" placeholder=\"Cognome\" class=\"form-control\" [ngClass]=\"{'error-input': signup_state.last_name_error}\" id=\"lastNameInput\" [(ngModel)]=\"signupParameters.lastname\" [ngModelOptions]=\"{standalone: true}\">\n              <small class=\"error-message\" *ngIf=\"signup_state.last_name_error\">{{signup_state.last_name_error}}</small>\n            </div>\n          </div>\n        </div>\n        <div class=\"form-group\">\n          <label for=\"phone\">Telefono</label>\n          <input id=\"phone\" field=\"phone\" type=\"text\" name=\"phone\" placeholder=\"Numero di telefono\" class=\"form-control\" [ngClass]=\"{'error-input': signup_state.phone_error}\" [(ngModel)]=\"signupParameters.phone\" [ngModelOptions]=\"{standalone: true}\">\n          <small class=\"error-message\" *ngIf=\"signup_state.phone_error\">{{signup_state.phone_error}}</small>\n        </div>\n        <div class=\"form-group\">\n          <label for=\"passwordInput\">Crea una password</label>\n          <input type=\"password\" name=\"password\" placeholder=\"Password\" class=\"form-control\" [ngClass]=\"{'error-input': signup_state.password_error}\" id=\"passwordInput\" [(ngModel)]=\"signupParameters.password\" [ngModelOptions]=\"{standalone: true}\">\n          <small class=\"error-message\" *ngIf=\"signup_state.password_error\">{{signup_state.password_error}}</small>\n        </div>\n        <div class=\"form-group\" *ngIf=\"signup_state.error_message\">\n          <div class=\"alert alert-danger\" role=\"alert\">{{signup_state.error_message}}</div>\n        </div>\n        <div class=\"form-group text-center\">\n          <button type=\"button\" id=\"next\" class=\"btn btn-success\" (click)=\"signup()\"><i class=\"fa fa-circle-o-notch animate\" *ngIf=\"signup_state.loading\"></i>{{signup_state.button_title}}</button>\n        </div>\n        <div class=\"form-group footer-group\">\n          <span class=\"text\">Sei gia registrato?</span>\n          <span class=\"text enter\" (click)=\"changeToLogin()\">Entra</span>\n          <span class=\"text\">Continuando dichiari di aver letto e accetti le <a routerlink=\"/info/legal\" href=\"/info/legal\" target=\"_blank\">condizioni generali e l’informativa sulla privacy</a></span>\n        </div>\n      </form>\n    </div>\n  </div>\n  <div class=\"insert\" *ngIf=\"step==='login'\">\n    <div class=\"insert-header\">\n      <h1>Ultimo passo</h1>\n      <p>Entra</p>\n    </div>\n    <div class=\"insert-body\">\n      <form>\n        <div class=\"form-group\">\n          <label for=\"emailInput\">Email</label>\n          <input type=\"email\" placeholder=\"La tua mail\" class=\"form-control\" [ngClass]=\"{'error-input': login_state.email_error}\" id=\"emailInput\" [(ngModel)]=\"loginParameters.email\" [ngModelOptions]=\"{standalone: true}\">\n          <small class=\"error-message\" *ngIf=\"login_state.email_error\">{{login_state.email_error}}</small>\n        </div>\n        <div class=\"form-group\">\n          <label for=\"passwordInput\">Password</label>\n          <input type=\"password\" placeholder=\"Password\" class=\"form-control\" [ngClass]=\"{'error-input': login_state.password_error}\" id=\"passwordInput\" [(ngModel)]=\"loginParameters.password\" [ngModelOptions]=\"{standalone: true}\">\n          <small class=\"error-message\" *ngIf=\"login_state.password_error\">{{login_state.password_error}}</small>\n        </div>\n        <div class=\"form-group\" *ngIf=\"login_state.error_message\">\n          <div class=\"alert alert-danger\" role=\"alert\">{{login_state.error_message}}</div>\n        </div>\n        <div class=\"form-group text-center\">\n          <button type=\"button\" id=\"next\" class=\"btn btn-success\" (click)=\"login()\"><i class=\"fa fa-circle-o-notch animate\" *ngIf=\"login_state.loading\"></i>{{login_state.button_title}}</button>\n        </div>\n        <div class=\"form-group footer-group\">\n          <span class=\"text password-forget\" (click)=\"changeToRecoverPassword()\">Hai dimenticato la password?</span>\n          <span class=\"text\">Non sei ancora registrato?</span>\n          <span class=\"text enter\" (click)=\"changeToSignup()\">Registrati</span>\n        </div>\n      </form>\n    </div>\n  </div>\n  <div class=\"insert\" *ngIf=\"step==='recover'\">\n    <div class=\"insert-header\">\n      <h1>Recupera password</h1>\n      <p>Ti manderemo una mail con il link per cambiare la password.</p>\n    </div>\n    <div class=\"insert-body\">\n      <form>\n        <div class=\"form-group\">\n          <label for=\"emailInput\">Email</label>\n          <input type=\"email\" placeholder=\"La tua mail\" class=\"form-control\" [ngClass]=\"{'error-input': login_state.email_error}\" id=\"emailInput\" [(ngModel)]=\"loginParameters.email\" [ngModelOptions]=\"{standalone: true}\">\n          <small class=\"error-message\" *ngIf=\"login_state.email_error\">{{login_state.email_error}}</small>\n        </div>\n        <div class=\"form-group text-center\">\n          <button type=\"button\" id=\"next\" class=\"btn btn-success\" (click)=\"recoverPassword()\"><i class=\"fa fa-circle-o-notch animate\" *ngIf=\"login_state.loading\"></i>Recupera</button>\n        </div>\n        <div class=\"form-group footer-group\">\n          <span class=\"text enter\" (click)=\"changeToLogin()\">Accedi</span>\n        </div>\n      </form>\n    </div>\n  </div>\n\n  <div class=\"insert\" *ngIf=\"step==='end'\">\n    <div class=\"insert-header\">\n      <h1>Complimenti</h1>\n      <p>Il tuo servizio è stato aggiornato e pubblicato con successo.</p>\n    </div>\n    <div class=\"insert-body\">\n      <div class=\"form-group text-center\">\n        <button type=\"button\" id=\"next\" class=\"btn btn-success\" (click)=\"nextStep()\">Avanti</button>\n      </div>\n    </div>\n  </div>\n"
 
 /***/ },
 
@@ -9226,7 +9502,7 @@ module.exports = "<div class=\"service-container\">\n  <div class=\"service\" *n
 /***/ 731:
 /***/ function(module, exports) {
 
-module.exports = "<div class=\"service-container\" *ngIf=\"Service\">\n  <div class=\"service\">\n    <div class=\"picture-container\">\n      <div class=\"picture\" *ngIf=\"Service._id\" [ngStyle]=\"{'background-image' : ' url(' + 'https://s3-eu-west-1.amazonaws.com/starbook-s3/services/' + Service._id + '/cover/0' + ')'}\"></div>\n      <i class=\"fa fa-facebook\" aria-hidden=\"true\"></i><i class=\"fa fa-twitter\" aria-hidden=\"true\"></i><i class=\"fa fa-envelope\" aria-hidden=\"true\"></i>\n      <span><a href=\"#\">Invia ad un amico</a></span>\n      <!-- <div class=\"description\">\n        <span>{{Service.description}}</span>\n      </div> -->\n    </div>\n    <div class=\"content-container\">\n      <div class=\"content-header\">\n        <span class=\"title\">{{Service.title}}</span>\n        <span class=\"address\"><strong>Milano</strong></span>\n        <!-- <span class=\"subtitle\">{{Service.description}}</span> -->\n      </div>\n      <div class=\"content-body\">\n        <!-- <div class=\"title-container\">\n          <span>Costi</span>\n        </div> -->\n        <div class=\"items\">\n          <div class=\"item\"><i class=\"fa fa-car\" aria-hidden=\"true\"></i><span class=\"text\">Automunito</span></div>\n          <div class=\"item\"><i class=\"fa fa-calendar-check-o\" aria-hidden=\"true\"></i><span class=\"text\">Disponibilità su prenotazione</span></div>\n          <!-- <div class=\"item\"><i class=\"fa fa-clock-o\" aria-hidden=\"true\"></i><span class=\"text\">Durata del lavoro da stabilire</span></div> -->\n          <!-- <div class=\"item\"><i class=\"fa fa-map-marker\" aria-hidden=\"true\"></i><span class=\"text\">Sopralluogo gratuito</span></div> -->\n          <!-- <div class=\"item\"><i class=\"fa fa-credit-card-alt\" aria-hidden=\"true\"></i><span class=\"text\">Pagamento: Carta, Prepagata</span></div> -->\n        </div>\n      </div>\n      <div class=\"content-pricing\">\n        <div class=\"pricing-header\">\n          <span>Calcola il preventivo</span>\n        </div>\n        <div class=\"pricing-body\">\n          <form *ngIf=\"Service.pricing\">\n            <div class=\"input-group\">\n              <span class=\"input-group-addon\">{{Service.pricing.unit.title}}</span>\n              <input class=\"form-control\" type=\"text\" [(ngModel)]=\"OrderService['details'][0].quantity\" (keyup)=\"changeQuantityForOrderService()\" (change)=\"changeQuantityForOrderService()\" [ngModelOptions]=\"{standalone: true}\">\n            </div>\n            <div class=\"option\" *ngFor=\"let option of Service.pricing.options\">\n              <div class=\"title\">\n                <span>{{option.title}}</span>\n              </div>\n              <div class=\"items\">\n                <div class=\"item-container noselect\" *ngFor=\"let item of option.items\" (click)=\"toggleItemOption(item, option)\">\n                  <div class=\"item\" [ngClass]=\"{'checked':orderServiceDetailsContainItem(item)}\">\n                    <span>{{item.title}}</span>\n                  </div>\n                </div>\n              </div>\n            </div>\n          </form>\n        </div>\n        <div class=\"pricing-footer\">\n          <span>Prezzo {{getTotalEstimateQuotation()/100}}€</span>\n        </div>\n        <div class=\"pricing-actions\">\n          <a class=\"btn btn-danger\" name=\"button\" (click)=\"bookService()\">Prenota</a>\n        </div>\n      </div>\n    </div>\n  </div>\n  <!-- <div class=\"review-container\">\n    <p>This is a review</p>\n  </div> -->\n</div>\n<div class=\"footer-container\">\n  <div class=\"footer\">\n    This is the footer\n  </div>\n</div>\n\n\n<!-- <div class=\"service-container\">\n  <div class=\"row\">\n    <div class=\"col-sm-9 col-md-10 main\">\n      <div class=\"tab-container\">\n        <div class=\"cover-container\" *ngIf=\"Service.pricing\">\n          <div class=\"cover-header\">\n            <i class=\"fa fa-facebook\" aria-hidden=\"true\"></i><i class=\"fa fa-twitter\" aria-hidden=\"true\"></i><i class=\"fa fa-envelope\" aria-hidden=\"true\"></i>\n            <span>{{Service.title}}</span>\n          </div>\n          <div class=\"cover-body\" [ngStyle]=\"{'background-image' : ' url(' + 'https://s3-eu-west-1.amazonaws.com/starbook-s3/services/' + Service._id + '/cover/0' + ')'}\"></div>\n          <div class=\"cover-footer\">\n            <div class=\"item\">\n              <span class=\"icon\"><i class=\"fa fa-calendar-check-o\" aria-hidden=\"true\"></i></span><span class=\"text\">Disponibilità su prenotazione</span><br>\n            </div>\n            <div class=\"item\">\n              <span class=\"text\"><i class=\"fa fa-clock-o\" aria-hidden=\"true\"></i> Durata minima</span>\n            </div>\n            <div class=\"item\">\n              <span class=\"text\"><i class=\"fa fa-map-marker\" aria-hidden=\"true\"></i> Sopraluogo</span><br>\n            </div>\n            <div class=\"item\">\n              <span class=\"text\"><i class=\"fa fa-credit-card-alt\" aria-hidden=\"true\"></i> Modalità di pagamento con carta</span>\n            </div>\n          </div>\n        </div>\n        <div class=\"quotation-container\" *ngIf=\"Service.pricing\">\n          <div class=\"quotation-header\">\n            <div class=\"item-container\">\n              <i class=\"fa fa-calendar-check-o\" aria-hidden=\"true\"></i><span class=\"text\">Disponibilità su prenotazione</span><br>\n            </div>\n            <div class=\"item-container\">\n              <i class=\"fa fa-clock-o\" aria-hidden=\"true\"></i><span class=\"text\">Durata lavoro</span>\n            </div>\n            <div class=\"item-container\">\n              <i class=\"fa fa-map-marker\" aria-hidden=\"true\"></i><span class=\"text\">Sopralluogo gratuito</span>\n            </div>\n            <div class=\"item-container\">\n              <i class=\"fa fa-credit-card-alt\" aria-hidden=\"true\"></i><span class=\"text\">Pagamento: Carta, Prepagata</span>\n            </div>\n            <span class=\"left\">Calcola il preventivo</span><span class=\"right\">345€</span>\n          </div>\n          <div class=\"quotation-body\">\n            <div class=\"quantity\">\n              <div class=\"input-group\">\n                <span class=\"input-group-addon\">{{Service.pricing.unit.title}}</span>\n                <input class=\"form-control\" type=\"text\" [(ngModel)]=\"OrderService['details'][0].quantity\" (keyup)=\"changeQuantityForOrderService()\" (change)=\"changeQuantityForOrderService()\">\n              </div>\n            </div>\n            <div class=\"option\" *ngFor=\"let option of Service.pricing.options\">\n              <div class=\"title\">\n                <span>{{option.title}}</span>\n              </div>\n              <div class=\"items\">\n                <div class=\"item-container noselect\" *ngFor=\"let item of option.items\" (click)=\"toggleItemOption(item, option)\">\n                  <div class=\"item\" [ngClass]=\"{'checked':orderServiceDetailsContainItem(item)}\">\n                    <span>{{item.title}}</span>\n                  </div>\n                </div>\n              </div>\n            </div>\n            <div class=\"quantity\" *ngIf=\"control.type==='QUANTITY'\">\n              <span>{{pricing.unit.title}}</span>\n              <div class=\"input-group\">\n                <span class=\"input-group-addon\">{{form.title}}</span>\n                <input class=\"form-control\" type=\"text\" [(ngModel)]=\"control.value\" (keyup)=\"changeValue()\" (change)=\"changeValue()\" (focus)=\"selectAllContent($event)\">\n              </div>\n            </div>\n            <div class=\"price\" *ngIf=\"control.type==='PRICE'\">\n              <div class=\"items-container\">\n                <span class=\"title\">{{form.title}}</span>\n                <div class=\"items\">\n                  <div class=\"item-container\" *ngFor=\"let item of control.items\">\n                    <div class=\"item\">\n                      <span>{{control.title}}</span>\n                    </div>\n                  </div>\n                </div>\n              </div>\n            </div>\n          </div>\n          <div class=\"quotation-footer\">\n            <div class=\"form-group\">\n              <button class=\"btn btn-warning\">{{getTotalEstimateQuotation()/100}}€ CONTINUA</button>\n            </div>\n          </div>\n        </div>\n        <div class=\"masonry-container\">\n          <div class=\"services-block\" *ngFor=\"let serviceCategory of servicesData\">\n            <div class=\"header\">\n              <div class=\"content-header\" *ngIf=\"serviceCategory.image_url && serviceCategory.image_url !== ''\" [ngStyle]=\"{'width': '60%'}\">\n                <h3>{{serviceCategory.title}}</h3>\n                <p *ngIf=\"serviceCategory.description !== ''\">{{serviceCategory.description}}</p>\n              </div>\n              <div class=\"content-header\" *ngIf=\"!serviceCategory.image_url || serviceCategory.image_url === ''\" [ngStyle]=\"{'width': '100%', 'padding-right' : '0px'}\">\n                <h3>{{serviceCategory.title}}</h3>\n                <p *ngIf=\"serviceCategory.description !== ''\">{{serviceCategory.description}}</p>\n              </div>\n              <div *ngIf=\"serviceCategory.image_url && serviceCategory.image_url !== ''\">\n                <img src=\"{{serviceCategory.image_url}}\" alt=\"{{serviceCategory.title}}\">\n              </div>\n              <div *ngIf=\"!serviceCategory.image_url || serviceCategory.image_url == ''\">\n                <img [ngStyle]=\"{'display': 'none'}\">\n              </div>\n            </div>\n            <div class=\"service content noselect\">\n              <span *ngFor=\"let item of serviceCategory.options\">\n                <div class=\"item-container\" *ngIf=\"item.type === 'CHECKBOX' || item.type === 'RADIOBUTTON'\" [ngClass]=\"{'checked':item.selected, 'image-item': item.image_url}\" (click)=\"toggleService(serviceCategory.title, item.title)\">\n                  <div class=\"item\">\n                    <i *ngIf=\"item.selected===true\" class=\"checkbox\"><span></span></i>\n                    <i *ngIf=\"item.selected===false\" class=\"checkbox empty\"></i>\n                    <h4>{{item.title}}</h4>\n                  </div>\n                  <div class=\"item-description\" *ngIf=\"item.description!==''\">\n                    <p>{{ item.description }}</p>\n                  </div>\n                  <div class=\"item-image\" *ngIf=\"item.image_url !== ''\" [ngStyle]=\"{'background-image': 'url(' + item.image_url + ')'}\"></div>\n                  <div class=\"item-image\" *ngIf=\"item.image_url == ''\" [ngStyle]=\"{'display': 'none'}\"></div>\n                </div>\n                <div class=\"input-group\" *ngIf=\"item.type === 'INPUTTEXT'\">\n                  <input type=\"text\" [(ngModel)]=\"servicesData[item.formId].options[item.optionId].input_value\" (keyup)=\"changeValue(item.formId, item.optionId)\" (change)=\"changeValue(item.formId, item.optionId)\" (focus)=\"selectAllContent($event)\">\n                  <span class=\"input-group-addon\">{{servicesData[item.formId].options[item.optionId].value_symbol}}</span>\n                </div>\n              </span>\n            </div>\n          </div>\n        </div>\n      </div>\n      <app-order *ngIf=\"Service.pricing\" [Service]=\"Service\" [orderServices]=\"OrderService\" [orderData]=\"orderData\" [orderIsFull]=\"orderIsFull\" [price_state] = \"price_state\"></app-order>\n    </div>\n  </div>\n</div> -->\n"
+module.exports = "<div class=\"service-container\" *ngIf=\"Service\">\n  <div class=\"service\">\n    <div class=\"picture-container\">\n      <div class=\"picture\" *ngIf=\"Service._id\" [ngStyle]=\"{'background-image' : ' url(' + 'https://s3-eu-west-1.amazonaws.com/starbook-s3/services/' + Service._id + '/cover/0' + ')'}\"></div>\n      <i class=\"fa fa-facebook\" aria-hidden=\"true\"></i><i class=\"fa fa-twitter\" aria-hidden=\"true\"></i><i class=\"fa fa-envelope\" aria-hidden=\"true\"></i>\n      <!-- <span><a href=\"#\">Invia ad un amico</a></span> -->\n      <!-- <div class=\"description\">\n        <span>{{Service.description}}</span>\n      </div> -->\n    </div>\n    <div class=\"content-container\">\n      <div class=\"content-header\">\n        <span class=\"title\">{{Service.title}}</span>\n        <!-- <span class=\"address\"><strong>Milano</strong></span> -->\n        <!-- <span class=\"subtitle\">{{Service.description}}</span> -->\n      </div>\n      <div class=\"content-body\">\n        <!-- <div class=\"title-container\">\n          <span>Costi</span>\n        </div> -->\n        <!-- <div class=\"items\">\n          <div class=\"item\"><i class=\"fa fa-car\" aria-hidden=\"true\"></i><span class=\"text\">Automunito</span></div>\n          <div class=\"item\"><i class=\"fa fa-calendar-check-o\" aria-hidden=\"true\"></i><span class=\"text\">Disponibilità su prenotazione</span></div>\n        </div> -->\n      </div>\n      <div class=\"content-pricing\">\n        <div class=\"pricing-header\">\n          <span>Calcola il preventivo</span>\n        </div>\n        <div class=\"pricing-body\">\n          <form *ngIf=\"Service.pricing\">\n            <div class=\"input-group\">\n              <span class=\"input-group-addon\">{{Service.pricing.unit.title}}</span>\n              <input class=\"form-control\" type=\"text\" [(ngModel)]=\"OrderService['details'][0].quantity\" (keyup)=\"changeQuantityForOrderService()\" (change)=\"changeQuantityForOrderService()\" [ngModelOptions]=\"{standalone: true}\">\n            </div>\n            <div class=\"option\" *ngFor=\"let option of Service.pricing.options\">\n              <div class=\"title\">\n                <span>{{option.title}}</span>\n              </div>\n              <div class=\"items\">\n                <div class=\"item-container noselect\" *ngFor=\"let item of option.items\" (click)=\"toggleItemOption(item, option)\">\n                  <div class=\"item\" [ngClass]=\"{'checked':orderServiceDetailsContainItem(item)}\">\n                    <span>{{item.title}}</span>\n                  </div>\n                </div>\n              </div>\n            </div>\n          </form>\n        </div>\n        <div class=\"pricing-footer\">\n          <span>Prezzo {{getTotalEstimateQuotation()/100}}€</span>\n        </div>\n        <div class=\"pricing-actions\">\n          <a class=\"btn btn-danger\" name=\"button\" (click)=\"bookService()\">Prenota</a>\n        </div>\n      </div>\n    </div>\n  </div>\n  <!-- <div class=\"review-container\">\n    <p>This is a review</p>\n  </div> -->\n</div>\n<div class=\"footer-container\">\n  <div class=\"footer\">\n    This is the footer\n  </div>\n</div>\n\n\n<!-- <div class=\"service-container\">\n  <div class=\"row\">\n    <div class=\"col-sm-9 col-md-10 main\">\n      <div class=\"tab-container\">\n        <div class=\"cover-container\" *ngIf=\"Service.pricing\">\n          <div class=\"cover-header\">\n            <i class=\"fa fa-facebook\" aria-hidden=\"true\"></i><i class=\"fa fa-twitter\" aria-hidden=\"true\"></i><i class=\"fa fa-envelope\" aria-hidden=\"true\"></i>\n            <span>{{Service.title}}</span>\n          </div>\n          <div class=\"cover-body\" [ngStyle]=\"{'background-image' : ' url(' + 'https://s3-eu-west-1.amazonaws.com/starbook-s3/services/' + Service._id + '/cover/0' + ')'}\"></div>\n          <div class=\"cover-footer\">\n            <div class=\"item\">\n              <span class=\"icon\"><i class=\"fa fa-calendar-check-o\" aria-hidden=\"true\"></i></span><span class=\"text\">Disponibilità su prenotazione</span><br>\n            </div>\n            <div class=\"item\">\n              <span class=\"text\"><i class=\"fa fa-clock-o\" aria-hidden=\"true\"></i> Durata minima</span>\n            </div>\n            <div class=\"item\">\n              <span class=\"text\"><i class=\"fa fa-map-marker\" aria-hidden=\"true\"></i> Sopraluogo</span><br>\n            </div>\n            <div class=\"item\">\n              <span class=\"text\"><i class=\"fa fa-credit-card-alt\" aria-hidden=\"true\"></i> Modalità di pagamento con carta</span>\n            </div>\n          </div>\n        </div>\n        <div class=\"quotation-container\" *ngIf=\"Service.pricing\">\n          <div class=\"quotation-header\">\n            <div class=\"item-container\">\n              <i class=\"fa fa-calendar-check-o\" aria-hidden=\"true\"></i><span class=\"text\">Disponibilità su prenotazione</span><br>\n            </div>\n            <div class=\"item-container\">\n              <i class=\"fa fa-clock-o\" aria-hidden=\"true\"></i><span class=\"text\">Durata lavoro</span>\n            </div>\n            <div class=\"item-container\">\n              <i class=\"fa fa-map-marker\" aria-hidden=\"true\"></i><span class=\"text\">Sopralluogo gratuito</span>\n            </div>\n            <div class=\"item-container\">\n              <i class=\"fa fa-credit-card-alt\" aria-hidden=\"true\"></i><span class=\"text\">Pagamento: Carta, Prepagata</span>\n            </div>\n            <span class=\"left\">Calcola il preventivo</span><span class=\"right\">345€</span>\n          </div>\n          <div class=\"quotation-body\">\n            <div class=\"quantity\">\n              <div class=\"input-group\">\n                <span class=\"input-group-addon\">{{Service.pricing.unit.title}}</span>\n                <input class=\"form-control\" type=\"text\" [(ngModel)]=\"OrderService['details'][0].quantity\" (keyup)=\"changeQuantityForOrderService()\" (change)=\"changeQuantityForOrderService()\">\n              </div>\n            </div>\n            <div class=\"option\" *ngFor=\"let option of Service.pricing.options\">\n              <div class=\"title\">\n                <span>{{option.title}}</span>\n              </div>\n              <div class=\"items\">\n                <div class=\"item-container noselect\" *ngFor=\"let item of option.items\" (click)=\"toggleItemOption(item, option)\">\n                  <div class=\"item\" [ngClass]=\"{'checked':orderServiceDetailsContainItem(item)}\">\n                    <span>{{item.title}}</span>\n                  </div>\n                </div>\n              </div>\n            </div>\n            <div class=\"quantity\" *ngIf=\"control.type==='QUANTITY'\">\n              <span>{{pricing.unit.title}}</span>\n              <div class=\"input-group\">\n                <span class=\"input-group-addon\">{{form.title}}</span>\n                <input class=\"form-control\" type=\"text\" [(ngModel)]=\"control.value\" (keyup)=\"changeValue()\" (change)=\"changeValue()\" (focus)=\"selectAllContent($event)\">\n              </div>\n            </div>\n            <div class=\"price\" *ngIf=\"control.type==='PRICE'\">\n              <div class=\"items-container\">\n                <span class=\"title\">{{form.title}}</span>\n                <div class=\"items\">\n                  <div class=\"item-container\" *ngFor=\"let item of control.items\">\n                    <div class=\"item\">\n                      <span>{{control.title}}</span>\n                    </div>\n                  </div>\n                </div>\n              </div>\n            </div>\n          </div>\n          <div class=\"quotation-footer\">\n            <div class=\"form-group\">\n              <button class=\"btn btn-warning\">{{getTotalEstimateQuotation()/100}}€ CONTINUA</button>\n            </div>\n          </div>\n        </div>\n        <div class=\"masonry-container\">\n          <div class=\"services-block\" *ngFor=\"let serviceCategory of servicesData\">\n            <div class=\"header\">\n              <div class=\"content-header\" *ngIf=\"serviceCategory.image_url && serviceCategory.image_url !== ''\" [ngStyle]=\"{'width': '60%'}\">\n                <h3>{{serviceCategory.title}}</h3>\n                <p *ngIf=\"serviceCategory.description !== ''\">{{serviceCategory.description}}</p>\n              </div>\n              <div class=\"content-header\" *ngIf=\"!serviceCategory.image_url || serviceCategory.image_url === ''\" [ngStyle]=\"{'width': '100%', 'padding-right' : '0px'}\">\n                <h3>{{serviceCategory.title}}</h3>\n                <p *ngIf=\"serviceCategory.description !== ''\">{{serviceCategory.description}}</p>\n              </div>\n              <div *ngIf=\"serviceCategory.image_url && serviceCategory.image_url !== ''\">\n                <img src=\"{{serviceCategory.image_url}}\" alt=\"{{serviceCategory.title}}\">\n              </div>\n              <div *ngIf=\"!serviceCategory.image_url || serviceCategory.image_url == ''\">\n                <img [ngStyle]=\"{'display': 'none'}\">\n              </div>\n            </div>\n            <div class=\"service content noselect\">\n              <span *ngFor=\"let item of serviceCategory.options\">\n                <div class=\"item-container\" *ngIf=\"item.type === 'CHECKBOX' || item.type === 'RADIOBUTTON'\" [ngClass]=\"{'checked':item.selected, 'image-item': item.image_url}\" (click)=\"toggleService(serviceCategory.title, item.title)\">\n                  <div class=\"item\">\n                    <i *ngIf=\"item.selected===true\" class=\"checkbox\"><span></span></i>\n                    <i *ngIf=\"item.selected===false\" class=\"checkbox empty\"></i>\n                    <h4>{{item.title}}</h4>\n                  </div>\n                  <div class=\"item-description\" *ngIf=\"item.description!==''\">\n                    <p>{{ item.description }}</p>\n                  </div>\n                  <div class=\"item-image\" *ngIf=\"item.image_url !== ''\" [ngStyle]=\"{'background-image': 'url(' + item.image_url + ')'}\"></div>\n                  <div class=\"item-image\" *ngIf=\"item.image_url == ''\" [ngStyle]=\"{'display': 'none'}\"></div>\n                </div>\n                <div class=\"input-group\" *ngIf=\"item.type === 'INPUTTEXT'\">\n                  <input type=\"text\" [(ngModel)]=\"servicesData[item.formId].options[item.optionId].input_value\" (keyup)=\"changeValue(item.formId, item.optionId)\" (change)=\"changeValue(item.formId, item.optionId)\" (focus)=\"selectAllContent($event)\">\n                  <span class=\"input-group-addon\">{{servicesData[item.formId].options[item.optionId].value_symbol}}</span>\n                </div>\n              </span>\n            </div>\n          </div>\n        </div>\n      </div>\n      <app-order *ngIf=\"Service.pricing\" [Service]=\"Service\" [orderServices]=\"OrderService\" [orderData]=\"orderData\" [orderIsFull]=\"orderIsFull\" [price_state] = \"price_state\"></app-order>\n    </div>\n  </div>\n</div> -->\n"
 
 /***/ },
 

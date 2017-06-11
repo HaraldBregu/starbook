@@ -40,6 +40,9 @@
 
     <!--  Collapsed -->
     <ul *ngIf="auth !== false && hasRightContainer" class="nav navbar-nav float-xs-right" [ngClass]="{'collapse':!collapsed}">
+      <li class="nav-item publish-item">
+        <a class="nav-link profile" (click)="pubblishService()">Pubblica un servizio</a>
+      </li>
       <li class="nav-item">
         <a class="nav-link home" routerLink="" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" (click)="updateTabMenu(true)">Home</a>
       </li>
@@ -56,9 +59,12 @@
       <li class="nav-item" *ngIf="collapsed">
         <a class="nav-link home" routerLink="" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" (click)="updateTabMenu(true)">Home</a>
       </li>
-      <li class="nav-item register-item">
-        <a class="nav-link profile" (click)="signupAsProfessional()">Iscriviti come professionista</a>
+      <li class="nav-item publish-item">
+        <a class="nav-link profile" (click)="pubblishService()">Pubblica un servizio</a>
       </li>
+      <!-- <li class="nav-item register-item">
+        <a class="nav-link profile" (click)="signupAsProfessional()">Iscriviti come professionista</a>
+      </li> -->
       <li class="nav-item">
         <a class="nav-link profile" (click)="getLoginPopup()">Accedi</a>
       </li>

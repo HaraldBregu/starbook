@@ -15,8 +15,8 @@ export class CommonService {
   private category;
 
   constructor(private http: Http/*, private navigationService: NavigationService*/) {
-    this.api = 'https://api.starbook.co/v0.9.1/';
-    // this.api = 'http://localhost/t0.9.1/';
+    // this.api = 'https://api.starbook.co/v0.9.1/';
+    this.api = 'http://localhost/t0.9.1/';
   }
 
   sendServices(services) {
@@ -61,7 +61,6 @@ export class CommonService {
     }).catch(this.handleError);
   }
 
-
   getCategories() {
     // this.navigationService.updateLoadingStatus(true);
     let queryString = 'categories';
@@ -88,6 +87,12 @@ export class CommonService {
     }).catch(this.handleError);
   }
 
+  createService(data) {
+    return this.http.post(this.api + 'services', data, { headers: this._makeHeaders() }).toPromise().then((services) => {
+      return services.json();
+    }).catch(this.handleError);
+  }
+
   getAllServices(query) {
     let params: URLSearchParams = new URLSearchParams();
     if (query) {
@@ -100,7 +105,6 @@ export class CommonService {
     }).catch(this.handleError);
   }
   getServices() {
-    // this.navigationService.updateLoadingStatus(true);
     return this.http.get(this.api + 'featured').toPromise().then((services) => {
       return services.json();
     }).catch(this.handleError);
@@ -131,7 +135,7 @@ export class CommonService {
 
   private _makeHeaders() {
     let headers;
-    if(isBrowser) {
+    if (isBrowser) {
       if (localStorage.getItem('auth') !== null) {
         this.auth = JSON.parse(localStorage.getItem('auth'));
         headers = new Headers({'Token': this.auth.token});
@@ -143,11 +147,31 @@ export class CommonService {
       this.auth = false;
       headers = new Headers({'Token': ''});
     }
-
-    return {headers: headers};
+    return headers;
   }
+
+
   private handleError(error: any): Promise<any> {
     // this.navigationService.updateLoadingStatus(false);
     return Promise.reject(error.message || error);
+  }
+
+  // UTILS
+  saveObjectToLocalWithName(object, name) {
+    if (isBrowser) { localStorage.setItem(name, JSON.stringify(object)); }
+  }
+  readObjectFromLocalWithName(name) {
+    let recovery
+    if (isBrowser) { recovery = localStorage.getItem(name); }
+    return JSON.parse(recovery);
+  }
+  deleteObjectFromLocalWithName(name) {
+    if (isBrowser) { localStorage.removeItem(name); }
+  }
+  guid() {
+    return this.s4() + this.s4() + '-' + this.s4() + '-' + this.s4() + '-' + this.s4() + '-' + this.s4() + this.s4() + this.s4();
+  }
+  s4() {
+    return Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(1);
   }
 }

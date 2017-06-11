@@ -42,12 +42,25 @@ p {
   letter-spacing: 0.11px !important;
 }
 
-.btn-success, .btn-success:focus {
+.btn-success {
   background: #1abc9c;
   border-radius: 0;
   height: 50px;
   border: 0;
-  color: white;
+  color: white !important;
+  font-size: 22px;
+  font-family: $font-name;
+  font-weight: 400;
+  outline: none !important;
+  padding: 0;
+  line-height: 50px;
+}
+.btn-success:focus {
+  background: #1abc9c;
+  border-radius: 0;
+  height: 50px;
+  border: 0;
+  color: white !important;
   font-size: 22px;
   font-family: $font-name;
   font-weight: 400;
@@ -267,13 +280,6 @@ p {
 
 
 
-.form-group label {
-  color: black;
-  font-size: 16px;
-  font-weight: 600;
-  padding: 0 0 0 11px;
-  margin-bottom: 4px;
-}
 .form-control {
   color: black;
   font-size: 16px;
@@ -326,6 +332,10 @@ textarea.form-control {
 .form-group .error-input {
   border: 2px solid #f75c4b !important;
 }
+.form-group .error-message {
+  color: #f75c4b;
+}
+
 .form-group .form-control:focus {
   color: black;
 }
@@ -333,11 +343,11 @@ textarea.form-control {
   height: 50px !important;
   border: 1px solid #cbd3d5 !important;
 }
-.form-group label {
+.form-group label, .input-group label {
   color: #212121 !important;
   font-size: 14px !important;
   font-family: $font-name;
-  font-weight: 600 !important;
+  font-weight: 400;
   padding: 0 !important;
   margin-bottom: 5px !important;
 }
@@ -589,6 +599,12 @@ $datepicker-hover-text-color: #ffffff;
 }
 
 // UTILS
+.left {
+  float: left;
+}
+.right {
+  float: right;
+}
 .text-left {
   text-align: left;
 }
@@ -601,6 +617,7 @@ $datepicker-hover-text-color: #ffffff;
 .text-justify {
   text-align: justify;
 }
+
 .disable-body-scroll {
   overflow: hidden;
 }

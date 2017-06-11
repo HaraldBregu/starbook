@@ -28,10 +28,10 @@ app-insert {
       position: fixed;
       width: 100%;
       background: #edefed;
-      height: 10px;
+      height: 6px;
       z-index: 1;
       .progress {
-        height: 10px;
+        height: 6px;
         background: #1abc9c;
         border-top-right-radius: 15px;
         border-bottom-right-radius: 15px;
@@ -40,24 +40,24 @@ app-insert {
     .back {
       position: fixed;
       left: 0;
-      margin-top: 50px;
+      margin-top: 20px;
       padding: 0 30px;
       text-transform: uppercase;
       font-size: 20px;
       font-weight: 600;
       background: white;
-      color: #16A084;
+      color: #16A084 !important;
     }
-    .insert-body {
-      margin: auto;
-      max-width: 500px;
+    .back:hover {
+      color: white !important;
+    }
+    .insert {
       padding: 80px 10px;
-      text-align: center;
-      .btn {
-        padding: 0 40px;
-      }
-      .title {
-        margin-bottom: 30px;
+      .insert-header {
+        text-align: center;
+        padding-bottom: 30px;
+        max-width: 700px;
+        margin: auto;
         h1 {
           font-weight: 300;
         }
@@ -66,31 +66,86 @@ app-insert {
           margin-top: 20px;
         }
       }
-      .picture-container {
-        margin-bottom: 30px;
-        .picture {
-          // background-size: cover;
-          // background-repeat: no-repeat;
-          // background-position: center;
-          max-width: 260px;
-          height: 360px;
-          background: #f1f1f1;
-          margin: auto;
-          border: 1px solid #DBDBDB;
-          // line-height: 360px;
-          font-size: 30px;
-          color: white;
-          i {
-            position: absolute;
-            margin-left: 111px;
-            margin-top: 153px;
+      .insert-body {
+        margin: auto;
+        max-width: 500px;
+        .error {
+          text-align: center;
+          .error-text {
+            color: #f75c4b;
           }
-          img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            line-height: 440px;
+        }
+        .actions {
+          margin-top: 30px;
+        }
+        .price-per {
+          overflow: auto;
+          .input-group {
+            float: left;
+            width: 47.5%;
           }
+          span {
+            width: 5%;
+            float: left;
+            font-size: 20px;
+            text-align: center;
+            line-height: 60px;
+            font-weight: 300;
+          }
+        }
+        .btn {
+          padding: 0 30px;
+          text-transform: uppercase;
+          font-size: 20px;
+          font-weight: 600;
+          border-radius: 2px;
+        }
+        .picture-container {
+          margin-bottom: 30px;
+          .picture {
+            // background-size: cover;
+            // background-repeat: no-repeat;
+            // background-position: center;
+            max-width: 288px;
+            height: 360px;
+            background: #f1f1f1;
+            margin: auto;
+            // border: 1px solid #DBDBDB;
+            // line-height: 360px;
+            font-size: 30px;
+            color: white;
+            i {
+              position: absolute;
+              margin-left: 129px;
+              margin-top: 153px;
+              color: #d2d2d2;
+            }
+            img {
+              width: 100%;
+              height: 100%;
+              object-fit: cover;
+              line-height: 415px;
+              font-size: 20px;
+              text-align: center;
+              color: #d2d2d2;
+            }
+          }
+        }
+        .footer-group {
+          text-align: center;
+          font-size: 16px;
+          font-weight: 300;
+          padding: 10px 0;
+          .text {
+            display: block;
+          }
+          .enter, .password-forget, .facebook-continue {
+            color: #16a085;
+            font-weight: 400;
+            margin-bottom: 20px;
+            cursor: pointer;
+          }
+
         }
       }
     }

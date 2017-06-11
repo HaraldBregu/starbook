@@ -1,148 +1,263 @@
 <div class="insert-container">
-  <div class="progress-container">
+  <div class="progress-container" *ngIf="step">
     <div class="progress"
     [ngStyle]="{'width': setProgressWidth()}"></div>
   </div>
-  <button type="button" id="next" class="btn btn-success back" (click)="undoStep()" *ngIf="step!=='title'">Indietro</button>
-  <div class="insert-body" *ngIf="step==='title'">
-    <div class="title">
+  <button type="button" id="next" class="btn btn-success back" (click)="undoStep()" *ngIf="step && step!=='title' && step!=='end'">Indietro</button>
+
+  <div class="insert" *ngIf="step==='intro'">
+  </div>
+
+  <div class="insert" *ngIf="step==='title'">
+    <div class="insert-header">
       <h1>Inserisci il titolo del servizio</h1>
-      <p>Decidi un titolo breve e chiaro che rende il tuo servizio unico.</p>
+      <p>Un titolo breve e chiaro può rendere il tuo servizio unico e più ricercato.</p>
     </div>
-    <form (keyup.enter)="saveStep('title')">
-      <div class="input-group">
-        <input type="text" class="form-control" placeholder="titolo" [ngStyle]="{'text-align' : 'center'}" [(ngModel)]="Service.title" [ngModelOptions]="{standalone: true}">
-      </div>
-      <div class="form-group">
-        <button type="button" id="next" class="btn btn-success" (click)="saveStep('title')">Avanti</button>
-      </div>
-    </form>
-  </div>
-  <div class="insert-body" *ngIf="step==='price'">
-    <div class="title">
-      <h1>Inserisci il prezzo</h1>
-      <p>Decidi il costo per unita di misura del servizio. L'unità di misura può essere: metri, ore, scatole ecc.</p>
-    </div>
-    <div class="input-group" [ngStyle]="{'width' : '45%', 'float' : 'left'}">
-      <input type="text" class="form-control price" placeholder="0" [ngStyle]="{'text-align' : 'center'}" [(ngModel)]="Service.price">
-    </div>
-    <div class="input-group" [ngStyle]="{'width' : '10%', 'float' : 'left', 'line-height' : '60px'}">
-      /
-    </div>
-    <span class="input-group" [ngStyle]="{'width' : '45%', 'float' : 'left'}">
-      <input type="text" class="form-control unit" placeholder="unità" [ngStyle]="{'text-align' : 'center'}" [(ngModel)]="Service.unit">
-    </span>
-    <div class="form-group">
-      <button type="button" id="next" class="btn btn-success" (click)="saveStep('price')">Avanti</button>
+    <div class="insert-body">
+      <form (keyup.enter)="nextStep()">
+        <div class="input-group">
+          <input type="text" class="form-control" placeholder="titolo" [ngStyle]="{'text-align' : 'center'}" [(ngModel)]="Service.title" [ngModelOptions]="{standalone: true}">
+        </div>
+        <div class="form-group error">
+          <span class="error-text" *ngIf="state.title_error">{{state.title_error}}</span>
+        </div>
+        <div class="actions">
+          <div class="form-group text-center">
+            <button type="button" id="next" class="btn btn-success" (click)="nextStep()">Avanti</button>
+          </div>
+        </div>
+      </form>
     </div>
   </div>
-  <div class="insert-body" *ngIf="step==='picture'">
-    <div class="title">
-      <h1>Immagine del servizio</h1>
-      <p>Per poter vendere un servizio in modo più semplice e professionale è necessario un ottima immagine.</p>
+  <div class="insert" *ngIf="step==='pricing'">
+    <div class="insert-header">
+      <h1>Prezzo per unità</h1>
+      <p>Inserisci il prezzo per unità di misura.</p>
+      <p>(es: 12€/ora, 34€/metro quadro, 51€/pezzo)</p>
     </div>
-    <div class="picture-container" (click)="file.click()">
-      <input type="file" (change)="fileEvent($event)" style="display: none;" #file>
-      <div class="picture">
-        <i *ngIf="!logo" class="fa fa-camera" aria-hidden="true"></i>
-        <img class="img-responsive" [src]="logo" alt="Inserisci immagine">
-      </div>
-    </div>
-    <div class="form-group">
-      <button type="button" id="next" class="btn btn-success" (click)="saveStep('picture')">Avanti</button>
+    <div class="insert-body">
+      <form (keyup.enter)="nextStep()">
+        <div class="price-per">
+          <div class="input-group">
+            <input id="pricePerUnitInput" type="text" class="form-control price text-center" placeholder="0" [(ngModel)]="Service.price" [ngModelOptions]="{standalone: true}">
+          </div>
+          <span>x</span>
+          <span class="input-group">
+            <input id="unitInput" type="text" class="form-control unit text-center" placeholder="unità" [(ngModel)]="Service.unit" [ngModelOptions]="{standalone: true}">
+          </span>
+        </div>
+        <div class="form-group error">
+          <span class="error-text" *ngIf="state.pricing_error">{{state.pricing_error}}</span>
+        </div>
+        <div class="actions">
+          <div class="form-group text-center">
+            <button type="button" id="next" class="btn btn-success" (click)="nextStep()">Avanti</button>
+          </div>
+        </div>
+      </form>
     </div>
   </div>
-  <div class="insert-body" *ngIf="step==='register'">
-    <div class="title">
+  <div class="insert" *ngIf="step==='unit'">
+    <div class="insert-header">
+      <h1>Inserisci unità di misura</h1>
+      <p>In base che cosa decidi il costo del tuo servizio?</p>
+    </div>
+    <div class="insert-body">
+      <form (keyup.enter)="nextStep()">
+        <span class="input-group">
+          <input id="unitInput" type="text" class="form-control unit text-center" placeholder="Ora, giorno, metro quadro o altro?" [(ngModel)]="Service.unit" [ngModelOptions]="{standalone: true}">
+        </span>
+        <div class="form-group text-center">
+          <button type="button" id="next" class="btn btn-success" (click)="nextStep()">Avanti</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="insert" *ngIf="step==='price'">
+    <div class="insert-header">
+      <h1>Inserisci un prezzo</h1>
+      <p>Qual è il prezzo del servizio per l'unità di misura che hai scelto?</p>
+    </div>
+    <div class="insert-body">
+      <form (keyup.enter)="nextStep()">
+        <div class="input-group">
+          <input id="pricePerUnitInput" type="text" class="form-control price text-center" placeholder="0 €" [(ngModel)]="Service.price" [ngModelOptions]="{standalone: true}">
+        </div>
+        <div class="form-group text-center">
+          <button type="button" id="next" class="btn btn-success" (click)="nextStep()">Avanti</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="insert" *ngIf="step==='picture'">
+    <div class="insert-header">
+      <h1>Inserisci un immagine</h1>
+      <p>Le possibilità di ricevere richieste da clienti aumentano significativamente inserendo un immagine di qualità.</p>
+    </div>
+    <div class="insert-body">
+      <form>
+        <div class="picture-container">
+          <input type="file" (change)="selectPicture($event)" style="display: none;" #file>
+          <div class="picture" (click)="file.click()">
+            <i *ngIf="!logo" class="fa fa-camera" aria-hidden="true"></i>
+            <img class="img-responsive" [src]="logo" alt="Inserisci immagine">
+          </div>
+        </div>
+        <div class="form-group error">
+          <span class="error-text" *ngIf="state.picture_file_error">{{state.picture_file_error}}</span>
+        </div>
+        <div class="actions">
+          <div class="form-group text-center">
+            <button type="button" id="next" class="btn btn-success" (click)="nextStep()"><i class="fa fa-circle-o-notch animate" *ngIf="state.picture_file_loading"></i>Pubblica</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="insert" *ngIf="step==='preview'">
+    <div class="insert-header">
+      <h1>Anteprima</h1>
+      <p></p>
+    </div>
+    <div class="insert-body">
+      <form>
+        <div class="input-group">
+          <input type="text" class="form-control" placeholder="titolo" [ngStyle]="{'text-align' : 'center'}" [(ngModel)]="Service.title" [ngModelOptions]="{standalone: true}">
+        </div>
+        <span class="input-group">
+          <input id="unitInput" type="text" class="form-control unit text-center" placeholder="Ora, giorno, metro quadro o altro?" [(ngModel)]="Service.unit" [ngModelOptions]="{standalone: true}">
+        </span>
+        <div class="input-group">
+          <input id="pricePerUnitInput" type="text" class="form-control price text-center" placeholder="0" [(ngModel)]="Service.price" [ngModelOptions]="{standalone: true}">
+        </div>
+        <div class="picture-container">
+          <input type="file" (change)="selectPicture($event)" style="display: none;" #file>
+          <div class="picture" (click)="file.click()">
+            <i *ngIf="!logo" class="fa fa-camera" aria-hidden="true"></i>
+            <img class="img-responsive" [src]="logo" alt="Inserisci immagine">
+          </div>
+        </div>
+        <div class="form-group text-center">
+          <button type="button" id="next" class="btn btn-success" (click)="nextStep()">Pubblica</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="insert" *ngIf="step==='register'">
+    <div class="insert-header">
       <h1>Ultimo passo</h1>
-      <p>Crea il tuo profilo professionale e inizia subito a ricevere richieste.</p>
+      <p>Registrazione</p>
     </div>
-    <form>
-      <div class="row">
-        <div class="col-md-6">
-          <div class="form-group">
-            <label for="firstNameInput">Nome</label>
-            <input type="firstname" placeholder="Nome" class="form-control" [ngClass]="{'error-input': signup_state.first_name_error}" id="firstNameInput" [(ngModel)]="signupParameters.firstname" [ngModelOptions]="{standalone: true}">
-            <small class="error-message" *ngIf="signup_state.first_name_error">{{signup_state.first_name_error}}</small>
+    <div class="insert-body">
+      <form>
+        <div class="form-group">
+          <label for="emailInput">Email</label>
+          <input type="email" name="email" placeholder="La tua mail" class="form-control" [ngClass]="{'error-input': signup_state.email_error}" id="emailInput" [(ngModel)]="signupParameters.email" [ngModelOptions]="{standalone: true}">
+          <small class="error-message" *ngIf="signup_state.email_error">{{signup_state.email_error}}</small>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="firstNameInput">Nome</label>
+              <input type="firstname" name="firstnam" placeholder="Nome" class="form-control" [ngClass]="{'error-input': signup_state.first_name_error}" id="firstNameInput" [(ngModel)]="signupParameters.firstname" [ngModelOptions]="{standalone: true}">
+              <small class="error-message" *ngIf="signup_state.first_name_error">{{signup_state.first_name_error}}</small>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="lastNameInput">Cognome</label>
+              <input type="lastname" name="lastname" placeholder="Cognome" class="form-control" [ngClass]="{'error-input': signup_state.last_name_error}" id="lastNameInput" [(ngModel)]="signupParameters.lastname" [ngModelOptions]="{standalone: true}">
+              <small class="error-message" *ngIf="signup_state.last_name_error">{{signup_state.last_name_error}}</small>
+            </div>
           </div>
         </div>
-        <div class="col-md-6">
-          <div class="form-group">
-            <label for="lastNameInput">Cognome</label>
-            <input type="lastname" placeholder="Cognome" class="form-control" [ngClass]="{'error-input': signup_state.last_name_error}" id="lastNameInput" [(ngModel)]="signupParameters.lastname" [ngModelOptions]="{standalone: true}">
-            <small class="error-message" *ngIf="signup_state.last_name_error">{{signup_state.last_name_error}}</small>
-          </div>
+        <div class="form-group">
+          <label for="phone">Telefono</label>
+          <input id="phone" field="phone" type="text" name="phone" placeholder="Numero di telefono" class="form-control" [ngClass]="{'error-input': signup_state.phone_error}" [(ngModel)]="signupParameters.phone" [ngModelOptions]="{standalone: true}">
+          <small class="error-message" *ngIf="signup_state.phone_error">{{signup_state.phone_error}}</small>
         </div>
-      </div>
-      <div class="form-group">
-        <label for="emailInput">Email</label>
-        <input type="email" placeholder="La tua mail" class="form-control" [ngClass]="{'error-input': signup_state.email_error}" id="emailInput" [(ngModel)]="signupParameters.email" [ngModelOptions]="{standalone: true}">
-        <small class="error-message" *ngIf="signup_state.email_error">{{signup_state.email_error}}</small>
-      </div>
-      <!-- <div class="form-group">
-        <label for="professionInput">Professione</label>
-        <input type="profession" placeholder="La tua professione" class="form-control" id="professionInput" [(ngModel)]="profession" [ngModelOptions]="{standalone: true}">
-      </div> -->
-      <div class="form-group">
-        <label for="phoneInput">Telefono</label>
-        <input type="phone" placeholder="Numero di telefono" class="form-control" [ngClass]="{'error-input': signup_state.phone_error}" id="phoneInput" [(ngModel)]="signupParameters.phone" [ngModelOptions]="{standalone: true}">
-        <small class="error-message" *ngIf="signup_state.phone_error">{{signup_state.phone_error}}</small>
-      </div>
-      <div class="form-group">
-        <label for="passwordInput">Password</label>
-        <input type="password" placeholder="Password" class="form-control" [ngClass]="{'error-input': signup_state.password_error}" id="passwordInput" [(ngModel)]="signupParameters.password" [ngModelOptions]="{standalone: true}">
-        <small class="error-message" *ngIf="signup_state.password_error">{{signup_state.password_error}}</small>
-      </div>
-      <!-- <div class="form-group">
-        <label for="confirmPasswordInput">Di nuovo la password</label>
-        <input type="password" placeholder="Password" class="form-control" [ngClass]="{'error-input': signup_state.confirm_password_error}" id="confirmPasswordInput" [(ngModel)]="signupParameters.confirmPassword" [ngModelOptions]="{standalone: true}">
-        <small class="error-message" *ngIf="signup_state.confirm_password_error">{{signup_state.confirm_password_error}}</small>
-      </div> -->
-      <div class="form-group" *ngIf="signup_state.error_message">
-        <div class="alert alert-danger" role="alert">{{signup_state.error_message}}</div>
-      </div>
-      <div class="form-group">
-        <button type="button" id="next" class="btn btn-success" (click)="saveStep('register')">Registrati</button>
-      </div>
-      <div class="form-group">
-        <h6><small>Continuando dichiari di aver letto e accetti le <a routerlink="/info/legal" href="/info/legal" target="_blank">condizioni generali e l’informativa sulla privacy</a></small></h6>
-      </div>
-    </form>
-    <!-- <div class="form-group">
-      <button type="button" id="next" class="btn btn-success" (click)="saveStep('register')">Avanti</button>
-    </div> -->
-    <!-- <div class="signup-container">
-      <div class="picture-container" (click)="file.click()">
-        <input type="file" (change)="fileEvent($event)" style="display: none;" #file>
-        <div class="picture">
-          <i *ngIf="!logo" class="fa fa-camera" aria-hidden="true"></i>
-          <img class="img-responsive" [src]="logo" alt="Inserisci immagine">
+        <div class="form-group">
+          <label for="passwordInput">Crea una password</label>
+          <input type="password" name="password" placeholder="Password" class="form-control" [ngClass]="{'error-input': signup_state.password_error}" id="passwordInput" [(ngModel)]="signupParameters.password" [ngModelOptions]="{standalone: true}">
+          <small class="error-message" *ngIf="signup_state.password_error">{{signup_state.password_error}}</small>
         </div>
-      </div>
-    </div> -->
-  </div>
-  <div class="insert-body" *ngIf="step==='login'">
-    <div class="title">
-      <h1>Immagine del servizio</h1>
-      <p>Per poter vendere un servizio in modo più semplice e professionale è necessario un ottima immagine.</p>
-    </div>
-    <div class="signup-container">
-      <div class="picture-container" (click)="file.click()">
-        <input type="file" (change)="fileEvent($event)" style="display: none;" #file>
-        <div class="picture">
-          <i *ngIf="!logo" class="fa fa-camera" aria-hidden="true"></i>
-          <img class="img-responsive" [src]="logo" alt="Inserisci immagine">
+        <div class="form-group" *ngIf="signup_state.error_message">
+          <div class="alert alert-danger" role="alert">{{signup_state.error_message}}</div>
         </div>
-      </div>
-      <div class="form-group">
-        <button type="button" id="next" class="btn btn-success" (click)="saveStep('login')">Avanti</button>
-      </div>
+        <div class="form-group text-center">
+          <button type="button" id="next" class="btn btn-success" (click)="signup()"><i class="fa fa-circle-o-notch animate" *ngIf="signup_state.loading"></i>{{signup_state.button_title}}</button>
+        </div>
+        <div class="form-group footer-group">
+          <span class="text">Sei gia registrato?</span>
+          <span class="text enter" (click)="changeToLogin()">Entra</span>
+          <span class="text">Continuando dichiari di aver letto e accetti le <a routerlink="/info/legal" href="/info/legal" target="_blank">condizioni generali e l’informativa sulla privacy</a></span>
+        </div>
+      </form>
     </div>
   </div>
-  <div class="insert-body" *ngIf="step==='end'">
-    <div class="title">
-      <h1>Fine</h1>
-      <p>Hai pubblicato con successo un servizio. Il servizio verra verificato.</p>
+  <div class="insert" *ngIf="step==='login'">
+    <div class="insert-header">
+      <h1>Ultimo passo</h1>
+      <p>Entra</p>
+    </div>
+    <div class="insert-body">
+      <form>
+        <div class="form-group">
+          <label for="emailInput">Email</label>
+          <input type="email" placeholder="La tua mail" class="form-control" [ngClass]="{'error-input': login_state.email_error}" id="emailInput" [(ngModel)]="loginParameters.email" [ngModelOptions]="{standalone: true}">
+          <small class="error-message" *ngIf="login_state.email_error">{{login_state.email_error}}</small>
+        </div>
+        <div class="form-group">
+          <label for="passwordInput">Password</label>
+          <input type="password" placeholder="Password" class="form-control" [ngClass]="{'error-input': login_state.password_error}" id="passwordInput" [(ngModel)]="loginParameters.password" [ngModelOptions]="{standalone: true}">
+          <small class="error-message" *ngIf="login_state.password_error">{{login_state.password_error}}</small>
+        </div>
+        <div class="form-group" *ngIf="login_state.error_message">
+          <div class="alert alert-danger" role="alert">{{login_state.error_message}}</div>
+        </div>
+        <div class="form-group text-center">
+          <button type="button" id="next" class="btn btn-success" (click)="login()"><i class="fa fa-circle-o-notch animate" *ngIf="login_state.loading"></i>{{login_state.button_title}}</button>
+        </div>
+        <div class="form-group footer-group">
+          <span class="text password-forget" (click)="changeToRecoverPassword()">Hai dimenticato la password?</span>
+          <span class="text">Non sei ancora registrato?</span>
+          <span class="text enter" (click)="changeToSignup()">Registrati</span>
+        </div>
+      </form>
     </div>
   </div>
-</div>
+  <div class="insert" *ngIf="step==='recover'">
+    <div class="insert-header">
+      <h1>Recupera password</h1>
+      <p>Ti manderemo una mail con il link per cambiare la password.</p>
+    </div>
+    <div class="insert-body">
+      <form>
+        <div class="form-group">
+          <label for="emailInput">Email</label>
+          <input type="email" placeholder="La tua mail" class="form-control" [ngClass]="{'error-input': login_state.email_error}" id="emailInput" [(ngModel)]="loginParameters.email" [ngModelOptions]="{standalone: true}">
+          <small class="error-message" *ngIf="login_state.email_error">{{login_state.email_error}}</small>
+        </div>
+        <div class="form-group text-center">
+          <button type="button" id="next" class="btn btn-success" (click)="recoverPassword()"><i class="fa fa-circle-o-notch animate" *ngIf="login_state.loading"></i>Recupera</button>
+        </div>
+        <div class="form-group footer-group">
+          <span class="text enter" (click)="changeToLogin()">Accedi</span>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="insert" *ngIf="step==='end'">
+    <div class="insert-header">
+      <h1>Complimenti</h1>
+      <p>Il tuo servizio è stato aggiornato e pubblicato con successo.</p>
+    </div>
+    <div class="insert-body">
+      <div class="form-group text-center">
+        <button type="button" id="next" class="btn btn-success" (click)="nextStep()">Avanti</button>
+      </div>
+    </div>
+  </div>
