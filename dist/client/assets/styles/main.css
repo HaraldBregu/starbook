@@ -4953,14 +4953,14 @@ app-service {
   app-service .service-container {
     max-width: 1440px;
     margin: auto;
-    padding: 50px 120px 50px;
+    padding: 20px;
     overflow: auto; }
     app-service .service-container .service {
       overflow: auto; }
       app-service .service-container .service .picture-container {
-        overflow: auto;
         float: left;
-        width: 30%; }
+        width: 35%;
+        padding: 20px; }
         app-service .service-container .service .picture-container .picture {
           background-size: cover;
           background-repeat: no-repeat;
@@ -4969,8 +4969,8 @@ app-service {
           height: 500px; }
       app-service .service-container .service .content-container {
         float: left;
-        width: 70%;
-        padding: 10px 40px 0; }
+        width: 65%;
+        padding: 20px; }
         app-service .service-container .service .content-container .content-header {
           border-bottom: 1px solid #DBDBDB;
           padding-bottom: 10px; }
@@ -5070,7 +5070,6 @@ app-service {
           padding: 15px 0; }
           app-service .service-container .service .content-container .content-pricing .pricing-actions .btn {
             padding: 0 40px;
-            font-size: 18px;
             border-radius: 3px;
             background: #D91E18; }
         app-service .service-container .service .content-container .contentactions  {

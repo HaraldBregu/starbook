@@ -8,14 +8,14 @@ app-service {
   .service-container {
     max-width: 1440px;
     margin: auto;
-    padding: 50px 120px 50px;
+    padding: 20px;
     overflow: auto;
     .service {
       overflow: auto;
       .picture-container {
-        overflow: auto;
         float: left;
-        width: 30%;
+        width: 35%;
+        padding: 20px;
         .picture {
           background-size: cover;
           background-repeat: no-repeat;
@@ -26,8 +26,8 @@ app-service {
       }
       .content-container {
         float: left;
-        width: 70%;
-        padding: 10px 40px 0;
+        width: 65%;
+        padding: 20px;
         .content-header {
           border-bottom: 1px solid #DBDBDB;
           padding-bottom: 10px;
@@ -157,7 +157,7 @@ app-service {
             padding: 15px 0;
             .btn {
               padding: 0 40px;
-              font-size: 18px;
+              // font-size: 18px;
               border-radius: 3px;
               background: #D91E18;
             }
