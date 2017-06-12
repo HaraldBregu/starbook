@@ -25,8 +25,8 @@ import { ContactComponent } from './pages/contact/contact.component';
 import { NotfoundComponent } from './pages/notfound/notfound.component';
 
 const routes: Routes = [
-  { path: '', component: LandingComponent },
-  { path: 'category/:category', component: CategoryComponent, data: {isFindField: true} },
+  { path: '', component: LandingComponent, data: { name: 'Landing' } },
+  { path: 'category/:category', component: CategoryComponent, data: { isFindField: true } },
   { path: 'account', component: AccountComponent },
   { path: 'account/:page', component: AccountComponent, data: { name: 'Account' } },
 

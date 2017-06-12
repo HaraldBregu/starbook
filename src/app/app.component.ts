@@ -40,7 +40,7 @@ export class AppComponent implements OnInit, OnDestroy {
   public page = null;
   public hasCenterContainer = true;
   public hasRightContainer = true;
-  public hasPubblishService = true;
+  public hasPublishService = false;
 
   constructor (public router:Router, private route: ActivatedRoute, private authServics: AuthService, private navigationService: NavigationService, private popupsService: PopupsService, private commonService: CommonService, private analyticsService: AnalyticsService, private seoService: SeoService) {
     this.navbarState = false;
@@ -80,19 +80,23 @@ export class AppComponent implements OnInit, OnDestroy {
           this.page = null;
           this.hasCenterContainer = true;
           this.hasRightContainer = true;
-          this.hasPubblishService = true;
+          this.hasPublishService = false;
 
           if ('name' in currentRoute.snapshot.data) {
             var data = currentRoute.snapshot.data;
             var name = data['name'];
             this.page = name;
           }
+          if (this.page === "Landing") {
+            this.hasCenterContainer = false;
+            this.hasPublishService = true;
+          }
           if (this.page === "Insert") {
             this.hasCenterContainer = false;
             this.hasRightContainer = false;
           }
           if (this.page==='Service') {
-            this.hasPubblishService = false;
+            // this.hasPublishService = false;
           }
           if (this.page === "Account") {
             this.hasRightContainer = false;
@@ -143,7 +147,7 @@ export class AppComponent implements OnInit, OnDestroy {
 
   }
 
-  pubblishService() {
+  publishService() {
     this.router.navigate(['insert/title']);
     this.collapsed = false;
   }

@@ -95,7 +95,7 @@ export class ServiceComponent implements OnInit {
   public Service = {}
   public OrderService = {}
 
-  public tabs = ['Descrizione', 'Preventivo', 'Recensioni']
+  public tabs = ['Preventivo', 'Descrizione', 'Recensioni']
   public selectedTab = 'Descrizione'
 
   constructor(private commonService: CommonService, private navigationService: NavigationService, private router: Router, private route: ActivatedRoute, private orderService: OrderService, private analyticsService: AnalyticsService, private seoService: SeoService, private profileService: ProfileService) {}
@@ -202,7 +202,7 @@ export class ServiceComponent implements OnInit {
     this.OrderService['details'] = []
     var detail = {}
     detail['title'] = service['pricing']['unit']['title']
-    detail['quantity'] = 0
+    detail['quantity'] = 1
     detail['price'] = service['pricing']['unit']['price']
     detail['total'] = detail['quantity'] * service['pricing']['unit']['price']
     this.OrderService['details'].push(detail)
@@ -215,7 +215,7 @@ export class ServiceComponent implements OnInit {
   changeQuantityForOrderService() {
     let value = parseInt(this.OrderService['details'][0].quantity);
     if (isNaN(value) || value === 0) {
-      this.OrderService['details'][0].quantity = 0
+      this.OrderService['details'][0].quantity = 1
     } else {
       this.OrderService['details'][0].quantity = value
       this.OrderService['details'][0]['total'] = value * this.OrderService['details'][0]['price']
@@ -367,7 +367,6 @@ export class ServiceComponent implements OnInit {
 
   bookService() {
     // console.log('OrderService: ' + JSON.stringify(this.OrderService));
-
     this.orderService.updateWizardData([this.OrderService]);
     this.router.navigate(['order/summary']);
     return false;
@@ -595,5 +594,9 @@ export class ServiceComponent implements OnInit {
 
   clickTabItem(tab) {
     this.selectedTab = tab;
+  }
+  getPriceStringPerUnit(price) {
+    var p = price/100
+    return '€' + p.toFixed(2)
   }
 }

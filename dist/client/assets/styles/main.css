@@ -3346,8 +3346,8 @@ app-root .container-starbook {
     color: rgba(33, 33, 33, 0.8) !important;
     padding: 0 15px;
     z-index: 2;
-    margin-left: 1px;
-    margin-right: 1px;
+    margin-left: 5px;
+    margin-right: 5px;
     line-height: 50px; }
   app-root .container-starbook .navbar-nav .nav-link:hover,
   app-root .container-starbook .navbar-nav .nav-link.active {
@@ -3373,25 +3373,18 @@ app-root .container-starbook {
   app-root .container-starbook .navbar-nav .register-item:hover {
     background: #da7a08 !important; }
   app-root .container-starbook .navbar-nav .publish-item {
-    background: #e74c3c;
-    padding: 0 10px; }
-    app-root .container-starbook .navbar-nav .publish-item .nav-link {
-      position: relative;
-      font-weight: 500;
-      font-size: 16px;
-      color: #324978 !important;
-      padding: 0 15px;
-      z-index: 2;
-      margin-left: 1px;
-      margin-right: 1px;
-      line-height: 50px;
-      color: white !important;
-      font-weight: 600; }
-    app-root .container-starbook .navbar-nav .publish-item .nav-link:hover,
-    app-root .container-starbook .navbar-nav .publish-item .nav-link.active {
+    position: relative;
+    background: #f1c40f;
+    font-size: 16px;
+    padding: 0 40px;
+    z-index: 2;
+    line-height: 50px;
+    color: white !important;
+    font-weight: 600; }
+    app-root .container-starbook .navbar-nav .publish-item :hover, app-root .container-starbook .navbar-nav .publish-item .active {
       background: transparent; }
   app-root .container-starbook .navbar-nav .publish-item:hover {
-    background: #c0392b !important; }
+    background: #1abc9c !important; }
   app-root .container-starbook .top-menu {
     padding-right: 0 !important;
     overflow-x: visible !important; }

@@ -14,9 +14,9 @@
         <span class="address">da Milano costruzioni</span>
         <!-- <span class="subtitle">{{Service.description}}</span> -->
       </div>
-      <div class="content-body">
-        <span class="price">€345.00</span>
-        <span class="unit"> / metro quadro</span>
+      <div class="content-body" *ngIf="Service.pricing">
+        <span class="price">{{getPriceStringPerUnit(Service.pricing.unit.price)}}</span>
+        <span class="unit"> / {{Service.pricing.unit.title}}</span>
         <div class="actions">
           <button class="btn btn-danger" name="button" (click)="bookService()">Prenota</button>
         </div>
@@ -28,7 +28,7 @@
           </div>
           <div class="description-container" *ngIf="selectedTab==='Descrizione'">
             <div class="description">
-              <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</span>
+              <span>{{Service.description}}</span>
             </div>
           </div>
           <div class="content-pricing" *ngIf="selectedTab==='Preventivo'">
