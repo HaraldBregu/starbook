@@ -59,8 +59,8 @@
       <li class="nav-item" *ngIf="collapsed">
         <a class="nav-link home" routerLink="" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" (click)="updateTabMenu(true)">Home</a>
       </li>
-      <li class="nav-item publish-item" *ngIf="hasPublishService">
-        <a class="nav-link profile" (click)="publishService()">Pubblica un servizio</a>
+      <li class="nav-item" *ngIf="hasPublishService">
+        <a class="nav-link publish-item" (click)="publishService()">Pubblica un servizio</a>
       </li>
       <!-- <li class="nav-item register-item">
         <a class="nav-link profile" (click)="signupAsProfessional()">Iscriviti come professionista</a>
