@@ -78,7 +78,7 @@ p {
 }
 
 .btn-danger {
-  background: #c00;
+  background: #e74c3c;
   border-radius: 0;
   height: 50px;
   border: 0;
@@ -90,11 +90,14 @@ p {
   padding: 0;
   line-height: 50px;
 }
+.btn-danger:focus {
+  background: #e74c3c;
+}
 .btn-danger:active:focus {
-  background-color: #bf0000;
+  background-color: #c0392b;
 }
 .btn-danger:hover {
-  background-color: #bf0000;
+  background-color: #c0392b;
 }
 
 .btn-primary {

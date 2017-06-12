@@ -42,7 +42,7 @@ const routes: Routes = [
   { path: 'contact/:page', component: ContactComponent },
 
   { path: 'services', component: ServicesComponent, data: {isFindField: true} },
-  { path: 'services/:id', component: ServiceComponent, data: {isFindField: true} },
+  { path: 'services/:id', component: ServiceComponent, data: {name: 'Service', isFindField: true} },
 
   { path: 'insert', component: InsertComponent, data: { name: 'Insert' } },
   { path: 'insert/:step', component: InsertComponent, data: { name: 'Insert' } },

@@ -11,47 +11,54 @@
     <div class="content-container">
       <div class="content-header">
         <span class="title">{{Service.title}}</span>
-        <!-- <span class="address"><strong>Milano</strong></span> -->
+        <span class="address">da Milano costruzioni</span>
         <!-- <span class="subtitle">{{Service.description}}</span> -->
       </div>
       <div class="content-body">
-        <!-- <div class="title-container">
-          <span>Costi</span>
-        </div> -->
-        <!-- <div class="items">
-          <div class="item"><i class="fa fa-car" aria-hidden="true"></i><span class="text">Automunito</span></div>
-          <div class="item"><i class="fa fa-calendar-check-o" aria-hidden="true"></i><span class="text">Disponibilità su prenotazione</span></div>
-        </div> -->
-      </div>
-      <div class="content-pricing">
-        <div class="pricing-header">
-          <span>Calcola il preventivo</span>
+        <span class="price">€345.00</span>
+        <span class="unit"> / metro quadro</span>
+        <div class="actions">
+          <button class="btn btn-danger" name="button" (click)="bookService()">Prenota</button>
         </div>
-        <div class="pricing-body">
-          <form *ngIf="Service.pricing">
-            <div class="input-group">
-              <span class="input-group-addon">{{Service.pricing.unit.title}}</span>
-              <input class="form-control" type="text" [(ngModel)]="OrderService['details'][0].quantity" (keyup)="changeQuantityForOrderService()" (change)="changeQuantityForOrderService()" [ngModelOptions]="{standalone: true}">
+        <div class="block-container">
+          <div class="tabbar-container noselect">
+            <ul class="tabbar">
+              <li *ngFor="let tab of tabs; let i=index;" [ngClass]="{'active':tab===selectedTab}" (click)="clickTabItem(tab)">{{tab}}</li>
+            </ul>
+          </div>
+          <div class="description-container" *ngIf="selectedTab==='Descrizione'">
+            <div class="description">
+              <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</span>
             </div>
-            <div class="option" *ngFor="let option of Service.pricing.options">
-              <div class="title">
-                <span>{{option.title}}</span>
-              </div>
-              <div class="items">
-                <div class="item-container noselect" *ngFor="let item of option.items" (click)="toggleItemOption(item, option)">
-                  <div class="item" [ngClass]="{'checked':orderServiceDetailsContainItem(item)}">
-                    <span>{{item.title}}</span>
+          </div>
+          <div class="content-pricing" *ngIf="selectedTab==='Preventivo'">
+            <div class="pricing-header">
+              <span>Calcola il preventivo</span>
+            </div>
+            <div class="pricing-body">
+              <form *ngIf="Service.pricing">
+                <div class="input-group">
+                  <span class="input-group-addon">{{Service.pricing.unit.title}}</span>
+                  <input class="form-control" type="text" [(ngModel)]="OrderService['details'][0].quantity" (keyup)="changeQuantityForOrderService()" (change)="changeQuantityForOrderService()" [ngModelOptions]="{standalone: true}">
+                </div>
+                <div class="option" *ngFor="let option of Service.pricing.options">
+                  <div class="title">
+                    <span>{{option.title}}</span>
+                  </div>
+                  <div class="items">
+                    <div class="item-container noselect" *ngFor="let item of option.items" (click)="toggleItemOption(item, option)">
+                      <div class="item" [ngClass]="{'checked':orderServiceDetailsContainItem(item)}">
+                        <span>{{item.title}}</span>
+                      </div>
+                    </div>
                   </div>
                 </div>
-              </div>
+              </form>
             </div>
-          </form>
-        </div>
-        <div class="pricing-footer">
-          <span>Prezzo {{getTotalEstimateQuotation()/100}}€</span>
-        </div>
-        <div class="pricing-actions">
-          <a class="btn btn-danger" name="button" (click)="bookService()">Prenota</a>
+            <div class="pricing-footer">
+              <span>Prezzo {{getTotalEstimateQuotation()/100}}€</span>
+            </div>
+          </div>
         </div>
       </div>
     </div>

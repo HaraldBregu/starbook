@@ -92,9 +92,11 @@ export class ServiceComponent implements OnInit {
   public Services = []
   public Order = {}
 
-
   public Service = {}
   public OrderService = {}
+
+  public tabs = ['Descrizione', 'Preventivo', 'Recensioni']
+  public selectedTab = 'Descrizione'
 
   constructor(private commonService: CommonService, private navigationService: NavigationService, private router: Router, private route: ActivatedRoute, private orderService: OrderService, private analyticsService: AnalyticsService, private seoService: SeoService, private profileService: ProfileService) {}
 
@@ -589,5 +591,9 @@ export class ServiceComponent implements OnInit {
       this.uncheckAllItems(service.title);
     });
     this.renderPage(this.defaultServices);
+  }
+
+  clickTabItem(tab) {
+    this.selectedTab = tab;
   }
 }

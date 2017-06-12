@@ -35,7 +35,7 @@ app-service {
             display: block;
           }
           .title {
-            font-weight: 500;
+            font-weight: 700;
             font-size: 36px;
           }
           .address {
@@ -49,6 +49,161 @@ app-service {
         }
         .content-body {
           padding: 20px 0;
+          .btn {
+            padding: 0px 60px;
+          }
+          .price {
+            font-size: 36px;
+            font-weight: 600;
+            color: #f1c40f;
+          }
+          .unit {
+            font-size: 16px;
+            font-weight: 300;
+            text-transform: uppercase;
+          }
+          .actions {
+            padding: 20px 0 0;
+          }
+          .block-container {
+            padding: 40px 0;
+            .tabbar-container {
+              display: block;
+              width: 100%;
+              background: white;
+              height: 60px;
+              border-bottom: 1px solid #DBDBDB;
+              z-index: 1024;
+              .tabbar {
+                list-style: none;
+                overflow: hidden;
+                font: 18px Sans-Serif;
+                padding: 0;
+                z-index: 1;
+                max-width: 1100px;
+                margin: 0 auto;
+              }
+              .tabbar li {
+                color: rgba(33, 33, 33, 0.7);
+                float: left;
+                height: 60px;
+                line-height: 60px;
+                margin-right: 40px;
+                text-align: center;
+                font-weight: 300;
+                cursor: pointer;
+              }
+              .tabbar li:hover {
+                color: black;
+              }
+              .tabbar .active {
+                color: rgba(33, 33, 33, 1);
+                border-bottom: 4px solid rgba(33, 33, 33, 1);
+              }
+            }
+            .description-container {
+              padding: 20px 0;
+              .description {
+                span {
+                  font-size: 18px;
+                  line-height: 24px;
+                  color: #484848;
+                  font-weight: 300;
+                }
+              }
+            }
+            .content-pricing {
+              padding: 20px 0;
+              .pricing-header {
+                padding: 10px 20px;
+                // border: 1px solid #DBDBDB;
+                background-color: #3c3f40;
+                color: white;
+                font-weight: 500;
+                font-size: 20px;
+              }
+              .pricing-body {
+                padding: 20px;
+                border-left: 1px solid #DBDBDB;
+                border-right: 1px solid #DBDBDB;
+                border-bottom: 1px solid #DBDBDB;
+                .input-group {
+                  .input-group-addon {
+                    font-size: 16px;
+                    padding: 0 40px;
+                    text-transform: uppercase;
+                    font-weight: 600;
+                    background: white;
+                  }
+                  .form-control {
+                    font-size: 18px;
+                  }
+                }
+                .option {
+                  padding-top: 20px;
+                  .title {
+                    margin-bottom: 10px;
+                    span {
+                      font-size: 22px;
+                      font-weight: 700;
+                      color: #484848;
+                    }
+                  }
+                  .items {
+                    overflow: auto;
+                    text-align: left;
+                    margin: -10px;
+                    .item-container {
+                      box-sizing: border-box;
+                      float: left;
+                      margin: auto;
+                      padding: 10px;
+                      width: calc(100% / 4);
+                      cursor: pointer;
+                      .item {
+                        box-sizing: border-box;
+                        border-radius: 5px;
+                        border: 1px solid #DCDCDC;
+                        padding: 25px 10px;
+                        text-align: center;
+                        color: #484848;
+                        text-transform: uppercase;
+                        span {
+                          font-size: 14px;
+                          font-weight: 600;
+                        }
+                      }
+                      .item:hover {
+                        border: 1px solid #3C3F42;
+                      }
+                      .item:hover.checked , .checked{
+                        border: 1px solid #3498db;
+                        background: #3498db;
+                        color: white;
+                      }
+                    }
+                  }
+                }
+              }
+              .pricing-footer {
+                border-left: 1px solid #DBDBDB;
+                border-right: 1px solid #DBDBDB;
+                border-bottom: 1px solid #DBDBDB;
+                padding: 10px 20px;
+                font-weight: 500;
+                font-size: 20px;
+              }
+              .pricing-actions {
+                padding: 15px 0;
+                .btn {
+                  padding: 0 40px;
+                  // font-size: 18px;
+                  border-radius: 3px;
+                  background: #D91E18;
+                }
+              }
+            }
+          }
           .items {
             padding: 10px 0;
             font-size: 18px;
@@ -71,106 +226,6 @@ app-service {
               font-weight: 500;
               font-size: 20px;
             }
-          }
-        }
-        .content-pricing {
-          .pricing-header {
-            padding: 10px 20px;
-            // border: 1px solid #DBDBDB;
-            background-color: #3c3f40;
-            color: white;
-            font-weight: 500;
-            font-size: 20px;
-          }
-          .pricing-body {
-            padding: 20px;
-            border-left: 1px solid #DBDBDB;
-            border-right: 1px solid #DBDBDB;
-            border-bottom: 1px solid #DBDBDB;
-            .input-group {
-              .input-group-addon {
-                font-size: 16px;
-                padding: 0 40px;
-                text-transform: uppercase;
-                font-weight: 600;
-                background: white;
-              }
-              .form-control {
-                font-size: 18px;
-              }
-            }
-            .option {
-              padding-top: 20px;
-              .title {
-                margin-bottom: 10px;
-                span {
-                  font-size: 22px;
-                  font-weight: 700;
-                  color: #484848;
-                }
-              }
-              .items {
-                overflow: auto;
-                text-align: left;
-                margin: -10px;
-                .item-container {
-                  box-sizing: border-box;
-                  float: left;
-                  margin: auto;
-                  padding: 10px;
-                  width: calc(100% / 4);
-                  cursor: pointer;
-                  .item {
-                    box-sizing: border-box;
-                    border-radius: 5px;
-                    border: 1px solid #DCDCDC;
-                    padding: 25px 10px;
-                    text-align: center;
-                    color: #484848;
-                    text-transform: uppercase;
-                    span {
-                      font-size: 14px;
-                      font-weight: 600;
-                    }
-                  }
-                  .item:hover {
-                    border: 1px solid #3C3F42;
-                  }
-                  .item:hover.checked , .checked{
-                    border: 1px solid #3498db;
-                    background: #3498db;
-                    color: white;
-                  }
-                }
-              }
-            }
-          }
-          .pricing-footer {
-            border-left: 1px solid #DBDBDB;
-            border-right: 1px solid #DBDBDB;
-            border-bottom: 1px solid #DBDBDB;
-            padding: 10px 20px;
-            font-weight: 500;
-            font-size: 20px;
-          }
-          .pricing-actions {
-            padding: 15px 0;
-            .btn {
-              padding: 0 40px;
-              // font-size: 18px;
-              border-radius: 3px;
-              background: #D91E18;
-            }
-          }
-        }
-        .contentactions {
-          padding: 20px 0;
-          overflow: auto;
-          .btn {
-            padding: 0 20px;
-            font-size: 20px;
-            border-radius: 3px;
-            background: #D91E18;
           }
         }
       }
@@ -678,6 +733,12 @@ app-service {
     }
   }
   @media (max-width: 1024px) {
+    .service-container .service .picture-container {
+      width: 40%;
+    }
+    .service-container .service .content-container {
+      width: 60%;
+    }
     .quotation-container .quotation-body .option .items .item-container {
       width: calc(100% / 2);
     }
@@ -710,6 +771,20 @@ app-service {
     }
     .tablet-mobile {
       display: inherit;
+    }
+  }
+  @media (max-width: 768px) {
+    .service-container {
+      padding: 0;
+    }
+    .service-container .service .picture-container {
+      width: 100%;
+    }
+    .service-container .service .picture-container .picture {
+      height: 400px;
+    }
+    .service-container .service .content-container {
+      width: 100%;
     }
   }
   @media (max-width: 645px) {
