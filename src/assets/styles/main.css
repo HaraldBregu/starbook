@@ -4974,16 +4974,26 @@ app-service {
             font-weight: 700;
             font-size: 36px; }
           app-service .service-container .service .content-container .content-header .user {
+            overflow: auto;
             background: white;
             margin-top: 10px;
             margin-left: 10px; }
-            app-service .service-container .service .content-container .content-header .user .fa {
-              font-size: 24px;
-              color: #c3c3c3; }
+            app-service .service-container .service .content-container .content-header .user .avatar {
+              float: left;
+              display: inline-block;
+              background-size: cover;
+              background-repeat: no-repeat;
+              background-position: center;
+              width: 50px;
+              height: 50px;
+              border-radius: 25px;
+              margin-right: 10px; }
             app-service .service-container .service .content-container .content-header .user .username {
+              float: left;
               font-size: 20px;
               font-weight: 400;
-              color: rgba(0, 0, 0, 0.7); }
+              color: rgba(0, 0, 0, 0.7);
+              line-height: 50px; }
           app-service .service-container .service .content-container .content-header .address {
             font-weight: 300;
             font-size: 18px; }
