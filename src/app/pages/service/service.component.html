@@ -3,19 +3,17 @@
     <div class="picture-container">
       <div class="picture" *ngIf="Service._id" [ngStyle]="{'background-image' : ' url(' + 'https://s3-eu-west-1.amazonaws.com/starbook-s3/services/' + Service._id + '/cover/0' + ')'}"></div>
       <!-- <i class="fa fa-facebook" aria-hidden="true"></i><i class="fa fa-twitter" aria-hidden="true"></i><i class="fa fa-envelope" aria-hidden="true"></i> -->
-      <!-- <span><a href="#">Invia ad un amico</a></span> -->
-      <!-- <div class="description">
-        <span>{{Service.description}}</span>
-      </div> -->
     </div>
     <div class="content-container">
       <div class="content-header">
         <span class="title">{{Service.title}}</span>
-        <div class="user"><i class="fa fa-user-circle" aria-hidden="true"></i><span class="username"> Harald Bregu</span></div>
+        <div class="user"><i class="fa fa-user-circle" aria-hidden="true"></i><span class="username"> Luigi Capaldo</span></div>
       </div>
       <div class="content-body" *ngIf="Service.pricing">
+        <span class="cost-description">SPESA IVA INCLUSA</span>
         <span class="price">{{getPriceStringPerUnit(Service.pricing.unit.price)}}</span>
         <span class="unit"> / {{Service.pricing.unit.title}}</span>
+        <span class="cost-information">La spesa è legata in modo unico alla qualità del professionista.</span>
         <div class="actions">
           <button class="btn btn-danger" name="button" (click)="bookService()">Prenota</button>
         </div>
@@ -58,19 +56,40 @@
               <span>Prezzo {{getTotalEstimateQuotation()/100}}€</span>
             </div>
           </div>
+          <div class="content-pricing" *ngIf="selectedTab==='Recensioni'">
+
+          </div>
         </div>
       </div>
     </div>
   </div>
-  <!-- <div class="review-container">
-    <p>This is a review</p>
-  </div> -->
 </div>
-<div class="footer-container">
+<footer class="footer-container">
   <div class="footer">
-    <!-- This is the footer -->
+    <div class="row">
+      <div class="col-md-4">
+        <div class="form-group">
+          <a class="btn btn-warning" name="button" routerLink="/insert/intro">Pubblica un servizio</a>
+        </div>
+        <div class="form-group">
+          <a class="btn btn-success" name="button" routerLink="/requests/service">Richiedi un servizio</a>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <ul>
+          <li><a routerLink="/info/help">Aiuto e Assistenza</a></li>
+          <li><a routerLink="/info/legal">Privacy e Condizioni</a></li>
+        </ul>
+      </div>
+      <div class="col-md-4">
+        <ul>
+          <li><a routerLink="/contact/partner" *ngIf="currentUser">Diventa partner</a></li>
+        </ul>
+      </div>
+    </div>
+    <p class="text-center"><a><strong>Starbook</strong> © 2017 Tutti i diritti riservati</a></p>
   </div>
-</div>
+</footer>
 
 
 <!-- <div class="service-container">

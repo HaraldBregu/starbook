@@ -4981,8 +4981,8 @@ app-service {
               font-size: 24px;
               color: #c3c3c3; }
             app-service .service-container .service .content-container .content-header .user .username {
-              font-size: 24px;
-              font-weight: 300;
+              font-size: 20px;
+              font-weight: 400;
               color: rgba(0, 0, 0, 0.7); }
           app-service .service-container .service .content-container .content-header .address {
             font-weight: 300;
@@ -4991,9 +4991,14 @@ app-service {
             font-weight: 300;
             font-size: 18px; }
         app-service .service-container .service .content-container .content-body {
-          padding: 20px 0; }
+          padding: 40px 0; }
           app-service .service-container .service .content-container .content-body .btn {
-            padding: 0px 60px; }
+            padding: 0px 80px; }
+          app-service .service-container .service .content-container .content-body .cost-description {
+            display: block;
+            font-size: 12px;
+            font-weight: 500;
+            color: #4a4a4a; }
           app-service .service-container .service .content-container .content-body .price {
             font-size: 36px;
             font-weight: 600;
@@ -5002,10 +5007,15 @@ app-service {
             font-size: 16px;
             font-weight: 300;
             text-transform: uppercase; }
+          app-service .service-container .service .content-container .content-body .cost-information {
+            display: block;
+            font-size: 12px;
+            font-weight: 400;
+            color: #4a4a4a; }
           app-service .service-container .service .content-container .content-body .actions {
             padding: 20px 0 0; }
           app-service .service-container .service .content-container .content-body .block-container {
-            padding: 40px 0; }
+            padding: 40px 0 20px; }
             app-service .service-container .service .content-container .content-body .block-container .tabbar-container {
               display: block;
               width: 100%;
@@ -5077,16 +5087,15 @@ app-service {
                     margin: -10px; }
                     app-service .service-container .service .content-container .content-body .block-container .content-pricing .pricing-body .option .items .item-container {
                       box-sizing: border-box;
-                      float: left;
                       margin: auto;
                       padding: 10px;
-                      width: calc(100% / 4);
+                      float: left;
                       cursor: pointer; }
                       app-service .service-container .service .content-container .content-body .block-container .content-pricing .pricing-body .option .items .item-container .item {
                         box-sizing: border-box;
-                        border-radius: 5px;
+                        border-radius: 3px;
                         border: 1px solid #DCDCDC;
-                        padding: 25px 10px;
+                        padding: 10px 20px;
                         text-align: center;
                         color: #484848;
                         text-transform: uppercase; }
@@ -5094,7 +5103,7 @@ app-service {
                           font-size: 14px;
                           font-weight: 600; }
                       app-service .service-container .service .content-container .content-body .block-container .content-pricing .pricing-body .option .items .item-container .item:hover {
-                        border: 1px solid #3C3F42; }
+                        border: 1px solid rgba(60, 63, 66, 0.4); }
                       app-service .service-container .service .content-container .content-body .block-container .content-pricing .pricing-body .option .items .item-container .item:hover.checked, app-service .service-container .service .content-container .content-body .block-container .content-pricing .pricing-body .option .items .item-container .checked {
                         border: 1px solid #3498db;
                         background: #3498db;
@@ -5147,11 +5156,17 @@ app-service {
       padding: 90px 0 0 0;
       margin: 0; }
   app-service .footer-container {
-    padding: 100px 50px; }
+    padding: 60px 50px; }
     app-service .footer-container .footer {
-      max-width: 1440px;
-      margin: auto;
-      overflow: auto; }
+      max-width: 1200px;
+      margin: auto; }
+      app-service .footer-container .footer .btn {
+        line-height: 50px;
+        font-weight: 600;
+        padding: 0 20px;
+        font-size: 20px; }
+      app-service .footer-container .footer ul li {
+        font-size: 18px; }
   app-service .cover-container {
     display: block;
     float: left;
@@ -5536,7 +5551,8 @@ app-service {
     app-service .service-container .service .picture-container .picture {
       height: 400px; }
     app-service .service-container .service .content-container {
-      width: 100%; } }
+      width: 100%;
+      padding-top: 0; } }
   @media (max-width: 645px) {
     app-service .service-container .row {
       padding: 80px 0 0; }

@@ -648,7 +648,7 @@ export class PopupsComponent implements OnInit, OnDestroy {
       }
     }
     if (type === 'registrationPhone') {
-      if (value.length > 9) {
+      if (value.length > 8) {
         this.registrationError.phone = false;
       } else {
         this.registrationError.phone = true;
@@ -768,7 +768,7 @@ export class PopupsComponent implements OnInit, OnDestroy {
     password.length > 0 &&
     firstname.length > 0 &&
     lastname.length > 0 &&
-    phone.length > 9) {
+    phone.length > 8) {
       this.isPopupLoading = true;
       let timeStart = Date.now();
       this.authServics.signup(firstname, lastname, phone, email, password)

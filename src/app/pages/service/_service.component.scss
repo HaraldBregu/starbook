@@ -44,8 +44,8 @@ app-service {
               color: #c3c3c3;
             }
             .username {
-              font-size: 24px;
-              font-weight: 300;
+              font-size: 20px;
+              font-weight: 400;
               color: rgba(0, 0, 0, 0.7);
             }
           }
@@ -59,9 +59,15 @@ app-service {
           }
         }
         .content-body {
-          padding: 20px 0;
+          padding: 40px 0;
           .btn {
-            padding: 0px 60px;
+            padding: 0px 80px;
+          }
+          .cost-description {
+            display: block;
+            font-size: 12px;
+            font-weight: 500;
+            color: #4a4a4a;
           }
           .price {
             font-size: 36px;
@@ -73,11 +79,17 @@ app-service {
             font-weight: 300;
             text-transform: uppercase;
           }
+          .cost-information {
+            display: block;
+            font-size: 12px;
+            font-weight: 400;
+            color: #4a4a4a;
+          }
           .actions {
             padding: 20px 0 0;
           }
           .block-container {
-            padding: 40px 0;
+            padding: 40px 0 20px;
             .tabbar-container {
               display: block;
               width: 100%;
@@ -166,16 +178,16 @@ app-service {
                     margin: -10px;
                     .item-container {
                       box-sizing: border-box;
-                      float: left;
                       margin: auto;
                       padding: 10px;
-                      width: calc(100% / 4);
+                      float: left;
+                      // width: calc(100% / 4);
                       cursor: pointer;
                       .item {
                         box-sizing: border-box;
-                        border-radius: 5px;
+                        border-radius: 3px;
                         border: 1px solid #DCDCDC;
-                        padding: 25px 10px;
+                        padding: 10px 20px;
                         text-align: center;
                         color: #484848;
                         text-transform: uppercase;
@@ -185,7 +197,7 @@ app-service {
                         }
                       }
                       .item:hover {
-                        border: 1px solid #3C3F42;
+                        border: 1px solid rgba(60, 63, 66, 0.4);
                       }
                       .item:hover.checked , .checked{
                         border: 1px solid #3498db;
@@ -263,12 +275,21 @@ app-service {
       margin: 0;
     }
   }
+
   .footer-container {
-    padding: 100px 50px;
+    padding: 60px 50px;
     .footer {
-      max-width: 1440px;
+      max-width: 1200px;
       margin: auto;
-      overflow: auto;
+      .btn {
+        line-height: 50px;
+        font-weight: 600;
+        padding: 0 20px;
+        font-size: 20px;
+      }
+      ul li {
+        font-size: 18px;
+      }
     }
   }
 
@@ -796,6 +817,7 @@ app-service {
     }
     .service-container .service .content-container {
       width: 100%;
+      padding-top: 0;
     }
   }
   @media (max-width: 645px) {

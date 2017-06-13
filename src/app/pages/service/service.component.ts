@@ -97,8 +97,15 @@ export class ServiceComponent implements OnInit {
 
   public tabs = ['Preventivo', 'Descrizione', 'Recensioni']
   public selectedTab = 'Preventivo'
+  public currentUser;
 
-  constructor(private commonService: CommonService, private navigationService: NavigationService, private router: Router, private route: ActivatedRoute, private orderService: OrderService, private analyticsService: AnalyticsService, private seoService: SeoService, private profileService: ProfileService) {}
+  constructor(private commonService: CommonService, private navigationService: NavigationService, private router: Router, private route: ActivatedRoute, private orderService: OrderService, private analyticsService: AnalyticsService, private seoService: SeoService, private profileService: ProfileService) {
+    if (isBrowser) {
+      if (localStorage.getItem('auth')) {
+        this.currentUser = JSON.parse(localStorage.getItem('auth'));
+      }
+    }
+  }
 
   ngOnInit() {
     this.route.params.subscribe(params => {

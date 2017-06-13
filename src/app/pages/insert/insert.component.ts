@@ -5,7 +5,6 @@ import { AuthService } from '../../shared/auth.service';
 import { NavigationService } from '../../shared/navigation.service';
 import { isBrowser } from "angular2-universal";
 import { CommonService } from '../../shared/common.service';
-import { OrderService, IAddress } from '../../order/order.service';
 
 require('aws-sdk/dist/aws-sdk')
 
@@ -67,7 +66,7 @@ export class InsertComponent implements OnInit {
     file_error: null
   }
 
-  constructor(private router: Router, private route: ActivatedRoute, private analyticsService: AnalyticsService, private authService: AuthService, private navigationService: NavigationService, private commonService: CommonService, private orderService: OrderService) {
+  constructor(private router: Router, private route: ActivatedRoute, private analyticsService: AnalyticsService, private authService: AuthService, private navigationService: NavigationService, private commonService: CommonService) {
     this.emailPattern = /^[a-z0-9!#$%&'*+\/=?^_`{|}~.-]+@[a-z0-9]([a-z0-9-]*[a-z0-9])?(\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)*$/i;
   }
 
