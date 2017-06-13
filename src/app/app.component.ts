@@ -148,7 +148,7 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   publishService() {
-    this.router.navigate(['insert/title']);
+    this.router.navigate(['insert/intro']);
     this.collapsed = false;
   }
   signupAsProfessional() {

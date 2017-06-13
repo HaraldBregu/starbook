@@ -96,7 +96,7 @@ export class ServiceComponent implements OnInit {
   public OrderService = {}
 
   public tabs = ['Preventivo', 'Descrizione', 'Recensioni']
-  public selectedTab = 'Descrizione'
+  public selectedTab = 'Preventivo'
 
   constructor(private commonService: CommonService, private navigationService: NavigationService, private router: Router, private route: ActivatedRoute, private orderService: OrderService, private analyticsService: AnalyticsService, private seoService: SeoService, private profileService: ProfileService) {}
 
@@ -115,19 +115,17 @@ export class ServiceComponent implements OnInit {
       // SERVICE
       let service_id = params['id'];
       if (!service_id) {
-        // this.router.navigate(['']);
+        this.router.navigate(['']);
       } else {
         this.Service = {}
         if (isBrowser) {window.scrollTo(0, 0);}
         this.commonService.getServiceById(service_id).then((data) => {
-          // this.renderPage(data.result);
           this.showService(data.result);
         }).catch((error) => {
           let service = this.commonService.getService();
           if (!service) {
-            // this.router.navigate(['']);
+            this.router.navigate(['']);
           } else {
-            // this.renderPage(service);
             this.showService(service);
           }
         });
@@ -215,7 +213,7 @@ export class ServiceComponent implements OnInit {
   changeQuantityForOrderService() {
     let value = parseInt(this.OrderService['details'][0].quantity);
     if (isNaN(value) || value === 0) {
-      this.OrderService['details'][0].quantity = 1
+      this.OrderService['details'][0].quantity = null
     } else {
       this.OrderService['details'][0].quantity = value
       this.OrderService['details'][0]['total'] = value * this.OrderService['details'][0]['price']

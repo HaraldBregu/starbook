@@ -11,8 +11,7 @@
     <div class="content-container">
       <div class="content-header">
         <span class="title">{{Service.title}}</span>
-        <span class="address">da Milano costruzioni</span>
-        <!-- <span class="subtitle">{{Service.description}}</span> -->
+        <div class="user"><i class="fa fa-user-circle" aria-hidden="true"></i><span class="username"> Harald Bregu</span></div>
       </div>
       <div class="content-body" *ngIf="Service.pricing">
         <span class="price">{{getPriceStringPerUnit(Service.pricing.unit.price)}}</span>

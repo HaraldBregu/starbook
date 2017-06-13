@@ -4970,11 +4970,20 @@ app-service {
         app-service .service-container .service .content-container .content-header {
           border-bottom: 1px solid #DBDBDB;
           padding-bottom: 10px; }
-          app-service .service-container .service .content-container .content-header span {
-            display: block; }
           app-service .service-container .service .content-container .content-header .title {
             font-weight: 700;
             font-size: 36px; }
+          app-service .service-container .service .content-container .content-header .user {
+            background: white;
+            margin-top: 10px;
+            margin-left: 10px; }
+            app-service .service-container .service .content-container .content-header .user .fa {
+              font-size: 24px;
+              color: #c3c3c3; }
+            app-service .service-container .service .content-container .content-header .user .username {
+              font-size: 24px;
+              font-weight: 300;
+              color: rgba(0, 0, 0, 0.7); }
           app-service .service-container .service .content-container .content-header .address {
             font-weight: 300;
             font-size: 18px; }
@@ -5572,18 +5581,17 @@ app-services {
   app-services .services {
     max-width: 1440px;
     margin: auto;
-    padding: 50px 0px;
+    padding: 10px 0px;
     text-align: center; }
     app-services .services h1 {
       color: #324978; }
     app-services .services .services-container {
       overflow: hidden;
-      margin: 40px 0 0;
       padding: 0 10px; }
     app-services .services .service-box {
       display: inline-block;
       float: left;
-      width: 25%;
+      width: 20%;
       padding: 10px; }
     app-services .services .service {
       display: block;
@@ -5600,7 +5608,7 @@ app-services {
       z-index: 2;
       font-weight: 900;
       color: white;
-      font-size: 30px;
+      font-size: 25px;
       line-height: 120%;
       white-space: normal !important;
       text-align: left;
@@ -5669,6 +5677,12 @@ app-insert {
       margin: auto; }
       app-insert .insert-container .insert .insert-header h1 {
         font-weight: 300; }
+        app-insert .insert-container .insert .insert-header h1 span {
+          font-weight: 500; }
+        app-insert .insert-container .insert .insert-header h1 .one {
+          color: #2980b9; }
+        app-insert .insert-container .insert .insert-header h1 .two {
+          color: #f39c12; }
       app-insert .insert-container .insert .insert-header p {
         font-weight: 300;
         margin-top: 20px; }
@@ -5703,29 +5717,53 @@ app-insert {
         text-transform: uppercase;
         font-size: 20px;
         font-weight: 600;
-        border-radius: 2px; }
+        border-radius: 2px;
+        height: 60px; }
       app-insert .insert-container .insert .insert-body .picture-container {
         margin-bottom: 30px; }
-        app-insert .insert-container .insert .insert-body .picture-container .picture {
+        app-insert .insert-container .insert .insert-body .picture-container .service-picture {
           max-width: 288px;
           height: 360px;
           background: #f1f1f1;
           margin: auto;
           font-size: 30px;
           color: white; }
-          app-insert .insert-container .insert .insert-body .picture-container .picture i {
+          app-insert .insert-container .insert .insert-body .picture-container .service-picture i {
             position: absolute;
             margin-left: 129px;
             margin-top: 153px;
             color: #d2d2d2; }
-          app-insert .insert-container .insert .insert-body .picture-container .picture img {
+          app-insert .insert-container .insert .insert-body .picture-container .service-picture img {
             width: 100%;
             height: 100%;
             object-fit: cover;
             line-height: 415px;
-            font-size: 20px;
+            font-size: 18px;
             text-align: center;
             color: #d2d2d2; }
+        app-insert .insert-container .insert .insert-body .picture-container .profile-picture {
+          width: 160px;
+          height: 160px;
+          background: #f1f1f1;
+          margin: auto;
+          font-size: 30px;
+          color: white; }
+          app-insert .insert-container .insert .insert-body .picture-container .profile-picture i {
+            position: absolute;
+            margin-left: 65px;
+            margin-top: 65px;
+            color: #d2d2d2; }
+          app-insert .insert-container .insert .insert-body .picture-container .profile-picture img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            line-height: 300px;
+            font-size: 18px;
+            text-align: center;
+            color: transparent; }
+      app-insert .insert-container .insert .insert-body .form-group .ui-inputtext {
+        color: black;
+        font-size: 16px; }
       app-insert .insert-container .insert .insert-body .footer-group {
         text-align: center;
         font-size: 16px;
@@ -5738,7 +5776,26 @@ app-insert {
           font-weight: 400;
           margin-bottom: 20px;
           cursor: pointer; }
+      app-insert .insert-container .insert .insert-body .category-tags {
+        text-align: center; }
+        app-insert .insert-container .insert .insert-body .category-tags .category-example {
+          display: inline-block;
+          height: 40px;
+          line-height: 40px;
+          margin: 5px;
+          border-radius: 20px;
+          background: #eceeef;
+          padding: 0 20px;
+          font-size: 19px;
+          height: 40px;
+          color: rgba(0, 0, 0, 0.5); }
 
+@media (max-width: 425px) {
+  app-insert .insert-container .back {
+    position: relative; }
+
+  app-insert .insert-container .insert {
+    padding-top: 40px; } }
 app-order .sidebar .order-header {
   width: 100%;
   padding: 20px;
@@ -6567,22 +6624,22 @@ app-profile .top-bar {
   padding: 0;
   z-index: 1;
   max-width: 1100px;
-  margin: 0 auto; }
+  margin: 0 auto;
+  padding: 0 15px; }
 app-profile .top-bar li {
   color: rgba(33, 33, 33, 0.7);
   float: left;
   height: 60px;
   line-height: 60px;
-  padding-left: 40px;
-  padding-right: 40px;
   text-align: center;
   font-weight: 300;
-  cursor: pointer; }
+  cursor: pointer;
+  margin-right: 40px; }
 app-profile .top-bar li:hover {
   color: black; }
 app-profile .top-bar .active {
   color: #212121;
-  border-bottom: 4px solid #324977; }
+  border-bottom: 4px solid #212121; }
 app-profile .page-container {
   display: block;
   max-width: 1100px;
@@ -6732,10 +6789,10 @@ app-profile .page-container {
     background: white; } }
 @media (max-width: 480px) {
   app-profile .top-bar li {
-    padding: 0 20px; } }
+    margin-right: 20px; } }
 @media (max-width: 380px) {
   app-profile .top-bar li {
-    padding: 0 10px; } }
+    margin-right: 10px; } }
 
 app-popups .dark-screen {
   display: block;

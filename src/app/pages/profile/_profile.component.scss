@@ -23,24 +23,24 @@ app-profile {
     z-index: 1;
     max-width: 1100px;
     margin: 0 auto;
+    padding: 0 15px;
   }
   .top-bar li {
     color: rgba(33, 33, 33, 0.7);
     float: left;
     height: 60px;
     line-height: 60px;
-    padding-left: 40px;
-    padding-right: 40px;
     text-align: center;
     font-weight: 300;
     cursor: pointer;
+    margin-right: 40px;
   }
   .top-bar li:hover {
     color: black;
   }
   .top-bar .active {
     color: rgba(33, 33, 33, 1);
-    border-bottom: 4px solid #324977;
+    border-bottom: 4px solid #212121;
   }
   .page-container {
     display: block;
@@ -260,12 +260,12 @@ app-profile {
   }
   @media (max-width: 480px) {
     .top-bar li {
-      padding: 0 20px;
+      margin-right: 20px;
     }
   }
   @media (max-width: 380px) {
     .top-bar li {
-      padding: 0 10px;
+      margin-right: 10px;
     }
   }
 }

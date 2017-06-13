@@ -5,6 +5,7 @@ import { AuthService } from '../../shared/auth.service';
 import { NavigationService } from '../../shared/navigation.service';
 import { isBrowser } from "angular2-universal";
 import { CommonService } from '../../shared/common.service';
+import { OrderService, IAddress } from '../../order/order.service';
 
 require('aws-sdk/dist/aws-sdk')
 
@@ -32,7 +33,8 @@ export class InsertComponent implements OnInit {
     lastname: '',
     phone: '',
     email: '',
-    password: ''
+    address: {},
+    password: '',
   }
   public signup_state = {
     loading: false,
@@ -42,7 +44,8 @@ export class InsertComponent implements OnInit {
     first_name_error: null,
     last_name_error: null,
     phone_error: null,
-    password_error: null
+    address_error: null,
+    password_error: null,
   }
   public loginParameters = {
     email: '',
@@ -55,8 +58,16 @@ export class InsertComponent implements OnInit {
     email_error: null,
     password_error: null,
   }
+  public profile_picture = {
+    url: '',
+    file: null
+  }
+  public profile_picture_state = {
+    url_error: '',
+    file_error: null
+  }
 
-  constructor(private router: Router, private route: ActivatedRoute, private analyticsService: AnalyticsService, private authService: AuthService, private navigationService: NavigationService, private commonService: CommonService) {
+  constructor(private router: Router, private route: ActivatedRoute, private analyticsService: AnalyticsService, private authService: AuthService, private navigationService: NavigationService, private commonService: CommonService, private orderService: OrderService) {
     this.emailPattern = /^[a-z0-9!#$%&'*+\/=?^_`{|}~.-]+@[a-z0-9]([a-z0-9-]*[a-z0-9])?(\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)*$/i;
   }
 
@@ -66,23 +77,16 @@ export class InsertComponent implements OnInit {
         window.scrollTo(0, 0)
         this.currentUser = JSON.parse(localStorage.getItem('auth'))
       }
-      // this.checkRouteAndService()
       this.step = params['step']
       if (this.currentUser) {
-        this.steps = ['title', 'pricing', 'picture', 'end']
+        this.steps = ['intro', 'title', 'pricing', 'picture', 'end']
       } else {
-        this.steps = ['title', 'pricing', 'picture', 'register', 'end']
+        this.steps = ['intro', 'title', 'pricing', 'picture', 'register', 'end']
         if (this.step==='register' || this.step==='login' || this.step==='recover') {
-          this.steps[3] = this.step
+          this.steps[4] = this.step
         }
       }
     })
-  }
-
-  setProgressWidth() {
-    var numSteps = this.steps.length;
-    var currentStep = this.steps.indexOf(this.step) + 1
-    return 100/numSteps * currentStep + '%'
   }
 
   undoStep() {
@@ -153,6 +157,7 @@ export class InsertComponent implements OnInit {
     this.authService.signupProfessional(this.signupParameters.firstname, this.signupParameters.lastname, this.signupParameters.phone, this.signupParameters.email, this.signupParameters.password, "VENDOR").then((data) => {
       this.navigationService.updatePersonalMenu(data);
       this.saveServiceForAccountId(data._id)
+      this.saveProfilePictureToPath(this.profile_picture.file, 'accounts/' + data._id + '/avatar/0')
     }).catch((error) => {
       this.analyticsService.sendException(error)
       this.signup_state.loading = false;
@@ -203,8 +208,16 @@ export class InsertComponent implements OnInit {
       }
     })
   }
+  recoverPassword(email) {
+    this.authService.recovery(email).then((status) => {
+
+    }).catch((error) => {
+
+    });
+  }
 
   saveServiceForAccountId(account_id) {
+    if (this.state.picture_file_loading) {return}
     this.state.picture_file_loading = true;
     this.state.picture_file_error = null
     this.Service['supplier_id'] = account_id
@@ -212,12 +225,10 @@ export class InsertComponent implements OnInit {
     this.commonService.createService(this.Service).then((data) => {
       var file = this.Service['picture_file']
       var path = 'services/' + data.result._id + '/cover/0'
-      this.savePictureToPath(file, path)
-    }).catch((error) => {
-      // console.log('error is: ' + JSON.stringify(error));
-    })
+      this.saveServicePictureToPath(file, path)
+    }).catch((error) => {})
   }
-  savePictureToPath(file, path) {
+  saveServicePictureToPath(file, path) {
     let AWSService = (<any>window).AWS;
     AWSService.config.accessKeyId = "AKIAI3TIRNH4DG7MGC7Q";
     AWSService.config.secretAccessKey = "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";
@@ -225,57 +236,74 @@ export class InsertComponent implements OnInit {
     let params = {Bucket: 'starbook-s3', Key:path, Body:file, ACL:"public-read"}
     bucket.upload(params, (error, res) => {
       if (!error) {
-        console.log('res upload file: ' + JSON.stringify(res));
-        // LOGIN STATE
         this.login_state.loading = false;
         this.login_state.button_title = "Accedi";
         this.login_state.error_message = null;
-
-        // SIGNUP STATE
         this.signup_state.loading = false;
         this.signup_state.button_title = "Registrati";
         this.signup_state.error_message = null;
-
-        // PICTURE STATE
         this.state.picture_file_loading = false;
         this.state.picture_file_error = null
-
         this.router.navigate(['insert/end'])
       } else {
-        console.log('error upload file: ' + error);
-
-        // PICTURE STATE
         this.state.picture_file_loading = false;
         this.state.picture_file_error = null
-
         this.router.navigate(['insert/end'])
       }
     })
   }
-  selectPicture(fileInput:any) {
+
+  selectServicePicture(fileInput:any) {
     this.logo = fileInput.target.files[0];
     let reader = new FileReader();
     reader.onload = (e: any) => {
       this.logo = e.target.result;
     }
-    reader.readAsDataURL(fileInput.target.files[0]);
+    reader.readAsDataURL(fileInput.target.files[0])
     this.Service['picture_file'] = this.logo
+    this.state.picture_file_error = null
+  }
+  selectProfilePicture(fileInput:any) {
+    this.profile_picture.url = fileInput.target.files[0];
+    let reader = new FileReader();
+    reader.onload = (e: any) => {
+      this.profile_picture.url = e.target.result;
+    }
+    reader.readAsDataURL(fileInput.target.files[0])
+    this.profile_picture.file = this.profile_picture.url
+    this.profile_picture_state.file_error = null
   }
 
   changeToLogin() {
-    this.steps[3] = 'login'
+    this.steps[4] = 'login'
     this.step = 'login'
     this.router.navigate(['insert/login'])
   }
   changeToSignup() {
-    this.steps[3] = 'register'
+    this.steps[4] = 'register'
     this.step = 'register'
     this.router.navigate(['insert/register'])
   }
   changeToRecoverPassword() {
-    this.steps[3] = 'recover'
+    this.steps[4] = 'recover'
     this.step = 'recover'
     this.router.navigate(['insert/recover'])
+  }
+  saveProfilePictureToPath(file, path) {
+    if (file) {
+      let AWSService = (<any>window).AWS;
+      AWSService.config.accessKeyId = "AKIAI3TIRNH4DG7MGC7Q";
+      AWSService.config.secretAccessKey = "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";
+      let bucket = new AWSService.S3()
+      let params = {Bucket: 'starbook-s3', Key:path, Body:file, ACL:"public-read"}
+      bucket.upload(params, (error, res) => {
+        if (!error) {
+          console.log('res upload file: ' + JSON.stringify(res));
+        } else {
+          console.log('error upload file: ' + error);
+        }
+      })
+    }
   }
 
   // UTILS
@@ -305,5 +333,10 @@ export class InsertComponent implements OnInit {
     } else {
       this.Service['price'] = value
     }
+  }
+  setProgressWidth() {
+    var numSteps = this.steps.length;
+    var currentStep = this.steps.indexOf(this.step) + 1
+    return 100/numSteps * currentStep + '%'
   }
 }

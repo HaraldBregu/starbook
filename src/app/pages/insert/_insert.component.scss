@@ -60,6 +60,15 @@ app-insert {
         margin: auto;
         h1 {
           font-weight: 300;
+          span {
+            font-weight: 500;
+          }
+          .one {
+            color: #2980b9;
+          }
+          .two {
+            color: #f39c12;
+          }
         }
         p {
           font-weight: 300;
@@ -105,19 +114,15 @@ app-insert {
           font-size: 20px;
           font-weight: 600;
           border-radius: 2px;
+          height: 60px;
         }
         .picture-container {
           margin-bottom: 30px;
-          .picture {
-            // background-size: cover;
-            // background-repeat: no-repeat;
-            // background-position: center;
+          .service-picture {
             max-width: 288px;
             height: 360px;
             background: #f1f1f1;
             margin: auto;
-            // border: 1px solid #DBDBDB;
-            // line-height: 360px;
             font-size: 30px;
             color: white;
             i {
@@ -131,11 +136,38 @@ app-insert {
               height: 100%;
               object-fit: cover;
               line-height: 415px;
-              font-size: 20px;
+              font-size: 18px;
               text-align: center;
               color: #d2d2d2;
             }
           }
+          .profile-picture {
+            width: 160px;
+            height: 160px;
+            background: #f1f1f1;
+            margin: auto;
+            font-size: 30px;
+            color: white;
+            i {
+              position: absolute;
+              margin-left: 65px;
+              margin-top: 65px;
+              color: #d2d2d2;
+            }
+            img {
+              width: 100%;
+              height: 100%;
+              object-fit: cover;
+              line-height: 300px;
+              font-size: 18px;
+              text-align: center;
+              color: transparent;
+            }
+          }
+        }
+        .form-group .ui-inputtext {
+          color: black;
+          font-size: 16px;
         }
         .footer-group {
           text-align: center;
@@ -153,7 +185,30 @@ app-insert {
           }
 
         }
+        .category-tags {
+          text-align: center;
+          .category-example {
+            display: inline-block;
+            height: 40px;
+            line-height: 40px;
+            margin: 5px;
+            border-radius: 20px;
+            background: #eceeef;
+            padding: 0 20px;
+            font-size: 19px;
+            height: 40px;
+            color: rgba(0, 0, 0, 0.5);
+          }
+        }
       }
     }
+  }
+}
+@media (max-width: 425px) {
+  app-insert .insert-container .back {
+    position: relative;
+  }
+  app-insert .insert-container .insert {
+    padding-top: 40px;
   }
 }
