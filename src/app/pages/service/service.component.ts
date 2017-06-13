@@ -109,17 +109,6 @@ export class ServiceComponent implements OnInit {
 
   ngOnInit() {
     this.route.params.subscribe(params => {
-      // this.route.queryParams.subscribe((params: Params) => {
-      //   if (!data.referral_id || data.referral_id.length===0) {
-      //     if (params['ref']) {
-      //       data['referral_id'] = params['ref'];
-      //     }
-      //   }
-      //   if (params['estimated']) {
-      //     // console.log('estimated: ' + params['estimated']);
-      //   }
-      // });
-      // SERVICE
       let service_id = params['id'];
       if (!service_id) {
         this.router.navigate(['']);
@@ -137,45 +126,7 @@ export class ServiceComponent implements OnInit {
           }
         });
       }
-
-      // this.commonService.getServiceById(service_id).then((data) => {
-      //   this.renderPage(data.result);
-      // }).catch((error) => {
-      //   this.router.navigate(['']);
-      // });
-      //
-      // let service = this.commonService.getService();
-      //
-      // let service = data.service;
-      // if (service_id) {
-      //   if (isBrowser) {window.scrollTo(0, 0);}
-      //   if (service) {
-      //     this.renderPage(service);
-      //   } else {
-      //     this.commonService.getServiceById(service_id).then((data) => {
-      //       this.renderPage(data.result);
-      //     }).catch((error) => {
-      //       this.router.navigate(['']);
-      //     });
-      //   }
-      // }
-
-      // REFERRAL
-      // let referral_id = data.referral_id;
-      // if (referral_id) {
-      //   this.price_state.loading = true;
-      //   this.price_state.is_referral = false;
-      //   this.profileService.getAccountById(referral_id).then((profile) => {
-      //     this.price_state.loading = false;
-      //     this.price_state.is_referral = true;
-      //     this.price_state.referral_id = referral_id;
-      //   }).catch((error) => {
-      //     this.price_state.loading = false;
-      //     this.price_state.is_referral = false;
-      //     this.price_state.referral_id = null;
-      //   });
-      // }
-    });
+    })
 
     if (isBrowser) {
       this.subscription = this.orderService.getOrderEvent$.subscribe(event => {
@@ -186,10 +137,8 @@ export class ServiceComponent implements OnInit {
 
   showService(service) {
     this.Service = service;
-
     this.commonService.setService(this.Service);
     this.navigationService.updateMessage(this.Service['title']);
-
     this.seoService.setTitle(this.Service['title']);
     this.seoService.setOgElem('og:title', this.Service['title']);
     this.seoService.setMetaElem('description', this.Service['description']);
@@ -197,7 +146,6 @@ export class ServiceComponent implements OnInit {
     this.seoService.setOgElem('og:url', 'https://www.starbook.co/services/' + this.Service['title'].replace(/\s+/g, '-'));
     this.seoService.setOgElem('og:image', 'https://s3-eu-west-1.amazonaws.com/starbook-s3/services/' + this.Service['_id'] + '/cover/0');
     this.seoService.setOgElem('og:image:secure_url', 'https://s3-eu-west-1.amazonaws.com/starbook-s3/services/' + this.Service['_id'] + '/cover/0');
-
     this.buildOrderService(this.Service)
   }
 
@@ -371,7 +319,7 @@ export class ServiceComponent implements OnInit {
   }
 
   bookService() {
-    // console.log('OrderService: ' + JSON.stringify(this.OrderService));
+    console.log('OrderService: ' + JSON.stringify(this.OrderService));
     this.orderService.updateWizardData([this.OrderService]);
     this.router.navigate(['order/summary']);
     return false;

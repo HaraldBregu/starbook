@@ -1,5 +1,5 @@
 <div class="wizard-container" (window:resize)="onResize()">
-  <div class="progress-container"><div class="progress"></div></div>
+  <!-- <div class="progress-container"><div class="progress"></div></div> -->
   <div class="wizard">
     <ul class="breadcrumb" *ngIf="step !== ''">
       <li *ngFor="let items of wizardDataItems; let i = index;"
@@ -12,7 +12,7 @@
       <div class="content-container">
         <div class="header-summary">
           <h3>{{Order.title}}</h3>
-          <div class="summary-details" *ngFor="let item of Order.details">
+          <!-- <div class="summary-details" *ngFor="let item of Order.details">
             <div *ngIf="item.type !== 'service'">
               <div class="item"><p>{{item.title}}</p></div>
               <div class="amount">
@@ -20,7 +20,7 @@
                 <div *ngIf="item.amount">{{item.amount}}</div>
               </div>
             </div>
-          </div>
+          </div> -->
         </div>
         <!-- <div class="line" *ngIf="Order.timing.days > 1"></div>
         <div class="timing" *ngIf="Order.timing.days > 1">
@@ -102,7 +102,7 @@
       <div class="content-container">
         <div class="header-summary">
           <h3>{{Order.title}}</h3>
-          <div class="summary-details" *ngFor="let item of Order.details">
+          <!-- <div class="summary-details" *ngFor="let item of Order.details">
             <div *ngIf="item.type !== 'service'">
               <div class="item"><p>{{item.title}}</p></div>
               <div class="amount">
@@ -110,7 +110,7 @@
                 <div *ngIf="item.amount">{{item.amount}}</div>
               </div>
             </div>
-          </div>
+          </div> -->
           <p>{{Order.description}}</p>
         </div>
         <!-- <div class="line" *ngIf="Order.timing.days > 1"></div>

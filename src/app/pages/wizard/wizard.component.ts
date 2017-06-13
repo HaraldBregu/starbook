@@ -205,6 +205,7 @@ export class WizardComponent implements OnInit {
         // this.Order.referral_id = this.service_data.referral_id;
         // this.Order.upfront_amount = this.service_data.upfront_amount;
         // this.Order.timing = this.service_data.timing;
+        this.Order.upfront_amount = 490;
         this.saveOrderToLocal(this.Order);
       }
     }
@@ -375,8 +376,7 @@ export class WizardComponent implements OnInit {
       this.order_status.loading = true;
       this.order_status.button_title = "Inviando l'ordine...";
       this.order_status.error_message = null;
-      // console.log('this.Order is: ' + JSON.stringify(this.Order));
-
+      // console.log('this order: ' + JSON.stringify(this.Order));
       this.orderService.saveOrder(this.Order).then((response) => {
         this.order_status.loading = false;
         this.order_status.button_title = "Invia ordine";
