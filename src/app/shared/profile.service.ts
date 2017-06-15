@@ -51,14 +51,9 @@ export class ProfileService {
   }
 
   getProfile() {
-    // this.navigationService.updateLoadingStatus(true);
-    return this.http.get(this.api + 'me', this._makeHeaders())
-        .toPromise()
-        .then((response) => {
-          // this.navigationService.updateLoadingStatus(false);
-          return response.json();
-        })
-        .catch(this.handleError);
+    return this.http.get(this.api + 'me', this._makeHeaders()).toPromise().then((response) => {
+      return response.json();
+    }).catch(this.handleError);
   }
 
   getAccountById(id) {

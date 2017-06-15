@@ -10,6 +10,7 @@ import { SeoService } from '../../shared/seo.service';
 import { ProfileService } from '../../shared/profile.service';
 
 declare let Masonry: any;
+require('aws-sdk/dist/aws-sdk')
 
 export interface IServiceFormItem {
   formId?: number;
@@ -98,6 +99,7 @@ export class ServiceComponent implements OnInit {
   public tabs = ['Preventivo', 'Descrizione', 'Recensioni']
   public selectedTab = 'Preventivo'
   public currentUser;
+  public avatar = null;
 
   constructor(private commonService: CommonService, private navigationService: NavigationService, private router: Router, private route: ActivatedRoute, private orderService: OrderService, private analyticsService: AnalyticsService, private seoService: SeoService, private profileService: ProfileService) {
     if (isBrowser) {
@@ -117,6 +119,26 @@ export class ServiceComponent implements OnInit {
         if (isBrowser) {window.scrollTo(0, 0);}
         this.commonService.getServiceById(service_id).then((data) => {
           this.showService(data.result);
+          this.profileService.getAccountById(data.result.supplier_id).then((data) => {
+            this.Service['supplier'] = data.result;
+
+            // let AWSService = (<any>window).AWS;
+            // AWSService.config.accessKeyId = "AKIAI3TIRNH4DG7MGC7Q";
+            // AWSService.config.secretAccessKey = "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";
+            // let bucket = new AWSService.S3()
+            // let params = {Bucket: 'starbook-s3', Key: 'accounts/' + data.result._id + '/avatar/0'}
+            // bucket.headObject(params, function(err, datafile) {
+            //   if (err) {
+            //     console.log('error');
+            //     this.avatar = null
+            //   } else {
+            //     this.avatar = 'https://s3-eu-west-1.amazonaws.com/starbook-s3/accounts/' + data.result._id + '/avatar/0'
+            //     console.log('this.avatar: ' + this.avatar);
+            //   }
+            // })
+          }).catch((error) => {
+            this.Service['supplier'] = null;
+          })
         }).catch((error) => {
           let service = this.commonService.getService();
           if (!service) {
@@ -138,7 +160,7 @@ export class ServiceComponent implements OnInit {
   showService(service) {
     this.Service = service;
     this.commonService.setService(this.Service);
-    this.navigationService.updateMessage(this.Service['title']);
+    // this.navigationService.updateMessage(this.Service['title']);
     this.seoService.setTitle(this.Service['title']);
     this.seoService.setOgElem('og:title', this.Service['title']);
     this.seoService.setMetaElem('description', this.Service['description']);
@@ -233,7 +255,7 @@ export class ServiceComponent implements OnInit {
 
   renderPage(service: IServices) {
     this.commonService.setService(service);
-    this.navigationService.updateMessage(service.title);
+    // this.navigationService.updateMessage(service.title);
 
     this.service = service;
     this.image_url = 'https://s3-eu-west-1.amazonaws.com/starbook-s3/services/' + this.service._id + '/cover/0'
@@ -259,7 +281,6 @@ export class ServiceComponent implements OnInit {
       total: 0
     }
     this.Service['details'] = [detail]
-
 
     this.servicesData = [];
     this.orderData = {
@@ -552,4 +573,64 @@ export class ServiceComponent implements OnInit {
     var p = price/100
     return '€' + p.toFixed(2)
   }
+
+  pictureForSupplierId(supplier_id) {
+    var image = new Image();
+    image.src = 'https://s3-eu-west-1.amazonaws.com/starbook-s3/accounts/' + supplier_id + '/avatar/0';
+    if (image.width===0) { return false;}
+    return true;
+  }
+  // getUserFromId(account_id) {    this.profileService.getAccountById(account_id).then((data) => {
+  //       console.log('data: ' + JSON.stringify(data))
+  //       // return "Harald ";
+  //     }).catch((error) => {
+  //       // return null;
+  //     })
+  //
+  // }
+  formatTitle(title) {
+    var lowercase = title.toLowerCase()
+    return lowercase
+  }
+  getPictureForAccount(supplier_id) {
+    // if (!this.avatar) {
+    //   let AWSService = (<any>window).AWS;
+    //   AWSService.config.accessKeyId = "AKIAI3TIRNH4DG7MGC7Q";
+    //   AWSService.config.secretAccessKey = "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";
+    //   let bucket = new AWSService.S3()
+    //   let params = {Bucket: 'starbook-s3', Key: 'accounts/' + supplier_id + '/avatar/0'}
+    //   bucket.headObject(params, function(err, data) {
+    //     if (err) {
+    //       console.log('error');
+    //       this.avatar = null
+    //       return null;
+    //     } else {
+    //       this.avatar = 'https://s3-eu-west-1.amazonaws.com/starbook-s3/accounts/' + supplier_id + '/avatar/0'
+    //       console.log('this.avatar: ' + this.avatar);
+    //       return this.avatar;
+    //     }
+    //   })
+    // } else {
+    //   return null;
+    // }
+  }
+  // pictureForSupplierIdExist(supplier_id) {
+    // if (supplier_id) {
+    //   let AWSService = (<any>window).AWS;
+    //   AWSService.config.accessKeyId = "AKIAI3TIRNH4DG7MGC7Q";
+    //   AWSService.config.secretAccessKey = "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";
+    //   let bucket = new AWSService.S3()
+    //   let params = {Bucket: 'starbook-s3', Key: 'accounts/' + supplier_id + '/avatar/0'}
+    //   bucket.headObject(params, function(err, data) {
+    //     if (err) {
+    //       return false;
+    //     } else {
+    //       return true;
+    //     }
+    //   })
+    // } else {
+    //   return false;
+    // }
+  // }
+
 }

@@ -4972,7 +4972,8 @@ app-service {
           padding-bottom: 10px; }
           app-service .service-container .service .content-container .content-header .title {
             font-weight: 700;
-            font-size: 36px; }
+            font-size: 36px;
+            text-transform: capitalize; }
           app-service .service-container .service .content-container .content-header .user {
             overflow: auto;
             background: white;
@@ -4984,6 +4985,7 @@ app-service {
               background-size: cover;
               background-repeat: no-repeat;
               background-position: center;
+              background-image: url("/assets/images/icon.png");
               width: 50px;
               height: 50px;
               border-radius: 25px;
@@ -4993,7 +4995,8 @@ app-service {
               font-size: 20px;
               font-weight: 400;
               color: rgba(0, 0, 0, 0.7);
-              line-height: 50px; }
+              line-height: 50px;
+              text-transform: capitalize; }
           app-service .service-container .service .content-container .content-header .address {
             font-weight: 300;
             font-size: 18px; }
@@ -5636,6 +5639,7 @@ app-services {
       color: white;
       font-size: 25px;
       line-height: 120%;
+      text-transform: capitalize;
       white-space: normal !important;
       text-align: left;
       padding: 15px;

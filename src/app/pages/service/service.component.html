@@ -6,11 +6,19 @@
     </div>
     <div class="content-container">
       <div class="content-header">
-        <span class="title">{{Service.title}}</span>
+        <span class="title" *ngIf="Service.title">{{Service.title.toLowerCase()}}</span>
         <!-- <div class="user"><div class="avatar" [ngStyle]="{'background-image' : ' url(' + 'https://s3-eu-west-1.amazonaws.com/starbook-s3/services/' + Service._id + '/cover/0' + ')'}"></div> <i class="fa fa-user-circle" aria-hidden="true"></i><span class="username"> Luigi Capaldo</span></div> -->
-        <div class="user">
-          <!-- <div class="avatar" [ngStyle]="{'background-image' : ' url(' + '/assets/images/icon.png' + ')'}"></div><div class="username">Luigi Capaldo</div> -->
-          <div class="avatar" [ngStyle]="{'background-image' : ' url(' + '/assets/images/icon.png' + ')'}"></div><div class="username"></div>
+        <div class="user" *ngIf="Service.supplier_id">
+          <!-- <div class="avatar" [ngStyle]="{'background-image' : ' url(' + '/assets/images/icon.png' + ')'}"></div><div class="username">{{}}</div> -->
+          <!-- <div class="avatar" [ngStyle]="{'background-image' : ' url(' + '/assets/images/icon.png' + ')'}"></div><div class="username">{{Service.supplier_id}}</div> -->
+          <!-- <div class="avatar" [ngStyle]="{'background-image' : ' url(' + 'https://s3-eu-west-1.amazonaws.com/starbook-s3/accounts/' + Service.supplier_id + '/avatar/0' + ')'}"></div><div class="username"></div> -->
+          <!-- <div class="avatar" *ngIf="pictureForSupplierIdExist(Service.supplier_id)" [ngStyle]="{'background-image' : ' url(' + pictureForSupplierId(Service.supplier_id) + ')'}"></div> -->
+          <!-- <div class="avatar" *ngIf="pictureForSupplierId(Service.supplier_id)" [ngStyle]="{'background-image' : ' url(' + 'https://s3-eu-west-1.amazonaws.com/starbook-s3/accounts/' + Service.supplier_id + '/avatar/0' + ')'}"></div> -->
+          <!-- <div class="avatar" [ngStyle]="{'background-image' : ' url(' + '/assets/images/icon.png' + ')'}"></div> -->
+          <!-- <div class="avatar" *ngIf="avatar" [ngStyle]="{'background-image' : ' url(' + avatar + ')'}"></div> -->
+          <div class="avatar" *ngIf="!avatar" [ngStyle]="{'background-image' : 'url(' + '/assets/images/icon.png' + ')'}"></div>
+          <!-- <div class="avatar" *ngIf="getPictureForAccount(Service.supplier_id)" [ngStyle]="{'background-image' : 'url(' + getPictureForAccount(Service.supplier_id) + ')'}"></div> -->
+          <div class="username" *ngIf="Service.supplier">{{Service.supplier.profile.fullname.toLowerCase()}}</div>
         </div>
       </div>
       <div class="content-body" *ngIf="Service.pricing">
