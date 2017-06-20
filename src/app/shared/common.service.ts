@@ -133,6 +133,12 @@ export class CommonService {
     }).catch(this.handleError);
   }
 
+  getAccountsByServiceId(id) {
+    return this.http.get(this.api + 'services/' + id + '/accounts').toPromise().then((results) => {
+      return results.json();
+    }).catch(this.handleError);
+  }
+
   private _makeHeaders() {
     let headers;
     if (isBrowser) {

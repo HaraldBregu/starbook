@@ -1,10 +1,8 @@
-<div *ngIf="!page" class="landing-container">
-  <div class="header-container">
+<div class="landing-container">
+  <div class="landing-header">
     <div class="overlay">
       <div class="header">
         <h1>Trova il miglior servizio per la tua casa, al prezzo giusto e senza attese.</h1>
-        <!-- <h1>Mai più preventivi.</h1>
-        <h2>Trova il servizio. Guarda il prezzo. Prenota.</h2> -->
         <div class="search">
           <div class="search-field">
             <p-autoComplete [(ngModel)]="query" [suggestions]="results" field="title" scrollHeight="275px" (completeMethod)="search($event)" (onSelect)="selectResult(query)" placeholder="Cerca un servizio" minLength="0">
@@ -41,7 +39,6 @@
     </div>
   </div>
   <div class="container-fluid services-container">
-    <!-- <h1>Servizi più richiesti</h1> -->
     <h1>Professionisti più richiesti</h1>
     <div class="row services">
       <div *ngFor="let category of categories">
@@ -61,6 +58,34 @@
       </div>
     </div>
   </div>
+  <!-- <div class="section-container">
+    <div class="section">
+      <div class="service-container">
+        <div class="service">
+        </div>
+      </div>
+      <div class="service-container">
+        <div class="service">
+        </div>
+      </div>
+      <div class="service-container">
+        <div class="service">
+        </div>
+      </div>
+      <div class="service-container">
+        <div class="service">
+        </div>
+      </div>
+      <div class="service-container">
+        <div class="service">
+        </div>
+      </div>
+      <div class="service-container">
+        <div class="service">
+        </div>
+      </div>
+    </div>
+  </div> -->
   <div class="container-fluid bullets-container">
     <h1>Come funziona</h1>
     <div class="row bullets">
@@ -91,7 +116,11 @@
     <div class="row professional">
       <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 text">
         <h1>Il miglior professionista</h1>
-        <img src="../../../assets/images/star.png" alt="Starbook professionisti"><img src="../../../assets/images/star.png" alt="Starbook professionisti"><img src="../../../assets/images/star.png" alt="Starbook professionisti"><img src="../../../assets/images/star.png" alt="Starbook professionisti"><img src="../../../assets/images/star.png" alt="Starbook professionisti">
+        <img src="../../../assets/images/star.png" alt="Starbook professionisti">
+        <img src="../../../assets/images/star.png" alt="Starbook professionisti">
+        <img src="../../../assets/images/star.png" alt="Starbook professionisti">
+        <img src="../../../assets/images/star.png" alt="Starbook professionisti">
+        <img src="../../../assets/images/star.png" alt="Starbook professionisti">
         <p>Noi lavoriamo solo con i migliori professionisti del settore per assicurarti il miglior risultato finale. Non importa dove abitate o quando avete bisogno, il nostro compito è quello di darvi il meglio.</p>
         <!-- <button type="button" class="btn btn-warning" name="button" routerLink="/account/professional">Iscriviti adesso</button> -->
       </div>
@@ -147,8 +176,7 @@
   </div>
 </div>
 
-<div *ngIf="page" class="landing-container">
-
+<!-- <div *ngIf="page" class="landing-container">
   <div *ngIf="page==='extensions'">
     <div class="header-container" [ngStyle]="{'background-image': 'url(' + data.pictures[0] + ')'}">
       <div class="header">
@@ -570,4 +598,4 @@
     </footer>
   </div>
 
-</div>
+</div> -->

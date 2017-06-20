@@ -92,6 +92,7 @@ export class ServiceComponent implements OnInit {
 
   public Services = []
   public Order = {}
+  public Accounts = []
 
   public Service = {}
   public OrderService = {}
@@ -101,8 +102,11 @@ export class ServiceComponent implements OnInit {
   public currentUser;
   public avatar = null;
 
+  public sharelink = '';
+
   constructor(private commonService: CommonService, private navigationService: NavigationService, private router: Router, private route: ActivatedRoute, private orderService: OrderService, private analyticsService: AnalyticsService, private seoService: SeoService, private profileService: ProfileService) {
     if (isBrowser) {
+      this.sharelink =  document.location.protocol + '//'+ document.location.hostname + document.location.pathname;
       if (localStorage.getItem('auth')) {
         this.currentUser = JSON.parse(localStorage.getItem('auth'));
       }
@@ -119,26 +123,25 @@ export class ServiceComponent implements OnInit {
         if (isBrowser) {window.scrollTo(0, 0);}
         this.commonService.getServiceById(service_id).then((data) => {
           this.showService(data.result);
-          this.profileService.getAccountById(data.result.supplier_id).then((data) => {
-            this.Service['supplier'] = data.result;
 
-            // let AWSService = (<any>window).AWS;
-            // AWSService.config.accessKeyId = "AKIAI3TIRNH4DG7MGC7Q";
-            // AWSService.config.secretAccessKey = "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";
-            // let bucket = new AWSService.S3()
-            // let params = {Bucket: 'starbook-s3', Key: 'accounts/' + data.result._id + '/avatar/0'}
-            // bucket.headObject(params, function(err, datafile) {
-            //   if (err) {
-            //     console.log('error');
-            //     this.avatar = null
-            //   } else {
-            //     this.avatar = 'https://s3-eu-west-1.amazonaws.com/starbook-s3/accounts/' + data.result._id + '/avatar/0'
-            //     console.log('this.avatar: ' + this.avatar);
-            //   }
-            // })
+          this.commonService.getAccountsByServiceId(data.result._id).then((data) => {
+            // console.log('success is: ' + JSON.stringify(data));
+            this.Accounts = data.result
+            // for (var s in data.result) {
+            //   var account = data[s]['account']
+            //   console.log('Accounts: ' + JSON.stringify(account));
+            //   this.Accounts.push(account)
+            // }
           }).catch((error) => {
-            this.Service['supplier'] = null;
+            console.log('errors is: ' + JSON.stringify(error));
           })
+
+          // this.profileService.getAccountById(data.result.supplier_id).then((data) => {
+          //   this.Service['supplier'] = data.result;
+          // }).catch((error) => {
+          //   this.Service['supplier'] = null;
+          // })
+
         }).catch((error) => {
           let service = this.commonService.getService();
           if (!service) {
@@ -160,7 +163,7 @@ export class ServiceComponent implements OnInit {
   showService(service) {
     this.Service = service;
     this.commonService.setService(this.Service);
-    // this.navigationService.updateMessage(this.Service['title']);
+    this.navigationService.updateMessage('');
     this.seoService.setTitle(this.Service['title']);
     this.seoService.setOgElem('og:title', this.Service['title']);
     this.seoService.setMetaElem('description', this.Service['description']);
@@ -633,4 +636,31 @@ export class ServiceComponent implements OnInit {
     // }
   // }
 
+
+  shareOnFacebook() {
+    if (isBrowser) {
+      let left = Math.round((document.documentElement.clientWidth / 2) - 285);
+      window.open("http://www.facebook.com/sharer/sharer.php?s=100&u=" + this.sharelink,
+      '_blank', 'location=yes,height=570,width=520,left=' + left + ', top=100,scrollbars=yes,status=yes');
+      return false
+    }
+  }
+  shareOnTwitter() {
+    if (isBrowser) {
+      let left = Math.round((document.documentElement.clientWidth / 2) - 285);
+      window.open("https://twitter.com/home?status=" + this.sharelink,
+      '_blank', 'location=yes,height=570,width=520,left=' + left + ', top=100,scrollbars=yes,status=yes');
+      return false
+    }
+  }
+  shareOnEmail() {
+    if (isBrowser) {
+      let message = "Ciao, ti interessa questo servizio che ho trovato su Starbook? \n\n" + this.sharelink;
+      let subject = "Servizio Starbook"
+      let left = Math.round((document.documentElement.clientWidth / 2) - 285);
+      window.open("mailto:?Subject=" + subject + "&body=" + encodeURIComponent(message),
+      '_blank', 'location=yes,height=570,width=520,left=' + left + ', top=100,scrollbars=yes,status=yes');
+      return false
+    }
+  }
 }

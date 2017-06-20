@@ -2,13 +2,103 @@
   <div class="service">
     <div class="picture-container">
       <div class="picture" *ngIf="Service._id" [ngStyle]="{'background-image' : ' url(' + 'https://s3-eu-west-1.amazonaws.com/starbook-s3/services/' + Service._id + '/cover/0' + ')'}"></div>
-      <!-- <i class="fa fa-facebook" aria-hidden="true"></i><i class="fa fa-twitter" aria-hidden="true"></i><i class="fa fa-envelope" aria-hidden="true"></i> -->
+      <div class="picture-footer">
+        <span class="left-content">Consiglia ad un amico</span>
+        <div class="right-content">
+          <button (click)="shareOnFacebook()"><i class="fa fa-facebook" aria-hidden="true"></i></button>
+          <button (click)="shareOnTwitter()"><i class="fa fa-twitter" aria-hidden="true"></i></button>
+          <button (click)="shareOnEmail()"><i class="fa fa-envelope" aria-hidden="true"></i></button>
+        </div>
+      </div>
     </div>
     <div class="content-container">
-      <div class="content-header">
-        <span class="title" *ngIf="Service.title">{{Service.title.toLowerCase()}}</span>
+      <span class="content-title" *ngIf="Service.title">{{Service.title}}</span>
+      <div class="content-users" *ngIf="Accounts.length>0">
+        <span class="title">Servizio offerto da</span>
+        <div class="user" *ngFor="let account of Accounts">
+          <div class="avatar" *ngIf="!avatar" [ngStyle]="{'background-image' : 'url(' + 'https://s3-eu-west-1.amazonaws.com/starbook-s3/accounts/' + account.account._id + '/avatar/0' + ')'}"></div>
+          <div class="username">{{account.account.profile.firstname}}</div>
+        </div>
+        <!-- <div class="user">
+          <div class="avatar" *ngIf="!avatar" [ngStyle]="{'background-image' : 'url(' + 'https://scontent-cdg2-1.xx.fbcdn.net/v/t1.0-0/p600x600/13336118_10209659000621290_7924440270107874666_n.jpg?oh=325fdbbcb7df8242be38d269e7fed53b&oe=59E7FF57' + ')'}"></div>
+          <div class="username">Paolo</div>
+        </div>
+        <div class="user">
+          <div class="avatar" *ngIf="!avatar" [ngStyle]="{'background-image' : 'url(' + 'https://scontent-cdg2-1.xx.fbcdn.net/v/t1.0-0/p600x600/13336118_10209659000621290_7924440270107874666_n.jpg?oh=325fdbbcb7df8242be38d269e7fed53b&oe=59E7FF57' + ')'}"></div>
+          <div class="username">Giacomo</div>
+        </div> -->
+      </div>
+      <span class="content-description" *ngIf="Service.description">{{Service.description}}</span>
+      <div class="content-pricing" *ngIf="Service.pricing">
+        <span class="price">{{getPriceStringPerUnit(Service.pricing.unit.price)}}</span>
+        <span class="unit"> / {{Service.pricing.unit.title}}</span>
+        <div class="options" *ngFor="let option of Service.pricing.options">
+          <!-- <div class="title">
+            <span>{{option.title}}</span>
+          </div> -->
+          <div class="item-container noselect" *ngFor="let item of option.items" (click)="toggleItemOption(item, option)">
+            <!-- <i class="checkbox" [ngClass]="{'checked':orderServiceDetailsContainItem(item)}"><span></span></i> -->
+            <span class="checkbox" [ngClass]="{'checked':orderServiceDetailsContainItem(item)}"><span></span></span>
+            <span class="title">{{item.title}}</span>
+            <!-- <i class="checkbox empty"></i> -->
+            <!-- <span>{{item.title}}</span> -->
+            <!-- <div class="item" [ngClass]="{'checked':orderServiceDetailsContainItem(item)}">
+              <span>{{item.title}}</span>
+            </div> -->
+          </div>
+        </div>
+        <div class="actions">
+          <button class="btn btn-warning" name="button" (click)="bookService()">Prenota</button>
+        </div>
+      </div>
+      <div class="content-reviews">
+        <div class="reviews-header">
+          <span>34 Recensioni</span> <span></span>
+        </div>
+        <div class="reviews-body">
+          <div class="review">
+            <div class="user">
+              <div class="avatar"></div>
+              <div class="user-content">
+                <div class="username">Paolo</div>
+                <div class="date">Dicembre 2016</div>
+              </div>
+            </div>
+            <div class="text">
+              <span>Vengono realizzate mediante incollaggio diretto della lastra a parete o mediante formazione di una struttura metallica di supporto. All'interno dell'intercapedine vengono poi inseriti materiali termo-isolanti al fine di migliorarne le caratteristiche prestazionali.</span>
+            </div>
+          </div>
+          <div class="review">
+            <div class="user">
+              <div class="avatar"></div>
+              <div class="user-content">
+                <div class="username">Paolo</div>
+                <div class="date">Dicembre 2016</div>
+              </div>
+            </div>
+            <div class="text">
+              <span>Vengono realizzate mediante incollaggio diretto della lastra a parete o mediante formazione di una struttura metallica di supporto. All'interno dell'intercapedine vengono poi inseriti materiali termo-isolanti al fine di migliorarne le caratteristiche prestazionali.</span>
+            </div>
+          </div>
+          <div class="review">
+            <div class="user">
+              <div class="avatar"></div>
+              <div class="user-content">
+                <div class="username">Paolo</div>
+                <div class="date">Dicembre 2016</div>
+              </div>
+            </div>
+            <div class="text">
+              <span>Vengono realizzate mediante incollaggio diretto della lastra a parete o mediante formazione di una struttura metallica di supporto. All'interno dell'intercapedine vengono poi inseriti materiali termo-isolanti al fine di migliorarne le caratteristiche prestazionali.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- <div class="content-header"> -->
+        <!-- <span class="description" *ngIf="Service.description">{{Service.description}}</span> -->
         <!-- <div class="user"><div class="avatar" [ngStyle]="{'background-image' : ' url(' + 'https://s3-eu-west-1.amazonaws.com/starbook-s3/services/' + Service._id + '/cover/0' + ')'}"></div> <i class="fa fa-user-circle" aria-hidden="true"></i><span class="username"> Luigi Capaldo</span></div> -->
-        <div class="user" *ngIf="Service.supplier_id">
+        <!-- <div class="user" *ngIf="Service.supplier_id"> -->
           <!-- <div class="avatar" [ngStyle]="{'background-image' : ' url(' + '/assets/images/icon.png' + ')'}"></div><div class="username">{{}}</div> -->
           <!-- <div class="avatar" [ngStyle]="{'background-image' : ' url(' + '/assets/images/icon.png' + ')'}"></div><div class="username">{{Service.supplier_id}}</div> -->
           <!-- <div class="avatar" [ngStyle]="{'background-image' : ' url(' + 'https://s3-eu-west-1.amazonaws.com/starbook-s3/accounts/' + Service.supplier_id + '/avatar/0' + ')'}"></div><div class="username"></div> -->
@@ -16,18 +106,19 @@
           <!-- <div class="avatar" *ngIf="pictureForSupplierId(Service.supplier_id)" [ngStyle]="{'background-image' : ' url(' + 'https://s3-eu-west-1.amazonaws.com/starbook-s3/accounts/' + Service.supplier_id + '/avatar/0' + ')'}"></div> -->
           <!-- <div class="avatar" [ngStyle]="{'background-image' : ' url(' + '/assets/images/icon.png' + ')'}"></div> -->
           <!-- <div class="avatar" *ngIf="avatar" [ngStyle]="{'background-image' : ' url(' + avatar + ')'}"></div> -->
-          <div class="avatar" *ngIf="!avatar" [ngStyle]="{'background-image' : 'url(' + '/assets/images/icon.png' + ')'}"></div>
+          <!-- <div class="avatar" *ngIf="!avatar" [ngStyle]="{'background-image' : 'url(' + '/assets/images/icon.png' + ')'}"></div> -->
           <!-- <div class="avatar" *ngIf="getPictureForAccount(Service.supplier_id)" [ngStyle]="{'background-image' : 'url(' + getPictureForAccount(Service.supplier_id) + ')'}"></div> -->
-          <div class="username" *ngIf="Service.supplier">{{Service.supplier.profile.fullname.toLowerCase()}}</div>
-        </div>
-      </div>
-      <div class="content-body" *ngIf="Service.pricing">
+          <!-- <div class="username" *ngIf="Service.supplier">{{Service.supplier.profile.fullname.toLowerCase()}}</div> -->
+          <!-- <div class="username" *ngIf="Service.supplier">{{Service.supplier.profile.fullname.toLowerCase()}}</div> -->
+        <!-- </div> -->
+      <!-- </div> -->
+      <!-- <div class="content-body" *ngIf="Service.pricing">
         <span class="cost-description">SPESA IVA INCLUSA</span>
         <span class="price">{{getPriceStringPerUnit(Service.pricing.unit.price)}}</span>
         <span class="unit"> / {{Service.pricing.unit.title}}</span>
         <span class="cost-information">La spesa è legata esclusivamente alla qualità del professionista.</span>
         <div class="actions">
-          <button class="btn btn-danger" name="button" (click)="bookService()">Prenota</button>
+          <button class="btn btn-warning" name="button" (click)="bookService()">Prenota</button>
         </div>
         <div class="block-container">
           <div class="tabbar-container noselect">
@@ -69,13 +160,13 @@
             </div>
           </div>
           <div class="content-pricing" *ngIf="selectedTab==='Recensioni'">
-
           </div>
         </div>
-      </div>
+      </div> -->
     </div>
   </div>
 </div>
+
 <footer class="footer-container">
   <div class="footer">
     <div class="row">
