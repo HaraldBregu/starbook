@@ -60,6 +60,7 @@ app-insert {
         margin: auto;
         h1 {
           font-weight: 300;
+          color: black;
           span {
             font-weight: 500;
           }
@@ -204,11 +205,23 @@ app-insert {
     }
   }
 }
+
 @media (max-width: 425px) {
   app-insert .insert-container .back {
     position: relative;
   }
   app-insert .insert-container .insert {
     padding-top: 40px;
+  }
+  app-insert .insert-container .insert .insert-body .picture-container .service-picture {
+    max-width: 224px;
+    height: 280px;
+  }
+  app-insert .insert-container .insert .insert-body .picture-container .service-picture i {
+    margin-top: 120px;
+    margin-left: 97px;
+  }
+  app-insert .insert-container .insert .insert-body .picture-container .service-picture img {
+    line-height: 341px;
   }
 }

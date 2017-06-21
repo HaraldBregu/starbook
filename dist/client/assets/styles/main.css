@@ -5735,7 +5735,8 @@ app-insert {
       max-width: 700px;
       margin: auto; }
       app-insert .insert-container .insert .insert-header h1 {
-        font-weight: 300; }
+        font-weight: 300;
+        color: black; }
         app-insert .insert-container .insert .insert-header h1 span {
           font-weight: 500; }
         app-insert .insert-container .insert .insert-header h1 .one {
@@ -5854,7 +5855,18 @@ app-insert {
     position: relative; }
 
   app-insert .insert-container .insert {
-    padding-top: 40px; } }
+    padding-top: 40px; }
+
+  app-insert .insert-container .insert .insert-body .picture-container .service-picture {
+    max-width: 224px;
+    height: 280px; }
+
+  app-insert .insert-container .insert .insert-body .picture-container .service-picture i {
+    margin-top: 120px;
+    margin-left: 97px; }
+
+  app-insert .insert-container .insert .insert-body .picture-container .service-picture img {
+    line-height: 341px; } }
 app-order .sidebar .order-header {
   width: 100%;
   padding: 20px;

@@ -7,21 +7,26 @@
 
   <div class="insert" *ngIf="step==='intro'">
     <div class="insert-header">
-      <h1>Pubblica i tuoi <span class="one">servizi</span>. Aumenta i <span class="two">guadagni</span>.</h1>
+      <h1>Inserisci un <span class="one">servizio</span> che sai fare.</h1>
     </div>
     <div class="insert-body">
       <div class="category-tags">
         <span class="category-example">Artigianato</span>
-        <span class="category-example">Idraulica</span>
-        <span class="category-example">Elettrica</span>
-        <span class="category-example">Edilizia</span>
         <span class="category-example">Decorazione</span>
+        <span class="category-example">Edilizia</span>
         <span class="category-example">Design interno</span>
-        <span class="category-example">Serramenti</span>
-        <span class="category-example">Isolamenti</span>
-        <span class="category-example">Impianti</span>
-        <span class="category-example">Falegnameria</span>
+        <!-- <span class="category-example">Serramenti</span>
+        <span class="category-example">Idraulica</span>
+        <span class="category-example">Elettrica</span> -->
+        <!-- <span class="category-example">Isolamenti</span> -->
+        <!-- <span class="category-example">Impianti</span> -->
+        <!-- <span class="category-example">Falegnameria</span> -->
         <span class="category-example">Fotografia</span>
+        <span class="category-example">Salute e Benessere</span>
+        <span class="category-example">Hobby</span>
+        <span class="category-example">Animali</span>
+        <span class="category-example">Pulizie</span>
+        <span class="category-example">Puoi fare altro?</span>
       </div>
       <div class="actions">
         <div class="form-group text-center">
@@ -32,8 +37,8 @@
   </div>
   <div class="insert" *ngIf="step==='title'">
     <div class="insert-header">
-      <h1>Inserisci il titolo del servizio</h1>
-      <p>Un titolo breve e chiaro può rendere il tuo servizio unico e più ricercato.</p>
+      <h1>Inserisci il titolo</h1>
+      <p>Un titolo breve e chiaro.</p>
     </div>
     <div class="insert-body">
       <form (keyup.enter)="nextStep()">
@@ -53,17 +58,17 @@
   </div>
   <div class="insert" *ngIf="step==='pricing'">
     <div class="insert-header">
-      <h1>Costo mano d'opera</h1>
-      <p>Inserisci il costo di mano d'opera per unità di misura.</p>
-      <p><strong>IVA INCLUSA</strong></p>
-      <p>(es: €23 x ora, €190 x giorno)</p>
+      <h1>Prezzo</h1>
+      <p>Inserisci il prezzo (IVA inclusa) per unità di misura.</p>
+      <!-- <p><strong>IVA INCLUSA</strong></p> -->
+      <p>Esempio: €23 x ora, €190 x giorno</p>
     </div>
     <div class="insert-body">
       <form (keyup.enter)="nextStep()">
         <div class="price-per-unit">
           <div class="input-group">
             <span class="input-group-addon euro">€</span>
-            <input id="pricePerUnitInput" type="text" class="form-control price text-center" placeholder="" [autofocus]="!Service.price" [(ngModel)]="Service.price" (keyup)="updatePrice()" (change)="updatePrice()"  [ngModelOptions]="{standalone: true}">
+            <input id="pricePerUnitInput" type="number" class="form-control price text-center" placeholder="" [autofocus]="!Service.price" [(ngModel)]="Service.price" (keyup)="updatePrice()" (change)="updatePrice()"  [ngModelOptions]="{standalone: true}">
           </div>
           <span class="per">x</span>
           <span class="input-group">
@@ -83,8 +88,9 @@
   </div>
   <div class="insert" *ngIf="step==='picture'">
     <div class="insert-header">
-      <h1>Inserisci un immagine</h1>
-      <p>Le possibilità di ricevere richieste da clienti aumentano significativamente inserendo un immagine di qualità.</p>
+      <h1>Inserisci un'immagine</h1>
+      <!-- <p>Le possibilità di ricevere richieste da clienti aumentano significativamente inserendo un immagine di qualità.</p> -->
+      <p>Usa un'immagine significativo per il tuo servizio.</p>
     </div>
     <div class="insert-body">
       <form>
