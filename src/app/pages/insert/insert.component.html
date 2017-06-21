@@ -60,7 +60,6 @@
     <div class="insert-header">
       <h1>Prezzo</h1>
       <p>Inserisci il prezzo (IVA inclusa) per unità di misura.</p>
-      <!-- <p><strong>IVA INCLUSA</strong></p> -->
       <p>Esempio: €23 x ora, €190 x giorno</p>
     </div>
     <div class="insert-body">
@@ -98,7 +97,7 @@
           <input type="file" (change)="selectServicePicture($event)" style="display: none;" #file>
           <div class="service-picture" (click)="file.click()">
             <i *ngIf="!logo" class="fa fa-camera" aria-hidden="true"></i>
-            <img class="img-responsive" [src]="logo" alt="Inserisci immagine">
+            <img class="img-responsive" [src]="logo" alt="">
           </div>
         </div>
         <div class="form-group error">

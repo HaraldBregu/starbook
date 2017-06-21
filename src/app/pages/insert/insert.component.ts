@@ -65,6 +65,7 @@ export class InsertComponent implements OnInit {
     url_error: '',
     file_error: null
   }
+  public usr = ''
 
   constructor(private router: Router, private route: ActivatedRoute, private analyticsService: AnalyticsService, private authService: AuthService, private navigationService: NavigationService, private commonService: CommonService) {
     this.emailPattern = /^[a-z0-9!#$%&'*+\/=?^_`{|}~.-]+@[a-z0-9]([a-z0-9-]*[a-z0-9])?(\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)*$/i;
@@ -77,6 +78,12 @@ export class InsertComponent implements OnInit {
         this.currentUser = JSON.parse(localStorage.getItem('auth'))
       }
       this.step = params['step']
+      this.route.queryParams.subscribe((queryParams: Params) => {
+        this.usr = queryParams['usr']
+        if (this.usr==='dlb') {
+          console.log('this is daniel');
+        }
+      })
       if (this.currentUser) {
         this.steps = ['intro', 'title', 'pricing', 'picture', 'end']
       } else {
@@ -297,9 +304,9 @@ export class InsertComponent implements OnInit {
       let params = {Bucket: 'starbook-s3', Key:path, Body:file, ACL:"public-read"}
       bucket.upload(params, (error, res) => {
         if (!error) {
-          console.log('res upload file: ' + JSON.stringify(res));
+          // console.log('res upload file: ' + JSON.stringify(res));
         } else {
-          console.log('error upload file: ' + error);
+          // console.log('error upload file: ' + error);
         }
       })
     }
@@ -327,10 +334,17 @@ export class InsertComponent implements OnInit {
   }
   updatePrice() {
     let value = parseInt(this.Service['price']);
-    if (isNaN(value) || value === 0) {
+    // console.log('value: ' + value);
+    // console.log('input update: ' + this.Service['price']);
+    if (isNaN(value) || value === 0 ) {
       this.Service['price'] = null
+      // console.log('isnan');
+    } else if (!this.Service['price']) {
+      this.Service['price'] = 0
+      // console.log('not service');
     } else {
       this.Service['price'] = value
+      // console.log('is ok price');
     }
   }
   setProgressWidth() {
