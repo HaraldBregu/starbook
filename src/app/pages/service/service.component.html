@@ -19,44 +19,32 @@
           <div class="avatar" *ngIf="!avatar" [ngStyle]="{'background-image' : 'url(' + 'https://s3-eu-west-1.amazonaws.com/starbook-s3/accounts/' + account.account._id + '/avatar/0' + ')'}"></div>
           <div class="username">{{account.account.profile.firstname}}</div>
         </div>
-        <!-- <div class="user">
-          <div class="avatar" *ngIf="!avatar" [ngStyle]="{'background-image' : 'url(' + 'https://scontent-cdg2-1.xx.fbcdn.net/v/t1.0-0/p600x600/13336118_10209659000621290_7924440270107874666_n.jpg?oh=325fdbbcb7df8242be38d269e7fed53b&oe=59E7FF57' + ')'}"></div>
-          <div class="username">Paolo</div>
-        </div>
-        <div class="user">
-          <div class="avatar" *ngIf="!avatar" [ngStyle]="{'background-image' : 'url(' + 'https://scontent-cdg2-1.xx.fbcdn.net/v/t1.0-0/p600x600/13336118_10209659000621290_7924440270107874666_n.jpg?oh=325fdbbcb7df8242be38d269e7fed53b&oe=59E7FF57' + ')'}"></div>
-          <div class="username">Giacomo</div>
-        </div> -->
       </div>
       <span class="content-description" *ngIf="Service.description">{{Service.description}}</span>
       <div class="content-pricing" *ngIf="Service.pricing">
-        <span class="price">{{getPriceStringPerUnit(Service.pricing.unit.price)}}</span>
+        <span class="price">{{getPriceStringPerUnit()}}</span>
         <span class="unit"> / {{Service.pricing.unit.title}}</span>
         <div class="options" *ngFor="let option of Service.pricing.options">
-          <!-- <div class="title">
-            <span>{{option.title}}</span>
-          </div> -->
           <div class="item-container noselect" *ngFor="let item of option.items" (click)="toggleItemOption(item, option)">
-            <!-- <i class="checkbox" [ngClass]="{'checked':orderServiceDetailsContainItem(item)}"><span></span></i> -->
             <span class="checkbox" [ngClass]="{'checked':orderServiceDetailsContainItem(item)}"><span></span></span>
             <span class="title">{{item.title}}</span>
-            <!-- <i class="checkbox empty"></i> -->
-            <!-- <span>{{item.title}}</span> -->
-            <!-- <div class="item" [ngClass]="{'checked':orderServiceDetailsContainItem(item)}">
-              <span>{{item.title}}</span>
-            </div> -->
           </div>
         </div>
         <div class="actions">
           <button class="btn btn-warning" name="button" (click)="bookService()">Prenota</button>
         </div>
       </div>
-      <div class="content-reviews">
+      <!-- <div class="content-reviews">
         <div class="reviews-header">
-          <span>34 Recensioni</span> <span></span>
+          <span>Recensioni</span> <span></span>
         </div>
         <div class="reviews-body">
           <div class="review">
+            <div class="text">
+              <span>Non ci sono ancora recensioni</span>
+            </div>
+          </div>
+          <div class="review">
             <div class="user">
               <div class="avatar"></div>
               <div class="user-content">
@@ -93,7 +81,7 @@
             </div>
           </div>
         </div>
-      </div>
+      </div> -->
 
       <!-- <div class="content-header"> -->
         <!-- <span class="description" *ngIf="Service.description">{{Service.description}}</span> -->

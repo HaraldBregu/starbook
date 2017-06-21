@@ -125,6 +125,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
     if (isBrowser) {
       if (localStorage.getItem('auth') !== null) {
         let authData = JSON.parse(localStorage.getItem('auth'));
+        console.log('auth data' + JSON.stringify(authData));
         this.currentUser = authData;
         this.User.firstname = authData.profile.firstname;
         this.User.lastname = authData.profile.lastname;

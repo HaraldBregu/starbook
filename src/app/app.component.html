@@ -4,9 +4,12 @@
       <div *ngIf="screenWidth > 768" routerLink="">
         <img src="/assets/images/brand-logo-name-rotated.png" alt="starbook">
       </div>
-      <div *ngIf="screenWidth < 769">
+      <div *ngIf="(screenWidth < 769) && hasRightContainer">
         <img *ngIf="!collapsed" src="/assets/images/brand-logo-rotated.png" alt="starbook">
         <img *ngIf="collapsed" src="/assets/images/brand-logo-right.png" alt="starbook">
+      </div>
+      <div *ngIf="(screenWidth < 769) && !hasRightContainer">
+        <img src="/assets/images/brand-logo-rotated.png" alt="starbook">
       </div>
     </a>
 

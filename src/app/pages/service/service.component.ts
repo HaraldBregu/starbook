@@ -199,62 +199,6 @@ export class ServiceComponent implements OnInit {
       this.OrderService['details'][0]['total'] = value * this.OrderService['details'][0]['price']
     }
   }
-  toggleItemOption(item, option) {
-    var found = false;
-    var index = 0;
-    var details = this.OrderService['details']
-    for(var i = 0; i < details.length; i++) {
-      if (details[i].title === item.title) {
-        found = true;
-        index = i;
-        break;
-      }
-    }
-    if (found) {
-      this.OrderService['details'].splice(index, 1);
-      this.OrderService['details'][0]['price'] -= item.price
-      this.OrderService['details'][0]['total'] = this.OrderService['details'][0]['quantity'] * this.OrderService['details'][0]['price']
-    } else {
-      var detail = {}
-      detail['title'] = item.title
-      detail['quantity'] = 0
-      detail['price'] = 0
-      detail['total'] = 0
-      this.OrderService['details'][0]['price'] += item.price
-      this.OrderService['details'][0]['total'] = this.OrderService['details'][0]['quantity'] * this.OrderService['details'][0]['price']
-      this.OrderService['details'].push(detail)
-    }
-    // console.log('order service is: ' + JSON.stringify(this.OrderService));
-  }
-  orderServiceDetailsContainItem(item) {
-    var details = this.OrderService['details']
-    for (var i in details) {
-      var detail = details[i]
-      if (detail.title === item.title) {
-        return true;
-      }
-    }
-    return false;
-  }
-  getTotalEstimateQuotation() {
-    // console.log('est: ' + JSON.stringify(this.OrderService['details']));
-    var details = this.OrderService['details']
-    var newValue = 0
-    if (details) {
-      for (var i = 0; i < details.length; i++) {
-        var detail = details[i]
-        var price;
-        if (isNaN(detail.total)) {
-          price = 0;
-        } else {
-          price = detail.total;
-        }
-        newValue += parseInt(price)
-      }
-      return newValue;
-    }
-    return newValue;
-  }
 
   renderPage(service: IServices) {
     this.commonService.setService(service);
@@ -343,7 +287,7 @@ export class ServiceComponent implements OnInit {
   }
 
   bookService() {
-    console.log('OrderService: ' + JSON.stringify(this.OrderService));
+    console.log('OrderService: ' + JSON.stringify([this.OrderService]));
     this.orderService.updateWizardData([this.OrderService]);
     this.router.navigate(['order/summary']);
     return false;
@@ -572,9 +516,68 @@ export class ServiceComponent implements OnInit {
   clickTabItem(tab) {
     this.selectedTab = tab;
   }
-  getPriceStringPerUnit(price) {
-    var p = price/100
-    return '€' + p.toFixed(2)
+  getPriceStringPerUnit() {
+    var details = this.OrderService['details']
+    var detail0 = details[0]
+    var price = detail0['price']/100
+    return '€' + price.toFixed(2)
+    // var p = price/100
+    // return '€' + p.toFixed(2)
+  }
+  getTotalEstimateQuotation() {
+    var details = this.OrderService['details']
+    var newValue = 0
+    if (details) {
+      for (var i = 0; i < details.length; i++) {
+        var detail = details[i]
+        var price;
+        if (isNaN(detail.total)) {
+          price = 0;
+        } else {
+          price = detail.total;
+        }
+        newValue += parseInt(price)
+      }
+      return newValue;
+    }
+    return newValue;
+  }
+  orderServiceDetailsContainItem(item) {
+    var details = this.OrderService['details']
+    for (var i in details) {
+      var detail = details[i]
+      if (detail.title === item.title) {
+        return true;
+      }
+    }
+    return false;
+  }
+  toggleItemOption(item, option) {
+    var found = false;
+    var index = 0;
+    var details = this.OrderService['details']
+    for(var i = 0; i < details.length; i++) {
+      if (details[i].title === item.title) {
+        found = true;
+        index = i;
+        break;
+      }
+    }
+    if (found) {
+      this.OrderService['details'].splice(index, 1);
+      this.OrderService['details'][0]['price'] -= item.price
+      this.OrderService['details'][0]['total'] = this.OrderService['details'][0]['quantity'] * this.OrderService['details'][0]['price']
+    } else {
+      var detail = {}
+      detail['title'] = item.title
+      detail['quantity'] = 0
+      detail['price'] = 0
+      detail['total'] = 0
+      this.OrderService['details'][0]['price'] += item.price
+      this.OrderService['details'][0]['total'] = this.OrderService['details'][0]['quantity'] * this.OrderService['details'][0]['price']
+      this.OrderService['details'].push(detail)
+    }
+    console.log('order service is: ' + JSON.stringify(this.OrderService));
   }
 
   pictureForSupplierId(supplier_id) {
