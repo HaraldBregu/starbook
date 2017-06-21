@@ -3520,8 +3520,8 @@ app-landing {
           font-weight: 900;
           font-size: 46px;
           max-width: 900px;
+          line-height: 55px;
           margin: auto;
-          line-height: inherit;
           text-align: left;
           margin-bottom: 20px; }
         app-landing .landing-container .landing-header .header h2, app-landing .landing-container .landing-header .header h3 {
@@ -4227,8 +4227,12 @@ app-landing {
       width: 80%; }
     app-landing .landing-container .header-container .header .search .search-button {
       width: 20%; }
-    app-landing .landing-container .header {
-      padding: 50px 10px; }
+    app-landing .landing-container .landing-header .header {
+      padding: 30px 20px; }
+    app-landing .landing-container .landing-header .header .search .search-field {
+      width: 80%; }
+    app-landing .landing-container .landing-header .header .search .search-button {
+      width: 20%; }
     app-landing .landing-container .advantages {
       padding: 50px 10px; }
       app-landing .landing-container .advantages .advantages-container .title {
@@ -4255,6 +4259,15 @@ app-landing {
     app-landing .landing-container .header-container .header .search .search-button {
       width: 30%; } }
 
+@media (max-width: 425px) {
+  app-landing .landing-container .landing-header .header .search .close-container {
+    right: 23%; }
+
+  app-landing .landing-container .landing-header .header .search .spinner {
+    right: 23%; }
+
+  app-landing .landing-container .landing-header .header .search .ui-autocomplete-panel {
+    width: 80% !important; } }
 app-home {
   display: block;
   position: relative;

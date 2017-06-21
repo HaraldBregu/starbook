@@ -287,7 +287,7 @@ export class ServiceComponent implements OnInit {
   }
 
   bookService() {
-    console.log('OrderService: ' + JSON.stringify([this.OrderService]));
+    // console.log('OrderService: ' + JSON.stringify([this.OrderService]));
     this.orderService.updateWizardData([this.OrderService]);
     this.router.navigate(['order/summary']);
     return false;
