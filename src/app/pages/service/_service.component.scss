@@ -53,7 +53,47 @@ app-service {
           font-size: 44px;
           color: #484848;
         }
-
+        .content-user {
+          padding: 0 0 20px;
+          border-bottom: 1px solid #DBDBDB;
+          overflow: auto;
+          .title {
+            display: block;
+            margin-top: 10px;
+            font-size: 19px;
+            font-weight: 300;
+          }
+          .user {
+            float: left;
+            margin-right: 30px;
+            padding-top: 20px;
+            overflow: auto;
+            background: white;
+            span {
+              font-size: 17px;
+            }
+            .avatar {
+              display: block;
+              background-size: cover;
+              background-repeat: no-repeat;
+              background-position: center;
+              background-image: url('/assets/images/icon.png');
+              margin: auto;
+              width: 64px;
+              height: 64px;
+              border-radius: 32px;
+            }
+            .username {
+              display: block;
+              font-size: 20px;
+              font-weight: 300;
+              text-align: center;
+              color: black;
+              margin-top: 5px;
+              text-transform: capitalize;
+            }
+          }
+        }
         .content-users {
           padding: 0 0 20px;
           border-bottom: 1px solid #DBDBDB;
@@ -63,14 +103,11 @@ app-service {
             margin-top: 10px;
             font-size: 19px;
             font-weight: 300;
-            // color: rgba(0, 0, 0, 0.7);
           }
           .user {
             float: left;
-            // margin-top: 15px;
             margin-right: 30px;
             padding-top: 20px;
-            // width: 80px;
             overflow: auto;
             background: white;
             span {

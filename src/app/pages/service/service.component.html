@@ -13,6 +13,14 @@
     </div>
     <div class="content-container">
       <span class="content-title" *ngIf="Service.title">{{Service.title}}</span>
+      <div class="content-user" *ngIf="Account">
+        <!-- <span class="title">Servizio offerto da</span> -->
+        <div class="user">
+          <div class="avatar" *ngIf="checkImageUrlFromAccount(Account)!==0" [ngStyle]="{'background-image' : 'url(' +  'https://s3-eu-west-1.amazonaws.com/starbook-s3/accounts/' + Account._id + '/avatar/0' + ')'}"></div>
+          <div class="avatar" *ngIf="checkImageUrlFromAccount(Account)===0"></div>
+          <div class="username">{{Account['profile']['firstname']}}</div>
+        </div>
+      </div>
       <div class="content-users" *ngIf="Accounts.length>0">
         <span class="title">Servizio offerto da</span>
         <div class="user" *ngFor="let account of Accounts">
@@ -82,7 +90,6 @@
           </div>
         </div>
       </div> -->
-
       <!-- <div class="content-header"> -->
         <!-- <span class="description" *ngIf="Service.description">{{Service.description}}</span> -->
         <!-- <div class="user"><div class="avatar" [ngStyle]="{'background-image' : ' url(' + 'https://s3-eu-west-1.amazonaws.com/starbook-s3/services/' + Service._id + '/cover/0' + ')'}"></div> <i class="fa fa-user-circle" aria-hidden="true"></i><span class="username"> Luigi Capaldo</span></div> -->

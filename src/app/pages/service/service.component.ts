@@ -93,6 +93,7 @@ export class ServiceComponent implements OnInit {
   public Services = []
   public Order = {}
   public Accounts = []
+  public Account = null;
 
   public Service = {}
   public OrderService = {}
@@ -123,25 +124,8 @@ export class ServiceComponent implements OnInit {
         if (isBrowser) {window.scrollTo(0, 0);}
         this.commonService.getServiceById(service_id).then((data) => {
           this.showService(data.result);
-
-          this.commonService.getAccountsByServiceId(data.result._id).then((data) => {
-            // console.log('success is: ' + JSON.stringify(data));
-            this.Accounts = data.result
-            // for (var s in data.result) {
-            //   var account = data[s]['account']
-            //   console.log('Accounts: ' + JSON.stringify(account));
-            //   this.Accounts.push(account)
-            // }
-          }).catch((error) => {
-            // console.log('errors is: ' + JSON.stringify(error));
-          })
-
-          // this.profileService.getAccountById(data.result.supplier_id).then((data) => {
-          //   this.Service['supplier'] = data.result;
-          // }).catch((error) => {
-          //   this.Service['supplier'] = null;
-          // })
-
+          this.getSuppliersByServiceId(data.result._id)
+          this.getSupplierById(data.result.supplier_id)
         }).catch((error) => {
           let service = this.commonService.getService();
           if (!service) {
@@ -159,6 +143,43 @@ export class ServiceComponent implements OnInit {
       });
     }
   }
+
+  getSupplierById(supplier_id) {
+    if (supplier_id) {
+      this.profileService.getAccountById(supplier_id).then((data) => {
+        // console.log('success account is: ' + JSON.stringify(data));
+        this.Account = data.result;
+        // console.log(this.Account['profile']['firstname']);
+      }).catch((error) => {
+        // console.log('error account is: ' + JSON.stringify(error));
+        this.Account = null;
+      })
+    }
+  }
+  checkImageUrlFromAccount(account) {
+    var image = new Image();
+    image.src = 'https://s3-eu-west-1.amazonaws.com/starbook-s3/accounts/' + account._id + '/avatar/0';
+    console.log('image width is: ' + image.width);
+    // image.onload = function() {
+    //   console.log('yes exsit image');
+    //   return image.width
+    // };
+    // image.onerror = function() {
+    //   console.log('no exsit image');
+    //   return 0
+    // };
+    return image.width
+  }
+  getSuppliersByServiceId(id) {
+    this.commonService.getAccountsByServiceId(id).then((data) => {
+      // console.log('success is: ' + JSON.stringify(data));
+      this.Accounts = data.result
+    }).catch((error) => {
+      // console.log('errors is: ' + JSON.stringify(error));
+      this.Accounts = []
+    })
+  }
+
 
   showService(service) {
     this.Service = service;
@@ -287,7 +308,6 @@ export class ServiceComponent implements OnInit {
   }
 
   bookService() {
-    // console.log('OrderService: ' + JSON.stringify([this.OrderService]));
     this.orderService.updateWizardData([this.OrderService]);
     this.router.navigate(['order/summary']);
     return false;

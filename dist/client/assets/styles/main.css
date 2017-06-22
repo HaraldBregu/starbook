@@ -5041,6 +5041,41 @@ app-service {
           font-weight: 700;
           font-size: 44px;
           color: #484848; }
+        app-service .service-container .service .content-container .content-user {
+          padding: 0 0 20px;
+          border-bottom: 1px solid #DBDBDB;
+          overflow: auto; }
+          app-service .service-container .service .content-container .content-user .title {
+            display: block;
+            margin-top: 10px;
+            font-size: 19px;
+            font-weight: 300; }
+          app-service .service-container .service .content-container .content-user .user {
+            float: left;
+            margin-right: 30px;
+            padding-top: 20px;
+            overflow: auto;
+            background: white; }
+            app-service .service-container .service .content-container .content-user .user span {
+              font-size: 17px; }
+            app-service .service-container .service .content-container .content-user .user .avatar {
+              display: block;
+              background-size: cover;
+              background-repeat: no-repeat;
+              background-position: center;
+              background-image: url("/assets/images/icon.png");
+              margin: auto;
+              width: 64px;
+              height: 64px;
+              border-radius: 32px; }
+            app-service .service-container .service .content-container .content-user .user .username {
+              display: block;
+              font-size: 20px;
+              font-weight: 300;
+              text-align: center;
+              color: black;
+              margin-top: 5px;
+              text-transform: capitalize; }
         app-service .service-container .service .content-container .content-users {
           padding: 0 0 20px;
           border-bottom: 1px solid #DBDBDB;
@@ -5736,7 +5771,8 @@ app-insert {
       margin: auto; }
       app-insert .insert-container .insert .insert-header h1 {
         font-weight: 300;
-        color: black; }
+        color: black;
+        line-height: inherit; }
         app-insert .insert-container .insert .insert-header h1 span {
           font-weight: 500; }
         app-insert .insert-container .insert .insert-header h1 .one {
