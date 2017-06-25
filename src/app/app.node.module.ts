@@ -42,8 +42,9 @@ import { ShareService } from './pages/share/share.service';
 import { ClipboardService } from './shared/clipboard.service';
 
 import { AppComponent } from './app.component';
-import { HomeComponent } from './home/home.component';
+//import { HomeComponent } from './home/home.component';
 import { LandingComponent } from './landing/landing.component';
+import { CompanyComponent } from './company/company.component';
 
 import { CategoryComponent } from './pages/category/category.component';
 
@@ -51,7 +52,7 @@ import { ServiceComponent } from './pages/service/service.component';
 import { ServicesComponent } from './pages/services/services.component';
 import { InsertComponent } from './pages/insert/insert.component';
 
-import { OrderComponent } from './order/order.component';
+// import { OrderComponent } from './order/order.component';
 import { OrdersComponent } from './pages/orders/orders.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { PopupsComponent } from './popups/popups.component';
@@ -108,12 +109,13 @@ let imports = [
 let declarations = [
   AppComponent,
   ServiceComponent,
-  OrderComponent,
+  // OrderComponent,
   OrdersComponent,
   ProfileComponent,
   PopupsComponent,
-  HomeComponent,
+  //HomeComponent,
   LandingComponent,
+  CompanyComponent,
   LoadingComponent,
   FacebookComponent,
   WizardComponent,

@@ -1,8 +1,9 @@
 import { ModuleWithProviders }  from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { HomeComponent } from './home/home.component';
+// import { HomeComponent } from './home/home.component';
 import { LandingComponent } from './landing/landing.component';
+import { CompanyComponent } from './company/company.component';
 
 import { CategoryComponent } from './pages/category/category.component';
 
@@ -26,6 +27,7 @@ import { NotfoundComponent } from './pages/notfound/notfound.component';
 
 const routes: Routes = [
   { path: '', component: LandingComponent, data: { name: 'Landing' } },
+  { path: 'company', component: CompanyComponent, data: { name: 'LandingCompany' } },
   { path: 'category/:category', component: CategoryComponent, data: { isFindField: true } },
   { path: 'account', component: AccountComponent },
   { path: 'account/:page', component: AccountComponent, data: { name: 'Account' } },

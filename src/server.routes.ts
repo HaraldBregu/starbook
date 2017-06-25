@@ -10,6 +10,7 @@
  * ];
  **/
 export const routes: string[] = [
+  'company',
   'category/:category',
 
   'account',
