@@ -38,17 +38,29 @@
       </div>
     </div>
   </div>
-  <div class="container-fluid services-container">
-    <h1>Professionisti più richiesti</h1>
+  <div class="category-container" *ngIf="professionals">
+    <div class="category">
+      <div class="category-header">
+        <h1>Professionisti</h1>
+      </div>
+      <div class="category-body">
+        <div class="service-container" *ngFor="let professional of professionals" (click)="selectService(professional)">
+          <div class="service" [ngStyle]="{'background-image' : ' url(' + images_url + 'services/'+ professional._id + '/cover/0' + ')'}">
+            <div class="overlay">
+              <div class="text-container">
+                <span class="title">{{ professional.title }}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- <div class="container-fluid services-container">
+    <h1>Professionisti</h1>
     <div class="row services">
       <div *ngFor="let category of categories">
         <div class="col-lg-3 col-md-6 col-sm-6 service-container">
-          <!-- <div class="service" (click)="selectCategory(category)" [ngStyle]="{'background-image' : ' url(' + category.image_url + ')'}">
-            <div class="overlay">
-              <h1>{{category.title}}</h1>
-            </div>
-          </div> -->
-          <!-- "image_url" : "https://s3-eu-west-1.amazonaws.com/starbook-s3/categories/591028cd6c8dd682c65e99bc/cover/1", -->
           <div class="service" (click)="selectCategory(category)" [ngStyle]="{'background-image' : ' url(' + images_url + 'categories/'+ category._id + '/cover/1' + ')'}">
             <div class="overlay">
               <h1>{{category.title}}</h1>
@@ -57,36 +69,8 @@
         </div>
       </div>
     </div>
-  </div>
-  <!-- <div class="section-container">
-    <div class="section">
-      <div class="service-container">
-        <div class="service">
-        </div>
-      </div>
-      <div class="service-container">
-        <div class="service">
-        </div>
-      </div>
-      <div class="service-container">
-        <div class="service">
-        </div>
-      </div>
-      <div class="service-container">
-        <div class="service">
-        </div>
-      </div>
-      <div class="service-container">
-        <div class="service">
-        </div>
-      </div>
-      <div class="service-container">
-        <div class="service">
-        </div>
-      </div>
-    </div>
   </div> -->
-  <div class="container-fluid bullets-container">
+  <div class="bullets-container">
     <h1>Come funziona</h1>
     <div class="row bullets">
       <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12">
@@ -112,6 +96,26 @@
       </div>
     </div>
   </div>
+
+  <!-- <div class="category-container" *ngIf="inHouseServices">
+    <div class="category">
+      <div class="category-header">
+        <h1>Servizi in casa</h1>
+      </div>
+      <div class="category-body">
+        <div class="service-container house-service" *ngFor="let service of inHouseServices" (click)="selectService(service)">
+          <div class="service" [ngStyle]="{'background-image' : ' url(' + images_url + 'services/'+ service._id + '/cover/0' + ')'}">
+            <div class="overlay">
+              <div class="text-container">
+                <span class="title">{{ service.title }}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div> -->
+
   <!-- <div class="container-fluid professional-container">
     <div class="row professional">
       <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 text">
@@ -183,427 +187,3 @@
     <p><a routerLink="/"><strong>Starbook</strong> © 2017 Tutti i diritti riservati</a></p>
   </div>
 </div>
-
-<!-- <div *ngIf="page" class="landing-container">
-  <div *ngIf="page==='extensions'">
-    <div class="header-container" [ngStyle]="{'background-image': 'url(' + data.pictures[0] + ')'}">
-      <div class="header">
-        <div class="container">
-          <h1>{{data.texts[0]}}</h1>
-          <h3>{{data.texts[1]}}</h3>
-          <div class="actions">
-            <div class="form-group">
-              <button pageScroll href="#applysection" [pageScrollDuration]="500" class="btn btn-yellow-green">Applica</button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="slogan" [ngStyle]="{'background-color': '#22313F'}">
-      <div class="container">
-        <div class="title">
-          <h2>{{data.texts[2]}}</h2>
-        </div>
-      </div>
-    </div>
-    <div class="container advantages">
-      <div class="advantages-container">
-        <div class="title">
-          <h1>{{data.texts[3]}}</h1>
-        </div>
-        <div class="row">
-          <div *ngFor="let bullet of data.bullets">
-            <div class="col-md-6 col-lg-3">
-              <h3><i class="fa {{bullet['icon_name']}}" aria-hidden="true"></i> {{bullet['title']}}</h3>
-              <p>{{bullet['description']}}</p>
-            </div>
-          </div>
-        </div>
-        <div class="actions">
-          <div class="form-group">
-            <button pageScroll href="#applysection" [pageScrollDuration]="500" class="btn btn-yellow-blue">Applica</button>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="slogan">
-      <div class="container">
-        <div class="title">
-          <h2>{{data.texts[4]}}</h2>
-        </div>
-      </div>
-    </div>
-    <div class="extensions">
-      <div class="container extensions-container">
-        <div class="title">
-          <h1>Funzionamento delle estensioni</h1>
-        </div>
-        <div class="row">
-          <div class="col-md-6">
-            <h5>Seleziona il servizio che ti serve e prenota.</h5>
-            <i>Questi sono dei esempi di estensioni add-on</i>
-            <div class="row">
-              <div class="col-md-6 col-lg-4">
-                <div class="ext-container">
-                  <div class="ext-box" [ngStyle]="{'background-image': 'url(https://s3-eu-west-1.amazonaws.com/starbook-s3/plumbing/idraulico-normal.png)'}">
-                    <a (click)="checkoutService('plumber')">
-                      <div class="overlay plumber">
-                        Idraulico
-                      </div>
-                    </a>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-6 col-lg-4">
-                <div class="ext-container">
-                  <div class="ext-box" [ngStyle]="{'background-image': 'url(https://st.depositphotos.com/1769672/2236/i/950/depositphotos_22367589-stock-photo-carpenter-working.jpg)'}">
-                    <a (click)="checkoutService('carpenter')">
-                      <div class="overlay carpenter">
-                        Falegname
-                      </div>
-                    </a>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-6 col-lg-4">
-                <div class="ext-container">
-                  <div class="ext-box" [ngStyle]="{'background-image': 'url(https://www.masonrymagazine.com/wp-content/uploads/2017/04/shutterstock_462881602.jpg)'}">
-                    <a (click)="checkoutService('brick')">
-                      <div class="overlay brick">
-                        Muratore
-                      </div>
-                    </a>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-6 col-lg-4">
-                <div class="ext-container">
-                  <div class="ext-box" [ngStyle]="{'background-image': 'url(https://static8.depositphotos.com/1477006/953/i/950/depositphotos_9532007-stock-photo-blacksmith-at-work.jpg)'}">
-                    <a (click)="checkoutService('blacksmith')">
-                      <div class="overlay blacksmith">
-                        Fabbro
-                      </div>
-                    </a>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-6 col-lg-4">
-                <div class="ext-container">
-                  <div class="ext-box" [ngStyle]="{'background-image': 'url(https://st.depositphotos.com/1158045/3013/i/950/depositphotos_30136813-stock-photo-portrait-of-an-electrician-at.jpg)'}">
-                    <a (click)="checkoutService('eletrical')">
-                      <div class="overlay eletrical">
-                        Elettricista
-                      </div>
-                    </a>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-6 col-lg-4">
-                <div class="ext-container">
-                  <div class="ext-box" [ngStyle]="{'background-image': 'url(https://s3-eu-west-1.amazonaws.com/starbook-s3/professionista-su-starbook.jpg)'}">
-                    <a (click)="checkoutService('painter')">
-                      <div class="overlay painter">
-                        Imbianchino
-                      </div>
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-6">
-            <div class="checkout-container">
-              <div class="checkout-box">
-                <div class="content-container">
-                  <div class="header-summary">
-                    <h3>Idraulico</h3>
-                    <div class="summary-details">
-                      <div class="item"><p>Intervento idraulico (uscita)</p></div>
-                      <div class="amount">34€</div>
-                    </div>
-                  </div>
-                  <div class="line"></div>
-                  <div class="payment">
-                    <div class="total">
-                      <div class="item">Totale</div>
-                      <div class="amount">34€</div>
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <button type="button" class="btn btn-warning">Prenota adesso</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="container implementation">
-          <div class="title">
-            <h1>Implementazione</h1>
-          </div>
-          <div class="row">
-            <div class="col-md-6 col-lg-3">
-              <p><strong>1.</strong> Scegli i servizi più adatti alla tua piattaforma web o mobile. Ti consigliamo di scegliere servizi che si addattano più alla tua app.</p>
-            </div>
-            <div class="col-md-6 col-lg-3">
-              <p><strong>2.</strong> Noi ti aiuteremo nella implementazione dei servizi scelti offrendo un aiuto tecnico adeguato sulla vostra piattaforma.</p>
-            </div>
-            <div class="col-md-6 col-lg-3">
-              <p><strong>3.</strong> Implementiamo ogni servizio scelto da voi ad un account speciale in modo che sappiamo quando un ordine arriva da voi e non da altri.</p>
-            </div>
-            <div class="col-md-6 col-lg-3">
-              <p><strong>4.</strong> I servizi sono pronti ad essere usati sulla piattaforma. Il vostro utente può selezionare un servizio e ordinare direttamente.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="request" id="applysection">
-      <div class="container request-container">
-        <h1>Vuoi implementare le estensioni sulla tua piattaforma? Inviaci una richiesta.</h1>
-        <form>
-          <div class="row">
-            <div class="col-md-6">
-              <div class="form-group">
-                <label for="firstNameInput">Inserisci il tuo nome</label>
-                <input type="firstname" placeholder="Nome" class="form-control" [ngClass]="{'error-input': request_state.firstname_error}" id="firstNameInput" [(ngModel)]="Request.firstname" [ngModelOptions]="{standalone: true}">
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="form-group">
-                <label for="lastNameInput">Inserisci il tuo cognome</label>
-                <input type="lastname" placeholder="Cognome" class="form-control" [ngClass]="{'error-input': request_state.lastname_error}" id="lastNameInput" [(ngModel)]="Request.lastname" [ngModelOptions]="{standalone: true}">
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-6">
-              <div class="form-group">
-                <label for="phoneInput">Numero di telefono</label>
-                <input type="phone" placeholder="Telefono" class="form-control" [ngClass]="{'error-input': request_state.phone_error}" id="phoneInput" [(ngModel)]="Request.phone" [ngModelOptions]="{standalone: true}">
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="form-group">
-                <label for="emailInput">La tua email</label>
-                <input type="email" placeholder="Email" class="form-control" [ngClass]="{'error-input': request_state.email_error}" id="emailInput" [(ngModel)]="Request.email" [ngModelOptions]="{standalone: true}">
-              </div>
-            </div>
-          </div>
-          <div class="form-group">
-            <label for="descriptionInput">Messaggio</label>
-            <textarea class="form-control" placeholder="Descrivi la tua richiesta..." rows="5" [ngClass]="{'error-input': request_state.description_error}" id="descriptionInput" [(ngModel)]="Request.description" [ngModelOptions]="{standalone: true}"></textarea>
-          </div>
-          <div class="form-group" *ngIf="request_state.message_success">
-            <div class="alert alert-success" role="alert">
-              Ottimo, hai richiesto una consulenza sul implementazione delle estensioni Starbook. La contatteremo al più presto!
-            </div>
-          </div>
-          <div class="form-group" *ngIf="request_state.message_error">
-            <div class="alert alert-danger" role="alert">
-              {{request_state.message_error}}
-            </div>
-          </div>
-          <div class="form-group">
-            <button type="button" id="next" class="btn btn-warning" (click)="sendRequestForNewService()"><i class="fa fa-circle-o-notch animate" *ngIf="request_state.loading"></i>{{request_state.button_title}}</button>
-          </div>
-        </form>
-        <p>Continuando accetti le condizioni di <a routerLink="/legal" target="_blank">Privacy Policy</a>.</p>
-      </div>
-    </div>
-    <footer class="footer">
-      <div class="footer-container">
-        <div class="row">
-          <div class="col-md-6 col-lg-3">
-            <ul>
-              <li>Starbook © 2017</li>
-              <li>Tutti i diritti riservati</li>
-            </ul>
-          </div>
-          <div class="col-md-6 col-lg-3">
-            <ul>
-              <li><a routerLink="/legal" target="_blank">Privacy e Condizioni</a></li>
-              <li><a routerLink="/help" target="_blank">Aiuto e Assistenza</a></li>
-            </ul>
-          </div>
-          <div class="col-md-6 col-lg-3">
-            <ul>
-              <li><a routerLink="/about" target="_blank">Chi siamo</a></li>
-            </ul>
-          </div>
-          <div class="col-md-6 col-lg-3">
-            <ul>
-              <li><a routerLink="/requests/service" target="_blank">Richiedi un servizio</a></li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </footer>
-  </div>
-
-  <div *ngIf="page==='idraulico'">
-    <div class="header-container" [ngStyle]="{'background-image': 'url(' + data.pictures[0] + ')'}">
-      <div class="header">
-        <div class="container">
-          <h1>{{data.texts[0]}}</h1>
-          <h3>{{data.texts[1]}}</h3>
-          <div class="actions">
-            <div class="form-group">
-              <button class="btn btn-yellow-green" (click)="checkoutService('plumber')">Prenota adesso</button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="slogan">
-      <div class="container">
-        <div class="title">
-          <h1>{{data.texts[2]}}</h1>
-        </div>
-      </div>
-    </div>
-    <div class="container advantages" [ngStyle]="{'border-bottom': '1px solid rgba(221, 221, 221, 0.8)'}">
-      <div class="advantages-container">
-        <div class="title">
-          <h1>{{data.texts[3]}}</h1>
-        </div>
-        <div class="row">
-          <div *ngFor="let bullet of data.bullets">
-            <div class="col-md-4">
-              <h3><i class="fa {{bullet['icon_name']}}" aria-hidden="true"></i> {{bullet['title']}}</h3>
-              <p>{{bullet['description']}}</p>
-            </div>
-          </div>
-        </div>
-        <div class="actions">
-          <div class="form-group">
-            <button class="btn btn-yellow-blue" (click)="checkoutService('plumber')">Prenota adesso</button>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="container reviews">
-      <div class="title">
-        <h1>{{data.texts[4]}}</h1>
-      </div>
-      <div class="row">
-        <div *ngFor="let review of data.reviews">
-          <div class="col-md-6">
-            <div class="review-container">
-              <h5>
-                <i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i> da
-                <strong>{{review.username}}</strong>
-              </h5>
-              <p>{{review.text}}</p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="actions">
-        <div class="form-group">
-          <button class="btn btn-yellow-blue" (click)="checkoutService('plumber')">Prenota adesso</button>
-        </div>
-      </div>
-    </div>
-    <div class="request">
-      <div class="container request-container">
-        <h1>Chiedi di cosa hai bisogno</h1>
-        <form>
-          <div class="row">
-            <div class="col-md-6">
-              <div class="form-group">
-                <label for="firstNameInput">Inserisci il tuo nome</label>
-                <input type="firstname" placeholder="Nome" class="form-control" [ngClass]="{'error-input': request_state.firstname_error}" id="firstNameInput" [(ngModel)]="Request.firstname" [ngModelOptions]="{standalone: true}">
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="form-group">
-                <label for="lastNameInput">Inserisci il tuo cognome</label>
-                <input type="lastname" placeholder="Cognome" class="form-control" [ngClass]="{'error-input': request_state.lastname_error}" id="lastNameInput" [(ngModel)]="Request.lastname" [ngModelOptions]="{standalone: true}">
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-6">
-              <div class="form-group">
-                <label for="phoneInput">Numero di telefono</label>
-                <input type="phone" placeholder="Telefono" class="form-control" [ngClass]="{'error-input': request_state.phone_error}" id="phoneInput" [(ngModel)]="Request.phone" [ngModelOptions]="{standalone: true}">
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="form-group">
-                <label for="emailInput">La tua email</label>
-                <input type="email" placeholder="Email" class="form-control" [ngClass]="{'error-input': request_state.email_error}" id="emailInput" [(ngModel)]="Request.email" [ngModelOptions]="{standalone: true}">
-              </div>
-            </div>
-          </div>
-          <div class="form-group">
-            <label for="descriptionInput">Messaggio</label>
-            <textarea class="form-control" placeholder="Descrivi la tua richiesta..." rows="5" [ngClass]="{'error-input': request_state.description_error}" id="descriptionInput" [(ngModel)]="Request.description" [ngModelOptions]="{standalone: true}"></textarea>
-          </div>
-          <div class="form-group" *ngIf="request_state.message_success">
-            <div class="alert alert-success" role="alert">
-              {{request_state.message_success}}
-            </div>
-          </div>
-          <div class="form-group" *ngIf="request_state.message_error">
-            <div class="alert alert-danger" role="alert">
-              {{request_state.message_error}}
-            </div>
-          </div>
-          <div class="form-group">
-            <button type="button" id="next" class="btn btn-warning" (click)="sendRequestForNewService()"><i class="fa fa-circle-o-notch animate" *ngIf="request_state.loading"></i>{{request_state.button_title}}</button>
-          </div>
-        </form>
-        <p>Continuando accetti le condizioni di <a routerLink="/legal" target="_blank">Privacy Policy</a>.</p>
-      </div>
-    </div>
-    <div class="container share">
-      <h1>Aiuta chi ha bisogno!</h1>
-      <p>Puoi sempre aiutare un amico o amica che ha bisogno di un idraulico per qualsiasi intervento. Inserisci il numero di telefono insieme alla mail e invia questa pagina.</p>
-      <div class="alerts">
-        <div class="form-group" *ngIf="invitation_state.message_error">
-          <div class="alert alert-danger" role="alert">{{invitation_state.message_error}}</div>
-        </div>
-        <div class="form-group" *ngIf="invitation_state.message_success">
-          <div class="alert alert-success" role="alert">{{invitation_state.message_success}}</div>
-        </div>
-      </div>
-      <div class="input-group">
-        <input type="text" placeholder="Esempio: 3234565540, john@gmail.com" class="form-control" id="contacts" [(ngModel)]="contacts" [ngModelOptions]="{standalone: true}">
-        <span class="input-group-btn">
-          <button type="button" id="next" class="btn btn-success" (click)="sendInvitations()">Invia</button>
-        </span>
-      </div>
-    </div>
-    <footer class="footer">
-      <div class="footer-container">
-        <div class="row">
-          <div class="col-md-6 col-lg-3">
-            <ul>
-              <li>Starbook © 2017</li>
-              <li>Tutti i diritti riservati</li>
-            </ul>
-          </div>
-          <div class="col-md-6 col-lg-3">
-            <ul>
-              <li><a routerLink="/info/legal">Privacy e Condizioni</a></li>
-              <li><a routerLink="/info/help">Aiuto e Assistenza</a></li>
-            </ul>
-          </div>
-          <div class="col-md-6 col-lg-3">
-            <ul>
-              <li><a routerLink="/info/about">Chi siamo</a></li>
-            </ul>
-          </div>
-          <div class="col-md-6 col-lg-3">
-            <ul>
-              <li><a routerLink="/requests/service">Richiedi un servizio</a></li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </footer>
-  </div>
-
-</div> -->

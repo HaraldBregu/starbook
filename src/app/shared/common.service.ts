@@ -62,7 +62,6 @@ export class CommonService {
   }
 
   getCategories() {
-    // this.navigationService.updateLoadingStatus(true);
     let queryString = 'categories';
     return this.http.get(this.api + queryString).toPromise().then((response) => {
       return response.json();
@@ -75,12 +74,6 @@ export class CommonService {
   }
 
   getServicesForCategoryTitle(title) {
-    // this.navigationService.updateLoadingStatus(true);
-    // let queryString = 'category_services';
-    // return this.http.get(this.api + queryString).toPromise().then((response) => {
-    //   return response.json();
-    // }).catch(this.handleError);
-
     let queryString = 'categories/' + title + '/services';
     return this.http.get(this.api + queryString).toPromise().then((response) => {
       return response.json();

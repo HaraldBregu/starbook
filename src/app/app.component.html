@@ -44,7 +44,7 @@
     <!--  Collapsed -->
     <ul *ngIf="auth !== false && hasRightContainer" class="nav navbar-nav float-xs-right" [ngClass]="{'collapse':!collapsed}">
       <li class="nav-item" *ngIf="hasPublishService">
-        <a class="nav-link publish-item" (click)="publishService()">Pubblica un servizio</a>
+        <a class="nav-link publish-item" (click)="publishService()">Pubblica il tuo servizio</a>
       </li>
       <li class="nav-item">
         <a class="nav-link home" routerLink="" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" (click)="updateTabMenu(true)">Home</a>
@@ -63,7 +63,7 @@
         <a class="nav-link home" routerLink="" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" (click)="updateTabMenu(true)">Home</a>
       </li>
       <li class="nav-item" *ngIf="hasPublishService">
-        <a class="nav-link publish-item" (click)="publishService()">Pubblica un servizio</a>
+        <a class="nav-link publish-item" (click)="publishService()">Pubblica il tuo servizio</a>
       </li>
       <!-- <li class="nav-item register-item">
         <a class="nav-link profile" (click)="signupAsProfessional()">Iscriviti come professionista</a>

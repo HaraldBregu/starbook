@@ -196,6 +196,85 @@ app-landing {
         }
       }
     }
+    .category-container {
+      display: block;
+      text-align: center;
+      padding: 30px 0;
+      max-width: 1380px;
+      margin: auto;
+      overflow: auto;
+      .category {
+        .category-header {
+          margin-bottom: 20px;
+          h1 {
+            text-align: center;
+            color: #324978;
+            font-weight: 700;
+          }
+        }
+        .category-body {
+          overflow-x: hidden;
+          white-space: nowrap;
+          .service-container {
+            display: inline-block;
+            width: calc(100% / 5);
+            padding: 7px;
+            margin-right: -3px;
+            .service {
+              position: relative;
+              background-size: cover;
+              background-repeat: no-repeat;
+              background-position: center top;
+              background-color: #161517;
+              height: 340px;
+              overflow: auto;
+              cursor: pointer;
+              .overlay {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                z-index: 10;
+                background: rgba(0, 0, 0, 0.3);
+                -webkit-transition: background 0.4s ease;
+                   -moz-transition: background 0.4s ease;
+                     -o-transition: background 0.4s ease;
+                        transition: background 0.4s ease;
+              }
+              .overlay:hover {
+                background: rgba(0, 0, 0, 0.0);
+              }
+              .text-container {
+                display: block;
+                position: absolute;
+                z-index: 2;
+                padding: 20px;
+                bottom: 0;
+                width: 100%;
+                text-align: left;
+                background: -webkit-linear-gradient(transparent 10%, rgba(0, 0, 0, 0.65) 100%) !important;
+                background: -moz-linear-gradient(transparent 10%, rgba(0, 0, 0, 0.65) 100%) !important;
+                background: linear-gradient(transparent 10%, rgba(0, 0, 0, 0.65) 100%) !important;
+                .title {
+                  font-weight: 700;
+                  color: white;
+                  line-height: 120%;
+                  font-size: 25px;
+                  text-transform: capitalize;
+                  white-space: normal !important;
+                  text-align: left;
+                }
+              }
+            }
+          }
+          .house-service {
+            width: calc(100% / 3);
+          }
+        }
+      }
+    }
+
     .services-container {
       display: block;
       text-align: center;
@@ -269,11 +348,13 @@ app-landing {
         color: #324976;
         max-width: 300px;
         font-weight: 400;
+        line-height: inherit;
       }
       h5 {
         margin: auto;
         font-weight: 300;
         max-width: 310px;
+        line-height: inherit;
       }
       .bullets {
         padding-top: 40px;
@@ -286,6 +367,19 @@ app-landing {
       background-size: cover;
       background-repeat: no-repeat;
       background-position: center;
+      .btn-warning {
+        background: #F6A623;
+      }
+      .btn-warning:focus {
+        background: #F6A623;
+      }
+      .btn-warning:active:focus {
+        background: #e49616;
+      }
+      .btn-warning:hover {
+        background: #e49616;
+      }
+
       .overlay {
         background-color: rgba(0, 0, 0, 0.75);
       }
@@ -333,8 +427,6 @@ app-landing {
         margin-bottom: 30px;
       }
     }
-
-
 
     .section-container {
       display: block;
@@ -1014,7 +1106,40 @@ app-landing {
   }
 }
 
+@media (max-width: 1024px) {
+  app-landing .landing-container .category-container .category .category-body {
+    padding: 0 20px;
+  }
+  app-landing .landing-container .category-container .category .category-body .service-container {
+    width: calc(100% / 4);
+  }
+  app-landing .landing-container .category-container .category .category-body {
+    overflow-x: scroll;
+  }
+}
+@media (max-width: 768px) {
+  app-landing .landing-container .category-container .category .category-body .service-container {
+    width: calc(100% / 3);
+  }
+  app-landing .landing-container .category-container .category .category-body .service-container .service {
+    height: 300px;
+  }
+}
+
 @media (max-width: 425px) {
+  app-landing .landing-container .header-container .header {
+    padding: 30px 20px;
+  }
+  app-landing .landing-container .header-container .header h1 {
+    font-size: 40px;
+    line-height: 45px;
+  }
+  app-landing .landing-container .category-container .category .category-body .service-container {
+    width: calc(100% / 1.5);
+  }
+  app-landing .landing-container .category-container .category .category-body .service-container .service {
+    height: 260px;
+  }
   app-landing .landing-container .landing-header .header .search .close-container {
     right: 23%;
   }
@@ -1023,6 +1148,12 @@ app-landing {
   }
   app-landing .landing-container .landing-header .header .search .ui-autocomplete-panel {
     width: 80% !important;
+  }
+}
+
+@media (max-width: 375px) {
+  app-landing .landing-container .category-container .category .category-body .service-container {
+    width: calc(100% / 1.3);
   }
 }
 

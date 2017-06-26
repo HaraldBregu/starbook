@@ -27,6 +27,8 @@ export class LandingComponent implements OnInit {
   };
   public ref;
   public categories = []
+  public professionals = []
+  public inHouseServices = []
   public seoObject = {};
   public order = {};
 
@@ -51,12 +53,21 @@ export class LandingComponent implements OnInit {
         }
       }
 
+      this.commonService.getServicesForCategoryTitle('Professionisti').then((professionals) => {
+        this.professionals = professionals.result[0].services;
+      }).catch((error) => {
+        this.professionals = null;
+      });
+
+      this.commonService.getServicesForCategoryTitle('Casa').then((inHouseServices) => {
+        this.inHouseServices = inHouseServices.result[0].services;
+      }).catch((error) => {
+        this.inHouseServices = null;
+      });
+
       this.commonService.getServicesForCategoryTitle('Artigiani').then((categories) => {
         this.categories = categories.result[0].services;
-        // console.log('categories: ' + JSON.stringify(categories.result[0]));
-        // console.log('categories: ' + JSON.stringify(this.categories));
       }).catch((error) => {
-        // console.log('error: ' + error);
         this.categories = null;
       });
 
@@ -146,6 +157,6 @@ export class LandingComponent implements OnInit {
   }
 
   selectService(service) {
-    this.router.navigate(['category/' + service.title.toLowerCase()]);
+    this.router.navigate(['services/' + service.title.replace(/\s+/g, '-')]);
   }
 }

@@ -3652,6 +3652,71 @@ app-landing {
           left: 50%;
           border-bottom: 20px solid white;
           border-left: 20px solid transparent; }
+    app-landing .landing-container .category-container {
+      display: block;
+      text-align: center;
+      padding: 30px 0;
+      max-width: 1380px;
+      margin: auto;
+      overflow: auto; }
+      app-landing .landing-container .category-container .category .category-header {
+        margin-bottom: 20px; }
+        app-landing .landing-container .category-container .category .category-header h1 {
+          text-align: center;
+          color: #324978;
+          font-weight: 700; }
+      app-landing .landing-container .category-container .category .category-body {
+        overflow-x: hidden;
+        white-space: nowrap; }
+        app-landing .landing-container .category-container .category .category-body .service-container {
+          display: inline-block;
+          width: calc(100% / 5);
+          padding: 7px;
+          margin-right: -3px; }
+          app-landing .landing-container .category-container .category .category-body .service-container .service {
+            position: relative;
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center top;
+            background-color: #161517;
+            height: 340px;
+            overflow: auto;
+            cursor: pointer; }
+            app-landing .landing-container .category-container .category .category-body .service-container .service .overlay {
+              position: absolute;
+              top: 0;
+              left: 0;
+              width: 100%;
+              height: 100%;
+              z-index: 10;
+              background: rgba(0, 0, 0, 0.3);
+              -webkit-transition: background 0.4s ease;
+              -moz-transition: background 0.4s ease;
+              -o-transition: background 0.4s ease;
+              transition: background 0.4s ease; }
+            app-landing .landing-container .category-container .category .category-body .service-container .service .overlay:hover {
+              background: transparent; }
+            app-landing .landing-container .category-container .category .category-body .service-container .service .text-container {
+              display: block;
+              position: absolute;
+              z-index: 2;
+              padding: 20px;
+              bottom: 0;
+              width: 100%;
+              text-align: left;
+              background: -webkit-linear-gradient(transparent 10%, rgba(0, 0, 0, 0.65) 100%) !important;
+              background: -moz-linear-gradient(transparent 10%, rgba(0, 0, 0, 0.65) 100%) !important;
+              background: linear-gradient(transparent 10%, rgba(0, 0, 0, 0.65) 100%) !important; }
+              app-landing .landing-container .category-container .category .category-body .service-container .service .text-container .title {
+                font-weight: 700;
+                color: white;
+                line-height: 120%;
+                font-size: 25px;
+                text-transform: capitalize;
+                white-space: normal !important;
+                text-align: left; }
+        app-landing .landing-container .category-container .category .category-body .house-service {
+          width: calc(100% / 3); }
     app-landing .landing-container .services-container {
       display: block;
       text-align: center;
@@ -3713,11 +3778,13 @@ app-landing {
         margin: 0 auto 10px;
         color: #324976;
         max-width: 300px;
-        font-weight: 400; }
+        font-weight: 400;
+        line-height: inherit; }
       app-landing .landing-container .bullets-container h5 {
         margin: auto;
         font-weight: 300;
-        max-width: 310px; }
+        max-width: 310px;
+        line-height: inherit; }
       app-landing .landing-container .bullets-container .bullets {
         padding-top: 40px; }
     app-landing .landing-container .professional-container {
@@ -3727,6 +3794,14 @@ app-landing {
       background-size: cover;
       background-repeat: no-repeat;
       background-position: center; }
+      app-landing .landing-container .professional-container .btn-warning {
+        background: #F6A623; }
+      app-landing .landing-container .professional-container .btn-warning:focus {
+        background: #F6A623; }
+      app-landing .landing-container .professional-container .btn-warning:active:focus {
+        background: #e49616; }
+      app-landing .landing-container .professional-container .btn-warning:hover {
+        background: #e49616; }
       app-landing .landing-container .professional-container .overlay {
         background-color: rgba(0, 0, 0, 0.75); }
       app-landing .landing-container .professional-container .professional {
@@ -4276,7 +4351,35 @@ app-landing {
     app-landing .landing-container .header-container .header .search .search-button {
       width: 30%; } }
 
+@media (max-width: 1024px) {
+  app-landing .landing-container .category-container .category .category-body {
+    padding: 0 20px; }
+
+  app-landing .landing-container .category-container .category .category-body .service-container {
+    width: calc(100% / 4); }
+
+  app-landing .landing-container .category-container .category .category-body {
+    overflow-x: scroll; } }
+@media (max-width: 768px) {
+  app-landing .landing-container .category-container .category .category-body .service-container {
+    width: calc(100% / 3); }
+
+  app-landing .landing-container .category-container .category .category-body .service-container .service {
+    height: 300px; } }
 @media (max-width: 425px) {
+  app-landing .landing-container .header-container .header {
+    padding: 30px 20px; }
+
+  app-landing .landing-container .header-container .header h1 {
+    font-size: 40px;
+    line-height: 45px; }
+
+  app-landing .landing-container .category-container .category .category-body .service-container {
+    width: calc(100% / 1.5); }
+
+  app-landing .landing-container .category-container .category .category-body .service-container .service {
+    height: 260px; }
+
   app-landing .landing-container .landing-header .header .search .close-container {
     right: 23%; }
 
@@ -4285,6 +4388,9 @@ app-landing {
 
   app-landing .landing-container .landing-header .header .search .ui-autocomplete-panel {
     width: 80% !important; } }
+@media (max-width: 375px) {
+  app-landing .landing-container .category-container .category .category-body .service-container {
+    width: calc(100% / 1.3); } }
 app-company {
   display: block;
   width: 100%;
@@ -4365,6 +4471,9 @@ app-company {
         text-align: center; }
         app-company .company-container .frase-container .frase h1 {
           font-weight: 300; }
+        app-company .company-container .frase-container .frase h4 {
+          font-weight: 300;
+          margin-top: 20px; }
         app-company .company-container .frase-container .frase .btn {
           margin-top: 50px;
           font-weight: 600;
@@ -5433,7 +5542,7 @@ app-services {
   app-services .services {
     max-width: 1440px;
     margin: auto;
-    padding: 10px 0px;
+    padding: 30px;
     text-align: center; }
     app-services .services h1 {
       color: #324978; }
@@ -5444,8 +5553,9 @@ app-services {
       display: inline-block;
       float: left;
       width: 20%;
-      padding: 10px; }
+      padding: 7px; }
     app-services .services .service {
+      background-color: #161517;
       display: block;
       position: relative;
       width: 100%;
@@ -5454,23 +5564,39 @@ app-services {
       background-repeat: no-repeat;
       background-size: cover;
       background-position: top center; }
-    app-services .services .title {
-      display: block;
-      position: absolute;
-      z-index: 2;
-      font-weight: 700;
-      color: white;
-      font-size: 25px;
-      line-height: 120%;
-      text-transform: capitalize;
-      white-space: normal !important;
-      text-align: left;
-      padding: 15px;
-      bottom: 0;
-      width: 100%;
-      background: -webkit-linear-gradient(transparent 0%, rgba(0, 0, 0, 0.65) 100%) !important;
-      background: -moz-linear-gradient(transparent 0%, rgba(0, 0, 0, 0.65) 100%) !important;
-      background: linear-gradient(transparent 0%, rgba(0, 0, 0, 0.65) 100%) !important; }
+      app-services .services .service .overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 10;
+        background: rgba(0, 0, 0, 0.3);
+        -webkit-transition: background 0.4s ease;
+        -moz-transition: background 0.4s ease;
+        -o-transition: background 0.4s ease;
+        transition: background 0.4s ease; }
+      app-services .services .service .overlay:hover {
+        background: transparent; }
+      app-services .services .service .text-container {
+        display: block;
+        position: absolute;
+        z-index: 2;
+        padding: 20px;
+        bottom: 0;
+        width: 100%;
+        text-align: left;
+        background: -webkit-linear-gradient(transparent 10%, rgba(0, 0, 0, 0.65) 100%) !important;
+        background: -moz-linear-gradient(transparent 10%, rgba(0, 0, 0, 0.65) 100%) !important;
+        background: linear-gradient(transparent 10%, rgba(0, 0, 0, 0.65) 100%) !important; }
+        app-services .services .service .text-container .title {
+          font-weight: 700;
+          color: white;
+          line-height: 120%;
+          font-size: 25px;
+          text-transform: capitalize;
+          white-space: normal !important;
+          text-align: left; }
   @media (max-width: 768px) {
     app-services .services .service-box {
       width: 50%; } }

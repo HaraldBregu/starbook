@@ -134,7 +134,7 @@ export class InsertComponent implements OnInit {
         }
       }
     } else if (this.step === 'end') {
-      this.router.navigate(['profile/general']);
+      this.router.navigate(['services']);
       return;
     }
     this.router.navigate(['insert/' + nextStep]);
