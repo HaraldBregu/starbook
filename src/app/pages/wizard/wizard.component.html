@@ -1,5 +1,4 @@
 <div class="wizard-container" (window:resize)="onResize()">
-  <!-- <div class="progress-container"><div class="progress"></div></div> -->
   <div class="wizard">
     <ul class="breadcrumb" *ngIf="step !== ''">
       <li *ngFor="let items of wizardDataItems; let i = index;"
@@ -8,6 +7,7 @@
           <a><div *ngIf="screenWidth<=425">{{i+1}}</div><div *ngIf="screenWidth>425">{{items}}</div></a>
         </li>
     </ul>
+
     <div class="wizard-container" *ngIf="step === 'summary'">
       <div class="content-container">
         <div class="header-summary">
@@ -50,7 +50,7 @@
         </div>
         <div class="forms">
           <div class="form-group">
-            <p-autoComplete id="luogo" class="form-control" [(ngModel)]="temp_address" (clickOutside)="clickOutsideAddressInput()" [ngModelOptions]="{standalone: true}" [suggestions]="addresses" field="street_number_city" (completeMethod)="getAddresses($event)" (onSelect)="selectAddress($event)" placeholder="Via, Numero, Città"></p-autoComplete>
+            <p-autoComplete id="address" class="form-control" [(ngModel)]="temp_address" (clickOutside)="clickOutsideAddressInput()" [ngModelOptions]="{standalone: true}" [suggestions]="addresses" field="street_number_city" (completeMethod)="getAddresses($event)" (onSelect)="selectAddress($event)" placeholder="Via, Numero, Città"></p-autoComplete>
           </div>
         </div>
         <div class="messages" [hidden]="!address_state.error_message">
@@ -184,6 +184,7 @@
         <p>Fatto! Nei prossimi minuti verrai contattato da noi per ulteriori dettagli e per confermare l'ordine. Per sucurezza controlla che sia inserito il numero del telefono nel tuo account.</p>
       </div>
     </div>
+
     <div class="wizard-container" *ngIf="step === 'login'">
       <div class="content-container">
         <div class="header">
@@ -300,6 +301,7 @@
         <p>Crea un account su Starbook inserendo i dati più importanti e poi proseguì inviando l'ordine. In alternativa puoi usare anche Facebook per continuare.</p>
       </div>
     </div>
+
     <div class="wizard-container" *ngIf="step === 'card'">
       <div class="content-container">
         <div class="header">
@@ -393,6 +395,7 @@
         <p>Inserisci un metodo di pagamento per inviare l'ordine. In questo modo assicuriamo che il pagamento del professionista sia garantio. Puo richiedere il rimborso delle spese in qualsiasi momento contatandoci.</p>
       </div>
     </div>
+
     <div class="wizard-container" *ngIf="step === 'info'">
       <div class="content-container">
         <div class="header">

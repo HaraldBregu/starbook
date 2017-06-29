@@ -1,9 +1,13 @@
 <div class="service-container" *ngIf="Service">
   <div class="service">
     <div class="picture-container">
-      <div class="picture" *ngIf="Service._id" [ngStyle]="{'background-image' : ' url(' + 'https://s3-eu-west-1.amazonaws.com/starbook-s3/services/' + Service._id + '/cover/0' + ')'}"></div>
+      <div class="picture" *ngIf="Service._id" [ngStyle]="{'background-image' : ' url(' + 'https://s3-eu-west-1.amazonaws.com/starbook-s3/services/' + Service._id + '/cover/0' + ')'}">
+        <div class="overlay">
+
+        </div>
+      </div>
       <div class="picture-footer">
-        <span class="left-content">Consiglia ad un amico</span>
+        <span class="left-content">Condividi</span>
         <div class="right-content">
           <button (click)="shareOnFacebook()"><i class="fa fa-facebook" aria-hidden="true"></i></button>
           <button (click)="shareOnTwitter()"><i class="fa fa-twitter" aria-hidden="true"></i></button>
@@ -12,30 +16,33 @@
       </div>
     </div>
     <div class="content-container">
-      <span class="content-title" *ngIf="Service.title">{{Service.title}}</span>
-      <div class="content-user" *ngIf="Account">
-        <div class="user">
-          <div class="avatar" *ngIf="checkImageUrlFromAccount(Account)!==0" [ngStyle]="{'background-image' : 'url(' +  'https://s3-eu-west-1.amazonaws.com/starbook-s3/accounts/' + Account._id + '/avatar/0' + ')'}"></div>
-          <div class="avatar" *ngIf="checkImageUrlFromAccount(Account)===0"></div>
-          <div class="username">{{Account['profile']['firstname']}}</div>
-        </div>
+      <div class="content-header">
+        <span class="content-title" *ngIf="Service.title">{{Service.title}}</span>
+        <span class="content-description" *ngIf="Service.description">{{Service.description}}</span>
       </div>
-      <span class="content-description" *ngIf="Service.description">{{Service.description}}</span>
       <div class="content-pricing" *ngIf="Service.pricing">
-        <span class="price">{{getPriceStringPerUnit()}}</span>
-        <span class="unit"> / {{Service.pricing.unit.title}}</span>
-        <div class="options" *ngFor="let option of Service.pricing.options">
-          <div class="item-container noselect" *ngFor="let item of option.items" (click)="toggleItemOption(item, option)">
-            <span class="checkbox" [ngClass]="{'checked':orderServiceDetailsContainItem(item)}"><span></span></span>
-            <span class="title">{{item.title}}</span>
+        <div class="options-container" *ngIf="Service.pricing.options && Service.pricing.options?.length>0">
+          <div class="options" *ngFor="let option of Service.pricing.options">
+            <div class="item-container noselect" *ngFor="let item of option.items" (click)="toggleItemOption(item, option)">
+              <span class="checkbox" [ngClass]="{'checked':orderServiceDetailsContainItem(item)}"><span></span></span>
+              <span class="title">{{item.title}}</span>
+            </div>
           </div>
         </div>
+        <span class="price">{{getPriceStringPerUnit()}}</span>
+        <span class="unit"> / {{Service.pricing.unit.title}}</span>
         <div class="actions">
           <button class="btn btn-warning" name="button" (click)="bookService()">Prenota</button>
         </div>
       </div>
-      <div class="content-users" *ngIf="Accounts.length>0">
-        <span class="title">Servizio offerto da</span>
+
+      <div class="content-users" *ngIf="Accounts.length>0 || Account">
+        <span class="title">Professionisti</span>
+        <div class="user" *ngIf="Account">
+          <div class="avatar" *ngIf="checkImageUrlFromAccount(Account)!==0" [ngStyle]="{'background-image' : 'url(' +  'https://s3-eu-west-1.amazonaws.com/starbook-s3/accounts/' + Account._id + '/avatar/0' + ')'}"></div>
+          <div class="avatar" *ngIf="checkImageUrlFromAccount(Account)===0"></div>
+          <div class="username">{{Account['profile']['firstname']}}</div>
+        </div>
         <div class="user" *ngFor="let account of Accounts">
           <div class="avatar" *ngIf="!avatar" [ngStyle]="{'background-image' : 'url(' + 'https://s3-eu-west-1.amazonaws.com/starbook-s3/accounts/' + account.account._id + '/avatar/0' + ')'}"></div>
           <div class="username">{{account.account.profile.firstname}}</div>

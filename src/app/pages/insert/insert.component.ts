@@ -80,9 +80,9 @@ export class InsertComponent implements OnInit {
       this.step = params['step']
       this.route.queryParams.subscribe((queryParams: Params) => {
         this.usr = queryParams['usr']
-        if (this.usr==='dlb') {
-          console.log('this is daniel');
-        }
+        // if (this.usr==='dlb') {
+        //   console.log('this is daniel');
+        // }
       })
       if (this.currentUser) {
         this.steps = ['intro', 'title', 'pricing', 'picture', 'end']
@@ -295,6 +295,7 @@ export class InsertComponent implements OnInit {
     this.step = 'recover'
     this.router.navigate(['insert/recover'])
   }
+
   saveProfilePictureToPath(file, path) {
     if (file) {
       let AWSService = (<any>window).AWS;

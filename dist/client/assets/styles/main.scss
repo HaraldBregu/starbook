@@ -17,11 +17,11 @@
 @import "base/_base";
 @import "base/_fontawesome";
 @import "base/_fonticons";
+
 // Layout
 @import "layout/_layout";
 @import "layout/_theme";
 @import "layout/_print";
-// Components
 
 // Pages
 @import "../../app/_app.component";
@@ -29,15 +29,11 @@
 @import "../../app/landing/_landing.component";
 @import "../../app/company/_company.component";
 
-// @import "../../app/home/_home.component";
-
 @import "../../app/pages/category/_category.component";
-
 @import "../../app/pages/service/_service.component";
 @import "../../app/pages/services/_services.component";
 @import "../../app/pages/insert/_insert.component";
-
-// @import "../../app/order/_order.component";
+@import "../../app/pages/checkout/_checkout.component";
 @import "../../app/pages/orders/_orders.component";
 @import "../../app/pages/profile/_profile.component";
 @import "../../app/popups/_popups.component";

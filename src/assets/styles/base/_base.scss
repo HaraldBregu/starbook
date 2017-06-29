@@ -147,7 +147,7 @@ p {
 }
 .btn-warning:hover {
   color: white;
-  background-color: #EBB431;
+  background-color: #EBB431 !important;
 }
 .btn-yellow-green {
   background: #FFC845 !important;
@@ -293,19 +293,6 @@ p {
   border: 1px solid #cbd3d5;
 }
 
-// .input-group .form-control .ui-autocomplete-input {
-//   position: absolute;
-//   width: 100%;
-//   height: 100%;
-//   border: none !important;
-//   padding-left: 20px;
-//   top: 0;
-//   left: 0;
-//   color: white;
-//   font-size: 16px;
-//   letter-spacing: 0.1px;
-//   outline: none;
-// }
 .form-control.text-small {
   font-size: 12px;
 }
@@ -317,21 +304,23 @@ textarea.form-control {
   padding: 20px;
 }
 .form-control:focus {
-  border: 1px solid rgba(220,224,224,0.7);
+  border: 1px solid rgba(220, 224, 224, 0.7);
   outline: none;
   background-color: white;
 }
 .form-group {
   margin-bottom: 15px;
 }
-// .form-group .form-control {
-//   height: 50px !important;
-//   border: 1px solid #DCDCDC;
-// }
 .form-group input {
   height: 50px !important;
   border: 1px solid #DCDCDC;
 }
+// .input-group input {
+//   height: 60px;
+//   border: 1px solid #DCDCDC;
+//   width: 100%;
+// }
+
 .form-group .error-input {
   border: 2px solid #f75c4b !important;
 }
@@ -342,10 +331,10 @@ textarea.form-control {
 .form-group .form-control:focus {
   color: black;
 }
-.form-group .ui-inputtext {
-  height: 50px !important;
-  border: 1px solid #cbd3d5 !important;
-}
+// .form-group .ui-inputtext {
+//   height: 50px !important;
+//   border: 1px solid #cbd3d5 !important;
+// }
 .form-group label, .input-group label {
   color: #212121 !important;
   font-size: 14px !important;
@@ -354,21 +343,21 @@ textarea.form-control {
   padding: 0 !important;
   margin-bottom: 5px !important;
 }
-.form-group .ui-inputtext {
-  position: absolute;
-  top:0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  padding: 0 20px;
-  font-size: 22px;
-  font-family: $font-name;
-  font-weight: 400;
-  letter-spacing: 0.1px;
-  border: 1px solid #DCDCDC;
-  border-radius: 0;
-  outline: none;
-}
+// .form-group .ui-inputtext {
+//   position: absolute;
+//   top:0;
+//   left: 0;
+//   width: 100%;
+//   height: 100%;
+//   padding: 0 20px;
+//   font-size: 22px;
+//   font-family: $font-name;
+//   font-weight: 400;
+//   letter-spacing: 0.1px;
+//   border: 1px solid #DCDCDC;
+//   border-radius: 0;
+//   outline: none;
+// }
 
 .input-group {
   margin-bottom: 15px;
@@ -384,17 +373,10 @@ textarea.form-control {
 .input-group .form-control:focus {
   color: black;
 }
-.input-group .ui-inputtext {
-  height: 50px !important;
-  border: 1px solid #DCDCDC !important;
-}
-// .input-group .form-control {
-//   position: relative;
-//   padding-left: 20px;
-//
-//   background-color: #2A292B;
+// .input-group .ui-inputtext {
+//   height: 50px !important;
+//   border: 1px solid #DCDCDC !important;
 // }
-
 
 // LODER
 .animate {
@@ -464,9 +446,9 @@ $datepicker-background-color: #ffffff;
 $datepicker-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.25);
 $datepicker-font-size: 15px;
 $datepicker-text-color: #4A4A4A;
-$datepicker-text-default-color: #7FC443;
+$datepicker-text-default-color: #1abc9c;
 $datepicker-disabled-text-color: #4A4A4A;
-$datepicker-background-primary: #7FC443;
+$datepicker-background-primary: #1abc9c;
 $datepicker-hover-text-color: #ffffff;
 
 .date.datepicker-block {
@@ -474,7 +456,7 @@ $datepicker-hover-text-color: #ffffff;
 }
 .date .ui-datepicker {
   position: absolute;
-  top: 50px !important;
+  top: 60px !important;
   width: 100%;
   background-color: $datepicker-background-color;
   box-shadow: $datepicker-shadow;
@@ -514,10 +496,10 @@ $datepicker-hover-text-color: #ffffff;
   width: 50px;
 }
 .date .ui-datepicker .ui-datepicker-prev {
-  left: 20px;
+  left: 15px;
 }
 .date .ui-datepicker .ui-datepicker-next {
-  right: 70px;
+  right: 15px;
 }
 .date .dropdown-menu .btn-secondary.btn-inline {
   border: none;

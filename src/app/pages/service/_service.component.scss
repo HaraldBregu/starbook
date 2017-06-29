@@ -17,14 +17,31 @@ app-service {
         width: 35%;
         padding: 20px;
         .picture {
+          position: relative;
           background-size: cover;
           background-repeat: no-repeat;
           background-position: center;
           width: 100%;
           height: 550px;
+          .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 10;
+            background: rgba(0, 0, 0, 0.1);
+            -webkit-transition: background 0.4s ease;
+               -moz-transition: background 0.4s ease;
+                 -o-transition: background 0.4s ease;
+                    transition: background 0.4s ease;
+          }
+          .overlay:hover {
+            // background: rgba(0, 0, 0, 0.0);
+          }
         }
         .picture-footer {
-          padding: 20px 0;
+          padding: 10px 0;
           .left-content {
             float: left;
             font-size: 17px;
@@ -47,19 +64,104 @@ app-service {
         float: left;
         width: 65%;
         padding: 20px;
-        .content-title {
-          line-height: initial;
-          font-weight: 700;
-          font-size: 44px;
-          color: #484848;
+        .content-header {
+          border-bottom: 1px solid #DBDBDB;
+          overflow: auto;
+          padding: 0 0 20px;
+          .content-title {
+            line-height: initial;
+            font-weight: 700;
+            font-size: 44px;
+            color: #484848;
+          }
+          .content-description {
+            display: block;
+            font-size: 19px;
+            font-weight: 300;
+            color: rgba(0, 0, 0, 0.7);
+            padding: 10px 0 0;
+          }
+        }
+        .content-pricing {
+          padding: 30px 0;
+          border-bottom: 1px solid #DBDBDB;
+          .options-container {
+            padding: 0 0 25px;
+            .options {
+              overflow: auto;
+              .item-container {
+                float: left;
+                margin-right: 20px;
+                margin-top: 10px;
+                cursor: pointer;
+                overflow: auto;
+                .checkbox {
+                  float: left;
+                  position: relative;
+                  width: 25px;
+                  height: 25px;
+                  border: none;
+                  border: 1px solid #161517;
+                  background-color: #ffffff;
+                }
+                .checkbox.checked {
+                  background-color: #161517;
+                  span {
+                    background-image: url('/assets/images/check.png');
+                    background-size: cover;
+                    background-repeat: no-repeat;
+                    background-position: center;
+                    display: block;
+                    // width: 16px;
+                    height: 13px;
+                    margin: 6px 4px 6px 5px;
+                  }
+                }
+                .title {
+                  float: left;
+                  line-height: 25px;
+                  margin-left: 10px;
+                  font-size: 17px;
+                  font-weight: 400;
+                  color: rgba(0, 0, 0, 0.7);
+                }
+              }
+            }
+          }
+          .price {
+            font-size: 28px;
+            font-weight: 900;
+            color: rgba(0, 0, 0, 0.7);
+          }
+          .unit {
+            font-size: 16px;
+            font-weight: 300;
+            text-transform: uppercase;
+          }
+
+          .cost-information {
+            display: block;
+            font-size: 12px;
+            font-weight: 400;
+            color: #4a4a4a;
+          }
+          .actions {
+            padding: 10px 0 0;
+            .btn {
+              padding: 0px 50px;
+              height: 60px;
+              font-size: 26px;
+              font-weight: 700;
+              border-radius: 3px;
+            }
+          }
         }
         .content-user {
-          padding: 0 0 20px;
-          border-bottom: 1px solid #DBDBDB;
+          padding: 25px 0;
+          // border-bottom: 1px solid #DBDBDB;
           overflow: auto;
           .title {
             display: block;
-            margin-top: 10px;
             font-size: 19px;
             font-weight: 300;
           }
@@ -95,19 +197,19 @@ app-service {
           }
         }
         .content-users {
-          padding: 0 0 20px;
-          border-bottom: 1px solid #DBDBDB;
+          padding: 25px 0;
+          // border-bottom: 1px solid #DBDBDB;
           overflow: auto;
           .title {
             display: block;
-            margin-top: 10px;
-            font-size: 19px;
+            font-size: 21px;
             font-weight: 300;
+            color: rgba(0, 0, 0, 0.8);
           }
           .user {
             float: left;
             margin-right: 30px;
-            padding-top: 20px;
+            padding-top: 10px;
             overflow: auto;
             background: white;
             span {
@@ -132,83 +234,6 @@ app-service {
               color: black;
               margin-top: 5px;
               text-transform: capitalize;
-            }
-          }
-        }
-        .content-description {
-          display: block;
-          font-size: 19px;
-          font-weight: 300;
-          color: rgba(0, 0, 0, 0.7);
-          padding: 20px 0;
-          border-bottom: 1px solid #DBDBDB;
-        }
-        .content-pricing {
-          padding: 30px 0;
-          .price {
-            font-size: 24px;
-            font-weight: 900;
-            color: rgba(0, 0, 0, 0.7);
-          }
-          .unit {
-            font-size: 16px;
-            font-weight: 300;
-            text-transform: uppercase;
-          }
-          .options {
-            overflow: auto;
-            // padding: 15px 0;
-            .item-container {
-              float: left;
-              margin-right: 20px;
-              margin-top: 10px;
-              cursor: pointer;
-              overflow: auto;
-              .checkbox {
-                float: left;
-                position: relative;
-                width: 25px;
-                height: 25px;
-                border: none;
-                border: 1px solid #161517;
-                background-color: #ffffff;
-              }
-              .checkbox.checked {
-                background-color: #161517;
-                span {
-                  background-image: url('/assets/images/check.png');
-                  background-size: cover;
-                  background-repeat: no-repeat;
-                  background-position: center;
-                  display: block;
-                  // width: 16px;
-                  height: 13px;
-                  margin: 6px 4px 6px 5px;
-                }
-              }
-              .title {
-                float: left;
-                line-height: 25px;
-                margin-left: 10px;
-                font-size: 17px;
-                font-weight: 400;
-                color: rgba(0, 0, 0, 0.7);
-              }
-            }
-          }
-          .cost-information {
-            display: block;
-            font-size: 12px;
-            font-weight: 400;
-            color: #4a4a4a;
-          }
-          .actions {
-            padding: 20px 0 0;
-            .btn {
-              padding: 0px 50px;
-              height: 60px;
-              font-size: 24px;
-              font-weight: 500;
             }
           }
         }

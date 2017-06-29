@@ -141,7 +141,12 @@ export class AccountComponent implements OnInit {
             this.seoObject['description'] = "Su Starbook troverai i migliori servizi per la tua casa e i migliori professionisti della tua zona.";
 
             if (this.currentUser) {this.router.navigate(['']);}
-          }  else if (this.page === 'professional') {
+          } else if (this.page === 'password_recovery') {
+            this.navigationService.updateMessage('Recupera la tua password');
+            this.seoObject['title'] = "Iscriviti a Starbook";
+            this.seoObject['description'] = "Su Starbook troverai i migliori servizi per la tua casa e i migliori professionisti della tua zona.";
+            if (this.currentUser) {this.router.navigate(['']);}
+          } else if (this.page === 'professional') {
             this.navigationService.updateMessage('Iscriviti come professionista');
             this.seoObject['title'] = "Registra la tua attività gratuitamente";
             this.seoObject['description'] = "Lavori nel mondo dell'edilizia, idraulica, sei un elettrico e esegui lavori particolari artigianali nelle case? Unisciti a noi e collaboreremo per aumentare la professionalità e la clientela in modo smart.";

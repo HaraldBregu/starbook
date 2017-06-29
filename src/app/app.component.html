@@ -1,4 +1,4 @@
-<nav class="navbar navbar-dark navbar-fixed-top bg-inverse" [ngClass]="{'is-search': isFindField}" (window:resize)="onResize()">
+<nav class="navbar navbar-dark navbar-fixed-top bg-inverse" [ngClass]="{'border': hasBottomBorderNav}" (window:resize)="onResize()">
   <div class="container-starbook top-menu">
     <a class="navbar-brand" (click)="clickBrandLogo()">
       <div *ngIf="screenWidth > 768" routerLink="">

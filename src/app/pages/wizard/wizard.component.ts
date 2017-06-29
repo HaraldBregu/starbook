@@ -196,15 +196,10 @@ export class WizardComponent implements OnInit {
           this.formated_date =  day + ' ' + this.it.monthNames[date.getMonth()] + ' ' + date.getFullYear();
         }
       } else {
-        // console.log('OrderService: ' + JSON.stringify(this.service_data));
         var service = this.service_data[0]
         this.Order.service_id = service._id;
         this.Order.title = service.title;
-        // this.Order.description = this.service_data.description;
         this.Order.details = service.details;
-        // this.Order.referral_id = this.service_data.referral_id;
-        // this.Order.upfront_amount = this.service_data.upfront_amount;
-        // this.Order.timing = this.service_data.timing;
         this.Order.upfront_amount = 490;
         this.saveOrderToLocal(this.Order);
       }
@@ -456,7 +451,6 @@ export class WizardComponent implements OnInit {
       this.confirmOrder();
       }).catch((error) => {
         this.analyticsService.sendException(error)
-
         this.login_state.email_error = null;
         this.login_state.password_error = null;
         this.login_state.loading = false;
@@ -777,4 +771,10 @@ export class WizardComponent implements OnInit {
   deleteLocalOrder() {
     localStorage.removeItem('order');
   }
+
+  // setProgressWidth() {
+  //   var numSteps = this.steps.length;
+  //   var currentStep = this.steps.indexOf(this.step) + 1
+  //   return 100/numSteps * currentStep + '%'
+  // }
 }

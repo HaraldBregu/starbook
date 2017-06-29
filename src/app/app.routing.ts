@@ -10,6 +10,7 @@ import { CategoryComponent } from './pages/category/category.component';
 import { ServiceComponent } from './pages/service/service.component';
 import { ServicesComponent } from './pages/services/services.component';
 import { InsertComponent } from './pages/insert/insert.component';
+import { CheckoutComponent } from './pages/checkout/checkout.component';
 
 import { OrdersComponent } from './pages/orders/orders.component';
 import { ProfileComponent } from './pages/profile/profile.component';
@@ -34,7 +35,7 @@ const routes: Routes = [
 
   { path: 'orders', component: OrdersComponent },
   { path: 'orders/:page', component: OrdersComponent },
-  { path: 'order/:step', component: WizardComponent, data: { name: 'Order' } },
+  // { path: 'order/:step', component: WizardComponent, data: { name: 'Order' } },
   { path: 'profile', component: ProfileComponent },
   { path: 'profile/:page', component: ProfileComponent },
 
@@ -48,6 +49,10 @@ const routes: Routes = [
 
   { path: 'insert', component: InsertComponent, data: { name: 'Insert' } },
   { path: 'insert/:step', component: InsertComponent, data: { name: 'Insert' } },
+
+  { path: 'checkout/:step', component: CheckoutComponent, data: { name: 'Checkout' } },
+
+
   // {
   //   path: 'services/:id',
   //   component: ServiceComponent,

@@ -1,0 +1,239 @@
+<div class="checkout-container">
+  <div class="progress-container" *ngIf="step">
+    <div class="progress"
+    [ngStyle]="{'width': setProgressWidth()}"></div>
+  </div>
+  <button type="button" id="next" class="btn btn-warning back" (click)="undoStep()" *ngIf="step && step!=='summary' && step!=='title' && step!=='end'">Indietro</button>
+
+  <div class="checkout" *ngIf="step==='address'">
+    <div class="checkout-header">
+      <h1>Inserisci il tuo indirizzo</h1>
+    </div>
+    <div class="checkout-body">
+      <form (keyup.enter)="nextStep()">
+        <div class="input-group">
+          <p-autoComplete id="address" class="form-control" [(ngModel)]="temp_address" [suggestions]="addresses" field="street_number_city" [ngModelOptions]="{standalone: true}" (completeMethod)="getAddresses($event)" (onSelect)="selectAddress($event)" placeholder="Via, Numero, Città"></p-autoComplete>
+        </div>
+        <div class="form-group error">
+          <span class="error-text" *ngIf="state.address_error">{{state.address_error}}</span>
+        </div>
+        <div class="actions">
+          <div class="form-group text-center">
+            <button type="button" class="btn btn-warning" (click)="nextStep()">Avanti</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="checkout" *ngIf="step==='date'">
+    <div class="checkout-header">
+      <h1>Inserisci la data</h1>
+    </div>
+    <div class="checkout-body">
+      <form (keyup.enter)="nextStep()">
+        <div class="input-group">
+          <p-calendar class="date" name="data" [(ngModel)]="temp_date" id="date" autocomplete="off" readonlyInput="true" dateFormat="dd MM yy" [locale]="it" [minDate]="minDate" (onSelect)="selectDate()" placeholder="Inserisci la data"></p-calendar>
+        </div>
+        <div class="form-group error">
+          <span class="error-text" *ngIf="state.date_error">{{state.date_error}}</span>
+        </div>
+        <div class="actions">
+          <div class="form-group text-center">
+            <button type="button" class="btn btn-warning" (click)="nextStep()">Avanti</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="checkout" *ngIf="step==='preview'">
+    <div class="checkout-header">
+      <h1>Anteprima</h1>
+    </div>
+    <div class="checkout-body">
+      <div class="order-container">
+        <div class="services" *ngFor="let service of Order.services">
+          <div class="service">
+            <div class="service-header">
+              <span class="title">{{service.title}}</span>
+            </div>
+            <div class="details" *ngFor="let detail of service.details">
+              <span class="detail">{{detail.title}}</span>
+            </div>
+          </div>
+        </div>
+        <div class="line"></div>
+        <div class="address">
+          <div class="address-header">
+            <span>Indirizzo</span>
+          </div>
+          <div class="address-body">
+            <span>{{Order.address.street}} {{Order.address.street_number}}, {{Order.address.city}}</span>
+          </div>
+        </div>
+        <div class="date">
+          <div class="date-header">
+            <span>Data</span>
+          </div>
+          <div class="date-body">
+            <span>{{formated_date}}</span>
+          </div>
+        </div>
+      </div>
+      <div class="form-group error">
+        <span class="error-text" *ngIf="state.error_message">{{state.error_message}}</span>
+      </div>
+      <div class="actions">
+        <div class="form-group text-center">
+          <button type="button" class="btn btn-warning" (click)="nextStep()">Avanti</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="checkout" *ngIf="step==='signup'">
+    <div class="checkout-header">
+      <h1>Crea un account</h1>
+    </div>
+    <div class="checkout-body">
+      <form>
+        <div class="form-group">
+          <label for="emailInput">Email</label>
+          <input id="emailInput" type="email" name="email" placeholder="La tua mail" class="form-control" [ngClass]="{'error-input': signup_state.email_error}" [(ngModel)]="signupParameters.email" [ngModelOptions]="{standalone: true}">
+          <small class="error-message" *ngIf="signup_state.email_error">{{signup_state.email_error}}</small>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="firstNameInput">Nome</label>
+              <input id="firstNameInput" type="firstname" name="firstnam" placeholder="Nome" class="form-control" [ngClass]="{'error-input': signup_state.first_name_error}" [(ngModel)]="signupParameters.firstname" [ngModelOptions]="{standalone: true}">
+              <small class="error-message" *ngIf="signup_state.first_name_error">{{signup_state.first_name_error}}</small>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="lastNameInput">Cognome</label>
+              <input id="lastNameInput" type="lastname" name="lastname" placeholder="Cognome" class="form-control" [ngClass]="{'error-input': signup_state.last_name_error}" [(ngModel)]="signupParameters.lastname" [ngModelOptions]="{standalone: true}">
+              <small class="error-message" *ngIf="signup_state.last_name_error">{{signup_state.last_name_error}}</small>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="phone">Telefono</label>
+          <input id="phoneInput" field="phone" type="text" name="phone" placeholder="Numero di telefono" class="form-control" [ngClass]="{'error-input': signup_state.phone_error}" [(ngModel)]="signupParameters.phone" [ngModelOptions]="{standalone: true}">
+          <small class="error-message" *ngIf="signup_state.phone_error">{{signup_state.phone_error}}</small>
+        </div>
+        <div class="form-group">
+          <label for="passwordInput">Crea una password</label>
+          <input id="passwordInput" type="password" name="password" placeholder="Password" class="form-control" [ngClass]="{'error-input': signup_state.password_error}" [(ngModel)]="signupParameters.password" [ngModelOptions]="{standalone: true}">
+          <small class="error-message" *ngIf="signup_state.password_error">{{signup_state.password_error}}</small>
+        </div>
+        <div class="form-group" *ngIf="signup_state.error_message">
+          <div class="alert alert-danger" role="alert">{{signup_state.error_message}}</div>
+        </div>
+        <div class="form-group text-center">
+          <button type="button" class="btn btn-warning" (click)="signup()"><i class="fa fa-circle-o-notch animate" *ngIf="signup_state.loading"></i>{{signup_state.button_title}}</button>
+        </div>
+        <div class="form-group footer-group">
+          <span class="text">Sei gia registrato?</span>
+          <span class="text enter" (click)="changeToLogin()">Entra</span>
+          <span class="text">Continuando dichiari di aver letto e accetti le <a routerlink="/info/legal" href="/info/legal" target="_blank">condizioni generali e l’informativa sulla privacy</a></span>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="checkout" *ngIf="step==='login'">
+    <div class="checkout-header">
+      <h1>Accedi al tuo account</h1>
+    </div>
+    <div class="checkout-body">
+      <form>
+        <div class="form-group">
+          <label for="emailInput">Email</label>
+          <input type="email" placeholder="La tua mail" class="form-control" [ngClass]="{'error-input': login_state.email_error}" id="emailInput" [(ngModel)]="loginParameters.email" [ngModelOptions]="{standalone: true}">
+          <small class="error-message" *ngIf="login_state.email_error">{{login_state.email_error}}</small>
+        </div>
+        <div class="form-group">
+          <label for="passwordInput">Password</label>
+          <input type="password" placeholder="Password" class="form-control" [ngClass]="{'error-input': login_state.password_error}" id="passwordInput" [(ngModel)]="loginParameters.password" [ngModelOptions]="{standalone: true}">
+          <small class="error-message" *ngIf="login_state.password_error">{{login_state.password_error}}</small>
+        </div>
+        <div class="form-group" *ngIf="login_state.error_message">
+          <div class="alert alert-danger" role="alert">{{login_state.error_message}}</div>
+        </div>
+        <div class="form-group text-center">
+          <button type="button" id="next" class="btn btn-warning" (click)="login()"><i class="fa fa-circle-o-notch animate" *ngIf="login_state.loading"></i>{{login_state.button_title}}</button>
+        </div>
+        <div class="form-group footer-group">
+          <span class="text password-forget"><a routerlink="/account/password_recovery" href="/account/password_recovery" target="_blank">Hai dimenticato la password?</a></span>
+          <span class="text">Non sei ancora registrato?</span>
+          <span class="text enter" (click)="changeToSignup()">Registrati</span>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="checkout" *ngIf="step==='payment'">
+    <div class="checkout-header">
+      <h1>Ultimo passo</h1>
+      <!-- <p>Acconto in garanzia</p> -->
+    </div>
+    <div class="checkout-body">
+      <div class="order-container">
+        <div class="message">
+          <div class="message-header">
+            <span>Acconto in garanzia</span>
+          </div>
+          <div class="message-body">
+            <span>Prenota il servizio scelto in modo da avere la priorità e l'attenzione del lavoratore.</span>
+          </div>
+        </div>
+        <div class="line"></div>
+        <div class="upfront">
+          <div class="upfront-header">
+            <span class="left">Prenotazione</span>
+            <span class="right">4.99€</span>
+          </div>
+        </div>
+      </div>
+      <div class="form-group error">
+        <span class="error-text" *ngIf="state.date_error">{{state.date_error}}</span>
+      </div>
+      <div class="actions">
+        <div class="form-group text-center">
+          <button type="button" class="btn btn-warning" (click)="nextStep()">Avanti</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="checkout" *ngIf="step==='card'">
+    <div class="checkout-header">
+      <h1>Inserisci un metodo di pagamento</h1>
+    </div>
+    <div class="checkout-body">
+      <div class="form-group error">
+        <span class="error-text" *ngIf="state.date_error">{{state.date_error}}</span>
+      </div>
+      <div class="actions">
+        <div class="form-group text-center">
+          <button type="button" class="btn btn-warning" (click)="nextStep()">Avanti</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="checkout" *ngIf="step==='end'">
+    <div class="checkout-header">
+      <h1>Fine</h1>
+    </div>
+    <div class="checkout-body">
+      <form (keyup.enter)="nextStep()">
+        <div class="actions">
+          <div class="form-group text-center">
+            <button type="button" class="btn btn-warning" (click)="nextStep()">Avanti</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+</div>

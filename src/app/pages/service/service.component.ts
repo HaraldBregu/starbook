@@ -147,35 +147,23 @@ export class ServiceComponent implements OnInit {
   getSupplierById(supplier_id) {
     if (supplier_id) {
       this.profileService.getAccountById(supplier_id).then((data) => {
-        // console.log('success account is: ' + JSON.stringify(data));
         this.Account = data.result;
-        // console.log(this.Account['profile']['firstname']);
       }).catch((error) => {
-        // console.log('error account is: ' + JSON.stringify(error));
         this.Account = null;
       })
+    } else {
+      this.Account = null;
     }
   }
   checkImageUrlFromAccount(account) {
     var image = new Image();
     image.src = 'https://s3-eu-west-1.amazonaws.com/starbook-s3/accounts/' + account._id + '/avatar/0';
-    console.log('image width is: ' + image.width);
-    // image.onload = function() {
-    //   console.log('yes exsit image');
-    //   return image.width
-    // };
-    // image.onerror = function() {
-    //   console.log('no exsit image');
-    //   return 0
-    // };
     return image.width
   }
   getSuppliersByServiceId(id) {
     this.commonService.getAccountsByServiceId(id).then((data) => {
-      // console.log('success is: ' + JSON.stringify(data));
       this.Accounts = data.result
     }).catch((error) => {
-      // console.log('errors is: ' + JSON.stringify(error));
       this.Accounts = []
     })
   }
@@ -224,7 +212,6 @@ export class ServiceComponent implements OnInit {
   renderPage(service: IServices) {
     this.commonService.setService(service);
     // this.navigationService.updateMessage(service.title);
-
     this.service = service;
     this.image_url = 'https://s3-eu-west-1.amazonaws.com/starbook-s3/services/' + this.service._id + '/cover/0'
     this.seoService.setTitle(service.title + "| Preventivo Online");
@@ -308,8 +295,10 @@ export class ServiceComponent implements OnInit {
   }
 
   bookService() {
-    this.orderService.updateWizardData([this.OrderService]);
-    this.router.navigate(['order/summary']);
+    this.commonService.setObjectForKey([this.OrderService], "services")
+    // this.orderService.updateWizardData([this.OrderService]);
+    // this.router.navigate(['order/summary']);
+    this.router.navigate(['checkout/address']);
     return false;
   }
 

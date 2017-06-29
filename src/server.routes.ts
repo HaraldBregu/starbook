@@ -22,7 +22,8 @@ export const routes: string[] = [
 
   'orders',
   'orders/:page',
-  'order/:step',
+  // 'order/:step',
+  'checkout/:step',
 
   'profile',
   'profile/:page',

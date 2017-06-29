@@ -3,7 +3,7 @@
     <div class="progress"
     [ngStyle]="{'width': setProgressWidth()}"></div>
   </div>
-  <button type="button" id="next" class="btn btn-success back" (click)="undoStep()" *ngIf="step && step!=='intro' && step!=='end'">Indietro</button>
+  <button type="button" id="next" class="btn btn-success back" (click)="undoStep()" *ngIf="step && step!=='intro' && step!=='title' && step!=='end'">Indietro</button>
 
   <div class="insert" *ngIf="step==='intro'">
     <div class="insert-header">
@@ -82,7 +82,6 @@
   <div class="insert" *ngIf="step==='picture'">
     <div class="insert-header">
       <h1>Inserisci un'immagine</h1>
-      <!-- <p>Le possibilità di ricevere richieste da clienti aumentano significativamente inserendo un immagine di qualità.</p> -->
       <p>Usa un'immagine significativo per il tuo servizio.</p>
     </div>
     <div class="insert-body">

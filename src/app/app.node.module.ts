@@ -51,6 +51,7 @@ import { CategoryComponent } from './pages/category/category.component';
 import { ServiceComponent } from './pages/service/service.component';
 import { ServicesComponent } from './pages/services/services.component';
 import { InsertComponent } from './pages/insert/insert.component';
+import { CheckoutComponent } from './pages/checkout/checkout.component';
 
 // import { OrderComponent } from './order/order.component';
 import { OrdersComponent } from './pages/orders/orders.component';
@@ -125,6 +126,7 @@ let declarations = [
   AccountComponent,
   ServicesComponent,
   InsertComponent,
+  CheckoutComponent,
   RequestsComponent,
   ShareComponent,
   BlogComponent,

@@ -6,10 +6,12 @@ app-root {
   .navbar-fixed-top {
     border: 0;
   }
+  .border {
+    border-bottom: 1px solid #DBDBDB;
+  }
   .bg-inverse {
     background-color: white!important;
     padding: 0 !important;
-    border-bottom: 1px solid #DBDBDB;
   }
   .navbar-brand {
     line-height: 70px;
@@ -123,7 +125,6 @@ app-root {
     }
     .search-block .ui-autocomplete-panel .ui-state-highlight .search-result {
       color: white;
-      // background-color: #506795;
       background-color: #3498db;
     }
     .search-block .ui-autocomplete-panel .search-result {

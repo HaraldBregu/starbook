@@ -38,6 +38,7 @@ export class AppComponent implements OnInit, OnDestroy {
   };
   public collapsed = false;
   public page = null;
+  public hasBottomBorderNav = true;
   public hasCenterContainer = true;
   public hasRightContainer = true;
   public hasPublishService = false;
@@ -78,6 +79,7 @@ export class AppComponent implements OnInit, OnDestroy {
           }
 
           this.page = null;
+          this.hasBottomBorderNav = true;
           this.hasCenterContainer = true;
           this.hasRightContainer = true;
           this.hasPublishService = false;
@@ -92,6 +94,7 @@ export class AppComponent implements OnInit, OnDestroy {
             this.hasPublishService = true;
           }
           if (this.page === "Insert") {
+            this.hasBottomBorderNav = false;
             this.hasCenterContainer = false;
             this.hasRightContainer = false;
           }
@@ -102,6 +105,10 @@ export class AppComponent implements OnInit, OnDestroy {
             this.hasRightContainer = false;
           }
           if (this.page === "Order") {
+            this.hasRightContainer = false;
+          }
+          if (this.page === "Checkout") {
+            this.hasBottomBorderNav = false;
             this.hasRightContainer = false;
           }
           // console.log('page is: ' + this.page);

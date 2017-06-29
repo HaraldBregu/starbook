@@ -96,6 +96,42 @@
       </div>
     </form>
   </div>
+  <div class="account" *ngIf="page==='password_recovery'">
+    <div class="header">
+      <h3>Recupera la tua password</h3>
+    </div>
+    <form>
+      <div class="form-group">
+        <label for="emailInput">Email</label>
+        <input type="email" placeholder="La tua mail" class="form-control" [ngClass]="{'error-input': login_state.email_error}" id="emailInput" [(ngModel)]="loginParameters.email" [ngModelOptions]="{standalone: true}">
+        <small class="error-message" *ngIf="login_state.email_error">{{login_state.email_error}}</small>
+      </div>
+      <div class="form-group">
+        <label for="passwordInput">Password</label>
+        <input type="password" placeholder="Password" class="form-control" [ngClass]="{'error-input': login_state.password_error}" id="passwordInput" [(ngModel)]="loginParameters.password" [ngModelOptions]="{standalone: true}">
+        <small class="error-message" *ngIf="login_state.password_error">{{login_state.password_error}}</small>
+      </div>
+      <div class="form-group" *ngIf="login_state.error_message">
+        <div class="alert alert-danger" role="alert">{{login_state.error_message}}</div>
+      </div>
+      <div class="form-group" *ngIf="facebook_state.error_message">
+        <div class="alert alert-danger" role="alert">{{facebook_state.error_message}}</div>
+      </div>
+      <div class="form-group">
+        <button type="button" id="next" class="btn btn-warning" (click)="login()"><i class="fa fa-circle-o-notch animate" *ngIf="login_state.loading"></i>{{login_state.button_title}}</button>
+      </div>
+      <div class="form-group">
+        <button type="button" id="next"class="btn btn-white" (click)="changeToSignup()">Sei nuovo? Crea un account</button>
+      </div>
+      <div class="form-group">
+        <button type="button" id="next"class="btn btn-facebook" (click)="continueWithFacebook()"><i></i>{{facebook_state.button_title}}</button>
+      </div>
+      <div class="form-group">
+        <h6><small>Continuando dichiari di aver letto e accetti le <a routerlink="/legal" href="/legal" target="_blank">condizioni generali e l’informativa sulla privacy</a></small></h6>
+      </div>
+    </form>
+  </div>
+  
   <div class="account" *ngIf="page==='professional'">
     <div class="header">
       <h3>Registra la tua attività gratuitamente</h3>
