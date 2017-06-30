@@ -4,10 +4,10 @@ webpackJsonp([0,4],{
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_angular2_universal__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_angular2_universal__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_angular2_universal___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_angular2_universal__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Subject__ = __webpack_require__(57);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Subject__ = __webpack_require__(56);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Subject___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_Subject__);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return NavigationService; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -61,11 +61,11 @@ var NavigationService = (function () {
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_angular2_universal__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_angular2_universal__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_angular2_universal___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_angular2_universal__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_http__ = __webpack_require__(41);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_toPromise__ = __webpack_require__(77);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_http__ = __webpack_require__(48);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_toPromise__ = __webpack_require__(92);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_toPromise___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_toPromise__);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return PaymentService; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -219,7 +219,7 @@ var PaymentService = (function () {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_angular2_universal__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_angular2_universal__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_angular2_universal___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_angular2_universal__);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return AnalyticsService; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -353,128 +353,12 @@ var CurrencyPipe = (function () {
 
 /***/ },
 
-/***/ 219:
-/***/ function(module, exports, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_angular2_universal__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_angular2_universal___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_angular2_universal__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_http__ = __webpack_require__(41);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__shared_navigation_service__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_toPromise__ = __webpack_require__(77);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_toPromise___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_toPromise__);
-/* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return OrdersService; });
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-
-
-var OrdersService = (function () {
-    function OrdersService(http, navigationService) {
-        this.http = http;
-        this.navigationService = navigationService;
-        this.protocol = "https";
-        this.hostname = "api.starbook.co";
-        this.api_version = "v0.9.1";
-        this.api = 'https://api.starbook.co/v0.9.1/';
-        if (__WEBPACK_IMPORTED_MODULE_0_angular2_universal__["isBrowser"]) {
-            if (document.location.hostname === "www.starbook.co") {
-                this.api_version = "v0.9.1";
-            }
-            else {
-                this.api_version = "t0.9.1";
-            }
-        }
-        this.api = this.protocol + "://" + this.hostname + "/" + this.api_version + "/";
-        // this.api = 'http://localhost/t0.9.1/';
-    }
-    OrdersService.prototype._makeHeaders = function () {
-        var headers;
-        if (__WEBPACK_IMPORTED_MODULE_0_angular2_universal__["isBrowser"]) {
-            if (localStorage.getItem('auth') !== null) {
-                this.auth = JSON.parse(localStorage.getItem('auth'));
-                headers = new __WEBPACK_IMPORTED_MODULE_2__angular_http__["Headers"]({ 'Token': this.auth.token });
-            }
-            else {
-                this.auth = false;
-                headers = new __WEBPACK_IMPORTED_MODULE_2__angular_http__["Headers"]({ 'Token': '' });
-            }
-        }
-        else {
-            this.auth = false;
-            headers = new __WEBPACK_IMPORTED_MODULE_2__angular_http__["Headers"]({ 'Token': '' });
-        }
-        return headers;
-    };
-    OrdersService.prototype.getOrders = function (params) {
-        var paramsToRequest = new __WEBPACK_IMPORTED_MODULE_2__angular_http__["URLSearchParams"]();
-        params.forEach(function (peram) {
-            paramsToRequest.set(peram.name, peram.value);
-        });
-        return this.http.get(this.api + 'orders', { headers: this._makeHeaders(), search: paramsToRequest }).toPromise().then(function (response) {
-            return response.json();
-        }).catch(this.handleError);
-    };
-    OrdersService.prototype.getCategories = function () {
-        return ['Idraulico', 'Elettricista', 'Fabbro', 'Spazzacamino', 'Antennista', 'Pulizie', 'Edilizia', 'Giardinaggio', 'Informatica'];
-    };
-    OrdersService.prototype.updateOrder = function (id, data) {
-        return this.http.put(this.api + 'orders/' + id, data, { headers: this._makeHeaders() }).toPromise().then(function (response) {
-            return response.json();
-        }).catch(this.handleError);
-    };
-    OrdersService.prototype.acceptWork = function (id, action) {
-        // this.navigationService.updateLoadingStatus(true);
-        return this.http.put(this.api + 'orders/' + id, { action: action }, { headers: this._makeHeaders() }).toPromise().then(function (response) {
-            // this.navigationService.updateLoadingStatus(false);
-            return response.json();
-        }).catch(this.handleError);
-    };
-    OrdersService.prototype.modifyOrder = function (id, type) {
-        // this.navigationService.updateLoadingStatus(true);
-        return this.http.put(this.api + 'orders/' + id, { action: type }, { headers: this._makeHeaders() }).toPromise().then(function (response) {
-            // this.navigationService.updateLoadingStatus(false);
-            return true;
-        }).catch(this.handleError);
-    };
-    OrdersService.prototype.addPrice = function (id, type, price) {
-        // this.navigationService.updateLoadingStatus(true);
-        return this.http.put(this.api + 'orders/' + id, { action: type, payment: { amount: price, currency: "eur" } }, { headers: this._makeHeaders() }).toPromise().then(function (response) {
-            // this.navigationService.updateLoadingStatus(false);
-            return response.json();
-        }).catch(this.handleError);
-    };
-    OrdersService.prototype.handleError = function (error) {
-        // this.navigationService.updateLoadingStatus(false);
-        return Promise.reject(error.status || error);
-    };
-    OrdersService = __decorate([
-        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_core__["Injectable"])(), 
-        __metadata('design:paramtypes', [(typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__angular_http__["Http"] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_2__angular_http__["Http"]) === 'function' && _a) || Object, (typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_3__shared_navigation_service__["a" /* NavigationService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_3__shared_navigation_service__["a" /* NavigationService */]) === 'function' && _b) || Object])
-    ], OrdersService);
-    return OrdersService;
-    var _a, _b;
-}());
-//# sourceMappingURL=/Users/haraldbregu/Dropbox/StarbookWebApp/src/orders.service.js.map
-
-/***/ },
-
-/***/ 338:
+/***/ 337:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_angular2_universal__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_angular2_universal__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_angular2_universal___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_angular2_universal__);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return CompanyComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -499,7 +383,7 @@ var CompanyComponent = (function () {
     CompanyComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'app-company',
-            template: __webpack_require__(715)
+            template: __webpack_require__(714)
         }), 
         __metadata('design:paramtypes', [])
     ], CompanyComponent);
@@ -509,19 +393,18 @@ var CompanyComponent = (function () {
 
 /***/ },
 
-/***/ 339:
+/***/ 338:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__(8);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__shared_seo_service__ = __webpack_require__(45);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__shared_seo_service__ = __webpack_require__(44);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__shared_navigation_service__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__shared_analytics_service__ = __webpack_require__(19);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_angular2_universal__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_angular2_universal__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_angular2_universal___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_angular2_universal__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__shared_common_service__ = __webpack_require__(51);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__order_order_service__ = __webpack_require__(50);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__shared_common_service__ = __webpack_require__(50);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return LandingComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -539,16 +422,14 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-
 var LandingComponent = (function () {
-    function LandingComponent(router, route, navigationService, analyticsService, seoService, orderService, commonService) {
+    function LandingComponent(router, route, navigationService, analyticsService, seoService, commonService) {
         var _this = this;
         this.router = router;
         this.route = route;
         this.navigationService = navigationService;
         this.analyticsService = analyticsService;
         this.seoService = seoService;
-        this.orderService = orderService;
         this.commonService = commonService;
         this.images_url = "https://s3-eu-west-1.amazonaws.com/starbook-s3/";
         this.contacts = '';
@@ -679,18 +560,18 @@ var LandingComponent = (function () {
     LandingComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'app-landing',
-            template: __webpack_require__(716)
+            template: __webpack_require__(715)
         }), 
-        __metadata('design:paramtypes', [(typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["d" /* Router */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__angular_router__["d" /* Router */]) === 'function' && _a) || Object, (typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["e" /* ActivatedRoute */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__angular_router__["e" /* ActivatedRoute */]) === 'function' && _b) || Object, (typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__shared_navigation_service__["a" /* NavigationService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_3__shared_navigation_service__["a" /* NavigationService */]) === 'function' && _c) || Object, (typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_4__shared_analytics_service__["a" /* AnalyticsService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_4__shared_analytics_service__["a" /* AnalyticsService */]) === 'function' && _d) || Object, (typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_2__shared_seo_service__["a" /* SeoService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_2__shared_seo_service__["a" /* SeoService */]) === 'function' && _e) || Object, (typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_7__order_order_service__["a" /* OrderService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_7__order_order_service__["a" /* OrderService */]) === 'function' && _f) || Object, (typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_6__shared_common_service__["a" /* CommonService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_6__shared_common_service__["a" /* CommonService */]) === 'function' && _g) || Object])
+        __metadata('design:paramtypes', [(typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["d" /* Router */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__angular_router__["d" /* Router */]) === 'function' && _a) || Object, (typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["e" /* ActivatedRoute */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__angular_router__["e" /* ActivatedRoute */]) === 'function' && _b) || Object, (typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__shared_navigation_service__["a" /* NavigationService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_3__shared_navigation_service__["a" /* NavigationService */]) === 'function' && _c) || Object, (typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_4__shared_analytics_service__["a" /* AnalyticsService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_4__shared_analytics_service__["a" /* AnalyticsService */]) === 'function' && _d) || Object, (typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_2__shared_seo_service__["a" /* SeoService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_2__shared_seo_service__["a" /* SeoService */]) === 'function' && _e) || Object, (typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_6__shared_common_service__["a" /* CommonService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_6__shared_common_service__["a" /* CommonService */]) === 'function' && _f) || Object])
     ], LandingComponent);
     return LandingComponent;
-    var _a, _b, _c, _d, _e, _f, _g;
+    var _a, _b, _c, _d, _e, _f;
 }());
 //# sourceMappingURL=/Users/haraldbregu/Dropbox/StarbookWebApp/src/landing.component.js.map
 
 /***/ },
 
-/***/ 340:
+/***/ 339:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -742,7 +623,7 @@ var AboutComponent = (function () {
     AboutComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'app-about',
-            template: __webpack_require__(717),
+            template: __webpack_require__(716),
         }), 
         __metadata('design:paramtypes', [(typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["d" /* Router */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__angular_router__["d" /* Router */]) === 'function' && _a) || Object, (typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__shared_navigation_service__["a" /* NavigationService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_2__shared_navigation_service__["a" /* NavigationService */]) === 'function' && _b) || Object])
     ], AboutComponent);
@@ -753,21 +634,21 @@ var AboutComponent = (function () {
 
 /***/ },
 
-/***/ 341:
+/***/ 340:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__shared_navigation_service__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__shared_profile_service__ = __webpack_require__(88);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_angular2_universal__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__shared_profile_service__ = __webpack_require__(87);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_angular2_universal__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_angular2_universal___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_angular2_universal__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__shared_analytics_service__ = __webpack_require__(19);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__shared_auth_service__ = __webpack_require__(63);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__shared_auth_service__ = __webpack_require__(62);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__angular_common__ = __webpack_require__(29);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__shared_contact_service__ = __webpack_require__(87);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__shared_seo_service__ = __webpack_require__(45);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__shared_contact_service__ = __webpack_require__(85);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__shared_seo_service__ = __webpack_require__(44);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return AccountComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -896,11 +777,12 @@ var AccountComponent = (function () {
         if (__WEBPACK_IMPORTED_MODULE_4_angular2_universal__["isBrowser"]) {
             this.currentUser = JSON.parse(localStorage.getItem('auth'));
         }
+        this.navigationService.updateMessage('');
         this.route.params.subscribe(function (params) {
             _this.page = params['page'];
             _this.route.queryParams.subscribe(function (params) {
                 if (_this.page === 'login') {
-                    _this.navigationService.updateMessage('Accedi al tuo account');
+                    // this.navigationService.updateMessage('Accedi al tuo account');
                     _this.seoObject['title'] = "Iscriviti a Starbook";
                     _this.seoObject['description'] = "Su Starbook troverai i migliori servizi per la tua casa e i migliori professionisti della tua zona.";
                     if (_this.currentUser) {
@@ -908,7 +790,7 @@ var AccountComponent = (function () {
                     }
                 }
                 else if (_this.page === 'signup') {
-                    _this.navigationService.updateMessage('Crea un nuovo account');
+                    // this.navigationService.updateMessage('Crea un nuovo account');
                     _this.seoObject['title'] = "Iscriviti a Starbook";
                     _this.seoObject['description'] = "Su Starbook troverai i migliori servizi per la tua casa e i migliori professionisti della tua zona.";
                     if (_this.currentUser) {
@@ -916,7 +798,7 @@ var AccountComponent = (function () {
                     }
                 }
                 else if (_this.page === 'password_recovery') {
-                    _this.navigationService.updateMessage('Recupera la tua password');
+                    // this.navigationService.updateMessage('Recupera la tua password');
                     _this.seoObject['title'] = "Iscriviti a Starbook";
                     _this.seoObject['description'] = "Su Starbook troverai i migliori servizi per la tua casa e i migliori professionisti della tua zona.";
                     if (_this.currentUser) {
@@ -924,7 +806,7 @@ var AccountComponent = (function () {
                     }
                 }
                 else if (_this.page === 'professional') {
-                    _this.navigationService.updateMessage('Iscriviti come professionista');
+                    // this.navigationService.updateMessage('Iscriviti come professionista');
                     _this.seoObject['title'] = "Registra la tua attività gratuitamente";
                     _this.seoObject['description'] = "Lavori nel mondo dell'edilizia, idraulica, sei un elettrico e esegui lavori particolari artigianali nelle case? Unisciti a noi e collaboreremo per aumentare la professionalità e la clientela in modo smart.";
                     if (_this.currentUser) {
@@ -932,7 +814,7 @@ var AccountComponent = (function () {
                     }
                 }
                 else if (_this.page === 'email_verification') {
-                    _this.navigationService.updateMessage('Verifica della email');
+                    // this.navigationService.updateMessage('Verifica della email');
                     var code = params['code'];
                     if (!code) {
                     }
@@ -952,10 +834,10 @@ var AccountComponent = (function () {
                     }
                 }
                 else if (_this.page === 'password_verification') {
-                    _this.navigationService.updateMessage('Verifica della nuova password');
+                    // this.navigationService.updateMessage('Verifica della nuova password');
                     var code = params['code'];
                     if (!code) {
-                        _this.goToHomePage();
+                        _this.router.navigate(['']);
                     }
                     else {
                         _this.password_verification.spinner.visible = true;
@@ -973,16 +855,16 @@ var AccountComponent = (function () {
                     }
                 }
                 else if (_this.page === 'create_new_password') {
-                    _this.navigationService.updateMessage('Crea una nuova password');
+                    //  this.navigationService.updateMessage('Crea una nuova password');
                     var code = params['code'];
                     if (!code) {
-                        _this.goToHomePage();
+                        _this.router.navigate(['']);
                         return;
                     }
                     _this.new_password_creation.code = code;
                 }
                 else {
-                    _this.goToHomePage();
+                    _this.router.navigate(['']);
                 }
             });
         });
@@ -1004,16 +886,13 @@ var AccountComponent = (function () {
     }
     AccountComponent.prototype.ngOnInit = function () {
     };
-    ////////////////////////////////////
-    ////////// AUTHENTICATION //////////
-    ////////////////////////////////////
     AccountComponent.prototype.login = function () {
         var _this = this;
-        this.analyticsService.sendEvent({ category: 'Account', action: 'Login', label: this.router.url });
         if (this.login_state.loading || this.facebook_state.loading) {
             return;
         }
-        if (this.loginParameters.email.length === 0 || this.loginParameters.password.length === 0) {
+        if (this.loginParameters.email.length === 0 ||
+            this.loginParameters.password.length === 0) {
             if (this.loginParameters.email.length === 0) {
                 this.login_state.email_error = "Inserisci un indirizzo email";
             }
@@ -1034,8 +913,8 @@ var AccountComponent = (function () {
             _this.login_state.loading = false;
             _this.login_state.button_title = "Accedi";
             _this.login_state.error_message = null;
+            _this.router.navigate(['']);
         }).catch(function (error) {
-            _this.analyticsService.sendException(error);
             _this.login_state.email_error = null;
             _this.login_state.password_error = null;
             _this.login_state.loading = false;
@@ -1051,16 +930,8 @@ var AccountComponent = (function () {
             }
         });
     };
-    AccountComponent.prototype.changeToSignup = function () {
-        this.analyticsService.sendEvent({ category: 'Account', action: 'Change to signup', label: this.router.url });
-        if (this.login_state.loading) {
-            return;
-        }
-        this.router.navigate(['account/signup']);
-    };
     AccountComponent.prototype.signup = function () {
         var _this = this;
-        this.analyticsService.sendEvent({ category: 'Account', action: 'Signup', label: this.router.url });
         if (this.signup_state.loading || this.facebook_state.loading) {
             return;
         }
@@ -1136,9 +1007,9 @@ var AccountComponent = (function () {
             _this.navigationService.updatePersonalMenu(data);
             _this.signup_state.error_message = null;
             _this.signup_state.loading = false;
-            _this.signup_state.button_title = "Registrando...";
+            _this.signup_state.button_title = "Registrati";
+            _this.router.navigate(['']);
         }).catch(function (error) {
-            _this.analyticsService.sendException(error);
             _this.signup_state.loading = false;
             _this.signup_state.button_title = "Registrati";
             switch (error) {
@@ -1156,9 +1027,16 @@ var AccountComponent = (function () {
             }
         });
     };
+    AccountComponent.prototype.recoverPassword = function (email) {
+        var _this = this;
+        this.authService.recovery(email).then(function (status) {
+            _this.router.navigate(['']);
+        }).catch(function (error) {
+            _this.router.navigate(['']);
+        });
+    };
     AccountComponent.prototype.signupAsProfessional = function () {
         var _this = this;
-        this.analyticsService.sendEvent({ category: 'Account', action: 'Signup', label: this.router.url });
         if (this.signup_state.loading || this.facebook_state.loading) {
             return;
         }
@@ -1243,7 +1121,6 @@ var AccountComponent = (function () {
             _this.sendEmail('Registrazione come professionista', message);
             _this.router.navigate(['']);
         }).catch(function (error) {
-            _this.analyticsService.sendException(error);
             _this.signup_state.loading = false;
             _this.signup_state.button_title = "Registrati";
             switch (error) {
@@ -1260,13 +1137,6 @@ var AccountComponent = (function () {
                     _this.signup_state.error_message = null;
             }
         });
-    };
-    AccountComponent.prototype.changeToLogin = function () {
-        this.analyticsService.sendEvent({ category: 'Account', action: 'Change to login', label: this.router.url });
-        if (this.signup_state.loading) {
-            return;
-        }
-        this.router.navigate(['account/login']);
     };
     AccountComponent.prototype.continueWithFacebook = function () {
         this.analyticsService.sendEvent({ category: 'Account', action: 'Continue with facebook', label: this.router.url });
@@ -1329,17 +1199,28 @@ var AccountComponent = (function () {
             _this.new_password_creation.spinner.visible = false;
         });
     };
-    AccountComponent.prototype.goToHomePage = function () {
-        this.router.navigate(['/']);
-    };
     AccountComponent.prototype.ngOnDestroy = function () {
         if (__WEBPACK_IMPORTED_MODULE_4_angular2_universal__["isBrowser"]) {
         }
     };
+    AccountComponent.prototype.changeToSignup = function () {
+        this.analyticsService.sendEvent({ category: 'Account', action: 'Change to signup', label: this.router.url });
+        if (this.login_state.loading) {
+            return;
+        }
+        this.router.navigate(['account/signup']);
+    };
+    AccountComponent.prototype.changeToLogin = function () {
+        this.analyticsService.sendEvent({ category: 'Account', action: 'Change to login', label: this.router.url });
+        if (this.signup_state.loading) {
+            return;
+        }
+        this.router.navigate(['account/login']);
+    };
     AccountComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'app-account',
-            template: __webpack_require__(718)
+            template: __webpack_require__(717)
         }), 
         __metadata('design:paramtypes', [(typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["e" /* ActivatedRoute */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__angular_router__["e" /* ActivatedRoute */]) === 'function' && _a) || Object, (typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["d" /* Router */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__angular_router__["d" /* Router */]) === 'function' && _b) || Object, (typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__shared_navigation_service__["a" /* NavigationService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_2__shared_navigation_service__["a" /* NavigationService */]) === 'function' && _c) || Object, (typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_3__shared_profile_service__["a" /* ProfileService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_3__shared_profile_service__["a" /* ProfileService */]) === 'function' && _d) || Object, (typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_5__shared_analytics_service__["a" /* AnalyticsService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_5__shared_analytics_service__["a" /* AnalyticsService */]) === 'function' && _e) || Object, (typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_6__shared_auth_service__["a" /* AuthService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_6__shared_auth_service__["a" /* AuthService */]) === 'function' && _f) || Object, (typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_9__shared_seo_service__["a" /* SeoService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_9__shared_seo_service__["a" /* SeoService */]) === 'function' && _g) || Object, (typeof (_h = typeof __WEBPACK_IMPORTED_MODULE_7__angular_common__["Location"] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_7__angular_common__["Location"]) === 'function' && _h) || Object, (typeof (_j = typeof __WEBPACK_IMPORTED_MODULE_8__shared_contact_service__["a" /* ContactService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_8__shared_contact_service__["a" /* ContactService */]) === 'function' && _j) || Object])
     ], AccountComponent);
@@ -1350,19 +1231,18 @@ var AccountComponent = (function () {
 
 /***/ },
 
-/***/ 342:
+/***/ 341:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__(8);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__shared_seo_service__ = __webpack_require__(45);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__shared_seo_service__ = __webpack_require__(44);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__shared_navigation_service__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__shared_analytics_service__ = __webpack_require__(19);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_angular2_universal__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_angular2_universal__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_angular2_universal___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_angular2_universal__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__shared_common_service__ = __webpack_require__(51);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__order_order_service__ = __webpack_require__(50);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__shared_common_service__ = __webpack_require__(50);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return CategoryComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -1380,16 +1260,14 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-
 var CategoryComponent = (function () {
-    function CategoryComponent(router, route, navigationService, analyticsService, seoService, orderService, commonService) {
+    function CategoryComponent(router, route, navigationService, analyticsService, seoService, commonService) {
         var _this = this;
         this.router = router;
         this.route = route;
         this.navigationService = navigationService;
         this.analyticsService = analyticsService;
         this.seoService = seoService;
-        this.orderService = orderService;
         this.commonService = commonService;
         this.images_url = "https://s3-eu-west-1.amazonaws.com/starbook-s3/";
         this.Request = {
@@ -1471,7 +1349,6 @@ var CategoryComponent = (function () {
         this.order['description'] = "";
         this.order['upfront_amount'] = action.amount;
         this.order['timing'] = { days: 0 };
-        this.orderService.updateWizardData(this.order);
         this.router.navigate(['order/summary']);
         return false;
     };
@@ -1498,32 +1375,32 @@ var CategoryComponent = (function () {
     CategoryComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'app-category',
-            template: __webpack_require__(720)
+            template: __webpack_require__(719)
         }), 
-        __metadata('design:paramtypes', [(typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["d" /* Router */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__angular_router__["d" /* Router */]) === 'function' && _a) || Object, (typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["e" /* ActivatedRoute */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__angular_router__["e" /* ActivatedRoute */]) === 'function' && _b) || Object, (typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__shared_navigation_service__["a" /* NavigationService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_3__shared_navigation_service__["a" /* NavigationService */]) === 'function' && _c) || Object, (typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_4__shared_analytics_service__["a" /* AnalyticsService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_4__shared_analytics_service__["a" /* AnalyticsService */]) === 'function' && _d) || Object, (typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_2__shared_seo_service__["a" /* SeoService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_2__shared_seo_service__["a" /* SeoService */]) === 'function' && _e) || Object, (typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_7__order_order_service__["a" /* OrderService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_7__order_order_service__["a" /* OrderService */]) === 'function' && _f) || Object, (typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_6__shared_common_service__["a" /* CommonService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_6__shared_common_service__["a" /* CommonService */]) === 'function' && _g) || Object])
+        __metadata('design:paramtypes', [(typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["d" /* Router */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__angular_router__["d" /* Router */]) === 'function' && _a) || Object, (typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["e" /* ActivatedRoute */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__angular_router__["e" /* ActivatedRoute */]) === 'function' && _b) || Object, (typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__shared_navigation_service__["a" /* NavigationService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_3__shared_navigation_service__["a" /* NavigationService */]) === 'function' && _c) || Object, (typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_4__shared_analytics_service__["a" /* AnalyticsService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_4__shared_analytics_service__["a" /* AnalyticsService */]) === 'function' && _d) || Object, (typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_2__shared_seo_service__["a" /* SeoService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_2__shared_seo_service__["a" /* SeoService */]) === 'function' && _e) || Object, (typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_6__shared_common_service__["a" /* CommonService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_6__shared_common_service__["a" /* CommonService */]) === 'function' && _f) || Object])
     ], CategoryComponent);
     return CategoryComponent;
-    var _a, _b, _c, _d, _e, _f, _g;
+    var _a, _b, _c, _d, _e, _f;
 }());
 //# sourceMappingURL=/Users/haraldbregu/Dropbox/StarbookWebApp/src/category.component.js.map
 
 /***/ },
 
-/***/ 343:
+/***/ 342:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__(8);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__shared_analytics_service__ = __webpack_require__(19);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__order_order_service__ = __webpack_require__(50);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__shared_auth_service__ = __webpack_require__(63);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_angular2_universal__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_angular2_universal___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_angular2_universal__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_router__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__shared_analytics_service__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__shared_auth_service__ = __webpack_require__(62);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__shared_navigation_service__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__shared_payment_service__ = __webpack_require__(110);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__shared_profile_service__ = __webpack_require__(88);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_angular2_universal__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_angular2_universal___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8_angular2_universal__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__shared_common_service__ = __webpack_require__(51);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__shared_profile_service__ = __webpack_require__(87);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__shared_common_service__ = __webpack_require__(50);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__shared_orders_service__ = __webpack_require__(86);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return CheckoutComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -1545,11 +1422,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 var CheckoutComponent = (function () {
-    function CheckoutComponent(router, route, analyticsService, orderService, authService, navigationService, paymentService, profileService, commonService) {
+    function CheckoutComponent(router, route, analyticsService, ordersService, authService, navigationService, paymentService, profileService, commonService) {
         this.router = router;
         this.route = route;
         this.analyticsService = analyticsService;
-        this.orderService = orderService;
+        this.ordersService = ordersService;
         this.authService = authService;
         this.navigationService = navigationService;
         this.paymentService = paymentService;
@@ -1573,7 +1450,7 @@ var CheckoutComponent = (function () {
         this.addresses = [];
         this.date = null;
         this.minDate = new Date(new Date().getTime() + 24 * 60 * 60 * 1000);
-        this.maxDate = new Date(new Date().getTime() + (24 * 28) * 60 * 60 * 1000);
+        // public maxDate = new Date(new Date().getTime() + (24*28) * 60 * 60 * 1000);
         this.formated_date = null;
         this.date_state = {
             loading: false,
@@ -1609,10 +1486,32 @@ var CheckoutComponent = (function () {
             email_error: null,
             password_error: null,
         };
+        this.Card = {
+            number: null,
+            exp_month: null,
+            exp_year: null,
+            exp_date: null,
+            cvc: '',
+            name: '',
+            address_line1: '',
+            address_line2: '',
+            address_city: '',
+            address_zip: '',
+            address_state: '',
+            address_country: '' // Paese
+        };
+        this.card_state = {
+            loading: false,
+            button_title: "Salva",
+            message_error: null,
+            message_success: null,
+            number_error: null,
+            exp_date_error: null,
+            cvc_error: null
+        };
         this.Order = {};
         this.state = {
             loading: false,
-            created: false,
             error_message: null,
             address_error: null,
             date_error: null,
@@ -1629,16 +1528,48 @@ var CheckoutComponent = (function () {
         };
         this.steps = ['address', 'date', 'preview', "payment", 'end'];
         this.navigationService.updateMessage("Prenotazione");
-        this.Order['services'] = this.commonService.getObjectForKey("services");
-        console.log('order is: ' + JSON.stringify(this.Order));
+        if (this.commonService.readObjectForKey("checkout_order")) {
+            this.Order = this.commonService.readObjectForKey("checkout_order");
+            if (this.Order['address']) {
+                var address = this.Order['address'];
+                var street_number = address['street_number'];
+                if (street_number && street_number.length > 0) {
+                    this.temp_address = address['street'] + ', ' + address['street_number'] + ' ' + address['city'];
+                }
+                else {
+                    this.temp_address = address['street'] + ', ' + address['city'];
+                }
+            }
+            if (this.Order['date']) {
+                this.temp_date = new Date(this.Order['date']);
+                var date = new Date(this.Order['date']);
+                var day = date.getDate() > 9 ? date.getDate() : '0' + date.getDate();
+                this.formated_date = day + ' ' + this.it.monthNames[date.getMonth()] + ' ' + date.getFullYear();
+            }
+        }
     }
     CheckoutComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.route.params.subscribe(function (params) {
             _this.step = params['step'];
-            if (__WEBPACK_IMPORTED_MODULE_8_angular2_universal__["isBrowser"]) {
+            if (__WEBPACK_IMPORTED_MODULE_0_angular2_universal__["isBrowser"]) {
                 window.scrollTo(0, 0);
                 _this.currentUser = JSON.parse(localStorage.getItem('auth'));
+            }
+            if (_this.step !== "end" && !_this.commonService.readObjectForKey("checkout_order")) {
+                _this.router.navigate(['']);
+            }
+            if (_this.step === 'signup') {
+                _this.steps[3] = "signup";
+            }
+            if (_this.step === 'login') {
+                _this.steps[3] = "login";
+            }
+            if (_this.step === 'payment') {
+                _this.steps[3] = "payment";
+            }
+            if (_this.step === 'card') {
+                _this.steps[3] = "card";
             }
         });
     };
@@ -1662,6 +1593,7 @@ var CheckoutComponent = (function () {
                 this.state.address_error = "Per favore, inserisci un indirizzo.";
                 return;
             }
+            this.commonService.saveObjectForKey(this.Order, "checkout_order");
             this.router.navigate(['checkout/' + nextStep]);
         }
         else if (this.step === 'date') {
@@ -1670,6 +1602,7 @@ var CheckoutComponent = (function () {
                 this.state.date_error = "Per favore, inserisci una data.";
                 return;
             }
+            this.commonService.saveObjectForKey(this.Order, "checkout_order");
             this.router.navigate(['checkout/' + nextStep]);
         }
         else if (this.step === 'preview') {
@@ -1678,6 +1611,7 @@ var CheckoutComponent = (function () {
                 this.router.navigate(['checkout/signup']);
             }
             else {
+                this.steps[3] = "payment";
                 this.router.navigate(['checkout/payment']);
             }
         }
@@ -1686,45 +1620,13 @@ var CheckoutComponent = (function () {
         else if (this.step === 'login') {
         }
         else if (this.step === 'payment') {
+            this.sendOrder();
         }
         else if (this.step === 'card') {
         }
         else if (this.step === 'end') {
-            this.router.navigate(['services']);
+            this.router.navigate(['orders/requests']);
         }
-    };
-    CheckoutComponent.prototype.sendOrder = function () {
-        var _this = this;
-        this.state.loading = true;
-        this.state.error_message = null;
-        this.orderService.saveOrder(this.Order).then(function (response) {
-            _this.state.loading = false;
-            _this.state.error_message = null;
-            if (response.status === 201) {
-                _this.state.error_message = "Effetua l'accesso prima di creare un ordine";
-                _this.state.created = true;
-            }
-        }).catch(function (errorData) {
-            _this.state.loading = false;
-            // this.router.navigate(['order/preview']);
-            var _body = JSON.parse(errorData._body);
-            if (errorData.status === 400) {
-                if (_body.message === "no_stripe_customer") {
-                    _this.state.error_message = "Inserisci un metodo di pagamento.";
-                }
-                else {
-                    _this.state.error_message = "C'è stato un errore, per favore effettua di nuovo l'accesso al account.";
-                }
-            }
-            else if (errorData.status === 402) {
-                if (_body.message === "no_cards") {
-                    _this.state.error_message = "Inserisci un metodo di pagamento.";
-                }
-            }
-            else if (errorData.status === 403) {
-                _this.state.error_message = "service not supported in your location";
-            }
-        });
     };
     CheckoutComponent.prototype.selectAddress = function (value) {
         var address = {};
@@ -1736,8 +1638,8 @@ var CheckoutComponent = (function () {
         address['country'] = value.country;
         address['country_code'] = value.country_code;
         this.Order['address'] = address;
-        this.state.address_error = null;
         this.commonService.saveObjectToLocalWithName(this.Order, 'checkout_order');
+        this.state.address_error = null;
         this.address_state.error_message = null;
         this.temp_address_street_number_city = this.temp_address.street_number_city;
     };
@@ -1749,11 +1651,43 @@ var CheckoutComponent = (function () {
         this.date = date.getFullYear() + '-' + month + '-' + day + 'T' + '08:00' + ':00.000Z';
         this.date_state.error_message = null;
         this.Order['date'] = this.date;
-        this.state.date_error = null;
         this.commonService.saveObjectToLocalWithName(this.Order, 'checkout_order');
+        this.state.date_error = null;
         var _date = new Date(this.Order['date']);
         var _day = _date.getDate() > 9 ? _date.getDate() : '0' + _date.getDate();
         this.formated_date = _day + ' ' + this.it.monthNames[_date.getMonth()] + ' ' + _date.getFullYear();
+    };
+    CheckoutComponent.prototype.sendOrder = function () {
+        var _this = this;
+        this.state.loading = true;
+        this.state.error_message = null;
+        this.ordersService.saveOrder(this.Order).then(function (response) {
+            _this.state.loading = false;
+            _this.state.error_message = null;
+            if (response.status === 201) {
+                _this.state.error_message = null;
+                _this.card_state.loading = false;
+                _this.card_state.button_title = "Continua";
+                _this.card_state.message_error = null;
+                _this.card_state.number_error = null;
+                _this.card_state.exp_date_error = null;
+                _this.card_state.cvc_error = null;
+                _this.commonService.deleteObjectForKey("checkout_order");
+                _this.router.navigate(['checkout/end']);
+            }
+        }).catch(function (errorData) {
+            _this.state.loading = false;
+            if (errorData === 400) {
+                _this.state.error_message = "Inserisci un metodo di pagamento.";
+                _this.steps[3] = "card";
+                _this.router.navigate(['checkout/card']);
+            }
+            else if (errorData === 402) {
+                _this.state.error_message = "Inserisci un metodo di pagamento.";
+                _this.steps[3] = "card";
+                _this.router.navigate(['checkout/card']);
+            }
+        });
     };
     CheckoutComponent.prototype.signup = function () {
         var _this = this;
@@ -1836,6 +1770,126 @@ var CheckoutComponent = (function () {
             }
         });
     };
+    CheckoutComponent.prototype.addCard = function () {
+        var _this = this;
+        if (this.card_state.loading) {
+            return;
+        }
+        this.card_state.loading = true;
+        this.card_state.button_title = "Salvando carta...";
+        this.card_state.message_error = null;
+        this.card_state.number_error = null;
+        this.card_state.exp_date_error = null;
+        this.card_state.cvc_error = null;
+        if (this.Card !== null) {
+            if (this.paymentService.cardNumberValidate(this.Card.number)) {
+                this.card_state.number_error = null;
+            }
+            else {
+                this.card_state.number_error = "Il numero della carta non è corretto.";
+            }
+        }
+        if (this.Card.exp_date && this.Card.exp_date.length === 5) {
+            var exp_parts = this.Card.exp_date.split('/');
+            if (exp_parts[0] !== this.Card.exp_date) {
+                this.Card.exp_month = exp_parts[0];
+                this.Card.exp_year = exp_parts[1];
+            }
+            else {
+                this.card_state.exp_date_error = "Errore data";
+            }
+        }
+        else {
+            this.card_state.exp_date_error = "La data non è completa";
+        }
+        this.paymentService.addNewCard(this.Card).then(function (response) {
+            // this.card_state.loading = false;
+            // this.card_state.button_title = "Continua";
+            // this.card_state.message_error = null;
+            // this.card_state.number_error = null;
+            // this.card_state.exp_date_error = null;
+            // this.card_state.cvc_error = null;
+            _this.sendOrder();
+        }).catch(function (error) {
+            _this.card_state.loading = false;
+            _this.card_state.button_title = "Continua";
+            _this.card_state.message_error = null;
+            _this.card_state.number_error = null;
+            _this.card_state.exp_date_error = null;
+            _this.card_state.cvc_error = null;
+            if (error === 400) {
+                _this.card_state.message_error = "Per favore inserisci correttamente i dati della carta";
+            }
+            else if (error === 402) {
+                _this.card_state.message_error = "Per favore inserisci correttamente i dati della carta";
+            }
+            else {
+                _this.card_state.message_error = "Controlla i campi inseriti e riprova.";
+            }
+        });
+    };
+    CheckoutComponent.prototype.checkExpiry = function (value) {
+        var result = '';
+        var date = new Date();
+        var month = (1 + date.getMonth()).toString();
+        if ((date.getMonth() + 1) < 10) {
+            month = '0' + month.toString();
+        }
+        var yearElems = date.getFullYear().toString().split('');
+        var year = parseInt(yearElems[2].toString() + yearElems[3].toString());
+        if (value) {
+            var dateElems_1 = value.split('');
+            var i_1 = 0;
+            dateElems_1.forEach(function (elem) {
+                if (elem === '/') {
+                    dateElems_1.splice(i_1, 1);
+                }
+                i_1++;
+            });
+            if (dateElems_1.length > 1) {
+                var i_2 = 0;
+                dateElems_1.forEach(function (elem) {
+                    if (i_2 < 4) {
+                        if (i_2 === 2) {
+                            result += '/';
+                        }
+                        result += elem;
+                    }
+                    i_2++;
+                });
+            }
+            else {
+                dateElems_1.forEach(function (elem) {
+                    result += elem;
+                });
+            }
+        }
+        if (result.length !== 5) {
+            this.card_state.exp_date_error = "Inserisci la data in formato MM/AA (mese/anno)";
+        }
+        if (result.length === 5) {
+            var parts = result.split('/');
+            if (parts[0] !== result) {
+                if (parseInt(parts[1]) > year) {
+                    this.card_state.exp_date_error = null;
+                }
+                else {
+                    if (parseInt(parts[0]) >= parseInt(month) && parseInt(parts[1]) === year) {
+                        this.card_state.exp_date_error = null;
+                    }
+                    else {
+                        this.card_state.exp_date_error = "Inserisci una data corretta";
+                    }
+                }
+            }
+            else {
+                this.card_state.exp_date_error = null;
+            }
+        }
+        this.Card.exp_date = result;
+        return result;
+    };
+    // UTILS
     CheckoutComponent.prototype.setProgressWidth = function () {
         var numSteps = this.steps.length;
         var currentStep = this.steps.indexOf(this.step) + 1;
@@ -1853,12 +1907,10 @@ var CheckoutComponent = (function () {
         else {
             this.address_state.error_message = "Per favore compila il campo richiesto";
         }
-        this.orderService.getAddresses(event.query).then(function (addresses) {
+        this.ordersService.getAddresses(event.query).then(function (addresses) {
             _this.addresses = [];
             _this.addresses = addresses;
-        }).catch(function (error) {
-            // console.log(error);
-        });
+        }).catch(function (error) { });
     };
     CheckoutComponent.prototype.changeToSignup = function () {
         this.steps[3] = 'signup';
@@ -1873,11 +1925,11 @@ var CheckoutComponent = (function () {
         this.router.navigate(['checkout/recovery']);
     };
     CheckoutComponent = __decorate([
-        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
+        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_core__["Component"])({
             selector: 'app-checkout',
-            template: __webpack_require__(721)
+            template: __webpack_require__(720)
         }), 
-        __metadata('design:paramtypes', [(typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["d" /* Router */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__angular_router__["d" /* Router */]) === 'function' && _a) || Object, (typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["e" /* ActivatedRoute */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__angular_router__["e" /* ActivatedRoute */]) === 'function' && _b) || Object, (typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__shared_analytics_service__["a" /* AnalyticsService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_2__shared_analytics_service__["a" /* AnalyticsService */]) === 'function' && _c) || Object, (typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_3__order_order_service__["a" /* OrderService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_3__order_order_service__["a" /* OrderService */]) === 'function' && _d) || Object, (typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_4__shared_auth_service__["a" /* AuthService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_4__shared_auth_service__["a" /* AuthService */]) === 'function' && _e) || Object, (typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_5__shared_navigation_service__["a" /* NavigationService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_5__shared_navigation_service__["a" /* NavigationService */]) === 'function' && _f) || Object, (typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_6__shared_payment_service__["a" /* PaymentService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_6__shared_payment_service__["a" /* PaymentService */]) === 'function' && _g) || Object, (typeof (_h = typeof __WEBPACK_IMPORTED_MODULE_7__shared_profile_service__["a" /* ProfileService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_7__shared_profile_service__["a" /* ProfileService */]) === 'function' && _h) || Object, (typeof (_j = typeof __WEBPACK_IMPORTED_MODULE_9__shared_common_service__["a" /* CommonService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_9__shared_common_service__["a" /* CommonService */]) === 'function' && _j) || Object])
+        __metadata('design:paramtypes', [(typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__angular_router__["d" /* Router */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_2__angular_router__["d" /* Router */]) === 'function' && _a) || Object, (typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__angular_router__["e" /* ActivatedRoute */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_2__angular_router__["e" /* ActivatedRoute */]) === 'function' && _b) || Object, (typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__shared_analytics_service__["a" /* AnalyticsService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_3__shared_analytics_service__["a" /* AnalyticsService */]) === 'function' && _c) || Object, (typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_9__shared_orders_service__["a" /* OrdersService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_9__shared_orders_service__["a" /* OrdersService */]) === 'function' && _d) || Object, (typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_4__shared_auth_service__["a" /* AuthService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_4__shared_auth_service__["a" /* AuthService */]) === 'function' && _e) || Object, (typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_5__shared_navigation_service__["a" /* NavigationService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_5__shared_navigation_service__["a" /* NavigationService */]) === 'function' && _f) || Object, (typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_6__shared_payment_service__["a" /* PaymentService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_6__shared_payment_service__["a" /* PaymentService */]) === 'function' && _g) || Object, (typeof (_h = typeof __WEBPACK_IMPORTED_MODULE_7__shared_profile_service__["a" /* ProfileService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_7__shared_profile_service__["a" /* ProfileService */]) === 'function' && _h) || Object, (typeof (_j = typeof __WEBPACK_IMPORTED_MODULE_8__shared_common_service__["a" /* CommonService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_8__shared_common_service__["a" /* CommonService */]) === 'function' && _j) || Object])
     ], CheckoutComponent);
     return CheckoutComponent;
     var _a, _b, _c, _d, _e, _f, _g, _h, _j;
@@ -1886,16 +1938,16 @@ var CheckoutComponent = (function () {
 
 /***/ },
 
-/***/ 344:
+/***/ 343:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_angular2_universal__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_angular2_universal__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_angular2_universal___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_angular2_universal__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_router__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__shared_navigation_service__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__shared_contact_service__ = __webpack_require__(87);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__shared_contact_service__ = __webpack_require__(85);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return ContactComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -2002,7 +2054,7 @@ var ContactComponent = (function () {
     ContactComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'app-contact',
-            template: __webpack_require__(722)
+            template: __webpack_require__(721)
         }), 
         __metadata('design:paramtypes', [(typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__angular_router__["d" /* Router */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_2__angular_router__["d" /* Router */]) === 'function' && _a) || Object, (typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__angular_router__["e" /* ActivatedRoute */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_2__angular_router__["e" /* ActivatedRoute */]) === 'function' && _b) || Object, (typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__shared_navigation_service__["a" /* NavigationService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_3__shared_navigation_service__["a" /* NavigationService */]) === 'function' && _c) || Object, (typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_4__shared_contact_service__["a" /* ContactService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_4__shared_contact_service__["a" /* ContactService */]) === 'function' && _d) || Object])
     ], ContactComponent);
@@ -2013,17 +2065,17 @@ var ContactComponent = (function () {
 
 /***/ },
 
-/***/ 345:
+/***/ 344:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_angular2_universal__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_angular2_universal__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_angular2_universal___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_angular2_universal__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_router__ = __webpack_require__(8);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_http__ = __webpack_require__(41);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__popups_popups_service__ = __webpack_require__(86);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__shared_auth_service__ = __webpack_require__(63);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_http__ = __webpack_require__(48);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__popups_popups_service__ = __webpack_require__(84);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__shared_auth_service__ = __webpack_require__(62);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return FacebookComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -2065,7 +2117,7 @@ var FacebookComponent = (function () {
     FacebookComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_core__["Component"])({
             selector: 'app-facebook',
-            template: __webpack_require__(723)
+            template: __webpack_require__(722)
         }), 
         __metadata('design:paramtypes', [(typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__angular_router__["d" /* Router */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_2__angular_router__["d" /* Router */]) === 'function' && _a) || Object, (typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_4__popups_popups_service__["a" /* PopupsService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_4__popups_popups_service__["a" /* PopupsService */]) === 'function' && _b) || Object, (typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_5__shared_auth_service__["a" /* AuthService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_5__shared_auth_service__["a" /* AuthService */]) === 'function' && _c) || Object])
     ], FacebookComponent);
@@ -2076,7 +2128,7 @@ var FacebookComponent = (function () {
 
 /***/ },
 
-/***/ 346:
+/***/ 345:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2107,7 +2159,7 @@ var HelpComponent = (function () {
     HelpComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'app-help',
-            template: __webpack_require__(724)
+            template: __webpack_require__(723)
         }), 
         __metadata('design:paramtypes', [(typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["d" /* Router */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__angular_router__["d" /* Router */]) === 'function' && _a) || Object, (typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__shared_navigation_service__["a" /* NavigationService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_2__shared_navigation_service__["a" /* NavigationService */]) === 'function' && _b) || Object])
     ], HelpComponent);
@@ -2118,18 +2170,18 @@ var HelpComponent = (function () {
 
 /***/ },
 
-/***/ 347:
+/***/ 346:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__shared_analytics_service__ = __webpack_require__(19);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__shared_auth_service__ = __webpack_require__(63);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__shared_auth_service__ = __webpack_require__(62);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__shared_navigation_service__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_angular2_universal__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_angular2_universal__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_angular2_universal___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_angular2_universal__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__shared_common_service__ = __webpack_require__(51);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__shared_common_service__ = __webpack_require__(50);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return InsertComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -2147,7 +2199,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-__webpack_require__(357);
+__webpack_require__(356);
 var InsertComponent = (function () {
     function InsertComponent(router, route, analyticsService, authService, navigationService, commonService) {
         this.router = router;
@@ -2206,6 +2258,9 @@ var InsertComponent = (function () {
         };
         this.usr = '';
         this.emailPattern = /^[a-z0-9!#$%&'*+\/=?^_`{|}~.-]+@[a-z0-9]([a-z0-9-]*[a-z0-9])?(\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)*$/i;
+        if (this.commonService.readObjectForKey("insert_service")) {
+            this.Service = this.commonService.readObjectForKey("insert_service");
+        }
     }
     InsertComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -2215,27 +2270,41 @@ var InsertComponent = (function () {
                 _this.currentUser = JSON.parse(localStorage.getItem('auth'));
             }
             _this.step = params['step'];
-            _this.route.queryParams.subscribe(function (queryParams) {
-                _this.usr = queryParams['usr'];
-                // if (this.usr==='dlb') {
-                //   console.log('this is daniel');
-                // }
-            });
             if (_this.currentUser) {
-                _this.steps = ['intro', 'title', 'pricing', 'picture', 'end'];
+                _this.steps = ['title', 'pricing', 'picture', 'end'];
             }
             else {
-                _this.steps = ['intro', 'title', 'pricing', 'picture', 'register', 'end'];
+                _this.steps = ['title', 'pricing', 'picture', 'register', 'end'];
                 if (_this.step === 'register' || _this.step === 'login' || _this.step === 'recover') {
-                    _this.steps[4] = _this.step;
+                    _this.steps[3] = _this.step;
                 }
+            }
+            if (_this.step === 'title') {
+            }
+            else if (_this.step === 'pricing') {
+            }
+            else if (_this.step === 'picture') {
+            }
+            else if (_this.step === 'register') {
+            }
+            else if (_this.step === 'login') {
+            }
+            else if (_this.step === 'end') {
+            }
+            else {
+                _this.router.navigate(['insert/title']);
             }
         });
     };
     InsertComponent.prototype.undoStep = function () {
         var currentStepIndex = this.steps.indexOf(this.step);
         var previousStep = this.steps[currentStepIndex - 1];
-        this.router.navigate(['insert/' + previousStep]);
+        if (this.step === "title") {
+            this.router.navigate(['']);
+        }
+        else {
+            this.router.navigate(['insert/' + previousStep]);
+        }
     };
     InsertComponent.prototype.nextStep = function () {
         var currentStepIndex = this.steps.indexOf(this.step);
@@ -2256,30 +2325,14 @@ var InsertComponent = (function () {
         }
         else if (this.step === 'picture') {
             if (this.currentUser) {
-                if (!this.Service['picture_file']) {
-                    this.state.picture_file_error = "Per piacere, inserisci un immagine.";
-                    return;
-                }
-                else {
-                    this.state.picture_file_error = null;
-                    this.saveServiceForAccountId(this.currentUser._id);
-                    return;
-                }
-            }
-            else {
-                if (!this.Service['picture_file']) {
-                    this.state.picture_file_error = "Per piacere, inserisci un immagine.";
-                    return;
-                }
-                else {
-                    this.state.picture_file_error = null;
-                }
+                this.saveServiceForAccountId(this.currentUser._id);
             }
         }
         else if (this.step === 'end') {
             this.router.navigate(['services']);
             return;
         }
+        this.commonService.saveObjectForKey(this.Service, "insert_service");
         this.router.navigate(['insert/' + nextStep]);
     };
     InsertComponent.prototype.signup = function () {
@@ -2362,11 +2415,6 @@ var InsertComponent = (function () {
             }
         });
     };
-    InsertComponent.prototype.recoverPassword = function (email) {
-        this.authService.recovery(email).then(function (status) {
-        }).catch(function (error) {
-        });
-    };
     InsertComponent.prototype.saveServiceForAccountId = function (account_id) {
         var _this = this;
         if (this.state.picture_file_loading) {
@@ -2378,8 +2426,22 @@ var InsertComponent = (function () {
         this.Service['price'] *= 100;
         this.commonService.createService(this.Service).then(function (data) {
             var file = _this.Service['picture_file'];
-            var path = 'services/' + data.result._id + '/cover/0';
-            _this.saveServicePictureToPath(file, path);
+            if (file) {
+                var path = 'services/' + data.result._id + '/cover/0';
+                _this.saveServicePictureToPath(file, path);
+            }
+            else {
+                _this.login_state.loading = false;
+                _this.login_state.button_title = "Accedi";
+                _this.login_state.error_message = null;
+                _this.signup_state.loading = false;
+                _this.signup_state.button_title = "Registrati";
+                _this.signup_state.error_message = null;
+                _this.state.picture_file_loading = false;
+                _this.state.picture_file_error = null;
+                _this.commonService.deleteObjectForKey("insert_service");
+                _this.router.navigate(['insert/end']);
+            }
         }).catch(function (error) { });
     };
     InsertComponent.prototype.saveServicePictureToPath = function (file, path) {
@@ -2390,6 +2452,7 @@ var InsertComponent = (function () {
         var bucket = new AWSService.S3();
         var params = { Bucket: 'starbook-s3', Key: path, Body: file, ACL: "public-read" };
         bucket.upload(params, function (error, res) {
+            _this.commonService.deleteObjectForKey("insert_service");
             if (!error) {
                 _this.login_state.loading = false;
                 _this.login_state.button_title = "Accedi";
@@ -2399,13 +2462,12 @@ var InsertComponent = (function () {
                 _this.signup_state.error_message = null;
                 _this.state.picture_file_loading = false;
                 _this.state.picture_file_error = null;
-                _this.router.navigate(['insert/end']);
             }
             else {
                 _this.state.picture_file_loading = false;
                 _this.state.picture_file_error = null;
-                _this.router.navigate(['insert/end']);
             }
+            _this.router.navigate(['insert/end']);
         });
     };
     InsertComponent.prototype.selectServicePicture = function (fileInput) {
@@ -2431,17 +2493,17 @@ var InsertComponent = (function () {
         this.profile_picture_state.file_error = null;
     };
     InsertComponent.prototype.changeToLogin = function () {
-        this.steps[4] = 'login';
+        this.steps[3] = 'login';
         this.step = 'login';
         this.router.navigate(['insert/login']);
     };
     InsertComponent.prototype.changeToSignup = function () {
-        this.steps[4] = 'register';
+        this.steps[3] = 'register';
         this.step = 'register';
         this.router.navigate(['insert/register']);
     };
     InsertComponent.prototype.changeToRecoverPassword = function () {
-        this.steps[4] = 'recover';
+        this.steps[3] = 'recover';
         this.step = 'recover';
         this.router.navigate(['insert/recover']);
     };
@@ -2502,7 +2564,7 @@ var InsertComponent = (function () {
     InsertComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'app-insert',
-            template: __webpack_require__(725)
+            template: __webpack_require__(724)
         }), 
         __metadata('design:paramtypes', [(typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["d" /* Router */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__angular_router__["d" /* Router */]) === 'function' && _a) || Object, (typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["e" /* ActivatedRoute */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__angular_router__["e" /* ActivatedRoute */]) === 'function' && _b) || Object, (typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__shared_analytics_service__["a" /* AnalyticsService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_2__shared_analytics_service__["a" /* AnalyticsService */]) === 'function' && _c) || Object, (typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_3__shared_auth_service__["a" /* AuthService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_3__shared_auth_service__["a" /* AuthService */]) === 'function' && _d) || Object, (typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_4__shared_navigation_service__["a" /* NavigationService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_4__shared_navigation_service__["a" /* NavigationService */]) === 'function' && _e) || Object, (typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_6__shared_common_service__["a" /* CommonService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_6__shared_common_service__["a" /* CommonService */]) === 'function' && _f) || Object])
     ], InsertComponent);
@@ -2513,7 +2575,7 @@ var InsertComponent = (function () {
 
 /***/ },
 
-/***/ 348:
+/***/ 347:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2544,7 +2606,7 @@ var LegalComponent = (function () {
     LegalComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'app-legal',
-            template: __webpack_require__(726)
+            template: __webpack_require__(725)
         }), 
         __metadata('design:paramtypes', [(typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["d" /* Router */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__angular_router__["d" /* Router */]) === 'function' && _a) || Object, (typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__shared_navigation_service__["a" /* NavigationService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_2__shared_navigation_service__["a" /* NavigationService */]) === 'function' && _b) || Object])
     ], LegalComponent);
@@ -2555,7 +2617,7 @@ var LegalComponent = (function () {
 
 /***/ },
 
-/***/ 349:
+/***/ 348:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2579,7 +2641,7 @@ var NotfoundComponent = (function () {
     NotfoundComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'app-notfound',
-            template: __webpack_require__(727)
+            template: __webpack_require__(726)
         }), 
         __metadata('design:paramtypes', [])
     ], NotfoundComponent);
@@ -2589,22 +2651,21 @@ var NotfoundComponent = (function () {
 
 /***/ },
 
-/***/ 350:
+/***/ 349:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__shared_navigation_service__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__shared_orders_service__ = __webpack_require__(219);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__popups_popups_service__ = __webpack_require__(86);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__shared_orders_service__ = __webpack_require__(86);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__popups_popups_service__ = __webpack_require__(84);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__shared_analytics_service__ = __webpack_require__(19);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_angular2_universal__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_angular2_universal__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_angular2_universal___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_angular2_universal__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__order_order_service__ = __webpack_require__(50);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__share_share_service__ = __webpack_require__(217);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__pipes_currency_pipe__ = __webpack_require__(218);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pipes_currency_cent_pipe__ = __webpack_require__(534);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__share_share_service__ = __webpack_require__(217);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pipes_currency_pipe__ = __webpack_require__(218);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__pipes_currency_cent_pipe__ = __webpack_require__(533);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return OrdersComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -2625,16 +2686,14 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-
 var OrdersComponent = (function () {
-    function OrdersComponent(router, route, navigationService, ordersService, popupsService, analyticsService, orderService, shareService, currencyPipe, currencyCentPipe) {
+    function OrdersComponent(router, route, navigationService, ordersService, popupsService, analyticsService, shareService, currencyPipe, currencyCentPipe) {
         this.router = router;
         this.route = route;
         this.navigationService = navigationService;
         this.ordersService = ordersService;
         this.popupsService = popupsService;
         this.analyticsService = analyticsService;
-        this.orderService = orderService;
         this.shareService = shareService;
         this.currencyPipe = currencyPipe;
         this.currencyCentPipe = currencyCentPipe;
@@ -2791,7 +2850,6 @@ var OrdersComponent = (function () {
         }
     };
     OrdersComponent.prototype.startWizard = function (estimate) {
-        this.orderService.updateWizardData(estimate);
         this.router.navigate(['order/summary']);
         return false;
     };
@@ -3121,32 +3179,32 @@ var OrdersComponent = (function () {
     OrdersComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'app-orders',
-            template: __webpack_require__(728),
-            providers: [__WEBPACK_IMPORTED_MODULE_10__pipes_currency_cent_pipe__["a" /* CurrencyCentPipe */]]
+            template: __webpack_require__(727),
+            providers: [__WEBPACK_IMPORTED_MODULE_9__pipes_currency_cent_pipe__["a" /* CurrencyCentPipe */]]
         }), 
-        __metadata('design:paramtypes', [(typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["d" /* Router */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__angular_router__["d" /* Router */]) === 'function' && _a) || Object, (typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["e" /* ActivatedRoute */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__angular_router__["e" /* ActivatedRoute */]) === 'function' && _b) || Object, (typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__shared_navigation_service__["a" /* NavigationService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_2__shared_navigation_service__["a" /* NavigationService */]) === 'function' && _c) || Object, (typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_3__shared_orders_service__["a" /* OrdersService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_3__shared_orders_service__["a" /* OrdersService */]) === 'function' && _d) || Object, (typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_4__popups_popups_service__["a" /* PopupsService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_4__popups_popups_service__["a" /* PopupsService */]) === 'function' && _e) || Object, (typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_5__shared_analytics_service__["a" /* AnalyticsService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_5__shared_analytics_service__["a" /* AnalyticsService */]) === 'function' && _f) || Object, (typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_7__order_order_service__["a" /* OrderService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_7__order_order_service__["a" /* OrderService */]) === 'function' && _g) || Object, (typeof (_h = typeof __WEBPACK_IMPORTED_MODULE_8__share_share_service__["a" /* ShareService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_8__share_share_service__["a" /* ShareService */]) === 'function' && _h) || Object, (typeof (_j = typeof __WEBPACK_IMPORTED_MODULE_9__pipes_currency_pipe__["a" /* CurrencyPipe */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_9__pipes_currency_pipe__["a" /* CurrencyPipe */]) === 'function' && _j) || Object, (typeof (_k = typeof __WEBPACK_IMPORTED_MODULE_10__pipes_currency_cent_pipe__["a" /* CurrencyCentPipe */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_10__pipes_currency_cent_pipe__["a" /* CurrencyCentPipe */]) === 'function' && _k) || Object])
+        __metadata('design:paramtypes', [(typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["d" /* Router */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__angular_router__["d" /* Router */]) === 'function' && _a) || Object, (typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["e" /* ActivatedRoute */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__angular_router__["e" /* ActivatedRoute */]) === 'function' && _b) || Object, (typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__shared_navigation_service__["a" /* NavigationService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_2__shared_navigation_service__["a" /* NavigationService */]) === 'function' && _c) || Object, (typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_3__shared_orders_service__["a" /* OrdersService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_3__shared_orders_service__["a" /* OrdersService */]) === 'function' && _d) || Object, (typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_4__popups_popups_service__["a" /* PopupsService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_4__popups_popups_service__["a" /* PopupsService */]) === 'function' && _e) || Object, (typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_5__shared_analytics_service__["a" /* AnalyticsService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_5__shared_analytics_service__["a" /* AnalyticsService */]) === 'function' && _f) || Object, (typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_7__share_share_service__["a" /* ShareService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_7__share_share_service__["a" /* ShareService */]) === 'function' && _g) || Object, (typeof (_h = typeof __WEBPACK_IMPORTED_MODULE_8__pipes_currency_pipe__["a" /* CurrencyPipe */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_8__pipes_currency_pipe__["a" /* CurrencyPipe */]) === 'function' && _h) || Object, (typeof (_j = typeof __WEBPACK_IMPORTED_MODULE_9__pipes_currency_cent_pipe__["a" /* CurrencyCentPipe */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_9__pipes_currency_cent_pipe__["a" /* CurrencyCentPipe */]) === 'function' && _j) || Object])
     ], OrdersComponent);
     return OrdersComponent;
-    var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k;
+    var _a, _b, _c, _d, _e, _f, _g, _h, _j;
 }());
 //# sourceMappingURL=/Users/haraldbregu/Dropbox/StarbookWebApp/src/orders.component.js.map
 
 /***/ },
 
-/***/ 351:
+/***/ 350:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__shared_profile_service__ = __webpack_require__(88);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__shared_profile_service__ = __webpack_require__(87);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_router__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__shared_navigation_service__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__popups_popups_service__ = __webpack_require__(86);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__popups_popups_service__ = __webpack_require__(84);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__shared_payment_service__ = __webpack_require__(110);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__shared_analytics_service__ = __webpack_require__(19);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__shared_seo_service__ = __webpack_require__(45);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__shared_contact_service__ = __webpack_require__(87);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_angular2_universal__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__shared_seo_service__ = __webpack_require__(44);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__shared_contact_service__ = __webpack_require__(85);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_angular2_universal__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_angular2_universal___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_9_angular2_universal__);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return ProfileComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -3730,7 +3788,7 @@ var ProfileComponent = (function () {
     ProfileComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'app-profile',
-            template: __webpack_require__(729)
+            template: __webpack_require__(728)
         }), 
         __metadata('design:paramtypes', [(typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__shared_profile_service__["a" /* ProfileService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__shared_profile_service__["a" /* ProfileService */]) === 'function' && _a) || Object, (typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__angular_router__["d" /* Router */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_2__angular_router__["d" /* Router */]) === 'function' && _b) || Object, (typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__shared_navigation_service__["a" /* NavigationService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_3__shared_navigation_service__["a" /* NavigationService */]) === 'function' && _c) || Object, (typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_2__angular_router__["e" /* ActivatedRoute */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_2__angular_router__["e" /* ActivatedRoute */]) === 'function' && _d) || Object, (typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_4__popups_popups_service__["a" /* PopupsService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_4__popups_popups_service__["a" /* PopupsService */]) === 'function' && _e) || Object, (typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_5__shared_payment_service__["a" /* PaymentService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_5__shared_payment_service__["a" /* PaymentService */]) === 'function' && _f) || Object, (typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_6__shared_analytics_service__["a" /* AnalyticsService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_6__shared_analytics_service__["a" /* AnalyticsService */]) === 'function' && _g) || Object, (typeof (_h = typeof __WEBPACK_IMPORTED_MODULE_8__shared_contact_service__["a" /* ContactService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_8__shared_contact_service__["a" /* ContactService */]) === 'function' && _h) || Object, (typeof (_j = typeof __WEBPACK_IMPORTED_MODULE_7__shared_seo_service__["a" /* SeoService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_7__shared_seo_service__["a" /* SeoService */]) === 'function' && _j) || Object])
     ], ProfileComponent);
@@ -3741,17 +3799,17 @@ var ProfileComponent = (function () {
 
 /***/ },
 
-/***/ 352:
+/***/ 351:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_angular2_universal__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_angular2_universal__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_angular2_universal___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_angular2_universal__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_router__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__shared_navigation_service__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__shared_contact_service__ = __webpack_require__(87);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__shared_seo_service__ = __webpack_require__(45);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__shared_contact_service__ = __webpack_require__(85);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__shared_seo_service__ = __webpack_require__(44);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__shared_analytics_service__ = __webpack_require__(19);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return RequestsComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -3898,7 +3956,7 @@ var RequestsComponent = (function () {
     RequestsComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'app-requests',
-            template: __webpack_require__(730)
+            template: __webpack_require__(729)
         }), 
         __metadata('design:paramtypes', [(typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__angular_router__["d" /* Router */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_2__angular_router__["d" /* Router */]) === 'function' && _a) || Object, (typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__angular_router__["e" /* ActivatedRoute */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_2__angular_router__["e" /* ActivatedRoute */]) === 'function' && _b) || Object, (typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__shared_navigation_service__["a" /* NavigationService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_3__shared_navigation_service__["a" /* NavigationService */]) === 'function' && _c) || Object, (typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_4__shared_contact_service__["a" /* ContactService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_4__shared_contact_service__["a" /* ContactService */]) === 'function' && _d) || Object, (typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_5__shared_seo_service__["a" /* SeoService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_5__shared_seo_service__["a" /* SeoService */]) === 'function' && _e) || Object, (typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_6__shared_analytics_service__["a" /* AnalyticsService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_6__shared_analytics_service__["a" /* AnalyticsService */]) === 'function' && _f) || Object])
     ], RequestsComponent);
@@ -3909,20 +3967,19 @@ var RequestsComponent = (function () {
 
 /***/ },
 
-/***/ 353:
+/***/ 352:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_angular2_universal__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_angular2_universal__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_angular2_universal___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_angular2_universal__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__shared_common_service__ = __webpack_require__(51);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__order_order_service__ = __webpack_require__(50);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__shared_navigation_service__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_router__ = __webpack_require__(8);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__shared_analytics_service__ = __webpack_require__(19);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__shared_seo_service__ = __webpack_require__(45);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__shared_profile_service__ = __webpack_require__(88);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__shared_common_service__ = __webpack_require__(50);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__shared_navigation_service__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_router__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__shared_analytics_service__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__shared_seo_service__ = __webpack_require__(44);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__shared_profile_service__ = __webpack_require__(87);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return ServiceComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -3941,15 +3998,13 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-
-__webpack_require__(357);
+__webpack_require__(356);
 var ServiceComponent = (function () {
-    function ServiceComponent(commonService, navigationService, router, route, orderService, analyticsService, seoService, profileService) {
+    function ServiceComponent(commonService, navigationService, router, route, analyticsService, seoService, profileService) {
         this.commonService = commonService;
         this.navigationService = navigationService;
         this.router = router;
         this.route = route;
-        this.orderService = orderService;
         this.analyticsService = analyticsService;
         this.seoService = seoService;
         this.profileService = profileService;
@@ -4029,11 +4084,6 @@ var ServiceComponent = (function () {
                 });
             }
         });
-        if (__WEBPACK_IMPORTED_MODULE_0_angular2_universal__["isBrowser"]) {
-            this.subscription = this.orderService.getOrderEvent$.subscribe(function (event) {
-                _this.orderCreated(event);
-            });
-        }
     };
     ServiceComponent.prototype.getSupplierById = function (supplier_id) {
         var _this = this;
@@ -4180,9 +4230,14 @@ var ServiceComponent = (function () {
         this.calculateOrder();
     };
     ServiceComponent.prototype.bookService = function () {
-        this.commonService.setObjectForKey([this.OrderService], "services");
-        // this.orderService.updateWizardData([this.OrderService]);
-        // this.router.navigate(['order/summary']);
+        if (this.commonService.readObjectForKey("checkout_order")) {
+            var current_checkout_order = this.commonService.readObjectForKey("checkout_order");
+            current_checkout_order['services'] = [this.OrderService];
+            this.commonService.saveObjectForKey(current_checkout_order, "checkout_order");
+        }
+        else {
+            this.commonService.saveObjectForKey({ services: [this.OrderService] }, "checkout_order");
+        }
         this.router.navigate(['checkout/address']);
         return false;
     };
@@ -4558,25 +4613,25 @@ var ServiceComponent = (function () {
     ServiceComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_core__["Component"])({
             selector: 'app-service',
-            template: __webpack_require__(731)
+            template: __webpack_require__(730)
         }), 
-        __metadata('design:paramtypes', [(typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__shared_common_service__["a" /* CommonService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_2__shared_common_service__["a" /* CommonService */]) === 'function' && _a) || Object, (typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_4__shared_navigation_service__["a" /* NavigationService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_4__shared_navigation_service__["a" /* NavigationService */]) === 'function' && _b) || Object, (typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_5__angular_router__["d" /* Router */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_5__angular_router__["d" /* Router */]) === 'function' && _c) || Object, (typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_5__angular_router__["e" /* ActivatedRoute */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_5__angular_router__["e" /* ActivatedRoute */]) === 'function' && _d) || Object, (typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_3__order_order_service__["a" /* OrderService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_3__order_order_service__["a" /* OrderService */]) === 'function' && _e) || Object, (typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_6__shared_analytics_service__["a" /* AnalyticsService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_6__shared_analytics_service__["a" /* AnalyticsService */]) === 'function' && _f) || Object, (typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_7__shared_seo_service__["a" /* SeoService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_7__shared_seo_service__["a" /* SeoService */]) === 'function' && _g) || Object, (typeof (_h = typeof __WEBPACK_IMPORTED_MODULE_8__shared_profile_service__["a" /* ProfileService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_8__shared_profile_service__["a" /* ProfileService */]) === 'function' && _h) || Object])
+        __metadata('design:paramtypes', [(typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__shared_common_service__["a" /* CommonService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_2__shared_common_service__["a" /* CommonService */]) === 'function' && _a) || Object, (typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_3__shared_navigation_service__["a" /* NavigationService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_3__shared_navigation_service__["a" /* NavigationService */]) === 'function' && _b) || Object, (typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_4__angular_router__["d" /* Router */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_4__angular_router__["d" /* Router */]) === 'function' && _c) || Object, (typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_4__angular_router__["e" /* ActivatedRoute */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_4__angular_router__["e" /* ActivatedRoute */]) === 'function' && _d) || Object, (typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_5__shared_analytics_service__["a" /* AnalyticsService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_5__shared_analytics_service__["a" /* AnalyticsService */]) === 'function' && _e) || Object, (typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_6__shared_seo_service__["a" /* SeoService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_6__shared_seo_service__["a" /* SeoService */]) === 'function' && _f) || Object, (typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_7__shared_profile_service__["a" /* ProfileService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_7__shared_profile_service__["a" /* ProfileService */]) === 'function' && _g) || Object])
     ], ServiceComponent);
     return ServiceComponent;
-    var _a, _b, _c, _d, _e, _f, _g, _h;
+    var _a, _b, _c, _d, _e, _f, _g;
 }());
 //# sourceMappingURL=/Users/haraldbregu/Dropbox/StarbookWebApp/src/service.component.js.map
 
 /***/ },
 
-/***/ 354:
+/***/ 353:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__shared_navigation_service__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__shared_common_service__ = __webpack_require__(51);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__shared_common_service__ = __webpack_require__(50);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return ServicesComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -4624,7 +4679,7 @@ var ServicesComponent = (function () {
     ServicesComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'app-services',
-            template: __webpack_require__(732)
+            template: __webpack_require__(731)
         }), 
         __metadata('design:paramtypes', [(typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["d" /* Router */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__angular_router__["d" /* Router */]) === 'function' && _a) || Object, (typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__shared_navigation_service__["a" /* NavigationService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_2__shared_navigation_service__["a" /* NavigationService */]) === 'function' && _b) || Object, (typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__shared_common_service__["a" /* CommonService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_3__shared_common_service__["a" /* CommonService */]) === 'function' && _c) || Object])
     ], ServicesComponent);
@@ -4635,11 +4690,11 @@ var ServicesComponent = (function () {
 
 /***/ },
 
-/***/ 355:
+/***/ 354:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__ = __webpack_require__(42);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__ = __webpack_require__(41);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return ClipboardService; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -4717,7 +4772,7 @@ var ClipboardService = (function () {
 
 /***/ },
 
-/***/ 415:
+/***/ 414:
 /***/ function(module, exports) {
 
 function webpackEmptyContext(req) {
@@ -4726,26 +4781,26 @@ function webpackEmptyContext(req) {
 webpackEmptyContext.keys = function() { return []; };
 webpackEmptyContext.resolve = webpackEmptyContext;
 module.exports = webpackEmptyContext;
-webpackEmptyContext.id = 415;
+webpackEmptyContext.id = 414;
 
 
 /***/ },
 
-/***/ 416:
+/***/ 415:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__polyfills_ts__ = __webpack_require__(541);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__polyfills_ts__ = __webpack_require__(540);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__polyfills_ts___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__polyfills_ts__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__2_1_1_workaround_ts__ = __webpack_require__(522);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__2_1_1_workaround_ts__ = __webpack_require__(521);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__2_1_1_workaround_ts___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__2_1_1_workaround_ts__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__workaround_browser__ = __webpack_require__(523);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__workaround_browser__ = __webpack_require__(522);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__workaround_browser___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__workaround_browser__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__environments_environment__ = __webpack_require__(540);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_angular2_universal__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__environments_environment__ = __webpack_require__(539);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_angular2_universal__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_angular2_universal___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_angular2_universal__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__app_app_browser_module__ = __webpack_require__(524);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__app_app_browser_module__ = __webpack_require__(523);
 
 
 
@@ -4765,12 +4820,12 @@ platformRef.bootstrapModule(__WEBPACK_IMPORTED_MODULE_6__app_app_browser_module_
 
 /***/ },
 
-/***/ 45:
+/***/ 44:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser__ = __webpack_require__(42);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser__ = __webpack_require__(41);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return SeoService; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -4845,199 +4900,11 @@ var SeoService = (function () {
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_angular2_universal__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_angular2_universal___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_angular2_universal__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_http__ = __webpack_require__(41);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_Subject__ = __webpack_require__(57);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_Subject___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_rxjs_Subject__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_toPromise__ = __webpack_require__(77);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_toPromise___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_toPromise__);
-/* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return OrderService; });
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-
-
-var OrderService = (function () {
-    function OrderService(http /*, private navigationService: NavigationService*/) {
-        // this.api = 'https://api.starbook.co/v0.9.1/';
-        this.http = http;
-        this.protocol = "https";
-        this.hostname = "api.starbook.co";
-        this.api_version = "v0.9.1";
-        this.api = 'https://api.starbook.co/v0.9.1/';
-        this.orderEvent = new __WEBPACK_IMPORTED_MODULE_3_rxjs_Subject__["Subject"]();
-        this.wizardData = {};
-        this.googleApi = 'https://maps.googleapis.com/maps/api/geocode/json';
-        if (__WEBPACK_IMPORTED_MODULE_0_angular2_universal__["isBrowser"]) {
-            this.getOrderEvent$ = this.orderEvent.asObservable();
-        }
-        if (__WEBPACK_IMPORTED_MODULE_0_angular2_universal__["isBrowser"]) {
-            if (document.location.hostname === "www.starbook.co") {
-                this.api_version = "v0.9.1";
-            }
-            else {
-                this.api_version = "t0.9.1";
-            }
-        }
-        this.api = this.protocol + "://" + this.hostname + "/" + this.api_version + "/";
-        // this.api = 'http://localhost/t0.9.1/';
-    }
-    OrderService.prototype.makeEvent = function (event) {
-        this.orderEvent.next(event);
-    };
-    OrderService.prototype.updateWizardData = function (wizardData) {
-        this.wizardData = wizardData;
-    };
-    OrderService.prototype.getWizardData = function () {
-        return this.wizardData;
-    };
-    OrderService.prototype._makeHeaders = function () {
-        var headers;
-        if (__WEBPACK_IMPORTED_MODULE_0_angular2_universal__["isBrowser"]) {
-            if (localStorage.getItem('auth') !== null) {
-                this.auth = JSON.parse(localStorage.getItem('auth'));
-                headers = new __WEBPACK_IMPORTED_MODULE_2__angular_http__["Headers"]({ 'Token': this.auth.token });
-            }
-            else {
-                this.auth = false;
-                headers = new __WEBPACK_IMPORTED_MODULE_2__angular_http__["Headers"]({ 'Token': '' });
-            }
-        }
-        else {
-            this.auth = false;
-            headers = new __WEBPACK_IMPORTED_MODULE_2__angular_http__["Headers"]({ 'Token': '' });
-        }
-        return { headers: headers };
-    };
-    OrderService.prototype.saveOrder = function (orderData) {
-        // console.log('orderData is: ' + JSON.stringify(orderData));
-        // this.navigationService.updateLoadingStatus(true);
-        return this.http.post(this.api + 'orders', {
-            service_id: orderData.service_id,
-            description: orderData.description,
-            details: orderData.details,
-            date: orderData.date,
-            address: orderData.address,
-            referral_id: orderData.referral_id,
-            upfront_amount: orderData.upfront_amount
-        }, this._makeHeaders()).toPromise().then(function (response) {
-            return response;
-        }).catch(this.handleError);
-    };
-    OrderService.prototype.getAddresses = function (key) {
-        // this.navigationService.updateLoadingStatus(true);
-        var params = new __WEBPACK_IMPORTED_MODULE_2__angular_http__["URLSearchParams"]();
-        var addresses = [];
-        params.set('address', key);
-        params.set('language', 'it');
-        params.set('components', 'country:IT');
-        params.set('key', 'AIzaSyCLc5etDSrqieAn4lPCsvFDpkM3-F7-c5M');
-        return this.http.get(this.googleApi, { search: params })
-            .toPromise()
-            .then(function (response) {
-            // this.navigationService.updateLoadingStatus(false);
-            var data = response.json().results;
-            data.forEach(function (address) {
-                var addressData = {
-                    street: '',
-                    street_number: null,
-                    city: '',
-                    postal_code: null,
-                    province: '',
-                    country: '',
-                    country_code: '',
-                    selected: false,
-                    isFull: false,
-                    full: '',
-                    street_number_city: '',
-                };
-                address.address_components.forEach(function (components) {
-                    switch (components.types[0]) {
-                        case 'street_number':
-                            addressData.street_number = components.long_name;
-                            break;
-                        case 'route':
-                            addressData.street = components.long_name;
-                            break;
-                        case 'locality':
-                            addressData.city = components.long_name;
-                            break;
-                        case 'administrative_area_level_2':
-                            addressData.province = components.long_name;
-                            break;
-                        case 'country':
-                            addressData.country = components.long_name;
-                            addressData.country_code = components.short_name;
-                            break;
-                        case 'postal_code':
-                            addressData.postal_code = components.long_name;
-                    }
-                });
-                addressData.full = address.formatted_address;
-                if (addressData.street && addressData.city) {
-                    if (addressData.street_number) {
-                        addressData.street_number_city = addressData.street + ', ' + addressData.street_number + ' ' + addressData.city;
-                    }
-                    else {
-                        addressData.street_number_city = addressData.street + ', ' + addressData.city;
-                    }
-                    addresses.push(addressData);
-                }
-                // console.log(addressData);
-                // console.log(JSON.stringify(address));
-                // if (address.types[0] === 'street_address') {
-                //   addressData.isFull = true;
-                // }
-                // if (addressData.country_code === 'IT') {
-                //   addresses.push(addressData);
-                // }
-            });
-            return addresses;
-        }).catch(this.handleError);
-    };
-    OrderService.prototype.getEstimatePrice = function (data) {
-        return this.http.post(this.api + 'calculate_estimate_price', data, this._makeHeaders())
-            .toPromise()
-            .then(function (response) {
-            var price = response.json();
-            return price;
-        })
-            .catch(this.handleError);
-    };
-    OrderService.prototype.handleError = function (error) {
-        return Promise.reject(error);
-    };
-    OrderService = __decorate([
-        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_core__["Injectable"])(), 
-        __metadata('design:paramtypes', [(typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__angular_http__["Http"] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_2__angular_http__["Http"]) === 'function' && _a) || Object])
-    ], OrderService);
-    return OrderService;
-    var _a;
-}());
-//# sourceMappingURL=/Users/haraldbregu/Dropbox/StarbookWebApp/src/order.service.js.map
-
-/***/ },
-
-/***/ 51:
-/***/ function(module, exports, __webpack_require__) {
-
-"use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_angular2_universal__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_angular2_universal__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_angular2_universal___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_angular2_universal__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_http__ = __webpack_require__(41);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_toPromise__ = __webpack_require__(77);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_http__ = __webpack_require__(48);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_toPromise__ = __webpack_require__(92);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_toPromise___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_toPromise__);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return CommonService; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -5066,6 +4933,23 @@ var CommonService = (function () {
     };
     CommonService.prototype.getObjectForKey = function (key) {
         return this.data[key];
+    };
+    CommonService.prototype.saveObjectForKey = function (object, key) {
+        if (__WEBPACK_IMPORTED_MODULE_1_angular2_universal__["isBrowser"]) {
+            localStorage.setItem(key, JSON.stringify(object));
+        }
+    };
+    CommonService.prototype.readObjectForKey = function (key) {
+        var recovery;
+        if (__WEBPACK_IMPORTED_MODULE_1_angular2_universal__["isBrowser"]) {
+            recovery = localStorage.getItem(key);
+            return JSON.parse(recovery);
+        }
+    };
+    CommonService.prototype.deleteObjectForKey = function (key) {
+        if (__WEBPACK_IMPORTED_MODULE_1_angular2_universal__["isBrowser"]) {
+            localStorage.removeItem(key);
+        }
     };
     CommonService.prototype.sendServices = function (services) {
         this.servicesObject = services;
@@ -5189,7 +5073,6 @@ var CommonService = (function () {
         return headers;
     };
     CommonService.prototype.handleError = function (error) {
-        // this.navigationService.updateLoadingStatus(false);
         return Promise.reject(error.message || error);
     };
     // UTILS
@@ -5227,14 +5110,14 @@ var CommonService = (function () {
 
 /***/ },
 
-/***/ 522:
+/***/ 521:
 /***/ function(module, exports, __webpack_require__) {
 
 /*
  * THIS IS TEMPORARY TO PATCH 2.1.1+ Core bugs
  */
 /* tslint:disable */
-var __compiler__ = __webpack_require__(67);
+var __compiler__ = __webpack_require__(66);
 var __core_private__ = __webpack_require__(0);
 var patch = false;
 if (!__core_private__.hasOwnProperty('ViewUtils')) {
@@ -5248,7 +5131,7 @@ if (!__compiler__.__compiler_private__) {
         CssSelector: __compiler__.CssSelector
     };
 }
-var __universal__ = __webpack_require__(542);
+var __universal__ = __webpack_require__(541);
 if (patch) {
     __universal__.ViewUtils = __core_private__.view_utils;
     __universal__.CssSelector = __compiler__.CssSelector;
@@ -5258,7 +5141,7 @@ if (patch) {
 
 /***/ },
 
-/***/ 523:
+/***/ 522:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5267,7 +5150,7 @@ if (patch) {
  * THIS IS TEMPORARY TO PATCH 2.1.1+ Core bugs
  */
 /* tslint:disable */
-var __compiler__ = __webpack_require__(67);
+var __compiler__ = __webpack_require__(66);
 
 if (!__WEBPACK_IMPORTED_MODULE_0__angular_core__["__core_private__"]['ViewUtils']) {
     __WEBPACK_IMPORTED_MODULE_0__angular_core__["__core_private__"]['ViewUtils'] = __WEBPACK_IMPORTED_MODULE_0__angular_core__["__core_private__"]['view_utils'];
@@ -5282,63 +5165,62 @@ if (__compiler__ && __compiler__.SelectorMatcher && __compiler__.CssSelector) {
 
 /***/ },
 
-/***/ 524:
+/***/ 523:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__ = __webpack_require__(42);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__ = __webpack_require__(41);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_angular2_universal__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_angular2_universal__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_angular2_universal___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_angular2_universal__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_forms__ = __webpack_require__(100);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_http__ = __webpack_require__(41);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_http__ = __webpack_require__(48);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_router__ = __webpack_require__(8);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_ng2_click_outside__ = __webpack_require__(705);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_ng2_click_outside__ = __webpack_require__(704);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_ng2_click_outside___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_ng2_click_outside__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_ng2_page_scroll__ = __webpack_require__(706);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__app_routing__ = __webpack_require__(526);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__shared_common_service__ = __webpack_require__(51);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__shared_auth_service__ = __webpack_require__(63);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__order_order_service__ = __webpack_require__(50);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__shared_profile_service__ = __webpack_require__(88);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__shared_navigation_service__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__shared_orders_service__ = __webpack_require__(219);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__popups_popups_service__ = __webpack_require__(86);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__shared_payment_service__ = __webpack_require__(110);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__shared_analytics_service__ = __webpack_require__(19);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__shared_seo_service__ = __webpack_require__(45);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__shared_contact_service__ = __webpack_require__(87);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__pages_share_share_service__ = __webpack_require__(217);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__shared_clipboard_service__ = __webpack_require__(355);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__app_component__ = __webpack_require__(525);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__landing_landing_component__ = __webpack_require__(339);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__company_company_component__ = __webpack_require__(338);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__pages_category_category_component__ = __webpack_require__(342);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__pages_service_service_component__ = __webpack_require__(353);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__pages_services_services_component__ = __webpack_require__(354);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__pages_insert_insert_component__ = __webpack_require__(347);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__pages_checkout_checkout_component__ = __webpack_require__(343);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_30__pages_orders_orders_component__ = __webpack_require__(350);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_31__pages_profile_profile_component__ = __webpack_require__(351);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_32__popups_popups_component__ = __webpack_require__(538);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_33__pipes_phone_pipe__ = __webpack_require__(537);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_34__pipes_expiry_pipe__ = __webpack_require__(536);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_35__shared_loading_loading_component__ = __webpack_require__(539);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_36__pages_facebook_facebook_component__ = __webpack_require__(345);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_37__pages_wizard_wizard_component__ = __webpack_require__(533);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_38__pages_about_about_component__ = __webpack_require__(340);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_39__pages_help_help_component__ = __webpack_require__(346);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_40__pages_legal_legal_component__ = __webpack_require__(348);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_41__pages_account_account_component__ = __webpack_require__(341);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_42__pages_requests_requests_component__ = __webpack_require__(352);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_43__pages_share_share_component__ = __webpack_require__(532);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_44__pages_blog_blog_component__ = __webpack_require__(531);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_45__pages_contact_contact_component__ = __webpack_require__(344);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_46__pages_notfound_notfound_component__ = __webpack_require__(349);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_47__directives_clipboard_directive__ = __webpack_require__(527);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_48__directives_formatter_directive__ = __webpack_require__(528);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_49__pipes_currency_pipe__ = __webpack_require__(218);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_50__pipes_currency_format_pipe__ = __webpack_require__(535);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_ng2_page_scroll__ = __webpack_require__(705);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__app_routing__ = __webpack_require__(525);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__shared_common_service__ = __webpack_require__(50);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__shared_auth_service__ = __webpack_require__(62);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__shared_profile_service__ = __webpack_require__(87);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__shared_navigation_service__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__shared_orders_service__ = __webpack_require__(86);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__popups_popups_service__ = __webpack_require__(84);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__shared_payment_service__ = __webpack_require__(110);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__shared_analytics_service__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__shared_seo_service__ = __webpack_require__(44);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__shared_contact_service__ = __webpack_require__(85);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__pages_share_share_service__ = __webpack_require__(217);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__shared_clipboard_service__ = __webpack_require__(354);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__app_component__ = __webpack_require__(524);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__landing_landing_component__ = __webpack_require__(338);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__company_company_component__ = __webpack_require__(337);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__pages_category_category_component__ = __webpack_require__(341);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__pages_service_service_component__ = __webpack_require__(352);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__pages_services_services_component__ = __webpack_require__(353);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__pages_insert_insert_component__ = __webpack_require__(346);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__pages_checkout_checkout_component__ = __webpack_require__(342);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__pages_orders_orders_component__ = __webpack_require__(349);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_30__pages_profile_profile_component__ = __webpack_require__(350);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_31__popups_popups_component__ = __webpack_require__(537);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_32__pipes_phone_pipe__ = __webpack_require__(536);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_33__pipes_expiry_pipe__ = __webpack_require__(535);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_34__shared_loading_loading_component__ = __webpack_require__(538);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_35__pages_facebook_facebook_component__ = __webpack_require__(344);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_36__pages_wizard_wizard_component__ = __webpack_require__(532);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_37__pages_about_about_component__ = __webpack_require__(339);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_38__pages_help_help_component__ = __webpack_require__(345);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_39__pages_legal_legal_component__ = __webpack_require__(347);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_40__pages_account_account_component__ = __webpack_require__(340);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_41__pages_requests_requests_component__ = __webpack_require__(351);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_42__pages_share_share_component__ = __webpack_require__(531);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_43__pages_blog_blog_component__ = __webpack_require__(530);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_44__pages_contact_contact_component__ = __webpack_require__(343);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_45__pages_notfound_notfound_component__ = __webpack_require__(348);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_46__directives_clipboard_directive__ = __webpack_require__(526);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_47__directives_formatter_directive__ = __webpack_require__(527);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_48__pipes_currency_pipe__ = __webpack_require__(218);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_49__pipes_currency_format_pipe__ = __webpack_require__(534);
 /* unused harmony export HammerConfig */
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return AppModule; });
 /**
@@ -5362,7 +5244,6 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-
 
 
 
@@ -5439,53 +5320,53 @@ var imports = [
     __WEBPACK_IMPORTED_MODULE_7_ng2_page_scroll__["a" /* Ng2PageScrollModule */].forRoot(),
 ];
 var declarations = [
-    __WEBPACK_IMPORTED_MODULE_22__app_component__["a" /* AppComponent */],
+    __WEBPACK_IMPORTED_MODULE_21__app_component__["a" /* AppComponent */],
     //HomeComponent,
-    __WEBPACK_IMPORTED_MODULE_23__landing_landing_component__["a" /* LandingComponent */],
-    __WEBPACK_IMPORTED_MODULE_24__company_company_component__["a" /* CompanyComponent */],
+    __WEBPACK_IMPORTED_MODULE_22__landing_landing_component__["a" /* LandingComponent */],
+    __WEBPACK_IMPORTED_MODULE_23__company_company_component__["a" /* CompanyComponent */],
     // OrderComponent,
-    __WEBPACK_IMPORTED_MODULE_30__pages_orders_orders_component__["a" /* OrdersComponent */],
-    __WEBPACK_IMPORTED_MODULE_31__pages_profile_profile_component__["a" /* ProfileComponent */],
-    __WEBPACK_IMPORTED_MODULE_32__popups_popups_component__["a" /* PopupsComponent */],
-    __WEBPACK_IMPORTED_MODULE_26__pages_service_service_component__["a" /* ServiceComponent */],
-    __WEBPACK_IMPORTED_MODULE_35__shared_loading_loading_component__["a" /* LoadingComponent */],
-    __WEBPACK_IMPORTED_MODULE_36__pages_facebook_facebook_component__["a" /* FacebookComponent */],
-    __WEBPACK_IMPORTED_MODULE_37__pages_wizard_wizard_component__["a" /* WizardComponent */],
-    __WEBPACK_IMPORTED_MODULE_38__pages_about_about_component__["a" /* AboutComponent */],
-    __WEBPACK_IMPORTED_MODULE_39__pages_help_help_component__["a" /* HelpComponent */],
-    __WEBPACK_IMPORTED_MODULE_40__pages_legal_legal_component__["a" /* LegalComponent */],
-    __WEBPACK_IMPORTED_MODULE_41__pages_account_account_component__["a" /* AccountComponent */],
-    __WEBPACK_IMPORTED_MODULE_27__pages_services_services_component__["a" /* ServicesComponent */],
-    __WEBPACK_IMPORTED_MODULE_28__pages_insert_insert_component__["a" /* InsertComponent */],
-    __WEBPACK_IMPORTED_MODULE_29__pages_checkout_checkout_component__["a" /* CheckoutComponent */],
-    __WEBPACK_IMPORTED_MODULE_42__pages_requests_requests_component__["a" /* RequestsComponent */],
-    __WEBPACK_IMPORTED_MODULE_43__pages_share_share_component__["a" /* ShareComponent */],
-    __WEBPACK_IMPORTED_MODULE_44__pages_blog_blog_component__["a" /* BlogComponent */],
-    __WEBPACK_IMPORTED_MODULE_25__pages_category_category_component__["a" /* CategoryComponent */],
-    __WEBPACK_IMPORTED_MODULE_45__pages_contact_contact_component__["a" /* ContactComponent */],
-    __WEBPACK_IMPORTED_MODULE_46__pages_notfound_notfound_component__["a" /* NotfoundComponent */],
-    __WEBPACK_IMPORTED_MODULE_47__directives_clipboard_directive__["a" /* ClipboardDirective */],
-    __WEBPACK_IMPORTED_MODULE_48__directives_formatter_directive__["a" /* FormatterDirective */],
-    __WEBPACK_IMPORTED_MODULE_49__pipes_currency_pipe__["a" /* CurrencyPipe */],
-    __WEBPACK_IMPORTED_MODULE_33__pipes_phone_pipe__["a" /* PhonePipe */],
-    __WEBPACK_IMPORTED_MODULE_34__pipes_expiry_pipe__["a" /* ExpiryPipe */],
-    __WEBPACK_IMPORTED_MODULE_50__pipes_currency_format_pipe__["a" /* CurrencyFormatPipe */]
+    __WEBPACK_IMPORTED_MODULE_29__pages_orders_orders_component__["a" /* OrdersComponent */],
+    __WEBPACK_IMPORTED_MODULE_30__pages_profile_profile_component__["a" /* ProfileComponent */],
+    __WEBPACK_IMPORTED_MODULE_31__popups_popups_component__["a" /* PopupsComponent */],
+    __WEBPACK_IMPORTED_MODULE_25__pages_service_service_component__["a" /* ServiceComponent */],
+    __WEBPACK_IMPORTED_MODULE_34__shared_loading_loading_component__["a" /* LoadingComponent */],
+    __WEBPACK_IMPORTED_MODULE_35__pages_facebook_facebook_component__["a" /* FacebookComponent */],
+    __WEBPACK_IMPORTED_MODULE_36__pages_wizard_wizard_component__["a" /* WizardComponent */],
+    __WEBPACK_IMPORTED_MODULE_37__pages_about_about_component__["a" /* AboutComponent */],
+    __WEBPACK_IMPORTED_MODULE_38__pages_help_help_component__["a" /* HelpComponent */],
+    __WEBPACK_IMPORTED_MODULE_39__pages_legal_legal_component__["a" /* LegalComponent */],
+    __WEBPACK_IMPORTED_MODULE_40__pages_account_account_component__["a" /* AccountComponent */],
+    __WEBPACK_IMPORTED_MODULE_26__pages_services_services_component__["a" /* ServicesComponent */],
+    __WEBPACK_IMPORTED_MODULE_27__pages_insert_insert_component__["a" /* InsertComponent */],
+    __WEBPACK_IMPORTED_MODULE_28__pages_checkout_checkout_component__["a" /* CheckoutComponent */],
+    __WEBPACK_IMPORTED_MODULE_41__pages_requests_requests_component__["a" /* RequestsComponent */],
+    __WEBPACK_IMPORTED_MODULE_42__pages_share_share_component__["a" /* ShareComponent */],
+    __WEBPACK_IMPORTED_MODULE_43__pages_blog_blog_component__["a" /* BlogComponent */],
+    __WEBPACK_IMPORTED_MODULE_24__pages_category_category_component__["a" /* CategoryComponent */],
+    __WEBPACK_IMPORTED_MODULE_44__pages_contact_contact_component__["a" /* ContactComponent */],
+    __WEBPACK_IMPORTED_MODULE_45__pages_notfound_notfound_component__["a" /* NotfoundComponent */],
+    __WEBPACK_IMPORTED_MODULE_46__directives_clipboard_directive__["a" /* ClipboardDirective */],
+    __WEBPACK_IMPORTED_MODULE_47__directives_formatter_directive__["a" /* FormatterDirective */],
+    __WEBPACK_IMPORTED_MODULE_48__pipes_currency_pipe__["a" /* CurrencyPipe */],
+    __WEBPACK_IMPORTED_MODULE_32__pipes_phone_pipe__["a" /* PhonePipe */],
+    __WEBPACK_IMPORTED_MODULE_33__pipes_expiry_pipe__["a" /* ExpiryPipe */],
+    __WEBPACK_IMPORTED_MODULE_49__pipes_currency_format_pipe__["a" /* CurrencyFormatPipe */]
 ];
 var exp = [
-    __WEBPACK_IMPORTED_MODULE_48__directives_formatter_directive__["a" /* FormatterDirective */],
-    __WEBPACK_IMPORTED_MODULE_49__pipes_currency_pipe__["a" /* CurrencyPipe */],
-    __WEBPACK_IMPORTED_MODULE_50__pipes_currency_format_pipe__["a" /* CurrencyFormatPipe */]
+    __WEBPACK_IMPORTED_MODULE_47__directives_formatter_directive__["a" /* FormatterDirective */],
+    __WEBPACK_IMPORTED_MODULE_48__pipes_currency_pipe__["a" /* CurrencyPipe */],
+    __WEBPACK_IMPORTED_MODULE_49__pipes_currency_format_pipe__["a" /* CurrencyFormatPipe */]
 ];
 if (__WEBPACK_IMPORTED_MODULE_2_angular2_universal__["isBrowser"]) {
-    var CalendarModule = __webpack_require__(711).CalendarModule;
+    var CalendarModule = __webpack_require__(710).CalendarModule;
     imports.push(CalendarModule);
-    var AutoCompleteModule = __webpack_require__(710).AutoCompleteModule;
+    var AutoCompleteModule = __webpack_require__(709).AutoCompleteModule;
     imports.push(AutoCompleteModule);
 }
 else {
-    var CalendarMockComponent = __webpack_require__(530).CalendarMockComponent;
+    var CalendarMockComponent = __webpack_require__(529).CalendarMockComponent;
     declarations.push(CalendarMockComponent);
-    var AutoCompleteMockModule = __webpack_require__(529).AutoCompleteMockComponent;
+    var AutoCompleteMockModule = __webpack_require__(528).AutoCompleteMockComponent;
     declarations.push(AutoCompleteMockModule);
 }
 /**
@@ -5497,7 +5378,7 @@ var AppModule = (function () {
     AppModule = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_core__["NgModule"])({
             /** Root App Component */
-            bootstrap: [__WEBPACK_IMPORTED_MODULE_22__app_component__["a" /* AppComponent */]],
+            bootstrap: [__WEBPACK_IMPORTED_MODULE_21__app_component__["a" /* AppComponent */]],
             /** Our Components */
             declarations: declarations,
             imports: imports,
@@ -5509,18 +5390,17 @@ var AppModule = (function () {
                 // },
                 __WEBPACK_IMPORTED_MODULE_9__shared_common_service__["a" /* CommonService */],
                 __WEBPACK_IMPORTED_MODULE_10__shared_auth_service__["a" /* AuthService */],
-                __WEBPACK_IMPORTED_MODULE_11__order_order_service__["a" /* OrderService */],
-                __WEBPACK_IMPORTED_MODULE_12__shared_profile_service__["a" /* ProfileService */],
-                __WEBPACK_IMPORTED_MODULE_13__shared_navigation_service__["a" /* NavigationService */],
-                __WEBPACK_IMPORTED_MODULE_14__shared_orders_service__["a" /* OrdersService */],
-                __WEBPACK_IMPORTED_MODULE_15__popups_popups_service__["a" /* PopupsService */],
-                __WEBPACK_IMPORTED_MODULE_16__shared_payment_service__["a" /* PaymentService */],
-                __WEBPACK_IMPORTED_MODULE_17__shared_analytics_service__["a" /* AnalyticsService */],
-                __WEBPACK_IMPORTED_MODULE_18__shared_seo_service__["a" /* SeoService */],
-                __WEBPACK_IMPORTED_MODULE_19__shared_contact_service__["a" /* ContactService */],
-                __WEBPACK_IMPORTED_MODULE_20__pages_share_share_service__["a" /* ShareService */],
-                __WEBPACK_IMPORTED_MODULE_21__shared_clipboard_service__["a" /* ClipboardService */],
-                __WEBPACK_IMPORTED_MODULE_49__pipes_currency_pipe__["a" /* CurrencyPipe */]
+                __WEBPACK_IMPORTED_MODULE_11__shared_profile_service__["a" /* ProfileService */],
+                __WEBPACK_IMPORTED_MODULE_12__shared_navigation_service__["a" /* NavigationService */],
+                __WEBPACK_IMPORTED_MODULE_13__shared_orders_service__["a" /* OrdersService */],
+                __WEBPACK_IMPORTED_MODULE_14__popups_popups_service__["a" /* PopupsService */],
+                __WEBPACK_IMPORTED_MODULE_15__shared_payment_service__["a" /* PaymentService */],
+                __WEBPACK_IMPORTED_MODULE_16__shared_analytics_service__["a" /* AnalyticsService */],
+                __WEBPACK_IMPORTED_MODULE_17__shared_seo_service__["a" /* SeoService */],
+                __WEBPACK_IMPORTED_MODULE_18__shared_contact_service__["a" /* ContactService */],
+                __WEBPACK_IMPORTED_MODULE_19__pages_share_share_service__["a" /* ShareService */],
+                __WEBPACK_IMPORTED_MODULE_20__shared_clipboard_service__["a" /* ClipboardService */],
+                __WEBPACK_IMPORTED_MODULE_48__pipes_currency_pipe__["a" /* CurrencyPipe */]
             ],
             exports: exp
         }), 
@@ -5532,20 +5412,20 @@ var AppModule = (function () {
 
 /***/ },
 
-/***/ 525:
+/***/ 524:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_angular2_universal__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_angular2_universal__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_angular2_universal___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_angular2_universal__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_router__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__shared_analytics_service__ = __webpack_require__(19);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__shared_auth_service__ = __webpack_require__(63);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__shared_auth_service__ = __webpack_require__(62);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__shared_navigation_service__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__popups_popups_service__ = __webpack_require__(86);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__shared_common_service__ = __webpack_require__(51);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__shared_seo_service__ = __webpack_require__(45);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__popups_popups_service__ = __webpack_require__(84);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__shared_common_service__ = __webpack_require__(50);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__shared_seo_service__ = __webpack_require__(44);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return AppComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -5698,7 +5578,7 @@ var AppComponent = (function () {
     AppComponent.prototype.ngAfterViewInit = function () {
     };
     AppComponent.prototype.publishService = function () {
-        this.router.navigate(['insert/intro']);
+        this.router.navigate(['insert/title']);
         this.collapsed = false;
     };
     AppComponent.prototype.signupAsProfessional = function () {
@@ -5794,7 +5674,7 @@ var AppComponent = (function () {
     AppComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_core__["Component"])({
             selector: 'app-root',
-            template: __webpack_require__(714)
+            template: __webpack_require__(713)
         }), 
         __metadata('design:paramtypes', [(typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__angular_router__["d" /* Router */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_2__angular_router__["d" /* Router */]) === 'function' && _a) || Object, (typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__angular_router__["e" /* ActivatedRoute */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_2__angular_router__["e" /* ActivatedRoute */]) === 'function' && _b) || Object, (typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_4__shared_auth_service__["a" /* AuthService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_4__shared_auth_service__["a" /* AuthService */]) === 'function' && _c) || Object, (typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_5__shared_navigation_service__["a" /* NavigationService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_5__shared_navigation_service__["a" /* NavigationService */]) === 'function' && _d) || Object, (typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_6__popups_popups_service__["a" /* PopupsService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_6__popups_popups_service__["a" /* PopupsService */]) === 'function' && _e) || Object, (typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_7__shared_common_service__["a" /* CommonService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_7__shared_common_service__["a" /* CommonService */]) === 'function' && _f) || Object, (typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_3__shared_analytics_service__["a" /* AnalyticsService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_3__shared_analytics_service__["a" /* AnalyticsService */]) === 'function' && _g) || Object, (typeof (_h = typeof __WEBPACK_IMPORTED_MODULE_8__shared_seo_service__["a" /* SeoService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_8__shared_seo_service__["a" /* SeoService */]) === 'function' && _h) || Object])
     ], AppComponent);
@@ -5805,28 +5685,28 @@ var AppComponent = (function () {
 
 /***/ },
 
-/***/ 526:
+/***/ 525:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_router__ = __webpack_require__(8);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__landing_landing_component__ = __webpack_require__(339);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__company_company_component__ = __webpack_require__(338);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__pages_category_category_component__ = __webpack_require__(342);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_service_service_component__ = __webpack_require__(353);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pages_services_services_component__ = __webpack_require__(354);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_insert_insert_component__ = __webpack_require__(347);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_checkout_checkout_component__ = __webpack_require__(343);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_orders_orders_component__ = __webpack_require__(350);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__pages_profile_profile_component__ = __webpack_require__(351);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_facebook_facebook_component__ = __webpack_require__(345);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__pages_about_about_component__ = __webpack_require__(340);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__pages_help_help_component__ = __webpack_require__(346);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__pages_legal_legal_component__ = __webpack_require__(348);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__pages_account_account_component__ = __webpack_require__(341);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__pages_requests_requests_component__ = __webpack_require__(352);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__pages_contact_contact_component__ = __webpack_require__(344);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__pages_notfound_notfound_component__ = __webpack_require__(349);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__landing_landing_component__ = __webpack_require__(338);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__company_company_component__ = __webpack_require__(337);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__pages_category_category_component__ = __webpack_require__(341);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_service_service_component__ = __webpack_require__(352);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pages_services_services_component__ = __webpack_require__(353);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_insert_insert_component__ = __webpack_require__(346);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_checkout_checkout_component__ = __webpack_require__(342);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_orders_orders_component__ = __webpack_require__(349);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__pages_profile_profile_component__ = __webpack_require__(350);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_facebook_facebook_component__ = __webpack_require__(344);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__pages_about_about_component__ = __webpack_require__(339);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__pages_help_help_component__ = __webpack_require__(345);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__pages_legal_legal_component__ = __webpack_require__(347);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__pages_account_account_component__ = __webpack_require__(340);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__pages_requests_requests_component__ = __webpack_require__(351);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__pages_contact_contact_component__ = __webpack_require__(343);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__pages_notfound_notfound_component__ = __webpack_require__(348);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return routing; });
 
 
@@ -5895,12 +5775,12 @@ var routing = __WEBPACK_IMPORTED_MODULE_0__angular_router__["f" /* RouterModule 
 
 /***/ },
 
-/***/ 527:
+/***/ 526:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__shared_clipboard_service__ = __webpack_require__(355);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__shared_clipboard_service__ = __webpack_require__(354);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return ClipboardDirective; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -5961,7 +5841,7 @@ var ClipboardDirective = (function () {
 
 /***/ },
 
-/***/ 528:
+/***/ 527:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6026,7 +5906,7 @@ var FormatterDirective = (function () {
 
 /***/ },
 
-/***/ 529:
+/***/ 528:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6086,7 +5966,7 @@ var AutoCompleteMockComponent = (function () {
 
 /***/ },
 
-/***/ 530:
+/***/ 529:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6154,16 +6034,16 @@ var CalendarMockComponent = (function () {
 
 /***/ },
 
-/***/ 531:
+/***/ 530:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__(8);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__shared_seo_service__ = __webpack_require__(45);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__shared_seo_service__ = __webpack_require__(44);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__shared_navigation_service__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__shared_analytics_service__ = __webpack_require__(19);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__shared_common_service__ = __webpack_require__(51);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__shared_common_service__ = __webpack_require__(50);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return BlogComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -6196,7 +6076,7 @@ var BlogComponent = (function () {
     BlogComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'app-blog',
-            template: __webpack_require__(719)
+            template: __webpack_require__(718)
         }), 
         __metadata('design:paramtypes', [(typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["d" /* Router */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__angular_router__["d" /* Router */]) === 'function' && _a) || Object, (typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["e" /* ActivatedRoute */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__angular_router__["e" /* ActivatedRoute */]) === 'function' && _b) || Object, (typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__shared_navigation_service__["a" /* NavigationService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_3__shared_navigation_service__["a" /* NavigationService */]) === 'function' && _c) || Object, (typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_4__shared_analytics_service__["a" /* AnalyticsService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_4__shared_analytics_service__["a" /* AnalyticsService */]) === 'function' && _d) || Object, (typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_2__shared_seo_service__["a" /* SeoService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_2__shared_seo_service__["a" /* SeoService */]) === 'function' && _e) || Object, (typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_5__shared_common_service__["a" /* CommonService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_5__shared_common_service__["a" /* CommonService */]) === 'function' && _f) || Object])
     ], BlogComponent);
@@ -6207,20 +6087,20 @@ var BlogComponent = (function () {
 
 /***/ },
 
-/***/ 532:
+/***/ 531:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_angular2_universal__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_angular2_universal__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_angular2_universal___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_angular2_universal__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_router__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__shared_navigation_service__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__shared_contact_service__ = __webpack_require__(87);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__shared_contact_service__ = __webpack_require__(85);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__share_service__ = __webpack_require__(217);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__shared_analytics_service__ = __webpack_require__(19);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__order_order_service__ = __webpack_require__(50);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__shared_seo_service__ = __webpack_require__(45);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__shared_orders_service__ = __webpack_require__(86);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__shared_seo_service__ = __webpack_require__(44);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return ShareComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -6365,7 +6245,7 @@ var ShareComponent = (function () {
     };
     ShareComponent.prototype.startWizard = function () {
         this.analyticsService.sendEvent({ category: 'Share', action: 'Start Wizard', label: "Order Campain" });
-        this.orderService.updateWizardData(this.Estimate);
+        //    this.orderService.updateWizardData(this.Estimate);
         this.router.navigate(['order/summary']);
         return false;
     };
@@ -6499,9 +6379,9 @@ var ShareComponent = (function () {
     ShareComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'app-share',
-            template: __webpack_require__(733)
+            template: __webpack_require__(732)
         }), 
-        __metadata('design:paramtypes', [(typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__angular_router__["d" /* Router */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_2__angular_router__["d" /* Router */]) === 'function' && _a) || Object, (typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__angular_router__["e" /* ActivatedRoute */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_2__angular_router__["e" /* ActivatedRoute */]) === 'function' && _b) || Object, (typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__shared_navigation_service__["a" /* NavigationService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_3__shared_navigation_service__["a" /* NavigationService */]) === 'function' && _c) || Object, (typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_4__shared_contact_service__["a" /* ContactService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_4__shared_contact_service__["a" /* ContactService */]) === 'function' && _d) || Object, (typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_5__share_service__["a" /* ShareService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_5__share_service__["a" /* ShareService */]) === 'function' && _e) || Object, (typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_6__shared_analytics_service__["a" /* AnalyticsService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_6__shared_analytics_service__["a" /* AnalyticsService */]) === 'function' && _f) || Object, (typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_7__order_order_service__["a" /* OrderService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_7__order_order_service__["a" /* OrderService */]) === 'function' && _g) || Object, (typeof (_h = typeof __WEBPACK_IMPORTED_MODULE_8__shared_seo_service__["a" /* SeoService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_8__shared_seo_service__["a" /* SeoService */]) === 'function' && _h) || Object])
+        __metadata('design:paramtypes', [(typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__angular_router__["d" /* Router */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_2__angular_router__["d" /* Router */]) === 'function' && _a) || Object, (typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__angular_router__["e" /* ActivatedRoute */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_2__angular_router__["e" /* ActivatedRoute */]) === 'function' && _b) || Object, (typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__shared_navigation_service__["a" /* NavigationService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_3__shared_navigation_service__["a" /* NavigationService */]) === 'function' && _c) || Object, (typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_4__shared_contact_service__["a" /* ContactService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_4__shared_contact_service__["a" /* ContactService */]) === 'function' && _d) || Object, (typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_5__share_service__["a" /* ShareService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_5__share_service__["a" /* ShareService */]) === 'function' && _e) || Object, (typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_6__shared_analytics_service__["a" /* AnalyticsService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_6__shared_analytics_service__["a" /* AnalyticsService */]) === 'function' && _f) || Object, (typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_7__shared_orders_service__["a" /* OrdersService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_7__shared_orders_service__["a" /* OrdersService */]) === 'function' && _g) || Object, (typeof (_h = typeof __WEBPACK_IMPORTED_MODULE_8__shared_seo_service__["a" /* SeoService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_8__shared_seo_service__["a" /* SeoService */]) === 'function' && _h) || Object])
     ], ShareComponent);
     return ShareComponent;
     var _a, _b, _c, _d, _e, _f, _g, _h;
@@ -6510,19 +6390,19 @@ var ShareComponent = (function () {
 
 /***/ },
 
-/***/ 533:
+/***/ 532:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__shared_analytics_service__ = __webpack_require__(19);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__order_order_service__ = __webpack_require__(50);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__shared_auth_service__ = __webpack_require__(63);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__shared_orders_service__ = __webpack_require__(86);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__shared_auth_service__ = __webpack_require__(62);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__shared_navigation_service__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__shared_payment_service__ = __webpack_require__(110);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__shared_profile_service__ = __webpack_require__(88);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_angular2_universal__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__shared_profile_service__ = __webpack_require__(87);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_angular2_universal__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_angular2_universal___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8_angular2_universal__);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return WizardComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -6699,8 +6579,14 @@ var WizardComponent = (function () {
             monthNamesShort: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
         };
         this.analyticsService.sendPageViewUrl(this.router.url);
+        // if (isBrowser) {
+        //   this.subscription = this.orderService.getOrderEvent$.subscribe(event => {
+        //     this.orderCreated(event);
+        //   });
+        // }
         if (__WEBPACK_IMPORTED_MODULE_8_angular2_universal__["isBrowser"]) {
-            this.service_data = this.orderService.getWizardData();
+            // this.service_data = this.orderService.getWizardData();
+            this.service_data = {};
             if (Object.keys(this.service_data).length === 0) {
                 this.Order = this.readOrderFromLocal();
                 if (this.Order.address) {
@@ -7341,9 +7227,9 @@ var WizardComponent = (function () {
     WizardComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'app-wizard',
-            template: __webpack_require__(734)
+            template: __webpack_require__(733)
         }), 
-        __metadata('design:paramtypes', [(typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["d" /* Router */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__angular_router__["d" /* Router */]) === 'function' && _a) || Object, (typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["e" /* ActivatedRoute */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__angular_router__["e" /* ActivatedRoute */]) === 'function' && _b) || Object, (typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__shared_analytics_service__["a" /* AnalyticsService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_2__shared_analytics_service__["a" /* AnalyticsService */]) === 'function' && _c) || Object, (typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_3__order_order_service__["a" /* OrderService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_3__order_order_service__["a" /* OrderService */]) === 'function' && _d) || Object, (typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_4__shared_auth_service__["a" /* AuthService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_4__shared_auth_service__["a" /* AuthService */]) === 'function' && _e) || Object, (typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_5__shared_navigation_service__["a" /* NavigationService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_5__shared_navigation_service__["a" /* NavigationService */]) === 'function' && _f) || Object, (typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_6__shared_payment_service__["a" /* PaymentService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_6__shared_payment_service__["a" /* PaymentService */]) === 'function' && _g) || Object, (typeof (_h = typeof __WEBPACK_IMPORTED_MODULE_7__shared_profile_service__["a" /* ProfileService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_7__shared_profile_service__["a" /* ProfileService */]) === 'function' && _h) || Object])
+        __metadata('design:paramtypes', [(typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["d" /* Router */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__angular_router__["d" /* Router */]) === 'function' && _a) || Object, (typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["e" /* ActivatedRoute */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__angular_router__["e" /* ActivatedRoute */]) === 'function' && _b) || Object, (typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__shared_analytics_service__["a" /* AnalyticsService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_2__shared_analytics_service__["a" /* AnalyticsService */]) === 'function' && _c) || Object, (typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_3__shared_orders_service__["a" /* OrdersService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_3__shared_orders_service__["a" /* OrdersService */]) === 'function' && _d) || Object, (typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_4__shared_auth_service__["a" /* AuthService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_4__shared_auth_service__["a" /* AuthService */]) === 'function' && _e) || Object, (typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_5__shared_navigation_service__["a" /* NavigationService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_5__shared_navigation_service__["a" /* NavigationService */]) === 'function' && _f) || Object, (typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_6__shared_payment_service__["a" /* PaymentService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_6__shared_payment_service__["a" /* PaymentService */]) === 'function' && _g) || Object, (typeof (_h = typeof __WEBPACK_IMPORTED_MODULE_7__shared_profile_service__["a" /* ProfileService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_7__shared_profile_service__["a" /* ProfileService */]) === 'function' && _h) || Object])
     ], WizardComponent);
     return WizardComponent;
     var _a, _b, _c, _d, _e, _f, _g, _h;
@@ -7352,7 +7238,7 @@ var WizardComponent = (function () {
 
 /***/ },
 
-/***/ 534:
+/***/ 533:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7386,7 +7272,7 @@ var CurrencyCentPipe = (function () {
 
 /***/ },
 
-/***/ 535:
+/***/ 534:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7428,7 +7314,7 @@ var CurrencyFormatPipe = (function () {
 
 /***/ },
 
-/***/ 536:
+/***/ 535:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7488,7 +7374,7 @@ var ExpiryPipe = (function () {
 
 /***/ },
 
-/***/ 537:
+/***/ 536:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7539,21 +7425,20 @@ var PhonePipe = (function () {
 
 /***/ },
 
-/***/ 538:
+/***/ 537:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_angular2_universal__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_angular2_universal__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_angular2_universal___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_angular2_universal__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_router__ = __webpack_require__(8);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__shared_auth_service__ = __webpack_require__(63);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__shared_auth_service__ = __webpack_require__(62);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__shared_navigation_service__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__popups_service__ = __webpack_require__(86);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__shared_orders_service__ = __webpack_require__(219);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__order_order_service__ = __webpack_require__(50);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__shared_payment_service__ = __webpack_require__(110);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__shared_analytics_service__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__popups_service__ = __webpack_require__(84);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__shared_orders_service__ = __webpack_require__(86);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__shared_payment_service__ = __webpack_require__(110);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__shared_analytics_service__ = __webpack_require__(19);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return PopupsComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -7564,7 +7449,6 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-
 
 
 
@@ -8823,7 +8707,7 @@ var PopupsComponent = (function () {
     PopupsComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_core__["Component"])({
             selector: 'app-popups',
-            template: __webpack_require__(735),
+            template: __webpack_require__(734),
             animations: [
                 __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_core__["trigger"])('addCardPopupState', [
                     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_core__["state"])('inactive', __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_core__["style"])({ display: 'none', top: '-300px' })),
@@ -9044,7 +8928,7 @@ var PopupsComponent = (function () {
                 ])
             ]
         }), 
-        __metadata('design:paramtypes', [(typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_3__shared_auth_service__["a" /* AuthService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_3__shared_auth_service__["a" /* AuthService */]) === 'function' && _a) || Object, (typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_4__shared_navigation_service__["a" /* NavigationService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_4__shared_navigation_service__["a" /* NavigationService */]) === 'function' && _b) || Object, (typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_5__popups_service__["a" /* PopupsService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_5__popups_service__["a" /* PopupsService */]) === 'function' && _c) || Object, (typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_6__shared_orders_service__["a" /* OrdersService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_6__shared_orders_service__["a" /* OrdersService */]) === 'function' && _d) || Object, (typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_7__order_order_service__["a" /* OrderService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_7__order_order_service__["a" /* OrderService */]) === 'function' && _e) || Object, (typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_8__shared_payment_service__["a" /* PaymentService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_8__shared_payment_service__["a" /* PaymentService */]) === 'function' && _f) || Object, (typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_2__angular_router__["d" /* Router */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_2__angular_router__["d" /* Router */]) === 'function' && _g) || Object, (typeof (_h = typeof __WEBPACK_IMPORTED_MODULE_9__shared_analytics_service__["a" /* AnalyticsService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_9__shared_analytics_service__["a" /* AnalyticsService */]) === 'function' && _h) || Object])
+        __metadata('design:paramtypes', [(typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_3__shared_auth_service__["a" /* AuthService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_3__shared_auth_service__["a" /* AuthService */]) === 'function' && _a) || Object, (typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_4__shared_navigation_service__["a" /* NavigationService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_4__shared_navigation_service__["a" /* NavigationService */]) === 'function' && _b) || Object, (typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_5__popups_service__["a" /* PopupsService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_5__popups_service__["a" /* PopupsService */]) === 'function' && _c) || Object, (typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_6__shared_orders_service__["a" /* OrdersService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_6__shared_orders_service__["a" /* OrdersService */]) === 'function' && _d) || Object, (typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_6__shared_orders_service__["a" /* OrdersService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_6__shared_orders_service__["a" /* OrdersService */]) === 'function' && _e) || Object, (typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_7__shared_payment_service__["a" /* PaymentService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_7__shared_payment_service__["a" /* PaymentService */]) === 'function' && _f) || Object, (typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_2__angular_router__["d" /* Router */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_2__angular_router__["d" /* Router */]) === 'function' && _g) || Object, (typeof (_h = typeof __WEBPACK_IMPORTED_MODULE_8__shared_analytics_service__["a" /* AnalyticsService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_8__shared_analytics_service__["a" /* AnalyticsService */]) === 'function' && _h) || Object])
     ], PopupsComponent);
     return PopupsComponent;
     var _a, _b, _c, _d, _e, _f, _g, _h;
@@ -9053,7 +8937,7 @@ var PopupsComponent = (function () {
 
 /***/ },
 
-/***/ 539:
+/***/ 538:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9077,7 +8961,7 @@ var LoadingComponent = (function () {
     LoadingComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'app-loading',
-            template: __webpack_require__(736)
+            template: __webpack_require__(735)
         }), 
         __metadata('design:paramtypes', [])
     ], LoadingComponent);
@@ -9087,7 +8971,7 @@ var LoadingComponent = (function () {
 
 /***/ },
 
-/***/ 540:
+/***/ 539:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9103,41 +8987,41 @@ var environment = {
 
 /***/ },
 
-/***/ 541:
+/***/ 540:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_angular2_universal_polyfills__ = __webpack_require__(543);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_angular2_universal_polyfills__ = __webpack_require__(542);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_angular2_universal_polyfills___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_angular2_universal_polyfills__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_core_js_es6_symbol__ = __webpack_require__(562);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_core_js_es6_symbol__ = __webpack_require__(561);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_core_js_es6_symbol___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_core_js_es6_symbol__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_core_js_es6_object__ = __webpack_require__(555);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_core_js_es6_object__ = __webpack_require__(554);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_core_js_es6_object___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_core_js_es6_object__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_core_js_es6_function__ = __webpack_require__(551);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_core_js_es6_function__ = __webpack_require__(550);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_core_js_es6_function___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_core_js_es6_function__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_core_js_es6_parse_int__ = __webpack_require__(557);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_core_js_es6_parse_int__ = __webpack_require__(556);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_core_js_es6_parse_int___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_core_js_es6_parse_int__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_core_js_es6_parse_float__ = __webpack_require__(556);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_core_js_es6_parse_float__ = __webpack_require__(555);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_core_js_es6_parse_float___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_core_js_es6_parse_float__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_core_js_es6_number__ = __webpack_require__(554);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_core_js_es6_number__ = __webpack_require__(553);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_core_js_es6_number___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_core_js_es6_number__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_core_js_es6_math__ = __webpack_require__(553);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_core_js_es6_math__ = __webpack_require__(552);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_core_js_es6_math___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7_core_js_es6_math__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_core_js_es6_string__ = __webpack_require__(561);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_core_js_es6_string__ = __webpack_require__(560);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_core_js_es6_string___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8_core_js_es6_string__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_core_js_es6_date__ = __webpack_require__(550);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_core_js_es6_date__ = __webpack_require__(549);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_core_js_es6_date___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_9_core_js_es6_date__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_core_js_es6_array__ = __webpack_require__(549);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_core_js_es6_array__ = __webpack_require__(548);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_core_js_es6_array___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_10_core_js_es6_array__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11_core_js_es6_regexp__ = __webpack_require__(559);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11_core_js_es6_regexp__ = __webpack_require__(558);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11_core_js_es6_regexp___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_11_core_js_es6_regexp__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12_core_js_es6_map__ = __webpack_require__(552);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12_core_js_es6_map__ = __webpack_require__(551);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12_core_js_es6_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_12_core_js_es6_map__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13_core_js_es6_set__ = __webpack_require__(560);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13_core_js_es6_set__ = __webpack_require__(559);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13_core_js_es6_set___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_13_core_js_es6_set__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14_core_js_es6_reflect__ = __webpack_require__(558);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14_core_js_es6_reflect__ = __webpack_require__(557);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_14_core_js_es6_reflect___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_14_core_js_es6_reflect__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15_core_js_es7_reflect__ = __webpack_require__(563);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15_core_js_es7_reflect__ = __webpack_require__(562);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_15_core_js_es7_reflect___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_15_core_js_es7_reflect__);
 // This file includes polyfills needed by Angular 2 and is loaded before
 // the app. You can add your own extra polyfills to this file.
@@ -9161,17 +9045,17 @@ var environment = {
 
 /***/ },
 
-/***/ 63:
+/***/ 62:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_angular2_universal__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_angular2_universal__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_angular2_universal___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_angular2_universal__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_http__ = __webpack_require__(41);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_toPromise__ = __webpack_require__(77);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_http__ = __webpack_require__(48);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_toPromise__ = __webpack_require__(92);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_toPromise___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_toPromise__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_map__ = __webpack_require__(742);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_map__ = __webpack_require__(741);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_map__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__navigation_service__ = __webpack_require__(10);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return AuthService; });
@@ -9514,190 +9398,190 @@ var AuthService = (function () {
 
 /***/ },
 
-/***/ 714:
+/***/ 713:
 /***/ function(module, exports) {
 
 module.exports = "<nav class=\"navbar navbar-dark navbar-fixed-top bg-inverse\" [ngClass]=\"{'border': hasBottomBorderNav}\" (window:resize)=\"onResize()\">\n  <div class=\"container-starbook top-menu\">\n    <a class=\"navbar-brand\" (click)=\"clickBrandLogo()\">\n      <div *ngIf=\"screenWidth > 768\" routerLink=\"\">\n        <img src=\"/assets/images/brand-logo-name-rotated.png\" alt=\"starbook\">\n      </div>\n      <div *ngIf=\"(screenWidth < 769) && hasRightContainer\">\n        <img *ngIf=\"!collapsed\" src=\"/assets/images/brand-logo-rotated.png\" alt=\"starbook\">\n        <img *ngIf=\"collapsed\" src=\"/assets/images/brand-logo-right.png\" alt=\"starbook\">\n      </div>\n      <div *ngIf=\"(screenWidth < 769) && !hasRightContainer\">\n        <img src=\"/assets/images/brand-logo-rotated.png\" alt=\"starbook\">\n      </div>\n    </a>\n\n    <div *ngIf=\"hasCenterContainer\" class=\"center-container\">\n      <div class=\"search-block\" *ngIf=\"isFindField\">\n        <p-autoComplete [(ngModel)]=\"findValue\" [suggestions]=\"results\" field=\"title\" scrollHeight=\"250px\" (completeMethod)=\"search($event)\" (onSelect)=\"selectResult(findValue)\" placeholder=\"Cerca un altro servizio\" minLength=\"0\">\n          <template let-res>\n            <div class=\"search-result\" (click)=\"selectResult(res)\">{{ res.title }}</div>\n          </template>\n        </p-autoComplete>\n        <div class=\"spinner\" *ngIf=\"spinerView\">\n          <svg width='20px' height='20px' xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\" preserveAspectRatio=\"xMidYMid\" class=\"uil-ring\">\n            <rect x=\"0\" y=\"0\" width=\"100\" height=\"100\" fill=\"none\" class=\"bk\"></rect>\n            <circle cx=\"50\" cy=\"50\" r=\"45\" stroke-dasharray=\"169.64600329384882 113.09733552923257\" stroke=\"#3B568D\" fill=\"none\" stroke-width=\"10\">\n              <animateTransform attributeName=\"transform\" type=\"rotate\" values=\"0 50 50;180 50 50;360 50 50;\" keyTimes=\"0;0.5;1\" dur=\"1s\" repeatCount=\"indefinite\" begin=\"0s\"></animateTransform>\n            </circle>\n          </svg>\n        </div>\n        <div class=\"close-container\" *ngIf=\"!spinerView && clearView\">\n          <span class=\"close rounded thick\" (click)=\"clearSearchForm()\"></span>\n        </div>\n        <div class=\"ui-autocomplete-panel empty\" *ngIf=\"results.length === 0 && findValue.length > 0 && isSearched\">\n          <div class=\"no-result\">\n            Il servizio \"{{findValue}}\" non è disponibile\n            <button class=\"suggess-service\" (click)=\"requireService()\">{{newServiceRequest.message}}</button>\n          </div>\n        </div>\n      </div>\n      <div *ngIf=\"!isFindField\" class=\"tagline\">{{tagline}}</div>\n    </div>\n\n    <!--  Collapsed -->\n    <ul *ngIf=\"auth !== false && hasRightContainer\" class=\"nav navbar-nav float-xs-right\" [ngClass]=\"{'collapse':!collapsed}\">\n      <li class=\"nav-item\" *ngIf=\"hasPublishService\">\n        <a class=\"nav-link publish-item\" (click)=\"publishService()\">Pubblica il tuo servizio</a>\n      </li>\n      <li class=\"nav-item\">\n        <a class=\"nav-link home\" routerLink=\"\" routerLinkActive=\"active\" [routerLinkActiveOptions]=\"{exact:true}\" (click)=\"updateTabMenu(true)\">Home</a>\n      </li>\n      <li class=\"nav-item\">\n        <a class=\"nav-link orders\" routerLink=\"/orders/requests\" routerLinkActive=\"active\" (click)=\"toggleMenu()\">Ordini</a>\n      </li>\n      <li class=\"nav-item\">\n        <a class=\"nav-link profile\" routerLink=\"/profile/general\" routerLinkActive=\"active\" (click)=\"toggleMenu()\"><i class=\"fa fa-user-circle-o\" aria-hidden=\"true\"> </i> {{auth.profile.fullname}}</a>\n      </li>\n    </ul>\n\n    <!--  Collapsed not authenticated -->\n    <ul *ngIf=\"auth === false && browser && hasRightContainer\" class=\"nav navbar-nav float-xs-right\" [ngClass]=\"{'collapse':!collapsed}\">\n      <li class=\"nav-item\" *ngIf=\"collapsed\">\n        <a class=\"nav-link home\" routerLink=\"\" routerLinkActive=\"active\" [routerLinkActiveOptions]=\"{exact:true}\" (click)=\"updateTabMenu(true)\">Home</a>\n      </li>\n      <li class=\"nav-item\" *ngIf=\"hasPublishService\">\n        <a class=\"nav-link publish-item\" (click)=\"publishService()\">Pubblica il tuo servizio</a>\n      </li>\n      <!-- <li class=\"nav-item register-item\">\n        <a class=\"nav-link profile\" (click)=\"signupAsProfessional()\">Iscriviti come professionista</a>\n      </li> -->\n      <li class=\"nav-item\">\n        <a class=\"nav-link profile\" (click)=\"getLoginPopup()\">Accedi</a>\n      </li>\n    </ul>\n\n  </div>\n</nav>\n<router-outlet></router-outlet>\n<app-popups></app-popups>\n"
 
 /***/ },
 
-/***/ 715:
+/***/ 714:
 /***/ function(module, exports) {
 
 module.exports = "<div class=\"company-container\">\n  <div class=\"header-container\">\n    <div class=\"overlay\">\n      <div class=\"header\">\n        <h1>La piattaforma ideale per vendere i tuoi servizi professionali.</h1>\n        <button class=\"btn btn-warning\" routerLink=\"/insert/title\">Pubblica il tuo servizio</button>\n      </div>\n    </div>\n  </div>\n  <div class=\"bullets-container\">\n    <h1>Come funziona</h1>\n    <div class=\"row bullets\">\n      <div class=\"col-xl-4 col-lg-4 col-md-6 col-sm-12\">\n        <div class=\"box\">\n          <img src=\"../../../assets/images/subscribe-icon.png\" class=\"rounded mx-auto d-block\" alt=\"Seleziona il servizio\">\n          <h3>Iscriviti</h3>\n          <h5>Racontaci del servizio che offri, quanto costa e carica una foto. É cosi semplice, ed é gratis!</h5>\n        </div>\n      </div>\n      <div class=\"col-xl-4 col-lg-4 col-md-6 col-sm-12\">\n        <div class=\"box\">\n          <img src=\"../../../assets/images/client-icon.png\" class=\"rounded mx-auto d-block\" alt=\"Calcola preventivo\">\n          <h3>Ricevi clienti</h3>\n          <h5>Niente preventivi e attese, noi ti assicuriamo clienti reali e lavori pronti.</h5>\n        </div>\n      </div>\n      <div class=\"col-xl-4 col-lg-4 col-md-6 col-sm-12\">\n        <div class=\"box\">\n          <img src=\"../../../assets/images/payment-icon.png\" class=\"rounded mx-auto d-block\" alt=\"Ordina il servizio\">\n          <h3>Pagamenti sicuri</h3>\n          <h5>Per i pagamenti ci pensiamo noi! Tutto passa attraverso la nostra piattaforma di pagamento.</h5>\n        </div>\n      </div>\n    </div>\n  </div>\n  <div class=\"frase-container\">\n    <div class=\"overlay\">\n      <div class=\"frase\">\n        <h1>Rendiamo tutto piú semplice.</h1>\n        <h4>Inserisci i tuoi servizi e decidi i tuoi prezzi. Ricevi ordini dai tuoi clienti online e sopratutto decidi tu quando e dove vuoi lavorare.</h4>\n        <button class=\"btn btn-warning\" routerLink=\"/insert/title\">Pubblica il tuo servizio</button>\n      </div>\n    </div>\n  </div>\n  <div class=\"prefooter-container\">\n    <div class=\"row prefooter\">\n      <div class=\"col-xl-3 col-lg-3 col-md-3 col-sm-12\">\n        <p>Sicurezza del sito</p>\n        <div class=\"list-security\">\n          <img src=\"../../../assets/images/norton.png\" alt=\"Norton Security\">\n          <img src=\"../../../assets/images/secure.png\" alt=\"100% Secure\">\n          <img src=\"../../../assets/images/trust.png\" alt=\"Trusted Website\">\n        </div>\n      </div>\n      <div class=\"col-xl-3 col-lg-3 col-md-3 col-sm-12\">\n        <p>Sistemi di pagamento</p>\n        <div class=\"list-payment-methods\">\n          <img src=\"../../../assets/images/mastercard.png\" alt=\"Mastercard\">\n          <img src=\"../../../assets/images/visa.png\" alt=\"Visa\">\n          <img src=\"../../../assets/images/americanexpress.png\" alt=\"American Express\">\n          <img src=\"../../../assets/images/stripe.png\" alt=\"Stripe\">\n        </div>\n      </div>\n      <div class=\"col-xl-3 col-lg-3 col-md-3 col-sm-12\">\n        <p><a routerLink=\"/info/about\">Chi siamo</a></p>\n        <p><a routerLink=\"/info/help\">Aiuto e Assistenza</a></p>\n        <p><a routerLink=\"/info/legal\">Privacy e Condizioni</a></p>\n        <p><a routerLink=\"/contact/partner\" *ngIf=\"currentUser\">Diventa partner</a></p>\n        <p><a routerLink=\"/insert/title\">Pubblica un servizio</a></p>\n      </div>\n      <div class=\"col-xl-3 col-lg-3 col-md-3 col-sm-12\">\n        <p>Seguici su</p>\n        <div class=\"list-socials\">\n          <a href=\"https://www.facebook.com/starbook.co/\" target=\"_blank\"><img src=\"../../../assets/images/facebook.png\" alt=\"Facebook\"></a>\n          <a href=\"https://twitter.com/starbookco/\" target=\"_blank\"><img src=\"../../../assets/images/twitter.png\" alt=\"Twitter\"></a>\n          <a href=\"https://www.instagram.com/starbook.co/\" target=\"_blank\"><img src=\"../../../assets/images/instagram.png\" alt=\"Instagram\"></a>\n        </div>\n      </div>\n    </div>\n  </div>\n  <div class=\"footer\">\n    <p><a routerLink=\"/\"><strong>Starbook</strong> © 2017 Tutti i diritti riservati</a></p>\n  </div>\n</div>\n"
 
 /***/ },
 
-/***/ 716:
+/***/ 715:
 /***/ function(module, exports) {
 
 module.exports = "<div class=\"landing-container\">\n  <div class=\"header-container\">\n    <div class=\"overlay\">\n      <div class=\"header\">\n        <h1>Trova il miglior servizio per la tua casa, al prezzo giusto e senza attese.</h1>\n        <div class=\"search\">\n          <div class=\"search-field\">\n            <p-autoComplete [(ngModel)]=\"query\" [suggestions]=\"results\" field=\"title\" scrollHeight=\"275px\" (completeMethod)=\"search($event)\" (onSelect)=\"selectResult(query)\" placeholder=\"Cerca un servizio\" minLength=\"0\">\n              <template let-res>\n                <div class=\"search-result\" (click)=\"selectResult(res)\">{{ res.title }}</div>\n              </template>\n            </p-autoComplete>\n            <div class=\"spinner\" *ngIf=\"spinerView\">\n              <svg width='21px' height='21px' xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\" preserveAspectRatio=\"xMidYMid\" class=\"uil-ring\">\n                <rect x=\"0\" y=\"0\" width=\"100\" height=\"100\" fill=\"none\" class=\"bk\"></rect>\n                <circle cx=\"50\" cy=\"50\" r=\"45\" stroke-dasharray=\"169.64600329384882 113.09733552923257\" stroke=\"#3B568D\" fill=\"none\" stroke-width=\"10\">\n                  <animateTransform attributeName=\"transform\" type=\"rotate\" values=\"0 50 50;180 50 50;360 50 50;\" keyTimes=\"0;0.5;1\" dur=\"1s\" repeatCount=\"indefinite\" begin=\"0s\"></animateTransform>\n                </circle>\n              </svg>\n            </div>\n            <div class=\"close-container\" *ngIf=\"!spinerView && clearView\">\n              <span class=\"close rounded thick\" (click)=\"clearSearchForm()\"></span>\n            </div>\n            <div class=\"ui-autocomplete-panel empty\" *ngIf=\"results.length === 0 && query.length > 0\">\n              <div class=\"no-result noselect\">\n                Il servizio \"{{query}}\" non è disponibile\n                <button class=\"suggess-service\" (click)=\"requireService()\">{{newServiceRequest.message}}</button>\n              </div>\n            </div>\n          </div>\n          <div class=\"search-button\">\n            <button class=\"btn btn-primary\" (click)=\"searchMore()\"><i class=\"fa fa-search\" aria-hidden=\"true\"></i></button>\n          </div>\n        </div>\n      </div>\n      <div class=\"bottom-container\">\n        <div class=\"arrow\"></div>\n      </div>\n    </div>\n  </div>\n  <div class=\"category-container\" *ngIf=\"professionals\">\n    <div class=\"category\">\n      <div class=\"category-header\">\n        <h1>Professionisti</h1>\n      </div>\n      <div class=\"category-body\">\n        <div class=\"service-container\" *ngFor=\"let professional of professionals\" (click)=\"selectService(professional)\">\n          <div class=\"service\" [ngStyle]=\"{'background-image' : ' url(' + images_url + 'services/'+ professional._id + '/cover/0' + ')'}\">\n            <div class=\"overlay\">\n              <div class=\"text-container\">\n                <span class=\"title\">{{ professional.title }}</span>\n              </div>\n            </div>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n  <!-- <div class=\"container-fluid services-container\">\n    <h1>Professionisti</h1>\n    <div class=\"row services\">\n      <div *ngFor=\"let category of categories\">\n        <div class=\"col-lg-3 col-md-6 col-sm-6 service-container\">\n          <div class=\"service\" (click)=\"selectCategory(category)\" [ngStyle]=\"{'background-image' : ' url(' + images_url + 'categories/'+ category._id + '/cover/1' + ')'}\">\n            <div class=\"overlay\">\n              <h1>{{category.title}}</h1>\n            </div>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div> -->\n  <div class=\"bullets-container\">\n    <h1>Come funziona</h1>\n    <div class=\"row bullets\">\n      <div class=\"col-xl-4 col-lg-4 col-md-6 col-sm-12\">\n        <div class=\"box\">\n          <img src=\"../../../assets/images/service-list.png\" class=\"rounded mx-auto d-block\" alt=\"Seleziona il servizio\">\n          <h3>Seleziona un servizio</h3>\n          <h5>Trova un servizio di cui hai bisogno e seleziona le carateristiche.</h5>\n        </div>\n      </div>\n      <div class=\"col-xl-4 col-lg-4 col-md-6 col-sm-12\">\n        <div class=\"box\">\n          <img src=\"../../../assets/images/service-time.png\" class=\"rounded mx-auto d-block\" alt=\"Calcola preventivo\">\n          <h3>Ricevi il preventivo immediato</h3>\n          <h5>Ricevi in tempo reale un unico prezzo per il servizio, niente attese e niente intermediari.</h5>\n        </div>\n      </div>\n      <div class=\"col-xl-4 col-lg-4 col-md-6 col-sm-12\">\n        <div class=\"box\">\n          <img src=\"../../../assets/images/service-booking.png\" class=\"rounded mx-auto d-block\" alt=\"Ordina il servizio\">\n          <h3>Ordina il servizio</h3>\n          <h5>Scegli il giorno quando vuoi iniziare i lavori, l'indirizzo dove si trova la tua casa e ordina direttamente.</h5>\n        </div>\n      </div>\n    </div>\n  </div>\n\n  <!-- <div class=\"category-container\" *ngIf=\"inHouseServices\">\n    <div class=\"category\">\n      <div class=\"category-header\">\n        <h1>Servizi in casa</h1>\n      </div>\n      <div class=\"category-body\">\n        <div class=\"service-container house-service\" *ngFor=\"let service of inHouseServices\" (click)=\"selectService(service)\">\n          <div class=\"service\" [ngStyle]=\"{'background-image' : ' url(' + images_url + 'services/'+ service._id + '/cover/0' + ')'}\">\n            <div class=\"overlay\">\n              <div class=\"text-container\">\n                <span class=\"title\">{{ service.title }}</span>\n              </div>\n            </div>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div> -->\n\n  <!-- <div class=\"container-fluid professional-container\">\n    <div class=\"row professional\">\n      <div class=\"col-xl-6 col-lg-6 col-md-6 col-sm-12 text\">\n        <h1>Il miglior professionista</h1>\n        <img src=\"../../../assets/images/star.png\" alt=\"Starbook professionisti\">\n        <img src=\"../../../assets/images/star.png\" alt=\"Starbook professionisti\">\n        <img src=\"../../../assets/images/star.png\" alt=\"Starbook professionisti\">\n        <img src=\"../../../assets/images/star.png\" alt=\"Starbook professionisti\">\n        <img src=\"../../../assets/images/star.png\" alt=\"Starbook professionisti\">\n        <p>Noi lavoriamo solo con i migliori professionisti del settore per assicurarti il miglior risultato finale. Non importa dove abitate o quando avete bisogno, il nostro compito è quello di darvi il meglio.</p>\n      </div>\n      <div class=\"col-xl-6 col-lg-6 col-md-6 col-sm-12 image\">\n      </div>\n    </div>\n  </div> -->\n  <!-- <div class=\"container-fluid partnership-container\" *ngIf=\"!currentUser\">\n    <div class=\"text\">\n      <h1>Programma partnership</h1>\n      <p>Il programma partner di Starbook consente alle aziende, agenzie immobiliari, piattaforme software e startup di monetizzare utilizando i nostri servizi tramite potenziali clienti.</p>\n    </div>\n    <button type=\"button\" class=\"btn btn-warning\" name=\"button\" routerLink=\"/company\">Scopri di più</button>\n  </div> -->\n  <div class=\"professional-container\">\n    <div class=\"overlay\">\n      <div class=\"professional\">\n        <h1>Sei esperto in qualcosa?</h1>\n        <p>Diventa parte di Starbook offrendo i tuoi servizi a clienti interessati.</p>\n        <button class=\"btn btn-warning\" routerLink=\"/company\">Scopri di più</button>\n      </div>\n    </div>\n  </div>\n  <div class=\"container-fluid prefooter-container\">\n    <div class=\"row prefooter\">\n      <div class=\"col-xl-3 col-lg-3 col-md-3 col-sm-12\">\n        <p>Sicurezza del sito</p>\n        <div class=\"list-security\">\n          <img src=\"../../../assets/images/norton.png\" alt=\"Norton Security\">\n          <img src=\"../../../assets/images/secure.png\" alt=\"100% Secure\">\n          <img src=\"../../../assets/images/trust.png\" alt=\"Trusted Website\">\n        </div>\n      </div>\n      <div class=\"col-xl-3 col-lg-3 col-md-3 col-sm-12\">\n        <p>Sistemi di pagamento</p>\n        <div class=\"list-payment-methods\">\n          <img src=\"../../../assets/images/mastercard.png\" alt=\"Mastercard\">\n          <img src=\"../../../assets/images/visa.png\" alt=\"Visa\">\n          <img src=\"../../../assets/images/americanexpress.png\" alt=\"American Express\">\n          <img src=\"../../../assets/images/stripe.png\" alt=\"Stripe\">\n        </div>\n      </div>\n      <div class=\"col-xl-3 col-lg-3 col-md-3 col-sm-12\">\n        <p><a routerLink=\"/info/about\">Chi siamo</a></p>\n        <p><a routerLink=\"/info/help\">Aiuto e Assistenza</a></p>\n        <p><a routerLink=\"/info/legal\">Privacy e Condizioni</a></p>\n        <p><a routerLink=\"/contact/partner\" *ngIf=\"currentUser\">Diventa partner</a></p>\n        <p><a routerLink=\"/insert/title\">Pubblica un servizio</a></p>\n      </div>\n      <div class=\"col-xl-3 col-lg-3 col-md-3 col-sm-12\">\n        <p>Seguici su</p>\n        <div class=\"list-socials\">\n          <a href=\"https://www.facebook.com/starbook.co/\" target=\"_blank\"><img src=\"../../../assets/images/facebook.png\" alt=\"Facebook\"></a>\n          <a href=\"https://twitter.com/starbookco/\" target=\"_blank\"><img src=\"../../../assets/images/twitter.png\" alt=\"Twitter\"></a>\n          <a href=\"https://www.instagram.com/starbook.co/\" target=\"_blank\"><img src=\"../../../assets/images/instagram.png\" alt=\"Instagram\"></a>\n        </div>\n      </div>\n    </div>\n  </div>\n  <div class=\"footer\">\n    <p><a routerLink=\"/\"><strong>Starbook</strong> © 2017 Tutti i diritti riservati</a></p>\n  </div>\n</div>\n"
 
 /***/ },
 
-/***/ 717:
+/***/ 716:
 /***/ function(module, exports) {
 
 module.exports = "<div class=\"about-container\">\n  <div class=\"members-container\">\n    <h3>Team di Starbook</h3>\n    <div class=\"members\">\n      <div class=\"member-container\">\n        <div class=\"member\">\n          <img src=\"https://s3-eu-west-1.amazonaws.com/starbook-s3/website/harald-bregu.png\" alt=\"Harald Bregu\">\n          <h5>Harald Bregu</h5>\n          <p>Founder</p>\n          <p>Product Developer</p>\n          <!-- <p>Migliorare i servizi. Accelerare i tempi. Offrire massima professionalità. Tre punti fondamentali che ho imparato e sono diventate le regole per costruire il futuro professionale e dove il progetto Starbook ha preso forma.</p> -->\n        </div>\n      </div>\n      <div class=\"member-container\">\n        <div class=\"member\">\n          <img src=\"https://s3-eu-west-1.amazonaws.com/starbook-s3/website/daniel-lopez-bucheli.png\" alt=\"Daniel Lopez Bucheli\">\n          <h5>Daniel Lopez Bucheli</h5>\n          <p>Co-founder</p>\n          <p>Ingegnere Gestionale & Business Designer</p>\n          <!-- <p>Nato in Colombia, vivo a Torino. Appassionato per la generazione di quelle idee che possono migliorare e semplificare la vita delle persone.</p> -->\n        </div>\n      </div>\n      <div class=\"member-container\">\n        <div class=\"member\">\n          <img src=\"https://s3-eu-west-1.amazonaws.com/starbook-s3/website/danilo-gallo.png\" alt=\"Danilo Gallo\">\n          <h5>Danilo Gallo</h5>\n          <p>Co-founder</p>\n          <p>Product & UX Designer</p>\n          <!-- <p>Uso la tecnologia per cambiare drasticamente il modo in cui le cose funzionano per migliorarle. Sempre disponibile a nuove sfide e miro a generare prodotti o servizi che migliorano la vita delle persone.</p> -->\n        </div>\n      </div>\n      <div class=\"member-container\">\n        <div class=\"member\">\n          <img src=\"https://s3-eu-west-1.amazonaws.com/starbook-s3/website/aleksandr-gorin-0.jpeg\" alt=\"Alexander Gorin\">\n          <h5>Alexander Gorin</h5>\n          <p>Contributor</p>\n          <p>Full Stack Developer</p>\n          <!-- <p>Sviluppatore Senior Full Stack. 10 anni di esperienza nello sviluppo di prodotti IT. Il mio obiettivo primario è la costruzione di interfacce efficienti per gli utenti.</p> -->\n        </div>\n      </div>\n    </div>\n  </div>\n  <!-- <div class=\"about-cover\">\n    <img src=\"https://s3-eu-west-1.amazonaws.com/starbook-s3/casa%2Blavorazioni.jpg\" alt=\"Starbook, servizi per la casa\">\n    <div class=\"mission-overlay\">\n      <h1>Starbook</h1>\n      <p></p>\n      <p>La nostra missione non è solo quella di offrire tutti i servizi necessari per la casa ma quella di offrire i servizi intelligenti, che aiutano a risparmiare energia, crescere il valore e per di più con prezzi accessibili a chiunque.</p>\n    </div>\n  </div>\n  <div class=\"container\">\n    <h1>Team Starbook</h1>\n    <div class=\"row\">\n      <div class=\"col-lg-6 col-md-12 col-sm-12 col-xs-12\">\n        <div class=\"member-box\">\n          <img src=\"https://s3-eu-west-1.amazonaws.com/starbook-s3/harald-bregu.png\" alt=\"Harald Bregu\">\n          <div class=\"content\">\n            <h3>Harald Bregu</h3>\n            <h6>Founder • Product Developer</h6>\n            <p>Migliorare i servizi. Accelerare i tempi. Offrire massima professionalità. Tre punti fondamentali che ho imparato e sono diventate le regole per costruire il futuro professionale e dove il progetto Starbook ha preso forma.</p>\n          </div>\n        </div>\n      </div>\n      <div class=\"col-lg-6 col-md-12 col-sm-12 col-xs-12\">\n        <div class=\"member-box\">\n          <img src=\"https://s3-eu-west-1.amazonaws.com/starbook-s3/users/daniel-lopez-bucheli.png\" alt=\"Daniel Lopez Bucheli\">\n          <div class=\"content\">\n            <h3>Daniel Lopez Bucheli</h3>\n            <h6>Co-founder • Ingegnere Gestionale & Business Designer</h6>\n            <p>Nato in Colombia, vivo a Torino. Appassionato per la generazione di quelle idee che possono migliorare e semplificare la vita delle persone.</p>\n          </div>\n        </div>\n      </div>\n      <div class=\"col-lg-6 col-md-12 col-sm-12 col-xs-12\">\n        <div class=\"member-box\">\n          <img src=\"https://s3-eu-west-1.amazonaws.com/starbook-s3/danilo-gallo.png\" alt=\"Danilo Gallo\">\n          <div class=\"content\">\n            <h3>Danilo Gallo</h3>\n            <h6>Co-founder • Product & UX Designer</h6>\n            <p>Uso la tecnologia per cambiare drasticamente il modo in cui le cose funzionano per migliorarle. Sempre disponibile a nuove sfide e miro a generare prodotti o servizi che migliorano la vita delle persone.</p>\n          </div>\n        </div>\n      </div>\n      <div class=\"col-lg-6 col-md-12 col-sm-12 col-xs-12\">\n        <div class=\"member-box\">\n          <img src=\"https://s3-eu-west-1.amazonaws.com/starbook-s3/users/aleksandr-gorin-0.jpeg\" alt=\"Alexander Gorin\">\n          <div class=\"content\">\n            <h3>Alexander Gorin</h3>\n            <h6>Contributor • Sviluppatore Full Stack</h6>\n            <p>Sviluppatore Senior Full Stack. 10 anni di esperienza nello sviluppo di prodotti IT. Il mio obiettivo primario è la costruzione di interfacce efficienti per gli utenti.</p>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div> -->\n</div>\n"
 
 /***/ },
 
-/***/ 718:
+/***/ 717:
 /***/ function(module, exports) {
 
-module.exports = "<div class=\"account-container\">\n  <div class=\"account\" *ngIf=\"page==='login'\">\n    <div class=\"header\">\n      <h3>Accedi al tuo account</h3>\n    </div>\n    <form>\n      <div class=\"form-group\">\n        <label for=\"emailInput\">Email</label>\n        <input type=\"email\" placeholder=\"La tua mail\" class=\"form-control\" [ngClass]=\"{'error-input': login_state.email_error}\" id=\"emailInput\" [(ngModel)]=\"loginParameters.email\" [ngModelOptions]=\"{standalone: true}\">\n        <small class=\"error-message\" *ngIf=\"login_state.email_error\">{{login_state.email_error}}</small>\n      </div>\n      <div class=\"form-group\">\n        <label for=\"passwordInput\">Password</label>\n        <input type=\"password\" placeholder=\"Password\" class=\"form-control\" [ngClass]=\"{'error-input': login_state.password_error}\" id=\"passwordInput\" [(ngModel)]=\"loginParameters.password\" [ngModelOptions]=\"{standalone: true}\">\n        <small class=\"error-message\" *ngIf=\"login_state.password_error\">{{login_state.password_error}}</small>\n      </div>\n      <div class=\"form-group\" *ngIf=\"login_state.error_message\">\n        <div class=\"alert alert-danger\" role=\"alert\">{{login_state.error_message}}</div>\n      </div>\n      <div class=\"form-group\" *ngIf=\"facebook_state.error_message\">\n        <div class=\"alert alert-danger\" role=\"alert\">{{facebook_state.error_message}}</div>\n      </div>\n      <div class=\"form-group\">\n        <button type=\"button\" id=\"next\" class=\"btn btn-warning\" (click)=\"login()\"><i class=\"fa fa-circle-o-notch animate\" *ngIf=\"login_state.loading\"></i>{{login_state.button_title}}</button>\n      </div>\n      <div class=\"form-group\">\n        <button type=\"button\" id=\"next\"class=\"btn btn-white\" (click)=\"changeToSignup()\">Sei nuovo? Crea un account</button>\n      </div>\n      <div class=\"form-group\">\n        <button type=\"button\" id=\"next\"class=\"btn btn-facebook\" (click)=\"continueWithFacebook()\"><i></i>{{facebook_state.button_title}}</button>\n      </div>\n      <div class=\"form-group\">\n        <h6><small>Continuando dichiari di aver letto e accetti le <a routerlink=\"/legal\" href=\"/legal\" target=\"_blank\">condizioni generali e l’informativa sulla privacy</a></small></h6>\n      </div>\n    </form>\n  </div>\n  <div class=\"account\" *ngIf=\"page==='signup'\">\n    <div class=\"header\">\n      <h3>Crea un account</h3>\n      <h6>Sei nuovo su Starbook? Crea un account per poter navigare liberamente e ordinare i servizi che ti servono per la tua casa.</h6>\n    </div>\n    <form>\n      <div class=\"form-group\">\n        <label for=\"emailInput\">Email</label>\n        <input type=\"email\" placeholder=\"La tua mail\" class=\"form-control\" [ngClass]=\"{'error-input': signup_state.email_error}\" id=\"emailInput\" [(ngModel)]=\"signupParameters.email\" [ngModelOptions]=\"{standalone: true}\">\n        <small class=\"error-message\" *ngIf=\"signup_state.email_error\">{{signup_state.email_error}}</small>\n      </div>\n      <div class=\"row\">\n        <div class=\"col-md-6\">\n          <div class=\"form-group\">\n            <label for=\"firstNameInput\">Nome</label>\n            <input type=\"firstname\" placeholder=\"Nome\" class=\"form-control\" [ngClass]=\"{'error-input': signup_state.first_name_error}\" id=\"firstNameInput\" [(ngModel)]=\"signupParameters.firstname\" [ngModelOptions]=\"{standalone: true}\">\n            <small class=\"error-message\" *ngIf=\"signup_state.first_name_error\">{{signup_state.first_name_error}}</small>\n          </div>\n        </div>\n        <div class=\"col-md-6\">\n          <div class=\"form-group\">\n            <label for=\"lastNameInput\">Cognome</label>\n            <input type=\"lastname\" placeholder=\"Cognome\" class=\"form-control\" [ngClass]=\"{'error-input': signup_state.last_name_error}\" id=\"lastNameInput\" [(ngModel)]=\"signupParameters.lastname\" [ngModelOptions]=\"{standalone: true}\">\n            <small class=\"error-message\" *ngIf=\"signup_state.last_name_error\">{{signup_state.last_name_error}}</small>\n          </div>\n        </div>\n      </div>\n      <div class=\"form-group\">\n        <label for=\"phoneInput\">Telefono</label>\n        <input type=\"phone\" placeholder=\"Numero di telefono\" class=\"form-control\" [ngClass]=\"{'error-input': signup_state.phone_error}\" id=\"phoneInput\" [(ngModel)]=\"signupParameters.phone\" [ngModelOptions]=\"{standalone: true}\">\n        <small class=\"error-message\" *ngIf=\"signup_state.phone_error\">{{signup_state.phone_error}}</small>\n      </div>\n      <div class=\"form-group\">\n        <label for=\"passwordInput\">Password</label>\n        <input type=\"password\" placeholder=\"Password\" class=\"form-control\" [ngClass]=\"{'error-input': signup_state.password_error}\" id=\"passwordInput\" [(ngModel)]=\"signupParameters.password\" [ngModelOptions]=\"{standalone: true}\">\n        <small class=\"error-message\" *ngIf=\"signup_state.password_error\">{{signup_state.password_error}}</small>\n      </div>\n      <div class=\"form-group\">\n        <label for=\"confirmPasswordInput\">Di nuovo la password</label>\n        <input type=\"password\" placeholder=\"Password\" class=\"form-control\" [ngClass]=\"{'error-input': signup_state.confirm_password_error}\" id=\"confirmPasswordInput\" [(ngModel)]=\"signupParameters.confirmPassword\" [ngModelOptions]=\"{standalone: true}\">\n        <small class=\"error-message\" *ngIf=\"signup_state.confirm_password_error\">{{signup_state.confirm_password_error}}</small>\n      </div>\n      <div class=\"form-group\" *ngIf=\"login_state.error_message\">\n        <div class=\"alert alert-danger\" role=\"alert\">{{login_state.error_message}}</div>\n      </div>\n      <div class=\"form-group\" *ngIf=\"facebook_state.error_message\">\n        <div class=\"alert alert-danger\" role=\"alert\">{{facebook_state.error_message}}</div>\n      </div>\n      <div class=\"form-group\">\n        <button type=\"button\" id=\"next\" class=\"btn btn-warning\" (click)=\"signup()\"><i class=\"fa fa-circle-o-notch animate\" *ngIf=\"signup_state.loading\"></i>{{signup_state.button_title}}</button>\n      </div>\n      <div class=\"form-group\">\n        <button type=\"button\" id=\"next\"class=\"btn btn-white\" (click)=\"changeToLogin()\">Accedi</button>\n      </div>\n      <div class=\"form-group\">\n        <button type=\"button\" id=\"next\"class=\"btn btn-facebook\" (click)=\"continueWithFacebook()\"><i></i>{{facebook_state.button_title}}</button>\n      </div>\n      <div class=\"form-group\">\n        <h6><small>Continuando dichiari di aver letto e accetti le <a routerlink=\"/legal\" href=\"/legal\" target=\"_blank\">condizioni generali e l’informativa sulla privacy</a></small></h6>\n      </div>\n    </form>\n  </div>\n  <div class=\"account\" *ngIf=\"page==='password_recovery'\">\n    <div class=\"header\">\n      <h3>Recupera la tua password</h3>\n    </div>\n    <form>\n      <div class=\"form-group\">\n        <label for=\"emailInput\">Email</label>\n        <input type=\"email\" placeholder=\"La tua mail\" class=\"form-control\" [ngClass]=\"{'error-input': login_state.email_error}\" id=\"emailInput\" [(ngModel)]=\"loginParameters.email\" [ngModelOptions]=\"{standalone: true}\">\n        <small class=\"error-message\" *ngIf=\"login_state.email_error\">{{login_state.email_error}}</small>\n      </div>\n      <div class=\"form-group\">\n        <label for=\"passwordInput\">Password</label>\n        <input type=\"password\" placeholder=\"Password\" class=\"form-control\" [ngClass]=\"{'error-input': login_state.password_error}\" id=\"passwordInput\" [(ngModel)]=\"loginParameters.password\" [ngModelOptions]=\"{standalone: true}\">\n        <small class=\"error-message\" *ngIf=\"login_state.password_error\">{{login_state.password_error}}</small>\n      </div>\n      <div class=\"form-group\" *ngIf=\"login_state.error_message\">\n        <div class=\"alert alert-danger\" role=\"alert\">{{login_state.error_message}}</div>\n      </div>\n      <div class=\"form-group\" *ngIf=\"facebook_state.error_message\">\n        <div class=\"alert alert-danger\" role=\"alert\">{{facebook_state.error_message}}</div>\n      </div>\n      <div class=\"form-group\">\n        <button type=\"button\" id=\"next\" class=\"btn btn-warning\" (click)=\"login()\"><i class=\"fa fa-circle-o-notch animate\" *ngIf=\"login_state.loading\"></i>{{login_state.button_title}}</button>\n      </div>\n      <div class=\"form-group\">\n        <button type=\"button\" id=\"next\"class=\"btn btn-white\" (click)=\"changeToSignup()\">Sei nuovo? Crea un account</button>\n      </div>\n      <div class=\"form-group\">\n        <button type=\"button\" id=\"next\"class=\"btn btn-facebook\" (click)=\"continueWithFacebook()\"><i></i>{{facebook_state.button_title}}</button>\n      </div>\n      <div class=\"form-group\">\n        <h6><small>Continuando dichiari di aver letto e accetti le <a routerlink=\"/legal\" href=\"/legal\" target=\"_blank\">condizioni generali e l’informativa sulla privacy</a></small></h6>\n      </div>\n    </form>\n  </div>\n  \n  <div class=\"account\" *ngIf=\"page==='professional'\">\n    <div class=\"header\">\n      <h3>Registra la tua attività gratuitamente</h3>\n      <h6>Lavori nel mondo dell'edilizia, idraulica, sei un elettrico e esegui lavori particolari artigianali nelle case? Unisciti a noi e collaboreremo per aumentare la professionalità e la clientela in modo smart.</h6>\n    </div>\n    <form>\n      <div class=\"form-group\">\n        <label for=\"emailInput\">Email</label>\n        <input type=\"email\" placeholder=\"La tua mail\" class=\"form-control\" [ngClass]=\"{'error-input': signup_state.email_error}\" id=\"emailInput\" [(ngModel)]=\"signupParameters.email\" [ngModelOptions]=\"{standalone: true}\">\n        <small class=\"error-message\" *ngIf=\"signup_state.email_error\">{{signup_state.email_error}}</small>\n      </div>\n      <div class=\"row\">\n        <div class=\"col-md-6\">\n          <div class=\"form-group\">\n            <label for=\"firstNameInput\">Nome</label>\n            <input type=\"firstname\" placeholder=\"Nome\" class=\"form-control\" [ngClass]=\"{'error-input': signup_state.first_name_error}\" id=\"firstNameInput\" [(ngModel)]=\"signupParameters.firstname\" [ngModelOptions]=\"{standalone: true}\">\n            <small class=\"error-message\" *ngIf=\"signup_state.first_name_error\">{{signup_state.first_name_error}}</small>\n          </div>\n        </div>\n        <div class=\"col-md-6\">\n          <div class=\"form-group\">\n            <label for=\"lastNameInput\">Cognome</label>\n            <input type=\"lastname\" placeholder=\"Cognome\" class=\"form-control\" [ngClass]=\"{'error-input': signup_state.last_name_error}\" id=\"lastNameInput\" [(ngModel)]=\"signupParameters.lastname\" [ngModelOptions]=\"{standalone: true}\">\n            <small class=\"error-message\" *ngIf=\"signup_state.last_name_error\">{{signup_state.last_name_error}}</small>\n          </div>\n        </div>\n      </div>\n      <div class=\"form-group\">\n        <label for=\"professionInput\">Professione</label>\n        <input type=\"profession\" placeholder=\"La tua professione\" class=\"form-control\" id=\"professionInput\" [(ngModel)]=\"profession\" [ngModelOptions]=\"{standalone: true}\">\n      </div>\n      <div class=\"form-group\">\n        <label for=\"phoneInput\">Telefono</label>\n        <input type=\"phone\" placeholder=\"Numero di telefono\" class=\"form-control\" [ngClass]=\"{'error-input': signup_state.phone_error}\" id=\"phoneInput\" [(ngModel)]=\"signupParameters.phone\" [ngModelOptions]=\"{standalone: true}\">\n        <small class=\"error-message\" *ngIf=\"signup_state.phone_error\">{{signup_state.phone_error}}</small>\n      </div>\n      <div class=\"form-group\">\n        <label for=\"passwordInput\">Password</label>\n        <input type=\"password\" placeholder=\"Password\" class=\"form-control\" [ngClass]=\"{'error-input': signup_state.password_error}\" id=\"passwordInput\" [(ngModel)]=\"signupParameters.password\" [ngModelOptions]=\"{standalone: true}\">\n        <small class=\"error-message\" *ngIf=\"signup_state.password_error\">{{signup_state.password_error}}</small>\n      </div>\n      <div class=\"form-group\">\n        <label for=\"confirmPasswordInput\">Di nuovo la password</label>\n        <input type=\"password\" placeholder=\"Password\" class=\"form-control\" [ngClass]=\"{'error-input': signup_state.confirm_password_error}\" id=\"confirmPasswordInput\" [(ngModel)]=\"signupParameters.confirmPassword\" [ngModelOptions]=\"{standalone: true}\">\n        <small class=\"error-message\" *ngIf=\"signup_state.confirm_password_error\">{{signup_state.confirm_password_error}}</small>\n      </div>\n      <div class=\"form-group\" *ngIf=\"signup_state.error_message\">\n        <div class=\"alert alert-danger\" role=\"alert\">{{signup_state.error_message}}</div>\n      </div>\n      <!-- <div class=\"form-group\" *ngIf=\"signup_state.message_success\">\n        <div class=\"alert alert-success\" role=\"alert\">\n          {{recruiter_state.message_success}}\n        </div>\n      </div> -->\n      <div class=\"form-group\">\n        <button type=\"button\" id=\"next\" class=\"btn btn-warning\" (click)=\"signupAsProfessional()\"><i class=\"fa fa-circle-o-notch animate\" *ngIf=\"signup_state.loading\"></i>{{signup_state.button_title}}</button>\n      </div>\n      <div class=\"form-group\">\n        <h6><small>Continuando dichiari di aver letto e accetti le <a routerlink=\"/info/legal\" href=\"/info/legal\" target=\"_blank\">condizioni generali e l’informativa sulla privacy</a></small></h6>\n      </div>\n    </form>\n  </div>\n  <div class=\"account\" *ngIf=\"page==='email_verification'\">\n    <div class=\"header text-center\">\n      <h3>{{email_verification.title}}</h3>\n    </div>\n    <div class=\"loader text-center\">\n      <div class=\"popup-spinner\" *ngIf=\"email_verification.spinner.visible\">\n        <svg width='100px' height='100px' xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\" preserveAspectRatio=\"xMidYMid\" class=\"uil-ring\">\n          <rect x=\"0\" y=\"0\" width=\"100\" height=\"100\" fill=\"none\" class=\"bk\"></rect>\n          <circle cx=\"50\" cy=\"50\" r=\"45\" stroke-dasharray=\"169.64600329384882 113.09733552923257\" stroke=\"#7FC443\" fill=\"none\" stroke-width=\"4\">\n            <animateTransform attributeName=\"transform\" type=\"rotate\" values=\"0 50 50;180 50 50;360 50 50;\" keyTimes=\"0;0.5;1\" dur=\"1s\" repeatCount=\"indefinite\" begin=\"0s\"></animateTransform>\n          </circle>\n        </svg>\n      </div>\n      <div class=\"success-icon\" *ngIf=\"email_verification.success.visible\"><span></span></div>\n    </div>\n    <div class=\"form-group\">\n      <button class=\"btn btn-warning\" type=\"button\" (click)=\"goToHomePage()\" *ngIf=\"email_verification.button.visible\">{{email_verification.button.title}}</button>\n    </div>\n  </div>\n  <div class=\"account\" *ngIf=\"page==='password_verification'\">\n    <div class=\"header text-center\">\n      <h1>{{password_verification.title}}</h1>\n    </div>\n    <div class=\"loader text-center\">\n      <div class=\"popup-spinner\" *ngIf=\"password_verification.spinner.visible\">\n        <svg width='100px' height='100px' xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\" preserveAspectRatio=\"xMidYMid\" class=\"uil-ring\">\n          <rect x=\"0\" y=\"0\" width=\"100\" height=\"100\" fill=\"none\" class=\"bk\"></rect>\n          <circle cx=\"50\" cy=\"50\" r=\"45\" stroke-dasharray=\"169.64600329384882 113.09733552923257\" stroke=\"#7FC443\" fill=\"none\" stroke-width=\"4\">\n            <animateTransform attributeName=\"transform\" type=\"rotate\" values=\"0 50 50;180 50 50;360 50 50;\" keyTimes=\"0;0.5;1\" dur=\"1s\" repeatCount=\"indefinite\" begin=\"0s\"></animateTransform>\n          </circle>\n        </svg>\n      </div>\n      <div class=\"success-icon\" *ngIf=\"password_verification.success.visible\"><span></span></div>\n    </div>\n    <div class=\"form-group\">\n      <button class=\"btn btn-warning\" type=\"button\" (click)=\"goToHomePage()\" *ngIf=\"password_verification.button.visible\">{{password_verification.button.title}}</button>\n    </div>\n  </div>\n  <div class=\"account\" *ngIf=\"page==='create_new_password'\">\n    <div class=\"header text-center\">\n      <h1>{{new_password_creation.title}}</h1>\n    </div>\n    <div class=\"loader text-center\">\n      <div class=\"form-group\" *ngIf=\"new_password_creation.password_field.visible\">\n        <label>{{new_password_creation.password_field.title}}</label>\n        <input class=\"form-control\" type=\"password\" name=\"password\" placeholder=\"\" required [(ngModel)]=\"new_password_creation.password_field.value\">\n      </div>\n    </div>\n    <div class=\"form-group\" *ngIf=\"new_password_creation.button.visible\">\n      <button class=\"btn btn-warning\" type=\"button\" (click)=\"createNewPassword(new_password_creation.password_field.value)\">{{new_password_creation.button.title}}</button>\n    </div>\n  </div>\n</div>\n"
+module.exports = "<div class=\"account-container\">\n\n  <div class=\"account\" *ngIf=\"page==='login'\">\n    <div class=\"account-header\">\n      <h1>Accedi al tuo account</h1>\n    </div>\n    <div class=\"account-body\">\n      <form>\n        <div class=\"form-group\">\n          <label for=\"emailInput\">Email</label>\n          <input type=\"email\" placeholder=\"La tua mail\" class=\"form-control\" [ngClass]=\"{'error-input': login_state.email_error}\" id=\"emailInput\" [(ngModel)]=\"loginParameters.email\" [ngModelOptions]=\"{standalone: true}\">\n          <small class=\"error-message\" *ngIf=\"login_state.email_error\">{{login_state.email_error}}</small>\n        </div>\n        <div class=\"form-group\">\n          <label for=\"passwordInput\">Password</label>\n          <input type=\"password\" placeholder=\"Password\" class=\"form-control\" [ngClass]=\"{'error-input': login_state.password_error}\" id=\"passwordInput\" [(ngModel)]=\"loginParameters.password\" [ngModelOptions]=\"{standalone: true}\">\n          <small class=\"error-message\" *ngIf=\"login_state.password_error\">{{login_state.password_error}}</small>\n        </div>\n        <div class=\"form-group\" *ngIf=\"login_state.error_message\">\n          <div class=\"alert alert-danger\" role=\"alert\">{{login_state.error_message}}</div>\n        </div>\n        <div class=\"form-group\" *ngIf=\"facebook_state.error_message\">\n          <div class=\"alert alert-danger\" role=\"alert\">{{facebook_state.error_message}}</div>\n        </div>\n        <div class=\"actions\">\n          <div class=\"form-group text-center\">\n            <button type=\"button\" id=\"next\" class=\"btn btn-success\" (click)=\"login()\"><i class=\"fa fa-circle-o-notch animate\" *ngIf=\"login_state.loading\"></i>{{login_state.button_title}}</button>\n          </div>\n        </div>\n        <div class=\"form-group footer-group\">\n          <span class=\"text password-forget\"><a routerlink=\"/account/password_recovery\" href=\"/account/password_recovery\">Hai dimenticato la password?</a></span>\n          <span class=\"text\">Non sei ancora registrato?</span>\n          <span class=\"text enter\" (click)=\"changeToSignup()\">Registrati</span>\n        </div>\n      </form>\n    </div>\n  </div>\n  <div class=\"account\" *ngIf=\"page==='signup'\">\n    <div class=\"account-header\">\n      <h1>Crea un account</h1>\n      <p>Sei nuovo su Starbook? Crea un account per poter navigare.</p>\n    </div>\n    <div class=\"account-body\">\n      <form>\n        <div class=\"form-group\">\n          <label for=\"emailInput\">Email</label>\n          <input type=\"email\" placeholder=\"La tua mail\" class=\"form-control\" [ngClass]=\"{'error-input': signup_state.email_error}\" id=\"emailInput\" [(ngModel)]=\"signupParameters.email\" [ngModelOptions]=\"{standalone: true}\">\n          <small class=\"error-message\" *ngIf=\"signup_state.email_error\">{{signup_state.email_error}}</small>\n        </div>\n        <div class=\"row\">\n          <div class=\"col-md-6\">\n            <div class=\"form-group\">\n              <label for=\"firstNameInput\">Nome</label>\n              <input type=\"firstname\" placeholder=\"Nome\" class=\"form-control\" [ngClass]=\"{'error-input': signup_state.first_name_error}\" id=\"firstNameInput\" [(ngModel)]=\"signupParameters.firstname\" [ngModelOptions]=\"{standalone: true}\">\n              <small class=\"error-message\" *ngIf=\"signup_state.first_name_error\">{{signup_state.first_name_error}}</small>\n            </div>\n          </div>\n          <div class=\"col-md-6\">\n            <div class=\"form-group\">\n              <label for=\"lastNameInput\">Cognome</label>\n              <input type=\"lastname\" placeholder=\"Cognome\" class=\"form-control\" [ngClass]=\"{'error-input': signup_state.last_name_error}\" id=\"lastNameInput\" [(ngModel)]=\"signupParameters.lastname\" [ngModelOptions]=\"{standalone: true}\">\n              <small class=\"error-message\" *ngIf=\"signup_state.last_name_error\">{{signup_state.last_name_error}}</small>\n            </div>\n          </div>\n        </div>\n        <div class=\"form-group\">\n          <label for=\"phoneInput\">Telefono</label>\n          <input type=\"phone\" placeholder=\"Numero di telefono\" class=\"form-control\" [ngClass]=\"{'error-input': signup_state.phone_error}\" id=\"phoneInput\" [(ngModel)]=\"signupParameters.phone\" [ngModelOptions]=\"{standalone: true}\">\n          <small class=\"error-message\" *ngIf=\"signup_state.phone_error\">{{signup_state.phone_error}}</small>\n        </div>\n        <div class=\"form-group\">\n          <label for=\"passwordInput\">Password</label>\n          <input type=\"password\" placeholder=\"Password\" class=\"form-control\" [ngClass]=\"{'error-input': signup_state.password_error}\" id=\"passwordInput\" [(ngModel)]=\"signupParameters.password\" [ngModelOptions]=\"{standalone: true}\">\n          <small class=\"error-message\" *ngIf=\"signup_state.password_error\">{{signup_state.password_error}}</small>\n        </div>\n        <div class=\"form-group\">\n          <label for=\"confirmPasswordInput\">Di nuovo la password</label>\n          <input type=\"password\" placeholder=\"Password\" class=\"form-control\" [ngClass]=\"{'error-input': signup_state.confirm_password_error}\" id=\"confirmPasswordInput\" [(ngModel)]=\"signupParameters.confirmPassword\" [ngModelOptions]=\"{standalone: true}\">\n          <small class=\"error-message\" *ngIf=\"signup_state.confirm_password_error\">{{signup_state.confirm_password_error}}</small>\n        </div>\n        <div class=\"form-group\" *ngIf=\"login_state.error_message\">\n          <div class=\"alert alert-danger\" role=\"alert\">{{login_state.error_message}}</div>\n        </div>\n        <div class=\"form-group\" *ngIf=\"facebook_state.error_message\">\n          <div class=\"alert alert-danger\" role=\"alert\">{{facebook_state.error_message}}</div>\n        </div>\n        <div class=\"form-group text-center\">\n          <button type=\"button\" class=\"btn btn-success\" (click)=\"signup()\"><i class=\"fa fa-circle-o-notch animate\" *ngIf=\"signup_state.loading\"></i>{{signup_state.button_title}}</button>\n        </div>\n        <div class=\"form-group footer-group\">\n          <span class=\"text\">Sei gia registrato?</span>\n          <span class=\"text enter\" (click)=\"changeToLogin()\">Entra</span>\n          <span class=\"text\">Continuando dichiari di aver letto e accetti le <a routerlink=\"/info/legal\" href=\"/info/legal\" target=\"_blank\">condizioni generali e l’informativa sulla privacy</a></span>\n        </div>\n      </form>\n    </div>\n  </div>\n\n  <div class=\"account\" *ngIf=\"page==='password_recovery'\">\n    <div class=\"account-header\">\n      <h1>Recupera password</h1>\n      <p>Ti manderemo una mail con il link per cambiare la password.</p>\n    </div>\n    <div class=\"account-body\">\n      <form>\n        <div class=\"form-group\">\n          <label for=\"emailInput\">Inserisci la tua email</label>\n          <input type=\"email\" placeholder=\"La tua email\" class=\"form-control\" [ngClass]=\"{'error-input': login_state.email_error}\" id=\"emailInput\" [(ngModel)]=\"loginParameters.email\" [ngModelOptions]=\"{standalone: true}\">\n          <small class=\"error-message\" *ngIf=\"login_state.email_error\">{{login_state.email_error}}</small>\n        </div>\n        <div class=\"form-group text-center\">\n          <button type=\"button\" id=\"next\" class=\"btn btn-success\" (click)=\"recoverPassword(loginParameters.email)\"><i class=\"fa fa-circle-o-notch animate\" *ngIf=\"login_state.loading\"></i>Recupera</button>\n        </div>\n        <div class=\"form-group footer-group\">\n          <span class=\"text enter\" (click)=\"changeToLogin()\">Accedi</span>\n        </div>\n      </form>\n    </div>\n  </div>\n\n  <!-- <div class=\"account\">\n    <div class=\"header\">\n      <h3>Recupera la tua password</h3>\n    </div>\n    <form>\n      <div class=\"form-group\">\n        <label for=\"emailInput\">Email</label>\n        <input type=\"email\" placeholder=\"La tua mail\" class=\"form-control\" [ngClass]=\"{'error-input': login_state.email_error}\" id=\"emailInput\" [(ngModel)]=\"loginParameters.email\" [ngModelOptions]=\"{standalone: true}\">\n        <small class=\"error-message\" *ngIf=\"login_state.email_error\">{{login_state.email_error}}</small>\n      </div>\n      <div class=\"form-group\">\n        <label for=\"passwordInput\">Password</label>\n        <input type=\"password\" placeholder=\"Password\" class=\"form-control\" [ngClass]=\"{'error-input': login_state.password_error}\" id=\"passwordInput\" [(ngModel)]=\"loginParameters.password\" [ngModelOptions]=\"{standalone: true}\">\n        <small class=\"error-message\" *ngIf=\"login_state.password_error\">{{login_state.password_error}}</small>\n      </div>\n      <div class=\"form-group\" *ngIf=\"login_state.error_message\">\n        <div class=\"alert alert-danger\" role=\"alert\">{{login_state.error_message}}</div>\n      </div>\n      <div class=\"form-group\" *ngIf=\"facebook_state.error_message\">\n        <div class=\"alert alert-danger\" role=\"alert\">{{facebook_state.error_message}}</div>\n      </div>\n      <div class=\"form-group\">\n        <button type=\"button\" id=\"next\" class=\"btn btn-warning\" (click)=\"login()\"><i class=\"fa fa-circle-o-notch animate\" *ngIf=\"login_state.loading\"></i>{{login_state.button_title}}</button>\n      </div>\n      <div class=\"form-group\">\n        <button type=\"button\" id=\"next\"class=\"btn btn-white\" (click)=\"changeToSignup()\">Sei nuovo? Crea un account</button>\n      </div>\n      <div class=\"form-group\">\n        <button type=\"button\" id=\"next\"class=\"btn btn-facebook\" (click)=\"continueWithFacebook()\"><i></i>{{facebook_state.button_title}}</button>\n      </div>\n      <div class=\"form-group\">\n        <h6><small>Continuando dichiari di aver letto e accetti le <a routerlink=\"/legal\" href=\"/legal\" target=\"_blank\">condizioni generali e l’informativa sulla privacy</a></small></h6>\n      </div>\n    </form>\n  </div> -->\n\n  <div class=\"account\" *ngIf=\"page==='professional'\">\n    <div class=\"account-header\">\n      <h1>Registra la tua attività gratuitamente</h1>\n      <p>Lavori nel mondo dell'edilizia, idraulica, sei un elettrico e esegui lavori particolari artigianali nelle case? Unisciti a noi e collaboreremo per aumentare la professionalità e la clientela in modo smart.</p>\n    </div>\n    <div class=\"account-body\">\n      <form>\n        <div class=\"form-group\">\n          <label for=\"emailInput\">Email</label>\n          <input type=\"email\" placeholder=\"La tua mail\" class=\"form-control\" [ngClass]=\"{'error-input': signup_state.email_error}\" id=\"emailInput\" [(ngModel)]=\"signupParameters.email\" [ngModelOptions]=\"{standalone: true}\">\n          <small class=\"error-message\" *ngIf=\"signup_state.email_error\">{{signup_state.email_error}}</small>\n        </div>\n        <div class=\"row\">\n          <div class=\"col-md-6\">\n            <div class=\"form-group\">\n              <label for=\"firstNameInput\">Nome</label>\n              <input type=\"firstname\" placeholder=\"Nome\" class=\"form-control\" [ngClass]=\"{'error-input': signup_state.first_name_error}\" id=\"firstNameInput\" [(ngModel)]=\"signupParameters.firstname\" [ngModelOptions]=\"{standalone: true}\">\n              <small class=\"error-message\" *ngIf=\"signup_state.first_name_error\">{{signup_state.first_name_error}}</small>\n            </div>\n          </div>\n          <div class=\"col-md-6\">\n            <div class=\"form-group\">\n              <label for=\"lastNameInput\">Cognome</label>\n              <input type=\"lastname\" placeholder=\"Cognome\" class=\"form-control\" [ngClass]=\"{'error-input': signup_state.last_name_error}\" id=\"lastNameInput\" [(ngModel)]=\"signupParameters.lastname\" [ngModelOptions]=\"{standalone: true}\">\n              <small class=\"error-message\" *ngIf=\"signup_state.last_name_error\">{{signup_state.last_name_error}}</small>\n            </div>\n          </div>\n        </div>\n        <div class=\"form-group\">\n          <label for=\"professionInput\">Professione</label>\n          <input type=\"profession\" placeholder=\"La tua professione\" class=\"form-control\" id=\"professionInput\" [(ngModel)]=\"profession\" [ngModelOptions]=\"{standalone: true}\">\n        </div>\n        <div class=\"form-group\">\n          <label for=\"phoneInput\">Telefono</label>\n          <input type=\"phone\" placeholder=\"Numero di telefono\" class=\"form-control\" [ngClass]=\"{'error-input': signup_state.phone_error}\" id=\"phoneInput\" [(ngModel)]=\"signupParameters.phone\" [ngModelOptions]=\"{standalone: true}\">\n          <small class=\"error-message\" *ngIf=\"signup_state.phone_error\">{{signup_state.phone_error}}</small>\n        </div>\n        <div class=\"form-group\">\n          <label for=\"passwordInput\">Password</label>\n          <input type=\"password\" placeholder=\"Password\" class=\"form-control\" [ngClass]=\"{'error-input': signup_state.password_error}\" id=\"passwordInput\" [(ngModel)]=\"signupParameters.password\" [ngModelOptions]=\"{standalone: true}\">\n          <small class=\"error-message\" *ngIf=\"signup_state.password_error\">{{signup_state.password_error}}</small>\n        </div>\n        <div class=\"form-group\">\n          <label for=\"confirmPasswordInput\">Di nuovo la password</label>\n          <input type=\"password\" placeholder=\"Password\" class=\"form-control\" [ngClass]=\"{'error-input': signup_state.confirm_password_error}\" id=\"confirmPasswordInput\" [(ngModel)]=\"signupParameters.confirmPassword\" [ngModelOptions]=\"{standalone: true}\">\n          <small class=\"error-message\" *ngIf=\"signup_state.confirm_password_error\">{{signup_state.confirm_password_error}}</small>\n        </div>\n        <div class=\"form-group\" *ngIf=\"signup_state.error_message\">\n          <div class=\"alert alert-danger\" role=\"alert\">{{signup_state.error_message}}</div>\n        </div>\n        <div class=\"form-group text-center\">\n          <button type=\"button\" id=\"next\" class=\"btn btn-success\" (click)=\"signupAsProfessional()\"><i class=\"fa fa-circle-o-notch animate\" *ngIf=\"signup_state.loading\"></i>{{signup_state.button_title}}</button>\n        </div>\n        <div class=\"form-group footer-group\">\n          <span class=\"text\">Sei gia registrato?</span>\n          <span class=\"text enter\" (click)=\"changeToLogin()\">Entra</span>\n          <span class=\"text\">Continuando dichiari di aver letto e accetti le <a routerlink=\"/info/legal\" href=\"/info/legal\" target=\"_blank\">condizioni generali e l’informativa sulla privacy</a></span>\n        </div>\n      </form>\n    </div>\n  </div>\n\n  <div class=\"account\" *ngIf=\"page==='email_verification'\">\n    <div class=\"account-header\">\n      <h1>{{email_verification.title}}</h1>\n    </div>\n    <div class=\"loader text-center\">\n      <div class=\"popup-spinner\" *ngIf=\"email_verification.spinner.visible\">\n        <svg width='100px' height='100px' xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\" preserveAspectRatio=\"xMidYMid\" class=\"uil-ring\">\n          <rect x=\"0\" y=\"0\" width=\"100\" height=\"100\" fill=\"none\" class=\"bk\"></rect>\n          <circle cx=\"50\" cy=\"50\" r=\"45\" stroke-dasharray=\"169.64600329384882 113.09733552923257\" stroke=\"#7FC443\" fill=\"none\" stroke-width=\"4\">\n            <animateTransform attributeName=\"transform\" type=\"rotate\" values=\"0 50 50;180 50 50;360 50 50;\" keyTimes=\"0;0.5;1\" dur=\"1s\" repeatCount=\"indefinite\" begin=\"0s\"></animateTransform>\n          </circle>\n        </svg>\n      </div>\n      <div class=\"success-icon\" *ngIf=\"email_verification.success.visible\"><span></span></div>\n    </div>\n    <div class=\"account-body\">\n      <div class=\"form-group\">\n        <button class=\"btn btn-warning\" type=\"button\" (click)=\"goToHomePage()\" *ngIf=\"email_verification.button.visible\">{{email_verification.button.title}}</button>\n      </div>\n    </div>\n  </div>\n  <div class=\"account\" *ngIf=\"page==='password_verification'\">\n    <div class=\"account-header\">\n      <h1>{{password_verification.title}}</h1>\n    </div>\n    <div class=\"loader text-center\">\n      <div class=\"popup-spinner\" *ngIf=\"password_verification.spinner.visible\">\n        <svg width='100px' height='100px' xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\" preserveAspectRatio=\"xMidYMid\" class=\"uil-ring\">\n          <rect x=\"0\" y=\"0\" width=\"100\" height=\"100\" fill=\"none\" class=\"bk\"></rect>\n          <circle cx=\"50\" cy=\"50\" r=\"45\" stroke-dasharray=\"169.64600329384882 113.09733552923257\" stroke=\"#7FC443\" fill=\"none\" stroke-width=\"4\">\n            <animateTransform attributeName=\"transform\" type=\"rotate\" values=\"0 50 50;180 50 50;360 50 50;\" keyTimes=\"0;0.5;1\" dur=\"1s\" repeatCount=\"indefinite\" begin=\"0s\"></animateTransform>\n          </circle>\n        </svg>\n      </div>\n      <div class=\"success-icon\" *ngIf=\"password_verification.success.visible\"><span></span></div>\n    </div>\n    <div class=\"account-body\">\n      <div class=\"form-group\">\n        <button class=\"btn btn-warning\" type=\"button\" (click)=\"goToHomePage()\" *ngIf=\"password_verification.button.visible\">{{password_verification.button.title}}</button>\n      </div>\n    </div>\n  </div>\n  <div class=\"account\" *ngIf=\"page==='create_new_password'\">\n    <div class=\"account-header\">\n      <h1>{{new_password_creation.title}}</h1>\n    </div>\n    <div class=\"loader text-center\">\n      <div class=\"form-group\" *ngIf=\"new_password_creation.password_field.visible\">\n        <label>{{new_password_creation.password_field.title}}</label>\n        <input class=\"form-control\" type=\"password\" name=\"password\" placeholder=\"\" required [(ngModel)]=\"new_password_creation.password_field.value\">\n      </div>\n    </div>\n    <div class=\"account-body\">\n      <div class=\"form-group\" *ngIf=\"new_password_creation.button.visible\">\n        <button class=\"btn btn-warning\" type=\"button\" (click)=\"createNewPassword(new_password_creation.password_field.value)\">{{new_password_creation.button.title}}</button>\n      </div>\n    </div>\n  </div>\n</div>\n"
 
 /***/ },
 
-/***/ 719:
+/***/ 718:
 /***/ function(module, exports) {
 
 module.exports = "<div class=\"blog\">\n  <div class=\"header\">\n    <div class=\"container\">\n      <div class=\"row\">\n        <div class=\"col-xs-12\">\n          <h1>L'idraulico digitale.</h1>\n          <h1>L'artigiano che conquista il web per trovare clienti.</h1>\n          <p>E’ stato presentato a Roma “Sei un genio!”, il nuovo libro di Giampaolo Colletti che racconta le storie di lavoratori e imprenditori che hanno dato una svolta alla loro vita unendo l’eccellenza dei mestieri alle opportunità offerte dalle nuove tecnologie</p>\n        </div>\n      </div>\n    </div>\n  </div>\n\n  <div class=\"row\">\n    <div class=\"col-xs-12\">\n      <span class=\"author\">\n        Carlotta Balena\n      </span>\n      <time>20 aprile 2017</time>\n    </div>\n  </div>\n\n  <div class=\"container\">\n    <div class=\"row\">\n      <div class=\"col-xs-12 col-lg-9 col-md-9\">\n        <p style=\"text-align: justify\">\n          Producono caffè, confezionano abiti, trasportano carichi pesanti in bici sfidando i colli e i sampietrini di Roma. <strong>Sono storici dell’arte e realizzano video-tutorial su come si pulisce un pennello</strong>, analizzano i dati del proprio taxi per calcolare corse e tragitti, aggregano sarti e portano il made in Italy all’estero. <strong>Sono tutte persone che “fanno cose”</strong>, come direbbe Nanni Moretti, ma le fanno in modo in modo innovativo: mantengono la tradizione di famiglia ma usano la rete per aprirsi al pubblico, <strong>inventano strategie per cambiare vita</strong> e anche migliorare quella degli altri, tutto grazie alle nuove tecnologie. <strong>Sono artigiani, ma Giampaolo Colletti nel suo ultimo libro “Sei un genio!”</strong> <strong>(Hoepli) li chiama “artigeni”,</strong> perché a un certo punto una lampadina si è accesa ed è avvenuta una svolta. Il libro raccoglie le loro storie che il giornalista e fondatore della job-community <strong>wwworkers</strong> ha “scovato” girando l’Italia: oltre 150 esempi di persone e imprese che, partendo da un’idea innovativa, sono riuscite a crearsi una community, una nicchia di mercato e piano piano un business.\n        </p>\n      </div>\n      <div class=\"col-xs-12 col-lg-3 col-md-3\">\n        questa è la parte destra\n      </div>\n    </div>\n\n  </div>\n</div>\n\n\n\n<div class=\"container\">\n\n    <div class=\"row\">\n    <div class=\"col-xs-12 col-lg-9 col-md-9\">\n    <div class=\"content\" itemprop=\"articleBody\">\n    <p style=\"text-align: justify\">Producono caffè, confezionano abiti, trasportano carichi pesanti in bici sfidando i colli e i sampietrini di Roma. <strong>Sono storici dell’arte e realizzano video-tutorial su come si pulisce un pennello</strong>, analizzano i dati del proprio taxi per calcolare corse e tragitti, aggregano sarti e portano il made in Italy all’estero. <strong>Sono tutte persone che “fanno cose”</strong>, come direbbe Nanni Moretti, ma le fanno in modo in modo innovativo: mantengono la tradizione di famiglia ma usano la rete per aprirsi al pubblico, <strong>inventano strategie per cambiare vita</strong> e anche migliorare quella degli altri, tutto grazie alle nuove tecnologie. <strong>Sono artigiani, ma Giampaolo Colletti nel suo ultimo libro “Sei un genio!”</strong> <strong>(Hoepli) li chiama “artigeni”,</strong> perché a un certo punto una lampadina si è accesa ed è avvenuta una svolta. Il libro raccoglie le loro storie che il giornalista e fondatore della job-community <strong>wwworkers</strong> ha “scovato” girando l’Italia: oltre 150 esempi di persone e imprese che, partendo da un’idea innovativa, sono riuscite a crearsi una community, una nicchia di mercato e piano piano un business.</p>\n    <p style=\"text-align: justify\"><a href=\"http://startupitalia.eu/wp-content/uploads/2017/04/IMG_5673.jpg\"><img class=\"alignnone wp-image-71771 size-full\" src=\"http://startupitalia.eu/wp-content/uploads/2017/04/IMG_5673.jpg\" alt=\"\" width=\"2016\" height=\"1512\" srcset=\"http://startupitalia.eu/wp-content/uploads/2017/04/IMG_5673.jpg 2016w, http://startupitalia.eu/wp-content/uploads/2017/04/IMG_5673-300x225.jpg 300w, http://startupitalia.eu/wp-content/uploads/2017/04/IMG_5673-768x576.jpg 768w, http://startupitalia.eu/wp-content/uploads/2017/04/IMG_5673-1024x768.jpg 1024w\" sizes=\"(max-width: 2016px) 100vw, 2016px\"></a></p>\n    <h2 style=\"text-align: justify\">Passione e spirito d’iniziativa</h2>\n    <p style=\"text-align: justify\">“Il libro si intitola ‘Sei un genio!’, ma in realtà le storie che racconta dimostrano che non bisogna affatto essere dei geni per cambiare vita – ha detto <strong>Riccardo Luna</strong>, direttore di AGI, che ieri ha moderato la presentazione romana del libro – non bisogna necessariamente inventare Facebook per migliorare la propria vita, basta saper sfruttare gli strumenti che abbiamo, come la Rete, che può essere una leva enorme per il lavoro”. In effetti tutti gli “artigeni” che ieri erano presenti alla libreria IBS di via Nazionale per raccontare di persona la propria storia <strong>non avevano l’aria del nerd appena uscito da Harvard, ma piuttosto persone armate di una grande passione per il proprio mestiere e di gran spirito d’iniziativa.</strong></p>\n    <h2 style=\"text-align: justify\">Le storie di chi ce l’ha fatta</h2>\n    <p style=\"text-align: justify\">C’era <strong>Luca Carbonelli</strong>, da Napoli: è a capo della torrefazione di famiglia, ed ha capito che se avrebbe usato la Rete, il suo caffè avrebbe oltrepassato i confini regionali. Così lo vende online da circa 10 anni. Anche <strong>Ela Siromascenko</strong>, ha avviato il suo business dalla vendita online: ha messo le proprie creazioni sartoriali in Rete quasi per scherzo. E’ arrivata in Italia dalla Romania con un dottorato in comunicazione, ma quando ha scoperto che i suoi abiti da cerimonia erano molto apprezzati su <strong>Etsy</strong> (la piattaforma dedicata ad artigiani e creativi) ha capito che la moda sarebbe stata la sua strada. Dalle vendite su Etsy, nel 2015 è passata al suo sito personale e ora ha anche <strong>un atelier a Milano</strong> “perché le clienti sono più propense a spendere se l’abito lo indossano”. Ad ogni modo non ha abbandonato il suo primo negozio online: “Ancora oggi gran parte delle vendite all’estero proviene da Etsy”. Poi c’erano i corrieri “ecologici” di <strong>“E adesso pedala”</strong>: una piccola community di biker che ha messo la propria passione per le due ruote a disposizione di un servizio unico in città: trasportano grossi carichi su Roma utilizzando dei cargo. In altre parole aiutano a fare tutti quegli spostamenti per i quali sarebbe necessario un furgoncino, molto più inquinante e costoso. A proposito di traffico: <strong>Simone Angelini</strong> ha raccontato di come ha trovato il sistema per “hackerare” il suo taxi romano, usando un software di sua invenzione che è in grado di calcolare in anticipo il costo della corsa.</p>\n    <p style=\"text-align: justify\"><a href=\"http://startupitalia.eu/wp-content/uploads/2017/04/FullSizeRender-1.jpg\"><img class=\"alignnone wp-image-71772 size-full\" src=\"http://startupitalia.eu/wp-content/uploads/2017/04/FullSizeRender-1.jpg\" alt=\"\" width=\"1663\" height=\"1226\" srcset=\"http://startupitalia.eu/wp-content/uploads/2017/04/FullSizeRender-1.jpg 1663w, http://startupitalia.eu/wp-content/uploads/2017/04/FullSizeRender-1-300x221.jpg 300w, http://startupitalia.eu/wp-content/uploads/2017/04/FullSizeRender-1-768x566.jpg 768w, http://startupitalia.eu/wp-content/uploads/2017/04/FullSizeRender-1-1024x755.jpg 1024w\" sizes=\"(max-width: 1663px) 100vw, 1663px\"></a></p>\n    <h2 style=\"text-align: justify\">L’eccellenza, il filo rosso</h2>\n    <p style=\"text-align: justify\">La sua e tante altre storie sono raccolte nel libro di Colletti, che racconta come il filo rosso tra tutti gli artigeni sia stato la capacità di sfruttare le nuove tecnologie per<strong> intercettare una determinata community</strong>: il successo delle loro storie è dato anche dal fatto che parlano a <strong>gruppi</strong>&nbsp;ristretti di persone, che quindi diventano <strong>fidelizzate</strong>. E poi, naturalmente, c’è il gusto per l’eccellenza: «Non basta l’idea. Perché per vincere la sfida dei mercati e competere in questi anni liquidi non basta lavorare bene. Occorre farlo al meglio. Bisogna diventare rilevanti ed eccellere». E loro hanno trovato il modo per farlo.</p>\n    <p style=\"text-align: right\"><a href=\"https://twitter.com/carlottabalena\">@carlottabalena</a></p>\n    </div>\n    </div>\n    </div>\n\n</div>\n"
 
 /***/ },
 
-/***/ 720:
+/***/ 719:
 /***/ function(module, exports) {
 
 module.exports = "<div class=\"category-container\" *ngIf=\"category\">\n  <div class=\"category-header\" [ngStyle]=\"{'background-image' : ' url(' + images_url + 'services/'+ category._id + '/cover/0' + ')'}\">\n    <div class=\"overlay\">\n      <div class=\"header-content\">\n        <div class=\"header\">\n          <h1>{{category.title}}</h1>\n          <!-- <p>{{category.description}}</p> -->\n        </div>\n      </div>\n      <!-- <div class=\"shortcut-services\" *ngFor=\"let shortcut of category.shortcut_services\">\n        <div class=\"shortcut\">\n          <div class=\"details\">\n            <h2>{{shortcut.title}}</h2>\n            <span>A partire da </span><span class=\"price\">{{shortcut.min_amount/100}}€</span>\n          </div>\n          <div class=\"actions\">\n            <button class=\"btn btn-warning\" (click)=\"pushShortcut(shortcut)\">Ordina ora <i class=\"fa fa-arrow-right\" aria-hidden=\"true\"></i></button>\n          </div>\n        </div>\n      </div> -->\n      <!-- <div class=\"tabs-container\">\n        <div class=\"tabs\">\n          <div class=\"tab-container\" *ngFor=\"let action of category.direct_actions\">\n            <div class=\"tab\" (click)=\"showDirectAction(action)\" [ngClass]=\"action.type\">\n              {{action.title}}\n            </div>\n          </div>\n        </div>\n      </div> -->\n    </div>\n  </div>\n  <!-- <div class=\"search-container\">\n    <div class=\"search\">\n      <div class=\"search-field\">\n        <p-autoComplete [(ngModel)]=\"query\" [suggestions]=\"results\" field=\"title\" scrollHeight=\"275px\" (completeMethod)=\"search($event)\" (onSelect)=\"selectResult(query)\" placeholder=\"Cerca un servizio\" minLength=\"0\">\n          <template let-res>\n            <div class=\"search-result\" (click)=\"selectResult(res)\">{{ res.title }}</div>\n          </template>\n        </p-autoComplete>\n        <div class=\"spinner\" *ngIf=\"spinerView\">\n          <svg width='21px' height='21px' xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\" preserveAspectRatio=\"xMidYMid\" class=\"uil-ring\">\n            <rect x=\"0\" y=\"0\" width=\"100\" height=\"100\" fill=\"none\" class=\"bk\"></rect>\n            <circle cx=\"50\" cy=\"50\" r=\"45\" stroke-dasharray=\"169.64600329384882 113.09733552923257\" stroke=\"#3B568D\" fill=\"none\" stroke-width=\"10\">\n              <animateTransform attributeName=\"transform\" type=\"rotate\" values=\"0 50 50;180 50 50;360 50 50;\" keyTimes=\"0;0.5;1\" dur=\"1s\" repeatCount=\"indefinite\" begin=\"0s\"></animateTransform>\n            </circle>\n          </svg>\n        </div>\n        <div class=\"close-container\" *ngIf=\"!spinerView && clearView\">\n          <span class=\"close rounded thick\" (click)=\"clearSearchForm()\"></span>\n        </div>\n        <div class=\"ui-autocomplete-panel empty\" *ngIf=\"results.length === 0 && query.length > 0\">\n          <div class=\"no-result noselect\">\n            Il servizio \"{{query}}\" non è disponibile\n            <button class=\"suggess-service\" (click)=\"requireService()\">{{newServiceRequest.message}}</button>\n          </div>\n        </div>\n      </div>\n      <div class=\"search-button\">\n        <button class=\"btn btn-primary\" (click)=\"searchMore()\"><i class=\"fa fa-search\" aria-hidden=\"true\"></i></button>\n      </div>\n    </div>\n  </div> -->\n  <div class=\"services-container\" *ngIf=\"services.length>0\">\n    <h3>Servizi correlati</h3>\n    <div class=\"service-container\" *ngFor=\"let service of services\">\n      <div class=\"service\" (click)=\"showServicePage(service)\" [ngStyle]=\"{'background-image' : ' url(' +  images_url + 'services/'+ service._id + '/cover/0' + ')'}\">\n        <div class=\"title\">\n          <span>{{service.title}}</span>\n        </div>\n      </div>\n    </div>\n    <!-- <div class=\"service-container\" *ngIf=\"services && services.length>0\">\n      <div class=\"service custom\" (click)=\"requireService()\">\n        <i class=\"fa fa-plus\" aria-hidden=\"true\"></i>\n      </div>\n    </div> -->\n  </div>\n  <div class=\"footer-container\">\n    <div class=\"footer\">\n      <ul>\n        <li><a routerLink=\"/info/help\">Aiuto e Assistenza</a></li>\n        <li><a routerLink=\"/requests/service\">Chiedi un servizio</a></li>\n        <li><a routerLink=\"/info/about\">Chi siamo</a></li>\n      </ul>\n    </div>\n  </div>\n</div>\n"
 
 /***/ },
 
-/***/ 721:
+/***/ 720:
 /***/ function(module, exports) {
 
-module.exports = "<div class=\"checkout-container\">\n  <div class=\"progress-container\" *ngIf=\"step\">\n    <div class=\"progress\"\n    [ngStyle]=\"{'width': setProgressWidth()}\"></div>\n  </div>\n  <button type=\"button\" id=\"next\" class=\"btn btn-warning back\" (click)=\"undoStep()\" *ngIf=\"step && step!=='summary' && step!=='title' && step!=='end'\">Indietro</button>\n\n  <div class=\"checkout\" *ngIf=\"step==='address'\">\n    <div class=\"checkout-header\">\n      <h1>Inserisci il tuo indirizzo</h1>\n    </div>\n    <div class=\"checkout-body\">\n      <form (keyup.enter)=\"nextStep()\">\n        <div class=\"input-group\">\n          <p-autoComplete id=\"address\" class=\"form-control\" [(ngModel)]=\"temp_address\" [suggestions]=\"addresses\" field=\"street_number_city\" [ngModelOptions]=\"{standalone: true}\" (completeMethod)=\"getAddresses($event)\" (onSelect)=\"selectAddress($event)\" placeholder=\"Via, Numero, Città\"></p-autoComplete>\n        </div>\n        <div class=\"form-group error\">\n          <span class=\"error-text\" *ngIf=\"state.address_error\">{{state.address_error}}</span>\n        </div>\n        <div class=\"actions\">\n          <div class=\"form-group text-center\">\n            <button type=\"button\" class=\"btn btn-warning\" (click)=\"nextStep()\">Avanti</button>\n          </div>\n        </div>\n      </form>\n    </div>\n  </div>\n  <div class=\"checkout\" *ngIf=\"step==='date'\">\n    <div class=\"checkout-header\">\n      <h1>Inserisci la data</h1>\n    </div>\n    <div class=\"checkout-body\">\n      <form (keyup.enter)=\"nextStep()\">\n        <div class=\"input-group\">\n          <p-calendar class=\"date\" name=\"data\" [(ngModel)]=\"temp_date\" id=\"date\" autocomplete=\"off\" readonlyInput=\"true\" dateFormat=\"dd MM yy\" [locale]=\"it\" [minDate]=\"minDate\" (onSelect)=\"selectDate()\" placeholder=\"Inserisci la data\"></p-calendar>\n        </div>\n        <div class=\"form-group error\">\n          <span class=\"error-text\" *ngIf=\"state.date_error\">{{state.date_error}}</span>\n        </div>\n        <div class=\"actions\">\n          <div class=\"form-group text-center\">\n            <button type=\"button\" class=\"btn btn-warning\" (click)=\"nextStep()\">Avanti</button>\n          </div>\n        </div>\n      </form>\n    </div>\n  </div>\n  <div class=\"checkout\" *ngIf=\"step==='preview'\">\n    <div class=\"checkout-header\">\n      <h1>Anteprima</h1>\n    </div>\n    <div class=\"checkout-body\">\n      <div class=\"order-container\">\n        <div class=\"services\" *ngFor=\"let service of Order.services\">\n          <div class=\"service\">\n            <div class=\"service-header\">\n              <span class=\"title\">{{service.title}}</span>\n            </div>\n            <div class=\"details\" *ngFor=\"let detail of service.details\">\n              <span class=\"detail\">{{detail.title}}</span>\n            </div>\n          </div>\n        </div>\n        <div class=\"line\"></div>\n        <div class=\"address\">\n          <div class=\"address-header\">\n            <span>Indirizzo</span>\n          </div>\n          <div class=\"address-body\">\n            <span>{{Order.address.street}} {{Order.address.street_number}}, {{Order.address.city}}</span>\n          </div>\n        </div>\n        <div class=\"date\">\n          <div class=\"date-header\">\n            <span>Data</span>\n          </div>\n          <div class=\"date-body\">\n            <span>{{formated_date}}</span>\n          </div>\n        </div>\n      </div>\n      <div class=\"form-group error\">\n        <span class=\"error-text\" *ngIf=\"state.error_message\">{{state.error_message}}</span>\n      </div>\n      <div class=\"actions\">\n        <div class=\"form-group text-center\">\n          <button type=\"button\" class=\"btn btn-warning\" (click)=\"nextStep()\">Avanti</button>\n        </div>\n      </div>\n    </div>\n  </div>\n\n  <div class=\"checkout\" *ngIf=\"step==='signup'\">\n    <div class=\"checkout-header\">\n      <h1>Crea un account</h1>\n    </div>\n    <div class=\"checkout-body\">\n      <form>\n        <div class=\"form-group\">\n          <label for=\"emailInput\">Email</label>\n          <input id=\"emailInput\" type=\"email\" name=\"email\" placeholder=\"La tua mail\" class=\"form-control\" [ngClass]=\"{'error-input': signup_state.email_error}\" [(ngModel)]=\"signupParameters.email\" [ngModelOptions]=\"{standalone: true}\">\n          <small class=\"error-message\" *ngIf=\"signup_state.email_error\">{{signup_state.email_error}}</small>\n        </div>\n        <div class=\"row\">\n          <div class=\"col-md-6\">\n            <div class=\"form-group\">\n              <label for=\"firstNameInput\">Nome</label>\n              <input id=\"firstNameInput\" type=\"firstname\" name=\"firstnam\" placeholder=\"Nome\" class=\"form-control\" [ngClass]=\"{'error-input': signup_state.first_name_error}\" [(ngModel)]=\"signupParameters.firstname\" [ngModelOptions]=\"{standalone: true}\">\n              <small class=\"error-message\" *ngIf=\"signup_state.first_name_error\">{{signup_state.first_name_error}}</small>\n            </div>\n          </div>\n          <div class=\"col-md-6\">\n            <div class=\"form-group\">\n              <label for=\"lastNameInput\">Cognome</label>\n              <input id=\"lastNameInput\" type=\"lastname\" name=\"lastname\" placeholder=\"Cognome\" class=\"form-control\" [ngClass]=\"{'error-input': signup_state.last_name_error}\" [(ngModel)]=\"signupParameters.lastname\" [ngModelOptions]=\"{standalone: true}\">\n              <small class=\"error-message\" *ngIf=\"signup_state.last_name_error\">{{signup_state.last_name_error}}</small>\n            </div>\n          </div>\n        </div>\n        <div class=\"form-group\">\n          <label for=\"phone\">Telefono</label>\n          <input id=\"phoneInput\" field=\"phone\" type=\"text\" name=\"phone\" placeholder=\"Numero di telefono\" class=\"form-control\" [ngClass]=\"{'error-input': signup_state.phone_error}\" [(ngModel)]=\"signupParameters.phone\" [ngModelOptions]=\"{standalone: true}\">\n          <small class=\"error-message\" *ngIf=\"signup_state.phone_error\">{{signup_state.phone_error}}</small>\n        </div>\n        <div class=\"form-group\">\n          <label for=\"passwordInput\">Crea una password</label>\n          <input id=\"passwordInput\" type=\"password\" name=\"password\" placeholder=\"Password\" class=\"form-control\" [ngClass]=\"{'error-input': signup_state.password_error}\" [(ngModel)]=\"signupParameters.password\" [ngModelOptions]=\"{standalone: true}\">\n          <small class=\"error-message\" *ngIf=\"signup_state.password_error\">{{signup_state.password_error}}</small>\n        </div>\n        <div class=\"form-group\" *ngIf=\"signup_state.error_message\">\n          <div class=\"alert alert-danger\" role=\"alert\">{{signup_state.error_message}}</div>\n        </div>\n        <div class=\"form-group text-center\">\n          <button type=\"button\" class=\"btn btn-warning\" (click)=\"signup()\"><i class=\"fa fa-circle-o-notch animate\" *ngIf=\"signup_state.loading\"></i>{{signup_state.button_title}}</button>\n        </div>\n        <div class=\"form-group footer-group\">\n          <span class=\"text\">Sei gia registrato?</span>\n          <span class=\"text enter\" (click)=\"changeToLogin()\">Entra</span>\n          <span class=\"text\">Continuando dichiari di aver letto e accetti le <a routerlink=\"/info/legal\" href=\"/info/legal\" target=\"_blank\">condizioni generali e l’informativa sulla privacy</a></span>\n        </div>\n      </form>\n    </div>\n  </div>\n  <div class=\"checkout\" *ngIf=\"step==='login'\">\n    <div class=\"checkout-header\">\n      <h1>Accedi al tuo account</h1>\n    </div>\n    <div class=\"checkout-body\">\n      <form>\n        <div class=\"form-group\">\n          <label for=\"emailInput\">Email</label>\n          <input type=\"email\" placeholder=\"La tua mail\" class=\"form-control\" [ngClass]=\"{'error-input': login_state.email_error}\" id=\"emailInput\" [(ngModel)]=\"loginParameters.email\" [ngModelOptions]=\"{standalone: true}\">\n          <small class=\"error-message\" *ngIf=\"login_state.email_error\">{{login_state.email_error}}</small>\n        </div>\n        <div class=\"form-group\">\n          <label for=\"passwordInput\">Password</label>\n          <input type=\"password\" placeholder=\"Password\" class=\"form-control\" [ngClass]=\"{'error-input': login_state.password_error}\" id=\"passwordInput\" [(ngModel)]=\"loginParameters.password\" [ngModelOptions]=\"{standalone: true}\">\n          <small class=\"error-message\" *ngIf=\"login_state.password_error\">{{login_state.password_error}}</small>\n        </div>\n        <div class=\"form-group\" *ngIf=\"login_state.error_message\">\n          <div class=\"alert alert-danger\" role=\"alert\">{{login_state.error_message}}</div>\n        </div>\n        <div class=\"form-group text-center\">\n          <button type=\"button\" id=\"next\" class=\"btn btn-warning\" (click)=\"login()\"><i class=\"fa fa-circle-o-notch animate\" *ngIf=\"login_state.loading\"></i>{{login_state.button_title}}</button>\n        </div>\n        <div class=\"form-group footer-group\">\n          <span class=\"text password-forget\"><a routerlink=\"/account/password_recovery\" href=\"/account/password_recovery\" target=\"_blank\">Hai dimenticato la password?</a></span>\n          <span class=\"text\">Non sei ancora registrato?</span>\n          <span class=\"text enter\" (click)=\"changeToSignup()\">Registrati</span>\n        </div>\n      </form>\n    </div>\n  </div>\n\n  <div class=\"checkout\" *ngIf=\"step==='payment'\">\n    <div class=\"checkout-header\">\n      <h1>Ultimo passo</h1>\n      <!-- <p>Acconto in garanzia</p> -->\n    </div>\n    <div class=\"checkout-body\">\n      <div class=\"order-container\">\n        <div class=\"message\">\n          <div class=\"message-header\">\n            <span>Acconto in garanzia</span>\n          </div>\n          <div class=\"message-body\">\n            <span>Prenota il servizio scelto in modo da avere la priorità e l'attenzione del lavoratore.</span>\n          </div>\n        </div>\n        <div class=\"line\"></div>\n        <div class=\"upfront\">\n          <div class=\"upfront-header\">\n            <span class=\"left\">Prenotazione</span>\n            <span class=\"right\">4.99€</span>\n          </div>\n        </div>\n      </div>\n      <div class=\"form-group error\">\n        <span class=\"error-text\" *ngIf=\"state.date_error\">{{state.date_error}}</span>\n      </div>\n      <div class=\"actions\">\n        <div class=\"form-group text-center\">\n          <button type=\"button\" class=\"btn btn-warning\" (click)=\"nextStep()\">Avanti</button>\n        </div>\n      </div>\n    </div>\n  </div>\n  <div class=\"checkout\" *ngIf=\"step==='card'\">\n    <div class=\"checkout-header\">\n      <h1>Inserisci un metodo di pagamento</h1>\n    </div>\n    <div class=\"checkout-body\">\n      <div class=\"form-group error\">\n        <span class=\"error-text\" *ngIf=\"state.date_error\">{{state.date_error}}</span>\n      </div>\n      <div class=\"actions\">\n        <div class=\"form-group text-center\">\n          <button type=\"button\" class=\"btn btn-warning\" (click)=\"nextStep()\">Avanti</button>\n        </div>\n      </div>\n    </div>\n  </div>\n\n  <div class=\"checkout\" *ngIf=\"step==='end'\">\n    <div class=\"checkout-header\">\n      <h1>Fine</h1>\n    </div>\n    <div class=\"checkout-body\">\n      <form (keyup.enter)=\"nextStep()\">\n        <div class=\"actions\">\n          <div class=\"form-group text-center\">\n            <button type=\"button\" class=\"btn btn-warning\" (click)=\"nextStep()\">Avanti</button>\n          </div>\n        </div>\n      </form>\n    </div>\n  </div>\n\n</div>\n"
+module.exports = "<div class=\"checkout-container\">\n  <div class=\"progress-container\" *ngIf=\"step\">\n    <div class=\"progress\"\n    [ngStyle]=\"{'width': setProgressWidth()}\"></div>\n  </div>\n\n  <button type=\"button\" id=\"next\" class=\"btn btn-warning back\" (click)=\"undoStep()\" *ngIf=\"step && step!=='summary' && step!=='title' && step!=='end'\">Indietro</button>\n\n  <div class=\"checkout\" *ngIf=\"step==='address'\">\n    <div class=\"checkout-header\">\n      <h1>Inserisci il tuo indirizzo</h1>\n    </div>\n    <div class=\"checkout-body\">\n      <form (keyup.enter)=\"nextStep()\">\n        <div class=\"input-group\">\n          <p-autoComplete id=\"address\" class=\"form-control\" [(ngModel)]=\"temp_address\" [suggestions]=\"addresses\" field=\"street_number_city\" [ngModelOptions]=\"{standalone: true}\" (completeMethod)=\"getAddresses($event)\" (onSelect)=\"selectAddress($event)\" placeholder=\"Via, Numero, Città\"></p-autoComplete>\n        </div>\n        <div class=\"form-group error\">\n          <span class=\"error-text\" *ngIf=\"state.address_error\">{{state.address_error}}</span>\n        </div>\n        <div class=\"actions\">\n          <div class=\"form-group text-center\">\n            <button type=\"button\" class=\"btn btn-warning\" (click)=\"nextStep()\">Avanti</button>\n          </div>\n        </div>\n      </form>\n    </div>\n  </div>\n  <div class=\"checkout\" *ngIf=\"step==='date'\">\n    <div class=\"checkout-header\">\n      <h1>Inserisci la data</h1>\n    </div>\n    <div class=\"checkout-body\">\n      <form (keyup.enter)=\"nextStep()\">\n        <div class=\"input-group\">\n          <p-calendar class=\"date\" name=\"data\" [(ngModel)]=\"temp_date\" id=\"date\" autocomplete=\"off\" readonlyInput=\"true\" dateFormat=\"dd MM yy\" [locale]=\"it\" [minDate]=\"minDate\" (onSelect)=\"selectDate()\" placeholder=\"Inserisci la data\"></p-calendar>\n        </div>\n        <div class=\"form-group error\">\n          <span class=\"error-text\" *ngIf=\"state.date_error\">{{state.date_error}}</span>\n        </div>\n        <div class=\"actions\">\n          <div class=\"form-group text-center\">\n            <button type=\"button\" class=\"btn btn-warning\" (click)=\"nextStep()\">Avanti</button>\n          </div>\n        </div>\n      </form>\n    </div>\n  </div>\n  <div class=\"checkout\" *ngIf=\"step==='preview'\">\n    <div class=\"checkout-header\">\n      <h1>Anteprima</h1>\n    </div>\n    <div class=\"checkout-body\" *ngIf=\"Order.services\">\n      <div class=\"order-container\">\n        <div class=\"services\" *ngFor=\"let service of Order.services\">\n          <div class=\"service\">\n            <div class=\"service-header\">\n              <span class=\"title\">{{service.title}}</span>\n            </div>\n            <div class=\"details\" *ngFor=\"let detail of service.details\">\n              <span class=\"detail\">{{detail.title}}</span>\n            </div>\n          </div>\n        </div>\n        <div class=\"line\"></div>\n        <div class=\"address\">\n          <div class=\"address-header\">\n            <span>Indirizzo</span>\n          </div>\n          <div class=\"address-body\">\n            <span>{{Order.address.street}} {{Order.address.street_number}}, {{Order.address.city}}</span>\n          </div>\n        </div>\n        <div class=\"date\">\n          <div class=\"date-header\">\n            <span>Data</span>\n          </div>\n          <div class=\"date-body\">\n            <span>{{formated_date}}</span>\n          </div>\n        </div>\n      </div>\n      <div class=\"actions\">\n        <div class=\"form-group text-center\">\n          <button type=\"button\" class=\"btn btn-warning\" (click)=\"nextStep()\">Avanti</button>\n        </div>\n      </div>\n    </div>\n  </div>\n\n  <div class=\"checkout\" *ngIf=\"step==='signup'\">\n    <div class=\"checkout-header\">\n      <h1>Crea un account</h1>\n    </div>\n    <div class=\"checkout-body\">\n      <form>\n        <div class=\"form-group\">\n          <label for=\"emailInput\">Email</label>\n          <input id=\"emailInput\" type=\"email\" name=\"email\" placeholder=\"La tua mail\" class=\"form-control\" [ngClass]=\"{'error-input': signup_state.email_error}\" [(ngModel)]=\"signupParameters.email\" [ngModelOptions]=\"{standalone: true}\">\n          <small class=\"error-message\" *ngIf=\"signup_state.email_error\">{{signup_state.email_error}}</small>\n        </div>\n        <div class=\"row\">\n          <div class=\"col-md-6\">\n            <div class=\"form-group\">\n              <label for=\"firstNameInput\">Nome</label>\n              <input id=\"firstNameInput\" type=\"firstname\" name=\"firstnam\" placeholder=\"Nome\" class=\"form-control\" [ngClass]=\"{'error-input': signup_state.first_name_error}\" [(ngModel)]=\"signupParameters.firstname\" [ngModelOptions]=\"{standalone: true}\">\n              <small class=\"error-message\" *ngIf=\"signup_state.first_name_error\">{{signup_state.first_name_error}}</small>\n            </div>\n          </div>\n          <div class=\"col-md-6\">\n            <div class=\"form-group\">\n              <label for=\"lastNameInput\">Cognome</label>\n              <input id=\"lastNameInput\" type=\"lastname\" name=\"lastname\" placeholder=\"Cognome\" class=\"form-control\" [ngClass]=\"{'error-input': signup_state.last_name_error}\" [(ngModel)]=\"signupParameters.lastname\" [ngModelOptions]=\"{standalone: true}\">\n              <small class=\"error-message\" *ngIf=\"signup_state.last_name_error\">{{signup_state.last_name_error}}</small>\n            </div>\n          </div>\n        </div>\n        <div class=\"form-group\">\n          <label for=\"phone\">Telefono</label>\n          <input id=\"phoneInput\" field=\"phone\" type=\"text\" name=\"phone\" placeholder=\"Numero di telefono\" class=\"form-control\" [ngClass]=\"{'error-input': signup_state.phone_error}\" [(ngModel)]=\"signupParameters.phone\" [ngModelOptions]=\"{standalone: true}\">\n          <small class=\"error-message\" *ngIf=\"signup_state.phone_error\">{{signup_state.phone_error}}</small>\n        </div>\n        <div class=\"form-group\">\n          <label for=\"passwordInput\">Crea una password</label>\n          <input id=\"passwordInput\" type=\"password\" name=\"password\" placeholder=\"Password\" class=\"form-control\" [ngClass]=\"{'error-input': signup_state.password_error}\" [(ngModel)]=\"signupParameters.password\" [ngModelOptions]=\"{standalone: true}\">\n          <small class=\"error-message\" *ngIf=\"signup_state.password_error\">{{signup_state.password_error}}</small>\n        </div>\n        <div class=\"form-group\" *ngIf=\"signup_state.error_message\">\n          <div class=\"alert alert-danger\" role=\"alert\">{{signup_state.error_message}}</div>\n        </div>\n        <div class=\"form-group text-center\">\n          <button type=\"button\" class=\"btn btn-warning\" (click)=\"signup()\"><i class=\"fa fa-circle-o-notch animate\" *ngIf=\"signup_state.loading\"></i>{{signup_state.button_title}}</button>\n        </div>\n        <div class=\"form-group footer-group\">\n          <span class=\"text\">Sei gia registrato?</span>\n          <span class=\"text enter\" (click)=\"changeToLogin()\">Entra</span>\n          <span class=\"text\">Continuando dichiari di aver letto e accetti le <a routerlink=\"/info/legal\" href=\"/info/legal\" target=\"_blank\">condizioni generali e l’informativa sulla privacy</a></span>\n        </div>\n      </form>\n    </div>\n  </div>\n  <div class=\"checkout\" *ngIf=\"step==='login'\">\n    <div class=\"checkout-header\">\n      <h1>Accedi al tuo account</h1>\n    </div>\n    <div class=\"checkout-body\">\n      <form>\n        <div class=\"form-group\">\n          <label for=\"emailInput\">Email</label>\n          <input type=\"email\" placeholder=\"La tua mail\" class=\"form-control\" [ngClass]=\"{'error-input': login_state.email_error}\" id=\"emailInput\" [(ngModel)]=\"loginParameters.email\" [ngModelOptions]=\"{standalone: true}\">\n          <small class=\"error-message\" *ngIf=\"login_state.email_error\">{{login_state.email_error}}</small>\n        </div>\n        <div class=\"form-group\">\n          <label for=\"passwordInput\">Password</label>\n          <input type=\"password\" placeholder=\"Password\" class=\"form-control\" [ngClass]=\"{'error-input': login_state.password_error}\" id=\"passwordInput\" [(ngModel)]=\"loginParameters.password\" [ngModelOptions]=\"{standalone: true}\">\n          <small class=\"error-message\" *ngIf=\"login_state.password_error\">{{login_state.password_error}}</small>\n        </div>\n        <div class=\"form-group\" *ngIf=\"login_state.error_message\">\n          <div class=\"alert alert-danger\" role=\"alert\">{{login_state.error_message}}</div>\n        </div>\n        <div class=\"form-group text-center\">\n          <button type=\"button\" id=\"next\" class=\"btn btn-warning\" (click)=\"login()\"><i class=\"fa fa-circle-o-notch animate\" *ngIf=\"login_state.loading\"></i>{{login_state.button_title}}</button>\n        </div>\n        <div class=\"form-group footer-group\">\n          <span class=\"text password-forget\"><a routerlink=\"/account/password_recovery\" href=\"/account/password_recovery\" target=\"_blank\">Hai dimenticato la password?</a></span>\n          <span class=\"text\">Non sei ancora registrato?</span>\n          <span class=\"text enter\" (click)=\"changeToSignup()\">Registrati</span>\n        </div>\n      </form>\n    </div>\n  </div>\n\n  <div class=\"checkout\" *ngIf=\"step==='payment'\">\n    <div class=\"checkout-header\">\n      <h1>Ultimo passo</h1>\n    </div>\n    <div class=\"checkout-body\">\n      <div class=\"order-container\">\n        <div class=\"message\">\n          <div class=\"message-header\">\n            <span>Acconto in garanzia</span>\n          </div>\n          <div class=\"message-body\">\n            <span>Prenota il servizio versando un acconto in garanzia in modo da avere la priorità e l'attenzione del professionista selezionato.</span>\n          </div>\n        </div>\n        <div class=\"line\"></div>\n        <div class=\"upfront\">\n          <div class=\"upfront-header\">\n            <span class=\"left\">Prenotazione</span>\n            <span class=\"right\">4.99€</span>\n          </div>\n        </div>\n      </div>\n      <div class=\"actions\">\n        <div class=\"form-group text-center\">\n          <button type=\"button\" class=\"btn btn-warning\" (click)=\"nextStep()\"><i class=\"fa fa-circle-o-notch animate\" *ngIf=\"state.loading\"></i>Prenota</button>\n        </div>\n      </div>\n    </div>\n  </div>\n  <div class=\"checkout\" *ngIf=\"step==='card'\">\n    <div class=\"checkout-header\">\n      <h1>Metodo di pagamento</h1>\n      <p>Inserisci un metodo di pagamento per poter continuare.</p>\n    </div>\n    <div class=\"checkout-body\">\n      <div class=\"list-cards\">\n        <img src=\"../../../assets/images/mastercard-dark.png\" alt=\"Mastercard\">\n        <img src=\"../../../assets/images/visa-dark.png\" alt=\"Visa\">\n        <img src=\"../../../assets/images/americanexpress-dark.png\" alt=\"AmericanExpress\">\n        <img src=\"../../../assets/images/dinersclub-dark.png\" alt=\"DinersClub\">\n        <img src=\"../../../assets/images/discover-dark.png\" alt=\"Discover\">\n        <img src=\"../../../assets/images/jbc-dark.png\" alt=\"JBC\">\n      </div>\n      <form>\n        <div class=\"form-group\">\n          <label for=\"numberInput\">Numero carta</label>\n          <input autocomplete=\"off\" type=\"text\" placeholder=\"Numero\" class=\"form-control\" [ngClass]=\"{'error-input': card_state.message_error}\" id=\"numberInput\" [(ngModel)]=\"Card.number\" [ngModelOptions]=\"{standalone: true}\">\n        </div>\n        <div class=\"row\">\n          <div class=\"col-md-6\">\n            <div class=\"form-group\">\n              <label for=\"dateInput\">Scadenza</label>\n              <input autocomplete=\"off\" type=\"text\" placeholder=\"Scadenza\" class=\"form-control\" [ngClass]=\"{'error-input': card_state.message_error}\" id=\"dateInput\" [(ngModel)]=\"Card.exp_date\" (keyup)=\"checkExpiry(Card.exp_date)\" (change)=\"checkExpiry(Card.exp_date)\" [ngModelOptions]=\"{standalone: true}\">\n            </div>\n          </div>\n          <div class=\"col-md-6\">\n            <div class=\"form-group\">\n              <label for=\"numberInput\">CVC/CVV</label>\n              <input autocomplete=\"off\" type=\"text\" placeholder=\"CVC/CVV\" class=\"form-control\" [ngClass]=\"{'error-input': card_state.message_error}\" id=\"numberInput\" [(ngModel)]=\"Card.cvc\" [ngModelOptions]=\"{standalone: true}\">\n            </div>\n          </div>\n        </div>\n        <div class=\"form-group\">\n          <label for=\"nameInput\">Nome e cognome dell'intestatario</label>\n          <input type=\"name\" name=\"name\" placeholder=\"Nome e cognome\" class=\"form-control\" id=\"nameInput\" [(ngModel)]=\"Card.name\" [ngModelOptions]=\"{standalone: true}\">\n        </div>\n        <div class=\"row\">\n          <div class=\"col-md-8\">\n            <div class=\"form-group\">\n              <label for=\"addressInput\">Indirizzo</label>\n              <input type=\"address\" placeholder=\"Via\" class=\"form-control\" id=\"addressInput\" [(ngModel)]=\"Card.address_line1\" [ngModelOptions]=\"{standalone: true}\">\n            </div>\n          </div>\n          <div class=\"col-md-4\">\n            <div class=\"form-group\">\n              <label for=\"addressNumberInput\">Nr</label>\n              <input type=\"text\" placeholder=\"Nr\" class=\"form-control\" id=\"addressNumberInput\" [(ngModel)]=\"Card.address_line2\" [ngModelOptions]=\"{standalone: true}\">\n            </div>\n          </div>\n        </div>\n        <div class=\"row\">\n          <div class=\"col-md-8\">\n            <div class=\"form-group\">\n              <label for=\"cittyInput\">Città</label>\n              <input type=\"text\" placeholder=\"Città\" class=\"form-control\" id=\"cittyInput\" [(ngModel)]=\"Card.address_city\" [ngModelOptions]=\"{standalone: true}\">\n            </div>\n          </div>\n          <div class=\"col-md-4\">\n            <div class=\"form-group\">\n              <label for=\"capInput\">CAP</label>\n              <input type=\"text\" placeholder=\"CAP\" class=\"form-control\" id=\"capInput\" [(ngModel)]=\"Card.address_zip\" [ngModelOptions]=\"{standalone: true}\">\n            </div>\n          </div>\n        </div>\n        <div class=\"row\">\n          <div class=\"col-md-6\">\n            <div class=\"form-group\">\n              <label for=\"provinceInput\">Provincia</label>\n              <input type=\"text\" placeholder=\"Provincia\" class=\"form-control\" id=\"provinceInput\" [(ngModel)]=\"Card.address_state\" [ngModelOptions]=\"{standalone: true}\">\n            </div>\n          </div>\n          <div class=\"col-md-6\">\n            <div class=\"form-group\">\n              <label for=\"countryInput\">Paese</label>\n              <input type=\"text\" placeholder=\"Paese\" class=\"form-control\" id=\"countryInput\" [(ngModel)]=\"Card.address_country\" [ngModelOptions]=\"{standalone: true}\">\n            </div>\n          </div>\n        </div>\n        <div class=\"form-group error\">\n          <span class=\"error-text\" *ngIf=\"card_state.message_error\">{{card_state.message_error}}</span>\n        </div>\n        <div class=\"actions\">\n          <div class=\"form-group text-center\">\n            <button type=\"button\" class=\"btn btn-warning\" (click)=\"addCard()\"><i class=\"fa fa-circle-o-notch animate\" *ngIf=\"card_state.loading\"></i>Salva e continua</button>\n          </div>\n        </div>\n      </form>\n    </div>\n  </div>\n\n  <div class=\"checkout\" *ngIf=\"step==='end'\">\n    <div class=\"checkout-header\">\n      <h1>Complimenti!</h1>\n      <p>Ha prenotato con successo il servizio scelto. In breve tempo la contateremo per ulteriori informazioni.</p>\n      <p>Si assicuri di aver inserito un numero di telefono corretto nel suo account.</p>\n    </div>\n    <div class=\"checkout-body\">\n      <div class=\"actions\">\n        <div class=\"form-group text-center\">\n          <button type=\"button\" class=\"btn btn-warning\" (click)=\"nextStep()\">Fine</button>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>\n"
 
 /***/ },
 
-/***/ 722:
+/***/ 721:
 /***/ function(module, exports) {
 
 module.exports = "<div class=\"page-container\">\n  <div class=\"container-fluid contact-container\">\n    <div class=\"contact-block-container\">\n      <div class=\"header\">\n        <h3>Programma partner di Starbook</h3>\n        <h6>Il programma partner di Starbook consente alle aziende, agenzie immobiliari, piattaforme software e startup di monetizzare utilizando i nostri servizi tramite potenziali clienti. Inviaci una richiesta di partner e ti contatteremo per ulteriori dettagli.</h6>\n      </div>\n      <form>\n        <div class=\"row\">\n          <div class=\"col-md-6\">\n            <div class=\"form-group\">\n              <label for=\"firstNameInput\">Nome</label>\n              <input type=\"firstname\" placeholder=\"Nome\" class=\"form-control\" [ngClass]=\"{'error-input': recruiter_state.firstname_error}\" id=\"firstNameInput\" [(ngModel)]=\"Recruiter.firstname\" [ngModelOptions]=\"{standalone: true}\">\n            </div>\n          </div>\n          <div class=\"col-md-6\">\n            <div class=\"form-group\">\n              <label for=\"lastNameInput\">Cognome</label>\n              <input type=\"lastname\" placeholder=\"Cognome\" class=\"form-control\" [ngClass]=\"{'error-input': recruiter_state.lastname_error}\" id=\"lastNameInput\" [(ngModel)]=\"Recruiter.lastname\" [ngModelOptions]=\"{standalone: true}\">\n            </div>\n          </div>\n        </div>\n        <div class=\"form-group\">\n          <label for=\"phoneInput\">Telefono</label>\n          <input type=\"phone\" placeholder=\"Numero di telefono\" class=\"form-control\" [ngClass]=\"{'error-input': recruiter_state.phone_error}\" id=\"phoneInput\" [(ngModel)]=\"Recruiter.phone\" [ngModelOptions]=\"{standalone: true}\">\n        </div>\n        <div class=\"form-group\">\n          <label for=\"emailInput\">Email</label>\n          <input type=\"email\" placeholder=\"La tua mail\" class=\"form-control\" [ngClass]=\"{'error-input': recruiter_state.email_error}\" id=\"emailInput\" [(ngModel)]=\"Recruiter.email\" [ngModelOptions]=\"{standalone: true}\">\n        </div>\n        <div class=\"form-group\">\n          <label for=\"emailInput\">Messaggio</label>\n          <textarea class=\"form-control\" placeholder=\"Inserisci il motivo della richiesta\" rows=\"5\" id=\"descriptionInput\" [(ngModel)]=\"Recruiter.message\" [ngModelOptions]=\"{standalone: true}\"></textarea>\n        </div>\n        <div class=\"form-group\" *ngIf=\"recruiter_state.message_success\">\n          <div class=\"alert alert-success\" role=\"alert\">\n            {{recruiter_state.message_success}}\n          </div>\n        </div>\n        <div class=\"form-group\" *ngIf=\"recruiter_state.message_error\">\n          <div class=\"alert alert-danger\" role=\"alert\">\n            {{recruiter_state.message_error}}\n          </div>\n        </div>\n        <div class=\"form-group\">\n          <button type=\"button\" id=\"next\" class=\"btn btn-warning\" (click)=\"joinPartner()\"><i class=\"fa fa-circle-o-notch animate\" *ngIf=\"recruiter_state.loading\"></i>Invia</button>\n        </div>\n      </form>\n    </div>\n  </div>\n</div>\n"
 
 /***/ },
 
-/***/ 723:
+/***/ 722:
 /***/ function(module, exports) {
 
 module.exports = ""
 
 /***/ },
 
-/***/ 724:
+/***/ 723:
 /***/ function(module, exports) {
 
 module.exports = "<div class=\"help-container\">\n  <h1>Aiuto e Assistenza</h1>\n  <p>Per qualsisasi domanda o problema rilevato sulla piattaforma Starbook potete usare i contatti sotto indicati.</p>\n  <!-- <h3>Telefono</h3>\n  <p>+39 327 24 15 028</p> -->\n  <h3>Email</h3>\n  <p>info@starbook.co</p>\n  <h3>Social network</h3>\n  <div class=\"list-socials\">\n    <a href=\"https://www.facebook.com/starbook.co/\" target=\"_blank\"><img src=\"../../../assets/images/facebook.png\"></a>\n    <a href=\"https://twitter.com/starbookco/\" target=\"_blank\"><img src=\"../../../assets/images/twitter.png\"></a>\n    <a href=\"https://www.instagram.com/starbook.co/\" target=\"_blank\"><img src=\"../../../assets/images/instagram.png\"></a>\n  </div>\n</div>\n"
 
 /***/ },
 
-/***/ 725:
+/***/ 724:
 /***/ function(module, exports) {
 
-module.exports = "<div class=\"insert-container\">\n  <div class=\"progress-container\" *ngIf=\"step\">\n    <div class=\"progress\"\n    [ngStyle]=\"{'width': setProgressWidth()}\"></div>\n  </div>\n  <button type=\"button\" id=\"next\" class=\"btn btn-success back\" (click)=\"undoStep()\" *ngIf=\"step && step!=='intro' && step!=='title' && step!=='end'\">Indietro</button>\n\n  <div class=\"insert\" *ngIf=\"step==='intro'\">\n    <div class=\"insert-header\">\n      <h1>Inserisci un <span class=\"one\">servizio</span> che sai fare e inizia a <span class=\"two\">guadagnare</span>.</h1>\n    </div>\n    <div class=\"insert-body\">\n      <div class=\"category-tags\">\n        <span class=\"category-example\">Artigianato</span>\n        <span class=\"category-example\">Decorazione</span>\n        <span class=\"category-example\">Edilizia</span>\n        <span class=\"category-example\">Design interno</span>\n        <span class=\"category-example\">Fotografia</span>\n        <span class=\"category-example\">Salute e Benessere</span>\n        <span class=\"category-example\">Hobby</span>\n        <span class=\"category-example\">Animali</span>\n        <span class=\"category-example\">Pulizie</span>\n        <span class=\"category-example\">Puoi fare altro?</span>\n      </div>\n      <div class=\"actions\">\n        <div class=\"form-group text-center\">\n          <button type=\"button\" class=\"btn btn-success\" (click)=\"nextStep()\">Inizia ora</button>\n        </div>\n      </div>\n    </div>\n  </div>\n  <div class=\"insert\" *ngIf=\"step==='title'\">\n    <div class=\"insert-header\">\n      <h1>Inserisci il titolo</h1>\n      <p>Un titolo breve e chiaro.</p>\n    </div>\n    <div class=\"insert-body\">\n      <form (keyup.enter)=\"nextStep()\">\n        <div class=\"input-group\">\n          <input id=\"titleInput\" type=\"text\" class=\"form-control\" placeholder=\"titolo\" [autofocus]=\"!Service.title\" [ngStyle]=\"{'text-align' : 'center'}\" [(ngModel)]=\"Service.title\" [ngModelOptions]=\"{standalone: true}\">\n        </div>\n        <div class=\"form-group error\">\n          <span class=\"error-text\" *ngIf=\"state.title_error\">{{state.title_error}}</span>\n        </div>\n        <div class=\"actions\">\n          <div class=\"form-group text-center\">\n            <button type=\"button\" class=\"btn btn-success\" (click)=\"nextStep()\">Avanti</button>\n          </div>\n        </div>\n      </form>\n    </div>\n  </div>\n  <div class=\"insert\" *ngIf=\"step==='pricing'\">\n    <div class=\"insert-header\">\n      <h1>Prezzo</h1>\n      <p>Inserisci il prezzo (IVA inclusa) per unità di misura.</p>\n      <p>Esempio: €23 x ora, €190 x giorno</p>\n    </div>\n    <div class=\"insert-body\">\n      <form (keyup.enter)=\"nextStep()\">\n        <div class=\"price-per-unit\">\n          <div class=\"input-group\">\n            <span class=\"input-group-addon euro\">€</span>\n            <input id=\"pricePerUnitInput\" type=\"number\" class=\"form-control price text-center\" placeholder=\"\" [autofocus]=\"!Service.price\" [(ngModel)]=\"Service.price\" (keyup)=\"updatePrice()\" (change)=\"updatePrice()\"  [ngModelOptions]=\"{standalone: true}\">\n          </div>\n          <span class=\"per\">x</span>\n          <span class=\"input-group\">\n            <input id=\"unitInput\" type=\"text\" class=\"form-control unit text-center\" placeholder=\"unità\" [(ngModel)]=\"Service.unit\" [ngModelOptions]=\"{standalone: true}\">\n          </span>\n        </div>\n        <div class=\"form-group error\">\n          <span class=\"error-text\" *ngIf=\"state.pricing_error\">{{state.pricing_error}}</span>\n        </div>\n        <div class=\"actions\">\n          <div class=\"form-group text-center\">\n            <button type=\"button\" class=\"btn btn-success\" (click)=\"nextStep()\">Avanti</button>\n          </div>\n        </div>\n      </form>\n    </div>\n  </div>\n  <div class=\"insert\" *ngIf=\"step==='picture'\">\n    <div class=\"insert-header\">\n      <h1>Inserisci un'immagine</h1>\n      <p>Usa un'immagine significativo per il tuo servizio.</p>\n    </div>\n    <div class=\"insert-body\">\n      <form>\n        <div class=\"picture-container\">\n          <input type=\"file\" (change)=\"selectServicePicture($event)\" style=\"display: none;\" #file>\n          <div class=\"service-picture\" (click)=\"file.click()\">\n            <i *ngIf=\"!logo\" class=\"fa fa-camera\" aria-hidden=\"true\"></i>\n            <img class=\"img-responsive\" [src]=\"logo\" alt=\"\">\n          </div>\n        </div>\n        <div class=\"form-group error\">\n          <span class=\"error-text\" *ngIf=\"state.picture_file_error\">{{state.picture_file_error}}</span>\n        </div>\n        <div class=\"actions\">\n          <div class=\"form-group text-center\">\n            <button type=\"button\" id=\"next\" class=\"btn btn-success\" (click)=\"nextStep()\"><i class=\"fa fa-circle-o-notch animate\" *ngIf=\"state.picture_file_loading\"></i> Continua</button>\n          </div>\n        </div>\n      </form>\n    </div>\n  </div>\n  <div class=\"insert\" *ngIf=\"step==='end'\">\n    <div class=\"insert-header\">\n      <h1>Complimenti</h1>\n      <p>Il tuo servizio è stato pubblicato con successo.</p>\n    </div>\n    <div class=\"insert-body\">\n      <div class=\"form-group text-center\">\n        <button type=\"button\" id=\"next\" class=\"btn btn-success\" (click)=\"nextStep()\">Avanti</button>\n      </div>\n    </div>\n  </div>\n\n  <div class=\"insert\" *ngIf=\"step==='register'\">\n    <div class=\"insert-header\">\n      <h1>Ultimo passo</h1>\n      <p>Registrazione</p>\n    </div>\n    <div class=\"insert-body\">\n      <form>\n        <div class=\"row\">\n          <div class=\"col-md-4\">\n            <div class=\"picture-container\">\n              <input type=\"file\" (change)=\"selectProfilePicture($event)\" style=\"display: none;\" #file>\n              <div class=\"profile-picture\" (click)=\"file.click()\">\n                <i *ngIf=\"!profile_picture.file\" class=\"fa fa-camera\" aria-hidden=\"true\"></i>\n                <img class=\"img-responsive\" [src]=\"profile_picture.url\" alt=\"Inserisci immagine profilo\">\n              </div>\n            </div>\n          </div>\n          <div class=\"col-md-8\">\n            <div class=\"form-group\">\n              <label for=\"firstNameInput\">Nome</label>\n              <input id=\"firstNameInput\" type=\"firstname\" name=\"firstnam\" placeholder=\"Nome\" class=\"form-control\" [ngClass]=\"{'error-input': signup_state.first_name_error}\" [(ngModel)]=\"signupParameters.firstname\" [ngModelOptions]=\"{standalone: true}\">\n              <small class=\"error-message\" *ngIf=\"signup_state.first_name_error\">{{signup_state.first_name_error}}</small>\n            </div>\n            <div class=\"form-group\">\n              <label for=\"lastNameInput\">Cognome</label>\n              <input id=\"lastNameInput\" type=\"lastname\" name=\"lastname\" placeholder=\"Cognome\" class=\"form-control\" [ngClass]=\"{'error-input': signup_state.last_name_error}\" [(ngModel)]=\"signupParameters.lastname\" [ngModelOptions]=\"{standalone: true}\">\n              <small class=\"error-message\" *ngIf=\"signup_state.last_name_error\">{{signup_state.last_name_error}}</small>\n            </div>\n          </div>\n        </div>\n        <div class=\"form-group\">\n          <label for=\"emailInput\">Email</label>\n          <input id=\"emailInput\" type=\"email\" name=\"email\" placeholder=\"La tua mail\" class=\"form-control\" [ngClass]=\"{'error-input': signup_state.email_error}\" [(ngModel)]=\"signupParameters.email\" [ngModelOptions]=\"{standalone: true}\">\n          <small class=\"error-message\" *ngIf=\"signup_state.email_error\">{{signup_state.email_error}}</small>\n        </div>\n        <div class=\"form-group\">\n          <label for=\"phone\">Telefono</label>\n          <input id=\"phoneInput\" field=\"phone\" type=\"text\" name=\"phone\" placeholder=\"Numero di telefono\" class=\"form-control\" [ngClass]=\"{'error-input': signup_state.phone_error}\" [(ngModel)]=\"signupParameters.phone\" [ngModelOptions]=\"{standalone: true}\">\n          <small class=\"error-message\" *ngIf=\"signup_state.phone_error\">{{signup_state.phone_error}}</small>\n        </div>\n        <div class=\"form-group\">\n          <label for=\"passwordInput\">Crea una password</label>\n          <input id=\"passwordInput\" type=\"password\" name=\"password\" placeholder=\"Password\" class=\"form-control\" [ngClass]=\"{'error-input': signup_state.password_error}\" [(ngModel)]=\"signupParameters.password\" [ngModelOptions]=\"{standalone: true}\">\n          <small class=\"error-message\" *ngIf=\"signup_state.password_error\">{{signup_state.password_error}}</small>\n        </div>\n        <div class=\"form-group\" *ngIf=\"signup_state.error_message\">\n          <div class=\"alert alert-danger\" role=\"alert\">{{signup_state.error_message}}</div>\n        </div>\n        <div class=\"form-group text-center\">\n          <button type=\"button\" class=\"btn btn-success\" (click)=\"signup()\"><i class=\"fa fa-circle-o-notch animate\" *ngIf=\"signup_state.loading\"></i>{{signup_state.button_title}}</button>\n        </div>\n        <div class=\"form-group footer-group\">\n          <span class=\"text\">Sei gia registrato?</span>\n          <span class=\"text enter\" (click)=\"changeToLogin()\">Entra</span>\n          <span class=\"text\">Continuando dichiari di aver letto e accetti le <a routerlink=\"/info/legal\" href=\"/info/legal\" target=\"_blank\">condizioni generali e l’informativa sulla privacy</a></span>\n        </div>\n      </form>\n    </div>\n  </div>\n  <div class=\"insert\" *ngIf=\"step==='login'\">\n    <div class=\"insert-header\">\n      <h1>Ultimo passo</h1>\n      <p>Entra</p>\n    </div>\n    <div class=\"insert-body\">\n      <form>\n        <div class=\"form-group\">\n          <label for=\"emailInput\">Email</label>\n          <input type=\"email\" placeholder=\"La tua mail\" class=\"form-control\" [ngClass]=\"{'error-input': login_state.email_error}\" id=\"emailInput\" [(ngModel)]=\"loginParameters.email\" [ngModelOptions]=\"{standalone: true}\">\n          <small class=\"error-message\" *ngIf=\"login_state.email_error\">{{login_state.email_error}}</small>\n        </div>\n        <div class=\"form-group\">\n          <label for=\"passwordInput\">Password</label>\n          <input type=\"password\" placeholder=\"Password\" class=\"form-control\" [ngClass]=\"{'error-input': login_state.password_error}\" id=\"passwordInput\" [(ngModel)]=\"loginParameters.password\" [ngModelOptions]=\"{standalone: true}\">\n          <small class=\"error-message\" *ngIf=\"login_state.password_error\">{{login_state.password_error}}</small>\n        </div>\n        <div class=\"form-group\" *ngIf=\"login_state.error_message\">\n          <div class=\"alert alert-danger\" role=\"alert\">{{login_state.error_message}}</div>\n        </div>\n        <div class=\"form-group text-center\">\n          <button type=\"button\" id=\"next\" class=\"btn btn-success\" (click)=\"login()\"><i class=\"fa fa-circle-o-notch animate\" *ngIf=\"login_state.loading\"></i>{{login_state.button_title}}</button>\n        </div>\n        <div class=\"form-group footer-group\">\n          <span class=\"text password-forget\" (click)=\"changeToRecoverPassword()\">Hai dimenticato la password?</span>\n          <span class=\"text\">Non sei ancora registrato?</span>\n          <span class=\"text enter\" (click)=\"changeToSignup()\">Registrati</span>\n        </div>\n      </form>\n    </div>\n  </div>\n  <div class=\"insert\" *ngIf=\"step==='recover'\">\n    <div class=\"insert-header\">\n      <h1>Recupera password</h1>\n      <p>Ti manderemo una mail con il link per cambiare la password.</p>\n    </div>\n    <div class=\"insert-body\">\n      <form>\n        <div class=\"form-group\">\n          <label for=\"emailInput\">Email</label>\n          <input type=\"email\" placeholder=\"La tua mail\" class=\"form-control\" [ngClass]=\"{'error-input': login_state.email_error}\" id=\"emailInput\" [(ngModel)]=\"loginParameters.email\" [ngModelOptions]=\"{standalone: true}\">\n          <small class=\"error-message\" *ngIf=\"login_state.email_error\">{{login_state.email_error}}</small>\n        </div>\n        <div class=\"form-group text-center\">\n          <button type=\"button\" id=\"next\" class=\"btn btn-success\" (click)=\"recoverPassword(loginParameters.email)\"><i class=\"fa fa-circle-o-notch animate\" *ngIf=\"login_state.loading\"></i>Recupera</button>\n        </div>\n        <div class=\"form-group footer-group\">\n          <span class=\"text enter\" (click)=\"changeToLogin()\">Accedi</span>\n        </div>\n      </form>\n    </div>\n  </div>\n\n  <!-- NOT USED -->\n  <div class=\"insert\" *ngIf=\"step==='unit'\">\n    <div class=\"insert-header\">\n      <h1>Inserisci unità di misura</h1>\n      <p>In base che cosa decidi il costo del tuo servizio?</p>\n    </div>\n    <div class=\"insert-body\">\n      <form (keyup.enter)=\"nextStep()\">\n        <span class=\"input-group\">\n          <input id=\"unitInput\" type=\"text\" class=\"form-control unit text-center\" placeholder=\"Ora, giorno, metro quadro o altro?\" [(ngModel)]=\"Service.unit\" [ngModelOptions]=\"{standalone: true}\">\n        </span>\n        <div class=\"form-group text-center\">\n          <button type=\"button\" id=\"next\" class=\"btn btn-success\" (click)=\"nextStep()\">Avanti</button>\n        </div>\n      </form>\n    </div>\n  </div>\n  <div class=\"insert\" *ngIf=\"step==='price'\">\n    <div class=\"insert-header\">\n      <h1>Inserisci un prezzo</h1>\n      <p>Qual è il prezzo del servizio per l'unità di misura che hai scelto?</p>\n    </div>\n    <div class=\"insert-body\">\n      <form (keyup.enter)=\"nextStep()\">\n        <div class=\"input-group\">\n          <input id=\"pricePerUnitInput\" type=\"text\" class=\"form-control price text-center\" placeholder=\"0 €\" [(ngModel)]=\"Service.price\" [ngModelOptions]=\"{standalone: true}\">\n        </div>\n        <div class=\"form-group text-center\">\n          <button type=\"button\" id=\"next\" class=\"btn btn-success\" (click)=\"nextStep()\">Avanti</button>\n        </div>\n      </form>\n    </div>\n  </div>\n  <div class=\"insert\" *ngIf=\"step==='preview'\">\n    <div class=\"insert-header\">\n      <h1>Anteprima</h1>\n      <p></p>\n    </div>\n    <div class=\"insert-body\">\n      <form>\n        <div class=\"input-group\">\n          <input type=\"text\" class=\"form-control\" placeholder=\"titolo\" [ngStyle]=\"{'text-align' : 'center'}\" [(ngModel)]=\"Service.title\" [ngModelOptions]=\"{standalone: true}\">\n        </div>\n        <span class=\"input-group\">\n          <input id=\"unitInput\" type=\"text\" class=\"form-control unit text-center\" placeholder=\"Ora, giorno, metro quadro o altro?\" [(ngModel)]=\"Service.unit\" [ngModelOptions]=\"{standalone: true}\">\n        </span>\n        <div class=\"input-group\">\n          <input id=\"pricePerUnitInput\" type=\"text\" class=\"form-control price text-center\" placeholder=\"0\" [(ngModel)]=\"Service.price\" [ngModelOptions]=\"{standalone: true}\">\n        </div>\n        <div class=\"picture-container\">\n          <input type=\"file\" (change)=\"selectPicture($event)\" style=\"display: none;\" #file>\n          <div class=\"picture\" (click)=\"file.click()\">\n            <i *ngIf=\"!logo\" class=\"fa fa-camera\" aria-hidden=\"true\"></i>\n            <img class=\"img-responsive\" [src]=\"logo\" alt=\"Inserisci immagine\">\n          </div>\n        </div>\n        <div class=\"form-group text-center\">\n          <button type=\"button\" id=\"next\" class=\"btn btn-success\" (click)=\"nextStep()\">Pubblica</button>\n        </div>\n      </form>\n    </div>\n  </div>\n</div>\n"
+module.exports = "<div class=\"insert-container\">\n  <div class=\"progress-container\" *ngIf=\"step\">\n    <div class=\"progress\"\n    [ngStyle]=\"{'width': setProgressWidth()}\"></div>\n  </div>\n  <button type=\"button\" id=\"next\" class=\"btn btn-success back\" (click)=\"undoStep()\" *ngIf=\"step!=='title' && step!=='end'\">Indietro</button>\n\n  <!-- <div class=\"insert\" *ngIf=\"step==='intro'\">\n    <div class=\"insert-header\">\n      <h1>Inserisci un <span class=\"one\">servizio</span> che sai fare e inizia a <span class=\"two\">guadagnare</span>.</h1>\n    </div>\n    <div class=\"insert-body\">\n      <div class=\"category-tags\">\n        <span class=\"category-example\">Artigianato</span>\n        <span class=\"category-example\">Decorazione</span>\n        <span class=\"category-example\">Edilizia</span>\n        <span class=\"category-example\">Design interno</span>\n        <span class=\"category-example\">Fotografia</span>\n        <span class=\"category-example\">Salute e Benessere</span>\n        <span class=\"category-example\">Hobby</span>\n        <span class=\"category-example\">Animali</span>\n        <span class=\"category-example\">Pulizie</span>\n        <span class=\"category-example\">Puoi fare altro?</span>\n      </div>\n      <div class=\"actions\">\n        <div class=\"form-group text-center\">\n          <button type=\"button\" class=\"btn btn-success\" (click)=\"nextStep()\">Inizia ora</button>\n        </div>\n      </div>\n    </div>\n  </div> -->\n  <div class=\"insert\" *ngIf=\"step==='title'\">\n    <div class=\"insert-header\">\n      <h1>Che servizio offri?</h1>\n      <p>Inserisci il titolo e la descrizione del servizio o lavoro che offri.</p>\n    </div>\n    <div class=\"insert-body\">\n      <form (keyup.enter)=\"nextStep()\">\n        <div class=\"input-group\">\n          <input id=\"titleInput\" type=\"text\" class=\"form-control\" placeholder=\"titolo\" [autofocus]=\"!Service.title\" [ngStyle]=\"{'text-align' : 'center'}\" [(ngModel)]=\"Service.title\" [ngModelOptions]=\"{standalone: true}\">\n        </div>\n        <div class=\"input-group\">\n          <textarea id=\"descriptionInput\" class=\"form-control\" placeholder=\"Inserisci una descrizione\" rows=\"3\" [(ngModel)]=\"Service.description\" [ngModelOptions]=\"{standalone: true}\"></textarea>\n        </div>\n        <div class=\"form-group error\">\n          <span class=\"error-text\" *ngIf=\"state.title_error\">{{state.title_error}}</span>\n        </div>\n        <div class=\"actions\">\n          <div class=\"form-group text-center\">\n            <button type=\"button\" class=\"btn btn-success\" (click)=\"nextStep()\">Avanti</button>\n          </div>\n        </div>\n      </form>\n    </div>\n  </div>\n  <div class=\"insert\" *ngIf=\"step==='pricing'\">\n    <div class=\"insert-header\">\n      <h1>Come vuoi vendere il tuo servizio?</h1>\n      <p>Inserisci il prezzo e l'unita del servizio che vuoi vendere.</p>\n      <!-- <p>Inserisci il prezzo (IVA inclusa) per unità di misura.</p> -->\n      <!-- <p>Esempio: €23 x ora, €190 x giorno</p> -->\n    </div>\n    <div class=\"insert-body\">\n      <form (keyup.enter)=\"nextStep()\">\n        <div class=\"price-per-unit\">\n          <div class=\"input-group\">\n            <span class=\"input-group-addon euro\">€</span>\n            <input id=\"pricePerUnitInput\" type=\"number\" class=\"form-control price text-center\" placeholder=\"\" [autofocus]=\"!Service.price\" [(ngModel)]=\"Service.price\" (keyup)=\"updatePrice()\" (change)=\"updatePrice()\"  [ngModelOptions]=\"{standalone: true}\">\n          </div>\n          <span class=\"per\">x</span>\n          <span class=\"input-group\">\n            <input id=\"unitInput\" type=\"text\" class=\"form-control unit text-center\" placeholder=\"unità\" [(ngModel)]=\"Service.unit\" [ngModelOptions]=\"{standalone: true}\">\n          </span>\n        </div>\n        <div class=\"form-group error\">\n          <span class=\"error-text\" *ngIf=\"state.pricing_error\">{{state.pricing_error}}</span>\n        </div>\n        <div class=\"actions\">\n          <div class=\"form-group text-center\">\n            <button type=\"button\" class=\"btn btn-success\" (click)=\"nextStep()\">Avanti</button>\n          </div>\n        </div>\n      </form>\n    </div>\n  </div>\n  <div class=\"insert\" *ngIf=\"step==='picture'\">\n    <div class=\"insert-header\">\n      <h1>Inserisci un'immagine</h1>\n      <p>Usa un'immagine significativo per il tuo servizio.</p>\n    </div>\n    <div class=\"insert-body\">\n      <form>\n        <div class=\"picture-container\">\n          <input type=\"file\" (change)=\"selectServicePicture($event)\" style=\"display: none;\" #file>\n          <div class=\"service-picture\" (click)=\"file.click()\">\n            <i *ngIf=\"!logo\" class=\"fa fa-camera\" aria-hidden=\"true\"></i>\n            <img class=\"img-responsive\" [src]=\"logo\" alt=\"\">\n          </div>\n        </div>\n        <div class=\"form-group error\">\n          <span class=\"error-text\" *ngIf=\"state.picture_file_error\">{{state.picture_file_error}}</span>\n        </div>\n        <div class=\"actions\">\n          <div class=\"form-group text-center\">\n            <button type=\"button\" id=\"next\" class=\"btn btn-success\" (click)=\"nextStep()\"><i class=\"fa fa-circle-o-notch animate\" *ngIf=\"state.picture_file_loading\"></i> Continua</button>\n          </div>\n        </div>\n      </form>\n    </div>\n  </div>\n  <div class=\"insert\" *ngIf=\"step==='end'\">\n    <div class=\"insert-header\">\n      <h1>Complimenti</h1>\n      <p>Il tuo servizio è stato pubblicato con successo.</p>\n    </div>\n    <div class=\"insert-body\">\n      <div class=\"form-group text-center\">\n        <button type=\"button\" id=\"next\" class=\"btn btn-success\" (click)=\"nextStep()\">Avanti</button>\n      </div>\n    </div>\n  </div>\n\n  <div class=\"insert\" *ngIf=\"step==='register'\">\n    <div class=\"insert-header\">\n      <h1>Ultimo passo</h1>\n      <p>Registrazione</p>\n    </div>\n    <div class=\"insert-body\">\n      <form>\n        <div class=\"row\">\n          <div class=\"col-md-4\">\n            <div class=\"picture-container\">\n              <input type=\"file\" (change)=\"selectProfilePicture($event)\" style=\"display: none;\" #file>\n              <div class=\"profile-picture\" (click)=\"file.click()\">\n                <i *ngIf=\"!profile_picture.file\" class=\"fa fa-camera\" aria-hidden=\"true\"></i>\n                <img class=\"img-responsive\" [src]=\"profile_picture.url\" alt=\"Inserisci immagine profilo\">\n              </div>\n            </div>\n          </div>\n          <div class=\"col-md-8\">\n            <div class=\"form-group\">\n              <label for=\"firstNameInput\">Nome</label>\n              <input id=\"firstNameInput\" type=\"firstname\" name=\"firstnam\" placeholder=\"Nome\" class=\"form-control\" [ngClass]=\"{'error-input': signup_state.first_name_error}\" [(ngModel)]=\"signupParameters.firstname\" [ngModelOptions]=\"{standalone: true}\">\n              <small class=\"error-message\" *ngIf=\"signup_state.first_name_error\">{{signup_state.first_name_error}}</small>\n            </div>\n            <div class=\"form-group\">\n              <label for=\"lastNameInput\">Cognome</label>\n              <input id=\"lastNameInput\" type=\"lastname\" name=\"lastname\" placeholder=\"Cognome\" class=\"form-control\" [ngClass]=\"{'error-input': signup_state.last_name_error}\" [(ngModel)]=\"signupParameters.lastname\" [ngModelOptions]=\"{standalone: true}\">\n              <small class=\"error-message\" *ngIf=\"signup_state.last_name_error\">{{signup_state.last_name_error}}</small>\n            </div>\n          </div>\n        </div>\n        <div class=\"form-group\">\n          <label for=\"emailInput\">Email</label>\n          <input id=\"emailInput\" type=\"email\" name=\"email\" placeholder=\"La tua mail\" class=\"form-control\" [ngClass]=\"{'error-input': signup_state.email_error}\" [(ngModel)]=\"signupParameters.email\" [ngModelOptions]=\"{standalone: true}\">\n          <small class=\"error-message\" *ngIf=\"signup_state.email_error\">{{signup_state.email_error}}</small>\n        </div>\n        <div class=\"form-group\">\n          <label for=\"phone\">Telefono</label>\n          <input id=\"phoneInput\" field=\"phone\" type=\"text\" name=\"phone\" placeholder=\"Numero di telefono\" class=\"form-control\" [ngClass]=\"{'error-input': signup_state.phone_error}\" [(ngModel)]=\"signupParameters.phone\" [ngModelOptions]=\"{standalone: true}\">\n          <small class=\"error-message\" *ngIf=\"signup_state.phone_error\">{{signup_state.phone_error}}</small>\n        </div>\n        <div class=\"form-group\">\n          <label for=\"passwordInput\">Crea una password</label>\n          <input id=\"passwordInput\" type=\"password\" name=\"password\" placeholder=\"Password\" class=\"form-control\" [ngClass]=\"{'error-input': signup_state.password_error}\" [(ngModel)]=\"signupParameters.password\" [ngModelOptions]=\"{standalone: true}\">\n          <small class=\"error-message\" *ngIf=\"signup_state.password_error\">{{signup_state.password_error}}</small>\n        </div>\n        <div class=\"form-group\" *ngIf=\"signup_state.error_message\">\n          <div class=\"alert alert-danger\" role=\"alert\">{{signup_state.error_message}}</div>\n        </div>\n        <div class=\"form-group text-center\">\n          <button type=\"button\" class=\"btn btn-success\" (click)=\"signup()\"><i class=\"fa fa-circle-o-notch animate\" *ngIf=\"signup_state.loading\"></i>{{signup_state.button_title}}</button>\n        </div>\n        <div class=\"form-group footer-group\">\n          <span class=\"text\">Sei gia registrato?</span>\n          <span class=\"text enter\" (click)=\"changeToLogin()\">Entra</span>\n          <span class=\"text\">Continuando dichiari di aver letto e accetti le <a routerlink=\"/info/legal\" href=\"/info/legal\" target=\"_blank\">condizioni generali e l’informativa sulla privacy</a></span>\n        </div>\n      </form>\n    </div>\n  </div>\n  <div class=\"insert\" *ngIf=\"step==='login'\">\n    <div class=\"insert-header\">\n      <h1>Ultimo passo</h1>\n      <p>Entra</p>\n    </div>\n    <div class=\"insert-body\">\n      <form>\n        <div class=\"form-group\">\n          <label for=\"emailInput\">Email</label>\n          <input type=\"email\" placeholder=\"La tua mail\" class=\"form-control\" [ngClass]=\"{'error-input': login_state.email_error}\" id=\"emailInput\" [(ngModel)]=\"loginParameters.email\" [ngModelOptions]=\"{standalone: true}\">\n          <small class=\"error-message\" *ngIf=\"login_state.email_error\">{{login_state.email_error}}</small>\n        </div>\n        <div class=\"form-group\">\n          <label for=\"passwordInput\">Password</label>\n          <input type=\"password\" placeholder=\"Password\" class=\"form-control\" [ngClass]=\"{'error-input': login_state.password_error}\" id=\"passwordInput\" [(ngModel)]=\"loginParameters.password\" [ngModelOptions]=\"{standalone: true}\">\n          <small class=\"error-message\" *ngIf=\"login_state.password_error\">{{login_state.password_error}}</small>\n        </div>\n        <div class=\"form-group\" *ngIf=\"login_state.error_message\">\n          <div class=\"alert alert-danger\" role=\"alert\">{{login_state.error_message}}</div>\n        </div>\n        <div class=\"form-group text-center\">\n          <button type=\"button\" id=\"next\" class=\"btn btn-success\" (click)=\"login()\"><i class=\"fa fa-circle-o-notch animate\" *ngIf=\"login_state.loading\"></i>{{login_state.button_title}}</button>\n        </div>\n        <div class=\"form-group footer-group\">\n          <span class=\"text password-forget\"><a routerlink=\"/account/password_recovery\" href=\"/account/password_recovery\" target=\"_blank\">Hai dimenticato la password?</a></span>\n          <span class=\"text\">Non sei ancora registrato?</span>\n          <span class=\"text enter\" (click)=\"changeToSignup()\">Registrati</span>\n        </div>\n      </form>\n    </div>\n  </div>\n\n  <!-- NOT USED -->\n  <div class=\"insert\" *ngIf=\"step==='unit'\">\n    <div class=\"insert-header\">\n      <h1>Inserisci unità di misura</h1>\n      <p>In base che cosa decidi il costo del tuo servizio?</p>\n    </div>\n    <div class=\"insert-body\">\n      <form (keyup.enter)=\"nextStep()\">\n        <span class=\"input-group\">\n          <input id=\"unitInput\" type=\"text\" class=\"form-control unit text-center\" placeholder=\"Ora, giorno, metro quadro o altro?\" [(ngModel)]=\"Service.unit\" [ngModelOptions]=\"{standalone: true}\">\n        </span>\n        <div class=\"form-group text-center\">\n          <button type=\"button\" id=\"next\" class=\"btn btn-success\" (click)=\"nextStep()\">Avanti</button>\n        </div>\n      </form>\n    </div>\n  </div>\n  <div class=\"insert\" *ngIf=\"step==='price'\">\n    <div class=\"insert-header\">\n      <h1>Inserisci un prezzo</h1>\n      <p>Qual è il prezzo del servizio per l'unità di misura che hai scelto?</p>\n    </div>\n    <div class=\"insert-body\">\n      <form (keyup.enter)=\"nextStep()\">\n        <div class=\"input-group\">\n          <input id=\"pricePerUnitInput\" type=\"text\" class=\"form-control price text-center\" placeholder=\"0 €\" [(ngModel)]=\"Service.price\" [ngModelOptions]=\"{standalone: true}\">\n        </div>\n        <div class=\"form-group text-center\">\n          <button type=\"button\" id=\"next\" class=\"btn btn-success\" (click)=\"nextStep()\">Avanti</button>\n        </div>\n      </form>\n    </div>\n  </div>\n  <div class=\"insert\" *ngIf=\"step==='preview'\">\n    <div class=\"insert-header\">\n      <h1>Anteprima</h1>\n      <p></p>\n    </div>\n    <div class=\"insert-body\">\n      <form>\n        <div class=\"input-group\">\n          <input type=\"text\" class=\"form-control\" placeholder=\"titolo\" [ngStyle]=\"{'text-align' : 'center'}\" [(ngModel)]=\"Service.title\" [ngModelOptions]=\"{standalone: true}\">\n        </div>\n        <span class=\"input-group\">\n          <input id=\"unitInput\" type=\"text\" class=\"form-control unit text-center\" placeholder=\"Ora, giorno, metro quadro o altro?\" [(ngModel)]=\"Service.unit\" [ngModelOptions]=\"{standalone: true}\">\n        </span>\n        <div class=\"input-group\">\n          <input id=\"pricePerUnitInput\" type=\"text\" class=\"form-control price text-center\" placeholder=\"0\" [(ngModel)]=\"Service.price\" [ngModelOptions]=\"{standalone: true}\">\n        </div>\n        <div class=\"picture-container\">\n          <input type=\"file\" (change)=\"selectPicture($event)\" style=\"display: none;\" #file>\n          <div class=\"picture\" (click)=\"file.click()\">\n            <i *ngIf=\"!logo\" class=\"fa fa-camera\" aria-hidden=\"true\"></i>\n            <img class=\"img-responsive\" [src]=\"logo\" alt=\"Inserisci immagine\">\n          </div>\n        </div>\n        <div class=\"form-group text-center\">\n          <button type=\"button\" id=\"next\" class=\"btn btn-success\" (click)=\"nextStep()\">Pubblica</button>\n        </div>\n      </form>\n    </div>\n  </div>\n</div>\n"
 
 /***/ },
 
-/***/ 726:
+/***/ 725:
 /***/ function(module, exports) {
 
 module.exports = "<div class=\"legal-container\">\n  <div class=\"legal-content\">\n    <div class=\"container\">\n      <h1>Privacy policy</h1>\n      <p><strong>1. INFORMAZIONI RACCOLTE DA STARBOOK</strong></p>\n      <p>1.1. Nel visitare il Sito o nell’utilizzare il Servizio per inoltrare un Ordine ad un professionista tramite il Sito, è possibile che venga richiesto di fornire informazioni che riguardano l’utente, ivi incluso nome, recapiti (quali numero di telefono fisso, di telefono mobile e indirizzo e-mail) e dati relativi al pagamento (quali i dati della carta di credito o di debito). STARBOOK può inoltre raccogliere informazioni relative all’utilizzo del Sito e del Servizio da parte dell’utente nonché può raccogliere informazioni relative all’utente a partire dai materiali (quali messaggi e recensioni) che l’utente stesso pubblica sul Sito o trasmette al Sito o che invia a STARBOOK tramite e-mail o per lettera.</p>\n      <p><strong>2. USO DELLE INFORMAZIONI</strong></p>\n      <p>2.1. Le informazioni degli utenti consentono a STARBOOK di fornire agli utenti stessi l’accesso alle sezioni del Sito cui sono interessati e di fornire il Servizio. Esse mettono inoltre STARBOOK in grado di fatturare gli importi dovuti e consentono a STARBOOK o ad un professionista cui l’utente abbia inoltrato un Ordine di contattare l’utente in merito al Servizio, ove necessario. Ad esempio, STARBOOK e/o il professionista possono utilizzare i dati dell’utente per fornire allo stesso aggiornamenti sullo stato dell'Ordine o altre informazioni relative alla stessa mediante e-mail, per telefono fisso o mobile o tramite messaggistica mobile. Inoltre, STARBOOK utilizza ed analizza le informazioni raccolte al fine di gestire, sostenere, migliorare e sviluppare la propria attività imprenditoriale, per eventuali altre finalità statistiche o analitiche nonché per contribuire alla prevenzione di frodi. Nei casi in cui sia opportuno, ora e in futuro, l’utente potrebbe avere la capacità di esprimere le proprie preferenze riguardo all’utilizzo dei propri dati secondo quanto previsto nella presente Informativa in materia di Privacy e di esercitarla tramite la metodologia prescelta dall’utente per l’utilizzo del Servizio, ad esempio, in modalità mobile, tramite applicazioni mobili o l’eventuale rappresentazione del Sito.<br>\n      2.2. STARBOOK può utilizzare le informazioni per contattare il cliente al fine di conoscere, con il suo consenso, le sue opinioni sul Servizio ed occasionalmente di informarlo delle modifiche o degli sviluppi importanti che riguardano il Sito o il Servizio suddetto.<br>\n      2.3. STARBOOK potrà utilizzare l’indirizzo email fornito dall’utente del Sito al momento dell’acquisto di prodotti in vendita sul Sito per far conoscere allo stesso utente i prodotti e servizi di STARBOOK, simili a quelli già acquistati, che possano riscuotere il suo interesse. L’utente potrà in ogni momento, gratuitamente e con effetto immediato opporsi all’utilizzo del proprio indirizzo email per la ricezione di tale materiale informativo cliccando sull’apposito link inserito in calce a ciascuna email ricevuta. In alternativa, l’utente potrà opporsi a tale trattamento anche modificando le preferenze dalla relativa sezione del proprio profilo. Per gestire le notifiche, l’utente dovrà accedere alla pagina delle impostazioni del suo telefono o tablet e modificare l'autorizzazione alle notifiche per l'applicazione STARBOOK. In caso di disattivazione delle notifiche, l’utente non potrà più ricevere aggiornamenti sui suoi ordini via notifiche.<br>\n      2.4. Se consentito dall’utente del Sito, STARBOOK potrà utilizzare i dati per far conoscere all’utente suddetto gli altri prodotti e servizi di STARBOOK che possano riscuotere il suo interesse, ivi inclusi servizi che possano essere oggetto di direct marketing mediante sistemi di messaggistica tramite cellulare e attraverso le notifiche.<br>\n      2.5. Qualora l’utente non desideri più che i suoi dati siano utilizzati da STARBOOK nei modi sopra indicati o cambi idea riguardo alla possibilità di essere contattato in futuro, si prega di farlo sapere a STARBOOK utilizzando i recapiti indicati al successivo articolo 8 e/o modificando corrispondentemente il proprio profilo.<br>\n      2.6. Qualora l’utente non desideri più che i suoi dati siano utilizzati da STARBOOK nei modi sopra indicati o cambi idea riguardo alla possibilità di essere contattato in futuro, si prega di opporsi al trattamento nei modi su indicati. In mancanza, è possibile informare in ogni momento farlo sapere a STARBOOK della propria decisione, utilizzando i recapiti indicati al successivo articolo 8 e/o modificando corrispondentemente il proprio profilo.</p>\n\n      <h1>Condizioni d'utilizzo</h1>\n      <p><strong>1. ACCESSO E REGOLAMENTO DEL SITO STARBOOK</strong></p>\n      <p><strong>1.1. Accesso al Sito: </strong>E’ possibile avere accesso ad alcune aree del Sito web anche senza effettuare un Ordine o senza procedere alla registrazione dei propri dati. La maggior parte delle aree del Sito sono accessibili a chiunque.<br>\n      <strong>1.2. Accettazione del Regolamento del Sito:</strong> La navigazione in qualunque area del Sito comporta l'accettazione del Regolamento del Sito. I visitatori ed utenti del Sito che rifiutino di accettare il Regolamento del Sito sono tenuti a lasciare immediatamente il Sito e non avranno la possibilità di ordinare servizi tramite il Sito stesso.<br>\n      <strong>1.3. Modifiche al Regolamento del Sito:</strong> STARBOOK ha facoltà di modificare il presente Regolamento del Sito in qualsiasi momento. Occorre pertanto controllare periodicamente il Regolamento del Sito in vigore al momento poiché essa vincola i visitatori e gli utenti del Sito. I visitatori e utenti del Sito sono tenuti al rispetto delle policy e della disciplina in vigore al momento in cui effettuano un Ordine tramite STARBOOK.<br>\n      <strong>1.4. Responsabilità:</strong> Spetta ai visitatori e utenti del Sito predisporre quanto necessario per avere accesso al Sito stesso. Inoltre, i visitatori e utenti del Sito sono tenuti a garantire che tutti coloro che hanno accesso al Sito tramite la loro connessione ad Internet siano a conoscenza del presente Regolamento del Sito e la rispettino.</p>\n      <p><strong>2. STATUS DELL’UTENTE DEL SITO STARBOOK</strong></p>\n      <p><strong>2.1. Capacità giuridica ed età: </strong>Effettuando un Ordine tramite il Sito, l’utente garantisce:<br>\n      <strong>2.1.1.</strong> di aver la capacità di agire e concludere contratti giuridicamente vincolanti<br>\n      <strong>2.1.2.</strong> di avere compiuto 18 anni</p>\n      <p><strong>3. MODALITÀ DI EMISSIONE DELL ORDINE E DI ELABORAZIONE DELL’ORDINE</strong></p>\n      <p><strong>3.1. Compilazione dell’Ordine: </strong>Dopo aver selezionato il servizio che intende ordinare da un professionista prescelto dalla piattaforma ed aver fornito le informazioni, l’utente ha facoltà di effettuare l’Ordine cliccando sul, o selezionando il, pulsante “Procedi con l'ordine” e “Procedi con l'acquisto”. Si ricorda che è importante controllare tutte le informazioni immesse e correggere eventuali errori prima di cliccare sul pulsante o di selezionarlo poiché, dopo averlo fatto, il procedimento di elaborazione dell’Ordine ha inizio e non è più possibile correggere eventuali errori.<br>\n      <strong>3.2. Modifica o annullamento dell’Ordine: </strong>Una volta che l’Ordine è stato inoltrato e il pagamento è stato autorizzato non è più possibile modificare o annullare l’Ordine e non si ha diritto ad alcun rimborso. Ove desideri modificare o annullare l’Ordine, l’utente può rivolgersi al Servizio Clienti, il quale tenterà di contattare il professionista al fine di comunicargli la richiesta dell’utente. Non vi è alcuna assicurazione, tuttavia, riguardo al fatto che il Servizio Clienti sarà in grado di contattare il professionista o che il professionista accetterà le richieste dell’utente in quanto il processo di elaborazione dell’Ordine potrebbe avere già avuto inizio. Il cliente, ai sensi dell'art. 55 lett. a) del Codice del Consumo, non ha diritto a recedere dagli Ordini effettuati una volta che il bene o servizio richiesto è stato consegnato.<br>\n      <strong>3.3. Autorizzazione al pagamento:</strong> In caso di mancata autorizzazione relativa ad un qualsiasi pagamento, l’Ordine non viene elaborato o non viene comunicato alla piattaforma.<br>\n      <strong>3.4. Elaborazione dell’Ordine e rifiuto di Ordini da parte del professionista: </strong>Alla ricezione dell’Ordine, STARBOOK ne inizia l’elaborazione con la trasmissione dello stesso ai professionisti interessati e notifica all’utente, tramite sms e mail, che l’Ordine è stato assegnato. Si specifica che qualsiasi pagina di conferma che l’utente possa visualizzare sul Sito e qualsiasi conferma di Ordine che l’utente stesso riceva tramite e-mail indicano esclusivamente che l'Ordine dell’utente è stato assegnato o è in corso. STARBOOK incoraggia tutti i propri professionisti ad accettare tutti gli Ordini ed a comunicare tempestivamente eventuali rifiuti, e comunica all’utente (generalmente tramite e-mail) non appena sia ragionevolmente possibile ogni eventuale rifiuto da parte del professionista. In ogni caso, i professionisti possono scegliere di rifiutare gli Ordini in qualsiasi momento per il fatto di essere eccessivamente impegnati, a causa delle condizioni atmosferiche o per qualsiasi altra ragione.<br>\n      <strong>3.5. Finitura del servizio:</strong> I tempi stimati per i servizi dal inizio a fine lavori variano tra 1-2 giorni a seconda del tipo di servizio ordinato. STARBOOK e i professionisti non garantiscono che i servizi verranno finiti entro i tempi stimati.</p>\n      <p><strong>4. PREZZO E PAGAMENTO</strong></p>\n      <p><strong>4.1. IVA e costi di servizio:</strong> I prezzi sono quelli indicati sul Sito. I prezzi sono comprensivi di IVA. Tali costi vengono aggiunti all’importo totale dovuto, se applicabili.<br>\n      <strong>4.2. Errata indicazione del prezzo:</strong> Il presente Sito web contiene un vasto numero di menu ed è sempre possibile che alcuni di essi possano recare una indicazione inesatta del prezzo. Qualora il prezzo esatto di un Ordine sia più elevato del prezzo indicato sul Sito, STARBOOK normalmente provvede a contattare l’utente prima della spedizione dell'Ordine. In tal caso, né STARBOOK né il professionista interessato hanno alcun obbligo di assicurare che l'Ordine venga fornito all’utente al prezzo inferiore erroneamente indicato né di rimborsare all’utente la differenza rispetto al prezzo errato. In caso il prezzo sia eccessivamente elevato rispetto al prezzo originariamente convenuto e l'utente sia un consumatore ai sensi del Codice del Consumo, l'utente avrà facoltà di recedere dall'Ordine.<br>\n      <strong>4.3. Modalità di pagamento:</strong> Il pagamento dei servizi deve essere effettuato mediante una carta di credito/debito.<br>\n      <p><strong>5. SERVIZIO CLIENTI</strong></p>\n      <p><strong>5.1 Disposizioni Generali:</strong> STARBOOK considera il Servizio Clienti estremamente importante. Il Servizio Clienti cerca dunque di prestare assistenza all’utente, quando possibile, in caso di problemi con l'Ordine. L’utente può entrare in contatto con il Servizio Clienti andando sulla pagina help del sito.<br>\n      <strong>5.2. Modifica o annullamento dell'Ordine:</strong> Ove l’utente desideri modificare o annullare il proprio Ordine dopo che esso sia stata inoltrato e il relativo pagamento autorizzato, l’utente ha facoltà di rivolgersi al Servizio Clienti STARBOOK, con le modalità sopra descritte, il quale tenterà di entrare in contatto con il professionista al fine di comunicare le richieste del cliente. Non vi è alcuna assicurazione, tuttavia, riguardo al fatto che il Servizio Clienti STARBOOK sarà in grado di contattare il professionista o che il professionista accetterà le richieste dell’utente in quanto il processo di elaborazione dell'Ordine potrebbe avere già avuto inizio.<br>\n      <strong>5.3. Reclami e feedback da parte degli utenti:</strong> Nell’eventualità che l’utente non sia soddisfatto della qualità di un qualsiasi servizio o del servizio fornito da un professionista, STARBOOK invita l’utente a far conoscere la propria opinione tramite il Sito, in forma di valutazioni, commenti e recensioni che riflettano la propria esperienza. Le Recensioni sono una parte importante del processo di controllo qualità di STARBOOK.<br>\n      <strong>5.4. Risarcimento:</strong> Nell’eventualità che l’utente non sia soddisfatto della qualità di un qualsiasi servizio o del servizio fornito da un professionista e desideri richiedere un rimborso, una riduzione proporzionale del prezzo o qualsiasi altra forma di risarcimento, è tenuto a contattare direttamente il professionista al fine di presentare il proprio reclamo e, se del caso, ad osservare le procedure di reclamo previste dal professionista stesso. Qualora l’utente non sia in grado di contattare il professionista, o qualora il professionista rifiuti di occuparsi del reclamo dell’utente, quest’ultimo può rivolgersi al Servizio Clienti STARBOOK con le modalità sopra descritte entro 48 ore dall’inoltro dell'Ordine e uno dei Consulenti del Servizio Clienti STARBOOK tenterà di contattare il professionista al fine di richiedere un risarcimento per conto dell’utente. Si fa presente che STARBOOK non ha alcun controllo sui professionisti né sulla qualità dei servizi o sul servizio fornito dai professionisti stessi e non è in grado di fornire, né assume alcuna responsabilità o impegno di fornire, alcun risarcimento in favore dell’utente per conto di qualsiasi professionista.</p>\n      <p><strong>6. LICENZA D’USO</strong></p>\n      <p><strong>6.1. Uso consentito:</strong> E’ consentito all’utente utilizzare il Sito nonché stampare e scaricare dal Sito estratti del Sito stesso per uso personale non avente finalità commerciali alle seguenti condizioni:<br>\n      <strong>6.1.1. l’utente non deve utilizzare il Sito in modo improprio, ivi incluso mediante tecniche di pirateria informatica (hacking) o di estrazione informatizzata di dati (scraping).</strong> <br>\n      <strong>6.1.2. Restrizioni d’uso:</strong> Salvo per quanto previsto al paragrafo 6.1, il presente Sito non può essere utilizzato e nessuna sua parte può essere riprodotta o archiviata in alcun altro sito web né può essere inserito in alcun sistema o servizio, pubblico o privato, per il recupero elettronico delle informazioni senza la preventiva autorizzazione scritta di STARBOOK.<br>\n      <strong>6.1.3. Riserva di Diritti:</strong> I diritti non esplicitamente concessi nel presente Sito web sono riservati.</p>\n      <p><strong>7. ACCESSO AL SERVIZIO</strong></p>\n      <p><strong>7.1. Disponibilità del Sito:</strong> Sebbene STARBOOK si adoperi per far sì che l’accesso al Sito possa di norma avvenire ventiquattro ore su ventiquattro (24h/24), STARBOOK non assume alcun obbligo a riguardo e non è responsabile nei confronti dell’utente nel caso in cui il Sito, in qualsiasi momento o per periodi di qualsiasi durata, non sia disponibile.<br>\n      <strong>7.1. Sospensione dell’accesso:</strong> L’accesso al presente Sito può essere temporaneamente sospeso in qualsiasi momento, anche senza preavviso.<br>\n      <strong>7.2. Sicurezza informatica:</strong> Sebbene STARBOOK adotti le misure prescritte per legge per la tutela delle informazioni immesse, essa non è in grado di garantire la sicurezza dei dati trasmessi al Sito web; la trasmissione viene pertanto effettuata a rischio dell’utente.</p>\n    </div>\n  </div>\n</div>\n"
 
 /***/ },
 
-/***/ 727:
+/***/ 726:
 /***/ function(module, exports) {
 
 module.exports = "<div class=\"notfound-container\">\n  <div class=\"container notfound text-center\">\n    <h1>Ups! Pagina non trovata!</h1>\n  </div>\n</div>\n"
 
 /***/ },
 
-/***/ 728:
+/***/ 727:
 /***/ function(module, exports) {
 
-module.exports = "<div class=\"orders-container\">\n\n  <!-- <div class=\"top-bar-container noselect\">\n    <ul class=\"top-bar\">\n      <li *ngFor=\"let tab of tabs\" [ngClass]=\"{'active':tab.route === page}\" (click)=\"renderPage(tab.route)\"><i class=\"fa {{tab.icon}}\" aria-hidden=\"true\"></i>  {{tab.name}}</li>\n    </ul>\n  </div> -->\n\n  <div class=\"orders\" *ngIf=\"page==='requests'\">\n    <div class=\"noitems\" *ngIf=\"pageData?.length===0\">\n      <i class=\"fa fa-frown-o\" aria-hidden=\"true\"></i>\n      <p>Non ci sono ordini</p>\n    </div>\n    <div class=\"order-container\" *ngFor=\"let order of pageData\">\n      <div class=\"order\">\n        <div class=\"order-header\">\n          <div class=\"top\">\n            <span *ngIf=\"order.status===0 && order.customer_id===currentUser._id\">Servizio in attesa di conferma<span class=\"saving\"><span>.</span><span>.</span><span>.</span></span></span>\n            <span *ngIf=\"order.status===1 && order.customer_id===currentUser._id\" [ngStyle]=\"{'color':'green'}\">Servizio assegnato</span>\n            <span *ngIf=\"order.status===0 && order.customer_id!==currentUser._id\">Servizio in attesa di conferma<span class=\"saving\"><span>.</span><span>.</span><span>.</span></span></span>\n            <span *ngIf=\"order.status===1 && order.customer_id!==currentUser._id\" [ngStyle]=\"{'color':'green'}\">Servizio assegnato</span>\n          </div>\n          <div class=\"top client\">\n            <span><strong>Cliente: </strong>{{order.customer.profile.fullname}}</span>\n            <span><strong>Telefono: </strong>{{order.customer.phone_number}}</span>\n            <span><strong>Indirizzo: </strong>{{formatedAddressFromObject(order.address)}}</span>\n            <span><strong>Inizio lavoro: </strong>{{formatedDateFromString(order.date)}}</span>\n          </div>\n          <div class=\"table-header\">\n            <span class=\"item\">Articolo</span>\n            <span class=\"price\">Importo</span>\n          </div>\n        </div>\n        <div class=\"order-body\">\n          <div class=\"content\">\n            <div class=\"items\" *ngFor=\"let detail of order.details\">\n              <div class=\"item\" *ngIf=\"detail.type==='service'\">\n                <strong><span>{{detail.title}}</span></strong>\n              </div>\n              <div class=\"item\" *ngIf=\"detail.type==='detail'\">\n                <span>{{detail.title}}</span>\n              </div>\n              <div *ngIf=\"detail.type==='detail'\">\n                <span class=\"price\"><div *ngIf=\"!detail.amount || detail.amount===0\">-</div><div *ngIf=\"detail.amount && detail.amount>0\">{{detail.amount/100}}€</div></span>\n              </div>\n            </div>\n            <div class=\"description\">\n              <span>Messaggio: {{order.description}}</span>\n            </div>\n            <div class=\"price\" *ngIf=\"getTotalAmount(order.details)>0\">\n              <div class=\"items\">\n                <span class=\"item\"><strong>Totale importo:</strong></span><span class=\"amount\">{{getTotalAmount(order.details)/100}}€</span>\n              </div>\n            </div>\n            <div class=\"payment\" *ngIf=\"order.milestones?.length>0\">\n              <div class=\"line dashed\"></div>\n              <div class=\"items\" *ngFor=\"let milestone of order.milestones\">\n                <span class=\"item\">Acconto:</span><span class=\"amount\">{{milestone.amount/100}}€</span>\n              </div>\n            </div>\n            <div class=\"price\" *ngIf=\"getTotalMilestones(order.milestones)>0 && order.milestones.length>1\">\n              <div class=\"items\">\n                <span class=\"item\"><strong>Totale acconti:</strong></span><span class=\"amount\">{{getTotalMilestones(order.milestones)/100}}€</span>\n              </div>\n            </div>\n            <div class=\"actions\" *ngIf=\"order.status===0 || order.status===1\">\n              <div *ngIf=\"order.status===0 && order.customer_id!==currentUser._id\">\n                <div class=\"line\"></div>\n                <button class=\"btn btn-success\" (click)=\"openPopup('ACCEPT_WORK', order)\">Conferma la richiesta</button>\n              </div>\n              <div *ngIf=\"order.status===1 && order.customer_id===currentUser._id\">\n                <div class=\"line\"></div>\n                <button class=\"btn btn-warning\" (click)=\"openPopup('PAY_UPFRONT', order)\"><i class=\"fa fa-lock\" aria-hidden=\"true\"></i> Pagamento</button>\n              </div>\n              <div *ngIf=\"order.status===1 && order.customer_id!==currentUser._id\">\n                <div class=\"line\"></div>\n                <button class=\"btn btn-primary\" (click)=\"openPopup('UPDATE_TOTAL', order)\">Modifica fattura</button>\n              </div>\n            </div>\n          </div>\n        </div>\n        <div class=\"order-footer\">\n          <p><small><i class=\"fa fa-info\" aria-hidden=\"true\"></i> Per asistenza tecnica, annullamenti del ordine o per segnalare problemi vai nella pagina dei <a routerLink=\"/info/help\" target=\"_blank\">contatti.</a></small></p>\n        </div>\n      </div>\n    </div>\n  </div>\n\n\n  <!--  POPUP -->\n  <div class=\"popup-container\" [ngStyle]=\"{'display' : popup ? 'block' : 'none'}\">\n    <div class=\"popup-shadow\" [ngStyle]=\"{'display' : popup ? 'block' : 'none'}\" (click)=\"closePopup()\"></div>\n    <div class=\"popup\" *ngIf=\"popup==='ACCEPT_WORK'\">\n      <div class=\"popup-header\">\n        <h3>Conferma il servizio richiesto</h3>\n        <p>Confermando prendi l'impegno per effettuare il lavoro richiesto dal cliente.</p>\n      </div>\n      <div class=\"popup-body\">\n        <div class=\"actions\">\n          <div class=\"form-group\">\n            <button type=\"button\" id=\"next\" class=\"btn btn-warning\" (click)=\"acceptOrder()\">Conferma</button>\n          </div>\n          <div class=\"form-group\">\n            <button type=\"button\" id=\"next\" class=\"btn btn-secondary\" (click)=\"closePopup()\">Chiudi</button>\n          </div>\n        </div>\n      </div>\n    </div>\n    <div class=\"popup\" *ngIf=\"popup==='UPDATE_TOTAL'\">\n      <div class=\"popup-header\">\n        <h3>Aggiorna la fattura</h3>\n        <p>Inserisci l'articolo e il prezzo in euro. Il totale verra calcolato in base agli articoli inseriti.</p>\n      </div>\n      <div class=\"popup-body\">\n        <div class=\"details\">\n          <!-- <input [textMask]=\"{mask: mask}\" [(ngModel)]=\"myModel\" type=\"text\"/> -->\n          <!-- <input [mask]=\"'money2'\" type=\"text\" formControlName=\"zipCode\"> -->\n\n          <div class=\"input-group list\" *ngFor=\"let detail of newDetails; let i=index\">\n            <input type=\"text\" id=\"descriptionInput\"  placeholder=\"Titolo\" class=\"form-control item\" [(ngModel)]=\"detail.title\" [ngModelOptions]=\"{standalone: true}\">\n            <input type=\"text\" id=\"amountInput\" placeholder=\"0\" class=\"form-control amount\" [value]=\"detail.amount | currencyFormat\" (change)=\"detailItemAmountChangeAtIndex($event, detail, i)\">\n            <!--<input type=\"text\" id=\"amountInput\" placeholder=\"0\" class=\"form-control amount\" [(ngModel)]=\"detail.amount\" (ngModelChange)=\"detailItemAmountChangeAtIndex(i)\" [ngModelOptions]=\"{standalone: true}\">-->\n             <!--<input type=\"text\" id=\"amountInput\" placeholder=\"0\" class=\"form-control amount\" [ngModel]=\"detail.amount | currencyFormat\" (ngModelChange)=\"detailItemAmountChangeAtIndex(detail, i)\" [ngModelOptions]=\"{standalone: true}\"> -->\n             <!--<input type=\"text\" id=\"amountInput\" placeholder=\"0\" class=\"form-control amount\" [value]=\"formatAmount(detail)\" [ngModel]=\"detail.amount\" (ngModelChange)=\"detailItemAmountChangeAtIndex(i)\" [ngModelOptions]=\"{standalone: true}\"> -->\n             <!--<input type=\"text\" id=\"amountInput\" placeholder=\"0\" class=\"form-control amount\" [ngModel]=\"formatAmount(detail)\" appFormatter (ngModelChange)=\"detailItemAmountChangeAtIndex(detail, i)\" [ngModelOptions]=\"{standalone: true}\"> -->\n            <button type=\"button\" id=\"next\" class=\"btn btn-secondary\" (click)=\"deleteDetailAtIndex(i)\">-</button>\n          </div>\n\n          <!-- <div class=\"input-group list\" *ngFor=\"let detail of selectedOrder.details; let i=index\">\n            <input type=\"text\" id=\"descriptionInput\"  placeholder=\"Titolo\" class=\"form-control item\" value=\"{{detail.title}}\" (ngModelChange)=\"detailItemTitleChangeAtIndex(i)\" [ngModelOptions]=\"{standalone: true}\">\n            <input type=\"text\" id=\"amountInput\" placeholder=\"0.00\" class=\"form-control amount\" value=\"{{detail.amount/100}}\" (ngModelChange)=\"detailItemAmountChangeAtIndex(i)\" [ngModelOptions]=\"{standalone: true}\">\n            <button type=\"button\" id=\"next\" class=\"btn btn-secondary\" (click)=\"deleteDetailAtIndex(i)\">-</button>\n          </div> -->\n\n          <div class=\"input-group list\">\n            <input type=\"text\" id=\"descriptionInput\" placeholder=\"Titolo\" class=\"form-control item\" [(ngModel)]=\"newDetail.title\" [ngModelOptions]=\"{standalone: true}\">\n            <input type=\"text\" id=\"amountInput\" placeholder=\"0\" class=\"form-control amount\" [(ngModel)]=\"newDetail.amount\" [ngModelOptions]=\"{standalone: true}\">\n            <button type=\"button\" id=\"next\" class=\"btn btn-secondary\" (click)=\"addNewItem(newDetail)\">+</button>\n          </div>\n        </div>\n        <div class=\"actions\">\n          <div class=\"form-group\">\n            <button type=\"button\" id=\"next\" class=\"btn btn-warning\" (click)=\"updateDetailsOrder()\"><i class=\"fa fa-circle-o-notch animate\" *ngIf=\"update_state.loading\"></i> Aggiorna</button>\n          </div>\n          <div class=\"form-group\">\n            <button type=\"button\" id=\"next\" class=\"btn btn-secondary\" (click)=\"closePopup()\">Chiudi</button>\n          </div>\n        </div>\n      </div>\n    </div>\n    <div class=\"popup\" *ngIf=\"popup==='PAY_UPFRONT'\">\n      <div class=\"popup-header\">\n        <h3>Pagamento lavorazione</h3>\n      </div>\n      <div class=\"popup-body\">\n        <div class=\"total\">\n          <span class=\"top-title\">Prezzo stimato</span>\n          <span class=\"price\">{{getTotalAmount(selectedOrder.details)/100}}€</span>\n        </div>\n        <div class=\"rest\" *ngIf=\"getRestToPay()>0\">\n          <span class=\"top-title\">Resto</span>\n          <span class=\"price\">{{getRestToPay()/100}}€</span>\n        </div>\n        <div class=\"input\">\n          <div class=\"input-group\">\n            <!-- <input type=\"text\" class=\"form-control price-field\"  placeholder=\"0\" [value]=\"upfront\" [(ngModel)]=\"upfront\" (ngModelChange)=\"onUpfrontChange($event)\" [ngModelOptions]=\"{standalone: true}\"> -->\n            <!-- <input type=\"text\" class=\"form-control price-field\" placeholder=\"0\" [(ngModel)]=\"upfront\" (keyup)=\"onUpfrontChange()\" (change)=\"onUpfrontChange()\" (focus)=\"selectAllContent($event)\"> -->\n            <!-- <input type=\"text\" class=\"form-control price-field\" placeholder=\"0\" value=\"upfront/100\" [ngModel]=\"upfront\" (ngModelChange)=\"changeUpFrontValue($event)\"/> -->\n            <input type=\"text\" class=\"form-control price-field\" placeholder=\"0\" [ngModel]=\"upfront\" appFormatter (ngModelChange)=\"changeUpFrontValue($event)\"/>\n            <!-- <span class=\"input-group-addon\">.00</span> -->\n            <span class=\"input-group-addon\">€</span>\n          </div>\n        </div>\n        <div class=\"actions\">\n          <div class=\"form-group\">\n            <button type=\"button\" id=\"next\" class=\"btn btn-primary\" (click)=\"payUpfront()\"><i class=\"fa fa-circle-o-notch animate\" *ngIf=\"payment_state.loading\"></i> Acconto</button>\n          </div>\n          <div class=\"message\" *ngIf=\"getRestToPay()>0\">\n            <span>o procedi con il resto</span>\n          </div>\n          <div class=\"form-group\" *ngIf=\"getRestToPay()>0\">\n            <button type=\"button\" id=\"next\" class=\"btn btn-warning\" (click)=\"payRestAmount(getRestToPay())\"><i class=\"fa fa-circle-o-notch animate\" *ngIf=\"payment_state.loading\"></i> Paga il resto {{getRestToPay()/100}}€</button>\n          </div>\n          <div class=\"form-group\">\n            <button type=\"button\" id=\"next\" class=\"btn btn-secondary\" (click)=\"closePopup()\">Chiudi</button>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>\n\n\n<div class=\"order-container\" *ngIf=\"page==='estimates' && estimates && estimates.length===0\">\n  <div class=\"header\">\n    <p>Non ci sono preventivi salvati.</p>\n  </div>\n  <div *ngFor=\"let estimate of estimates\">\n    <div class=\"order-container\" *ngIf=\"page==='estimates'\">\n      <div class=\"header\">\n        <div *ngFor=\"let item of estimate.details\">\n          <div *ngIf=\"item.type === 'service'\">\n            <h3>{{estimate.title}}</h3>\n            <!-- <div class=\"line\"></div> -->\n          </div>\n          <div *ngIf=\"item.type === 'detail'\">\n            <p>{{item.title}}</p>\n          </div>\n        </div>\n      </div>\n      <div class=\"line\"></div>\n      <div class=\"counts\">\n        <div class=\"item\">Durata (Approssimativo)</div>\n        <div class=\"amount time\">{{getTiming(estimate.price.initial)}}</div>\n      </div>\n      <div class=\"line\"></div>\n      <div class=\"counts\" *ngIf=\"estimate.price.initial>estimate.price.final\">\n        <div class=\"item\">Totale iniziale</div>\n        <div class=\"amount initial\">{{estimate.price.initial/100}}€</div>\n      </div>\n      <div class=\"counts\">\n        <div class=\"item\">Totale</div>\n        <div class=\"amount\">{{estimate.price.final/100}}€</div>\n      </div>\n      <div class=\"line\"></div>\n      <!-- <div class=\"counts\">\n        <div class=\"item\">ACCONTO (30% del totale)</div>\n        <div class=\"amount\">{{estimate.payment.upfront/100}}€</div>\n      </div> -->\n      <div class=\"actions\">\n        <div class=\"form-group\">\n          <button class=\"btn btn-warning\" id=\"next\" type=\"button\" (click)=\"startWizard(estimate)\">Continua con l'ordine</button>\n        </div>\n        <a (click)=\"shareEstimate(estimate)\">Condividi</a>\n        <a (click)=\"deleteEstimate(estimate)\">Elimina</a>\n      </div>\n      <!-- <div class=\"line\"></div>\n      <div class=\"links\">\n        <a href=\"#\">Cancella preventivo</a>\n        <a href=\"#\">Invia ad un amico</a>\n      </div> -->\n    </div>\n  </div>\n</div>\n"
+module.exports = "<div class=\"orders-container\">\n\n  <!-- <div class=\"top-bar-container noselect\">\n    <ul class=\"top-bar\">\n      <li *ngFor=\"let tab of tabs\" [ngClass]=\"{'active':tab.route === page}\" (click)=\"renderPage(tab.route)\"><i class=\"fa {{tab.icon}}\" aria-hidden=\"true\"></i>  {{tab.name}}</li>\n    </ul>\n  </div> -->\n\n  <div class=\"orders\" *ngIf=\"page==='requests'\">\n    <div class=\"noitems\" *ngIf=\"pageData?.length===0\">\n      <i class=\"fa fa-frown-o\" aria-hidden=\"true\"></i>\n      <p>Non ci sono ordini</p>\n    </div>\n    <div class=\"order-container\" *ngFor=\"let order of pageData\">\n      <div class=\"order\">\n        <div class=\"order-header\">\n          <div class=\"top\">\n            <span *ngIf=\"order.status===0 && order.customer_id===currentUser._id\">Servizio in attesa di conferma<span class=\"saving\"><span>.</span><span>.</span><span>.</span></span></span>\n            <span *ngIf=\"order.status===1 && order.customer_id===currentUser._id\" [ngStyle]=\"{'color':'green'}\">Servizio assegnato</span>\n            <span *ngIf=\"order.status===0 && order.customer_id!==currentUser._id\">Servizio in attesa di conferma<span class=\"saving\"><span>.</span><span>.</span><span>.</span></span></span>\n            <span *ngIf=\"order.status===1 && order.customer_id!==currentUser._id\" [ngStyle]=\"{'color':'green'}\">Servizio assegnato</span>\n          </div>\n          <div class=\"top client\">\n            <span><strong>Cliente: </strong>{{order.customer.profile.fullname}}</span>\n            <span><strong>Telefono: </strong>{{order.customer.phone_number}}</span>\n            <span><strong>Indirizzo: </strong>{{formatedAddressFromObject(order.address)}}</span>\n            <span><strong>Inizio lavoro: </strong>{{formatedDateFromString(order.date)}}</span>\n          </div>\n          <div class=\"table-header\">\n            <span class=\"item\">Articolo</span>\n            <span class=\"price\">Importo</span>\n          </div>\n        </div>\n        <div class=\"order-body\">\n          <div class=\"content\">\n            <div class=\"items\" *ngFor=\"let detail of order.details\">\n              <div class=\"item\" *ngIf=\"detail.type==='service'\">\n                <strong><span>{{detail.title}}</span></strong>\n              </div>\n              <div class=\"item\" *ngIf=\"detail.type==='detail'\">\n                <span>{{detail.title}}</span>\n              </div>\n              <div *ngIf=\"detail.type==='detail'\">\n                <span class=\"price\"><div *ngIf=\"!detail.amount || detail.amount===0\">-</div><div *ngIf=\"detail.amount && detail.amount>0\">{{detail.amount/100}}€</div></span>\n              </div>\n            </div>\n            <div class=\"description\">\n              <span>Messaggio: {{order.description}}</span>\n            </div>\n            <div class=\"price\" *ngIf=\"order.details && getTotalAmount(order.details)>0\">\n              <div class=\"items\">\n                <span class=\"item\"><strong>Totale importo:</strong></span><span class=\"amount\">{{getTotalAmount(order.details)/100}}€</span>\n              </div>\n            </div>\n            <div class=\"payment\" *ngIf=\"order.milestones?.length>0\">\n              <div class=\"line dashed\"></div>\n              <div class=\"items\" *ngFor=\"let milestone of order.milestones\">\n                <span class=\"item\">Acconto:</span><span class=\"amount\">{{milestone.amount/100}}€</span>\n              </div>\n            </div>\n            <div class=\"price\" *ngIf=\"getTotalMilestones(order.milestones)>0 && order.milestones.length>1\">\n              <div class=\"items\">\n                <span class=\"item\"><strong>Totale acconti:</strong></span><span class=\"amount\">{{getTotalMilestones(order.milestones)/100}}€</span>\n              </div>\n            </div>\n            <div class=\"actions\" *ngIf=\"order.status===0 || order.status===1\">\n              <div *ngIf=\"order.status===0 && order.customer_id!==currentUser._id\">\n                <div class=\"line\"></div>\n                <button class=\"btn btn-success\" (click)=\"openPopup('ACCEPT_WORK', order)\">Conferma la richiesta</button>\n              </div>\n              <div *ngIf=\"order.status===1 && order.customer_id===currentUser._id\">\n                <div class=\"line\"></div>\n                <button class=\"btn btn-warning\" (click)=\"openPopup('PAY_UPFRONT', order)\"><i class=\"fa fa-lock\" aria-hidden=\"true\"></i> Pagamento</button>\n              </div>\n              <div *ngIf=\"order.status===1 && order.customer_id!==currentUser._id\">\n                <div class=\"line\"></div>\n                <button class=\"btn btn-primary\" (click)=\"openPopup('UPDATE_TOTAL', order)\">Modifica fattura</button>\n              </div>\n            </div>\n          </div>\n        </div>\n        <div class=\"order-footer\">\n          <p><small><i class=\"fa fa-info\" aria-hidden=\"true\"></i> Per asistenza tecnica, annullamenti del ordine o per segnalare problemi vai nella pagina dei <a routerLink=\"/info/help\" target=\"_blank\">contatti.</a></small></p>\n        </div>\n      </div>\n    </div>\n  </div>\n\n\n  <!--  POPUP -->\n  <div class=\"popup-container\" [ngStyle]=\"{'display' : popup ? 'block' : 'none'}\">\n    <div class=\"popup-shadow\" [ngStyle]=\"{'display' : popup ? 'block' : 'none'}\" (click)=\"closePopup()\"></div>\n    <div class=\"popup\" *ngIf=\"popup==='ACCEPT_WORK'\">\n      <div class=\"popup-header\">\n        <h3>Conferma il servizio richiesto</h3>\n        <p>Confermando prendi l'impegno per effettuare il lavoro richiesto dal cliente.</p>\n      </div>\n      <div class=\"popup-body\">\n        <div class=\"actions\">\n          <div class=\"form-group\">\n            <button type=\"button\" id=\"next\" class=\"btn btn-warning\" (click)=\"acceptOrder()\">Conferma</button>\n          </div>\n          <div class=\"form-group\">\n            <button type=\"button\" id=\"next\" class=\"btn btn-secondary\" (click)=\"closePopup()\">Chiudi</button>\n          </div>\n        </div>\n      </div>\n    </div>\n    <div class=\"popup\" *ngIf=\"popup==='UPDATE_TOTAL'\">\n      <div class=\"popup-header\">\n        <h3>Aggiorna la fattura</h3>\n        <p>Inserisci l'articolo e il prezzo in euro. Il totale verra calcolato in base agli articoli inseriti.</p>\n      </div>\n      <div class=\"popup-body\">\n        <div class=\"details\">\n          <!-- <input [textMask]=\"{mask: mask}\" [(ngModel)]=\"myModel\" type=\"text\"/> -->\n          <!-- <input [mask]=\"'money2'\" type=\"text\" formControlName=\"zipCode\"> -->\n\n          <div class=\"input-group list\" *ngFor=\"let detail of newDetails; let i=index\">\n            <input type=\"text\" id=\"descriptionInput\"  placeholder=\"Titolo\" class=\"form-control item\" [(ngModel)]=\"detail.title\" [ngModelOptions]=\"{standalone: true}\">\n            <input type=\"text\" id=\"amountInput\" placeholder=\"0\" class=\"form-control amount\" [value]=\"detail.amount | currencyFormat\" (change)=\"detailItemAmountChangeAtIndex($event, detail, i)\">\n            <!--<input type=\"text\" id=\"amountInput\" placeholder=\"0\" class=\"form-control amount\" [(ngModel)]=\"detail.amount\" (ngModelChange)=\"detailItemAmountChangeAtIndex(i)\" [ngModelOptions]=\"{standalone: true}\">-->\n             <!--<input type=\"text\" id=\"amountInput\" placeholder=\"0\" class=\"form-control amount\" [ngModel]=\"detail.amount | currencyFormat\" (ngModelChange)=\"detailItemAmountChangeAtIndex(detail, i)\" [ngModelOptions]=\"{standalone: true}\"> -->\n             <!--<input type=\"text\" id=\"amountInput\" placeholder=\"0\" class=\"form-control amount\" [value]=\"formatAmount(detail)\" [ngModel]=\"detail.amount\" (ngModelChange)=\"detailItemAmountChangeAtIndex(i)\" [ngModelOptions]=\"{standalone: true}\"> -->\n             <!--<input type=\"text\" id=\"amountInput\" placeholder=\"0\" class=\"form-control amount\" [ngModel]=\"formatAmount(detail)\" appFormatter (ngModelChange)=\"detailItemAmountChangeAtIndex(detail, i)\" [ngModelOptions]=\"{standalone: true}\"> -->\n            <button type=\"button\" id=\"next\" class=\"btn btn-secondary\" (click)=\"deleteDetailAtIndex(i)\">-</button>\n          </div>\n\n          <!-- <div class=\"input-group list\" *ngFor=\"let detail of selectedOrder.details; let i=index\">\n            <input type=\"text\" id=\"descriptionInput\"  placeholder=\"Titolo\" class=\"form-control item\" value=\"{{detail.title}}\" (ngModelChange)=\"detailItemTitleChangeAtIndex(i)\" [ngModelOptions]=\"{standalone: true}\">\n            <input type=\"text\" id=\"amountInput\" placeholder=\"0.00\" class=\"form-control amount\" value=\"{{detail.amount/100}}\" (ngModelChange)=\"detailItemAmountChangeAtIndex(i)\" [ngModelOptions]=\"{standalone: true}\">\n            <button type=\"button\" id=\"next\" class=\"btn btn-secondary\" (click)=\"deleteDetailAtIndex(i)\">-</button>\n          </div> -->\n\n          <div class=\"input-group list\">\n            <input type=\"text\" id=\"descriptionInput\" placeholder=\"Titolo\" class=\"form-control item\" [(ngModel)]=\"newDetail.title\" [ngModelOptions]=\"{standalone: true}\">\n            <input type=\"text\" id=\"amountInput\" placeholder=\"0\" class=\"form-control amount\" [(ngModel)]=\"newDetail.amount\" [ngModelOptions]=\"{standalone: true}\">\n            <button type=\"button\" id=\"next\" class=\"btn btn-secondary\" (click)=\"addNewItem(newDetail)\">+</button>\n          </div>\n        </div>\n        <div class=\"actions\">\n          <div class=\"form-group\">\n            <button type=\"button\" id=\"next\" class=\"btn btn-warning\" (click)=\"updateDetailsOrder()\"><i class=\"fa fa-circle-o-notch animate\" *ngIf=\"update_state.loading\"></i> Aggiorna</button>\n          </div>\n          <div class=\"form-group\">\n            <button type=\"button\" id=\"next\" class=\"btn btn-secondary\" (click)=\"closePopup()\">Chiudi</button>\n          </div>\n        </div>\n      </div>\n    </div>\n    <div class=\"popup\" *ngIf=\"popup==='PAY_UPFRONT'\">\n      <div class=\"popup-header\">\n        <h3>Pagamento lavorazione</h3>\n      </div>\n      <div class=\"popup-body\">\n        <div class=\"total\">\n          <span class=\"top-title\">Prezzo stimato</span>\n          <span class=\"price\">{{getTotalAmount(selectedOrder.details)/100}}€</span>\n        </div>\n        <div class=\"rest\" *ngIf=\"getRestToPay()>0\">\n          <span class=\"top-title\">Resto</span>\n          <span class=\"price\">{{getRestToPay()/100}}€</span>\n        </div>\n        <div class=\"input\">\n          <div class=\"input-group\">\n            <!-- <input type=\"text\" class=\"form-control price-field\"  placeholder=\"0\" [value]=\"upfront\" [(ngModel)]=\"upfront\" (ngModelChange)=\"onUpfrontChange($event)\" [ngModelOptions]=\"{standalone: true}\"> -->\n            <!-- <input type=\"text\" class=\"form-control price-field\" placeholder=\"0\" [(ngModel)]=\"upfront\" (keyup)=\"onUpfrontChange()\" (change)=\"onUpfrontChange()\" (focus)=\"selectAllContent($event)\"> -->\n            <!-- <input type=\"text\" class=\"form-control price-field\" placeholder=\"0\" value=\"upfront/100\" [ngModel]=\"upfront\" (ngModelChange)=\"changeUpFrontValue($event)\"/> -->\n            <input type=\"text\" class=\"form-control price-field\" placeholder=\"0\" [ngModel]=\"upfront\" appFormatter (ngModelChange)=\"changeUpFrontValue($event)\"/>\n            <!-- <span class=\"input-group-addon\">.00</span> -->\n            <span class=\"input-group-addon\">€</span>\n          </div>\n        </div>\n        <div class=\"actions\">\n          <div class=\"form-group\">\n            <button type=\"button\" id=\"next\" class=\"btn btn-primary\" (click)=\"payUpfront()\"><i class=\"fa fa-circle-o-notch animate\" *ngIf=\"payment_state.loading\"></i> Acconto</button>\n          </div>\n          <div class=\"message\" *ngIf=\"getRestToPay()>0\">\n            <span>o procedi con il resto</span>\n          </div>\n          <div class=\"form-group\" *ngIf=\"getRestToPay()>0\">\n            <button type=\"button\" id=\"next\" class=\"btn btn-warning\" (click)=\"payRestAmount(getRestToPay())\"><i class=\"fa fa-circle-o-notch animate\" *ngIf=\"payment_state.loading\"></i> Paga il resto {{getRestToPay()/100}}€</button>\n          </div>\n          <div class=\"form-group\">\n            <button type=\"button\" id=\"next\" class=\"btn btn-secondary\" (click)=\"closePopup()\">Chiudi</button>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>\n\n\n<div class=\"order-container\" *ngIf=\"page==='estimates' && estimates && estimates.length===0\">\n  <div class=\"header\">\n    <p>Non ci sono preventivi salvati.</p>\n  </div>\n  <div *ngFor=\"let estimate of estimates\">\n    <div class=\"order-container\" *ngIf=\"page==='estimates'\">\n      <div class=\"header\">\n        <div *ngFor=\"let item of estimate.details\">\n          <div *ngIf=\"item.type === 'service'\">\n            <h3>{{estimate.title}}</h3>\n            <!-- <div class=\"line\"></div> -->\n          </div>\n          <div *ngIf=\"item.type === 'detail'\">\n            <p>{{item.title}}</p>\n          </div>\n        </div>\n      </div>\n      <div class=\"line\"></div>\n      <div class=\"counts\">\n        <div class=\"item\">Durata (Approssimativo)</div>\n        <div class=\"amount time\">{{getTiming(estimate.price.initial)}}</div>\n      </div>\n      <div class=\"line\"></div>\n      <div class=\"counts\" *ngIf=\"estimate.price.initial>estimate.price.final\">\n        <div class=\"item\">Totale iniziale</div>\n        <div class=\"amount initial\">{{estimate.price.initial/100}}€</div>\n      </div>\n      <div class=\"counts\">\n        <div class=\"item\">Totale</div>\n        <div class=\"amount\">{{estimate.price.final/100}}€</div>\n      </div>\n      <div class=\"line\"></div>\n      <!-- <div class=\"counts\">\n        <div class=\"item\">ACCONTO (30% del totale)</div>\n        <div class=\"amount\">{{estimate.payment.upfront/100}}€</div>\n      </div> -->\n      <div class=\"actions\">\n        <div class=\"form-group\">\n          <button class=\"btn btn-warning\" id=\"next\" type=\"button\" (click)=\"startWizard(estimate)\">Continua con l'ordine</button>\n        </div>\n        <a (click)=\"shareEstimate(estimate)\">Condividi</a>\n        <a (click)=\"deleteEstimate(estimate)\">Elimina</a>\n      </div>\n      <!-- <div class=\"line\"></div>\n      <div class=\"links\">\n        <a href=\"#\">Cancella preventivo</a>\n        <a href=\"#\">Invia ad un amico</a>\n      </div> -->\n    </div>\n  </div>\n</div>\n"
 
 /***/ },
 
-/***/ 729:
+/***/ 728:
 /***/ function(module, exports) {
 
 module.exports = "<div class=\"profile-page\">\n  <div class=\"top-bar-container noselect\">\n    <ul class=\"top-bar\">\n      <li *ngFor=\"let tab of tabs\" [ngClass]=\"{'active':tab.route === page}\" (click)=\"clickTabItem(tab.route)\">{{tab.name}}</li>\n    </ul>\n  </div>\n  <div class=\"page-container\" *ngIf=\"page === 'general'\">\n    <div class=\"header\">\n      <h3>Informazioni generali</h3>\n      <p>Aggiorna le informazioni del tuo account per rimanere in contatto</p>\n    </div>\n    <form>\n      <div class=\"row\">\n        <div class=\"col-lg-4\">\n          <div class=\"form-group\">\n            <label for=\"firstname\">Nome</label>\n            <input type=\"firstname\" class=\"form-control\" id=\"firstname\" name=\"firstname\" placeholder=\"Nome\" [ngClass]=\"{'error-input': user_state.first_name_error}\" [(ngModel)]=\"User.firstname\">\n            <small class=\"error-message\" *ngIf=\"user_state.first_name_error\">{{user_state.first_name_error}}</small>\n          </div>\n        </div>\n        <div class=\"col-lg-4\">\n          <div class=\"form-group\">\n            <label for=\"lastname\">Cognome</label>\n            <input type=\"lastname\" class=\"form-control\" id=\"lastname\" name=\"lastname\" placeholder=\"Cognome\" [ngClass]=\"{'error-input': user_state.last_name_error}\" [(ngModel)]=\"User.lastname\">\n            <small class=\"error-message\" *ngIf=\"user_state.last_name_error\">{{user_state.last_name_error}}</small>\n          </div>\n        </div>\n        <div class=\"col-lg-4\">\n          <div class=\"form-group\">\n            <label for=\"phone\">Telefono</label>\n            <input type=\"phone\" class=\"form-control\" id=\"phone\" name=\"phone\" placeholder=\"Telefono\" [ngClass]=\"{'error-input': user_state.phone_number_error}\" [(ngModel)]=\"User.phone_number\">\n            <small class=\"error-message\" *ngIf=\"user_state.phone_number_error\">{{user_state.phone_number_error}}</small>\n          </div>\n        </div>\n      </div>\n      <div class=\"actions\">\n        <a class=\"btn btn-success\" (click)=\"saveProfile()\">{{user_state.button_title}}</a>\n      </div>\n    </form>\n    <div class=\"footer-box\">\n      <h5>Privacy del account</h5>\n      <h6><small>Le informazioni degli utenti consentono a Starbook di fornire agli utenti stessi l’accesso alle sezioni del Sito cui sono interessati e di fornire il Servizio. Esse mettono inoltre Starbook in grado di fatturare gli importi dovuti e consentono a Starbook o ad un professionista cui l’utente abbia inoltrato un Ordine di contattare l’utente in merito al Servizio.</small></h6>\n    </div>\n  </div>\n  <div class=\"page-container\" *ngIf=\"page === 'payment'\">\n    <div class=\"header\">\n      <h3>Metodo di pagamento</h3>\n      <p>Aggiorna le informazioni del tuo metodo di pagamento</p>\n    </div>\n    <div class=\"card-container\" *ngFor=\"let card of cards\">\n      <div class=\"row\">\n        <div class=\"col-lg-8 col-md-8\">\n          <h4>{{card.brand}} <small>{{ card.funding }} {{ card.object }}</small> <small *ngIf=\"defaultCard === card.id\">Default</small></h4>\n          <div class=\"information-block\">\n            <span>Nome:</span>\n            {{ card.name }}\n          </div>\n          <div class=\"information-block\">\n            <span>Numero:</span>\n            **** {{ card.last4 }}\n          </div>\n          <div class=\"information-block\">\n            <span>Scadenza:</span>\n            {{ card.exp_month }}/{{ formatYear(card.exp_year) }}\n          </div>\n          <div class=\"information-block\">\n            <span>Tipo:</span>\n            {{ card.brand }} {{ card.funding }} {{ card.object }}\n          </div>\n          <div class=\"information-block\">\n            <span>Indirizzo:</span>\n            {{ card.address_line1 }} {{ card.address_line2 }} <br>\n            {{ card.address_state }} {{ card.address_city }} <br>\n            {{ card.address_zip }} {{ card.address_country }}\n          </div>\n        </div>\n        <div class=\"col-lg-4 col-md-4\">\n          <div class=\"buttons-block\">\n            <a class=\"btn btn-success\" *ngIf=\"defaultCard !== card.id\" (click)=\"selectCard(card.id)\">Default</a>\n            <a class=\"btn btn-danger\" (click)=\"deleteCard(card.id)\">Rimuovi</a>\n            <!-- <a class=\"btn btn-secondary\" (click)=\"editCard(card.id)\">Modifica</a> -->\n          </div>\n        </div>\n      </div>\n    </div>\n    <div class=\"card-container\">\n      <a class=\"btn btn-secondary\" *ngIf=\"cards?.length===0\" (click)=\"showCardPage()\">Aggiungi un metodo</a>\n      <a class=\"btn btn-secondary\" *ngIf=\"cards?.length > 0\" (click)=\"showCardPage()\">Aggiungi un altro metodo</a>\n    </div>\n    <div class=\"footer-box\">\n      <h5>Privacy del account</h5>\n      <h6><small>Le informazioni degli utenti consentono a Starbook di fornire agli utenti stessi l’accesso alle sezioni del Sito cui sono interessati e di fornire il Servizio. Esse mettono inoltre Starbook in grado di fatturare gli importi dovuti e consentono a Starbook o ad un professionista cui l’utente abbia inoltrato un Ordine di contattare l’utente in merito al Servizio.</small></h6>\n    </div>\n  </div>\n  <div class=\"page-container\" *ngIf=\"page === 'settings'\">\n    <div class=\"header\">\n      <h3>Impostazioni</h3>\n      <p>Modifica le informazioni</p>\n    </div>\n    <form>\n      <h4>Aggiorna Email</h4>\n      <div class=\"row\">\n        <div class=\"col-lg-4\">\n          <div class=\"form-group\">\n            <!-- <label for=\"email\">La tua email</label> -->\n            <input type=\"email\" class=\"form-control\" id=\"email\" name=\"email\" placeholder=\"Email\" [ngClass]=\"{'error-input': user_state.email_error}\" [(ngModel)]=\"User.email\" disabled>\n            <small class=\"error-message\" *ngIf=\"user_state.email_error\">{{user_state.email_error}}</small>\n          </div>\n        </div>\n        <div class=\"col-lg-8\">\n          <p><small>Dopo aver salvato la nuova email ti invieremo nella attuale email un messaggio di conferma per confermare il nuovo indirizzo.</small></p>\n        </div>\n      </div>\n      <div class=\"actions\">\n        <a class=\"btn btn-success\" (click)=\"saveNewEmail()\">Salva</a>\n      </div>\n      <h4>Cambia Password</h4>\n      <div class=\"row\">\n        <div class=\"col-lg-4\">\n          <div class=\"form-group\">\n            <label for=\"password\">Password</label>\n            <input type=\"password\" class=\"form-control\" id=\"password\" name=\"password\" placeholder=\"\" [ngClass]=\"{'error-input': password_state.message_error}\" [(ngModel)]=\"Password.old_password\">\n          </div>\n        </div>\n        <div class=\"col-lg-4\">\n          <div class=\"form-group\">\n            <label for=\"password\">Nuova Password</label>\n            <input type=\"password\" class=\"form-control\" id=\"password\" name=\"password\" placeholder=\"\" [ngClass]=\"{'error-input': password_state.message_error}\" [(ngModel)]=\"Password.new_password\">\n          </div>\n        </div>\n        <div class=\"col-lg-4\">\n          <div class=\"form-group\">\n            <label for=\"password\">Conferma Nuova Password</label>\n            <input type=\"password\" class=\"form-control\" id=\"password\" name=\"password\" placeholder=\"\" [ngClass]=\"{'error-input': password_state.message_error}\" [(ngModel)]=\"Password.confirm_password\">\n          </div>\n        </div>\n      </div>\n      <div class=\"messages\" *ngIf=\"password_state.message_error || password_state.message_success\">\n        <div class=\"success\" *ngIf=\"password_state.message_success\">\n          <p><small>{{password_state.message_success}}</small></p>\n        </div>\n        <div class=\"error\" *ngIf=\"password_state.message_error\">\n          <p><small>{{password_state.message_error}}</small></p>\n        </div>\n      </div>\n      <div class=\"actions\">\n        <a class=\"btn btn-success\" (click)=\"changePassword()\">{{password_state.button_title}}</a>\n      </div>\n    </form>\n    <div class=\"footer-box\">\n      <h5>Esci da starbook</h5>\n      <h6><small>Puoi uscire ed entrare in qualsiasi momento dal sito. Le tue informazioni rimangono salvate su Starbook.</small></h6>\n      <div class=\"actions\">\n        <a class=\"btn btn-danger\" (click)=\"logout()\">Esci</a>\n      </div>\n    </div>\n  </div>\n  <div class=\"page-container\" *ngIf=\"page === 'affiliate'\">\n    <div class=\"header\">\n      <h3>Programma di affiliazione Starbook</h3>\n      <p>Condividi Starbook ai tuoi amici e per ogni servizio acquistato riceverete entrambi 5% del totale del servizio</p>\n    </div>\n    <div class=\"card-container\">\n      <div class=\"row\">\n        <div class=\"col-lg-7 col-md-7\">\n          <div class=\"link-container\">\n            <div class=\"input-group\">\n              <div class=\"link\">\n                {{sharelink}}\n              </div>\n              <span class=\"input-group-btn\">\n                <button type=\"button\" id=\"next\" class=\"btn btn-white\" [clipboard]=\"sharelink\" (clipboardCopy)=\"copyLink($event)\" (clipboardError)=\"copyError($event)\">{{copy_link_state.title}}</button>\n              </span>\n            </div>\n          </div>\n        </div>\n        <div class=\"col-lg-5 col-md-5\">\n          <p><small>Questo è un link unico per la tua affiliazione. Condividi l link e inizia a guadagnare per ogni lavoro svolto.</small></p>\n        </div>\n      </div>\n      <div class=\"row share-buttons\">\n        <h3>Condividi</h3>\n        <div class=\"col-md-6 col-lg-15\">\n          <div class=\"form-group\">\n            <button type=\"button\" id=\"next\" class=\"btn btn-facebook\" (click)=\"shareOnFacebook()\"><i class=\"fa fa-facebook\"></i>Facebook</button>\n          </div>\n        </div>\n        <div class=\"col-md-6 col-lg-15\">\n          <div class=\"form-group\">\n            <button type=\"button\" id=\"next\" class=\"btn btn-twitter\" (click)=\"shareOnTwitter()\"><i class=\"fa fa-twitter\"></i>Twitter</button>\n          </div>\n        </div>\n        <div class=\"col-md-6 col-lg-15\">\n          <div class=\"form-group\">\n            <button type=\"button\" id=\"next\" class=\"btn btn-linkedin\" (click)=\"shareOnLinkedin()\"><i class=\"fa fa-linkedin\"></i>Linkedin</button>\n          </div>\n        </div>\n        <div class=\"col-md-6 col-lg-15\">\n          <div class=\"form-group\">\n            <button type=\"button\" id=\"next\" class=\"btn btn-google-plus\" (click)=\"shareOnGoogle()\"><i class=\"fa fa-google-plus\"></i>Google</button>\n          </div>\n        </div>\n        <div class=\"col-md-6 col-lg-15\">\n          <div class=\"form-group\">\n            <button type=\"button\" id=\"next\" class=\"btn btn-white\" (click)=\"shareWithEmail()\"><i class=\"fa fa-envelope\"></i>Email</button>\n          </div>\n        </div>\n      </div>\n      <div class=\"row send-buttons\">\n        <h3>Invia a</h3>\n        <div class=\"col-lg-7 col-md-7\">\n          <div class=\"form-group\" *ngIf=\"invitation_state.message_error\">\n            <div class=\"alert alert-danger\" role=\"alert\">{{invitation_state.message_error}}</div>\n          </div>\n          <div class=\"form-group\" *ngIf=\"invitation_state.message_success\">\n            <div class=\"alert alert-success\" role=\"alert\">{{invitation_state.message_success}}</div>\n          </div>\n          <div class=\"input-group\">\n            <input type=\"text\" placeholder=\"Esempio: 3234565540, john@gmail.com\" class=\"form-control\" id=\"contacts\" [(ngModel)]=\"contacts\" [ngModelOptions]=\"{standalone: true}\">\n            <span class=\"input-group-btn\">\n              <button type=\"button\" id=\"next\" class=\"btn btn-success\" (click)=\"sendInvitations()\">Invia</button>\n            </span>\n          </div>\n        </div>\n        <div class=\"col-lg-5 col-md-5\">\n          <p><small>Invia il link diretto a un numero di telefono e indirizzo email. Inserisci numeri di telefono e email separando con una virgola.</small></p>\n        </div>\n      </div>\n    </div>\n    <div class=\"footer-box\">\n      <h5>Privacy del account</h5>\n      <h6><small>Le informazioni degli utenti consentono a Starbook di fornire agli utenti stessi l’accesso alle sezioni del Sito cui sono interessati e di fornire il Servizio. Esse mettono inoltre Starbook in grado di fatturare gli importi dovuti e consentono a Starbook o ad un professionista cui l’utente abbia inoltrato un Ordine di contattare l’utente in merito al Servizio.</small></h6>\n    </div>\n  </div>\n\n  <div class=\"page-container\" *ngIf=\"page === 'card'\">\n    <div class=\"header\">\n      <h1>Inserisci un metodo di pagamento</h1>\n      <h6>Per utilizzare al massimo i servizi Starbook inserisci un metodo di pagamento.</h6>\n    </div>\n    <form>\n      <div class=\"card-form\">\n        <div class=\"form-group\">\n          <label for=\"numberInput\">Numero carta</label>\n          <input autocomplete=\"off\" type=\"text\" placeholder=\"Numero\" class=\"form-control\" [ngClass]=\"{'error-input': card_state.number_error}\" id=\"numberInput\" [(ngModel)]=\"Card.number\" [ngModelOptions]=\"{standalone: true}\">\n          <small class=\"error-message\" *ngIf=\"card_state.number_error\">{{card_state.number_error}}</small>\n        </div>\n        <div class=\"row\">\n          <div class=\"col-md-6\">\n            <div class=\"form-group\">\n              <label for=\"dateInput\">Scadenza</label>\n              <input autocomplete=\"off\" type=\"text\" placeholder=\"Scadenza\" class=\"form-control\" [ngClass]=\"{'error-input': card_state.exp_date_error}\" id=\"dateInput\" [(ngModel)]=\"Card.exp_date\" (keyup)=\"checkExpiry(Card.exp_date)\" (change)=\"checkExpiry(Card.exp_date)\" [ngModelOptions]=\"{standalone: true}\">\n              <small class=\"error-message\" *ngIf=\"card_state.exp_date_error\">{{card_state.exp_date_error}}</small>\n            </div>\n          </div>\n          <div class=\"col-md-6\">\n            <div class=\"form-group\">\n              <label for=\"numberInput\">CVC/CVV</label>\n              <input autocomplete=\"off\" type=\"text\" placeholder=\"CVC/CVV\" class=\"form-control\" [ngClass]=\"{'error-input': card_state.cvc_error}\" id=\"numberInput\" [(ngModel)]=\"Card.cvc\" [ngModelOptions]=\"{standalone: true}\">\n              <small class=\"error-message\" *ngIf=\"card_state.cvc_error\">{{card_state.cvc_error}}</small>\n            </div>\n          </div>\n        </div>\n        <div class=\"form-group\">\n          <label for=\"nameInput\">Nome e cognome dell'intestatario</label>\n          <input type=\"name\" name=\"name\" placeholder=\"Nome e cognome\" class=\"form-control\" id=\"nameInput\" [(ngModel)]=\"Card.name\" [ngModelOptions]=\"{standalone: true}\">\n        </div>\n        <div class=\"row\">\n          <div class=\"col-md-8\">\n            <div class=\"form-group\">\n              <label for=\"addressInput\">Indirizzo</label>\n              <input type=\"address\" placeholder=\"Via\" class=\"form-control\" id=\"addressInput\" [(ngModel)]=\"Card.address_line1\" [ngModelOptions]=\"{standalone: true}\">\n            </div>\n          </div>\n          <div class=\"col-md-4\">\n            <div class=\"form-group\">\n              <label for=\"addressNumberInput\">Nr</label>\n              <input type=\"text\" placeholder=\"Nr\" class=\"form-control\" id=\"addressNumberInput\" [(ngModel)]=\"Card.address_line2\" [ngModelOptions]=\"{standalone: true}\">\n            </div>\n          </div>\n        </div>\n        <div class=\"row\">\n          <div class=\"col-md-8\">\n            <div class=\"form-group\">\n              <label for=\"cittyInput\">Città</label>\n              <input type=\"text\" placeholder=\"Città\" class=\"form-control\" id=\"cittyInput\" [(ngModel)]=\"Card.address_city\" [ngModelOptions]=\"{standalone: true}\">\n            </div>\n          </div>\n          <div class=\"col-md-4\">\n            <div class=\"form-group\">\n              <label for=\"capInput\">CAP</label>\n              <input type=\"text\" placeholder=\"CAP\" class=\"form-control\" id=\"capInput\" [(ngModel)]=\"Card.address_zip\" [ngModelOptions]=\"{standalone: true}\">\n            </div>\n          </div>\n        </div>\n        <div class=\"row\">\n          <div class=\"col-md-6\">\n            <div class=\"form-group\">\n              <label for=\"provinceInput\">Provincia</label>\n              <input type=\"text\" placeholder=\"Provincia\" class=\"form-control\" id=\"provinceInput\" [(ngModel)]=\"Card.address_state\" [ngModelOptions]=\"{standalone: true}\">\n            </div>\n          </div>\n          <div class=\"col-md-6\">\n            <div class=\"form-group\">\n              <label for=\"countryInput\">Paese</label>\n              <input type=\"text\" placeholder=\"Paese\" class=\"form-control\" id=\"countryInput\" [(ngModel)]=\"Card.address_country\" [ngModelOptions]=\"{standalone: true}\">\n            </div>\n          </div>\n        </div>\n        <div class=\"messages\" *ngIf=\"card_state.message_error\">\n          <div class=\"error\" *ngIf=\"card_state.message_error\">\n            <p><small>{{card_state.message_error}}</small></p>\n          </div>\n        </div>\n        <div class=\"form-group\">\n          <a class=\"btn btn-yellow-green\" (click)=\"addCard()\"><i class=\"fa fa-circle-o-notch animate\" *ngIf=\"card_state.loading\"></i>{{card_state.button_title}}</a>\n        </div>\n      </div>\n    </form>\n  </div>\n"
 
 /***/ },
 
-/***/ 730:
+/***/ 729:
 /***/ function(module, exports) {
 
 module.exports = "<div class=\"service-container\">\n  <div class=\"service\" *ngIf=\"page==='service'\">\n    <div class=\"header\">\n      <h3>Hai bisogno di un professionista?</h3>\n      <h6>Inserisci il titolo e la descrizione del lavoro che vuoi svolgere.</h6>\n    </div>\n    <form>\n      <div class=\"form-group\">\n        <label for=\"titleInput\">Titolo</label>\n        <input type=\"text\" placeholder=\"Titolo della richiesta\" class=\"form-control\" [ngClass]=\"{'error-input': request_state.title_error}\" id=\"titleInput\" [(ngModel)]=\"Request.title\" [ngModelOptions]=\"{standalone: true}\">\n      </div>\n      <div class=\"form-group\">\n        <label for=\"descriptionInput\">Descrizione</label>\n        <textarea class=\"form-control\" placeholder=\"Descrizione della richiesta\" rows=\"5\" [ngClass]=\"{'error-input': request_state.description_error}\" id=\"descriptionInput\" [(ngModel)]=\"Request.description\" [ngModelOptions]=\"{standalone: true}\"></textarea>\n      </div>\n      <div class=\"row\">\n        <div class=\"col-md-6\">\n          <div class=\"form-group\">\n            <label for=\"firstNameInput\">Nome</label>\n            <input type=\"firstname\" placeholder=\"Nome\" class=\"form-control\" [ngClass]=\"{'error-input': request_state.firstname_error}\" id=\"firstNameInput\" [(ngModel)]=\"Request.firstname\" [ngModelOptions]=\"{standalone: true}\">\n          </div>\n        </div>\n        <div class=\"col-md-6\">\n          <div class=\"form-group\">\n            <label for=\"lastNameInput\">Cognome</label>\n            <input type=\"lastname\" placeholder=\"Cognome\" class=\"form-control\" [ngClass]=\"{'error-input': request_state.lastname_error}\" id=\"lastNameInput\" [(ngModel)]=\"Request.lastname\" [ngModelOptions]=\"{standalone: true}\">\n          </div>\n        </div>\n      </div>\n      <div class=\"form-group\">\n        <label for=\"phoneInput\">Telefono</label>\n        <input type=\"phone\" placeholder=\"Numero di telefono\" class=\"form-control\" [ngClass]=\"{'error-input': request_state.phone_error}\" id=\"phoneInput\" [(ngModel)]=\"Request.phone\" [ngModelOptions]=\"{standalone: true}\">\n      </div>\n      <div class=\"form-group\">\n        <label for=\"emailInput\">Email</label>\n        <input type=\"email\" placeholder=\"La tua mail\" class=\"form-control\" [ngClass]=\"{'error-input': request_state.email_error}\" id=\"emailInput\" [(ngModel)]=\"Request.email\" [ngModelOptions]=\"{standalone: true}\">\n      </div>\n      <div class=\"form-group\" *ngIf=\"request_state.message_success\">\n        <div class=\"alert alert-success\" role=\"alert\">\n          {{request_state.message_success}}\n        </div>\n      </div>\n      <div class=\"form-group\" *ngIf=\"request_state.message_error\">\n        <div class=\"alert alert-danger\" role=\"alert\">\n          {{request_state.message_error}}\n        </div>\n      </div>\n      <div class=\"form-group\">\n        <button type=\"button\" id=\"next\" class=\"btn btn-warning\" (click)=\"sendRequestForNewService()\"><i class=\"fa fa-circle-o-notch animate\" *ngIf=\"request_state.loading\"></i>{{request_state.button_title}}</button>\n      </div>\n    </form>\n  </div>\n\n  <div class=\"estimate\" *ngIf=\"page==='estimate'\">\n    <div *ngIf=\"!Estimate\">\n      Non ci sono preventivi da visualizzare\n    </div>\n    <div *ngIf=\"Estimate\">\n      <div class=\"header\">\n        <div *ngFor=\"let item of Estimate.details\">\n          <div *ngIf=\"item.type === 'service'\">\n            <h3>{{item.title}}</h3>\n            <div class=\"line\"></div>\n          </div>\n          <div *ngIf=\"item.type === 'detail'\">\n            <p>{{item.title}}</p>\n          </div>\n        </div>\n      </div>\n      <div class=\"line\"></div>\n      <div class=\"counts\" *ngIf=\"Estimate.price.initial>Estimate.price.final\">\n        <div class=\"item\">PREZZO INIZIALE</div>\n        <div class=\"amount initial\">{{Estimate.price.initial/100}}€</div>\n      </div>\n      <div class=\"counts\">\n        <div class=\"item\">PREZZO FINALE</div>\n        <div class=\"amount\">{{Estimate.price.final/100}}€</div>\n      </div>\n      <div class=\"counts\">\n        <div class=\"item\">ACCONTO (30% del totale)</div>\n        <div class=\"amount\">{{Estimate.payment.upfront/100}}€</div>\n      </div>\n      <div class=\"actions\">\n        <div class=\"form-group\">\n          <button class=\"btn btn-warning\" id=\"next\" type=\"button\">Continua</button>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>\n"
 
 /***/ },
 
-/***/ 731:
+/***/ 730:
 /***/ function(module, exports) {
 
-module.exports = "<div class=\"service-container\" *ngIf=\"Service\">\n  <div class=\"service\">\n    <div class=\"picture-container\">\n      <div class=\"picture\" *ngIf=\"Service._id\" [ngStyle]=\"{'background-image' : ' url(' + 'https://s3-eu-west-1.amazonaws.com/starbook-s3/services/' + Service._id + '/cover/0' + ')'}\">\n        <div class=\"overlay\">\n\n        </div>\n      </div>\n      <div class=\"picture-footer\">\n        <span class=\"left-content\">Condividi</span>\n        <div class=\"right-content\">\n          <button (click)=\"shareOnFacebook()\"><i class=\"fa fa-facebook\" aria-hidden=\"true\"></i></button>\n          <button (click)=\"shareOnTwitter()\"><i class=\"fa fa-twitter\" aria-hidden=\"true\"></i></button>\n          <button (click)=\"shareOnEmail()\"><i class=\"fa fa-envelope\" aria-hidden=\"true\"></i></button>\n        </div>\n      </div>\n    </div>\n    <div class=\"content-container\">\n      <div class=\"content-header\">\n        <span class=\"content-title\" *ngIf=\"Service.title\">{{Service.title}}</span>\n        <span class=\"content-description\" *ngIf=\"Service.description\">{{Service.description}}</span>\n      </div>\n      <div class=\"content-pricing\" *ngIf=\"Service.pricing\">\n        <div class=\"options-container\" *ngIf=\"Service.pricing.options && Service.pricing.options?.length>0\">\n          <div class=\"options\" *ngFor=\"let option of Service.pricing.options\">\n            <div class=\"item-container noselect\" *ngFor=\"let item of option.items\" (click)=\"toggleItemOption(item, option)\">\n              <span class=\"checkbox\" [ngClass]=\"{'checked':orderServiceDetailsContainItem(item)}\"><span></span></span>\n              <span class=\"title\">{{item.title}}</span>\n            </div>\n          </div>\n        </div>\n        <span class=\"price\">{{getPriceStringPerUnit()}}</span>\n        <span class=\"unit\"> / {{Service.pricing.unit.title}}</span>\n        <div class=\"actions\">\n          <button class=\"btn btn-warning\" name=\"button\" (click)=\"bookService()\">Prenota</button>\n        </div>\n      </div>\n\n      <div class=\"content-users\" *ngIf=\"Accounts.length>0 || Account\">\n        <span class=\"title\">Professionisti</span>\n        <div class=\"user\" *ngIf=\"Account\">\n          <div class=\"avatar\" *ngIf=\"checkImageUrlFromAccount(Account)!==0\" [ngStyle]=\"{'background-image' : 'url(' +  'https://s3-eu-west-1.amazonaws.com/starbook-s3/accounts/' + Account._id + '/avatar/0' + ')'}\"></div>\n          <div class=\"avatar\" *ngIf=\"checkImageUrlFromAccount(Account)===0\"></div>\n          <div class=\"username\">{{Account['profile']['firstname']}}</div>\n        </div>\n        <div class=\"user\" *ngFor=\"let account of Accounts\">\n          <div class=\"avatar\" *ngIf=\"!avatar\" [ngStyle]=\"{'background-image' : 'url(' + 'https://s3-eu-west-1.amazonaws.com/starbook-s3/accounts/' + account.account._id + '/avatar/0' + ')'}\"></div>\n          <div class=\"username\">{{account.account.profile.firstname}}</div>\n        </div>\n      </div>\n\n      <!-- <div class=\"content-reviews\">\n        <div class=\"reviews-header\">\n          <span>Recensioni</span> <span></span>\n        </div>\n        <div class=\"reviews-body\">\n          <div class=\"review\">\n            <div class=\"text\">\n              <span>Non ci sono ancora recensioni</span>\n            </div>\n          </div>\n          <div class=\"review\">\n            <div class=\"user\">\n              <div class=\"avatar\"></div>\n              <div class=\"user-content\">\n                <div class=\"username\">Paolo</div>\n                <div class=\"date\">Dicembre 2016</div>\n              </div>\n            </div>\n            <div class=\"text\">\n              <span>Vengono realizzate mediante incollaggio diretto della lastra a parete o mediante formazione di una struttura metallica di supporto. All'interno dell'intercapedine vengono poi inseriti materiali termo-isolanti al fine di migliorarne le caratteristiche prestazionali.</span>\n            </div>\n          </div>\n          <div class=\"review\">\n            <div class=\"user\">\n              <div class=\"avatar\"></div>\n              <div class=\"user-content\">\n                <div class=\"username\">Paolo</div>\n                <div class=\"date\">Dicembre 2016</div>\n              </div>\n            </div>\n            <div class=\"text\">\n              <span>Vengono realizzate mediante incollaggio diretto della lastra a parete o mediante formazione di una struttura metallica di supporto. All'interno dell'intercapedine vengono poi inseriti materiali termo-isolanti al fine di migliorarne le caratteristiche prestazionali.</span>\n            </div>\n          </div>\n          <div class=\"review\">\n            <div class=\"user\">\n              <div class=\"avatar\"></div>\n              <div class=\"user-content\">\n                <div class=\"username\">Paolo</div>\n                <div class=\"date\">Dicembre 2016</div>\n              </div>\n            </div>\n            <div class=\"text\">\n              <span>Vengono realizzate mediante incollaggio diretto della lastra a parete o mediante formazione di una struttura metallica di supporto. All'interno dell'intercapedine vengono poi inseriti materiali termo-isolanti al fine di migliorarne le caratteristiche prestazionali.</span>\n            </div>\n          </div>\n        </div>\n      </div> -->\n      <!-- <div class=\"content-header\"> -->\n        <!-- <span class=\"description\" *ngIf=\"Service.description\">{{Service.description}}</span> -->\n        <!-- <div class=\"user\"><div class=\"avatar\" [ngStyle]=\"{'background-image' : ' url(' + 'https://s3-eu-west-1.amazonaws.com/starbook-s3/services/' + Service._id + '/cover/0' + ')'}\"></div> <i class=\"fa fa-user-circle\" aria-hidden=\"true\"></i><span class=\"username\"> Luigi Capaldo</span></div> -->\n        <!-- <div class=\"user\" *ngIf=\"Service.supplier_id\"> -->\n          <!-- <div class=\"avatar\" [ngStyle]=\"{'background-image' : ' url(' + '/assets/images/icon.png' + ')'}\"></div><div class=\"username\">{{}}</div> -->\n          <!-- <div class=\"avatar\" [ngStyle]=\"{'background-image' : ' url(' + '/assets/images/icon.png' + ')'}\"></div><div class=\"username\">{{Service.supplier_id}}</div> -->\n          <!-- <div class=\"avatar\" [ngStyle]=\"{'background-image' : ' url(' + 'https://s3-eu-west-1.amazonaws.com/starbook-s3/accounts/' + Service.supplier_id + '/avatar/0' + ')'}\"></div><div class=\"username\"></div> -->\n          <!-- <div class=\"avatar\" *ngIf=\"pictureForSupplierIdExist(Service.supplier_id)\" [ngStyle]=\"{'background-image' : ' url(' + pictureForSupplierId(Service.supplier_id) + ')'}\"></div> -->\n          <!-- <div class=\"avatar\" *ngIf=\"pictureForSupplierId(Service.supplier_id)\" [ngStyle]=\"{'background-image' : ' url(' + 'https://s3-eu-west-1.amazonaws.com/starbook-s3/accounts/' + Service.supplier_id + '/avatar/0' + ')'}\"></div> -->\n          <!-- <div class=\"avatar\" [ngStyle]=\"{'background-image' : ' url(' + '/assets/images/icon.png' + ')'}\"></div> -->\n          <!-- <div class=\"avatar\" *ngIf=\"avatar\" [ngStyle]=\"{'background-image' : ' url(' + avatar + ')'}\"></div> -->\n          <!-- <div class=\"avatar\" *ngIf=\"!avatar\" [ngStyle]=\"{'background-image' : 'url(' + '/assets/images/icon.png' + ')'}\"></div> -->\n          <!-- <div class=\"avatar\" *ngIf=\"getPictureForAccount(Service.supplier_id)\" [ngStyle]=\"{'background-image' : 'url(' + getPictureForAccount(Service.supplier_id) + ')'}\"></div> -->\n          <!-- <div class=\"username\" *ngIf=\"Service.supplier\">{{Service.supplier.profile.fullname.toLowerCase()}}</div> -->\n          <!-- <div class=\"username\" *ngIf=\"Service.supplier\">{{Service.supplier.profile.fullname.toLowerCase()}}</div> -->\n        <!-- </div> -->\n      <!-- </div> -->\n      <!-- <div class=\"content-body\" *ngIf=\"Service.pricing\">\n        <span class=\"cost-description\">SPESA IVA INCLUSA</span>\n        <span class=\"price\">{{getPriceStringPerUnit(Service.pricing.unit.price)}}</span>\n        <span class=\"unit\"> / {{Service.pricing.unit.title}}</span>\n        <span class=\"cost-information\">La spesa è legata esclusivamente alla qualità del professionista.</span>\n        <div class=\"actions\">\n          <button class=\"btn btn-warning\" name=\"button\" (click)=\"bookService()\">Prenota</button>\n        </div>\n        <div class=\"block-container\">\n          <div class=\"tabbar-container noselect\">\n            <ul class=\"tabbar\">\n              <li *ngFor=\"let tab of tabs; let i=index;\" [ngClass]=\"{'active':tab===selectedTab}\" (click)=\"clickTabItem(tab)\">{{tab}}</li>\n            </ul>\n          </div>\n          <div class=\"description-container\" *ngIf=\"selectedTab==='Descrizione'\">\n            <div class=\"description\">\n              <span>{{Service.description}}</span>\n            </div>\n          </div>\n          <div class=\"content-pricing\" *ngIf=\"selectedTab==='Preventivo'\">\n            <div class=\"pricing-header\">\n              <span>Calcola il preventivo</span>\n            </div>\n            <div class=\"pricing-body\">\n              <form *ngIf=\"Service.pricing\">\n                <div class=\"input-group\">\n                  <span class=\"input-group-addon\">{{Service.pricing.unit.title}}</span>\n                  <input class=\"form-control\" type=\"text\" [(ngModel)]=\"OrderService['details'][0].quantity\" (keyup)=\"changeQuantityForOrderService()\" (change)=\"changeQuantityForOrderService()\" [ngModelOptions]=\"{standalone: true}\">\n                </div>\n                <div class=\"option\" *ngFor=\"let option of Service.pricing.options\">\n                  <div class=\"title\">\n                    <span>{{option.title}}</span>\n                  </div>\n                  <div class=\"items\">\n                    <div class=\"item-container noselect\" *ngFor=\"let item of option.items\" (click)=\"toggleItemOption(item, option)\">\n                      <div class=\"item\" [ngClass]=\"{'checked':orderServiceDetailsContainItem(item)}\">\n                        <span>{{item.title}}</span>\n                      </div>\n                    </div>\n                  </div>\n                </div>\n              </form>\n            </div>\n            <div class=\"pricing-footer\">\n              <span>Prezzo {{getTotalEstimateQuotation()/100}}€</span>\n            </div>\n          </div>\n          <div class=\"content-pricing\" *ngIf=\"selectedTab==='Recensioni'\">\n          </div>\n        </div>\n      </div> -->\n    </div>\n  </div>\n</div>\n\n<footer class=\"footer-container\">\n  <div class=\"footer\">\n    <div class=\"row\">\n      <div class=\"col-md-4\">\n        <div class=\"form-group\">\n          <a class=\"btn btn-warning\" name=\"button\" routerLink=\"/insert/intro\">Pubblica un servizio</a>\n        </div>\n        <div class=\"form-group\">\n          <a class=\"btn btn-success\" name=\"button\" routerLink=\"/requests/service\">Richiedi un servizio</a>\n        </div>\n      </div>\n      <div class=\"col-md-4 text-center\">\n        <p>Starbook è un marketplace di artigiani e professionisti dove puoi trovare il servizio che ti serve e prenotarlo direttamente.</p>\n        <p class=\"text-center\"><a><strong>Starbook</strong> © 2017 Tutti i diritti riservati</a></p>\n      </div>\n      <div class=\"col-md-4 text-center\">\n        <ul>\n          <li><a routerLink=\"/info/help\">Aiuto e Assistenza</a></li>\n          <li><a routerLink=\"/info/legal\">Privacy e Condizioni</a></li>\n          <li><a routerLink=\"/contact/partner\" *ngIf=\"currentUser\">Diventa partner</a></li>\n        </ul>\n      </div>\n    </div>\n  </div>\n</footer>\n\n\n<!-- <div class=\"service-container\">\n  <div class=\"row\">\n    <div class=\"col-sm-9 col-md-10 main\">\n      <div class=\"tab-container\">\n        <div class=\"cover-container\" *ngIf=\"Service.pricing\">\n          <div class=\"cover-header\">\n            <i class=\"fa fa-facebook\" aria-hidden=\"true\"></i><i class=\"fa fa-twitter\" aria-hidden=\"true\"></i><i class=\"fa fa-envelope\" aria-hidden=\"true\"></i>\n            <span>{{Service.title}}</span>\n          </div>\n          <div class=\"cover-body\" [ngStyle]=\"{'background-image' : ' url(' + 'https://s3-eu-west-1.amazonaws.com/starbook-s3/services/' + Service._id + '/cover/0' + ')'}\"></div>\n          <div class=\"cover-footer\">\n            <div class=\"item\">\n              <span class=\"icon\"><i class=\"fa fa-calendar-check-o\" aria-hidden=\"true\"></i></span><span class=\"text\">Disponibilità su prenotazione</span><br>\n            </div>\n            <div class=\"item\">\n              <span class=\"text\"><i class=\"fa fa-clock-o\" aria-hidden=\"true\"></i> Durata minima</span>\n            </div>\n            <div class=\"item\">\n              <span class=\"text\"><i class=\"fa fa-map-marker\" aria-hidden=\"true\"></i> Sopraluogo</span><br>\n            </div>\n            <div class=\"item\">\n              <span class=\"text\"><i class=\"fa fa-credit-card-alt\" aria-hidden=\"true\"></i> Modalità di pagamento con carta</span>\n            </div>\n          </div>\n        </div>\n        <div class=\"quotation-container\" *ngIf=\"Service.pricing\">\n          <div class=\"quotation-header\">\n            <div class=\"item-container\">\n              <i class=\"fa fa-calendar-check-o\" aria-hidden=\"true\"></i><span class=\"text\">Disponibilità su prenotazione</span><br>\n            </div>\n            <div class=\"item-container\">\n              <i class=\"fa fa-clock-o\" aria-hidden=\"true\"></i><span class=\"text\">Durata lavoro</span>\n            </div>\n            <div class=\"item-container\">\n              <i class=\"fa fa-map-marker\" aria-hidden=\"true\"></i><span class=\"text\">Sopralluogo gratuito</span>\n            </div>\n            <div class=\"item-container\">\n              <i class=\"fa fa-credit-card-alt\" aria-hidden=\"true\"></i><span class=\"text\">Pagamento: Carta, Prepagata</span>\n            </div>\n            <span class=\"left\">Calcola il preventivo</span><span class=\"right\">345€</span>\n          </div>\n          <div class=\"quotation-body\">\n            <div class=\"quantity\">\n              <div class=\"input-group\">\n                <span class=\"input-group-addon\">{{Service.pricing.unit.title}}</span>\n                <input class=\"form-control\" type=\"text\" [(ngModel)]=\"OrderService['details'][0].quantity\" (keyup)=\"changeQuantityForOrderService()\" (change)=\"changeQuantityForOrderService()\">\n              </div>\n            </div>\n            <div class=\"option\" *ngFor=\"let option of Service.pricing.options\">\n              <div class=\"title\">\n                <span>{{option.title}}</span>\n              </div>\n              <div class=\"items\">\n                <div class=\"item-container noselect\" *ngFor=\"let item of option.items\" (click)=\"toggleItemOption(item, option)\">\n                  <div class=\"item\" [ngClass]=\"{'checked':orderServiceDetailsContainItem(item)}\">\n                    <span>{{item.title}}</span>\n                  </div>\n                </div>\n              </div>\n            </div>\n            <div class=\"quantity\" *ngIf=\"control.type==='QUANTITY'\">\n              <span>{{pricing.unit.title}}</span>\n              <div class=\"input-group\">\n                <span class=\"input-group-addon\">{{form.title}}</span>\n                <input class=\"form-control\" type=\"text\" [(ngModel)]=\"control.value\" (keyup)=\"changeValue()\" (change)=\"changeValue()\" (focus)=\"selectAllContent($event)\">\n              </div>\n            </div>\n            <div class=\"price\" *ngIf=\"control.type==='PRICE'\">\n              <div class=\"items-container\">\n                <span class=\"title\">{{form.title}}</span>\n                <div class=\"items\">\n                  <div class=\"item-container\" *ngFor=\"let item of control.items\">\n                    <div class=\"item\">\n                      <span>{{control.title}}</span>\n                    </div>\n                  </div>\n                </div>\n              </div>\n            </div>\n          </div>\n          <div class=\"quotation-footer\">\n            <div class=\"form-group\">\n              <button class=\"btn btn-warning\">{{getTotalEstimateQuotation()/100}}€ CONTINUA</button>\n            </div>\n          </div>\n        </div>\n        <div class=\"masonry-container\">\n          <div class=\"services-block\" *ngFor=\"let serviceCategory of servicesData\">\n            <div class=\"header\">\n              <div class=\"content-header\" *ngIf=\"serviceCategory.image_url && serviceCategory.image_url !== ''\" [ngStyle]=\"{'width': '60%'}\">\n                <h3>{{serviceCategory.title}}</h3>\n                <p *ngIf=\"serviceCategory.description !== ''\">{{serviceCategory.description}}</p>\n              </div>\n              <div class=\"content-header\" *ngIf=\"!serviceCategory.image_url || serviceCategory.image_url === ''\" [ngStyle]=\"{'width': '100%', 'padding-right' : '0px'}\">\n                <h3>{{serviceCategory.title}}</h3>\n                <p *ngIf=\"serviceCategory.description !== ''\">{{serviceCategory.description}}</p>\n              </div>\n              <div *ngIf=\"serviceCategory.image_url && serviceCategory.image_url !== ''\">\n                <img src=\"{{serviceCategory.image_url}}\" alt=\"{{serviceCategory.title}}\">\n              </div>\n              <div *ngIf=\"!serviceCategory.image_url || serviceCategory.image_url == ''\">\n                <img [ngStyle]=\"{'display': 'none'}\">\n              </div>\n            </div>\n            <div class=\"service content noselect\">\n              <span *ngFor=\"let item of serviceCategory.options\">\n                <div class=\"item-container\" *ngIf=\"item.type === 'CHECKBOX' || item.type === 'RADIOBUTTON'\" [ngClass]=\"{'checked':item.selected, 'image-item': item.image_url}\" (click)=\"toggleService(serviceCategory.title, item.title)\">\n                  <div class=\"item\">\n                    <i *ngIf=\"item.selected===true\" class=\"checkbox\"><span></span></i>\n                    <i *ngIf=\"item.selected===false\" class=\"checkbox empty\"></i>\n                    <h4>{{item.title}}</h4>\n                  </div>\n                  <div class=\"item-description\" *ngIf=\"item.description!==''\">\n                    <p>{{ item.description }}</p>\n                  </div>\n                  <div class=\"item-image\" *ngIf=\"item.image_url !== ''\" [ngStyle]=\"{'background-image': 'url(' + item.image_url + ')'}\"></div>\n                  <div class=\"item-image\" *ngIf=\"item.image_url == ''\" [ngStyle]=\"{'display': 'none'}\"></div>\n                </div>\n                <div class=\"input-group\" *ngIf=\"item.type === 'INPUTTEXT'\">\n                  <input type=\"text\" [(ngModel)]=\"servicesData[item.formId].options[item.optionId].input_value\" (keyup)=\"changeValue(item.formId, item.optionId)\" (change)=\"changeValue(item.formId, item.optionId)\" (focus)=\"selectAllContent($event)\">\n                  <span class=\"input-group-addon\">{{servicesData[item.formId].options[item.optionId].value_symbol}}</span>\n                </div>\n              </span>\n            </div>\n          </div>\n        </div>\n      </div>\n      <app-order *ngIf=\"Service.pricing\" [Service]=\"Service\" [orderServices]=\"OrderService\" [orderData]=\"orderData\" [orderIsFull]=\"orderIsFull\" [price_state] = \"price_state\"></app-order>\n    </div>\n  </div>\n</div> -->\n"
+module.exports = "<div class=\"service-container\" *ngIf=\"Service\">\n  <div class=\"service\">\n    <div class=\"picture-container\">\n      <div class=\"picture\" *ngIf=\"Service._id\" [ngStyle]=\"{'background-image' : ' url(' + 'https://s3-eu-west-1.amazonaws.com/starbook-s3/services/' + Service._id + '/cover/0' + ')'}\">\n        <div class=\"overlay\"></div>\n      </div>\n      <div class=\"picture-footer\">\n        <span class=\"left-content\">Condividi</span>\n        <div class=\"right-content\">\n          <button (click)=\"shareOnFacebook()\"><i class=\"fa fa-facebook\" aria-hidden=\"true\"></i></button>\n          <button (click)=\"shareOnTwitter()\"><i class=\"fa fa-twitter\" aria-hidden=\"true\"></i></button>\n          <button (click)=\"shareOnEmail()\"><i class=\"fa fa-envelope\" aria-hidden=\"true\"></i></button>\n        </div>\n      </div>\n    </div>\n    <div class=\"content-container\">\n      <div class=\"content-header\">\n        <span class=\"content-title\" *ngIf=\"Service.title\">{{Service.title}}</span>\n        <span class=\"content-description\" *ngIf=\"Service.description\">{{Service.description}}</span>\n      </div>\n      <div class=\"content-pricing\" *ngIf=\"Service.pricing\">\n        <div class=\"options-container\" *ngIf=\"Service.pricing.options && Service.pricing.options?.length>0\">\n          <div class=\"options\" *ngFor=\"let option of Service.pricing.options\">\n            <div class=\"item-container noselect\" *ngFor=\"let item of option.items\" (click)=\"toggleItemOption(item, option)\">\n              <span class=\"checkbox\" [ngClass]=\"{'checked':orderServiceDetailsContainItem(item)}\"><span></span></span>\n              <span class=\"title\">{{item.title}}</span>\n            </div>\n          </div>\n        </div>\n        <span class=\"price\">{{getPriceStringPerUnit()}}</span>\n        <span class=\"unit\"> / {{Service.pricing.unit.title}}</span>\n        <div class=\"actions\">\n          <button class=\"btn btn-warning\" name=\"button\" (click)=\"bookService()\">Prenota</button>\n        </div>\n      </div>\n\n      <div class=\"content-users\" *ngIf=\"Accounts.length>0 || Account\">\n        <span class=\"title\">Professionisti</span>\n        <div class=\"user\" *ngIf=\"Account\">\n          <div class=\"avatar\" *ngIf=\"checkImageUrlFromAccount(Account)!==0\" [ngStyle]=\"{'background-image' : 'url(' +  'https://s3-eu-west-1.amazonaws.com/starbook-s3/accounts/' + Account._id + '/avatar/0' + ')'}\"></div>\n          <div class=\"avatar\" *ngIf=\"checkImageUrlFromAccount(Account)===0\"></div>\n          <div class=\"username\">{{Account['profile']['firstname']}}</div>\n        </div>\n        <div class=\"user\" *ngFor=\"let account of Accounts\">\n          <div class=\"avatar\" *ngIf=\"!avatar\" [ngStyle]=\"{'background-image' : 'url(' + 'https://s3-eu-west-1.amazonaws.com/starbook-s3/accounts/' + account.account._id + '/avatar/0' + ')'}\"></div>\n          <div class=\"username\">{{account.account.profile.firstname}}</div>\n        </div>\n      </div>\n\n      <!-- <div class=\"content-reviews\">\n        <div class=\"reviews-header\">\n          <span>Recensioni</span> <span></span>\n        </div>\n        <div class=\"reviews-body\">\n          <div class=\"review\">\n            <div class=\"text\">\n              <span>Non ci sono ancora recensioni</span>\n            </div>\n          </div>\n          <div class=\"review\">\n            <div class=\"user\">\n              <div class=\"avatar\"></div>\n              <div class=\"user-content\">\n                <div class=\"username\">Paolo</div>\n                <div class=\"date\">Dicembre 2016</div>\n              </div>\n            </div>\n            <div class=\"text\">\n              <span>Vengono realizzate mediante incollaggio diretto della lastra a parete o mediante formazione di una struttura metallica di supporto. All'interno dell'intercapedine vengono poi inseriti materiali termo-isolanti al fine di migliorarne le caratteristiche prestazionali.</span>\n            </div>\n          </div>\n          <div class=\"review\">\n            <div class=\"user\">\n              <div class=\"avatar\"></div>\n              <div class=\"user-content\">\n                <div class=\"username\">Paolo</div>\n                <div class=\"date\">Dicembre 2016</div>\n              </div>\n            </div>\n            <div class=\"text\">\n              <span>Vengono realizzate mediante incollaggio diretto della lastra a parete o mediante formazione di una struttura metallica di supporto. All'interno dell'intercapedine vengono poi inseriti materiali termo-isolanti al fine di migliorarne le caratteristiche prestazionali.</span>\n            </div>\n          </div>\n          <div class=\"review\">\n            <div class=\"user\">\n              <div class=\"avatar\"></div>\n              <div class=\"user-content\">\n                <div class=\"username\">Paolo</div>\n                <div class=\"date\">Dicembre 2016</div>\n              </div>\n            </div>\n            <div class=\"text\">\n              <span>Vengono realizzate mediante incollaggio diretto della lastra a parete o mediante formazione di una struttura metallica di supporto. All'interno dell'intercapedine vengono poi inseriti materiali termo-isolanti al fine di migliorarne le caratteristiche prestazionali.</span>\n            </div>\n          </div>\n        </div>\n      </div> -->\n      <!-- <div class=\"content-header\"> -->\n        <!-- <span class=\"description\" *ngIf=\"Service.description\">{{Service.description}}</span> -->\n        <!-- <div class=\"user\"><div class=\"avatar\" [ngStyle]=\"{'background-image' : ' url(' + 'https://s3-eu-west-1.amazonaws.com/starbook-s3/services/' + Service._id + '/cover/0' + ')'}\"></div> <i class=\"fa fa-user-circle\" aria-hidden=\"true\"></i><span class=\"username\"> Luigi Capaldo</span></div> -->\n        <!-- <div class=\"user\" *ngIf=\"Service.supplier_id\"> -->\n          <!-- <div class=\"avatar\" [ngStyle]=\"{'background-image' : ' url(' + '/assets/images/icon.png' + ')'}\"></div><div class=\"username\">{{}}</div> -->\n          <!-- <div class=\"avatar\" [ngStyle]=\"{'background-image' : ' url(' + '/assets/images/icon.png' + ')'}\"></div><div class=\"username\">{{Service.supplier_id}}</div> -->\n          <!-- <div class=\"avatar\" [ngStyle]=\"{'background-image' : ' url(' + 'https://s3-eu-west-1.amazonaws.com/starbook-s3/accounts/' + Service.supplier_id + '/avatar/0' + ')'}\"></div><div class=\"username\"></div> -->\n          <!-- <div class=\"avatar\" *ngIf=\"pictureForSupplierIdExist(Service.supplier_id)\" [ngStyle]=\"{'background-image' : ' url(' + pictureForSupplierId(Service.supplier_id) + ')'}\"></div> -->\n          <!-- <div class=\"avatar\" *ngIf=\"pictureForSupplierId(Service.supplier_id)\" [ngStyle]=\"{'background-image' : ' url(' + 'https://s3-eu-west-1.amazonaws.com/starbook-s3/accounts/' + Service.supplier_id + '/avatar/0' + ')'}\"></div> -->\n          <!-- <div class=\"avatar\" [ngStyle]=\"{'background-image' : ' url(' + '/assets/images/icon.png' + ')'}\"></div> -->\n          <!-- <div class=\"avatar\" *ngIf=\"avatar\" [ngStyle]=\"{'background-image' : ' url(' + avatar + ')'}\"></div> -->\n          <!-- <div class=\"avatar\" *ngIf=\"!avatar\" [ngStyle]=\"{'background-image' : 'url(' + '/assets/images/icon.png' + ')'}\"></div> -->\n          <!-- <div class=\"avatar\" *ngIf=\"getPictureForAccount(Service.supplier_id)\" [ngStyle]=\"{'background-image' : 'url(' + getPictureForAccount(Service.supplier_id) + ')'}\"></div> -->\n          <!-- <div class=\"username\" *ngIf=\"Service.supplier\">{{Service.supplier.profile.fullname.toLowerCase()}}</div> -->\n          <!-- <div class=\"username\" *ngIf=\"Service.supplier\">{{Service.supplier.profile.fullname.toLowerCase()}}</div> -->\n        <!-- </div> -->\n      <!-- </div> -->\n      <!-- <div class=\"content-body\" *ngIf=\"Service.pricing\">\n        <span class=\"cost-description\">SPESA IVA INCLUSA</span>\n        <span class=\"price\">{{getPriceStringPerUnit(Service.pricing.unit.price)}}</span>\n        <span class=\"unit\"> / {{Service.pricing.unit.title}}</span>\n        <span class=\"cost-information\">La spesa è legata esclusivamente alla qualità del professionista.</span>\n        <div class=\"actions\">\n          <button class=\"btn btn-warning\" name=\"button\" (click)=\"bookService()\">Prenota</button>\n        </div>\n        <div class=\"block-container\">\n          <div class=\"tabbar-container noselect\">\n            <ul class=\"tabbar\">\n              <li *ngFor=\"let tab of tabs; let i=index;\" [ngClass]=\"{'active':tab===selectedTab}\" (click)=\"clickTabItem(tab)\">{{tab}}</li>\n            </ul>\n          </div>\n          <div class=\"description-container\" *ngIf=\"selectedTab==='Descrizione'\">\n            <div class=\"description\">\n              <span>{{Service.description}}</span>\n            </div>\n          </div>\n          <div class=\"content-pricing\" *ngIf=\"selectedTab==='Preventivo'\">\n            <div class=\"pricing-header\">\n              <span>Calcola il preventivo</span>\n            </div>\n            <div class=\"pricing-body\">\n              <form *ngIf=\"Service.pricing\">\n                <div class=\"input-group\">\n                  <span class=\"input-group-addon\">{{Service.pricing.unit.title}}</span>\n                  <input class=\"form-control\" type=\"text\" [(ngModel)]=\"OrderService['details'][0].quantity\" (keyup)=\"changeQuantityForOrderService()\" (change)=\"changeQuantityForOrderService()\" [ngModelOptions]=\"{standalone: true}\">\n                </div>\n                <div class=\"option\" *ngFor=\"let option of Service.pricing.options\">\n                  <div class=\"title\">\n                    <span>{{option.title}}</span>\n                  </div>\n                  <div class=\"items\">\n                    <div class=\"item-container noselect\" *ngFor=\"let item of option.items\" (click)=\"toggleItemOption(item, option)\">\n                      <div class=\"item\" [ngClass]=\"{'checked':orderServiceDetailsContainItem(item)}\">\n                        <span>{{item.title}}</span>\n                      </div>\n                    </div>\n                  </div>\n                </div>\n              </form>\n            </div>\n            <div class=\"pricing-footer\">\n              <span>Prezzo {{getTotalEstimateQuotation()/100}}€</span>\n            </div>\n          </div>\n          <div class=\"content-pricing\" *ngIf=\"selectedTab==='Recensioni'\">\n          </div>\n        </div>\n      </div> -->\n    </div>\n  </div>\n</div>\n\n<footer class=\"footer-container\">\n  <div class=\"footer\">\n    <div class=\"row\">\n      <div class=\"col-md-4 text-center\">\n        <p><a routerLink=\"/insert/title\">Pubblica un servizio</a></p>\n        <p><a routerLink=\"/requests/service\">Richiedi un servizio</a></p>\n      </div>\n      <div class=\"col-md-4 text-center\">\n        <p>Starbook è un marketplace di artigiani e professionisti dove puoi trovare il servizio che ti serve e prenotarlo direttamente.</p>\n      </div>\n      <div class=\"col-md-4 text-center\">\n        <ul>\n          <li><a routerLink=\"/info/help\">Aiuto e Assistenza</a></li>\n          <li><a routerLink=\"/info/legal\">Privacy e Condizioni</a></li>\n          <li><a routerLink=\"/contact/partner\" *ngIf=\"currentUser\">Diventa partner</a></li>\n        </ul>\n      </div>\n    </div>\n    <div class=\"row\">\n      <p class=\"text-center\"><a><strong>Starbook</strong> © 2017 Tutti i diritti riservati</a></p>\n    </div>\n  </div>\n</footer>\n\n\n<!-- <div class=\"service-container\">\n  <div class=\"row\">\n    <div class=\"col-sm-9 col-md-10 main\">\n      <div class=\"tab-container\">\n        <div class=\"cover-container\" *ngIf=\"Service.pricing\">\n          <div class=\"cover-header\">\n            <i class=\"fa fa-facebook\" aria-hidden=\"true\"></i><i class=\"fa fa-twitter\" aria-hidden=\"true\"></i><i class=\"fa fa-envelope\" aria-hidden=\"true\"></i>\n            <span>{{Service.title}}</span>\n          </div>\n          <div class=\"cover-body\" [ngStyle]=\"{'background-image' : ' url(' + 'https://s3-eu-west-1.amazonaws.com/starbook-s3/services/' + Service._id + '/cover/0' + ')'}\"></div>\n          <div class=\"cover-footer\">\n            <div class=\"item\">\n              <span class=\"icon\"><i class=\"fa fa-calendar-check-o\" aria-hidden=\"true\"></i></span><span class=\"text\">Disponibilità su prenotazione</span><br>\n            </div>\n            <div class=\"item\">\n              <span class=\"text\"><i class=\"fa fa-clock-o\" aria-hidden=\"true\"></i> Durata minima</span>\n            </div>\n            <div class=\"item\">\n              <span class=\"text\"><i class=\"fa fa-map-marker\" aria-hidden=\"true\"></i> Sopraluogo</span><br>\n            </div>\n            <div class=\"item\">\n              <span class=\"text\"><i class=\"fa fa-credit-card-alt\" aria-hidden=\"true\"></i> Modalità di pagamento con carta</span>\n            </div>\n          </div>\n        </div>\n        <div class=\"quotation-container\" *ngIf=\"Service.pricing\">\n          <div class=\"quotation-header\">\n            <div class=\"item-container\">\n              <i class=\"fa fa-calendar-check-o\" aria-hidden=\"true\"></i><span class=\"text\">Disponibilità su prenotazione</span><br>\n            </div>\n            <div class=\"item-container\">\n              <i class=\"fa fa-clock-o\" aria-hidden=\"true\"></i><span class=\"text\">Durata lavoro</span>\n            </div>\n            <div class=\"item-container\">\n              <i class=\"fa fa-map-marker\" aria-hidden=\"true\"></i><span class=\"text\">Sopralluogo gratuito</span>\n            </div>\n            <div class=\"item-container\">\n              <i class=\"fa fa-credit-card-alt\" aria-hidden=\"true\"></i><span class=\"text\">Pagamento: Carta, Prepagata</span>\n            </div>\n            <span class=\"left\">Calcola il preventivo</span><span class=\"right\">345€</span>\n          </div>\n          <div class=\"quotation-body\">\n            <div class=\"quantity\">\n              <div class=\"input-group\">\n                <span class=\"input-group-addon\">{{Service.pricing.unit.title}}</span>\n                <input class=\"form-control\" type=\"text\" [(ngModel)]=\"OrderService['details'][0].quantity\" (keyup)=\"changeQuantityForOrderService()\" (change)=\"changeQuantityForOrderService()\">\n              </div>\n            </div>\n            <div class=\"option\" *ngFor=\"let option of Service.pricing.options\">\n              <div class=\"title\">\n                <span>{{option.title}}</span>\n              </div>\n              <div class=\"items\">\n                <div class=\"item-container noselect\" *ngFor=\"let item of option.items\" (click)=\"toggleItemOption(item, option)\">\n                  <div class=\"item\" [ngClass]=\"{'checked':orderServiceDetailsContainItem(item)}\">\n                    <span>{{item.title}}</span>\n                  </div>\n                </div>\n              </div>\n            </div>\n            <div class=\"quantity\" *ngIf=\"control.type==='QUANTITY'\">\n              <span>{{pricing.unit.title}}</span>\n              <div class=\"input-group\">\n                <span class=\"input-group-addon\">{{form.title}}</span>\n                <input class=\"form-control\" type=\"text\" [(ngModel)]=\"control.value\" (keyup)=\"changeValue()\" (change)=\"changeValue()\" (focus)=\"selectAllContent($event)\">\n              </div>\n            </div>\n            <div class=\"price\" *ngIf=\"control.type==='PRICE'\">\n              <div class=\"items-container\">\n                <span class=\"title\">{{form.title}}</span>\n                <div class=\"items\">\n                  <div class=\"item-container\" *ngFor=\"let item of control.items\">\n                    <div class=\"item\">\n                      <span>{{control.title}}</span>\n                    </div>\n                  </div>\n                </div>\n              </div>\n            </div>\n          </div>\n          <div class=\"quotation-footer\">\n            <div class=\"form-group\">\n              <button class=\"btn btn-warning\">{{getTotalEstimateQuotation()/100}}€ CONTINUA</button>\n            </div>\n          </div>\n        </div>\n        <div class=\"masonry-container\">\n          <div class=\"services-block\" *ngFor=\"let serviceCategory of servicesData\">\n            <div class=\"header\">\n              <div class=\"content-header\" *ngIf=\"serviceCategory.image_url && serviceCategory.image_url !== ''\" [ngStyle]=\"{'width': '60%'}\">\n                <h3>{{serviceCategory.title}}</h3>\n                <p *ngIf=\"serviceCategory.description !== ''\">{{serviceCategory.description}}</p>\n              </div>\n              <div class=\"content-header\" *ngIf=\"!serviceCategory.image_url || serviceCategory.image_url === ''\" [ngStyle]=\"{'width': '100%', 'padding-right' : '0px'}\">\n                <h3>{{serviceCategory.title}}</h3>\n                <p *ngIf=\"serviceCategory.description !== ''\">{{serviceCategory.description}}</p>\n              </div>\n              <div *ngIf=\"serviceCategory.image_url && serviceCategory.image_url !== ''\">\n                <img src=\"{{serviceCategory.image_url}}\" alt=\"{{serviceCategory.title}}\">\n              </div>\n              <div *ngIf=\"!serviceCategory.image_url || serviceCategory.image_url == ''\">\n                <img [ngStyle]=\"{'display': 'none'}\">\n              </div>\n            </div>\n            <div class=\"service content noselect\">\n              <span *ngFor=\"let item of serviceCategory.options\">\n                <div class=\"item-container\" *ngIf=\"item.type === 'CHECKBOX' || item.type === 'RADIOBUTTON'\" [ngClass]=\"{'checked':item.selected, 'image-item': item.image_url}\" (click)=\"toggleService(serviceCategory.title, item.title)\">\n                  <div class=\"item\">\n                    <i *ngIf=\"item.selected===true\" class=\"checkbox\"><span></span></i>\n                    <i *ngIf=\"item.selected===false\" class=\"checkbox empty\"></i>\n                    <h4>{{item.title}}</h4>\n                  </div>\n                  <div class=\"item-description\" *ngIf=\"item.description!==''\">\n                    <p>{{ item.description }}</p>\n                  </div>\n                  <div class=\"item-image\" *ngIf=\"item.image_url !== ''\" [ngStyle]=\"{'background-image': 'url(' + item.image_url + ')'}\"></div>\n                  <div class=\"item-image\" *ngIf=\"item.image_url == ''\" [ngStyle]=\"{'display': 'none'}\"></div>\n                </div>\n                <div class=\"input-group\" *ngIf=\"item.type === 'INPUTTEXT'\">\n                  <input type=\"text\" [(ngModel)]=\"servicesData[item.formId].options[item.optionId].input_value\" (keyup)=\"changeValue(item.formId, item.optionId)\" (change)=\"changeValue(item.formId, item.optionId)\" (focus)=\"selectAllContent($event)\">\n                  <span class=\"input-group-addon\">{{servicesData[item.formId].options[item.optionId].value_symbol}}</span>\n                </div>\n              </span>\n            </div>\n          </div>\n        </div>\n      </div>\n      <app-order *ngIf=\"Service.pricing\" [Service]=\"Service\" [orderServices]=\"OrderService\" [orderData]=\"orderData\" [orderIsFull]=\"orderIsFull\" [price_state] = \"price_state\"></app-order>\n    </div>\n  </div>\n</div> -->\n"
 
 /***/ },
 
-/***/ 732:
+/***/ 731:
 /***/ function(module, exports) {
 
 module.exports = "<div class=\"services\">\n  <!-- <h1><i class=\"fa fa-circle-o-notch animate\" *ngIf=\"services_state.loading\"></i>{{services_state.title}}</h1> -->\n  <div class=\"services-container\">\n    <div class=\"service-box\" *ngFor=\"let service of services\" (click)=\"selectResult(service)\">\n      <div class=\"service\" [ngStyle]=\"{'background-image' : ' url(' + images_url + 'services/'+ service._id + '/cover/0' + ')'}\">\n        <div class=\"overlay\">\n          <div class=\"text-container\">\n            <span class=\"title\">{{ service.title.toLowerCase() }}</span>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>\n"
 
 /***/ },
 
-/***/ 733:
+/***/ 732:
 /***/ function(module, exports) {
 
 module.exports = "<div class=\"estimate\" *ngIf=\"page==='service' && Estimate\">\n  <div class=\"header\">\n    <div *ngFor=\"let item of Estimate.details\">\n      <div *ngIf=\"item.type==='service'\">\n        <h3>{{item.title}}</h3>\n      </div>\n      <div *ngIf=\"item.type==='detail'\">\n        <p>{{item.title}}</p>\n      </div>\n    </div>\n  </div>\n  <div class=\"line\" *ngIf=\"Estimate.timing.days > 1\"></div>\n  <div class=\"counts\" *ngIf=\"Estimate.timing.days > 1\">\n    <div class=\"item\">Durata del lavoro</div>\n    <div class=\"amount time\">{{daysString(Estimate.timing.days)}}</div>\n  </div>\n  <div class=\"line\"></div>\n  <div class=\"counts\" *ngIf=\"Estimate.price.initial>Estimate.price.final\">\n    <div class=\"item\">Totale (Iniziale)</div>\n    <div class=\"amount initial\">{{Estimate.price.initial/100}}€</div>\n  </div>\n  <div class=\"counts\">\n    <div class=\"item\">Totale</div>\n    <div class=\"amount\">{{Estimate.price.final/100}}€</div>\n  </div>\n  <div class=\"line\"></div>\n  <div class=\"actions\">\n    <div class=\"form-group\">\n      <button type=\"button\" id=\"next\" class=\"btn btn-warning\" (click)=\"startWizard()\">Continua con l'ordine</button>\n    </div>\n    <div class=\"form-group\">\n      <a *ngIf=\"currentUser && !estimate_state.saved\" (click)=\"saveEstimate()\">Salva preventivo</a>\n      <a *ngIf=\"currentUser && estimate_state.saved\">Preventivo Salvato!</a>\n    </div>\n  </div>\n</div>\n\n<div class=\"share-container\" *ngIf=\"page==='starbook'\">\n  <div class=\"header\">\n    <h1>Aiuta un amico e guadagnate insieme!</h1>\n    <p>Condividi Starbook ai tuoi amici e per ogni servizio acquistato riceverete entrambi 5% del totale del servizio</p>\n  </div>\n  <div class=\"invitation\">\n    <div class=\"row\">\n      <div class=\"col-lg-12\">\n        <div class=\"form-group\" *ngIf=\"invitation_state.message_error\">\n          <div class=\"alert alert-danger\" role=\"alert\">{{invitation_state.message_error}}</div>\n        </div>\n        <div class=\"form-group\" *ngIf=\"invitation_state.message_success\">\n          <div class=\"alert alert-success\" role=\"alert\">{{invitation_state.message_success}}</div>\n        </div>\n        <div class=\"input-group\">\n          <input type=\"text\" placeholder=\"Esempio: 3234565540, john@gmail.com\" class=\"form-control\" id=\"contacts\" [(ngModel)]=\"contacts\" [ngModelOptions]=\"{standalone: true}\">\n          <span class=\"input-group-btn\">\n            <button type=\"button\" id=\"next\" class=\"btn btn-success\" (click)=\"sendInvitations()\">Invia</button>\n          </span>\n        </div>\n      </div>\n    </div>\n  </div>\n  <div class=\"share-actions\">\n    <h1>Condividi sui social</h1>\n    <div class=\"row\">\n      <div class=\"col-md-6 col-lg-4\">\n        <div class=\"form-group\">\n          <button type=\"button\" id=\"next\" class=\"btn btn-facebook\" (click)=\"shareOnFacebook()\"><i class=\"fa fa-facebook\"></i>Facebook</button>\n        </div>\n      </div>\n      <div class=\"col-md-6 col-lg-4\">\n        <div class=\"form-group\">\n          <button type=\"button\" id=\"next\" class=\"btn btn-twitter\" (click)=\"shareOnTwitter()\"><i class=\"fa fa-twitter\"></i>Twitter</button>\n        </div>\n      </div>\n      <div class=\"col-md-6 col-lg-4\">\n        <div class=\"form-group\">\n          <button type=\"button\" id=\"next\" class=\"btn btn-linkedin\" (click)=\"shareOnLinkedin()\"><i class=\"fa fa-linkedin\"></i>Linkedin</button>\n        </div>\n      </div>\n      <div class=\"col-md-6 col-lg-4\">\n        <div class=\"form-group\">\n          <button type=\"button\" id=\"next\" class=\"btn btn-google-plus\" (click)=\"shareOnGoogle()\"><i class=\"fa fa-google-plus\"></i>Google Plus</button>\n        </div>\n      </div>\n      <div class=\"col-md-6 col-lg-4\">\n        <div class=\"form-group\">\n          <button type=\"button\" id=\"next\" class=\"btn btn-white\" (click)=\"shareWithEmail()\"><i class=\"fa fa-envelope\"></i>Email</button>\n        </div>\n      </div>\n      <div class=\"col-md-6 col-lg-4\">\n        <div class=\"form-group\">\n          <button type=\"button\" id=\"next\" class=\"btn btn-white\" [clipboard]=\"sharelink\" (clipboardCopy)=\"copyLink($event)\" (clipboardError)=\"copyError($event)\"><i class=\"fa fa-link\"></i>Copia link</button>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>\n\n<div class=\"estimate\" *ngIf=\"page==='estimate' && Estimate\">\n  <div class=\"header\">\n    <div *ngFor=\"let item of Estimate.details\">\n      <div *ngIf=\"item.type==='service'\">\n        <h3>{{item.title}}</h3>\n      </div>\n      <div *ngIf=\"item.type==='detail'\">\n        <p>{{item.title}}</p>\n      </div>\n    </div>\n  </div>\n  <div class=\"line\" *ngIf=\"Estimate.timing.days > 1\"></div>\n  <div class=\"counts\" *ngIf=\"Estimate.timing.days > 1\">\n    <div class=\"item\">Durata del lavoro</div>\n    <div class=\"amount time\">{{daysString(Estimate.timing.days)}}</div>\n  </div>\n  <div class=\"line\"></div>\n  <div class=\"counts\" *ngIf=\"Estimate.price.initial>Estimate.price.final\">\n    <div class=\"item\">Totale (Iniziale)</div>\n    <div class=\"amount initial\">{{Estimate.price.initial/100}}€</div>\n  </div>\n  <div class=\"counts\">\n    <div class=\"item\">Totale</div>\n    <div class=\"amount\">{{Estimate.price.final/100}}€</div>\n  </div>\n  <div class=\"line\"></div>\n  <div class=\"actions\">\n    <div class=\"form-group\">\n      <button type=\"button\" id=\"next\" class=\"btn btn-warning\" (click)=\"startWizard()\">Continua con l'ordine</button>\n    </div>\n    <div class=\"form-group\">\n      <a *ngIf=\"currentUser && !estimate_state.saved\" (click)=\"saveEstimate()\">Salva preventivo</a>\n      <a *ngIf=\"currentUser && estimate_state.saved\">Preventivo Salvato!</a>\n    </div>\n  </div>\n  <div class=\"invitation\">\n    <h3>Invia preventivo a</h3>\n    <div class=\"row\">\n      <div class=\"col-lg-12\">\n        <div class=\"form-group\" *ngIf=\"invitation_state.message_error\">\n          <div class=\"alert alert-danger\" role=\"alert\">{{invitation_state.message_error}}</div>\n        </div>\n        <div class=\"form-group\" *ngIf=\"invitation_state.message_success\">\n          <div class=\"alert alert-success\" role=\"alert\">{{invitation_state.message_success}}</div>\n        </div>\n        <div class=\"input-group\">\n          <input type=\"text\" placeholder=\"Esempio: 3234565540, john@gmail.com\" class=\"form-control\" id=\"contacts\" [(ngModel)]=\"contacts\" [ngModelOptions]=\"{standalone: true}\">\n          <span class=\"input-group-btn\">\n            <button type=\"button\" id=\"next\" class=\"btn btn-success\" (click)=\"sendInvitations()\">Invia</button>\n          </span>\n        </div>\n      </div>\n    </div>\n  </div>\n  <div class=\"share-actions\">\n    <h3>Condividi sui social</h3>\n    <div class=\"row\">\n      <div class=\"col-md-6 col-lg-4\">\n        <div class=\"form-group\">\n          <button type=\"button\" id=\"next\" class=\"btn btn-facebook\" (click)=\"shareOnFacebook()\"><i class=\"fa fa-facebook\"></i>Facebook</button>\n        </div>\n      </div>\n      <div class=\"col-md-6 col-lg-4\">\n        <div class=\"form-group\">\n          <button type=\"button\" id=\"next\" class=\"btn btn-twitter\" (click)=\"shareOnTwitter()\"><i class=\"fa fa-twitter\"></i>Twitter</button>\n        </div>\n      </div>\n      <div class=\"col-md-6 col-lg-4\">\n        <div class=\"form-group\">\n          <button type=\"button\" id=\"next\" class=\"btn btn-linkedin\" (click)=\"shareOnLinkedin()\"><i class=\"fa fa-linkedin\"></i>Linkedin</button>\n        </div>\n      </div>\n      <div class=\"col-md-6 col-lg-4\">\n        <div class=\"form-group\">\n          <button type=\"button\" id=\"next\" class=\"btn btn-google-plus\" (click)=\"shareOnGoogle()\"><i class=\"fa fa-google-plus\"></i>Google Plus</button>\n        </div>\n      </div>\n      <div class=\"col-md-6 col-lg-4\">\n        <div class=\"form-group\">\n          <button type=\"button\" id=\"next\" class=\"btn btn-white\" (click)=\"shareWithEmail()\"><i class=\"fa fa-envelope\"></i>Email</button>\n        </div>\n      </div>\n      <div class=\"col-md-6 col-lg-4\">\n        <div class=\"form-group\">\n          <button type=\"button\" id=\"next\" class=\"btn btn-white\" [clipboard]=\"sharelink\" (clipboardCopy)=\"copyLink($event)\" (clipboardError)=\"copyError($event)\"><i class=\"fa fa-link\"></i>Copia link</button>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>\n"
 
 /***/ },
 
-/***/ 734:
+/***/ 733:
 /***/ function(module, exports) {
 
 module.exports = "<div class=\"wizard-container\" (window:resize)=\"onResize()\">\n  <div class=\"wizard\">\n    <ul class=\"breadcrumb\" *ngIf=\"step !== ''\">\n      <li *ngFor=\"let items of wizardDataItems; let i = index;\"\n          [ngStyle]=\"{'width': 100/wizardDataItems.length + '%'}\"\n          [ngClass]=\"{'active': (step === 'summary' && items === 'Sommario') || (step === 'address' && items === 'Indirizzo') || (step === 'date' && items === 'Data') || ((step === 'preview' || step === 'login' || step === 'signup' || step === 'card') && (items === 'Anteprima' || items === 'Login' || items === 'Signup' || items === 'Carta')) || ((step === 'end' || step === 'info') && (items === 'Fine' || items === 'Info'))}\">\n          <a><div *ngIf=\"screenWidth<=425\">{{i+1}}</div><div *ngIf=\"screenWidth>425\">{{items}}</div></a>\n        </li>\n    </ul>\n\n    <div class=\"wizard-container\" *ngIf=\"step === 'summary'\">\n      <div class=\"content-container\">\n        <div class=\"header-summary\">\n          <h3>{{Order.title}}</h3>\n          <!-- <div class=\"summary-details\" *ngFor=\"let item of Order.details\">\n            <div *ngIf=\"item.type !== 'service'\">\n              <div class=\"item\"><p>{{item.title}}</p></div>\n              <div class=\"amount\">\n                <div *ngIf=\"item.count\">{{item.count}}</div>\n                <div *ngIf=\"item.amount\">{{item.amount}}</div>\n              </div>\n            </div>\n          </div> -->\n        </div>\n        <!-- <div class=\"line\" *ngIf=\"Order.timing.days > 1\"></div>\n        <div class=\"timing\" *ngIf=\"Order.timing.days > 1\">\n          <div class=\"item\">Durata del lavoro</div>\n          <div class=\"amount\">{{daysString(Order.timing.days)}}</div>\n        </div> -->\n        <form>\n          <div class=\"form-group\">\n            <textarea class=\"form-control\" placeholder=\"Inserisci una descrizione\" rows=\"3\" id=\"descriptionInput\" [(ngModel)]=\"Order.description\" [ngModelOptions]=\"{standalone: true}\"></textarea>\n          </div>\n          <div class=\"actions\">\n            <div class=\"form-group\">\n              <button type=\"button\" id=\"next\" class=\"btn btn-warning\" (click)=\"confirmPreview()\">Continua</button>\n            </div>\n          </div>\n        </form>\n      </div>\n      <div class=\"container footer-details\">\n        <p>Inserisci una descrizione più dettagliata della richiesta. In questo modo ci assicuriamo che il tecnico avra più informazioni prima di effetuare l'intervento.</p>\n      </div>\n    </div>\n    <div class=\"wizard-container\" *ngIf=\"step === 'address'\">\n      <div class=\"content-container\">\n        <div class=\"header\">\n          <h1 class=\"text-center\">Dove si trova la sua abitazione?</h1>\n          <p class=\"text-center\">Inserisci l'indirizzo e la città della sua abitazione</p>\n        </div>\n        <div class=\"forms\">\n          <div class=\"form-group\">\n            <p-autoComplete id=\"address\" class=\"form-control\" [(ngModel)]=\"temp_address\" (clickOutside)=\"clickOutsideAddressInput()\" [ngModelOptions]=\"{standalone: true}\" [suggestions]=\"addresses\" field=\"street_number_city\" (completeMethod)=\"getAddresses($event)\" (onSelect)=\"selectAddress($event)\" placeholder=\"Via, Numero, Città\"></p-autoComplete>\n          </div>\n        </div>\n        <div class=\"messages\" [hidden]=\"!address_state.error_message\">\n          <p><small>{{address_state.error_message}}</small></p>\n        </div>\n        <div class=\"actions\">\n          <div class=\"form-group\">\n            <div class=\"undobutton\">\n              <button type=\"button\" id=\"next\" class=\"btn btn-back\" (click)=\"back()\"><i class=\"fa fa-chevron-left\" aria-hidden=\"true\"></i></button>\n              <button type=\"button\" id=\"next\" class=\"btn btn-warning\" (click)=\"confirmAddress()\">Continua</button>\n            </div>\n          </div>\n        </div>\n      </div>\n      <div class=\"container footer-details\">\n        <p>Inserisci l'indirizzo esatto della sua abitazione o locale dove vuole effetuare l'intervento.</p>\n      </div>\n    </div>\n    <div class=\"wizard-container\" *ngIf=\"step === 'date'\">\n      <div class=\"content-container\">\n        <div class=\"header\">\n          <h1 class=\"text-center\">Quando vuoi realizare questo lavoro?</h1>\n          <p class=\"text-center\">Inserisci la data che vuoi realizzare questo servizio</p>\n        </div>\n        <div class=\"forms\">\n          <div class=\"form-group calendar-part\">\n            <div class=\"input-group date datepicker-block\">\n              <p-calendar name=\"data\" [(ngModel)]=\"temp_date\" id=\"data\" class=\"date\" autocomplete=\"off\" readonlyInput=\"true\" dateFormat=\"dd MM yy\" [locale]=\"it\" [minDate]=\"minDate\" (onSelect)=\"selectDate()\" placeholder=\"Inserisci la data\"></p-calendar>\n            </div>\n          </div>\n        </div>\n        <div class=\"messages\" [hidden]=\"!date_state.error_message\">\n          <p><small>{{date_state.error_message}}</small></p>\n        </div>\n        <div class=\"actions\">\n          <div class=\"form-group\">\n            <div class=\"undobutton\">\n              <button type=\"button\" id=\"next\" class=\"btn btn-back\" (click)=\"back()\"><i class=\"fa fa-chevron-left\" aria-hidden=\"true\"></i></button>\n              <button type=\"button\" id=\"next\" class=\"btn btn-warning\" (click)=\"confirmDate()\">Continua</button>\n            </div>\n          </div>\n        </div>\n      </div>\n      <div class=\"container footer-details\">\n        <p>Inserisci una data ideale per quando vuoi effetuare l'intervento del tecnico.</p>\n      </div>\n    </div>\n    <div class=\"wizard-container\" *ngIf=\"step === 'preview'\">\n      <div class=\"content-container\">\n        <div class=\"header-summary\">\n          <h3>{{Order.title}}</h3>\n          <!-- <div class=\"summary-details\" *ngFor=\"let item of Order.details\">\n            <div *ngIf=\"item.type !== 'service'\">\n              <div class=\"item\"><p>{{item.title}}</p></div>\n              <div class=\"amount\">\n                <div *ngIf=\"item.count\">{{item.count}}</div>\n                <div *ngIf=\"item.amount\">{{item.amount}}</div>\n              </div>\n            </div>\n          </div> -->\n          <p>{{Order.description}}</p>\n        </div>\n        <!-- <div class=\"line\" *ngIf=\"Order.timing.days > 1\"></div>\n        <div class=\"timing\" *ngIf=\"Order.timing.days > 1\">\n          <div class=\"item\">Durata del lavoro</div>\n          <div class=\"amount\">{{daysString(Order.timing.days)}}</div>\n        </div> -->\n        <div class=\"line\"></div>\n        <div class=\"address\">\n          <p><strong>Indirizzo: </strong><span>{{Order.address.street}} {{Order.address.street_number}}, {{Order.address.city}}</span></p>\n        </div>\n        <div class=\"date\">\n          <p><strong>Data: </strong><span>{{formated_date}}</span></p>\n        </div>\n        <div class=\"line\"></div>\n        <div class=\"payment\">\n          <div class=\"upfront\" *ngIf=\"Order.upfront_amount\">\n            <div class=\"item\">Acconto</div>\n            <div class=\"amount\">{{Order.upfront_amount/100}}€</div>\n          </div>\n\n          <!-- <div class=\"initial\" *ngIf=\"Order.price.initial>Order.price.final\">\n            <div class=\"item\">Totale iniziale</div>\n            <div class=\"amount\">{{Order.price.initial/100}}€</div>\n          </div>\n          <div class=\"total\" *ngIf=\"Order.price.final>0\">\n            <div class=\"item\">Totale</div>\n            <div class=\"amount\">{{Order.price.final/100}}€</div>\n          </div>\n          <div class=\"upfront\" *ngIf=\"Order.price.final!==Order.payment.upfront\">\n            <div class=\"item\">Acconto</div>\n            <div class=\"amount\">{{Order.payment.upfront/100}}€</div>\n          </div> -->\n        </div>\n        <div class=\"messages\" [hidden]=\"!order_status.error_message\">\n          <p><small>{{order_status.error_message}}</small></p>\n          <div *ngIf=\"order_status.payment_error_message\">\n            <!-- <p><small>{{order_status.payment_error_message}} <a routerlink=\"profile/payment\" ng-reflect-router-link=\"profile/payment\" ng-reflect-href=\"profile/payment\" href=\"/profile/payment\" target=\"_blank\">metodo di pagamento</a></small></p> -->\n            <p><small>{{order_status.payment_error_message}} <a routerLink=\"/order/card\">metodo di pagamento</a></small></p>\n          </div>\n        </div>\n        <div class=\"actions\">\n          <div class=\"form-group\">\n            <div class=\"undobutton\">\n              <button type=\"button\" id=\"next\" class=\"btn btn-back\" (click)=\"back()\"><i class=\"fa fa-chevron-left\" aria-hidden=\"true\"></i></button>\n              <button type=\"button\" id=\"next\" class=\"btn btn-warning\" (click)=\"confirmOrder()\"><i class=\"fa fa-circle-o-notch animate\" *ngIf=\"order_status.loading\"></i>{{order_status.button_title}}</button>\n            </div>\n          </div>\n        </div>\n      </div>\n      <div class=\"container footer-details\">\n        <p>Controlla l'ordine richiesto e tutti i dati inseriti, l'indirizzo, la data, la descrizione della richiesta prima di continuare.</p>\n      </div>\n    </div>\n    <div class=\"wizard-container\" *ngIf=\"step === 'end'\">\n      <div class=\"content-container\">\n        <div class=\"header\">\n          <h1 class=\"text-center\">Complimenti, hai prenotato con successo un tecnico.</h1>\n          <p class=\"text-center\">Ti contatteremo per ulteriori informazioni.</p>\n        </div>\n        <div class=\"messages\">\n          <div class=\"success-icon\"><span></span></div>\n        </div>\n        <div class=\"actions\">\n          <div class=\"form-group\">\n            <button type=\"button\" id=\"next\" class=\"btn btn-warning\" (click)=\"confirmEnd()\">Fatto</button>\n          </div>\n        </div>\n      </div>\n      <div class=\"container footer-details\">\n        <p>Fatto! Nei prossimi minuti verrai contattato da noi per ulteriori dettagli e per confermare l'ordine. Per sucurezza controlla che sia inserito il numero del telefono nel tuo account.</p>\n      </div>\n    </div>\n\n    <div class=\"wizard-container\" *ngIf=\"step === 'login'\">\n      <div class=\"content-container\">\n        <div class=\"header\">\n          <h1>Accedi al tuo account</h1>\n        </div>\n        <form>\n          <div class=\"form-group\">\n            <label for=\"emailInput\">Email</label>\n            <input type=\"email\" placeholder=\"La tua mail\" class=\"form-control\" [ngClass]=\"{'error-input': login_state.email_error}\" id=\"emailInput\" [(ngModel)]=\"loginParameters.email\" [ngModelOptions]=\"{standalone: true}\">\n            <small class=\"error-message\" *ngIf=\"login_state.email_error\">{{login_state.email_error}}</small>\n          </div>\n          <div class=\"form-group\">\n            <label for=\"passwordInput\">Password</label>\n            <input type=\"password\" placeholder=\"Password\" class=\"form-control\" [ngClass]=\"{'error-input': login_state.password_error}\" id=\"passwordInput\" [(ngModel)]=\"loginParameters.password\" [ngModelOptions]=\"{standalone: true}\">\n            <small class=\"error-message\" *ngIf=\"login_state.password_error\">{{login_state.password_error}}</small>\n          </div>\n        </form>\n        <div class=\"messages\" [hidden]=\"!login_state.error_message\">\n          <p><small>{{login_state.error_message}}</small></p>\n        </div>\n        <div class=\"messages\" [hidden]=\"!facebook_state.error_message\">\n          <p><small>{{facebook_state.error_message}}</small></p>\n        </div>\n        <div class=\"actions\">\n          <div class=\"form-group\">\n            <button type=\"button\" id=\"next\" class=\"btn btn-warning\" (click)=\"login()\"><i class=\"fa fa-circle-o-notch animate\" *ngIf=\"login_state.loading\"></i>{{login_state.button_title}}</button>\n          </div>\n          <div class=\"form-group\">\n            <button type=\"button\" id=\"next\"class=\"btn btn-white\" (click)=\"changeToSignup()\">Sei nuovo? Crea un account</button>\n          </div>\n          <div class=\"form-divider\">\n            <span>o</span>\n          </div>\n          <div class=\"form-group\">\n            <button type=\"button\" id=\"next\"class=\"btn btn-facebook\" (click)=\"continueWithFacebook()\"><i></i>{{facebook_state.button_title}}</button>\n          </div>\n        </div>\n        <div class=\"footer\">\n          <h6><small>Continuando dichiari di aver letto e accetti le <a routerlink=\"legal\" ng-reflect-router-link=\"legal\" ng-reflect-href=\"legal\" href=\"/legal\" target=\"_blank\">condizioni generali</a> e <a routerlink=\"legal\" ng-reflect-router-link=\"legal\" ng-reflect-href=\"legal\" href=\"/legal\" target=\"_blank\">l’informativa sulla privacy</a></small></h6>\n        </div>\n      </div>\n      <div class=\"container footer-details\">\n        <p>Se hai gia un account su Starbook accedi e poi continua con l'ordine. In alternativa puoi usare anche Facebook per continuare.</p>\n      </div>\n    </div>\n    <div class=\"wizard-container\" *ngIf=\"step === 'signup'\">\n      <div class=\"content-container\">\n        <div class=\"header\">\n          <h1>Crea un account</h1>\n        </div>\n        <form>\n          <div class=\"form-group\">\n            <label for=\"emailInput\">Email</label>\n            <input type=\"email\" placeholder=\"La tua mail\" class=\"form-control\" [ngClass]=\"{'error-input': signup_state.email_error}\" id=\"emailInput\" [(ngModel)]=\"signupParameters.email\" [ngModelOptions]=\"{standalone: true}\">\n            <small class=\"error-message\" *ngIf=\"signup_state.email_error\">{{signup_state.email_error}}</small>\n          </div>\n          <div class=\"row\">\n            <div class=\"col-md-6\">\n              <div class=\"form-group\">\n                <label for=\"firstNameInput\">Nome</label>\n                <input type=\"firstname\" placeholder=\"Nome\" class=\"form-control\" [ngClass]=\"{'error-input': signup_state.first_name_error}\" id=\"firstNameInput\" [(ngModel)]=\"signupParameters.firstname\" [ngModelOptions]=\"{standalone: true}\">\n                <small class=\"error-message\" *ngIf=\"signup_state.first_name_error\">{{signup_state.first_name_error}}</small>\n              </div>\n            </div>\n            <div class=\"col-md-6\">\n              <div class=\"form-group\">\n                <label for=\"lastNameInput\">Cognome</label>\n                <input type=\"lastname\" placeholder=\"Cognome\" class=\"form-control\" [ngClass]=\"{'error-input': signup_state.last_name_error}\" id=\"lastNameInput\" [(ngModel)]=\"signupParameters.lastname\" [ngModelOptions]=\"{standalone: true}\">\n                <small class=\"error-message\" *ngIf=\"signup_state.last_name_error\">{{signup_state.last_name_error}}</small>\n              </div>\n            </div>\n          </div>\n          <div class=\"form-group\">\n            <label for=\"phoneInput\">Telefono</label>\n            <input type=\"phone\" placeholder=\"Numero di telefono\" class=\"form-control\" [ngClass]=\"{'error-input': signup_state.phone_error}\" id=\"phoneInput\" [(ngModel)]=\"signupParameters.phone\" [ngModelOptions]=\"{standalone: true}\">\n            <small class=\"error-message\" *ngIf=\"signup_state.phone_error\">{{signup_state.phone_error}}</small>\n          </div>\n          <div class=\"form-group\">\n            <label for=\"passwordInput\">Password</label>\n            <input type=\"password\" placeholder=\"Password\" class=\"form-control\" [ngClass]=\"{'error-input': signup_state.password_error}\" id=\"passwordInput\" [(ngModel)]=\"signupParameters.password\" [ngModelOptions]=\"{standalone: true}\">\n            <small class=\"error-message\" *ngIf=\"signup_state.password_error\">{{signup_state.password_error}}</small>\n          </div>\n          <div class=\"form-group\">\n            <label for=\"confirmPasswordInput\">Di nuovo la password</label>\n            <input type=\"password\" placeholder=\"Password\" class=\"form-control\" [ngClass]=\"{'error-input': signup_state.confirm_password_error}\" id=\"confirmPasswordInput\" [(ngModel)]=\"signupParameters.confirmPassword\" [ngModelOptions]=\"{standalone: true}\">\n            <small class=\"error-message\" *ngIf=\"signup_state.confirm_password_error\">{{signup_state.confirm_password_error}}</small>\n          </div>\n        </form>\n        <div class=\"messages\" [hidden]=\"!signup_state.error_message\">\n          <p><small>{{signup_state.error_message}}</small></p>\n        </div>\n        <div class=\"messages\" [hidden]=\"!facebook_state.error_message\">\n          <p><small>{{facebook_state.error_message}}</small></p>\n        </div>\n        <div class=\"actions\">\n          <div class=\"form-group\">\n            <button type=\"button\" id=\"next\" class=\"btn btn-warning\" (click)=\"signup()\"><i class=\"fa fa-circle-o-notch animate\" *ngIf=\"signup_state.loading\"></i>{{signup_state.button_title}}</button>\n          </div>\n          <div class=\"form-group\">\n            <button type=\"button\" id=\"next\"class=\"btn btn-white\" (click)=\"changeToLogin()\">Accedi</button>\n          </div>\n          <div class=\"form-divider\">\n            <span>o</span>\n          </div>\n          <div class=\"form-group\">\n            <button type=\"button\" id=\"next\"class=\"btn btn-facebook\" (click)=\"continueWithFacebook()\"><i></i>{{facebook_state.button_title}}</button>\n          </div>\n        </div>\n        <div class=\"footer\">\n          <h6><small>Continuando dichiari di aver letto e accetti le <a routerlink=\"legal\" ng-reflect-router-link=\"legal\" ng-reflect-href=\"legal\" href=\"/legal\" target=\"_blank\">condizioni generali</a> e <a routerlink=\"legal\" ng-reflect-router-link=\"legal\" ng-reflect-href=\"legal\" href=\"/legal\" target=\"_blank\">l’informativa sulla privacy</a></small></h6>\n        </div>\n      </div>\n      <div class=\"container footer-details\">\n        <p>Crea un account su Starbook inserendo i dati più importanti e poi proseguì inviando l'ordine. In alternativa puoi usare anche Facebook per continuare.</p>\n      </div>\n    </div>\n\n    <div class=\"wizard-container\" *ngIf=\"step === 'card'\">\n      <div class=\"content-container\">\n        <div class=\"header\">\n          <h1>Inserisci un metodo di pagamento</h1>\n          <h6>Per continuare con l'ordine inserisci un metodo di pagamento</h6>\n        </div>\n        <form>\n          <div class=\"card-form\">\n            <div class=\"form-group\">\n              <label for=\"numberInput\">Numero carta</label>\n              <input autocomplete=\"off\" type=\"text\" placeholder=\"Numero\" class=\"form-control\" [ngClass]=\"{'error-input': card_state.message_error}\" id=\"numberInput\" [(ngModel)]=\"Card.number\" [ngModelOptions]=\"{standalone: true}\">\n              <!-- <small class=\"error-message\" *ngIf=\"card_state.number_error\">{{card_state.number_error}}</small> -->\n            </div>\n            <div class=\"row\">\n              <div class=\"col-md-6\">\n                <div class=\"form-group\">\n                  <label for=\"dateInput\">Scadenza</label>\n                  <input autocomplete=\"off\" type=\"text\" placeholder=\"Scadenza\" class=\"form-control\" [ngClass]=\"{'error-input': card_state.message_error}\" id=\"dateInput\" [(ngModel)]=\"Card.exp_date\" (keyup)=\"checkExpiry(Card.exp_date)\" (change)=\"checkExpiry(Card.exp_date)\" [ngModelOptions]=\"{standalone: true}\">\n                  <!-- <small class=\"error-message\" *ngIf=\"card_state.exp_date_error\">{{card_state.exp_date_error}}</small> -->\n                </div>\n              </div>\n              <div class=\"col-md-6\">\n                <div class=\"form-group\">\n                  <label for=\"numberInput\">CVC/CVV</label>\n                  <input autocomplete=\"off\" type=\"text\" placeholder=\"CVC/CVV\" class=\"form-control\" [ngClass]=\"{'error-input': card_state.message_error}\" id=\"numberInput\" [(ngModel)]=\"Card.cvc\" [ngModelOptions]=\"{standalone: true}\">\n                  <!-- <small class=\"error-message\" *ngIf=\"card_state.cvc_error\">{{card_state.cvc_error}}</small> -->\n                </div>\n              </div>\n            </div>\n            <div class=\"form-group\">\n              <label for=\"nameInput\">Nome e cognome dell'intestatario</label>\n              <input type=\"name\" name=\"name\" placeholder=\"Nome e cognome\" class=\"form-control\" id=\"nameInput\" [(ngModel)]=\"Card.name\" [ngModelOptions]=\"{standalone: true}\">\n            </div>\n            <div class=\"row\">\n              <div class=\"col-md-8\">\n                <div class=\"form-group\">\n                  <label for=\"addressInput\">Indirizzo</label>\n                  <input type=\"address\" placeholder=\"Via\" class=\"form-control\" id=\"addressInput\" [(ngModel)]=\"Card.address_line1\" [ngModelOptions]=\"{standalone: true}\">\n                </div>\n              </div>\n              <div class=\"col-md-4\">\n                <div class=\"form-group\">\n                  <label for=\"addressNumberInput\">Nr</label>\n                  <input type=\"text\" placeholder=\"Nr\" class=\"form-control\" id=\"addressNumberInput\" [(ngModel)]=\"Card.address_line2\" [ngModelOptions]=\"{standalone: true}\">\n                </div>\n              </div>\n            </div>\n            <div class=\"row\">\n              <div class=\"col-md-8\">\n                <div class=\"form-group\">\n                  <label for=\"cittyInput\">Città</label>\n                  <input type=\"text\" placeholder=\"Città\" class=\"form-control\" id=\"cittyInput\" [(ngModel)]=\"Card.address_city\" [ngModelOptions]=\"{standalone: true}\">\n                </div>\n              </div>\n              <div class=\"col-md-4\">\n                <div class=\"form-group\">\n                  <label for=\"capInput\">CAP</label>\n                  <input type=\"text\" placeholder=\"CAP\" class=\"form-control\" id=\"capInput\" [(ngModel)]=\"Card.address_zip\" [ngModelOptions]=\"{standalone: true}\">\n                </div>\n              </div>\n            </div>\n            <div class=\"row\">\n              <div class=\"col-md-6\">\n                <div class=\"form-group\">\n                  <label for=\"provinceInput\">Provincia</label>\n                  <input type=\"text\" placeholder=\"Provincia\" class=\"form-control\" id=\"provinceInput\" [(ngModel)]=\"Card.address_state\" [ngModelOptions]=\"{standalone: true}\">\n                </div>\n              </div>\n              <div class=\"col-md-6\">\n                <div class=\"form-group\">\n                  <label for=\"countryInput\">Paese</label>\n                  <input type=\"text\" placeholder=\"Paese\" class=\"form-control\" id=\"countryInput\" [(ngModel)]=\"Card.address_country\" [ngModelOptions]=\"{standalone: true}\">\n                </div>\n              </div>\n            </div>\n            <div class=\"actions\">\n              <div class=\"form-group\" *ngIf=\"card_state.message_error\">\n                <div class=\"alert alert-danger\" role=\"alert\">{{card_state.message_error}}</div>\n              </div>\n              <div class=\"form-group\">\n                <div class=\"undobutton\">\n                  <button type=\"button\" id=\"next\" class=\"btn btn-back\" (click)=\"back()\"><i class=\"fa fa-chevron-left\" aria-hidden=\"true\"></i></button>\n                  <button type=\"button\" id=\"next\" class=\"btn btn-warning\" (click)=\"addCard()\"><i class=\"fa fa-circle-o-notch animate\" *ngIf=\"card_state.loading\"></i>{{card_state.button_title}}</button>\n                </div>\n              </div>\n            </div>\n          </div>\n        </form>\n      </div>\n      <div class=\"container footer-details\">\n        <p>Inserisci un metodo di pagamento per inviare l'ordine. In questo modo assicuriamo che il pagamento del professionista sia garantio. Puo richiedere il rimborso delle spese in qualsiasi momento contatandoci.</p>\n      </div>\n    </div>\n\n    <div class=\"wizard-container\" *ngIf=\"step === 'info'\">\n      <div class=\"content-container\">\n        <div class=\"header\">\n          <h1>Inserisci un contatto telefonico</h1>\n          <p>Per favore inserisci un numero di telefono per essere contatato dal professionista.</p>\n        </div>\n        <form>\n          <div class=\"form-group\">\n            <label for=\"phoneInput\">Telefono</label>\n            <input type=\"phone\" name=\"phone\" placeholder=\"Numero di telefono\" class=\"form-control\" [ngClass]=\"{'error-input': profile_info_state.phone_number_error}\" id=\"phoneInput\" [(ngModel)]=\"profileInformation.phone_number\" [ngModelOptions]=\"{standalone: true}\">\n            <small class=\"error-message\" *ngIf=\"profile_info_state.phone_number_error\">{{profile_info_state.phone_number_error_message}}</small>\n          </div>\n        </form>\n        <div class=\"actions\">\n          <div class=\"form-group\">\n            <button type=\"button\" id=\"next\" class=\"btn btn-warning\" (click)=\"saveInformations()\"><i class=\"fa fa-circle-o-notch animate\" *ngIf=\"profile_info_state.loading\"></i>{{profile_info_state.button_title}}</button>\n          </div>\n        </div>\n      </div>\n      <div class=\"container footer-details\">\n        <p>Inserisci il tuo numero di telefono per essere contattato da noi per ulteriori dettagli sul ordine effetuato.</p>\n      </div>\n    </div>\n\n    <div class=\"container-fluid wizard-footer\">\n      <div class=\"container\">\n        <div class=\"row\">\n          <div class=\"col-md-3\">\n            <div class=\"box\">\n              <h5>Informazioni</h5>\n              <h6>Le informazioni sono importanti per poter inviare un ordine più dettagliata al tecnico.</h6>\n            </div>\n          </div>\n          <!-- <div class=\"col-md-15 col-sm-15\">\n            <div class=\"box\">\n              <h5>Indirizzo</h5>\n              <h6>Inserisci l'indirizzo della sua abitazione o locale dove vuoi svolgere il lavoro.</h6>\n            </div>\n          </div> -->\n          <div class=\"col-md-3\">\n            <div class=\"box\">\n              <h5>Indirizzo & Data</h5>\n              <h6>Inserisci l'indirizzo e la data del appuntamento con il professionista che verra a svolgere il lavoro.</h6>\n            </div>\n          </div>\n\n          <!-- <div class=\"col-md-15 col-sm-15\">\n            <div class=\"box\">\n              <h5>Data</h5>\n              <h6>Decidi la data del lavoro. Inserisci una data ideale per te.</h6>\n            </div>\n          </div> -->\n          <div class=\"col-md-3\">\n            <div class=\"box\">\n              <h5>Garanzia</h5>\n              <h6>Inserisci un metodo di pagamento per poter pagare il lavoro comodamente online.</h6>\n            </div>\n          </div>\n          <div class=\"col-md-3\">\n            <div class=\"box\">\n              <h5>Fine</h5>\n              <h6>Dopo aver inviato l'ordine noi faremo il resto. Invieremo il tecnico nella data prestabilita.</h6>\n            </div>\n          </div>\n        </div>\n      </div>\n    </div>\n</div>\n"
 
 /***/ },
 
-/***/ 735:
+/***/ 734:
 /***/ function(module, exports) {
 
 module.exports = "<div class=\"dark-screen\" [@shadowState]=\"shadowState\" (click)=\"closePopup()\"></div>\n\n<!-- Login popup -->\n<div class=\"popup\" [@loginPopupState]=\"loginPopupState\">\n  <div class=\"popup-container\">\n    <div class=\"alert-block\" *ngIf=\"formError\">\n      <div class=\"alert-container\">\n        <p><span>Errore!</span> {{formError.message}}</p>\n      </div>\n    </div>\n    <app-loading *ngIf=\"isPopupLoading\"></app-loading>\n    <div class=\"header\">\n      <h1>Accedi</h1>\n    </div>\n    <form class=\"login-form\" #loginForm=\"ngForm\" (keyup.enter)=\"login(email.value, password.value)\">\n      <div class=\"form-group\" [ngClass]=\"{'isError': loginError.email}\">\n        <label for=\"email\">Indirizzo email</label>\n        <input id=\"email\" class=\"form-control\" type=\"email\" name=\"email\" [(ngModel)]=\"loginData.email\" #email=\"ngModel\" (keyup)=\"checkEmail('login', email.value)\" (change)=\"checkEmail('login', email.value)\">\n        <span class=\"error\">Indirizzo email non valido</span>\n      </div>\n      <div class=\"form-group\" [ngClass]=\"{'isError': loginError.password}\">\n        <label for=\"password\">Password <a class=\"recovery\" (click)=\"getPopup('recovery')\">Password dimenticata?</a></label>\n        <input id=\"password\" class=\"form-control\" type=\"password\" name=\"password\" [(ngModel)]=\"loginData.password\" #password=\"ngModel\" (keyup)=\"checkNonEmpty('login', password.value)\" (change)=\"checkNonEmpty('login', password.value)\">\n        <span class=\"error\">Inserisci la tua password</span>\n      </div>\n      <div class=\"form-group\">\n        <a class=\"btn btn-warning\" href=\"#\" (click)=\"login(email.value, password.value)\">Accedi</a>\n      </div>\n      <div class=\"form-group\">\n        <a class=\"btn btn-secondary\" (click)=\"getPopup('registration')\">Crea il tuo account Starbook</a>\n      </div>\n      <div class=\"form-group\">\n        <a class=\"btn btn-facebook\" (click)=\"facebookLogin()\">\n          <i></i>\n          Continua con Facebook\n        </a>\n      </div>\n    </form>\n  </div>\n</div>\n\n<!-- Registration popup -->\n<div class=\"popup\" [@registrationPopupState]=\"registrationPopupState\">\n  <div class=\"alert-block\" *ngIf=\"formError\">\n    <div class=\"alert-icn\"></div>\n    <div class=\"alert-container\">\n      <div class=\"header\">{{formError.title}}</div>\n      <p>{{formError.message}}</p>\n    </div>\n  </div>\n  <app-loading *ngIf=\"isPopupLoading\"></app-loading>\n  <div class=\"header\">\n    <h1>Nuovo utente</h1>\n  </div>\n  <form class=\"registration-form\" #registrationForm=\"ngForm\">\n    <div class=\"form-group\" [ngClass]=\"{'isError': registrationError.email}\">\n      <label for=\"regEmail\">Email</label>\n      <input id=\"regEmail\" class=\"form-control\" type=\"email\" name=\"email\" placeholder=\"\" required [(ngModel)]=\"registrationData.email\" #regEmail=\"ngModel\" (keyup)=\"checkEmail('registration', regEmail.value)\">\n      <span class=\"error\">Indirizzo email non valido</span>\n    </div>\n    <div class=\"row\">\n      <div class=\"col-md-6\">\n        <div class=\"form-group\">\n          <label for=\"regFirstName\">Nome</label>\n          <input id=\"regFirstName\" class=\"form-control\" type=\"text\" name=\"firstname\" placeholder=\"\" required [(ngModel)]=\"registrationData.firstname\" #regFirstName=\"ngModel\" (keyup)=\"checkNonEmpty('registrationFirstName', regFirstName.value)\">\n        </div>\n      </div>\n      <div class=\"col-md-6\">\n        <div class=\"form-group\">\n          <label for=\"regLastName\">Cognome</label>\n          <input id=\"regLastName\" class=\"form-control\" type=\"text\" name=\"lastname\" placeholder=\"\" required [(ngModel)]=\"registrationData.lastname\" #regLastName=\"ngModel\" (keyup)=\"checkNonEmpty('registrationLastName', regLastName.value)\">\n        </div>\n      </div>\n    </div>\n    <div class=\"form-group\" [ngClass]=\"{'isError': registrationError.phone}\">\n      <label for=\"regPhone\">Cellulare</label>\n      <input type=\"phone\" name=\"phone\" id=\"regPhone\" class=\"form-control\" placeholder=\"\" required [(ngModel)]=\"registrationData.phone\" #regPhone=\"ngModel\" (keyup)=\"checkNonEmpty('registrationPhone', regPhone.value)\">\n      <span class=\"error\">Inserisci numero cellulare</span>\n    </div>\n    <div class=\"form-group\" [ngClass]=\"{'isError': registrationError.passwordFirst}\">\n      <label for=\"regPassword\">Password</label>\n      <input id=\"regPassword\" class=\"form-control\" type=\"password\" name=\"password\" placeholder=\"\" required [(ngModel)]=\"registrationData.password\" #regPassword=\"ngModel\" (keyup)=\"checkNonEmpty('registrationPassword', regPassword.value)\">\n      <span class=\"error\">Inserisci una password</span>\n    </div>\n    <div class=\"form-group\" [ngClass]=\"{'isError': registrationError.password}\">\n      <label for=\"regPasswordConfirm\">Di nuovo la password</label>\n      <input id=\"regPasswordConfirm\" class=\"form-control\" type=\"password\" name=\"passwordConfirm\" placeholder=\"\" required [(ngModel)]=\"registrationData.passwordConfirm\" #regPasswordConfirm=\"ngModel\" (keyup)=\"checkPassword(regPassword.value, regPasswordConfirm.value)\">\n      <span class=\"error\">Le password non corrispondono</span>\n    </div>\n    <div class=\"form-group\">\n      <button class=\"btn btn-warning\" type=\"submit\" (click)=\"registration(regFirstName.value, regLastName.value, regPhone.value, regEmail.value, regPassword.value, regPasswordConfirm.value)\">Crea account</button>\n    </div>\n  </form>\n  <!-- <div class=\"form-description\">\n    <span>o</span>\n  </div> -->\n  <div class=\"form-group registration\">\n    <a class=\"btn btn-facebook\" (click)=\"facebookLogin()\">\n      <i></i>\n      Continua con Facebook\n    </a>\n  </div>\n  <div class=\"form-notice\">Continuando dichiari di aver letto e accetti le <a routerLink=\"/info/legal\" target=\"_blank\">condizioni generali e l’informativa sulla privacy</a></div>\n  <div class=\"login-offer registration\">Hai gia un account su Starbook? <a (click)=\"getPopup('login')\">Accedi</a></div>\n</div>\n\n<!-- Recovery popup -->\n<div class=\"popup\" [@recoveryPopupState]=\"recoveryPopupState\">\n  <div class=\"alert-block\" *ngIf=\"formError\">\n    <div class=\"alert-icn\"></div>\n    <div class=\"alert-container\">\n      <div class=\"header\">{{formError.title}}</div>\n      <p>{{formError.message}}</p>\n    </div>\n  </div>\n  <div class=\"header\">\n    <h1>Recupera password</h1>\n  </div>\n  <form class=\"recovery-form\" #recoveryForm=\"ngForm\">\n    <div class=\"form-group\" [ngClass]=\"{'isError': recoveryError.email}\">\n      <label for=\"recoveryEmail\">Email</label>\n      <input id=\"recoveryEmail\" class=\"form-control\" type=\"text\" name=\"email\" placeholder=\"\" required [(ngModel)]=\"recoveryData.email\" #recoveryEmail=\"ngModel\" (keyup)=\"checkEmail('recovery', recoveryEmail.value)\">\n      <span class=\"error\">Indirizzo email non valido</span>\n    </div>\n    <div class=\"form-group\">\n      <button class=\"btn btn-warning\" type=\"submit\" (click)=\"recovery(recoveryEmail.value)\">Invia email</button>\n    </div>\n  </form>\n  <div class=\"login-offer\">Hai gia un account su Starbook? <a (click)=\"getPopup('login')\">Accedi</a></div>\n</div>\n\n<!-- Confirm Order popup -->\n<div class=\"popup\" [@confirmPopupState]=\"confirmPopupState\" [ngClass]=\"{'new-version': confirmPopupData.type === 'conferma' || confirmPopupData.type === 'confermaEnd' || confirmPopupData.type === 'addPriceEnd'}\">\n  <div class=\"popup-container\">\n    <div class=\"alert-block\" *ngIf=\"formError\">\n      <div class=\"alert-icn\"></div>\n      <div class=\"alert-container\">\n        <div class=\"header\">{{formError.title}}</div>\n        <p>{{formError.message}}</p>\n      </div>\n    </div>\n    <div class=\"popup-spinner\" *ngIf=\"confirmPopupData.type === 'conferma'\">\n      <svg width='40px' height='40px' xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\" preserveAspectRatio=\"xMidYMid\" class=\"uil-ring\">\n        <rect x=\"0\" y=\"0\" width=\"100\" height=\"100\" fill=\"none\" class=\"bk\"></rect>\n        <circle cx=\"50\" cy=\"50\" r=\"45\" stroke-dasharray=\"169.64600329384882 113.09733552923257\" stroke=\"#3B568D\" fill=\"none\" stroke-width=\"10\">\n          <animateTransform attributeName=\"transform\" type=\"rotate\" values=\"0 50 50;180 50 50;360 50 50;\" keyTimes=\"0;0.5;1\" dur=\"1s\" repeatCount=\"indefinite\" begin=\"0s\"></animateTransform>\n        </circle>\n      </svg>\n    </div>\n    <div class=\"success-icon\" *ngIf=\"confirmPopupData.type === 'confermaEnd' || confirmPopupData.type === 'addPriceEnd'\"><span></span></div>\n    <div class=\"header\" [ngClass]=\"{'without-message': confirmPopupData.type === 'addPriceEnd'}\" *ngIf=\"confirmPopupData.title !== ''\">\n      <h1>{{ confirmPopupData.title }}</h1>\n    </div>\n    <form class=\"confirm-order-form\" #confirmOrderForm=\"ngForm\">\n      <p *ngIf=\"confirmPopupData.type !== 'newOrder' && confirmPopupData.type !== 'newOrderEnd'\" [ngClass]=\"{'conferma-finish': confirmPopupData.type === 'confermaEnd'}\">{{ confirmPopupData.text }}</p>\n      <p *ngIf=\"confirmPopupData.type === 'newOrderEnd'\" class=\"confirm-end\">{{ confirmPopupData.text }}</p>\n      <div class=\"orders-list\" *ngIf=\"confirmPopupData.type === 'newOrder'\">\n        <div class=\"order-item\" *ngFor=\"let product of confirmPopupData.data\">\n          <!-- <span *ngIf=\"product.type ==='service'\" class=\"service-item\">{{ product.productName }} <i *ngIf=\"product.price !== ''\">€{{ product.price / 100 }}</i></span> -->\n          <span *ngIf=\"product.type ==='service'\" class=\"service-item\">{{ product.productName }} <i *ngIf=\"product.price !== ''\">€{{ product.price / 100 }}</i></span>\n          <!-- <span *ngIf=\"product.type ==='item'\">{{ product.productName }} {{ product.itemName }} <i *ngIf=\"product.price !== ''\">€{{ product.price / 100 }}</i></span> -->\n          <span *ngIf=\"product.type ==='item'\">{{ product.productName }}<i>{{ product.itemName }} {{ product.symbol }}</i></span>\n          <!-- <span *ngIf=\"product.type ==='item'\">{{ product.productName }}<i>{{ product.itemName }}{{ product.symbol }}</i></span> -->\n          <span *ngIf=\"product.type ==='total'\" class=\"total-item\">{{ product.productName }} <i>€{{ product.price / 100 }}</i></span>\n        </div>\n      </div>\n      <div class=\"information-list\" *ngIf=\"confirmPopupData.type === 'newOrder'\">\n        <div class=\"information-item\"><span>Data:</span> {{ confirmPopupData.information.date }}</div>\n        <!-- <div class=\"information-item\"><span>Ore:</span> {{ confirmPopupData.information.time }}</div> -->\n        <div class=\"information-item\"><span>Indirizzo:</span> {{ confirmPopupData.information.address }}</div>\n        <div class=\"information-item\" *ngIf=\"confirmPopupData.information.description !== ''\"><span>Nota:</span> {{ confirmPopupData.information.description }}</div>\n      </div>\n      <div class=\"price-loader\" *ngIf=\"confirmPopupData.type === 'newOrder' && isPopupLoading\">\n        <div class=\"spinner\">\n          <svg width='40px' height='40px' xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\" preserveAspectRatio=\"xMidYMid\" class=\"uil-ring\">\n            <rect x=\"0\" y=\"0\" width=\"100\" height=\"100\" fill=\"none\" class=\"bk\"></rect>\n            <circle cx=\"50\" cy=\"50\" r=\"45\" stroke-dasharray=\"169.64600329384882 113.09733552923257\" stroke=\"#3B568D\" fill=\"none\" stroke-width=\"10\">\n              <animateTransform attributeName=\"transform\" type=\"rotate\" values=\"0 50 50;180 50 50;360 50 50;\" keyTimes=\"0;0.5;1\" dur=\"1s\" repeatCount=\"indefinite\" begin=\"0s\"></animateTransform>\n            </circle>\n          </svg>\n        </div>\n        <span>Calcolando totale…</span>\n      </div>\n      <div class=\"price-area\" *ngIf=\"confirmPopupData.type === 'newOrder' && isPopupLoading === false && confirmPopupData.totalPrice\">\n        Totale<span>{{confirmPopupData.totalPrice / 100}}€</span>\n      </div>\n      <div class=\"form-group\">\n        <button class=\"btn btn-warning\" type=\"submit\" (click)=\"confirmOrder(confirmPopupData.id)\" *ngIf=\"confirmPopupData.button === 'Conferma'\">Conferma</button>\n        <button class=\"btn btn-warning\" type=\"submit\" (click)=\"cancelOrder(confirmPopupData.id)\" *ngIf=\"confirmPopupData.button === 'Annulla ordine'\">Annulla ordine</button>\n        <button class=\"btn btn-warning\" type=\"submit\" (click)=\"reactivateOrder(confirmPopupData.id)\" *ngIf=\"confirmPopupData.button === 'Riattiva ordine'\">Riattiva ordine</button>\n        <button class=\"btn btn-warning new-order-btn\" type=\"submit\" (click)=\"confirmNewOrder()\" *ngIf=\"confirmPopupData.button === 'Prenota servizio' && isPopupLoading === false\"><i class=\"fa fa-lock\"></i> Prenota servizio</button>\n        <button class=\"btn btn-warning logout-btn\" type=\"submit\" (click)=\"logout()\" *ngIf=\"confirmPopupData.button === 'logout'\">Esci</button>\n        <button class=\"btn btn-secondary\" type=\"submit\" (click)=\"closePopup()\" *ngIf=\"confirmPopupData.button === 'logout'\">Annulla</button>\n        <button class=\"btn btn-secondary\" type=\"submit\" (click)=\"closePopup()\" *ngIf=\"confirmPopupData.button !== 'logout'\">Chiudi</button>\n        <span *ngIf=\"confirmPopupData.button === 'Prenota servizio' && isPopupLoading === false\" class=\"confirm-button-notice\">Attenzione, chiudendo potresti perdere il prezzo calcolato del servizio.</span>\n      </div>\n    </form>\n  </div>\n</div>\n\n<!-- Confirm Order Finish popup -->\n<div class=\"popup\" [@confirmFinishPopupState]=\"confirmFinishPopupState\">\n  <div class=\"popup-container\">\n    <div class=\"finish-message\" [ngClass]=\"{isLeft: confirmFinishPopupData.type === 'left'}\">\n      <div class=\"header\">{{ confirmFinishPopupData.title }}</div>\n      <p>{{ confirmFinishPopupData.text }}</p>\n      <div class=\"form-group\">\n        <button class=\"btn btn-secondary\" type=\"submit\" (click)=\"closePopup()\">Chiudi</button>\n      </div>\n    </div>\n  </div>\n</div>\n\n<!-- Finish popup -->\n<div class=\"popup\" [@finishPopupState]=\"finishPopupState\">\n  <div class=\"popup-container\">\n    <div class=\"finish-message\" [ngClass]=\"{'isForm': finishPopupData.type !== ''}\">\n      <a (click)=\"closePopup()\" class=\"close-popup\"></a>\n      <div class=\"header\">{{ finishPopupData.title }}</div>\n      <p *ngFor=\"let text of finishPopupData.text\">{{ text }}</p>\n      <div class=\"phone-form\" *ngIf=\"finishPopupData.type === 'phone'\">\n        <div class=\"form-group phone-field\" [ngClass]=\"{'isError': enterPhoneFormError.phone}\">\n          <label>Numero di telefono</label>\n          <input name=\"phone\" class=\"form-control\" [(ngModel)]=\"enterPhoneForm.phone\" placeholder=\"\" #phone=\"ngModel\" (keyup)=\"checkNonEmpty('enterPhoneForm', phone.value)\" (change)=\"checkNonEmpty('enterPhoneForm', phone.value)\">\n        </div>\n        <div class=\"form-group\">\n          <a (click)=\"setPhoneNumber()\" class=\"btn btn-warning\">Salva e continua</a>\n        </div>\n      </div>\n      <div class=\"form-group\" *ngIf=\"finishPopupData.type === 'finishFacebookRegistration'\">\n        <a (click)=\"closePopup()\" class=\"btn btn-secondary\">Chiudi</a>\n      </div>\n    </div>\n  </div>\n</div>\n\n<!-- Add Card popup -->\n<div class=\"popup\" [@addCardPopupState]=\"addCardPopupState\">\n  <div class=\"popup-container\">\n    <div class=\"header\">Metodo di pagamento</div>\n    <form class=\"add-card-form\" #addCardForm=\"ngForm\">\n      <app-loading *ngIf=\"isPopupLoading\"></app-loading>\n      <div class=\"cards-logo\">\n        <div class=\"card-item visa\"></div>\n        <div class=\"card-item mastercard\"></div>\n        <div class=\"card-item amex\"></div>\n      </div>\n      <div class=\"form-group\" [ngClass]=\"{'isError': addCardError.number}\" *ngIf=\"actionCardType === 'add'\">\n        <label for=\"addCardNumber\">Numero carta</label>\n        <input id=\"addCardNumber\" class=\"form-control\" type=\"text\" name=\"addCardNumber\" placeholder=\"\" [(ngModel)]=\"addCardData.number\" #addCardNumber=\"ngModel\" (keyup)=\"checkCardNumber(addCardNumber.value)\" (change)=\"checkCardNumber(addCardNumber.value)\">\n        <span class=\"error\">Please enter card number</span>\n      </div>\n      <div class=\"form-group\" *ngIf=\"actionCardType === 'edit'\">\n        <label for=\"editCardNumber\">Numero carta</label>\n        <input id=\"editCardNumber\" class=\"form-control\" type=\"text\" name=\"addCardNumber\" placeholder=\"\" [(ngModel)]=\"addCardData.number\" disabled>\n        <span class=\"error\">Please enter card number</span>\n      </div>\n      <div class=\"form-group\">\n        <div class=\"part-group first\" [ngClass]=\"{'isError': addCardError.exp_date}\">\n          <label for=\"addExpDate\">Scadenza</label>\n          <input id=\"addExpDate\" class=\"form-control\" type=\"text\" name=\"addExpDate\" placeholder=\"MM/AA\" maxlength=\"5\" [(ngModel)]=\"addCardData.exp_date\" #addCardExpDate=\"ngModel\" (keyup)=\"checkExpiry(addCardExpDate.value)\" (change)=\"checkExpiry(addCardExpDate.value)\">\n          <span class=\"error\">Expiration date isn't correct</span>\n        </div>\n        <div class=\"part-group last\" [ngClass]=\"{'isError': addCardError.cvc}\" *ngIf=\"actionCardType === 'add'\">\n          <label for=\"addCVV\">CVV</label>\n          <input id=\"addCVV\" class=\"form-control\" type=\"text\" name=\"addCVV\" [(ngModel)]=\"addCardData.cvc\" #addCardCVV=\"ngModel\" (keyup)=\"checkNonEmpty('addCardCvv', addCardCVV.value)\">\n          <span class=\"fa fa-question-circle\" data-toggle=\"tooltip\" data-placement=\"right\" title=\"Tooltip on right\"></span>\n          <span class=\"error\">CVV isn't correct</span>\n        </div>\n        <div class=\"part-group last\" *ngIf=\"actionCardType === 'edit'\">\n          <label for=\"editCVV\">CVV</label>\n          <input id=\"editCVV\" class=\"form-control\" type=\"text\" name=\"addCVV\" [(ngModel)]=\"addCardData.cvc\" disabled>\n          <span class=\"fa fa-question-circle\" data-toggle=\"tooltip\" data-placement=\"right\" title=\"Tooltip on right\"></span>\n          <span class=\"error\">CVV isn't correct</span>\n        </div>\n      </div>\n      <div class=\"subheader\">\n        Informazioni facoltativi\n      </div>\n      <div class=\"form-group\">\n        <label for=\"addCardName\">Nome intestatario</label>\n        <input id=\"addCardName\" class=\"form-control\" type=\"text\" name=\"addCardName\" placeholder=\"Nome Cognome\" [(ngModel)]=\"addCardData.name\" #addCardName=\"ngModel\">\n      </div>\n      <div class=\"form-group\">\n        <div class=\"part-group first-big\">\n          <label for=\"addCardVia\">Indirizzo</label>\n          <input id=\"addCardVia\" class=\"form-control\" type=\"text\" name=\"addCardVia\" [(ngModel)]=\"addCardData.address_line1\" #addCardAddress1=\"ngModel\">\n        </div>\n        <div class=\"part-group last-small\">\n          <label for=\"addCardNr\">Nr</label>\n          <input id=\"addCardNr\" class=\"form-control\" type=\"text\" name=\"addCardNr\" [(ngModel)]=\"addCardData.address_line2\" #addCardAddress2=\"ngModel\">\n        </div>\n      </div>\n      <div class=\"form-group\">\n        <div class=\"part-group first-big\">\n          <label for=\"addCardCitta\">Città</label>\n          <input id=\"addCardCitta\" class=\"form-control\" type=\"text\" name=\"addCardCitta\" [(ngModel)]=\"addCardData.address_city\" #addCardAddressCity=\"ngModel\">\n        </div>\n        <div class=\"part-group last-small\">\n          <label for=\"addCardCap\">CAP</label>\n          <input id=\"addCardCap\" class=\"form-control\" type=\"text\" name=\"addCardCap\" [(ngModel)]=\"addCardData.address_zip\" #addCardAddressZip=\"ngModel\">\n        </div>\n      </div>\n      <div class=\"form-group\">\n        <div class=\"part-group first\">\n          <label for=\"addCardProvincia\">Provincia</label>\n          <input id=\"addCardProvincia\" class=\"form-control\" type=\"text\" name=\"addCardProvincia\" [(ngModel)]=\"addCardData.address_state\" #addCardAddressState=\"ngModel\">\n        </div>\n        <div class=\"part-group last\">\n          <label for=\"addCardPease\">Paese</label>\n          <input id=\"addCardPease\" class=\"form-control\" type=\"text\" name=\"addCardPease\" [(ngModel)]=\"addCardData.address_country\" #addCardAddressCountry=\"ngModel\">\n        </div>\n      </div>\n      <div class=\"form-group\">\n        <button class=\"btn btn-warning\" type=\"submit\" (click)=\"addNewCard()\" *ngIf=\"actionCardType === 'add'\">Aggiungi metodo</button>\n        <button class=\"btn btn-warning\" type=\"submit\" (click)=\"editCard()\" *ngIf=\"actionCardType === 'edit'\">Aggiungi metodo</button>\n        <button class=\"btn btn-secondary\" (click)=\"closePopup()\">Chiudi</button>\n      </div>\n    </form>\n  </div>\n</div>\n\n<!-- Confirm popup with action -->\n<div class=\"popup\" [@confirmActionPopupState]=\"confirmActionPopupState\" [ngClass]=\"{'add-price': confirmActionPopupData.type === 'addPrice'}\">\n  <div class=\"popup-container\">\n    <div class=\"alert-block\" *ngIf=\"formError\">\n      <div class=\"alert-icn\"></div>\n      <div class=\"alert-container\">\n        <div class=\"header\">{{formError.title}}</div>\n        <p>{{formError.message}}</p>\n      </div>\n    </div>\n    <app-loading *ngIf=\"isPopupLoading\"></app-loading>\n    <div class=\"header\">{{ confirmActionPopupData.title }}</div>\n    <form class=\"confirm-action\" #confirmActionOrderForm=\"ngForm\">\n      <p>\n        {{ confirmActionPopupData.text }}\n        <span *ngIf=\"confirmActionPopupData.text2 !== ''\"><br> {{ confirmActionPopupData.text2 }}</span>\n      </p>\n      <div class=\"action\" *ngFor=\"let action of confirmActionPopupData.actions\">\n        <div class=\"form-group\" *ngIf=\"action.type === 'Payment_input_add'\">\n          <label>{{ action.label }}</label>\n          <div class=\"input-group\">\n            <input type=\"text\" class=\"form-control\" name=\"confirmActionInputAddPrice\" [(ngModel)]=\"confirmActionPopupData.price\" #confirmActionInputAddPrice=\"ngModel\">\n            <span class=\"input-group-addon\">.00</span>\n            <span class=\"input-group-addon euro\">€</span>\n          </div>\n          <p class=\"price-description\">{{ action.description }}</p>\n        </div>\n        <div class=\"form-group\" *ngIf=\"action.type === 'Payment_input_edit'\">\n          <label>{{ action.label }}</label>\n          <div class=\"input-group\">\n            <input type=\"text\" class=\"form-control\" name=\"confirmActionInputEditPrice\" [(ngModel)]=\"confirmActionPopupData.price\" #confirmActionInputEditPrice=\"ngModel\">\n            <span class=\"input-group-addon\">.00</span>\n            <span class=\"input-group-addon euro\">€</span>\n          </div>\n          <p class=\"price-description\">{{ action.description }}</p>\n        </div>\n        <div class=\"payment-information\" *ngIf=\"action.type === 'Payment_information'\">\n          {{ action.information }}\n        </div>\n      </div>\n      <div class=\"form-group buttons-block\">\n        <span *ngFor=\"let button of confirmActionPopupData.buttons\">\n          <button *ngIf=\"button.type === 'addPrice'\" class=\"btn btn-warning\" (click)=\"addPrice(confirmActionPopupData.orderId)\">{{ button.text }}</button>\n          <button *ngIf=\"button.type === 'editPrice'\" class=\"btn btn-warning\" (click)=\"editPrice(confirmActionPopupData.orderId)\">{{ button.text }}</button>\n          <button *ngIf=\"button.type === 'continueOrder'\" class=\"btn btn-warning\" (click)=\"continueOrder(confirmActionPopupData.orderId)\"><i class=\"fa fa-lock\"></i> {{ button.text }}</button>\n          <button *ngIf=\"button.type === 'close'\" (click)=\"closePopup()\" class=\"btn btn-secondary\">{{ button.text }}</button>\n        </span>\n      </div>\n    </form>\n  </div>\n</div>\n\n\n<!-- ******************************** A/B Tests ******************************** -->\n\n<!-- <div class=\"popup\" [@registerCompanyPopupState]=\"registerCompanyPopupState\">\n  <app-loading *ngIf=\"isPopupLoading\"></app-loading>\n  <div class=\"header\">Registra la tua impresa</div>\n  <form class=\"registration-company-form\" #registrationCompanyForm=\"ngForm\">\n    <div class=\"form-group\">\n      <label for=\"regName\">Il tuo nome</label>\n      <input id=\"regName\" class=\"form-control\" type=\"text\" name=\"name\" placeholder=\"il tuo nome\" required [(ngModel)]=\"registerNewCompany.name\" #regName=\"ngModel\">\n    </div>\n    <div class=\"form-group\">\n      <label for=\"regPhone\">Numero di cellulare</label>\n      <input id=\"regPhone\" class=\"form-control\" type=\"text\" name=\"phone\" placeholder=\"328...\" required [(ngModel)]=\"registerNewCompany.phone\" #regPhone=\"ngModel\">\n    </div>\n    <div class=\"form-group\">\n      <label for=\"regProfession\">Inserisci la tua professione</label>\n      <input id=\"regProfession\" class=\"form-control\" name=\"profession\" placeholder=\"professione\" [(ngModel)]=\"registerNewCompany.profession\" #regProfession=\"ngModel\">\n    </div>\n    <div class=\"form-group\">\n      <button class=\"btn btn-warning\" type=\"submit\" (click)=\"registerCompany(regName.value, regPhone.value, regProfession.value)\">Registra la tua impresa</button>\n      <button class=\"btn btn-secondary\" type=\"submit\" (click)=\"closePopup()\">Annulla</button>\n    </div>\n  </form>\n</div> -->\n\n<!-- <div class=\"popup\" [@recommendToFriendPopupState]=\"recommendToFriendPopupState\">\n  <app-loading *ngIf=\"isPopupLoading\"></app-loading>\n  <div class=\"header\">Invita un amico</div>\n  <form class=\"reccoment-friend-form\" #recommendToFriendForm=\"ngForm\">\n    <div class=\"form-group\">\n      <label for=\"friendName\">Nome di tuo amico</label>\n      <input id=\"friendName\" class=\"form-control\" type=\"text\" name=\"friendname\" placeholder=\"nome\" [(ngModel)]=\"recommendFriend.friend_name\" #friendName=\"ngModel\">\n    </div>\n    <div class=\"form-group\">\n      <label for=\"friendPhone\">Numero di cellulare di tuo amico</label>\n      <input id=\"friendPhone\" class=\"form-control\" type=\"text\" name=\"friendphone\" placeholder=\"328..\" required [(ngModel)]=\"recommendFriend.frend_phone_number\" #friendPhone=\"ngModel\">\n    </div>\n    <div class=\"form-group\">\n      <label for=\"myName\">Il tuo nome</label>\n      <input id=\"myName\" class=\"form-control\" type=\"text\" name=\"myname\" placeholder=\"nome\" [(ngModel)]=\"recommendFriend.my_name\" #myName=\"ngModel\">\n    </div>\n    <div class=\"form-group\">\n      <label for=\"myPhone\">Il tuo numero di cellulare</label>\n      <input id=\"myPhone\" class=\"form-control\" type=\"text\" name=\"myphone\" placeholder=\"328..\" required [(ngModel)]=\"recommendFriend.my_phone_number\" #myPhone=\"ngModel\">\n    </div>\n    <div class=\"form-group\">\n      <button class=\"btn btn-warning\" type=\"submit\" (click)=\"recommendToFriend(friendName.value, friendPhone.value, myName.value, myPhone.value)\">Invita e guadagna</button>\n      <button class=\"btn btn-secondary\" type=\"submit\" (click)=\"closePopup()\">Annulla</button>\n    </div>\n  </form>\n</div>\n\n<div class=\"popup\" [@getPromoCodePopupState]=\"getPromoCodePopupState\">\n  <app-loading *ngIf=\"isPopupLoading\"></app-loading>\n  <div class=\"header\">Guadagna uno sconto</div>\n  <form class=\"get-promo-code-form\" #getPromoCodeForm=\"ngForm\">\n    <div class=\"form-group\">\n      <label for=\"myName\">Inserisci il tuo nome</label>\n      <input id=\"myName\" class=\"form-control\" type=\"text\" name=\"myName\" placeholder=\"mio nome\" [(ngModel)]=\"earnPromoCode.my_name\" #myName=\"ngModel\">\n    </div>\n    <div class=\"form-group\">\n      <label for=\"myPhone\">Numero di cellulare</label>\n      <input id=\"myPhone\" class=\"form-control\" type=\"text\" name=\"myPhone\" placeholder=\"328..\" required [(ngModel)]=\"earnPromoCode.my_phone_number\" #myPhone=\"ngModel\">\n    </div>\n    <div class=\"form-group\">\n      <button class=\"btn btn-warning\" type=\"submit\" (click)=\"earnPromoCodeAction(myName.value, myPhone.value)\">Ricevi codice</button>\n      <button class=\"btn btn-secondary\" type=\"submit\" (click)=\"closePopup()\">Annulla</button>\n    </div>\n  </form>\n</div> -->\n"
 
 /***/ },
 
-/***/ 736:
+/***/ 735:
 /***/ function(module, exports) {
 
 module.exports = "<div class=\"loader\">\n  <svg width='60px' height='60px' xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\" preserveAspectRatio=\"xMidYMid\" class=\"uil-ring\">\n    <rect x=\"0\" y=\"0\" width=\"60\" height=\"60\" fill=\"none\" class=\"bk\"></rect>\n    <circle cx=\"50\" cy=\"50\" r=\"45\" stroke-dasharray=\"169.64600329384882 113.09733552923257\" stroke=\"#3B568D\" fill=\"none\" stroke-width=\"10\">\n      <animateTransform attributeName=\"transform\" type=\"rotate\" values=\"0 50 50;180 50 50;360 50 50;\" keyTimes=\"0;0.5;1\" dur=\"1s\" repeatCount=\"indefinite\" begin=\"0s\"></animateTransform>\n    </circle>\n  </svg>\n</div>"
 
 /***/ },
 
-/***/ 758:
+/***/ 757:
 /***/ function(module, exports) {
 
 /* (ignored) */
 
 /***/ },
 
-/***/ 759:
+/***/ 758:
 /***/ function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(416);
+module.exports = __webpack_require__(415);
 
 
 /***/ },
 
-/***/ 86:
+/***/ 84:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_angular2_universal__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_angular2_universal__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_angular2_universal___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_angular2_universal__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Subject__ = __webpack_require__(57);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Subject__ = __webpack_require__(56);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Subject___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_Subject__);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return PopupsService; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -9743,15 +9627,15 @@ var PopupsService = (function () {
 
 /***/ },
 
-/***/ 87:
+/***/ 85:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_angular2_universal__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_angular2_universal__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_angular2_universal___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_angular2_universal__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_http__ = __webpack_require__(41);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_toPromise__ = __webpack_require__(77);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_http__ = __webpack_require__(48);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_toPromise__ = __webpack_require__(92);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_toPromise___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_toPromise__);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return ContactService; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -9819,15 +9703,207 @@ var ContactService = (function () {
 
 /***/ },
 
-/***/ 88:
+/***/ 86:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_angular2_universal__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_angular2_universal__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_angular2_universal___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_angular2_universal__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_http__ = __webpack_require__(41);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_toPromise__ = __webpack_require__(77);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_http__ = __webpack_require__(48);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__shared_navigation_service__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_toPromise__ = __webpack_require__(92);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_toPromise___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_toPromise__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_Subject__ = __webpack_require__(56);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_Subject___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_rxjs_Subject__);
+/* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return OrdersService; });
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+
+var OrdersService = (function () {
+    function OrdersService(http, navigationService) {
+        this.http = http;
+        this.navigationService = navigationService;
+        this.protocol = "https";
+        this.hostname = "api.starbook.co";
+        this.api_version = "v0.9.1";
+        this.api = 'https://api.starbook.co/v0.9.1/';
+        this.orderEvent = new __WEBPACK_IMPORTED_MODULE_5_rxjs_Subject__["Subject"]();
+        this.wizardData = {};
+        this.googleApi = 'https://maps.googleapis.com/maps/api/geocode/json';
+        if (__WEBPACK_IMPORTED_MODULE_0_angular2_universal__["isBrowser"]) {
+            this.getOrderEvent$ = this.orderEvent.asObservable();
+            if (document.location.hostname === "www.starbook.co") {
+                this.api_version = "v0.9.1";
+            }
+            else {
+                this.api_version = "t0.9.1";
+            }
+        }
+        this.api = this.protocol + "://" + this.hostname + "/" + this.api_version + "/";
+        // this.api = 'http://localhost/t0.9.1/';
+    }
+    OrdersService.prototype.makeEvent = function (event) {
+        this.orderEvent.next(event);
+    };
+    OrdersService.prototype.saveOrder = function (order) {
+        return this.http.post(this.api + 'orders', order, { headers: this._makeHeaders() }).toPromise().then(function (response) {
+            return response;
+        }).catch(this.handleError);
+    };
+    OrdersService.prototype.getAddresses = function (key) {
+        var params = new __WEBPACK_IMPORTED_MODULE_2__angular_http__["URLSearchParams"]();
+        var addresses = [];
+        params.set('address', key);
+        params.set('language', 'it');
+        params.set('components', 'country:IT');
+        params.set('key', 'AIzaSyCLc5etDSrqieAn4lPCsvFDpkM3-F7-c5M');
+        return this.http.get(this.googleApi, { search: params }).toPromise().then(function (response) {
+            var data = response.json().results;
+            data.forEach(function (address) {
+                var addressData = {
+                    street: '',
+                    street_number: null,
+                    city: '',
+                    postal_code: null,
+                    province: '',
+                    country: '',
+                    country_code: '',
+                    selected: false,
+                    isFull: false,
+                    full: '',
+                    street_number_city: '',
+                };
+                address.address_components.forEach(function (components) {
+                    switch (components.types[0]) {
+                        case 'street_number':
+                            addressData.street_number = components.long_name;
+                            break;
+                        case 'route':
+                            addressData.street = components.long_name;
+                            break;
+                        case 'locality':
+                            addressData.city = components.long_name;
+                            break;
+                        case 'administrative_area_level_2':
+                            addressData.province = components.long_name;
+                            break;
+                        case 'country':
+                            addressData.country = components.long_name;
+                            addressData.country_code = components.short_name;
+                            break;
+                        case 'postal_code':
+                            addressData.postal_code = components.long_name;
+                    }
+                });
+                addressData.full = address.formatted_address;
+                if (addressData.street && addressData.city) {
+                    if (addressData.street_number) {
+                        addressData.street_number_city = addressData.street + ', ' + addressData.street_number + ' ' + addressData.city;
+                    }
+                    else {
+                        addressData.street_number_city = addressData.street + ', ' + addressData.city;
+                    }
+                    addresses.push(addressData);
+                }
+            });
+            return addresses;
+        }).catch(this.handleError);
+    };
+    OrdersService.prototype.getEstimatePrice = function (data) {
+        return this.http.post(this.api + 'calculate_estimate_price', data, this._makeHeaders()).toPromise().then(function (response) {
+            var price = response.json();
+            return price;
+        }).catch(this.handleError);
+    };
+    OrdersService.prototype.getOrders = function (params) {
+        var paramsToRequest = new __WEBPACK_IMPORTED_MODULE_2__angular_http__["URLSearchParams"]();
+        params.forEach(function (peram) {
+            paramsToRequest.set(peram.name, peram.value);
+        });
+        return this.http.get(this.api + 'orders', { headers: this._makeHeaders(), search: paramsToRequest }).toPromise().then(function (response) {
+            return response.json();
+        }).catch(this.handleError);
+    };
+    OrdersService.prototype.updateOrder = function (id, data) {
+        return this.http.put(this.api + 'orders/' + id, data, { headers: this._makeHeaders() }).toPromise().then(function (response) {
+            return response.json();
+        }).catch(this.handleError);
+    };
+    OrdersService.prototype.acceptWork = function (id, action) {
+        // this.navigationService.updateLoadingStatus(true);
+        return this.http.put(this.api + 'orders/' + id, { action: action }, { headers: this._makeHeaders() }).toPromise().then(function (response) {
+            // this.navigationService.updateLoadingStatus(false);
+            return response.json();
+        }).catch(this.handleError);
+    };
+    OrdersService.prototype.modifyOrder = function (id, type) {
+        // this.navigationService.updateLoadingStatus(true);
+        return this.http.put(this.api + 'orders/' + id, { action: type }, { headers: this._makeHeaders() }).toPromise().then(function (response) {
+            // this.navigationService.updateLoadingStatus(false);
+            return true;
+        }).catch(this.handleError);
+    };
+    OrdersService.prototype.addPrice = function (id, type, price) {
+        // this.navigationService.updateLoadingStatus(true);
+        return this.http.put(this.api + 'orders/' + id, { action: type, payment: { amount: price, currency: "eur" } }, { headers: this._makeHeaders() }).toPromise().then(function (response) {
+            // this.navigationService.updateLoadingStatus(false);
+            return response.json();
+        }).catch(this.handleError);
+    };
+    OrdersService.prototype._makeHeaders = function () {
+        var headers;
+        if (__WEBPACK_IMPORTED_MODULE_0_angular2_universal__["isBrowser"]) {
+            if (localStorage.getItem('auth') !== null) {
+                this.auth = JSON.parse(localStorage.getItem('auth'));
+                headers = new __WEBPACK_IMPORTED_MODULE_2__angular_http__["Headers"]({ 'Token': this.auth.token });
+            }
+            else {
+                this.auth = false;
+                headers = new __WEBPACK_IMPORTED_MODULE_2__angular_http__["Headers"]({ 'Token': '' });
+            }
+        }
+        else {
+            this.auth = false;
+            headers = new __WEBPACK_IMPORTED_MODULE_2__angular_http__["Headers"]({ 'Token': '' });
+        }
+        return headers;
+    };
+    OrdersService.prototype.handleError = function (error) {
+        return Promise.reject(error.status || error);
+    };
+    OrdersService = __decorate([
+        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_core__["Injectable"])(), 
+        __metadata('design:paramtypes', [(typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__angular_http__["Http"] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_2__angular_http__["Http"]) === 'function' && _a) || Object, (typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_3__shared_navigation_service__["a" /* NavigationService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_3__shared_navigation_service__["a" /* NavigationService */]) === 'function' && _b) || Object])
+    ], OrdersService);
+    return OrdersService;
+    var _a, _b;
+}());
+//# sourceMappingURL=/Users/haraldbregu/Dropbox/StarbookWebApp/src/orders.service.js.map
+
+/***/ },
+
+/***/ 87:
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_angular2_universal__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_angular2_universal___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_angular2_universal__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_http__ = __webpack_require__(48);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_toPromise__ = __webpack_require__(92);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_toPromise___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_toPromise__);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return ProfileService; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -9935,5 +10011,5 @@ var ProfileService = (function () {
 
 /***/ }
 
-},[759]);
+},[758]);
 //# sourceMappingURL=client.bundle.map

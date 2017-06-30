@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, Route, ActivatedRoute, Params } from '@angular/router';
 import { AnalyticsService } from '../../shared/analytics.service';
-import { OrderService, IAddress } from '../../order/order.service';
+import { OrdersService, IAddress } from '../../shared/orders.service';
 import { AuthService } from '../../shared/auth.service';
 import { NavigationService } from '../../shared/navigation.service';
 import { PaymentService } from '../../shared/payment.service';
@@ -164,7 +164,7 @@ export class WizardComponent implements OnInit {
     cvc_error: null
   }
 
-  constructor(private router: Router, private route: ActivatedRoute, private analyticsService: AnalyticsService, private orderService: OrderService, private authService: AuthService, private navigationService: NavigationService, private paymentService: PaymentService, private profileService: ProfileService ) {
+  constructor(private router: Router, private route: ActivatedRoute, private analyticsService: AnalyticsService, private orderService: OrdersService, private authService: AuthService, private navigationService: NavigationService, private paymentService: PaymentService, private profileService: ProfileService ) {
     this.emailPattern = /^[a-z0-9!#$%&'*+\/=?^_`{|}~.-]+@[a-z0-9]([a-z0-9-]*[a-z0-9])?(\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)*$/i;
     this.it = {
       firstDayOfWeek: 1,
@@ -177,8 +177,15 @@ export class WizardComponent implements OnInit {
     };
     this.analyticsService.sendPageViewUrl(this.router.url)
 
+        // if (isBrowser) {
+        //   this.subscription = this.orderService.getOrderEvent$.subscribe(event => {
+        //     this.orderCreated(event);
+        //   });
+        // }
+
     if (isBrowser) {
-      this.service_data = this.orderService.getWizardData();
+      // this.service_data = this.orderService.getWizardData();
+      this.service_data = {};
 
       if (Object.keys(this.service_data).length===0) {
         this.Order = this.readOrderFromLocal()

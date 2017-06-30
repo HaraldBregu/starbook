@@ -815,7 +815,7 @@ textarea.form-control {
   color: #1abc9c;
   font-size: 18px;
   font-family: Roboto, sans-serif;
-  font-weight: 900;
+  font-weight: 500;
   text-decoration: none !important;
   text-align: center;
   padding: 10px 5px;
@@ -5093,10 +5093,12 @@ app-service {
       padding: 90px 0 0 0;
       margin: 0; }
   app-service .footer-container {
-    padding: 60px 50px; }
+    font-weight: 300; }
     app-service .footer-container .footer {
-      max-width: 1200px;
-      margin: auto; }
+      max-width: 1440px;
+      margin: auto;
+      padding: 20px;
+      overflow: auto; }
       app-service .footer-container .footer .btn {
         line-height: 50px;
         font-weight: 600;
@@ -5607,9 +5609,13 @@ app-insert {
   min-height: 100vh;
   padding: 70px 0 0;
   -webkit-overflow-scrolling: touch; }
-  app-insert .insert-container .input-group .form-control {
+  app-insert .insert-container .input-group input {
     height: 60px;
     font-size: 22px; }
+  app-insert .insert-container .input-group textarea {
+    height: auto;
+    font-size: 22px;
+    text-align: center; }
   app-insert .insert-container .input-group .form-control:focus {
     border: 2px solid #16A084 !important; }
   app-insert .insert-container .half-group {
@@ -5643,7 +5649,7 @@ app-insert {
   app-insert .insert-container .back:hover {
     color: white !important; }
   app-insert .insert-container .insert {
-    padding: 80px 10px; }
+    padding: 60px 10px; }
     app-insert .insert-container .insert .insert-header {
       text-align: center;
       padding-bottom: 30px;
@@ -5672,7 +5678,9 @@ app-insert {
       app-insert .insert-container .insert .insert-body .actions {
         margin-top: 30px; }
       app-insert .insert-container .insert .insert-body .price-per-unit {
-        overflow: auto; }
+        height: 60px;
+        overflow: auto;
+        margin-bottom: 15px; }
         app-insert .insert-container .insert .insert-body .price-per-unit .input-group {
           float: left;
           width: 47.5%; }
@@ -5771,7 +5779,7 @@ app-insert {
     position: relative; }
 
   app-insert .insert-container .insert {
-    padding-top: 40px; }
+    padding-top: 20px; }
 
   app-insert .insert-container .insert .insert-body .picture-container .service-picture {
     max-width: 224px;
@@ -5815,7 +5823,7 @@ app-checkout {
   app-checkout .checkout-container .back:hover {
     color: white !important; }
   app-checkout .checkout-container .checkout {
-    padding: 80px 10px; }
+    padding: 60px 10px; }
     app-checkout .checkout-container .checkout .checkout-header {
       text-align: center;
       padding-bottom: 30px;
@@ -5887,6 +5895,11 @@ app-checkout {
           border-bottom: 1px solid #DBDBDB;
           margin-top: 10px;
           margin-bottom: 10px; }
+      app-checkout .checkout-container .checkout .checkout-body .list-cards {
+        text-align: center;
+        margin-bottom: 30px; }
+        app-checkout .checkout-container .checkout .checkout-body .list-cards img {
+          width: 50px; }
       app-checkout .checkout-container .checkout .checkout-body .error {
         text-align: center; }
         app-checkout .checkout-container .checkout .checkout-body .error .error-text {
@@ -6056,7 +6069,7 @@ app-checkout {
     position: relative; }
 
   app-checkout .checkout-container .checkout {
-    padding-top: 40px; }
+    padding-top: 20px; }
 
   app-checkout .checkout-container .checkout .checkout-body .picture-container .service-picture {
     max-width: 224px;
@@ -8078,60 +8091,196 @@ app-legal {
 
 app-account {
   display: block;
+  float: left;
   width: 100%;
   height: 100%;
-  padding: 70px 0 0; }
-  app-account .account-container {
-    position: absolute;
-    background-image: url("https://s3-eu-west-1.amazonaws.com/starbook-s3/website/illustration-city-blue.png");
-    background-repeat: no-repeat;
-    background-position: center bottom;
-    background-size: 100%;
-    top: 70px;
+  min-height: 100vh;
+  padding: 70px 0 0;
+  -webkit-overflow-scrolling: touch; }
+  app-account .account-container .input-group input {
+    height: 60px;
+    font-size: 22px; }
+  app-account .account-container .input-group textarea {
+    height: auto;
+    font-size: 22px;
+    text-align: center; }
+  app-account .account-container .input-group .form-control:focus {
+    border: 2px solid #16A084 !important; }
+  app-account .account-container .half-group {
+    float: left;
+    width: 50%; }
+    app-account .account-container .half-group .price {
+      text-align: center; }
+    app-account .account-container .half-group .unit {
+      text-align: center; }
+  app-account .account-container .progress-container {
+    position: fixed;
+    width: 100%;
+    background: #edefed;
+    height: 6px;
+    z-index: 1; }
+    app-account .account-container .progress-container .progress {
+      height: 6px;
+      background: #1abc9c;
+      border-top-right-radius: 15px;
+      border-bottom-right-radius: 15px; }
+  app-account .account-container .back {
+    position: fixed;
     left: 0;
-    right: 0;
-    bottom: 0;
-    overflow: auto;
-    -webkit-overflow-scrolling: touch; }
-    app-account .account-container .account {
-      border: 1px solid #DBDBDB;
-      background: white;
-      max-width: 600px;
-      padding: 40px;
-      margin: 40px auto; }
-      app-account .account-container .account .btn {
-        width: 100%;
+    margin-top: 20px;
+    padding: 0 30px;
+    text-transform: uppercase;
+    font-size: 20px;
+    font-weight: 600;
+    background: white;
+    color: #16A084 !important; }
+  app-account .account-container .back:hover {
+    color: white !important; }
+  app-account .account-container .account {
+    padding: 60px 10px; }
+    app-account .account-container .account .account-header {
+      text-align: center;
+      padding-bottom: 30px;
+      max-width: 700px;
+      margin: auto; }
+      app-account .account-container .account .account-header h1 {
+        font-weight: 300;
+        color: black;
+        line-height: inherit; }
+        app-account .account-container .account .account-header h1 span {
+          font-weight: 500; }
+        app-account .account-container .account .account-header h1 .one {
+          color: #2980b9; }
+        app-account .account-container .account .account-header h1 .two {
+          color: #f39c12; }
+      app-account .account-container .account .account-header p {
+        font-weight: 300;
+        margin-top: 20px; }
+    app-account .account-container .account .account-body {
+      margin: auto;
+      max-width: 500px; }
+      app-account .account-container .account .account-body .error {
+        text-align: center; }
+        app-account .account-container .account .account-body .error .error-text {
+          color: #f75c4b; }
+      app-account .account-container .account .account-body .actions {
+        margin-top: 30px; }
+      app-account .account-container .account .account-body .price-per-unit {
+        height: 60px;
+        overflow: auto;
+        margin-bottom: 15px; }
+        app-account .account-container .account .account-body .price-per-unit .input-group {
+          float: left;
+          width: 47.5%; }
+        app-account .account-container .account .account-body .price-per-unit .euro {
+          font-size: 22px;
+          padding: 0 20px;
+          background: white;
+          border-radius: 0; }
+        app-account .account-container .account .account-body .price-per-unit .per {
+          width: 5%;
+          float: left;
+          font-size: 20px;
+          text-align: center;
+          line-height: 60px;
+          font-weight: 300; }
+      app-account .account-container .account .account-body .btn {
+        padding: 0 30px;
+        text-transform: uppercase;
         font-size: 20px;
-        color: white;
-        height: 50px;
-        font-weight: 500; }
-      app-account .account-container .account .btn.btn-white {
-        color: black; }
-      app-account .account-container .account .btn-facebook i {
-        display: block;
-        position: absolute;
-        top: 10px;
-        left: 12px;
-        width: 30px;
-        height: 30px;
-        background-image: url("/assets/images/fb-icon.png");
-        background-repeat: no-repeat;
-        background-size: contain; }
-      app-account .account-container .account .header {
-        padding-bottom: 30px; }
-        app-account .account-container .account .header h3 {
-          margin-bottom: 20px; }
-        app-account .account-container .account .header h6 {
-          font-weight: 300;
-          line-height: inherit; }
-      app-account .account-container .account .loader {
-        padding: 30px; }
-  @media (max-width: 425px) {
-    app-account .account-container .account {
-      margin: 0;
-      padding: 20px;
-      height: 100%; } }
+        font-weight: 600;
+        border-radius: 2px;
+        height: 60px; }
+      app-account .account-container .account .account-body .picture-container {
+        margin-bottom: 30px; }
+        app-account .account-container .account .account-body .picture-container .service-picture {
+          max-width: 288px;
+          height: 360px;
+          background: #f1f1f1;
+          margin: auto;
+          font-size: 30px;
+          color: white; }
+          app-account .account-container .account .account-body .picture-container .service-picture i {
+            position: absolute;
+            margin-left: 129px;
+            margin-top: 153px;
+            color: #d2d2d2; }
+          app-account .account-container .account .account-body .picture-container .service-picture img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            line-height: 415px;
+            font-size: 18px;
+            text-align: center;
+            color: #d2d2d2; }
+        app-account .account-container .account .account-body .picture-container .profile-picture {
+          width: 160px;
+          height: 160px;
+          background: #f1f1f1;
+          margin: auto;
+          font-size: 30px;
+          color: white; }
+          app-account .account-container .account .account-body .picture-container .profile-picture i {
+            position: absolute;
+            margin-left: 65px;
+            margin-top: 65px;
+            color: #d2d2d2; }
+          app-account .account-container .account .account-body .picture-container .profile-picture img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            line-height: 300px;
+            font-size: 18px;
+            text-align: center;
+            color: transparent; }
+      app-account .account-container .account .account-body .form-group .ui-inputtext {
+        color: black;
+        font-size: 16px; }
+      app-account .account-container .account .account-body .footer-group {
+        text-align: center;
+        font-size: 16px;
+        font-weight: 300;
+        padding: 10px 0; }
+        app-account .account-container .account .account-body .footer-group .text {
+          display: block; }
+        app-account .account-container .account .account-body .footer-group .enter, app-account .account-container .account .account-body .footer-group .password-forget, app-account .account-container .account .account-body .footer-group .facebook-continue {
+          color: #16a085;
+          font-weight: 400;
+          margin-bottom: 20px;
+          cursor: pointer; }
+      app-account .account-container .account .account-body .category-tags {
+        text-align: center; }
+        app-account .account-container .account .account-body .category-tags .category-example {
+          display: inline-block;
+          height: 40px;
+          line-height: 40px;
+          margin: 5px;
+          border-radius: 20px;
+          background: #eceeef;
+          padding: 0 20px;
+          font-size: 19px;
+          height: 40px;
+          color: rgba(0, 0, 0, 0.5); }
+    app-account .account-container .account .loader {
+      padding: 30px; }
 
+@media (max-width: 425px) {
+  app-insert .account-container .back {
+    position: relative; }
+
+  app-insert .account-container .account {
+    padding-top: 20px; }
+
+  app-insert .account-container .account .account-body .picture-container .service-picture {
+    max-width: 224px;
+    height: 280px; }
+
+  app-insert .account-container .account .account-body .picture-container .service-picture i {
+    margin-top: 120px;
+    margin-left: 97px; }
+
+  app-insert .account-container .account .account-body .picture-container .service-picture img {
+    line-height: 341px; } }
 app-requests {
   display: block;
   width: 100%;

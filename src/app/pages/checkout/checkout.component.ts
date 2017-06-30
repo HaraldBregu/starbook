@@ -1,13 +1,13 @@
+import { isBrowser } from "angular2-universal";
 import { Component, OnInit } from '@angular/core';
 import { Router, Route, ActivatedRoute, Params } from '@angular/router';
 import { AnalyticsService } from '../../shared/analytics.service';
-import { OrderService, IAddress } from '../../order/order.service';
 import { AuthService } from '../../shared/auth.service';
 import { NavigationService } from '../../shared/navigation.service';
 import { PaymentService } from '../../shared/payment.service';
 import { ProfileService } from '../../shared/profile.service';
-import { isBrowser } from "angular2-universal";
 import { CommonService } from '../../shared/common.service';
+import { OrdersService, IAddress } from '../../shared/orders.service';
 
 @Component({
   selector: 'app-checkout',
@@ -40,7 +40,7 @@ export class CheckoutComponent implements OnInit {
   public date = null;
   public temp_date;
   public minDate = new Date(new Date().getTime() + 24 * 60 * 60 * 1000);
-  public maxDate = new Date(new Date().getTime() + (24*28) * 60 * 60 * 1000);
+  // public maxDate = new Date(new Date().getTime() + (24*28) * 60 * 60 * 1000);
   public formated_date = null;
   public date_state = {
     loading: false,
@@ -78,16 +78,39 @@ export class CheckoutComponent implements OnInit {
     password_error: null,
   }
 
+  public Card = {
+    number: null,
+    exp_month: null,
+    exp_year: null,
+    exp_date: null,
+    cvc: '',
+    name: '',           // Nome intestatario
+    address_line1: '',  // Via
+    address_line2: '',  // Nr
+    address_city: '',   // Città
+    address_zip: '',    // CAP
+    address_state: '',  // Provincia
+    address_country: '' // Paese
+  };
+  public card_state = {
+    loading: false,
+    button_title: "Salva",
+    message_error: null,
+    message_success: null,
+    number_error:null,
+    exp_date_error: null,
+    cvc_error: null
+  }
+
   public Order = {}
   public state = {
     loading : false,
-    created : false,
     error_message : null,
     address_error: null,
     date_error: null,
   }
 
-  constructor(private router: Router, private route: ActivatedRoute, private analyticsService: AnalyticsService, private orderService: OrderService, private authService: AuthService, private navigationService: NavigationService, private paymentService: PaymentService, private profileService: ProfileService, private commonService: CommonService) {
+  constructor(private router: Router, private route: ActivatedRoute, private analyticsService: AnalyticsService, private ordersService: OrdersService, private authService: AuthService, private navigationService: NavigationService, private paymentService: PaymentService, private profileService: ProfileService, private commonService: CommonService) {
     this.emailPattern = /^[a-z0-9!#$%&'*+\/=?^_`{|}~.-]+@[a-z0-9]([a-z0-9-]*[a-z0-9])?(\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)*$/i;
     this.it = {
       firstDayOfWeek: 1,
@@ -100,8 +123,25 @@ export class CheckoutComponent implements OnInit {
     }
     this.steps = ['address', 'date', 'preview', "payment", 'end']
     this.navigationService.updateMessage("Prenotazione")
-    this.Order['services'] = this.commonService.getObjectForKey("services")
-    console.log('order is: ' + JSON.stringify(this.Order));
+
+    if (this.commonService.readObjectForKey("checkout_order")) {
+      this.Order = this.commonService.readObjectForKey("checkout_order")
+      if (this.Order['address']) {
+        var address = this.Order['address']
+        var street_number = address['street_number']
+        if (street_number && street_number.length > 0) {
+          this.temp_address = address['street'] + ', ' + address['street_number'] + ' ' + address['city'];
+        } else {
+          this.temp_address = address['street'] + ', ' + address['city'];
+        }
+      }
+      if (this.Order['date']) {
+        this.temp_date = new Date(this.Order['date']);
+        let date = new Date(this.Order['date']);
+        let day = date.getDate() > 9 ? date.getDate() : '0' + date.getDate();
+        this.formated_date =  day + ' ' + this.it.monthNames[date.getMonth()] + ' ' + date.getFullYear();
+      }
+    }
   }
 
   ngOnInit() {
@@ -111,6 +151,15 @@ export class CheckoutComponent implements OnInit {
         window.scrollTo(0, 0)
         this.currentUser = JSON.parse(localStorage.getItem('auth'))
       }
+
+      if (this.step !== "end" && !this.commonService.readObjectForKey("checkout_order")) {
+        this.router.navigate(['']);
+      }
+
+      if (this.step==='signup') { this.steps[3] = "signup"; }
+      if (this.step==='login') { this.steps[3] = "login"; }
+      if (this.step==='payment') { this.steps[3] = "payment"; }
+      if (this.step==='card') { this.steps[3] = "card"; }
     })
   }
 
@@ -133,6 +182,7 @@ export class CheckoutComponent implements OnInit {
         this.state.address_error = "Per favore, inserisci un indirizzo."
         return;
       }
+      this.commonService.saveObjectForKey(this.Order, "checkout_order")
       this.router.navigate(['checkout/' + nextStep]);
     }
     else if (this.step === 'date') {
@@ -141,6 +191,7 @@ export class CheckoutComponent implements OnInit {
         this.state.date_error = "Per favore, inserisci una data."
         return;
       }
+      this.commonService.saveObjectForKey(this.Order, "checkout_order")
       this.router.navigate(['checkout/' + nextStep]);
     }
     else if (this.step === 'preview') {
@@ -148,6 +199,7 @@ export class CheckoutComponent implements OnInit {
         this.steps[3] = "signup";
         this.router.navigate(['checkout/signup'])
       } else {
+        this.steps[3] = "payment";
         this.router.navigate(['checkout/payment'])
       }
     }
@@ -156,47 +208,13 @@ export class CheckoutComponent implements OnInit {
     else if (this.step === 'login') {
     }
     else if (this.step==='payment') {
-      // this.router.navigate(['checkout/payment'])
+      this.sendOrder()
     }
     else if (this.step==='card') {
-      // this.router.navigate(['checkout/card'])
     }
     else if (this.step==='end') {
-      this.router.navigate(['services']);
+      this.router.navigate(['orders/requests']);
     }
-  }
-
-  sendOrder() {
-    this.state.loading = true;
-    this.state.error_message = null;
-    this.orderService.saveOrder(this.Order).then((response) => {
-      this.state.loading = false;
-      this.state.error_message = null;
-      if (response.status === 201) {
-        this.state.error_message = "Effetua l'accesso prima di creare un ordine";
-        this.state.created = true;
-        // this.router.navigate(['order/end']);
-      }
-    }).catch((errorData) => {
-      this.state.loading = false;
-      // this.router.navigate(['order/preview']);
-      var _body = JSON.parse(errorData._body);
-      if (errorData.status === 400) {
-        if (_body.message === "no_stripe_customer") {
-          this.state.error_message = "Inserisci un metodo di pagamento.";
-          // this.router.navigate(['order/card']);
-        } else {
-          this.state.error_message = "C'è stato un errore, per favore effettua di nuovo l'accesso al account.";
-        }
-      } else if (errorData.status === 402) {
-        if (_body.message === "no_cards") {
-          this.state.error_message = "Inserisci un metodo di pagamento.";
-          // this.router.navigate(['order/card']);
-        }
-      } else if (errorData.status === 403) {
-        this.state.error_message = "service not supported in your location";
-      }
-    })
   }
 
   selectAddress(value) {
@@ -209,8 +227,8 @@ export class CheckoutComponent implements OnInit {
     address['country'] = value.country;
     address['country_code'] = value.country_code;
     this.Order['address'] = address;
-    this.state.address_error = null
     this.commonService.saveObjectToLocalWithName(this.Order, 'checkout_order')
+    this.state.address_error = null
     this.address_state.error_message = null
     this.temp_address_street_number_city = this.temp_address.street_number_city;
   }
@@ -222,11 +240,44 @@ export class CheckoutComponent implements OnInit {
     this.date = date.getFullYear() + '-' + month + '-' + day + 'T' + '08:00' + ':00.000Z';
     this.date_state.error_message = null;
     this.Order['date'] = this.date
-    this.state.date_error = null
     this.commonService.saveObjectToLocalWithName(this.Order, 'checkout_order')
+    this.state.date_error = null
     let _date = new Date(this.Order['date']);
     let _day = _date.getDate() > 9 ? _date.getDate() : '0' + _date.getDate();
     this.formated_date =  _day + ' ' + this.it.monthNames[_date.getMonth()] + ' ' + _date.getFullYear();
+  }
+  sendOrder() {
+    this.state.loading = true;
+    this.state.error_message = null;
+    this.ordersService.saveOrder(this.Order).then((response) => {
+      this.state.loading = false;
+      this.state.error_message = null;
+      if (response.status === 201) {
+        this.state.error_message = null;
+
+        this.card_state.loading = false;
+        this.card_state.button_title = "Continua";
+        this.card_state.message_error = null;
+        this.card_state.number_error = null;
+        this.card_state.exp_date_error = null;
+        this.card_state.cvc_error = null;
+
+        this.commonService.deleteObjectForKey("checkout_order")
+        this.router.navigate(['checkout/end']);
+      }
+    }).catch((errorData) => {
+      this.state.loading = false;
+      if (errorData === 400) {
+        this.state.error_message = "Inserisci un metodo di pagamento.";
+        this.steps[3] = "card";
+        this.router.navigate(['checkout/card']);
+      }
+      else if (errorData === 402) {
+        this.state.error_message = "Inserisci un metodo di pagamento.";
+        this.steps[3] = "card";
+        this.router.navigate(['checkout/card']);
+      }
+    })
   }
 
   signup() {
@@ -305,6 +356,120 @@ export class CheckoutComponent implements OnInit {
     })
   }
 
+  addCard() {
+    if (this.card_state.loading) {return;}
+    this.card_state.loading = true;
+    this.card_state.button_title = "Salvando carta...";
+    this.card_state.message_error = null;
+    this.card_state.number_error = null;
+    this.card_state.exp_date_error = null;
+    this.card_state.cvc_error = null;
+    if (this.Card !== null) {
+      if (this.paymentService.cardNumberValidate(this.Card.number)) {
+        this.card_state.number_error = null;
+      } else {
+        this.card_state.number_error = "Il numero della carta non è corretto.";
+      }
+    }
+    if (this.Card.exp_date && this.Card.exp_date.length === 5) {
+      let exp_parts = this.Card.exp_date.split('/');
+      if (exp_parts[0] !== this.Card.exp_date) {
+        this.Card.exp_month = exp_parts[0];
+        this.Card.exp_year = exp_parts[1];
+      } else {
+        this.card_state.exp_date_error = "Errore data";
+      }
+    }
+    else {
+      this.card_state.exp_date_error = "La data non è completa";
+    }
+    this.paymentService.addNewCard(this.Card).then((response) => {
+      // this.card_state.loading = false;
+      // this.card_state.button_title = "Continua";
+      // this.card_state.message_error = null;
+      // this.card_state.number_error = null;
+      // this.card_state.exp_date_error = null;
+      // this.card_state.cvc_error = null;
+      this.sendOrder()
+    }).catch((error) => {
+      this.card_state.loading = false;
+      this.card_state.button_title = "Continua";
+      this.card_state.message_error = null;
+      this.card_state.number_error = null;
+      this.card_state.exp_date_error = null;
+      this.card_state.cvc_error = null;
+      if (error === 400) {
+        this.card_state.message_error = "Per favore inserisci correttamente i dati della carta";
+      }
+      else if (error === 402) {
+        this.card_state.message_error = "Per favore inserisci correttamente i dati della carta";
+      }
+      else {
+        this.card_state.message_error = "Controlla i campi inseriti e riprova.";
+      }
+    })
+  }
+  checkExpiry(value) {
+    let result = '';
+    let date = new Date();
+    let month = (1 + date.getMonth()).toString();
+    if ((date.getMonth() + 1) < 10) {
+      month = '0' + month.toString();
+    }
+    let yearElems = date.getFullYear().toString().split('');
+    let year = parseInt(yearElems[2].toString() + yearElems[3].toString());
+    if (value) {
+      let dateElems = value.split('');
+      let i = 0;
+      dateElems.forEach((elem) => {
+        if (elem === '/') {
+          dateElems.splice(i, 1);
+        }
+        i++;
+      });
+      if (dateElems.length > 1) {
+        let i = 0;
+        dateElems.forEach((elem) => {
+          if (i < 4) {
+            if (i === 2) {
+              result += '/';
+            }
+            result += elem;
+          }
+          i++;
+        });
+      } else {
+        dateElems.forEach((elem) => {
+          result += elem;
+        });
+      }
+    }
+
+    if (result.length !== 5) {
+      this.card_state.exp_date_error = "Inserisci la data in formato MM/AA (mese/anno)";
+    }
+
+    if (result.length === 5) {
+      let parts = result.split('/');
+      if (parts[0] !== result) {
+        if (parseInt(parts[1]) > year) {
+          this.card_state.exp_date_error = null;
+        } else {
+          if (parseInt(parts[0]) >= parseInt(month) && parseInt(parts[1]) === year) {
+            this.card_state.exp_date_error = null;
+          } else {
+            this.card_state.exp_date_error = "Inserisci una data corretta";
+          }
+        }
+      } else {
+        this.card_state.exp_date_error = null;
+      }
+    }
+    this.Card.exp_date = result
+    return result;
+  }
+
+  // UTILS
   setProgressWidth() {
     var numSteps = this.steps.length;
     var currentStep = this.steps.indexOf(this.step) + 1
@@ -314,19 +479,18 @@ export class CheckoutComponent implements OnInit {
     this.address_state.error_message = null;
     if (this.temp_address_street_number_city !== event.query) {
       this.address_state.error_message = "Per favore inserisci un indirizzo corretto";
-    } else if (!this.temp_address || this.temp_address === "") {
-      this.address_state.error_message = "Per favore compila il campo richiesto";
-    } else {
+    }
+    else if (!this.temp_address || this.temp_address === "") {
       this.address_state.error_message = "Per favore compila il campo richiesto";
     }
-    this.orderService.getAddresses(event.query).then((addresses) => {
+    else {
+      this.address_state.error_message = "Per favore compila il campo richiesto";
+    }
+    this.ordersService.getAddresses(event.query).then((addresses) => {
       this.addresses = [];
       this.addresses = addresses;
-    }).catch((error) => {
-      // console.log(error);
-    })
+    }).catch((error) => {})
   }
-
   changeToSignup() {
     this.steps[3] = 'signup'
     this.router.navigate(['checkout/signup'])

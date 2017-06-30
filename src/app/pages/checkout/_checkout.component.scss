@@ -35,7 +35,7 @@ app-checkout {
       color: white !important;
     }
     .checkout {
-      padding: 80px 10px;
+      padding: 60px 10px;
       .checkout-header {
         text-align: center;
         padding-bottom: 30px;
@@ -138,7 +138,13 @@ app-checkout {
             margin-bottom: 10px;
           }
         }
-
+        .list-cards {
+          text-align: center;
+          margin-bottom: 30px;
+          img {
+            width: 50px;
+          }
+        }
         .error {
           text-align: center;
           .error-text {
@@ -317,17 +323,11 @@ app-checkout {
         border: 2px solid #FFC845 !important;;
       }
       .ui-autocomplete-panel {
-        // display: block;
         position: absolute;
-        // top: 60px;
-        // left: 0;
         background-color: #ffffff;
         font-size: 17px;
         color: #4A4A4A;
         font-weight: 300;
-        // border-left: 1px solid #DCDCDC;
-        // border-right: 1px solid #DCDCDC;
-        // border-bottom: 1px solid #DCDCDC;
         box-shadow: 0px 1px 3px #888888;
         overflow-y: scroll;
         .ui-autocomplete-list-item {
@@ -355,43 +355,6 @@ app-checkout {
       border: 2px solid #FFC845 !important;;
     }
   }
-
-
-
-  // .form-group .form-control {
-  //   height: 60px !important;
-  //   border: 1px solid #DCDCDC;
-  // }
- //  .input-group .form-control {
- //    position: relative;
- //    padding-left: 20px;
- //    background-color: #2A292B;
- //  }
-
-  // .input-group .form-control .ui-autocomplete-panel {
-  //   display: block;
-  //   position: absolute;
-  //   top: 40px;
-  //   left: 0;
-  //   background-color: #ffffff;
-  //   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.25);
-  //   font-size: 35px;
-  //   color: black;
-  //   font-weight: 400;
-  //   padding-top: 5px;
-  //   overflow-y: scroll;
-  //  }
-  //  .input-group .form-control.isError {
-  //    border: 1px solid #DB4F4F;
-  //  }
-  //  .input-group .form-control .ui-autocomplete-panel .ui-autocomplete-list-item {
-  //    padding: 5px 15px;
-  //  }
-  //  .input-group .form-control .ui-autocomplete-panel .ui-autocomplete-list-item.ui-state-highlight {
-  //    background-color: rgba(50, 73, 119, 0.8);;
-  //    color: #ffffff;
-  //  }
-
 }
 
 @media (max-width: 425px) {
@@ -399,7 +362,7 @@ app-checkout {
     position: relative;
   }
   app-checkout .checkout-container .checkout {
-    padding-top: 40px;
+    padding-top: 20px;
   }
   app-checkout .checkout-container .checkout .checkout-body .picture-container .service-picture {
     max-width: 224px;

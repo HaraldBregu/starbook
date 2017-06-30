@@ -530,10 +530,12 @@ app-service {
   }
 
   .footer-container {
-    padding: 60px 50px;
+    font-weight: 300;
     .footer {
-      max-width: 1200px;
+      max-width: 1440px;
       margin: auto;
+      padding: 20px;
+      overflow: auto;
       .btn {
         line-height: 50px;
         font-weight: 600;

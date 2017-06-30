@@ -125,35 +125,36 @@ export class AccountComponent implements OnInit {
       if (isBrowser) {
         this.currentUser = JSON.parse(localStorage.getItem('auth'));
       }
+      this.navigationService.updateMessage('');
 
       this.route.params.subscribe(params => {
         this.page = params['page']
         this.route.queryParams.subscribe((params: Params) => {
           if (this.page === 'login') {
-            this.navigationService.updateMessage('Accedi al tuo account');
+            // this.navigationService.updateMessage('Accedi al tuo account');
             this.seoObject['title'] = "Iscriviti a Starbook";
             this.seoObject['description'] = "Su Starbook troverai i migliori servizi per la tua casa e i migliori professionisti della tua zona.";
 
             if (this.currentUser) {this.router.navigate(['']);}
           } else if (this.page === 'signup') {
-            this.navigationService.updateMessage('Crea un nuovo account');
+            // this.navigationService.updateMessage('Crea un nuovo account');
             this.seoObject['title'] = "Iscriviti a Starbook";
             this.seoObject['description'] = "Su Starbook troverai i migliori servizi per la tua casa e i migliori professionisti della tua zona.";
 
             if (this.currentUser) {this.router.navigate(['']);}
           } else if (this.page === 'password_recovery') {
-            this.navigationService.updateMessage('Recupera la tua password');
+            // this.navigationService.updateMessage('Recupera la tua password');
             this.seoObject['title'] = "Iscriviti a Starbook";
             this.seoObject['description'] = "Su Starbook troverai i migliori servizi per la tua casa e i migliori professionisti della tua zona.";
             if (this.currentUser) {this.router.navigate(['']);}
           } else if (this.page === 'professional') {
-            this.navigationService.updateMessage('Iscriviti come professionista');
+            // this.navigationService.updateMessage('Iscriviti come professionista');
             this.seoObject['title'] = "Registra la tua attività gratuitamente";
             this.seoObject['description'] = "Lavori nel mondo dell'edilizia, idraulica, sei un elettrico e esegui lavori particolari artigianali nelle case? Unisciti a noi e collaboreremo per aumentare la professionalità e la clientela in modo smart.";
 
             if (this.currentUser) {this.router.navigate(['']);}
           } else if (this.page === 'email_verification') {
-            this.navigationService.updateMessage('Verifica della email');
+            // this.navigationService.updateMessage('Verifica della email');
 
             var code = params['code']
             if (!code) {
@@ -173,11 +174,11 @@ export class AccountComponent implements OnInit {
               });
             }
           } else if (this.page === 'password_verification') {
-            this.navigationService.updateMessage('Verifica della nuova password');
+            // this.navigationService.updateMessage('Verifica della nuova password');
 
             var code = params['code']
             if (!code) {
-              this.goToHomePage()
+              this.router.navigate(['']);
             } else {
               this.password_verification.spinner.visible = true;
               this.profileService.verifyNewPassword(code)
@@ -193,15 +194,15 @@ export class AccountComponent implements OnInit {
               });
             }
            } else if (this.page === 'create_new_password') {
-             this.navigationService.updateMessage('Crea una nuova password');
+            //  this.navigationService.updateMessage('Crea una nuova password');
              var code = params['code']
              if (!code) {
-               this.goToHomePage()
+               this.router.navigate(['']);
                return;
              }
              this.new_password_creation.code = code;
            } else {
-             this.goToHomePage()
+             this.router.navigate(['']);
            }
         });
       })
@@ -228,13 +229,10 @@ export class AccountComponent implements OnInit {
 
   }
 
-  ////////////////////////////////////
-  ////////// AUTHENTICATION //////////
-  ////////////////////////////////////
   login() {
-    this.analyticsService.sendEvent({category:'Account', action: 'Login', label: this.router.url});
     if (this.login_state.loading || this.facebook_state.loading) {return;}
-    if (this.loginParameters.email.length === 0 || this.loginParameters.password.length === 0) {
+    if (this.loginParameters.email.length === 0 ||
+      this.loginParameters.password.length === 0) {
       if (this.loginParameters.email.length === 0) {
         this.login_state.email_error = "Inserisci un indirizzo email";
       } else {
@@ -253,9 +251,8 @@ export class AccountComponent implements OnInit {
       this.login_state.loading = false;
       this.login_state.button_title = "Accedi";
       this.login_state.error_message = null;
+      this.router.navigate(['']);
       }).catch((error) => {
-        this.analyticsService.sendException(error)
-
         this.login_state.email_error = null;
         this.login_state.password_error = null;
         this.login_state.loading = false;
@@ -271,13 +268,7 @@ export class AccountComponent implements OnInit {
         }
       });
   }
-  changeToSignup() {
-    this.analyticsService.sendEvent({category:'Account', action: 'Change to signup', label: this.router.url});
-    if (this.login_state.loading) {return;}
-    this.router.navigate(['account/signup']);
-  }
   signup() {
-    this.analyticsService.sendEvent({category:'Account', action: 'Signup', label: this.router.url});
     if (this.signup_state.loading || this.facebook_state.loading) {return;}
     if (this.signupParameters.email.length > 0 && this.signupParameters.firstname.length > 0 && this.signupParameters.lastname.length > 0 && this.signupParameters.phone.length > 0 && this.signupParameters.password.length > 0 && this.signupParameters.confirmPassword.length > 0) {
       if (this.signupParameters.password !== this.signupParameters.confirmPassword) {
@@ -292,7 +283,8 @@ export class AccountComponent implements OnInit {
         this.signup_state.email_error = "Inserisci un indirizzo email corretto";
         return;
       }
-    } else {
+    }
+    else {
       if (this.signupParameters.email.length === 0) {
         this.signup_state.email_error = "Inserisci un indirizzo email";
       } else if (this.signupParameters.email.length > 0 && !this.emailPattern.test(this.signupParameters.email)) {
@@ -342,9 +334,9 @@ export class AccountComponent implements OnInit {
       this.navigationService.updatePersonalMenu(data);
       this.signup_state.error_message = null;
       this.signup_state.loading = false;
-      this.signup_state.button_title = "Registrando...";
+      this.signup_state.button_title = "Registrati";
+      this.router.navigate(['']);
     }).catch((error) => {
-      this.analyticsService.sendException(error)
       this.signup_state.loading = false;
       this.signup_state.button_title = "Registrati";
       switch (error) {
@@ -362,8 +354,14 @@ export class AccountComponent implements OnInit {
       }
     });
   }
+  recoverPassword(email) {
+    this.authService.recovery(email).then((status) => {
+      this.router.navigate(['']);
+    }).catch((error) => {
+      this.router.navigate(['']);
+    });
+  }
   signupAsProfessional() {
-    this.analyticsService.sendEvent({category:'Account', action: 'Signup', label: this.router.url});
     if (this.signup_state.loading || this.facebook_state.loading) {return;}
     if (this.signupParameters.email.length > 0 && this.signupParameters.firstname.length > 0 && this.signupParameters.lastname.length > 0 && this.signupParameters.phone.length > 0 && this.signupParameters.password.length > 0 && this.signupParameters.confirmPassword.length > 0) {
       if (this.signupParameters.password !== this.signupParameters.confirmPassword) {
@@ -438,7 +436,6 @@ export class AccountComponent implements OnInit {
       this.sendEmail('Registrazione come professionista', message)
       this.router.navigate(['']);
     }).catch((error) => {
-      this.analyticsService.sendException(error)
       this.signup_state.loading = false;
       this.signup_state.button_title = "Registrati";
       switch (error) {
@@ -456,11 +453,7 @@ export class AccountComponent implements OnInit {
       }
     });
   }
-  changeToLogin() {
-    this.analyticsService.sendEvent({category:'Account', action: 'Change to login', label: this.router.url});
-    if (this.signup_state.loading) {return;}
-    this.router.navigate(['account/login']);
-  }
+
   continueWithFacebook () {
     this.analyticsService.sendEvent({category:'Account', action: 'Continue with facebook', label: this.router.url});
     if (this.login_state.loading || this.signup_state.loading) {return;}
@@ -498,7 +491,6 @@ export class AccountComponent implements OnInit {
     }
   }
 
-
   // EMAIL
   sendEmail(subject, message) {
     var email = {
@@ -507,7 +499,6 @@ export class AccountComponent implements OnInit {
     }
     this.contactService.sendEmail(email).then((response) => {}).catch((error) => {});
   }
-
 
   createNewPassword(password) {
     this.new_password_creation.spinner.visible = true;
@@ -524,12 +515,19 @@ export class AccountComponent implements OnInit {
     });
   }
 
-  goToHomePage() {
-    this.router.navigate(['/']);
-  }
-
   ngOnDestroy() {
     if (isBrowser) {
     }
+  }
+
+  changeToSignup() {
+    this.analyticsService.sendEvent({category:'Account', action: 'Change to signup', label: this.router.url});
+    if (this.login_state.loading) {return;}
+    this.router.navigate(['account/signup']);
+  }
+  changeToLogin() {
+    this.analyticsService.sendEvent({category:'Account', action: 'Change to login', label: this.router.url});
+    if (this.signup_state.loading) {return;}
+    this.router.navigate(['account/login']);
   }
 }

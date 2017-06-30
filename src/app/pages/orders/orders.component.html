@@ -47,7 +47,7 @@
             <div class="description">
               <span>Messaggio: {{order.description}}</span>
             </div>
-            <div class="price" *ngIf="getTotalAmount(order.details)>0">
+            <div class="price" *ngIf="order.details && getTotalAmount(order.details)>0">
               <div class="items">
                 <span class="item"><strong>Totale importo:</strong></span><span class="amount">{{getTotalAmount(order.details)/100}}€</span>
               </div>

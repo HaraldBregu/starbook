@@ -69,6 +69,9 @@ export class InsertComponent implements OnInit {
 
   constructor(private router: Router, private route: ActivatedRoute, private analyticsService: AnalyticsService, private authService: AuthService, private navigationService: NavigationService, private commonService: CommonService) {
     this.emailPattern = /^[a-z0-9!#$%&'*+\/=?^_`{|}~.-]+@[a-z0-9]([a-z0-9-]*[a-z0-9])?(\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)*$/i;
+    if (this.commonService.readObjectForKey("insert_service")) {
+      this.Service = this.commonService.readObjectForKey("insert_service")
+    }
   }
 
   ngOnInit() {
@@ -78,27 +81,48 @@ export class InsertComponent implements OnInit {
         this.currentUser = JSON.parse(localStorage.getItem('auth'))
       }
       this.step = params['step']
-      this.route.queryParams.subscribe((queryParams: Params) => {
-        this.usr = queryParams['usr']
-        // if (this.usr==='dlb') {
-        //   console.log('this is daniel');
-        // }
-      })
       if (this.currentUser) {
-        this.steps = ['intro', 'title', 'pricing', 'picture', 'end']
+        this.steps = ['title', 'pricing', 'picture', 'end']
       } else {
-        this.steps = ['intro', 'title', 'pricing', 'picture', 'register', 'end']
+        this.steps = ['title', 'pricing', 'picture', 'register', 'end']
         if (this.step==='register' || this.step==='login' || this.step==='recover') {
-          this.steps[4] = this.step
+          this.steps[3] = this.step
         }
       }
+
+      if (this.step==='title') {
+
+      }
+      else if (this.step==='pricing') {
+
+      }
+      else if (this.step==='picture') {
+
+      }
+      else if (this.step==='register') {
+
+      }
+      else if (this.step==='login') {
+
+      }
+      else if (this.step==='end') {
+
+      }
+      else {
+        this.router.navigate(['insert/title']);
+      }
+
     })
   }
 
   undoStep() {
     var currentStepIndex = this.steps.indexOf(this.step)
     var previousStep = this.steps[currentStepIndex-1]
-    this.router.navigate(['insert/' + previousStep]);
+    if (this.step==="title") {
+      this.router.navigate(['']);
+    } else {
+      this.router.navigate(['insert/' + previousStep]);
+    }
   }
   nextStep() {
     var currentStepIndex = this.steps.indexOf(this.step)
@@ -109,34 +133,44 @@ export class InsertComponent implements OnInit {
         this.state.title_error = "Per favore, inserisci un titolo."
         return;
       }
-    } else if (this.step === 'pricing') {
+    }
+    else if (this.step === 'pricing') {
       this.state.pricing_error = null
       if (!this.Service['price'] || !this.Service['unit']) {
         this.state.pricing_error = "Per favore, compila i campi richiesti."
         return;
       }
-    } else if (this.step === 'picture') {
+    }
+    else if (this.step === 'picture') {
       if (this.currentUser) {
-        if (!this.Service['picture_file']) {
-          this.state.picture_file_error = "Per piacere, inserisci un immagine."
-          return;
-        } else {
-          this.state.picture_file_error = null
-          this.saveServiceForAccountId(this.currentUser._id);
-          return;
-        }
-      } else {
-        if (!this.Service['picture_file']) {
-          this.state.picture_file_error = "Per piacere, inserisci un immagine."
-          return;
-        } else {
-          this.state.picture_file_error = null
-        }
+        this.saveServiceForAccountId(this.currentUser._id);
       }
-    } else if (this.step === 'end') {
+
+      // if (this.currentUser) {
+      //   if (!this.Service['picture_file']) {
+      //     this.state.picture_file_error = "Per piacere, inserisci un immagine."
+      //     return;
+      //   }
+      //   else {
+      //     this.state.picture_file_error = null
+      //     this.saveServiceForAccountId(this.currentUser._id);
+      //     return;
+      //   }
+      // }
+      // else {
+      //   if (!this.Service['picture_file']) {
+      //     this.state.picture_file_error = "Per piacere, inserisci un immagine."
+      //     return;
+      //   } else {
+      //     this.state.picture_file_error = null
+      //   }
+      // }
+    }
+    else if (this.step === 'end') {
       this.router.navigate(['services']);
       return;
     }
+    this.commonService.saveObjectForKey(this.Service, "insert_service")
     this.router.navigate(['insert/' + nextStep]);
   }
 
@@ -214,13 +248,6 @@ export class InsertComponent implements OnInit {
       }
     })
   }
-  recoverPassword(email) {
-    this.authService.recovery(email).then((status) => {
-
-    }).catch((error) => {
-
-    });
-  }
 
   saveServiceForAccountId(account_id) {
     if (this.state.picture_file_loading) {return}
@@ -230,8 +257,21 @@ export class InsertComponent implements OnInit {
     this.Service['price'] *= 100
     this.commonService.createService(this.Service).then((data) => {
       var file = this.Service['picture_file']
-      var path = 'services/' + data.result._id + '/cover/0'
-      this.saveServicePictureToPath(file, path)
+      if (file) {
+        var path = 'services/' + data.result._id + '/cover/0'
+        this.saveServicePictureToPath(file, path)
+      } else {
+        this.login_state.loading = false;
+        this.login_state.button_title = "Accedi";
+        this.login_state.error_message = null;
+        this.signup_state.loading = false;
+        this.signup_state.button_title = "Registrati";
+        this.signup_state.error_message = null;
+        this.state.picture_file_loading = false;
+        this.state.picture_file_error = null
+        this.commonService.deleteObjectForKey("insert_service")
+        this.router.navigate(['insert/end'])
+      }
     }).catch((error) => {})
   }
   saveServicePictureToPath(file, path) {
@@ -241,6 +281,7 @@ export class InsertComponent implements OnInit {
     let bucket = new AWSService.S3()
     let params = {Bucket: 'starbook-s3', Key:path, Body:file, ACL:"public-read"}
     bucket.upload(params, (error, res) => {
+      this.commonService.deleteObjectForKey("insert_service")
       if (!error) {
         this.login_state.loading = false;
         this.login_state.button_title = "Accedi";
@@ -250,12 +291,11 @@ export class InsertComponent implements OnInit {
         this.signup_state.error_message = null;
         this.state.picture_file_loading = false;
         this.state.picture_file_error = null
-        this.router.navigate(['insert/end'])
       } else {
         this.state.picture_file_loading = false;
         this.state.picture_file_error = null
-        this.router.navigate(['insert/end'])
       }
+      this.router.navigate(['insert/end'])
     })
   }
 
@@ -281,17 +321,17 @@ export class InsertComponent implements OnInit {
   }
 
   changeToLogin() {
-    this.steps[4] = 'login'
+    this.steps[3] = 'login'
     this.step = 'login'
     this.router.navigate(['insert/login'])
   }
   changeToSignup() {
-    this.steps[4] = 'register'
+    this.steps[3] = 'register'
     this.step = 'register'
     this.router.navigate(['insert/register'])
   }
   changeToRecoverPassword() {
-    this.steps[4] = 'recover'
+    this.steps[3] = 'recover'
     this.step = 'recover'
     this.router.navigate(['insert/recover'])
   }

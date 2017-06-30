@@ -5,7 +5,6 @@ import { AuthService } from '../shared/auth.service';
 import { NavigationService } from '../shared/navigation.service';
 import { PopupsService } from './popups.service';
 import { OrdersService } from '../shared/orders.service';
-import { OrderService } from '../order/order.service';
 import { PaymentService } from '../shared/payment.service';
 import { AnalyticsService } from '../shared/analytics.service';
 import { Subscription }   from 'rxjs/Subscription';
@@ -374,7 +373,7 @@ export class PopupsComponent implements OnInit, OnDestroy {
   public isPopupLoading = false;
 
   public formError: boolean|{title: string, message: string} = false;
-  constructor(private authServics: AuthService, private navigationService: NavigationService, private popupService: PopupsService, private ordersService: OrdersService, private orderService: OrderService, private paymentService: PaymentService, private router: Router, private analyticsService: AnalyticsService) {
+  constructor(private authServics: AuthService, private navigationService: NavigationService, private popupService: PopupsService, private ordersService: OrdersService, private orderService: OrdersService, private paymentService: PaymentService, private router: Router, private analyticsService: AnalyticsService) {
     this.emailPattern = /^[a-z0-9!#$%&'*+\/=?^_`{|}~.-]+@[a-z0-9]([a-z0-9-]*[a-z0-9])?(\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)*$/i;
   }
 

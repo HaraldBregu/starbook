@@ -28,6 +28,24 @@ export class CommonService {
     return this.data[key];
   }
 
+  saveObjectForKey(object, key) {
+    if (isBrowser) {
+      localStorage.setItem(key, JSON.stringify(object));
+    }
+  }
+  readObjectForKey(key) {
+    let recovery
+    if (isBrowser) {
+      recovery = localStorage.getItem(key);
+      return JSON.parse(recovery);
+    }
+  }
+  deleteObjectForKey(key) {
+    if (isBrowser) {
+      localStorage.removeItem(key);
+    }
+  }
+
   sendServices(services) {
     this.servicesObject = services;
   }
@@ -158,9 +176,7 @@ export class CommonService {
     return headers;
   }
 
-
   private handleError(error: any): Promise<any> {
-    // this.navigationService.updateLoadingStatus(false);
     return Promise.reject(error.message || error);
   }
 

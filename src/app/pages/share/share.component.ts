@@ -5,7 +5,7 @@ import { NavigationService } from '../../shared/navigation.service';
 import { ContactService } from '../../shared/contact.service';
 import { ShareService } from './share.service';
 import { AnalyticsService } from '../../shared/analytics.service';
-import { OrderService } from '../../order/order.service';
+import { OrdersService } from '../../shared/orders.service';
 import { SeoService } from '../../shared/seo.service';
 
 @Component({
@@ -42,7 +42,7 @@ export class ShareComponent implements OnInit {
     private joinService: ContactService,
     private shareService: ShareService,
     private analyticsService: AnalyticsService,
-    private orderService: OrderService,
+    private orderService: OrdersService,
     private seoService: SeoService) {
     this.navigationService.updateMessage("Condividi");
     this.emailPattern = /^[a-z0-9!#$%&'*+\/=?^_`{|}~.-]+@[a-z0-9]([a-z0-9-]*[a-z0-9])?(\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)*$/i;
@@ -147,7 +147,7 @@ export class ShareComponent implements OnInit {
 
   startWizard() {
     this.analyticsService.sendEvent({category:'Share', action: 'Start Wizard', label: "Order Campain"});
-    this.orderService.updateWizardData(this.Estimate);
+//    this.orderService.updateWizardData(this.Estimate);
     this.router.navigate(['order/summary']);
     return false;
   }

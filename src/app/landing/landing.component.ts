@@ -5,7 +5,6 @@ import { NavigationService } from '../shared/navigation.service';
 import { AnalyticsService } from '../shared/analytics.service';
 import { isBrowser } from 'angular2-universal';
 import { CommonService } from '../shared/common.service';
-import { OrderService } from '../order/order.service';
 
 @Component({
   selector: 'app-landing',
@@ -38,7 +37,6 @@ export class LandingComponent implements OnInit {
     private navigationService: NavigationService,
     private analyticsService: AnalyticsService,
     private seoService: SeoService,
-    private orderService: OrderService,
     private commonService: CommonService) {
       this.emailPattern = /^[a-z0-9!#$%&'*+\/=?^_`{|}~.-]+@[a-z0-9]([a-z0-9-]*[a-z0-9])?(\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)*$/i;
       this.numPattern = /^\d+$/;

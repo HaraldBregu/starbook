@@ -5,7 +5,6 @@ import { NavigationService } from '../../shared/navigation.service';
 import { AnalyticsService } from '../../shared/analytics.service';
 import { isBrowser } from 'angular2-universal';
 import { CommonService } from '../../shared/common.service';
-import { OrderService } from '../../order/order.service';
 
 @Component({
   selector: 'app-category',
@@ -48,7 +47,6 @@ export class CategoryComponent implements OnInit {
     private navigationService: NavigationService,
     private analyticsService: AnalyticsService,
     private seoService: SeoService,
-    private orderService: OrderService,
     private commonService: CommonService) {
 
       let category = this.commonService.getCategory();
@@ -103,7 +101,6 @@ export class CategoryComponent implements OnInit {
     this.order['description'] = ""
     this.order['upfront_amount'] = action.amount
     this.order['timing'] = {days: 0}
-    this.orderService.updateWizardData(this.order);
     this.router.navigate(['order/summary']);
     return false;
   }

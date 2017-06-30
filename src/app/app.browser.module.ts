@@ -25,7 +25,6 @@ import { routing } from './app.routing';
 import { CommonService } from './shared/common.service';
 
 import { AuthService } from './shared/auth.service';
-import { OrderService } from './order/order.service';
 import { ProfileService } from './shared/profile.service';
 import { NavigationService } from './shared/navigation.service';
 import { OrdersService } from './shared/orders.service';
@@ -170,7 +169,6 @@ else {
     // },
     CommonService,
     AuthService,
-    OrderService,
     ProfileService,
     NavigationService,
     OrdersService,

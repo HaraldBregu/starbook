@@ -7,9 +7,14 @@ app-insert {
   padding: 70px 0 0;
   -webkit-overflow-scrolling: touch;
   .insert-container {
-    .input-group .form-control {
+    .input-group input {
       height: 60px;
       font-size: 22px;
+    }
+    .input-group textarea {
+      height: auto;
+      font-size: 22px;
+      text-align: center;
     }
     .input-group .form-control:focus {
       border: 2px solid #16A084 !important;
@@ -51,9 +56,8 @@ app-insert {
     .back:hover {
       color: white !important;
     }
-
     .insert {
-      padding: 80px 10px;
+      padding: 60px 10px;
       .insert-header {
         text-align: center;
         padding-bottom: 30px;
@@ -91,7 +95,9 @@ app-insert {
           margin-top: 30px;
         }
         .price-per-unit {
+          height: 60px;
           overflow: auto;
+          margin-bottom: 15px;
           .input-group {
             float: left;
             width: 47.5%;
@@ -213,7 +219,7 @@ app-insert {
     position: relative;
   }
   app-insert .insert-container .insert {
-    padding-top: 40px;
+    padding-top: 20px;
   }
   app-insert .insert-container .insert .insert-body .picture-container .service-picture {
     max-width: 224px;

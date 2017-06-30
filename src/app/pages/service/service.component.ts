@@ -1,7 +1,6 @@
 import { isBrowser } from 'angular2-universal';
 import { Component, ViewChild, AfterViewInit, OnInit, OnDestroy } from '@angular/core';
 import { CommonService } from '../../shared/common.service';
-import { OrderService } from '../../order/order.service';
 import { NavigationService } from '../../shared/navigation.service';
 import { Subscription }   from 'rxjs/Subscription';
 import { Router, Route, ActivatedRoute, Params } from '@angular/router';
@@ -105,7 +104,7 @@ export class ServiceComponent implements OnInit {
 
   public sharelink = '';
 
-  constructor(private commonService: CommonService, private navigationService: NavigationService, private router: Router, private route: ActivatedRoute, private orderService: OrderService, private analyticsService: AnalyticsService, private seoService: SeoService, private profileService: ProfileService) {
+  constructor(private commonService: CommonService, private navigationService: NavigationService, private router: Router, private route: ActivatedRoute, private analyticsService: AnalyticsService, private seoService: SeoService, private profileService: ProfileService) {
     if (isBrowser) {
       this.sharelink =  document.location.protocol + '//'+ document.location.hostname + document.location.pathname;
       if (localStorage.getItem('auth')) {
@@ -136,12 +135,6 @@ export class ServiceComponent implements OnInit {
         });
       }
     })
-
-    if (isBrowser) {
-      this.subscription = this.orderService.getOrderEvent$.subscribe(event => {
-        this.orderCreated(event);
-      });
-    }
   }
 
   getSupplierById(supplier_id) {
@@ -295,9 +288,13 @@ export class ServiceComponent implements OnInit {
   }
 
   bookService() {
-    this.commonService.setObjectForKey([this.OrderService], "services")
-    // this.orderService.updateWizardData([this.OrderService]);
-    // this.router.navigate(['order/summary']);
+    if (this.commonService.readObjectForKey("checkout_order")) {
+      var current_checkout_order = this.commonService.readObjectForKey("checkout_order")
+      current_checkout_order['services'] = [this.OrderService]
+      this.commonService.saveObjectForKey(current_checkout_order, "checkout_order")
+    } else {
+      this.commonService.saveObjectForKey({services:[this.OrderService]}, "checkout_order")
+    }
     this.router.navigate(['checkout/address']);
     return false;
   }

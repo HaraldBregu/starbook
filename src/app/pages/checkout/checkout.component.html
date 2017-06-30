@@ -3,6 +3,7 @@
     <div class="progress"
     [ngStyle]="{'width': setProgressWidth()}"></div>
   </div>
+
   <button type="button" id="next" class="btn btn-warning back" (click)="undoStep()" *ngIf="step && step!=='summary' && step!=='title' && step!=='end'">Indietro</button>
 
   <div class="checkout" *ngIf="step==='address'">
@@ -49,7 +50,7 @@
     <div class="checkout-header">
       <h1>Anteprima</h1>
     </div>
-    <div class="checkout-body">
+    <div class="checkout-body" *ngIf="Order.services">
       <div class="order-container">
         <div class="services" *ngFor="let service of Order.services">
           <div class="service">
@@ -78,9 +79,6 @@
             <span>{{formated_date}}</span>
           </div>
         </div>
-      </div>
-      <div class="form-group error">
-        <span class="error-text" *ngIf="state.error_message">{{state.error_message}}</span>
       </div>
       <div class="actions">
         <div class="form-group text-center">
@@ -175,7 +173,6 @@
   <div class="checkout" *ngIf="step==='payment'">
     <div class="checkout-header">
       <h1>Ultimo passo</h1>
-      <!-- <p>Acconto in garanzia</p> -->
     </div>
     <div class="checkout-body">
       <div class="order-container">
@@ -184,7 +181,7 @@
             <span>Acconto in garanzia</span>
           </div>
           <div class="message-body">
-            <span>Prenota il servizio scelto in modo da avere la priorità e l'attenzione del lavoratore.</span>
+            <span>Prenota il servizio versando un acconto in garanzia in modo da avere la priorità e l'attenzione del professionista selezionato.</span>
           </div>
         </div>
         <div class="line"></div>
@@ -195,45 +192,116 @@
           </div>
         </div>
       </div>
-      <div class="form-group error">
-        <span class="error-text" *ngIf="state.date_error">{{state.date_error}}</span>
-      </div>
       <div class="actions">
         <div class="form-group text-center">
-          <button type="button" class="btn btn-warning" (click)="nextStep()">Avanti</button>
+          <button type="button" class="btn btn-warning" (click)="nextStep()"><i class="fa fa-circle-o-notch animate" *ngIf="state.loading"></i>Prenota</button>
         </div>
       </div>
     </div>
   </div>
   <div class="checkout" *ngIf="step==='card'">
     <div class="checkout-header">
-      <h1>Inserisci un metodo di pagamento</h1>
+      <h1>Metodo di pagamento</h1>
+      <p>Inserisci un metodo di pagamento per poter continuare.</p>
     </div>
     <div class="checkout-body">
-      <div class="form-group error">
-        <span class="error-text" *ngIf="state.date_error">{{state.date_error}}</span>
+      <div class="list-cards">
+        <img src="../../../assets/images/mastercard-dark.png" alt="Mastercard">
+        <img src="../../../assets/images/visa-dark.png" alt="Visa">
+        <img src="../../../assets/images/americanexpress-dark.png" alt="AmericanExpress">
+        <img src="../../../assets/images/dinersclub-dark.png" alt="DinersClub">
+        <img src="../../../assets/images/discover-dark.png" alt="Discover">
+        <img src="../../../assets/images/jbc-dark.png" alt="JBC">
       </div>
-      <div class="actions">
-        <div class="form-group text-center">
-          <button type="button" class="btn btn-warning" (click)="nextStep()">Avanti</button>
+      <form>
+        <div class="form-group">
+          <label for="numberInput">Numero carta</label>
+          <input autocomplete="off" type="text" placeholder="Numero" class="form-control" [ngClass]="{'error-input': card_state.message_error}" id="numberInput" [(ngModel)]="Card.number" [ngModelOptions]="{standalone: true}">
         </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="checkout" *ngIf="step==='end'">
-    <div class="checkout-header">
-      <h1>Fine</h1>
-    </div>
-    <div class="checkout-body">
-      <form (keyup.enter)="nextStep()">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="dateInput">Scadenza</label>
+              <input autocomplete="off" type="text" placeholder="Scadenza" class="form-control" [ngClass]="{'error-input': card_state.message_error}" id="dateInput" [(ngModel)]="Card.exp_date" (keyup)="checkExpiry(Card.exp_date)" (change)="checkExpiry(Card.exp_date)" [ngModelOptions]="{standalone: true}">
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="numberInput">CVC/CVV</label>
+              <input autocomplete="off" type="text" placeholder="CVC/CVV" class="form-control" [ngClass]="{'error-input': card_state.message_error}" id="numberInput" [(ngModel)]="Card.cvc" [ngModelOptions]="{standalone: true}">
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="nameInput">Nome e cognome dell'intestatario</label>
+          <input type="name" name="name" placeholder="Nome e cognome" class="form-control" id="nameInput" [(ngModel)]="Card.name" [ngModelOptions]="{standalone: true}">
+        </div>
+        <div class="row">
+          <div class="col-md-8">
+            <div class="form-group">
+              <label for="addressInput">Indirizzo</label>
+              <input type="address" placeholder="Via" class="form-control" id="addressInput" [(ngModel)]="Card.address_line1" [ngModelOptions]="{standalone: true}">
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label for="addressNumberInput">Nr</label>
+              <input type="text" placeholder="Nr" class="form-control" id="addressNumberInput" [(ngModel)]="Card.address_line2" [ngModelOptions]="{standalone: true}">
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-8">
+            <div class="form-group">
+              <label for="cittyInput">Città</label>
+              <input type="text" placeholder="Città" class="form-control" id="cittyInput" [(ngModel)]="Card.address_city" [ngModelOptions]="{standalone: true}">
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label for="capInput">CAP</label>
+              <input type="text" placeholder="CAP" class="form-control" id="capInput" [(ngModel)]="Card.address_zip" [ngModelOptions]="{standalone: true}">
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="provinceInput">Provincia</label>
+              <input type="text" placeholder="Provincia" class="form-control" id="provinceInput" [(ngModel)]="Card.address_state" [ngModelOptions]="{standalone: true}">
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="countryInput">Paese</label>
+              <input type="text" placeholder="Paese" class="form-control" id="countryInput" [(ngModel)]="Card.address_country" [ngModelOptions]="{standalone: true}">
+            </div>
+          </div>
+        </div>
+        <div class="form-group error">
+          <span class="error-text" *ngIf="card_state.message_error">{{card_state.message_error}}</span>
+        </div>
         <div class="actions">
           <div class="form-group text-center">
-            <button type="button" class="btn btn-warning" (click)="nextStep()">Avanti</button>
+            <button type="button" class="btn btn-warning" (click)="addCard()"><i class="fa fa-circle-o-notch animate" *ngIf="card_state.loading"></i>Salva e continua</button>
           </div>
         </div>
       </form>
     </div>
   </div>
 
+  <div class="checkout" *ngIf="step==='end'">
+    <div class="checkout-header">
+      <h1>Complimenti!</h1>
+      <p>Ha prenotato con successo il servizio scelto. In breve tempo la contateremo per ulteriori informazioni.</p>
+      <p>Si assicuri di aver inserito un numero di telefono corretto nel suo account.</p>
+    </div>
+    <div class="checkout-body">
+      <div class="actions">
+        <div class="form-group text-center">
+          <button type="button" class="btn btn-warning" (click)="nextStep()">Fine</button>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

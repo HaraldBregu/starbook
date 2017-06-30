@@ -6,7 +6,6 @@ import { PopupsService } from '../../popups/popups.service';
 import { Subscription } from 'rxjs/Subscription';
 import { AnalyticsService } from '../../shared/analytics.service';
 import { isBrowser } from "angular2-universal";
-import { OrderService } from '../../order/order.service';
 import { ShareService } from '../share/share.service';
 import { CurrencyPipe } from "../../pipes/currency.pipe";
 import { CurrencyCentPipe } from "../../pipes/currency-cent.pipe";
@@ -98,7 +97,6 @@ export class OrdersComponent implements OnInit, OnDestroy {
     private ordersService: OrdersService,
     private popupsService: PopupsService,
     private analyticsService: AnalyticsService,
-    private orderService: OrderService,
     private shareService: ShareService,
     private currencyPipe: CurrencyPipe,
     private currencyCentPipe: CurrencyCentPipe) {
@@ -232,7 +230,6 @@ export class OrdersComponent implements OnInit, OnDestroy {
     }
   }
   startWizard(estimate) {
-    this.orderService.updateWizardData(estimate);
     this.router.navigate(['order/summary']);
     return false;
   }

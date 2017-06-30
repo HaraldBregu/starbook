@@ -3,9 +3,9 @@
     <div class="progress"
     [ngStyle]="{'width': setProgressWidth()}"></div>
   </div>
-  <button type="button" id="next" class="btn btn-success back" (click)="undoStep()" *ngIf="step && step!=='intro' && step!=='title' && step!=='end'">Indietro</button>
+  <button type="button" id="next" class="btn btn-success back" (click)="undoStep()" *ngIf="step!=='title' && step!=='end'">Indietro</button>
 
-  <div class="insert" *ngIf="step==='intro'">
+  <!-- <div class="insert" *ngIf="step==='intro'">
     <div class="insert-header">
       <h1>Inserisci un <span class="one">servizio</span> che sai fare e inizia a <span class="two">guadagnare</span>.</h1>
     </div>
@@ -28,16 +28,19 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
   <div class="insert" *ngIf="step==='title'">
     <div class="insert-header">
-      <h1>Inserisci il titolo</h1>
-      <p>Un titolo breve e chiaro.</p>
+      <h1>Che servizio offri?</h1>
+      <p>Inserisci il titolo e la descrizione del servizio o lavoro che offri.</p>
     </div>
     <div class="insert-body">
       <form (keyup.enter)="nextStep()">
         <div class="input-group">
           <input id="titleInput" type="text" class="form-control" placeholder="titolo" [autofocus]="!Service.title" [ngStyle]="{'text-align' : 'center'}" [(ngModel)]="Service.title" [ngModelOptions]="{standalone: true}">
+        </div>
+        <div class="input-group">
+          <textarea id="descriptionInput" class="form-control" placeholder="Inserisci una descrizione" rows="3" [(ngModel)]="Service.description" [ngModelOptions]="{standalone: true}"></textarea>
         </div>
         <div class="form-group error">
           <span class="error-text" *ngIf="state.title_error">{{state.title_error}}</span>
@@ -52,9 +55,10 @@
   </div>
   <div class="insert" *ngIf="step==='pricing'">
     <div class="insert-header">
-      <h1>Prezzo</h1>
-      <p>Inserisci il prezzo (IVA inclusa) per unità di misura.</p>
-      <p>Esempio: €23 x ora, €190 x giorno</p>
+      <h1>Come vuoi vendere il tuo servizio?</h1>
+      <p>Inserisci il prezzo e l'unita del servizio che vuoi vendere.</p>
+      <!-- <p>Inserisci il prezzo (IVA inclusa) per unità di misura.</p> -->
+      <!-- <p>Esempio: €23 x ora, €190 x giorno</p> -->
     </div>
     <div class="insert-body">
       <form (keyup.enter)="nextStep()">
@@ -199,30 +203,9 @@
           <button type="button" id="next" class="btn btn-success" (click)="login()"><i class="fa fa-circle-o-notch animate" *ngIf="login_state.loading"></i>{{login_state.button_title}}</button>
         </div>
         <div class="form-group footer-group">
-          <span class="text password-forget" (click)="changeToRecoverPassword()">Hai dimenticato la password?</span>
+          <span class="text password-forget"><a routerlink="/account/password_recovery" href="/account/password_recovery" target="_blank">Hai dimenticato la password?</a></span>
           <span class="text">Non sei ancora registrato?</span>
           <span class="text enter" (click)="changeToSignup()">Registrati</span>
-        </div>
-      </form>
-    </div>
-  </div>
-  <div class="insert" *ngIf="step==='recover'">
-    <div class="insert-header">
-      <h1>Recupera password</h1>
-      <p>Ti manderemo una mail con il link per cambiare la password.</p>
-    </div>
-    <div class="insert-body">
-      <form>
-        <div class="form-group">
-          <label for="emailInput">Email</label>
-          <input type="email" placeholder="La tua mail" class="form-control" [ngClass]="{'error-input': login_state.email_error}" id="emailInput" [(ngModel)]="loginParameters.email" [ngModelOptions]="{standalone: true}">
-          <small class="error-message" *ngIf="login_state.email_error">{{login_state.email_error}}</small>
-        </div>
-        <div class="form-group text-center">
-          <button type="button" id="next" class="btn btn-success" (click)="recoverPassword(loginParameters.email)"><i class="fa fa-circle-o-notch animate" *ngIf="login_state.loading"></i>Recupera</button>
-        </div>
-        <div class="form-group footer-group">
-          <span class="text enter" (click)="changeToLogin()">Accedi</span>
         </div>
       </form>
     </div>
