@@ -23,12 +23,12 @@ export class LandingComponent implements OnInit {
   public results: string[] = [];
   public newServiceRequest = {
     message: 'Richiedi?'
-  };
+  }
   public categories = []
   public professionals = []
   public inHouseServices = []
-  public seoObject = {};
-  public order = {};
+  public seoObject = {}
+  public order = {}
 
   constructor(
     private router: Router,
@@ -42,7 +42,7 @@ export class LandingComponent implements OnInit {
       this.analyticsService.sendPageViewUrl(this.router.url)
       this.navigationService.updateMessage("");
 
-      if (isBrowser) {window.scrollTo(0, 0);}
+      if (isBrowser) { window.scrollTo(0, 0) }
 
       if (isBrowser) {
         if (localStorage.getItem('auth')) {
@@ -53,23 +53,25 @@ export class LandingComponent implements OnInit {
       this.commonService.getServicesForCategoryTitle('Professionisti').then((professionals) => {
         this.professionals = professionals.result[0].services;
       }).catch((error) => {
-        this.professionals = null;
-      });
+        this.professionals = null
+      })
 
       this.commonService.getServicesForCategoryTitle('Casa').then((inHouseServices) => {
         this.inHouseServices = inHouseServices.result[0].services;
       }).catch((error) => {
-        this.inHouseServices = null;
-      });
+        this.inHouseServices = null
+      })
 
       this.commonService.getServicesForCategoryTitle('Artigiani').then((categories) => {
         this.categories = categories.result[0].services;
       }).catch((error) => {
-        this.categories = null;
-      });
+        this.categories = null
+      })
 
       this.seoObject['title'] = "Starbook";
-      this.seoObject['description'] = "Starbook è una piattaforma che mette in contatto gli artigiani e professionisti con i clienti in modo piu diretto e sicuro gratis per sempre.";
+
+      this.seoObject['description'] = "Starbook è un online marketplace di professionisti dove puoi trovare il servizio che ti serve e prenotarlo direttamente senza perdere tempo.";
+      // this.seoObject['description'] = "Starbook è una piattaforma che mette in contatto gli artigiani e professionisti con i clienti in modo piu diretto e sicuro gratis per sempre.";
       this.seoObject['url'] = 'https://www.starbook.co' + this.router.url;
       this.seoObject['image_url'] = "https://s3-eu-west-1.amazonaws.com/starbook-s3/website/icon_256.png";
 
