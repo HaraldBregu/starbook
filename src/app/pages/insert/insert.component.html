@@ -37,7 +37,7 @@
     <div class="insert-body">
       <form (keyup.enter)="nextStep()">
         <div class="input-group">
-          <input id="titleInput" type="text" class="form-control" placeholder="titolo" [autofocus]="!Service.title" [ngStyle]="{'text-align' : 'center'}" [(ngModel)]="Service.title" [ngModelOptions]="{standalone: true}">
+          <input id="titleInput" type="text" class="form-control" placeholder="titolo" [autofocus]="!Service.title" [ngStyle]="{'text-align' : 'center'}" [(ngModel)]="Service.title" (keyup)="updateTitle()" (change)="updateTitle()" [ngModelOptions]="{standalone: true}">
         </div>
         <div class="input-group">
           <textarea id="descriptionInput" class="form-control" placeholder="Inserisci una descrizione" rows="3" [(ngModel)]="Service.description" [ngModelOptions]="{standalone: true}"></textarea>
@@ -65,7 +65,7 @@
         <div class="price-per-unit">
           <div class="input-group">
             <span class="input-group-addon euro">€</span>
-            <input id="pricePerUnitInput" type="number" class="form-control price text-center" placeholder="" [autofocus]="!Service.price" [(ngModel)]="Service.price" (keyup)="updatePrice()" (change)="updatePrice()"  [ngModelOptions]="{standalone: true}">
+            <input id="pricePerUnitInput" type="number" class="form-control price text-center" placeholder="" [autofocus]="!Service.price" [(ngModel)]="Service.price" (keyup)="updatePrice()" (change)="updatePrice()" [ngModelOptions]="{standalone: true}">
           </div>
           <span class="per">x</span>
           <span class="input-group">

@@ -33,8 +33,8 @@ export class ServicesComponent implements OnInit {
   }
 
   selectResult(service) {
-    this.commonService.setService(service)
-    this.router.navigate(['services', service.title.replace(/\s+/g, '-')]);
+    this.commonService.setObjectForKey(service, 'service')
+    this.router.navigate(['services', service._id]);
+    // this.router.navigate(['services', service.title.replace(/\s+/g, '-')]);
   }
-
 }

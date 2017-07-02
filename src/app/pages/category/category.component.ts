@@ -49,25 +49,25 @@ export class CategoryComponent implements OnInit {
     private seoService: SeoService,
     private commonService: CommonService) {
 
-      let category = this.commonService.getCategory();
-      if (category) {
-        this.category = category;
-        this.navigationService.updateMessage(this.category.title);
-        this.loadServicesForCategoryId(this.category._id);
-        this.updateSeoForObject(this.category);
-       } else {
-        this.route.params.subscribe(params => {
-          let category = params['category'];
-          this.commonService.getServiceById(category).then((data) => {
-            this.category = data.result;
-            this.updateSeoForObject(this.category);
-            this.navigationService.updateMessage(this.category.title);
-            this.loadServicesForCategoryId(this.category._id);
-          }).catch((error) => {
-            this.router.navigate(['']);
-          });
-        })
-      }
+      // let category = this.commonService.getCategory();
+      // if (category) {
+      //   this.category = category;
+      //   this.navigationService.updateMessage(this.category.title);
+      //   this.loadServicesForCategoryId(this.category._id);
+      //   this.updateSeoForObject(this.category);
+      //  } else {
+      //   this.route.params.subscribe(params => {
+      //     let category = params['category'];
+      //     this.commonService.getServiceById(category).then((data) => {
+      //       this.category = data.result;
+      //       this.updateSeoForObject(this.category);
+      //       this.navigationService.updateMessage(this.category.title);
+      //       this.loadServicesForCategoryId(this.category._id);
+      //     }).catch((error) => {
+      //       this.router.navigate(['']);
+      //     });
+      //   })
+      // }
     }
 
   ngOnInit() {
@@ -113,7 +113,6 @@ export class CategoryComponent implements OnInit {
     });
   }
   showServicePage(service) {
-    this.commonService.setService(service)
     this.router.navigate(['services', service.title.replace(/\s+/g, '-')]);
   }
   requireService() {

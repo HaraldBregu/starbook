@@ -24,7 +24,6 @@ export class LandingComponent implements OnInit {
   public newServiceRequest = {
     message: 'Richiedi?'
   };
-  public ref;
   public categories = []
   public professionals = []
   public inHouseServices = []
@@ -118,9 +117,10 @@ export class LandingComponent implements OnInit {
     })
   }
   selectResult(service) {
+    this.commonService.setObjectForKey(service, 'service')
     this.analyticsService.sendEvent({category:'Search result', action: 'Select service', label: this.router.url});
-    this.commonService.sendData(service, this.ref)
-    this.router.navigate(['services', service.title.replace(/\s+/g, '-')]);
+    this.router.navigate(['services', service._id])
+    // this.router.navigate(['services', service.title.replace(/\s+/g, '-')])
   }
   clearSearchForm() {
     this.query = '';
@@ -137,7 +137,6 @@ export class LandingComponent implements OnInit {
       this.router.navigate(['requests/service']);
     } else if (this.query.length>0 && this.results.length>0) {
       let service = this.results[0];
-      this.commonService.sendData(service, this.ref)
       let title = service['title'];
       this.router.navigate(['services', title.replace(/\s+/g, '-')]);
     } else if (this.query.length===0) {
@@ -145,16 +144,10 @@ export class LandingComponent implements OnInit {
     }
   }
 
-  ////////////////////////////////////////////
-  ////////////// SELECT CATEGORY /////////////
-  ////////////////////////////////////////////
-  selectCategory(category) {
-    this.analyticsService.sendEvent({category:'Search result', action: 'Select service', label: this.router.url});
-    this.commonService.setCategory(category)
-    this.router.navigate(['category/', category.title.replace(/\s+/g, '-').toLowerCase()]);
-  }
-
+  // UTILS
   selectService(service) {
-    this.router.navigate(['services/' + service.title.replace(/\s+/g, '-')]);
+    this.commonService.setObjectForKey(service, 'service')
+    this.router.navigate(['services', service._id])
+    // this.router.navigate(['services/' + service.title.replace(/\s+/g, '-')])
   }
 }

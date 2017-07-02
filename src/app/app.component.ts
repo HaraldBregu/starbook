@@ -233,7 +233,7 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   selectResult(service) {
-    this.commonService.setService(service)
+    this.commonService.setObjectForKey(service, 'service')
     this.results = [];
     this.clearView = false;
     this.navbarState = false;
@@ -242,7 +242,8 @@ export class AppComponent implements OnInit, OnDestroy {
     // var str = 'hello     world  !!';
     // str = servicesObj.title.replace(/\s+/g, '-');
     // console.log('space replaced: ' + str);
-    this.router.navigate(['services', service.title.replace(/\s+/g, '-')]);
+    this.router.navigate(['services', service._id])
+    // this.router.navigate(['services', service.title.replace(/\s+/g, '-')]);
   }
 
   clearSearchForm() {

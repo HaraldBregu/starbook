@@ -58,6 +58,7 @@
               <span class="title">{{service.title}}</span>
             </div>
             <div class="details" *ngFor="let detail of service.details">
+              <span class="detail" *ngIf="detail.price>0"><strong>€{{detail.price/100}}/</strong></span>
               <span class="detail">{{detail.title}}</span>
             </div>
           </div>

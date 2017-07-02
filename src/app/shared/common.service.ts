@@ -7,13 +7,8 @@ import 'rxjs/add/operator/toPromise';
 
 @Injectable()
 export class CommonService {
-  private servicesObject;
-  private service;
-  private referral_id;
   private api: string;
   private auth;
-  private category;
-
   private data = {};
 
   constructor(private http: Http/*, private navigationService: NavigationService */) {
@@ -44,36 +39,6 @@ export class CommonService {
     if (isBrowser) {
       localStorage.removeItem(key);
     }
-  }
-
-  sendServices(services) {
-    this.servicesObject = services;
-  }
-  getServicesObject() {
-    return this.servicesObject;
-  }
-  sendData(service, ref) {
-    this.service = service;
-    this.referral_id = ref;
-  }
-  getData() {
-    return {
-      service:this.service,
-      referral_id: this.referral_id
-    }
-  }
-
-  setService(service) {
-    this.service = service;
-  }
-  getService() {
-    return this.service;
-  }
-  setCategory(category) {
-    this.category = category;
-  }
-  getCategory() {
-    return this.category;
   }
 
   // EMAIL SMS

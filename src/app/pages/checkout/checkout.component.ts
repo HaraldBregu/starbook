@@ -141,6 +141,7 @@ export class CheckoutComponent implements OnInit {
         let day = date.getDate() > 9 ? date.getDate() : '0' + date.getDate();
         this.formated_date =  day + ' ' + this.it.monthNames[date.getMonth()] + ' ' + date.getFullYear();
       }
+      console.log('order is: ' + JSON.stringify(this.Order));
     }
   }
 
@@ -167,8 +168,10 @@ export class CheckoutComponent implements OnInit {
     var currentStepIndex = this.steps.indexOf(this.step)
     var previousStep = this.steps[currentStepIndex-1]
     if (this.step === "address") {
-      var service_title = this.Order['services'][0]['title']
-      this.router.navigate(['services', service_title.replace(/\s+/g, '-')]);
+      // var service_title = this.Order['services'][0]['title']
+      var service_id = this.Order['services'][0]['_id']
+      this.router.navigate(['services', service_id])
+      // this.router.navigate(['services', service_title.replace(/\s+/g, '-')]);
     } else {
       this.router.navigate(['checkout/' + previousStep]);
     }

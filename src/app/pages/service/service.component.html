@@ -39,10 +39,11 @@
         <div class="user" *ngIf="Account">
           <div class="avatar" *ngIf="checkImageUrlFromAccount(Account)!==0" [ngStyle]="{'background-image' : 'url(' +  'https://s3-eu-west-1.amazonaws.com/starbook-s3/accounts/' + Account._id + '/avatar/0' + ')'}"></div>
           <div class="avatar" *ngIf="checkImageUrlFromAccount(Account)===0"></div>
-          <div class="username">{{Account['profile']['firstname']}}</div>
+          <div class="username">{{Account['profile']['firstname'].toLowerCase()}}</div>
         </div>
         <div class="user" *ngFor="let account of Accounts">
-          <div class="avatar" *ngIf="!avatar" [ngStyle]="{'background-image' : 'url(' + 'https://s3-eu-west-1.amazonaws.com/starbook-s3/accounts/' + account.account._id + '/avatar/0' + ')'}"></div>
+          <div class="avatar" *ngIf="checkImageUrlFromAccount(account.account)!==0" [ngStyle]="{'background-image' : 'url(' + 'https://s3-eu-west-1.amazonaws.com/starbook-s3/accounts/' + account.account._id + '/avatar/0' + ')'}"></div>
+          <div class="avatar" *ngIf="checkImageUrlFromAccount(account.account)===0"></div>
           <div class="username">{{account.account.profile.firstname}}</div>
         </div>
       </div>

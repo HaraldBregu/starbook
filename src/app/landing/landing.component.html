@@ -2,7 +2,17 @@
   <div class="header-container">
     <div class="overlay">
       <div class="header">
-        <h1>Trova il miglior servizio per la tua casa, al prezzo giusto e senza attese.</h1>
+        <div class="header-text">
+          <h1>Prenota il servizio che ti serve se non hai tempo da perdere.</h1>
+          <!-- <h1>Prenota il servizio che ti serve senza perdere tempo.</h1> -->
+          <p>Su <span>Starbook</span> niente annunci, scegli il servizio, inserisci la data e prenota.</p>
+          <!-- <h1>Trova il servizio che ti serve e prenota direttamente.</h1> -->
+          <!-- <h5>Niente annunci, scegli il servizio, inserisci la data e prenota</h5> -->
+          <!-- <h1>Trova il servizio che hai bisogno, fissa un appuntamento e prenotalo.</h1> -->
+          <!-- <h1>Prenotare servizi in modo semplice fissando appuntamento</h1>
+          <h1>Trova il servizio che ti serve, con il prezzo giusto e prenotalo.</h1>
+          <h1>Trova il miglior servizio per la tua casa, al prezzo giusto e senza attese.</h1> -->
+        </div>
         <div class="search">
           <div class="search-field">
             <p-autoComplete [(ngModel)]="query" [suggestions]="results" field="title" scrollHeight="275px" (completeMethod)="search($event)" (onSelect)="selectResult(query)" placeholder="Cerca un servizio" minLength="0">
@@ -83,7 +93,7 @@
       <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12">
         <div class="box">
           <img src="../../../assets/images/service-time.png" class="rounded mx-auto d-block" alt="Calcola preventivo">
-          <h3>Ricevi il preventivo immediato</h3>
+          <h3>Ricevi il prezzo immediato</h3>
           <h5>Ricevi in tempo reale un unico prezzo per il servizio, niente attese e niente intermediari.</h5>
         </div>
       </div>
@@ -91,7 +101,7 @@
         <div class="box">
           <img src="../../../assets/images/service-booking.png" class="rounded mx-auto d-block" alt="Ordina il servizio">
           <h3>Ordina il servizio</h3>
-          <h5>Scegli il giorno quando vuoi iniziare i lavori, l'indirizzo dove si trova la tua casa e ordina direttamente.</h5>
+          <h5>Scegli il giorno quando vuoi iniziare i lavori, l'indirizzo e ordina direttamente.</h5>
         </div>
       </div>
     </div>

@@ -114,27 +114,31 @@ export class ServiceComponent implements OnInit {
   }
 
   ngOnInit() {
+    let service = this.commonService.getObjectForKey('service')
+    if (service) {
+      if (isBrowser) { window.scrollTo(0, 0); }
+      this.showService(service);
+      this.getSuppliersByServiceId(service._id)
+      if (service.supplier_id) {
+        this.getSupplierById(service.supplier_id)
+      }
+      return
+    }
     this.route.params.subscribe(params => {
-      let service_id = params['id'];
-      if (!service_id) {
-        this.router.navigate(['']);
-      } else {
+      let service_id = params['id']
+      if (service_id) {
         this.Service = {}
-        if (isBrowser) {window.scrollTo(0, 0);}
         this.commonService.getServiceById(service_id).then((data) => {
           this.showService(data.result);
           this.getSuppliersByServiceId(data.result._id)
           this.getSupplierById(data.result.supplier_id)
         }).catch((error) => {
-          let service = this.commonService.getService();
-          if (!service) {
-            this.router.navigate(['']);
-          } else {
-            this.showService(service);
-          }
-        });
+          this.router.navigate(['']);
+        })
       }
     })
+
+    // console.log('services is: ' + JSON.stringify(service));
   }
 
   getSupplierById(supplier_id) {
@@ -149,9 +153,11 @@ export class ServiceComponent implements OnInit {
     }
   }
   checkImageUrlFromAccount(account) {
-    var image = new Image();
-    image.src = 'https://s3-eu-west-1.amazonaws.com/starbook-s3/accounts/' + account._id + '/avatar/0';
-    return image.width
+    if (isBrowser) {
+      var image = new Image();
+      image.src = 'https://s3-eu-west-1.amazonaws.com/starbook-s3/accounts/' + account._id + '/avatar/0';
+      return image.width
+    }
   }
   getSuppliersByServiceId(id) {
     this.commonService.getAccountsByServiceId(id).then((data) => {
@@ -164,13 +170,18 @@ export class ServiceComponent implements OnInit {
 
   showService(service) {
     this.Service = service;
-    this.commonService.setService(this.Service);
     this.navigationService.updateMessage('');
     this.seoService.setTitle(this.Service['title']);
-    this.seoService.setOgElem('og:title', this.Service['title']);
     this.seoService.setMetaElem('description', this.Service['description']);
+    this.seoService.setOgElem('twitter:card', "summary_large_image");
+    this.seoService.setOgElem('twitter:title', this.Service['title']);
+    this.seoService.setOgElem('twitter:site', "@starbookco");
+    this.seoService.setOgElem('twitter:creator', "@HaraldBregu");
+    this.seoService.setOgElem('twitter:description', this.Service['description']);
+    this.seoService.setOgElem('twitter:image', 'https://s3-eu-west-1.amazonaws.com/starbook-s3/services/' + this.Service['_id'] + '/cover/0');
+    this.seoService.setOgElem('og:title', this.Service['title']);
     this.seoService.setOgElem('og:description', this.Service['description']);
-    this.seoService.setOgElem('og:url', 'https://www.starbook.co/services/' + this.Service['title'].replace(/\s+/g, '-'));
+    this.seoService.setOgElem('og:url', 'https://www.starbook.co/services/' + this.Service['_id']);
     this.seoService.setOgElem('og:image', 'https://s3-eu-west-1.amazonaws.com/starbook-s3/services/' + this.Service['_id'] + '/cover/0');
     this.seoService.setOgElem('og:image:secure_url', 'https://s3-eu-west-1.amazonaws.com/starbook-s3/services/' + this.Service['_id'] + '/cover/0');
     this.buildOrderService(this.Service)
@@ -203,8 +214,6 @@ export class ServiceComponent implements OnInit {
   }
 
   renderPage(service: IServices) {
-    this.commonService.setService(service);
-    // this.navigationService.updateMessage(service.title);
     this.service = service;
     this.image_url = 'https://s3-eu-west-1.amazonaws.com/starbook-s3/services/' + this.service._id + '/cover/0'
     this.seoService.setTitle(service.title + "| Preventivo Online");

@@ -3486,29 +3486,20 @@ app-landing {
       app-landing .landing-container .header-container .header {
         color: white;
         padding: 100px 30px; }
-        app-landing .landing-container .header-container .header .actions {
-          padding: 40px 0 0; }
-          app-landing .landing-container .header-container .header .actions .btn {
-            border-radius: 30px;
-            height: 60px;
-            padding: 0 80px;
-            font-weight: 700;
-            font-size: 26px; }
-        app-landing .landing-container .header-container .header h1 {
-          font-weight: 900;
-          font-size: 46px;
+        app-landing .landing-container .header-container .header .header-text {
           max-width: 900px;
-          line-height: 55px;
           margin: auto;
-          text-align: left;
           margin-bottom: 20px; }
-        app-landing .landing-container .header-container .header h2, app-landing .landing-container .header-container .header h3 {
-          max-width: 700px;
-          margin: auto;
-          font-weight: 400;
-          margin-bottom: 30px; }
-        app-landing .landing-container .header-container .header p {
-          font-size: 24px !important; }
+          app-landing .landing-container .header-container .header .header-text h1 {
+            font-weight: 700;
+            font-size: 46px;
+            line-height: 55px;
+            text-align: left;
+            margin-bottom: 10px; }
+          app-landing .landing-container .header-container .header .header-text p {
+            font-weight: 300;
+            font-size: 24px !important;
+            font-style: italic; }
         app-landing .landing-container .header-container .header .search {
           display: block;
           position: relative;
@@ -4345,12 +4336,18 @@ app-landing {
   app-landing .landing-container .category-container .category .category-body .service-container .service {
     height: 300px; } }
 @media (max-width: 425px) {
+  app-landing .landing-container .header-container .overlay {
+    background-color: rgba(0, 0, 0, 0.7); }
+
   app-landing .landing-container .header-container .header {
     padding: 30px 20px; }
 
-  app-landing .landing-container .header-container .header h1 {
+  app-landing .landing-container .header-container .header .header-text h1 {
     font-size: 40px;
     line-height: 45px; }
+
+  app-landing .landing-container .header-container .header .header-text p {
+    font-size: 20px !important; }
 
   app-landing .landing-container .category-container .category .category-body .service-container {
     width: calc(100% / 1.5); }
@@ -5591,7 +5588,6 @@ app-services {
           color: white;
           line-height: 120%;
           font-size: 25px;
-          text-transform: capitalize;
           white-space: normal !important;
           text-align: left; }
   @media (max-width: 768px) {

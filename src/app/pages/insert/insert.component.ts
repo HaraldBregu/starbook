@@ -129,7 +129,8 @@ export class InsertComponent implements OnInit {
     var nextStep = this.steps[currentStepIndex+1]
     if (this.step === 'title') {
       this.state.title_error = null
-      if (!this.Service['title']) {
+      if (!this.Service['title'] || this.Service['title'].length===0 || !/\S/.test(this.Service['title'])) {
+        this.commonService.saveObjectForKey(this.Service, "insert_service")
         this.state.title_error = "Per favore, inserisci un titolo."
         return;
       }
@@ -137,6 +138,7 @@ export class InsertComponent implements OnInit {
     else if (this.step === 'pricing') {
       this.state.pricing_error = null
       if (!this.Service['price'] || !this.Service['unit']) {
+        this.commonService.saveObjectForKey(this.Service, "insert_service")
         this.state.pricing_error = "Per favore, compila i campi richiesti."
         return;
       }
@@ -145,26 +147,6 @@ export class InsertComponent implements OnInit {
       if (this.currentUser) {
         this.saveServiceForAccountId(this.currentUser._id);
       }
-
-      // if (this.currentUser) {
-      //   if (!this.Service['picture_file']) {
-      //     this.state.picture_file_error = "Per piacere, inserisci un immagine."
-      //     return;
-      //   }
-      //   else {
-      //     this.state.picture_file_error = null
-      //     this.saveServiceForAccountId(this.currentUser._id);
-      //     return;
-      //   }
-      // }
-      // else {
-      //   if (!this.Service['picture_file']) {
-      //     this.state.picture_file_error = "Per piacere, inserisci un immagine."
-      //     return;
-      //   } else {
-      //     this.state.picture_file_error = null
-      //   }
-      // }
     }
     else if (this.step === 'end') {
       this.router.navigate(['services']);
@@ -379,14 +361,20 @@ export class InsertComponent implements OnInit {
     // console.log('input update: ' + this.Service['price']);
     if (isNaN(value) || value === 0 ) {
       this.Service['price'] = null
-      // console.log('isnan');
     } else if (!this.Service['price']) {
       this.Service['price'] = 0
-      // console.log('not service');
     } else {
       this.Service['price'] = value
-      // console.log('is ok price');
     }
+  }
+  updateTitle() {
+    this.Service['title'] = this.Service['title'].replace(/[^a-zA-Z0-9,èòàùéì'" ]/g, "")
+    // this.Service['title'] = this.Service['title'].replace(/[!#$%&@'*+\/=?^_`{|}~.,-•]/g, "")
+    // if (this.Service['title'].length===0) {
+    //   this.Service['title'] = ""
+    // }
+    this.Service['title'] = this.Service['title'].charAt(0).toUpperCase() + this.Service['title'].slice(1);
+
   }
   setProgressWidth() {
     var numSteps = this.steps.length;
