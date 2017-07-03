@@ -17,8 +17,8 @@ export class CompanyComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.seoObject['title'] = "Starbook | Pensa al futuro";
-    this.seoObject['description'] = "";
+    this.seoObject['title'] = "Starbook | Il tuo futuro dipende dalle tue decisioni";
+    this.seoObject['description'] = "Starbook è un online marketplace di mestieri e servizi professionali. Puoi inserire i servizi che offri e ricevere prenotazioni da clienti interessati.";
     this.seoObject['url'] = 'https://www.starbook.co' + this.router.url;
     this.seoObject['image_url'] = "https://s3-eu-west-1.amazonaws.com/starbook-s3/website/kayak-go-far.png";
 
