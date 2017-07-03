@@ -17,10 +17,10 @@ export class CompanyComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.seoObject['title'] = "Starbook | Pubblica il tuo mestiere";
+    this.seoObject['title'] = "Starbook | Pensa al futuro";
     this.seoObject['description'] = "";
     this.seoObject['url'] = 'https://www.starbook.co' + this.router.url;
-    this.seoObject['image_url'] = "https://s3-eu-west-1.amazonaws.com/starbook-s3/website/kayak-go-far-square.png";
+    this.seoObject['image_url'] = "https://s3-eu-west-1.amazonaws.com/starbook-s3/website/kayak-go-far.png";
 
     this.seoService.setTitle(this.seoObject['title']);
     this.seoService.setMetaElem('description', this.seoObject['description']);
