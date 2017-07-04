@@ -1,48 +1,91 @@
-<div class="profile-page">
+<div class="profile-container">
   <div class="top-bar-container noselect">
     <ul class="top-bar">
       <li *ngFor="let tab of tabs" [ngClass]="{'active':tab.route === page}" (click)="clickTabItem(tab.route)">{{tab.name}}</li>
     </ul>
   </div>
-  <div class="page-container" *ngIf="page === 'general'">
-    <div class="header">
-      <h3>Informazioni generali</h3>
-      <p>Aggiorna le informazioni del tuo account per rimanere in contatto</p>
-    </div>
-    <form>
-      <div class="row">
-        <div class="col-lg-4">
-          <div class="form-group">
-            <label for="firstname">Nome</label>
-            <input type="firstname" class="form-control" id="firstname" name="firstname" placeholder="Nome" [ngClass]="{'error-input': user_state.first_name_error}" [(ngModel)]="User.firstname">
-            <small class="error-message" *ngIf="user_state.first_name_error">{{user_state.first_name_error}}</small>
-          </div>
-        </div>
-        <div class="col-lg-4">
-          <div class="form-group">
-            <label for="lastname">Cognome</label>
-            <input type="lastname" class="form-control" id="lastname" name="lastname" placeholder="Cognome" [ngClass]="{'error-input': user_state.last_name_error}" [(ngModel)]="User.lastname">
-            <small class="error-message" *ngIf="user_state.last_name_error">{{user_state.last_name_error}}</small>
-          </div>
-        </div>
-        <div class="col-lg-4">
-          <div class="form-group">
-            <label for="phone">Telefono</label>
-            <input type="phone" class="form-control" id="phone" name="phone" placeholder="Telefono" [ngClass]="{'error-input': user_state.phone_number_error}" [(ngModel)]="User.phone_number">
-            <small class="error-message" *ngIf="user_state.phone_number_error">{{user_state.phone_number_error}}</small>
-          </div>
-        </div>
-      </div>
-      <div class="actions">
-        <a class="btn btn-success" (click)="saveProfile()">{{user_state.button_title}}</a>
-      </div>
-    </form>
-    <div class="footer-box">
-      <h5>Privacy del account</h5>
-      <h6><small>Le informazioni degli utenti consentono a Starbook di fornire agli utenti stessi l’accesso alle sezioni del Sito cui sono interessati e di fornire il Servizio. Esse mettono inoltre Starbook in grado di fatturare gli importi dovuti e consentono a Starbook o ad un professionista cui l’utente abbia inoltrato un Ordine di contattare l’utente in merito al Servizio.</small></h6>
+
+  <div class="avatar-container">
+    <input type="file" (change)="selectServicePicture($event)" style="display: none;" #file>
+    <div class="avatar" (click)="file.click()">
+      <i *ngIf="!logo" class="fa fa-camera" aria-hidden="true"></i>
+      <img class="img-responsive" [src]="logo" alt="">
     </div>
   </div>
-  <div class="page-container" *ngIf="page === 'payment'">
+  <div class="profile">
+    <button type="button" name="button" class="btn btn-secondary edit">Modifica</button>
+    <div class="profile-header">
+      <span class="username">Harald Bregu</span>
+      <div class="reviews-result">
+        <img src="../../../assets/images/star.png" alt="Starbook professionisti">
+        <img src="../../../assets/images/star.png" alt="Starbook professionisti">
+        <img src="../../../assets/images/star.png" alt="Starbook professionisti">
+        <img src="../../../assets/images/star.png" alt="Starbook professionisti">
+        <img src="../../../assets/images/star.png" alt="Starbook professionisti">
+        <span class="reviews-count">3 recensioni</span>
+      </div>
+      <span class="introduction">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</span>
+      <button type="button" name="button" class="btn btn-warning">Prenota</button>
+    </div>
+    <div class="profile-body">
+      <div class="services">
+        <h2>Servizi</h2>
+        <div class="service">
+
+        </div>
+      </div>
+      <div class="reviews">
+        <h2>Recensioni</h2>
+      </div>
+    </div>
+    <div class="profile-footer">
+
+    </div>
+  </div>
+
+  <div class="profile" *ngIf="page==='general'">
+    <div class="profile-box">
+      <div class="profile-header">
+        <h3>Informazioni generali</h3>
+        <p>Aggiorna le informazioni del tuo account per rimanere in contatto</p>
+      </div>
+      <div class="profile-body">
+        <form>
+          <div class="row">
+            <div class="col-lg-4">
+              <div class="form-group">
+                <label for="firstname">Nome</label>
+                <input type="firstname" class="form-control" id="firstname" name="firstname" placeholder="Nome" [ngClass]="{'error-input': user_state.first_name_error}" [(ngModel)]="User.firstname">
+                <small class="error-message" *ngIf="user_state.first_name_error">{{user_state.first_name_error}}</small>
+              </div>
+            </div>
+            <div class="col-lg-4">
+              <div class="form-group">
+                <label for="lastname">Cognome</label>
+                <input type="lastname" class="form-control" id="lastname" name="lastname" placeholder="Cognome" [ngClass]="{'error-input': user_state.last_name_error}" [(ngModel)]="User.lastname">
+                <small class="error-message" *ngIf="user_state.last_name_error">{{user_state.last_name_error}}</small>
+              </div>
+            </div>
+            <div class="col-lg-4">
+              <div class="form-group">
+                <label for="phone">Telefono</label>
+                <input type="phone" class="form-control" id="phone" name="phone" placeholder="Telefono" [ngClass]="{'error-input': user_state.phone_number_error}" [(ngModel)]="User.phone_number">
+                <small class="error-message" *ngIf="user_state.phone_number_error">{{user_state.phone_number_error}}</small>
+              </div>
+            </div>
+          </div>
+          <div class="actions">
+            <a class="btn btn-success" (click)="saveProfile()">{{user_state.button_title}}</a>
+          </div>
+        </form>
+      </div>
+      <div class="profile-footer">
+        <h5>Privacy del account</h5>
+        <h6><small>Le informazioni degli utenti consentono a Starbook di fornire agli utenti stessi l’accesso alle sezioni del Sito cui sono interessati e di fornire il Servizio. Esse mettono inoltre Starbook in grado di fatturare gli importi dovuti e consentono a Starbook o ad un professionista cui l’utente abbia inoltrato un Ordine di contattare l’utente in merito al Servizio.</small></h6>
+      </div>
+    </div>
+  </div>
+  <div class="profile" *ngIf="page === 'payment'">
     <div class="header">
       <h3>Metodo di pagamento</h3>
       <p>Aggiorna le informazioni del tuo metodo di pagamento</p>
@@ -92,7 +135,7 @@
       <h6><small>Le informazioni degli utenti consentono a Starbook di fornire agli utenti stessi l’accesso alle sezioni del Sito cui sono interessati e di fornire il Servizio. Esse mettono inoltre Starbook in grado di fatturare gli importi dovuti e consentono a Starbook o ad un professionista cui l’utente abbia inoltrato un Ordine di contattare l’utente in merito al Servizio.</small></h6>
     </div>
   </div>
-  <div class="page-container" *ngIf="page === 'settings'">
+  <div class="profile" *ngIf="page === 'settings'">
     <div class="header">
       <h3>Impostazioni</h3>
       <p>Modifica le informazioni</p>
@@ -155,7 +198,8 @@
       </div>
     </div>
   </div>
-  <div class="page-container" *ngIf="page === 'affiliate'">
+
+  <div class="profile" *ngIf="page === 'affiliate'">
     <div class="header">
       <h3>Programma di affiliazione Starbook</h3>
       <p>Condividi Starbook ai tuoi amici e per ogni servizio acquistato riceverete entrambi 5% del totale del servizio</p>
@@ -233,7 +277,7 @@
     </div>
   </div>
 
-  <div class="page-container" *ngIf="page === 'card'">
+  <div class="profile" *ngIf="page === 'card'">
     <div class="header">
       <h1>Inserisci un metodo di pagamento</h1>
       <h6>Per utilizzare al massimo i servizi Starbook inserisci un metodo di pagamento.</h6>
@@ -318,3 +362,5 @@
       </div>
     </form>
   </div>
+
+</div>

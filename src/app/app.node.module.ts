@@ -41,7 +41,6 @@ import { ShareService } from './pages/share/share.service';
 import { ClipboardService } from './shared/clipboard.service';
 
 import { AppComponent } from './app.component';
-//import { HomeComponent } from './home/home.component';
 import { LandingComponent } from './landing/landing.component';
 import { CompanyComponent } from './company/company.component';
 
@@ -65,6 +64,7 @@ import { AboutComponent } from './pages/about/about.component';
 import { HelpComponent } from './pages/help/help.component';
 import { LegalComponent } from './pages/legal/legal.component';
 import { AccountComponent } from './pages/account/account.component';
+import { AuthComponent } from './pages/auth/auth.component';
 import { RequestsComponent } from './pages/requests/requests.component';
 import { ShareComponent } from './pages/share/share.component';
 import { BlogComponent } from './pages/blog/blog.component';
@@ -113,7 +113,7 @@ let declarations = [
   OrdersComponent,
   ProfileComponent,
   PopupsComponent,
-  //HomeComponent,
+  AuthComponent,
   LandingComponent,
   CompanyComponent,
   LoadingComponent,

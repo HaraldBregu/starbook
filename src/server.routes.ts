@@ -15,6 +15,7 @@ export const routes: string[] = [
 
   'account',
   'account/:page',
+  'auth/:page',
 
   'services',
   'services/:id',
@@ -22,7 +23,6 @@ export const routes: string[] = [
 
   'orders',
   'orders/:page',
-  // 'order/:step',
   'checkout/:step',
 
   'profile',
@@ -32,12 +32,6 @@ export const routes: string[] = [
 
   'requests',
   'requests/:page',
-
-  // 'share',
-  // 'share/:page',
-
-  // 'blog',
-  // 'blog/:page',
 
   'contact',
   'contact/:page',

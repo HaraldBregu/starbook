@@ -495,14 +495,15 @@ p {
 .btn-secondary {
   border-radius: 0;
   height: 50px;
-  width: 160px;
-  height: 50px;
   font-size: 22px;
   font-family: Roboto, sans-serif;
   font-weight: 400;
-  outline: none;
+  outline: none !important;
   padding: 0;
   line-height: 50px; }
+
+.btn-secondary:focus {
+  background: white; }
 
 .btn-warning {
   background: #FFC845;
@@ -646,7 +647,6 @@ textarea.form-control {
   padding: 20px; }
 
 .form-control:focus {
-  border: 1px solid rgba(220, 224, 224, 0.7);
   outline: none;
   background-color: white; }
 
@@ -671,7 +671,6 @@ textarea.form-control {
   font-size: 14px !important;
   font-family: Roboto, sans-serif;
   font-weight: 400;
-  padding: 0 !important;
   margin-bottom: 5px !important; }
 
 .input-group {
@@ -6398,197 +6397,241 @@ app-orders {
     app-orders .orders-container .orders .order-container .order .order-body .content .price {
       width: 100%; } }
 
-app-profile .profile-page {
+app-profile {
   display: block;
+  float: left;
   width: 100%;
   height: 100%;
-  padding-top: 70px;
-  background: white; }
-app-profile .top-bar-container {
-  display: block;
-  position: fixed;
-  width: 100%;
-  background: white;
-  height: 60px;
-  border-bottom: 1px solid #DBDBDB;
-  z-index: 1024; }
-app-profile .top-bar {
-  list-style: none;
-  overflow: hidden;
-  font: 18px Sans-Serif;
-  padding: 0;
-  z-index: 1;
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 0 15px; }
-app-profile .top-bar li {
-  color: rgba(33, 33, 33, 0.7);
-  float: left;
-  height: 60px;
-  line-height: 60px;
-  text-align: center;
-  font-weight: 300;
-  cursor: pointer;
-  margin-right: 40px; }
-app-profile .top-bar li:hover {
-  color: black; }
-app-profile .top-bar .active {
-  color: #212121;
-  border-bottom: 4px solid #212121; }
-app-profile .page-container {
-  display: block;
-  max-width: 1100px;
-  padding: 50px;
-  border: 1px solid #e3e3e3;
-  background: white;
-  margin: 110px auto 50px; }
-  app-profile .page-container h3 {
-    font-weight: 400; }
-  app-profile .page-container .btn-facebook, app-profile .page-container .btn-white, app-profile .page-container .btn-twitter, app-profile .page-container .btn-linkedin, app-profile .page-container .btn-google-plus {
+  min-height: 100vh;
+  padding: 70px 10px 0;
+  -webkit-overflow-scrolling: touch;
+  background: #fafafa; }
+  app-profile .profile-container .top-bar-container {
+    position: fixed;
     width: 100%;
-    height: 50px;
-    font-size: 18px;
-    font-weight: 500;
-    border-radius: 3px;
-    line-height: 50px;
-    padding: 0; }
-  app-profile .page-container .btn-success, app-profile .page-container .btn-danger {
-    width: 100%;
-    height: 40px;
-    font-size: 18px;
-    font-weight: 500;
-    border-radius: 3px;
-    line-height: 40px; }
-  app-profile .page-container .btn-facebook i, app-profile .page-container .btn-white i, app-profile .page-container .btn-twitter i, app-profile .page-container .btn-success i, app-profile .page-container .btn-google-plus i, app-profile .page-container .btn-linkedin i {
-    position: absolute;
-    font-size: 30px;
-    left: 15px;
-    top: 10px; }
-  app-profile .page-container .form-group .ui-inputtext:focus {
-    border: 2px solid #7FC443 !important; }
-  app-profile .page-container .form-group .form-control:focus {
-    border: 2px solid #7FC443 !important; }
-  app-profile .page-container .form-group .error-input {
-    border: 2px solid #f75c4b !important; }
-  app-profile .page-container .btn-secondary {
-    font-size: 20px;
-    font-family: Roboto, sans-serif;
-    font-weight: 500; }
-  app-profile .page-container .btn-yellow-green {
-    width: 100%;
-    font-size: 26px;
-    color: white;
+    background: white;
     height: 60px;
-    font-weight: 700; }
-  app-profile .page-container .header {
-    display: block;
-    width: 100%;
-    padding: 0 0 30px;
-    border-bottom: 1px solid #e4e4e4;
-    text-align: center; }
-    app-profile .page-container .header p {
-      font-weight: 300;
-      margin-top: 10px; }
-    app-profile .page-container .header h6 {
-      color: #4A4A4A;
-      font-weight: 300;
-      margin-top: 15px; }
-  app-profile .page-container .messages {
-    padding: 20px 0;
-    text-align: left; }
-    app-profile .page-container .messages .success p {
-      color: #449d44; }
-    app-profile .page-container .messages .error p {
-      color: red; }
-    app-profile .page-container .messages a {
-      color: #0066C0 !important;
-      cursor: pointer; }
-  app-profile .page-container .card-container {
-    padding: 80px 0; }
-    app-profile .page-container .card-container h3 {
-      font-weight: 300;
-      margin-bottom: 40px; }
-    app-profile .page-container .card-container .share-buttons {
-      padding-top: 50px;
-      text-align: center; }
-    app-profile .page-container .card-container .send-buttons {
-      padding-top: 50px; }
-      app-profile .page-container .card-container .send-buttons h3 {
-        text-align: center; }
-      app-profile .page-container .card-container .send-buttons .btn-success {
-        height: 50px;
-        border-radius: 0;
-        border: 0; }
-    app-profile .page-container .card-container .btn-success, app-profile .page-container .card-container .btn-danger, app-profile .page-container .card-container .btn-secondary {
-      padding: 0 30px;
-      width: initial;
-      height: 40px;
-      line-height: 40px;
-      font-weight: 300;
-      font-size: 18px;
-      border-radius: 3px; }
-    app-profile .page-container .card-container .link-container .link {
-      font-size: 16px;
-      background: #f5f5f5;
-      color: #6f787e;
-      padding: 0 20px;
-      line-height: 50px;
-      overflow: hidden;
-      max-height: 50px; }
-    app-profile .page-container .card-container .link-container .btn-white {
-      padding: 0 20px; }
-  app-profile .page-container form {
-    margin: 40px 0 20px; }
-    app-profile .page-container form .error-message {
-      color: #f75c4b;
-      font-size: 12px;
-      position: absolute; }
-    app-profile .page-container form .card-form {
-      margin: 40px auto 40px;
-      max-width: 600px; }
-      app-profile .page-container form .card-form .form-group .btn-yellow-green {
-        width: 100% !important;
-        line-height: 60px;
-        padding: 0 !important; }
-    app-profile .page-container form h1, app-profile .page-container form h2, app-profile .page-container form h3, app-profile .page-container form h4, app-profile .page-container form h5, app-profile .page-container form h6 {
-      margin: 40px 0 20px; }
-    app-profile .page-container form .actions {
-      margin: 20px 0; }
-      app-profile .page-container form .actions .btn-success {
-        width: 150px; }
-      app-profile .page-container form .actions .animate {
-        display: block;
+    border-bottom: 1px solid #DBDBDB;
+    z-index: 1024; }
+  app-profile .profile-container .top-bar {
+    list-style: none;
+    overflow: hidden;
+    font: 18px Sans-Serif;
+    padding: 0;
+    z-index: 1;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 15px; }
+  app-profile .profile-container .top-bar li {
+    color: rgba(33, 33, 33, 0.7);
+    float: left;
+    height: 60px;
+    line-height: 60px;
+    text-align: center;
+    font-weight: 300;
+    cursor: pointer;
+    margin-right: 40px; }
+  app-profile .profile-container .top-bar li:hover {
+    color: black; }
+  app-profile .profile-container .top-bar .active {
+    color: #212121;
+    border-bottom: 4px solid #212121; }
+  app-profile .profile-container .avatar-container {
+    position: relative;
+    text-align: center;
+    width: 170px;
+    height: 170px;
+    margin: auto;
+    bottom: -210px;
+    margin-top: -170px;
+    z-index: 1000; }
+    app-profile .profile-container .avatar-container .avatar {
+      width: 170px;
+      height: 170px;
+      line-height: 170px;
+      background: #f1f1f1;
+      font-size: 22px;
+      color: white;
+      background: white;
+      border: 1px solid #d2d2d2;
+      border-radius: 100px; }
+      app-profile .profile-container .avatar-container .avatar i {
         position: absolute;
-        top: 18px;
-        left: 20px; }
-  app-profile .page-container .footer-box {
+        margin-left: -12px;
+        margin-top: 75px;
+        color: #d2d2d2; }
+  app-profile .profile-container .profile {
+    position: relative;
     display: block;
-    text-align: left !important;
-    width: 100%;
-    padding: 20px 0 0;
-    border-top: 1px solid #e4e4e4; }
-    app-profile .page-container .footer-box h5 {
-      color: #4A4A4A;
-      margin-top: 5px; }
-    app-profile .page-container .footer-box .actions {
-      margin: 20px 0 0; }
-      app-profile .page-container .footer-box .actions .btn-danger {
-        width: 100px; }
-@media (max-width: 1024px) {
-  app-profile .page-container {
-    margin: 60px auto 0;
-    border-top: 0;
-    border-left: 0;
-    border-right: 0;
-    padding: 30px 30px 0;
-    background: white; } }
+    padding: 90px 20px 40px;
+    max-width: 900px;
+    margin: 130px auto 50px;
+    background: white;
+    border: 1px solid #DBDBDB; }
+    app-profile .profile-container .profile .edit {
+      position: absolute;
+      right: 30px;
+      top: 30px;
+      padding: 0 20px;
+      font-size: 14px;
+      line-height: 35px;
+      border-radius: 5px;
+      height: auto; }
+    app-profile .profile-container .profile .profile-header {
+      text-align: center;
+      padding-bottom: 30px; }
+      app-profile .profile-container .profile .profile-header .username {
+        display: block;
+        font-size: 32px;
+        font-weight: 500; }
+      app-profile .profile-container .profile .profile-header .reviews-result {
+        margin-top: 10px; }
+        app-profile .profile-container .profile .profile-header .reviews-result .reviews-count {
+          display: block;
+          margin-top: 10px;
+          font-size: 18px; }
+      app-profile .profile-container .profile .profile-header .introduction {
+        display: block;
+        margin-top: 15px;
+        font-size: 18px;
+        font-weight: 300;
+        letter-spacing: initial;
+        color: rgba(0, 0, 0, 0.7); }
+      app-profile .profile-container .profile .profile-header img {
+        width: 30px; }
+    app-profile .profile-container .profile .btn-facebook, app-profile .profile-container .profile .btn-white, app-profile .profile-container .profile .btn-twitter, app-profile .profile-container .profile .btn-linkedin, app-profile .profile-container .profile .btn-google-plus {
+      width: 100%;
+      height: 50px;
+      font-size: 18px;
+      font-weight: 500;
+      border-radius: 3px;
+      line-height: 50px;
+      padding: 0; }
+    app-profile .profile-container .profile .btn-success, app-profile .profile-container .profile .btn-danger {
+      width: 100%;
+      height: 40px;
+      font-size: 18px;
+      font-weight: 500;
+      border-radius: 3px;
+      line-height: 40px; }
+    app-profile .profile-container .profile .btn-facebook i, app-profile .profile-container .profile .btn-white i, app-profile .profile-container .profile .btn-twitter i, app-profile .profile-container .profile .btn-success i, app-profile .profile-container .profile .btn-google-plus i, app-profile .profile-container .profile .btn-linkedin i {
+      position: absolute;
+      font-size: 30px;
+      left: 15px;
+      top: 10px; }
+    app-profile .profile-container .profile .form-group .ui-inputtext:focus {
+      border: 2px solid #7FC443 !important; }
+    app-profile .profile-container .profile .form-group .form-control:focus {
+      border: 2px solid #7FC443 !important; }
+    app-profile .profile-container .profile .form-group .error-input {
+      border: 2px solid #f75c4b !important; }
+    app-profile .profile-container .profile .btn-yellow-green {
+      width: 100%;
+      font-size: 26px;
+      color: white;
+      height: 60px;
+      font-weight: 700; }
+    app-profile .profile-container .profile .header {
+      display: block;
+      width: 100%;
+      padding: 0 0 30px;
+      border-bottom: 1px solid #e4e4e4;
+      text-align: center; }
+      app-profile .profile-container .profile .header p {
+        font-weight: 300;
+        margin-top: 10px; }
+      app-profile .profile-container .profile .header h6 {
+        color: #4A4A4A;
+        font-weight: 300;
+        margin-top: 15px; }
+    app-profile .profile-container .profile .messages {
+      padding: 20px 0;
+      text-align: left; }
+      app-profile .profile-container .profile .messages .success p {
+        color: #449d44; }
+      app-profile .profile-container .profile .messages .error p {
+        color: red; }
+      app-profile .profile-container .profile .messages a {
+        color: #0066C0 !important;
+        cursor: pointer; }
+    app-profile .profile-container .profile .card-container {
+      padding: 80px 0; }
+      app-profile .profile-container .profile .card-container h3 {
+        font-weight: 300;
+        margin-bottom: 40px; }
+      app-profile .profile-container .profile .card-container .share-buttons {
+        padding-top: 50px;
+        text-align: center; }
+      app-profile .profile-container .profile .card-container .send-buttons {
+        padding-top: 50px; }
+        app-profile .profile-container .profile .card-container .send-buttons h3 {
+          text-align: center; }
+        app-profile .profile-container .profile .card-container .send-buttons .btn-success {
+          height: 50px;
+          border-radius: 0;
+          border: 0; }
+      app-profile .profile-container .profile .card-container .btn-success, app-profile .profile-container .profile .card-container .btn-danger, app-profile .profile-container .profile .card-container .btn-secondary {
+        padding: 0 30px;
+        width: initial;
+        height: 40px;
+        line-height: 40px;
+        font-weight: 300;
+        font-size: 18px;
+        border-radius: 3px; }
+      app-profile .profile-container .profile .card-container .link-container .link {
+        font-size: 16px;
+        background: #f5f5f5;
+        color: #6f787e;
+        padding: 0 20px;
+        line-height: 50px;
+        overflow: hidden;
+        max-height: 50px; }
+      app-profile .profile-container .profile .card-container .link-container .btn-white {
+        padding: 0 20px; }
+    app-profile .profile-container .profile form {
+      margin: 40px 0 20px; }
+      app-profile .profile-container .profile form .error-message {
+        color: #f75c4b;
+        font-size: 12px;
+        position: absolute; }
+      app-profile .profile-container .profile form .card-form {
+        margin: 40px auto 40px;
+        max-width: 600px; }
+        app-profile .profile-container .profile form .card-form .form-group .btn-yellow-green {
+          width: 100% !important;
+          line-height: 60px;
+          padding: 0 !important; }
+      app-profile .profile-container .profile form h1, app-profile .profile-container .profile form h2, app-profile .profile-container .profile form h3, app-profile .profile-container .profile form h4, app-profile .profile-container .profile form h5, app-profile .profile-container .profile form h6 {
+        margin: 40px 0 20px; }
+      app-profile .profile-container .profile form .actions {
+        margin: 20px 0; }
+        app-profile .profile-container .profile form .actions .btn-success {
+          width: 150px; }
+        app-profile .profile-container .profile form .actions .animate {
+          display: block;
+          position: absolute;
+          top: 18px;
+          left: 20px; }
+    app-profile .profile-container .profile .footer-box {
+      display: block;
+      text-align: left !important;
+      width: 100%;
+      padding: 20px 0 0;
+      border-top: 1px solid #e4e4e4; }
+      app-profile .profile-container .profile .footer-box h5 {
+        color: #4A4A4A;
+        margin-top: 5px; }
+      app-profile .profile-container .profile .footer-box .actions {
+        margin: 20px 0 0; }
+        app-profile .profile-container .profile .footer-box .actions .btn-danger {
+          width: 100px; }
+
 @media (max-width: 480px) {
-  app-profile .top-bar li {
+  .top-bar li {
     margin-right: 20px; } }
 @media (max-width: 380px) {
-  app-profile .top-bar li {
+  .top-bar li {
     margin-right: 10px; } }
-
 app-popups .dark-screen {
   display: block;
   position: fixed;
@@ -8093,176 +8136,305 @@ app-account {
   min-height: 100vh;
   padding: 70px 0 0;
   -webkit-overflow-scrolling: touch; }
-  app-account .account-container .input-group input {
-    height: 60px;
-    font-size: 22px; }
-  app-account .account-container .input-group textarea {
-    height: auto;
-    font-size: 22px;
-    text-align: center; }
-  app-account .account-container .input-group .form-control:focus {
-    border: 2px solid #16A084 !important; }
-  app-account .account-container .half-group {
-    float: left;
-    width: 50%; }
-    app-account .account-container .half-group .price {
-      text-align: center; }
-    app-account .account-container .half-group .unit {
-      text-align: center; }
-  app-account .account-container .progress-container {
-    position: fixed;
+  app-account .top-bar-container {
+    position: relative;
     width: 100%;
-    background: #edefed;
-    height: 6px;
-    z-index: 1; }
-    app-account .account-container .progress-container .progress {
-      height: 6px;
-      background: #1abc9c;
-      border-top-right-radius: 15px;
-      border-bottom-right-radius: 15px; }
-  app-account .account-container .back {
-    position: fixed;
-    left: 0;
-    margin-top: 20px;
-    padding: 0 30px;
-    text-transform: uppercase;
-    font-size: 20px;
-    font-weight: 600;
     background: white;
-    color: #16A084 !important; }
-  app-account .account-container .back:hover {
-    color: white !important; }
-  app-account .account-container .account {
-    padding: 60px 10px; }
-    app-account .account-container .account .account-header {
-      text-align: center;
-      padding-bottom: 30px;
-      max-width: 700px;
-      margin: auto; }
-      app-account .account-container .account .account-header h1 {
-        font-weight: 300;
-        color: black;
-        line-height: inherit; }
-        app-account .account-container .account .account-header h1 span {
-          font-weight: 500; }
-        app-account .account-container .account .account-header h1 .one {
-          color: #2980b9; }
-        app-account .account-container .account .account-header h1 .two {
-          color: #f39c12; }
-      app-account .account-container .account .account-header p {
-        font-weight: 300;
-        margin-top: 20px; }
-    app-account .account-container .account .account-body {
+    border-bottom: 1px solid #DBDBDB;
+    z-index: 1024; }
+  app-account .top-bar {
+    list-style: none;
+    overflow: hidden;
+    font: 18px Sans-Serif;
+    padding: 0;
+    z-index: 1;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 15px; }
+  app-account .top-bar li {
+    color: rgba(33, 33, 33, 0.7);
+    float: left;
+    height: 60px;
+    line-height: 60px;
+    text-align: center;
+    font-weight: 300;
+    cursor: pointer;
+    margin-right: 40px; }
+  app-account .top-bar li:hover {
+    color: black; }
+  app-account .top-bar .active {
+    color: #212121;
+    border-bottom: 4px solid #212121; }
+  app-account .account-container {
+    padding: 0 10px; }
+    app-account .account-container .input-group input {
+      height: 60px;
+      font-size: 22px; }
+    app-account .account-container .input-group textarea {
+      height: auto;
+      font-size: 22px;
+      text-align: center; }
+    app-account .account-container .input-group .form-control:focus {
+      border: 2px solid #16A084 !important; }
+    app-account .account-container .half-group {
+      float: left;
+      width: 50%; }
+      app-account .account-container .half-group .price {
+        text-align: center; }
+      app-account .account-container .half-group .unit {
+        text-align: center; }
+    app-account .account-container .account {
+      max-width: 1100px;
       margin: auto;
-      max-width: 500px; }
-      app-account .account-container .account .account-body .error {
-        text-align: center; }
-        app-account .account-container .account .account-body .error .error-text {
-          color: #f75c4b; }
-      app-account .account-container .account .account-body .actions {
-        margin-top: 30px; }
-      app-account .account-container .account .account-body .price-per-unit {
-        height: 60px;
-        overflow: auto;
-        margin-bottom: 15px; }
-        app-account .account-container .account .account-body .price-per-unit .input-group {
-          float: left;
-          width: 47.5%; }
-        app-account .account-container .account .account-body .price-per-unit .euro {
-          font-size: 22px;
-          padding: 0 20px;
-          background: white;
-          border-radius: 0; }
-        app-account .account-container .account .account-body .price-per-unit .per {
-          width: 5%;
-          float: left;
-          font-size: 20px;
-          text-align: center;
-          line-height: 60px;
-          font-weight: 300; }
-      app-account .account-container .account .account-body .btn {
-        padding: 0 30px;
-        text-transform: uppercase;
-        font-size: 20px;
-        font-weight: 600;
-        border-radius: 2px;
-        height: 60px; }
-      app-account .account-container .account .account-body .picture-container {
-        margin-bottom: 30px; }
-        app-account .account-container .account .account-body .picture-container .service-picture {
-          max-width: 288px;
-          height: 360px;
-          background: #f1f1f1;
-          margin: auto;
-          font-size: 30px;
-          color: white; }
-          app-account .account-container .account .account-body .picture-container .service-picture i {
-            position: absolute;
-            margin-left: 129px;
-            margin-top: 153px;
-            color: #d2d2d2; }
-          app-account .account-container .account .account-body .picture-container .service-picture img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            line-height: 415px;
-            font-size: 18px;
-            text-align: center;
-            color: #d2d2d2; }
-        app-account .account-container .account .account-body .picture-container .profile-picture {
-          width: 160px;
-          height: 160px;
-          background: #f1f1f1;
-          margin: auto;
-          font-size: 30px;
-          color: white; }
-          app-account .account-container .account .account-body .picture-container .profile-picture i {
-            position: absolute;
-            margin-left: 65px;
-            margin-top: 65px;
-            color: #d2d2d2; }
-          app-account .account-container .account .account-body .picture-container .profile-picture img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            line-height: 300px;
-            font-size: 18px;
-            text-align: center;
-            color: transparent; }
-      app-account .account-container .account .account-body .form-group .ui-inputtext {
-        color: black;
-        font-size: 16px; }
-      app-account .account-container .account .account-body .footer-group {
-        text-align: center;
+      border: 1px solid #DBDBDB;
+      margin-top: 30px;
+      margin-bottom: 30px; }
+      app-account .account-container .account .account-top-bar {
+        background: #edefed;
+        color: #484848;
         font-size: 16px;
-        font-weight: 300;
-        padding: 10px 0; }
-        app-account .account-container .account .account-body .footer-group .text {
-          display: block; }
-        app-account .account-container .account .account-body .footer-group .enter, app-account .account-container .account .account-body .footer-group .password-forget, app-account .account-container .account .account-body .footer-group .facebook-continue {
-          color: #16a085;
-          font-weight: 400;
-          margin-bottom: 20px;
-          cursor: pointer; }
-      app-account .account-container .account .account-body .category-tags {
-        text-align: center; }
-        app-account .account-container .account .account-body .category-tags .category-example {
+        padding: 12px 20px;
+        border-bottom: 1px solid #DBDBDB;
+        font-weight: 500; }
+      app-account .account-container .account .account-header {
+        text-align: center;
+        padding-bottom: 30px;
+        max-width: 700px;
+        margin: auto; }
+        app-account .account-container .account .account-header h1 {
+          font-weight: 300;
+          color: black;
+          line-height: inherit; }
+          app-account .account-container .account .account-header h1 span {
+            font-weight: 500; }
+          app-account .account-container .account .account-header h1 .one {
+            color: #2980b9; }
+          app-account .account-container .account .account-header h1 .two {
+            color: #f39c12; }
+        app-account .account-container .account .account-header p {
+          font-weight: 300;
+          margin-top: 20px; }
+      app-account .account-container .account .account-body {
+        padding: 30px;
+        overflow: auto; }
+        app-account .account-container .account .account-body .avatar {
+          position: relative;
           display: inline-block;
-          height: 40px;
-          line-height: 40px;
-          margin: 5px;
-          border-radius: 20px;
-          background: #eceeef;
-          padding: 0 20px;
-          font-size: 19px;
-          height: 40px;
-          color: rgba(0, 0, 0, 0.5); }
-    app-account .account-container .account .loader {
-      padding: 30px; }
+          text-align: center;
+          width: 100%;
+          height: 230px;
+          background-color: #bbb;
+          background-size: cover;
+          background-repeat: no-repeat;
+          background-position: center; }
+          app-account .account-container .account .account-body .avatar .overlay {
+            width: 100%;
+            height: 100%;
+            background: -moz-radial-gradient(transparent 115px, rgba(255, 255, 255, 0.4) 115px);
+            background: -webkit-radial-gradient(transparent 115px, rgba(255, 255, 255, 0.4) 115px);
+            background: -ms-radial-gradient(transparent 115px, rgba(255, 255, 255, 0.4) 115px);
+            background: -o-radial-gradient(transparent 115px, rgba(255, 255, 255, 0.4) 115px);
+            pointer-events: none; }
+        app-account .account-container .account .account-body .content {
+          margin-top: 10px; }
+          app-account .account-container .account .account-body .content .btn {
+            padding: 0 30px;
+            font-size: 18px;
+            border-radius: 3px;
+            margin-top: 20px; }
+          app-account .account-container .account .account-body .content p {
+            font-size: 16px !important;
+            color: #484848; }
+        app-account .account-container .account .account-body .services {
+          overflow: auto; }
+          app-account .account-container .account .account-body .services .service-container {
+            float: left;
+            width: calc(100% / 4);
+            padding: 10px; }
+            app-account .account-container .account .account-body .services .service-container .service {
+              position: relative;
+              height: 250px;
+              text-align: center;
+              background-color: #ffd87c;
+              background-size: cover;
+              background-repeat: no-repeat;
+              background-position: center; }
+              app-account .account-container .account .account-body .services .service-container .service .overlay {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                z-index: 10;
+                background: rgba(0, 0, 0, 0.1);
+                -webkit-transition: background 0.4s ease;
+                -moz-transition: background 0.4s ease;
+                -o-transition: background 0.4s ease;
+                transition: background 0.4s ease; }
+                app-account .account-container .account .account-body .services .service-container .service .overlay .text-container {
+                  display: block;
+                  position: absolute;
+                  z-index: 2;
+                  padding: 20px;
+                  bottom: 0;
+                  width: 100%;
+                  text-align: left;
+                  background: -webkit-linear-gradient(transparent 10%, rgba(0, 0, 0, 0.65) 100%) !important;
+                  background: -moz-linear-gradient(transparent 10%, rgba(0, 0, 0, 0.65) 100%) !important;
+                  background: linear-gradient(transparent 10%, rgba(0, 0, 0, 0.65) 100%) !important; }
+                  app-account .account-container .account .account-body .services .service-container .service .overlay .text-container .title {
+                    font-weight: 700;
+                    color: white;
+                    line-height: 120%;
+                    font-size: 25px;
+                    white-space: normal !important;
+                    text-align: left; }
+              app-account .account-container .account .account-body .services .service-container .service .overlay:hover {
+                background: transparent; }
+              app-account .account-container .account .account-body .services .service-container .service i {
+                line-height: 250px;
+                font-size: 50px;
+                color: white; }
+            app-account .account-container .account .account-body .services .service-container .service:hover {
+              background-color: #e8c061; }
+        app-account .account-container .account .account-body label {
+          text-align: right;
+          font-size: 16px !important;
+          padding-top: 14px; }
+        app-account .account-container .account .account-body small {
+          font-size: 14px; }
+        app-account .account-container .account .account-body textarea.form-control {
+          resize: vertical; }
+        app-account .account-container .account .account-body .avatar-container {
+          background: grey; }
+          app-account .account-container .account .account-body .avatar-container .avatar {
+            float: left;
+            width: 230px;
+            height: 230px; }
+          app-account .account-container .account .account-body .avatar-container .content {
+            float: left;
+            padding: 20px; }
+            app-account .account-container .account .account-body .avatar-container .content p {
+              font-size: 16px !important;
+              color: #484848; }
+        app-account .account-container .account .account-body .error {
+          text-align: center; }
+          app-account .account-container .account .account-body .error .error-text {
+            color: #f75c4b; }
+        app-account .account-container .account .account-body .actions {
+          margin-top: 30px; }
+        app-account .account-container .account .account-body .price-per-unit {
+          height: 60px;
+          overflow: auto;
+          margin-bottom: 15px; }
+          app-account .account-container .account .account-body .price-per-unit .input-group {
+            float: left;
+            width: 47.5%; }
+          app-account .account-container .account .account-body .price-per-unit .euro {
+            font-size: 22px;
+            padding: 0 20px;
+            background: white;
+            border-radius: 0; }
+          app-account .account-container .account .account-body .price-per-unit .per {
+            width: 5%;
+            float: left;
+            font-size: 20px;
+            text-align: center;
+            line-height: 60px;
+            font-weight: 300; }
+        app-account .account-container .account .account-body .picture-container {
+          margin-bottom: 30px; }
+          app-account .account-container .account .account-body .picture-container .service-picture {
+            max-width: 288px;
+            height: 360px;
+            background: #f1f1f1;
+            margin: auto;
+            font-size: 30px;
+            color: white; }
+            app-account .account-container .account .account-body .picture-container .service-picture i {
+              position: absolute;
+              margin-left: 129px;
+              margin-top: 153px;
+              color: #d2d2d2; }
+            app-account .account-container .account .account-body .picture-container .service-picture img {
+              width: 100%;
+              height: 100%;
+              object-fit: cover;
+              line-height: 415px;
+              font-size: 18px;
+              text-align: center;
+              color: #d2d2d2; }
+          app-account .account-container .account .account-body .picture-container .profile-picture {
+            width: 160px;
+            height: 160px;
+            background: #f1f1f1;
+            margin: auto;
+            font-size: 30px;
+            color: white; }
+            app-account .account-container .account .account-body .picture-container .profile-picture i {
+              position: absolute;
+              margin-left: 65px;
+              margin-top: 65px;
+              color: #d2d2d2; }
+            app-account .account-container .account .account-body .picture-container .profile-picture img {
+              width: 100%;
+              height: 100%;
+              object-fit: cover;
+              line-height: 300px;
+              font-size: 18px;
+              text-align: center;
+              color: transparent; }
+        app-account .account-container .account .account-body .form-group .ui-inputtext {
+          color: black;
+          font-size: 16px; }
+        app-account .account-container .account .account-body .footer-group {
+          text-align: center;
+          font-size: 16px;
+          font-weight: 300;
+          padding: 10px 0; }
+          app-account .account-container .account .account-body .footer-group .text {
+            display: block; }
+          app-account .account-container .account .account-body .footer-group .enter, app-account .account-container .account .account-body .footer-group .password-forget, app-account .account-container .account .account-body .footer-group .facebook-continue {
+            color: #16a085;
+            font-weight: 400;
+            margin-bottom: 20px;
+            cursor: pointer; }
+      app-account .account-container .account .loader {
+        padding: 30px; }
+    app-account .account-container .footer-actions {
+      max-width: 1100px;
+      margin: auto;
+      margin-top: 30px;
+      margin-bottom: 30px; }
+      app-account .account-container .footer-actions .btn {
+        padding: 0 30px;
+        font-size: 18px;
+        border-radius: 3px; }
+  app-account .footer-container .footer {
+    max-width: 1100px;
+    margin: auto; }
+    app-account .footer-container .footer .links {
+      text-align: right; }
+    app-account .footer-container .footer li {
+      display: inline-block;
+      font-size: 16px;
+      color: rgba(0, 0, 0, 0.6);
+      margin-left: 10px; }
+      app-account .footer-container .footer li a:hover {
+        cursor: pointer;
+        color: #014c8c;
+        text-decoration: underline; }
 
+@media (max-width: 768px) {
+  app-account .account-container .account .account-body .services .service-container {
+    width: calc(100% / 3); } }
 @media (max-width: 425px) {
-  app-insert .account-container .back {
-    position: relative; }
+  app-account .account-container .account .account-body .avatar {
+    width: 230px; }
+
+  app-account .account-container .account .account-body .content {
+    margin-top: 20px;
+    padding: 0; }
 
   app-insert .account-container .account {
     padding-top: 20px; }
@@ -8276,7 +8448,162 @@ app-account {
     margin-left: 97px; }
 
   app-insert .account-container .account .account-body .picture-container .service-picture img {
-    line-height: 341px; } }
+    line-height: 341px; }
+
+  app-account .account-container .account .account-body .services .service-container {
+    width: 100%; }
+
+  app-account .footer-container .footer .links {
+    text-align: left; }
+
+  app-account .footer-container .footer li {
+    margin-left: 0;
+    margin-right: 10px; } }
+app-auth {
+  display: block;
+  float: left;
+  width: 100%;
+  height: 100%;
+  min-height: 100vh;
+  padding: 70px 0 0;
+  -webkit-overflow-scrolling: touch; }
+  app-auth .auth-container .input-group input {
+    height: 60px;
+    font-size: 22px; }
+  app-auth .auth-container .input-group textarea {
+    height: auto;
+    font-size: 22px;
+    text-align: center; }
+  app-auth .auth-container .input-group .form-control:focus {
+    border: 2px solid #16A084 !important; }
+  app-auth .auth-container .auth {
+    padding: 60px 10px; }
+    app-auth .auth-container .auth .auth-header {
+      text-align: center;
+      padding-bottom: 30px;
+      max-width: 700px;
+      margin: auto; }
+      app-auth .auth-container .auth .auth-header h1 {
+        font-weight: 300;
+        color: black;
+        line-height: inherit; }
+        app-auth .auth-container .auth .auth-header h1 span {
+          font-weight: 500; }
+        app-auth .auth-container .auth .auth-header h1 .one {
+          color: #2980b9; }
+        app-auth .auth-container .auth .auth-header h1 .two {
+          color: #f39c12; }
+      app-auth .auth-container .auth .auth-header p {
+        font-weight: 300;
+        margin-top: 20px; }
+    app-auth .auth-container .auth .auth-body {
+      margin: auto;
+      max-width: 500px; }
+      app-auth .auth-container .auth .auth-body .error {
+        text-align: center; }
+        app-auth .auth-container .auth .auth-body .error .error-text {
+          color: #f75c4b; }
+      app-auth .auth-container .auth .auth-body .actions {
+        margin-top: 30px; }
+      app-auth .auth-container .auth .auth-body .price-per-unit {
+        height: 60px;
+        overflow: auto;
+        margin-bottom: 15px; }
+        app-auth .auth-container .auth .auth-body .price-per-unit .input-group {
+          float: left;
+          width: 47.5%; }
+        app-auth .auth-container .auth .auth-body .price-per-unit .euro {
+          font-size: 22px;
+          padding: 0 20px;
+          background: white;
+          border-radius: 0; }
+        app-auth .auth-container .auth .auth-body .price-per-unit .per {
+          width: 5%;
+          float: left;
+          font-size: 20px;
+          text-align: center;
+          line-height: 60px;
+          font-weight: 300; }
+      app-auth .auth-container .auth .auth-body .btn {
+        padding: 0 30px;
+        text-transform: uppercase;
+        font-size: 20px;
+        font-weight: 600;
+        border-radius: 2px;
+        height: 60px; }
+      app-auth .auth-container .auth .auth-body .picture-container {
+        margin-bottom: 30px; }
+        app-auth .auth-container .auth .auth-body .picture-container .service-picture {
+          max-width: 288px;
+          height: 360px;
+          background: #f1f1f1;
+          margin: auto;
+          font-size: 30px;
+          color: white; }
+          app-auth .auth-container .auth .auth-body .picture-container .service-picture i {
+            position: absolute;
+            margin-left: 129px;
+            margin-top: 153px;
+            color: #d2d2d2; }
+          app-auth .auth-container .auth .auth-body .picture-container .service-picture img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            line-height: 415px;
+            font-size: 18px;
+            text-align: center;
+            color: #d2d2d2; }
+        app-auth .auth-container .auth .auth-body .picture-container .profile-picture {
+          width: 160px;
+          height: 160px;
+          background: #f1f1f1;
+          margin: auto;
+          font-size: 30px;
+          color: white; }
+          app-auth .auth-container .auth .auth-body .picture-container .profile-picture i {
+            position: absolute;
+            margin-left: 65px;
+            margin-top: 65px;
+            color: #d2d2d2; }
+          app-auth .auth-container .auth .auth-body .picture-container .profile-picture img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            line-height: 300px;
+            font-size: 18px;
+            text-align: center;
+            color: transparent; }
+      app-auth .auth-container .auth .auth-body .form-group .ui-inputtext {
+        color: black;
+        font-size: 16px; }
+      app-auth .auth-container .auth .auth-body .footer-group {
+        text-align: center;
+        font-size: 16px;
+        font-weight: 300;
+        padding: 10px 0; }
+        app-auth .auth-container .auth .auth-body .footer-group .text {
+          display: block; }
+        app-auth .auth-container .auth .auth-body .footer-group .enter, app-auth .auth-container .auth .auth-body .footer-group .password-forget, app-auth .auth-container .auth .auth-body .footer-group .facebook-continue {
+          color: #16a085;
+          font-weight: 400;
+          margin-bottom: 20px;
+          cursor: pointer; }
+      app-auth .auth-container .auth .auth-body .category-tags {
+        text-align: center; }
+        app-auth .auth-container .auth .auth-body .category-tags .category-example {
+          display: inline-block;
+          height: 40px;
+          line-height: 40px;
+          margin: 5px;
+          border-radius: 20px;
+          background: #eceeef;
+          padding: 0 20px;
+          font-size: 19px;
+          height: 40px;
+          color: rgba(0, 0, 0, 0.5); }
+    app-auth .auth-container .auth .auth {
+      padding: 30px; }
+
 app-requests {
   display: block;
   width: 100%;

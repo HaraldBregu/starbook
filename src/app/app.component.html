@@ -47,20 +47,24 @@
         <a class="nav-link publish-item" (click)="publishService()">Pubblica il tuo servizio</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link home" routerLink="" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" (click)="updateTabMenu(true)">Home</a>
+        <!-- <a class="nav-link home" routerLink="" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" (click)="updateTabMenu(true)">Home</a> -->
+        <a class="nav-link home" routerLink="" (click)="updateTabMenu(true)">Home</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link orders" routerLink="/orders/requests" routerLinkActive="active" (click)="toggleMenu()">Ordini</a>
+        <!-- <a class="nav-link orders" routerLink="/orders/requests" routerLinkActive="active" (click)="toggleMenu()">Ordini</a> -->
+        <a class="nav-link orders" routerLink="/orders/requests" (click)="toggleMenu()">Ordini</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link profile" routerLink="/profile/general" routerLinkActive="active" (click)="toggleMenu()"><i class="fa fa-user-circle-o" aria-hidden="true"> </i> {{auth.profile.fullname}}</a>
+        <!-- <a class="nav-link profile" routerLink="/account/general" routerLinkActive="active" (click)="toggleMenu()"><i class="fa fa-user-circle-o" aria-hidden="true"> </i> {{auth.profile.fullname}}</a> -->
+        <a class="nav-link profile" routerLink="/account/profile" (click)="toggleMenu()"><i class="fa fa-user-circle-o" aria-hidden="true"> </i> {{auth.profile.fullname}}</a>
       </li>
     </ul>
 
     <!--  Collapsed not authenticated -->
     <ul *ngIf="auth === false && browser && hasRightContainer" class="nav navbar-nav float-xs-right" [ngClass]="{'collapse':!collapsed}">
       <li class="nav-item" *ngIf="collapsed">
-        <a class="nav-link home" routerLink="" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" (click)="updateTabMenu(true)">Home</a>
+        <!-- <a class="nav-link home" routerLink="" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" (click)="updateTabMenu(true)">Home</a> -->
+        <a class="nav-link home" routerLink="" (click)="updateTabMenu(true)">Home</a>
       </li>
       <li class="nav-item" *ngIf="hasPublishService">
         <a class="nav-link publish-item" (click)="publishService()">Pubblica il tuo servizio</a>

@@ -71,6 +71,12 @@ export class CommonService {
       return response.json();
     }).catch(this.handleError);
   }
+  getMyServices() {
+    let queryString = 'me/services';
+    return this.http.get(this.api + queryString, { headers: this._makeHeaders() }).toPromise().then((response) => {
+      return response.json();
+    }).catch(this.handleError);
+  }
 
   createService(data) {
     return this.http.post(this.api + 'services', data, { headers: this._makeHeaders() }).toPromise().then((services) => {

@@ -102,6 +102,9 @@ export class AppComponent implements OnInit, OnDestroy {
             // this.hasPublishService = false;
           }
           if (this.page === "Account") {
+            //this.hasRightContainer = false;
+          }
+          if (this.page === "Auth") {
             this.hasRightContainer = false;
           }
           if (this.page === "Order") {
@@ -159,7 +162,7 @@ export class AppComponent implements OnInit, OnDestroy {
     this.collapsed = false;
   }
   signupAsProfessional() {
-    this.router.navigate(['account/professional']);
+    this.router.navigate(['auth/professional']);
     this.collapsed = false;
   }
 

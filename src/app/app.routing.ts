@@ -20,6 +20,7 @@ import { AboutComponent } from './pages/about/about.component';
 import { HelpComponent } from './pages/help/help.component';
 import { LegalComponent } from './pages/legal/legal.component';
 import { AccountComponent } from './pages/account/account.component';
+import { AuthComponent } from './pages/auth/auth.component';
 import { RequestsComponent } from './pages/requests/requests.component';
 import { ShareComponent } from './pages/share/share.component';
 import { BlogComponent } from './pages/blog/blog.component';
@@ -32,10 +33,10 @@ const routes: Routes = [
   { path: 'category/:category', component: CategoryComponent, data: { isFindField: true } },
   { path: 'account', component: AccountComponent },
   { path: 'account/:page', component: AccountComponent, data: { name: 'Account' } },
+  { path: 'auth/:page', component: AuthComponent, data: { name: 'Auth' } },
 
   { path: 'orders', component: OrdersComponent },
   { path: 'orders/:page', component: OrdersComponent },
-  // { path: 'order/:step', component: WizardComponent, data: { name: 'Order' } },
   { path: 'profile', component: ProfileComponent },
   { path: 'profile/:page', component: ProfileComponent },
 

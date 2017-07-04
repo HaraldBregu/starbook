@@ -6,7 +6,46 @@ app-account {
   min-height: 100vh;
   padding: 70px 0 0;
   -webkit-overflow-scrolling: touch;
+  .top-bar-container {
+    // position: fixed;
+    position: relative;
+    width: 100%;
+    background: white;
+    // height: 60px;
+    border-bottom: 1px solid #DBDBDB;
+    z-index: 1024;
+  }
+  .top-bar {
+    list-style: none;
+    overflow: hidden;
+    font: 18px Sans-Serif;
+    padding: 0;
+    z-index: 1;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 15px;
+  }
+  .top-bar li {
+    color: rgba(33, 33, 33, 0.7);
+    float: left;
+    height: 60px;
+    line-height: 60px;
+    text-align: center;
+    font-weight: 300;
+    cursor: pointer;
+    margin-right: 40px;
+  }
+  .top-bar li:hover {
+    color: black;
+  }
+  .top-bar .active {
+    color: rgba(33, 33, 33, 1);
+    border-bottom: 4px solid #212121;
+  }
+
   .account-container {
+    padding: 0 10px;
+
     .input-group input {
       height: 60px;
       font-size: 22px;
@@ -29,35 +68,21 @@ app-account {
         text-align: center;
       }
     }
-    .progress-container {
-      position: fixed;
-      width: 100%;
-      background: #edefed;
-      height: 6px;
-      z-index: 1;
-      .progress {
-        height: 6px;
-        background: #1abc9c;
-        border-top-right-radius: 15px;
-        border-bottom-right-radius: 15px;
-      }
-    }
-    .back {
-      position: fixed;
-      left: 0;
-      margin-top: 20px;
-      padding: 0 30px;
-      text-transform: uppercase;
-      font-size: 20px;
-      font-weight: 600;
-      background: white;
-      color: #16A084 !important;
-    }
-    .back:hover {
-      color: white !important;
-    }
+
     .account {
-      padding: 60px 10px;
+      max-width: 1100px;
+      margin: auto;
+      border: 1px solid #DBDBDB;
+      margin-top: 30px;
+      margin-bottom: 30px;
+      .account-top-bar {
+        background: #edefed;
+        color: #484848;
+        font-size: 16px;
+        padding: 12px 20px;
+        border-bottom: 1px solid #DBDBDB;
+        font-weight: 500;
+      }
       .account-header {
         text-align: center;
         padding-bottom: 30px;
@@ -83,8 +108,138 @@ app-account {
         }
       }
       .account-body {
-        margin: auto;
-        max-width: 500px;
+        padding: 30px;
+        overflow: auto;
+        .avatar {
+          position: relative;
+          display: inline-block;
+          text-align: center;
+          width: 100%;
+          height: 230px;
+          background-color: #bbb;
+          background-size: cover;
+          background-repeat: no-repeat;
+          background-position: center;
+          // background-image: url("https://a0.muscache.com/im/pictures/e370dcdf-89d7-42af-9fde-f3880ba076ab.jpg?aki_policy=profile_x_medium");
+          .overlay {
+            width: 100%;
+            height: 100%;
+            background: -moz-radial-gradient(transparent 115px, rgba(255, 255, 255, 0.4) 115px);
+            background: -webkit-radial-gradient(transparent 115px, rgba(255, 255, 255, 0.4) 115px);
+            background: -ms-radial-gradient(transparent 115px, rgba(255, 255, 255, 0.4) 115px);
+            background: -o-radial-gradient(transparent 115px, rgba(255, 255, 255, 0.4) 115px);
+            pointer-events: none;
+          }
+        }
+        .content {
+          margin-top: 10px;
+          .btn {
+            padding: 0 30px;
+            font-size: 18px;
+            border-radius: 3px;
+            margin-top: 20px;
+          }
+          p {
+            font-size: 16px !important;
+            color: #484848;
+          }
+        }
+
+        .services {
+          overflow: auto;
+          // padding: 10px;
+          .service-container {
+            float: left;
+            width: calc(100% / 4);
+            padding: 10px;
+            .service {
+              position: relative;
+              // border-radius: 9px;
+              height: 250px;
+              text-align: center;
+              // background-color: #bbb;
+              background-color: #ffd87c;
+              background-size: cover;
+              background-repeat: no-repeat;
+              background-position: center;
+              // background-image: url("https://a0.muscache.com/im/pictures/e370dcdf-89d7-42af-9fde-f3880ba076ab.jpg?aki_policy=profile_x_medium");
+              .overlay {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                z-index: 10;
+                background: rgba(0, 0, 0, 0.1);
+                -webkit-transition: background 0.4s ease;
+                   -moz-transition: background 0.4s ease;
+                     -o-transition: background 0.4s ease;
+                        transition: background 0.4s ease;
+                .text-container {
+                  display: block;
+                  position: absolute;
+                  z-index: 2;
+                  padding: 20px;
+                  bottom: 0;
+                  width: 100%;
+                  text-align: left;
+                  background: -webkit-linear-gradient(transparent 10%, rgba(0, 0, 0, 0.65) 100%) !important;
+                  background: -moz-linear-gradient(transparent 10%, rgba(0, 0, 0, 0.65) 100%) !important;
+                  background: linear-gradient(transparent 10%, rgba(0, 0, 0, 0.65) 100%) !important;
+                  .title {
+                    font-weight: 700;
+                    color: white;
+                    line-height: 120%;
+                    font-size: 25px;
+                    // text-transform: capitalize;
+                    white-space: normal !important;
+                    text-align: left;
+                  }
+                }
+              }
+              .overlay:hover {
+                background: rgba(0, 0, 0, 0.0);
+              }
+              i {
+                line-height: 250px;
+                font-size: 50px;
+                color: white;
+              }
+            }
+            .service:hover {
+              background-color: #e8c061;
+            }
+          }
+        }
+
+        label {
+          text-align: right;
+          font-size: 16px !important;
+          padding-top: 14px;
+        }
+        small {
+          font-size: 14px;
+        }
+        textarea.form-control {
+          resize: vertical;
+        }
+        .avatar-container {
+          background: grey;
+          .avatar {
+            float: left;
+            width: 230px;
+            height: 230px;
+          }
+          .content {
+            float: left;
+            padding: 20px;
+            p {
+              font-size: 16px !important;
+              color: #484848;
+            }
+          }
+        }
+
         .error {
           text-align: center;
           .error-text {
@@ -116,14 +271,6 @@ app-account {
             line-height: 60px;
             font-weight: 300;
           }
-        }
-        .btn {
-          padding: 0 30px;
-          text-transform: uppercase;
-          font-size: 20px;
-          font-weight: 600;
-          border-radius: 2px;
-          height: 60px;
         }
         .picture-container {
           margin-bottom: 30px;
@@ -194,33 +341,59 @@ app-account {
           }
 
         }
-        .category-tags {
-          text-align: center;
-          .category-example {
-            display: inline-block;
-            height: 40px;
-            line-height: 40px;
-            margin: 5px;
-            border-radius: 20px;
-            background: #eceeef;
-            padding: 0 20px;
-            font-size: 19px;
-            height: 40px;
-            color: rgba(0, 0, 0, 0.5);
-          }
-        }
       }
       .loader {
         padding: 30px;
       }
     }
+
+    .footer-actions {
+      max-width: 1100px;
+      margin: auto;
+      margin-top: 30px;
+      margin-bottom: 30px;
+      .btn {
+        padding: 0 30px;
+        font-size: 18px;
+        border-radius: 3px;
+      }
+    }
+  }
+  .footer-container {
+    .footer {
+      max-width: 1100px;
+      margin: auto;
+      .links {
+        text-align: right;
+      }
+      li {
+        display: inline-block;
+        font-size: 16px;
+        color: rgba(0, 0, 0, 0.6);
+        margin-left: 10px;
+        a:hover {
+          cursor: pointer;
+          color: #014c8c;
+          text-decoration: underline;
+        }
+      }
+    }
   }
 }
 
+@media (max-width: 768px) {
+  app-account .account-container .account .account-body .services .service-container {
+    width: calc(100% / 3);
+  }
+}
 
 @media (max-width: 425px) {
-  app-insert .account-container .back {
-    position: relative;
+  app-account .account-container .account .account-body .avatar {
+    width: 230px;
+  }
+  app-account .account-container .account .account-body .content {
+    margin-top: 20px;
+    padding: 0;
   }
   app-insert .account-container .account {
     padding-top: 20px;
@@ -235,5 +408,15 @@ app-account {
   }
   app-insert .account-container .account .account-body .picture-container .service-picture img {
     line-height: 341px;
+  }
+  app-account .account-container .account .account-body .services .service-container {
+    width: 100%;
+  }
+  app-account .footer-container .footer .links {
+    text-align: left;
+  }
+  app-account .footer-container .footer li {
+    margin-left: 0;
+    margin-right: 10px;
   }
 }

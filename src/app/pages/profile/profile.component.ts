@@ -108,6 +108,8 @@ export class ProfileComponent implements OnInit, OnDestroy {
     cvc_error: null
   }
 
+  public logo = '';
+
   constructor(
     private profileService: ProfileService,
     private router: Router,
@@ -118,20 +120,18 @@ export class ProfileComponent implements OnInit, OnDestroy {
     private analyticsService: AnalyticsService,
     private joinService: ContactService,
     private seoService: SeoService) {
-    this.navigationService.updateMessage('Profilo');
+    this.navigationService.updateMessage('');
     this.emailPattern = /^[a-z0-9!#$%&'*+\/=?^_`{|}~.-]+@[a-z0-9]([a-z0-9-]*[a-z0-9])?(\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)*$/i;
     this.numPattern = /^[+0-9]+$/;
 
     if (isBrowser) {
       if (localStorage.getItem('auth') !== null) {
-        let authData = JSON.parse(localStorage.getItem('auth'));
-        console.log('auth data' + JSON.stringify(authData));
-        this.currentUser = authData;
-        this.User.firstname = authData.profile.firstname;
-        this.User.lastname = authData.profile.lastname;
-        this.User.phone_number = authData.phone_number;
-        this.User.email = authData.email;
-
+        this.currentUser = JSON.parse(localStorage.getItem('auth'));
+        // console.log('auth data' + JSON.stringify(authData));
+        this.User.firstname = this.currentUser.profile.firstname;
+        this.User.lastname = this.currentUser.profile.lastname;
+        this.User.phone_number = this.currentUser.phone_number;
+        this.User.email = this.currentUser.email;
         this.sharelink =  document.location.protocol + '//'+ document.location.hostname + '/?ref=' + this.currentUser._id;
       } else {
         this.router.navigate(['/']);
@@ -141,36 +141,39 @@ export class ProfileComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     if (isBrowser) {
-
       this.route.params.subscribe(params => {
         window.scrollTo(0, 0);
         this.page = params['page'];
         if (this.page ==='general') {
-        } else if (this.page ==='payment') {
-          this.paymentService.getCards().then((cards) => {
-            this.defaultCard = cards.default_source;
-            this.cards = [];
-            cards.sources.data.forEach((cardData) => {
-              this.cards.push(cardData);
-            });
-          }).catch((error) => {
-            if (error.status === 404) {
-              // This Starbook account do not have a Stripe account
-              // When you add a new card, will be created a Stripe account
-              // and update the Starbook account
-            }
-          })
-        } else if (this.page ==='settings') {
 
-        } else if (this.page ==='affiliate') {
-          this.router.navigate(['profile/general']);
+        }
+        else if (this.page ==='payment') {
+          // this.paymentService.getCards().then((cards) => {
+          //   this.defaultCard = cards.default_source;
+          //   this.cards = [];
+          //   cards.sources.data.forEach((cardData) => {
+          //     this.cards.push(cardData);
+          //   });
+          // }).catch((error) => {
+          //   if (error.status === 404) {
+          //     // This Starbook account do not have a Stripe account
+          //     // When you add a new card, will be created a Stripe account
+          //     // and update the Starbook account
+          //   }
+          // })
+        }
+        else if (this.page ==='settings') {
+
+        }
+        else if (this.page ==='affiliate') {
+          // this.router.navigate(['profile/general']);
 
         } else if (this.page ==='card') {
 
         } else {
-          this.router.navigate(['profile/general']);
+          // this.router.navigate(['profile/general']);
         }
-      });
+      })
 
 
       this.subscription = this.popupsService.getPopupResponse$.subscribe(action => {
@@ -185,7 +188,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
           this.router.navigate(['/']);
           break;
         }
-      });
+      })
     }
   }
 

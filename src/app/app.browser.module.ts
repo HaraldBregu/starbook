@@ -61,6 +61,7 @@ import { AboutComponent } from './pages/about/about.component';
 import { HelpComponent } from './pages/help/help.component';
 import { LegalComponent } from './pages/legal/legal.component';
 import { AccountComponent } from './pages/account/account.component';
+import { AuthComponent } from './pages/auth/auth.component';
 import { RequestsComponent } from './pages/requests/requests.component';
 import { ShareComponent } from './pages/share/share.component';
 import { BlogComponent } from './pages/blog/blog.component';
@@ -101,7 +102,7 @@ let declarations = [
   //HomeComponent,
   LandingComponent,
   CompanyComponent,
-  // OrderComponent,
+  AuthComponent,
   OrdersComponent,
   ProfileComponent,
   PopupsComponent,

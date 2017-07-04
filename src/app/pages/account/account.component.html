@@ -1,277 +1,282 @@
+<div class="top-bar-container noselect">
+  <ul class="top-bar">
+    <li *ngFor="let tab of tabs" [ngClass]="{'active':tab.route === page}" (click)="clickTabItem(tab.route)">{{tab.name}}</li>
+  </ul>
+</div>
+
 <div class="account-container">
 
-  <div class="account" *ngIf="page==='login'">
-    <div class="account-header">
-      <h1>Accedi al tuo account</h1>
-    </div>
-    <div class="account-body">
-      <form>
-        <div class="form-group">
-          <label for="emailInput">Email</label>
-          <input type="email" placeholder="La tua mail" class="form-control" [ngClass]="{'error-input': login_state.email_error}" id="emailInput" [(ngModel)]="loginParameters.email" [ngModelOptions]="{standalone: true}">
-          <small class="error-message" *ngIf="login_state.email_error">{{login_state.email_error}}</small>
-        </div>
-        <div class="form-group">
-          <label for="passwordInput">Password</label>
-          <input type="password" placeholder="Password" class="form-control" [ngClass]="{'error-input': login_state.password_error}" id="passwordInput" [(ngModel)]="loginParameters.password" [ngModelOptions]="{standalone: true}">
-          <small class="error-message" *ngIf="login_state.password_error">{{login_state.password_error}}</small>
-        </div>
-        <div class="form-group" *ngIf="login_state.error_message">
-          <div class="alert alert-danger" role="alert">{{login_state.error_message}}</div>
-        </div>
-        <div class="form-group" *ngIf="facebook_state.error_message">
-          <div class="alert alert-danger" role="alert">{{facebook_state.error_message}}</div>
-        </div>
-        <div class="actions">
-          <div class="form-group text-center">
-            <button type="button" id="next" class="btn btn-success" (click)="login()"><i class="fa fa-circle-o-notch animate" *ngIf="login_state.loading"></i>{{login_state.button_title}}</button>
-          </div>
-        </div>
-        <div class="form-group footer-group">
-          <span class="text password-forget"><a routerlink="/account/password_recovery" href="/account/password_recovery">Hai dimenticato la password?</a></span>
-          <span class="text">Non sei ancora registrato?</span>
-          <span class="text enter" (click)="changeToSignup()">Registrati</span>
-        </div>
-      </form>
-    </div>
-  </div>
-  <div class="account" *ngIf="page==='signup'">
-    <div class="account-header">
-      <h1>Crea un account</h1>
-      <p>Sei nuovo su Starbook? Crea un account per poter navigare.</p>
-    </div>
-    <div class="account-body">
-      <form>
-        <div class="form-group">
-          <label for="emailInput">Email</label>
-          <input type="email" placeholder="La tua mail" class="form-control" [ngClass]="{'error-input': signup_state.email_error}" id="emailInput" [(ngModel)]="signupParameters.email" [ngModelOptions]="{standalone: true}">
-          <small class="error-message" *ngIf="signup_state.email_error">{{signup_state.email_error}}</small>
-        </div>
+  <div *ngIf="page==='profile' && Account">
+    <div class="account">
+      <div class="account-top-bar">Foto Profilo</div>
+      <div class="account-body">
         <div class="row">
-          <div class="col-md-6">
-            <div class="form-group">
-              <label for="firstNameInput">Nome</label>
-              <input type="firstname" placeholder="Nome" class="form-control" [ngClass]="{'error-input': signup_state.first_name_error}" id="firstNameInput" [(ngModel)]="signupParameters.firstname" [ngModelOptions]="{standalone: true}">
-              <small class="error-message" *ngIf="signup_state.first_name_error">{{signup_state.first_name_error}}</small>
+          <div class="col-md-3 text-center">
+            <div class="avatar" [ngStyle]="{'background-image' : ' url(' + checkImageUrlFromAccount(Account) + ')'}">
+              <div class="overlay"></div>
             </div>
           </div>
-          <div class="col-md-6">
-            <div class="form-group">
-              <label for="lastNameInput">Cognome</label>
-              <input type="lastname" placeholder="Cognome" class="form-control" [ngClass]="{'error-input': signup_state.last_name_error}" id="lastNameInput" [(ngModel)]="signupParameters.lastname" [ngModelOptions]="{standalone: true}">
-              <small class="error-message" *ngIf="signup_state.last_name_error">{{signup_state.last_name_error}}</small>
+          <div class="col-md-9">
+            <div class="content">
+              <p>Un modo importante per conoscere le persone con cui si ha a che fare. Inserisci una foto profilo dove mostri il tuo volto chiaramente. Carica una foto dalla tua galleria e continua ad usare Starbook in modo regolare.</p>
+              <input type="file" (change)="selectProfilePicture($event)" style="display: none;" #file>
+              <button type="button" class="btn btn-secondary" name="button" (click)="file.click()"><i class="fa fa-circle-o-notch animate" *ngIf="picture_state.loading"></i> Carica dal computer</button>
             </div>
           </div>
         </div>
-        <div class="form-group">
-          <label for="phoneInput">Telefono</label>
-          <input type="phone" placeholder="Numero di telefono" class="form-control" [ngClass]="{'error-input': signup_state.phone_error}" id="phoneInput" [(ngModel)]="signupParameters.phone" [ngModelOptions]="{standalone: true}">
-          <small class="error-message" *ngIf="signup_state.phone_error">{{signup_state.phone_error}}</small>
-        </div>
-        <div class="form-group">
-          <label for="passwordInput">Password</label>
-          <input type="password" placeholder="Password" class="form-control" [ngClass]="{'error-input': signup_state.password_error}" id="passwordInput" [(ngModel)]="signupParameters.password" [ngModelOptions]="{standalone: true}">
-          <small class="error-message" *ngIf="signup_state.password_error">{{signup_state.password_error}}</small>
-        </div>
-        <div class="form-group">
-          <label for="confirmPasswordInput">Di nuovo la password</label>
-          <input type="password" placeholder="Password" class="form-control" [ngClass]="{'error-input': signup_state.confirm_password_error}" id="confirmPasswordInput" [(ngModel)]="signupParameters.confirmPassword" [ngModelOptions]="{standalone: true}">
-          <small class="error-message" *ngIf="signup_state.confirm_password_error">{{signup_state.confirm_password_error}}</small>
-        </div>
-        <div class="form-group" *ngIf="login_state.error_message">
-          <div class="alert alert-danger" role="alert">{{login_state.error_message}}</div>
-        </div>
-        <div class="form-group" *ngIf="facebook_state.error_message">
-          <div class="alert alert-danger" role="alert">{{facebook_state.error_message}}</div>
-        </div>
-        <div class="form-group text-center">
-          <button type="button" class="btn btn-success" (click)="signup()"><i class="fa fa-circle-o-notch animate" *ngIf="signup_state.loading"></i>{{signup_state.button_title}}</button>
-        </div>
-        <div class="form-group footer-group">
-          <span class="text">Sei gia registrato?</span>
-          <span class="text enter" (click)="changeToLogin()">Entra</span>
-          <span class="text">Continuando dichiari di aver letto e accetti le <a routerlink="/info/legal" href="/info/legal" target="_blank">condizioni generali e l’informativa sulla privacy</a></span>
-        </div>
-      </form>
+      </div>
+    </div>
+    <div class="account">
+      <div class="account-top-bar">Informazioni Profilo</div>
+      <div class="account-body">
+        <form>
+          <div class="form-group row">
+            <label for="firstname-input" class="col-md-2 col-form-label">Nome</label>
+            <div class="col-md-10">
+              <input class="form-control" type="text" id="firstname-input" [ngClass]="{'error-input': account_state.firstname_error}" [(ngModel)]="Account.profile.firstname" [ngModelOptions]="{standalone: true}">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="lastname-input" class="col-md-2 col-form-label">Cognome</label>
+            <div class="col-md-10">
+              <input class="form-control" type="text" id="lastname-input" [ngClass]="{'error-input': account_state.lastname_error}" [(ngModel)]="Account.profile.lastname" [ngModelOptions]="{standalone: true}">
+              <small class="form-text text-muted">Sul tuo profilo pubblico viene visualizzato solo il tuo nome. Quando ordine ricevuto o richiesto sara effetuato si potrà vedere il tuo nome e cognome.</small>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="description-input" class="col-md-2 col-form-label">Raccontaci di te</label>
+            <div class="col-md-10">
+              <textarea id="description-input" class="form-control" placeholder="" rows="3" [(ngModel)]="Account.profile.description" [ngModelOptions]="{standalone: true}"></textarea>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="phone-input" class="col-md-2 col-form-label">Numero di telefono</label>
+            <div class="col-md-10">
+              <input class="form-control" type="text" id="phone-input" [(ngModel)]="Account.phone_number" [ngModelOptions]="{standalone: true}">
+              <small class="form-text text-muted">Il numero sarà condiviso solo quando avrai una prenotazione confermata con un altro utente Starbook. È così che entrerete in contatto.</small>
+            </div>
+          </div>
+          <!-- <div class="form-group row">
+            <label for="email-input" class="col-md-2 col-form-label">Indirizzo email</label>
+            <div class="col-md-10">
+              <input class="form-control" type="text" value="john@gmail.com" id="email-input">
+              <small class="form-text text-muted">Non condivideremo il tuo indirizzo privato di posta elettronica con altri utenti e non sara mai pubblico.</small>
+            </div>
+          </div>
+           -->
+        </form>
+      </div>
+    </div>
+    <div class="footer-actions">
+      <button type="button" class="btn btn-danger" name="button" (click)="saveInformations()"><i class="fa fa-circle-o-notch animate" *ngIf="account_state.loading"></i> Salva</button>
     </div>
   </div>
 
-  <div class="account" *ngIf="page==='password_recovery'">
-    <div class="account-header">
-      <h1>Recupera password</h1>
-      <p>Ti manderemo una mail con il link per cambiare la password.</p>
-    </div>
+  <div class="account" *ngIf="page==='services'">
+    <div class="account-top-bar">I miei servizi</div>
     <div class="account-body">
-      <form>
-        <div class="form-group">
-          <label for="emailInput">Inserisci la tua email</label>
-          <input type="email" placeholder="La tua email" class="form-control" [ngClass]="{'error-input': login_state.email_error}" id="emailInput" [(ngModel)]="loginParameters.email" [ngModelOptions]="{standalone: true}">
-          <small class="error-message" *ngIf="login_state.email_error">{{login_state.email_error}}</small>
+      <div class="services">
+        <div class="service-container" *ngFor="let service of Services" (click)="showService(service)">
+          <div class="service" [ngStyle]="{'background-image' : ' url(' + checkImageUrlFromService(service) + ')'}">
+            <div class="overlay">
+              <div class="text-container">
+                <div class="title">
+                  <span>{{service.title}}</span>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="form-group text-center">
-          <button type="button" id="next" class="btn btn-success" (click)="recoverPassword(loginParameters.email)"><i class="fa fa-circle-o-notch animate" *ngIf="login_state.loading"></i>Recupera</button>
+        <div class="service-container">
+          <div class="service" (click)="createService()">
+            <i class="fa fa-plus" aria-hidden="true"></i>
+          </div>
         </div>
-        <div class="form-group footer-group">
-          <span class="text enter" (click)="changeToLogin()">Accedi</span>
-        </div>
-      </form>
+      </div>
     </div>
   </div>
 
-  <!-- <div class="account">
-    <div class="header">
-      <h3>Recupera la tua password</h3>
+  <div class="account" *ngIf="page==='reviews'">
+    <div class="account-top-bar">Le mie recensioni</div>
+    <div class="account-body">
+      <div class="reviews">
+        <p>Al momento non ci sono ancora recensioni pubblicate o ricevute.</p>
+      </div>
     </div>
-    <form>
-      <div class="form-group">
-        <label for="emailInput">Email</label>
-        <input type="email" placeholder="La tua mail" class="form-control" [ngClass]="{'error-input': login_state.email_error}" id="emailInput" [(ngModel)]="loginParameters.email" [ngModelOptions]="{standalone: true}">
-        <small class="error-message" *ngIf="login_state.email_error">{{login_state.email_error}}</small>
+  </div>
+
+
+  <!-- <div class="account" *ngIf="page==='no'">
+    <div class="profile-box">
+      <div class="profile-header">
+        <h3>Informazioni generali</h3>
+        <p>Aggiorna le informazioni del tuo account per rimanere in contatto</p>
       </div>
-      <div class="form-group">
-        <label for="passwordInput">Password</label>
-        <input type="password" placeholder="Password" class="form-control" [ngClass]="{'error-input': login_state.password_error}" id="passwordInput" [(ngModel)]="loginParameters.password" [ngModelOptions]="{standalone: true}">
-        <small class="error-message" *ngIf="login_state.password_error">{{login_state.password_error}}</small>
+      <div class="profile-body">
+        <form>
+          <div class="row">
+            <div class="col-lg-4">
+              <div class="form-group">
+                <label for="firstname">Nome</label>
+                <input type="firstname" class="form-control" id="firstname" name="firstname" placeholder="Nome" [ngClass]="{'error-input': user_state.first_name_error}" [(ngModel)]="User.firstname">
+                <small class="error-message" *ngIf="user_state.first_name_error">{{user_state.first_name_error}}</small>
+              </div>
+            </div>
+            <div class="col-lg-4">
+              <div class="form-group">
+                <label for="lastname">Cognome</label>
+                <input type="lastname" class="form-control" id="lastname" name="lastname" placeholder="Cognome" [ngClass]="{'error-input': user_state.last_name_error}" [(ngModel)]="User.lastname">
+                <small class="error-message" *ngIf="user_state.last_name_error">{{user_state.last_name_error}}</small>
+              </div>
+            </div>
+            <div class="col-lg-4">
+              <div class="form-group">
+                <label for="phone">Telefono</label>
+                <input type="phone" class="form-control" id="phone" name="phone" placeholder="Telefono" [ngClass]="{'error-input': user_state.phone_number_error}" [(ngModel)]="User.phone_number">
+                <small class="error-message" *ngIf="user_state.phone_number_error">{{user_state.phone_number_error}}</small>
+              </div>
+            </div>
+          </div>
+          <div class="actions">
+            <a class="btn btn-success" (click)="saveProfile()">{{user_state.button_title}}</a>
+          </div>
+        </form>
       </div>
-      <div class="form-group" *ngIf="login_state.error_message">
-        <div class="alert alert-danger" role="alert">{{login_state.error_message}}</div>
+      <div class="profile-footer">
+        <h5>Privacy del account</h5>
+        <h6><small>Le informazioni degli utenti consentono a Starbook di fornire agli utenti stessi l’accesso alle sezioni del Sito cui sono interessati e di fornire il Servizio. Esse mettono inoltre Starbook in grado di fatturare gli importi dovuti e consentono a Starbook o ad un professionista cui l’utente abbia inoltrato un Ordine di contattare l’utente in merito al Servizio.</small></h6>
       </div>
-      <div class="form-group" *ngIf="facebook_state.error_message">
-        <div class="alert alert-danger" role="alert">{{facebook_state.error_message}}</div>
-      </div>
-      <div class="form-group">
-        <button type="button" id="next" class="btn btn-warning" (click)="login()"><i class="fa fa-circle-o-notch animate" *ngIf="login_state.loading"></i>{{login_state.button_title}}</button>
-      </div>
-      <div class="form-group">
-        <button type="button" id="next"class="btn btn-white" (click)="changeToSignup()">Sei nuovo? Crea un account</button>
-      </div>
-      <div class="form-group">
-        <button type="button" id="next"class="btn btn-facebook" (click)="continueWithFacebook()"><i></i>{{facebook_state.button_title}}</button>
-      </div>
-      <div class="form-group">
-        <h6><small>Continuando dichiari di aver letto e accetti le <a routerlink="/legal" href="/legal" target="_blank">condizioni generali e l’informativa sulla privacy</a></small></h6>
-      </div>
-    </form>
+    </div>
   </div> -->
 
-  <div class="account" *ngIf="page==='professional'">
+  <!-- <div class="account" *ngIf="page==='payment'">
     <div class="account-header">
-      <h1>Registra la tua attività gratuitamente</h1>
-      <p>Lavori nel mondo dell'edilizia, idraulica, sei un elettrico e esegui lavori particolari artigianali nelle case? Unisciti a noi e collaboreremo per aumentare la professionalità e la clientela in modo smart.</p>
+      <h3>Metodo di pagamento</h3>
+      <p>Aggiorna le informazioni del tuo metodo di pagamento</p>
     </div>
-    <div class="account-body">
-      <form>
-        <div class="form-group">
-          <label for="emailInput">Email</label>
-          <input type="email" placeholder="La tua mail" class="form-control" [ngClass]="{'error-input': signup_state.email_error}" id="emailInput" [(ngModel)]="signupParameters.email" [ngModelOptions]="{standalone: true}">
-          <small class="error-message" *ngIf="signup_state.email_error">{{signup_state.email_error}}</small>
-        </div>
-        <div class="row">
-          <div class="col-md-6">
-            <div class="form-group">
-              <label for="firstNameInput">Nome</label>
-              <input type="firstname" placeholder="Nome" class="form-control" [ngClass]="{'error-input': signup_state.first_name_error}" id="firstNameInput" [(ngModel)]="signupParameters.firstname" [ngModelOptions]="{standalone: true}">
-              <small class="error-message" *ngIf="signup_state.first_name_error">{{signup_state.first_name_error}}</small>
-            </div>
+    <div class="card-container" *ngFor="let card of cards">
+      <div class="row">
+        <div class="col-lg-8 col-md-8">
+          <h4>{{card.brand}} <small>{{ card.funding }} {{ card.object }}</small> <small *ngIf="defaultCard === card.id">Default</small></h4>
+          <div class="information-block">
+            <span>Nome:</span>
+            {{ card.name }}
           </div>
-          <div class="col-md-6">
-            <div class="form-group">
-              <label for="lastNameInput">Cognome</label>
-              <input type="lastname" placeholder="Cognome" class="form-control" [ngClass]="{'error-input': signup_state.last_name_error}" id="lastNameInput" [(ngModel)]="signupParameters.lastname" [ngModelOptions]="{standalone: true}">
-              <small class="error-message" *ngIf="signup_state.last_name_error">{{signup_state.last_name_error}}</small>
-            </div>
+          <div class="information-block">
+            <span>Numero:</span>
+            **** {{ card.last4 }}
+          </div>
+          <div class="information-block">
+            <span>Scadenza:</span>
+            {{ card.exp_month }}/{{ formatYear(card.exp_year) }}
+          </div>
+          <div class="information-block">
+            <span>Tipo:</span>
+            {{ card.brand }} {{ card.funding }} {{ card.object }}
+          </div>
+          <div class="information-block">
+            <span>Indirizzo:</span>
+            {{ card.address_line1 }} {{ card.address_line2 }} <br>
+            {{ card.address_state }} {{ card.address_city }} <br>
+            {{ card.address_zip }} {{ card.address_country }}
           </div>
         </div>
-        <div class="form-group">
-          <label for="professionInput">Professione</label>
-          <input type="profession" placeholder="La tua professione" class="form-control" id="professionInput" [(ngModel)]="profession" [ngModelOptions]="{standalone: true}">
+        <div class="col-lg-4 col-md-4">
+          <div class="buttons-block">
+            <a class="btn btn-success" *ngIf="defaultCard !== card.id" (click)="selectCard(card.id)">Default</a>
+            <a class="btn btn-danger" (click)="deleteCard(card.id)">Rimuovi</a>
+            <a class="btn btn-secondary" (click)="editCard(card.id)">Modifica</a>
+          </div>
         </div>
-        <div class="form-group">
-          <label for="phoneInput">Telefono</label>
-          <input type="phone" placeholder="Numero di telefono" class="form-control" [ngClass]="{'error-input': signup_state.phone_error}" id="phoneInput" [(ngModel)]="signupParameters.phone" [ngModelOptions]="{standalone: true}">
-          <small class="error-message" *ngIf="signup_state.phone_error">{{signup_state.phone_error}}</small>
-        </div>
-        <div class="form-group">
-          <label for="passwordInput">Password</label>
-          <input type="password" placeholder="Password" class="form-control" [ngClass]="{'error-input': signup_state.password_error}" id="passwordInput" [(ngModel)]="signupParameters.password" [ngModelOptions]="{standalone: true}">
-          <small class="error-message" *ngIf="signup_state.password_error">{{signup_state.password_error}}</small>
-        </div>
-        <div class="form-group">
-          <label for="confirmPasswordInput">Di nuovo la password</label>
-          <input type="password" placeholder="Password" class="form-control" [ngClass]="{'error-input': signup_state.confirm_password_error}" id="confirmPasswordInput" [(ngModel)]="signupParameters.confirmPassword" [ngModelOptions]="{standalone: true}">
-          <small class="error-message" *ngIf="signup_state.confirm_password_error">{{signup_state.confirm_password_error}}</small>
-        </div>
-        <div class="form-group" *ngIf="signup_state.error_message">
-          <div class="alert alert-danger" role="alert">{{signup_state.error_message}}</div>
-        </div>
-        <div class="form-group text-center">
-          <button type="button" id="next" class="btn btn-success" (click)="signupAsProfessional()"><i class="fa fa-circle-o-notch animate" *ngIf="signup_state.loading"></i>{{signup_state.button_title}}</button>
-        </div>
-        <div class="form-group footer-group">
-          <span class="text">Sei gia registrato?</span>
-          <span class="text enter" (click)="changeToLogin()">Entra</span>
-          <span class="text">Continuando dichiari di aver letto e accetti le <a routerlink="/info/legal" href="/info/legal" target="_blank">condizioni generali e l’informativa sulla privacy</a></span>
-        </div>
-      </form>
+      </div>
+    </div>
+    <div class="card-container">
+      <a class="btn btn-secondary" *ngIf="cards?.length===0" (click)="showCardPage()">Aggiungi un metodo</a>
+      <a class="btn btn-secondary" *ngIf="cards?.length > 0" (click)="showCardPage()">Aggiungi un altro metodo</a>
+    </div>
+    <div class="footer-box">
+      <h5>Privacy del account</h5>
+      <h6><small>Le informazioni degli utenti consentono a Starbook di fornire agli utenti stessi l’accesso alle sezioni del Sito cui sono interessati e di fornire il Servizio. Esse mettono inoltre Starbook in grado di fatturare gli importi dovuti e consentono a Starbook o ad un professionista cui l’utente abbia inoltrato un Ordine di contattare l’utente in merito al Servizio.</small></h6>
     </div>
   </div>
+  <div class="account" *ngIf="page==='settings'">
+    <div class="account-header">
+      <h3>Impostazioni</h3>
+      <p>Modifica le informazioni</p>
+    </div>
+    <form>
+      <h4>Aggiorna Email</h4>
+      <div class="row">
+        <div class="col-lg-4">
+          <div class="form-group">
+            <label for="email">La tua email</label>
+            <input type="email" class="form-control" id="email" name="email" placeholder="Email" [ngClass]="{'error-input': user_state.email_error}" [(ngModel)]="User.email" disabled>
+            <small class="error-message" *ngIf="user_state.email_error">{{user_state.email_error}}</small>
+          </div>
+        </div>
+        <div class="col-lg-8">
+          <p><small>Dopo aver salvato la nuova email ti invieremo nella attuale email un messaggio di conferma per confermare il nuovo indirizzo.</small></p>
+        </div>
+      </div>
+      <div class="actions">
+        <a class="btn btn-success" (click)="saveNewEmail()">Salva</a>
+      </div>
+      <h4>Cambia Password</h4>
+      <div class="row">
+        <div class="col-lg-4">
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" class="form-control" id="password" name="password" placeholder="" [ngClass]="{'error-input': password_state.message_error}" [(ngModel)]="Password.old_password">
+          </div>
+        </div>
+        <div class="col-lg-4">
+          <div class="form-group">
+            <label for="password">Nuova Password</label>
+            <input type="password" class="form-control" id="password" name="password" placeholder="" [ngClass]="{'error-input': password_state.message_error}" [(ngModel)]="Password.new_password">
+          </div>
+        </div>
+        <div class="col-lg-4">
+          <div class="form-group">
+            <label for="password">Conferma Nuova Password</label>
+            <input type="password" class="form-control" id="password" name="password" placeholder="" [ngClass]="{'error-input': password_state.message_error}" [(ngModel)]="Password.confirm_password">
+          </div>
+        </div>
+      </div>
+      <div class="messages" *ngIf="password_state.message_error || password_state.message_success">
+        <div class="success" *ngIf="password_state.message_success">
+          <p><small>{{password_state.message_success}}</small></p>
+        </div>
+        <div class="error" *ngIf="password_state.message_error">
+          <p><small>{{password_state.message_error}}</small></p>
+        </div>
+      </div>
+      <div class="actions">
+        <a class="btn btn-success" (click)="changePassword()">{{password_state.button_title}}</a>
+      </div>
+    </form>
+    <div class="footer-box">
+      <h5>Esci da starbook</h5>
+      <h6><small>Puoi uscire ed entrare in qualsiasi momento dal sito. Le tue informazioni rimangono salvate su Starbook.</small></h6>
+      <div class="actions">
+        <a class="btn btn-danger" (click)="logout()">Esci</a>
+      </div>
+    </div>
+  </div> -->
+</div>
 
-  <div class="account" *ngIf="page==='email_verification'">
-    <div class="account-header">
-      <h1>{{email_verification.title}}</h1>
-    </div>
-    <div class="loader text-center">
-      <div class="popup-spinner" *ngIf="email_verification.spinner.visible">
-        <svg width='100px' height='100px' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid" class="uil-ring">
-          <rect x="0" y="0" width="100" height="100" fill="none" class="bk"></rect>
-          <circle cx="50" cy="50" r="45" stroke-dasharray="169.64600329384882 113.09733552923257" stroke="#7FC443" fill="none" stroke-width="4">
-            <animateTransform attributeName="transform" type="rotate" values="0 50 50;180 50 50;360 50 50;" keyTimes="0;0.5;1" dur="1s" repeatCount="indefinite" begin="0s"></animateTransform>
-          </circle>
-        </svg>
+<div class="footer-container">
+  <div class="footer">
+      <div class="row">
+        <div class="col-md-6">
+          <p>Starbook © 2017</p>
+        </div>
+        <div class="col-md-6 links">
+          <ul>
+            <li><a routerLink="/info/help">Aiuto e Assistenza</a></li>
+            <li><a routerLink="/info/legal">Privacy e Condizioni</a></li>
+            <li><a (click)="logout()">Esci</a></li>
+          </ul>
+        </div>
       </div>
-      <div class="success-icon" *ngIf="email_verification.success.visible"><span></span></div>
-    </div>
-    <div class="account-body">
-      <div class="form-group">
-        <button class="btn btn-warning" type="button" (click)="goToHomePage()" *ngIf="email_verification.button.visible">{{email_verification.button.title}}</button>
-      </div>
-    </div>
-  </div>
-  <div class="account" *ngIf="page==='password_verification'">
-    <div class="account-header">
-      <h1>{{password_verification.title}}</h1>
-    </div>
-    <div class="loader text-center">
-      <div class="popup-spinner" *ngIf="password_verification.spinner.visible">
-        <svg width='100px' height='100px' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid" class="uil-ring">
-          <rect x="0" y="0" width="100" height="100" fill="none" class="bk"></rect>
-          <circle cx="50" cy="50" r="45" stroke-dasharray="169.64600329384882 113.09733552923257" stroke="#7FC443" fill="none" stroke-width="4">
-            <animateTransform attributeName="transform" type="rotate" values="0 50 50;180 50 50;360 50 50;" keyTimes="0;0.5;1" dur="1s" repeatCount="indefinite" begin="0s"></animateTransform>
-          </circle>
-        </svg>
-      </div>
-      <div class="success-icon" *ngIf="password_verification.success.visible"><span></span></div>
-    </div>
-    <div class="account-body">
-      <div class="form-group">
-        <button class="btn btn-warning" type="button" (click)="goToHomePage()" *ngIf="password_verification.button.visible">{{password_verification.button.title}}</button>
-      </div>
-    </div>
-  </div>
-  <div class="account" *ngIf="page==='create_new_password'">
-    <div class="account-header">
-      <h1>{{new_password_creation.title}}</h1>
-    </div>
-    <div class="loader text-center">
-      <div class="form-group" *ngIf="new_password_creation.password_field.visible">
-        <label>{{new_password_creation.password_field.title}}</label>
-        <input class="form-control" type="password" name="password" placeholder="" required [(ngModel)]="new_password_creation.password_field.value">
-      </div>
-    </div>
-    <div class="account-body">
-      <div class="form-group" *ngIf="new_password_creation.button.visible">
-        <button class="btn btn-warning" type="button" (click)="createNewPassword(new_password_creation.password_field.value)">{{new_password_creation.button.title}}</button>
-      </div>
-    </div>
   </div>
 </div>

@@ -8,7 +8,8 @@ export class ProfileService {
   private api: string;
   private auth;
   constructor(private http: Http) {
-    this.api = 'https://api.starbook.co/v0.9.1/';
+    this.api = 'https://api.starbook.co/v0.9.1/'
+    // this.api = 'http://localhost/t0.9.1/'
   }
 
   private _makeHeaders() {
@@ -29,25 +30,10 @@ export class ProfileService {
     return {headers: headers};
   }
 
-  updateProfile(userData) {
-    // this.navigationService.updateLoadingStatus(true);
-    let data = {
-      firstname: userData.firstname,
-      lastname: userData.lastname,
-      phone_number: userData.phone_number
-      // street: userData.street,
-      // city: userData.city,
-      // postal_code: userData.postal_code,
-      // province: userData.province,
-      // country: userData.country
-    };
-    return this.http.put(this.api + 'me', data, this._makeHeaders())
-      .toPromise()
-      .then((response) => {
-        // this.navigationService.updateLoadingStatus(false);
-        return response.json();
-      })
-      .catch(this.handleError);
+  updateProfile(data) {
+    return this.http.put(this.api + 'me', data, this._makeHeaders()).toPromise().then((response) => {
+      return response.json();
+    }).catch(this.handleError);
   }
 
   getProfile() {
