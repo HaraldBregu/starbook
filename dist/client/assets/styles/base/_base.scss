@@ -323,7 +323,7 @@ textarea.form-control {
 }
 .form-group input {
   height: 50px !important;
-  border: 1px solid #DCDCDC;
+  // border: 1px solid #DCDCDC;
 }
 // .input-group input {
 //   height: 60px;
@@ -332,7 +332,7 @@ textarea.form-control {
 // }
 
 .form-group .error-input {
-  border: 2px solid #f75c4b !important;
+  border: 1px solid #f75c4b !important;
 }
 .form-group .error-message {
   color: #f75c4b;

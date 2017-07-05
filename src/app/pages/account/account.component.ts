@@ -31,8 +31,23 @@ export class AccountComponent implements OnInit {
   public Account = {}
   public account_state = {
     loading: false,
+    message_error: null,
+    message_success: null,
     firstname_error: null,
     lastname_error: null,
+  }
+  public Password = {
+    old: '',
+    new: '',
+    confirm: ''
+  }
+  public password_state = {
+    loading: false,
+    message_error: null,
+    message_success: null,
+    old_password_error: null,
+    new_password_error: null,
+    confirm_password_error: null,
   }
   public Picture = {
     url: '',
@@ -43,9 +58,6 @@ export class AccountComponent implements OnInit {
     url_error: '',
     file_error: null
   }
-
-  public logo = '';
-
   public Services = []
 
   constructor(private route: ActivatedRoute, private router: Router, private navigationService: NavigationService, private profileService: ProfileService, private analyticsService: AnalyticsService, private authService: AuthService, private seoService: SeoService, private contactService: ContactService, private popupsService: PopupsService, private commonService: CommonService) {
@@ -78,19 +90,19 @@ export class AccountComponent implements OnInit {
   ngOnInit() {
     this.route.params.subscribe(params => {
       this.page = params['page']
+      if (isBrowser) { window.scrollTo(0, 0) }
       if (this.page==="services") {
         this.commonService.getMyServices().then((data) => {
-          console.log('service data' + JSON.stringify(data));
+          // console.log('service data' + JSON.stringify(data));
           this.Services = data.result;
         }).catch((error) => {
-          console.log('service error' + JSON.stringify(error));
+          // console.log('service error' + JSON.stringify(error));
         })
       }
     })
   }
 
   saveInformations() {
-    // console.log(JSON.stringify(this.Account));
     this.account_state.loading = true
     this.profileService.updateProfile(this.Account).then((data) => {
       if (data.success) {
@@ -141,6 +153,66 @@ export class AccountComponent implements OnInit {
     reader.readAsDataURL(fileInput.target.files[0])
     this.Picture.file = this.Picture.url
     this.picture_state.file_error = null
+  }
+
+  updateEmail() {
+    if (this.account_state.loading) {return}
+    if (this.Account['email'].length === 0) {
+      this.account_state.message_error = "Per favore, inserisci un email!"
+      return
+    }
+    this.account_state.loading = true
+    this.account_state.message_error = null
+    this.account_state.message_success = null
+    this.profileService.changeEmail({email:this.Account['email']}).then((data) => {
+      this.account_state.loading = false
+      this.account_state.message_success = "Verifica la nuova email clicando il link che ti abbiamo inviato nella vecchia email."
+    }).catch((error) => {
+      this.account_state.loading = false
+      this.account_state.message_error = null
+      if (error.status === 401) {
+        this.account_state.message_error = "Errore nel cambio email";
+      }
+      else if (error.status === 409) {
+        this.account_state.message_error = "La nuova email scelta esiste gia, scegli un indirizzo diverso."
+      }
+    })
+  }
+
+  updatePassword() {
+    if (this.password_state.loading) {return;}
+    if (this.Password.old.length !== 0 && this.Password.new.length !== 0 && this.Password.confirm.length !== 0) {
+      if (this.Password.new !== this.Password.confirm) {
+        this.password_state.message_error = "Per favore, conferma correttamente la nuova password!";
+        return;
+      }
+    }
+    else if (this.Password.old.length === 0 || this.Password.new.length === 0 || this.Password.confirm.length === 0) {
+      this.password_state.message_error = "Per favore, compila tutti i campi richiesti!";
+      return;
+    }
+    this.password_state.loading = true;
+    this.password_state.message_success = null;
+    this.password_state.message_error = null;
+    this.profileService.changePassword(this.Password).then((data) => {
+      this.password_state.loading = false;
+      this.Password.old = '';
+      this.Password.new = '';
+      this.Password.confirm = '';
+      this.password_state.message_success = "Verifica la nuova password clicando il link che ti abbiamo inviato tramite mail.";
+      this.password_state.message_error = null;
+    }).catch((error) => {
+      // console.log('error: ' + JSON.stringify(error));
+      this.password_state.loading = false;
+      this.password_state.message_success = null;
+      this.password_state.message_error = "Errore nel cambio password";
+      if (error.status === 401) {
+        this.password_state.message_error = "La password attuale inserita non è corretta.";
+      }
+      if (error.status === 422) {
+        this.password_state.message_error = "Per favore, inserisci tutti i parametri richiesti correttamente.";
+      }
+    })
   }
 
   checkImageUrlFromAccount(account) {

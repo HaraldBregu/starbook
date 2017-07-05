@@ -8,8 +8,8 @@ export class ProfileService {
   private api: string;
   private auth;
   constructor(private http: Http) {
-    this.api = 'https://api.starbook.co/v0.9.1/'
-    // this.api = 'http://localhost/t0.9.1/'
+    // this.api = 'https://api.starbook.co/v0.9.1/'
+    this.api = 'http://localhost/t0.9.1/'
   }
 
   private _makeHeaders() {
@@ -52,8 +52,26 @@ export class ProfileService {
     return Promise.reject(error);
   }
 
+  // CHANGE EMAIL AND SAVE
+  changeEmail(data) {
+    return this.http.post(this.api + 'change_email', data, this._makeHeaders()).toPromise().then((response) => {
+      return response.json();
+    }).catch(this.handleError);
+  }
+  saveEmail(code) {
+    return this.http.get(this.api + 'save_email?code=' + code).toPromise().then((response) => {
+      return response.json();
+    }).catch(this.handleError);
+  }
+
+  // CHANGE PASSWORD AND SAVE
   changePassword(data) {
     return this.http.put(this.api + 'change_password', data, this._makeHeaders()).toPromise().then((response) => {
+      return response.json();
+    }).catch(this.handleError);
+  }
+  verifyNewPassword(code) {
+    return this.http.get(this.api + 'save_password?code=' + code).toPromise().then((response) => {
       return response.json();
     }).catch(this.handleError);
   }
@@ -61,14 +79,6 @@ export class ProfileService {
   // NEW
   verifyEmail(code) {
     return this.http.get(this.api + 'email_verification?code=' + code)
-      .toPromise()
-      .then((response) => {
-        return response.json();
-      })
-      .catch(this.handleError);
-  }
-  verifyNewPassword(code) {
-    return this.http.get(this.api + 'save_password?code=' + code)
       .toPromise()
       .then((response) => {
         return response.json();

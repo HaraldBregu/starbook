@@ -147,22 +147,18 @@ app-account {
 
         .services {
           overflow: auto;
-          // padding: 10px;
           .service-container {
             float: left;
             width: calc(100% / 4);
             padding: 10px;
             .service {
               position: relative;
-              // border-radius: 9px;
               height: 250px;
               text-align: center;
-              // background-color: #bbb;
               background-color: #ffd87c;
               background-size: cover;
               background-repeat: no-repeat;
               background-position: center;
-              // background-image: url("https://a0.muscache.com/im/pictures/e370dcdf-89d7-42af-9fde-f3880ba076ab.jpg?aki_policy=profile_x_medium");
               .overlay {
                 position: absolute;
                 top: 0;
@@ -237,6 +233,24 @@ app-account {
               font-size: 16px !important;
               color: #484848;
             }
+          }
+        }
+
+        .row-actions {
+          .btn {
+            padding: 0 30px;
+            font-size: 18px;
+            border-radius: 3px;
+          }
+          .error-message {
+            display: block;
+            margin: 10px 0;
+            color: red;
+          }
+          .success-message {
+            display: block;
+            margin: 10px 0;
+            color: green;
           }
         }
 

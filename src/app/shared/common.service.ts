@@ -12,8 +12,8 @@ export class CommonService {
   private data = {};
 
   constructor(private http: Http/*, private navigationService: NavigationService */) {
-    this.api = 'https://api.starbook.co/v0.9.1/';
-    // this.api = 'http://localhost/t0.9.1/';
+    // this.api = 'https://api.starbook.co/v0.9.1/';
+    this.api = 'http://localhost/t0.9.1/';
   }
 
   setObjectForKey(object, key) {

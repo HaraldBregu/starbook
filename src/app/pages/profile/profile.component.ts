@@ -262,7 +262,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
       if (error.status === 422) {
         this.password_state.message_error = "Inserisci tutti i parametri richiesti correttamente.";
       }
-    });
+    })
   }
 
   ////////////////////////

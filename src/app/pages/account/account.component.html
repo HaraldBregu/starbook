@@ -56,14 +56,6 @@
               <small class="form-text text-muted">Il numero sarà condiviso solo quando avrai una prenotazione confermata con un altro utente Starbook. È così che entrerete in contatto.</small>
             </div>
           </div>
-          <!-- <div class="form-group row">
-            <label for="email-input" class="col-md-2 col-form-label">Indirizzo email</label>
-            <div class="col-md-10">
-              <input class="form-control" type="text" value="john@gmail.com" id="email-input">
-              <small class="form-text text-muted">Non condivideremo il tuo indirizzo privato di posta elettronica con altri utenti e non sara mai pubblico.</small>
-            </div>
-          </div>
-           -->
         </form>
       </div>
     </div>
@@ -101,6 +93,62 @@
     <div class="account-body">
       <div class="reviews">
         <p>Al momento non ci sono ancora recensioni pubblicate o ricevute.</p>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="page==='settings'">
+    <div class="account">
+      <div class="account-top-bar">Gestisci la tua email</div>
+      <div class="account-body">
+        <form>
+          <div class="form-group row">
+            <label for="email-input" class="col-md-2 col-form-label">Indirizzo email</label>
+            <div class="col-md-10">
+              <input class="form-control" type="text" id="email-input" [(ngModel)]="Account.email" [ngModelOptions]="{standalone: true}">
+              <small class="form-text text-muted">Non condivideremo il tuo indirizzo privato di posta elettronica con altri utenti e non sara mai pubblico.</small>
+            </div>
+          </div>
+          <div class="row row-actions text-right">
+            <div class="col-md-12">
+              <span class="error-message" *ngIf="account_state.message_error">{{account_state.message_error}}</span>
+              <span class="success-message" *ngIf="account_state.message_success">{{account_state.message_success}}</span>
+              <button type="submit" class="btn btn-danger" (click)="updateEmail()">Aggiorna Email</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="account">
+      <div class="account-top-bar">Gestisci la tua password</div>
+      <div class="account-body">
+        <form>
+          <div class="form-group row">
+            <label for="old-password-input" class="col-md-2 col-form-label">Vecchia Password</label>
+            <div class="col-md-10">
+              <input type="password" class="form-control" id="old-password-input" name="password" [ngClass]="{'error-input': password_state.message_error}" [(ngModel)]="Password.old">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="new-password-input" class="col-md-2 col-form-label">Nuova Password</label>
+            <div class="col-md-10">
+              <input type="password" class="form-control" id="new-password-input" name="password" [ngClass]="{'error-input': password_state.message_error}" [(ngModel)]="Password.new">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="confirm-password-input" class="col-md-2 col-form-label">Conferma Password:</label>
+            <div class="col-md-10">
+              <input type="password" class="form-control" id="confirm-password-input" name="password" [ngClass]="{'error-input': password_state.message_error}" [(ngModel)]="Password.confirm">
+            </div>
+          </div>
+          <div class="row row-actions text-right">
+            <div class="col-md-12">
+              <span class="error-message" *ngIf="password_state.message_error">{{password_state.message_error}}</span>
+              <span class="success-message" *ngIf="password_state.message_success">{{password_state.message_success}}</span>
+              <button type="submit" class="btn btn-danger" (click)="updatePassword()"><i class="fa fa-circle-o-notch animate" *ngIf="password_state.loading"></i> Aggiorna Password</button>
+            </div>
+          </div>
+        </form>
       </div>
     </div>
   </div>
