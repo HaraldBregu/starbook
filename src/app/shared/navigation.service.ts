@@ -29,7 +29,6 @@ export class NavigationService {
   }
 
   updatePersonalMenu(auth) {
-    console.log('auth is: ' + JSON.stringify(auth));
     this.authData.next(auth);
   }
 

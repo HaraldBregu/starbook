@@ -261,7 +261,13 @@ export class InsertComponent implements OnInit {
     AWSService.config.accessKeyId = "AKIAI3TIRNH4DG7MGC7Q";
     AWSService.config.secretAccessKey = "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";
     let bucket = new AWSService.S3()
-    let params = {Bucket: 'starbook-s3', Key:path, Body:file, ACL:"public-read"}
+    let params = {
+      Bucket: 'starbook-s3',
+      Key:path,
+      Body:file,
+      ACL:"public-read",
+      CacheControl: "public, max-age=8"
+    }
     bucket.upload(params, (error, res) => {
       this.commonService.deleteObjectForKey("insert_service")
       if (!error) {

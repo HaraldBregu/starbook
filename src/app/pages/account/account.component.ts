@@ -108,11 +108,11 @@ export class AccountComponent implements OnInit {
       if (data.success) {
         let profileData = {};
         if (isBrowser) {
+          this.Account['profile']['fullname'] = this.Account['profile']['firstname'] + ' ' + this.Account['profile']['lastname']
           if (localStorage.getItem('auth') !== null) {
             localStorage.setItem('auth', JSON.stringify(this.Account));
           }
         }
-        this.Account['profile']['fullname'] = this.Account['profile']['firstname'] + ' ' + this.Account['profile']['lastname']
         this.navigationService.updatePersonalMenu(this.Account);
         if (this.Picture.file) {
           this.saveProfilePictureToPath(this.Picture.file, 'accounts/' + this.Account['_id'] + '/avatar/0')
@@ -131,13 +131,19 @@ export class AccountComponent implements OnInit {
       AWSService.config.accessKeyId = "AKIAI3TIRNH4DG7MGC7Q";
       AWSService.config.secretAccessKey = "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";
       let bucket = new AWSService.S3()
-      let params = {Bucket: 'starbook-s3', Key:path, Body:file, ACL:"public-read"}
+      let params = {
+        Bucket: 'starbook-s3',
+        Key:path,
+        Body:file,
+        ACL:"public-read",
+        CacheControl: "public, max-age=8"
+      }
       bucket.upload(params, (error, res) => {
         this.account_state.loading = false
         if (!error) {
-          // console.log('res upload file: ' + JSON.stringify(res));
+          console.log('res upload file: ' + JSON.stringify(res));
         } else {
-          // console.log('error upload file: ' + error);
+          console.log('error upload file: ' + error);
         }
       })
     }

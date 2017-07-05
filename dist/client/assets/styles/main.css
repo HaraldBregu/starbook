@@ -8594,21 +8594,64 @@ app-auth {
         font-weight: 400;
         margin-bottom: 20px;
         cursor: pointer; }
-    app-auth .auth-container .auth .auth-body .category-tags {
+  app-auth .auth-container .worker {
+    padding: 60px 10px;
+    max-width: 700px;
+    margin: auto; }
+    app-auth .auth-container .worker .worker-header {
       text-align: center; }
-      app-auth .auth-container .auth .auth-body .category-tags .category-example {
+      app-auth .auth-container .worker .worker-header h1 {
+        font-weight: 300;
+        color: black;
+        line-height: inherit; }
+        app-auth .auth-container .worker .worker-header h1 span {
+          font-weight: 500; }
+        app-auth .auth-container .worker .worker-header h1 .one {
+          color: #2980b9; }
+        app-auth .auth-container .worker .worker-header h1 .two {
+          color: #f39c12; }
+      app-auth .auth-container .worker .worker-header p {
+        font-weight: 300;
+        margin-top: 20px; }
+    app-auth .auth-container .worker .worker-body {
+      margin-top: 20px;
+      margin-bottom: 30px; }
+      app-auth .auth-container .worker .worker-body .avatar {
+        position: relative;
         display: inline-block;
-        height: 40px;
-        line-height: 40px;
-        margin: 5px;
-        border-radius: 20px;
-        background: #eceeef;
-        padding: 0 20px;
-        font-size: 19px;
-        height: 40px;
-        color: rgba(0, 0, 0, 0.5); }
-    app-auth .auth-container .auth .auth {
-      padding: 30px; }
+        text-align: center;
+        width: 100%;
+        height: 150px;
+        background-color: #bbb;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center; }
+        app-auth .auth-container .worker .worker-body .avatar .overlay {
+          width: 100%;
+          height: 100%;
+          background: -moz-radial-gradient(transparent 75px, rgba(255, 255, 255, 0.4) 75px);
+          background: -webkit-radial-gradient(transparent 75px, rgba(255, 255, 255, 0.4) 75px);
+          background: -ms-radial-gradient(transparent 75px, rgba(255, 255, 255, 0.4) 75px);
+          background: -o-radial-gradient(transparent 75px, rgba(255, 255, 255, 0.4) 75px);
+          pointer-events: none; }
+      app-auth .auth-container .worker .worker-body .content .btn {
+        padding: 0 30px;
+        font-size: 18px;
+        border-radius: 3px;
+        margin-top: 20px; }
+      app-auth .auth-container .worker .worker-body .content p {
+        font-size: 16px !important;
+        color: #484848; }
+      app-auth .auth-container .worker .worker-body label {
+        font-size: 16px !important;
+        text-align: right; }
+      app-auth .auth-container .worker .worker-body .actions .btn {
+        padding: 0 30px;
+        text-transform: uppercase;
+        font-size: 20px;
+        font-weight: 600;
+        border-radius: 2px;
+        height: 60px; }
 
 app-requests {
   display: block;

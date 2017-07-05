@@ -99,6 +99,32 @@ export class AuthComponent implements OnInit {
   public currentUser;
   public seoObject = {}
 
+  public Account = {
+    email:'',
+    phone_number: '',
+    profile: {
+
+    }
+  }
+  public account_state = {
+    message_error: null,
+    success_error: null,
+  }
+  public Password = {
+    old:'',
+    new: '',
+    confirm: ''
+  }
+  public Picture = {
+    url: '',
+    file: null
+  }
+  public picture_state = {
+    loading: false,
+    url_error: '',
+    file_error: null
+  }
+
   constructor(private route: ActivatedRoute, private router: Router, private navigationService: NavigationService, private profileService: ProfileService, private analyticsService: AnalyticsService, private authService: AuthService, private seoService: SeoService, private contactService: ContactService) {
     this.emailPattern = /^[a-z0-9!#$%&'*+\/=?^_`{|}~.-]+@[a-z0-9]([a-z0-9-]*[a-z0-9])?(\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)*$/i;
     if (isBrowser) { this.currentUser = JSON.parse(localStorage.getItem('auth')) }
@@ -454,6 +480,15 @@ export class AuthComponent implements OnInit {
       setTimeout(function() {self.checkAccessToken(facebookWindow, context + 1, timeStart)}, 200);
     }
   }
+
+  getPicture() {
+    if (this.Picture.url) {
+      return this.Picture.url
+    } else {
+      return 'https://s3-eu-west-1.amazonaws.com/starbook-s3/website/user_no_pic.png'
+    }
+  }
+
   sendEmail(subject, message) {
     var email = {
       subject : subject,
