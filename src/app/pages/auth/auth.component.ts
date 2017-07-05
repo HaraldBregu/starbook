@@ -117,13 +117,17 @@ export class AuthComponent implements OnInit {
           this.seoObject['title'] = "Iscriviti a Starbook";
           this.seoObject['description'] = "Su Starbook troverai i migliori servizi per la tua casa e i migliori professionisti della tua zona.";
         }
-        else if (this.page === 'password_recovery' && !this.currentUser) {
-          this.seoObject['title'] = "Iscriviti a Starbook";
-          this.seoObject['description'] = "Su Starbook troverai i migliori servizi per la tua casa e i migliori professionisti della tua zona.";
-        }
         else if (this.page === 'professional' && !this.currentUser) {
           this.seoObject['title'] = "Registra la tua attività gratuitamente";
           this.seoObject['description'] = "Lavori nel mondo dell'edilizia, idraulica, sei un elettrico e esegui lavori particolari artigianali nelle case? Unisciti a noi e collaboreremo per aumentare la professionalità e la clientela in modo smart.";
+        }
+        else if (this.page === 'worker') {
+          this.seoObject['title'] = "Registra la tua attività gratuitamente";
+          this.seoObject['description'] = "Lavori nel mondo dell'edilizia, idraulica, sei un elettrico e esegui lavori particolari artigianali nelle case? Unisciti a noi e collaboreremo per aumentare la professionalità e la clientela in modo smart.";
+        }
+        else if (this.page === 'password_recovery' && !this.currentUser) {
+          this.seoObject['title'] = "Iscriviti a Starbook";
+          this.seoObject['description'] = "Su Starbook troverai i migliori servizi per la tua casa e i migliori professionisti della tua zona.";
         }
         else if (this.page === 'email_verification') {
           var code = params['code']

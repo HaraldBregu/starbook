@@ -3198,8 +3198,6 @@ app-root .navbar {
   height: 70px; }
 app-root .navbar-fixed-top {
   border: 0; }
-app-root .border {
-  border-bottom: 1px solid #DBDBDB; }
 app-root .bg-inverse {
   background-color: white !important;
   padding: 0 !important; }
@@ -8488,12 +8486,12 @@ app-auth {
   app-auth .auth-container .input-group .form-control:focus {
     border: 2px solid #16A084 !important; }
   app-auth .auth-container .auth {
-    padding: 60px 10px; }
+    padding: 60px 10px;
+    max-width: 500px;
+    margin: auto; }
     app-auth .auth-container .auth .auth-header {
       text-align: center;
-      padding-bottom: 30px;
-      max-width: 700px;
-      margin: auto; }
+      padding-bottom: 30px; }
       app-auth .auth-container .auth .auth-header h1 {
         font-weight: 300;
         color: black;
@@ -8507,111 +8505,108 @@ app-auth {
       app-auth .auth-container .auth .auth-header p {
         font-weight: 300;
         margin-top: 20px; }
-    app-auth .auth-container .auth .auth-body {
-      margin: auto;
-      max-width: 500px; }
-      app-auth .auth-container .auth .auth-body .error {
-        text-align: center; }
-        app-auth .auth-container .auth .auth-body .error .error-text {
-          color: #f75c4b; }
-      app-auth .auth-container .auth .auth-body .actions {
-        margin-top: 30px; }
-      app-auth .auth-container .auth .auth-body .price-per-unit {
-        height: 60px;
-        overflow: auto;
-        margin-bottom: 15px; }
-        app-auth .auth-container .auth .auth-body .price-per-unit .input-group {
-          float: left;
-          width: 47.5%; }
-        app-auth .auth-container .auth .auth-body .price-per-unit .euro {
-          font-size: 22px;
-          padding: 0 20px;
-          background: white;
-          border-radius: 0; }
-        app-auth .auth-container .auth .auth-body .price-per-unit .per {
-          width: 5%;
-          float: left;
-          font-size: 20px;
-          text-align: center;
-          line-height: 60px;
-          font-weight: 300; }
-      app-auth .auth-container .auth .auth-body .btn {
-        padding: 0 30px;
-        text-transform: uppercase;
+    app-auth .auth-container .auth .auth-body .error {
+      text-align: center; }
+      app-auth .auth-container .auth .auth-body .error .error-text {
+        color: #f75c4b; }
+    app-auth .auth-container .auth .auth-body .actions {
+      margin-top: 30px; }
+    app-auth .auth-container .auth .auth-body .price-per-unit {
+      height: 60px;
+      overflow: auto;
+      margin-bottom: 15px; }
+      app-auth .auth-container .auth .auth-body .price-per-unit .input-group {
+        float: left;
+        width: 47.5%; }
+      app-auth .auth-container .auth .auth-body .price-per-unit .euro {
+        font-size: 22px;
+        padding: 0 20px;
+        background: white;
+        border-radius: 0; }
+      app-auth .auth-container .auth .auth-body .price-per-unit .per {
+        width: 5%;
+        float: left;
         font-size: 20px;
-        font-weight: 600;
-        border-radius: 2px;
-        height: 60px; }
-      app-auth .auth-container .auth .auth-body .picture-container {
-        margin-bottom: 30px; }
-        app-auth .auth-container .auth .auth-body .picture-container .service-picture {
-          max-width: 288px;
-          height: 360px;
-          background: #f1f1f1;
-          margin: auto;
-          font-size: 30px;
-          color: white; }
-          app-auth .auth-container .auth .auth-body .picture-container .service-picture i {
-            position: absolute;
-            margin-left: 129px;
-            margin-top: 153px;
-            color: #d2d2d2; }
-          app-auth .auth-container .auth .auth-body .picture-container .service-picture img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            line-height: 415px;
-            font-size: 18px;
-            text-align: center;
-            color: #d2d2d2; }
-        app-auth .auth-container .auth .auth-body .picture-container .profile-picture {
-          width: 160px;
-          height: 160px;
-          background: #f1f1f1;
-          margin: auto;
-          font-size: 30px;
-          color: white; }
-          app-auth .auth-container .auth .auth-body .picture-container .profile-picture i {
-            position: absolute;
-            margin-left: 65px;
-            margin-top: 65px;
-            color: #d2d2d2; }
-          app-auth .auth-container .auth .auth-body .picture-container .profile-picture img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            line-height: 300px;
-            font-size: 18px;
-            text-align: center;
-            color: transparent; }
-      app-auth .auth-container .auth .auth-body .form-group .ui-inputtext {
-        color: black;
-        font-size: 16px; }
-      app-auth .auth-container .auth .auth-body .footer-group {
         text-align: center;
-        font-size: 16px;
-        font-weight: 300;
-        padding: 10px 0; }
-        app-auth .auth-container .auth .auth-body .footer-group .text {
-          display: block; }
-        app-auth .auth-container .auth .auth-body .footer-group .enter, app-auth .auth-container .auth .auth-body .footer-group .password-forget, app-auth .auth-container .auth .auth-body .footer-group .facebook-continue {
-          color: #16a085;
-          font-weight: 400;
-          margin-bottom: 20px;
-          cursor: pointer; }
-      app-auth .auth-container .auth .auth-body .category-tags {
-        text-align: center; }
-        app-auth .auth-container .auth .auth-body .category-tags .category-example {
-          display: inline-block;
-          height: 40px;
-          line-height: 40px;
-          margin: 5px;
-          border-radius: 20px;
-          background: #eceeef;
-          padding: 0 20px;
-          font-size: 19px;
-          height: 40px;
-          color: rgba(0, 0, 0, 0.5); }
+        line-height: 60px;
+        font-weight: 300; }
+    app-auth .auth-container .auth .auth-body .btn {
+      padding: 0 30px;
+      text-transform: uppercase;
+      font-size: 20px;
+      font-weight: 600;
+      border-radius: 2px;
+      height: 60px; }
+    app-auth .auth-container .auth .auth-body .picture-container {
+      margin-bottom: 30px; }
+      app-auth .auth-container .auth .auth-body .picture-container .service-picture {
+        max-width: 288px;
+        height: 360px;
+        background: #f1f1f1;
+        margin: auto;
+        font-size: 30px;
+        color: white; }
+        app-auth .auth-container .auth .auth-body .picture-container .service-picture i {
+          position: absolute;
+          margin-left: 129px;
+          margin-top: 153px;
+          color: #d2d2d2; }
+        app-auth .auth-container .auth .auth-body .picture-container .service-picture img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          line-height: 415px;
+          font-size: 18px;
+          text-align: center;
+          color: #d2d2d2; }
+      app-auth .auth-container .auth .auth-body .picture-container .profile-picture {
+        width: 160px;
+        height: 160px;
+        background: #f1f1f1;
+        margin: auto;
+        font-size: 30px;
+        color: white; }
+        app-auth .auth-container .auth .auth-body .picture-container .profile-picture i {
+          position: absolute;
+          margin-left: 65px;
+          margin-top: 65px;
+          color: #d2d2d2; }
+        app-auth .auth-container .auth .auth-body .picture-container .profile-picture img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          line-height: 300px;
+          font-size: 18px;
+          text-align: center;
+          color: transparent; }
+    app-auth .auth-container .auth .auth-body .form-group .ui-inputtext {
+      color: black;
+      font-size: 16px; }
+    app-auth .auth-container .auth .auth-body .footer-group {
+      text-align: center;
+      font-size: 16px;
+      font-weight: 300;
+      padding: 10px 0; }
+      app-auth .auth-container .auth .auth-body .footer-group .text {
+        display: block; }
+      app-auth .auth-container .auth .auth-body .footer-group .enter, app-auth .auth-container .auth .auth-body .footer-group .password-forget, app-auth .auth-container .auth .auth-body .footer-group .facebook-continue {
+        color: #16a085;
+        font-weight: 400;
+        margin-bottom: 20px;
+        cursor: pointer; }
+    app-auth .auth-container .auth .auth-body .category-tags {
+      text-align: center; }
+      app-auth .auth-container .auth .auth-body .category-tags .category-example {
+        display: inline-block;
+        height: 40px;
+        line-height: 40px;
+        margin: 5px;
+        border-radius: 20px;
+        background: #eceeef;
+        padding: 0 20px;
+        font-size: 19px;
+        height: 40px;
+        color: rgba(0, 0, 0, 0.5); }
     app-auth .auth-container .auth .auth {
       padding: 30px; }
 

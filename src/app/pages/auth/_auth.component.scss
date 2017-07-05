@@ -21,11 +21,13 @@ app-auth {
     }
     .auth {
       padding: 60px 10px;
+      max-width: 500px;
+      margin: auto;
       .auth-header {
         text-align: center;
         padding-bottom: 30px;
-        max-width: 700px;
-        margin: auto;
+        // max-width: 700px;
+        // margin: auto;
         h1 {
           font-weight: 300;
           color: black;
@@ -46,8 +48,8 @@ app-auth {
         }
       }
       .auth-body {
-        margin: auto;
-        max-width: 500px;
+        // margin: auto;
+        // max-width: 500px;
         .error {
           text-align: center;
           .error-text {

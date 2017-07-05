@@ -38,10 +38,12 @@ export class AppComponent implements OnInit, OnDestroy {
   };
   public collapsed = false;
   public page = null;
-  public hasBottomBorderNav = true;
+  // public hasBottomBorderNav = true;
   public hasCenterContainer = true;
   public hasRightContainer = true;
   public hasPublishService = false;
+
+  public border_bottom_color = "1px solid #DBDBDB"
 
   constructor (public router:Router, private route: ActivatedRoute, private authServics: AuthService, private navigationService: NavigationService, private popupsService: PopupsService, private commonService: CommonService, private analyticsService: AnalyticsService, private seoService: SeoService) {
     this.navbarState = false;
@@ -79,10 +81,12 @@ export class AppComponent implements OnInit, OnDestroy {
           }
 
           this.page = null;
-          this.hasBottomBorderNav = true;
+          // this.hasBottomBorderNav = true;
           this.hasCenterContainer = true;
           this.hasRightContainer = true;
           this.hasPublishService = false;
+
+          this.border_bottom_color = "1px solid #DBDBDB"
 
           if ('name' in currentRoute.snapshot.data) {
             var data = currentRoute.snapshot.data;
@@ -94,9 +98,10 @@ export class AppComponent implements OnInit, OnDestroy {
             this.hasPublishService = true;
           }
           if (this.page === "Insert") {
-            this.hasBottomBorderNav = false;
+            // this.hasBottomBorderNav = false;
             this.hasCenterContainer = false;
             this.hasRightContainer = false;
+            this.border_bottom_color = "0"
           }
           if (this.page==='Service') {
             // this.hasPublishService = false;
@@ -106,13 +111,15 @@ export class AppComponent implements OnInit, OnDestroy {
           }
           if (this.page === "Auth") {
             this.hasRightContainer = false;
+            this.border_bottom_color = "1px solid #1abc9c"
           }
           if (this.page === "Order") {
             this.hasRightContainer = false;
           }
           if (this.page === "Checkout") {
-            this.hasBottomBorderNav = false;
+            // this.hasBottomBorderNav = false;
             this.hasRightContainer = false;
+            this.border_bottom_color = "0"
           }
           // console.log('page is: ' + this.page);
         }
@@ -177,7 +184,20 @@ export class AppComponent implements OnInit, OnDestroy {
       this.router.navigate(['']);
     }
   }
-
+  brandLogo() {
+    if (this.screenWidth > 768) {
+      return "/assets/images/brand-logo-name-rotated.png"
+    }
+    else if ((this.screenWidth < 769) && this.hasRightContainer && !this.collapsed) {
+      return "/assets/images/brand-logo-rotated.png"
+    }
+    else if ((this.screenWidth < 769) && this.hasRightContainer && this.collapsed) {
+      return "/assets/images/brand-logo-right.png"
+    }
+    else if ((this.screenWidth < 769) && !this.hasRightContainer) {
+      return "/assets/images/brand-logo-rotated.png"
+    }
+  }
   getLoginPopup() {
     this.popupsService.activate({type: 'login'});
     this.toggleMenu();

@@ -94,27 +94,6 @@
       </form>
     </div>
   </div>
-  <div class="auth" *ngIf="page==='password_recovery'">
-    <div class="auth-header">
-      <h1>Recupera password</h1>
-      <p>Ti manderemo una mail con il link per cambiare la password.</p>
-    </div>
-    <div class="auth-body">
-      <form>
-        <div class="form-group">
-          <label for="emailInput">Inserisci la tua email</label>
-          <input type="email" placeholder="La tua email" class="form-control" [ngClass]="{'error-input': login_state.email_error}" id="emailInput" [(ngModel)]="loginParameters.email" [ngModelOptions]="{standalone: true}">
-          <small class="error-message" *ngIf="login_state.email_error">{{login_state.email_error}}</small>
-        </div>
-        <div class="form-group text-center">
-          <button type="button" id="next" class="btn btn-success" (click)="recoverPassword(loginParameters.email)"><i class="fa fa-circle-o-notch animate" *ngIf="login_state.loading"></i>Recupera</button>
-        </div>
-        <div class="form-group footer-group">
-          <span class="text enter" (click)="changeToLogin()">Accedi</span>
-        </div>
-      </form>
-    </div>
-  </div>
   <div class="auth" *ngIf="page==='professional'">
     <div class="auth-header">
       <h1>Registra la tua attività gratuitamente</h1>
@@ -172,6 +151,96 @@
           <span class="text">Sei gia registrato?</span>
           <span class="text enter" (click)="changeToLogin()">Entra</span>
           <span class="text">Continuando dichiari di aver letto e accetti le <a routerlink="/info/legal" href="/info/legal" target="_blank">condizioni generali e l’informativa sulla privacy</a></span>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div *ngIf="page==='worker'">
+    <div class="auth">
+      <div class="auth-header">
+        <h1>Regitrati la tua professione</h1>
+        <p>Lavori nel mondo dell'edilizia, idraulica, sei un elettrico e esegui lavori particolari artigianali nelle case? Unisciti a noi e collaboreremo per aumentare la professionalità e la clientela in modo smart.</p>
+      </div>
+      <div class="auth-body">
+        <form>
+          <div class="form-group">
+            <label for="emailInput">Email</label>
+            <input type="email" placeholder="La tua mail" class="form-control" [ngClass]="{'error-input': signup_state.email_error}" id="emailInput" [(ngModel)]="signupParameters.email" [ngModelOptions]="{standalone: true}">
+            <small class="error-message" *ngIf="signup_state.email_error">{{signup_state.email_error}}</small>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="firstNameInput">Nome</label>
+                <input type="firstname" placeholder="Nome" class="form-control" [ngClass]="{'error-input': signup_state.first_name_error}" id="firstNameInput" [(ngModel)]="signupParameters.firstname" [ngModelOptions]="{standalone: true}">
+                <small class="error-message" *ngIf="signup_state.first_name_error">{{signup_state.first_name_error}}</small>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="lastNameInput">Cognome</label>
+                <input type="lastname" placeholder="Cognome" class="form-control" [ngClass]="{'error-input': signup_state.last_name_error}" id="lastNameInput" [(ngModel)]="signupParameters.lastname" [ngModelOptions]="{standalone: true}">
+                <small class="error-message" *ngIf="signup_state.last_name_error">{{signup_state.last_name_error}}</small>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="professionInput">Professione</label>
+            <input type="profession" placeholder="La tua professione" class="form-control" id="professionInput" [(ngModel)]="profession" [ngModelOptions]="{standalone: true}">
+          </div>
+          <div class="form-group">
+            <label for="phoneInput">Telefono</label>
+            <input type="phone" placeholder="Numero di telefono" class="form-control" [ngClass]="{'error-input': signup_state.phone_error}" id="phoneInput" [(ngModel)]="signupParameters.phone" [ngModelOptions]="{standalone: true}">
+            <small class="error-message" *ngIf="signup_state.phone_error">{{signup_state.phone_error}}</small>
+          </div>
+          <div class="form-group">
+            <label for="passwordInput">Password</label>
+            <input type="password" placeholder="Password" class="form-control" [ngClass]="{'error-input': signup_state.password_error}" id="passwordInput" [(ngModel)]="signupParameters.password" [ngModelOptions]="{standalone: true}">
+            <small class="error-message" *ngIf="signup_state.password_error">{{signup_state.password_error}}</small>
+          </div>
+          <div class="form-group">
+            <label for="confirmPasswordInput">Di nuovo la password</label>
+            <input type="password" placeholder="Password" class="form-control" [ngClass]="{'error-input': signup_state.confirm_password_error}" id="confirmPasswordInput" [(ngModel)]="signupParameters.confirmPassword" [ngModelOptions]="{standalone: true}">
+            <small class="error-message" *ngIf="signup_state.confirm_password_error">{{signup_state.confirm_password_error}}</small>
+          </div>
+          <div class="form-group" *ngIf="signup_state.error_message">
+            <div class="alert alert-danger" role="alert">{{signup_state.error_message}}</div>
+          </div>
+          <div class="form-group text-center">
+            <button type="button" id="next" class="btn btn-success" (click)="signupAsProfessional()"><i class="fa fa-circle-o-notch animate" *ngIf="signup_state.loading"></i>{{signup_state.button_title}}</button>
+          </div>
+          <div class="form-group footer-group">
+            <span class="text">Sei gia registrato?</span>
+            <span class="text enter" (click)="changeToLogin()">Entra</span>
+            <span class="text">Continuando dichiari di aver letto e accetti le <a routerlink="/info/legal" href="/info/legal" target="_blank">condizioni generali e l’informativa sulla privacy</a></span>
+          </div>
+        </form>
+      </div>
+      <div class="auth-header">
+        <h1>Inserisci i tuoi dati</h1>
+        <p>Lavori nel mondo dell'edilizia, idraulica, sei un elettrico e esegui lavori particolari artigianali nelle case? Unisciti a noi e collaboreremo per aumentare la professionalità e la clientela in modo smart.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="auth" *ngIf="page==='password_recovery'">
+    <div class="auth-header">
+      <h1>Recupera password</h1>
+      <p>Ti manderemo una mail con il link per cambiare la password.</p>
+    </div>
+    <div class="auth-body">
+      <form>
+        <div class="form-group">
+          <label for="emailInput">Inserisci la tua email</label>
+          <input type="email" placeholder="La tua email" class="form-control" [ngClass]="{'error-input': login_state.email_error}" id="emailInput" [(ngModel)]="loginParameters.email" [ngModelOptions]="{standalone: true}">
+          <small class="error-message" *ngIf="login_state.email_error">{{login_state.email_error}}</small>
+        </div>
+        <div class="form-group text-center">
+          <button type="button" id="next" class="btn btn-success" (click)="recoverPassword(loginParameters.email)"><i class="fa fa-circle-o-notch animate" *ngIf="login_state.loading"></i>Recupera</button>
+        </div>
+        <div class="form-group footer-group">
+          <span class="text enter" (click)="changeToLogin()">Accedi</span>
         </div>
       </form>
     </div>
