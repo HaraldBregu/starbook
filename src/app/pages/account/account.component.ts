@@ -112,6 +112,7 @@ export class AccountComponent implements OnInit {
             localStorage.setItem('auth', JSON.stringify(this.Account));
           }
         }
+        this.Account['profile']['fullname'] = this.Account['profile']['firstname'] + ' ' + this.Account['profile']['lastname']
         this.navigationService.updatePersonalMenu(this.Account);
         if (this.Picture.file) {
           this.saveProfilePictureToPath(this.Picture.file, 'accounts/' + this.Account['_id'] + '/avatar/0')

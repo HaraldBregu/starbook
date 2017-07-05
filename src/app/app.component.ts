@@ -144,7 +144,7 @@ export class AppComponent implements OnInit, OnDestroy {
         } else {
           this.auth = false;
         }
-      });
+      })
     }
     // this.loadingSubscription = this.navigationService.getLoadingStatus$.subscribe(status => {
     //   this.isLoading = status;

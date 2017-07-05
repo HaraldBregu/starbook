@@ -1,7 +1,7 @@
 <nav class="navbar navbar-dark navbar-fixed-top bg-inverse" [style.border-bottom]="border_bottom_color" (window:resize)="onResize()">
   <div class="container-starbook top-menu">
     <a class="navbar-brand" (click)="clickBrandLogo()">
-      <img [src]="brandLogo()" alt="starbook">
+      <img *ngIf="brandLogo()" [src]="brandLogo()" alt="starbook">
     </a>
 
     <div *ngIf="hasCenterContainer" class="center-container">
