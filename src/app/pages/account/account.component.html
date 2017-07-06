@@ -59,6 +59,29 @@
         </form>
       </div>
     </div>
+    <div class="account">
+      <div class="account-top-bar">Professione e attività</div>
+      <div class="account-body">
+        <form>
+          <div class="form-group row">
+            <label for="profession-input" class="col-md-2 col-form-label">Professione o attività</label>
+            <div class="col-md-9">
+              <input type="text" placeholder="Professione o attività" class="form-control" id="profession-input" [(ngModel)]="Account.business.tagline" [ngModelOptions]="{standalone: true}">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="price-input" class="col-md-2 col-form-label">Inserisci il costo orario</label>
+            <div class="col-md-9">
+              <div class="input-group">
+                <input id="price-input" type="number" class="form-control text-center" [(ngModel)]="Account.price.hourly" (keyup)="updatePrice()" (change)="updatePrice()" [ngModelOptions]="{standalone: true}">
+                <span class="input-group-addon" id="price-input">€</span>
+              </div>
+            </div>
+          </div>
+
+        </form>
+      </div>
+    </div>
     <div class="footer-actions">
       <button type="button" class="btn btn-danger" name="button" (click)="saveInformations()"><i class="fa fa-circle-o-notch animate" *ngIf="account_state.loading"></i> Salva</button>
     </div>

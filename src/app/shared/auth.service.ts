@@ -5,6 +5,17 @@ import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/operator/map';
 import { NavigationService } from './navigation.service';
 
+export interface IAccount {
+  _id?: string;
+  email?: string;
+  email_verified?: boolean;
+  phone_number?: string;
+  phone_number_verified?: boolean;
+  profile?: any;
+  business?: any;
+  price?: any;
+}
+
 @Injectable()
 export class AuthService {
   private protocol = "https"
@@ -12,6 +23,8 @@ export class AuthService {
   private api_version = "v0.9.1"
   private api = 'https://api.starbook.co/v0.9.1/';
   private auth;
+
+  private Account: IAccount;
 
   constructor(private http: Http, private navigationService: NavigationService) {
     if (isBrowser) {
@@ -91,38 +104,48 @@ export class AuthService {
   // }
 
   login(email: string, password: string) {
-    // this.navigationService.updateLoadingStatus(true);
-    return this.http.post(this.api + 'login', {email: email, password: password})
-      .toPromise()
-      .then((response) => {
-        // this.navigationService.updateLoadingStatus(false);
-        let data = response.json();
-        if (data.success === true) {
-          let authData = {
-            _id: data.result._id,
-            email: data.result.email,
-            email_verified: data.result.email_verified,
-            phone_number: data.result.phone_number,
-            account_types: data.result.account_types,
-            profile: data.result.profile,
-            company: data.result.company,
-            address: data.result.address,
-            services: data.result.services,
-            locations: data.result.locations,
-            payment: data.result.payment,
-            created_at: data.result.created_at,
-            updated_at: data.result.updated_at,
-            token: data.token
-          };
-          if (isBrowser) {
-            localStorage.setItem('auth', JSON.stringify(authData));
-          }
-          this.navigationService.updatePersonalMenu(data.result);
-          return authData;
-        } else {
-          this.handleError(data.message);
-        }
-      }).catch(this.handleError);
+    return this.http.post(this.api + 'login', {email: email, password: password}).toPromise().then((response) => {
+      // let data = response.json()
+      // if (data.success === true) {
+      //   let authData = {
+      //     _id: data.result._id,
+      //     email: data.result.email,
+      //     email_verified: data.result.email_verified,
+      //     phone_number: data.result.phone_number,
+      //     account_types: data.result.account_types,
+      //     profile: data.result.profile,
+      //     company: data.result.company,
+      //     address: data.result.address,
+      //     services: data.result.services,
+      //     locations: data.result.locations,
+      //     payment: data.result.payment,
+      //     created_at: data.result.created_at,
+      //     updated_at: data.result.updated_at,
+      //     token: data.token
+      //   }
+      //   if (isBrowser) {
+      //     localStorage.setItem('auth', JSON.stringify(authData));
+      //   }
+      //   this.navigationService.updatePersonalMenu(data.result);
+      //   return authData;
+      // } else {
+      //   this.handleError(data.message);
+      // }
+      if (isBrowser) {
+        let data = response.json()
+        var account = data.result
+
+        // this.Account._id = account['_id']
+        // this.Account.business = account['business']
+        //
+        // console.log('account is: ' + JSON.stringify(this.Account));
+
+        account['token'] = data.token
+        localStorage.setItem('auth', JSON.stringify(account))
+        this.navigationService.updatePersonalMenu(data.result);
+        return account
+      }
+    }).catch(this.handleError);
   }
 
   signupProfessional(firstname: string, lastname: string, phone: string, email: string, password: string, account_type: string) {

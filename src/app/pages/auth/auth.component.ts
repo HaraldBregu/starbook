@@ -504,8 +504,9 @@ export class AuthComponent implements OnInit {
       this.Account.business.tagline.length===0 || this.Account.price.hourly<=0 ||
       this.Password.new.length===0) {
       this.registration_state.message_error = "Per favore, inserisci tutti i campi.";
-      // return
+      return
     }
+    this.Account.price.hourly *= 100
     if (this.Picture.url.length===0) {
       this.registration_state.message_error = "Per favore, carica una foto del tuo volto.";
       return

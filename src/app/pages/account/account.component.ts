@@ -17,6 +17,7 @@ require('aws-sdk/dist/aws-sdk')
   selector: 'app-account',
   templateUrl: './account.component.html'
 })
+
 export class AccountComponent implements OnInit {
   public emailPattern: any;
   subscription: Subscription;
@@ -28,7 +29,22 @@ export class AccountComponent implements OnInit {
     {name: 'Impostazioni', route: 'settings', icon:"fa-cog"},
   ]
 
-  public Account = {}
+  public Account = {
+    email:'',
+    phone_number: '',
+    profile: {
+      firstname: '',
+      lastname:'',
+      description: ''
+    },
+    business: {
+      name:'',
+      tagline: ''
+    },
+    price: {
+      hourly:0,
+    }
+  }
   public account_state = {
     loading: false,
     message_error: null,
@@ -69,8 +85,22 @@ export class AccountComponent implements OnInit {
         this.router.navigate(['/'])
         return;
       }
-      this.Account = JSON.parse(localStorage.getItem('auth'));
-      // console.log(JSON.stringify(this.Account));
+
+      let account = JSON.parse(localStorage.getItem('auth'))
+      if (!account['business']) {
+        account['business'] = {
+          name:'',
+          tagline: ''
+        }
+      }
+      if (!account['price']) {
+        account['price'] = {
+          hourly:0
+        }
+      }
+      this.Account = account
+
+      console.log(JSON.stringify(this.Account));
       this.subscription = this.popupsService.getPopupResponse$.subscribe(action => {
         switch (action.type) {
           case 'logout':
@@ -104,6 +134,9 @@ export class AccountComponent implements OnInit {
 
   saveInformations() {
     this.account_state.loading = true
+    // if (this.Account.price.hourly>0) {
+    //   this.Account.price.hourly *= 100
+    // }
     this.profileService.updateProfile(this.Account).then((data) => {
       if (data.success) {
         let profileData = {};
@@ -141,9 +174,9 @@ export class AccountComponent implements OnInit {
       bucket.upload(params, (error, res) => {
         this.account_state.loading = false
         if (!error) {
-          console.log('res upload file: ' + JSON.stringify(res));
+          // console.log('res upload file: ' + JSON.stringify(res));
         } else {
-          console.log('error upload file: ' + error);
+          // console.log('error upload file: ' + error);
         }
       })
     }
@@ -221,7 +254,16 @@ export class AccountComponent implements OnInit {
       }
     })
   }
-
+  updatePrice() {
+    let value = this.Account.price.hourly
+    if (isNaN(value) || value === 0 || value < 0) {
+      this.Account.price.hourly = 0
+    } else if (!this.Account.price.hourly) {
+      this.Account.price.hourly = 0
+    } else {
+      this.Account.price.hourly = value
+    }
+  }
   checkImageUrlFromAccount(account) {
     if (isBrowser) {
       var image = new Image()
