@@ -8658,6 +8658,9 @@ app-auth {
           margin-bottom: 20px;
           cursor: pointer; }
 
+@media (max-width: 425px) {
+  app-auth .auth-container .worker .worker-body .avatar {
+    width: 150px; } }
 app-requests {
   display: block;
   width: 100%;

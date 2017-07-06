@@ -253,3 +253,9 @@ app-auth {
     }
   }
 }
+
+@media (max-width: 425px) {
+  app-auth .auth-container .worker .worker-body .avatar {
+    width: 150px;
+  }
+}
