@@ -165,8 +165,8 @@ export class AuthComponent implements OnInit {
         }
         else if (this.page === 'worker' && !this.currentUser) {
           this.seoObject['title'] = "Iscriviti su Starbook e ricevi 25€"
-          this.seoObject['description'] = "Sei un professionista, hai un mestiere particolare, un attività o lavori in proprio? Iscriviti su Starbook e sul primo servizio effettuato riceverai 25€"
-          this.seoObject['image_url'] = "https://s3-eu-west-1.amazonaws.com/starbook-s3/website/promotion_earn_25_euro.png";
+          this.seoObject['description'] = "Sei un professionista, hai un mestiere particolare, un attività o lavori in proprio? Iscriviti su Starbook e al primo servizio effettuato riceverai 25€"
+          this.seoObject['image_url'] = "https://s3-eu-west-1.amazonaws.com/starbook-s3/website/promotion_25_euro_bonus.png";
         }
         else if (this.page === 'password_recovery' && !this.currentUser) {
           this.seoObject['title'] = "Iscriviti a Starbook";
