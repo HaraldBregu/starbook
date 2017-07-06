@@ -160,7 +160,7 @@ export class AuthComponent implements OnInit {
           this.seoObject['title'] = "Registra la tua attività gratuitamente";
           this.seoObject['description'] = "Lavori nel mondo dell'edilizia, idraulica, sei un elettrico e esegui lavori particolari artigianali nelle case? Unisciti a noi e collaboreremo per aumentare la professionalità e la clientela in modo smart.";
         }
-        else if (this.page === 'worker') {
+        else if (this.page === 'worker' && !this.currentUser) {
           this.seoObject['title'] = "Registra la tua attività gratuitamente";
           this.seoObject['description'] = "Lavori nel mondo dell'edilizia, idraulica, sei un elettrico e esegui lavori particolari artigianali nelle case? Unisciti a noi e collaboreremo per aumentare la professionalità e la clientela in modo smart.";
         }
@@ -495,7 +495,6 @@ export class AuthComponent implements OnInit {
   }
 
   registerWorker() {
-    console.log('JSON: ' + JSON.stringify(this.Account))
     this.registration_state.message_error = null;
     if (this.Account.email.length===0 || this.Account.phone_number.length===0 ||
       this.Account.profile.firstname.length===0 || this.Account.profile.lastname.length===0 ||
@@ -513,11 +512,6 @@ export class AuthComponent implements OnInit {
     this.authService.registerWorker(this.Account).then((data) => {
       this.navigationService.updatePersonalMenu(data);
       this.registration_state.message_error = null;
-      // this.router.navigate(['account/general']);
-      // Upload Picture
-      console.log('data is: ' + JSON.stringify(data));
-
-      // this.savePictureToPath(file, path)
       this.savePictureToPath(this.Picture.file, 'accounts/' + data._id + '/avatar/0')
     }).catch((error) => {
       this.registration_state.loading = false

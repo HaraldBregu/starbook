@@ -1172,7 +1172,7 @@ var AuthComponent = (function () {
                     _this.seoObject['title'] = "Registra la tua attività gratuitamente";
                     _this.seoObject['description'] = "Lavori nel mondo dell'edilizia, idraulica, sei un elettrico e esegui lavori particolari artigianali nelle case? Unisciti a noi e collaboreremo per aumentare la professionalità e la clientela in modo smart.";
                 }
-                else if (_this.page === 'worker') {
+                else if (_this.page === 'worker' && !_this.currentUser) {
                     _this.seoObject['title'] = "Registra la tua attività gratuitamente";
                     _this.seoObject['description'] = "Lavori nel mondo dell'edilizia, idraulica, sei un elettrico e esegui lavori particolari artigianali nelle case? Unisciti a noi e collaboreremo per aumentare la professionalità e la clientela in modo smart.";
                 }
@@ -1536,7 +1536,6 @@ var AuthComponent = (function () {
     };
     AuthComponent.prototype.registerWorker = function () {
         var _this = this;
-        console.log('JSON: ' + JSON.stringify(this.Account));
         this.registration_state.message_error = null;
         if (this.Account.email.length === 0 || this.Account.phone_number.length === 0 ||
             this.Account.profile.firstname.length === 0 || this.Account.profile.lastname.length === 0 ||
@@ -1553,10 +1552,6 @@ var AuthComponent = (function () {
         this.authService.registerWorker(this.Account).then(function (data) {
             _this.navigationService.updatePersonalMenu(data);
             _this.registration_state.message_error = null;
-            // this.router.navigate(['account/general']);
-            // Upload Picture
-            console.log('data is: ' + JSON.stringify(data));
-            // this.savePictureToPath(file, path)
             _this.savePictureToPath(_this.Picture.file, 'accounts/' + data._id + '/avatar/0');
         }).catch(function (error) {
             _this.registration_state.loading = false;
@@ -5653,8 +5648,7 @@ var AuthService = (function () {
     };
     AuthService.prototype.signup = function (firstname, lastname, phone, email, password) {
         // this.navigationService.updateLoadingStatus(true);
-        return this.http.post(this.api + 'signup', {
-            firstname: firstname, lastname: lastname, phone_number: phone, email: email, password: password })
+        return this.http.post(this.api + 'signup', { phone_number: phone, email: email, password: password, profile: { firstname: firstname, lastname: lastname } })
             .toPromise()
             .then(function (response) {
             // this.navigationService.updateLoadingStatus(false);
