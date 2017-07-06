@@ -147,6 +147,9 @@ export class AuthComponent implements OnInit {
   ngOnInit() {
     this.route.params.subscribe(params => {
       this.page = params['page']
+
+      this.seoObject['image_url'] = "https://s3-eu-west-1.amazonaws.com/starbook-s3/website/icon_256.png";
+
       this.route.queryParams.subscribe((params: Params) => {
         if (this.page === 'login' && !this.currentUser) {
           this.seoObject['title'] = "Iscriviti a Starbook";
@@ -161,8 +164,9 @@ export class AuthComponent implements OnInit {
           this.seoObject['description'] = "Lavori nel mondo dell'edilizia, idraulica, sei un elettrico e esegui lavori particolari artigianali nelle case? Unisciti a noi e collaboreremo per aumentare la professionalità e la clientela in modo smart.";
         }
         else if (this.page === 'worker' && !this.currentUser) {
-          this.seoObject['title'] = "Registra la tua attività gratuitamente";
-          this.seoObject['description'] = "Lavori nel mondo dell'edilizia, idraulica, sei un elettrico e esegui lavori particolari artigianali nelle case? Unisciti a noi e collaboreremo per aumentare la professionalità e la clientela in modo smart.";
+          this.seoObject['title'] = "Iscriviti su Starbook e ricevi 25€"
+          this.seoObject['description'] = "Sei un professionista, hai un mestiere particolare, un attività o lavori in proprio iscriviti su Starbook e sul primo servizio effettuato riceverai 25€"
+          this.seoObject['image_url'] = "https://s3-eu-west-1.amazonaws.com/starbook-s3/website/promotion_earn_25_euro.png";
         }
         else if (this.page === 'password_recovery' && !this.currentUser) {
           this.seoObject['title'] = "Iscriviti a Starbook";
@@ -217,7 +221,6 @@ export class AuthComponent implements OnInit {
     })
 
     this.seoObject['url'] = 'https://www.starbook.co' + this.router.url;
-    this.seoObject['image_url'] = "https://s3-eu-west-1.amazonaws.com/starbook-s3/website/icon_256.png";
 
     this.seoService.setTitle(this.seoObject['title']);
     this.seoService.setMetaElem('description', this.seoObject['description']);
