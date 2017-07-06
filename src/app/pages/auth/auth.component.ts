@@ -7,6 +7,7 @@ import { AnalyticsService } from '../../shared/analytics.service';
 import { AuthService } from '../../shared/auth.service';
 import { ContactService } from '../../shared/contact.service';
 import { SeoService } from '../../shared/seo.service';
+require('aws-sdk/dist/aws-sdk')
 
 @Component({
   selector: 'app-auth',
@@ -103,12 +104,17 @@ export class AuthComponent implements OnInit {
     email:'',
     phone_number: '',
     profile: {
-
+      firstname: '',
+      lastname:'',
+      description: ''
+    },
+    business: {
+      name:'',
+      tagline: ''
+    },
+    price: {
+      hourly:0,
     }
-  }
-  public account_state = {
-    message_error: null,
-    success_error: null,
   }
   public Password = {
     old:'',
@@ -119,6 +125,13 @@ export class AuthComponent implements OnInit {
     url: '',
     file: null
   }
+
+  public registration_state = {
+    loading: false,
+    message_error: null,
+    success_error: null,
+  }
+
   public picture_state = {
     loading: false,
     url_error: '',
@@ -481,11 +494,96 @@ export class AuthComponent implements OnInit {
     }
   }
 
+  registerWorker() {
+    console.log('JSON: ' + JSON.stringify(this.Account))
+    this.registration_state.message_error = null;
+    if (this.Account.email.length===0 || this.Account.phone_number.length===0 ||
+      this.Account.profile.firstname.length===0 || this.Account.profile.lastname.length===0 ||
+      this.Account.business.tagline.length===0 || this.Account.price.hourly<=0 ||
+      this.Password.new.length===0) {
+      this.registration_state.message_error = "Per favore, inserisci tutti i campi.";
+      // return
+    }
+    if (this.Picture.url.length===0) {
+      this.registration_state.message_error = "Per favore, carica una foto del tuo volto.";
+      return
+    }
+    this.Account['password'] = this.Password.new
+    this.registration_state.loading = true
+    this.authService.registerWorker(this.Account).then((data) => {
+      this.navigationService.updatePersonalMenu(data);
+      this.registration_state.message_error = null;
+      // this.router.navigate(['account/general']);
+      // Upload Picture
+      console.log('data is: ' + JSON.stringify(data));
+
+      // this.savePictureToPath(file, path)
+      this.savePictureToPath(this.Picture.file, 'accounts/' + data._id + '/avatar/0')
+    }).catch((error) => {
+      this.registration_state.loading = false
+      this.registration_state.message_error = null;
+      switch (error) {
+        case 409:
+        this.registration_state.message_error = "Questo indirizzo email è gia in uso. Prova ad accedere.";
+          break;
+        case 422:
+        this.registration_state.message_error = "Inserisci tutti i campi richiesti";
+          break;
+        case 404:
+        this.registration_state.message_error = "C'è stato un errore sconosciuto, per favore riprova più tardi";
+          break;
+        default:
+        this.registration_state.message_error = null;
+      }
+    })
+  }
+
   getPicture() {
     if (this.Picture.url) {
       return this.Picture.url
     } else {
       return 'https://s3-eu-west-1.amazonaws.com/starbook-s3/website/user_no_pic.png'
+    }
+  }
+  selectProfilePicture(fileInput:any) {
+    this.Picture.url = fileInput.target.files[0];
+    let reader = new FileReader();
+    reader.onload = (e: any) => {
+      this.Picture.url = e.target.result;
+    }
+    reader.readAsDataURL(fileInput.target.files[0])
+    this.Picture.file = this.Picture.url
+  }
+  savePictureToPath(file, path) {
+    let AWSService = (<any>window).AWS;
+    AWSService.config.accessKeyId = "AKIAI3TIRNH4DG7MGC7Q";
+    AWSService.config.secretAccessKey = "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";
+    let bucket = new AWSService.S3()
+    let params = {
+      Bucket: 'starbook-s3',
+      Key:path,
+      Body:file,
+      ACL:"public-read",
+      CacheControl: "public, max-age=8"
+    }
+    bucket.upload(params, (error, res) => {
+      this.registration_state.loading = false
+      this.router.navigate(['account/profile'])
+      if (!error) {
+
+      } else {
+
+      }
+    })
+  }
+  updatePrice() {
+    let value = this.Account.price.hourly
+    if (isNaN(value) || value === 0 || value < 0) {
+      this.Account.price.hourly = 0
+    } else if (!this.Account.price.hourly) {
+      this.Account.price.hourly = 0
+    } else {
+      this.Account.price.hourly = value
     }
   }
 
@@ -512,7 +610,7 @@ export class AuthComponent implements OnInit {
   }
   changeToSignup() {
     if (this.login_state.loading) {return;}
-    this.router.navigate(['auth/signup']);
+    this.router.navigate(['auth/worker']);
   }
   changeToLogin() {
     if (this.signup_state.loading) {return;}

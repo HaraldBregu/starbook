@@ -313,11 +313,10 @@ textarea.form-control {
   box-shadow: none;
   padding: 20px;
 }
-.form-control:focus {
-  // border: 1px solid rgba(220, 224, 224, 0.7);
-  outline: none;
-  background-color: white;
-}
+// .form-control:focus {
+//   outline: none;
+//   background-color: white;
+// }
 .form-group {
   margin-bottom: 15px;
 }
@@ -338,8 +337,10 @@ textarea.form-control {
   color: #f75c4b;
 }
 
-.form-group .form-control:focus {
+.form-control:focus {
   color: black;
+  border-width: 2px !important;
+  border-color: #66afe9 !important;
 }
 // .form-group .ui-inputtext {
 //   height: 50px !important;
@@ -379,9 +380,6 @@ textarea.form-control {
 }
 .input-group .error-input {
   border: 2px solid #f75c4b;
-}
-.input-group .form-control:focus {
-  color: black;
 }
 // .input-group .ui-inputtext {
 //   height: 50px !important;

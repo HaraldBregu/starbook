@@ -269,6 +269,14 @@ export class AppComponent implements OnInit, OnDestroy {
     // this.router.navigate(['services', service.title.replace(/\s+/g, '-')]);
   }
 
+  getUsername() {
+    if (this.auth.profile.fullname) {
+      return this.auth.profile.fullname
+    } else {
+      return this.auth.profile.firstname + ' ' + this.auth.profile.lastname
+    }
+  }
+
   clearSearchForm() {
     this.findValue = '';
     this.results = [];

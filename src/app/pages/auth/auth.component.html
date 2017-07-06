@@ -167,112 +167,65 @@
         <form>
           <div class="form-group row">
             <label for="profession-input" class="col-md-2 col-form-label">Professione o attività</label>
-            <div class="col-md-10">
-              <input type="profession" placeholder="Che cosa fai?" class="form-control" id="profession-input" [(ngModel)]="Account.profile.profession" [ngModelOptions]="{standalone: true}">
+            <div class="col-md-9">
+              <input type="text" placeholder="Professione o attività" class="form-control" id="profession-input" [ngClass]="{'error-input' : !Account.business.tagline && registration_state.message_error}" [(ngModel)]="Account.business.tagline" [ngModelOptions]="{standalone: true}">
             </div>
           </div>
           <div class="form-group row">
             <label for="firstname-input" class="col-md-2 col-form-label">Nome</label>
-            <div class="col-md-10">
-              <input type="firstname" placeholder="Nome" class="form-control" [ngClass]="{'error-input' : (Account.profile.firstname?.length>0 && account_state.message_error)}" id="firstname-input" [(ngModel)]="Account.profile.firstname" [ngModelOptions]="{standalone: true}">
+            <div class="col-md-9">
+              <input type="text" placeholder="Nome" class="form-control" [ngClass]="{'error-input' : !Account.profile.firstname && registration_state.message_error}" id="firstname-input" [(ngModel)]="Account.profile.firstname" [ngModelOptions]="{standalone: true}">
             </div>
           </div>
           <div class="form-group row">
             <label for="lastname-input" class="col-md-2 col-form-label">Cognome</label>
-            <div class="col-md-10">
-              <input type="lastname" placeholder="Cognome" class="form-control" [ngClass]="{'error-input' : (Account.profile.lastname?.length>0 && account_state.message_error)}" id="lastname-input" [(ngModel)]="Account.profile.lastname" [ngModelOptions]="{standalone: true}">
+            <div class="col-md-9">
+              <input type="text" placeholder="Cognome" class="form-control" [ngClass]="{'error-input' : !Account.profile.lastname && registration_state.message_error}" id="lastname-input" [(ngModel)]="Account.profile.lastname" [ngModelOptions]="{standalone: true}">
               <small class="form-text text-muted">Sul tuo profilo pubblico viene visualizzato solo il tuo nome. Quando un ordine ricevuto o richiesto sara accettato si potrà vedere il tuo nome e cognome.</small>
             </div>
           </div>
           <div class="form-group row">
             <label for="description-input" class="col-md-2 col-form-label">Qualcosa su di te</label>
-            <div class="col-md-10">
+            <div class="col-md-9">
               <textarea id="description-input" class="form-control" placeholder="" rows="3" [(ngModel)]="Account.profile.description" [ngModelOptions]="{standalone: true}"></textarea>
             </div>
           </div>
           <div class="form-group row">
+            <div class="col-md-2">
+            </div>
             <div class="col-md-3 text-center">
               <div class="avatar" [ngStyle]="{'background-image' : ' url(' + getPicture(Account) + ')'}">
                 <div class="overlay"></div>
               </div>
             </div>
-            <div class="col-md-9">
+            <div class="col-md-6">
               <div class="content">
-                <p>Inserisci una foto profilo dove mostri il tuo volto chiaramente. Carica una foto dalla tua galleria e continua ad usare Starbook in modo regolare.</p>
+                <p>Per favore carica una foto profilo dove mostri chiaramente il tuo volto.</p>
                 <input type="file" (change)="selectProfilePicture($event)" style="display: none;" #file>
-                <button type="button" class="btn btn-secondary" name="button" (click)="file.click()"><i class="fa fa-circle-o-notch animate" *ngIf="picture_state.loading"></i> Carica dal computer</button>
+                <button type="button" class="btn btn-secondary"  [ngClass]="{'error-input' : Picture.url.length===0 && registration_state.message_error}" name="button" (click)="file.click()">Carica</button>
               </div>
             </div>
           </div>
         </form>
       </div>
 
-      <!-- PROFESSION -->
-      <!-- <div class="worker-header">
-        <h1>Professione e attività</h1>
-      </div>
-      <div class="worker-body">
-        <form>
-          <div class="form-group row">
-            <label for="profession-input" class="col-md-2 col-form-label">Professione</label>
-            <div class="col-md-10">
-              <input type="profession" placeholder="La tua professione" class="form-control" id="profession-input" [(ngModel)]="Account.profile.profession" [ngModelOptions]="{standalone: true}">
-            </div>
-          </div>
-          <div class="form-group row">
-            <label for="description-input" class="col-md-2 col-form-label">Qualcosa su di te</label>
-            <div class="col-md-10">
-              <textarea id="description-input" class="form-control" placeholder="" rows="3" [(ngModel)]="Account.profile.description" [ngModelOptions]="{standalone: true}"></textarea>
-            </div>
-          </div>
-        </form>
-      </div> -->
-
       <!-- PRICES -->
       <div class="worker-header">
-        <h1>I tuoi prezzi</h1>
+        <h1>Costo orario</h1>
       </div>
       <div class="worker-body">
         <form>
           <div class="form-group row">
-            <label for="profession-input" class="col-md-2 col-form-label">Professione</label>
-            <div class="col-md-10">
-              <input type="profession" placeholder="La tua professione" class="form-control" id="profession-input" [(ngModel)]="Account.profile.profession" [ngModelOptions]="{standalone: true}">
+            <label for="price-input" class="col-md-2 col-form-label">Inserisci il costo orario</label>
+            <div class="col-md-9">
+              <div class="input-group">
+                <input id="price-input" type="number" class="form-control text-center" placeholder="" [ngClass]="{'error-input' : !Account.price.hourly && registration_state.message_error}" [(ngModel)]="Account.price.hourly" (keyup)="updatePrice()" (change)="updatePrice()" [ngModelOptions]="{standalone: true}">
+                <span class="input-group-addon" id="price-input">€</span>
+              </div>
             </div>
           </div>
         </form>
       </div>
-
-      <!-- ADDRESS -->
-      <div class="worker-header">
-        <h1>Dove sei disponibile?</h1>
-      </div>
-      <div class="worker-body">
-        <form>
-          <div class="form-group row">
-            <label for="profession-input" class="col-md-2 col-form-label">Indirizzo</label>
-            <div class="col-md-10">
-              <input type="profession" placeholder="città e paese" class="form-control" id="profession-input" [(ngModel)]="Account.profile.profession" [ngModelOptions]="{standalone: true}">
-            </div>
-          </div>
-        </form>
-      </div>
-
-      <!-- CONTACT -->
-      <!-- <div class="worker-header">
-        <h1>Contatti</h1>
-      </div>
-      <div class="worker-body">
-        <form>
-          <div class="form-group row">
-            <label for="phone-input" class="col-md-2 col-form-label">Numero di telefono</label>
-            <div class="col-md-10">
-              <input class="form-control" type="text" id="phone-input" [(ngModel)]="Account.phone_number" [ngModelOptions]="{standalone: true}">
-              <small class="form-text text-muted">Il numero sarà condiviso solo quando avrai una prenotazione confermata con un altro utente Starbook. È così che entrerete in contatto.</small>
-            </div>
-          </div>
-        </form>
-      </div> -->
 
       <div class="worker-header">
         <h1>Ultimo passo</h1>
@@ -281,25 +234,33 @@
         <form>
           <div class="form-group row">
             <label for="phone-input" class="col-md-2 col-form-label">Numero di telefono</label>
-            <div class="col-md-10">
-              <input class="form-control" type="text" id="phone-input" [(ngModel)]="Account.phone_number" [ngModelOptions]="{standalone: true}">
+            <div class="col-md-9">
+              <input class="form-control" type="text" id="phone-input" [ngClass]="{'error-input' : !Account.phone_number && registration_state.message_error}"  [(ngModel)]="Account.phone_number" [ngModelOptions]="{standalone: true}">
               <small class="form-text text-muted">Il numero sarà condiviso solo quando avrai una prenotazione confermata con un altro utente Starbook. È così che entrerete in contatto.</small>
             </div>
           </div>
           <div class="form-group row">
             <label for="email-input" class="col-md-2 col-form-label">Email</label>
-            <div class="col-md-10">
-              <input type="email" placeholder="La tua email" class="form-control" id="email-input" [(ngModel)]="Account.email" [ngModelOptions]="{standalone: true}">
+            <div class="col-md-9">
+              <input type="email" placeholder="La tua email" class="form-control" id="email-input" [ngClass]="{'error-input' : !Account.email && registration_state.message_error}" [(ngModel)]="Account.email" [ngModelOptions]="{standalone: true}">
             </div>
           </div>
           <div class="form-group row">
             <label for="password-input" class="col-md-2 col-form-label">Scegli una Password</label>
-            <div class="col-md-10">
-              <input type="password" placeholder="Password" class="form-control" id="password-input" [(ngModel)]="Password.new" [ngModelOptions]="{standalone: true}">
+            <div class="col-md-9">
+              <input type="password" placeholder="Password" class="form-control" id="password-input" [ngClass]="{'error-input' : !Password.new && registration_state.message_error}" [(ngModel)]="Password.new" [ngModelOptions]="{standalone: true}">
             </div>
           </div>
+          <div class="form-group error" *ngIf="registration_state.message_error">
+            <span class="message">{{registration_state.message_error}}</span>
+          </div>
           <div class="form-group actions text-center">
-            <button type="button" id="next" class="btn btn-success" (click)="signupAsProfessional()"><i class="fa fa-circle-o-notch animate" *ngIf="signup_state.loading"></i>Fine</button>
+            <button type="button" id="next" class="btn btn-success" (click)="registerWorker()"><i class="fa fa-circle-o-notch animate" *ngIf="registration_state.loading"></i> Registrati</button>
+          </div>
+          <div class="form-group footer-group">
+            <span class="text">Sei gia registrato?</span>
+            <span class="text enter" (click)="changeToLogin()">Entra</span>
+            <span class="text">Continuando dichiari di aver letto e accetti le <a routerlink="/info/legal" href="/info/legal" target="_blank">condizioni generali e l’informativa sulla privacy</a></span>
           </div>
         </form>
       </div>

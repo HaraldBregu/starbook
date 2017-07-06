@@ -89,6 +89,7 @@ export class AuthService {
   //     // }
   //   }).catch(this.handleError);
   // }
+
   login(email: string, password: string) {
     // this.navigationService.updateLoadingStatus(true);
     return this.http.post(this.api + 'login', {email: email, password: password})
@@ -191,13 +192,21 @@ export class AuthService {
           if (isBrowser) {
             localStorage.setItem('auth', JSON.stringify(authData));
           }
-
           return data.result;
-        // } else {
-        //   this.handleError(data.message);
-        // }
       })
       .catch(this.handleError);
+  }
+
+  registerWorker(account) {
+    return this.http.post(this.api + 'signup', account).toPromise().then((response) => {
+        if (isBrowser) {
+          let data = response.json()
+          var account = data.result
+          account['token'] = data.token
+          localStorage.setItem('auth', JSON.stringify(account))
+          return data.result
+        }
+      }).catch(this.handleError)
   }
 
   recovery(email: string) {
