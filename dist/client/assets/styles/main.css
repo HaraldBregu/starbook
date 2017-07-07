@@ -8580,7 +8580,7 @@ app-auth {
         margin-bottom: 20px;
         cursor: pointer; }
   app-auth .auth-container .worker {
-    padding: 60px 20px;
+    padding: 40px 20px;
     max-width: 700px;
     margin: auto; }
     app-auth .auth-container .worker .worker-header {
@@ -8659,7 +8659,11 @@ app-auth {
 
 @media (max-width: 425px) {
   app-auth .auth-container .worker .worker-body .avatar {
-    width: 150px; } }
+    width: 150px; }
+
+  app-auth .auth-container .worker .worker-body .content {
+    text-align: center;
+    margin-top: 10px; } }
 app-requests {
   display: block;
   width: 100%;
