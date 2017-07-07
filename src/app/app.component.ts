@@ -199,6 +199,7 @@ export class AppComponent implements OnInit, OnDestroy {
       return "/assets/images/brand-logo-right.png"
     }
     else if ((this.screenWidth < 769) && !this.hasRightContainer) {
+      // console.log('this.page: ' + this.page);
       if (this.page === "Auth") {
         return "/assets/images/brand-logo-name-rotated.png"
       } else {
