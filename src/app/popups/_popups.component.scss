@@ -189,12 +189,12 @@ app-popups {
     padding: 0 0 0 2px;
     margin-bottom: 2px;
   }
-  .popup .form-group label a.recovery {
-    position: absolute;
+  .popup .form-group a.recovery {
+    // position: absolute;
+    float: right;
     top: 0;
     right: 0;
     padding-right: 5px;
-
     font-size: $popup-form-font-size;
     color: $popup-link-color;
     letter-spacing: $popup-form-letter-spacing;
@@ -204,11 +204,10 @@ app-popups {
     cursor: pointer;
   }
   .popup .form-group .form-control {
-    height: 45px !important;
+    // height: 45px !important;
   }
   .form-group .form-control:focus {
-    border: 2px solid #7FC443 !important;
-
+    // border: 2px solid #7FC443 !important;
   }
   // .pupup .form-control:focus {
   //   border: 2px solid #7FC443 !important;
@@ -288,7 +287,7 @@ app-popups {
     position: relative;
     width: 100%;
     height: 50px;
-    font-size: 20px;
+    font-size: 18px;
     color: white;
     outline: none;
     line-height: 50px;
@@ -300,10 +299,10 @@ app-popups {
   .popup .form-group .btn.btn-facebook i {
     display: block;
     position: absolute;
-    top: 10px;
-    left: 12px;
-    width: 30px;
-    height: 30px;
+    top: 12px;
+    left: 16px;
+    width: 25px;
+    height: 25px;
     background-image: url($popup-btn-facebook-icon);
     background-repeat: no-repeat;
     background-size: contain;
@@ -414,7 +413,7 @@ app-popups {
     text-align: center;
   }
   .login-offer.registration {
-    margin-top: 31px;
+    margin-top: 15px;
   }
   .login-offer a {
     color: $popup-login-offer-link-color !important;

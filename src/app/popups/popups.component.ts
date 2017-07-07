@@ -761,9 +761,9 @@ export class PopupsComponent implements OnInit, OnDestroy {
     // }
   }
 
-  registration(firstname: string, lastname: string, phone: string, email: string, password: string, passwordConfirm: string) {
+  registration(firstname: string, lastname: string, phone: string, email: string, password: string) {
     if (this.emailPattern.test(email) &&
-    password === passwordConfirm &&
+    // password === passwordConfirm &&
     password.length > 0 &&
     firstname.length > 0 &&
     lastname.length > 0 &&
@@ -809,9 +809,9 @@ export class PopupsComponent implements OnInit, OnDestroy {
       if (!this.emailPattern.test(email)) {
         this.registrationError.email = true;
       }
-      if (password !== passwordConfirm) {
-        this.registrationError.password = true;
-      }
+      // if (password !== passwordConfirm) {
+      //   this.registrationError.password = true;
+      // }
       if (password.length < 1) {
         this.registrationError.passwordFirst = true;
       }
@@ -1486,5 +1486,4 @@ export class PopupsComponent implements OnInit, OnDestroy {
       this.authSubscription.unsubscribe();
     }
   }
-
 }

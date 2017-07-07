@@ -19,7 +19,7 @@
         <span class="error">Indirizzo email non valido</span>
       </div>
       <div class="form-group" [ngClass]="{'isError': loginError.password}">
-        <label for="password">Password <a class="recovery" (click)="getPopup('recovery')">Password dimenticata?</a></label>
+        <label for="password">Password</label> <a class="recovery" (click)="getPopup('recovery')">Password dimenticata?</a>
         <input id="password" class="form-control" type="password" name="password" [(ngModel)]="loginData.password" #password="ngModel" (keyup)="checkNonEmpty('login', password.value)" (change)="checkNonEmpty('login', password.value)">
         <span class="error">Inserisci la tua password</span>
       </div>
@@ -27,7 +27,8 @@
         <a class="btn btn-warning" href="#" (click)="login(email.value, password.value)">Accedi</a>
       </div>
       <div class="form-group">
-        <a class="btn btn-secondary" (click)="getPopup('registration')">Crea il tuo account Starbook</a>
+        <a class="btn btn-secondary" (click)="getPopup('registration')">Iscriviti</a>
+        <!-- <a class="btn btn-secondary" (click)="changeToRegisterWorker()">Iscriviti</a> -->
       </div>
       <div class="form-group">
         <a class="btn btn-facebook" (click)="facebookLogin()">
@@ -82,13 +83,13 @@
       <input id="regPassword" class="form-control" type="password" name="password" placeholder="" required [(ngModel)]="registrationData.password" #regPassword="ngModel" (keyup)="checkNonEmpty('registrationPassword', regPassword.value)">
       <span class="error">Inserisci una password</span>
     </div>
-    <div class="form-group" [ngClass]="{'isError': registrationError.password}">
+    <!-- <div class="form-group" [ngClass]="{'isError': registrationError.password}">
       <label for="regPasswordConfirm">Di nuovo la password</label>
       <input id="regPasswordConfirm" class="form-control" type="password" name="passwordConfirm" placeholder="" required [(ngModel)]="registrationData.passwordConfirm" #regPasswordConfirm="ngModel" (keyup)="checkPassword(regPassword.value, regPasswordConfirm.value)">
       <span class="error">Le password non corrispondono</span>
-    </div>
+    </div> -->
     <div class="form-group">
-      <button class="btn btn-warning" type="submit" (click)="registration(regFirstName.value, regLastName.value, regPhone.value, regEmail.value, regPassword.value, regPasswordConfirm.value)">Crea account</button>
+      <button class="btn btn-warning" type="submit" (click)="registration(regFirstName.value, regLastName.value, regPhone.value, regEmail.value, regPassword.value)">Crea account</button>
     </div>
   </form>
   <!-- <div class="form-description">
