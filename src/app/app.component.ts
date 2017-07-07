@@ -176,7 +176,11 @@ export class AppComponent implements OnInit, OnDestroy {
   clickBrandLogo() {
     if (this.screenWidth <= 425) {
       if (!this.hasRightContainer) {
-        this.router.navigate(['']);
+        if (this.page === "Auth") {
+
+        } else {
+          this.router.navigate(['']);
+        }
       } else {
         this.collapsed = !this.collapsed;
       }
@@ -195,7 +199,11 @@ export class AppComponent implements OnInit, OnDestroy {
       return "/assets/images/brand-logo-right.png"
     }
     else if ((this.screenWidth < 769) && !this.hasRightContainer) {
-      return "/assets/images/brand-logo-rotated.png"
+      if (this.page === "Auth") {
+        return "/assets/images/brand-logo-name-rotated.png"
+      } else {
+        return "/assets/images/brand-logo-rotated.png"
+      }
     }
   }
   getLoginPopup() {
