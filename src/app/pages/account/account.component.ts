@@ -295,7 +295,7 @@ export class AccountComponent implements OnInit {
     this.router.navigate(['services', service._id]);
   }
   createService() {
-    this.router.navigate(['/insert/title']);
+    this.router.navigate(['/insert/product']);
   }
   clickTabItem(route) {
     this.router.navigate(['/account/' + route]);

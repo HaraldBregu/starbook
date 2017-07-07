@@ -19,6 +19,7 @@ export class InsertComponent implements OnInit {
   public step = ''
   public Service = {}
   public state = {
+    loading:false,
     title_error: null,
     pricing_error: null,
     picture_file_loading: false,
@@ -82,23 +83,23 @@ export class InsertComponent implements OnInit {
       }
       this.step = params['step']
       if (this.currentUser) {
-        this.steps = ['title', 'pricing', 'picture', 'end']
+        this.steps = ['product', 'pricing', 'end']
       } else {
-        this.steps = ['title', 'pricing', 'picture', 'register', 'end']
+        this.steps = ['product', 'pricing', 'register', 'end']
         if (this.step==='register' || this.step==='login' || this.step==='recover') {
-          this.steps[3] = this.step
+          this.steps[2] = this.step
         }
       }
 
-      if (this.step==='title') {
+      if (this.step==='product') {
 
       }
       else if (this.step==='pricing') {
 
       }
-      else if (this.step==='picture') {
-
-      }
+      // else if (this.step==='picture') {
+      //
+      // }
       else if (this.step==='register') {
 
       }
@@ -109,7 +110,7 @@ export class InsertComponent implements OnInit {
 
       }
       else {
-        this.router.navigate(['insert/title']);
+        this.router.navigate(['insert/product']);
       }
 
     })
@@ -118,7 +119,7 @@ export class InsertComponent implements OnInit {
   undoStep() {
     var currentStepIndex = this.steps.indexOf(this.step)
     var previousStep = this.steps[currentStepIndex-1]
-    if (this.step==="title") {
+    if (this.step==="product") {
       this.router.navigate(['']);
     } else {
       this.router.navigate(['insert/' + previousStep]);
@@ -127,7 +128,7 @@ export class InsertComponent implements OnInit {
   nextStep() {
     var currentStepIndex = this.steps.indexOf(this.step)
     var nextStep = this.steps[currentStepIndex+1]
-    if (this.step === 'title') {
+    if (this.step==='product') {
       this.state.title_error = null
       if (!this.Service['title'] || this.Service['title'].length===0 || !/\S/.test(this.Service['title'])) {
         this.commonService.saveObjectForKey(this.Service, "insert_service")
@@ -142,10 +143,11 @@ export class InsertComponent implements OnInit {
         this.state.pricing_error = "Per favore, compila i campi richiesti."
         return;
       }
-    }
-    else if (this.step === 'picture') {
       if (this.currentUser) {
-        this.saveServiceForAccountId(this.currentUser._id);
+        if (this.state.loading) {return}
+        this.state.loading = true
+        this.saveServiceForAccountId(this.currentUser._id)
+        return
       }
     }
     else if (this.step === 'end') {
@@ -176,7 +178,16 @@ export class InsertComponent implements OnInit {
     }
     this.signup_state.loading = true;
     this.signup_state.button_title = "Registrando...";
-    this.authService.signupProfessional(this.signupParameters.firstname, this.signupParameters.lastname, this.signupParameters.phone, this.signupParameters.email, this.signupParameters.password, "VENDOR").then((data) => {
+    var account = {
+      email:this.signupParameters.email,
+      password:this.signupParameters.password,
+      phone_number:this.signupParameters.phone,
+      profile: {
+        firstname:this.signupParameters.firstname,
+        lastname:this.signupParameters.lastname
+      }
+    }
+    this.authService.registerWorker(account).then((data) => {
       this.navigationService.updatePersonalMenu(data);
       this.saveServiceForAccountId(data._id)
       this.saveProfilePictureToPath(this.profile_picture.file, 'accounts/' + data._id + '/avatar/0')
@@ -232,9 +243,6 @@ export class InsertComponent implements OnInit {
   }
 
   saveServiceForAccountId(account_id) {
-    if (this.state.picture_file_loading) {return}
-    this.state.picture_file_loading = true;
-    this.state.picture_file_error = null
     this.Service['supplier_id'] = account_id
     this.Service['price'] *= 100
     this.commonService.createService(this.Service).then((data) => {
@@ -243,14 +251,13 @@ export class InsertComponent implements OnInit {
         var path = 'services/' + data.result._id + '/cover/0'
         this.saveServicePictureToPath(file, path)
       } else {
+        this.state.loading = false
         this.login_state.loading = false;
         this.login_state.button_title = "Accedi";
         this.login_state.error_message = null;
         this.signup_state.loading = false;
         this.signup_state.button_title = "Registrati";
         this.signup_state.error_message = null;
-        this.state.picture_file_loading = false;
-        this.state.picture_file_error = null
         this.commonService.deleteObjectForKey("insert_service")
         this.router.navigate(['insert/end'])
       }
@@ -271,6 +278,7 @@ export class InsertComponent implements OnInit {
     bucket.upload(params, (error, res) => {
       this.commonService.deleteObjectForKey("insert_service")
       if (!error) {
+        this.state.loading = false
         this.login_state.loading = false;
         this.login_state.button_title = "Accedi";
         this.login_state.error_message = null;
@@ -309,17 +317,17 @@ export class InsertComponent implements OnInit {
   }
 
   changeToLogin() {
-    this.steps[3] = 'login'
+    this.steps[2] = 'login'
     this.step = 'login'
     this.router.navigate(['insert/login'])
   }
   changeToSignup() {
-    this.steps[3] = 'register'
+    this.steps[2] = 'register'
     this.step = 'register'
     this.router.navigate(['insert/register'])
   }
   changeToRecoverPassword() {
-    this.steps[3] = 'recover'
+    this.steps[2] = 'recover'
     this.step = 'recover'
     this.router.navigate(['insert/recover'])
   }
@@ -342,29 +350,8 @@ export class InsertComponent implements OnInit {
   }
 
   // UTILS
-  checkRouteAndService() {
-    // if (!this.Service['title'] && this.step !== 'title') {
-    //   // this.state.title_error = "Per favore, inserisci un titolo."
-    //   this.router.navigate(['insert/title']);
-    //   return;
-    // }
-    // else if ((!this.Service['unit'] || !this.Service['price']) && this.step !== 'pricing') {
-    //   // this.state.pricing_error = "Per favore, compila i campi richiesti."
-    //   this.router.navigate(['insert/pricing']);
-    //   return;
-    // }
-    // else if (!this.Service['picture_file']) {
-    //   // this.state.picture_file_error = "Per piacere, inserisci un immagine."
-    //   this.router.navigate(['insert/picture']);
-    //   return;
-    // } else if (this.step === 'end')  {
-    //   this.router.navigate(['profile/general']);
-    // }
-  }
   updatePrice() {
     let value = parseInt(this.Service['price']);
-    // console.log('value: ' + value);
-    // console.log('input update: ' + this.Service['price']);
     if (isNaN(value) || value === 0 ) {
       this.Service['price'] = null
     } else if (!this.Service['price']) {
@@ -375,12 +362,7 @@ export class InsertComponent implements OnInit {
   }
   updateTitle() {
     this.Service['title'] = this.Service['title'].replace(/[^a-zA-Z0-9,èòàùéì'" ]/g, "")
-    // this.Service['title'] = this.Service['title'].replace(/[!#$%&@'*+\/=?^_`{|}~.,-•]/g, "")
-    // if (this.Service['title'].length===0) {
-    //   this.Service['title'] = ""
-    // }
     this.Service['title'] = this.Service['title'].charAt(0).toUpperCase() + this.Service['title'].slice(1);
-
   }
   setProgressWidth() {
     var numSteps = this.steps.length;

@@ -29,7 +29,51 @@
       </div>
     </div>
   </div> -->
-  <div class="insert" *ngIf="step==='title'">
+  <div class="insert" *ngIf="step==='product'">
+    <div class="insert-header">
+      <h1>Che servizio offri?</h1>
+      <p>Inserisci il titolo, la descrizione e un immagine del servizio che offri.</p>
+    </div>
+    <div class="insert-body">
+      <form (keyup.enter)="nextStep()">
+        <div class="input-group">
+          <input id="titleInput" type="text" class="form-control" placeholder="titolo" [autofocus]="!Service.title" [ngStyle]="{'text-align' : 'center'}" [(ngModel)]="Service.title" (keyup)="updateTitle()" (change)="updateTitle()" [ngModelOptions]="{standalone: true}">
+        </div>
+        <div class="input-group">
+          <textarea id="descriptionInput" class="form-control" placeholder="Inserisci una descrizione" rows="3" [(ngModel)]="Service.description" [ngModelOptions]="{standalone: true}"></textarea>
+        </div>
+        <div class="form-group row">
+          <div class="col-md-5 text-center">
+            <div class="picture-container">
+              <input type="file" (change)="selectServicePicture($event)" style="display: none;" #file>
+              <div class="service-picture" (click)="file.click()">
+                <i *ngIf="!logo" class="fa fa-camera" aria-hidden="true"></i>
+                <img class="img-responsive" [src]="logo" alt="">
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="content">
+              <p>Per favore carica un immagine chiara del servizio che offrì.</p>
+              <input type="file" (change)="selectServicePicture($event)" style="display: none;" #file>
+              <button type="button" class="btn btn-secondary" name="button" (click)="file.click()">Carica</button>
+            </div>
+          </div>
+        </div>
+        <div class="form-group error">
+          <span class="error-text" *ngIf="state.title_error">{{state.title_error}}</span>
+        </div>
+        <div class="actions">
+          <div class="form-group text-center">
+            <button type="button" class="btn btn-success" (click)="nextStep()">Continua</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+
+  <!-- <div class="insert" *ngIf="step==='title'">
     <div class="insert-header">
       <h1>Che servizio offri?</h1>
       <p>Inserisci il titolo e la descrizione del servizio o lavoro che offri.</p>
@@ -52,13 +96,11 @@
         </div>
       </form>
     </div>
-  </div>
+  </div> -->
   <div class="insert" *ngIf="step==='pricing'">
     <div class="insert-header">
       <h1>Come vuoi vendere il tuo servizio?</h1>
       <p>Inserisci il prezzo e l'unita del servizio che vuoi vendere.</p>
-      <!-- <p>Inserisci il prezzo (IVA inclusa) per unità di misura.</p> -->
-      <!-- <p>Esempio: €23 x ora, €190 x giorno</p> -->
     </div>
     <div class="insert-body">
       <form (keyup.enter)="nextStep()">
@@ -77,7 +119,7 @@
         </div>
         <div class="actions">
           <div class="form-group text-center">
-            <button type="button" class="btn btn-success" (click)="nextStep()">Avanti</button>
+            <button type="button" class="btn btn-success" (click)="nextStep()"><i class="fa fa-circle-o-notch animate" *ngIf="state.loading"></i> Pubblica</button>
           </div>
         </div>
       </form>
@@ -115,7 +157,7 @@
     </div>
     <div class="insert-body">
       <div class="form-group text-center">
-        <button type="button" id="next" class="btn btn-success" (click)="nextStep()">Avanti</button>
+        <button type="button" id="next" class="btn btn-success" (click)="nextStep()">Fine</button>
       </div>
     </div>
   </div>

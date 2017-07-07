@@ -34,7 +34,7 @@ app-insert {
       width: 100%;
       background: #edefed;
       height: 6px;
-      z-index: 1;
+      z-index: 1000;
       .progress {
         height: 6px;
         background: #1abc9c;
@@ -57,7 +57,7 @@ app-insert {
       color: white !important;
     }
     .insert {
-      padding: 60px 10px;
+      padding: 60px 20px;
       .insert-header {
         text-align: center;
         padding-bottom: 30px;
@@ -124,27 +124,31 @@ app-insert {
           font-weight: 600;
           border-radius: 2px;
           height: 60px;
+          // width: 100%;
         }
         .picture-container {
           margin-bottom: 30px;
           .service-picture {
-            max-width: 288px;
-            height: 360px;
-            background: #f1f1f1;
+            position: relative;
+            text-align: center;
+            width: 100%;
+            height: 220px;
+            // background: #f1f1f1;
             margin: auto;
             font-size: 30px;
             color: white;
             i {
               position: absolute;
-              margin-left: 129px;
-              margin-top: 153px;
               color: #d2d2d2;
+              width: 100%;
+              height: 100%;
+              line-height: 220px;
             }
             img {
               width: 100%;
               height: 100%;
               object-fit: cover;
-              line-height: 415px;
+              line-height: 220px;
               font-size: 18px;
               text-align: center;
               color: #d2d2d2;
@@ -172,6 +176,21 @@ app-insert {
               text-align: center;
               color: transparent;
             }
+          }
+        }
+        .content {
+          .btn {
+            padding: 0 30px;
+            font-size: 18px;
+            border-radius: 3px;
+            margin-top: 20px;
+            text-transform: none;
+            font-weight: 400;
+            height: inherit;
+          }
+          p {
+            font-size: 16px !important;
+            color: #484848;
           }
         }
         .form-group .ui-inputtext {
@@ -222,14 +241,14 @@ app-insert {
     padding-top: 20px;
   }
   app-insert .insert-container .insert .insert-body .picture-container .service-picture {
-    max-width: 224px;
-    height: 280px;
+    max-width: 200px;
+    // height: 280px;
   }
   app-insert .insert-container .insert .insert-body .picture-container .service-picture i {
-    margin-top: 120px;
-    margin-left: 97px;
+    // margin-top: 120px;
+    // margin-left: 97px;
   }
   app-insert .insert-container .insert .insert-body .picture-container .service-picture img {
-    line-height: 341px;
+    // line-height: 341px;
   }
 }

@@ -149,7 +149,6 @@ export class AuthService {
   }
 
   signupProfessional(firstname: string, lastname: string, phone: string, email: string, password: string, account_type: string) {
-    // this.navigationService.updateLoadingStatus(true);
     return this.http.post(this.api + 'signup', {
       firstname: firstname, lastname: lastname, phone_number: phone, email: email, password: password, account_type: account_type})
       .toPromise()
