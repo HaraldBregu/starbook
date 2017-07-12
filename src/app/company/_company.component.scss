@@ -24,6 +24,7 @@ app-company {
       background-size: cover;
       background-repeat: no-repeat;
       background-position: center;
+      // background: #2c3e50;
       .overlay {
         background-color: rgba(0, 0, 0, 0.5);
         .header {
@@ -33,7 +34,7 @@ app-company {
           padding: 100px 30px;
           text-align: center;
           h1 {
-            font-weight: 900;
+            font-weight: 500;
             font-size: 46px;
             line-height: 55px;
             margin-bottom: 20px;

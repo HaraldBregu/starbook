@@ -215,17 +215,11 @@
       </div> -->
     </div>
   </div>
-  <div class="professional-container">
+  <div class="professional-container" *ngIf="!currentUser">
     <div class="overlay">
       <div class="professional">
         <h1>Hai una professione, un mestiere o un'attività?</h1>
         <p>Inizia ad usare Starbook per rendere più accessibile la tua attività, ricevere le richieste dai clienti direttamente nel tuo telefono e senza perdere tempo.</p>
-        <!-- <h1>Hai un attività e vuoi trovare clienti online?</h1> -->
-        <!-- <p>Con le prenotazioni non hai più bisogno di spendere soldi in pubblicità. Ricevi direttamente le proposte già effetuate.</p> -->
-        <!-- <h1>Hai un attività, un impresa o un mestiere e vuoi trovare clienti?</h1> -->
-        <!-- <h1>Sei un professionista e hai bisogno di nuovi clienti?</h1> -->
-        <!-- <h1>Sei esperto in qualcosa?</h1> -->
-        <!-- <p>Diventa parte di Starbook offrendo i tuoi servizi a clienti interessati.</p> -->
         <button class="btn btn-warning" routerLink="/company">Scopri di più</button>
       </div>
     </div>

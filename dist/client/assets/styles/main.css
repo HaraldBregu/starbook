@@ -4241,7 +4241,7 @@ app-company {
           padding: 100px 30px;
           text-align: center; }
           app-company .company-container .header-container .overlay .header h1 {
-            font-weight: 900;
+            font-weight: 500;
             font-size: 46px;
             line-height: 55px;
             margin-bottom: 20px; }
