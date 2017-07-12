@@ -238,7 +238,7 @@ app-landing {
               }
               .service-title {
                 float: left;
-                width: 68%;
+                width: 72%;
                 padding: 0 5px;
                 .form-group .input-group {
                   background: white;
@@ -355,7 +355,7 @@ app-landing {
               }
               .service-when {
                 float: left;
-                width: 32%;
+                width: 28%;
                 padding: 0 5px;
                 .form-group .input-group {
                   background: white;
@@ -374,7 +374,7 @@ app-landing {
                 }
                 .date .ui-datepicker {
                   top: -130px !important;
-                  width: 194%;
+                  width: 210%;
                 }
                 .date .ui-datepicker .ui-datepicker-prev {
                   left: 5px;
@@ -697,6 +697,9 @@ app-landing {
         }
         p {
           margin-top: 20px;
+          font-weight: 300;
+          font-size: 22px !important;
+          color: rgba(255, 255, 255, 0.8);
         }
         .btn {
           margin-top: 50px;

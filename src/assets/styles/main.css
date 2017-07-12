@@ -3668,7 +3668,7 @@ app-landing {
                 border: 1px solid white; }
               app-landing .landing-container .header-container .overlay .header .search-panel .fields .service-title {
                 float: left;
-                width: 68%;
+                width: 72%;
                 padding: 0 5px; }
                 app-landing .landing-container .header-container .overlay .header .search-panel .fields .service-title .form-group .input-group {
                   background: white;
@@ -3762,7 +3762,7 @@ app-landing {
                   padding: 15px 30px; }
               app-landing .landing-container .header-container .overlay .header .search-panel .fields .service-when {
                 float: left;
-                width: 32%;
+                width: 28%;
                 padding: 0 5px; }
                 app-landing .landing-container .header-container .overlay .header .search-panel .fields .service-when .form-group .input-group {
                   background: white;
@@ -3775,7 +3775,7 @@ app-landing {
                   background: #fafafa; }
                 app-landing .landing-container .header-container .overlay .header .search-panel .fields .service-when .date .ui-datepicker {
                   top: -130px !important;
-                  width: 194%; }
+                  width: 210%; }
                 app-landing .landing-container .header-container .overlay .header .search-panel .fields .service-when .date .ui-datepicker .ui-datepicker-prev {
                   left: 5px; }
                 app-landing .landing-container .header-container .overlay .header .search-panel .fields .service-when .date .ui-datepicker .ui-datepicker-next {
@@ -4035,7 +4035,10 @@ app-landing {
         app-landing .landing-container .professional-container .professional h1 {
           font-weight: 300; }
         app-landing .landing-container .professional-container .professional p {
-          margin-top: 20px; }
+          margin-top: 20px;
+          font-weight: 300;
+          font-size: 22px !important;
+          color: rgba(255, 255, 255, 0.8); }
         app-landing .landing-container .professional-container .professional .btn {
           margin-top: 50px;
           font-weight: 600;
@@ -4231,29 +4234,29 @@ app-company {
       background-position: center; }
       app-company .company-container .header-container .overlay {
         background-color: rgba(0, 0, 0, 0.5); }
-      app-company .company-container .header-container .header {
-        color: white;
-        padding: 100px 30px;
-        text-align: center; }
-        app-company .company-container .header-container .header h1 {
-          font-weight: 900;
-          font-size: 46px;
+        app-company .company-container .header-container .overlay .header {
           max-width: 900px;
-          line-height: 55px;
           margin: auto;
-          margin-bottom: 20px; }
-        app-company .company-container .header-container .header .btn {
-          margin-top: 60px;
-          border-radius: 3px;
-          height: 80px;
-          padding: 0 80px;
-          font-weight: 700;
-          font-size: 30px; }
+          color: white;
+          padding: 100px 30px;
+          text-align: center; }
+          app-company .company-container .header-container .overlay .header h1 {
+            font-weight: 900;
+            font-size: 46px;
+            line-height: 55px;
+            margin-bottom: 20px; }
+          app-company .company-container .header-container .overlay .header .btn {
+            margin-top: 60px;
+            border-radius: 3px;
+            height: 80px;
+            padding: 0 80px;
+            font-weight: 700;
+            font-size: 30px; }
     app-company .company-container .bullets-container {
       display: block;
       text-align: center;
       padding: 100px 0;
-      max-width: 1250px;
+      max-width: 1440px;
       margin: auto; }
       app-company .company-container .bullets-container h1 {
         text-align: center;
@@ -4291,7 +4294,8 @@ app-company {
           font-weight: 300; }
         app-company .company-container .frase-container .frase h4 {
           font-weight: 300;
-          margin-top: 20px; }
+          margin-top: 22px;
+          color: rgba(255, 255, 255, 0.8); }
         app-company .company-container .frase-container .frase .btn {
           margin-top: 50px;
           font-weight: 600;
@@ -4356,15 +4360,15 @@ app-company {
         text-decoration: none; }
 
 @media (max-width: 425px) {
-  app-company .company-container .header-container .header {
+  app-company .company-container .header-container .overlay .header {
     padding: 40px 20px;
     text-align: left; }
 
-  app-company .company-container .header-container .header h1 {
+  app-company .company-container .header-container .overlay .header h1 {
     font-size: 40px;
     line-height: 50px; }
 
-  app-company .company-container .header-container .header .btn {
+  app-company .company-container .header-container .overlay .header .btn {
     margin-top: 20px;
     width: 100%;
     padding: 0;
