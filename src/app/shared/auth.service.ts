@@ -4,6 +4,7 @@ import { Http, Headers, Response } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/operator/map';
 import { NavigationService } from './navigation.service';
+import { AnalyticsService } from './analytics.service';
 
 export interface IAccount {
   _id?: string;
@@ -26,7 +27,7 @@ export class AuthService {
 
   private Account: IAccount;
 
-  constructor(private http: Http, private navigationService: NavigationService) {
+  constructor(private http: Http, private navigationService: NavigationService, private analyticsService: AnalyticsService) {
     if (isBrowser) {
       if (localStorage.getItem('auth') !== null) {
         this.auth = JSON.parse(localStorage.getItem('auth'));
@@ -303,6 +304,7 @@ export class AuthService {
   }
 
   private handleError(error: any): Promise<any> {
+    this.analyticsService.sendException(error)
     return Promise.reject(error.status || error);
   }
 

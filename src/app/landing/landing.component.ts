@@ -116,19 +116,12 @@ export class LandingComponent implements OnInit {
   bookServiceNow(service) {
     if (service) {
       this.title_service = service.title
+      this.analyticsService.sendEvent({category:'Book from landing', action: 'Book service', label: "Booking service campaign"});
     } else {
-      // var current_checkout_order = this.commonService.readObjectForKey("checkout_order")
-      // if (!this.temp_date) {
-      //   current_checkout_order['date'] = null
-      //   this.commonService.saveObjectForKey(current_checkout_order, "checkout_order")
-      // }
-      // if (!this.title_service) {
-      //   current_checkout_order['services'] = null
-      //   this.commonService.saveObjectForKey(current_checkout_order, "checkout_order")
-      // }
       if (!this.temp_date || !this.title_service) {
         return
       }
+      this.analyticsService.sendEvent({category:'Book from landing', action: 'Book now', label: "Booking service campaign"});
     }
     if (this.commonService.readObjectForKey("checkout_order")) {
       var current_checkout_order = this.commonService.readObjectForKey("checkout_order")
@@ -156,6 +149,7 @@ export class LandingComponent implements OnInit {
     if (typeof event==='string') {
       this.title_service = event
     }
+    // this.analyticsService.sendEvent({category:'Search from landing', action: 'Typing: ' + this.title_service, label: "Searching service campaign"});
     this.clearView = true
     if (event.length===0) {
       this.clearView = false
@@ -176,6 +170,7 @@ export class LandingComponent implements OnInit {
   selectSuggestion(service) {
     this.clearView = true
     this.title_service = service.title
+    this.analyticsService.sendEvent({category:'Search from landing', action: 'Selected: ' + this.title_service, label: "Searching service campaign"});
   }
   clearSearchForm() {
     this.query = '';
@@ -190,14 +185,8 @@ export class LandingComponent implements OnInit {
     let correctMonth = 1 + date.getMonth();
     let month = correctMonth > 9 ? correctMonth : '0' + correctMonth;
     this.date = date.getFullYear() + '-' + month + '-' + day + 'T' + '08:00' + ':00.000Z';
-    // this.date_state.error_message = null;
-    // this.Order['date'] = this.date
-    // this.commonService.saveObjectToLocalWithName(this.Order, 'checkout_order')
-    // this.state.date_error = null
-    // let _date = new Date(this.Order['date']);
     let _date = new Date(this.date);
     let _day = _date.getDate() > 9 ? _date.getDate() : '0' + _date.getDate();
     this.formated_date =  _day + ' ' + this.it.monthNames[_date.getMonth()] + ' ' + _date.getFullYear();
-    // this.formated_date =  _day + ' ' + _date.getMonth() + ' ' + _date.getFullYear();
   }
 }

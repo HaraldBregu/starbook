@@ -176,7 +176,6 @@ export class CheckoutComponent implements OnInit {
       } else {
         this.router.navigate([''])
       }
-      // this.router.navigate(['services', service_id])
       // this.router.navigate(['services', service_title.replace(/\s+/g, '-')]);
     }
     else if (this.step === "address") {
@@ -206,6 +205,7 @@ export class CheckoutComponent implements OnInit {
         return;
       }
       this.commonService.saveObjectForKey(this.Order, "checkout_order")
+      this.analyticsService.sendEvent({category:'Booking from checkout', action: 'Save Date', label: "Booking campaign"});
       this.router.navigate(['checkout/' + nextStep]);
     }
     else if (this.step === 'address') {
@@ -224,10 +224,12 @@ export class CheckoutComponent implements OnInit {
         }
       }
       this.commonService.saveObjectForKey(this.Order, "checkout_order")
+      this.analyticsService.sendEvent({category:'Booking from checkout', action: 'Save Address', label: "Booking campaign"});
       this.router.navigate(['checkout/' + nextStep]);
     }
     else if (this.step === 'note') {
       this.commonService.saveObjectForKey(this.Order, "checkout_order")
+      this.analyticsService.sendEvent({category:'Booking from checkout', action: 'Save Note', label: "Booking campaign"});
       this.router.navigate(['checkout/' + nextStep]);
     }
     else if (this.step === 'preview') {
@@ -285,6 +287,7 @@ export class CheckoutComponent implements OnInit {
     this.temp_address_street_number_city = this.temp_address.street_number_city;
   }
   sendOrder() {
+    this.analyticsService.sendEvent({category:'Booking from checkout', action: 'Save Order', label: "Booking campaign"});
     this.state.loading = true;
     this.state.error_message = null;
     this.ordersService.saveOrder(this.Order).then((response) => {
@@ -319,6 +322,7 @@ export class CheckoutComponent implements OnInit {
   }
 
   signup() {
+    this.analyticsService.sendEvent({category:'Booking from checkout', action: 'Signup', label: "Booking campaign"});
     if (this.signup_state.loading) { return; }
     this.signup_state.email_error = null;
     this.signup_state.first_name_error = null;
@@ -343,7 +347,6 @@ export class CheckoutComponent implements OnInit {
       this.steps[3] = 'payment'
       this.router.navigate(['checkout/payment'])
     }).catch((error) => {
-      this.analyticsService.sendException(error)
       this.signup_state.loading = false;
       this.signup_state.button_title = "Registrati";
       switch (error) {
@@ -362,6 +365,7 @@ export class CheckoutComponent implements OnInit {
     });
   }
   login() {
+    this.analyticsService.sendEvent({category:'Booking from checkout', action: 'Login', label: "Booking campaign"});
     if (this.login_state.loading) { return; }
     this.login_state.email_error = null;
     this.login_state.password_error = null;
@@ -377,7 +381,6 @@ export class CheckoutComponent implements OnInit {
       this.steps[3] = 'payment'
       this.router.navigate(['checkout/payment'])
     }).catch((error) => {
-      this.analyticsService.sendException(error)
       this.login_state.email_error = null;
       this.login_state.password_error = null;
       this.login_state.loading = false;
@@ -395,6 +398,7 @@ export class CheckoutComponent implements OnInit {
   }
 
   addCard() {
+    this.analyticsService.sendEvent({category:'Booking from checkout', action: 'Add Card', label: "Booking campaign"});
     if (this.card_state.loading) {return;}
     this.card_state.loading = true;
     this.card_state.button_title = "Salvando carta...";
@@ -540,10 +544,12 @@ export class CheckoutComponent implements OnInit {
     if (!this.Order['address']) {this.temp_address = null;}
   }
   changeToSignup() {
+    this.analyticsService.sendEvent({category:'Booking from checkout', action: 'Change to Signup', label: "Booking campaign"});
     this.steps[4] = 'signup'
     this.router.navigate(['checkout/signup'])
   }
   changeToLogin() {
+    this.analyticsService.sendEvent({category:'Booking from checkout', action: 'Change to Login', label: "Booking campaign"});
     this.steps[4] = 'login'
     this.router.navigate(['checkout/login'])
   }
