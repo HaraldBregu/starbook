@@ -3475,144 +3475,388 @@ app-landing {
       background-position: center; }
       app-landing .landing-container .header-container .overlay {
         background-color: rgba(0, 0, 0, 0.5); }
-      app-landing .landing-container .header-container .header {
-        color: white;
-        padding: 100px 30px; }
-        app-landing .landing-container .header-container .header .header-text {
-          max-width: 900px;
+        app-landing .landing-container .header-container .overlay .header {
+          max-width: 960px;
           margin: auto;
-          margin-bottom: 20px; }
-          app-landing .landing-container .header-container .header .header-text h1 {
+          color: white;
+          padding: 120px 30px 80px; }
+          app-landing .landing-container .header-container .overlay .header h1 {
             font-weight: 700;
             font-size: 46px;
             line-height: 55px;
             text-align: left;
-            margin-bottom: 10px; }
-          app-landing .landing-container .header-container .header .header-text p {
-            font-weight: 300;
-            font-size: 24px !important;
-            font-style: italic; }
-        app-landing .landing-container .header-container .header .search {
-          display: block;
-          position: relative;
-          max-width: 900px;
-          width: 100%;
-          margin: auto;
-          height: 60px; }
-          app-landing .landing-container .header-container .header .search .search-field {
-            display: inline-block;
-            float: left;
-            width: 90%; }
-          app-landing .landing-container .header-container .header .search .search-button {
-            display: inline-block;
-            float: left;
-            width: 10%; }
-          app-landing .landing-container .header-container .header .search .ui-autocomplete-input {
+            margin-bottom: 30px; }
+          app-landing .landing-container .header-container .overlay .header .header-text {
+            margin-bottom: 20px; }
+            app-landing .landing-container .header-container .overlay .header .header-text h1 {
+              font-weight: 700;
+              font-size: 46px;
+              line-height: 55px;
+              text-align: left;
+              margin-bottom: 10px; }
+            app-landing .landing-container .header-container .overlay .header .header-text p {
+              font-weight: 300;
+              font-size: 24px !important;
+              font-style: italic; }
+          app-landing .landing-container .header-container .overlay .header .search {
             display: block;
-            width: 100%;
-            height: 60px;
-            padding: 15px 46px 15px 30px;
-            background-color: #FFFFFF;
-            border: none;
-            box-shadow: none;
-            outline: none;
-            font-size: 20px;
-            letter-spacing: 0.11px; }
-          app-landing .landing-container .header-container .header .search .close-container {
-            display: block;
-            position: absolute;
-            top: 17px;
-            right: 13%; }
-          app-landing .landing-container .header-container .header .search .close-container .close {
             position: relative;
-            display: inline-block;
-            width: 25px;
-            height: 25px;
-            overflow: hidden; }
-            app-landing .landing-container .header-container .header .search .close-container .close::before, app-landing .landing-container .header-container .header .search .close-container .close::after {
-              content: '';
-              position: absolute;
-              height: 2px;
+            width: 100%;
+            height: 60px; }
+            app-landing .landing-container .header-container .overlay .header .search .search-field {
+              display: inline-block;
+              float: left;
+              width: 90%; }
+            app-landing .landing-container .header-container .overlay .header .search .search-button {
+              display: inline-block;
+              float: left;
+              width: 10%; }
+            app-landing .landing-container .header-container .overlay .header .search .ui-autocomplete-input {
+              display: block;
               width: 100%;
-              top: 50%;
-              left: 0;
-              margin-top: -1px;
-              background: #3498db; }
-            app-landing .landing-container .header-container .header .search .close-container .close::before {
-              transform: rotate(45deg); }
-            app-landing .landing-container .header-container .header .search .close-container .close::after {
-              transform: rotate(-45deg); }
-            app-landing .landing-container .header-container .header .search .close-container .close.thick::before, app-landing .landing-container .header-container .header .search .close-container .close.thick::after {
-              height: 4px;
-              margin-top: -2px; }
-            app-landing .landing-container .header-container .header .search .close-container .close.rounded::before, app-landing .landing-container .header-container .header .search .close-container .close.rounded::after {
-              border-radius: 5px; }
-          app-landing .landing-container .header-container .header .search .ui-autocomplete-panel {
+              height: 60px;
+              padding: 15px 46px 15px 30px;
+              background-color: #FFFFFF;
+              border: none;
+              box-shadow: none;
+              outline: none;
+              font-size: 20px;
+              letter-spacing: 0.11px; }
+            app-landing .landing-container .header-container .overlay .header .search .close-container {
+              display: block;
+              position: absolute;
+              top: 17px;
+              right: 13%; }
+            app-landing .landing-container .header-container .overlay .header .search .close-container .close {
+              position: relative;
+              display: inline-block;
+              width: 25px;
+              height: 25px;
+              overflow: hidden; }
+              app-landing .landing-container .header-container .overlay .header .search .close-container .close::before, app-landing .landing-container .header-container .overlay .header .search .close-container .close::after {
+                content: '';
+                position: absolute;
+                height: 2px;
+                width: 100%;
+                top: 50%;
+                left: 0;
+                margin-top: -1px;
+                background: #3498db; }
+              app-landing .landing-container .header-container .overlay .header .search .close-container .close::before {
+                transform: rotate(45deg); }
+              app-landing .landing-container .header-container .overlay .header .search .close-container .close::after {
+                transform: rotate(-45deg); }
+              app-landing .landing-container .header-container .overlay .header .search .close-container .close.thick::before, app-landing .landing-container .header-container .overlay .header .search .close-container .close.thick::after {
+                height: 4px;
+                margin-top: -2px; }
+              app-landing .landing-container .header-container .overlay .header .search .close-container .close.rounded::before, app-landing .landing-container .header-container .overlay .header .search .close-container .close.rounded::after {
+                border-radius: 5px; }
+            app-landing .landing-container .header-container .overlay .header .search .ui-autocomplete-panel {
+              display: block;
+              position: absolute;
+              overflow-y: auto;
+              width: 90% !important;
+              background-color: #FFFFFF;
+              border-left: 1px solid #DCDCDC;
+              border-right: 1px solid #DCDCDC;
+              border-bottom: 1px solid #DCDCDC;
+              outline: none;
+              border-radius: 1px;
+              text-align: left; }
+            app-landing .landing-container .header-container .overlay .header .search .ui-autocomplete-panel .ui-state-highlight .search-result {
+              color: white;
+              background-color: #3498db; }
+            app-landing .landing-container .header-container .overlay .header .search .ui-autocomplete-panel .search-result {
+              display: block;
+              width: 100%;
+              color: #212121;
+              font-size: 18px;
+              letter-spacing: 0.1px;
+              padding: 20px 30px; }
+            app-landing .landing-container .header-container .overlay .header .search .ui-autocomplete-panel.empty {
+              margin-top: 0; }
+            app-landing .landing-container .header-container .overlay .header .search .ui-autocomplete-panel.empty .no-result {
+              display: block;
+              width: 100%;
+              color: #8D9494;
+              font-size: 14px;
+              letter-spacing: 0.1px;
+              padding: 15px 30px; }
+            app-landing .landing-container .header-container .overlay .header .search .spinner {
+              display: block;
+              position: absolute;
+              top: 15px;
+              right: 13%;
+              width: 25px;
+              height: 25px; }
+            app-landing .landing-container .header-container .overlay .header .search .btn-primary {
+              height: 60px;
+              width: 100%; }
+          app-landing .landing-container .header-container .overlay .header .search-panel {
             display: block;
-            position: absolute;
-            overflow-y: auto;
-            width: 90% !important;
-            background-color: #FFFFFF;
-            border-left: 1px solid #DCDCDC;
-            border-right: 1px solid #DCDCDC;
-            border-bottom: 1px solid #DCDCDC;
-            outline: none;
-            border-radius: 1px;
-            text-align: left; }
-          app-landing .landing-container .header-container .header .search .ui-autocomplete-panel .ui-state-highlight .search-result {
-            color: white;
-            background-color: #3498db; }
-          app-landing .landing-container .header-container .header .search .ui-autocomplete-panel .search-result {
-            display: block;
+            position: relative;
+            background-color: rgba(0, 0, 0, 0.6);
             width: 100%;
-            color: #212121;
-            font-size: 18px;
-            letter-spacing: 0.1px;
-            padding: 20px 30px; }
-          app-landing .landing-container .header-container .header .search .ui-autocomplete-panel.empty {
-            margin-top: 0; }
-          app-landing .landing-container .header-container .header .search .ui-autocomplete-panel.empty .no-result {
-            display: block;
-            width: 100%;
-            color: #8D9494;
-            font-size: 14px;
-            letter-spacing: 0.1px;
-            padding: 15px 30px; }
-          app-landing .landing-container .header-container .header .search .spinner {
-            display: block;
-            position: absolute;
-            top: 15px;
-            right: 13%;
-            width: 25px;
-            height: 25px; }
-          app-landing .landing-container .header-container .header .search .btn-primary {
-            height: 60px;
-            width: 100%; }
-      app-landing .landing-container .header-container .bottom-container {
-        position: relative;
-        overflow: hidden;
-        width: 100%;
-        height: 20px; }
-        app-landing .landing-container .header-container .bottom-container .arrow {
-          position: absolute;
-          bottom: 0;
+            border-radius: 2px;
+            border: 2px solid black;
+            padding: 15px 15px 5px; }
+            app-landing .landing-container .header-container .overlay .header .search-panel .form-control {
+              border: 0;
+              font-size: 17px; }
+            app-landing .landing-container .header-container .overlay .header .search-panel .form-control:focus {
+              border-width: 0px !important; }
+            app-landing .landing-container .header-container .overlay .header .search-panel .form-group label, app-landing .landing-container .header-container .overlay .header .search-panel .input-group label {
+              font-size: 17px !important;
+              font-weight: 500;
+              color: #ffffff !important;
+              margin-bottom: 10px !important; }
+            app-landing .landing-container .header-container .overlay .header .search-panel .fields {
+              padding-right: 150px;
+              display: table;
+              width: 100%; }
+              app-landing .landing-container .header-container .overlay .header .search-panel .fields *::-webkit-input-placeholder {
+                /* WebKit, Blink, Edge */
+                color: rgba(0, 0, 0, 0.5) !important;
+                opacity: 1 !important; }
+              app-landing .landing-container .header-container .overlay .header .search-panel .fields *:-moz-placeholder {
+                /* Mozilla Firefox 4 to 18 */
+                color: rgba(0, 0, 0, 0.5) !important;
+                opacity: 1; }
+              app-landing .landing-container .header-container .overlay .header .search-panel .fields *::-moz-placeholder {
+                /* Mozilla Firefox 19+ */
+                color: rgba(0, 0, 0, 0.5) !important;
+                opacity: 1; }
+              app-landing .landing-container .header-container .overlay .header .search-panel .fields *:-ms-input-placeholder {
+                /* Internet Explorer 10-11 */
+                color: rgba(0, 0, 0, 0.5) !important;
+                opacity: 1 !important; }
+              app-landing .landing-container .header-container .overlay .header .search-panel .fields *::-ms-input-placeholder {
+                /* Microsoft Edge */
+                color: rgba(0, 0, 0, 0.5) !important;
+                opacity: 1 !important; }
+              app-landing .landing-container .header-container .overlay .header .search-panel .fields .form-group .input-group .form-control {
+                border-top-right-radius: 3px;
+                border-bottom-right-radius: 3px;
+                padding: 0 10px 0 0;
+                color: black;
+                background: #fafafa; }
+              app-landing .landing-container .header-container .overlay .header .search-panel .fields .form-group .input-group .input-group-addon {
+                border-top-left-radius: 3px;
+                border-bottom-left-radius: 3px;
+                border: 0;
+                font-size: 19px;
+                padding: 0 15px;
+                background: #fafafa;
+                color: black;
+                height: 50px; }
+              app-landing .landing-container .header-container .overlay .header .search-panel .fields .missing-parameter {
+                position: absolute;
+                display: block;
+                height: 30px;
+                line-height: 30px;
+                padding: 0px 20px;
+                background-color: #2c2c2c;
+                left: 20px;
+                bottom: 0;
+                margin-bottom: -29px;
+                text-align: center;
+                border-radius: 0px;
+                font-size: 13px;
+                font-weight: 500;
+                z-index: 100;
+                overflow: hidden;
+                border: 1px solid white; }
+              app-landing .landing-container .header-container .overlay .header .search-panel .fields .service-title {
+                float: left;
+                width: 68%;
+                padding: 0 5px; }
+                app-landing .landing-container .header-container .overlay .header .search-panel .fields .service-title .form-group .input-group {
+                  background: white;
+                  border-radius: 3px; }
+                app-landing .landing-container .header-container .overlay .header .search-panel .fields .service-title .ui-autocomplete-input {
+                  display: block;
+                  width: 100%;
+                  height: 60px;
+                  padding-right: 15px;
+                  background-color: #fafafa;
+                  border: none;
+                  box-shadow: none;
+                  outline: none;
+                  font-size: 17px;
+                  letter-spacing: 0.11px;
+                  border-top-right-radius: 3px;
+                  border-bottom-right-radius: 3px; }
+                app-landing .landing-container .header-container .overlay .header .search-panel .fields .service-title .close-container {
+                  display: block;
+                  position: absolute;
+                  top: 15px;
+                  right: 3%; }
+                app-landing .landing-container .header-container .overlay .header .search-panel .fields .service-title .close-container .close {
+                  position: relative;
+                  display: inline-block;
+                  width: 22px;
+                  height: 22px;
+                  overflow: hidden; }
+                  app-landing .landing-container .header-container .overlay .header .search-panel .fields .service-title .close-container .close::before, app-landing .landing-container .header-container .overlay .header .search-panel .fields .service-title .close-container .close::after {
+                    content: '';
+                    position: absolute;
+                    height: 2px;
+                    width: 100%;
+                    top: 50%;
+                    left: 0;
+                    margin-top: -1px;
+                    background: #000000; }
+                  app-landing .landing-container .header-container .overlay .header .search-panel .fields .service-title .close-container .close::before {
+                    transform: rotate(45deg); }
+                  app-landing .landing-container .header-container .overlay .header .search-panel .fields .service-title .close-container .close::after {
+                    transform: rotate(-45deg); }
+                  app-landing .landing-container .header-container .overlay .header .search-panel .fields .service-title .close-container .close.thick::before, app-landing .landing-container .header-container .overlay .header .search-panel .fields .service-title .close-container .close.thick::after {
+                    height: 2px;
+                    margin-top: -2px; }
+                  app-landing .landing-container .header-container .overlay .header .search-panel .fields .service-title .close-container .close.rounded::before, app-landing .landing-container .header-container .overlay .header .search-panel .fields .service-title .close-container .close.rounded::after {
+                    border-radius: 2px; }
+                app-landing .landing-container .header-container .overlay .header .search-panel .fields .service-title .spinner {
+                  display: block;
+                  position: absolute;
+                  top: 15px;
+                  right: 3%; }
+                app-landing .landing-container .header-container .overlay .header .search-panel .fields .service-title .ui-autocomplete-panel {
+                  display: block;
+                  position: absolute;
+                  margin-top: 5px;
+                  overflow-y: auto;
+                  width: 100% !important;
+                  background-color: #FFFFFF;
+                  outline: none;
+                  border-radius: 3px;
+                  text-align: left; }
+                app-landing .landing-container .header-container .overlay .header .search-panel .fields .service-title .ui-autocomplete-panel .ui-state-highlight .search-result {
+                  color: white;
+                  background-color: #FE5766; }
+                app-landing .landing-container .header-container .overlay .header .search-panel .fields .service-title .ui-autocomplete-panel .ui-state-highlight i {
+                  color: white; }
+                app-landing .landing-container .header-container .overlay .header .search-panel .fields .service-title .ui-autocomplete-panel i {
+                  float: left;
+                  color: rgba(0, 0, 0, 0.5);
+                  height: 50px;
+                  width: 50px;
+                  line-height: 50px;
+                  text-align: center;
+                  font-size: 15px; }
+                app-landing .landing-container .header-container .overlay .header .search-panel .fields .service-title .ui-autocomplete-panel .search-result {
+                  display: block;
+                  width: 100%;
+                  color: #212121;
+                  font-size: 17px;
+                  letter-spacing: 0.1px;
+                  padding: 14px 46px; }
+                app-landing .landing-container .header-container .overlay .header .search-panel .fields .service-title .ui-autocomplete-panel.empty {
+                  margin-top: 5px;
+                  left: 0; }
+                app-landing .landing-container .header-container .overlay .header .search-panel .fields .service-title .ui-autocomplete-panel.empty .no-result {
+                  display: block;
+                  width: 100%;
+                  color: #8D9494;
+                  font-size: 14px;
+                  letter-spacing: 0.1px;
+                  padding: 15px 30px; }
+              app-landing .landing-container .header-container .overlay .header .search-panel .fields .service-when {
+                float: left;
+                width: 32%;
+                padding: 0 5px; }
+                app-landing .landing-container .header-container .overlay .header .search-panel .fields .service-when .form-group .input-group {
+                  background: white;
+                  border-radius: 3px; }
+                app-landing .landing-container .header-container .overlay .header .search-panel .fields .service-when .inner-addon .form-control {
+                  padding-left: 50px; }
+                app-landing .landing-container .header-container .overlay .header .search-panel .fields .service-when .date .ui-calendar input {
+                  width: 100%;
+                  border: 0;
+                  background: #fafafa; }
+                app-landing .landing-container .header-container .overlay .header .search-panel .fields .service-when .date .ui-datepicker {
+                  top: -130px !important;
+                  width: 194%; }
+                app-landing .landing-container .header-container .overlay .header .search-panel .fields .service-when .date .ui-datepicker .ui-datepicker-prev {
+                  left: 5px; }
+                app-landing .landing-container .header-container .overlay .header .search-panel .fields .service-when .date .ui-datepicker .ui-datepicker-next {
+                  right: 5px; }
+                app-landing .landing-container .header-container .overlay .header .search-panel .fields .service-when .date .ui-datepicker .ui-datepicker-title {
+                  height: 40px;
+                  line-height: 40px; }
+                app-landing .landing-container .header-container .overlay .header .search-panel .fields .service-when .date .ui-datepicker-calendar td a.ui-state-default {
+                  font-size: 15px;
+                  color: rgba(33, 33, 33, 0.7);
+                  font-weight: 800; }
+                app-landing .landing-container .header-container .overlay .header .search-panel .fields .service-when .date .ui-datepicker-calendar td a.ui-state-default:hover,
+                app-landing .landing-container .header-container .overlay .header .search-panel .fields .service-when .ui-datepicker-calendar td a.ui-state-active {
+                  background-color: #FE5766;
+                  color: #ffffff !important; }
+                app-landing .landing-container .header-container .overlay .header .search-panel .fields .service-when .ui-datepicker-calendar th span {
+                  border-bottom: 1px solid #dbdbdb;
+                  font-weight: 500; }
+                app-landing .landing-container .header-container .overlay .header .search-panel .fields .service-when .ui-datepicker-calendar td a.ui-state-disabled:hover {
+                  border-radius: 0px;
+                  background-color: white !important;
+                  color: rgba(33, 33, 33, 0.6) !important;
+                  cursor: default; }
+                app-landing .landing-container .header-container .overlay .header .search-panel .fields .service-when .ui-datepicker-calendar td a.ui-state-default.ui-state-disabled:hover {
+                  cursor: default;
+                  border-radius: 0px;
+                  background-color: white !important;
+                  color: rgba(33, 33, 33, 0.6) !important; }
+                app-landing .landing-container .header-container .overlay .header .search-panel .fields .service-when .date .ui-datepicker .ui-datepicker-prev span, app-landing .landing-container .header-container .overlay .header .search-panel .fields .service-when .date .ui-datepicker .ui-datepicker-next span {
+                  font-size: 25px;
+                  padding: 0;
+                  line-height: 40px;
+                  height: auto; }
+                app-landing .landing-container .header-container .overlay .header .search-panel .fields .service-when .date .ui-datepicker .ui-datepicker-prev span,
+                app-landing .landing-container .header-container .overlay .header .search-panel .fields .service-when .date .ui-datepicker .ui-datepicker-next span {
+                  background-color: white;
+                  color: rgba(0, 0, 0, 0.5); }
+                app-landing .landing-container .header-container .overlay .header .search-panel .fields .service-when .date .ui-datepicker .ui-datepicker-prev span:hover,
+                app-landing .landing-container .header-container .overlay .header .search-panel .fields .service-when .date .ui-datepicker .ui-datepicker-next span:hover {
+                  background-color: white;
+                  color: rgba(0, 0, 0, 0.5); }
+            app-landing .landing-container .header-container .overlay .header .search-panel .service-action {
+              width: 150px;
+              padding: 0 5px;
+              position: absolute;
+              right: 15px;
+              bottom: 5px; }
+              app-landing .landing-container .header-container .overlay .header .search-panel .service-action .btn-danger {
+                background-color: #fe5766;
+                font-size: 19px;
+                font-weight: 500;
+                border-radius: 3px;
+                padding: 0 20px;
+                width: 100%; }
+              app-landing .landing-container .header-container .overlay .header .search-panel .service-action .btn-danger:hover {
+                background-color: #fe707d; }
+        app-landing .landing-container .header-container .overlay .bottom-container {
+          position: relative;
+          overflow: hidden;
           width: 100%;
-          height: 20px;
-          background-color: transparent; }
-        app-landing .landing-container .header-container .bottom-container .arrow:before, app-landing .landing-container .header-container .bottom-container .arrow:after {
-          content: '';
-          position: absolute;
-          bottom: 0%;
-          width: 50%;
-          box-sizing: border-box; }
-        app-landing .landing-container .header-container .bottom-container .arrow:before {
-          right: 50%;
-          border-bottom: 20px solid white;
-          border-right: 20px solid transparent; }
-        app-landing .landing-container .header-container .bottom-container .arrow:after {
-          left: 50%;
-          border-bottom: 20px solid white;
-          border-left: 20px solid transparent; }
+          height: 20px; }
+          app-landing .landing-container .header-container .overlay .bottom-container .arrow {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 20px;
+            background-color: transparent; }
+          app-landing .landing-container .header-container .overlay .bottom-container .arrow:before, app-landing .landing-container .header-container .overlay .bottom-container .arrow:after {
+            content: '';
+            position: absolute;
+            bottom: 0%;
+            width: 50%;
+            box-sizing: border-box; }
+          app-landing .landing-container .header-container .overlay .bottom-container .arrow:before {
+            right: 50%;
+            border-bottom: 20px solid white;
+            border-right: 20px solid transparent; }
+          app-landing .landing-container .header-container .overlay .bottom-container .arrow:after {
+            left: 50%;
+            border-bottom: 20px solid white;
+            border-left: 20px solid transparent; }
     app-landing .landing-container .category-container {
       display: block;
       text-align: center;
@@ -3681,53 +3925,70 @@ app-landing {
     app-landing .landing-container .services-container {
       display: block;
       text-align: center;
-      padding: 30px 0;
-      max-width: 1380px;
-      margin: auto; }
-      app-landing .landing-container .services-container ::-webkit-scrollbar {
-        display: none; }
-      app-landing .landing-container .services-container h1 {
+      padding: 50px 0;
+      max-width: 1400px;
+      margin: auto;
+      overflow: auto; }
+      app-landing .landing-container .services-container .services-header {
         text-align: center;
-        color: #324978; }
-      app-landing .landing-container .services-container .services {
-        padding-top: 20px; }
-      app-landing .landing-container .services-container .service-container {
-        padding-top: 15px;
-        padding-bottom: 15px; }
-        app-landing .landing-container .services-container .service-container .service {
-          position: relative;
-          background-size: cover;
-          background-repeat: no-repeat;
-          background-position: center top;
-          height: 340px;
-          cursor: pointer; }
-          app-landing .landing-container .services-container .service-container .service .overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 10;
-            -webkit-transition: background 0.4s ease;
-            -moz-transition: background 0.4s ease;
-            -o-transition: background 0.4s ease;
-            transition: background 0.4s ease;
-            background: rgba(0, 0, 0, 0.4); }
-          app-landing .landing-container .services-container .service-container .service .overlay:hover {
-            background: transparent; }
-          app-landing .landing-container .services-container .service-container .service h1 {
-            text-align: center;
-            color: white;
-            font-weight: 700;
-            position: absolute;
-            bottom: 20px;
-            left: 20px;
-            text-shadow: 0 0 3px rgba(0, 0, 0, 0.4); }
+        color: #324978;
+        margin-bottom: 40px; }
+      app-landing .landing-container .services-container .services-body {
+        overflow: auto;
+        white-space: nowrap; }
+        app-landing .landing-container .services-container .services-body .service-container {
+          display: inline-block;
+          width: calc(100% / 6);
+          padding: 9px;
+          margin-right: -3px; }
+          app-landing .landing-container .services-container .services-body .service-container .service {
+            position: relative;
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center top;
+            background-color: #161517;
+            height: 216px;
+            overflow: auto;
+            border-radius: 3px;
+            cursor: pointer; }
+            app-landing .landing-container .services-container .services-body .service-container .service .overlay {
+              position: absolute;
+              top: 0;
+              left: 0;
+              width: 100%;
+              height: 100%;
+              z-index: 10;
+              background: rgba(0, 0, 0, 0.2);
+              -webkit-transition: background 0.4s ease;
+              -moz-transition: background 0.4s ease;
+              -o-transition: background 0.4s ease;
+              transition: background 0.4s ease; }
+            app-landing .landing-container .services-container .services-body .service-container .service .overlay:hover {
+              background: rgba(0, 0, 0, 0.15); }
+            app-landing .landing-container .services-container .services-body .service-container .service .text-container {
+              display: block;
+              position: absolute;
+              z-index: 2;
+              padding: 10px 15px;
+              bottom: 0;
+              width: 100%;
+              text-align: left;
+              background: -webkit-linear-gradient(transparent 10%, rgba(0, 0, 0, 0.65) 100%) !important;
+              background: -moz-linear-gradient(transparent 10%, rgba(0, 0, 0, 0.65) 100%) !important;
+              background: linear-gradient(transparent 10%, rgba(0, 0, 0, 0.65) 100%) !important; }
+              app-landing .landing-container .services-container .services-body .service-container .service .text-container .title {
+                font-weight: 500;
+                color: white;
+                line-height: 115%;
+                font-size: 21px;
+                text-transform: capitalize;
+                white-space: normal !important;
+                text-align: left; }
     app-landing .landing-container .bullets-container {
       display: block;
       text-align: center;
       padding: 100px 0;
-      max-width: 1250px;
+      max-width: 1440px;
       margin: auto; }
       app-landing .landing-container .bullets-container h1 {
         text-align: center;
@@ -3798,91 +4059,6 @@ app-landing {
       app-landing .landing-container .professional-container img {
         max-width: 40px;
         margin-bottom: 30px; }
-    app-landing .landing-container .section-container {
-      display: block;
-      max-width: 1440px;
-      overflow: hidden; }
-      app-landing .landing-container .section-container ::-moz-scrollbar {
-        display: none;
-        height: 0px;
-        /* remove scrollbar space */
-        background: transparent;
-        /* optional: just make scrollbar invisible */ }
-      app-landing .landing-container .section-container ::-moz-scrollbar-track {
-        display: none;
-        width: 0;
-        height: 0; }
-      app-landing .landing-container .section-container ::-moz-scrollbar-thumb {
-        display: none;
-        width: 0;
-        height: 0; }
-      app-landing .landing-container .section-container ::-webkit-scrollbar {
-        display: none; }
-      app-landing .landing-container .section-container .section {
-        width: 100%;
-        overflow-y: hidden;
-        overflow-x: scroll;
-        white-space: nowrap;
-        background: black; }
-        app-landing .landing-container .section-container .section .service-container {
-          display: inline-block;
-          width: 20%;
-          height: 300px;
-          padding: 10px;
-          margin-right: -4px; }
-          app-landing .landing-container .section-container .section .service-container .service {
-            width: 100%;
-            height: 100%;
-            background: grey;
-            background-size: cover;
-            background-repeat: no-repeat;
-            background-position: center top;
-            background-image: url("https://s3-eu-west-1.amazonaws.com/starbook-s3/services/58f7acb252a49dcd69a81f59/cover/0"); }
-    app-landing .landing-container .price-container {
-      display: block;
-      background-image: url("https://s3-eu-west-1.amazonaws.com/starbook-s3/website/illustration-city-blue.png");
-      background-repeat: no-repeat;
-      background-position: center bottom;
-      background-size: 100%;
-      height: 450px;
-      padding: 100px; }
-      app-landing .landing-container .price-container .text {
-        max-width: 700px;
-        margin: auto; }
-        app-landing .landing-container .price-container .text h1 {
-          text-align: center;
-          color: #324976;
-          font-weight: 700;
-          margin-bottom: 30px; }
-        app-landing .landing-container .price-container .text p {
-          text-align: center;
-          color: #4a4a4a; }
-    app-landing .landing-container .partnership-container {
-      display: block;
-      background-image: url("https://s3-eu-west-1.amazonaws.com/starbook-s3/website/illustration-city-blue.png");
-      background-repeat: no-repeat;
-      background-position: center bottom;
-      background-size: 80%;
-      height: 550px;
-      padding: 100px;
-      max-width: 1440px;
-      text-align: center; }
-      app-landing .landing-container .partnership-container .text {
-        max-width: 700px;
-        margin: auto; }
-        app-landing .landing-container .partnership-container .text h1 {
-          text-align: center;
-          color: #324976;
-          font-weight: 700;
-          margin-bottom: 30px; }
-        app-landing .landing-container .partnership-container .text p {
-          text-align: center;
-          color: #4a4a4a; }
-      app-landing .landing-container .partnership-container button {
-        margin-top: 30px;
-        padding: 0 50px;
-        font-weight: 700;
-        height: 60px; }
     app-landing .landing-container .prefooter-container {
       overflow: auto;
       color: rgba(255, 255, 255, 0.7);
@@ -3939,397 +4115,57 @@ app-landing {
         display: inline;
         color: rgba(255, 255, 255, 0.7);
         text-decoration: none; }
-    app-landing .landing-container .recruiting {
-      text-align: center;
-      color: #4a4a4a;
-      height: 600px;
-      text-align: left; }
-      app-landing .landing-container .recruiting .join-box, app-landing .landing-container .recruiting .partner-box {
-        display: inline-block;
-        float: left;
-        width: 50%;
-        height: 100%;
-        padding: 100px; }
-        app-landing .landing-container .recruiting .join-box h1, app-landing .landing-container .recruiting .partner-box h1 {
-          margin: 0 0 20px;
-          font-weight: 700; }
-        app-landing .landing-container .recruiting .join-box p, app-landing .landing-container .recruiting .partner-box p {
-          font-weight: 400; }
-        app-landing .landing-container .recruiting .join-box .btn-primary, app-landing .landing-container .recruiting .join-box .btn-warning, app-landing .landing-container .recruiting .partner-box .btn-primary, app-landing .landing-container .recruiting .partner-box .btn-warning {
-          margin: 100px 0 0;
-          border-radius: 3px;
-          font-weight: 600;
-          height: 60px;
-          padding: 0 40px; }
-      app-landing .landing-container .recruiting .join-box {
-        background: #ebebeb;
-        background-image: url("/assets/images/invite-workers.png");
-        background-repeat: no-repeat;
-        background-position: center bottom; }
-      app-landing .landing-container .recruiting .partner-box {
-        background: white;
-        background-image: url("/assets/images/Handshake.png");
-        background-repeat: no-repeat;
-        background-position: 116% 64%;
-        background-size: 496px; }
-    app-landing .landing-container .slogan {
-      padding: 60px 0;
-      text-align: center;
-      background: #164170;
-      color: white; }
-      app-landing .landing-container .slogan .title {
-        max-width: 600px;
-        margin: auto; }
-        app-landing .landing-container .slogan .title h1, app-landing .landing-container .slogan .title h2 {
-          font-weight: 300;
-          margin: auto;
-          line-height: initial; }
-    app-landing .landing-container .advantages {
-      padding: 100px 10px;
-      text-align: center; }
-      app-landing .landing-container .advantages .advantages-container {
-        padding: 20px 10px; }
-        app-landing .landing-container .advantages .advantages-container .row {
-          text-align: left; }
-        app-landing .landing-container .advantages .advantages-container .title {
-          padding: 0 0 60px;
-          max-width: 900px;
-          margin: auto; }
-          app-landing .landing-container .advantages .advantages-container .title h1 {
-            font-weight: 300;
-            max-width: 900px;
-            margin: auto;
-            margin-bottom: 30px; }
-          app-landing .landing-container .advantages .advantages-container .title h2 {
-            font-weight: 300;
-            max-width: 900px;
-            margin: auto;
-            margin-bottom: 30px; }
-          app-landing .landing-container .advantages .advantages-container .title h3 {
-            font-weight: 300;
-            line-height: inherit;
-            max-width: 700px;
-            margin: auto;
-            margin-bottom: 30px; }
-        app-landing .landing-container .advantages .advantages-container p {
-          margin: 20px 0;
-          text-align: justify; }
-        app-landing .landing-container .advantages .advantages-container .btn {
-          border-radius: 30px;
-          height: 60px;
-          padding: 0 80px;
-          font-weight: 700;
-          font-size: 26px;
-          margin-top: 100px; }
-    app-landing .landing-container .extensions {
-      padding: 100px 10px;
-      text-align: center; }
-      app-landing .landing-container .extensions .extensions-container .implementation {
-        text-align: center; }
-        app-landing .landing-container .extensions .extensions-container .implementation .title {
-          padding: 80px 0 0; }
-      app-landing .landing-container .extensions .extensions-container .row {
-        text-align: left; }
-        app-landing .landing-container .extensions .extensions-container .row i {
-          float: left;
-          width: 100%;
-          border-bottom: 1px solid rgba(221, 221, 221, 0.8); }
-      app-landing .landing-container .extensions .extensions-container .title {
-        padding: 0 0 60px;
-        max-width: 900px;
-        margin: auto; }
-        app-landing .landing-container .extensions .extensions-container .title h1 {
-          font-weight: 300;
-          max-width: 900px;
-          margin: auto;
-          margin-bottom: 30px; }
-        app-landing .landing-container .extensions .extensions-container .title h2 {
-          font-weight: 300;
-          max-width: 900px;
-          margin: auto;
-          margin-bottom: 30px; }
-        app-landing .landing-container .extensions .extensions-container .title h3 {
-          font-weight: 300;
-          line-height: inherit;
-          max-width: 700px;
-          margin: auto;
-          margin-bottom: 30px; }
-      app-landing .landing-container .extensions .extensions-container p {
-        margin: 20px 0;
-        text-align: justify; }
-      app-landing .landing-container .extensions .extensions-container .btn {
-        border-radius: 30px;
-        height: 60px;
-        padding: 0 80px;
-        font-weight: 700;
-        font-size: 26px;
-        margin-top: 100px; }
-      app-landing .landing-container .extensions .extensions-container .ext-container {
-        padding: 10px 0; }
-        app-landing .landing-container .extensions .extensions-container .ext-container .ext-box {
-          position: relative;
-          background-size: cover;
-          background-repeat: no-repeat;
-          background-position: center 100%;
-          height: 100px;
-          border-radius: 5px;
-          text-align: center; }
-          app-landing .landing-container .extensions .extensions-container .ext-container .ext-box .overlay {
-            position: absolute;
-            cursor: pointer;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 10;
-            border-radius: 5px;
-            color: white;
-            line-height: 100px;
-            font-size: 20px;
-            font-weight: 600; }
-          app-landing .landing-container .extensions .extensions-container .ext-container .ext-box .plumber {
-            -webkit-transition: background-color 0.6s ease;
-            -moz-transition: background-color 0.6s ease;
-            -o-transition: background-color 0.6s ease;
-            transition: background-color 0.6s ease;
-            background-color: rgba(22, 65, 112, 0.9); }
-          app-landing .landing-container .extensions .extensions-container .ext-container .ext-box .plumber:hover {
-            background-color: rgba(22, 65, 112, 0.8); }
-          app-landing .landing-container .extensions .extensions-container .ext-container .ext-box .carpenter {
-            -webkit-transition: background-color 0.6s ease;
-            -moz-transition: background-color 0.6s ease;
-            -o-transition: background-color 0.6s ease;
-            transition: background-color 0.6s ease;
-            background-color: rgba(78, 49, 28, 0.9); }
-          app-landing .landing-container .extensions .extensions-container .ext-container .ext-box .carpenter:hover {
-            background-color: rgba(78, 49, 28, 0.8); }
-          app-landing .landing-container .extensions .extensions-container .ext-container .ext-box .brick {
-            -webkit-transition: background-color 0.6s ease;
-            -moz-transition: background-color 0.6s ease;
-            -o-transition: background-color 0.6s ease;
-            transition: background-color 0.6s ease;
-            background-color: rgba(126, 51, 19, 0.9); }
-          app-landing .landing-container .extensions .extensions-container .ext-container .ext-box .brick:hover {
-            background-color: rgba(126, 51, 19, 0.8); }
-          app-landing .landing-container .extensions .extensions-container .ext-container .ext-box .blacksmith {
-            -webkit-transition: background-color 0.6s ease;
-            -moz-transition: background-color 0.6s ease;
-            -o-transition: background-color 0.6s ease;
-            transition: background-color 0.6s ease;
-            background-color: rgba(4, 1, 2, 0.9); }
-          app-landing .landing-container .extensions .extensions-container .ext-container .ext-box .blacksmith:hover {
-            background-color: rgba(4, 1, 2, 0.8); }
-          app-landing .landing-container .extensions .extensions-container .ext-container .ext-box .eletrical {
-            -webkit-transition: background-color 0.6s ease;
-            -moz-transition: background-color 0.6s ease;
-            -o-transition: background-color 0.6s ease;
-            transition: background-color 0.6s ease;
-            background-color: rgba(42, 135, 246, 0.9); }
-          app-landing .landing-container .extensions .extensions-container .ext-container .ext-box .eletrical:hover {
-            background-color: rgba(42, 135, 246, 0.8); }
-          app-landing .landing-container .extensions .extensions-container .ext-container .ext-box .painter {
-            -webkit-transition: background-color 0.6s ease;
-            -moz-transition: background-color 0.6s ease;
-            -o-transition: background-color 0.6s ease;
-            transition: background-color 0.6s ease;
-            background-color: rgba(242, 206, 30, 0.9); }
-          app-landing .landing-container .extensions .extensions-container .ext-container .ext-box .painter:hover {
-            background-color: rgba(242, 206, 30, 0.8); }
-      app-landing .landing-container .extensions .extensions-container h5 {
-        margin-bottom: 20px; }
-      app-landing .landing-container .extensions .extensions-container .checkout-container {
-        padding: 10px; }
-        app-landing .landing-container .extensions .extensions-container .checkout-container .checkout-box {
-          padding: 40px;
-          border: 1px solid #dce0e0; }
-          app-landing .landing-container .extensions .extensions-container .checkout-container .checkout-box .line {
-            display: block;
-            margin: 10px auto;
-            height: 1px;
-            border-top: 1px solid #e4e4e4; }
-          app-landing .landing-container .extensions .extensions-container .checkout-container .checkout-box .btn {
-            margin: 0;
-            border-radius: 0;
-            width: 100%; }
-          app-landing .landing-container .extensions .extensions-container .checkout-container .checkout-box .header-summary {
-            text-align: left;
-            margin: auto;
-            overflow: auto; }
-            app-landing .landing-container .extensions .extensions-container .checkout-container .checkout-box .header-summary .summary-details {
-              overflow: auto; }
-              app-landing .landing-container .extensions .extensions-container .checkout-container .checkout-box .header-summary .summary-details p {
-                margin: 0;
-                text-align: left; }
-            app-landing .landing-container .extensions .extensions-container .checkout-container .checkout-box .header-summary h3 {
-              margin-bottom: 10px; }
-            app-landing .landing-container .extensions .extensions-container .checkout-container .checkout-box .header-summary .item {
-              float: left;
-              width: 50%;
-              font-size: 18px;
-              font-weight: 300;
-              line-height: 36px; }
-            app-landing .landing-container .extensions .extensions-container .checkout-container .checkout-box .header-summary .amount {
-              float: left;
-              width: 50%;
-              font-size: 20px;
-              text-align: right;
-              font-weight: 500; }
-          app-landing .landing-container .extensions .extensions-container .checkout-container .checkout-box .payment {
-            margin: auto;
-            overflow: auto;
-            padding: 10px 0; }
-            app-landing .landing-container .extensions .extensions-container .checkout-container .checkout-box .payment .item {
-              float: left;
-              width: 50%;
-              font-size: 20px;
-              font-weight: 400;
-              line-height: 36px;
-              text-align: left; }
-            app-landing .landing-container .extensions .extensions-container .checkout-container .checkout-box .payment .amount {
-              float: left;
-              width: 50%;
-              font-size: 28px;
-              text-align: right;
-              font-weight: 900; }
-            app-landing .landing-container .extensions .extensions-container .checkout-container .checkout-box .payment .initial .amount {
-              font-weight: 400;
-              text-decoration: line-through; }
-    app-landing .landing-container .payment {
-      padding: 100px 10px;
-      text-align: center; }
-    app-landing .landing-container .request {
-      padding: 50px 0; }
-      app-landing .landing-container .request .request-container {
-        margin: auto;
-        background: #ebedef;
-        padding: 50px; }
-        app-landing .landing-container .request .request-container .btn {
-          width: 100%;
-          height: 60px;
-          font-weight: 700;
-          font-size: 26px; }
-        app-landing .landing-container .request .request-container h1 {
-          margin-bottom: 40px;
-          text-align: center; }
-        app-landing .landing-container .request .request-container p {
-          text-align: center; }
-    app-landing .landing-container .reviews {
-      padding: 100px 10px;
-      text-align: center; }
-      app-landing .landing-container .reviews .review-container {
-        padding: 20px 10px; }
-      app-landing .landing-container .reviews i {
-        color: #FFE16A; }
-      app-landing .landing-container .reviews h5 {
-        margin-bottom: 10px; }
-      app-landing .landing-container .reviews .btn {
-        border-radius: 30px;
-        height: 60px;
-        padding: 0 80px;
-        font-weight: 700;
-        font-size: 26px;
-        margin-top: 100px; }
-      app-landing .landing-container .reviews .title {
-        margin-bottom: 60px; }
-      app-landing .landing-container .reviews .row {
-        text-align: left; }
-    app-landing .landing-container .share {
-      padding: 100px 10px;
-      text-align: center; }
-      app-landing .landing-container .share .alerts {
-        max-width: 700px;
-        margin: auto; }
-      app-landing .landing-container .share h1 {
-        max-width: 900px;
-        margin: auto;
-        margin-bottom: 30px; }
-      app-landing .landing-container .share p {
-        max-width: 700px;
-        margin: auto;
-        margin-bottom: 30px; }
-      app-landing .landing-container .share .input-group {
-        max-width: 700px;
-        margin: auto; }
-        app-landing .landing-container .share .input-group .input-group-btn {
-          width: 20%; }
-          app-landing .landing-container .share .input-group .input-group-btn .btn {
-            width: 100%; }
-    app-landing .landing-container .contacts {
-      padding: 50px 0;
-      border-top: 1px solid #dce0e0; }
-  @media (max-width: 1024px) {
-    app-landing .landing-container .header-container .header {
-      padding: 70px 30px; }
-    app-landing .landing-container .services-container {
-      padding: 30px; } }
-  @media (max-width: 768px) {
-    app-landing .landing-container .professional-container .text {
-      padding: 50px; }
-    app-landing .landing-container .professional-container .image {
-      height: 455px; }
-    app-landing .landing-container .partnership-container {
-      height: 450px; } }
-  @media (max-width: 425px) {
-    app-landing .landing-container .professional-container .text {
-      padding: 30px 20px; }
-    app-landing .landing-container .professional-container .image {
-      height: 321px; }
-    app-landing .landing-container .partnership-container {
-      padding: 30px; }
-    app-landing .landing-container .header-container .header .search .search-field {
-      width: 80%; }
-    app-landing .landing-container .header-container .header .search .search-button {
-      width: 20%; }
-    app-landing .landing-container .landing-header .header {
-      padding: 30px 20px; }
-    app-landing .landing-container .landing-header .header .search .search-field {
-      width: 80%; }
-    app-landing .landing-container .landing-header .header .search .search-button {
-      width: 20%; }
-    app-landing .landing-container .advantages {
-      padding: 50px 10px; }
-      app-landing .landing-container .advantages .advantages-container .title {
-        padding: 0 0 20px; }
-      app-landing .landing-container .advantages .advantages-container .btn {
-        margin-top: 40px; }
-      app-landing .landing-container .advantages .advantages-container .row {
-        text-align: center; }
-    app-landing .landing-container .reviews {
-      padding: 50px 10px; }
-      app-landing .landing-container .reviews .title {
-        margin-bottom: 20px; }
-      app-landing .landing-container .reviews .review-container {
-        text-align: center; }
-      app-landing .landing-container .reviews .btn {
-        margin-top: 50px; }
-    app-landing .landing-container .request-form {
-      padding: 50px 20px; }
-    app-landing .landing-container .share {
-      padding: 50px 10px; } }
-  @media (max-width: 375px) {
-    app-landing .landing-container .header-container .header .search .search-field {
-      width: 70%; }
-    app-landing .landing-container .header-container .header .search .search-button {
-      width: 30%; } }
 
 @media (max-width: 1024px) {
-  app-landing .landing-container .category-container .category .category-body {
-    padding: 0 20px; }
-
   app-landing .landing-container .category-container .category .category-body .service-container {
     width: calc(100% / 4); }
 
   app-landing .landing-container .category-container .category .category-body {
-    overflow-x: scroll; } }
+    padding: 0 20px;
+    overflow-x: scroll; }
+
+  app-landing .landing-container .services-container .services-body {
+    overflow-x: scroll; }
+
+  app-landing .landing-container .services-container .services-body .service-container {
+    width: calc(100% / 4.5); } }
 @media (max-width: 768px) {
+  app-landing .landing-container .header-container .overlay .header {
+    padding: 40px 20px; }
+
+  app-landing .landing-container .header-container .overlay .header h1 {
+    margin-bottom: 10px; }
+
+  app-landing .landing-container .header-container .overlay .header .search-panel .fields {
+    padding-right: 0; }
+
+  app-landing .landing-container .header-container .overlay .header .search-panel .service-action {
+    position: initial;
+    width: 100%;
+    padding-top: 10px; }
+
   app-landing .landing-container .category-container .category .category-body .service-container {
     width: calc(100% / 3); }
 
   app-landing .landing-container .category-container .category .category-body .service-container .service {
-    height: 300px; } }
+    height: 300px; }
+
+  app-landing .landing-container .services-container .services-body .service-container {
+    width: calc(100% / 3.3); } }
 @media (max-width: 425px) {
-  app-landing .landing-container .header-container .overlay {
-    background-color: rgba(0, 0, 0, 0.7); }
+  app-landing .landing-container .header-container .overlay .header {
+    padding: 20px; }
+
+  app-landing .landing-container .header-container .overlay .header .search-panel .fields .service-title {
+    float: none;
+    width: 100%; }
+
+  app-landing .landing-container .header-container .overlay .header .search-panel .fields .service-when {
+    float: none;
+    width: 100%; }
+
+  app-landing .landing-container .header-container .overlay .header .search-panel .fields .service-when .date .ui-datepicker {
+    width: 100%; }
 
   app-landing .landing-container .header-container .header {
     padding: 30px 20px; }
@@ -4354,9 +4190,24 @@ app-landing {
     right: 23%; }
 
   app-landing .landing-container .landing-header .header .search .ui-autocomplete-panel {
-    width: 80% !important; } }
+    width: 80% !important; }
+
+  app-landing .landing-container .services-container .services-body .service-container {
+    width: calc(100% / 1.8); } }
 @media (max-width: 375px) {
+  app-landing .landing-container .header-container .overlay .header .search-panel .fields .service-when .date .ui-datepicker {
+    width: 115%; }
+
   app-landing .landing-container .category-container .category .category-body .service-container {
+    width: calc(100% / 1.3); }
+
+  app-landing .landing-container .services-container .services-body .service-container {
+    width: calc(100% / 1.6); } }
+@media (max-width: 320px) {
+  app-landing .landing-container .header-container .overlay .header .search-panel .fields .service-when .date .ui-datepicker {
+    width: 120%; }
+
+  app-landing .landing-container .services-container .services-body .service-container {
     width: calc(100% / 1.3); } }
 app-company {
   display: block;
@@ -5628,7 +5479,7 @@ app-insert {
     position: fixed;
     left: 0;
     margin-top: 20px;
-    padding: 0 30px;
+    padding: 0 40px;
     text-transform: uppercase;
     font-size: 20px;
     font-weight: 600;
@@ -5641,7 +5492,7 @@ app-insert {
     app-insert .insert-container .insert .insert-header {
       text-align: center;
       padding-bottom: 30px;
-      max-width: 700px;
+      max-width: 500px;
       margin: auto; }
       app-insert .insert-container .insert .insert-header h1 {
         font-weight: 300;
@@ -5685,12 +5536,12 @@ app-insert {
           line-height: 60px;
           font-weight: 300; }
       app-insert .insert-container .insert .insert-body .btn {
-        padding: 0 30px;
+        padding: 0 40px;
         text-transform: uppercase;
         font-size: 20px;
         font-weight: 600;
-        border-radius: 2px;
-        height: 60px; }
+        border-radius: 3px;
+        height: 50px; }
       app-insert .insert-container .insert .insert-body .picture-container {
         margin-bottom: 30px; }
         app-insert .insert-container .insert .insert-body .picture-container .service-picture {
@@ -5742,7 +5593,8 @@ app-insert {
         margin-top: 20px;
         text-transform: none;
         font-weight: 400;
-        height: inherit; }
+        height: inherit;
+        width: 100%; }
       app-insert .insert-container .insert .insert-body .content p {
         font-size: 16px !important;
         color: #484848; }
@@ -5807,7 +5659,7 @@ app-checkout {
     position: fixed;
     left: 0;
     margin-top: 20px;
-    padding: 0 30px;
+    padding: 0 40px;
     text-transform: uppercase;
     font-size: 20px;
     font-weight: 600;
@@ -5816,32 +5668,131 @@ app-checkout {
   app-checkout .checkout-container .back:hover {
     color: white !important; }
   app-checkout .checkout-container .checkout {
-    padding: 60px 10px; }
+    padding: 60px 20px; }
     app-checkout .checkout-container .checkout .checkout-header {
       text-align: center;
-      padding-bottom: 30px;
       max-width: 700px;
-      margin: auto; }
+      margin: auto;
+      margin-bottom: 40px; }
       app-checkout .checkout-container .checkout .checkout-header h1 {
         font-weight: 300;
         color: black;
         line-height: inherit; }
-        app-checkout .checkout-container .checkout .checkout-header h1 span {
-          font-weight: 500; }
-        app-checkout .checkout-container .checkout .checkout-header h1 .one {
-          color: #2980b9; }
-        app-checkout .checkout-container .checkout .checkout-header h1 .two {
-          color: #f39c12; }
       app-checkout .checkout-container .checkout .checkout-header p {
         font-weight: 300;
-        margin-top: 20px; }
+        margin-top: 10px; }
     app-checkout .checkout-container .checkout .checkout-body {
       margin: auto;
       max-width: 500px; }
+      app-checkout .checkout-container .checkout .checkout-body .input-group input.form-control {
+        height: 60px !important; }
+      app-checkout .checkout-container .checkout .checkout-body .input-group .form-control {
+        font-size: 22px; }
+      app-checkout .checkout-container .checkout .checkout-body .input-group textarea.form-control {
+        height: auto; }
+      app-checkout .checkout-container .checkout .checkout-body .input-group textarea.form-control:focus {
+        border: 2px solid #FFC845 !important; }
+      app-checkout .checkout-container .checkout .checkout-body .form-control .ui-autocomplete-panel .ui-autocomplete-list-item {
+        padding: 15px 15px;
+        text-align: center; }
+      app-checkout .checkout-container .checkout .checkout-body .form-control .ui-autocomplete-panel .ui-autocomplete-list-item.ui-state-highlight {
+        background-color: rgba(50, 73, 119, 0.8);
+        color: #ffffff; }
+      app-checkout .checkout-container .checkout .checkout-body .input-group .form-control {
+        height: 60px !important;
+        border: none;
+        box-shadow: none; }
+        app-checkout .checkout-container .checkout .checkout-body .input-group .form-control .ui-autocomplete-input {
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          border: none !important;
+          padding: 0 20px;
+          top: 0;
+          left: 0;
+          color: black;
+          font-size: 21px;
+          letter-spacing: 0.1px;
+          outline: none;
+          text-align: center;
+          border: 1px solid #DCDCDC !important; }
+        app-checkout .checkout-container .checkout .checkout-body .input-group .form-control .ui-autocomplete-input:focus {
+          border: 2px solid #FFC845 !important; }
+        app-checkout .checkout-container .checkout .checkout-body .input-group .form-control .ui-autocomplete-panel {
+          position: absolute;
+          background-color: #ffffff;
+          font-size: 17px;
+          color: #4A4A4A;
+          font-weight: 300;
+          box-shadow: 0px 1px 3px #888888;
+          overflow-y: scroll; }
+          app-checkout .checkout-container .checkout .checkout-body .input-group .form-control .ui-autocomplete-panel .ui-autocomplete-list-item {
+            padding: 15px 15px;
+            text-align: center; }
+          app-checkout .checkout-container .checkout .checkout-body .input-group .form-control .ui-autocomplete-panel .ui-autocomplete-list-item.ui-state-highlight {
+            background-color: #3498db;
+            color: #ffffff; }
+      app-checkout .checkout-container .checkout .checkout-body .input-group .ui-inputtext {
+        height: 60px;
+        border: 1px solid #DCDCDC;
+        width: 100%;
+        padding: 0 20px;
+        font-size: 22px;
+        font-weight: 400;
+        letter-spacing: 0.1px;
+        outline: none;
+        text-align: center; }
+      app-checkout .checkout-container .checkout .checkout-body .input-group .ui-inputtext:focus {
+        border: 2px solid #FFC845 !important; }
+      app-checkout .checkout-container .checkout .checkout-body .input-group textarea.form-control {
+        height: auto !important;
+        border: 1px solid #DCDCDC !important;
+        text-align: center; }
+      app-checkout .checkout-container .checkout .checkout-body .date .ui-datepicker .ui-datepicker-prev {
+        left: 5px; }
+      app-checkout .checkout-container .checkout .checkout-body .date .ui-datepicker .ui-datepicker-next {
+        right: 5px; }
+      app-checkout .checkout-container .checkout .checkout-body .date .ui-datepicker .ui-datepicker-title {
+        height: 40px;
+        line-height: 40px; }
+      app-checkout .checkout-container .checkout .checkout-body .date .ui-datepicker-calendar td a.ui-state-default {
+        font-size: 15px;
+        color: rgba(33, 33, 33, 0.7);
+        font-weight: 800; }
+      app-checkout .checkout-container .checkout .checkout-body .date .ui-datepicker-calendar td a.ui-state-default:hover,
+      app-checkout .checkout-container .checkout .checkout-body .ui-datepicker-calendar td a.ui-state-active {
+        background-color: #FE5766;
+        color: #ffffff !important; }
+      app-checkout .checkout-container .checkout .checkout-body .ui-datepicker-calendar th span {
+        border-bottom: 1px solid #dbdbdb;
+        font-weight: 500; }
+      app-checkout .checkout-container .checkout .checkout-body .ui-datepicker-calendar td a.ui-state-disabled:hover {
+        border-radius: 0px;
+        background-color: white !important;
+        color: rgba(33, 33, 33, 0.6) !important;
+        cursor: default; }
+      app-checkout .checkout-container .checkout .checkout-body .ui-datepicker-calendar td a.ui-state-default.ui-state-disabled:hover {
+        cursor: default;
+        border-radius: 0px;
+        background-color: white !important;
+        color: rgba(33, 33, 33, 0.6) !important; }
+      app-checkout .checkout-container .checkout .checkout-body .date .ui-datepicker .ui-datepicker-prev span, app-checkout .checkout-container .checkout .checkout-body .date .ui-datepicker .ui-datepicker-next span {
+        font-size: 25px;
+        padding: 0;
+        line-height: 40px;
+        height: auto; }
+      app-checkout .checkout-container .checkout .checkout-body .date .ui-datepicker .ui-datepicker-prev span,
+      app-checkout .checkout-container .checkout .checkout-body .date .ui-datepicker .ui-datepicker-next span {
+        background-color: white;
+        color: rgba(0, 0, 0, 0.5); }
+      app-checkout .checkout-container .checkout .checkout-body .date .ui-datepicker .ui-datepicker-prev span:hover,
+      app-checkout .checkout-container .checkout .checkout-body .date .ui-datepicker .ui-datepicker-next span:hover {
+        background-color: white;
+        color: rgba(0, 0, 0, 0.5); }
       app-checkout .checkout-container .checkout .checkout-body .order-container {
         padding: 30px;
         border: 1px solid #DBDBDB;
-        border-radius: 3px;
+        border-radius: 5px;
         margin-bottom: 15px; }
         app-checkout .checkout-container .checkout .checkout-body .order-container .services .service .service-header {
           margin-bottom: 10px; }
@@ -5917,12 +5868,12 @@ app-checkout {
           line-height: 60px;
           font-weight: 300; }
       app-checkout .checkout-container .checkout .checkout-body .btn {
-        padding: 0 30px;
+        padding: 0 40px;
         text-transform: uppercase;
         font-size: 20px;
-        font-weight: 600;
-        border-radius: 2px;
-        height: 60px; }
+        font-weight: 800;
+        border-radius: 3px;
+        height: 50px; }
       app-checkout .checkout-container .checkout .checkout-body .picture-container {
         margin-bottom: 30px; }
         app-checkout .checkout-container .checkout .checkout-body .picture-container .service-picture {
@@ -5993,69 +5944,6 @@ app-checkout {
           font-size: 19px;
           height: 40px;
           color: rgba(0, 0, 0, 0.5); }
-  app-checkout .input-group .form-control {
-    height: 60px !important;
-    font-size: 22px; }
-  app-checkout .input-group .form-control:focus {
-    border: 2px solid #16A084 !important; }
-  app-checkout .half-group {
-    float: left;
-    width: 50%; }
-    app-checkout .half-group .price {
-      text-align: center; }
-    app-checkout .half-group .unit {
-      text-align: center; }
-  app-checkout .form-control .ui-autocomplete-panel .ui-autocomplete-list-item {
-    padding: 15px 15px;
-    text-align: center; }
-  app-checkout .form-control .ui-autocomplete-panel .ui-autocomplete-list-item.ui-state-highlight {
-    background-color: rgba(50, 73, 119, 0.8);
-    color: #ffffff; }
-  app-checkout .input-group .form-control {
-    height: 60px !important;
-    border: 1px solid #DCDCDC;
-    box-shadow: none; }
-    app-checkout .input-group .form-control .ui-autocomplete-input {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      border: none !important;
-      padding: 0 20px;
-      top: 0;
-      left: 0;
-      color: black;
-      font-size: 21px;
-      letter-spacing: 0.1px;
-      outline: none;
-      text-align: center; }
-    app-checkout .input-group .form-control .ui-autocomplete-input:focus {
-      border: 2px solid #FFC845 !important; }
-    app-checkout .input-group .form-control .ui-autocomplete-panel {
-      position: absolute;
-      background-color: #ffffff;
-      font-size: 17px;
-      color: #4A4A4A;
-      font-weight: 300;
-      box-shadow: 0px 1px 3px #888888;
-      overflow-y: scroll; }
-      app-checkout .input-group .form-control .ui-autocomplete-panel .ui-autocomplete-list-item {
-        padding: 15px 15px;
-        text-align: center; }
-      app-checkout .input-group .form-control .ui-autocomplete-panel .ui-autocomplete-list-item.ui-state-highlight {
-        background-color: #3498db;
-        color: #ffffff; }
-  app-checkout .input-group .ui-inputtext {
-    height: 60px;
-    border: 1px solid #DCDCDC;
-    width: 100%;
-    padding: 0 20px;
-    font-size: 22px;
-    font-weight: 400;
-    letter-spacing: 0.1px;
-    outline: none;
-    text-align: center; }
-  app-checkout .input-group .ui-inputtext:focus {
-    border: 2px solid #FFC845 !important; }
 
 @media (max-width: 425px) {
   app-checkout .checkout-container .back {

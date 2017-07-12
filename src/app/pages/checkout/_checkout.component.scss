@@ -24,7 +24,7 @@ app-checkout {
       position: fixed;
       left: 0;
       margin-top: 20px;
-      padding: 0 30px;
+      padding: 0 40px;
       text-transform: uppercase;
       font-size: 20px;
       font-weight: 600;
@@ -35,38 +35,167 @@ app-checkout {
       color: white !important;
     }
     .checkout {
-      padding: 60px 10px;
+      padding: 60px 20px;
       .checkout-header {
         text-align: center;
-        padding-bottom: 30px;
         max-width: 700px;
         margin: auto;
+        margin-bottom: 40px;
         h1 {
           font-weight: 300;
           color: black;
           line-height: inherit;
-          span {
-            font-weight: 500;
-          }
-          .one {
-            color: #2980b9;
-          }
-          .two {
-            color: #f39c12;
-          }
         }
         p {
           font-weight: 300;
-          margin-top: 20px;
+          margin-top: 10px;
         }
       }
       .checkout-body {
         margin: auto;
         max-width: 500px;
+        .input-group input.form-control {
+          height: 60px !important;
+        }
+        .input-group .form-control {
+          font-size: 22px;
+        }
+        .input-group textarea.form-control {
+          height: auto;
+        }
+        .input-group textarea.form-control:focus {
+          border: 2px solid #FFC845 !important;
+        }
+        .form-control .ui-autocomplete-panel .ui-autocomplete-list-item {
+          padding: 15px 15px;
+          text-align: center;
+        }
+        .form-control .ui-autocomplete-panel .ui-autocomplete-list-item.ui-state-highlight {
+          background-color: rgba(50, 73, 119, 0.8);
+          color: #ffffff;
+        }
+        .input-group {
+          .form-control {
+            height: 60px !important;
+            border: none;
+            box-shadow: none;
+            .ui-autocomplete-input {
+              position: absolute;
+              width: 100%;
+              height: 100%;
+              border: none !important;
+              padding: 0 20px;
+              top: 0;
+              left: 0;
+              color: black;
+              font-size: 21px;
+              letter-spacing: 0.1px;
+              outline: none;
+              text-align: center;
+              border: 1px solid #DCDCDC !important;
+            }
+            .ui-autocomplete-input:focus {
+              border: 2px solid #FFC845 !important;;
+            }
+            .ui-autocomplete-panel {
+              position: absolute;
+              background-color: #ffffff;
+              font-size: 17px;
+              color: #4A4A4A;
+              font-weight: 300;
+              box-shadow: 0px 1px 3px #888888;
+              overflow-y: scroll;
+              .ui-autocomplete-list-item {
+                padding: 15px 15px;
+                text-align: center;
+              }
+              .ui-autocomplete-list-item.ui-state-highlight {
+                background-color: #3498db;
+                color: #ffffff;
+              }
+            }
+          }
+          .ui-inputtext {
+            height: 60px;
+            border: 1px solid #DCDCDC;
+            width: 100%;
+            padding: 0 20px;
+            font-size: 22px;
+            font-weight: 400;
+            letter-spacing: 0.1px;
+            outline: none;
+            text-align: center;
+          }
+          .ui-inputtext:focus {
+            border: 2px solid #FFC845 !important;;
+          }
+        }
+        .input-group textarea.form-control {
+          height: auto !important;
+          border: 1px solid #DCDCDC !important;
+          text-align: center;
+        }
+        // .checkout-container .checkout .checkout-body .input-group .form-control input {
+        //   border: 1px solid #DCDCDC;
+        // }
+
+        .date .ui-datepicker .ui-datepicker-prev {
+          left: 5px;
+        }
+        .date .ui-datepicker .ui-datepicker-next {
+          right: 5px;
+        }
+        .date .ui-datepicker .ui-datepicker-title {
+          height: 40px;
+          line-height: 40px;
+        }
+        .date .ui-datepicker-calendar td a.ui-state-default {
+          font-size: 15px;
+          color: rgba(33, 33, 33, 0.7);
+          font-weight: 800;
+        }
+        .date .ui-datepicker-calendar td a.ui-state-default:hover,
+        .ui-datepicker-calendar td a.ui-state-active {
+          background-color: #FE5766;
+          color: #ffffff !important;
+        }
+        .ui-datepicker-calendar th span {
+          border-bottom: 1px solid #dbdbdb;
+          font-weight: 500;
+        }
+        .ui-datepicker-calendar td a.ui-state-disabled:hover {
+          border-radius: 0px;
+          background-color: white !important;
+          color: rgba(33, 33, 33, 0.6) !important;
+          cursor: default;
+        }
+        .ui-datepicker-calendar td a.ui-state-default.ui-state-disabled:hover {
+          cursor: default;
+          border-radius: 0px;
+          background-color: white !important;
+          color: rgba(33, 33, 33, 0.6) !important;
+        }
+        .date .ui-datepicker .ui-datepicker-prev span, .date .ui-datepicker .ui-datepicker-next span {
+          font-size: 25px;
+          padding: 0;
+          line-height: 40px;
+          height: auto;
+        }
+        .date .ui-datepicker .ui-datepicker-prev span,
+        .date .ui-datepicker .ui-datepicker-next span {
+          background-color: white;
+          color: rgba(0, 0, 0, 0.5);
+
+        }
+        .date .ui-datepicker .ui-datepicker-prev span:hover,
+        .date .ui-datepicker .ui-datepicker-next span:hover {
+          background-color: white;
+          color: rgba(0, 0, 0, 0.5);
+        }
         .order-container {
           padding: 30px;
           border: 1px solid #DBDBDB;
-          border-radius: 3px;
+          border-radius: 5px;
           margin-bottom: 15px;
           .services {
             .service {
@@ -176,12 +305,12 @@ app-checkout {
           }
         }
         .btn {
-          padding: 0 30px;
+          padding: 0 40px;
           text-transform: uppercase;
           font-size: 20px;
-          font-weight: 600;
-          border-radius: 2px;
-          height: 60px;
+          font-weight: 800;
+          border-radius: 3px;
+          height: 50px;
         }
         .picture-container {
           margin-bottom: 30px;
@@ -268,91 +397,6 @@ app-checkout {
           }
         }
       }
-    }
-  }
-
-  // General
-  .input-group .form-control {
-    height: 60px !important;
-    font-size: 22px;
-  }
-  .input-group .form-control:focus {
-    border: 2px solid #16A084 !important;
-  }
-  .half-group {
-    float: left;
-    width: 50%;
-    .price {
-      text-align: center;
-    }
-    .unit {
-      text-align: center;
-    }
-  }
-
-  .form-control .ui-autocomplete-panel .ui-autocomplete-list-item {
-    padding: 15px 15px;
-    text-align: center;
-  }
-  .form-control .ui-autocomplete-panel .ui-autocomplete-list-item.ui-state-highlight {
-    background-color: rgba(50, 73, 119, 0.8);
-    color: #ffffff;
-  }
-
-  // Autocomplete
-  .input-group {
-    .form-control {
-      height: 60px !important;
-      border: 1px solid #DCDCDC;
-      box-shadow: none;
-      .ui-autocomplete-input {
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        border: none !important;
-        padding: 0 20px;
-        top: 0;
-        left: 0;
-        color: black;
-        font-size: 21px;
-        letter-spacing: 0.1px;
-        outline: none;
-        text-align: center;
-      }
-      .ui-autocomplete-input:focus {
-        border: 2px solid #FFC845 !important;;
-      }
-      .ui-autocomplete-panel {
-        position: absolute;
-        background-color: #ffffff;
-        font-size: 17px;
-        color: #4A4A4A;
-        font-weight: 300;
-        box-shadow: 0px 1px 3px #888888;
-        overflow-y: scroll;
-        .ui-autocomplete-list-item {
-          padding: 15px 15px;
-          text-align: center;
-        }
-        .ui-autocomplete-list-item.ui-state-highlight {
-          background-color: #3498db;
-          color: #ffffff;
-        }
-      }
-    }
-    .ui-inputtext {
-      height: 60px;
-      border: 1px solid #DCDCDC;
-      width: 100%;
-      padding: 0 20px;
-      font-size: 22px;
-      font-weight: 400;
-      letter-spacing: 0.1px;
-      outline: none;
-      text-align: center;
-    }
-    .ui-inputtext:focus {
-      border: 2px solid #FFC845 !important;;
     }
   }
 }

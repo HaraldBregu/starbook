@@ -1,34 +1,14 @@
 <div class="checkout-container">
   <div class="progress-container" *ngIf="step">
-    <div class="progress"
-    [ngStyle]="{'width': setProgressWidth()}"></div>
+    <div class="progress" [ngStyle]="{'width': setProgressWidth()}"></div>
   </div>
 
-  <button type="button" id="next" class="btn btn-warning back" (click)="undoStep()" *ngIf="step && step!=='summary' && step!=='title' && step!=='end'">Indietro</button>
+  <button type="button" id="next" class="btn btn-warning back" (click)="undoStep()" *ngIf="step">Indietro</button>
 
-  <div class="checkout" *ngIf="step==='address'">
-    <div class="checkout-header">
-      <h1>Inserisci il tuo indirizzo</h1>
-    </div>
-    <div class="checkout-body">
-      <form (keyup.enter)="nextStep()">
-        <div class="input-group">
-          <p-autoComplete id="address" class="form-control" [(ngModel)]="temp_address" [suggestions]="addresses" field="street_number_city" [ngModelOptions]="{standalone: true}" (completeMethod)="getAddresses($event)" (onSelect)="selectAddress($event)" placeholder="Via, Numero, Città"></p-autoComplete>
-        </div>
-        <div class="form-group error">
-          <span class="error-text" *ngIf="state.address_error">{{state.address_error}}</span>
-        </div>
-        <div class="actions">
-          <div class="form-group text-center">
-            <button type="button" class="btn btn-warning" (click)="nextStep()">Avanti</button>
-          </div>
-        </div>
-      </form>
-    </div>
-  </div>
   <div class="checkout" *ngIf="step==='date'">
     <div class="checkout-header">
-      <h1>Inserisci la data</h1>
+      <h1>Quando hai bisogno?</h1>
+      <p>Inserisci il giorno che vuoi ricevere questo servizio.</p>
     </div>
     <div class="checkout-body">
       <form (keyup.enter)="nextStep()">
@@ -46,9 +26,48 @@
       </form>
     </div>
   </div>
+  <div class="checkout" *ngIf="step==='address'">
+    <div class="checkout-header">
+      <h1>Dove hai bisogno?</h1>
+      <p>Inserisci l'indirizzo esatto per poter trovare il professionista più vicino.</p>
+    </div>
+    <div class="checkout-body">
+      <form (keyup.enter)="nextStep()">
+        <div class="input-group">
+          <p-autoComplete id="address" class="form-control" [(ngModel)]="temp_address" [suggestions]="addresses" field="street_number_city" [ngModelOptions]="{standalone: true}" (completeMethod)="getAddresses($event)" (onSelect)="selectAddress($event)" (ngModelChange)="changeAddress($event)" (clickOutside)="clickOutsideAddressInput()" placeholder="Via, Numero, Città"></p-autoComplete>
+        </div>
+        <div class="form-group error">
+          <span class="error-text" *ngIf="state.address_error">{{state.address_error}}</span>
+        </div>
+        <div class="actions">
+          <div class="form-group text-center">
+            <button type="button" class="btn btn-warning" (click)="nextStep()">Avanti</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="checkout" *ngIf="step==='note'">
+    <div class="checkout-header">
+      <h1>Vuoi lasciare una nota?</h1>
+      <p>Inserisci una nota per descrivere quello che ti serve in modo che sia più chiaro per il professionista.</p>
+    </div>
+    <div class="checkout-body" *ngIf="Order.services">
+      <form>
+        <div class="input-group">
+          <textarea id="description-input" class="form-control" [(ngModel)]="Order.description" placeholder="Inserisci una descrizione" rows="4" [ngModelOptions]="{standalone: true}"></textarea>
+        </div>
+        <div class="actions">
+          <div class="form-group text-center">
+            <button type="button" class="btn btn-warning" (click)="nextStep()">Avanti</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
   <div class="checkout" *ngIf="step==='preview'">
     <div class="checkout-header">
-      <h1>Anteprima</h1>
+      <h1>Riepilogo</h1>
     </div>
     <div class="checkout-body" *ngIf="Order.services">
       <div class="order-container">
@@ -173,7 +192,7 @@
 
   <div class="checkout" *ngIf="step==='payment'">
     <div class="checkout-header">
-      <h1>Ultimo passo</h1>
+      <h1>Prenotazione del servizio</h1>
     </div>
     <div class="checkout-body">
       <div class="order-container">
@@ -189,7 +208,7 @@
         <div class="upfront">
           <div class="upfront-header">
             <span class="left">Prenotazione</span>
-            <span class="right">4.99€</span>
+            <span class="right">4.50€</span>
           </div>
         </div>
       </div>
@@ -294,8 +313,8 @@
   <div class="checkout" *ngIf="step==='end'">
     <div class="checkout-header">
       <h1>Complimenti!</h1>
-      <p>Ha prenotato con successo il servizio scelto. In breve tempo la contateremo per ulteriori informazioni.</p>
-      <p>Si assicuri di aver inserito un numero di telefono corretto nel suo account.</p>
+      <p>Hai prenotato con successo il servizio scelto.</p>
+      <p>In breve tempo ti contateremo per ulteriori informazioni.</p>
     </div>
     <div class="checkout-body">
       <div class="actions">

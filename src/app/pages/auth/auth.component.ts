@@ -614,4 +614,7 @@ export class AuthComponent implements OnInit {
     if (this.signup_state.loading) {return;}
     this.router.navigate(['auth/login']);
   }
+  goToHomePage() {
+    this.router.navigate(['']);
+  }
 }

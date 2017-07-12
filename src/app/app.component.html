@@ -34,9 +34,9 @@
 
     <!--  Collapsed -->
     <ul *ngIf="auth !== false && hasRightContainer" class="nav navbar-nav float-xs-right" [ngClass]="{'collapse':!collapsed}">
-      <li class="nav-item" *ngIf="hasPublishService">
+      <!-- <li class="nav-item" *ngIf="hasPublishService">
         <a class="nav-link publish-item" (click)="publishService()">Pubblica il tuo servizio</a>
-      </li>
+      </li> -->
       <li class="nav-item">
         <!-- <a class="nav-link home" routerLink="" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" (click)="updateTabMenu(true)">Home</a> -->
         <a class="nav-link home" routerLink="" (click)="updateTabMenu(true)">Home</a>
@@ -48,6 +48,7 @@
       <li class="nav-item">
         <!-- <a class="nav-link profile" routerLink="/account/general" routerLinkActive="active" (click)="toggleMenu()"><i class="fa fa-user-circle-o" aria-hidden="true"> </i> {{auth.profile.fullname}}</a> -->
         <a class="nav-link profile" routerLink="/account/profile" (click)="toggleMenu()"><i class="fa fa-user-circle-o" aria-hidden="true"> </i> {{getUsername()}}</a>
+        <!-- <a class="nav-link profile" routerLink="/account/profile" (click)="toggleMenu()"><img src="https://s3-eu-west-1.amazonaws.com/starbook-s3/website/user_no_pic.png" alt="profile"></a> -->
       </li>
     </ul>
 
@@ -57,9 +58,9 @@
         <!-- <a class="nav-link home" routerLink="" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" (click)="updateTabMenu(true)">Home</a> -->
         <a class="nav-link home" routerLink="" (click)="updateTabMenu(true)">Home</a>
       </li>
-      <li class="nav-item" *ngIf="hasPublishService">
+      <!-- <li class="nav-item" *ngIf="hasPublishService">
         <a class="nav-link publish-item" (click)="publishService()">Pubblica il tuo servizio</a>
-      </li>
+      </li> -->
       <!-- <li class="nav-item register-item">
         <a class="nav-link profile" (click)="signupAsProfessional()">Iscriviti come professionista</a>
       </li> -->

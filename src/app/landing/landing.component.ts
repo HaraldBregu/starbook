@@ -11,145 +11,197 @@ import { CommonService } from '../shared/common.service';
   templateUrl: './landing.component.html'
 })
 export class LandingComponent implements OnInit {
-  public page;
+  public it: any;
   public currentUser;
-  public images_url = "https://s3-eu-west-1.amazonaws.com/starbook-s3/";
-  public emailPattern: any;
-  public numPattern: any;
-  public contacts = '';
+
   public spinerView = false;
   public clearView = false;
   public query: string = '';
   public results: string[] = [];
-  public newServiceRequest = {
-    message: 'Richiedi?'
+  public suggestions: string[] = [];
+
+  public services = []
+  public services_state = {
+    loading:false,
   }
-  public categories = []
+
   public professionals = []
-  public inHouseServices = []
+
   public seoObject = {}
-  public order = {}
 
-  constructor(
-    private router: Router,
-    private route: ActivatedRoute,
-    private navigationService: NavigationService,
-    private analyticsService: AnalyticsService,
-    private seoService: SeoService,
-    private commonService: CommonService) {
-      this.emailPattern = /^[a-z0-9!#$%&'*+\/=?^_`{|}~.-]+@[a-z0-9]([a-z0-9-]*[a-z0-9])?(\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)*$/i;
-      this.numPattern = /^\d+$/;
-      this.analyticsService.sendPageViewUrl(this.router.url)
-      this.navigationService.updateMessage("");
+  public date = null;
+  public temp_date;
+  public minDate = new Date(new Date().getTime() + 24 * 60 * 60 * 1000);
+  public formated_date = null;
+  public date_state = {
+    loading: false,
+    error_message: null
+  }
 
-      if (isBrowser) { window.scrollTo(0, 0) }
+  public title_service = ''
 
-      if (isBrowser) {
-        if (localStorage.getItem('auth')) {
-          this.currentUser = JSON.parse(localStorage.getItem('auth'));
-        }
-      }
-
-      this.commonService.getServicesForCategoryTitle('Professionisti').then((professionals) => {
-        this.professionals = professionals.result[0].services;
-      }).catch((error) => {
-        this.professionals = null
-      })
-
-      this.commonService.getServicesForCategoryTitle('Casa').then((inHouseServices) => {
-        this.inHouseServices = inHouseServices.result[0].services;
-      }).catch((error) => {
-        this.inHouseServices = null
-      })
-
-      this.commonService.getServicesForCategoryTitle('Artigiani').then((categories) => {
-        this.categories = categories.result[0].services;
-      }).catch((error) => {
-        this.categories = null
-      })
-
-      this.seoObject['title'] = "Starbook";
-
-      this.seoObject['description'] = "Starbook è un online marketplace di professionisti dove puoi trovare il servizio che ti serve e prenotarlo direttamente senza perdere tempo.";
-      // this.seoObject['description'] = "Starbook è una piattaforma che mette in contatto gli artigiani e professionisti con i clienti in modo piu diretto e sicuro gratis per sempre.";
-      this.seoObject['url'] = 'https://www.starbook.co' + this.router.url;
-      this.seoObject['image_url'] = "https://s3-eu-west-1.amazonaws.com/starbook-s3/website/icon_256.png";
-
-      this.seoService.setTitle(this.seoObject['title']);
-      this.seoService.setMetaElem('description', this.seoObject['description']);
-      this.seoService.setOgElem('twitter:card', "summary_large_image");
-      this.seoService.setOgElem('twitter:title', this.seoObject['title']);
-      this.seoService.setOgElem('twitter:site', "@starbookco");
-      this.seoService.setOgElem('twitter:creator', "@HaraldBregu");
-      this.seoService.setOgElem('twitter:description', this.seoObject['description']);
-      this.seoService.setOgElem('twitter:image', this.seoObject['image_url']);
-      this.seoService.setOgElem('og:title', this.seoObject['title']);
-      this.seoService.setOgElem('og:description', this.seoObject['description']);
-      this.seoService.setOgElem('og:url', this.seoObject['url']);
-      this.seoService.setOgElem('og:image', this.seoObject['image_url']);
-      this.seoService.setOgElem('og:image:secure_url', this.seoObject['image_url']);
+  constructor(private router: Router, private route: ActivatedRoute, private navigationService: NavigationService, private analyticsService: AnalyticsService, private seoService: SeoService, private commonService: CommonService) {
+    this.navigationService.updateMessage("")
+    this.it = {
+      firstDayOfWeek: 1,
+      dayNames: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+      dayNamesShort: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
+      dayNamesMin: ['Do', 'Lu', 'Ma', 'Me', 'Gi', 'Ve', 'Sa'],
+      monthNames: ['Gennaio', 'Febbraio', 'Marzo', 'Aprile', 'Maggio', 'Giugno',
+        'Luglio', 'Agosto', 'Settembre', 'Ottobre', 'Novembre', 'Dicembre'],
+      monthNamesShort: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
     }
 
-  ngOnInit() {
-
-  }
-
-  ////////////////////////////////////////////
-  ////////////// LANDING SEARCH //////////////
-  ////////////////////////////////////////////
-  search(event) {
-    this.analyticsService.sendEvent({category:'Search', action: 'typing: ' + event.query, label: this.router.url});
-    this.newServiceRequest.message = 'Richiedi?';
-    this.spinerView = true;
-    this.clearView = false;
-    let timeStart = Date.now();
-    this.commonService.search(event.query).then((results) => {
-      this.spinerView = false;
-      this.analyticsService.sendTiming({category: 'Search', timingVar: 'load', timingValue: Date.now()-timeStart});
-      if (event.query.length > 0) {
-        this.clearView = true;
+    if (this.commonService.readObjectForKey("checkout_order")) {
+      var checkout_order = this.commonService.readObjectForKey("checkout_order")
+      var services = checkout_order['services']
+      if (services && services.length>0) {
+        this.title_service = services[0]['title']
+        if (this.title_service) {
+          this.query = this.title_service;
+        }
       }
-      this.results = results.result;
+      if (checkout_order['date']) {
+        this.temp_date = new Date(checkout_order['date']);
+        let date = new Date(checkout_order['date']);
+        // this.date = date;
+        let day = date.getDate() > 9 ? date.getDate() : '0' + date.getDate();
+        this.formated_date =  day + ' ' + this.it.monthNames[date.getMonth()] + ' ' + date.getFullYear();
+      }
+      console.log('landing order is: ' + JSON.stringify(checkout_order));
+    }
+
+    if (isBrowser) {
+      if (localStorage.getItem('auth')) {
+        this.currentUser = JSON.parse(localStorage.getItem('auth'));
+      }
+    }
+    this.seoObject['title'] = "Starbook";
+    this.seoObject['description'] = "Starbook è un online marketplace di professionisti dove puoi trovare il servizio che ti serve e prenotarlo direttamente senza perdere tempo.";
+    this.seoObject['url'] = 'https://www.starbook.co' + this.router.url;
+    this.seoObject['image_url'] = "https://s3-eu-west-1.amazonaws.com/starbook-s3/website/icon_256.png";
+
+    this.seoService.setTitle(this.seoObject['title']);
+    this.seoService.setMetaElem('description', this.seoObject['description']);
+    this.seoService.setOgElem('twitter:card', "summary_large_image");
+    this.seoService.setOgElem('twitter:title', this.seoObject['title']);
+    this.seoService.setOgElem('twitter:site', "@starbookco");
+    this.seoService.setOgElem('twitter:creator', "@HaraldBregu");
+    this.seoService.setOgElem('twitter:description', this.seoObject['description']);
+    this.seoService.setOgElem('twitter:image', this.seoObject['image_url']);
+    this.seoService.setOgElem('og:title', this.seoObject['title']);
+    this.seoService.setOgElem('og:description', this.seoObject['description']);
+    this.seoService.setOgElem('og:url', this.seoObject['url']);
+    this.seoService.setOgElem('og:image', this.seoObject['image_url']);
+    this.seoService.setOgElem('og:image:secure_url', this.seoObject['image_url']);
+
+    this.services_state.loading = true
+    this.commonService.getAllServices({'type':'default'}).then((services) => {
+      this.services = services.result
+      this.services_state.loading = false
     }).catch((error) => {
-      this.spinerView = false;
-      if (event.query.length > 0) {
-        this.clearView = true;
-      }
-      this.results = [];
+      this.services = []
+      this.services_state.loading = false
     })
   }
-  selectResult(service) {
-    this.commonService.setObjectForKey(service, 'service')
-    this.analyticsService.sendEvent({category:'Search result', action: 'Select service', label: this.router.url});
-    this.router.navigate(['services', service._id])
+
+  ngOnInit() {
+    if (isBrowser) { window.scrollTo(0, 0) }
+    if (this.query.length>0) {
+      this.clearView = true;
+    }
+  }
+
+  bookServiceNow(service) {
+    if (service) {
+      this.title_service = service.title
+    } else {
+      var current_checkout_order = this.commonService.readObjectForKey("checkout_order")
+      current_checkout_order['date'] = (!this.temp_date) ? null : this.temp_date
+      current_checkout_order['services'] = (!this.title_service)  ? [] : [{"title":this.title_service,"details":[]}]
+      this.commonService.saveObjectForKey(current_checkout_order, "checkout_order")
+      if (!this.temp_date || !this.title_service) {
+        return
+      }
+    }
+    // if (!this.temp_date || !this.title_service) { return }
+    console.log('title service is: ' + this.title_service);
+
+    // console.log('this query: ' + JSON.stringify(this.query));
+
+    if (this.commonService.readObjectForKey("checkout_order")) {
+      var current_checkout_order = this.commonService.readObjectForKey("checkout_order")
+      current_checkout_order['services'] = [{"title":this.title_service,"details":[]}]
+      current_checkout_order['date'] = this.temp_date
+      this.commonService.saveObjectForKey(current_checkout_order, "checkout_order")
+    } else {
+      this.commonService.saveObjectForKey({
+        date: this.date,
+        services:[{"title":this.title_service,"details":[]}]
+      }, "checkout_order")
+    }
+    if (service) {
+      this.router.navigate(['checkout/date']);
+    } else {
+      this.router.navigate(['checkout/address']);
+    }
+    return false;
+  }
+
+  changeSearch(event) {
+    if (typeof event==='object') {
+      this.title_service = event.title
+    }
+    if (typeof event==='string') {
+      this.title_service = event
+    }
+    this.clearView = true
+    console.log('event changed: ' + event);
+    if (event.length===0) {
+      this.clearView = false
+      this.title_service = null
+    }
+
+  }
+  showSuggestions(event) {
+    this.spinerView = true
+    this.commonService.search(event.query).then((results) => {
+      this.spinerView = false
+      this.suggestions = results.result;
+    }).catch((error) => {
+      this.spinerView = false
+      this.suggestions = []
+    })
+  }
+  selectSuggestion(service) {
+    this.clearView = true
+    this.title_service = service.title
+    console.log('title service is: ' + this.title_service);
+    // this.commonService.setObjectForKey(service, 'service')
+    // this.analyticsService.sendEvent({category:'Search result', action: 'Select service', label: this.router.url});
+    // this.router.navigate(['services', service._id])
     // this.router.navigate(['services', service.title.replace(/\s+/g, '-')])
   }
   clearSearchForm() {
     this.query = '';
     this.results = [];
     this.clearView = false;
-  }
-  requireService() {
-    this.analyticsService.sendEvent({category:'Search result', action: 'Require service', label: this.router.url});
-    this.router.navigate(['requests/service']);
-  }
-  searchMore() {
-    this.analyticsService.sendEvent({category:'Button', action: 'Search', label: this.router.url});
-    if (this.query.length>0 && this.results.length===0) {
-      this.router.navigate(['requests/service']);
-    } else if (this.query.length>0 && this.results.length>0) {
-      let service = this.results[0];
-      let title = service['title'];
-      this.router.navigate(['services', title.replace(/\s+/g, '-')]);
-    } else if (this.query.length===0) {
-      this.router.navigate(['services']);
-    }
+    this.title_service = null;
   }
 
-  // UTILS
-  selectService(service) {
-    this.commonService.setObjectForKey(service, 'service')
-    this.router.navigate(['services', service._id])
-    // this.router.navigate(['services/' + service.title.replace(/\s+/g, '-')])
+  selectDate() {
+    let date = new Date(this.temp_date);
+    let day = date.getDate() > 9 ? date.getDate() : '0' + date.getDate();
+    let correctMonth = 1 + date.getMonth();
+    let month = correctMonth > 9 ? correctMonth : '0' + correctMonth;
+    this.date = date.getFullYear() + '-' + month + '-' + day + 'T' + '08:00' + ':00.000Z';
+    // this.date_state.error_message = null;
+    // this.Order['date'] = this.date
+    // this.commonService.saveObjectToLocalWithName(this.Order, 'checkout_order')
+    // this.state.date_error = null
+    // let _date = new Date(this.Order['date']);
+    let _date = new Date(this.date);
+    let _day = _date.getDate() > 9 ? _date.getDate() : '0' + _date.getDate();
+    this.formated_date =  _day + ' ' + this.it.monthNames[_date.getMonth()] + ' ' + _date.getFullYear();
   }
 }

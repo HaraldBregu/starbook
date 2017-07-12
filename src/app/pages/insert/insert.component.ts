@@ -120,7 +120,7 @@ export class InsertComponent implements OnInit {
     var currentStepIndex = this.steps.indexOf(this.step)
     var previousStep = this.steps[currentStepIndex-1]
     if (this.step==="product") {
-      this.router.navigate(['']);
+      this.router.navigate(['company']);
     } else {
       this.router.navigate(['insert/' + previousStep]);
     }

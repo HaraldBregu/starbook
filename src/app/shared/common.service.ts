@@ -12,8 +12,8 @@ export class CommonService {
   private data = {};
 
   constructor(private http: Http/*, private navigationService: NavigationService */) {
-    this.api = 'https://api.starbook.co/v0.9.1/';
-    //this.api = 'http://localhost/t0.9.1/';
+    // this.api = 'https://api.starbook.co/v0.9.1/';
+    this.api = 'http://localhost/t0.9.1/';
   }
 
   setObjectForKey(object, key) {
@@ -146,12 +146,10 @@ export class CommonService {
     }
     return headers;
   }
-
   private handleError(error: any): Promise<any> {
     return Promise.reject(error.message || error);
   }
 
-  // UTILS
   saveObjectToLocalWithName(object, name) {
     if (isBrowser) { localStorage.setItem(name, JSON.stringify(object)); }
   }

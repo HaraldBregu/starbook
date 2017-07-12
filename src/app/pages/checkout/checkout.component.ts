@@ -121,7 +121,7 @@ export class CheckoutComponent implements OnInit {
         'Luglio', 'Agosto', 'Settembre', 'Ottobre', 'Novembre', 'Dicembre'],
       monthNamesShort: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
     }
-    this.steps = ['address', 'date', 'preview', "payment", 'end']
+    this.steps = ["date", "address", "note", "preview", "payment", 'end']
     this.navigationService.updateMessage("Prenotazione")
 
     if (this.commonService.readObjectForKey("checkout_order")) {
@@ -141,8 +141,9 @@ export class CheckoutComponent implements OnInit {
         let day = date.getDate() > 9 ? date.getDate() : '0' + date.getDate();
         this.formated_date =  day + ' ' + this.it.monthNames[date.getMonth()] + ' ' + date.getFullYear();
       }
-      console.log('order is: ' + JSON.stringify(this.Order));
+      // console.log('order is: ' + JSON.stringify(this.Order));
     }
+    this.navigationService.updateMessage(this.Order['services'][0]['title'])
   }
 
   ngOnInit() {
@@ -157,38 +158,48 @@ export class CheckoutComponent implements OnInit {
         this.router.navigate(['']);
       }
 
-      if (this.step==='signup') { this.steps[3] = "signup"; }
-      if (this.step==='login') { this.steps[3] = "login"; }
-      if (this.step==='payment') { this.steps[3] = "payment"; }
-      if (this.step==='card') { this.steps[3] = "card"; }
+      if (this.step==='signup') { this.steps[4] = "signup"; }
+      if (this.step==='login') { this.steps[4] = "login"; }
+      if (this.step==='payment') { this.steps[4] = "payment"; }
+      if (this.step==='card') { this.steps[4] = "card"; }
     })
   }
 
   undoStep() {
     var currentStepIndex = this.steps.indexOf(this.step)
     var previousStep = this.steps[currentStepIndex-1]
-    if (this.step === "address") {
-      // var service_title = this.Order['services'][0]['title']
+    if (this.step === "date") {
       var service_id = this.Order['services'][0]['_id']
-      this.router.navigate(['services', service_id])
+      var supplier_id = this.Order['services'][0]['supplier_id']
+      if (service_id) {
+        this.router.navigate(['services/' + service_id])
+      } else {
+        this.router.navigate([''])
+      }
+      // this.router.navigate(['services', service_id])
       // this.router.navigate(['services', service_title.replace(/\s+/g, '-')]);
-    } else {
+    }
+    else if (this.step === "address") {
+      if (this.Order['address']) {
+        var address = this.Order['address']
+        var street_number = address['street_number']
+        if (street_number && street_number.length > 0) {
+          this.temp_address = address['street'] + ', ' + address['street_number'] + ' ' + address['city'];
+        } else {
+          this.temp_address = address['street'] + ', ' + address['city'];
+        }
+      }
+      this.router.navigate(['checkout/' + previousStep]);
+    }
+    else {
       this.router.navigate(['checkout/' + previousStep]);
     }
   }
   nextStep() {
     var currentStepIndex = this.steps.indexOf(this.step)
     var nextStep = this.steps[currentStepIndex+1]
-    if (this.step === 'address') {
-      this.state.address_error = null
-      if (!this.Order['address']) {
-        this.state.address_error = "Per favore, inserisci un indirizzo."
-        return;
-      }
-      this.commonService.saveObjectForKey(this.Order, "checkout_order")
-      this.router.navigate(['checkout/' + nextStep]);
-    }
-    else if (this.step === 'date') {
+
+    if (this.step === 'date') {
       this.state.date_error = null
       if (!this.Order['date']) {
         this.state.date_error = "Per favore, inserisci una data."
@@ -197,12 +208,34 @@ export class CheckoutComponent implements OnInit {
       this.commonService.saveObjectForKey(this.Order, "checkout_order")
       this.router.navigate(['checkout/' + nextStep]);
     }
+    else if (this.step === 'address') {
+      this.state.address_error = null
+      if (!this.Order['address']) {
+        this.state.address_error = "Per favore, inserisci un indirizzo."
+        return;
+      }
+      if (this.Order['address']) {
+        var address = this.Order['address']
+        var street_number = address['street_number']
+        if (street_number && street_number.length > 0) {
+          this.temp_address = address['street'] + ', ' + address['street_number'] + ' ' + address['city'];
+        } else {
+          this.temp_address = address['street'] + ', ' + address['city'];
+        }
+      }
+      this.commonService.saveObjectForKey(this.Order, "checkout_order")
+      this.router.navigate(['checkout/' + nextStep]);
+    }
+    else if (this.step === 'note') {
+      this.commonService.saveObjectForKey(this.Order, "checkout_order")
+      this.router.navigate(['checkout/' + nextStep]);
+    }
     else if (this.step === 'preview') {
       if (!this.currentUser) {
-        this.steps[3] = "signup";
+        this.steps[4] = "signup";
         this.router.navigate(['checkout/signup'])
       } else {
-        this.steps[3] = "payment";
+        this.steps[4] = "payment";
         this.router.navigate(['checkout/payment'])
       }
     }
@@ -220,7 +253,23 @@ export class CheckoutComponent implements OnInit {
     }
   }
 
+  selectDate() {
+    // console.log('Select the date');
+    let date = new Date(this.temp_date);
+    let day = date.getDate() > 9 ? date.getDate() : '0' + date.getDate();
+    let correctMonth = 1 + date.getMonth();
+    let month = correctMonth > 9 ? correctMonth : '0' + correctMonth;
+    this.date = date.getFullYear() + '-' + month + '-' + day + 'T' + '08:00' + ':00.000Z';
+    this.date_state.error_message = null;
+    this.Order['date'] = this.date
+    this.commonService.saveObjectToLocalWithName(this.Order, 'checkout_order')
+    this.state.date_error = null
+    let _date = new Date(this.Order['date']);
+    let _day = _date.getDate() > 9 ? _date.getDate() : '0' + _date.getDate();
+    this.formated_date =  _day + ' ' + this.it.monthNames[_date.getMonth()] + ' ' + _date.getFullYear();
+  }
   selectAddress(value) {
+    // console.log('Select the address');
     var address = {};
     address['street'] = value.street;
     address['street_number'] = value.street_number;
@@ -234,20 +283,6 @@ export class CheckoutComponent implements OnInit {
     this.state.address_error = null
     this.address_state.error_message = null
     this.temp_address_street_number_city = this.temp_address.street_number_city;
-  }
-  selectDate() {
-    let date = new Date(this.temp_date);
-    let day = date.getDate() > 9 ? date.getDate() : '0' + date.getDate();
-    let correctMonth = 1 + date.getMonth();
-    let month = correctMonth > 9 ? correctMonth : '0' + correctMonth;
-    this.date = date.getFullYear() + '-' + month + '-' + day + 'T' + '08:00' + ':00.000Z';
-    this.date_state.error_message = null;
-    this.Order['date'] = this.date
-    this.commonService.saveObjectToLocalWithName(this.Order, 'checkout_order')
-    this.state.date_error = null
-    let _date = new Date(this.Order['date']);
-    let _day = _date.getDate() > 9 ? _date.getDate() : '0' + _date.getDate();
-    this.formated_date =  _day + ' ' + this.it.monthNames[_date.getMonth()] + ' ' + _date.getFullYear();
   }
   sendOrder() {
     this.state.loading = true;
@@ -479,6 +514,7 @@ export class CheckoutComponent implements OnInit {
     return 100/numSteps * currentStep + '%'
   }
   getAddresses(event) {
+    // console.log('Getting the address');
     this.address_state.error_message = null;
     if (this.temp_address_street_number_city !== event.query) {
       this.address_state.error_message = "Per favore inserisci un indirizzo corretto";
@@ -494,16 +530,21 @@ export class CheckoutComponent implements OnInit {
       this.addresses = addresses;
     }).catch((error) => {})
   }
+  changeAddress(event) {
+    // console.log('Change the address');
+    if (event.length===0) {
+      this.Order['address'] = null;
+    }
+  }
+  clickOutsideAddressInput() {
+    if (!this.Order['address']) {this.temp_address = null;}
+  }
   changeToSignup() {
-    this.steps[3] = 'signup'
+    this.steps[4] = 'signup'
     this.router.navigate(['checkout/signup'])
   }
   changeToLogin() {
-    this.steps[3] = 'login'
+    this.steps[4] = 'login'
     this.router.navigate(['checkout/login'])
-  }
-  changeToRecoverPassword() {
-    this.steps[3] = 'recovery'
-    this.router.navigate(['checkout/recovery'])
   }
 }

@@ -1,7 +1,7 @@
 <div class="service-container" *ngIf="Service">
   <div class="service">
     <div class="picture-container">
-      <div class="picture" *ngIf="Service._id" [ngStyle]="{'background-image' : ' url(' + 'https://s3-eu-west-1.amazonaws.com/starbook-s3/services/' + Service._id + '/cover/0' + ')'}">
+      <div class="picture" *ngIf="Service._id" title="{{Service.title}}" [ngStyle]="{'background-image' : ' url(' + 'https://s3-eu-west-1.amazonaws.com/starbook-s3/services/' + Service._id + '/cover/0' + ')'}">
         <div class="overlay"></div>
       </div>
       <div class="picture-footer">

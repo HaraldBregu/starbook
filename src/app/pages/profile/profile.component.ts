@@ -308,7 +308,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
       emails += e
     }
 
-    console.log('phone_numbers: ' + phone_numbers);
+    // console.log('phone_numbers: ' + phone_numbers);
     if (phones==='' && emails==='') {
       this.invitation_state.message_success = null;
       this.invitation_state.message_error = "Inserisci numeri di telefono e email validi";
@@ -334,7 +334,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
   shareOnTwitter() {
     if (isBrowser) {
       let left = Math.round((document.documentElement.clientWidth / 2) - 285);
-      console.log('share link is: ' + this.sharelink);
+      // console.log('share link is: ' + this.sharelink);
       window.open("https://twitter.com/home?status=" + this.sharelink,
       '_blank', 'location=yes,height=570,width=520,left=' + left + ', top=100,scrollbars=yes,status=yes');
       return false
