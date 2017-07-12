@@ -3668,7 +3668,7 @@ app-landing {
                 border: 1px solid white; }
               app-landing .landing-container .header-container .overlay .header .search-panel .fields .service-title {
                 float: left;
-                width: 72%;
+                width: 69%;
                 padding: 0 5px; }
                 app-landing .landing-container .header-container .overlay .header .search-panel .fields .service-title .form-group .input-group {
                   background: white;
@@ -3762,7 +3762,7 @@ app-landing {
                   padding: 15px 30px; }
               app-landing .landing-container .header-container .overlay .header .search-panel .fields .service-when {
                 float: left;
-                width: 28%;
+                width: 31%;
                 padding: 0 5px; }
                 app-landing .landing-container .header-container .overlay .header .search-panel .fields .service-when .form-group .input-group {
                   background: white;

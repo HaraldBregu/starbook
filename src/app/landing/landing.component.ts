@@ -47,9 +47,9 @@ export class LandingComponent implements OnInit {
       dayNames: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
       dayNamesShort: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
       dayNamesMin: ['Do', 'Lu', 'Ma', 'Me', 'Gi', 'Ve', 'Sa'],
-      monthNames: ['Gennaio', 'Febbraio', 'Marzo', 'Aprile', 'Maggio', 'Giugno',
-        'Luglio', 'Agosto', 'Settembre', 'Ottobre', 'Novembre', 'Dicembre'],
-      monthNamesShort: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+      monthNames: ['Gennaio', 'Febbraio', 'Marzo', 'Aprile', 'Maggio', 'Giugno', 'Luglio', 'Agosto', 'Settembre', 'Ottobre', 'Novembre', 'Dicembre'],
+      monthNamesShort: ['Gen', 'Feb', 'Mar', 'Apr', 'Mag', 'Giu', 'Lug', 'Ago', 'Set', 'Ott', 'Nov', 'Dic'],
+      // monthNamesShort: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
     }
 
     if (this.commonService.readObjectForKey("checkout_order")) {
@@ -66,9 +66,9 @@ export class LandingComponent implements OnInit {
         let date = new Date(checkout_order['date']);
         // this.date = date;
         let day = date.getDate() > 9 ? date.getDate() : '0' + date.getDate();
-        this.formated_date =  day + ' ' + this.it.monthNames[date.getMonth()] + ' ' + date.getFullYear();
+        this.formated_date =  day + ' ' + this.it.monthNamesShort[date.getMonth()] + ' ' + date.getFullYear();
       }
-      console.log('landing order is: ' + JSON.stringify(checkout_order));
+      // console.log('landing order is: ' + JSON.stringify(checkout_order));
     }
 
     if (isBrowser) {
@@ -124,11 +124,6 @@ export class LandingComponent implements OnInit {
         return
       }
     }
-    // if (!this.temp_date || !this.title_service) { return }
-    console.log('title service is: ' + this.title_service);
-
-    // console.log('this query: ' + JSON.stringify(this.query));
-
     if (this.commonService.readObjectForKey("checkout_order")) {
       var current_checkout_order = this.commonService.readObjectForKey("checkout_order")
       current_checkout_order['services'] = [{"title":this.title_service,"details":[]}]
@@ -156,7 +151,6 @@ export class LandingComponent implements OnInit {
       this.title_service = event
     }
     this.clearView = true
-    console.log('event changed: ' + event);
     if (event.length===0) {
       this.clearView = false
       this.title_service = null
@@ -176,11 +170,6 @@ export class LandingComponent implements OnInit {
   selectSuggestion(service) {
     this.clearView = true
     this.title_service = service.title
-    console.log('title service is: ' + this.title_service);
-    // this.commonService.setObjectForKey(service, 'service')
-    // this.analyticsService.sendEvent({category:'Search result', action: 'Select service', label: this.router.url});
-    // this.router.navigate(['services', service._id])
-    // this.router.navigate(['services', service.title.replace(/\s+/g, '-')])
   }
   clearSearchForm() {
     this.query = '';
@@ -202,6 +191,7 @@ export class LandingComponent implements OnInit {
     // let _date = new Date(this.Order['date']);
     let _date = new Date(this.date);
     let _day = _date.getDate() > 9 ? _date.getDate() : '0' + _date.getDate();
-    this.formated_date =  _day + ' ' + this.it.monthNames[_date.getMonth()] + ' ' + _date.getFullYear();
+    this.formated_date =  _day + ' ' + this.it.monthNamesShort[_date.getMonth()] + ' ' + _date.getFullYear();
+    // this.formated_date =  _day + ' ' + _date.getMonth() + ' ' + _date.getFullYear();
   }
 }

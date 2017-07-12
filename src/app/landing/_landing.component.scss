@@ -238,7 +238,7 @@ app-landing {
               }
               .service-title {
                 float: left;
-                width: 72%;
+                width: 69%;
                 padding: 0 5px;
                 .form-group .input-group {
                   background: white;
@@ -355,12 +355,11 @@ app-landing {
               }
               .service-when {
                 float: left;
-                width: 28%;
+                width: 31%;
                 padding: 0 5px;
                 .form-group .input-group {
                   background: white;
                   border-radius: 3px;
-                  // border: 1px solid rgba(250, 250, 250, 1);
                 }
                 .inner-addon {
                   .form-control {
@@ -803,7 +802,6 @@ app-landing {
        }
     }
   }
-
 }
 
 @media (max-width: 1024px) {
