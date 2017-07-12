@@ -59,15 +59,6 @@
                   <div class="close-container" *ngIf="!spinerView && clearView">
                     <span class="close rounded thick" (click)="clearSearchForm()"></span>
                   </div>
-                  <!-- <div class="missing-parameter noselect">
-                    INSERISCI UN TITOLO!
-                  </div> -->
-                  <!-- <div class="ui-autocomplete-panel empty" *ngIf="results.length === 0 && query.length > 0">
-                    <div class="no-result noselect">
-                      Il servizio "{{query}}" non è disponibile
-                    </div>
-                  </div> -->
-                  <!-- <input type="text" placeholder="Servizio, professionista, altro?" class="form-control" id="serviceTitleInput" [(ngModel)]="title_service" [ngModelOptions]="{standalone: true}"> -->
                 </div>
               </div>
             </div>
@@ -77,9 +68,6 @@
                 <div class="input-group">
                   <span class="input-group-addon" id="price-input"><i class="fa fa-calendar-check-o" aria-hidden="true"></i></span>
                   <p-calendar class="date form-control" name="data" placeholder="Quando?" [(ngModel)]="temp_date" id="date" autocomplete="off" readonlyInput="true" dateFormat="dd MM yy" [locale]="it" [minDate]="minDate" (onSelect)="selectDate()"></p-calendar>
-                  <!-- <div class="missing-parameter noselect">
-                    INSERISCI UNA DATA!
-                  </div> -->
                 </div>
               </div>
             </div>

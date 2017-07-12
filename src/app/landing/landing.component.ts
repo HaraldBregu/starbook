@@ -62,11 +62,12 @@ export class LandingComponent implements OnInit {
         }
       }
       if (checkout_order['date']) {
+        // console.log('date: ' + checkout_order['date']);
         this.temp_date = new Date(checkout_order['date']);
         let date = new Date(checkout_order['date']);
         // this.date = date;
         let day = date.getDate() > 9 ? date.getDate() : '0' + date.getDate();
-        this.formated_date =  day + ' ' + this.it.monthNamesShort[date.getMonth()] + ' ' + date.getFullYear();
+        this.formated_date =  day + ' ' + this.it.monthNames[date.getMonth()] + ' ' + date.getFullYear();
       }
       // console.log('landing order is: ' + JSON.stringify(checkout_order));
     }
@@ -116,10 +117,15 @@ export class LandingComponent implements OnInit {
     if (service) {
       this.title_service = service.title
     } else {
-      var current_checkout_order = this.commonService.readObjectForKey("checkout_order")
-      current_checkout_order['date'] = (!this.temp_date) ? null : this.temp_date
-      current_checkout_order['services'] = (!this.title_service)  ? [] : [{"title":this.title_service,"details":[]}]
-      this.commonService.saveObjectForKey(current_checkout_order, "checkout_order")
+      // var current_checkout_order = this.commonService.readObjectForKey("checkout_order")
+      // if (!this.temp_date) {
+      //   current_checkout_order['date'] = null
+      //   this.commonService.saveObjectForKey(current_checkout_order, "checkout_order")
+      // }
+      // if (!this.title_service) {
+      //   current_checkout_order['services'] = null
+      //   this.commonService.saveObjectForKey(current_checkout_order, "checkout_order")
+      // }
       if (!this.temp_date || !this.title_service) {
         return
       }
@@ -191,7 +197,7 @@ export class LandingComponent implements OnInit {
     // let _date = new Date(this.Order['date']);
     let _date = new Date(this.date);
     let _day = _date.getDate() > 9 ? _date.getDate() : '0' + _date.getDate();
-    this.formated_date =  _day + ' ' + this.it.monthNamesShort[_date.getMonth()] + ' ' + _date.getFullYear();
+    this.formated_date =  _day + ' ' + this.it.monthNames[_date.getMonth()] + ' ' + _date.getFullYear();
     // this.formated_date =  _day + ' ' + _date.getMonth() + ' ' + _date.getFullYear();
   }
 }
