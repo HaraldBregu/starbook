@@ -34,17 +34,17 @@ declare let $: any;
     ]),
     trigger('loginPopupState', [
       state('inactive', style({display: 'none', top: '-300px'})),
-      state('active',   style({display: 'block', top: '50px'})),
+      state('active',   style({display: 'block', top: '70px'})),
       transition('inactive => active', [
         animate(300, keyframes([
           style({display: 'none', top: '-300px', offset: 0}),
           style({display: 'block', opacity: 0, top: '-300px', offset: 0.01}),
-          style({display: 'block', opacity: 1, top: '50px', offset: 1.0})
+          style({display: 'block', opacity: 1, top: '70px', offset: 1.0})
         ]))
       ]),
       transition('active => inactive', [
         animate(300, keyframes([
-          style({display: 'block', opacity: 1, top: '50px', offset: 0}),
+          style({display: 'block', opacity: 1, top: '70px', offset: 0}),
           style({display: 'block', opacity: 0, top: '-300px', offset: 0.99}),
           style({display: 'none', top: '-300px', offset: 1.0})
         ]))
@@ -52,17 +52,17 @@ declare let $: any;
     ]),
     trigger('registrationPopupState', [
       state('inactive', style({display: 'none', top: '-300px'})),
-      state('active',   style({display: 'block', top: '50px'})),
+      state('active',   style({display: 'block', top: '70px'})),
       transition('inactive => active', [
         animate(300, keyframes([
           style({display: 'none', top: '-300px', offset: 0}),
           style({display: 'block', opacity: 0, top: '-300px', offset: 0.01}),
-          style({display: 'block', opacity: 1, top: '50px', offset: 1.0})
+          style({display: 'block', opacity: 1, top: '70px', offset: 1.0})
         ]))
       ]),
       transition('active => inactive', [
         animate(300, keyframes([
-          style({display: 'block', opacity: 1, top: '50px', offset: 0}),
+          style({display: 'block', opacity: 1, top: '70px', offset: 0}),
           style({display: 'block', opacity: 0, top: '-300px', offset: 0.99}),
           style({display: 'none', top: '-300px', offset: 1.0})
         ]))
@@ -70,17 +70,17 @@ declare let $: any;
     ]),
     trigger('recoveryPopupState', [
       state('inactive', style({display: 'none', top: '-300px'})),
-      state('active',   style({display: 'block', top: '50px'})),
+      state('active',   style({display: 'block', top: '70px'})),
       transition('inactive => active', [
         animate(300, keyframes([
           style({display: 'none', top: '-300px', offset: 0}),
           style({display: 'block', opacity: 0, top: '-300px', offset: 0.01}),
-          style({display: 'block', opacity: 1, top: '50px', offset: 1.0})
+          style({display: 'block', opacity: 1, top: '70px', offset: 1.0})
         ]))
       ]),
       transition('active => inactive', [
         animate(300, keyframes([
-          style({display: 'block', opacity: 1, top: '50px', offset: 0}),
+          style({display: 'block', opacity: 1, top: '70px', offset: 0}),
           style({display: 'block', opacity: 0, top: '-300px', offset: 0.99}),
           style({display: 'none', top: '-300px', offset: 1.0})
         ]))
@@ -373,6 +373,9 @@ export class PopupsComponent implements OnInit, OnDestroy {
   public isPopupLoading = false;
 
   public formError: boolean|{title: string, message: string} = false;
+
+  public popup = ''
+
   constructor(private authServics: AuthService, private navigationService: NavigationService, private popupService: PopupsService, private ordersService: OrdersService, private orderService: OrdersService, private paymentService: PaymentService, private router: Router, private analyticsService: AnalyticsService) {
     this.emailPattern = /^[a-z0-9!#$%&'*+\/=?^_`{|}~.-]+@[a-z0-9]([a-z0-9-]*[a-z0-9])?(\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)*$/i;
   }
@@ -380,6 +383,7 @@ export class PopupsComponent implements OnInit, OnDestroy {
   getPopup(type: string) {
     this.closePopup(true);
     if (type === 'login') {
+      this.popup = "login"
       this.loginPopupState = 'active';
     }
     if (type === 'registration') {
@@ -413,17 +417,6 @@ export class PopupsComponent implements OnInit, OnDestroy {
     }
     if (type === 'confirmOrderEnd') {
       this.confirmPopupState = 'active';
-    }
-
-    // A/B TESTS
-    if (type === 'registerCompany') {
-      this.registerCompanyPopupState = 'active';
-    }
-    if (type === 'recommendToFriend') {
-      this.recommendToFriendPopupState = 'active';
-    }
-    if (type === 'getPromoCode') {
-      this.getPromoCodePopupState = 'active';
     }
 
     this.shadowState = 'active';
@@ -1110,58 +1103,6 @@ export class PopupsComponent implements OnInit, OnDestroy {
       this.enterPhoneFormError.phone = true;
     }
   }
-
-  //**********************************************
-  //***************** A/B TESTS ******************
-  //**********************************************
-
-  registerCompany(name: string, phone: string, profession: string) {
-    if (name.length > 0 && phone.length > 0) {
-      this.analyticsService.sendEvent({category:'Landing page A/B popup', action: 'register', label: 'register company'});
-      this.isPopupLoading = true;
-      this.authServics.registerCompany(name, phone, profession).then((data) => {
-        this.isPopupLoading = false;
-        this.closePopup();
-        this.confirmFinishPopupData.title = "Richiesta d'iscrizione inviata";
-        this.confirmFinishPopupData.text = 'Questo ordine è stato annullato, puoi riattivarlo in un secondo momento.';
-        this.getPopup('confirmFinish');
-      }).catch((error) => {
-        this.isPopupLoading = false;
-        this.closePopup();
-      })
-    }
-  }
-
-  recommendToFriend(friend_name: string, friend_phone: string, my_name: string, my_phone_number: string) {
-    this.analyticsService.sendEvent({category:'Landing page A/B popup', action: 'recommend', label: 'recommend to friend'});
-    this.isPopupLoading = true;
-    this.authServics.recommendToFriend(friend_name, friend_phone, my_name, my_phone_number).then((data) => {
-      this.isPopupLoading = false;
-      this.closePopup();
-      this.confirmFinishPopupData.title = "Invito effettuato con successo";
-      this.confirmFinishPopupData.text = "Grazie " + my_name + ". Abbiamo invitato il tuo amico su Starbook. A breve riceverai un sms con il codice promozionale.";
-      this.getPopup('confirmFinish');
-    }).catch((error) => {
-      this.isPopupLoading = false;
-      this.closePopup();
-    })
-  }
-
-  earnPromoCodeAction(my_name: string, my_phone_number: string) {
-    this.analyticsService.sendEvent({category:'Landing page A/B popup', action: 'get code', label: 'get promo code'});
-    this.isPopupLoading = true;
-    this.authServics.earnPromoCode(my_name, my_phone_number).then((data) => {
-      this.isPopupLoading = false;
-      this.closePopup();
-      this.confirmFinishPopupData.title = "Complimenti " + my_name + "!";
-      this.confirmFinishPopupData.text = "Hai guadagnato con successo un promo code. A breve riceverai un sms con il codice promozionale.";
-      this.getPopup('confirmFinish');
-    }).catch((error) => {
-      this.isPopupLoading = false;
-      this.closePopup();
-    })
-  }
-
 
   ngOnInit() {
     if (isBrowser) {

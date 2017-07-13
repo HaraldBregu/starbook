@@ -209,6 +209,7 @@ export class AppComponent implements OnInit, OnDestroy {
   }
   getLoginPopup() {
     this.popupsService.activate({type: 'login'});
+    // this.router.navigate(['auth/login']);
     this.toggleMenu();
     this.collapsed = false;
   }
