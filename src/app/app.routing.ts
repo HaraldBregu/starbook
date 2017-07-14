@@ -75,8 +75,8 @@ const routes: Routes = [
   // { path: 'requests', component: RequestsComponent },
   // { path: 'requests/:page', component: RequestsComponent },
 
-  // { path: 'blog', component: BlogComponent, data: { name: 'Blog' } },
-  // { path: 'blog/:article', component: BlogComponent, data: { name: 'Blog' } },
+  { path: 'blog', component: BlogComponent, data: { name: 'Blog' } },
+  { path: 'blog/:article', component: BlogComponent, data: { name: 'Blog' } },
 
   { path: 'info/help', component: HelpComponent },
   { path: 'info/legal', component: LegalComponent },

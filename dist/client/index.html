@@ -27,6 +27,7 @@
   <link rel="stylesheet" href="/assets/styles/main.css">
 <link href="styles.bundle.css" rel="stylesheet"></head>
 <body>
+
 <script>
 // if (document.location.hostname === "www.starbook.co") {
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -46,7 +47,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 })(window,document,'script','dataLayer','GTM-W2GT2WJ');
 </script>
 <!-- End Google Tag Manager -->
-
 
 <app-root>Loading...</app-root>
 
@@ -68,23 +68,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 <script type="text/javascript">
 if (document.location.hostname === "www.starbook.co") {
-
-  // Zendesk Chat Script
-  // window.$zopim||(function(d,s){var z=$zopim=function(c){z._.push(c)},$=z.s=
-  // d.createElement(s),e=d.getElementsByTagName(s)[0];z.set=function(o){z.set.
-  // _.push(o)};z._=[];z.set._=[];$.async=!0;$.setAttribute("charset","utf-8");
-  // $.src="https://v2.zopim.com/?4mj4UgNh2whJwbL0CEiCibIWsP6jeQOu";z.t=+new Date;$.
-  // type="text/javascript";e.parentNode.insertBefore($,e)})(document,"script");
-
-  // Smartlook
-  // window.smartlook||(function(d) {
-  // var o=smartlook=function(){ o.api.push(arguments)},h=d.getElementsByTagName('head')[0];
-  // var c=d.createElement('script');o.api=new Array();c.async=true;c.type='text/javascript';
-  // c.charset='utf-8';c.src='https://rec.smartlook.com/recorder.js';h.appendChild(c);
-  // })(document);
-  // smartlook('init', 'f9eda63f7009f3d8f038e88c1c14b90dcbcb15c3');
-
-  // Facebook
   window.fbAsyncInit = function() {
     FB.init({
       appId : '1108461325907277',
@@ -102,44 +85,11 @@ if (document.location.hostname === "www.starbook.co") {
       fjs.parentNode.insertBefore(js, fjs);
   }(document, 'script', 'facebook-jssdk'));
 
-  // Stripe
   Stripe.setPublishableKey('pk_live_nrdqOxdB0aiIiCT1IJVHIZdf');
-} else if (document.location.hostname === "glacial-shore-66987.herokuapp.com") {
-
-  // Zendesk Chat Script
-  // window.$zopim||(function(d,s){var z=$zopim=function(c){z._.push(c)},$=z.s=
-  // d.createElement(s),e=d.getElementsByTagName(s)[0];z.set=function(o){z.set.
-  // _.push(o)};z._=[];z.set._=[];$.async=!0;$.setAttribute("charset","utf-8");
-  // $.src="https://v2.zopim.com/?4mj4UgNh2whJwbL0CEiCibIWsP6jeQOu";z.t=+new Date;$.
-  // type="text/javascript";e.parentNode.insertBefore($,e)})(document,"script");
-
-  // Stripe Test
-  Stripe.setPublishableKey('pk_test_xWYalXbA2vfaxjF6qflvgQZ0');
 } else {
-
-  // WhatsHelp.io widget
-  // (function () {
-  //   var options = {
-  //     facebook: "1333466440004309", // Facebook page ID
-  //     // whatsapp: "3272415028", // WhatsApp number
-  //     company_logo_url: "//scontent.xx.fbcdn.net/v/t1.0-1/p50x50/18010241_1654184867932463_8593707387428483434_n.png?oh=d306a1baf1275b988fb967fbce7afa91&oe=59EA0EE8", // URL of company logo (png, jpg, gif)
-  //     greeting_message: "Ciao, come posso aiutarti?", // Text of greeting message
-  //     call_to_action: "Ti serve un aiuto?", // Call to action
-  //     button_color: "#129BF4", // Color of button
-  //     position: "right", // Position may be 'right' or 'left'
-  //     order: "facebook" // Order of buttons "facebook,whatsapp"
-  //   };
-  //   var proto = document.location.protocol, host = "whatshelp.io", url = proto + "//static." + host;
-  //   var s = document.createElement('script'); s.type = 'text/javascript'; s.async = true; s.src = url + '/widget-send-button/js/init.js';
-  //   s.onload = function () { WhWidgetSendButton.init(host, proto, options); };
-  //   var x = document.getElementsByTagName('script')[0]; x.parentNode.insertBefore(s, x);
-  // })();
-
-  // Stripe Test
   Stripe.setPublishableKey('pk_test_xWYalXbA2vfaxjF6qflvgQZ0');
 }
 </script>
-
 
 <!-- Google Tag Manager (noscript) -->
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-W2GT2WJ"

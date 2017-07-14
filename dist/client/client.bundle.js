@@ -1772,6 +1772,63 @@ var AuthComponent = (function () {
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__shared_seo_service__ = __webpack_require__(28);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__shared_navigation_service__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__shared_analytics_service__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__shared_common_service__ = __webpack_require__(45);
+/* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return BlogComponent; });
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+
+var BlogComponent = (function () {
+    function BlogComponent(router, route, navigationService, analyticsService, seoService, commonService) {
+        var _this = this;
+        this.router = router;
+        this.route = route;
+        this.navigationService = navigationService;
+        this.analyticsService = analyticsService;
+        this.seoService = seoService;
+        this.commonService = commonService;
+        this.article = '';
+        this.navigationService.updateMessage("");
+        this.route.params.subscribe(function (params) {
+            _this.article = params['article'];
+        });
+    }
+    BlogComponent.prototype.ngOnInit = function () {
+    };
+    BlogComponent = __decorate([
+        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
+            selector: 'app-blog',
+            template: __webpack_require__(720)
+        }), 
+        __metadata('design:paramtypes', [(typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["d" /* Router */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__angular_router__["d" /* Router */]) === 'function' && _a) || Object, (typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["e" /* ActivatedRoute */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__angular_router__["e" /* ActivatedRoute */]) === 'function' && _b) || Object, (typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__shared_navigation_service__["a" /* NavigationService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_3__shared_navigation_service__["a" /* NavigationService */]) === 'function' && _c) || Object, (typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_4__shared_analytics_service__["a" /* AnalyticsService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_4__shared_analytics_service__["a" /* AnalyticsService */]) === 'function' && _d) || Object, (typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_2__shared_seo_service__["a" /* SeoService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_2__shared_seo_service__["a" /* SeoService */]) === 'function' && _e) || Object, (typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_5__shared_common_service__["a" /* CommonService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_5__shared_common_service__["a" /* CommonService */]) === 'function' && _f) || Object])
+    ], BlogComponent);
+    return BlogComponent;
+    var _a, _b, _c, _d, _e, _f;
+}());
+//# sourceMappingURL=/Users/haraldbregu/Dropbox/StarbookWebApp/src/blog.component.js.map
+
+/***/ },
+
+/***/ 344:
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_angular2_universal__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_angular2_universal___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_angular2_universal__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
@@ -2371,7 +2428,7 @@ var CheckoutComponent = (function () {
 
 /***/ },
 
-/***/ 344:
+/***/ 345:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2434,7 +2491,7 @@ var FacebookComponent = (function () {
 
 /***/ },
 
-/***/ 345:
+/***/ 346:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2476,7 +2533,7 @@ var HelpComponent = (function () {
 
 /***/ },
 
-/***/ 346:
+/***/ 347:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2878,7 +2935,7 @@ var InsertComponent = (function () {
 
 /***/ },
 
-/***/ 347:
+/***/ 348:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2920,7 +2977,7 @@ var LegalComponent = (function () {
 
 /***/ },
 
-/***/ 348:
+/***/ 349:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2954,7 +3011,7 @@ var NotfoundComponent = (function () {
 
 /***/ },
 
-/***/ 349:
+/***/ 350:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3494,7 +3551,7 @@ var OrdersComponent = (function () {
 
 /***/ },
 
-/***/ 350:
+/***/ 351:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4157,7 +4214,7 @@ var ServiceComponent = (function () {
 
 /***/ },
 
-/***/ 351:
+/***/ 352:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4224,7 +4281,7 @@ var ServicesComponent = (function () {
 
 /***/ },
 
-/***/ 352:
+/***/ 353:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4306,7 +4363,7 @@ var ClipboardService = (function () {
 
 /***/ },
 
-/***/ 411:
+/***/ 412:
 /***/ function(module, exports) {
 
 function webpackEmptyContext(req) {
@@ -4315,26 +4372,26 @@ function webpackEmptyContext(req) {
 webpackEmptyContext.keys = function() { return []; };
 webpackEmptyContext.resolve = webpackEmptyContext;
 module.exports = webpackEmptyContext;
-webpackEmptyContext.id = 411;
+webpackEmptyContext.id = 412;
 
 
 /***/ },
 
-/***/ 412:
+/***/ 413:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__polyfills_ts__ = __webpack_require__(541);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__polyfills_ts___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__polyfills_ts__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__2_1_1_workaround_ts__ = __webpack_require__(518);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__2_1_1_workaround_ts__ = __webpack_require__(519);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__2_1_1_workaround_ts___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__2_1_1_workaround_ts__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__workaround_browser__ = __webpack_require__(519);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__workaround_browser__ = __webpack_require__(520);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__workaround_browser___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__workaround_browser__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__environments_environment__ = __webpack_require__(540);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_angular2_universal__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_angular2_universal___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_angular2_universal__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__app_app_browser_module__ = __webpack_require__(520);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__app_app_browser_module__ = __webpack_require__(521);
 
 
 
@@ -4915,7 +4972,7 @@ var AuthService = (function () {
 
 /***/ },
 
-/***/ 518:
+/***/ 519:
 /***/ function(module, exports, __webpack_require__) {
 
 /*
@@ -4946,7 +5003,7 @@ if (patch) {
 
 /***/ },
 
-/***/ 519:
+/***/ 520:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4970,7 +5027,7 @@ if (__compiler__ && __compiler__.SelectorMatcher && __compiler__.CssSelector) {
 
 /***/ },
 
-/***/ 520:
+/***/ 521:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4984,7 +5041,7 @@ if (__compiler__ && __compiler__.SelectorMatcher && __compiler__.CssSelector) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_ng2_click_outside__ = __webpack_require__(705);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_ng2_click_outside___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_ng2_click_outside__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_ng2_page_scroll__ = __webpack_require__(706);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__app_routing__ = __webpack_require__(522);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__app_routing__ = __webpack_require__(523);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__shared_common_service__ = __webpack_require__(45);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__shared_auth_service__ = __webpack_require__(51);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__shared_profile_service__ = __webpack_require__(74);
@@ -4996,35 +5053,35 @@ if (__compiler__ && __compiler__.SelectorMatcher && __compiler__.CssSelector) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__shared_seo_service__ = __webpack_require__(28);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__shared_contact_service__ = __webpack_require__(73);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__pages_share_share_service__ = __webpack_require__(218);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__shared_clipboard_service__ = __webpack_require__(352);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__app_component__ = __webpack_require__(521);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__shared_clipboard_service__ = __webpack_require__(353);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__app_component__ = __webpack_require__(522);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__landing_landing_component__ = __webpack_require__(339);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__company_company_component__ = __webpack_require__(338);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__pages_category_category_component__ = __webpack_require__(528);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__pages_service_service_component__ = __webpack_require__(350);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__pages_services_services_component__ = __webpack_require__(351);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__pages_insert_insert_component__ = __webpack_require__(346);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__pages_checkout_checkout_component__ = __webpack_require__(343);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__pages_orders_orders_component__ = __webpack_require__(349);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__pages_service_service_component__ = __webpack_require__(351);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__pages_services_services_component__ = __webpack_require__(352);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__pages_insert_insert_component__ = __webpack_require__(347);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__pages_checkout_checkout_component__ = __webpack_require__(344);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__pages_orders_orders_component__ = __webpack_require__(350);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_30__pages_profile_profile_component__ = __webpack_require__(530);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_31__popups_popups_component__ = __webpack_require__(538);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_32__pipes_phone_pipe__ = __webpack_require__(537);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_33__pipes_expiry_pipe__ = __webpack_require__(536);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_34__shared_loading_loading_component__ = __webpack_require__(539);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_35__pages_facebook_facebook_component__ = __webpack_require__(344);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_35__pages_facebook_facebook_component__ = __webpack_require__(345);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_36__pages_wizard_wizard_component__ = __webpack_require__(533);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_37__pages_about_about_component__ = __webpack_require__(340);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_38__pages_help_help_component__ = __webpack_require__(345);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_39__pages_legal_legal_component__ = __webpack_require__(347);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_38__pages_help_help_component__ = __webpack_require__(346);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_39__pages_legal_legal_component__ = __webpack_require__(348);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_40__pages_account_account_component__ = __webpack_require__(341);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_41__pages_auth_auth_component__ = __webpack_require__(342);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_42__pages_requests_requests_component__ = __webpack_require__(531);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_43__pages_share_share_component__ = __webpack_require__(532);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_44__pages_blog_blog_component__ = __webpack_require__(527);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_44__pages_blog_blog_component__ = __webpack_require__(343);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_45__pages_contact_contact_component__ = __webpack_require__(529);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_46__pages_notfound_notfound_component__ = __webpack_require__(348);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_47__directives_clipboard_directive__ = __webpack_require__(523);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_48__directives_formatter_directive__ = __webpack_require__(524);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_46__pages_notfound_notfound_component__ = __webpack_require__(349);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_47__directives_clipboard_directive__ = __webpack_require__(524);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_48__directives_formatter_directive__ = __webpack_require__(525);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_49__pipes_currency_pipe__ = __webpack_require__(219);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_50__pipes_currency_format_pipe__ = __webpack_require__(535);
 /* unused harmony export HammerConfig */
@@ -5171,9 +5228,9 @@ if (__WEBPACK_IMPORTED_MODULE_2_angular2_universal__["isBrowser"]) {
     imports.push(AutoCompleteModule);
 }
 else {
-    var CalendarMockComponent = __webpack_require__(526).CalendarMockComponent;
+    var CalendarMockComponent = __webpack_require__(527).CalendarMockComponent;
     declarations.push(CalendarMockComponent);
-    var AutoCompleteMockModule = __webpack_require__(525).AutoCompleteMockComponent;
+    var AutoCompleteMockModule = __webpack_require__(526).AutoCompleteMockComponent;
     declarations.push(AutoCompleteMockModule);
 }
 /**
@@ -5219,7 +5276,7 @@ var AppModule = (function () {
 
 /***/ },
 
-/***/ 521:
+/***/ 522:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5539,26 +5596,28 @@ var AppComponent = (function () {
 
 /***/ },
 
-/***/ 522:
+/***/ 523:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_router__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__landing_landing_component__ = __webpack_require__(339);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__company_company_component__ = __webpack_require__(338);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__pages_service_service_component__ = __webpack_require__(350);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_services_services_component__ = __webpack_require__(351);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pages_insert_insert_component__ = __webpack_require__(346);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_checkout_checkout_component__ = __webpack_require__(343);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_orders_orders_component__ = __webpack_require__(349);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_facebook_facebook_component__ = __webpack_require__(344);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__pages_service_service_component__ = __webpack_require__(351);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_services_services_component__ = __webpack_require__(352);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pages_insert_insert_component__ = __webpack_require__(347);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_checkout_checkout_component__ = __webpack_require__(344);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_orders_orders_component__ = __webpack_require__(350);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_facebook_facebook_component__ = __webpack_require__(345);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__pages_about_about_component__ = __webpack_require__(340);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_help_help_component__ = __webpack_require__(345);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__pages_legal_legal_component__ = __webpack_require__(347);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_help_help_component__ = __webpack_require__(346);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__pages_legal_legal_component__ = __webpack_require__(348);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__pages_account_account_component__ = __webpack_require__(341);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__pages_auth_auth_component__ = __webpack_require__(342);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__pages_notfound_notfound_component__ = __webpack_require__(348);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__pages_blog_blog_component__ = __webpack_require__(343);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__pages_notfound_notfound_component__ = __webpack_require__(349);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return routing; });
+
 
 
 
@@ -5612,12 +5671,12 @@ var routes = [
     // },
     // { path: 'requests', component: RequestsComponent },
     // { path: 'requests/:page', component: RequestsComponent },
-    // { path: 'blog', component: BlogComponent, data: { name: 'Blog' } },
-    // { path: 'blog/:article', component: BlogComponent, data: { name: 'Blog' } },
+    { path: 'blog', component: __WEBPACK_IMPORTED_MODULE_14__pages_blog_blog_component__["a" /* BlogComponent */], data: { name: 'Blog' } },
+    { path: 'blog/:article', component: __WEBPACK_IMPORTED_MODULE_14__pages_blog_blog_component__["a" /* BlogComponent */], data: { name: 'Blog' } },
     { path: 'info/help', component: __WEBPACK_IMPORTED_MODULE_10__pages_help_help_component__["a" /* HelpComponent */] },
     { path: 'info/legal', component: __WEBPACK_IMPORTED_MODULE_11__pages_legal_legal_component__["a" /* LegalComponent */] },
     { path: 'info/about', component: __WEBPACK_IMPORTED_MODULE_9__pages_about_about_component__["a" /* AboutComponent */] },
-    { path: '404', component: __WEBPACK_IMPORTED_MODULE_14__pages_notfound_notfound_component__["a" /* NotfoundComponent */] },
+    { path: '404', component: __WEBPACK_IMPORTED_MODULE_15__pages_notfound_notfound_component__["a" /* NotfoundComponent */] },
     { path: '**', redirectTo: '' }
 ];
 var routing = __WEBPACK_IMPORTED_MODULE_0__angular_router__["f" /* RouterModule */].forRoot(routes);
@@ -5625,12 +5684,12 @@ var routing = __WEBPACK_IMPORTED_MODULE_0__angular_router__["f" /* RouterModule 
 
 /***/ },
 
-/***/ 523:
+/***/ 524:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__shared_clipboard_service__ = __webpack_require__(352);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__shared_clipboard_service__ = __webpack_require__(353);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return ClipboardDirective; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -5691,7 +5750,7 @@ var ClipboardDirective = (function () {
 
 /***/ },
 
-/***/ 524:
+/***/ 525:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5756,7 +5815,7 @@ var FormatterDirective = (function () {
 
 /***/ },
 
-/***/ 525:
+/***/ 526:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5816,7 +5875,7 @@ var AutoCompleteMockComponent = (function () {
 
 /***/ },
 
-/***/ 526:
+/***/ 527:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5881,63 +5940,6 @@ var CalendarMockComponent = (function () {
     return CalendarMockComponent;
 }());
 //# sourceMappingURL=/Users/haraldbregu/Dropbox/StarbookWebApp/src/calendar.component.js.map
-
-/***/ },
-
-/***/ 527:
-/***/ function(module, exports, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__(8);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__shared_seo_service__ = __webpack_require__(28);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__shared_navigation_service__ = __webpack_require__(9);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__shared_analytics_service__ = __webpack_require__(17);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__shared_common_service__ = __webpack_require__(45);
-/* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return BlogComponent; });
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-
-
-
-var BlogComponent = (function () {
-    function BlogComponent(router, route, navigationService, analyticsService, seoService, commonService) {
-        var _this = this;
-        this.router = router;
-        this.route = route;
-        this.navigationService = navigationService;
-        this.analyticsService = analyticsService;
-        this.seoService = seoService;
-        this.commonService = commonService;
-        this.article = '';
-        this.navigationService.updateMessage("");
-        this.route.params.subscribe(function (params) {
-            _this.article = params['article'];
-        });
-    }
-    BlogComponent.prototype.ngOnInit = function () {
-    };
-    BlogComponent = __decorate([
-        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'app-blog',
-            template: __webpack_require__(720)
-        }), 
-        __metadata('design:paramtypes', [(typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["d" /* Router */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__angular_router__["d" /* Router */]) === 'function' && _a) || Object, (typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["e" /* ActivatedRoute */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__angular_router__["e" /* ActivatedRoute */]) === 'function' && _b) || Object, (typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__shared_navigation_service__["a" /* NavigationService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_3__shared_navigation_service__["a" /* NavigationService */]) === 'function' && _c) || Object, (typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_4__shared_analytics_service__["a" /* AnalyticsService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_4__shared_analytics_service__["a" /* AnalyticsService */]) === 'function' && _d) || Object, (typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_2__shared_seo_service__["a" /* SeoService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_2__shared_seo_service__["a" /* SeoService */]) === 'function' && _e) || Object, (typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_5__shared_common_service__["a" /* CommonService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_5__shared_common_service__["a" /* CommonService */]) === 'function' && _f) || Object])
-    ], BlogComponent);
-    return BlogComponent;
-    var _a, _b, _c, _d, _e, _f;
-}());
-//# sourceMappingURL=/Users/haraldbregu/Dropbox/StarbookWebApp/src/blog.component.js.map
 
 /***/ },
 
@@ -9901,7 +9903,7 @@ module.exports = "<div class=\"company-container\">\n  <div class=\"header-conta
 /***/ 716:
 /***/ function(module, exports) {
 
-module.exports = "<div class=\"landing-container\">\n  <div class=\"header-container\">\n    <div class=\"overlay\">\n      <div class=\"header\">\n        <h1>Prenota il servizio che ti serve se non hai tempo da perdere.</h1>\n        <!-- <div class=\"header-text\">\n          <h1>Prenota il servizio che ti serve se non hai tempo da perdere.</h1>\n          <p>Su <span>Starbook</span> niente annunci, scegli il servizio, inserisci la data e prenota.</p>\n        </div>\n        <div class=\"search\">\n          <div class=\"search-field\">\n            <p-autoComplete [(ngModel)]=\"query\" [suggestions]=\"results\" field=\"title\" scrollHeight=\"275px\" (completeMethod)=\"search($event)\" (onSelect)=\"selectResult(query)\" placeholder=\"Cerca un servizio\" minLength=\"0\">\n              <template let-res>\n                <div class=\"search-result\" (click)=\"selectResult(res)\">{{ res.title }}</div>\n              </template>\n            </p-autoComplete>\n            <div class=\"spinner\" *ngIf=\"spinerView\">\n              <svg width='21px' height='21px' xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\" preserveAspectRatio=\"xMidYMid\" class=\"uil-ring\">\n                <rect x=\"0\" y=\"0\" width=\"100\" height=\"100\" fill=\"none\" class=\"bk\"></rect>\n                <circle cx=\"50\" cy=\"50\" r=\"45\" stroke-dasharray=\"169.64600329384882 113.09733552923257\" stroke=\"#3B568D\" fill=\"none\" stroke-width=\"10\">\n                  <animateTransform attributeName=\"transform\" type=\"rotate\" values=\"0 50 50;180 50 50;360 50 50;\" keyTimes=\"0;0.5;1\" dur=\"1s\" repeatCount=\"indefinite\" begin=\"0s\"></animateTransform>\n                </circle>\n              </svg>\n            </div>\n            <div class=\"close-container\" *ngIf=\"!spinerView && clearView\">\n              <span class=\"close rounded thick\" (click)=\"clearSearchForm()\"></span>\n            </div>\n            <div class=\"ui-autocomplete-panel empty\" *ngIf=\"results.length === 0 && query.length > 0\">\n              <div class=\"no-result noselect\">\n                Il servizio \"{{query}}\" non è disponibile\n                <button class=\"suggess-service\" (click)=\"requireService()\">{{newServiceRequest.message}}</button>\n              </div>\n            </div>\n          </div>\n          <div class=\"search-button\">\n            <button class=\"btn btn-primary\" (click)=\"searchMore()\"><i class=\"fa fa-search\" aria-hidden=\"true\"></i></button>\n          </div>\n        </div> -->\n        <div class=\"search-panel\">\n          <div class=\"fields\">\n            <div class=\"service-title\">\n              <div class=\"form-group\">\n                <label for=\"serviceTitleInput\">Di cosa hai bisogno?</label>\n                <div class=\"input-group\">\n                  <span class=\"input-group-addon\" id=\"price-input\"><i class=\"fa fa-pencil\" aria-hidden=\"true\"></i></span>\n                  <p-autoComplete [(ngModel)]=\"query\" [suggestions]=\"suggestions\" field=\"title\" scrollHeight=\"275px\" (completeMethod)=\"showSuggestions($event)\" (ngModelChange)=\"changeSearch($event)\" placeholder=\"Servizio, professionista, altro?\" minLength=\"0\">\n                    <template let-res>\n                      <i class=\"fa fa-search\" aria-hidden=\"true\"></i><div class=\"search-result\" (click)=\"selectSuggestion(res)\">{{ res.title }}</div>\n                    </template>\n                  </p-autoComplete>\n                  <div class=\"spinner\" *ngIf=\"spinerView\">\n                    <svg width='21px' height='21px' xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\" preserveAspectRatio=\"xMidYMid\" class=\"uil-ring\">\n                      <rect x=\"0\" y=\"0\" width=\"100\" height=\"100\" fill=\"none\" class=\"bk\"></rect>\n                      <circle cx=\"50\" cy=\"50\" r=\"45\" stroke-dasharray=\"169.64600329384882 113.09733552923257\" stroke=\"#3B568D\" fill=\"none\" stroke-width=\"10\">\n                        <animateTransform attributeName=\"transform\" type=\"rotate\" values=\"0 50 50;180 50 50;360 50 50;\" keyTimes=\"0;0.5;1\" dur=\"1s\" repeatCount=\"indefinite\" begin=\"0s\"></animateTransform>\n                      </circle>\n                    </svg>\n                  </div>\n                  <div class=\"close-container\" *ngIf=\"!spinerView && clearView\">\n                    <span class=\"close rounded thick\" (click)=\"clearSearchForm()\"></span>\n                  </div>\n                </div>\n              </div>\n            </div>\n            <div class=\"service-when\">\n              <div class=\"form-group\">\n                <label for=\"dateInput\">Quando ti serve?</label>\n                <div class=\"input-group\">\n                  <span class=\"input-group-addon\" id=\"price-input\"><i class=\"fa fa-calendar-check-o\" aria-hidden=\"true\"></i></span>\n                  <p-calendar class=\"date form-control\" name=\"data\" placeholder=\"Quando?\" [(ngModel)]=\"temp_date\" id=\"date\" autocomplete=\"off\" readonlyInput=\"true\" dateFormat=\"dd MM yy\" [locale]=\"it\" [minDate]=\"minDate\" (onSelect)=\"selectDate()\"></p-calendar>\n                </div>\n              </div>\n            </div>\n          </div>\n          <div class=\"service-action\">\n            <div class=\"form-group text-center\">\n              <button type=\"button\" id=\"BookService\" class=\"btn btn-danger\" (click)=\"bookServiceNow($object)\">Prenota</button>\n            </div>\n          </div>\n        </div>\n      </div>\n      <!-- <div class=\"bottom-container\">\n        <div class=\"arrow\"></div>\n      </div> -->\n    </div>\n  </div>\n  <div class=\"services-container\">\n    <div class=\"services-header\">\n      <h3><i class=\"fa fa-circle-o-notch animate\" *ngIf=\"services_state.loading\"></i> Servizi più utilizzati</h3>\n    </div>\n    <div class=\"services-body\" *ngIf=\"services.length>0\">\n      <div class=\"service-container\" *ngFor=\"let service of services\" (click)=\"bookServiceNow(service)\">\n        <div class=\"service\" [ngStyle]=\"{'background-image' : ' url(' + 'https://s3-eu-west-1.amazonaws.com/starbook-s3/services/'+ service._id + '/cover/0' + ')'}\">\n          <div class=\"overlay\">\n            <div class=\"text-container\">\n              <span class=\"title\">{{service.title}}</span>\n            </div>\n          </div>\n        </div>\n      </div>\n      <!-- <div class=\"service-container\">\n        <div class=\"service\" [ngStyle]=\"{'background-image' : ' url(' + 'https://s3-eu-west-1.amazonaws.com/starbook-s3/services/590b34bf6c8dd682c65e99bb/cover/0' + ')'}\">\n          <div class=\"overlay\">\n            <div class=\"text-container\">\n              <span class=\"title\">Elettrico</span>\n            </div>\n          </div>\n        </div>\n      </div>\n      <div class=\"service-container\">\n        <div class=\"service\" [ngStyle]=\"{'background-image' : ' url(' + 'https://s3-eu-west-1.amazonaws.com/starbook-s3/services/590b34bf6c8dd682c65e99bb/cover/0' + ')'}\">\n          <div class=\"overlay\">\n            <div class=\"text-container\">\n              <span class=\"title\">Elettrico</span>\n            </div>\n          </div>\n        </div>\n      </div>\n      <div class=\"service-container\">\n        <div class=\"service\" [ngStyle]=\"{'background-image' : ' url(' + 'https://s3-eu-west-1.amazonaws.com/starbook-s3/services/590b34bf6c8dd682c65e99bb/cover/0' + ')'}\">\n          <div class=\"overlay\">\n            <div class=\"text-container\">\n              <span class=\"title\">Elettrico</span>\n            </div>\n          </div>\n        </div>\n      </div>\n      <div class=\"service-container\">\n        <div class=\"service\" [ngStyle]=\"{'background-image' : ' url(' + 'https://s3-eu-west-1.amazonaws.com/starbook-s3/services/590b34bf6c8dd682c65e99bb/cover/0' + ')'}\">\n          <div class=\"overlay\">\n            <div class=\"text-container\">\n              <span class=\"title\">Elettrico</span>\n            </div>\n          </div>\n        </div>\n      </div>\n      <div class=\"service-container\">\n        <div class=\"service\" [ngStyle]=\"{'background-image' : ' url(' + 'https://s3-eu-west-1.amazonaws.com/starbook-s3/services/590b34bf6c8dd682c65e99bb/cover/0' + ')'}\">\n          <div class=\"overlay\">\n            <div class=\"text-container\">\n              <span class=\"title\">Elettrico</span>\n            </div>\n          </div>\n        </div>\n      </div>\n      <div class=\"service-container\">\n        <div class=\"service\" [ngStyle]=\"{'background-image' : ' url(' + 'https://s3-eu-west-1.amazonaws.com/starbook-s3/services/590b34bf6c8dd682c65e99bb/cover/0' + ')'}\">\n          <div class=\"overlay\">\n            <div class=\"text-container\">\n              <span class=\"title\">Elettrico</span>\n            </div>\n          </div>\n        </div>\n      </div> -->\n    </div>\n  </div>\n\n  <!-- <div class=\"category-container\" *ngIf=\"professionals\">\n    <div class=\"category\">\n      <div class=\"category-header\">\n        <h1>Ultimi Servizi</h1>\n      </div>\n      <div class=\"category-body\">\n        <div class=\"service-container\" *ngFor=\"let professional of professionals\" (click)=\"selectService(professional)\">\n          <div class=\"service\" title=\"{{professional.title}}\" [ngStyle]=\"{'background-image' : ' url(' + images_url + 'services/'+ professional._id + '/cover/0' + ')'}\">\n            <div class=\"overlay\">\n              <div class=\"text-container\">\n                <span class=\"title\">{{ professional.title }}</span>\n              </div>\n            </div>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div> -->\n\n  <div class=\"bullets-container\">\n    <h1>Come funziona</h1>\n    <div class=\"row bullets\">\n      <div class=\"col-xl-4 col-lg-4 col-md-6 col-sm-12\">\n        <div class=\"box\">\n          <img src=\"../../../assets/images/service-list.png\" class=\"rounded mx-auto d-block\" alt=\"Seleziona il servizio\">\n          <h3>Richiedi un servizio</h3>\n          <h5>Richiedi un servizio di cui hai bisogno.</h5>\n        </div>\n      </div>\n      <div class=\"col-xl-4 col-lg-4 col-md-6 col-sm-12\">\n        <div class=\"box\">\n          <img src=\"../../../assets/images/service-booking.png\" class=\"rounded mx-auto d-block\" alt=\"Ordina il servizio\">\n          <h3>Inserisci dove e quando</h3>\n          <h5>Decidi tu dove è quando hai bisogno.</h5>\n        </div>\n      </div>\n      <div class=\"col-xl-4 col-lg-4 col-md-6 col-sm-12\">\n        <div class=\"box\">\n          <img src=\"../../../assets/images/service-time.png\" class=\"rounded mx-auto d-block\" alt=\"Calcola preventivo\">\n          <h3>Prenota e rilassati</h3>\n          <h5>In poco tempo riceverai il servizio che ti serve.</h5>\n        </div>\n      </div>\n\n      <!-- <div class=\"col-xl-4 col-lg-4 col-md-6 col-sm-12\">\n        <div class=\"box\">\n          <img src=\"../../../assets/images/service-time.png\" class=\"rounded mx-auto d-block\" alt=\"Calcola preventivo\">\n          <h3>Ricevi il prezzo immediato</h3>\n          <h5>Ricevi in tempo reale un unico prezzo per il servizio, niente attese e niente intermediari.</h5>\n        </div>\n      </div> -->\n      <!-- <div class=\"col-xl-4 col-lg-4 col-md-6 col-sm-12\">\n        <div class=\"box\">\n          <img src=\"../../../assets/images/service-booking.png\" class=\"rounded mx-auto d-block\" alt=\"Ordina il servizio\">\n          <h3>Ordina il servizio</h3>\n          <h5>Scegli il giorno quando vuoi iniziare i lavori, l'indirizzo e ordina direttamente.</h5>\n        </div>\n      </div> -->\n    </div>\n  </div>\n  <div class=\"professional-container\" *ngIf=\"!currentUser\">\n    <div class=\"overlay\">\n      <div class=\"professional\">\n        <h1>Hai una professione, un mestiere o un'attività?</h1>\n        <p>Inizia ad usare Starbook per rendere più accessibile la tua attività, ricevere le richieste dai clienti direttamente nel tuo telefono e senza perdere tempo.</p>\n        <button class=\"btn btn-warning\" routerLink=\"/company\">Scopri di più</button>\n      </div>\n    </div>\n  </div>\n  <div class=\"container-fluid prefooter-container\">\n    <div class=\"row prefooter\">\n      <div class=\"col-xl-3 col-lg-3 col-md-3 col-sm-12\">\n        <p>Sicurezza del sito</p>\n        <div class=\"list-security\">\n          <img src=\"../../../assets/images/norton.png\" title=\"Norton Security\" alt=\"Norton Security\">\n          <img src=\"../../../assets/images/secure.png\" title=\"100% Secure\" alt=\"100% Secure\">\n          <img src=\"../../../assets/images/trust.png\" title=\"Trusted Website\" alt=\"Trusted Website\">\n        </div>\n      </div>\n      <div class=\"col-xl-3 col-lg-3 col-md-3 col-sm-12\">\n        <p>Sistemi di pagamento</p>\n        <div class=\"list-payment-methods\">\n          <img src=\"../../../assets/images/mastercard.png\" title=\"Mastercard\" alt=\"Mastercard\">\n          <img src=\"../../../assets/images/visa.png\" title=\"Visa\" alt=\"Visa\">\n          <img src=\"../../../assets/images/americanexpress.png\" title=\"American Express\" alt=\"American Express\">\n          <!-- <img src=\"../../../assets/images/stripe.png\" alt=\"Stripe\"> -->\n        </div>\n      </div>\n      <div class=\"col-xl-3 col-lg-3 col-md-3 col-sm-12\">\n        <!-- <p><a routerLink=\"/info/help\">Aiuto e Assistenza</a></p> -->\n        <p><a routerLink=\"/info/legal\">Privacy e Condizioni</a></p>\n        <!-- <p><a routerLink=\"/contact/partner\" *ngIf=\"currentUser\">Diventa partner</a></p> -->\n        <p><a routerLink=\"/insert/product\">Pubblica un servizio</a></p>\n        <p><a routerLink=\"/info/about\">Chi siamo</a></p>\n        <!-- <p><a routerLink=\"/blog\">Blog</a></p> -->\n      </div>\n      <div class=\"col-xl-3 col-lg-3 col-md-3 col-sm-12\">\n        <p>Seguici su</p>\n        <div class=\"list-socials\">\n          <a href=\"https://www.facebook.com/starbook.co/\" target=\"_blank\"><img src=\"../../../assets/images/facebook.png\" title=\"Facebook\" alt=\"Facebook\"></a>\n          <a href=\"https://twitter.com/starbookco/\" target=\"_blank\"><img src=\"../../../assets/images/twitter.png\" title=\"Twitter\" alt=\"Twitter\"></a>\n          <a href=\"https://www.instagram.com/starbook.co/\" target=\"_blank\"><img src=\"../../../assets/images/instagram.png\" title=\"Instagram\" alt=\"Instagram\"></a>\n        </div>\n      </div>\n    </div>\n  </div>\n  <div class=\"footer\">\n    <p><a routerLink=\"/\"><strong>Starbook</strong> © 2017 Tutti i diritti riservati</a></p>\n  </div>\n</div>\n"
+module.exports = "<div class=\"landing-container\">\n  <div class=\"header-container\">\n    <div class=\"overlay\">\n      <div class=\"header\">\n        <h1>Prenota il servizio che ti serve se non hai tempo da perdere.</h1>\n        <!-- <div class=\"header-text\">\n          <h1>Prenota il servizio che ti serve se non hai tempo da perdere.</h1>\n          <p>Su <span>Starbook</span> niente annunci, scegli il servizio, inserisci la data e prenota.</p>\n        </div>\n        <div class=\"search\">\n          <div class=\"search-field\">\n            <p-autoComplete [(ngModel)]=\"query\" [suggestions]=\"results\" field=\"title\" scrollHeight=\"275px\" (completeMethod)=\"search($event)\" (onSelect)=\"selectResult(query)\" placeholder=\"Cerca un servizio\" minLength=\"0\">\n              <template let-res>\n                <div class=\"search-result\" (click)=\"selectResult(res)\">{{ res.title }}</div>\n              </template>\n            </p-autoComplete>\n            <div class=\"spinner\" *ngIf=\"spinerView\">\n              <svg width='21px' height='21px' xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\" preserveAspectRatio=\"xMidYMid\" class=\"uil-ring\">\n                <rect x=\"0\" y=\"0\" width=\"100\" height=\"100\" fill=\"none\" class=\"bk\"></rect>\n                <circle cx=\"50\" cy=\"50\" r=\"45\" stroke-dasharray=\"169.64600329384882 113.09733552923257\" stroke=\"#3B568D\" fill=\"none\" stroke-width=\"10\">\n                  <animateTransform attributeName=\"transform\" type=\"rotate\" values=\"0 50 50;180 50 50;360 50 50;\" keyTimes=\"0;0.5;1\" dur=\"1s\" repeatCount=\"indefinite\" begin=\"0s\"></animateTransform>\n                </circle>\n              </svg>\n            </div>\n            <div class=\"close-container\" *ngIf=\"!spinerView && clearView\">\n              <span class=\"close rounded thick\" (click)=\"clearSearchForm()\"></span>\n            </div>\n            <div class=\"ui-autocomplete-panel empty\" *ngIf=\"results.length === 0 && query.length > 0\">\n              <div class=\"no-result noselect\">\n                Il servizio \"{{query}}\" non è disponibile\n                <button class=\"suggess-service\" (click)=\"requireService()\">{{newServiceRequest.message}}</button>\n              </div>\n            </div>\n          </div>\n          <div class=\"search-button\">\n            <button class=\"btn btn-primary\" (click)=\"searchMore()\"><i class=\"fa fa-search\" aria-hidden=\"true\"></i></button>\n          </div>\n        </div> -->\n        <div class=\"search-panel\">\n          <div class=\"fields\">\n            <div class=\"service-title\">\n              <div class=\"form-group\">\n                <label for=\"serviceTitleInput\">Di cosa hai bisogno?</label>\n                <div class=\"input-group\">\n                  <span class=\"input-group-addon\" id=\"price-input\"><i class=\"fa fa-pencil\" aria-hidden=\"true\"></i></span>\n                  <p-autoComplete [(ngModel)]=\"query\" [suggestions]=\"suggestions\" field=\"title\" scrollHeight=\"275px\" (completeMethod)=\"showSuggestions($event)\" (ngModelChange)=\"changeSearch($event)\" placeholder=\"Servizio, professionista, altro?\" minLength=\"0\">\n                    <template let-res>\n                      <i class=\"fa fa-search\" aria-hidden=\"true\"></i><div class=\"search-result\" (click)=\"selectSuggestion(res)\">{{ res.title }}</div>\n                    </template>\n                  </p-autoComplete>\n                  <div class=\"spinner\" *ngIf=\"spinerView\">\n                    <svg width='21px' height='21px' xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\" preserveAspectRatio=\"xMidYMid\" class=\"uil-ring\">\n                      <rect x=\"0\" y=\"0\" width=\"100\" height=\"100\" fill=\"none\" class=\"bk\"></rect>\n                      <circle cx=\"50\" cy=\"50\" r=\"45\" stroke-dasharray=\"169.64600329384882 113.09733552923257\" stroke=\"#3B568D\" fill=\"none\" stroke-width=\"10\">\n                        <animateTransform attributeName=\"transform\" type=\"rotate\" values=\"0 50 50;180 50 50;360 50 50;\" keyTimes=\"0;0.5;1\" dur=\"1s\" repeatCount=\"indefinite\" begin=\"0s\"></animateTransform>\n                      </circle>\n                    </svg>\n                  </div>\n                  <div class=\"close-container\" *ngIf=\"!spinerView && clearView\">\n                    <span class=\"close rounded thick\" (click)=\"clearSearchForm()\"></span>\n                  </div>\n                </div>\n              </div>\n            </div>\n            <div class=\"service-when\">\n              <div class=\"form-group\">\n                <label for=\"dateInput\">Quando ti serve?</label>\n                <div class=\"input-group\">\n                  <span class=\"input-group-addon\" id=\"price-input\"><i class=\"fa fa-calendar-check-o\" aria-hidden=\"true\"></i></span>\n                  <p-calendar class=\"date form-control\" name=\"data\" placeholder=\"Quando?\" [(ngModel)]=\"temp_date\" id=\"date\" autocomplete=\"off\" readonlyInput=\"true\" dateFormat=\"dd MM yy\" [locale]=\"it\" [minDate]=\"minDate\" (onSelect)=\"selectDate()\"></p-calendar>\n                </div>\n              </div>\n            </div>\n          </div>\n          <div class=\"service-action\">\n            <div class=\"form-group text-center\">\n              <button type=\"button\" id=\"BookService\" class=\"btn btn-danger\" (click)=\"bookServiceNow($object)\">Prenota</button>\n            </div>\n          </div>\n        </div>\n      </div>\n      <!-- <div class=\"bottom-container\">\n        <div class=\"arrow\"></div>\n      </div> -->\n    </div>\n  </div>\n  <div class=\"services-container\">\n    <div class=\"services-header\">\n      <h3><i class=\"fa fa-circle-o-notch animate\" *ngIf=\"services_state.loading\"></i> Servizi più utilizzati</h3>\n    </div>\n    <div class=\"services-body\" *ngIf=\"services.length>0\">\n      <div class=\"service-container\" *ngFor=\"let service of services\" id=\"BookService\" (click)=\"bookServiceNow(service)\">\n        <div class=\"service\" [ngStyle]=\"{'background-image' : ' url(' + 'https://s3-eu-west-1.amazonaws.com/starbook-s3/services/'+ service._id + '/cover/0' + ')'}\">\n          <div class=\"overlay\">\n            <div class=\"text-container\">\n              <span class=\"title\">{{service.title}}</span>\n            </div>\n          </div>\n        </div>\n      </div>\n      <!-- <div class=\"service-container\">\n        <div class=\"service\" [ngStyle]=\"{'background-image' : ' url(' + 'https://s3-eu-west-1.amazonaws.com/starbook-s3/services/590b34bf6c8dd682c65e99bb/cover/0' + ')'}\">\n          <div class=\"overlay\">\n            <div class=\"text-container\">\n              <span class=\"title\">Elettrico</span>\n            </div>\n          </div>\n        </div>\n      </div>\n      <div class=\"service-container\">\n        <div class=\"service\" [ngStyle]=\"{'background-image' : ' url(' + 'https://s3-eu-west-1.amazonaws.com/starbook-s3/services/590b34bf6c8dd682c65e99bb/cover/0' + ')'}\">\n          <div class=\"overlay\">\n            <div class=\"text-container\">\n              <span class=\"title\">Elettrico</span>\n            </div>\n          </div>\n        </div>\n      </div>\n      <div class=\"service-container\">\n        <div class=\"service\" [ngStyle]=\"{'background-image' : ' url(' + 'https://s3-eu-west-1.amazonaws.com/starbook-s3/services/590b34bf6c8dd682c65e99bb/cover/0' + ')'}\">\n          <div class=\"overlay\">\n            <div class=\"text-container\">\n              <span class=\"title\">Elettrico</span>\n            </div>\n          </div>\n        </div>\n      </div>\n      <div class=\"service-container\">\n        <div class=\"service\" [ngStyle]=\"{'background-image' : ' url(' + 'https://s3-eu-west-1.amazonaws.com/starbook-s3/services/590b34bf6c8dd682c65e99bb/cover/0' + ')'}\">\n          <div class=\"overlay\">\n            <div class=\"text-container\">\n              <span class=\"title\">Elettrico</span>\n            </div>\n          </div>\n        </div>\n      </div>\n      <div class=\"service-container\">\n        <div class=\"service\" [ngStyle]=\"{'background-image' : ' url(' + 'https://s3-eu-west-1.amazonaws.com/starbook-s3/services/590b34bf6c8dd682c65e99bb/cover/0' + ')'}\">\n          <div class=\"overlay\">\n            <div class=\"text-container\">\n              <span class=\"title\">Elettrico</span>\n            </div>\n          </div>\n        </div>\n      </div>\n      <div class=\"service-container\">\n        <div class=\"service\" [ngStyle]=\"{'background-image' : ' url(' + 'https://s3-eu-west-1.amazonaws.com/starbook-s3/services/590b34bf6c8dd682c65e99bb/cover/0' + ')'}\">\n          <div class=\"overlay\">\n            <div class=\"text-container\">\n              <span class=\"title\">Elettrico</span>\n            </div>\n          </div>\n        </div>\n      </div> -->\n    </div>\n  </div>\n\n  <!-- <div class=\"category-container\" *ngIf=\"professionals\">\n    <div class=\"category\">\n      <div class=\"category-header\">\n        <h1>Ultimi Servizi</h1>\n      </div>\n      <div class=\"category-body\">\n        <div class=\"service-container\" *ngFor=\"let professional of professionals\" (click)=\"selectService(professional)\">\n          <div class=\"service\" title=\"{{professional.title}}\" [ngStyle]=\"{'background-image' : ' url(' + images_url + 'services/'+ professional._id + '/cover/0' + ')'}\">\n            <div class=\"overlay\">\n              <div class=\"text-container\">\n                <span class=\"title\">{{ professional.title }}</span>\n              </div>\n            </div>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div> -->\n\n  <div class=\"bullets-container\">\n    <h1>Come funziona</h1>\n    <div class=\"row bullets\">\n      <div class=\"col-xl-4 col-lg-4 col-md-6 col-sm-12\">\n        <div class=\"box\">\n          <img src=\"../../../assets/images/service-list.png\" class=\"rounded mx-auto d-block\" alt=\"Seleziona il servizio\">\n          <h3>Richiedi un servizio</h3>\n          <h5>Richiedi un servizio di cui hai bisogno.</h5>\n        </div>\n      </div>\n      <div class=\"col-xl-4 col-lg-4 col-md-6 col-sm-12\">\n        <div class=\"box\">\n          <img src=\"../../../assets/images/service-booking.png\" class=\"rounded mx-auto d-block\" alt=\"Ordina il servizio\">\n          <h3>Inserisci dove e quando</h3>\n          <h5>Decidi tu dove è quando hai bisogno.</h5>\n        </div>\n      </div>\n      <div class=\"col-xl-4 col-lg-4 col-md-6 col-sm-12\">\n        <div class=\"box\">\n          <img src=\"../../../assets/images/service-time.png\" class=\"rounded mx-auto d-block\" alt=\"Calcola preventivo\">\n          <h3>Prenota e rilassati</h3>\n          <h5>In poco tempo riceverai il servizio che ti serve.</h5>\n        </div>\n      </div>\n\n      <!-- <div class=\"col-xl-4 col-lg-4 col-md-6 col-sm-12\">\n        <div class=\"box\">\n          <img src=\"../../../assets/images/service-time.png\" class=\"rounded mx-auto d-block\" alt=\"Calcola preventivo\">\n          <h3>Ricevi il prezzo immediato</h3>\n          <h5>Ricevi in tempo reale un unico prezzo per il servizio, niente attese e niente intermediari.</h5>\n        </div>\n      </div> -->\n      <!-- <div class=\"col-xl-4 col-lg-4 col-md-6 col-sm-12\">\n        <div class=\"box\">\n          <img src=\"../../../assets/images/service-booking.png\" class=\"rounded mx-auto d-block\" alt=\"Ordina il servizio\">\n          <h3>Ordina il servizio</h3>\n          <h5>Scegli il giorno quando vuoi iniziare i lavori, l'indirizzo e ordina direttamente.</h5>\n        </div>\n      </div> -->\n    </div>\n  </div>\n  <div class=\"professional-container\" *ngIf=\"!currentUser\">\n    <div class=\"overlay\">\n      <div class=\"professional\">\n        <h1>Hai una professione, un mestiere o un'attività?</h1>\n        <p>Inizia ad usare Starbook per rendere più accessibile la tua attività, ricevere le richieste dai clienti direttamente nel tuo telefono e senza perdere tempo.</p>\n        <button class=\"btn btn-warning\" routerLink=\"/company\">Scopri di più</button>\n      </div>\n    </div>\n  </div>\n  <div class=\"container-fluid prefooter-container\">\n    <div class=\"row prefooter\">\n      <div class=\"col-xl-3 col-lg-3 col-md-3 col-sm-12\">\n        <p>Sicurezza del sito</p>\n        <div class=\"list-security\">\n          <img src=\"../../../assets/images/norton.png\" title=\"Norton Security\" alt=\"Norton Security\">\n          <img src=\"../../../assets/images/secure.png\" title=\"100% Secure\" alt=\"100% Secure\">\n          <img src=\"../../../assets/images/trust.png\" title=\"Trusted Website\" alt=\"Trusted Website\">\n        </div>\n      </div>\n      <div class=\"col-xl-3 col-lg-3 col-md-3 col-sm-12\">\n        <p>Sistemi di pagamento</p>\n        <div class=\"list-payment-methods\">\n          <img src=\"../../../assets/images/mastercard.png\" title=\"Mastercard\" alt=\"Mastercard\">\n          <img src=\"../../../assets/images/visa.png\" title=\"Visa\" alt=\"Visa\">\n          <img src=\"../../../assets/images/americanexpress.png\" title=\"American Express\" alt=\"American Express\">\n          <!-- <img src=\"../../../assets/images/stripe.png\" alt=\"Stripe\"> -->\n        </div>\n      </div>\n      <div class=\"col-xl-3 col-lg-3 col-md-3 col-sm-12\">\n        <!-- <p><a routerLink=\"/info/help\">Aiuto e Assistenza</a></p> -->\n        <p><a routerLink=\"/info/legal\">Privacy e Condizioni</a></p>\n        <!-- <p><a routerLink=\"/contact/partner\" *ngIf=\"currentUser\">Diventa partner</a></p> -->\n        <p><a routerLink=\"/insert/product\">Pubblica un servizio</a></p>\n        <p><a routerLink=\"/info/about\">Chi siamo</a></p>\n        <p><a routerLink=\"/blog\">Blog</a></p>\n      </div>\n      <div class=\"col-xl-3 col-lg-3 col-md-3 col-sm-12\">\n        <p>Seguici su</p>\n        <div class=\"list-socials\">\n          <a href=\"https://www.facebook.com/starbook.co/\" target=\"_blank\"><img src=\"../../../assets/images/facebook.png\" title=\"Facebook\" alt=\"Facebook\"></a>\n          <a href=\"https://twitter.com/starbookco/\" target=\"_blank\"><img src=\"../../../assets/images/twitter.png\" title=\"Twitter\" alt=\"Twitter\"></a>\n          <a href=\"https://www.instagram.com/starbook.co/\" target=\"_blank\"><img src=\"../../../assets/images/instagram.png\" title=\"Instagram\" alt=\"Instagram\"></a>\n        </div>\n      </div>\n    </div>\n  </div>\n  <div class=\"footer\">\n    <p><a routerLink=\"/\"><strong>Starbook</strong> © 2017 Tutti i diritti riservati</a></p>\n  </div>\n</div>\n"
 
 /***/ },
 
@@ -10307,7 +10309,7 @@ var ProfileService = (function () {
 /***/ 760:
 /***/ function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(412);
+module.exports = __webpack_require__(413);
 
 
 /***/ },

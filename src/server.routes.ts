@@ -37,8 +37,8 @@ export const routes: string[] = [
   // 'contact',
   // 'contact/:page',
 
-  // 'blog',
-  // 'blog/:article',
+  'blog',
+  'blog/:article',
 
   'info/help',
   'info/legal',

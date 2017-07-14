@@ -89,7 +89,7 @@
       <h3><i class="fa fa-circle-o-notch animate" *ngIf="services_state.loading"></i> Servizi più utilizzati</h3>
     </div>
     <div class="services-body" *ngIf="services.length>0">
-      <div class="service-container" *ngFor="let service of services" (click)="bookServiceNow(service)">
+      <div class="service-container" *ngFor="let service of services" id="BookService" (click)="bookServiceNow(service)">
         <div class="service" [ngStyle]="{'background-image' : ' url(' + 'https://s3-eu-west-1.amazonaws.com/starbook-s3/services/'+ service._id + '/cover/0' + ')'}">
           <div class="overlay">
             <div class="text-container">
@@ -249,7 +249,7 @@
         <!-- <p><a routerLink="/contact/partner" *ngIf="currentUser">Diventa partner</a></p> -->
         <p><a routerLink="/insert/product">Pubblica un servizio</a></p>
         <p><a routerLink="/info/about">Chi siamo</a></p>
-        <!-- <p><a routerLink="/blog">Blog</a></p> -->
+        <p><a routerLink="/blog">Blog</a></p>
       </div>
       <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12">
         <p>Seguici su</p>
