@@ -30,20 +30,20 @@ import { NotfoundComponent } from './pages/notfound/notfound.component';
 const routes: Routes = [
   { path: '', component: LandingComponent, data: { name: 'Landing' } },
   { path: 'company', component: CompanyComponent, data: { name: 'LandingCompany' } },
-  { path: 'category/:category', component: CategoryComponent, data: { isFindField: true } },
+  // { path: 'category/:category', component: CategoryComponent, data: { isFindField: true } },
   { path: 'account', component: AccountComponent },
   { path: 'account/:page', component: AccountComponent, data: { name: 'Account' } },
   { path: 'auth/:page', component: AuthComponent, data: { name: 'Auth' } },
 
   { path: 'orders', component: OrdersComponent },
   { path: 'orders/:page', component: OrdersComponent },
-  { path: 'profile', component: ProfileComponent },
-  { path: 'profile/:page', component: ProfileComponent },
+  // { path: 'profile', component: ProfileComponent },
+  // { path: 'profile/:page', component: ProfileComponent },
 
   { path: 'facebook', component: FacebookComponent },
 
-  { path: 'contact', component: ContactComponent },
-  { path: 'contact/:page', component: ContactComponent },
+  // { path: 'contact', component: ContactComponent },
+  // { path: 'contact/:page', component: ContactComponent },
 
   { path: 'services', component: ServicesComponent, data: {isFindField: true} },
   { path: 'services/:id', component: ServiceComponent, data: {name: 'Service', isFindField: true} },
@@ -72,11 +72,16 @@ const routes: Routes = [
   //   ]
   // },
 
-  { path: 'requests', component: RequestsComponent },
-  { path: 'requests/:page', component: RequestsComponent },
+  // { path: 'requests', component: RequestsComponent },
+  // { path: 'requests/:page', component: RequestsComponent },
+
+  // { path: 'blog', component: BlogComponent, data: { name: 'Blog' } },
+  // { path: 'blog/:article', component: BlogComponent, data: { name: 'Blog' } },
+
   { path: 'info/help', component: HelpComponent },
   { path: 'info/legal', component: LegalComponent },
   { path: 'info/about', component: AboutComponent },
+
   { path: '404', component: NotfoundComponent },
   { path: '**', redirectTo: '' }
 ];

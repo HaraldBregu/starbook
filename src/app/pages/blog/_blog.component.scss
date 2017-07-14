@@ -4,12 +4,7 @@ app-blog {
   height: 100%;
   background-color: #FFFFFF;
   padding: 70px 0 0;
-
-  h1 {
-    font-size: 54px;
-    font-weight: 700;
-  }
-  .blog {
+  .blog-container {
     display: block;
     width: 100%;
     height: 100%;
@@ -18,6 +13,10 @@ app-blog {
       color: white;
       padding: 100px 0;
       background: #164170;
+      h1 {
+        font-size: 54px;
+        font-weight: 700;
+      }
     }
   }
 }

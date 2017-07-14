@@ -29,26 +29,26 @@
 @import "../../app/landing/_landing.component";
 @import "../../app/company/_company.component";
 
-@import "../../app/pages/category/_category.component";
+// @import "../../app/pages/category/_category.component";
 @import "../../app/pages/service/_service.component";
 @import "../../app/pages/services/_services.component";
 @import "../../app/pages/insert/_insert.component";
 @import "../../app/pages/checkout/_checkout.component";
 @import "../../app/pages/orders/_orders.component";
-@import "../../app/pages/profile/_profile.component";
+// @import "../../app/pages/profile/_profile.component";
 @import "../../app/popups/_popups.component";
 @import "../../app/shared/loading/_loading.component";
-@import "../../app/pages/wizard/_wizard.component";
+// @import "../../app/pages/wizard/_wizard.component";
 @import "../../app/pages/about/_about.component";
 @import "../../app/pages/help/_help.component";
 @import "../../app/pages/legal/_legal.component";
 @import "../../app/pages/account/_account.component";
 @import "../../app/pages/auth/_auth.component";
-@import "../../app/pages/requests/_requests.component";
-@import "../../app/pages/share/_share.component";
-@import "../../app/pages/blog/_blog.component";
-@import "../../app/pages/contact/_contact.component";
+// @import "../../app/pages/requests/_requests.component";
+// @import "../../app/pages/share/_share.component";
+// @import "../../app/pages/contact/_contact.component";
 @import "../../app/pages/notfound/_notfound.component";
+@import "../../app/pages/blog/_blog.component";
 
 // Tests
 @import "tests/tests";

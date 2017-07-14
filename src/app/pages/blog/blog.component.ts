@@ -11,21 +11,17 @@ import { CommonService } from '../../shared/common.service';
   templateUrl: './blog.component.html'
 })
 export class BlogComponent implements OnInit {
+  public article = ''
 
-  constructor(
-    private router: Router,
-    private route: ActivatedRoute,
-    private navigationService: NavigationService,
-    private analyticsService: AnalyticsService,
-    private seoService: SeoService,
-    private commonService: CommonService) {
-      this.analyticsService.sendPageViewUrl(this.router.url)
-      this.navigationService.updateMessage("Artigiani digitali");
+  constructor(private router: Router, private route: ActivatedRoute, private navigationService: NavigationService, private analyticsService: AnalyticsService, private seoService: SeoService, private commonService: CommonService) {
+    this.navigationService.updateMessage("")
+    this.route.params.subscribe(params => {
+      this.article = params['article']
 
-
+    })
   }
 
   ngOnInit() {
-  }
 
+  }
 }

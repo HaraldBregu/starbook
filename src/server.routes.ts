@@ -11,7 +11,7 @@
  **/
 export const routes: string[] = [
   'company',
-  'category/:category',
+  // 'category/:category',
 
   'account',
   'account/:page',
@@ -19,22 +19,26 @@ export const routes: string[] = [
 
   'services',
   'services/:id',
+
   'insert/:step',
 
   'orders',
   'orders/:page',
   'checkout/:step',
 
-  'profile',
-  'profile/:page',
+  // 'profile',
+  // 'profile/:page',
 
   'facebook',
 
-  'requests',
-  'requests/:page',
+  // 'requests',
+  // 'requests/:page',
 
-  'contact',
-  'contact/:page',
+  // 'contact',
+  // 'contact/:page',
+
+  // 'blog',
+  // 'blog/:article',
 
   'info/help',
   'info/legal',

@@ -116,7 +116,7 @@
       <form>
         <div class="form-group">
           <label for="emailInput">Email</label>
-          <input id="emailInput" type="email" name="email" placeholder="La tua mail" class="form-control" [ngClass]="{'error-input': signup_state.email_error}" [(ngModel)]="signupParameters.email" [ngModelOptions]="{standalone: true}">
+          <input id="emailInput" type="text" name="email" placeholder="La tua mail" class="form-control" [ngClass]="{'error-input': signup_state.email_error}" [(ngModel)]="signupParameters.email" [ngModelOptions]="{standalone: true}">
           <small class="error-message" *ngIf="signup_state.email_error">{{signup_state.email_error}}</small>
         </div>
         <div class="row">
@@ -137,7 +137,7 @@
         </div>
         <div class="form-group">
           <label for="phone">Telefono</label>
-          <input id="phoneInput" field="phone" type="text" name="phone" placeholder="Numero di telefono" class="form-control" [ngClass]="{'error-input': signup_state.phone_error}" [(ngModel)]="signupParameters.phone" [ngModelOptions]="{standalone: true}">
+          <input id="phoneInput" type="text" name="phone" placeholder="Numero di telefono" class="form-control" [ngClass]="{'error-input': signup_state.phone_error}" [(ngModel)]="signupParameters.phone" [ngModelOptions]="{standalone: true}">
           <small class="error-message" *ngIf="signup_state.phone_error">{{signup_state.phone_error}}</small>
         </div>
         <div class="form-group">
@@ -167,7 +167,7 @@
       <form>
         <div class="form-group">
           <label for="emailInput">Email</label>
-          <input type="email" placeholder="La tua mail" class="form-control" [ngClass]="{'error-input': login_state.email_error}" id="emailInput" [(ngModel)]="loginParameters.email" [ngModelOptions]="{standalone: true}">
+          <input type="text" placeholder="La tua mail" class="form-control" [ngClass]="{'error-input': login_state.email_error}" id="emailInput" [(ngModel)]="loginParameters.email" [ngModelOptions]="{standalone: true}">
           <small class="error-message" *ngIf="login_state.email_error">{{login_state.email_error}}</small>
         </div>
         <div class="form-group">

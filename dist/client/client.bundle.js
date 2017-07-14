@@ -1772,158 +1772,6 @@ var AuthComponent = (function () {
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__(8);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__shared_seo_service__ = __webpack_require__(28);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__shared_navigation_service__ = __webpack_require__(9);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__shared_analytics_service__ = __webpack_require__(17);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_angular2_universal__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_angular2_universal___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_angular2_universal__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__shared_common_service__ = __webpack_require__(45);
-/* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return CategoryComponent; });
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-
-
-
-
-var CategoryComponent = (function () {
-    function CategoryComponent(router, route, navigationService, analyticsService, seoService, commonService) {
-        this.router = router;
-        this.route = route;
-        this.navigationService = navigationService;
-        this.analyticsService = analyticsService;
-        this.seoService = seoService;
-        this.commonService = commonService;
-        this.images_url = "https://s3-eu-west-1.amazonaws.com/starbook-s3/";
-        this.Request = {
-            description: '',
-            phone: '',
-            email: '',
-            firstname: '',
-            lastname: ''
-        };
-        this.request_state = {
-            loading: false,
-            button_title: "Invia richiesta",
-            message_success: null,
-            message_error: null,
-            title_error: null,
-            description_error: null,
-            firstname_error: null,
-            lastname_error: null,
-            phone_error: null,
-            email_error: null
-        };
-        this.spinerView = false;
-        this.clearView = false;
-        this.query = '';
-        this.results = [];
-        this.services = [];
-        this.order = {};
-        this.seoObject = {};
-        // let category = this.commonService.getCategory();
-        // if (category) {
-        //   this.category = category;
-        //   this.navigationService.updateMessage(this.category.title);
-        //   this.loadServicesForCategoryId(this.category._id);
-        //   this.updateSeoForObject(this.category);
-        //  } else {
-        //   this.route.params.subscribe(params => {
-        //     let category = params['category'];
-        //     this.commonService.getServiceById(category).then((data) => {
-        //       this.category = data.result;
-        //       this.updateSeoForObject(this.category);
-        //       this.navigationService.updateMessage(this.category.title);
-        //       this.loadServicesForCategoryId(this.category._id);
-        //     }).catch((error) => {
-        //       this.router.navigate(['']);
-        //     });
-        //   })
-        // }
-    }
-    CategoryComponent.prototype.ngOnInit = function () {
-        if (__WEBPACK_IMPORTED_MODULE_5_angular2_universal__["isBrowser"]) {
-            window.scrollTo(0, 0);
-        }
-    };
-    CategoryComponent.prototype.updateSeoForObject = function (category) {
-        this.seoObject['title'] = category.title;
-        this.seoObject['description'] = category.description;
-        this.seoObject['url'] = 'https://www.starbook.co' + this.router.url;
-        this.seoObject['image_url'] = category.image_url;
-        this.seoService.setTitle(this.seoObject['title']);
-        this.seoService.setMetaElem('description', this.seoObject['description']);
-        this.seoService.setOgElem('twitter:card', "summary_large_image");
-        this.seoService.setOgElem('twitter:title', this.seoObject['title']);
-        this.seoService.setOgElem('twitter:site', "@starbookco");
-        this.seoService.setOgElem('twitter:creator', "@HaraldBregu");
-        this.seoService.setOgElem('twitter:description', this.seoObject['description']);
-        this.seoService.setOgElem('twitter:image', this.seoObject['image_url']);
-        this.seoService.setOgElem('og:title', this.seoObject['title']);
-        this.seoService.setOgElem('og:description', this.seoObject['description']);
-        this.seoService.setOgElem('og:url', this.seoObject['url']);
-        this.seoService.setOgElem('og:image', this.seoObject['image_url']);
-        this.seoService.setOgElem('og:image:secure_url', this.seoObject['image_url']);
-    };
-    CategoryComponent.prototype.showDirectAction = function (action) {
-        this.order['service_id'] = this.category._id;
-        this.order['title'] = this.category.title;
-        var title = "Richiesta di " + action.title.toLowerCase() + "";
-        this.order['details'] = [{ title: this.category.title, type: "service", count: 0, amount: 0 }, { title: title, type: "detail", count: 0, amount: 0 }];
-        this.order['description'] = "";
-        this.order['upfront_amount'] = action.amount;
-        this.order['timing'] = { days: 0 };
-        this.router.navigate(['order/summary']);
-        return false;
-    };
-    CategoryComponent.prototype.loadServicesForCategoryId = function (category_id) {
-        var _this = this;
-        this.commonService.getRelatedServicesByServiceId(category_id, null).then(function (data) {
-            _this.services = data.result[0].services;
-            // console.log('services are: ' + JSON.stringify(data.result));
-        }).catch(function (error) {
-            // console.log('error are: ' + JSON.stringify(error));
-        });
-    };
-    CategoryComponent.prototype.showServicePage = function (service) {
-        this.router.navigate(['services', service.title.replace(/\s+/g, '-')]);
-    };
-    CategoryComponent.prototype.requireService = function () {
-        this.router.navigate(['requests/service']);
-    };
-    CategoryComponent.prototype.checkOut = function () {
-        this.router.navigate(['order/summary']);
-        return false;
-    };
-    CategoryComponent = __decorate([
-        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'app-category',
-            template: __webpack_require__(721)
-        }), 
-        __metadata('design:paramtypes', [(typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["d" /* Router */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__angular_router__["d" /* Router */]) === 'function' && _a) || Object, (typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["e" /* ActivatedRoute */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__angular_router__["e" /* ActivatedRoute */]) === 'function' && _b) || Object, (typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__shared_navigation_service__["a" /* NavigationService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_3__shared_navigation_service__["a" /* NavigationService */]) === 'function' && _c) || Object, (typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_4__shared_analytics_service__["a" /* AnalyticsService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_4__shared_analytics_service__["a" /* AnalyticsService */]) === 'function' && _d) || Object, (typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_2__shared_seo_service__["a" /* SeoService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_2__shared_seo_service__["a" /* SeoService */]) === 'function' && _e) || Object, (typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_6__shared_common_service__["a" /* CommonService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_6__shared_common_service__["a" /* CommonService */]) === 'function' && _f) || Object])
-    ], CategoryComponent);
-    return CategoryComponent;
-    var _a, _b, _c, _d, _e, _f;
-}());
-//# sourceMappingURL=/Users/haraldbregu/Dropbox/StarbookWebApp/src/category.component.js.map
-
-/***/ },
-
-/***/ 344:
-/***/ function(module, exports, __webpack_require__) {
-
-"use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_angular2_universal__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_angular2_universal___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_angular2_universal__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
@@ -2523,134 +2371,7 @@ var CheckoutComponent = (function () {
 
 /***/ },
 
-/***/ 345:
-/***/ function(module, exports, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_angular2_universal__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_angular2_universal___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_angular2_universal__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_router__ = __webpack_require__(8);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__shared_navigation_service__ = __webpack_require__(9);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__shared_contact_service__ = __webpack_require__(73);
-/* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return ContactComponent; });
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-
-
-var ContactComponent = (function () {
-    function ContactComponent(router, route, navigationService, contactService) {
-        this.router = router;
-        this.route = route;
-        this.navigationService = navigationService;
-        this.contactService = contactService;
-        this.page = '';
-        this.Email = {
-            subject: null,
-            message: null
-        };
-        this.Recruiter = {
-            firstname: null,
-            lastname: null,
-            phone: null,
-            email: null,
-            message: null
-        };
-        this.recruiter_state = {
-            loading: false,
-            message_success: null,
-            message_error: null,
-            firstname_error: null,
-            lastname_error: null,
-            phone_error: null,
-            email_error: null
-        };
-        this.emailPattern = /^[a-z0-9!#$%&'*+\/=?^_`{|}~.-]+@[a-z0-9]([a-z0-9-]*[a-z0-9])?(\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)*$/i;
-        this.navigationService.updateMessage("Contattaci");
-    }
-    ContactComponent.prototype.ngOnInit = function () {
-        var _this = this;
-        this.route.params.subscribe(function (params) {
-            if (__WEBPACK_IMPORTED_MODULE_1_angular2_universal__["isBrowser"]) {
-                window.scrollTo(0, 0);
-            }
-            _this.page = params['page'];
-            if (_this.page === 'partner') {
-                _this.navigationService.updateMessage("Diventiamo partner");
-            }
-            else {
-                _this.router.navigate(['']);
-            }
-        });
-    };
-    ContactComponent.prototype.joinPartner = function () {
-        var _this = this;
-        if (this.recruiter_state.loading) {
-            return;
-        }
-        if (!this.Recruiter.firstname || !this.Recruiter.lastname || !this.Recruiter.phone || !this.Recruiter.email) {
-            this.recruiter_state.message_error = "Per favore inserisci tutti i campi richiesti";
-            this.recruiter_state.firstname_error = "Nome";
-            this.recruiter_state.lastname_error = "Cognome";
-            this.recruiter_state.phone_error = "Il numero del telefono";
-            this.recruiter_state.email_error = "La tua email";
-            return;
-        }
-        this.recruiter_state.loading = true;
-        this.recruiter_state.message_success = null;
-        this.recruiter_state.message_error = null;
-        this.recruiter_state.firstname_error = null;
-        this.recruiter_state.lastname_error = null;
-        this.recruiter_state.phone_error = null;
-        this.recruiter_state.email_error = null;
-        this.Email.subject = "Richiesta partnership";
-        this.Email.message =
-            'Nome: ' + this.Recruiter.firstname +
-                '<br>Cognome: ' + this.Recruiter.lastname +
-                '<br>Telefono: ' + this.Recruiter.phone +
-                '<br>Email: ' + this.Recruiter.email +
-                '<br>Message: ' + this.Recruiter.message;
-        this.contactService.sendEmail(this.Email).then(function (response) {
-            _this.recruiter_state.message_success = "Complimenti, hai inviato una richiesta di iscrizione su Starbook con successo.";
-            _this.recruiter_state.loading = false;
-            _this.Recruiter.firstname = null;
-            _this.Recruiter.lastname = null;
-            _this.Recruiter.phone = null;
-            _this.Recruiter.email = null;
-        }).catch(function (error) {
-            _this.recruiter_state.loading = false;
-            _this.Recruiter.firstname = null;
-            _this.Recruiter.lastname = null;
-            _this.Recruiter.phone = null;
-            _this.Recruiter.email = null;
-            // console.log('error: ' + JSON.stringify(error));
-        });
-    };
-    ContactComponent = __decorate([
-        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'app-contact',
-            template: __webpack_require__(723)
-        }), 
-        __metadata('design:paramtypes', [(typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__angular_router__["d" /* Router */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_2__angular_router__["d" /* Router */]) === 'function' && _a) || Object, (typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__angular_router__["e" /* ActivatedRoute */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_2__angular_router__["e" /* ActivatedRoute */]) === 'function' && _b) || Object, (typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__shared_navigation_service__["a" /* NavigationService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_3__shared_navigation_service__["a" /* NavigationService */]) === 'function' && _c) || Object, (typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_4__shared_contact_service__["a" /* ContactService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_4__shared_contact_service__["a" /* ContactService */]) === 'function' && _d) || Object])
-    ], ContactComponent);
-    return ContactComponent;
-    var _a, _b, _c, _d;
-}());
-//# sourceMappingURL=/Users/haraldbregu/Dropbox/StarbookWebApp/src/contact.component.js.map
-
-/***/ },
-
-/***/ 346:
+/***/ 344:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2713,7 +2434,7 @@ var FacebookComponent = (function () {
 
 /***/ },
 
-/***/ 347:
+/***/ 345:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2755,7 +2476,7 @@ var HelpComponent = (function () {
 
 /***/ },
 
-/***/ 348:
+/***/ 346:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3157,7 +2878,7 @@ var InsertComponent = (function () {
 
 /***/ },
 
-/***/ 349:
+/***/ 347:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3199,7 +2920,7 @@ var LegalComponent = (function () {
 
 /***/ },
 
-/***/ 350:
+/***/ 348:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3233,7 +2954,7 @@ var NotfoundComponent = (function () {
 
 /***/ },
 
-/***/ 351:
+/***/ 349:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3773,771 +3494,7 @@ var OrdersComponent = (function () {
 
 /***/ },
 
-/***/ 352:
-/***/ function(module, exports, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__shared_profile_service__ = __webpack_require__(74);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_router__ = __webpack_require__(8);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__shared_navigation_service__ = __webpack_require__(9);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__popups_popups_service__ = __webpack_require__(72);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__shared_payment_service__ = __webpack_require__(110);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__shared_analytics_service__ = __webpack_require__(17);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__shared_seo_service__ = __webpack_require__(28);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__shared_contact_service__ = __webpack_require__(73);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_angular2_universal__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_angular2_universal___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_9_angular2_universal__);
-/* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return ProfileComponent; });
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-
-
-
-
-
-
-
-var ProfileComponent = (function () {
-    function ProfileComponent(profileService, router, navigationService, route, popupsService, paymentService, analyticsService, joinService, seoService) {
-        this.profileService = profileService;
-        this.router = router;
-        this.navigationService = navigationService;
-        this.route = route;
-        this.popupsService = popupsService;
-        this.paymentService = paymentService;
-        this.analyticsService = analyticsService;
-        this.joinService = joinService;
-        this.seoService = seoService;
-        this.contacts = '';
-        this.copy_link_state = {
-            title: "Copia link"
-        };
-        this.sharelink = '';
-        this.activePopup = '';
-        this.cards = [];
-        this.defaultCard = '';
-        //////////////////////////
-        /////// TAB BAR //////////
-        //////////////////////////
-        this.page = '';
-        this.tabs = [
-            { name: 'Generali', route: 'general', icon: "fa-info" },
-            { name: 'Pagamento', route: 'payment', icon: "fa-credit-card" },
-            { name: 'Impostazioni', route: 'settings', icon: "fa-cog" },
-        ];
-        ///////////////////////
-        /////// USER //////////
-        ///////////////////////
-        this.User = {
-            firstname: '',
-            lastname: '',
-            email: '',
-            phone_number: ''
-        };
-        this.user_state = {
-            loading: false,
-            button_title: "Salva",
-            first_name_error: null,
-            last_name_error: null,
-            email_error: null,
-            phone_number_error: null
-        };
-        ///////////////////////////
-        /////// PASSWORD //////////
-        ///////////////////////////
-        this.Password = {
-            old_password: '',
-            new_password: '',
-            confirm_password: ''
-        };
-        this.password_state = {
-            loading: false,
-            button_title: "Cambia",
-            message_error: null,
-            message_success: null
-        };
-        ////////////////////////////
-        /////// AFFILIATE //////////
-        ////////////////////////////
-        this.invitation_state = {
-            message_success: null,
-            message_error: null
-        };
-        //////////////////////////
-        /////// PAYMENT //////////
-        //////////////////////////
-        this.Card = {
-            number: null,
-            exp_month: null,
-            exp_year: null,
-            exp_date: null,
-            cvc: '',
-            name: '',
-            address_line1: '',
-            address_line2: '',
-            address_city: '',
-            address_zip: '',
-            address_state: '',
-            address_country: '' // Paese
-        };
-        this.card_state = {
-            loading: false,
-            button_title: "Salva",
-            message_error: null,
-            message_success: null,
-            number_error: null,
-            exp_date_error: null,
-            cvc_error: null
-        };
-        this.logo = '';
-        this.navigationService.updateMessage('');
-        this.emailPattern = /^[a-z0-9!#$%&'*+\/=?^_`{|}~.-]+@[a-z0-9]([a-z0-9-]*[a-z0-9])?(\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)*$/i;
-        this.numPattern = /^[+0-9]+$/;
-        if (__WEBPACK_IMPORTED_MODULE_9_angular2_universal__["isBrowser"]) {
-            if (localStorage.getItem('auth') !== null) {
-                this.currentUser = JSON.parse(localStorage.getItem('auth'));
-                // console.log('auth data' + JSON.stringify(authData));
-                this.User.firstname = this.currentUser.profile.firstname;
-                this.User.lastname = this.currentUser.profile.lastname;
-                this.User.phone_number = this.currentUser.phone_number;
-                this.User.email = this.currentUser.email;
-                this.sharelink = document.location.protocol + '//' + document.location.hostname + '/?ref=' + this.currentUser._id;
-            }
-            else {
-                this.router.navigate(['/']);
-            }
-        }
-    }
-    ProfileComponent.prototype.ngOnInit = function () {
-        var _this = this;
-        if (__WEBPACK_IMPORTED_MODULE_9_angular2_universal__["isBrowser"]) {
-            this.route.params.subscribe(function (params) {
-                window.scrollTo(0, 0);
-                _this.page = params['page'];
-                if (_this.page === 'general') {
-                }
-                else if (_this.page === 'payment') {
-                }
-                else if (_this.page === 'settings') {
-                }
-                else if (_this.page === 'affiliate') {
-                }
-                else if (_this.page === 'card') {
-                }
-                else {
-                }
-            });
-            this.subscription = this.popupsService.getPopupResponse$.subscribe(function (action) {
-                switch (action.type) {
-                    case 'logout':
-                        if (__WEBPACK_IMPORTED_MODULE_9_angular2_universal__["isBrowser"]) {
-                            if (localStorage.getItem('auth') !== null) {
-                                localStorage.removeItem('auth');
-                            }
-                        }
-                        _this.navigationService.updatePersonalMenu(false);
-                        _this.router.navigate(['/']);
-                        break;
-                }
-            });
-        }
-    };
-    ProfileComponent.prototype.clickTabItem = function (route) {
-        this.router.navigate(['/profile/' + route]);
-    };
-    ///////////////////////
-    /////// USER //////////
-    ///////////////////////
-    ProfileComponent.prototype.saveProfile = function () {
-        var _this = this;
-        this.user_state.loading = true;
-        this.user_state.button_title = "Salvando...";
-        this.profileService.updateProfile(this.User).then(function (data) {
-            _this.user_state.loading = false;
-            _this.user_state.button_title = "Salva";
-            if (data.success) {
-                var profileData = {};
-                if (__WEBPACK_IMPORTED_MODULE_9_angular2_universal__["isBrowser"]) {
-                    if (localStorage.getItem('auth') !== null) {
-                        var authData = JSON.parse(localStorage.getItem('auth'));
-                        authData.profile.firstname = _this.User.firstname;
-                        authData.profile.lastname = _this.User.lastname;
-                        authData.profile.fullname = _this.User.firstname + ' ' + _this.User.lastname;
-                        authData.phone_number = _this.User.phone_number;
-                        profileData = authData;
-                        localStorage.setItem('auth', JSON.stringify(authData));
-                    }
-                }
-                _this.navigationService.updatePersonalMenu(profileData);
-            }
-        }).catch(function (error) {
-            _this.user_state.loading = false;
-            _this.user_state.button_title = "Salva";
-        });
-    };
-    ///////////////////////////
-    /////// PASSWORD //////////
-    ///////////////////////////
-    ProfileComponent.prototype.changePassword = function () {
-        var _this = this;
-        if (this.password_state.loading) {
-            return;
-        }
-        if (this.Password.old_password.length !== 0 && this.Password.new_password.length !== 0 && this.Password.confirm_password.length !== 0) {
-            if (this.Password.new_password !== this.Password.confirm_password) {
-                this.password_state.message_error = "Conferma correttamente la nuova password!";
-                return;
-            }
-        }
-        else if (this.Password.old_password.length === 0 || this.Password.new_password.length === 0 || this.Password.confirm_password.length === 0) {
-            this.password_state.message_error = "Compila tutti i campi richiesti!";
-            return;
-        }
-        this.password_state.loading = true;
-        this.password_state.button_title = "Cambiando...";
-        this.password_state.message_success = null;
-        this.password_state.message_error = null;
-        this.profileService.changePassword(this.Password).then(function (data) {
-            _this.password_state.loading = false;
-            _this.password_state.button_title = "Cambia";
-            _this.Password.old_password = '';
-            _this.Password.new_password = '';
-            _this.Password.confirm_password = '';
-            _this.password_state.message_success = "Verifica la nuova password clicando il link che ti abbiamo inviato tramite mail.";
-            _this.password_state.message_error = null;
-        }).catch(function (error) {
-            _this.password_state.loading = false;
-            _this.password_state.button_title = "Cambia";
-            _this.password_state.message_success = null;
-            _this.password_state.message_error = "Errore nel cambio password";
-            if (error.status === 401) {
-                _this.password_state.message_error = "La password attuale inserita non è corretta.";
-            }
-            if (error.status === 422) {
-                _this.password_state.message_error = "Inserisci tutti i parametri richiesti correttamente.";
-            }
-        });
-    };
-    ////////////////////////
-    /////// EMAIL //////////
-    ////////////////////////
-    ProfileComponent.prototype.saveNewEmail = function () { };
-    ////////////////////////////
-    /////// AFFILIATE //////////
-    ////////////////////////////
-    ProfileComponent.prototype.sendInvitations = function () {
-        var _this = this;
-        var phone_numbers = [];
-        var email_addresses = [];
-        var strings = this.contacts.split(',');
-        for (var i = 0; i < strings.length; i++) {
-            var string = strings[i];
-            string = string.replace(/\s/g, '');
-            if (this.emailPattern.test(string)) {
-                email_addresses.push(string);
-            }
-            else if (this.numPattern.test(string)) {
-                if (string.length === 13 && string.charAt(0) === '+') {
-                    phone_numbers.push(string);
-                }
-                else if (string.length === 12) {
-                    phone_numbers.push('+' + string);
-                }
-                else if (string.length === 10) {
-                    phone_numbers.push('+39' + string);
-                }
-                else if (string.length === 14) {
-                    phone_numbers.push(string);
-                }
-            }
-        }
-        var phones = '';
-        for (var i = 0; i < phone_numbers.length; i++) {
-            var p = phone_numbers[i];
-            phones += (i != 0) ? ',' : '';
-            phones += p;
-        }
-        var emails = '';
-        for (var i = 0; i < email_addresses.length; i++) {
-            var e = email_addresses[i];
-            emails += (i != 0) ? ',' : '';
-            emails += e;
-        }
-        // console.log('phone_numbers: ' + phone_numbers);
-        if (phones === '' && emails === '') {
-            this.invitation_state.message_success = null;
-            this.invitation_state.message_error = "Inserisci numeri di telefono e email validi";
-            return;
-        }
-        this.invitation_state.message_success = null;
-        this.invitation_state.message_error = null;
-        this.joinService.sendInvitations(this.sharelink, phones, emails).then(function (response) {
-            // console.log('response: ' + JSON.stringify(response));
-            _this.invitation_state.message_success = "Complimenti, hai inviato un codice sconto ai contatti inseriti";
-        }).catch(function (error) {
-            // console.log('error: ' + JSON.stringify(error));
-        });
-    };
-    ProfileComponent.prototype.shareOnFacebook = function () {
-        if (__WEBPACK_IMPORTED_MODULE_9_angular2_universal__["isBrowser"]) {
-            var left = Math.round((document.documentElement.clientWidth / 2) - 285);
-            window.open("http://www.facebook.com/sharer/sharer.php?s=100&u=" + this.sharelink, '_blank', 'location=yes,height=570,width=520,left=' + left + ', top=100,scrollbars=yes,status=yes');
-            return false;
-        }
-    };
-    ProfileComponent.prototype.shareOnTwitter = function () {
-        if (__WEBPACK_IMPORTED_MODULE_9_angular2_universal__["isBrowser"]) {
-            var left = Math.round((document.documentElement.clientWidth / 2) - 285);
-            // console.log('share link is: ' + this.sharelink);
-            window.open("https://twitter.com/home?status=" + this.sharelink, '_blank', 'location=yes,height=570,width=520,left=' + left + ', top=100,scrollbars=yes,status=yes');
-            return false;
-        }
-    };
-    ProfileComponent.prototype.shareOnLinkedin = function () {
-        if (__WEBPACK_IMPORTED_MODULE_9_angular2_universal__["isBrowser"]) {
-            var link = this.sharelink;
-            var title = "Titolo";
-            var summary = "Summary";
-            var source = "";
-            var left = Math.round((document.documentElement.clientWidth / 2) - 285);
-            window.open("https://www.linkedin.com/shareArticle?mini=true&url=" + link + "&title=" + title + "&summary=" + summary + "&source=" + source, '_blank', 'location=yes,height=570,width=520,left=' + left + ', top=100,scrollbars=yes,status=yes');
-            return false;
-        }
-    };
-    ProfileComponent.prototype.shareOnGoogle = function () {
-        if (__WEBPACK_IMPORTED_MODULE_9_angular2_universal__["isBrowser"]) {
-            var link = this.sharelink;
-            var left = Math.round((document.documentElement.clientWidth / 2) - 285);
-            window.open("https://plus.google.com/share?url=" + link, '_blank', 'location=yes,height=570,width=520,left=' + left + ', top=100,scrollbars=yes,status=yes');
-            return false;
-        }
-    };
-    ProfileComponent.prototype.shareWithEmail = function () {
-        if (__WEBPACK_IMPORTED_MODULE_9_angular2_universal__["isBrowser"]) {
-            var message = "Ciao, utilizza il link sotto per ricevere 5% di scondo sui servizi Starbook. \n" + this.sharelink;
-            var subject = "Promozione Starbook";
-            var left = Math.round((document.documentElement.clientWidth / 2) - 285);
-            window.open("mailto:?Subject=" + subject + "&body=" + encodeURIComponent(message), '_blank', 'location=yes,height=570,width=520,left=' + left + ', top=100,scrollbars=yes,status=yes');
-            return false;
-        }
-    };
-    ProfileComponent.prototype.copyLink = function (value) {
-        this.copy_link_state.title = "Copiato!";
-        // console.group( "Clipboard Success" );
-        // console.log( value );
-        // console.groupEnd();
-    };
-    ProfileComponent.prototype.copyError = function (error) {
-        // console.group( "Clipboard Error" );
-        // console.error( error );
-        // console.groupEnd();
-    };
-    ///////////////////////
-    /////// CARD //////////
-    ///////////////////////
-    ProfileComponent.prototype.showCardPage = function () {
-        this.router.navigate(['/profile/card']);
-    };
-    ProfileComponent.prototype.selectCard = function (card_id) {
-        var _this = this;
-        this.paymentService.selectCard(card_id).then(function (status) {
-            _this.defaultCard = status.default_source;
-        }).catch(function (error) {
-        });
-    };
-    ProfileComponent.prototype.deleteCard = function (card_id) {
-        var _this = this;
-        this.paymentService.deleteCard(card_id).then(function (status) {
-            var i = 0;
-            _this.cards.forEach(function (card) {
-                if (card.id === card_id) {
-                    _this.cards.splice(i, 1);
-                }
-                i++;
-            });
-            if (card_id === _this.defaultCard && _this.cards.length > 0) {
-                var otherCard_1 = '';
-                _this.cards.forEach(function (card) {
-                    if (card.id !== card_id) {
-                        otherCard_1 = card.id;
-                    }
-                });
-                _this.selectCard(otherCard_1);
-            }
-            else {
-            }
-        }).catch(function (error) {
-        });
-    };
-    ProfileComponent.prototype.addCard = function () {
-        var _this = this;
-        if (this.card_state.loading) {
-            return;
-        }
-        this.card_state.loading = true;
-        this.card_state.button_title = "Salvando...";
-        this.card_state.message_error = null;
-        this.card_state.number_error = null;
-        this.card_state.exp_date_error = null;
-        this.card_state.cvc_error = null;
-        if (this.Card !== null) {
-            if (this.paymentService.cardNumberValidate(this.Card.number)) {
-                this.card_state.number_error = null;
-            }
-            else {
-                this.card_state.number_error = "Il numero della carta non è corretto.";
-            }
-        }
-        if (this.Card.exp_date && this.Card.exp_date.length === 5) {
-            var exp_parts = this.Card.exp_date.split('/');
-            if (exp_parts[0] !== this.Card.exp_date) {
-                this.Card.exp_month = exp_parts[0];
-                this.Card.exp_year = exp_parts[1];
-            }
-            else {
-                this.card_state.exp_date_error = "Errore data";
-            }
-        }
-        else {
-            this.card_state.exp_date_error = "La data non è completa";
-        }
-        this.paymentService.addNewCard(this.Card).then(function (response) {
-            _this.card_state.loading = false;
-            _this.card_state.button_title = "Salva";
-            _this.card_state.message_error = null;
-            _this.card_state.number_error = null;
-            _this.card_state.exp_date_error = null;
-            _this.card_state.cvc_error = null;
-            _this.router.navigate(['/profile/payment']);
-        }).catch(function (error) {
-            _this.card_state.loading = false;
-            _this.card_state.button_title = "Salva";
-            _this.card_state.message_error = null;
-            _this.card_state.number_error = null;
-            _this.card_state.exp_date_error = null;
-            _this.card_state.cvc_error = null;
-            if (error === 400) {
-                _this.card_state.message_error = "Errore nel inserimento del codice della sicurezza";
-                _this.card_state.cvc_error = "Inserisci un codice corretto";
-            }
-            else if (error === 402) {
-                _this.card_state.message_error = "Errore nel inserimento del numero della carta o della data di scadenza";
-                _this.card_state.number_error = "Inserisci un numero corretto";
-                _this.card_state.exp_date_error = "Inserisci una data corretta";
-            }
-            else {
-                _this.card_state.message_error = "Errore sconosciuto. Controlla i campi inseriti e riprova.";
-            }
-        });
-    };
-    ProfileComponent.prototype.checkExpiry = function (value) {
-        var result = '';
-        var date = new Date();
-        var month = (1 + date.getMonth()).toString();
-        if ((date.getMonth() + 1) < 10) {
-            month = '0' + month.toString();
-        }
-        var yearElems = date.getFullYear().toString().split('');
-        var year = parseInt(yearElems[2].toString() + yearElems[3].toString());
-        if (value) {
-            var dateElems_1 = value.split('');
-            var i_1 = 0;
-            dateElems_1.forEach(function (elem) {
-                if (elem === '/') {
-                    dateElems_1.splice(i_1, 1);
-                }
-                i_1++;
-            });
-            if (dateElems_1.length > 1) {
-                var i_2 = 0;
-                dateElems_1.forEach(function (elem) {
-                    if (i_2 < 4) {
-                        if (i_2 === 2) {
-                            result += '/';
-                        }
-                        result += elem;
-                    }
-                    i_2++;
-                });
-            }
-            else {
-                dateElems_1.forEach(function (elem) {
-                    result += elem;
-                });
-            }
-        }
-        if (result.length !== 5) {
-            this.card_state.exp_date_error = "Inserisci la data in formato MM/AA (mese/anno)";
-        }
-        if (result.length === 5) {
-            var parts = result.split('/');
-            if (parts[0] !== result) {
-                if (parseInt(parts[1]) > year) {
-                    this.card_state.exp_date_error = null;
-                }
-                else {
-                    if (parseInt(parts[0]) >= parseInt(month) && parseInt(parts[1]) === year) {
-                        this.card_state.exp_date_error = null;
-                    }
-                    else {
-                        this.card_state.exp_date_error = "Inserisci una data corretta";
-                    }
-                }
-            }
-            else {
-                this.card_state.exp_date_error = null;
-            }
-        }
-        this.Card.exp_date = result;
-        return result;
-    };
-    ProfileComponent.prototype.formatYear = function (year) {
-        var i = 0;
-        var formatedYear = '';
-        var yearArray = year.toString().split('');
-        yearArray.forEach(function (num) {
-            if (i > 1) {
-                formatedYear += num;
-            }
-            i++;
-        });
-        return formatedYear;
-    };
-    ProfileComponent.prototype.formatCssClass = function (brand) {
-        var result = '';
-        if (brand === 'Visa') {
-            result = 'visa';
-        }
-        if (brand === 'American Express') {
-            result = 'amex';
-        }
-        if (brand === 'MasterCard') {
-            result = 'mastercard';
-        }
-        return result;
-    };
-    ProfileComponent.prototype.editCard = function (id) {
-        var _this = this;
-        var cardData = {};
-        this.cards.forEach(function (card) {
-            if (card.id === id) {
-                cardData = {
-                    id: card.id,
-                    address_city: card.address_city,
-                    address_country: card.address_country,
-                    address_line1: card.address_line1,
-                    address_line2: card.address_line2,
-                    address_state: card.address_state,
-                    address_zip: card.address_zip,
-                    exp_month: card.exp_month,
-                    exp_year: _this.formatYear(card.exp_year),
-                    name: card.name,
-                    number: '**** ' + card.last4,
-                    cvc: '***'
-                };
-            }
-        });
-        this.popupsService.activate({ type: 'editCard', data: cardData });
-    };
-    ProfileComponent.prototype.logout = function () {
-        this.popupsService.activate({ type: 'logout', data: {} });
-    };
-    ProfileComponent.prototype.ngOnDestroy = function () {
-    };
-    ProfileComponent = __decorate([
-        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'app-profile',
-            template: __webpack_require__(730)
-        }), 
-        __metadata('design:paramtypes', [(typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__shared_profile_service__["a" /* ProfileService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__shared_profile_service__["a" /* ProfileService */]) === 'function' && _a) || Object, (typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__angular_router__["d" /* Router */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_2__angular_router__["d" /* Router */]) === 'function' && _b) || Object, (typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__shared_navigation_service__["a" /* NavigationService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_3__shared_navigation_service__["a" /* NavigationService */]) === 'function' && _c) || Object, (typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_2__angular_router__["e" /* ActivatedRoute */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_2__angular_router__["e" /* ActivatedRoute */]) === 'function' && _d) || Object, (typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_4__popups_popups_service__["a" /* PopupsService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_4__popups_popups_service__["a" /* PopupsService */]) === 'function' && _e) || Object, (typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_5__shared_payment_service__["a" /* PaymentService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_5__shared_payment_service__["a" /* PaymentService */]) === 'function' && _f) || Object, (typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_6__shared_analytics_service__["a" /* AnalyticsService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_6__shared_analytics_service__["a" /* AnalyticsService */]) === 'function' && _g) || Object, (typeof (_h = typeof __WEBPACK_IMPORTED_MODULE_8__shared_contact_service__["a" /* ContactService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_8__shared_contact_service__["a" /* ContactService */]) === 'function' && _h) || Object, (typeof (_j = typeof __WEBPACK_IMPORTED_MODULE_7__shared_seo_service__["a" /* SeoService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_7__shared_seo_service__["a" /* SeoService */]) === 'function' && _j) || Object])
-    ], ProfileComponent);
-    return ProfileComponent;
-    var _a, _b, _c, _d, _e, _f, _g, _h, _j;
-}());
-//# sourceMappingURL=/Users/haraldbregu/Dropbox/StarbookWebApp/src/profile.component.js.map
-
-/***/ },
-
-/***/ 353:
-/***/ function(module, exports, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_angular2_universal__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_angular2_universal___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_angular2_universal__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_router__ = __webpack_require__(8);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__shared_navigation_service__ = __webpack_require__(9);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__shared_contact_service__ = __webpack_require__(73);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__shared_seo_service__ = __webpack_require__(28);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__shared_analytics_service__ = __webpack_require__(17);
-/* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return RequestsComponent; });
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-
-
-
-
-var RequestsComponent = (function () {
-    function RequestsComponent(router, route, navigationService, joinService, seoService, analyticsService) {
-        this.router = router;
-        this.route = route;
-        this.navigationService = navigationService;
-        this.joinService = joinService;
-        this.seoService = seoService;
-        this.analyticsService = analyticsService;
-        this.page = '';
-        //////////////////////////
-        /////// REQUEST  /////////
-        //////////////////////////
-        this.Request = {
-            title: '',
-            description: '',
-            phone: '',
-            email: '',
-            firstname: '',
-            lastname: ''
-        };
-        this.request_state = {
-            loading: false,
-            button_title: "Invia richiesta",
-            message_success: null,
-            message_error: null,
-            title_error: null,
-            description_error: null,
-            firstname_error: null,
-            lastname_error: null,
-            phone_error: null,
-            email_error: null
-        };
-        //////////////////////////
-        /////// ESTIMATE /////////
-        //////////////////////////
-        this.Estimate = {
-            service_id: '',
-            title: 'Parete in cartongesso',
-            details: [{ type: 'service', title: "Parete in cartongesso" }, { type: 'detail', title: "item 0" }, { type: 'detail', title: "item 0" }],
-            referral_id: '23454678',
-            price: {
-                final: 0,
-                initial: 0,
-                currency: 'eur'
-            },
-            payment: {
-                upfront: 0
-            }
-        };
-        this.analyticsService.sendPageViewUrl(this.router.url);
-        this.seoService.setTitle('Lavori di casa? Chiedi di cosa hai bisogno');
-        this.seoService.setOgElem('og:title', 'Lavori di casa? Chiedi di cosa hai bisogno');
-        this.seoService.setMetaElem('description', 'Inserisci il titolo e i dettagli del lavoro che vuoi svolgere. Ci occupiamo noi a trovare il miglior professionista con il miglior prezzo del mercato.');
-        this.seoService.setOgElem('og:description', 'Inserisci il titolo e i dettagli del lavoro che vuoi svolgere. Ci occupiamo noi a trovare il miglior professionista con il miglior prezzo del mercato.');
-        this.seoService.setOgElem('og:url', 'https://www.starbook.co' + this.router.url);
-        this.seoService.setOgElem('og:image', 'https://s3-eu-west-1.amazonaws.com/starbook-s3/operai-professionisti-artigiani.jpg');
-        this.seoService.setOgElem('og:image:secure_url', 'https://s3-eu-west-1.amazonaws.com/starbook-s3/operai-professionisti-artigiani.jpg');
-        if (__WEBPACK_IMPORTED_MODULE_1_angular2_universal__["isBrowser"]) {
-            if (localStorage.getItem('auth')) {
-                this.currentUser = JSON.parse(localStorage.getItem('auth'));
-                if (this.currentUser) {
-                    this.Request.firstname = this.currentUser.profile.firstname;
-                    this.Request.lastname = this.currentUser.profile.lastname;
-                    this.Request.phone = this.currentUser.phone_number;
-                    this.Request.email = this.currentUser.email;
-                }
-            }
-        }
-    }
-    RequestsComponent.prototype.ngOnInit = function () {
-        var _this = this;
-        if (__WEBPACK_IMPORTED_MODULE_1_angular2_universal__["isBrowser"]) {
-            this.route.params.subscribe(function (params) {
-                window.scrollTo(0, 0);
-                _this.page = params['page'];
-                if (_this.page === 'service') {
-                    _this.navigationService.updateMessage("Richiedi un servizio");
-                }
-                else if (_this.page === 'estimate') {
-                    _this.navigationService.updateMessage("Preventivo");
-                }
-                else {
-                    _this.router.navigate(['requests/service']);
-                }
-            });
-        }
-    };
-    RequestsComponent.prototype.sendRequestForNewService = function () {
-        var _this = this;
-        if (this.request_state.loading) {
-            return;
-        }
-        if (!this.Request.firstname || !this.Request.lastname || !this.Request.phone || !this.Request.email || !this.Request.title || !this.Request.description) {
-            this.request_state.message_success = null;
-            this.request_state.message_error = "Per favore inserisci tutti i campi richiesti";
-            this.request_state.title_error = "errore";
-            this.request_state.description_error = "errore";
-            this.request_state.firstname_error = "errore";
-            this.request_state.lastname_error = "errore";
-            this.request_state.phone_error = "errore";
-            this.request_state.email_error = "errore";
-            return;
-        }
-        this.request_state.message_success = null;
-        this.request_state.message_error = null;
-        this.request_state.title_error = null;
-        this.request_state.description_error = null;
-        this.request_state.firstname_error = null;
-        this.request_state.lastname_error = null;
-        this.request_state.phone_error = null;
-        this.request_state.email_error = null;
-        this.request_state.loading = true;
-        this.request_state.button_title = "Inviando...";
-        this.Request['type'] = "new_service_request";
-        this.joinService.join(this.Request).then(function (response) {
-            _this.request_state.message_success = "Complimenti, hai inviato una richiesta di servizio su Starbook. La contatteremo al più presto!";
-            _this.request_state.loading = false;
-            _this.request_state.button_title = "Invia richiesta";
-            _this.Request.title = null;
-            _this.Request.description = null;
-        }).catch(function (error) {
-            _this.Request.title = null;
-            _this.Request.description = null;
-        });
-    };
-    RequestsComponent = __decorate([
-        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'app-requests',
-            template: __webpack_require__(731)
-        }), 
-        __metadata('design:paramtypes', [(typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__angular_router__["d" /* Router */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_2__angular_router__["d" /* Router */]) === 'function' && _a) || Object, (typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__angular_router__["e" /* ActivatedRoute */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_2__angular_router__["e" /* ActivatedRoute */]) === 'function' && _b) || Object, (typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__shared_navigation_service__["a" /* NavigationService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_3__shared_navigation_service__["a" /* NavigationService */]) === 'function' && _c) || Object, (typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_4__shared_contact_service__["a" /* ContactService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_4__shared_contact_service__["a" /* ContactService */]) === 'function' && _d) || Object, (typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_5__shared_seo_service__["a" /* SeoService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_5__shared_seo_service__["a" /* SeoService */]) === 'function' && _e) || Object, (typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_6__shared_analytics_service__["a" /* AnalyticsService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_6__shared_analytics_service__["a" /* AnalyticsService */]) === 'function' && _f) || Object])
-    ], RequestsComponent);
-    return RequestsComponent;
-    var _a, _b, _c, _d, _e, _f;
-}());
-//# sourceMappingURL=/Users/haraldbregu/Dropbox/StarbookWebApp/src/requests.component.js.map
-
-/***/ },
-
-/***/ 354:
+/***/ 350:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5200,7 +4157,7 @@ var ServiceComponent = (function () {
 
 /***/ },
 
-/***/ 355:
+/***/ 351:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5267,7 +4224,7 @@ var ServicesComponent = (function () {
 
 /***/ },
 
-/***/ 356:
+/***/ 352:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5349,7 +4306,7 @@ var ClipboardService = (function () {
 
 /***/ },
 
-/***/ 415:
+/***/ 411:
 /***/ function(module, exports) {
 
 function webpackEmptyContext(req) {
@@ -5358,26 +4315,26 @@ function webpackEmptyContext(req) {
 webpackEmptyContext.keys = function() { return []; };
 webpackEmptyContext.resolve = webpackEmptyContext;
 module.exports = webpackEmptyContext;
-webpackEmptyContext.id = 415;
+webpackEmptyContext.id = 411;
 
 
 /***/ },
 
-/***/ 416:
+/***/ 412:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__polyfills_ts__ = __webpack_require__(541);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__polyfills_ts___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__polyfills_ts__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__2_1_1_workaround_ts__ = __webpack_require__(522);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__2_1_1_workaround_ts__ = __webpack_require__(518);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__2_1_1_workaround_ts___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__2_1_1_workaround_ts__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__workaround_browser__ = __webpack_require__(523);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__workaround_browser__ = __webpack_require__(519);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__workaround_browser___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__workaround_browser__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__environments_environment__ = __webpack_require__(540);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_angular2_universal__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_angular2_universal___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_angular2_universal__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__app_app_browser_module__ = __webpack_require__(524);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__app_app_browser_module__ = __webpack_require__(520);
 
 
 
@@ -5958,7 +4915,7 @@ var AuthService = (function () {
 
 /***/ },
 
-/***/ 522:
+/***/ 518:
 /***/ function(module, exports, __webpack_require__) {
 
 /*
@@ -5989,7 +4946,7 @@ if (patch) {
 
 /***/ },
 
-/***/ 523:
+/***/ 519:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6013,7 +4970,7 @@ if (__compiler__ && __compiler__.SelectorMatcher && __compiler__.CssSelector) {
 
 /***/ },
 
-/***/ 524:
+/***/ 520:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6027,7 +4984,7 @@ if (__compiler__ && __compiler__.SelectorMatcher && __compiler__.CssSelector) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_ng2_click_outside__ = __webpack_require__(705);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_ng2_click_outside___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_ng2_click_outside__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_ng2_page_scroll__ = __webpack_require__(706);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__app_routing__ = __webpack_require__(526);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__app_routing__ = __webpack_require__(522);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__shared_common_service__ = __webpack_require__(45);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__shared_auth_service__ = __webpack_require__(51);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__shared_profile_service__ = __webpack_require__(74);
@@ -6039,35 +4996,35 @@ if (__compiler__ && __compiler__.SelectorMatcher && __compiler__.CssSelector) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__shared_seo_service__ = __webpack_require__(28);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__shared_contact_service__ = __webpack_require__(73);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__pages_share_share_service__ = __webpack_require__(218);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__shared_clipboard_service__ = __webpack_require__(356);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__app_component__ = __webpack_require__(525);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__shared_clipboard_service__ = __webpack_require__(352);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__app_component__ = __webpack_require__(521);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__landing_landing_component__ = __webpack_require__(339);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__company_company_component__ = __webpack_require__(338);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__pages_category_category_component__ = __webpack_require__(343);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__pages_service_service_component__ = __webpack_require__(354);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__pages_services_services_component__ = __webpack_require__(355);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__pages_insert_insert_component__ = __webpack_require__(348);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__pages_checkout_checkout_component__ = __webpack_require__(344);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__pages_orders_orders_component__ = __webpack_require__(351);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_30__pages_profile_profile_component__ = __webpack_require__(352);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__pages_category_category_component__ = __webpack_require__(528);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__pages_service_service_component__ = __webpack_require__(350);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__pages_services_services_component__ = __webpack_require__(351);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__pages_insert_insert_component__ = __webpack_require__(346);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__pages_checkout_checkout_component__ = __webpack_require__(343);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__pages_orders_orders_component__ = __webpack_require__(349);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_30__pages_profile_profile_component__ = __webpack_require__(530);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_31__popups_popups_component__ = __webpack_require__(538);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_32__pipes_phone_pipe__ = __webpack_require__(537);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_33__pipes_expiry_pipe__ = __webpack_require__(536);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_34__shared_loading_loading_component__ = __webpack_require__(539);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_35__pages_facebook_facebook_component__ = __webpack_require__(346);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_35__pages_facebook_facebook_component__ = __webpack_require__(344);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_36__pages_wizard_wizard_component__ = __webpack_require__(533);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_37__pages_about_about_component__ = __webpack_require__(340);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_38__pages_help_help_component__ = __webpack_require__(347);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_39__pages_legal_legal_component__ = __webpack_require__(349);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_38__pages_help_help_component__ = __webpack_require__(345);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_39__pages_legal_legal_component__ = __webpack_require__(347);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_40__pages_account_account_component__ = __webpack_require__(341);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_41__pages_auth_auth_component__ = __webpack_require__(342);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_42__pages_requests_requests_component__ = __webpack_require__(353);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_42__pages_requests_requests_component__ = __webpack_require__(531);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_43__pages_share_share_component__ = __webpack_require__(532);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_44__pages_blog_blog_component__ = __webpack_require__(531);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_45__pages_contact_contact_component__ = __webpack_require__(345);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_46__pages_notfound_notfound_component__ = __webpack_require__(350);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_47__directives_clipboard_directive__ = __webpack_require__(527);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_48__directives_formatter_directive__ = __webpack_require__(528);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_44__pages_blog_blog_component__ = __webpack_require__(527);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_45__pages_contact_contact_component__ = __webpack_require__(529);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_46__pages_notfound_notfound_component__ = __webpack_require__(348);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_47__directives_clipboard_directive__ = __webpack_require__(523);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_48__directives_formatter_directive__ = __webpack_require__(524);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_49__pipes_currency_pipe__ = __webpack_require__(219);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_50__pipes_currency_format_pipe__ = __webpack_require__(535);
 /* unused harmony export HammerConfig */
@@ -6214,9 +5171,9 @@ if (__WEBPACK_IMPORTED_MODULE_2_angular2_universal__["isBrowser"]) {
     imports.push(AutoCompleteModule);
 }
 else {
-    var CalendarMockComponent = __webpack_require__(530).CalendarMockComponent;
+    var CalendarMockComponent = __webpack_require__(526).CalendarMockComponent;
     declarations.push(CalendarMockComponent);
-    var AutoCompleteMockModule = __webpack_require__(529).AutoCompleteMockComponent;
+    var AutoCompleteMockModule = __webpack_require__(525).AutoCompleteMockComponent;
     declarations.push(AutoCompleteMockModule);
 }
 /**
@@ -6262,7 +5219,7 @@ var AppModule = (function () {
 
 /***/ },
 
-/***/ 525:
+/***/ 521:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6392,6 +5349,12 @@ var AppComponent = (function () {
                     }
                     if (_this.page === "Checkout") {
                         // this.hasBottomBorderNav = false;
+                        _this.hasRightContainer = false;
+                        _this.border_bottom_color = "0";
+                    }
+                    if (_this.page === "Blog") {
+                        // this.hasBottomBorderNav = false;
+                        _this.hasCenterContainer = false;
                         _this.hasRightContainer = false;
                         _this.border_bottom_color = "0";
                     }
@@ -6576,34 +5539,26 @@ var AppComponent = (function () {
 
 /***/ },
 
-/***/ 526:
+/***/ 522:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_router__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__landing_landing_component__ = __webpack_require__(339);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__company_company_component__ = __webpack_require__(338);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__pages_category_category_component__ = __webpack_require__(343);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_service_service_component__ = __webpack_require__(354);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pages_services_services_component__ = __webpack_require__(355);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_insert_insert_component__ = __webpack_require__(348);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_checkout_checkout_component__ = __webpack_require__(344);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_orders_orders_component__ = __webpack_require__(351);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__pages_profile_profile_component__ = __webpack_require__(352);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_facebook_facebook_component__ = __webpack_require__(346);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__pages_about_about_component__ = __webpack_require__(340);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__pages_help_help_component__ = __webpack_require__(347);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__pages_legal_legal_component__ = __webpack_require__(349);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__pages_account_account_component__ = __webpack_require__(341);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__pages_auth_auth_component__ = __webpack_require__(342);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__pages_requests_requests_component__ = __webpack_require__(353);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__pages_contact_contact_component__ = __webpack_require__(345);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__pages_notfound_notfound_component__ = __webpack_require__(350);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__pages_service_service_component__ = __webpack_require__(350);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_services_services_component__ = __webpack_require__(351);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pages_insert_insert_component__ = __webpack_require__(346);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_checkout_checkout_component__ = __webpack_require__(343);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_orders_orders_component__ = __webpack_require__(349);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_facebook_facebook_component__ = __webpack_require__(344);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__pages_about_about_component__ = __webpack_require__(340);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_help_help_component__ = __webpack_require__(345);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__pages_legal_legal_component__ = __webpack_require__(347);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__pages_account_account_component__ = __webpack_require__(341);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__pages_auth_auth_component__ = __webpack_require__(342);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__pages_notfound_notfound_component__ = __webpack_require__(348);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return routing; });
-
-
-
-
 
 
 
@@ -6622,22 +5577,22 @@ var AppComponent = (function () {
 var routes = [
     { path: '', component: __WEBPACK_IMPORTED_MODULE_1__landing_landing_component__["a" /* LandingComponent */], data: { name: 'Landing' } },
     { path: 'company', component: __WEBPACK_IMPORTED_MODULE_2__company_company_component__["a" /* CompanyComponent */], data: { name: 'LandingCompany' } },
-    { path: 'category/:category', component: __WEBPACK_IMPORTED_MODULE_3__pages_category_category_component__["a" /* CategoryComponent */], data: { isFindField: true } },
-    { path: 'account', component: __WEBPACK_IMPORTED_MODULE_14__pages_account_account_component__["a" /* AccountComponent */] },
-    { path: 'account/:page', component: __WEBPACK_IMPORTED_MODULE_14__pages_account_account_component__["a" /* AccountComponent */], data: { name: 'Account' } },
-    { path: 'auth/:page', component: __WEBPACK_IMPORTED_MODULE_15__pages_auth_auth_component__["a" /* AuthComponent */], data: { name: 'Auth' } },
-    { path: 'orders', component: __WEBPACK_IMPORTED_MODULE_8__pages_orders_orders_component__["a" /* OrdersComponent */] },
-    { path: 'orders/:page', component: __WEBPACK_IMPORTED_MODULE_8__pages_orders_orders_component__["a" /* OrdersComponent */] },
-    { path: 'profile', component: __WEBPACK_IMPORTED_MODULE_9__pages_profile_profile_component__["a" /* ProfileComponent */] },
-    { path: 'profile/:page', component: __WEBPACK_IMPORTED_MODULE_9__pages_profile_profile_component__["a" /* ProfileComponent */] },
-    { path: 'facebook', component: __WEBPACK_IMPORTED_MODULE_10__pages_facebook_facebook_component__["a" /* FacebookComponent */] },
-    { path: 'contact', component: __WEBPACK_IMPORTED_MODULE_17__pages_contact_contact_component__["a" /* ContactComponent */] },
-    { path: 'contact/:page', component: __WEBPACK_IMPORTED_MODULE_17__pages_contact_contact_component__["a" /* ContactComponent */] },
-    { path: 'services', component: __WEBPACK_IMPORTED_MODULE_5__pages_services_services_component__["a" /* ServicesComponent */], data: { isFindField: true } },
-    { path: 'services/:id', component: __WEBPACK_IMPORTED_MODULE_4__pages_service_service_component__["a" /* ServiceComponent */], data: { name: 'Service', isFindField: true } },
-    { path: 'insert', component: __WEBPACK_IMPORTED_MODULE_6__pages_insert_insert_component__["a" /* InsertComponent */], data: { name: 'Insert' } },
-    { path: 'insert/:step', component: __WEBPACK_IMPORTED_MODULE_6__pages_insert_insert_component__["a" /* InsertComponent */], data: { name: 'Insert' } },
-    { path: 'checkout/:step', component: __WEBPACK_IMPORTED_MODULE_7__pages_checkout_checkout_component__["a" /* CheckoutComponent */], data: { name: 'Checkout' } },
+    // { path: 'category/:category', component: CategoryComponent, data: { isFindField: true } },
+    { path: 'account', component: __WEBPACK_IMPORTED_MODULE_12__pages_account_account_component__["a" /* AccountComponent */] },
+    { path: 'account/:page', component: __WEBPACK_IMPORTED_MODULE_12__pages_account_account_component__["a" /* AccountComponent */], data: { name: 'Account' } },
+    { path: 'auth/:page', component: __WEBPACK_IMPORTED_MODULE_13__pages_auth_auth_component__["a" /* AuthComponent */], data: { name: 'Auth' } },
+    { path: 'orders', component: __WEBPACK_IMPORTED_MODULE_7__pages_orders_orders_component__["a" /* OrdersComponent */] },
+    { path: 'orders/:page', component: __WEBPACK_IMPORTED_MODULE_7__pages_orders_orders_component__["a" /* OrdersComponent */] },
+    // { path: 'profile', component: ProfileComponent },
+    // { path: 'profile/:page', component: ProfileComponent },
+    { path: 'facebook', component: __WEBPACK_IMPORTED_MODULE_8__pages_facebook_facebook_component__["a" /* FacebookComponent */] },
+    // { path: 'contact', component: ContactComponent },
+    // { path: 'contact/:page', component: ContactComponent },
+    { path: 'services', component: __WEBPACK_IMPORTED_MODULE_4__pages_services_services_component__["a" /* ServicesComponent */], data: { isFindField: true } },
+    { path: 'services/:id', component: __WEBPACK_IMPORTED_MODULE_3__pages_service_service_component__["a" /* ServiceComponent */], data: { name: 'Service', isFindField: true } },
+    { path: 'insert', component: __WEBPACK_IMPORTED_MODULE_5__pages_insert_insert_component__["a" /* InsertComponent */], data: { name: 'Insert' } },
+    { path: 'insert/:step', component: __WEBPACK_IMPORTED_MODULE_5__pages_insert_insert_component__["a" /* InsertComponent */], data: { name: 'Insert' } },
+    { path: 'checkout/:step', component: __WEBPACK_IMPORTED_MODULE_6__pages_checkout_checkout_component__["a" /* CheckoutComponent */], data: { name: 'Checkout' } },
     // {
     //   path: 'services/:id',
     //   component: ServiceComponent,
@@ -6655,12 +5610,14 @@ var routes = [
     //     { path: 'insert', component: InsertComponent }
     //   ]
     // },
-    { path: 'requests', component: __WEBPACK_IMPORTED_MODULE_16__pages_requests_requests_component__["a" /* RequestsComponent */] },
-    { path: 'requests/:page', component: __WEBPACK_IMPORTED_MODULE_16__pages_requests_requests_component__["a" /* RequestsComponent */] },
-    { path: 'info/help', component: __WEBPACK_IMPORTED_MODULE_12__pages_help_help_component__["a" /* HelpComponent */] },
-    { path: 'info/legal', component: __WEBPACK_IMPORTED_MODULE_13__pages_legal_legal_component__["a" /* LegalComponent */] },
-    { path: 'info/about', component: __WEBPACK_IMPORTED_MODULE_11__pages_about_about_component__["a" /* AboutComponent */] },
-    { path: '404', component: __WEBPACK_IMPORTED_MODULE_18__pages_notfound_notfound_component__["a" /* NotfoundComponent */] },
+    // { path: 'requests', component: RequestsComponent },
+    // { path: 'requests/:page', component: RequestsComponent },
+    // { path: 'blog', component: BlogComponent, data: { name: 'Blog' } },
+    // { path: 'blog/:article', component: BlogComponent, data: { name: 'Blog' } },
+    { path: 'info/help', component: __WEBPACK_IMPORTED_MODULE_10__pages_help_help_component__["a" /* HelpComponent */] },
+    { path: 'info/legal', component: __WEBPACK_IMPORTED_MODULE_11__pages_legal_legal_component__["a" /* LegalComponent */] },
+    { path: 'info/about', component: __WEBPACK_IMPORTED_MODULE_9__pages_about_about_component__["a" /* AboutComponent */] },
+    { path: '404', component: __WEBPACK_IMPORTED_MODULE_14__pages_notfound_notfound_component__["a" /* NotfoundComponent */] },
     { path: '**', redirectTo: '' }
 ];
 var routing = __WEBPACK_IMPORTED_MODULE_0__angular_router__["f" /* RouterModule */].forRoot(routes);
@@ -6668,12 +5625,12 @@ var routing = __WEBPACK_IMPORTED_MODULE_0__angular_router__["f" /* RouterModule 
 
 /***/ },
 
-/***/ 527:
+/***/ 523:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__shared_clipboard_service__ = __webpack_require__(356);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__shared_clipboard_service__ = __webpack_require__(352);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return ClipboardDirective; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -6734,7 +5691,7 @@ var ClipboardDirective = (function () {
 
 /***/ },
 
-/***/ 528:
+/***/ 524:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6799,7 +5756,7 @@ var FormatterDirective = (function () {
 
 /***/ },
 
-/***/ 529:
+/***/ 525:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6859,7 +5816,7 @@ var AutoCompleteMockComponent = (function () {
 
 /***/ },
 
-/***/ 530:
+/***/ 526:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6927,7 +5884,7 @@ var CalendarMockComponent = (function () {
 
 /***/ },
 
-/***/ 531:
+/***/ 527:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6955,14 +5912,18 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 var BlogComponent = (function () {
     function BlogComponent(router, route, navigationService, analyticsService, seoService, commonService) {
+        var _this = this;
         this.router = router;
         this.route = route;
         this.navigationService = navigationService;
         this.analyticsService = analyticsService;
         this.seoService = seoService;
         this.commonService = commonService;
-        this.analyticsService.sendPageViewUrl(this.router.url);
-        this.navigationService.updateMessage("Artigiani digitali");
+        this.article = '';
+        this.navigationService.updateMessage("");
+        this.route.params.subscribe(function (params) {
+            _this.article = params['article'];
+        });
     }
     BlogComponent.prototype.ngOnInit = function () {
     };
@@ -6977,6 +5938,1049 @@ var BlogComponent = (function () {
     var _a, _b, _c, _d, _e, _f;
 }());
 //# sourceMappingURL=/Users/haraldbregu/Dropbox/StarbookWebApp/src/blog.component.js.map
+
+/***/ },
+
+/***/ 528:
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__shared_seo_service__ = __webpack_require__(28);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__shared_navigation_service__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__shared_analytics_service__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_angular2_universal__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_angular2_universal___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_angular2_universal__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__shared_common_service__ = __webpack_require__(45);
+/* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return CategoryComponent; });
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+
+
+var CategoryComponent = (function () {
+    function CategoryComponent(router, route, navigationService, analyticsService, seoService, commonService) {
+        this.router = router;
+        this.route = route;
+        this.navigationService = navigationService;
+        this.analyticsService = analyticsService;
+        this.seoService = seoService;
+        this.commonService = commonService;
+        this.images_url = "https://s3-eu-west-1.amazonaws.com/starbook-s3/";
+        this.Request = {
+            description: '',
+            phone: '',
+            email: '',
+            firstname: '',
+            lastname: ''
+        };
+        this.request_state = {
+            loading: false,
+            button_title: "Invia richiesta",
+            message_success: null,
+            message_error: null,
+            title_error: null,
+            description_error: null,
+            firstname_error: null,
+            lastname_error: null,
+            phone_error: null,
+            email_error: null
+        };
+        this.spinerView = false;
+        this.clearView = false;
+        this.query = '';
+        this.results = [];
+        this.services = [];
+        this.order = {};
+        this.seoObject = {};
+        // let category = this.commonService.getCategory();
+        // if (category) {
+        //   this.category = category;
+        //   this.navigationService.updateMessage(this.category.title);
+        //   this.loadServicesForCategoryId(this.category._id);
+        //   this.updateSeoForObject(this.category);
+        //  } else {
+        //   this.route.params.subscribe(params => {
+        //     let category = params['category'];
+        //     this.commonService.getServiceById(category).then((data) => {
+        //       this.category = data.result;
+        //       this.updateSeoForObject(this.category);
+        //       this.navigationService.updateMessage(this.category.title);
+        //       this.loadServicesForCategoryId(this.category._id);
+        //     }).catch((error) => {
+        //       this.router.navigate(['']);
+        //     });
+        //   })
+        // }
+    }
+    CategoryComponent.prototype.ngOnInit = function () {
+        if (__WEBPACK_IMPORTED_MODULE_5_angular2_universal__["isBrowser"]) {
+            window.scrollTo(0, 0);
+        }
+    };
+    CategoryComponent.prototype.updateSeoForObject = function (category) {
+        this.seoObject['title'] = category.title;
+        this.seoObject['description'] = category.description;
+        this.seoObject['url'] = 'https://www.starbook.co' + this.router.url;
+        this.seoObject['image_url'] = category.image_url;
+        this.seoService.setTitle(this.seoObject['title']);
+        this.seoService.setMetaElem('description', this.seoObject['description']);
+        this.seoService.setOgElem('twitter:card', "summary_large_image");
+        this.seoService.setOgElem('twitter:title', this.seoObject['title']);
+        this.seoService.setOgElem('twitter:site', "@starbookco");
+        this.seoService.setOgElem('twitter:creator', "@HaraldBregu");
+        this.seoService.setOgElem('twitter:description', this.seoObject['description']);
+        this.seoService.setOgElem('twitter:image', this.seoObject['image_url']);
+        this.seoService.setOgElem('og:title', this.seoObject['title']);
+        this.seoService.setOgElem('og:description', this.seoObject['description']);
+        this.seoService.setOgElem('og:url', this.seoObject['url']);
+        this.seoService.setOgElem('og:image', this.seoObject['image_url']);
+        this.seoService.setOgElem('og:image:secure_url', this.seoObject['image_url']);
+    };
+    CategoryComponent.prototype.showDirectAction = function (action) {
+        this.order['service_id'] = this.category._id;
+        this.order['title'] = this.category.title;
+        var title = "Richiesta di " + action.title.toLowerCase() + "";
+        this.order['details'] = [{ title: this.category.title, type: "service", count: 0, amount: 0 }, { title: title, type: "detail", count: 0, amount: 0 }];
+        this.order['description'] = "";
+        this.order['upfront_amount'] = action.amount;
+        this.order['timing'] = { days: 0 };
+        this.router.navigate(['order/summary']);
+        return false;
+    };
+    CategoryComponent.prototype.loadServicesForCategoryId = function (category_id) {
+        var _this = this;
+        this.commonService.getRelatedServicesByServiceId(category_id, null).then(function (data) {
+            _this.services = data.result[0].services;
+            // console.log('services are: ' + JSON.stringify(data.result));
+        }).catch(function (error) {
+            // console.log('error are: ' + JSON.stringify(error));
+        });
+    };
+    CategoryComponent.prototype.showServicePage = function (service) {
+        this.router.navigate(['services', service.title.replace(/\s+/g, '-')]);
+    };
+    CategoryComponent.prototype.requireService = function () {
+        this.router.navigate(['requests/service']);
+    };
+    CategoryComponent.prototype.checkOut = function () {
+        this.router.navigate(['order/summary']);
+        return false;
+    };
+    CategoryComponent = __decorate([
+        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
+            selector: 'app-category',
+            template: __webpack_require__(721)
+        }), 
+        __metadata('design:paramtypes', [(typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["d" /* Router */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__angular_router__["d" /* Router */]) === 'function' && _a) || Object, (typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["e" /* ActivatedRoute */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__angular_router__["e" /* ActivatedRoute */]) === 'function' && _b) || Object, (typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__shared_navigation_service__["a" /* NavigationService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_3__shared_navigation_service__["a" /* NavigationService */]) === 'function' && _c) || Object, (typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_4__shared_analytics_service__["a" /* AnalyticsService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_4__shared_analytics_service__["a" /* AnalyticsService */]) === 'function' && _d) || Object, (typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_2__shared_seo_service__["a" /* SeoService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_2__shared_seo_service__["a" /* SeoService */]) === 'function' && _e) || Object, (typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_6__shared_common_service__["a" /* CommonService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_6__shared_common_service__["a" /* CommonService */]) === 'function' && _f) || Object])
+    ], CategoryComponent);
+    return CategoryComponent;
+    var _a, _b, _c, _d, _e, _f;
+}());
+//# sourceMappingURL=/Users/haraldbregu/Dropbox/StarbookWebApp/src/category.component.js.map
+
+/***/ },
+
+/***/ 529:
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_angular2_universal__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_angular2_universal___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_angular2_universal__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_router__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__shared_navigation_service__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__shared_contact_service__ = __webpack_require__(73);
+/* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return ContactComponent; });
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+var ContactComponent = (function () {
+    function ContactComponent(router, route, navigationService, contactService) {
+        this.router = router;
+        this.route = route;
+        this.navigationService = navigationService;
+        this.contactService = contactService;
+        this.page = '';
+        this.Email = {
+            subject: null,
+            message: null
+        };
+        this.Recruiter = {
+            firstname: null,
+            lastname: null,
+            phone: null,
+            email: null,
+            message: null
+        };
+        this.recruiter_state = {
+            loading: false,
+            message_success: null,
+            message_error: null,
+            firstname_error: null,
+            lastname_error: null,
+            phone_error: null,
+            email_error: null
+        };
+        this.emailPattern = /^[a-z0-9!#$%&'*+\/=?^_`{|}~.-]+@[a-z0-9]([a-z0-9-]*[a-z0-9])?(\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)*$/i;
+        this.navigationService.updateMessage("Contattaci");
+    }
+    ContactComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.route.params.subscribe(function (params) {
+            if (__WEBPACK_IMPORTED_MODULE_1_angular2_universal__["isBrowser"]) {
+                window.scrollTo(0, 0);
+            }
+            _this.page = params['page'];
+            if (_this.page === 'partner') {
+                _this.navigationService.updateMessage("Diventiamo partner");
+            }
+            else {
+                _this.router.navigate(['']);
+            }
+        });
+    };
+    ContactComponent.prototype.joinPartner = function () {
+        var _this = this;
+        if (this.recruiter_state.loading) {
+            return;
+        }
+        if (!this.Recruiter.firstname || !this.Recruiter.lastname || !this.Recruiter.phone || !this.Recruiter.email) {
+            this.recruiter_state.message_error = "Per favore inserisci tutti i campi richiesti";
+            this.recruiter_state.firstname_error = "Nome";
+            this.recruiter_state.lastname_error = "Cognome";
+            this.recruiter_state.phone_error = "Il numero del telefono";
+            this.recruiter_state.email_error = "La tua email";
+            return;
+        }
+        this.recruiter_state.loading = true;
+        this.recruiter_state.message_success = null;
+        this.recruiter_state.message_error = null;
+        this.recruiter_state.firstname_error = null;
+        this.recruiter_state.lastname_error = null;
+        this.recruiter_state.phone_error = null;
+        this.recruiter_state.email_error = null;
+        this.Email.subject = "Richiesta partnership";
+        this.Email.message =
+            'Nome: ' + this.Recruiter.firstname +
+                '<br>Cognome: ' + this.Recruiter.lastname +
+                '<br>Telefono: ' + this.Recruiter.phone +
+                '<br>Email: ' + this.Recruiter.email +
+                '<br>Message: ' + this.Recruiter.message;
+        this.contactService.sendEmail(this.Email).then(function (response) {
+            _this.recruiter_state.message_success = "Complimenti, hai inviato una richiesta di iscrizione su Starbook con successo.";
+            _this.recruiter_state.loading = false;
+            _this.Recruiter.firstname = null;
+            _this.Recruiter.lastname = null;
+            _this.Recruiter.phone = null;
+            _this.Recruiter.email = null;
+        }).catch(function (error) {
+            _this.recruiter_state.loading = false;
+            _this.Recruiter.firstname = null;
+            _this.Recruiter.lastname = null;
+            _this.Recruiter.phone = null;
+            _this.Recruiter.email = null;
+            // console.log('error: ' + JSON.stringify(error));
+        });
+    };
+    ContactComponent = __decorate([
+        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
+            selector: 'app-contact',
+            template: __webpack_require__(723)
+        }), 
+        __metadata('design:paramtypes', [(typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__angular_router__["d" /* Router */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_2__angular_router__["d" /* Router */]) === 'function' && _a) || Object, (typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__angular_router__["e" /* ActivatedRoute */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_2__angular_router__["e" /* ActivatedRoute */]) === 'function' && _b) || Object, (typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__shared_navigation_service__["a" /* NavigationService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_3__shared_navigation_service__["a" /* NavigationService */]) === 'function' && _c) || Object, (typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_4__shared_contact_service__["a" /* ContactService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_4__shared_contact_service__["a" /* ContactService */]) === 'function' && _d) || Object])
+    ], ContactComponent);
+    return ContactComponent;
+    var _a, _b, _c, _d;
+}());
+//# sourceMappingURL=/Users/haraldbregu/Dropbox/StarbookWebApp/src/contact.component.js.map
+
+/***/ },
+
+/***/ 530:
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__shared_profile_service__ = __webpack_require__(74);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_router__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__shared_navigation_service__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__popups_popups_service__ = __webpack_require__(72);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__shared_payment_service__ = __webpack_require__(110);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__shared_analytics_service__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__shared_seo_service__ = __webpack_require__(28);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__shared_contact_service__ = __webpack_require__(73);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_angular2_universal__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_angular2_universal___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_9_angular2_universal__);
+/* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return ProfileComponent; });
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+
+
+
+
+
+var ProfileComponent = (function () {
+    function ProfileComponent(profileService, router, navigationService, route, popupsService, paymentService, analyticsService, joinService, seoService) {
+        this.profileService = profileService;
+        this.router = router;
+        this.navigationService = navigationService;
+        this.route = route;
+        this.popupsService = popupsService;
+        this.paymentService = paymentService;
+        this.analyticsService = analyticsService;
+        this.joinService = joinService;
+        this.seoService = seoService;
+        this.contacts = '';
+        this.copy_link_state = {
+            title: "Copia link"
+        };
+        this.sharelink = '';
+        this.activePopup = '';
+        this.cards = [];
+        this.defaultCard = '';
+        //////////////////////////
+        /////// TAB BAR //////////
+        //////////////////////////
+        this.page = '';
+        this.tabs = [
+            { name: 'Generali', route: 'general', icon: "fa-info" },
+            { name: 'Pagamento', route: 'payment', icon: "fa-credit-card" },
+            { name: 'Impostazioni', route: 'settings', icon: "fa-cog" },
+        ];
+        ///////////////////////
+        /////// USER //////////
+        ///////////////////////
+        this.User = {
+            firstname: '',
+            lastname: '',
+            email: '',
+            phone_number: ''
+        };
+        this.user_state = {
+            loading: false,
+            button_title: "Salva",
+            first_name_error: null,
+            last_name_error: null,
+            email_error: null,
+            phone_number_error: null
+        };
+        ///////////////////////////
+        /////// PASSWORD //////////
+        ///////////////////////////
+        this.Password = {
+            old_password: '',
+            new_password: '',
+            confirm_password: ''
+        };
+        this.password_state = {
+            loading: false,
+            button_title: "Cambia",
+            message_error: null,
+            message_success: null
+        };
+        ////////////////////////////
+        /////// AFFILIATE //////////
+        ////////////////////////////
+        this.invitation_state = {
+            message_success: null,
+            message_error: null
+        };
+        //////////////////////////
+        /////// PAYMENT //////////
+        //////////////////////////
+        this.Card = {
+            number: null,
+            exp_month: null,
+            exp_year: null,
+            exp_date: null,
+            cvc: '',
+            name: '',
+            address_line1: '',
+            address_line2: '',
+            address_city: '',
+            address_zip: '',
+            address_state: '',
+            address_country: '' // Paese
+        };
+        this.card_state = {
+            loading: false,
+            button_title: "Salva",
+            message_error: null,
+            message_success: null,
+            number_error: null,
+            exp_date_error: null,
+            cvc_error: null
+        };
+        this.logo = '';
+        this.navigationService.updateMessage('');
+        this.emailPattern = /^[a-z0-9!#$%&'*+\/=?^_`{|}~.-]+@[a-z0-9]([a-z0-9-]*[a-z0-9])?(\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)*$/i;
+        this.numPattern = /^[+0-9]+$/;
+        if (__WEBPACK_IMPORTED_MODULE_9_angular2_universal__["isBrowser"]) {
+            if (localStorage.getItem('auth') !== null) {
+                this.currentUser = JSON.parse(localStorage.getItem('auth'));
+                // console.log('auth data' + JSON.stringify(authData));
+                this.User.firstname = this.currentUser.profile.firstname;
+                this.User.lastname = this.currentUser.profile.lastname;
+                this.User.phone_number = this.currentUser.phone_number;
+                this.User.email = this.currentUser.email;
+                this.sharelink = document.location.protocol + '//' + document.location.hostname + '/?ref=' + this.currentUser._id;
+            }
+            else {
+                this.router.navigate(['/']);
+            }
+        }
+    }
+    ProfileComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        if (__WEBPACK_IMPORTED_MODULE_9_angular2_universal__["isBrowser"]) {
+            this.route.params.subscribe(function (params) {
+                window.scrollTo(0, 0);
+                _this.page = params['page'];
+                if (_this.page === 'general') {
+                }
+                else if (_this.page === 'payment') {
+                }
+                else if (_this.page === 'settings') {
+                }
+                else if (_this.page === 'affiliate') {
+                }
+                else if (_this.page === 'card') {
+                }
+                else {
+                }
+            });
+            this.subscription = this.popupsService.getPopupResponse$.subscribe(function (action) {
+                switch (action.type) {
+                    case 'logout':
+                        if (__WEBPACK_IMPORTED_MODULE_9_angular2_universal__["isBrowser"]) {
+                            if (localStorage.getItem('auth') !== null) {
+                                localStorage.removeItem('auth');
+                            }
+                        }
+                        _this.navigationService.updatePersonalMenu(false);
+                        _this.router.navigate(['/']);
+                        break;
+                }
+            });
+        }
+    };
+    ProfileComponent.prototype.clickTabItem = function (route) {
+        this.router.navigate(['/profile/' + route]);
+    };
+    ///////////////////////
+    /////// USER //////////
+    ///////////////////////
+    ProfileComponent.prototype.saveProfile = function () {
+        var _this = this;
+        this.user_state.loading = true;
+        this.user_state.button_title = "Salvando...";
+        this.profileService.updateProfile(this.User).then(function (data) {
+            _this.user_state.loading = false;
+            _this.user_state.button_title = "Salva";
+            if (data.success) {
+                var profileData = {};
+                if (__WEBPACK_IMPORTED_MODULE_9_angular2_universal__["isBrowser"]) {
+                    if (localStorage.getItem('auth') !== null) {
+                        var authData = JSON.parse(localStorage.getItem('auth'));
+                        authData.profile.firstname = _this.User.firstname;
+                        authData.profile.lastname = _this.User.lastname;
+                        authData.profile.fullname = _this.User.firstname + ' ' + _this.User.lastname;
+                        authData.phone_number = _this.User.phone_number;
+                        profileData = authData;
+                        localStorage.setItem('auth', JSON.stringify(authData));
+                    }
+                }
+                _this.navigationService.updatePersonalMenu(profileData);
+            }
+        }).catch(function (error) {
+            _this.user_state.loading = false;
+            _this.user_state.button_title = "Salva";
+        });
+    };
+    ///////////////////////////
+    /////// PASSWORD //////////
+    ///////////////////////////
+    ProfileComponent.prototype.changePassword = function () {
+        var _this = this;
+        if (this.password_state.loading) {
+            return;
+        }
+        if (this.Password.old_password.length !== 0 && this.Password.new_password.length !== 0 && this.Password.confirm_password.length !== 0) {
+            if (this.Password.new_password !== this.Password.confirm_password) {
+                this.password_state.message_error = "Conferma correttamente la nuova password!";
+                return;
+            }
+        }
+        else if (this.Password.old_password.length === 0 || this.Password.new_password.length === 0 || this.Password.confirm_password.length === 0) {
+            this.password_state.message_error = "Compila tutti i campi richiesti!";
+            return;
+        }
+        this.password_state.loading = true;
+        this.password_state.button_title = "Cambiando...";
+        this.password_state.message_success = null;
+        this.password_state.message_error = null;
+        this.profileService.changePassword(this.Password).then(function (data) {
+            _this.password_state.loading = false;
+            _this.password_state.button_title = "Cambia";
+            _this.Password.old_password = '';
+            _this.Password.new_password = '';
+            _this.Password.confirm_password = '';
+            _this.password_state.message_success = "Verifica la nuova password clicando il link che ti abbiamo inviato tramite mail.";
+            _this.password_state.message_error = null;
+        }).catch(function (error) {
+            _this.password_state.loading = false;
+            _this.password_state.button_title = "Cambia";
+            _this.password_state.message_success = null;
+            _this.password_state.message_error = "Errore nel cambio password";
+            if (error.status === 401) {
+                _this.password_state.message_error = "La password attuale inserita non è corretta.";
+            }
+            if (error.status === 422) {
+                _this.password_state.message_error = "Inserisci tutti i parametri richiesti correttamente.";
+            }
+        });
+    };
+    ////////////////////////
+    /////// EMAIL //////////
+    ////////////////////////
+    ProfileComponent.prototype.saveNewEmail = function () { };
+    ////////////////////////////
+    /////// AFFILIATE //////////
+    ////////////////////////////
+    ProfileComponent.prototype.sendInvitations = function () {
+        var _this = this;
+        var phone_numbers = [];
+        var email_addresses = [];
+        var strings = this.contacts.split(',');
+        for (var i = 0; i < strings.length; i++) {
+            var string = strings[i];
+            string = string.replace(/\s/g, '');
+            if (this.emailPattern.test(string)) {
+                email_addresses.push(string);
+            }
+            else if (this.numPattern.test(string)) {
+                if (string.length === 13 && string.charAt(0) === '+') {
+                    phone_numbers.push(string);
+                }
+                else if (string.length === 12) {
+                    phone_numbers.push('+' + string);
+                }
+                else if (string.length === 10) {
+                    phone_numbers.push('+39' + string);
+                }
+                else if (string.length === 14) {
+                    phone_numbers.push(string);
+                }
+            }
+        }
+        var phones = '';
+        for (var i = 0; i < phone_numbers.length; i++) {
+            var p = phone_numbers[i];
+            phones += (i != 0) ? ',' : '';
+            phones += p;
+        }
+        var emails = '';
+        for (var i = 0; i < email_addresses.length; i++) {
+            var e = email_addresses[i];
+            emails += (i != 0) ? ',' : '';
+            emails += e;
+        }
+        // console.log('phone_numbers: ' + phone_numbers);
+        if (phones === '' && emails === '') {
+            this.invitation_state.message_success = null;
+            this.invitation_state.message_error = "Inserisci numeri di telefono e email validi";
+            return;
+        }
+        this.invitation_state.message_success = null;
+        this.invitation_state.message_error = null;
+        this.joinService.sendInvitations(this.sharelink, phones, emails).then(function (response) {
+            // console.log('response: ' + JSON.stringify(response));
+            _this.invitation_state.message_success = "Complimenti, hai inviato un codice sconto ai contatti inseriti";
+        }).catch(function (error) {
+            // console.log('error: ' + JSON.stringify(error));
+        });
+    };
+    ProfileComponent.prototype.shareOnFacebook = function () {
+        if (__WEBPACK_IMPORTED_MODULE_9_angular2_universal__["isBrowser"]) {
+            var left = Math.round((document.documentElement.clientWidth / 2) - 285);
+            window.open("http://www.facebook.com/sharer/sharer.php?s=100&u=" + this.sharelink, '_blank', 'location=yes,height=570,width=520,left=' + left + ', top=100,scrollbars=yes,status=yes');
+            return false;
+        }
+    };
+    ProfileComponent.prototype.shareOnTwitter = function () {
+        if (__WEBPACK_IMPORTED_MODULE_9_angular2_universal__["isBrowser"]) {
+            var left = Math.round((document.documentElement.clientWidth / 2) - 285);
+            // console.log('share link is: ' + this.sharelink);
+            window.open("https://twitter.com/home?status=" + this.sharelink, '_blank', 'location=yes,height=570,width=520,left=' + left + ', top=100,scrollbars=yes,status=yes');
+            return false;
+        }
+    };
+    ProfileComponent.prototype.shareOnLinkedin = function () {
+        if (__WEBPACK_IMPORTED_MODULE_9_angular2_universal__["isBrowser"]) {
+            var link = this.sharelink;
+            var title = "Titolo";
+            var summary = "Summary";
+            var source = "";
+            var left = Math.round((document.documentElement.clientWidth / 2) - 285);
+            window.open("https://www.linkedin.com/shareArticle?mini=true&url=" + link + "&title=" + title + "&summary=" + summary + "&source=" + source, '_blank', 'location=yes,height=570,width=520,left=' + left + ', top=100,scrollbars=yes,status=yes');
+            return false;
+        }
+    };
+    ProfileComponent.prototype.shareOnGoogle = function () {
+        if (__WEBPACK_IMPORTED_MODULE_9_angular2_universal__["isBrowser"]) {
+            var link = this.sharelink;
+            var left = Math.round((document.documentElement.clientWidth / 2) - 285);
+            window.open("https://plus.google.com/share?url=" + link, '_blank', 'location=yes,height=570,width=520,left=' + left + ', top=100,scrollbars=yes,status=yes');
+            return false;
+        }
+    };
+    ProfileComponent.prototype.shareWithEmail = function () {
+        if (__WEBPACK_IMPORTED_MODULE_9_angular2_universal__["isBrowser"]) {
+            var message = "Ciao, utilizza il link sotto per ricevere 5% di scondo sui servizi Starbook. \n" + this.sharelink;
+            var subject = "Promozione Starbook";
+            var left = Math.round((document.documentElement.clientWidth / 2) - 285);
+            window.open("mailto:?Subject=" + subject + "&body=" + encodeURIComponent(message), '_blank', 'location=yes,height=570,width=520,left=' + left + ', top=100,scrollbars=yes,status=yes');
+            return false;
+        }
+    };
+    ProfileComponent.prototype.copyLink = function (value) {
+        this.copy_link_state.title = "Copiato!";
+        // console.group( "Clipboard Success" );
+        // console.log( value );
+        // console.groupEnd();
+    };
+    ProfileComponent.prototype.copyError = function (error) {
+        // console.group( "Clipboard Error" );
+        // console.error( error );
+        // console.groupEnd();
+    };
+    ///////////////////////
+    /////// CARD //////////
+    ///////////////////////
+    ProfileComponent.prototype.showCardPage = function () {
+        this.router.navigate(['/profile/card']);
+    };
+    ProfileComponent.prototype.selectCard = function (card_id) {
+        var _this = this;
+        this.paymentService.selectCard(card_id).then(function (status) {
+            _this.defaultCard = status.default_source;
+        }).catch(function (error) {
+        });
+    };
+    ProfileComponent.prototype.deleteCard = function (card_id) {
+        var _this = this;
+        this.paymentService.deleteCard(card_id).then(function (status) {
+            var i = 0;
+            _this.cards.forEach(function (card) {
+                if (card.id === card_id) {
+                    _this.cards.splice(i, 1);
+                }
+                i++;
+            });
+            if (card_id === _this.defaultCard && _this.cards.length > 0) {
+                var otherCard_1 = '';
+                _this.cards.forEach(function (card) {
+                    if (card.id !== card_id) {
+                        otherCard_1 = card.id;
+                    }
+                });
+                _this.selectCard(otherCard_1);
+            }
+            else {
+            }
+        }).catch(function (error) {
+        });
+    };
+    ProfileComponent.prototype.addCard = function () {
+        var _this = this;
+        if (this.card_state.loading) {
+            return;
+        }
+        this.card_state.loading = true;
+        this.card_state.button_title = "Salvando...";
+        this.card_state.message_error = null;
+        this.card_state.number_error = null;
+        this.card_state.exp_date_error = null;
+        this.card_state.cvc_error = null;
+        if (this.Card !== null) {
+            if (this.paymentService.cardNumberValidate(this.Card.number)) {
+                this.card_state.number_error = null;
+            }
+            else {
+                this.card_state.number_error = "Il numero della carta non è corretto.";
+            }
+        }
+        if (this.Card.exp_date && this.Card.exp_date.length === 5) {
+            var exp_parts = this.Card.exp_date.split('/');
+            if (exp_parts[0] !== this.Card.exp_date) {
+                this.Card.exp_month = exp_parts[0];
+                this.Card.exp_year = exp_parts[1];
+            }
+            else {
+                this.card_state.exp_date_error = "Errore data";
+            }
+        }
+        else {
+            this.card_state.exp_date_error = "La data non è completa";
+        }
+        this.paymentService.addNewCard(this.Card).then(function (response) {
+            _this.card_state.loading = false;
+            _this.card_state.button_title = "Salva";
+            _this.card_state.message_error = null;
+            _this.card_state.number_error = null;
+            _this.card_state.exp_date_error = null;
+            _this.card_state.cvc_error = null;
+            _this.router.navigate(['/profile/payment']);
+        }).catch(function (error) {
+            _this.card_state.loading = false;
+            _this.card_state.button_title = "Salva";
+            _this.card_state.message_error = null;
+            _this.card_state.number_error = null;
+            _this.card_state.exp_date_error = null;
+            _this.card_state.cvc_error = null;
+            if (error === 400) {
+                _this.card_state.message_error = "Errore nel inserimento del codice della sicurezza";
+                _this.card_state.cvc_error = "Inserisci un codice corretto";
+            }
+            else if (error === 402) {
+                _this.card_state.message_error = "Errore nel inserimento del numero della carta o della data di scadenza";
+                _this.card_state.number_error = "Inserisci un numero corretto";
+                _this.card_state.exp_date_error = "Inserisci una data corretta";
+            }
+            else {
+                _this.card_state.message_error = "Errore sconosciuto. Controlla i campi inseriti e riprova.";
+            }
+        });
+    };
+    ProfileComponent.prototype.checkExpiry = function (value) {
+        var result = '';
+        var date = new Date();
+        var month = (1 + date.getMonth()).toString();
+        if ((date.getMonth() + 1) < 10) {
+            month = '0' + month.toString();
+        }
+        var yearElems = date.getFullYear().toString().split('');
+        var year = parseInt(yearElems[2].toString() + yearElems[3].toString());
+        if (value) {
+            var dateElems_1 = value.split('');
+            var i_1 = 0;
+            dateElems_1.forEach(function (elem) {
+                if (elem === '/') {
+                    dateElems_1.splice(i_1, 1);
+                }
+                i_1++;
+            });
+            if (dateElems_1.length > 1) {
+                var i_2 = 0;
+                dateElems_1.forEach(function (elem) {
+                    if (i_2 < 4) {
+                        if (i_2 === 2) {
+                            result += '/';
+                        }
+                        result += elem;
+                    }
+                    i_2++;
+                });
+            }
+            else {
+                dateElems_1.forEach(function (elem) {
+                    result += elem;
+                });
+            }
+        }
+        if (result.length !== 5) {
+            this.card_state.exp_date_error = "Inserisci la data in formato MM/AA (mese/anno)";
+        }
+        if (result.length === 5) {
+            var parts = result.split('/');
+            if (parts[0] !== result) {
+                if (parseInt(parts[1]) > year) {
+                    this.card_state.exp_date_error = null;
+                }
+                else {
+                    if (parseInt(parts[0]) >= parseInt(month) && parseInt(parts[1]) === year) {
+                        this.card_state.exp_date_error = null;
+                    }
+                    else {
+                        this.card_state.exp_date_error = "Inserisci una data corretta";
+                    }
+                }
+            }
+            else {
+                this.card_state.exp_date_error = null;
+            }
+        }
+        this.Card.exp_date = result;
+        return result;
+    };
+    ProfileComponent.prototype.formatYear = function (year) {
+        var i = 0;
+        var formatedYear = '';
+        var yearArray = year.toString().split('');
+        yearArray.forEach(function (num) {
+            if (i > 1) {
+                formatedYear += num;
+            }
+            i++;
+        });
+        return formatedYear;
+    };
+    ProfileComponent.prototype.formatCssClass = function (brand) {
+        var result = '';
+        if (brand === 'Visa') {
+            result = 'visa';
+        }
+        if (brand === 'American Express') {
+            result = 'amex';
+        }
+        if (brand === 'MasterCard') {
+            result = 'mastercard';
+        }
+        return result;
+    };
+    ProfileComponent.prototype.editCard = function (id) {
+        var _this = this;
+        var cardData = {};
+        this.cards.forEach(function (card) {
+            if (card.id === id) {
+                cardData = {
+                    id: card.id,
+                    address_city: card.address_city,
+                    address_country: card.address_country,
+                    address_line1: card.address_line1,
+                    address_line2: card.address_line2,
+                    address_state: card.address_state,
+                    address_zip: card.address_zip,
+                    exp_month: card.exp_month,
+                    exp_year: _this.formatYear(card.exp_year),
+                    name: card.name,
+                    number: '**** ' + card.last4,
+                    cvc: '***'
+                };
+            }
+        });
+        this.popupsService.activate({ type: 'editCard', data: cardData });
+    };
+    ProfileComponent.prototype.logout = function () {
+        this.popupsService.activate({ type: 'logout', data: {} });
+    };
+    ProfileComponent.prototype.ngOnDestroy = function () {
+    };
+    ProfileComponent = __decorate([
+        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
+            selector: 'app-profile',
+            template: __webpack_require__(730)
+        }), 
+        __metadata('design:paramtypes', [(typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__shared_profile_service__["a" /* ProfileService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__shared_profile_service__["a" /* ProfileService */]) === 'function' && _a) || Object, (typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__angular_router__["d" /* Router */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_2__angular_router__["d" /* Router */]) === 'function' && _b) || Object, (typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__shared_navigation_service__["a" /* NavigationService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_3__shared_navigation_service__["a" /* NavigationService */]) === 'function' && _c) || Object, (typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_2__angular_router__["e" /* ActivatedRoute */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_2__angular_router__["e" /* ActivatedRoute */]) === 'function' && _d) || Object, (typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_4__popups_popups_service__["a" /* PopupsService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_4__popups_popups_service__["a" /* PopupsService */]) === 'function' && _e) || Object, (typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_5__shared_payment_service__["a" /* PaymentService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_5__shared_payment_service__["a" /* PaymentService */]) === 'function' && _f) || Object, (typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_6__shared_analytics_service__["a" /* AnalyticsService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_6__shared_analytics_service__["a" /* AnalyticsService */]) === 'function' && _g) || Object, (typeof (_h = typeof __WEBPACK_IMPORTED_MODULE_8__shared_contact_service__["a" /* ContactService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_8__shared_contact_service__["a" /* ContactService */]) === 'function' && _h) || Object, (typeof (_j = typeof __WEBPACK_IMPORTED_MODULE_7__shared_seo_service__["a" /* SeoService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_7__shared_seo_service__["a" /* SeoService */]) === 'function' && _j) || Object])
+    ], ProfileComponent);
+    return ProfileComponent;
+    var _a, _b, _c, _d, _e, _f, _g, _h, _j;
+}());
+//# sourceMappingURL=/Users/haraldbregu/Dropbox/StarbookWebApp/src/profile.component.js.map
+
+/***/ },
+
+/***/ 531:
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_angular2_universal__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_angular2_universal___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_angular2_universal__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_router__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__shared_navigation_service__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__shared_contact_service__ = __webpack_require__(73);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__shared_seo_service__ = __webpack_require__(28);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__shared_analytics_service__ = __webpack_require__(17);
+/* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return RequestsComponent; });
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+
+
+var RequestsComponent = (function () {
+    function RequestsComponent(router, route, navigationService, joinService, seoService, analyticsService) {
+        this.router = router;
+        this.route = route;
+        this.navigationService = navigationService;
+        this.joinService = joinService;
+        this.seoService = seoService;
+        this.analyticsService = analyticsService;
+        this.page = '';
+        //////////////////////////
+        /////// REQUEST  /////////
+        //////////////////////////
+        this.Request = {
+            title: '',
+            description: '',
+            phone: '',
+            email: '',
+            firstname: '',
+            lastname: ''
+        };
+        this.request_state = {
+            loading: false,
+            button_title: "Invia richiesta",
+            message_success: null,
+            message_error: null,
+            title_error: null,
+            description_error: null,
+            firstname_error: null,
+            lastname_error: null,
+            phone_error: null,
+            email_error: null
+        };
+        //////////////////////////
+        /////// ESTIMATE /////////
+        //////////////////////////
+        this.Estimate = {
+            service_id: '',
+            title: 'Parete in cartongesso',
+            details: [{ type: 'service', title: "Parete in cartongesso" }, { type: 'detail', title: "item 0" }, { type: 'detail', title: "item 0" }],
+            referral_id: '23454678',
+            price: {
+                final: 0,
+                initial: 0,
+                currency: 'eur'
+            },
+            payment: {
+                upfront: 0
+            }
+        };
+        this.analyticsService.sendPageViewUrl(this.router.url);
+        this.seoService.setTitle('Lavori di casa? Chiedi di cosa hai bisogno');
+        this.seoService.setOgElem('og:title', 'Lavori di casa? Chiedi di cosa hai bisogno');
+        this.seoService.setMetaElem('description', 'Inserisci il titolo e i dettagli del lavoro che vuoi svolgere. Ci occupiamo noi a trovare il miglior professionista con il miglior prezzo del mercato.');
+        this.seoService.setOgElem('og:description', 'Inserisci il titolo e i dettagli del lavoro che vuoi svolgere. Ci occupiamo noi a trovare il miglior professionista con il miglior prezzo del mercato.');
+        this.seoService.setOgElem('og:url', 'https://www.starbook.co' + this.router.url);
+        this.seoService.setOgElem('og:image', 'https://s3-eu-west-1.amazonaws.com/starbook-s3/operai-professionisti-artigiani.jpg');
+        this.seoService.setOgElem('og:image:secure_url', 'https://s3-eu-west-1.amazonaws.com/starbook-s3/operai-professionisti-artigiani.jpg');
+        if (__WEBPACK_IMPORTED_MODULE_1_angular2_universal__["isBrowser"]) {
+            if (localStorage.getItem('auth')) {
+                this.currentUser = JSON.parse(localStorage.getItem('auth'));
+                if (this.currentUser) {
+                    this.Request.firstname = this.currentUser.profile.firstname;
+                    this.Request.lastname = this.currentUser.profile.lastname;
+                    this.Request.phone = this.currentUser.phone_number;
+                    this.Request.email = this.currentUser.email;
+                }
+            }
+        }
+    }
+    RequestsComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        if (__WEBPACK_IMPORTED_MODULE_1_angular2_universal__["isBrowser"]) {
+            this.route.params.subscribe(function (params) {
+                window.scrollTo(0, 0);
+                _this.page = params['page'];
+                if (_this.page === 'service') {
+                    _this.navigationService.updateMessage("Richiedi un servizio");
+                }
+                else if (_this.page === 'estimate') {
+                    _this.navigationService.updateMessage("Preventivo");
+                }
+                else {
+                    _this.router.navigate(['requests/service']);
+                }
+            });
+        }
+    };
+    RequestsComponent.prototype.sendRequestForNewService = function () {
+        var _this = this;
+        if (this.request_state.loading) {
+            return;
+        }
+        if (!this.Request.firstname || !this.Request.lastname || !this.Request.phone || !this.Request.email || !this.Request.title || !this.Request.description) {
+            this.request_state.message_success = null;
+            this.request_state.message_error = "Per favore inserisci tutti i campi richiesti";
+            this.request_state.title_error = "errore";
+            this.request_state.description_error = "errore";
+            this.request_state.firstname_error = "errore";
+            this.request_state.lastname_error = "errore";
+            this.request_state.phone_error = "errore";
+            this.request_state.email_error = "errore";
+            return;
+        }
+        this.request_state.message_success = null;
+        this.request_state.message_error = null;
+        this.request_state.title_error = null;
+        this.request_state.description_error = null;
+        this.request_state.firstname_error = null;
+        this.request_state.lastname_error = null;
+        this.request_state.phone_error = null;
+        this.request_state.email_error = null;
+        this.request_state.loading = true;
+        this.request_state.button_title = "Inviando...";
+        this.Request['type'] = "new_service_request";
+        this.joinService.join(this.Request).then(function (response) {
+            _this.request_state.message_success = "Complimenti, hai inviato una richiesta di servizio su Starbook. La contatteremo al più presto!";
+            _this.request_state.loading = false;
+            _this.request_state.button_title = "Invia richiesta";
+            _this.Request.title = null;
+            _this.Request.description = null;
+        }).catch(function (error) {
+            _this.Request.title = null;
+            _this.Request.description = null;
+        });
+    };
+    RequestsComponent = __decorate([
+        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
+            selector: 'app-requests',
+            template: __webpack_require__(731)
+        }), 
+        __metadata('design:paramtypes', [(typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__angular_router__["d" /* Router */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_2__angular_router__["d" /* Router */]) === 'function' && _a) || Object, (typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__angular_router__["e" /* ActivatedRoute */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_2__angular_router__["e" /* ActivatedRoute */]) === 'function' && _b) || Object, (typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__shared_navigation_service__["a" /* NavigationService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_3__shared_navigation_service__["a" /* NavigationService */]) === 'function' && _c) || Object, (typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_4__shared_contact_service__["a" /* ContactService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_4__shared_contact_service__["a" /* ContactService */]) === 'function' && _d) || Object, (typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_5__shared_seo_service__["a" /* SeoService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_5__shared_seo_service__["a" /* SeoService */]) === 'function' && _e) || Object, (typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_6__shared_analytics_service__["a" /* AnalyticsService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_6__shared_analytics_service__["a" /* AnalyticsService */]) === 'function' && _f) || Object])
+    ], RequestsComponent);
+    return RequestsComponent;
+    var _a, _b, _c, _d, _e, _f;
+}());
+//# sourceMappingURL=/Users/haraldbregu/Dropbox/StarbookWebApp/src/requests.component.js.map
 
 /***/ },
 
@@ -9897,7 +9901,7 @@ module.exports = "<div class=\"company-container\">\n  <div class=\"header-conta
 /***/ 716:
 /***/ function(module, exports) {
 
-module.exports = "<div class=\"landing-container\">\n  <div class=\"header-container\">\n    <div class=\"overlay\">\n      <div class=\"header\">\n        <h1>Prenota il servizio che ti serve se non hai tempo da perdere.</h1>\n        <!-- <div class=\"header-text\">\n          <h1>Prenota il servizio che ti serve se non hai tempo da perdere.</h1>\n          <p>Su <span>Starbook</span> niente annunci, scegli il servizio, inserisci la data e prenota.</p>\n        </div>\n        <div class=\"search\">\n          <div class=\"search-field\">\n            <p-autoComplete [(ngModel)]=\"query\" [suggestions]=\"results\" field=\"title\" scrollHeight=\"275px\" (completeMethod)=\"search($event)\" (onSelect)=\"selectResult(query)\" placeholder=\"Cerca un servizio\" minLength=\"0\">\n              <template let-res>\n                <div class=\"search-result\" (click)=\"selectResult(res)\">{{ res.title }}</div>\n              </template>\n            </p-autoComplete>\n            <div class=\"spinner\" *ngIf=\"spinerView\">\n              <svg width='21px' height='21px' xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\" preserveAspectRatio=\"xMidYMid\" class=\"uil-ring\">\n                <rect x=\"0\" y=\"0\" width=\"100\" height=\"100\" fill=\"none\" class=\"bk\"></rect>\n                <circle cx=\"50\" cy=\"50\" r=\"45\" stroke-dasharray=\"169.64600329384882 113.09733552923257\" stroke=\"#3B568D\" fill=\"none\" stroke-width=\"10\">\n                  <animateTransform attributeName=\"transform\" type=\"rotate\" values=\"0 50 50;180 50 50;360 50 50;\" keyTimes=\"0;0.5;1\" dur=\"1s\" repeatCount=\"indefinite\" begin=\"0s\"></animateTransform>\n                </circle>\n              </svg>\n            </div>\n            <div class=\"close-container\" *ngIf=\"!spinerView && clearView\">\n              <span class=\"close rounded thick\" (click)=\"clearSearchForm()\"></span>\n            </div>\n            <div class=\"ui-autocomplete-panel empty\" *ngIf=\"results.length === 0 && query.length > 0\">\n              <div class=\"no-result noselect\">\n                Il servizio \"{{query}}\" non è disponibile\n                <button class=\"suggess-service\" (click)=\"requireService()\">{{newServiceRequest.message}}</button>\n              </div>\n            </div>\n          </div>\n          <div class=\"search-button\">\n            <button class=\"btn btn-primary\" (click)=\"searchMore()\"><i class=\"fa fa-search\" aria-hidden=\"true\"></i></button>\n          </div>\n        </div> -->\n        <div class=\"search-panel\">\n          <div class=\"fields\">\n            <div class=\"service-title\">\n              <div class=\"form-group\">\n                <label for=\"serviceTitleInput\">Di cosa hai bisogno?</label>\n                <div class=\"input-group\">\n                  <span class=\"input-group-addon\" id=\"price-input\"><i class=\"fa fa-pencil\" aria-hidden=\"true\"></i></span>\n                  <p-autoComplete [(ngModel)]=\"query\" [suggestions]=\"suggestions\" field=\"title\" scrollHeight=\"275px\" (completeMethod)=\"showSuggestions($event)\" (ngModelChange)=\"changeSearch($event)\" placeholder=\"Servizio, professionista, altro?\" minLength=\"0\">\n                    <template let-res>\n                      <i class=\"fa fa-search\" aria-hidden=\"true\"></i><div class=\"search-result\" (click)=\"selectSuggestion(res)\">{{ res.title }}</div>\n                    </template>\n                  </p-autoComplete>\n                  <div class=\"spinner\" *ngIf=\"spinerView\">\n                    <svg width='21px' height='21px' xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\" preserveAspectRatio=\"xMidYMid\" class=\"uil-ring\">\n                      <rect x=\"0\" y=\"0\" width=\"100\" height=\"100\" fill=\"none\" class=\"bk\"></rect>\n                      <circle cx=\"50\" cy=\"50\" r=\"45\" stroke-dasharray=\"169.64600329384882 113.09733552923257\" stroke=\"#3B568D\" fill=\"none\" stroke-width=\"10\">\n                        <animateTransform attributeName=\"transform\" type=\"rotate\" values=\"0 50 50;180 50 50;360 50 50;\" keyTimes=\"0;0.5;1\" dur=\"1s\" repeatCount=\"indefinite\" begin=\"0s\"></animateTransform>\n                      </circle>\n                    </svg>\n                  </div>\n                  <div class=\"close-container\" *ngIf=\"!spinerView && clearView\">\n                    <span class=\"close rounded thick\" (click)=\"clearSearchForm()\"></span>\n                  </div>\n                </div>\n              </div>\n            </div>\n            <div class=\"service-when\">\n              <div class=\"form-group\">\n                <label for=\"dateInput\">Quando ti serve?</label>\n                <div class=\"input-group\">\n                  <span class=\"input-group-addon\" id=\"price-input\"><i class=\"fa fa-calendar-check-o\" aria-hidden=\"true\"></i></span>\n                  <p-calendar class=\"date form-control\" name=\"data\" placeholder=\"Quando?\" [(ngModel)]=\"temp_date\" id=\"date\" autocomplete=\"off\" readonlyInput=\"true\" dateFormat=\"dd MM yy\" [locale]=\"it\" [minDate]=\"minDate\" (onSelect)=\"selectDate()\"></p-calendar>\n                </div>\n              </div>\n            </div>\n          </div>\n          <div class=\"service-action\">\n            <div class=\"form-group text-center\">\n              <button type=\"button\" id=\"next\" class=\"btn btn-danger\" (click)=\"bookServiceNow($object)\">Prenota</button>\n            </div>\n          </div>\n        </div>\n      </div>\n      <!-- <div class=\"bottom-container\">\n        <div class=\"arrow\"></div>\n      </div> -->\n    </div>\n  </div>\n  <div class=\"services-container\">\n    <div class=\"services-header\">\n      <h3><i class=\"fa fa-circle-o-notch animate\" *ngIf=\"services_state.loading\"></i> Servizi più utilizzati</h3>\n    </div>\n    <div class=\"services-body\" *ngIf=\"services.length>0\">\n      <div class=\"service-container\" *ngFor=\"let service of services\" (click)=\"bookServiceNow(service)\">\n        <div class=\"service\" [ngStyle]=\"{'background-image' : ' url(' + 'https://s3-eu-west-1.amazonaws.com/starbook-s3/services/'+ service._id + '/cover/0' + ')'}\">\n          <div class=\"overlay\">\n            <div class=\"text-container\">\n              <span class=\"title\">{{service.title}}</span>\n            </div>\n          </div>\n        </div>\n      </div>\n      <!-- <div class=\"service-container\">\n        <div class=\"service\" [ngStyle]=\"{'background-image' : ' url(' + 'https://s3-eu-west-1.amazonaws.com/starbook-s3/services/590b34bf6c8dd682c65e99bb/cover/0' + ')'}\">\n          <div class=\"overlay\">\n            <div class=\"text-container\">\n              <span class=\"title\">Elettrico</span>\n            </div>\n          </div>\n        </div>\n      </div>\n      <div class=\"service-container\">\n        <div class=\"service\" [ngStyle]=\"{'background-image' : ' url(' + 'https://s3-eu-west-1.amazonaws.com/starbook-s3/services/590b34bf6c8dd682c65e99bb/cover/0' + ')'}\">\n          <div class=\"overlay\">\n            <div class=\"text-container\">\n              <span class=\"title\">Elettrico</span>\n            </div>\n          </div>\n        </div>\n      </div>\n      <div class=\"service-container\">\n        <div class=\"service\" [ngStyle]=\"{'background-image' : ' url(' + 'https://s3-eu-west-1.amazonaws.com/starbook-s3/services/590b34bf6c8dd682c65e99bb/cover/0' + ')'}\">\n          <div class=\"overlay\">\n            <div class=\"text-container\">\n              <span class=\"title\">Elettrico</span>\n            </div>\n          </div>\n        </div>\n      </div>\n      <div class=\"service-container\">\n        <div class=\"service\" [ngStyle]=\"{'background-image' : ' url(' + 'https://s3-eu-west-1.amazonaws.com/starbook-s3/services/590b34bf6c8dd682c65e99bb/cover/0' + ')'}\">\n          <div class=\"overlay\">\n            <div class=\"text-container\">\n              <span class=\"title\">Elettrico</span>\n            </div>\n          </div>\n        </div>\n      </div>\n      <div class=\"service-container\">\n        <div class=\"service\" [ngStyle]=\"{'background-image' : ' url(' + 'https://s3-eu-west-1.amazonaws.com/starbook-s3/services/590b34bf6c8dd682c65e99bb/cover/0' + ')'}\">\n          <div class=\"overlay\">\n            <div class=\"text-container\">\n              <span class=\"title\">Elettrico</span>\n            </div>\n          </div>\n        </div>\n      </div>\n      <div class=\"service-container\">\n        <div class=\"service\" [ngStyle]=\"{'background-image' : ' url(' + 'https://s3-eu-west-1.amazonaws.com/starbook-s3/services/590b34bf6c8dd682c65e99bb/cover/0' + ')'}\">\n          <div class=\"overlay\">\n            <div class=\"text-container\">\n              <span class=\"title\">Elettrico</span>\n            </div>\n          </div>\n        </div>\n      </div> -->\n    </div>\n  </div>\n\n  <!-- <div class=\"category-container\" *ngIf=\"professionals\">\n    <div class=\"category\">\n      <div class=\"category-header\">\n        <h1>Ultimi Servizi</h1>\n      </div>\n      <div class=\"category-body\">\n        <div class=\"service-container\" *ngFor=\"let professional of professionals\" (click)=\"selectService(professional)\">\n          <div class=\"service\" title=\"{{professional.title}}\" [ngStyle]=\"{'background-image' : ' url(' + images_url + 'services/'+ professional._id + '/cover/0' + ')'}\">\n            <div class=\"overlay\">\n              <div class=\"text-container\">\n                <span class=\"title\">{{ professional.title }}</span>\n              </div>\n            </div>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div> -->\n\n  <div class=\"bullets-container\">\n    <h1>Come funziona</h1>\n    <div class=\"row bullets\">\n      <div class=\"col-xl-4 col-lg-4 col-md-6 col-sm-12\">\n        <div class=\"box\">\n          <img src=\"../../../assets/images/service-list.png\" class=\"rounded mx-auto d-block\" alt=\"Seleziona il servizio\">\n          <h3>Richiedi un servizio</h3>\n          <h5>Richiedi un servizio di cui hai bisogno.</h5>\n        </div>\n      </div>\n      <div class=\"col-xl-4 col-lg-4 col-md-6 col-sm-12\">\n        <div class=\"box\">\n          <img src=\"../../../assets/images/service-booking.png\" class=\"rounded mx-auto d-block\" alt=\"Ordina il servizio\">\n          <h3>Inserisci dove e quando</h3>\n          <h5>Decidi tu dove è quando hai bisogno.</h5>\n        </div>\n      </div>\n      <div class=\"col-xl-4 col-lg-4 col-md-6 col-sm-12\">\n        <div class=\"box\">\n          <img src=\"../../../assets/images/service-time.png\" class=\"rounded mx-auto d-block\" alt=\"Calcola preventivo\">\n          <h3>Prenota e rilassati</h3>\n          <h5>In poco tempo riceverai il servizio che ti serve.</h5>\n        </div>\n      </div>\n\n      <!-- <div class=\"col-xl-4 col-lg-4 col-md-6 col-sm-12\">\n        <div class=\"box\">\n          <img src=\"../../../assets/images/service-time.png\" class=\"rounded mx-auto d-block\" alt=\"Calcola preventivo\">\n          <h3>Ricevi il prezzo immediato</h3>\n          <h5>Ricevi in tempo reale un unico prezzo per il servizio, niente attese e niente intermediari.</h5>\n        </div>\n      </div> -->\n      <!-- <div class=\"col-xl-4 col-lg-4 col-md-6 col-sm-12\">\n        <div class=\"box\">\n          <img src=\"../../../assets/images/service-booking.png\" class=\"rounded mx-auto d-block\" alt=\"Ordina il servizio\">\n          <h3>Ordina il servizio</h3>\n          <h5>Scegli il giorno quando vuoi iniziare i lavori, l'indirizzo e ordina direttamente.</h5>\n        </div>\n      </div> -->\n    </div>\n  </div>\n  <div class=\"professional-container\" *ngIf=\"!currentUser\">\n    <div class=\"overlay\">\n      <div class=\"professional\">\n        <h1>Hai una professione, un mestiere o un'attività?</h1>\n        <p>Inizia ad usare Starbook per rendere più accessibile la tua attività, ricevere le richieste dai clienti direttamente nel tuo telefono e senza perdere tempo.</p>\n        <button class=\"btn btn-warning\" routerLink=\"/company\">Scopri di più</button>\n      </div>\n    </div>\n  </div>\n  <div class=\"container-fluid prefooter-container\">\n    <div class=\"row prefooter\">\n      <div class=\"col-xl-3 col-lg-3 col-md-3 col-sm-12\">\n        <p>Sicurezza del sito</p>\n        <div class=\"list-security\">\n          <img src=\"../../../assets/images/norton.png\" title=\"Norton Security\" alt=\"Norton Security\">\n          <img src=\"../../../assets/images/secure.png\" title=\"100% Secure\" alt=\"100% Secure\">\n          <img src=\"../../../assets/images/trust.png\" title=\"Trusted Website\" alt=\"Trusted Website\">\n        </div>\n      </div>\n      <div class=\"col-xl-3 col-lg-3 col-md-3 col-sm-12\">\n        <p>Sistemi di pagamento</p>\n        <div class=\"list-payment-methods\">\n          <img src=\"../../../assets/images/mastercard.png\" title=\"Mastercard\" alt=\"Mastercard\">\n          <img src=\"../../../assets/images/visa.png\" title=\"Visa\" alt=\"Visa\">\n          <img src=\"../../../assets/images/americanexpress.png\" title=\"American Express\" alt=\"American Express\">\n          <!-- <img src=\"../../../assets/images/stripe.png\" alt=\"Stripe\"> -->\n        </div>\n      </div>\n      <div class=\"col-xl-3 col-lg-3 col-md-3 col-sm-12\">\n        <!-- <p><a routerLink=\"/info/help\">Aiuto e Assistenza</a></p> -->\n        <p><a routerLink=\"/info/legal\">Privacy e Condizioni</a></p>\n        <!-- <p><a routerLink=\"/contact/partner\" *ngIf=\"currentUser\">Diventa partner</a></p> -->\n        <p><a routerLink=\"/insert/product\">Pubblica un servizio</a></p>\n        <p><a routerLink=\"/info/about\">Chi siamo</a></p>\n      </div>\n      <div class=\"col-xl-3 col-lg-3 col-md-3 col-sm-12\">\n        <p>Seguici su</p>\n        <div class=\"list-socials\">\n          <a href=\"https://www.facebook.com/starbook.co/\" target=\"_blank\"><img src=\"../../../assets/images/facebook.png\" title=\"Facebook\" alt=\"Facebook\"></a>\n          <a href=\"https://twitter.com/starbookco/\" target=\"_blank\"><img src=\"../../../assets/images/twitter.png\" title=\"Twitter\" alt=\"Twitter\"></a>\n          <a href=\"https://www.instagram.com/starbook.co/\" target=\"_blank\"><img src=\"../../../assets/images/instagram.png\" title=\"Instagram\" alt=\"Instagram\"></a>\n        </div>\n      </div>\n    </div>\n  </div>\n  <div class=\"footer\">\n    <p><a routerLink=\"/\"><strong>Starbook</strong> © 2017 Tutti i diritti riservati</a></p>\n  </div>\n</div>\n"
+module.exports = "<div class=\"landing-container\">\n  <div class=\"header-container\">\n    <div class=\"overlay\">\n      <div class=\"header\">\n        <h1>Prenota il servizio che ti serve se non hai tempo da perdere.</h1>\n        <!-- <div class=\"header-text\">\n          <h1>Prenota il servizio che ti serve se non hai tempo da perdere.</h1>\n          <p>Su <span>Starbook</span> niente annunci, scegli il servizio, inserisci la data e prenota.</p>\n        </div>\n        <div class=\"search\">\n          <div class=\"search-field\">\n            <p-autoComplete [(ngModel)]=\"query\" [suggestions]=\"results\" field=\"title\" scrollHeight=\"275px\" (completeMethod)=\"search($event)\" (onSelect)=\"selectResult(query)\" placeholder=\"Cerca un servizio\" minLength=\"0\">\n              <template let-res>\n                <div class=\"search-result\" (click)=\"selectResult(res)\">{{ res.title }}</div>\n              </template>\n            </p-autoComplete>\n            <div class=\"spinner\" *ngIf=\"spinerView\">\n              <svg width='21px' height='21px' xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\" preserveAspectRatio=\"xMidYMid\" class=\"uil-ring\">\n                <rect x=\"0\" y=\"0\" width=\"100\" height=\"100\" fill=\"none\" class=\"bk\"></rect>\n                <circle cx=\"50\" cy=\"50\" r=\"45\" stroke-dasharray=\"169.64600329384882 113.09733552923257\" stroke=\"#3B568D\" fill=\"none\" stroke-width=\"10\">\n                  <animateTransform attributeName=\"transform\" type=\"rotate\" values=\"0 50 50;180 50 50;360 50 50;\" keyTimes=\"0;0.5;1\" dur=\"1s\" repeatCount=\"indefinite\" begin=\"0s\"></animateTransform>\n                </circle>\n              </svg>\n            </div>\n            <div class=\"close-container\" *ngIf=\"!spinerView && clearView\">\n              <span class=\"close rounded thick\" (click)=\"clearSearchForm()\"></span>\n            </div>\n            <div class=\"ui-autocomplete-panel empty\" *ngIf=\"results.length === 0 && query.length > 0\">\n              <div class=\"no-result noselect\">\n                Il servizio \"{{query}}\" non è disponibile\n                <button class=\"suggess-service\" (click)=\"requireService()\">{{newServiceRequest.message}}</button>\n              </div>\n            </div>\n          </div>\n          <div class=\"search-button\">\n            <button class=\"btn btn-primary\" (click)=\"searchMore()\"><i class=\"fa fa-search\" aria-hidden=\"true\"></i></button>\n          </div>\n        </div> -->\n        <div class=\"search-panel\">\n          <div class=\"fields\">\n            <div class=\"service-title\">\n              <div class=\"form-group\">\n                <label for=\"serviceTitleInput\">Di cosa hai bisogno?</label>\n                <div class=\"input-group\">\n                  <span class=\"input-group-addon\" id=\"price-input\"><i class=\"fa fa-pencil\" aria-hidden=\"true\"></i></span>\n                  <p-autoComplete [(ngModel)]=\"query\" [suggestions]=\"suggestions\" field=\"title\" scrollHeight=\"275px\" (completeMethod)=\"showSuggestions($event)\" (ngModelChange)=\"changeSearch($event)\" placeholder=\"Servizio, professionista, altro?\" minLength=\"0\">\n                    <template let-res>\n                      <i class=\"fa fa-search\" aria-hidden=\"true\"></i><div class=\"search-result\" (click)=\"selectSuggestion(res)\">{{ res.title }}</div>\n                    </template>\n                  </p-autoComplete>\n                  <div class=\"spinner\" *ngIf=\"spinerView\">\n                    <svg width='21px' height='21px' xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\" preserveAspectRatio=\"xMidYMid\" class=\"uil-ring\">\n                      <rect x=\"0\" y=\"0\" width=\"100\" height=\"100\" fill=\"none\" class=\"bk\"></rect>\n                      <circle cx=\"50\" cy=\"50\" r=\"45\" stroke-dasharray=\"169.64600329384882 113.09733552923257\" stroke=\"#3B568D\" fill=\"none\" stroke-width=\"10\">\n                        <animateTransform attributeName=\"transform\" type=\"rotate\" values=\"0 50 50;180 50 50;360 50 50;\" keyTimes=\"0;0.5;1\" dur=\"1s\" repeatCount=\"indefinite\" begin=\"0s\"></animateTransform>\n                      </circle>\n                    </svg>\n                  </div>\n                  <div class=\"close-container\" *ngIf=\"!spinerView && clearView\">\n                    <span class=\"close rounded thick\" (click)=\"clearSearchForm()\"></span>\n                  </div>\n                </div>\n              </div>\n            </div>\n            <div class=\"service-when\">\n              <div class=\"form-group\">\n                <label for=\"dateInput\">Quando ti serve?</label>\n                <div class=\"input-group\">\n                  <span class=\"input-group-addon\" id=\"price-input\"><i class=\"fa fa-calendar-check-o\" aria-hidden=\"true\"></i></span>\n                  <p-calendar class=\"date form-control\" name=\"data\" placeholder=\"Quando?\" [(ngModel)]=\"temp_date\" id=\"date\" autocomplete=\"off\" readonlyInput=\"true\" dateFormat=\"dd MM yy\" [locale]=\"it\" [minDate]=\"minDate\" (onSelect)=\"selectDate()\"></p-calendar>\n                </div>\n              </div>\n            </div>\n          </div>\n          <div class=\"service-action\">\n            <div class=\"form-group text-center\">\n              <button type=\"button\" id=\"BookService\" class=\"btn btn-danger\" (click)=\"bookServiceNow($object)\">Prenota</button>\n            </div>\n          </div>\n        </div>\n      </div>\n      <!-- <div class=\"bottom-container\">\n        <div class=\"arrow\"></div>\n      </div> -->\n    </div>\n  </div>\n  <div class=\"services-container\">\n    <div class=\"services-header\">\n      <h3><i class=\"fa fa-circle-o-notch animate\" *ngIf=\"services_state.loading\"></i> Servizi più utilizzati</h3>\n    </div>\n    <div class=\"services-body\" *ngIf=\"services.length>0\">\n      <div class=\"service-container\" *ngFor=\"let service of services\" (click)=\"bookServiceNow(service)\">\n        <div class=\"service\" [ngStyle]=\"{'background-image' : ' url(' + 'https://s3-eu-west-1.amazonaws.com/starbook-s3/services/'+ service._id + '/cover/0' + ')'}\">\n          <div class=\"overlay\">\n            <div class=\"text-container\">\n              <span class=\"title\">{{service.title}}</span>\n            </div>\n          </div>\n        </div>\n      </div>\n      <!-- <div class=\"service-container\">\n        <div class=\"service\" [ngStyle]=\"{'background-image' : ' url(' + 'https://s3-eu-west-1.amazonaws.com/starbook-s3/services/590b34bf6c8dd682c65e99bb/cover/0' + ')'}\">\n          <div class=\"overlay\">\n            <div class=\"text-container\">\n              <span class=\"title\">Elettrico</span>\n            </div>\n          </div>\n        </div>\n      </div>\n      <div class=\"service-container\">\n        <div class=\"service\" [ngStyle]=\"{'background-image' : ' url(' + 'https://s3-eu-west-1.amazonaws.com/starbook-s3/services/590b34bf6c8dd682c65e99bb/cover/0' + ')'}\">\n          <div class=\"overlay\">\n            <div class=\"text-container\">\n              <span class=\"title\">Elettrico</span>\n            </div>\n          </div>\n        </div>\n      </div>\n      <div class=\"service-container\">\n        <div class=\"service\" [ngStyle]=\"{'background-image' : ' url(' + 'https://s3-eu-west-1.amazonaws.com/starbook-s3/services/590b34bf6c8dd682c65e99bb/cover/0' + ')'}\">\n          <div class=\"overlay\">\n            <div class=\"text-container\">\n              <span class=\"title\">Elettrico</span>\n            </div>\n          </div>\n        </div>\n      </div>\n      <div class=\"service-container\">\n        <div class=\"service\" [ngStyle]=\"{'background-image' : ' url(' + 'https://s3-eu-west-1.amazonaws.com/starbook-s3/services/590b34bf6c8dd682c65e99bb/cover/0' + ')'}\">\n          <div class=\"overlay\">\n            <div class=\"text-container\">\n              <span class=\"title\">Elettrico</span>\n            </div>\n          </div>\n        </div>\n      </div>\n      <div class=\"service-container\">\n        <div class=\"service\" [ngStyle]=\"{'background-image' : ' url(' + 'https://s3-eu-west-1.amazonaws.com/starbook-s3/services/590b34bf6c8dd682c65e99bb/cover/0' + ')'}\">\n          <div class=\"overlay\">\n            <div class=\"text-container\">\n              <span class=\"title\">Elettrico</span>\n            </div>\n          </div>\n        </div>\n      </div>\n      <div class=\"service-container\">\n        <div class=\"service\" [ngStyle]=\"{'background-image' : ' url(' + 'https://s3-eu-west-1.amazonaws.com/starbook-s3/services/590b34bf6c8dd682c65e99bb/cover/0' + ')'}\">\n          <div class=\"overlay\">\n            <div class=\"text-container\">\n              <span class=\"title\">Elettrico</span>\n            </div>\n          </div>\n        </div>\n      </div> -->\n    </div>\n  </div>\n\n  <!-- <div class=\"category-container\" *ngIf=\"professionals\">\n    <div class=\"category\">\n      <div class=\"category-header\">\n        <h1>Ultimi Servizi</h1>\n      </div>\n      <div class=\"category-body\">\n        <div class=\"service-container\" *ngFor=\"let professional of professionals\" (click)=\"selectService(professional)\">\n          <div class=\"service\" title=\"{{professional.title}}\" [ngStyle]=\"{'background-image' : ' url(' + images_url + 'services/'+ professional._id + '/cover/0' + ')'}\">\n            <div class=\"overlay\">\n              <div class=\"text-container\">\n                <span class=\"title\">{{ professional.title }}</span>\n              </div>\n            </div>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div> -->\n\n  <div class=\"bullets-container\">\n    <h1>Come funziona</h1>\n    <div class=\"row bullets\">\n      <div class=\"col-xl-4 col-lg-4 col-md-6 col-sm-12\">\n        <div class=\"box\">\n          <img src=\"../../../assets/images/service-list.png\" class=\"rounded mx-auto d-block\" alt=\"Seleziona il servizio\">\n          <h3>Richiedi un servizio</h3>\n          <h5>Richiedi un servizio di cui hai bisogno.</h5>\n        </div>\n      </div>\n      <div class=\"col-xl-4 col-lg-4 col-md-6 col-sm-12\">\n        <div class=\"box\">\n          <img src=\"../../../assets/images/service-booking.png\" class=\"rounded mx-auto d-block\" alt=\"Ordina il servizio\">\n          <h3>Inserisci dove e quando</h3>\n          <h5>Decidi tu dove è quando hai bisogno.</h5>\n        </div>\n      </div>\n      <div class=\"col-xl-4 col-lg-4 col-md-6 col-sm-12\">\n        <div class=\"box\">\n          <img src=\"../../../assets/images/service-time.png\" class=\"rounded mx-auto d-block\" alt=\"Calcola preventivo\">\n          <h3>Prenota e rilassati</h3>\n          <h5>In poco tempo riceverai il servizio che ti serve.</h5>\n        </div>\n      </div>\n\n      <!-- <div class=\"col-xl-4 col-lg-4 col-md-6 col-sm-12\">\n        <div class=\"box\">\n          <img src=\"../../../assets/images/service-time.png\" class=\"rounded mx-auto d-block\" alt=\"Calcola preventivo\">\n          <h3>Ricevi il prezzo immediato</h3>\n          <h5>Ricevi in tempo reale un unico prezzo per il servizio, niente attese e niente intermediari.</h5>\n        </div>\n      </div> -->\n      <!-- <div class=\"col-xl-4 col-lg-4 col-md-6 col-sm-12\">\n        <div class=\"box\">\n          <img src=\"../../../assets/images/service-booking.png\" class=\"rounded mx-auto d-block\" alt=\"Ordina il servizio\">\n          <h3>Ordina il servizio</h3>\n          <h5>Scegli il giorno quando vuoi iniziare i lavori, l'indirizzo e ordina direttamente.</h5>\n        </div>\n      </div> -->\n    </div>\n  </div>\n  <div class=\"professional-container\" *ngIf=\"!currentUser\">\n    <div class=\"overlay\">\n      <div class=\"professional\">\n        <h1>Hai una professione, un mestiere o un'attività?</h1>\n        <p>Inizia ad usare Starbook per rendere più accessibile la tua attività, ricevere le richieste dai clienti direttamente nel tuo telefono e senza perdere tempo.</p>\n        <button class=\"btn btn-warning\" routerLink=\"/company\">Scopri di più</button>\n      </div>\n    </div>\n  </div>\n  <div class=\"container-fluid prefooter-container\">\n    <div class=\"row prefooter\">\n      <div class=\"col-xl-3 col-lg-3 col-md-3 col-sm-12\">\n        <p>Sicurezza del sito</p>\n        <div class=\"list-security\">\n          <img src=\"../../../assets/images/norton.png\" title=\"Norton Security\" alt=\"Norton Security\">\n          <img src=\"../../../assets/images/secure.png\" title=\"100% Secure\" alt=\"100% Secure\">\n          <img src=\"../../../assets/images/trust.png\" title=\"Trusted Website\" alt=\"Trusted Website\">\n        </div>\n      </div>\n      <div class=\"col-xl-3 col-lg-3 col-md-3 col-sm-12\">\n        <p>Sistemi di pagamento</p>\n        <div class=\"list-payment-methods\">\n          <img src=\"../../../assets/images/mastercard.png\" title=\"Mastercard\" alt=\"Mastercard\">\n          <img src=\"../../../assets/images/visa.png\" title=\"Visa\" alt=\"Visa\">\n          <img src=\"../../../assets/images/americanexpress.png\" title=\"American Express\" alt=\"American Express\">\n          <!-- <img src=\"../../../assets/images/stripe.png\" alt=\"Stripe\"> -->\n        </div>\n      </div>\n      <div class=\"col-xl-3 col-lg-3 col-md-3 col-sm-12\">\n        <!-- <p><a routerLink=\"/info/help\">Aiuto e Assistenza</a></p> -->\n        <p><a routerLink=\"/info/legal\">Privacy e Condizioni</a></p>\n        <!-- <p><a routerLink=\"/contact/partner\" *ngIf=\"currentUser\">Diventa partner</a></p> -->\n        <p><a routerLink=\"/insert/product\">Pubblica un servizio</a></p>\n        <p><a routerLink=\"/info/about\">Chi siamo</a></p>\n        <!-- <p><a routerLink=\"/blog\">Blog</a></p> -->\n      </div>\n      <div class=\"col-xl-3 col-lg-3 col-md-3 col-sm-12\">\n        <p>Seguici su</p>\n        <div class=\"list-socials\">\n          <a href=\"https://www.facebook.com/starbook.co/\" target=\"_blank\"><img src=\"../../../assets/images/facebook.png\" title=\"Facebook\" alt=\"Facebook\"></a>\n          <a href=\"https://twitter.com/starbookco/\" target=\"_blank\"><img src=\"../../../assets/images/twitter.png\" title=\"Twitter\" alt=\"Twitter\"></a>\n          <a href=\"https://www.instagram.com/starbook.co/\" target=\"_blank\"><img src=\"../../../assets/images/instagram.png\" title=\"Instagram\" alt=\"Instagram\"></a>\n        </div>\n      </div>\n    </div>\n  </div>\n  <div class=\"footer\">\n    <p><a routerLink=\"/\"><strong>Starbook</strong> © 2017 Tutti i diritti riservati</a></p>\n  </div>\n</div>\n"
 
 /***/ },
 
@@ -9978,7 +9982,7 @@ var PopupsService = (function () {
 /***/ 720:
 /***/ function(module, exports) {
 
-module.exports = "<div class=\"blog\">\n  <div class=\"header\">\n    <div class=\"container\">\n      <div class=\"row\">\n        <div class=\"col-xs-12\">\n          <h1>L'idraulico digitale.</h1>\n          <h1>L'artigiano che conquista il web per trovare clienti.</h1>\n          <p>E’ stato presentato a Roma “Sei un genio!”, il nuovo libro di Giampaolo Colletti che racconta le storie di lavoratori e imprenditori che hanno dato una svolta alla loro vita unendo l’eccellenza dei mestieri alle opportunità offerte dalle nuove tecnologie</p>\n        </div>\n      </div>\n    </div>\n  </div>\n\n  <div class=\"row\">\n    <div class=\"col-xs-12\">\n      <span class=\"author\">\n        Carlotta Balena\n      </span>\n      <time>20 aprile 2017</time>\n    </div>\n  </div>\n\n  <div class=\"container\">\n    <div class=\"row\">\n      <div class=\"col-xs-12 col-lg-9 col-md-9\">\n        <p style=\"text-align: justify\">\n          Producono caffè, confezionano abiti, trasportano carichi pesanti in bici sfidando i colli e i sampietrini di Roma. <strong>Sono storici dell’arte e realizzano video-tutorial su come si pulisce un pennello</strong>, analizzano i dati del proprio taxi per calcolare corse e tragitti, aggregano sarti e portano il made in Italy all’estero. <strong>Sono tutte persone che “fanno cose”</strong>, come direbbe Nanni Moretti, ma le fanno in modo in modo innovativo: mantengono la tradizione di famiglia ma usano la rete per aprirsi al pubblico, <strong>inventano strategie per cambiare vita</strong> e anche migliorare quella degli altri, tutto grazie alle nuove tecnologie. <strong>Sono artigiani, ma Giampaolo Colletti nel suo ultimo libro “Sei un genio!”</strong> <strong>(Hoepli) li chiama “artigeni”,</strong> perché a un certo punto una lampadina si è accesa ed è avvenuta una svolta. Il libro raccoglie le loro storie che il giornalista e fondatore della job-community <strong>wwworkers</strong> ha “scovato” girando l’Italia: oltre 150 esempi di persone e imprese che, partendo da un’idea innovativa, sono riuscite a crearsi una community, una nicchia di mercato e piano piano un business.\n        </p>\n      </div>\n      <div class=\"col-xs-12 col-lg-3 col-md-3\">\n        questa è la parte destra\n      </div>\n    </div>\n\n  </div>\n</div>\n\n\n\n<div class=\"container\">\n\n    <div class=\"row\">\n    <div class=\"col-xs-12 col-lg-9 col-md-9\">\n    <div class=\"content\" itemprop=\"articleBody\">\n    <p style=\"text-align: justify\">Producono caffè, confezionano abiti, trasportano carichi pesanti in bici sfidando i colli e i sampietrini di Roma. <strong>Sono storici dell’arte e realizzano video-tutorial su come si pulisce un pennello</strong>, analizzano i dati del proprio taxi per calcolare corse e tragitti, aggregano sarti e portano il made in Italy all’estero. <strong>Sono tutte persone che “fanno cose”</strong>, come direbbe Nanni Moretti, ma le fanno in modo in modo innovativo: mantengono la tradizione di famiglia ma usano la rete per aprirsi al pubblico, <strong>inventano strategie per cambiare vita</strong> e anche migliorare quella degli altri, tutto grazie alle nuove tecnologie. <strong>Sono artigiani, ma Giampaolo Colletti nel suo ultimo libro “Sei un genio!”</strong> <strong>(Hoepli) li chiama “artigeni”,</strong> perché a un certo punto una lampadina si è accesa ed è avvenuta una svolta. Il libro raccoglie le loro storie che il giornalista e fondatore della job-community <strong>wwworkers</strong> ha “scovato” girando l’Italia: oltre 150 esempi di persone e imprese che, partendo da un’idea innovativa, sono riuscite a crearsi una community, una nicchia di mercato e piano piano un business.</p>\n    <p style=\"text-align: justify\"><a href=\"http://startupitalia.eu/wp-content/uploads/2017/04/IMG_5673.jpg\"><img class=\"alignnone wp-image-71771 size-full\" src=\"http://startupitalia.eu/wp-content/uploads/2017/04/IMG_5673.jpg\" alt=\"\" width=\"2016\" height=\"1512\" srcset=\"http://startupitalia.eu/wp-content/uploads/2017/04/IMG_5673.jpg 2016w, http://startupitalia.eu/wp-content/uploads/2017/04/IMG_5673-300x225.jpg 300w, http://startupitalia.eu/wp-content/uploads/2017/04/IMG_5673-768x576.jpg 768w, http://startupitalia.eu/wp-content/uploads/2017/04/IMG_5673-1024x768.jpg 1024w\" sizes=\"(max-width: 2016px) 100vw, 2016px\"></a></p>\n    <h2 style=\"text-align: justify\">Passione e spirito d’iniziativa</h2>\n    <p style=\"text-align: justify\">“Il libro si intitola ‘Sei un genio!’, ma in realtà le storie che racconta dimostrano che non bisogna affatto essere dei geni per cambiare vita – ha detto <strong>Riccardo Luna</strong>, direttore di AGI, che ieri ha moderato la presentazione romana del libro – non bisogna necessariamente inventare Facebook per migliorare la propria vita, basta saper sfruttare gli strumenti che abbiamo, come la Rete, che può essere una leva enorme per il lavoro”. In effetti tutti gli “artigeni” che ieri erano presenti alla libreria IBS di via Nazionale per raccontare di persona la propria storia <strong>non avevano l’aria del nerd appena uscito da Harvard, ma piuttosto persone armate di una grande passione per il proprio mestiere e di gran spirito d’iniziativa.</strong></p>\n    <h2 style=\"text-align: justify\">Le storie di chi ce l’ha fatta</h2>\n    <p style=\"text-align: justify\">C’era <strong>Luca Carbonelli</strong>, da Napoli: è a capo della torrefazione di famiglia, ed ha capito che se avrebbe usato la Rete, il suo caffè avrebbe oltrepassato i confini regionali. Così lo vende online da circa 10 anni. Anche <strong>Ela Siromascenko</strong>, ha avviato il suo business dalla vendita online: ha messo le proprie creazioni sartoriali in Rete quasi per scherzo. E’ arrivata in Italia dalla Romania con un dottorato in comunicazione, ma quando ha scoperto che i suoi abiti da cerimonia erano molto apprezzati su <strong>Etsy</strong> (la piattaforma dedicata ad artigiani e creativi) ha capito che la moda sarebbe stata la sua strada. Dalle vendite su Etsy, nel 2015 è passata al suo sito personale e ora ha anche <strong>un atelier a Milano</strong> “perché le clienti sono più propense a spendere se l’abito lo indossano”. Ad ogni modo non ha abbandonato il suo primo negozio online: “Ancora oggi gran parte delle vendite all’estero proviene da Etsy”. Poi c’erano i corrieri “ecologici” di <strong>“E adesso pedala”</strong>: una piccola community di biker che ha messo la propria passione per le due ruote a disposizione di un servizio unico in città: trasportano grossi carichi su Roma utilizzando dei cargo. In altre parole aiutano a fare tutti quegli spostamenti per i quali sarebbe necessario un furgoncino, molto più inquinante e costoso. A proposito di traffico: <strong>Simone Angelini</strong> ha raccontato di come ha trovato il sistema per “hackerare” il suo taxi romano, usando un software di sua invenzione che è in grado di calcolare in anticipo il costo della corsa.</p>\n    <p style=\"text-align: justify\"><a href=\"http://startupitalia.eu/wp-content/uploads/2017/04/FullSizeRender-1.jpg\"><img class=\"alignnone wp-image-71772 size-full\" src=\"http://startupitalia.eu/wp-content/uploads/2017/04/FullSizeRender-1.jpg\" alt=\"\" width=\"1663\" height=\"1226\" srcset=\"http://startupitalia.eu/wp-content/uploads/2017/04/FullSizeRender-1.jpg 1663w, http://startupitalia.eu/wp-content/uploads/2017/04/FullSizeRender-1-300x221.jpg 300w, http://startupitalia.eu/wp-content/uploads/2017/04/FullSizeRender-1-768x566.jpg 768w, http://startupitalia.eu/wp-content/uploads/2017/04/FullSizeRender-1-1024x755.jpg 1024w\" sizes=\"(max-width: 1663px) 100vw, 1663px\"></a></p>\n    <h2 style=\"text-align: justify\">L’eccellenza, il filo rosso</h2>\n    <p style=\"text-align: justify\">La sua e tante altre storie sono raccolte nel libro di Colletti, che racconta come il filo rosso tra tutti gli artigeni sia stato la capacità di sfruttare le nuove tecnologie per<strong> intercettare una determinata community</strong>: il successo delle loro storie è dato anche dal fatto che parlano a <strong>gruppi</strong>&nbsp;ristretti di persone, che quindi diventano <strong>fidelizzate</strong>. E poi, naturalmente, c’è il gusto per l’eccellenza: «Non basta l’idea. Perché per vincere la sfida dei mercati e competere in questi anni liquidi non basta lavorare bene. Occorre farlo al meglio. Bisogna diventare rilevanti ed eccellere». E loro hanno trovato il modo per farlo.</p>\n    <p style=\"text-align: right\"><a href=\"https://twitter.com/carlottabalena\">@carlottabalena</a></p>\n    </div>\n    </div>\n    </div>\n\n</div>\n"
+module.exports = "<div class=\"blog-container\">\n  <div class=\"header\">\n    <div class=\"container\">\n      <div class=\"row\">\n        <div class=\"col-xs-12\">\n          <h1>L'artigiano che conquista il web per trovare clienti.</h1>\n          <p>E’ stato presentato a Roma “Sei un genio!”, il nuovo libro di Giampaolo Colletti che racconta le storie di lavoratori e imprenditori che hanno dato una svolta alla loro vita unendo l’eccellenza dei mestieri alle opportunità offerte dalle nuove tecnologie</p>\n        </div>\n      </div>\n    </div>\n  </div>\n\n  <div class=\"row\">\n    <div class=\"col-xs-12\">\n      <span class=\"author\">\n        Carlotta Balena\n      </span>\n      <time>20 aprile 2017</time>\n    </div>\n  </div>\n\n  <div class=\"container\">\n    <p style=\"text-align: justify\">\n      Producono caffè, confezionano abiti, trasportano carichi pesanti in bici sfidando i colli e i sampietrini di Roma. <strong>Sono storici dell’arte e realizzano video-tutorial su come si pulisce un pennello</strong>, analizzano i dati del proprio taxi per calcolare corse e tragitti, aggregano sarti e portano il made in Italy all’estero. <strong>Sono tutte persone che “fanno cose”</strong>, come direbbe Nanni Moretti, ma le fanno in modo in modo innovativo: mantengono la tradizione di famiglia ma usano la rete per aprirsi al pubblico, <strong>inventano strategie per cambiare vita</strong> e anche migliorare quella degli altri, tutto grazie alle nuove tecnologie. <strong>Sono artigiani, ma Giampaolo Colletti nel suo ultimo libro “Sei un genio!”</strong> <strong>(Hoepli) li chiama “artigeni”,</strong> perché a un certo punto una lampadina si è accesa ed è avvenuta una svolta. Il libro raccoglie le loro storie che il giornalista e fondatore della job-community <strong>wwworkers</strong> ha “scovato” girando l’Italia: oltre 150 esempi di persone e imprese che, partendo da un’idea innovativa, sono riuscite a crearsi una community, una nicchia di mercato e piano piano un business.\n    </p>\n\n    <!-- <div class=\"row\">\n      <div class=\"col-xs-12 col-lg-9 col-md-9\">\n      </div>\n      <div class=\"col-xs-12 col-lg-3 col-md-3\">\n        questa è la parte destra\n      </div>\n    </div> -->\n\n  </div>\n</div>\n\n\n\n<div class=\"container\">\n\n    <!-- <div class=\"row\">\n    <div class=\"col-xs-12 col-lg-9 col-md-9\"> -->\n    <div class=\"content\" itemprop=\"articleBody\">\n    <p style=\"text-align: justify\">Producono caffè, confezionano abiti, trasportano carichi pesanti in bici sfidando i colli e i sampietrini di Roma. <strong>Sono storici dell’arte e realizzano video-tutorial su come si pulisce un pennello</strong>, analizzano i dati del proprio taxi per calcolare corse e tragitti, aggregano sarti e portano il made in Italy all’estero. <strong>Sono tutte persone che “fanno cose”</strong>, come direbbe Nanni Moretti, ma le fanno in modo in modo innovativo: mantengono la tradizione di famiglia ma usano la rete per aprirsi al pubblico, <strong>inventano strategie per cambiare vita</strong> e anche migliorare quella degli altri, tutto grazie alle nuove tecnologie. <strong>Sono artigiani, ma Giampaolo Colletti nel suo ultimo libro “Sei un genio!”</strong> <strong>(Hoepli) li chiama “artigeni”,</strong> perché a un certo punto una lampadina si è accesa ed è avvenuta una svolta. Il libro raccoglie le loro storie che il giornalista e fondatore della job-community <strong>wwworkers</strong> ha “scovato” girando l’Italia: oltre 150 esempi di persone e imprese che, partendo da un’idea innovativa, sono riuscite a crearsi una community, una nicchia di mercato e piano piano un business.</p>\n    <p style=\"text-align: justify\"><a href=\"http://startupitalia.eu/wp-content/uploads/2017/04/IMG_5673.jpg\"><img class=\"alignnone wp-image-71771 size-full\" src=\"http://startupitalia.eu/wp-content/uploads/2017/04/IMG_5673.jpg\" alt=\"\" width=\"2016\" height=\"1512\" srcset=\"http://startupitalia.eu/wp-content/uploads/2017/04/IMG_5673.jpg 2016w, http://startupitalia.eu/wp-content/uploads/2017/04/IMG_5673-300x225.jpg 300w, http://startupitalia.eu/wp-content/uploads/2017/04/IMG_5673-768x576.jpg 768w, http://startupitalia.eu/wp-content/uploads/2017/04/IMG_5673-1024x768.jpg 1024w\" sizes=\"(max-width: 2016px) 100vw, 2016px\"></a></p>\n    <h2 style=\"text-align: justify\">Passione e spirito d’iniziativa</h2>\n    <p style=\"text-align: justify\">“Il libro si intitola ‘Sei un genio!’, ma in realtà le storie che racconta dimostrano che non bisogna affatto essere dei geni per cambiare vita – ha detto <strong>Riccardo Luna</strong>, direttore di AGI, che ieri ha moderato la presentazione romana del libro – non bisogna necessariamente inventare Facebook per migliorare la propria vita, basta saper sfruttare gli strumenti che abbiamo, come la Rete, che può essere una leva enorme per il lavoro”. In effetti tutti gli “artigeni” che ieri erano presenti alla libreria IBS di via Nazionale per raccontare di persona la propria storia <strong>non avevano l’aria del nerd appena uscito da Harvard, ma piuttosto persone armate di una grande passione per il proprio mestiere e di gran spirito d’iniziativa.</strong></p>\n    <h2 style=\"text-align: justify\">Le storie di chi ce l’ha fatta</h2>\n    <p style=\"text-align: justify\">C’era <strong>Luca Carbonelli</strong>, da Napoli: è a capo della torrefazione di famiglia, ed ha capito che se avrebbe usato la Rete, il suo caffè avrebbe oltrepassato i confini regionali. Così lo vende online da circa 10 anni. Anche <strong>Ela Siromascenko</strong>, ha avviato il suo business dalla vendita online: ha messo le proprie creazioni sartoriali in Rete quasi per scherzo. E’ arrivata in Italia dalla Romania con un dottorato in comunicazione, ma quando ha scoperto che i suoi abiti da cerimonia erano molto apprezzati su <strong>Etsy</strong> (la piattaforma dedicata ad artigiani e creativi) ha capito che la moda sarebbe stata la sua strada. Dalle vendite su Etsy, nel 2015 è passata al suo sito personale e ora ha anche <strong>un atelier a Milano</strong> “perché le clienti sono più propense a spendere se l’abito lo indossano”. Ad ogni modo non ha abbandonato il suo primo negozio online: “Ancora oggi gran parte delle vendite all’estero proviene da Etsy”. Poi c’erano i corrieri “ecologici” di <strong>“E adesso pedala”</strong>: una piccola community di biker che ha messo la propria passione per le due ruote a disposizione di un servizio unico in città: trasportano grossi carichi su Roma utilizzando dei cargo. In altre parole aiutano a fare tutti quegli spostamenti per i quali sarebbe necessario un furgoncino, molto più inquinante e costoso. A proposito di traffico: <strong>Simone Angelini</strong> ha raccontato di come ha trovato il sistema per “hackerare” il suo taxi romano, usando un software di sua invenzione che è in grado di calcolare in anticipo il costo della corsa.</p>\n    <p style=\"text-align: justify\"><a href=\"http://startupitalia.eu/wp-content/uploads/2017/04/FullSizeRender-1.jpg\"><img class=\"alignnone wp-image-71772 size-full\" src=\"http://startupitalia.eu/wp-content/uploads/2017/04/FullSizeRender-1.jpg\" alt=\"\" width=\"1663\" height=\"1226\" srcset=\"http://startupitalia.eu/wp-content/uploads/2017/04/FullSizeRender-1.jpg 1663w, http://startupitalia.eu/wp-content/uploads/2017/04/FullSizeRender-1-300x221.jpg 300w, http://startupitalia.eu/wp-content/uploads/2017/04/FullSizeRender-1-768x566.jpg 768w, http://startupitalia.eu/wp-content/uploads/2017/04/FullSizeRender-1-1024x755.jpg 1024w\" sizes=\"(max-width: 1663px) 100vw, 1663px\"></a></p>\n    <h2 style=\"text-align: justify\">L’eccellenza, il filo rosso</h2>\n    <p style=\"text-align: justify\">La sua e tante altre storie sono raccolte nel libro di Colletti, che racconta come il filo rosso tra tutti gli artigeni sia stato la capacità di sfruttare le nuove tecnologie per<strong> intercettare una determinata community</strong>: il successo delle loro storie è dato anche dal fatto che parlano a <strong>gruppi</strong>&nbsp;ristretti di persone, che quindi diventano <strong>fidelizzate</strong>. E poi, naturalmente, c’è il gusto per l’eccellenza: «Non basta l’idea. Perché per vincere la sfida dei mercati e competere in questi anni liquidi non basta lavorare bene. Occorre farlo al meglio. Bisogna diventare rilevanti ed eccellere». E loro hanno trovato il modo per farlo.</p>\n    <p style=\"text-align: right\"><a href=\"https://twitter.com/carlottabalena\">@carlottabalena</a></p>\n    </div>\n    <!-- </div>\n    </div> -->\n\n</div>\n"
 
 /***/ },
 
@@ -9992,7 +9996,7 @@ module.exports = "<div class=\"category-container\" *ngIf=\"category\">\n  <div 
 /***/ 722:
 /***/ function(module, exports) {
 
-module.exports = "<div class=\"checkout-container\">\n  <div class=\"progress-container\" *ngIf=\"step\">\n    <div class=\"progress\" [ngStyle]=\"{'width': setProgressWidth()}\"></div>\n  </div>\n\n  <button type=\"button\" id=\"next\" class=\"btn btn-warning back\" (click)=\"undoStep()\" *ngIf=\"step\">Indietro</button>\n\n  <div class=\"checkout\" *ngIf=\"step==='date'\">\n    <div class=\"checkout-header\">\n      <h1>Quando hai bisogno?</h1>\n      <p>Inserisci il giorno che vuoi ricevere questo servizio.</p>\n    </div>\n    <div class=\"checkout-body\">\n      <form (keyup.enter)=\"nextStep()\">\n        <div class=\"input-group\">\n          <p-calendar class=\"date\" name=\"data\" [(ngModel)]=\"temp_date\" id=\"date\" autocomplete=\"off\" readonlyInput=\"true\" dateFormat=\"dd MM yy\" [locale]=\"it\" [minDate]=\"minDate\" (onSelect)=\"selectDate()\" placeholder=\"Inserisci la data\"></p-calendar>\n        </div>\n        <div class=\"form-group error\">\n          <span class=\"error-text\" *ngIf=\"state.date_error\">{{state.date_error}}</span>\n        </div>\n        <div class=\"actions\">\n          <div class=\"form-group text-center\">\n            <button type=\"button\" class=\"btn btn-warning\" (click)=\"nextStep()\">Avanti</button>\n          </div>\n        </div>\n      </form>\n    </div>\n  </div>\n  <div class=\"checkout\" *ngIf=\"step==='address'\">\n    <div class=\"checkout-header\">\n      <h1>Dove hai bisogno?</h1>\n      <p>Inserisci l'indirizzo esatto per poter trovare il professionista più vicino.</p>\n    </div>\n    <div class=\"checkout-body\">\n      <form (keyup.enter)=\"nextStep()\">\n        <div class=\"input-group\">\n          <p-autoComplete id=\"address\" class=\"form-control\" [(ngModel)]=\"temp_address\" [suggestions]=\"addresses\" field=\"street_number_city\" [ngModelOptions]=\"{standalone: true}\" (completeMethod)=\"getAddresses($event)\" (onSelect)=\"selectAddress($event)\" (ngModelChange)=\"changeAddress($event)\" (clickOutside)=\"clickOutsideAddressInput()\" placeholder=\"Via, Numero, Città\"></p-autoComplete>\n        </div>\n        <div class=\"form-group error\">\n          <span class=\"error-text\" *ngIf=\"state.address_error\">{{state.address_error}}</span>\n        </div>\n        <div class=\"actions\">\n          <div class=\"form-group text-center\">\n            <button type=\"button\" class=\"btn btn-warning\" (click)=\"nextStep()\">Avanti</button>\n          </div>\n        </div>\n      </form>\n    </div>\n  </div>\n  <div class=\"checkout\" *ngIf=\"step==='note'\">\n    <div class=\"checkout-header\">\n      <h1>Vuoi lasciare una nota?</h1>\n      <p>Inserisci una nota per descrivere quello che ti serve in modo che sia più chiaro per il professionista.</p>\n    </div>\n    <div class=\"checkout-body\" *ngIf=\"Order.services\">\n      <form>\n        <div class=\"input-group\">\n          <textarea id=\"description-input\" class=\"form-control\" [(ngModel)]=\"Order.description\" placeholder=\"Inserisci una descrizione\" rows=\"4\" [ngModelOptions]=\"{standalone: true}\"></textarea>\n        </div>\n        <div class=\"actions\">\n          <div class=\"form-group text-center\">\n            <button type=\"button\" class=\"btn btn-warning\" (click)=\"nextStep()\">Avanti</button>\n          </div>\n        </div>\n      </form>\n    </div>\n  </div>\n  <div class=\"checkout\" *ngIf=\"step==='preview'\">\n    <div class=\"checkout-header\">\n      <h1>Riepilogo</h1>\n    </div>\n    <div class=\"checkout-body\" *ngIf=\"Order.services\">\n      <div class=\"order-container\">\n        <div class=\"services\" *ngFor=\"let service of Order.services\">\n          <div class=\"service\">\n            <div class=\"service-header\">\n              <span class=\"title\">{{service.title}}</span>\n            </div>\n            <div class=\"details\" *ngFor=\"let detail of service.details\">\n              <span class=\"detail\" *ngIf=\"detail.price>0\"><strong>€{{detail.price/100}}/</strong></span>\n              <span class=\"detail\">{{detail.title}}</span>\n            </div>\n          </div>\n        </div>\n        <div class=\"line\"></div>\n        <div class=\"address\">\n          <div class=\"address-header\">\n            <span>Indirizzo</span>\n          </div>\n          <div class=\"address-body\">\n            <span>{{Order.address.street}} {{Order.address.street_number}}, {{Order.address.city}}</span>\n          </div>\n        </div>\n        <div class=\"date\">\n          <div class=\"date-header\">\n            <span>Data</span>\n          </div>\n          <div class=\"date-body\">\n            <span>{{formated_date}}</span>\n          </div>\n        </div>\n      </div>\n      <div class=\"actions\">\n        <div class=\"form-group text-center\">\n          <button type=\"button\" class=\"btn btn-warning\" (click)=\"nextStep()\">Avanti</button>\n        </div>\n      </div>\n    </div>\n  </div>\n\n  <div class=\"checkout\" *ngIf=\"step==='signup'\">\n    <div class=\"checkout-header\">\n      <h1>Crea un account</h1>\n    </div>\n    <div class=\"checkout-body\">\n      <form>\n        <div class=\"form-group\">\n          <label for=\"emailInput\">Email</label>\n          <input id=\"emailInput\" type=\"email\" name=\"email\" placeholder=\"La tua mail\" class=\"form-control\" [ngClass]=\"{'error-input': signup_state.email_error}\" [(ngModel)]=\"signupParameters.email\" [ngModelOptions]=\"{standalone: true}\">\n          <small class=\"error-message\" *ngIf=\"signup_state.email_error\">{{signup_state.email_error}}</small>\n        </div>\n        <div class=\"row\">\n          <div class=\"col-md-6\">\n            <div class=\"form-group\">\n              <label for=\"firstNameInput\">Nome</label>\n              <input id=\"firstNameInput\" type=\"firstname\" name=\"firstnam\" placeholder=\"Nome\" class=\"form-control\" [ngClass]=\"{'error-input': signup_state.first_name_error}\" [(ngModel)]=\"signupParameters.firstname\" [ngModelOptions]=\"{standalone: true}\">\n              <small class=\"error-message\" *ngIf=\"signup_state.first_name_error\">{{signup_state.first_name_error}}</small>\n            </div>\n          </div>\n          <div class=\"col-md-6\">\n            <div class=\"form-group\">\n              <label for=\"lastNameInput\">Cognome</label>\n              <input id=\"lastNameInput\" type=\"lastname\" name=\"lastname\" placeholder=\"Cognome\" class=\"form-control\" [ngClass]=\"{'error-input': signup_state.last_name_error}\" [(ngModel)]=\"signupParameters.lastname\" [ngModelOptions]=\"{standalone: true}\">\n              <small class=\"error-message\" *ngIf=\"signup_state.last_name_error\">{{signup_state.last_name_error}}</small>\n            </div>\n          </div>\n        </div>\n        <div class=\"form-group\">\n          <label for=\"phone\">Telefono</label>\n          <input id=\"phoneInput\" field=\"phone\" type=\"text\" name=\"phone\" placeholder=\"Numero di telefono\" class=\"form-control\" [ngClass]=\"{'error-input': signup_state.phone_error}\" [(ngModel)]=\"signupParameters.phone\" [ngModelOptions]=\"{standalone: true}\">\n          <small class=\"error-message\" *ngIf=\"signup_state.phone_error\">{{signup_state.phone_error}}</small>\n        </div>\n        <div class=\"form-group\">\n          <label for=\"passwordInput\">Crea una password</label>\n          <input id=\"passwordInput\" type=\"password\" name=\"password\" placeholder=\"Password\" class=\"form-control\" [ngClass]=\"{'error-input': signup_state.password_error}\" [(ngModel)]=\"signupParameters.password\" [ngModelOptions]=\"{standalone: true}\">\n          <small class=\"error-message\" *ngIf=\"signup_state.password_error\">{{signup_state.password_error}}</small>\n        </div>\n        <div class=\"form-group\" *ngIf=\"signup_state.error_message\">\n          <div class=\"alert alert-danger\" role=\"alert\">{{signup_state.error_message}}</div>\n        </div>\n        <div class=\"form-group text-center\">\n          <button type=\"button\" class=\"btn btn-warning\" (click)=\"signup()\"><i class=\"fa fa-circle-o-notch animate\" *ngIf=\"signup_state.loading\"></i>{{signup_state.button_title}}</button>\n        </div>\n        <div class=\"form-group footer-group\">\n          <span class=\"text\">Sei gia registrato?</span>\n          <span class=\"text enter\" (click)=\"changeToLogin()\">Entra</span>\n          <span class=\"text\">Continuando dichiari di aver letto e accetti le <a routerlink=\"/info/legal\" href=\"/info/legal\" target=\"_blank\">condizioni generali e l’informativa sulla privacy</a></span>\n        </div>\n      </form>\n    </div>\n  </div>\n  <div class=\"checkout\" *ngIf=\"step==='login'\">\n    <div class=\"checkout-header\">\n      <h1>Accedi al tuo account</h1>\n    </div>\n    <div class=\"checkout-body\">\n      <form>\n        <div class=\"form-group\">\n          <label for=\"emailInput\">Email</label>\n          <input type=\"email\" placeholder=\"La tua mail\" class=\"form-control\" [ngClass]=\"{'error-input': login_state.email_error}\" id=\"emailInput\" [(ngModel)]=\"loginParameters.email\" [ngModelOptions]=\"{standalone: true}\">\n          <small class=\"error-message\" *ngIf=\"login_state.email_error\">{{login_state.email_error}}</small>\n        </div>\n        <div class=\"form-group\">\n          <label for=\"passwordInput\">Password</label>\n          <input type=\"password\" placeholder=\"Password\" class=\"form-control\" [ngClass]=\"{'error-input': login_state.password_error}\" id=\"passwordInput\" [(ngModel)]=\"loginParameters.password\" [ngModelOptions]=\"{standalone: true}\">\n          <small class=\"error-message\" *ngIf=\"login_state.password_error\">{{login_state.password_error}}</small>\n        </div>\n        <div class=\"form-group\" *ngIf=\"login_state.error_message\">\n          <div class=\"alert alert-danger\" role=\"alert\">{{login_state.error_message}}</div>\n        </div>\n        <div class=\"form-group text-center\">\n          <button type=\"button\" id=\"next\" class=\"btn btn-warning\" (click)=\"login()\"><i class=\"fa fa-circle-o-notch animate\" *ngIf=\"login_state.loading\"></i>{{login_state.button_title}}</button>\n        </div>\n        <div class=\"form-group footer-group\">\n          <span class=\"text password-forget\"><a routerlink=\"/account/password_recovery\" href=\"/account/password_recovery\" target=\"_blank\">Hai dimenticato la password?</a></span>\n          <span class=\"text\">Non sei ancora registrato?</span>\n          <span class=\"text enter\" (click)=\"changeToSignup()\">Registrati</span>\n        </div>\n      </form>\n    </div>\n  </div>\n\n  <div class=\"checkout\" *ngIf=\"step==='payment'\">\n    <div class=\"checkout-header\">\n      <h1>Prenotazione del servizio</h1>\n    </div>\n    <div class=\"checkout-body\">\n      <div class=\"order-container\">\n        <div class=\"message\">\n          <div class=\"message-header\">\n            <span>Acconto in garanzia</span>\n          </div>\n          <div class=\"message-body\">\n            <span>Prenota il servizio versando un acconto in garanzia in modo da avere la priorità e l'attenzione del professionista selezionato.</span>\n          </div>\n        </div>\n        <div class=\"line\"></div>\n        <div class=\"upfront\">\n          <div class=\"upfront-header\">\n            <span class=\"left\">Prenotazione</span>\n            <span class=\"right\">4.50€</span>\n          </div>\n        </div>\n      </div>\n      <div class=\"actions\">\n        <div class=\"form-group text-center\">\n          <button type=\"button\" class=\"btn btn-warning\" (click)=\"nextStep()\"><i class=\"fa fa-circle-o-notch animate\" *ngIf=\"state.loading\"></i>Prenota</button>\n        </div>\n      </div>\n    </div>\n  </div>\n  <div class=\"checkout\" *ngIf=\"step==='card'\">\n    <div class=\"checkout-header\">\n      <h1>Metodo di pagamento</h1>\n      <p>Inserisci un metodo di pagamento per poter continuare.</p>\n    </div>\n    <div class=\"checkout-body\">\n      <div class=\"list-cards\">\n        <img src=\"../../../assets/images/mastercard-dark.png\" alt=\"Mastercard\">\n        <img src=\"../../../assets/images/visa-dark.png\" alt=\"Visa\">\n        <img src=\"../../../assets/images/americanexpress-dark.png\" alt=\"AmericanExpress\">\n        <img src=\"../../../assets/images/dinersclub-dark.png\" alt=\"DinersClub\">\n        <img src=\"../../../assets/images/discover-dark.png\" alt=\"Discover\">\n        <img src=\"../../../assets/images/jbc-dark.png\" alt=\"JBC\">\n      </div>\n      <form>\n        <div class=\"form-group\">\n          <label for=\"numberInput\">Numero carta</label>\n          <input autocomplete=\"off\" type=\"text\" placeholder=\"Numero\" class=\"form-control\" [ngClass]=\"{'error-input': card_state.message_error}\" id=\"numberInput\" [(ngModel)]=\"Card.number\" [ngModelOptions]=\"{standalone: true}\">\n        </div>\n        <div class=\"row\">\n          <div class=\"col-md-6\">\n            <div class=\"form-group\">\n              <label for=\"dateInput\">Scadenza</label>\n              <input autocomplete=\"off\" type=\"text\" placeholder=\"Scadenza\" class=\"form-control\" [ngClass]=\"{'error-input': card_state.message_error}\" id=\"dateInput\" [(ngModel)]=\"Card.exp_date\" (keyup)=\"checkExpiry(Card.exp_date)\" (change)=\"checkExpiry(Card.exp_date)\" [ngModelOptions]=\"{standalone: true}\">\n            </div>\n          </div>\n          <div class=\"col-md-6\">\n            <div class=\"form-group\">\n              <label for=\"numberInput\">CVC/CVV</label>\n              <input autocomplete=\"off\" type=\"text\" placeholder=\"CVC/CVV\" class=\"form-control\" [ngClass]=\"{'error-input': card_state.message_error}\" id=\"numberInput\" [(ngModel)]=\"Card.cvc\" [ngModelOptions]=\"{standalone: true}\">\n            </div>\n          </div>\n        </div>\n        <div class=\"form-group\">\n          <label for=\"nameInput\">Nome e cognome dell'intestatario</label>\n          <input type=\"name\" name=\"name\" placeholder=\"Nome e cognome\" class=\"form-control\" id=\"nameInput\" [(ngModel)]=\"Card.name\" [ngModelOptions]=\"{standalone: true}\">\n        </div>\n        <div class=\"row\">\n          <div class=\"col-md-8\">\n            <div class=\"form-group\">\n              <label for=\"addressInput\">Indirizzo</label>\n              <input type=\"address\" placeholder=\"Via\" class=\"form-control\" id=\"addressInput\" [(ngModel)]=\"Card.address_line1\" [ngModelOptions]=\"{standalone: true}\">\n            </div>\n          </div>\n          <div class=\"col-md-4\">\n            <div class=\"form-group\">\n              <label for=\"addressNumberInput\">Nr</label>\n              <input type=\"text\" placeholder=\"Nr\" class=\"form-control\" id=\"addressNumberInput\" [(ngModel)]=\"Card.address_line2\" [ngModelOptions]=\"{standalone: true}\">\n            </div>\n          </div>\n        </div>\n        <div class=\"row\">\n          <div class=\"col-md-8\">\n            <div class=\"form-group\">\n              <label for=\"cittyInput\">Città</label>\n              <input type=\"text\" placeholder=\"Città\" class=\"form-control\" id=\"cittyInput\" [(ngModel)]=\"Card.address_city\" [ngModelOptions]=\"{standalone: true}\">\n            </div>\n          </div>\n          <div class=\"col-md-4\">\n            <div class=\"form-group\">\n              <label for=\"capInput\">CAP</label>\n              <input type=\"text\" placeholder=\"CAP\" class=\"form-control\" id=\"capInput\" [(ngModel)]=\"Card.address_zip\" [ngModelOptions]=\"{standalone: true}\">\n            </div>\n          </div>\n        </div>\n        <div class=\"row\">\n          <div class=\"col-md-6\">\n            <div class=\"form-group\">\n              <label for=\"provinceInput\">Provincia</label>\n              <input type=\"text\" placeholder=\"Provincia\" class=\"form-control\" id=\"provinceInput\" [(ngModel)]=\"Card.address_state\" [ngModelOptions]=\"{standalone: true}\">\n            </div>\n          </div>\n          <div class=\"col-md-6\">\n            <div class=\"form-group\">\n              <label for=\"countryInput\">Paese</label>\n              <input type=\"text\" placeholder=\"Paese\" class=\"form-control\" id=\"countryInput\" [(ngModel)]=\"Card.address_country\" [ngModelOptions]=\"{standalone: true}\">\n            </div>\n          </div>\n        </div>\n        <div class=\"form-group error\">\n          <span class=\"error-text\" *ngIf=\"card_state.message_error\">{{card_state.message_error}}</span>\n        </div>\n        <div class=\"actions\">\n          <div class=\"form-group text-center\">\n            <button type=\"button\" class=\"btn btn-warning\" (click)=\"addCard()\"><i class=\"fa fa-circle-o-notch animate\" *ngIf=\"card_state.loading\"></i>Salva e continua</button>\n          </div>\n        </div>\n      </form>\n    </div>\n  </div>\n\n  <div class=\"checkout\" *ngIf=\"step==='end'\">\n    <div class=\"checkout-header\">\n      <h1>Complimenti!</h1>\n      <p>Hai prenotato con successo il servizio scelto.</p>\n      <p>In breve tempo ti contateremo per ulteriori informazioni.</p>\n    </div>\n    <div class=\"checkout-body\">\n      <div class=\"actions\">\n        <div class=\"form-group text-center\">\n          <button type=\"button\" class=\"btn btn-warning\" (click)=\"nextStep()\">Fine</button>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>\n"
+module.exports = "<div class=\"checkout-container\">\n  <div class=\"progress-container\" *ngIf=\"step\">\n    <div class=\"progress\" [ngStyle]=\"{'width': setProgressWidth()}\"></div>\n  </div>\n\n  <button type=\"button\" id=\"next\" class=\"btn btn-warning back\" (click)=\"undoStep()\" *ngIf=\"step\">Indietro</button>\n\n  <div class=\"checkout\" *ngIf=\"step==='date'\">\n    <div class=\"checkout-header\">\n      <h1>Quando hai bisogno?</h1>\n      <p>Inserisci il giorno che vuoi ricevere questo servizio.</p>\n    </div>\n    <div class=\"checkout-body\">\n      <form (keyup.enter)=\"nextStep()\">\n        <div class=\"input-group\">\n          <p-calendar class=\"date\" name=\"data\" [(ngModel)]=\"temp_date\" id=\"date\" autocomplete=\"off\" readonlyInput=\"true\" dateFormat=\"dd MM yy\" [locale]=\"it\" [minDate]=\"minDate\" (onSelect)=\"selectDate()\" placeholder=\"Inserisci la data\"></p-calendar>\n        </div>\n        <div class=\"form-group error\">\n          <span class=\"error-text\" *ngIf=\"state.date_error\">{{state.date_error}}</span>\n        </div>\n        <div class=\"actions\">\n          <div class=\"form-group text-center\">\n            <button type=\"button\" class=\"btn btn-warning\" (click)=\"nextStep()\">Avanti</button>\n          </div>\n        </div>\n      </form>\n    </div>\n  </div>\n  <div class=\"checkout\" *ngIf=\"step==='address'\">\n    <div class=\"checkout-header\">\n      <h1>Dove hai bisogno?</h1>\n      <p>Inserisci l'indirizzo esatto per poter trovare il professionista più vicino.</p>\n    </div>\n    <div class=\"checkout-body\">\n      <form (keyup.enter)=\"nextStep()\">\n        <div class=\"input-group\">\n          <p-autoComplete id=\"address\" class=\"form-control\" [(ngModel)]=\"temp_address\" [suggestions]=\"addresses\" field=\"street_number_city\" [ngModelOptions]=\"{standalone: true}\" (completeMethod)=\"getAddresses($event)\" (onSelect)=\"selectAddress($event)\" (ngModelChange)=\"changeAddress($event)\" (clickOutside)=\"clickOutsideAddressInput()\" placeholder=\"Via, Numero, Città\"></p-autoComplete>\n        </div>\n        <div class=\"form-group error\">\n          <span class=\"error-text\" *ngIf=\"state.address_error\">{{state.address_error}}</span>\n        </div>\n        <div class=\"actions\">\n          <div class=\"form-group text-center\">\n            <button type=\"button\" class=\"btn btn-warning\" (click)=\"nextStep()\">Avanti</button>\n          </div>\n        </div>\n      </form>\n    </div>\n  </div>\n  <div class=\"checkout\" *ngIf=\"step==='note'\">\n    <div class=\"checkout-header\">\n      <h1>Vuoi lasciare una nota?</h1>\n      <p>Inserisci una nota per descrivere quello che ti serve in modo che sia più chiaro per il professionista.</p>\n    </div>\n    <div class=\"checkout-body\" *ngIf=\"Order.services\">\n      <form>\n        <div class=\"input-group\">\n          <textarea id=\"description-input\" class=\"form-control\" [(ngModel)]=\"Order.description\" placeholder=\"Inserisci una descrizione\" rows=\"4\" [ngModelOptions]=\"{standalone: true}\"></textarea>\n        </div>\n        <div class=\"actions\">\n          <div class=\"form-group text-center\">\n            <button type=\"button\" class=\"btn btn-warning\" (click)=\"nextStep()\">Avanti</button>\n          </div>\n        </div>\n      </form>\n    </div>\n  </div>\n  <div class=\"checkout\" *ngIf=\"step==='preview'\">\n    <div class=\"checkout-header\">\n      <h1>Riepilogo</h1>\n    </div>\n    <div class=\"checkout-body\" *ngIf=\"Order.services\">\n      <div class=\"order-container\">\n        <div class=\"services\" *ngFor=\"let service of Order.services\">\n          <div class=\"service\">\n            <div class=\"service-header\">\n              <span class=\"title\">{{service.title}}</span>\n            </div>\n            <div class=\"details\" *ngFor=\"let detail of service.details\">\n              <span class=\"detail\" *ngIf=\"detail.price>0\"><strong>€{{detail.price/100}}/</strong></span>\n              <span class=\"detail\">{{detail.title}}</span>\n            </div>\n          </div>\n        </div>\n        <div class=\"line\"></div>\n        <div class=\"address\">\n          <div class=\"address-header\">\n            <span>Indirizzo</span>\n          </div>\n          <div class=\"address-body\">\n            <span>{{Order.address.street}} {{Order.address.street_number}}, {{Order.address.city}}</span>\n          </div>\n        </div>\n        <div class=\"date\">\n          <div class=\"date-header\">\n            <span>Data</span>\n          </div>\n          <div class=\"date-body\">\n            <span>{{formated_date}}</span>\n          </div>\n        </div>\n      </div>\n      <div class=\"actions\">\n        <div class=\"form-group text-center\">\n          <button type=\"button\" class=\"btn btn-warning\" (click)=\"nextStep()\">Avanti</button>\n        </div>\n      </div>\n    </div>\n  </div>\n\n  <div class=\"checkout\" *ngIf=\"step==='signup'\">\n    <div class=\"checkout-header\">\n      <h1>Crea un account</h1>\n    </div>\n    <div class=\"checkout-body\">\n      <form>\n        <div class=\"form-group\">\n          <label for=\"emailInput\">Email</label>\n          <input id=\"emailInput\" type=\"text\" name=\"email\" placeholder=\"La tua mail\" class=\"form-control\" [ngClass]=\"{'error-input': signup_state.email_error}\" [(ngModel)]=\"signupParameters.email\" [ngModelOptions]=\"{standalone: true}\">\n          <small class=\"error-message\" *ngIf=\"signup_state.email_error\">{{signup_state.email_error}}</small>\n        </div>\n        <div class=\"row\">\n          <div class=\"col-md-6\">\n            <div class=\"form-group\">\n              <label for=\"firstNameInput\">Nome</label>\n              <input id=\"firstNameInput\" type=\"firstname\" name=\"firstnam\" placeholder=\"Nome\" class=\"form-control\" [ngClass]=\"{'error-input': signup_state.first_name_error}\" [(ngModel)]=\"signupParameters.firstname\" [ngModelOptions]=\"{standalone: true}\">\n              <small class=\"error-message\" *ngIf=\"signup_state.first_name_error\">{{signup_state.first_name_error}}</small>\n            </div>\n          </div>\n          <div class=\"col-md-6\">\n            <div class=\"form-group\">\n              <label for=\"lastNameInput\">Cognome</label>\n              <input id=\"lastNameInput\" type=\"lastname\" name=\"lastname\" placeholder=\"Cognome\" class=\"form-control\" [ngClass]=\"{'error-input': signup_state.last_name_error}\" [(ngModel)]=\"signupParameters.lastname\" [ngModelOptions]=\"{standalone: true}\">\n              <small class=\"error-message\" *ngIf=\"signup_state.last_name_error\">{{signup_state.last_name_error}}</small>\n            </div>\n          </div>\n        </div>\n        <div class=\"form-group\">\n          <label for=\"phone\">Telefono</label>\n          <input id=\"phoneInput\" type=\"text\" name=\"phone\" placeholder=\"Numero di telefono\" class=\"form-control\" [ngClass]=\"{'error-input': signup_state.phone_error}\" [(ngModel)]=\"signupParameters.phone\" [ngModelOptions]=\"{standalone: true}\">\n          <small class=\"error-message\" *ngIf=\"signup_state.phone_error\">{{signup_state.phone_error}}</small>\n        </div>\n        <div class=\"form-group\">\n          <label for=\"passwordInput\">Crea una password</label>\n          <input id=\"passwordInput\" type=\"password\" name=\"password\" placeholder=\"Password\" class=\"form-control\" [ngClass]=\"{'error-input': signup_state.password_error}\" [(ngModel)]=\"signupParameters.password\" [ngModelOptions]=\"{standalone: true}\">\n          <small class=\"error-message\" *ngIf=\"signup_state.password_error\">{{signup_state.password_error}}</small>\n        </div>\n        <div class=\"form-group\" *ngIf=\"signup_state.error_message\">\n          <div class=\"alert alert-danger\" role=\"alert\">{{signup_state.error_message}}</div>\n        </div>\n        <div class=\"form-group text-center\">\n          <button type=\"button\" class=\"btn btn-warning\" (click)=\"signup()\"><i class=\"fa fa-circle-o-notch animate\" *ngIf=\"signup_state.loading\"></i>{{signup_state.button_title}}</button>\n        </div>\n        <div class=\"form-group footer-group\">\n          <span class=\"text\">Sei gia registrato?</span>\n          <span class=\"text enter\" (click)=\"changeToLogin()\">Entra</span>\n          <span class=\"text\">Continuando dichiari di aver letto e accetti le <a routerlink=\"/info/legal\" href=\"/info/legal\" target=\"_blank\">condizioni generali e l’informativa sulla privacy</a></span>\n        </div>\n      </form>\n    </div>\n  </div>\n  <div class=\"checkout\" *ngIf=\"step==='login'\">\n    <div class=\"checkout-header\">\n      <h1>Accedi al tuo account</h1>\n    </div>\n    <div class=\"checkout-body\">\n      <form>\n        <div class=\"form-group\">\n          <label for=\"emailInput\">Email</label>\n          <input type=\"text\" placeholder=\"La tua mail\" class=\"form-control\" [ngClass]=\"{'error-input': login_state.email_error}\" id=\"emailInput\" [(ngModel)]=\"loginParameters.email\" [ngModelOptions]=\"{standalone: true}\">\n          <small class=\"error-message\" *ngIf=\"login_state.email_error\">{{login_state.email_error}}</small>\n        </div>\n        <div class=\"form-group\">\n          <label for=\"passwordInput\">Password</label>\n          <input type=\"password\" placeholder=\"Password\" class=\"form-control\" [ngClass]=\"{'error-input': login_state.password_error}\" id=\"passwordInput\" [(ngModel)]=\"loginParameters.password\" [ngModelOptions]=\"{standalone: true}\">\n          <small class=\"error-message\" *ngIf=\"login_state.password_error\">{{login_state.password_error}}</small>\n        </div>\n        <div class=\"form-group\" *ngIf=\"login_state.error_message\">\n          <div class=\"alert alert-danger\" role=\"alert\">{{login_state.error_message}}</div>\n        </div>\n        <div class=\"form-group text-center\">\n          <button type=\"button\" id=\"next\" class=\"btn btn-warning\" (click)=\"login()\"><i class=\"fa fa-circle-o-notch animate\" *ngIf=\"login_state.loading\"></i>{{login_state.button_title}}</button>\n        </div>\n        <div class=\"form-group footer-group\">\n          <span class=\"text password-forget\"><a routerlink=\"/account/password_recovery\" href=\"/account/password_recovery\" target=\"_blank\">Hai dimenticato la password?</a></span>\n          <span class=\"text\">Non sei ancora registrato?</span>\n          <span class=\"text enter\" (click)=\"changeToSignup()\">Registrati</span>\n        </div>\n      </form>\n    </div>\n  </div>\n\n  <div class=\"checkout\" *ngIf=\"step==='payment'\">\n    <div class=\"checkout-header\">\n      <h1>Prenotazione del servizio</h1>\n    </div>\n    <div class=\"checkout-body\">\n      <div class=\"order-container\">\n        <div class=\"message\">\n          <div class=\"message-header\">\n            <span>Acconto in garanzia</span>\n          </div>\n          <div class=\"message-body\">\n            <span>Prenota il servizio versando un acconto in garanzia in modo da avere la priorità e l'attenzione del professionista selezionato.</span>\n          </div>\n        </div>\n        <div class=\"line\"></div>\n        <div class=\"upfront\">\n          <div class=\"upfront-header\">\n            <span class=\"left\">Prenotazione</span>\n            <span class=\"right\">4.50€</span>\n          </div>\n        </div>\n      </div>\n      <div class=\"actions\">\n        <div class=\"form-group text-center\">\n          <button type=\"button\" class=\"btn btn-warning\" (click)=\"nextStep()\"><i class=\"fa fa-circle-o-notch animate\" *ngIf=\"state.loading\"></i>Prenota</button>\n        </div>\n      </div>\n    </div>\n  </div>\n  <div class=\"checkout\" *ngIf=\"step==='card'\">\n    <div class=\"checkout-header\">\n      <h1>Metodo di pagamento</h1>\n      <p>Inserisci un metodo di pagamento per poter continuare.</p>\n    </div>\n    <div class=\"checkout-body\">\n      <div class=\"list-cards\">\n        <img src=\"../../../assets/images/mastercard-dark.png\" alt=\"Mastercard\">\n        <img src=\"../../../assets/images/visa-dark.png\" alt=\"Visa\">\n        <img src=\"../../../assets/images/americanexpress-dark.png\" alt=\"AmericanExpress\">\n        <img src=\"../../../assets/images/dinersclub-dark.png\" alt=\"DinersClub\">\n        <img src=\"../../../assets/images/discover-dark.png\" alt=\"Discover\">\n        <img src=\"../../../assets/images/jbc-dark.png\" alt=\"JBC\">\n      </div>\n      <form>\n        <div class=\"form-group\">\n          <label for=\"numberInput\">Numero carta</label>\n          <input autocomplete=\"off\" type=\"text\" placeholder=\"Numero\" class=\"form-control\" [ngClass]=\"{'error-input': card_state.message_error}\" id=\"numberInput\" [(ngModel)]=\"Card.number\" [ngModelOptions]=\"{standalone: true}\">\n        </div>\n        <div class=\"row\">\n          <div class=\"col-md-6\">\n            <div class=\"form-group\">\n              <label for=\"dateInput\">Scadenza</label>\n              <input autocomplete=\"off\" type=\"text\" placeholder=\"Scadenza\" class=\"form-control\" [ngClass]=\"{'error-input': card_state.message_error}\" id=\"dateInput\" [(ngModel)]=\"Card.exp_date\" (keyup)=\"checkExpiry(Card.exp_date)\" (change)=\"checkExpiry(Card.exp_date)\" [ngModelOptions]=\"{standalone: true}\">\n            </div>\n          </div>\n          <div class=\"col-md-6\">\n            <div class=\"form-group\">\n              <label for=\"numberInput\">CVC/CVV</label>\n              <input autocomplete=\"off\" type=\"text\" placeholder=\"CVC/CVV\" class=\"form-control\" [ngClass]=\"{'error-input': card_state.message_error}\" id=\"numberInput\" [(ngModel)]=\"Card.cvc\" [ngModelOptions]=\"{standalone: true}\">\n            </div>\n          </div>\n        </div>\n        <div class=\"form-group\">\n          <label for=\"nameInput\">Nome e cognome dell'intestatario</label>\n          <input type=\"name\" name=\"name\" placeholder=\"Nome e cognome\" class=\"form-control\" id=\"nameInput\" [(ngModel)]=\"Card.name\" [ngModelOptions]=\"{standalone: true}\">\n        </div>\n        <div class=\"row\">\n          <div class=\"col-md-8\">\n            <div class=\"form-group\">\n              <label for=\"addressInput\">Indirizzo</label>\n              <input type=\"address\" placeholder=\"Via\" class=\"form-control\" id=\"addressInput\" [(ngModel)]=\"Card.address_line1\" [ngModelOptions]=\"{standalone: true}\">\n            </div>\n          </div>\n          <div class=\"col-md-4\">\n            <div class=\"form-group\">\n              <label for=\"addressNumberInput\">Nr</label>\n              <input type=\"text\" placeholder=\"Nr\" class=\"form-control\" id=\"addressNumberInput\" [(ngModel)]=\"Card.address_line2\" [ngModelOptions]=\"{standalone: true}\">\n            </div>\n          </div>\n        </div>\n        <div class=\"row\">\n          <div class=\"col-md-8\">\n            <div class=\"form-group\">\n              <label for=\"cittyInput\">Città</label>\n              <input type=\"text\" placeholder=\"Città\" class=\"form-control\" id=\"cittyInput\" [(ngModel)]=\"Card.address_city\" [ngModelOptions]=\"{standalone: true}\">\n            </div>\n          </div>\n          <div class=\"col-md-4\">\n            <div class=\"form-group\">\n              <label for=\"capInput\">CAP</label>\n              <input type=\"text\" placeholder=\"CAP\" class=\"form-control\" id=\"capInput\" [(ngModel)]=\"Card.address_zip\" [ngModelOptions]=\"{standalone: true}\">\n            </div>\n          </div>\n        </div>\n        <div class=\"row\">\n          <div class=\"col-md-6\">\n            <div class=\"form-group\">\n              <label for=\"provinceInput\">Provincia</label>\n              <input type=\"text\" placeholder=\"Provincia\" class=\"form-control\" id=\"provinceInput\" [(ngModel)]=\"Card.address_state\" [ngModelOptions]=\"{standalone: true}\">\n            </div>\n          </div>\n          <div class=\"col-md-6\">\n            <div class=\"form-group\">\n              <label for=\"countryInput\">Paese</label>\n              <input type=\"text\" placeholder=\"Paese\" class=\"form-control\" id=\"countryInput\" [(ngModel)]=\"Card.address_country\" [ngModelOptions]=\"{standalone: true}\">\n            </div>\n          </div>\n        </div>\n        <div class=\"form-group error\">\n          <span class=\"error-text\" *ngIf=\"card_state.message_error\">{{card_state.message_error}}</span>\n        </div>\n        <div class=\"actions\">\n          <div class=\"form-group text-center\">\n            <button type=\"button\" class=\"btn btn-warning\" (click)=\"addCard()\"><i class=\"fa fa-circle-o-notch animate\" *ngIf=\"card_state.loading\"></i>Salva e continua</button>\n          </div>\n        </div>\n      </form>\n    </div>\n  </div>\n\n  <div class=\"checkout\" *ngIf=\"step==='end'\">\n    <div class=\"checkout-header\">\n      <h1>Complimenti!</h1>\n      <p>Hai prenotato con successo il servizio scelto.</p>\n      <p>In breve tempo ti contateremo per ulteriori informazioni.</p>\n    </div>\n    <div class=\"checkout-body\">\n      <div class=\"actions\">\n        <div class=\"form-group text-center\">\n          <button type=\"button\" class=\"btn btn-warning\" (click)=\"nextStep()\">Fine</button>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>\n"
 
 /***/ },
 
@@ -10303,7 +10307,7 @@ var ProfileService = (function () {
 /***/ 760:
 /***/ function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(416);
+module.exports = __webpack_require__(412);
 
 
 /***/ },
