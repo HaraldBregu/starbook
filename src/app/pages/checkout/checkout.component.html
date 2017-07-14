@@ -214,7 +214,7 @@
       </div>
       <div class="actions">
         <div class="form-group text-center">
-          <button type="button" class="btn btn-warning" (click)="nextStep()"><i class="fa fa-circle-o-notch animate" *ngIf="state.loading"></i>Prenota</button>
+          <button id="payAndBook" type="button" class="btn btn-warning" (click)="nextStep()"><i class="fa fa-circle-o-notch animate" *ngIf="state.loading"></i>Prenota</button>
         </div>
       </div>
     </div>
@@ -303,7 +303,7 @@
         </div>
         <div class="actions">
           <div class="form-group text-center">
-            <button type="button" class="btn btn-warning" (click)="addCard()"><i class="fa fa-circle-o-notch animate" *ngIf="card_state.loading"></i>Salva e continua</button>
+            <button id="addCard" type="button" class="btn btn-warning" (click)="addCard()"><i class="fa fa-circle-o-notch animate" *ngIf="card_state.loading"></i>Salva e continua</button>
           </div>
         </div>
       </form>
@@ -319,7 +319,7 @@
     <div class="checkout-body">
       <div class="actions">
         <div class="form-group text-center">
-          <button type="button" class="btn btn-warning" (click)="nextStep()">Fine</button>
+          <button id="finish" type="button" class="btn btn-warning" (click)="nextStep()">Fine</button>
         </div>
       </div>
     </div>
