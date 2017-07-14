@@ -92,8 +92,8 @@
       <div class="service-container" *ngFor="let service of services" id="BookService" (click)="bookServiceNow(service)">
         <div class="service" [ngStyle]="{'background-image' : ' url(' + 'https://s3-eu-west-1.amazonaws.com/starbook-s3/services/'+ service._id + '/cover/0' + ')'}">
           <div class="overlay" id="BookService">
-            <div class="text-container">
-              <span class="title">{{service.title}}</span>
+            <div class="text-container" id="BookService">
+              <span class="title" id="BookService">{{service.title}}</span>
             </div>
           </div>
         </div>
