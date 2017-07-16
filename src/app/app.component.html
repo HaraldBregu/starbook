@@ -65,6 +65,7 @@
         <li class="list-item" *ngIf="!auth" (click)="getLoginPopup()"><a class="btn btn-default">Entra adesso</a></li>
         <li class="list-item" *ngIf="!auth"><a class="btn btn-default" routerLink="/company">Sei un professionista?</a></li>
         <li class="list-item"><a class="btn btn-default" routerLink="/insert/product">Pubblica un servizio</a></li>
+        <li class="list-item" *ngIf="auth"><a class="btn btn-default" routerLink="/orders/requests">Ordini</a></li>
         <li class="list-item line"></li>
         <li class="list-item" *ngIf="auth"><a class="btn btn-default" routerLink="/account/profile">Account</a></li>
         <li class="list-item"><a class="btn btn-default" routerLink="/blog">Blog</a></li>
