@@ -54,7 +54,7 @@
       </li>
     </ul> -->
 
-    <div class="user-container dropdown">
+    <div class="user-container dropdown" *ngIf="hasRightContainer">
       <!-- <a class="user" data-toggle="dropdown"><img class="image" src="../assets/images/no_user.png" alt="Starbook User"></a> -->
       <a class="user" data-toggle="dropdown">
         <img *ngIf="!auth" class="image" src="../assets/images/no_user.png" alt="Starbook User">
