@@ -29,9 +29,10 @@ export class AppComponent implements OnInit, OnDestroy {
   public results: string[] = [];
   public isSearched = false;
   public browser = isBrowser;
+
   subscription: Subscription;
   authSubscription: Subscription;
-  // loadingSubscription: Subscription;
+
   public screenWidth;
   public newServiceRequest = {
     message: 'Richiedi?'
@@ -44,6 +45,8 @@ export class AppComponent implements OnInit, OnDestroy {
   public hasPublishService = false;
 
   public border_bottom_color = "1px solid #DBDBDB"
+
+  public account_avatar_url = ''
 
   constructor (public router:Router, private route: ActivatedRoute, private authServics: AuthService, private navigationService: NavigationService, private popupsService: PopupsService, private commonService: CommonService, private analyticsService: AnalyticsService, private seoService: SeoService) {
     this.navbarState = false;
@@ -125,7 +128,7 @@ export class AppComponent implements OnInit, OnDestroy {
             // this.hasBottomBorderNav = false;
             this.hasCenterContainer = false;
             this.hasRightContainer = false;
-            this.border_bottom_color = "0"
+            // this.border_bottom_color = "0"
           }
           // console.log('page is: ' + this.page);
         }
@@ -135,6 +138,7 @@ export class AppComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.auth = this.authServics.authInit();
+    this.account_avatar_url = "https://s3-eu-west-1.amazonaws.com/starbook-s3/accounts/" + this.auth._id + "/avatar/0"
     if (isBrowser) {
       this.screenWidth = document.querySelector('body').clientWidth;
       this.subscription = this.navigationService.getMessage$.subscribe(message => {
@@ -143,7 +147,8 @@ export class AppComponent implements OnInit, OnDestroy {
         this.results = [];
         this.clearView = true;
         this.isSearched = false;
-      });
+      })
+
       this.authSubscription = this.navigationService.getPersonalMenu$.subscribe(auth => {
         if (auth !== false) {
           this.auth = auth;
@@ -151,6 +156,23 @@ export class AppComponent implements OnInit, OnDestroy {
           this.auth = false;
         }
       })
+
+      this.subscription = this.popupsService.getPopupResponse$.subscribe(action => {
+        switch (action.type) {
+          case 'logout':
+          if (isBrowser) {
+            if (localStorage.getItem('auth')!==null) {
+              localStorage.removeItem('auth')
+            }
+          }
+          this.navigationService.updatePersonalMenu(false)
+          if (this.page === "Account") {
+            this.router.navigate(['/'])
+          }
+          break;
+        }
+      })
+
     }
     // this.loadingSubscription = this.navigationService.getLoadingStatus$.subscribe(status => {
     //   this.isLoading = status;
@@ -180,19 +202,21 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   clickBrandLogo() {
-    if (this.screenWidth <= 425) {
-      if (!this.hasRightContainer) {
-        if (this.page === "Auth") {
+    this.router.navigate(['']);
 
-        } else {
-          this.router.navigate(['']);
-        }
-      } else {
-        this.collapsed = !this.collapsed;
-      }
-    } else {
-      this.router.navigate(['']);
-    }
+    // if (this.screenWidth <= 425) {
+    //   if (!this.hasRightContainer) {
+    //     if (this.page === "Auth") {
+    //
+    //     } else {
+    //       this.router.navigate(['']);
+    //     }
+    //   } else {
+    //     this.collapsed = !this.collapsed;
+    //   }
+    // } else {
+    //   this.router.navigate(['']);
+    // }
   }
   brandLogo() {
     if (this.screenWidth > 768) {
@@ -219,7 +243,9 @@ export class AppComponent implements OnInit, OnDestroy {
     this.toggleMenu();
     this.collapsed = false;
   }
-
+  logout() {
+    this.popupsService.activate({type: 'logout', data: {}});
+  }
   getRegistrationPopup() {
     this.popupsService.activate({type: 'registration'});
     this.toggleMenu();
@@ -299,6 +325,10 @@ export class AppComponent implements OnInit, OnDestroy {
     this.clearView = false;
   }
 
+  errorHandler(error) {
+    console.log('error handler');
+    this.account_avatar_url = "../assets/images/no_user.png"
+  }
   ngOnDestroy() {
     if(isBrowser) {
       // this.subscription.unsubscribe();

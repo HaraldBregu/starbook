@@ -100,7 +100,7 @@ export class AccountComponent implements OnInit {
       }
       this.Account = account
 
-      console.log(JSON.stringify(this.Account));
+      // console.log(JSON.stringify(this.Account));
       this.subscription = this.popupsService.getPopupResponse$.subscribe(action => {
         switch (action.type) {
           case 'logout':
@@ -110,7 +110,9 @@ export class AccountComponent implements OnInit {
             }
           }
           this.navigationService.updatePersonalMenu(false);
-          this.router.navigate(['/']);
+          if (this.page === "Account") {
+            this.router.navigate(['/'])
+          }
           break;
         }
       })
@@ -128,6 +130,14 @@ export class AccountComponent implements OnInit {
         }).catch((error) => {
           // console.log('service error' + JSON.stringify(error));
         })
+      } else if (this.page==="profile") {
+
+      } else if (this.page==="reviews") {
+
+      } else if (this.page==="settings") {
+
+      } else {
+        this.router.navigate(['/account/profile'])
       }
     })
   }

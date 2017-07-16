@@ -1,5 +1,6 @@
 <nav class="navbar navbar-dark navbar-fixed-top bg-inverse" [style.border-bottom]="border_bottom_color" (window:resize)="onResize()">
   <div class="container-starbook top-menu">
+
     <a class="navbar-brand" (click)="clickBrandLogo()">
       <img *ngIf="brandLogo()" [src]="brandLogo()" alt="starbook">
     </a>
@@ -32,44 +33,62 @@
       <div *ngIf="!isFindField" class="tagline">{{tagline}}</div>
     </div>
 
-    <!--  Collapsed -->
-    <ul *ngIf="auth !== false && hasRightContainer" class="nav navbar-nav float-xs-right" [ngClass]="{'collapse':!collapsed}">
-      <!-- <li class="nav-item" *ngIf="hasPublishService">
-        <a class="nav-link publish-item" (click)="publishService()">Pubblica il tuo servizio</a>
-      </li> -->
+    <!-- <ul *ngIf="auth !== false && hasRightContainer" class="nav navbar-nav float-xs-right" [ngClass]="{'collapse':!collapsed}">
       <li class="nav-item">
-        <!-- <a class="nav-link home" routerLink="" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" (click)="updateTabMenu(true)">Home</a> -->
         <a class="nav-link home" routerLink="" (click)="updateTabMenu(true)">Home</a>
       </li>
       <li class="nav-item">
-        <!-- <a class="nav-link orders" routerLink="/orders/requests" routerLinkActive="active" (click)="toggleMenu()">Ordini</a> -->
         <a class="nav-link orders" routerLink="/orders/requests" (click)="toggleMenu()">Ordini</a>
       </li>
       <li class="nav-item">
-        <!-- <a class="nav-link profile" routerLink="/account/general" routerLinkActive="active" (click)="toggleMenu()"><i class="fa fa-user-circle-o" aria-hidden="true"> </i> {{auth.profile.fullname}}</a> -->
         <a class="nav-link profile" routerLink="/account/profile" (click)="toggleMenu()"><i class="fa fa-user-circle-o" aria-hidden="true"> </i> {{getUsername()}}</a>
-        <!-- <a class="nav-link profile" routerLink="/account/profile" (click)="toggleMenu()"><img src="https://s3-eu-west-1.amazonaws.com/starbook-s3/website/user_no_pic.png" alt="profile"></a> -->
       </li>
     </ul>
 
-    <!--  Collapsed not authenticated -->
     <ul *ngIf="auth === false && browser && hasRightContainer" class="nav navbar-nav float-xs-right" [ngClass]="{'collapse':!collapsed}">
       <li class="nav-item" *ngIf="collapsed">
-        <!-- <a class="nav-link home" routerLink="" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" (click)="updateTabMenu(true)">Home</a> -->
         <a class="nav-link home" routerLink="" (click)="updateTabMenu(true)">Home</a>
       </li>
-      <!-- <li class="nav-item" *ngIf="hasPublishService">
-        <a class="nav-link publish-item" (click)="publishService()">Pubblica il tuo servizio</a>
-      </li> -->
-      <!-- <li class="nav-item register-item">
-        <a class="nav-link profile" (click)="signupAsProfessional()">Iscriviti come professionista</a>
-      </li> -->
       <li class="nav-item">
         <a class="nav-link profile" (click)="getLoginPopup()">Entra</a>
       </li>
-    </ul>
+    </ul> -->
+
+    <div class="user-container dropdown">
+      <!-- <a class="user" data-toggle="dropdown"><img class="image" src="../assets/images/no_user.png" alt="Starbook User"></a> -->
+      <a class="user" data-toggle="dropdown">
+        <img *ngIf="!auth" class="image" src="../assets/images/no_user.png" alt="Starbook User">
+        <img *ngIf="auth" class="image" [src]="account_avatar_url" (error)="errorHandler($event)" alt="Starbook User">
+        <!-- <img *ngIf="auth" class="image" [src]="../assets/images/no_user.png" onError="../assets/images/no_user.png" alt="Starbook User"> -->
+      </a>
+      <ul class="dropdown-menu">
+        <li class="list-item" *ngIf="!auth" (click)="getLoginPopup()"><a class="btn btn-default">Entra adesso</a></li>
+        <li class="list-item" *ngIf="!auth"><a class="btn btn-default" routerLink="/company">Sei un professionista?</a></li>
+        <li class="list-item"><a class="btn btn-default" routerLink="/insert/product">Pubblica un servizio</a></li>
+        <li class="list-item line"></li>
+        <li class="list-item" *ngIf="auth"><a class="btn btn-default" routerLink="/account/profile">Account</a></li>
+        <li class="list-item"><a class="btn btn-default" routerLink="/blog">Blog</a></li>
+        <li class="list-item line"></li>
+        <li class="list-item"><a class="btn btn-default" routerLink="/info/legal">Privacy & Condizioni</a></li>
+        <li class="list-item"><a class="btn btn-default" routerLink="/info/about">Chi siamo</a></li>
+        <li class="list-item line"></li>
+        <li class="list-item"><a class="btn btn-default" routerLink="/info/help">Aiuto</a></li>
+        <li class="list-item" *ngIf="auth" (click)="logout()"><a class="btn btn-default">Esci</a></li>
+      </ul>
+    </div>
 
   </div>
 </nav>
+
+<!-- <nav class="navbar navbar-dark navbar-fixed-top bg-inverse" [style.border-bottom]="border_bottom_color" (window:resize)="onResize()">
+  <div class="container-starbook top-menu">
+    <a class="navbar-brand" (click)="clickBrandLogo()">
+      <img *ngIf="brandLogo()" [src]="brandLogo()" alt="starbook">
+    </a>
+  </div>
+</nav> -->
+
+
+
 <router-outlet></router-outlet>
 <app-popups></app-popups>

@@ -22,6 +22,8 @@ import { Ng2PageScrollModule } from 'ng2-page-scroll';
 // import { MasonryModule } from 'angular2-masonry';
 // import { NgbModule, NgbDateParserFormatter } from '@ng-bootstrap/ng-bootstrap';
 
+import { FacebookModule } from 'ngx-facebook';
+
 /* Feature Modules */
 import { ClipboardModule } from 'ngx-clipboard';
 
@@ -105,6 +107,7 @@ let imports = [
   ClipboardModule,
   Ng2PageScrollModule.forRoot(),
   // ImageUploadModule.forRoot(),
+  FacebookModule.forRoot(),
 ];
 let declarations = [
   AppComponent,

@@ -19,8 +19,7 @@ app-root {
     padding: 0;
     margin: 0;
     img {
-      height: 50px;
-      margin: 10px 0;
+      height: 60px;
       cursor: pointer;
     }
     .mobile {
@@ -155,7 +154,6 @@ app-root {
     .navbar-nav .nav-item+.nav-item {
       margin-left: 0 !important;
     }
-
     .navbar-nav {
       .nav-link {
         position: relative;
@@ -217,6 +215,64 @@ app-root {
     .top-menu {
       padding-right: 0 !important;
       overflow-x: visible !important;
+    }
+    .user-container {
+      float: right;
+      margin-right: 5px;
+      .user {
+        line-height: 70px;
+        .image {
+          height: 50px;
+          border-radius: 25px;
+        }
+      }
+      .dropdown-menu {
+        float: right;
+        right: 0px;
+        padding: 5px 0;
+        left: initial;
+        top: 65px;
+        width: 230px;
+        border: none;
+        border-radius: 3px;
+        box-shadow: 0 1px 2px rgba(0,0,0,.25), 0 0 1px rgba(0,0,0,.35);
+        .list-item {
+          padding: 7px 25px;
+          font-size: 14px;
+          .btn {
+            line-height: 1.9;
+            font-size: 14px;
+            color: rgba(0, 0, 0, 0.6);
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            text-align: left;
+          }
+        }
+        .list-item:hover {
+          background-color: #F7F7F7;
+        }
+        .line {
+          border-top: solid 1px rgba(0,0,0,.05);
+          margin-top: 5px;
+          margin-bottom: 5px;
+          padding: 0;
+        }
+      }
+      // .arrow {
+      //   left: 134px;
+      //   top: 1px;
+      //   clip: rect(0 18px 14px -4px);
+      //   &::after {
+      //     transform: rotate(45deg) translate(6px,6px);
+      //     box-shadow: -1px -1px 1px -1px rgba(0,0,0,.44);
+      //     content: '';
+      //     display: block;
+      //     width: 14px;
+      //     height: 14px;
+      //     background: #fff;
+      //   }
+      // }
     }
   }
 

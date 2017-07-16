@@ -19,6 +19,8 @@ import { ClickOutsideModule } from 'ng2-click-outside';
 import { Ng2PageScrollModule } from 'ng2-page-scroll';
 // import { ImageUploadModule } from 'angular2-image-upload';
 
+import { FacebookModule } from 'ngx-facebook';
+
 // import { MasonryModule } from 'angular2-masonry';
 // import { NgbModule, NgbDateParserFormatter } from '@ng-bootstrap/ng-bootstrap';
 import { routing } from './app.routing';
@@ -96,6 +98,7 @@ let imports = [
   Ng2PageScrollModule.forRoot(),
   // ImageUploadModule.forRoot(),
   // ClipboarModule
+  FacebookModule.forRoot(),
 ];
 let declarations = [
   AppComponent,

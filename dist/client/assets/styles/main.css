@@ -588,7 +588,7 @@ p {
   color: black !important; }
 
 .btn-facebook {
-  background: #3B5998 !important;
+  background: #3B5998;
   color: white;
   font-family: Roboto, sans-serif;
   font-weight: 400;
@@ -598,7 +598,7 @@ p {
   outline: none !important; }
 
 .btn-twitter {
-  background: #00aced !important;
+  background: #00aced;
   color: white;
   font-family: Roboto, sans-serif;
   font-weight: 400;
@@ -608,7 +608,7 @@ p {
   outline: none !important; }
 
 .btn-linkedin {
-  background: #0077B5 !important;
+  background: #0077B5;
   color: white;
   font-family: Roboto, sans-serif;
   font-weight: 400;
@@ -618,7 +618,7 @@ p {
   outline: none !important; }
 
 .btn-google-plus {
-  background: #d34836 !important;
+  background: #d34836;
   color: white;
   font-family: Roboto, sans-serif;
   font-weight: 400;
@@ -3203,8 +3203,7 @@ app-root .navbar-brand {
   padding: 0;
   margin: 0; }
   app-root .navbar-brand img {
-    height: 50px;
-    margin: 10px 0;
+    height: 60px;
     cursor: pointer; }
   app-root .navbar-brand .mobile {
     display: none; }
@@ -3358,6 +3357,42 @@ app-root .container-starbook {
   app-root .container-starbook .top-menu {
     padding-right: 0 !important;
     overflow-x: visible !important; }
+  app-root .container-starbook .user-container {
+    float: right;
+    margin-right: 5px; }
+    app-root .container-starbook .user-container .user {
+      line-height: 70px; }
+      app-root .container-starbook .user-container .user .image {
+        height: 50px;
+        border-radius: 25px; }
+    app-root .container-starbook .user-container .dropdown-menu {
+      float: right;
+      right: 0px;
+      padding: 5px 0;
+      left: initial;
+      top: 65px;
+      width: 230px;
+      border: none;
+      border-radius: 3px;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.25), 0 0 1px rgba(0, 0, 0, 0.35); }
+      app-root .container-starbook .user-container .dropdown-menu .list-item {
+        padding: 7px 25px;
+        font-size: 14px; }
+        app-root .container-starbook .user-container .dropdown-menu .list-item .btn {
+          line-height: 1.9;
+          font-size: 14px;
+          color: rgba(0, 0, 0, 0.6);
+          padding: 0;
+          width: 100%;
+          height: 100%;
+          text-align: left; }
+      app-root .container-starbook .user-container .dropdown-menu .list-item:hover {
+        background-color: #F7F7F7; }
+      app-root .container-starbook .user-container .dropdown-menu .line {
+        border-top: solid 1px rgba(0, 0, 0, 0.05);
+        margin-top: 5px;
+        margin-bottom: 5px;
+        padding: 0; }
 @media (max-width: 1024px) {
   app-root .center-container {
     left: 300px;
@@ -7311,20 +7346,131 @@ app-blog {
   width: 100%;
   height: 100%;
   background-color: #FFFFFF;
-  padding: 70px 0 0; }
+  padding: 70px 0 0;
+  font-family: Helvetica Neue, sans-serif; }
   app-blog .blog-container {
     display: block;
     width: 100%;
     height: 100%;
     background-color: #FFFFFF; }
     app-blog .blog-container .header {
-      color: white;
-      padding: 100px 0;
-      background: #164170; }
+      padding: 50px 20px 0;
+      max-width: 740px;
+      margin: auto; }
       app-blog .blog-container .header h1 {
-        font-size: 54px;
-        font-weight: 700; }
+        font-size: 44px;
+        font-weight: 600;
+        color: rgba(0, 0, 0, 0.8);
+        line-height: 53px; }
+      app-blog .blog-container .header .author {
+        border-bottom: 1px solid #dbdbdb;
+        padding: 20px 0; }
+        app-blog .blog-container .header .author span {
+          display: block; }
+        app-blog .blog-container .header .author .username {
+          font-size: 18px;
+          font-weight: 300;
+          color: black; }
+        app-blog .blog-container .header .author .about {
+          font-size: 14px;
+          font-weight: 400;
+          color: rgba(0, 0, 0, 0.44);
+          margin-top: 5px; }
+        app-blog .blog-container .header .author .date {
+          font-size: 14px;
+          font-weight: 400;
+          color: rgba(0, 0, 0, 0.44);
+          margin-top: 5px; }
+    app-blog .blog-container .body {
+      padding: 20px;
+      max-width: 740px;
+      margin: auto;
+      text-align: center; }
+      app-blog .blog-container .body .image-preview {
+        position: relative;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+        width: 100%;
+        height: 250px; }
+      app-blog .blog-container .body img {
+        margin-top: 30px; }
+      app-blog .blog-container .body p {
+        font-size: 21px !important;
+        line-height: 31px;
+        color: rgba(0, 0, 0, 0.8);
+        margin-top: 30px;
+        text-align: justify;
+        -webkit-hyphens: auto;
+        -epub-hyphens: auto;
+        -moz-hyphens: auto;
+        hyphens: auto; }
+      app-blog .blog-container .body h2 {
+        text-align: left;
+        font-size: 32px;
+        font-weight: 600;
+        color: rgba(0, 0, 0, 0.8);
+        line-height: 38px;
+        margin-top: 40px; }
+      app-blog .blog-container .body a.starbook-banner {
+        display: block;
+        margin-top: 30px;
+        background: #324977;
+        line-height: 60px;
+        text-align: center;
+        color: white;
+        font-size: 22px; }
+      app-blog .blog-container .body a.starbook-banner:hover, app-blog .blog-container .body a.starbook-banner:focus {
+        background: #1d325d;
+        text-decoration: none; }
+    app-blog .blog-container .footer {
+      padding: 30px 20px 80px;
+      max-width: 740px;
+      margin: auto; }
+      app-blog .blog-container .footer .btn-twitter, app-blog .blog-container .footer .btn-facebook, app-blog .blog-container .footer .btn-linkedin, app-blog .blog-container .footer .btn-google-plus {
+        background: white;
+        padding: 0 5px; }
+      app-blog .blog-container .footer i {
+        font-size: 20px;
+        color: rgba(0, 0, 0, 0.7); }
+      app-blog .blog-container .footer .fb-comments {
+        width: 100%; }
+        app-blog .blog-container .footer .fb-comments ._5lm5 _2pi3 _3-8y {
+          display: none; }
+        app-blog .blog-container .footer .fb-comments span {
+          width: 100% !important; }
+          app-blog .blog-container .footer .fb-comments span iframe {
+            width: 100% !important; }
+    app-blog .blog-container .line {
+      border-bottom: 1px solid #dbdbdb; }
+  app-blog .footer-container {
+    position: relative;
+    background: white;
+    border-top: 1px solid #DBDBDB;
+    padding: 30px 0; }
+    app-blog .footer-container .footer {
+      max-width: 740px;
+      margin: auto;
+      padding: 20px; }
+      app-blog .footer-container .footer span {
+        font-size: 16px; }
 
+@media (max-width: 425px) {
+  app-blog .blog-container .header {
+    padding: 30px 20px 0; }
+
+  app-blog .blog-container .header h1 {
+    font-size: 38px;
+    line-height: 47px; }
+
+  app-blog .blog-container .body {
+    padding: 30px 20px; }
+
+  app-blog .blog-container .body p {
+    margin-top: 20px; }
+
+  app-blog .blog-container .body h2 {
+    margin-top: 30px; } }
 ngb-datepicker,
 .datepicker {
   border-radius: 3px;
