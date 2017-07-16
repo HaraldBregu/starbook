@@ -78,9 +78,9 @@ const routes: Routes = [
   { path: 'blog', component: BlogComponent, data: { name: 'Blog' } },
   { path: 'blog/:article', component: BlogComponent, data: { name: 'Blog' } },
 
-  { path: 'info/help', component: HelpComponent },
-  { path: 'info/legal', component: LegalComponent },
-  { path: 'info/about', component: AboutComponent },
+  { path: 'info/help', component: HelpComponent, data: { name: 'Info' } },
+  { path: 'info/legal', component: LegalComponent, data: { name: 'Info' } },
+  { path: 'info/about', component: AboutComponent, data: { name: 'Info' } },
 
   { path: '404', component: NotfoundComponent },
   { path: '**', redirectTo: '' }

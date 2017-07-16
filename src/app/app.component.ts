@@ -100,35 +100,45 @@ export class AppComponent implements OnInit, OnDestroy {
             this.hasCenterContainer = false;
             this.hasPublishService = true;
           }
-          if (this.page === "Insert") {
+          else if (this.page === "Insert") {
             // this.hasBottomBorderNav = false;
             this.hasCenterContainer = false;
             this.hasRightContainer = false;
             this.border_bottom_color = "0"
           }
-          if (this.page==='Service') {
+          else if (this.page==='Service') {
             // this.hasPublishService = false;
           }
-          if (this.page === "Account") {
+          else if (this.page === "Account") {
             //this.hasRightContainer = false;
           }
-          if (this.page === "Auth") {
+          else if (this.page === "Auth") {
             this.hasRightContainer = false;
             this.border_bottom_color = "1px solid #1abc9c"
           }
-          if (this.page === "Order") {
+          else if (this.page === "Order") {
             this.hasRightContainer = false;
           }
-          if (this.page === "Checkout") {
+          else if (this.page === "Checkout") {
             // this.hasBottomBorderNav = false;
             this.hasRightContainer = false;
             this.border_bottom_color = "0"
           }
-          if (this.page === "Blog") {
+          else if (this.page === "Blog") {
             // this.hasBottomBorderNav = false;
             this.hasCenterContainer = false;
             this.hasRightContainer = true;
             // this.border_bottom_color = "0"
+          }
+          else if (this.page === "Info") {
+            // this.hasBottomBorderNav = false;
+            this.hasCenterContainer = false;
+            this.hasRightContainer = true;
+            // this.border_bottom_color = "0"
+          }
+          else {
+            this.hasCenterContainer = true;
+            this.hasRightContainer = true;
           }
           // console.log('page is: ' + this.page);
         }
