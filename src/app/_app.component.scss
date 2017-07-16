@@ -28,8 +28,8 @@ app-root {
   }
   .center-container {
     position: absolute;
-    left: 350px;
-    right: 350px;
+    left: 100px;
+    right: 100px;
     height: 70px;
     padding: 10px;
     margin: auto;
@@ -278,19 +278,19 @@ app-root {
 
   @media (max-width: 1024px) {
     .center-container {
-      left: 300px;
-      right: 300px;
+      left: 100px;
+      right: 100px;
     }
   }
 
   @media (max-width: 768px) {
     .center-container {
-      left: 80px;
+      // left: 80px;
     }
   }
   @media (max-width: 576px) {
     .center-container {
-      right: 30px;
+      // right: 30px;
     }
     .navbar-fixed-bottom, .navbar-fixed-top {
       z-index: 1040;
