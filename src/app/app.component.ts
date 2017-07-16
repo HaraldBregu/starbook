@@ -127,7 +127,7 @@ export class AppComponent implements OnInit, OnDestroy {
           if (this.page === "Blog") {
             // this.hasBottomBorderNav = false;
             this.hasCenterContainer = false;
-            this.hasRightContainer = false;
+            this.hasRightContainer = true;
             // this.border_bottom_color = "0"
           }
           // console.log('page is: ' + this.page);

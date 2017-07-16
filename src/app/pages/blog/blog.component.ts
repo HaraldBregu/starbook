@@ -34,6 +34,20 @@ export class BlogComponent implements OnInit {
         this.router.navigate(['/blog/Il-booking-dei-servizi:-un-fenomeno-in-crescita-destinatoad-espandersi']);
       }
     })
+
+    this.seoService.setTitle("Il booking dei servizi: un fenomeno in crescita destinato ad espandersi");
+    this.seoService.setMetaElem('description', "Negli ultimi anni, si è sentito parlare sempre più spesso del booking dei servizi e dei vantaggi che può offrire.");
+    this.seoService.setOgElem('twitter:card', "summary_large_image");
+    this.seoService.setOgElem('twitter:title', "Il booking dei servizi: un fenomeno in crescita destinato ad espandersi");
+    this.seoService.setOgElem('twitter:site', "@starbookco");
+    this.seoService.setOgElem('twitter:creator', "@HaraldBregu");
+    this.seoService.setOgElem('twitter:description', "Negli ultimi anni, si è sentito parlare sempre più spesso del booking dei servizi e dei vantaggi che può offrire.");
+    this.seoService.setOgElem('twitter:image', "https://s3-eu-west-1.amazonaws.com/starbook-s3/blog/prenotazioni-servizi-professionali-online.jpg");
+    this.seoService.setOgElem('og:title', "Il booking dei servizi: un fenomeno in crescita destinato ad espandersi");
+    this.seoService.setOgElem('og:description', "Negli ultimi anni, si è sentito parlare sempre più spesso del booking dei servizi e dei vantaggi che può offrire.");
+    this.seoService.setOgElem('og:url', "https://www.starbook.co/blog/Il-booking-dei-servizi%3A-un-fenomeno-in-crescita-destinatoad-espandersi");
+    this.seoService.setOgElem('og:image', "https://s3-eu-west-1.amazonaws.com/starbook-s3/blog/prenotazioni-servizi-professionali-online.jpg");
+    this.seoService.setOgElem('og:image:secure_url', "https://s3-eu-west-1.amazonaws.com/starbook-s3/blog/prenotazioni-servizi-professionali-online.jpg");
   }
 
   ngOnInit() {
