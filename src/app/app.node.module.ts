@@ -73,6 +73,8 @@ import { BlogComponent } from './pages/blog/blog.component';
 import { ContactComponent } from './pages/contact/contact.component';
 import { NotfoundComponent } from './pages/notfound/notfound.component';
 
+import { TestsComponent } from './pages/tests/tests.component';
+
 import { ClipboardDirective } from './directives/clipboard.directive';
 
 // import { RouterModule } from '@angular/router';
@@ -135,7 +137,8 @@ let declarations = [
   CategoryComponent,
   ContactComponent,
   NotfoundComponent,
-
+  TestsComponent,
+  
   ClipboardDirective,
   FormatterDirective,
 

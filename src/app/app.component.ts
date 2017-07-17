@@ -43,6 +43,7 @@ export class AppComponent implements OnInit, OnDestroy {
   public hasCenterContainer = true;
   public hasRightContainer = true;
   public hasPublishService = false;
+  public hasNavigation = true;
 
   public border_bottom_color = "1px solid #DBDBDB"
 
@@ -50,33 +51,17 @@ export class AppComponent implements OnInit, OnDestroy {
 
   constructor (public router:Router, private route: ActivatedRoute, private authServics: AuthService, private navigationService: NavigationService, private popupsService: PopupsService, private commonService: CommonService, private analyticsService: AnalyticsService, private seoService: SeoService) {
     this.navbarState = false;
+    this.hasNavigation = true;
     if (isBrowser) {
       this.router.events.subscribe((event:Event) => {
         if (event instanceof NavigationEnd) {
           ga('send', 'pageview', event.urlAfterRedirects);
           let currentRoute = this.route.root;
-          // console.log('current route is:' + currentRoute);
-          // var cache = [];
-          // console.log('current route snapshot:' + JSON.stringify(currentRoute.snapshot, function(key, value) {
-          //   if (typeof value === 'object' && value !== null) {
-          //     if (cache.indexOf(value) !== -1) {
-          //       return;
-          //     }
-          //     cache.push(value);
-          //   }
-          //   return value;
-          // }));
-          // cache = null; // Enable garbage collection
-
-          // console.log(this.route.component);
-
-          // let urlSegments = this.router.url.split('/');
-          // console.log('url is: ' + this.router.url);
-          // console.log('url segment is: ' + urlSegments[1]);
 
           while (currentRoute.children[0] !== undefined) {
             currentRoute = currentRoute.children[0];
           }
+
           if ('isFindField' in currentRoute.snapshot.data) {
             this.isFindField = true;
           } else {
@@ -88,6 +73,7 @@ export class AppComponent implements OnInit, OnDestroy {
           this.hasCenterContainer = true;
           this.hasRightContainer = true;
           this.hasPublishService = false;
+          this.hasNavigation = true;
 
           this.border_bottom_color = "1px solid #DBDBDB"
 
@@ -95,50 +81,52 @@ export class AppComponent implements OnInit, OnDestroy {
             var data = currentRoute.snapshot.data;
             var name = data['name'];
             this.page = name;
-          }
-          if (this.page === "Landing") {
-            this.hasCenterContainer = false;
-            this.hasPublishService = true;
-          }
-          else if (this.page === "Insert") {
-            // this.hasBottomBorderNav = false;
-            this.hasCenterContainer = false;
-            this.hasRightContainer = false;
-            this.border_bottom_color = "0"
-          }
-          else if (this.page==='Service') {
-            // this.hasPublishService = false;
-          }
-          else if (this.page === "Account") {
-            //this.hasRightContainer = false;
-          }
-          else if (this.page === "Auth") {
-            this.hasRightContainer = false;
-            this.border_bottom_color = "1px solid #1abc9c"
-          }
-          else if (this.page === "Order") {
-            this.hasRightContainer = false;
-          }
-          else if (this.page === "Checkout") {
-            // this.hasBottomBorderNav = false;
-            this.hasRightContainer = false;
-            this.border_bottom_color = "0"
-          }
-          else if (this.page === "Blog") {
-            // this.hasBottomBorderNav = false;
-            this.hasCenterContainer = false;
-            this.hasRightContainer = true;
-            // this.border_bottom_color = "0"
-          }
-          else if (this.page === "Info") {
-            // this.hasBottomBorderNav = false;
-            this.hasCenterContainer = false;
-            this.hasRightContainer = true;
-            // this.border_bottom_color = "0"
-          }
-          else {
-            this.hasCenterContainer = true;
-            this.hasRightContainer = true;
+            if (this.page === "Landing") {
+              this.hasCenterContainer = false;
+              this.hasPublishService = true;
+            }
+            else if (this.page === "Insert") {
+              // this.hasBottomBorderNav = false;
+              this.hasCenterContainer = false;
+              this.hasRightContainer = false;
+              this.border_bottom_color = "0"
+            }
+            else if (this.page==='Service') {
+              // this.hasPublishService = false;
+            }
+            else if (this.page === "Account") {
+              //this.hasRightContainer = false;
+            }
+            else if (this.page === "Auth") {
+              this.hasRightContainer = false;
+              this.border_bottom_color = "1px solid #1abc9c"
+            }
+            else if (this.page === "Order") {
+              this.hasRightContainer = false;
+            }
+            else if (this.page === "Orders") {
+              this.hasNavigation = true;
+            }
+            else if (this.page === "Checkout") {
+              this.hasRightContainer = false;
+              this.border_bottom_color = "0"
+            }
+            else if (this.page === "Blog") {
+              this.hasCenterContainer = false;
+              this.hasRightContainer = true;
+            }
+            else if (this.page === "Info") {
+              this.hasCenterContainer = false;
+              this.hasRightContainer = true;
+            }
+            else if (this.page === "Customer") {
+              this.hasNavigation = false
+            }
+            else {
+              this.hasNavigation = true
+              this.hasCenterContainer = true;
+              this.hasRightContainer = true;
+            }
           }
           // console.log('page is: ' + this.page);
         }

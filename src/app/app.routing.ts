@@ -27,6 +27,8 @@ import { BlogComponent } from './pages/blog/blog.component';
 import { ContactComponent } from './pages/contact/contact.component';
 import { NotfoundComponent } from './pages/notfound/notfound.component';
 
+import { TestsComponent } from './pages/tests/tests.component';
+
 const routes: Routes = [
   { path: '', component: LandingComponent, data: { name: 'Landing' } },
   { path: 'company', component: CompanyComponent, data: { name: 'LandingCompany' } },
@@ -35,8 +37,8 @@ const routes: Routes = [
   { path: 'account/:page', component: AccountComponent, data: { name: 'Account' } },
   { path: 'auth/:page', component: AuthComponent, data: { name: 'Auth' } },
 
-  { path: 'orders', component: OrdersComponent },
-  { path: 'orders/:page', component: OrdersComponent },
+  { path: 'orders', component: OrdersComponent, data: { name: 'Orders' } },
+  { path: 'orders/:page', component: OrdersComponent, data: { name: 'Orders' } },
   // { path: 'profile', component: ProfileComponent },
   // { path: 'profile/:page', component: ProfileComponent },
 
@@ -45,8 +47,8 @@ const routes: Routes = [
   // { path: 'contact', component: ContactComponent },
   // { path: 'contact/:page', component: ContactComponent },
 
-  { path: 'services', component: ServicesComponent, data: {isFindField: true} },
-  { path: 'services/:id', component: ServiceComponent, data: {name: 'Service', isFindField: true} },
+  { path: 'services', component: ServicesComponent, data: { name: 'Service', isFindField: true } },
+  { path: 'services/:id', component: ServiceComponent, data: { name: 'Service', isFindField: true } },
 
   { path: 'insert', component: InsertComponent, data: { name: 'Insert' } },
   { path: 'insert/:step', component: InsertComponent, data: { name: 'Insert' } },
@@ -81,6 +83,10 @@ const routes: Routes = [
   { path: 'info/help', component: HelpComponent, data: { name: 'Info' } },
   { path: 'info/legal', component: LegalComponent, data: { name: 'Info' } },
   { path: 'info/about', component: AboutComponent, data: { name: 'Info' } },
+
+  // TESTS
+  { path: 'customer', component: TestsComponent, data: { name: 'Customer' } },
+  { path: 'customer/:page', component: TestsComponent, data: { name: 'Customer' } },
 
   { path: '404', component: NotfoundComponent },
   { path: '**', redirectTo: '' }

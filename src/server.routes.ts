@@ -44,6 +44,11 @@ export const routes: string[] = [
   'info/legal',
   'info/about',
 
+  // TESTS
+  'customer',
+  'customer/:page',
+
+
   '404',
   '**'
 ];
