@@ -7794,7 +7794,19 @@ app-tests {
     padding-top: 10px; } }
 @media (max-width: 425px) {
   app-tests .tests-container .overlay .header {
-    padding: 20px; }
+    padding: 40px 20px 20px; }
+
+  app-tests .tests-container .overlay .header h1 {
+    margin-bottom: 10px;
+    font-size: 30px;
+    line-height: 32px; }
+
+  app-tests .tests-container .overlay .header h4 {
+    margin-bottom: 20px;
+    font-weight: 400;
+    color: white;
+    font-size: 20px;
+    line-height: 26px; }
 
   app-tests .tests-container .overlay .header .search-panel .fields .service-title {
     float: none;

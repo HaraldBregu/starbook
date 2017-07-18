@@ -28,10 +28,14 @@ export class BlogComponent implements OnInit {
 
     this.route.params.subscribe(params => {
       this.article = params['article']
-      if (this.article==="Il-booking-dei-servizi:-un-fenomeno-in-crescita-destinatoad-espandersi") {
+      if (this.article==="Il-booking-dei-servizi:-un-fenomeno-in-crescita-destinato-ad-espandersi") {
 
-      } else {
-        this.router.navigate(['/blog/Il-booking-dei-servizi:-un-fenomeno-in-crescita-destinatoad-espandersi']);
+      }
+      // else if (this.article==="Come-gestire-il-tempo-nell’era-delle-piattaforme-digitali") {
+      //
+      // }
+      else {
+        this.router.navigate(['/blog/Il-booking-dei-servizi:-un-fenomeno-in-crescita-destinato-ad-espandersi']);
       }
     })
 
