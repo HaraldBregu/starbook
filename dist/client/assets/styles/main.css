@@ -7369,9 +7369,14 @@ app-blog {
     height: 100%;
     background-color: #FFFFFF; }
     app-blog .blog-container .header {
-      padding: 50px 20px 0;
-      max-width: 740px;
-      margin: auto; }
+      padding: 50px;
+      max-width: 1000px;
+      margin: auto;
+      background-image: url(https://cdn-images-1.medium.com/max/2000/1*VaIUbgV3e-aj_Pa73xzWVA.png);
+      background-position: center bottom;
+      background-size: 100% auto;
+      background-repeat: no-repeat;
+      min-height: 450px; }
       app-blog .blog-container .header h1 {
         font-size: 44px;
         font-weight: 600;
@@ -7397,10 +7402,60 @@ app-blog {
           color: rgba(0, 0, 0, 0.44);
           margin-top: 5px; }
     app-blog .blog-container .body {
-      padding: 20px;
-      max-width: 740px;
+      padding: 40px 0;
+      max-width: 1030px;
       margin: auto;
-      text-align: center; }
+      text-align: center;
+      overflow: auto; }
+      app-blog .blog-container .body .post-container {
+        width: calc(100% / 3);
+        float: left;
+        padding: 15px; }
+        app-blog .blog-container .body .post-container .post {
+          border: 1px solid rgba(0, 0, 0, 0.1);
+          border-radius: 2px;
+          overflow: hidden; }
+          app-blog .blog-container .body .post-container .post .post-image {
+            height: 230px;
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center; }
+          app-blog .blog-container .body .post-container .post .post-body {
+            padding: 20px 20px 30px; }
+            app-blog .blog-container .body .post-container .post .post-body .post-title {
+              font-size: 20px;
+              font-weight: 500;
+              text-align: left;
+              line-height: 26px;
+              color: rgba(0, 0, 0, 0.8); }
+            app-blog .blog-container .body .post-container .post .post-body .post-description {
+              font-size: 14px;
+              font-weight: 400;
+              text-align: left;
+              color: rgba(0, 0, 0, 0.44);
+              margin-top: 10px;
+              max-height: 57px;
+              overflow: hidden; }
+          app-blog .blog-container .body .post-container .post .post-author {
+            text-align: left;
+            overflow: auto;
+            padding: 0 20px 30px; }
+            app-blog .blog-container .body .post-container .post .post-author img {
+              width: 40px;
+              border-radius: 20px; }
+            app-blog .blog-container .body .post-container .post .post-author .author-username {
+              margin-left: 10px;
+              margin-top: 2px;
+              color: rgba(0, 0, 0, 0.8);
+              font-size: 14px;
+              line-height: 1.4;
+              font-weight: 400; }
+            app-blog .blog-container .body .post-container .post .post-author .post-date {
+              margin-left: 10px;
+              margin-top: 1px;
+              color: rgba(0, 0, 0, 0.44);
+              font-size: 12px;
+              font-weight: 400; }
       app-blog .blog-container .body .image-preview {
         position: relative;
         background-size: cover;
@@ -7408,8 +7463,6 @@ app-blog {
         background-position: center;
         width: 100%;
         height: 250px; }
-      app-blog .blog-container .body img {
-        margin-top: 30px; }
       app-blog .blog-container .body p {
         font-size: 21px !important;
         line-height: 31px;
@@ -7458,15 +7511,128 @@ app-blog {
             width: 100% !important; }
     app-blog .blog-container .line {
       border-bottom: 1px solid #dbdbdb; }
+  app-blog .article-container {
+    display: block;
+    width: 100%;
+    height: 100%;
+    background-color: #FFFFFF; }
+    app-blog .article-container .header {
+      padding: 50px 20px 0;
+      max-width: 740px;
+      margin: auto;
+      overflow: auto; }
+      app-blog .article-container .header h1 {
+        font-size: 44px;
+        font-weight: 600;
+        color: rgba(0, 0, 0, 0.8);
+        line-height: 53px; }
+      app-blog .article-container .header .author {
+        padding: 20px 0;
+        text-align: left;
+        overflow: auto; }
+        app-blog .article-container .header .author img {
+          width: 50px;
+          border-radius: 25px; }
+        app-blog .article-container .header .author .author-username {
+          margin-left: 10px;
+          margin-top: 4px;
+          font-size: 18px;
+          font-weight: 300;
+          color: black;
+          font-weight: 400; }
+        app-blog .article-container .header .author .headline {
+          margin-left: 10px;
+          margin-top: 1px;
+          color: rgba(0, 0, 0, 0.44);
+          font-size: 15px;
+          font-weight: 400; }
+      app-blog .article-container .header .date {
+        overflow: auto;
+        margin-top: 10px;
+        border-bottom: 1px solid #dbdbdb; }
+        app-blog .article-container .header .date .post-date {
+          color: rgba(0, 0, 0, 0.8);
+          font-size: 16px;
+          font-weight: 400; }
+      app-blog .article-container .header .share {
+        overflow: auto;
+        margin-top: 10px; }
+        app-blog .article-container .header .share .btn-twitter, app-blog .article-container .header .share .btn-facebook, app-blog .article-container .header .share .btn-linkedin, app-blog .article-container .header .share .btn-google-plus {
+          background: white;
+          padding: 0 5px; }
+        app-blog .article-container .header .share i {
+          font-size: 18px;
+          color: rgba(0, 0, 0, 0.7); }
+    app-blog .article-container .body {
+      padding: 20px;
+      max-width: 740px;
+      margin: auto;
+      text-align: center; }
+      app-blog .article-container .body .image-preview {
+        position: relative;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+        width: 100%;
+        height: 250px; }
+      app-blog .article-container .body p {
+        font-size: 21px !important;
+        line-height: 31px;
+        color: rgba(0, 0, 0, 0.8);
+        margin-top: 20px;
+        text-align: justify;
+        -webkit-hyphens: auto;
+        -epub-hyphens: auto;
+        -moz-hyphens: auto;
+        hyphens: auto; }
+      app-blog .article-container .body h2 {
+        text-align: left;
+        font-size: 32px;
+        font-weight: 600;
+        color: rgba(0, 0, 0, 0.8);
+        line-height: 38px;
+        margin-top: 40px; }
+      app-blog .article-container .body a.starbook-banner {
+        display: block;
+        margin-top: 30px;
+        background: #324977;
+        line-height: 60px;
+        text-align: center;
+        color: white;
+        font-size: 22px; }
+      app-blog .article-container .body a.starbook-banner:hover, app-blog .article-container .body a.starbook-banner:focus {
+        background: #1d325d;
+        text-decoration: none; }
+    app-blog .article-container .footer {
+      padding: 30px 20px 80px;
+      max-width: 740px;
+      margin: auto; }
+      app-blog .article-container .footer .btn-twitter, app-blog .article-container .footer .btn-facebook, app-blog .article-container .footer .btn-linkedin, app-blog .article-container .footer .btn-google-plus {
+        background: white;
+        padding: 0 5px; }
+      app-blog .article-container .footer i {
+        font-size: 20px;
+        color: rgba(0, 0, 0, 0.7); }
+      app-blog .article-container .footer .fb-comments {
+        width: 100%; }
+        app-blog .article-container .footer .fb-comments ._5lm5 _2pi3 _3-8y {
+          display: none; }
+        app-blog .article-container .footer .fb-comments span {
+          width: 100% !important; }
+          app-blog .article-container .footer .fb-comments span iframe {
+            width: 100% !important; }
+    app-blog .article-container .line {
+      border-bottom: 1px solid #dbdbdb; }
   app-blog .footer-container {
     position: relative;
     background: white;
-    border-top: 1px solid #DBDBDB;
-    padding: 30px 0; }
+    padding: 0;
+    border: 0; }
     app-blog .footer-container .footer {
-      max-width: 740px;
+      max-width: 1000px;
       margin: auto;
-      padding: 20px; }
+      padding: 20px 10px;
+      border-top: 1px solid #DBDBDB; }
       app-blog .footer-container .footer span {
         font-size: 16px; }
 
@@ -7485,6 +7651,22 @@ app-blog {
     margin-top: 20px; }
 
   app-blog .blog-container .body h2 {
+    margin-top: 30px; }
+
+  app-blog .article-container .header {
+    padding: 30px 20px 0; }
+
+  app-blog .article-container .header h1 {
+    font-size: 38px;
+    line-height: 47px; }
+
+  app-blog .article-container .body {
+    padding: 30px 20px; }
+
+  app-blog .article-container .body p {
+    margin-top: 20px; }
+
+  app-blog .article-container .body h2 {
     margin-top: 30px; } }
 app-tests {
   display: block;

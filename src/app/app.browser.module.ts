@@ -78,6 +78,8 @@ import { FormatterDirective } from './directives/formatter.directive';
 import { CurrencyPipe } from './pipes/currency.pipe';
 import { CurrencyFormatPipe } from './pipes/currency-format.pipe';
 
+import { MarkdownModule } from 'angular2-markdown';
+
 export class HammerConfig extends HammerGestureConfig  {
   overrides = <any> {
     'swipe': {velocity: 0.4, threshold: 20}
@@ -101,6 +103,7 @@ let imports = [
   // ImageUploadModule.forRoot(),
   // ClipboarModule
   FacebookModule.forRoot(),
+  MarkdownModule.forRoot(),
 ];
 let declarations = [
   AppComponent,

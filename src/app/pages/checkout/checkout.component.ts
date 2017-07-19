@@ -342,7 +342,7 @@ export class CheckoutComponent implements OnInit {
     }
     this.signup_state.loading = true;
     this.signup_state.button_title = "Registrando...";
-    this.authService.signupProfessional(this.signupParameters.firstname, this.signupParameters.lastname, this.signupParameters.phone, this.signupParameters.email, this.signupParameters.password, "VENDOR").then((data) => {
+    this.authService.signup(this.signupParameters.firstname, this.signupParameters.lastname, this.signupParameters.phone, this.signupParameters.email, this.signupParameters.password).then((data) => {
       this.navigationService.updatePersonalMenu(data);
       this.steps[3] = 'payment'
       this.router.navigate(['checkout/payment'])
