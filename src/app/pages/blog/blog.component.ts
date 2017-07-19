@@ -18,11 +18,14 @@ export class BlogComponent implements OnInit {
     articles: [
       {
         "title" : "Il booking dei servizi: un fenomeno in crescita destinato ad espandersi",
-        "subtitle" : "Negli ultimi anni, si è sentito parlare sempre più spesso del booking dei servizi e dei vantaggi che può offrire. Ormai da qualche tempo, infatti, il web si è popolato di piattaforme per la prenotazione di servizi che promettono ai loro utilizzatori notevoli vantaggi in termini non soltanto di tempo, ma anche di denaro: sconti dedicati, professionisti a completa disposizione della clientela e uno staff in grado di garantire il suo supporto sono stati i punti a favore di questo nuovo fenomeno che, stando ad alcune statistiche, sembra destinato ad espandersi. Scopriamo come funziona il booking dei servizi e perché è tanto apprezzato.",
+        "subtitle" : "Nuovi sistemi innovativi, nuove tecnologie è nuovi modi per trovare o prenotare quello che ti serve.",
         "picture_url" : "https://s3-eu-west-1.amazonaws.com/starbook-s3/blog/prenotazioni-servizi-professionali-online.jpg",
         "markdown_body" : `
-        \nNegli ultimi anni, si è sentito parlare sempre più spesso del booking dei servizi e dei vantaggi che può offrire. Ormai da qualche tempo, infatti, il web si è popolato di piattaforme per la prenotazione di servizi che promettono ai loro utilizzatori notevoli vantaggi in termini non soltanto di tempo, ma anche di denaro: sconti dedicati, professionisti a completa disposizione della clientela e uno staff in grado di garantire il suo supporto sono stati i punti a favore di questo nuovo fenomeno che, stando ad alcune statistiche, sembra destinato ad espandersi. Scopriamo come funziona il booking dei servizi e perché è tanto apprezzato.
+        \n*Nuovi sistemi innovativi, nuove tecnologie è nuovi modi per trovare o prenotare quello che ti serve.*
+
         \n![Il booking dei servizi](https://s3-eu-west-1.amazonaws.com/starbook-s3/blog/prenotazioni-servizi-professionali-online.jpg "Il booking dei servizi")
+
+        \nNegli ultimi anni, si è sentito parlare sempre più spesso del booking dei servizi e dei vantaggi che può offrire. Ormai da qualche tempo, infatti, il web si è popolato di piattaforme per la prenotazione di servizi che promettono ai loro utilizzatori notevoli vantaggi in termini non soltanto di tempo, ma anche di denaro: sconti dedicati, professionisti a completa disposizione della clientela e uno staff in grado di garantire il suo supporto sono stati i punti a favore di questo nuovo fenomeno che, stando ad alcune statistiche, sembra destinato ad espandersi. Scopriamo come funziona il booking dei servizi e perché è tanto apprezzato.
         \n## Come funziona e perché ha riscosso tanto successo
         \nIl funzionamento dei sistemi di booking on line è in realtà più semplice di quanto si potrebbe pensare. Basta collegarsi alla piattaforma scelta, inserire il tipo di servizio desiderato e la data in cui si desidera godere di quel determinato servizio e avviare la ricerca. In pochi secondi, sarà possibile visualizzare le diverse offerte disponibili e prenotare direttamente l'intervento desiderato.
         \nFacile intuire il motivo di tanto apprezzamento da parte degli utilizzatori di questo servizio: oltre alla già citata semplicità di utilizzo e ai prezzi convenienti, a rassicurare coloro che scelgono i servizi di booking on line è la selezione dei professionisti che si appoggiano a queste piattaforme. Lo staff, infatti, garantisce che ogni addetto viene scelto per la sua capacità di rispondere alle richieste della clientela, rispettando obblighi di legge e standard elevati. Un ottimo modo per fare sì che domanda e offerta si incontrino.
@@ -34,15 +37,15 @@ export class BlogComponent implements OnInit {
           "headline" : "Piattaforma di booking per i servizi professionali.",
           "picture_url" : "https://s3-eu-west-1.amazonaws.com/starbook-s3/accounts/5920099fde98d19d5836ef56/avatar/0"
         },
-        "updated_at" : "19 Lug 2017",
+        "updated_at" : "16 Lug 2017",
         "timing" : "3 min lettura"
       },
       {
         "title" : "Le piattaforme digitali: come gestire il tempo nell'era della new economy",
-        "subtitle" : "Il tempo è un illusione eppure è l’unica risorsa con maggior valore nella nostra vita. Il tempo lo possiamo utilizzare per i nostri interessi o sprecarlo. Nel era digitale, con le distrazioni del web è diventato sempre più difficile gestire il tempo. Per questo molte piattaforme sono nate da tempo ormai per migliorare la vita, far guadagnare o vendere risparmiando tempo e denaro.",
+        "subtitle" : "Il tempo è un'illusione eppure è l'unica risorsa con maggior valore nella nostra vita e nel era digitale il tempo è diventato uno strumento difficile da gestire ma cruciale per sopravvivere.",
         "picture_url" : "https://s3-eu-west-1.amazonaws.com/starbook-s3/blog/online-booking-servizi.png",
         "markdown_body" : `
-        \n*Il tempo è un **illusione** eppure è l’unica risorsa con maggior valore nella nostra vita e nel era digitale il tempo è diventato uno strumento difficile da gestire ma cruciale per sopravvivere.*
+        \n*Il tempo è un'illusione eppure è l'unica risorsa con maggior valore nella nostra vita e nel era digitale il tempo è diventato uno strumento difficile da gestire ma cruciale per sopravvivere.*
 
         \n![Piattaforme digitali](https://s3-eu-west-1.amazonaws.com/starbook-s3/blog/online-booking-servizi.png "Piattaforme digitali")
 
@@ -91,17 +94,6 @@ export class BlogComponent implements OnInit {
     this.seoService.setOgElem('og:url', this.SeoData['url'])
     this.seoService.setOgElem('og:image', this.SeoData['image_url'])
     this.seoService.setOgElem('og:image:secure_url', this.SeoData['image_url'])
-
-    if (isBrowser) {
-      this.browser = true;
-      window.scrollTo(0, 0)
-      let initParams: InitParams = {
-        appId: '1108461325907277',
-        xfbml: true,
-        version: 'v2.8'
-      };
-      fb.init(initParams);
-    }
   }
 
   ngOnInit() {
@@ -116,10 +108,13 @@ export class BlogComponent implements OnInit {
           if (article.title === stringpage) {
 
             this.SeoData['title'] = article['title']
-            this.SeoData['description'] = article['description']
+            this.SeoData['description'] = article['subtitle']
+            // this.SeoData['url'] = "url"
             if (isBrowser) {this.SeoData['url'] = document.location.protocol + '//'+ document.location.hostname + this.router.url}
             this.SeoData['image_url'] = article['picture_url']
-            
+
+            console.log('seo is: ' + JSON.stringify(this.SeoData));
+
             this.seoService.setTitle(this.SeoData['title'])
             this.seoService.setMetaElem('description', this.SeoData['description'])
             this.seoService.setOgElem('twitter:card', "summary_large_image")
@@ -140,7 +135,16 @@ export class BlogComponent implements OnInit {
         }
       }
     })
-
+    if (isBrowser) {
+      this.browser = true;
+      window.scrollTo(0, 0)
+      let initParams: InitParams = {
+        appId: '1108461325907277',
+        xfbml: true,
+        version: 'v2.8'
+      };
+      this.fb.init(initParams);
+    }
   }
 
   showArticle(article) {

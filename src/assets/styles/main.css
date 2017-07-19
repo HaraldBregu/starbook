@@ -7434,7 +7434,7 @@ app-blog {
               text-align: left;
               color: rgba(0, 0, 0, 0.44);
               margin-top: 10px;
-              max-height: 57px;
+              height: 57px;
               overflow: hidden; }
           app-blog .blog-container .body .post-container .post .post-author {
             text-align: left;
@@ -7636,6 +7636,9 @@ app-blog {
       app-blog .footer-container .footer span {
         font-size: 16px; }
 
+@media (max-width: 768px) {
+  app-blog .blog-container .body .post-container {
+    width: calc(100% / 2); } }
 @media (max-width: 425px) {
   app-blog .blog-container .header {
     padding: 30px 20px 0; }
@@ -7652,6 +7655,9 @@ app-blog {
 
   app-blog .blog-container .body h2 {
     margin-top: 30px; }
+
+  app-blog .blog-container .body .post-container {
+    width: 100%; }
 
   app-blog .article-container .header {
     padding: 30px 20px 0; }
