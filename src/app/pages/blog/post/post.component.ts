@@ -91,7 +91,7 @@ export class PostComponent implements OnInit {
 
             this.SeoData['title'] = article.title
             this.SeoData['description'] = article.subtitle
-            this.SeoData['url'] = 'https://www.starbook.co' + this.router.url
+            this.SeoData['url'] = 'https://www.starbook.co/blog/' + article.title
             this.SeoData['image_url'] = article.picture_url
             this.seoService.setTitle(this.SeoData['title'])
             this.seoService.setMetaElem('description', this.SeoData['description'])

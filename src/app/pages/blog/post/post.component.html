@@ -23,7 +23,7 @@
       </a>
     </div>
   </div>
-  <div class="body">
+  <div class="body" *ngIf="browser">
     <markdown [data]="selectedArticle.markdown_body"></markdown>
   </div>
   <div class="footer">
