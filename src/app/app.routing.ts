@@ -23,11 +23,13 @@ import { AccountComponent } from './pages/account/account.component';
 import { AuthComponent } from './pages/auth/auth.component';
 import { RequestsComponent } from './pages/requests/requests.component';
 import { ShareComponent } from './pages/share/share.component';
-import { BlogComponent } from './pages/blog/blog.component';
 import { ContactComponent } from './pages/contact/contact.component';
 import { NotfoundComponent } from './pages/notfound/notfound.component';
 
 import { TestsComponent } from './pages/tests/tests.component';
+
+import { BlogComponent } from './pages/blog/blog.component';
+import { PostComponent } from './pages/blog/post/post.component';
 
 const routes: Routes = [
   { path: '', component: LandingComponent, data: { name: 'Landing' } },
@@ -78,7 +80,7 @@ const routes: Routes = [
   // { path: 'requests/:page', component: RequestsComponent },
 
   { path: 'blog', component: BlogComponent, data: { name: 'Blog' } },
-  { path: 'blog/:article', component: BlogComponent, data: { name: 'Blog' } },
+  { path: 'blog/:article', component: PostComponent, data: { name: 'Blog' } },
 
   { path: 'info/help', component: HelpComponent, data: { name: 'Info' } },
   { path: 'info/legal', component: LegalComponent, data: { name: 'Info' } },

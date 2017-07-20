@@ -66,11 +66,13 @@ import { AccountComponent } from './pages/account/account.component';
 import { AuthComponent } from './pages/auth/auth.component';
 import { RequestsComponent } from './pages/requests/requests.component';
 import { ShareComponent } from './pages/share/share.component';
-import { BlogComponent } from './pages/blog/blog.component';
 import { ContactComponent } from './pages/contact/contact.component';
 import { NotfoundComponent } from './pages/notfound/notfound.component';
 
 import { TestsComponent } from './pages/tests/tests.component';
+
+import { BlogComponent } from './pages/blog/blog.component';
+import { PostComponent } from './pages/blog/post/post.component';
 
 import { ClipboardDirective } from './directives/clipboard.directive';
 
@@ -128,6 +130,7 @@ let declarations = [
   RequestsComponent,
   ShareComponent,
   BlogComponent,
+  PostComponent,
   CategoryComponent,
   ContactComponent,
   NotfoundComponent,

@@ -1,0 +1,40 @@
+<div class="article-container" *ngIf="selectedArticle">
+  <div class="header">
+    <h1>{{selectedArticle.title}}</h1>
+    <div class="author">
+      <img class="left" [src]="selectedArticle.author.picture_url" title="={{selectedArticle.author.fullname}}" alt="{{selectedArticle.author.fullname}}">
+      <div class="left">
+        <div class="author-username">{{selectedArticle.author.fullname}}</div>
+        <div class="headline">{{selectedArticle.author.headline}}</div>
+      </div>
+    </div>
+    <div class="date">
+      <div class="post-date">{{selectedArticle.updated_at}} - {{selectedArticle.timing}}</div>
+    </div>
+    <div class="share right">
+      <a class="btn btn-twitter" (click)="shareOnTwitter()">
+        <i class="fa fa-twitter" aria-hidden="true"></i>
+      </a>
+      <a class="btn btn-facebook" (click)="shareOnFacebook()">
+        <i class="fa fa-facebook-official" aria-hidden="true"></i>
+      </a>
+      <a class="btn btn-linkedin" (click)="shareOnLinkedin()">
+        <i class="fa fa-linkedin" aria-hidden="true"></i>
+      </a>
+    </div>
+  </div>
+  <div class="body">
+    <markdown [data]="selectedArticle.markdown_body"></markdown>
+  </div>
+  <div class="footer">
+    <div *ngIf="browser">
+      <fb-comments href="https://developers.facebook.com/docs/plugins/comments#{{selectedArticle.title}}"></fb-comments>
+    </div>
+  </div>
+</div>
+
+<div class="footer-container">
+  <div class="footer">
+    <span>Starbook © 2017 Tutti i diritti riservati</span>
+  </div>
+</div>
