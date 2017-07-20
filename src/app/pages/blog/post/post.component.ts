@@ -77,63 +77,22 @@ export class PostComponent implements OnInit {
   public SeoData = {}
 
   constructor(private router: Router, private route: ActivatedRoute, private navigationService: NavigationService, private analyticsService: AnalyticsService, private seoService: SeoService, private commonService: CommonService, private fb: FacebookService) {
-    this.navigationService.updateMessage("")
-    // this.SeoData['title'] = "Starbook Blog"
-    // this.SeoData['description'] = "Starbook è una piattaforma che ti connette ai professionisti in modo piu sicuro e diretto."
-    // this.SeoData['url'] = "https://www.starbook.co/blog/Il-booking-dei-servizi%3A-un-fenomeno-in-crescita-destinatoad-espandersi"
-    // this.SeoData['image_url'] = "https://s3-eu-west-1.amazonaws.com/starbook-s3/blog/prenotazioni-servizi-professionali-online.jpg"
-    // this.seoService.setTitle(this.SeoData['title'])
-    // this.seoService.setMetaElem('description', this.SeoData['description'])
-    // this.seoService.setOgElem('twitter:card', "summary_large_image")
-    // this.seoService.setOgElem('twitter:title', this.SeoData['title'])
-    // this.seoService.setOgElem('twitter:site', "@starbookco")
-    // this.seoService.setOgElem('twitter:creator', "@HaraldBregu")
-    // this.seoService.setOgElem('twitter:description', this.SeoData['description'])
-    // this.seoService.setOgElem('twitter:image', this.SeoData['image_url'])
-    // this.seoService.setOgElem('og:title', this.SeoData['title'])
-    // this.seoService.setOgElem('og:description', this.SeoData['description'])
-    // this.seoService.setOgElem('og:url', this.SeoData['url'])
-    // this.seoService.setOgElem('og:image', this.SeoData['image_url'])
-    // this.seoService.setOgElem('og:image:secure_url', this.SeoData['image_url'])
-  }
-  ngOnInit() {
     this.route.params.subscribe(params => {
-      var page = params['article']
-      this.selectedArticle = null
-      if (page) {
+      if (params['article']) {
+        var page = params['article']
         var stringpage = page.replace(/-/g, ' ')
         for (var i in this.blog.articles) {
           var article = this.blog.articles[i]
           if (article.title === stringpage) {
-
-            this.SeoData['title'] = article['title']
-            this.SeoData['description'] = article['subtitle']
-            // this.SeoData['url'] = "url"
-            if (isBrowser) {this.SeoData['url'] = document.location.protocol + '//'+ document.location.hostname + this.router.url}
-            this.SeoData['image_url'] = article['picture_url']
-
-            // console.log('seo is: ' + JSON.stringify(this.SeoData));
-
-            this.seoService.setTitle(this.SeoData['title'])
-            this.seoService.setMetaElem('description', this.SeoData['description'])
-            this.seoService.setOgElem('twitter:card', "summary_large_image")
-            this.seoService.setOgElem('twitter:title', this.SeoData['title'])
-            this.seoService.setOgElem('twitter:site', "@starbookco")
-            this.seoService.setOgElem('twitter:creator', "@HaraldBregu")
-            this.seoService.setOgElem('twitter:description', this.SeoData['description'])
-            this.seoService.setOgElem('twitter:image', this.SeoData['image_url'])
-            this.seoService.setOgElem('og:title', this.SeoData['title'])
-            this.seoService.setOgElem('og:description', this.SeoData['description'])
-            this.seoService.setOgElem('og:url', this.SeoData['url'])
-            this.seoService.setOgElem('og:image', this.SeoData['image_url'])
-            this.seoService.setOgElem('og:image:secure_url', this.SeoData['image_url'])
-
-            this.selectedArticle = article
+            this.setSeoTags(article)
             break;
           }
         }
       }
     })
+  }
+
+  ngOnInit() {
     if (isBrowser) {
       this.browser = true;
       window.scrollTo(0, 0)
@@ -144,6 +103,31 @@ export class PostComponent implements OnInit {
       };
       this.fb.init(initParams);
     }
+  }
+
+  setSeoTags(article) {
+    this.SeoData['title'] = article['title']
+    this.SeoData['description'] = article['subtitle']
+    if (isBrowser) {this.SeoData['url'] = document.location.protocol + '//'+ document.location.hostname + this.router.url}
+    this.SeoData['image_url'] = article['picture_url']
+
+    this.seoService.setTitle(this.SeoData['title'])
+    this.seoService.setMetaElem('description', this.SeoData['description'])
+    this.seoService.setOgElem('twitter:card', "summary_large_image")
+    this.seoService.setOgElem('twitter:title', this.SeoData['title'])
+    this.seoService.setOgElem('twitter:site', "@starbookco")
+    this.seoService.setOgElem('twitter:creator', "@HaraldBregu")
+    this.seoService.setOgElem('twitter:description', this.SeoData['description'])
+    this.seoService.setOgElem('twitter:image', this.SeoData['image_url'])
+    this.seoService.setOgElem('og:title', this.SeoData['title'])
+    this.seoService.setOgElem('og:description', this.SeoData['description'])
+    this.seoService.setOgElem('og:url', this.SeoData['url'])
+    this.seoService.setOgElem('og:image', this.SeoData['image_url'])
+    this.seoService.setOgElem('og:image:secure_url', this.SeoData['image_url'])
+
+    // console.log('seo is: ' + JSON.stringify(this.SeoData));
+
+    this.selectedArticle = article
   }
 
   shareOnFacebook() {

@@ -2,10 +2,6 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Router, Route, ActivatedRoute, Params } from '@angular/router';
 import { SeoService } from '../../shared/seo.service';
 import { NavigationService } from '../../shared/navigation.service';
-import { AnalyticsService } from '../../shared/analytics.service';
-import { isBrowser } from 'angular2-universal';
-import { CommonService } from '../../shared/common.service';
-import { FacebookService, InitParams } from 'ngx-facebook';
 
 @Component({
   selector: 'app-blog',
@@ -43,7 +39,7 @@ export class BlogComponent implements OnInit {
   }
   public SeoData = {}
 
-  constructor(private router: Router, private route: ActivatedRoute, private navigationService: NavigationService, private analyticsService: AnalyticsService, private seoService: SeoService, private commonService: CommonService, private fb: FacebookService) {
+  constructor(private router: Router, private navigationService: NavigationService, private seoService: SeoService) {
     this.navigationService.updateMessage("")
     this.SeoData['title'] = "Starbook Blog"
     this.SeoData['description'] = "Starbook è una piattaforma che ti connette ai professionisti in modo piu sicuro e diretto."
