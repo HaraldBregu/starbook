@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, Route, ActivatedRoute, Params } from '@angular/router';
-import { AnalyticsService } from '../../shared/analytics.service';
 import { OrdersService, IAddress } from '../../shared/orders.service';
 import { AuthService } from '../../shared/auth.service';
 import { NavigationService } from '../../shared/navigation.service';
@@ -164,7 +163,7 @@ export class WizardComponent implements OnInit {
     cvc_error: null
   }
 
-  constructor(private router: Router, private route: ActivatedRoute, private analyticsService: AnalyticsService, private orderService: OrdersService, private authService: AuthService, private navigationService: NavigationService, private paymentService: PaymentService, private profileService: ProfileService ) {
+  constructor(private router: Router, private route: ActivatedRoute, private orderService: OrdersService, private authService: AuthService, private navigationService: NavigationService, private paymentService: PaymentService, private profileService: ProfileService ) {
     this.emailPattern = /^[a-z0-9!#$%&'*+\/=?^_`{|}~.-]+@[a-z0-9]([a-z0-9-]*[a-z0-9])?(\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)*$/i;
     this.it = {
       firstDayOfWeek: 1,
@@ -175,7 +174,6 @@ export class WizardComponent implements OnInit {
         'Luglio', 'Agosto', 'Settembre', 'Ottobre', 'Novembre', 'Dicembre'],
       monthNamesShort: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
     };
-    this.analyticsService.sendPageViewUrl(this.router.url)
 
         // if (isBrowser) {
         //   this.subscription = this.orderService.getOrderEvent$.subscribe(event => {
@@ -259,7 +257,6 @@ export class WizardComponent implements OnInit {
   }
 
   back() {
-    this.analyticsService.sendEvent({category:'Booking', action: 'Back', label: this.router.url});
     if (this.step === 'address') {
       this.router.navigate(['order/summary']);
     } else if (this.step === 'date') {
@@ -279,7 +276,6 @@ export class WizardComponent implements OnInit {
   //// CONFIRM PREVIEW //////////
   ///////////////////////////////
   confirmPreview() {
-    this.analyticsService.sendEvent({category:'Booking', action: 'Confirm summary', label: this.router.url});
     this.router.navigate(['order/address']);
   }
   daysString(days) {
@@ -296,7 +292,6 @@ export class WizardComponent implements OnInit {
   //// CONFIRM ADDRESS //////////
   ///////////////////////////////
   confirmAddress() {
-    this.analyticsService.sendEvent({category:'Booking', action: 'Confirm address', label: this.router.url});
     if (!this.Order.address) {
       this.address_state.error_message = "Per favore inserisci un indirizzo corretto";
       return;
@@ -348,7 +343,6 @@ export class WizardComponent implements OnInit {
   //// CONFIRM DATE //////////
   ////////////////////////////
   confirmDate() {
-    this.analyticsService.sendEvent({category:'Booking', action: 'Confirm date', label: this.router.url});
     if (!this.Order.date) {
       this.date_state.error_message = "Per favore inserisci una data";
       return;
@@ -373,7 +367,6 @@ export class WizardComponent implements OnInit {
   //// CONFIRM ORDER //////////
   /////////////////////////////
   confirmOrder() {
-    this.analyticsService.sendEvent({category:'Booking', action: 'Confirm order', label: this.router.url});
     if (localStorage.getItem('auth')) {
       this.order_status.loading = true;
       this.order_status.button_title = "Inviando l'ordine...";
@@ -419,7 +412,6 @@ export class WizardComponent implements OnInit {
   //// CONFIRM END //////////
   ///////////////////////////
   confirmEnd() {
-    this.analyticsService.sendEvent({category:'Booking', action: 'Confirm end', label: this.router.url});
     let user = JSON.parse(localStorage.getItem('auth'));
     if (!user.phone_number || user.phone_number.length < 10) {
       this.router.navigate(['order/info']);
@@ -433,7 +425,6 @@ export class WizardComponent implements OnInit {
   ////////// AUTHENTICATION //////////
   ////////////////////////////////////
   login() {
-    this.analyticsService.sendEvent({category:'Booking', action: 'Login', label: this.router.url});
     if (this.login_state.loading || this.facebook_state.loading) {return;}
     if (this.loginParameters.email.length === 0 || this.loginParameters.password.length === 0) {
       if (this.loginParameters.email.length === 0) {
@@ -457,7 +448,6 @@ export class WizardComponent implements OnInit {
       this.router.navigate(['order/preview']);
       this.confirmOrder();
       }).catch((error) => {
-        this.analyticsService.sendException(error)
         this.login_state.email_error = null;
         this.login_state.password_error = null;
         this.login_state.loading = false;
@@ -474,12 +464,10 @@ export class WizardComponent implements OnInit {
       });
   }
   changeToSignup() {
-    this.analyticsService.sendEvent({category:'Booking', action: 'Change to signup', label: this.router.url});
     if (this.login_state.loading) {return;}
     this.router.navigate(['order/signup']);
   }
   signup() {
-    this.analyticsService.sendEvent({category:'Booking', action: 'Signup', label: this.router.url});
     if (this.signup_state.loading || this.facebook_state.loading) {return;}
     if (this.signupParameters.email.length > 0 && this.signupParameters.firstname.length > 0 && this.signupParameters.lastname.length > 0 && this.signupParameters.phone.length > 0 && this.signupParameters.password.length > 0 && this.signupParameters.confirmPassword.length > 0) {
       if (this.signupParameters.password !== this.signupParameters.confirmPassword) {
@@ -548,8 +536,6 @@ export class WizardComponent implements OnInit {
       this.router.navigate(['order/preview']);
       this.confirmOrder();
     }).catch((error) => {
-      this.analyticsService.sendException(error)
-
       this.signup_state.loading = false;
       this.signup_state.button_title = "Registrati";
       switch (error) {
@@ -568,12 +554,10 @@ export class WizardComponent implements OnInit {
     });
   }
   changeToLogin() {
-    this.analyticsService.sendEvent({category:'Booking', action: 'Change to login', label: this.router.url});
     if (this.signup_state.loading) {return;}
     this.router.navigate(['order/login']);
   }
   continueWithFacebook () {
-    this.analyticsService.sendEvent({category:'Booking', action: 'Continue with facebook', label: this.router.url});
     if (this.login_state.loading || this.signup_state.loading) {return;}
     this.facebook_state.loading = true;
     this.facebook_state.button_title = "Accedendo..."
@@ -600,7 +584,6 @@ export class WizardComponent implements OnInit {
         this.facebook_state.button_title = "Continua con Facebook";
         this.facebook_state.error_message = null;
       }).catch((error) => {
-        this.analyticsService.sendException(error)
         this.facebook_state.loading = false;
         this.facebook_state.button_title = "Continua con Facebook";
         this.facebook_state.error_message = "Errore di accesso con Facebook!";
@@ -615,8 +598,6 @@ export class WizardComponent implements OnInit {
   ////////// CARD //////////
   //////////////////////////
   addCard() {
-    this.analyticsService.sendEvent({category:'Booking', action: 'Add card', label: this.router.url});
-
     if (this.card_state.loading) {return;}
     this.card_state.loading = true;
     this.card_state.button_title = "Salvando carta...";
@@ -652,8 +633,6 @@ export class WizardComponent implements OnInit {
       this.router.navigate(['order/preview']);
       this.confirmOrder();
     }).catch((error) => {
-      this.analyticsService.sendException(error)
-
       this.card_state.loading = false;
       this.card_state.button_title = "Continua";
       this.card_state.message_error = null;
@@ -733,8 +712,6 @@ export class WizardComponent implements OnInit {
   ////////// PROFILE INFO ////////////
   ////////////////////////////////////
   saveInformations() {
-    this.analyticsService.sendEvent({category:'Booking', action: 'Update profile info', label: this.router.url});
-
     if (this.profile_info_state.loading) {return;}
     if (this.profileInformation.phone_number.length < 9 ) {
       this.profile_info_state.loading = false;
@@ -755,7 +732,6 @@ export class WizardComponent implements OnInit {
       this.profile_info_state.button_title = "Salva";
       this.router.navigate(['services', this.Order.title.replace(/\s+/g, '-')]);
     }).catch((error) => {
-      this.analyticsService.sendException(error)
       this.profile_info_state.loading = false;
       this.profile_info_state.phone_number_error = null;
       this.profile_info_state.button_title = "Salva";

@@ -1,7 +1,7 @@
 import { isBrowser } from 'angular2-universal';
 import { Component, OnInit, OnDestroy, Compiler } from '@angular/core';
 import { Router, Event, NavigationEnd, ActivatedRoute, Params } from '@angular/router';
-import { AnalyticsService } from './shared/analytics.service';
+// import { AnalyticsService } from './shared/analytics.service';
 import { AuthService } from './shared/auth.service';
 import { NavigationService } from './shared/navigation.service';
 import { PopupsService } from './popups/popups.service';
@@ -49,13 +49,13 @@ export class AppComponent implements OnInit, OnDestroy {
 
   public account_avatar_url = ''
 
-  constructor (public router:Router, private route: ActivatedRoute, private authServics: AuthService, private navigationService: NavigationService, private popupsService: PopupsService, private commonService: CommonService, private analyticsService: AnalyticsService, private seoService: SeoService) {
+  constructor (public router:Router, private route: ActivatedRoute, private authServics: AuthService, private navigationService: NavigationService, private popupsService: PopupsService, private commonService: CommonService, private seoService: SeoService) {
     this.navbarState = false;
     this.hasNavigation = true;
     if (isBrowser) {
       this.router.events.subscribe((event:Event) => {
         if (event instanceof NavigationEnd) {
-          ga('send', 'pageview', event.urlAfterRedirects);
+          // ga('send', 'pageview', event.urlAfterRedirects);
           let currentRoute = this.route.root;
 
           while (currentRoute.children[0] !== undefined) {
@@ -150,8 +150,10 @@ export class AppComponent implements OnInit, OnDestroy {
       this.authSubscription = this.navigationService.getPersonalMenu$.subscribe(auth => {
         if (auth !== false) {
           this.auth = auth;
+          this.account_avatar_url = "https://s3-eu-west-1.amazonaws.com/starbook-s3/accounts/" + this.auth._id + "/avatar/0"
         } else {
-          this.auth = false;
+          this.auth = false
+          this.account_avatar_url = "../assets/images/no_user.png"
         }
       })
 
@@ -291,7 +293,7 @@ export class AppComponent implements OnInit, OnDestroy {
 
   requireService() {
     // this.newServiceRequest.message = 'Grazie!';
-    this.analyticsService.sendEvent({category:'Services', action: 'request', label: this.findValue});
+    // this.analyticsService.sendEvent({category:'Services', action: 'request', label: this.findValue});
     this.router.navigate(['requests/service']);
   }
 
@@ -324,7 +326,6 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   errorHandler(error) {
-    console.log('error handler');
     this.account_avatar_url = "../assets/images/no_user.png"
   }
   ngOnDestroy() {

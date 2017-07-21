@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, Route, ActivatedRoute, Params } from '@angular/router';
-import { AnalyticsService } from '../../shared/analytics.service';
 import { isBrowser } from 'angular2-universal';
 import { SeoService } from '../../shared/seo.service';
 import { CommonService } from '../../shared/common.service';
@@ -34,7 +33,7 @@ export class TestsComponent implements OnInit {
   public subtitle = ''
   public button_title = ''
 
-  constructor(private router: Router, private route: ActivatedRoute, private analyticsService: AnalyticsService, private seoService: SeoService, private commonService: CommonService) {
+  constructor(private router: Router, private route: ActivatedRoute, private seoService: SeoService, private commonService: CommonService) {
     this.it = {
       firstDayOfWeek: 1,
       dayNames: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
@@ -50,27 +49,26 @@ export class TestsComponent implements OnInit {
     if (this.query.length>0) {
       this.clearView = true;
     }
+
     this.route.params.subscribe((params: Params) => {
-      if (isBrowser) {
-        this.page = params['page']
-        if (this.page==='1') {
-          this.title = "Prenotare un professionista non è mai stato così semplice."
-          this.subtitle = "Di quale professionista hai bisogno? Un idraulico, fabbro, muratore, estetista o un altro? Prenotalo."
-          this.button_title = "Prenota"
-        }
-        else if (this.page==='2') {
-          this.title = "Prenotare un servizio non è mai stato così semplice."
-          this.subtitle = "Ti serve un servizio di pulizie, baby sitting, portare a spasso i cani, curare il tuo giardino, revisionare la tua caldaia o altro? Prenotalo."
-          this.button_title = "Prenota"
-        }
-        else if (this.page==='3') {
-          this.title = "Programma in anticipo i servizi che ti servono prenotando adesso."
-          this.subtitle = "Prenota il servizio o il professionista che ti serve domani, tra una settimana o tra un mese. Organizza la tua vita e rilassati. Non sprecherai mai più il tuo tempo prezioso."
-          this.button_title = "Prenota"
-        }
-        else {
-          this.router.navigate([''])
-        }
+      this.page = params['page']
+      if (this.page==='1') {
+        this.title = "Prenotare un professionista non è mai stato così semplice."
+        this.subtitle = "Di quale professionista hai bisogno? Un idraulico, fabbro, muratore, estetista o un altro? Prenotalo."
+        this.button_title = "Prenota"
+      }
+      else if (this.page==='2') {
+        this.title = "Prenotare un servizio non è mai stato così semplice."
+        this.subtitle = "Ti serve un servizio di pulizie, baby sitting, portare a spasso i cani, curare il tuo giardino, revisionare la tua caldaia o altro? Prenotalo."
+        this.button_title = "Prenota"
+      }
+      else if (this.page==='3') {
+        this.title = "Programma in anticipo i servizi che ti servono prenotando adesso."
+        this.subtitle = "Prenota il servizio o il professionista che ti serve domani, tra una settimana o tra un mese. Organizza la tua vita e rilassati. Non sprecherai mai più il tuo tempo prezioso."
+        this.button_title = "Prenota"
+      }
+      else {
+        this.router.navigate([''])
       }
     })
   }
@@ -78,10 +76,8 @@ export class TestsComponent implements OnInit {
   bookServiceNow(service) {
     if (service) {
       this.title_service = service.title
-      this.analyticsService.sendEvent({category:'Book from landing', action: 'Book service', label: "Booking service campaign"})
     } else {
       if (!this.temp_date || !this.title_service) { return }
-      this.analyticsService.sendEvent({category:'Book from landing', action: 'Book now', label: "Booking service campaign"})
     }
     if (this.commonService.readObjectForKey("checkout_order")) {
       var current_checkout_order = this.commonService.readObjectForKey("checkout_order")
@@ -108,7 +104,6 @@ export class TestsComponent implements OnInit {
     if (typeof event==='string') {
       this.title_service = event
     }
-    // this.analyticsService.sendEvent({category:'Search from landing', action: 'Typing: ' + this.title_service, label: "Searching service campaign"});
     this.clearView = true
     if (event.length===0) {
       this.clearView = false
@@ -129,7 +124,6 @@ export class TestsComponent implements OnInit {
   selectSuggestion(service) {
     this.clearView = true
     this.title_service = service.title
-    this.analyticsService.sendEvent({category:'Search from landing', action: 'Selected: ' + this.title_service, label: "Searching service campaign"});
   }
   clearSearchForm() {
     this.query = '';

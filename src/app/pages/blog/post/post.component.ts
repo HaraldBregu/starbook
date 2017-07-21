@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Router, Route, ActivatedRoute, Params } from '@angular/router';
 import { SeoService } from '../../../shared/seo.service';
 import { NavigationService } from '../../../shared/navigation.service';
-import { AnalyticsService } from '../../../shared/analytics.service';
 import { isBrowser } from 'angular2-universal';
 import { CommonService } from '../../../shared/common.service';
 import { FacebookService, InitParams } from 'ngx-facebook';
@@ -76,7 +75,7 @@ export class PostComponent implements OnInit {
   public selectedArticle = null
   public SeoData = {}
 
-  constructor(private router: Router, private route: ActivatedRoute, private navigationService: NavigationService, private analyticsService: AnalyticsService, private seoService: SeoService, private commonService: CommonService, private fb: FacebookService) {
+  constructor(private router: Router, private route: ActivatedRoute, private navigationService: NavigationService, private seoService: SeoService, private commonService: CommonService, private fb: FacebookService) {
     // var link = document.location.protocol + '//'+ document.location.hostname
   }
 

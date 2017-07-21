@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { isBrowser } from 'angular2-universal';
+import { isNode, isBrowser } from 'angular2-universal';
 import { Http, Headers, URLSearchParams } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 

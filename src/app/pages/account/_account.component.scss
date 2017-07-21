@@ -203,6 +203,9 @@ app-account {
             .service:hover {
               background-color: #e8c061;
             }
+            .actions {
+              margin-top: 5px;
+            }
           }
         }
 
@@ -258,9 +261,9 @@ app-account {
             color: #f75c4b;
           }
         }
-        .actions {
-          margin-top: 30px;
-        }
+        // .actions {
+        //   margin-top: 30px;
+        // }
         .price-per-unit {
           height: 60px;
           overflow: auto;

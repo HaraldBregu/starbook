@@ -4,7 +4,6 @@ import { Router, Route, ActivatedRoute, Params, NavigationExtras } from '@angula
 import { NavigationService } from '../../shared/navigation.service';
 import { ContactService } from '../../shared/contact.service';
 import { ShareService } from './share.service';
-import { AnalyticsService } from '../../shared/analytics.service';
 import { OrdersService } from '../../shared/orders.service';
 import { SeoService } from '../../shared/seo.service';
 
@@ -41,7 +40,6 @@ export class ShareComponent implements OnInit {
     private navigationService: NavigationService,
     private joinService: ContactService,
     private shareService: ShareService,
-    private analyticsService: AnalyticsService,
     private orderService: OrdersService,
     private seoService: SeoService) {
     this.navigationService.updateMessage("Condividi");
@@ -146,7 +144,6 @@ export class ShareComponent implements OnInit {
   }
 
   startWizard() {
-    this.analyticsService.sendEvent({category:'Share', action: 'Start Wizard', label: "Order Campain"});
 //    this.orderService.updateWizardData(this.Estimate);
     this.router.navigate(['order/summary']);
     return false;

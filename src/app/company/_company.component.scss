@@ -20,35 +20,92 @@ app-company {
   .company-container {
     background: white;
     .header-container {
-      background-image: url('https://s3-eu-west-1.amazonaws.com/starbook-s3/website/woman-hand-smartphone-laptop.jpg');
+      // background-image: url('https://s3-eu-west-1.amazonaws.com/starbook-s3/website/woman-hand-smartphone-laptop.jpg');
+      background-image: url('https://s3-eu-west-1.amazonaws.com/starbook-s3/website/bg-company-landing-page.png');
       background-size: cover;
       background-repeat: no-repeat;
       background-position: center;
-      // background: #2c3e50;
-      .overlay {
-        background-color: rgba(0, 0, 0, 0.5);
-        .header {
-          max-width: 900px;
-          margin: auto;
-          color: white;
-          padding: 100px 30px;
-          text-align: center;
-          h1 {
-            font-weight: 500;
-            font-size: 46px;
-            line-height: 55px;
-            margin-bottom: 20px;
+      // height: 730px;
+      .header {
+        max-width: 1120px;
+        margin: auto;
+        color: white;
+        padding: 120px 0;
+        text-align: center;
+        h1 {
+          font-family: Helvetica Neue, sans-serif;
+          font-weight: 600;
+          font-size: 41px;
+          line-height: 50px;
+          color: #263961;
+          text-shadow: 0 1px 0px rgba(255, 255, 255, 0.8);
+        }
+        p {
+          font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+          font-weight: 400;
+          font-size: 20px !important;
+          color: #1E2E4F;
+          margin-top: 30px;
+          text-shadow: 0 1px 0px rgba(255, 255, 255, 0.8);
+        }
+        .form-group {
+          width: 550px;
+          margin: 70px auto 0;
+          *::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+            color: #1E2E4F !important;
+            opacity: 1 !important;
           }
-          .btn {
-            margin-top: 60px;
-            border-radius: 3px;
-            height: 80px;
-            padding: 0 80px;
-            font-weight: 700;
-            font-size: 30px;
+          *:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+            color: #1E2E4F !important;
+            opacity: 1;
+          }
+          *::-moz-placeholder { /* Mozilla Firefox 19+ */
+            color: #1E2E4F !important;
+            opacity: 1;
+          }
+          *:-ms-input-placeholder { /* Internet Explorer 10-11 */
+            color: #1E2E4F !important;
+            opacity: 1 !important;
+          }
+          *::-ms-input-placeholder { /* Microsoft Edge */
+            color: #1E2E4F !important;
+            opacity: 1 !important;
+          }
+          small {
+            font-size: 14px;
+            font-weight: 400;
+            color: #1E2E4F;
           }
         }
+        .form-group .form-control {
+          height: 100px !important;
+          border-radius: 6px;
+          border: 1px solid rgba(0, 0, 0, 0.2);
+          text-align: center;
+          font-size: 30px;
+          font-weight: 300;
+          font-style: italic;
+          margin-bottom: 10px;
+        }
+        .form-group input[type="text"] {
+          background-color : #F8F8F8;
+        }
+        .btn {
+          margin-top: 60px;
+          border-radius: 3px;
+          height: 80px;
+          padding: 0 80px;
+          font-weight: 700;
+          font-size: 30px;
+        }
       }
+      .overlay {
+        // background-color: rgba(0, 0, 0, 0.5);
+      }
+    }
+    .message-container {
+      height: 250px;
+      background: #3B5998;
     }
     .bullets-container {
       display: block;

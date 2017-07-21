@@ -4,7 +4,6 @@ import { NavigationService } from '../../shared/navigation.service';
 import { OrdersService } from '../../shared/orders.service';
 import { PopupsService } from '../../popups/popups.service';
 import { Subscription } from 'rxjs/Subscription';
-import { AnalyticsService } from '../../shared/analytics.service';
 import { isBrowser } from "angular2-universal";
 import { ShareService } from '../share/share.service';
 import { CurrencyPipe } from "../../pipes/currency.pipe";
@@ -96,7 +95,6 @@ export class OrdersComponent implements OnInit, OnDestroy {
     private navigationService: NavigationService,
     private ordersService: OrdersService,
     private popupsService: PopupsService,
-    private analyticsService: AnalyticsService,
     private shareService: ShareService,
     private currencyPipe: CurrencyPipe,
     private currencyCentPipe: CurrencyCentPipe) {

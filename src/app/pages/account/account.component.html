@@ -91,8 +91,8 @@
     <div class="account-top-bar">I miei servizi</div>
     <div class="account-body">
       <div class="services">
-        <div class="service-container" *ngFor="let service of Services" (click)="showService(service)">
-          <div class="service" [ngStyle]="{'background-image' : ' url(' + checkImageUrlFromService(service) + ')'}">
+        <div class="service-container" *ngFor="let service of Services">
+          <div class="service" (click)="showService(service)" [ngStyle]="{'background-image' : ' url(' + checkImageUrlFromService(service) + ')'}">
             <div class="overlay">
               <div class="text-container">
                 <div class="title">
@@ -100,6 +100,11 @@
                 </div>
               </div>
             </div>
+          </div>
+          <div class="actions">
+            <button (click)="shareOnFacebook(service)"><i class="fa fa-facebook" aria-hidden="true"></i></button>
+            <button (click)="shareOnTwitter(service)"><i class="fa fa-twitter" aria-hidden="true"></i></button>
+            <button (click)="shareOnLinkedin(service)"><i class="fa fa-linkedin" aria-hidden="true"></i></button>
           </div>
         </div>
         <div class="service-container">
@@ -175,7 +180,6 @@
       </div>
     </div>
   </div>
-
 
   <!-- <div class="account" *ngIf="page==='no'">
     <div class="profile-box">

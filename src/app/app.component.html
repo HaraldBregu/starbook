@@ -60,7 +60,7 @@
         <!-- <img *ngIf="auth" class="image" [src]="../assets/images/no_user.png" onError="../assets/images/no_user.png" alt="Starbook User"> -->
       </a>
       <ul class="dropdown-menu">
-        <li class="list-item"><a class="btn btn-default" routerLink="/">Home</a></li>
+        <!-- <li class="list-item"><a class="btn btn-default" routerLink="/">Home</a></li> -->
         <li class="list-item" *ngIf="auth"><a class="btn btn-default" routerLink="/account/profile">{{getUsername()}}</a></li>
         <li class="list-item" *ngIf="!auth" (click)="getLoginPopup()"><a class="btn btn-default">Entra adesso</a></li>
         <li class="list-item" *ngIf="!auth"><a class="btn btn-default" routerLink="/company">Sei un professionista?</a></li>

@@ -12,17 +12,10 @@ import { UniversalModule, isBrowser } from 'angular2-universal';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule }   from '@angular/router';
-// import { AutoCompleteModule, CalendarModule } from 'primeng/primeng';
-// import { CalendarMockComponent } from './mocks/calendar.component';
 import { ClickOutsideModule } from 'ng2-click-outside';
-// import { ClipboarModule } from 'ngx-clipboard';
 import { Ng2PageScrollModule } from 'ng2-page-scroll';
-// import { ImageUploadModule } from 'angular2-image-upload';
-
 import { FacebookModule } from 'ngx-facebook';
 
-// import { MasonryModule } from 'angular2-masonry';
-// import { NgbModule, NgbDateParserFormatter } from '@ng-bootstrap/ng-bootstrap';
 import { routing } from './app.routing';
 import { CommonService } from './shared/common.service';
 
@@ -32,14 +25,14 @@ import { NavigationService } from './shared/navigation.service';
 import { OrdersService } from './shared/orders.service';
 import { PopupsService } from './popups/popups.service';
 import { PaymentService } from './shared/payment.service';
-import { AnalyticsService } from './shared/analytics.service';
+
 import { SeoService } from './shared/seo.service';
 import { ContactService } from './shared/contact.service';
 import { ShareService } from './pages/share/share.service';
 import { ClipboardService } from './shared/clipboard.service';
 
 import { AppComponent } from './app.component';
-//import { HomeComponent } from './home/home.component';
+
 import { LandingComponent } from './landing/landing.component';
 import { CompanyComponent } from './company/company.component';
 
@@ -50,7 +43,6 @@ import { ServicesComponent } from './pages/services/services.component';
 import { InsertComponent } from './pages/insert/insert.component';
 import { CheckoutComponent } from './pages/checkout/checkout.component';
 
-// import { OrderComponent } from './order/order.component';
 import { OrdersComponent } from './pages/orders/orders.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { PopupsComponent } from './popups/popups.component';
@@ -94,22 +86,15 @@ let imports = [
   BrowserModule,
   ReactiveFormsModule,
   HttpModule,
-  // MasonryModule,
   RouterModule,
   routing,
-  // NgbModule.forRoot(),
-  // AutoCompleteModule,
-  // CalendarModule,
   ClickOutsideModule,
   Ng2PageScrollModule.forRoot(),
-  // ImageUploadModule.forRoot(),
-  // ClipboarModule
   FacebookModule.forRoot(),
   MarkdownModule.forRoot(),
 ];
 let declarations = [
   AppComponent,
-  //HomeComponent,
   LandingComponent,
   CompanyComponent,
   AuthComponent,
@@ -188,7 +173,6 @@ else {
     OrdersService,
     PopupsService,
     PaymentService,
-    AnalyticsService,
     SeoService,
     ContactService,
     ShareService,

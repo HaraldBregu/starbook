@@ -2,7 +2,6 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Router, Route, ActivatedRoute, Params } from '@angular/router';
 import { SeoService } from '../shared/seo.service';
 import { NavigationService } from '../shared/navigation.service';
-import { AnalyticsService } from '../shared/analytics.service';
 import { isBrowser } from 'angular2-universal';
 import { CommonService } from '../shared/common.service';
 
@@ -40,7 +39,7 @@ export class LandingComponent implements OnInit {
 
   public title_service = ''
 
-  constructor(private router: Router, private route: ActivatedRoute, private navigationService: NavigationService, private analyticsService: AnalyticsService, private seoService: SeoService, private commonService: CommonService) {
+  constructor(private router: Router, private route: ActivatedRoute, private navigationService: NavigationService, private seoService: SeoService, private commonService: CommonService) {
     this.navigationService.updateMessage("")
     this.it = {
       firstDayOfWeek: 1,
@@ -116,12 +115,10 @@ export class LandingComponent implements OnInit {
   bookServiceNow(service) {
     if (service) {
       this.title_service = service.title
-      this.analyticsService.sendEvent({category:'Book from landing', action: 'Book service', label: "Booking service campaign"});
     } else {
       if (!this.temp_date || !this.title_service) {
         return
       }
-      this.analyticsService.sendEvent({category:'Book from landing', action: 'Book now', label: "Booking service campaign"});
     }
     if (this.commonService.readObjectForKey("checkout_order")) {
       var current_checkout_order = this.commonService.readObjectForKey("checkout_order")
@@ -149,7 +146,6 @@ export class LandingComponent implements OnInit {
     if (typeof event==='string') {
       this.title_service = event
     }
-    // this.analyticsService.sendEvent({category:'Search from landing', action: 'Typing: ' + this.title_service, label: "Searching service campaign"});
     this.clearView = true
     if (event.length===0) {
       this.clearView = false
@@ -170,7 +166,6 @@ export class LandingComponent implements OnInit {
   selectSuggestion(service) {
     this.clearView = true
     this.title_service = service.title
-    this.analyticsService.sendEvent({category:'Search from landing', action: 'Selected: ' + this.title_service, label: "Searching service campaign"});
   }
   clearSearchForm() {
     this.query = '';

@@ -1,4 +1,4 @@
-<div class="company-container">
+<div class="company-container" *ngIf="!page">
   <div class="header-container">
     <div class="overlay">
       <div class="header">
@@ -82,5 +82,28 @@
   </div>
   <div class="footer">
     <p><a routerLink="/"><strong>Starbook</strong> © 2017 Tutti i diritti riservati</a></p>
+  </div>
+</div>
+
+<div class="company-container" *ngIf="page==='1'">
+  <div class="header-container">
+    <div class="header">
+      <h1>Fai crescere la tua attività senza spendere più niente. Per sempre.</h1>
+      <p>Perché non lavorare continuamente per sempre e senza costi di acquisizione clienti? Prova Starbook adesso. Inserisci la tua email e ti aggiorneremo sulla novità a breve.</p>
+      <div class="form-group">
+        <input type="text" class="form-control" placeholder="Inserisci il tuo indirizzo email" id="emailInput">
+        <small>Diamo valore al privacy e non condividiamo mai le tue informazioni</small>
+      </div>
+      <button class="btn btn-success">Aggiornami</button>
+      <!-- <button class="btn btn-warning" (click)="registerCompany()">Iscrivi la tua attività</button> -->
+    </div>
+  </div>
+  <div class="message-container">
+    <div class="left">
+      <img src="../../assets/images/robot.png" alt="Automatizza">
+    </div>
+    <div class="left">
+
+    </div>
   </div>
 </div>

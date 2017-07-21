@@ -37,7 +37,7 @@ import { NavigationService } from './shared/navigation.service';
 import { OrdersService } from './shared/orders.service';
 import { PopupsService } from './popups/popups.service';
 import { PaymentService } from './shared/payment.service';
-import { AnalyticsService } from './shared/analytics.service';
+
 import { SeoService } from './shared/seo.service';
 import { ContactService } from './shared/contact.service';
 import { ShareService } from './pages/share/share.service';
@@ -100,19 +100,12 @@ let imports = [
   NodeHttpModule,
   UniversalModule,
   FormsModule,
-  // BrowserModule,
   ReactiveFormsModule,
-  // MasonryModule,
-
   RouterModule,
   routing,
-  // NgbModule.forRoot(),
-  // AutoCompleteModule,
-  // CalendarModule,
   ClickOutsideModule,
   ClipboardModule,
   Ng2PageScrollModule.forRoot(),
-  // ImageUploadModule.forRoot(),
   FacebookModule.forRoot(),
   MarkdownModule.forRoot(),
 ];
@@ -197,7 +190,6 @@ else {
     OrdersService,
     PopupsService,
     PaymentService,
-    AnalyticsService,
     SeoService,
     ContactService,
     ShareService,

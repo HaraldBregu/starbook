@@ -3,7 +3,6 @@ import { Router, Route, ActivatedRoute, Params } from '@angular/router';
 import { NavigationService } from '../../shared/navigation.service';
 import { ProfileService } from '../../shared/profile.service';
 import { isBrowser } from "angular2-universal";
-import { AnalyticsService } from '../../shared/analytics.service';
 import { AuthService } from '../../shared/auth.service';
 import { ContactService } from '../../shared/contact.service';
 import { SeoService } from '../../shared/seo.service';
@@ -76,7 +75,7 @@ export class AccountComponent implements OnInit {
   }
   public Services = []
 
-  constructor(private route: ActivatedRoute, private router: Router, private navigationService: NavigationService, private profileService: ProfileService, private analyticsService: AnalyticsService, private authService: AuthService, private seoService: SeoService, private contactService: ContactService, private popupsService: PopupsService, private commonService: CommonService) {
+  constructor(private route: ActivatedRoute, private router: Router, private navigationService: NavigationService, private profileService: ProfileService, private authService: AuthService, private seoService: SeoService, private contactService: ContactService, private popupsService: PopupsService, private commonService: CommonService) {
     this.navigationService.updateMessage('Account');
     this.emailPattern = /^[a-z0-9!#$%&'*+\/=?^_`{|}~.-]+@[a-z0-9]([a-z0-9-]*[a-z0-9])?(\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)*$/i;
     if (isBrowser) {
@@ -275,29 +274,25 @@ export class AccountComponent implements OnInit {
     }
   }
   checkImageUrlFromAccount(account) {
-    if (isBrowser) {
-      var image = new Image()
-      image.src = 'https://s3-eu-west-1.amazonaws.com/starbook-s3/accounts/' + account._id + '/avatar/0';
-      if (this.Picture.url) {
-        return this.Picture.url
+    var image = new Image()
+    image.src = 'https://s3-eu-west-1.amazonaws.com/starbook-s3/accounts/' + account._id + '/avatar/0';
+    if (this.Picture.url) {
+      return this.Picture.url
+    } else {
+      if (image.width > 0) {
+        return 'https://s3-eu-west-1.amazonaws.com/starbook-s3/accounts/' + account._id + '/avatar/0';
       } else {
-        if (image.width > 0) {
-          return 'https://s3-eu-west-1.amazonaws.com/starbook-s3/accounts/' + account._id + '/avatar/0';
-        } else {
-          return 'https://s3-eu-west-1.amazonaws.com/starbook-s3/website/user_no_pic.png'
-        }
+        return 'https://s3-eu-west-1.amazonaws.com/starbook-s3/website/user_no_pic.png'
       }
     }
   }
   checkImageUrlFromService(service) {
-    if (isBrowser) {
-      var image = new Image()
-      image.src = 'https://s3-eu-west-1.amazonaws.com/starbook-s3/services/' + service._id + '/cover/0';
-      if (image.width > 0) {
-        return 'https://s3-eu-west-1.amazonaws.com/starbook-s3/services/' + service._id + '/cover/0';
-      } else {
-        return ''
-      }
+    var image = new Image()
+    image.src = 'https://s3-eu-west-1.amazonaws.com/starbook-s3/services/' + service._id + '/cover/0';
+    if (image.width > 0) {
+      return 'https://s3-eu-west-1.amazonaws.com/starbook-s3/services/' + service._id + '/cover/0';
+    } else {
+      return ''
     }
   }
   showService(service) {
@@ -312,5 +307,40 @@ export class AccountComponent implements OnInit {
   }
   logout() {
     this.popupsService.activate({type: 'logout', data: {}});
+  }
+
+  shareOnFacebook(service) {
+    if (isBrowser) {
+      // var sharelink = window.location.href
+      var sharelink =  document.location.protocol + '//'+ document.location.hostname + '/services/' + service['_id']
+      let left = Math.round((document.documentElement.clientWidth / 2) - 285);
+      window.open("http://www.facebook.com/sharer/sharer.php?s=100&u=" + sharelink,
+      '_blank', 'location=yes,height=570,width=520,left=' + left + ', top=100,scrollbars=yes,status=yes');
+      return false
+    }
+  }
+  shareOnTwitter(service) {
+    if (isBrowser) {
+      // var sharelink = window.location.href
+      var sharelink =  document.location.protocol + '//'+ document.location.hostname + '/services/' + service['_id']
+      let left = Math.round((document.documentElement.clientWidth / 2) - 285);
+      window.open("https://twitter.com/home?status=" + sharelink,
+      '_blank', 'location=yes,height=570,width=520,left=' + left + ', top=100,scrollbars=yes,status=yes');
+      return false
+    }
+  }
+  shareOnLinkedin(service) {
+    if (isBrowser) {
+      // var sharelink = window.location.href
+      var sharelink =  document.location.protocol + '//'+ document.location.hostname + '/services/' + service['_id']
+      let link = sharelink;
+      let title = "Titolo";
+      let summary = "Summary";
+      let source = "";
+      let left = Math.round((document.documentElement.clientWidth / 2) - 285);
+      window.open("https://www.linkedin.com/shareArticle?mini=true&url=" + link + "&title=" + title + "&summary=" + summary + "&source=" + source,
+      '_blank', 'location=yes,height=570,width=520,left=' + left + ', top=100,scrollbars=yes,status=yes');
+      return false
+    }
   }
 }

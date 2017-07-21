@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { isBrowser } from 'angular2-universal';
 import { SeoService } from '../shared/seo.service';
 import { Router, Route, ActivatedRoute, Params } from '@angular/router';
-import { AnalyticsService } from '../shared/analytics.service';
 
 @Component({
   selector: 'app-company',
@@ -10,11 +9,9 @@ import { AnalyticsService } from '../shared/analytics.service';
 })
 export class CompanyComponent implements OnInit {
   public seoObject = {}
+  public page = null
 
-  constructor(
-    private router: Router,
-    private seoService: SeoService,
-    private analyticsService: AnalyticsService) {
+  constructor(private router: Router, private route: ActivatedRoute, private seoService: SeoService) {
     if (isBrowser) {window.scrollTo(0, 0);}
   }
 
@@ -37,13 +34,23 @@ export class CompanyComponent implements OnInit {
     this.seoService.setOgElem('og:url', this.seoObject['url']);
     this.seoService.setOgElem('og:image', this.seoObject['image_url']);
     this.seoService.setOgElem('og:image:secure_url', this.seoObject['image_url']);
+
+    this.route.params.subscribe((params: Params) => {
+      this.page = params['page']
+      if (this.page==='1') {
+
+      }
+      else {
+        this.page = null
+        // this.router.navigate([''])
+      }
+    })
+
   }
   registerCompany() {
-    this.analyticsService.sendEvent({category:'Subcribe company from landing', action: 'Subcribe company', label: "Subcribe company campaign"});
     this.router.navigate(["/auth/worker"])
   }
   publishService() {
-    this.analyticsService.sendEvent({category:'Publish service from landing', action: 'Publish service', label: "Publish service campaign"});
     this.router.navigate(["/insert/product"])
   }
 }

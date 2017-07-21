@@ -4,7 +4,6 @@ import { Router, Route, ActivatedRoute, Params } from '@angular/router';
 import { NavigationService } from '../../shared/navigation.service';
 import { ContactService } from '../../shared/contact.service';
 import { SeoService } from '../../shared/seo.service';
-import { AnalyticsService } from '../../shared/analytics.service';
 
 @Component({
   selector: 'app-requests',
@@ -56,8 +55,7 @@ export class RequestsComponent implements OnInit {
     }
   };
 
-  constructor(private router: Router, private route: ActivatedRoute, private navigationService: NavigationService, private joinService: ContactService, private seoService: SeoService, private analyticsService: AnalyticsService) {
-    this.analyticsService.sendPageViewUrl(this.router.url);
+  constructor(private router: Router, private route: ActivatedRoute, private navigationService: NavigationService, private joinService: ContactService, private seoService: SeoService) {
     this.seoService.setTitle('Lavori di casa? Chiedi di cosa hai bisogno');
     this.seoService.setOgElem('og:title', 'Lavori di casa? Chiedi di cosa hai bisogno');
     this.seoService.setMetaElem('description', 'Inserisci il titolo e i dettagli del lavoro che vuoi svolgere. Ci occupiamo noi a trovare il miglior professionista con il miglior prezzo del mercato.');

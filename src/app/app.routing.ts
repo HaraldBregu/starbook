@@ -33,8 +33,10 @@ import { PostComponent } from './pages/blog/post/post.component';
 
 const routes: Routes = [
   { path: '', component: LandingComponent, data: { name: 'Landing' } },
-  { path: 'company', component: CompanyComponent, data: { name: 'LandingCompany' } },
-  // { path: 'category/:category', component: CategoryComponent, data: { isFindField: true } },
+
+  { path: 'company', component: CompanyComponent, data: { name: 'Company' } },
+  { path: 'company/:page', component: CompanyComponent, data: { name: 'Company' } },
+
   { path: 'account', component: AccountComponent },
   { path: 'account/:page', component: AccountComponent, data: { name: 'Account' } },
   { path: 'auth/:page', component: AuthComponent, data: { name: 'Auth' } },
@@ -56,7 +58,6 @@ const routes: Routes = [
   { path: 'insert/:step', component: InsertComponent, data: { name: 'Insert' } },
 
   { path: 'checkout/:step', component: CheckoutComponent, data: { name: 'Checkout' } },
-
 
   // {
   //   path: 'services/:id',
@@ -89,6 +90,9 @@ const routes: Routes = [
   // TESTS
   { path: 'customer', component: TestsComponent, data: { name: 'Customer' } },
   { path: 'customer/:page', component: TestsComponent, data: { name: 'Customer' } },
+
+  // { path: 'worker', component: TestsComponent, data: { name: 'Worker' } },
+  // { path: 'worker/:page', component: TestsComponent, data: { name: 'Worker' } },
 
   { path: '404', component: NotfoundComponent },
   { path: '**', redirectTo: '' }

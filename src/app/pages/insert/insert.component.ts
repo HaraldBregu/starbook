@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, Route, ActivatedRoute, Params } from '@angular/router';
-import { AnalyticsService } from '../../shared/analytics.service';
 import { AuthService } from '../../shared/auth.service';
 import { NavigationService } from '../../shared/navigation.service';
 import { isBrowser } from "angular2-universal";
@@ -68,7 +67,7 @@ export class InsertComponent implements OnInit {
   }
   public usr = ''
 
-  constructor(private router: Router, private route: ActivatedRoute, private analyticsService: AnalyticsService, private authService: AuthService, private navigationService: NavigationService, private commonService: CommonService) {
+  constructor(private router: Router, private route: ActivatedRoute, private authService: AuthService, private navigationService: NavigationService, private commonService: CommonService) {
     this.emailPattern = /^[a-z0-9!#$%&'*+\/=?^_`{|}~.-]+@[a-z0-9]([a-z0-9-]*[a-z0-9])?(\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)*$/i;
     if (this.commonService.readObjectForKey("insert_service")) {
       this.Service = this.commonService.readObjectForKey("insert_service")
@@ -192,7 +191,6 @@ export class InsertComponent implements OnInit {
       this.saveServiceForAccountId(data._id)
       this.saveProfilePictureToPath(this.profile_picture.file, 'accounts/' + data._id + '/avatar/0')
     }).catch((error) => {
-      this.analyticsService.sendException(error)
       this.signup_state.loading = false;
       this.signup_state.button_title = "Registrati";
       switch (error) {
@@ -225,7 +223,6 @@ export class InsertComponent implements OnInit {
       this.navigationService.updatePersonalMenu(data);
       this.saveServiceForAccountId(data._id)
     }).catch((error) => {
-      this.analyticsService.sendException(error)
       this.login_state.email_error = null;
       this.login_state.password_error = null;
       this.login_state.loading = false;

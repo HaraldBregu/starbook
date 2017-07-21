@@ -10,8 +10,9 @@
  * ];
  **/
 export const routes: string[] = [
+
   'company',
-  // 'category/:category',
+  'company/:page',
 
   'account',
   'account/:page',
@@ -48,6 +49,8 @@ export const routes: string[] = [
   'customer',
   'customer/:page',
 
+  // 'worker',
+  // 'worker/:page',
 
   '404',
   '**'

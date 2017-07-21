@@ -3,7 +3,6 @@ import { Router, Route, ActivatedRoute, Params } from '@angular/router';
 import { NavigationService } from '../../shared/navigation.service';
 import { ProfileService } from '../../shared/profile.service';
 import { isBrowser } from "angular2-universal";
-import { AnalyticsService } from '../../shared/analytics.service';
 import { AuthService } from '../../shared/auth.service';
 import { ContactService } from '../../shared/contact.service';
 import { SeoService } from '../../shared/seo.service';
@@ -138,7 +137,7 @@ export class AuthComponent implements OnInit {
     file_error: null
   }
 
-  constructor(private route: ActivatedRoute, private router: Router, private navigationService: NavigationService, private profileService: ProfileService, private analyticsService: AnalyticsService, private authService: AuthService, private seoService: SeoService, private contactService: ContactService) {
+  constructor(private route: ActivatedRoute, private router: Router, private navigationService: NavigationService, private profileService: ProfileService, private authService: AuthService, private seoService: SeoService, private contactService: ContactService) {
     this.emailPattern = /^[a-z0-9!#$%&'*+\/=?^_`{|}~.-]+@[a-z0-9]([a-z0-9-]*[a-z0-9])?(\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)*$/i;
     if (isBrowser) { this.currentUser = JSON.parse(localStorage.getItem('auth')) }
     this.navigationService.updateMessage('')
@@ -486,7 +485,6 @@ export class AuthComponent implements OnInit {
         this.facebook_state.button_title = "Continua con Facebook";
         this.facebook_state.error_message = null;
       }).catch((error) => {
-        this.analyticsService.sendException(error)
         this.facebook_state.loading = false;
         this.facebook_state.button_title = "Continua con Facebook";
         this.facebook_state.error_message = "Errore di accesso con Facebook!";
