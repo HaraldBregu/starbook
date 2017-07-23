@@ -12,15 +12,15 @@ export class BlogComponent implements OnInit {
     title: "",
     articles: [
       {
-        "title" : "Il booking dei servizi: un fenomeno in crescita destinato ad espandersi",
-        "subtitle" : "Nuovi sistemi innovativi, nuove tecnologie è nuovi modi per trovare o prenotare quello che ti serve.",
-        "picture_url" : "https://s3-eu-west-1.amazonaws.com/starbook-s3/blog/prenotazioni-servizi-professionali-online.jpg",
+        "title" : "Gli artigiani del web: 3 semplici modi per aumentare i clienti online",
+        "subtitle" : "Hai un attività professionale, sei artigiano, idraulico, elettricista o altro e vuoi utilizzare il web per aumentare la tua clientela? Il web ti da tutti gli strumenti adatti per farlo, basta sapere sfruttarli al meglio.",
+        "picture_url" : "https://s3-eu-west-1.amazonaws.com/starbook-s3/blog/artigiani-sul-web.jpg",
         "author": {
-          "fullname" : "Starbook Team",
-          "headline" : "Piattaforma di booking per i servizi professionali.",
-          "picture_url" : "https://s3-eu-west-1.amazonaws.com/starbook-s3/accounts/5920099fde98d19d5836ef56/avatar/0"
+          "fullname" : "Harald Bregu",
+          "headline" : "Sviluppatore, Software, Starbook, Startup",
+          "picture_url" : "https://s3-eu-west-1.amazonaws.com/starbook-s3/accounts/595ccfb42bf14e6650ce6e3d/avatar/0"
         },
-        "updated_at" : "16 Lug 2017",
+        "updated_at" : "22 Lug 2017",
         "timing" : "3 min lettura"
       },
       {
@@ -33,6 +33,18 @@ export class BlogComponent implements OnInit {
           "picture_url" : "https://s3-eu-west-1.amazonaws.com/starbook-s3/accounts/595ccfb42bf14e6650ce6e3d/avatar/0"
         },
         "updated_at" : "19 Lug 2017",
+        "timing" : "3 min lettura"
+      },
+      {
+        "title" : "Il booking dei servizi: un fenomeno in crescita destinato ad espandersi",
+        "subtitle" : "Nuovi sistemi innovativi, nuove tecnologie è nuovi modi per trovare o prenotare quello che ti serve.",
+        "picture_url" : "https://s3-eu-west-1.amazonaws.com/starbook-s3/blog/prenotazioni-servizi-professionali-online.jpg",
+        "author": {
+          "fullname" : "Starbook Team",
+          "headline" : "Piattaforma di booking per i servizi professionali.",
+          "picture_url" : "https://s3-eu-west-1.amazonaws.com/starbook-s3/accounts/5920099fde98d19d5836ef56/avatar/0"
+        },
+        "updated_at" : "16 Lug 2017",
         "timing" : "3 min lettura"
       },
     ]

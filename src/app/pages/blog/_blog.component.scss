@@ -60,6 +60,7 @@ app-blog {
         width: calc(100% / 3);
         float: left;
         padding: 15px;
+        cursor: pointer;
         .post {
           border: 1px solid rgba(0,0,0,.1);
           border-radius: 2px;

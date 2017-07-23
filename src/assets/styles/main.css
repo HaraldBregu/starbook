@@ -3528,7 +3528,7 @@ app-landing {
           max-width: 960px;
           margin: auto;
           color: white;
-          padding: 140px 30px 100px; }
+          padding: 235px 30px; }
           app-landing .landing-container .header-container .overlay .header h1 {
             font-weight: 700;
             font-size: 46px;
@@ -4342,15 +4342,43 @@ app-company {
         app-company .company-container .header-container .header .form-group input[type="text"] {
           background-color: #F8F8F8; }
         app-company .company-container .header-container .header .btn {
+          background-image: linear-gradient(to bottom, #5cb85c 0%, #4cae4c 100%);
+          box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 3px 0px #357935;
+          border: 1px solid #3e8f3e;
           margin-top: 60px;
-          border-radius: 3px;
-          height: 80px;
+          border-radius: 6px;
+          height: 90px;
           padding: 0 80px;
           font-weight: 700;
-          font-size: 30px; }
+          font-size: 35px;
+          text-shadow: 0 2px 0 rgba(0, 0, 0, 0.3); }
+        app-company .company-container .header-container .header .btn:hover {
+          background-image: linear-gradient(to bottom, #67bd67 0%, #47a447 100%);
+          border-color: #388038; }
+        app-company .company-container .header-container .header .btn:active {
+          background-color: #419641;
+          border: 1px solid #3e8f3e; }
     app-company .company-container .message-container {
-      height: 250px;
-      background: #3B5998; }
+      background: #3B5998;
+      padding: 70px 20px;
+      overflow: auto; }
+      app-company .company-container .message-container .message {
+        max-width: 1120px;
+        margin: auto;
+        overflow: auto;
+        color: white; }
+        app-company .company-container .message-container .message .picture {
+          width: 15%; }
+        app-company .company-container .message-container .message .content {
+          width: 85%; }
+          app-company .company-container .message-container .message .content h2 {
+            font-size: 25px;
+            font-weight: 800; }
+          app-company .company-container .message-container .message .content p {
+            font-size: 20px !important;
+            font-weight: 400;
+            line-height: initial;
+            margin-top: 20px; }
     app-company .company-container .bullets-container {
       display: block;
       text-align: center;
@@ -7458,7 +7486,8 @@ app-blog {
       app-blog .blog-container .body .post-container {
         width: calc(100% / 3);
         float: left;
-        padding: 15px; }
+        padding: 15px;
+        cursor: pointer; }
         app-blog .blog-container .body .post-container .post {
           border: 1px solid rgba(0, 0, 0, 0.1);
           border-radius: 2px;
@@ -7605,10 +7634,182 @@ app-post {
     display: block;
     width: 100%;
     height: 100%;
-    background-color: #FFFFFF; }
+    background-color: #FFFFFF;
+    padding: 50px 20px 0;
+    max-width: 790px;
+    margin: auto; }
+    app-post .article-container article {
+      text-align: left; }
+      app-post .article-container article p {
+        margin-top: 20px; }
+      app-post .article-container article p img {
+        box-shadow: 2px 2px 0 rgba(192, 192, 192, 0.3);
+        border-radius: 3px;
+        background-color: #fff;
+        border: 1px solid #c0c0c0; }
+      app-post .article-container article header {
+        text-align: left; }
+        app-post .article-container article header h1 {
+          font-size: 44px;
+          font-weight: 600;
+          color: rgba(0, 0, 0, 0.8);
+          line-height: 53px; }
+        app-post .article-container article header p {
+          margin-bottom: 24px;
+          font-size: 14px !important;
+          line-height: 31px;
+          color: rgba(0, 0, 0, 0.8);
+          margin-top: 20px;
+          text-align: left;
+          -webkit-hyphens: auto;
+          -epub-hyphens: auto;
+          -moz-hyphens: auto;
+          hyphens: auto; }
+          app-post .article-container article header p time {
+            margin-right: 15px; }
+        app-post .article-container article header .share-links {
+          overflow: auto;
+          margin-top: 0;
+          border-top: 1px solid rgba(0, 0, 0, 0.1);
+          border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+          box-shadow: 0 1px 0 #ffffff, 0 1px 0 #ffffff inset; }
+          app-post .article-container article header .share-links li {
+            display: inline;
+            list-style-type: none;
+            float: left; }
+            app-post .article-container article header .share-links li a {
+              display: block;
+              text-decoration: none;
+              background-clip: padding-box;
+              height: 40px; }
+            app-post .article-container article header .share-links li a i {
+              display: inline-block;
+              vertical-align: middle;
+              text-align: center;
+              line-height: 40px;
+              font-size: 18px !important;
+              width: 40px;
+              height: 40px; }
+            app-post .article-container article header .share-links li a span {
+              margin-right: 20px;
+              font-size: 14px; }
+          app-post .article-container article header .share-links .line {
+            border-left: 1px solid rgba(0, 0, 0, 0.1);
+            box-shadow: 1px 0 0 #ffffff inset; }
+          app-post .article-container article header .share-links .facebook a {
+            color: #3a579a; }
+          app-post .article-container article header .share-links .facebook a:hover {
+            color: #212121 !important; }
+          app-post .article-container article header .share-links .twitter a {
+            color: #00abf0; }
+          app-post .article-container article header .share-links .twitter a:hover {
+            color: #212121 !important; }
+          app-post .article-container article header .share-links .google a {
+            color: #EA4335; }
+          app-post .article-container article header .share-links .google a:hover {
+            color: #212121 !important; }
+          app-post .article-container article header .share-links .pinterest a {
+            color: #cd1c1f; }
+          app-post .article-container article header .share-links .pinterest a:hover {
+            color: #212121 !important; }
+          app-post .article-container article header .share-links .linkedin a {
+            color: #127bb6 !important; }
+          app-post .article-container article header .share-links .linkedin a:hover {
+            color: #212121 !important; }
+      app-post .article-container article section {
+        margin-top: 40px; }
+        app-post .article-container article section a {
+          color: #3B5998;
+          text-decoration: none;
+          border-bottom: 1px dotted rgba(59, 89, 152, 0.4);
+          transition: all 0.1s ease-in; }
+        app-post .article-container article section a:hover {
+          text-decoration: none;
+          border-bottom-style: solid;
+          color: #5f7ec1;
+          border-bottom: 1px solid rgba(59, 89, 152, 0.6); }
+        app-post .article-container article section h2 {
+          text-align: left;
+          font-size: 32px;
+          font-weight: 600;
+          color: rgba(0, 0, 0, 0.8);
+          line-height: 38px; }
+    app-post .article-container .lead-form {
+      margin-top: 30px; }
+      app-post .article-container .lead-form .form-box {
+        width: 100%;
+        background: #2F509D; }
+        app-post .article-container .lead-form .form-box .form-content {
+          padding: 40px;
+          color: white; }
+        app-post .article-container .lead-form .form-box .form-cta {
+          padding: 15px;
+          background: #112F75; }
+          app-post .article-container .lead-form .form-box .form-cta *::-webkit-input-placeholder {
+            /* WebKit, Blink, Edge */
+            color: #1E2E4F !important;
+            opacity: 1 !important; }
+          app-post .article-container .lead-form .form-box .form-cta *:-moz-placeholder {
+            /* Mozilla Firefox 4 to 18 */
+            color: #1E2E4F !important;
+            opacity: 1; }
+          app-post .article-container .lead-form .form-box .form-cta *::-moz-placeholder {
+            /* Mozilla Firefox 19+ */
+            color: #1E2E4F !important;
+            opacity: 1; }
+          app-post .article-container .lead-form .form-box .form-cta *:-ms-input-placeholder {
+            /* Internet Explorer 10-11 */
+            color: #1E2E4F !important;
+            opacity: 1 !important; }
+          app-post .article-container .lead-form .form-box .form-cta *::-ms-input-placeholder {
+            /* Microsoft Edge */
+            color: #1E2E4F !important;
+            opacity: 1 !important; }
+          app-post .article-container .lead-form .form-box .form-cta .input-group-btn {
+            padding-left: 15px; }
+          app-post .article-container .lead-form .form-box .form-cta .input-group {
+            margin-bottom: 5px; }
+          app-post .article-container .lead-form .form-box .form-cta .input-group .form-control {
+            height: 60px !important;
+            border: 1px solid rgba(0, 0, 0, 0.2);
+            text-align: center;
+            font-size: 23px;
+            font-weight: 300;
+            font-style: italic; }
+          app-post .article-container .lead-form .form-box .form-cta .input-group input[type="text"] {
+            background-color: #F8F8F8; }
+          app-post .article-container .lead-form .form-box .form-cta .btn-success {
+            background: #58b957 !important;
+            height: 60px;
+            padding: 0 40px;
+            font-weight: 500;
+            font-size: 25px;
+            text-shadow: 0 2px 0 rgba(0, 0, 0, 0.3); }
+          app-post .article-container .lead-form .form-box .form-cta .btn-success:hover {
+            background: #2cb92a !important; }
+          app-post .article-container .lead-form .form-box .form-cta .btn-success:active {
+            background: #2cb92a !important; }
+    app-post .article-container .facebook-comments {
+      padding: 30px 0 80px;
+      max-width: 790px;
+      margin: auto; }
+      app-post .article-container .facebook-comments .btn-twitter, app-post .article-container .facebook-comments .btn-facebook, app-post .article-container .facebook-comments .btn-linkedin, app-post .article-container .facebook-comments .btn-google-plus {
+        background: white;
+        padding: 0 5px; }
+      app-post .article-container .facebook-comments i {
+        font-size: 20px;
+        color: rgba(0, 0, 0, 0.7); }
+      app-post .article-container .facebook-comments .fb-comments {
+        width: 100%; }
+        app-post .article-container .facebook-comments .fb-comments ._5lm5 _2pi3 _3-8y {
+          display: none; }
+        app-post .article-container .facebook-comments .fb-comments span {
+          width: 100% !important; }
+          app-post .article-container .facebook-comments .fb-comments span iframe {
+            width: 100% !important; }
     app-post .article-container .header {
       padding: 50px 20px 0;
-      max-width: 740px;
+      max-width: 790px;
       margin: auto;
       overflow: auto; }
       app-post .article-container .header h1 {
@@ -7655,7 +7856,7 @@ app-post {
           color: rgba(0, 0, 0, 0.7); }
     app-post .article-container .body {
       padding: 20px;
-      max-width: 740px;
+      max-width: 790px;
       margin: auto;
       text-align: center; }
       app-post .article-container .body .image-preview {
@@ -7665,16 +7866,11 @@ app-post {
         background-position: center;
         width: 100%;
         height: 250px; }
-      app-post .article-container .body p {
-        font-size: 21px !important;
-        line-height: 31px;
-        color: rgba(0, 0, 0, 0.8);
-        margin-top: 20px;
-        text-align: justify;
-        -webkit-hyphens: auto;
-        -epub-hyphens: auto;
-        -moz-hyphens: auto;
-        hyphens: auto; }
+      app-post .article-container .body p img {
+        box-shadow: 2px 2px 0 rgba(192, 192, 192, 0.3);
+        border-radius: 3px;
+        background-color: #fff;
+        border: 1px solid #c0c0c0; }
       app-post .article-container .body h2 {
         text-align: left;
         font-size: 32px;
@@ -7693,26 +7889,6 @@ app-post {
       app-post .article-container .body a.starbook-banner:hover, app-post .article-container .body a.starbook-banner:focus {
         background: #1d325d;
         text-decoration: none; }
-    app-post .article-container .footer {
-      padding: 30px 20px 80px;
-      max-width: 740px;
-      margin: auto; }
-      app-post .article-container .footer .btn-twitter, app-post .article-container .footer .btn-facebook, app-post .article-container .footer .btn-linkedin, app-post .article-container .footer .btn-google-plus {
-        background: white;
-        padding: 0 5px; }
-      app-post .article-container .footer i {
-        font-size: 20px;
-        color: rgba(0, 0, 0, 0.7); }
-      app-post .article-container .footer .fb-comments {
-        width: 100%; }
-        app-post .article-container .footer .fb-comments ._5lm5 _2pi3 _3-8y {
-          display: none; }
-        app-post .article-container .footer .fb-comments span {
-          width: 100% !important; }
-          app-post .article-container .footer .fb-comments span iframe {
-            width: 100% !important; }
-    app-post .article-container .line {
-      border-bottom: 1px solid #dbdbdb; }
   app-post .footer-container {
     position: relative;
     background: white;
