@@ -7739,12 +7739,29 @@ app-post {
       app-post .article-container .lead-form .form-box {
         width: 100%;
         background: #2F509D; }
+        app-post .article-container .lead-form .form-box .form-content .content h2 {
+          font-family: PT Serif Caption;
+          font-weight: 700;
+          line-height: inherit; }
+        app-post .article-container .lead-form .form-box .form-content .content span {
+          font-weight: 600;
+          color: #7ae271; }
+        app-post .article-container .lead-form .form-box .form-content .content p {
+          margin-top: 10px; }
         app-post .article-container .lead-form .form-box .form-content {
           padding: 40px;
           color: white; }
         app-post .article-container .lead-form .form-box .form-cta {
           padding: 15px;
-          background: #112F75; }
+          background: #112F75;
+          text-align: center; }
+          app-post .article-container .lead-form .form-box .form-cta .done i {
+            color: #2cb92a;
+            font-size: 50px; }
+          app-post .article-container .lead-form .form-box .form-cta .done span {
+            font-size: 30px;
+            color: white;
+            display: block; }
           app-post .article-container .lead-form .form-box .form-cta *::-webkit-input-placeholder {
             /* WebKit, Blink, Edge */
             color: #1E2E4F !important;
@@ -7783,8 +7800,7 @@ app-post {
             height: 60px;
             padding: 0 40px;
             font-weight: 500;
-            font-size: 25px;
-            text-shadow: 0 2px 0 rgba(0, 0, 0, 0.3); }
+            font-size: 25px; }
           app-post .article-container .lead-form .form-box .form-cta .btn-success:hover {
             background: #2cb92a !important; }
           app-post .article-container .lead-form .form-box .form-cta .btn-success:active {

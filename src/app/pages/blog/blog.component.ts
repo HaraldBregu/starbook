@@ -13,7 +13,7 @@ export class BlogComponent implements OnInit {
     articles: [
       {
         "title" : "Gli artigiani del web: 3 semplici modi per aumentare i clienti online",
-        "subtitle" : "Hai un attività professionale, sei artigiano, idraulico, elettricista o altro e vuoi utilizzare il web per aumentare la tua clientela? Il web ti da tutti gli strumenti adatti per farlo, basta sapere sfruttarli al meglio.",
+        "subtitle" : "Hai un attività professionale, sei artigiano, idraulico, elettricista o altro e vuoi utilizzare il web per aumentare la tua clientela? Il web ti dà tutti gli strumenti adatti per farlo, basta sapere sfruttarli al meglio.",
         "picture_url" : "https://s3-eu-west-1.amazonaws.com/starbook-s3/blog/artigiani-sul-web.jpg",
         "author": {
           "fullname" : "Harald Bregu",

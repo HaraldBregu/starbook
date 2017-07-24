@@ -5,6 +5,7 @@ import { NavigationService } from '../../../shared/navigation.service';
 import { isBrowser } from 'angular2-universal';
 import { CommonService } from '../../../shared/common.service';
 import { FacebookService, InitParams } from 'ngx-facebook';
+import { ContactService } from '../../../shared/contact.service';
 
 @Component({
   selector: 'app-post',
@@ -17,7 +18,7 @@ export class PostComponent implements OnInit {
     articles: [
       {
         "title" : "Gli artigiani del web: 3 semplici modi per aumentare i clienti online",
-        "subtitle" : "Hai un attività professionale, sei artigiano, idraulico, elettricista o altro e vuoi utilizzare il web per aumentare la tua clientela? Il web ti da tutti gli strumenti adatti per farlo, basta sapere sfruttarli al meglio.",
+        "subtitle" : "Hai un attività professionale, sei artigiano, idraulico, elettricista o altro e vuoi utilizzare il web per aumentare la tua clientela? Il web ti dà tutti gli strumenti adatti per farlo, basta sapere sfruttarli al meglio.",
         "picture_url" : "https://s3-eu-west-1.amazonaws.com/starbook-s3/blog/artigiani-sul-web.jpg",
         "html_body" : `
         <article>
@@ -50,12 +51,12 @@ export class PostComponent implements OnInit {
             <p>
             </p>
           </header>
-          <p>Hai un attività professionale, sei un artigiano, idraulico, elettricista o altro e vuoi utilizzare il web per aumentare la tua <strong>clientela</strong>? Il web ti da tutti gli strumenti adatti per farlo, basta sapere sfruttarli al meglio.</p>
+          <p>Hai un attività professionale, sei un artigiano, idraulico, elettricista o altro e vuoi utilizzare il web per aumentare la tua <strong>clientela</strong>? Il web ti dà tutti gli strumenti adatti per farlo, basta sapere sfruttarli al meglio.</p>
           <p><img src="https://s3-eu-west-1.amazonaws.com/starbook-s3/blog/artigiani-sul-web.jpg" alt="Gli artigiani sul web" title="Gli artigiani sul web"/></p>
           <p>Sfruttarlo per aumentare le vostre vendite, crescere il vostre business, vendere i servizi professionali con lo scopo di aumentare il reddito annuale. Ecco quali sono i 3 modi che puoi seguire per utilizzarlo in modo saggio:</p>
           <section>
             <h2>1. Gli annunci</h2>
-            <p>Scontato come opzione ma sottovalutato da molti. Ci sono <strong>decina</strong> di siti di annunci disponibili in Italia da anni ormai dove hai la possibilità di inserire l’annuncio della tua azienda, la tua professione o quello che offri in siti come <a href="http://www.subito.it/" rel="nofollow" target="_blank">Subito</a>, <a href="http://www.bakeca.it/" rel="nofollow" target="_blank">Bakeca</a>, <a href="https://www.kijiji.it/" rel="nofollow" target="_blank">Kijiji</a>, <a href="https://www.secondamano.it/" rel="nofollow" target="_blank">Secondamano</a> e molte altre. Abbiamo anche i social network come Facebook con i gruppi professionali dove puoi semplicemente iscriverti e pubblicare il tuo annuncio ad un pubblico selezionato e mirato.</p>
+            <p>Scontato come opzione ma sottovalutato da molti. Ci sono <strong>decina</strong> di siti di annunci disponibili in Italia da anni ormai dove puoi inserire la tua azienda, la tua professione o quello che offri. Siti come <a href="http://www.subito.it/" rel="nofollow" target="_blank">Subito</a>, <a href="http://www.bakeca.it/" rel="nofollow" target="_blank">Bakeca</a>, <a href="https://www.kijiji.it/" rel="nofollow" target="_blank">Kijiji</a>, <a href="https://www.secondamano.it/" rel="nofollow" target="_blank">Secondamano</a> e molte altre. Abbiamo anche i social network come Facebook con i gruppi professionali dove puoi semplicemente iscriverti e pubblicare il tuo annuncio a un pubblico selezionato e mirato.</p>
             <p>Gli annunci anche se un metodo classico di promozione per alcuni professionisti funzionano ancora, ma di certo <strong>esiste di meglio</strong>.</p>
           </section>
           <section>
@@ -179,9 +180,13 @@ export class PostComponent implements OnInit {
   public selectedArticle = null
   public SeoData = {}
 
-  public esempio = "<h1>Ciao bello</h1>"
+  public Lead = {
+    email : '',
+    loading : false,
+    generated: false
+  }
 
-  constructor(private router: Router, private route: ActivatedRoute, private navigationService: NavigationService, private seoService: SeoService, private commonService: CommonService, private fb: FacebookService) {
+  constructor(private router: Router, private route: ActivatedRoute, private navigationService: NavigationService, private seoService: SeoService, private commonService: CommonService, private fb: FacebookService, private contactService: ContactService) {
     // var link = document.location.protocol + '//'+ document.location.hostname
   }
 
@@ -233,6 +238,39 @@ export class PostComponent implements OnInit {
     }
   }
 
+
+  // LEAD
+  sendEmail() {
+    if (this.Lead.email.length===0) {return}
+    if (this.Lead.loading) {return}
+    var email = {
+      subject : "Iscrizione agli aggiornamenti sull'artigianato",
+      message : 'email: ' + this.Lead.email
+    }
+    this.Lead.loading = true
+    this.contactService.sendEmail(email).then((response) => {
+      this.Lead.loading = false
+      this.Lead.generated = true
+      // this.Lead.email = ''
+      // this.recruiter_state.message_success = "Complimenti, hai inviato una richiesta di iscrizione su Starbook con successo.";
+      // this.recruiter_state.loading = false;
+      // this.Recruiter.firstname = null;
+      // this.Recruiter.lastname = null;
+      // this.Recruiter.phone = null;
+      // this.Recruiter.email = null;
+    }).catch((error) => {
+      this.Lead.loading = false
+      this.Lead.generated = true
+      // this.recruiter_state.loading = false;
+      // this.Recruiter.firstname = null;
+      // this.Recruiter.lastname = null;
+      // this.Recruiter.phone = null;
+      // this.Recruiter.email = null;
+      // console.log('error: ' + JSON.stringify(error));
+    });
+  }
+
+  // Share links
   shareOnFacebook() {
     if (isBrowser) {
       // var sharelink = window.location.href
@@ -267,9 +305,5 @@ export class PostComponent implements OnInit {
       '_blank', 'location=yes,height=570,width=520,left=' + left + ', top=100,scrollbars=yes,status=yes');
       return false
     }
-  }
-
-  shareLink() {
-    console.log('share link');
   }
 }

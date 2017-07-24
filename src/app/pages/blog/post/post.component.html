@@ -34,20 +34,23 @@
     <div class="form-box">
       <div class="form-content">
         <div class="content">
-          <h2>Vuoi rimanere aggiornato su una nuova piattaforma adatta a voi?</h2>
-          <p>Rimani sempre connesso alle nuove tecnologie e innovazioni per poter aumentare sempre il tuo profitto.</p>
-        </div>
-        <div class="picture">
-
+          <h2><span>Nuovo metodo:</span> Scopri l'innovazione del web nel mondo dell'artigianato.</h2>
+          <p>Vuoi rimanere sempre <strong>un passo avanti</strong> alla <strong>concorrenza</strong> utilizzando le novità del web? <strong>Unisciti</strong> e ti aggiorneremmo su nuove <strong>opportunità</strong>.</p>
+          <!-- <p>Rimani sempre aggiornato alle nuove tecnologie e innovazioni perché saranno loro ad avere un cambiamento nella vostra vita.</p> -->
         </div>
       </div>
-      <div class="form-cta">
+      <div class="form-cta" *ngIf="!Lead.generated">
         <div class="input-group">
-          <input type="text" placeholder="Inserisci il tuo indirizzo email" class="form-control" id="emailInput">
+          <input type="text" placeholder="Inserisci il tuo indirizzo email" class="form-control" id="emailInput" [(ngModel)]="Lead.email" [ngModelOptions]="{standalone: true}">
           <span class="input-group-btn">
-            <button type="button" id="next" class="btn btn-success"><!-- <i class="fa fa-circle-o-notch animate"></i> -->Aggiornami</button>
+            <button type="button" id="next" class="btn btn-success" (click)="sendEmail()"><i class="fa fa-circle-o-notch animate" *ngIf="Lead.loading"></i><div *ngIf="!Lead.loading">Aggiornami</div></button>
           </span>
-          <!-- <small class="error-message">errore</small> -->
+        </div>
+      </div>
+      <div class="form-cta" *ngIf="Lead.generated">
+        <div class="done">
+          <i class="fa fa-check-circle" aria-hidden="true"></i>
+          <span>Fatto!</span>
         </div>
       </div>
     </div>

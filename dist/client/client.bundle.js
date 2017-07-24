@@ -876,9 +876,9 @@ var AboutComponent = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_angular2_universal__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_angular2_universal___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_angular2_universal__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__shared_auth_service__ = __webpack_require__(51);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__shared_contact_service__ = __webpack_require__(73);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__shared_contact_service__ = __webpack_require__(63);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__shared_seo_service__ = __webpack_require__(22);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__popups_popups_service__ = __webpack_require__(72);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__popups_popups_service__ = __webpack_require__(73);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__shared_common_service__ = __webpack_require__(34);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return AccountComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -1264,7 +1264,7 @@ var AccountComponent = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_angular2_universal__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_angular2_universal___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_angular2_universal__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__shared_auth_service__ = __webpack_require__(51);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__shared_contact_service__ = __webpack_require__(73);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__shared_contact_service__ = __webpack_require__(63);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__shared_seo_service__ = __webpack_require__(22);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return AuthComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -1971,7 +1971,7 @@ var BlogComponent = (function () {
             articles: [
                 {
                     "title": "Gli artigiani del web: 3 semplici modi per aumentare i clienti online",
-                    "subtitle": "Hai un attività professionale, sei artigiano, idraulico, elettricista o altro e vuoi utilizzare il web per aumentare la tua clientela? Il web ti da tutti gli strumenti adatti per farlo, basta sapere sfruttarli al meglio.",
+                    "subtitle": "Hai un attività professionale, sei artigiano, idraulico, elettricista o altro e vuoi utilizzare il web per aumentare la tua clientela? Il web ti dà tutti gli strumenti adatti per farlo, basta sapere sfruttarli al meglio.",
                     "picture_url": "https://s3-eu-west-1.amazonaws.com/starbook-s3/blog/artigiani-sul-web.jpg",
                     "author": {
                         "fullname": "Harald Bregu",
@@ -2058,6 +2058,7 @@ var BlogComponent = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_angular2_universal___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_angular2_universal__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__shared_common_service__ = __webpack_require__(34);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_ngx_facebook__ = __webpack_require__(412);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__shared_contact_service__ = __webpack_require__(63);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return PostComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -2075,23 +2076,25 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var PostComponent = (function () {
-    function PostComponent(router, route, navigationService, seoService, commonService, fb) {
+    function PostComponent(router, route, navigationService, seoService, commonService, fb, contactService) {
         this.router = router;
         this.route = route;
         this.navigationService = navigationService;
         this.seoService = seoService;
         this.commonService = commonService;
         this.fb = fb;
+        this.contactService = contactService;
         this.browser = false;
         this.blog = {
             title: "",
             articles: [
                 {
                     "title": "Gli artigiani del web: 3 semplici modi per aumentare i clienti online",
-                    "subtitle": "Hai un attività professionale, sei artigiano, idraulico, elettricista o altro e vuoi utilizzare il web per aumentare la tua clientela? Il web ti da tutti gli strumenti adatti per farlo, basta sapere sfruttarli al meglio.",
+                    "subtitle": "Hai un attività professionale, sei artigiano, idraulico, elettricista o altro e vuoi utilizzare il web per aumentare la tua clientela? Il web ti dà tutti gli strumenti adatti per farlo, basta sapere sfruttarli al meglio.",
                     "picture_url": "https://s3-eu-west-1.amazonaws.com/starbook-s3/blog/artigiani-sul-web.jpg",
-                    "html_body": "\n        <article>\n          <header>\n            <h1>Gli artigiani del web: 3 semplici modi per aumentare i clienti online</h1>\n            <p>\n              <time><i class=\"fa fa-calendar\" aria-hidden=\"true\"></i> 23 Lug, 2017</time>\n              <time><i class=\"fa fa-clock-o\" aria-hidden=\"true\"></i> 2 min</time>\n              <author><i class=\"fa fa-user\" aria-hidden=\"true\"></i> Harald Bregu</author>\n            </p>\n            <div class=\"share-links\">\n              <ul>\n              <li class=\"facebook\">\n                <a href=\"https://www.facebook.com/sharer/sharer.php?u=https%3A//www.starbook.co/blog/Gli-artigiani-del-web%3A-3-semplici-modi-per-aumentare-i-clienti-online\" title=\"\" target=\"_blank\" rel=\"nofollow\"><i class=\"fa fa-facebook\" aria-hidden=\"true\"></i> <span>Facebook</span></a>\n              </li>\n              <li class=\"twitter line\">\n                <a href=\"https://twitter.com/home?status=https%3A//www.starbook.co/blog/Gli-artigiani-del-web%3A-3-semplici-modi-per-aumentare-i-clienti-online\" title=\"\" target=\"_blank\" rel=\"nofollow\"><i class=\"fa fa-twitter\" aria-hidden=\"true\"></i> <span>Twitter</span></a>\n              </li>\n              <li class=\"google line\">\n                <a href=\"https://plus.google.com/share?url=https%3A//www.starbook.co/blog/Gli-artigiani-del-web%3A-3-semplici-modi-per-aumentare-i-clienti-online\" title=\"\" target=\"_blank\" rel=\"nofollow\"><i class=\"fa fa-google-plus\" aria-hidden=\"true\"></i> <span>Google+</span></a>\n              </li>\n              <li class=\"pinterest line\">\n                <a href=\"https://pinterest.com/pin/create/button/?url=&media=https%3A//www.starbook.co/blog/Gli-artigiani-del-web%3A-3-semplici-modi-per-aumentare-i-clienti-online&description=\" title=\"\" target=\"_blank\" rel=\"nofollow\"><i class=\"fa fa-pinterest-p\" aria-hidden=\"true\"></i> <span>Pinterest</span></a>\n              </li>\n              <li class=\"linkedin line\">\n                <a href=\"https://www.linkedin.com/shareArticle?mini=true&url=https%3A//www.starbook.co/blog/Gli-artigiani-del-web%3A-3-semplici-modi-per-aumentare-i-clienti-online&title=&summary=&source=\" title=\"\" target=\"_blank\" rel=\"nofollow\"><i class=\"fa fa-linkedin\" aria-hidden=\"true\"></i> <span>LinkedIn</span></a>\n              </li>\n              </ul>\n            </div>\n            <p>\n            </p>\n          </header>\n          <p>Hai un attivit\u00E0 professionale, sei un artigiano, idraulico, elettricista o altro e vuoi utilizzare il web per aumentare la tua <strong>clientela</strong>? Il web ti da tutti gli strumenti adatti per farlo, basta sapere sfruttarli al meglio.</p>\n          <p><img src=\"https://s3-eu-west-1.amazonaws.com/starbook-s3/blog/artigiani-sul-web.jpg\" alt=\"Gli artigiani sul web\" title=\"Gli artigiani sul web\"/></p>\n          <p>Sfruttarlo per aumentare le vostre vendite, crescere il vostre business, vendere i servizi professionali con lo scopo di aumentare il reddito annuale. Ecco quali sono i 3 modi che puoi seguire per utilizzarlo in modo saggio:</p>\n          <section>\n            <h2>1. Gli annunci</h2>\n            <p>Scontato come opzione ma sottovalutato da molti. Ci sono <strong>decina</strong> di siti di annunci disponibili in Italia da anni ormai dove hai la possibilit\u00E0 di inserire l\u2019annuncio della tua azienda, la tua professione o quello che offri in siti come <a href=\"http://www.subito.it/\" rel=\"nofollow\" target=\"_blank\">Subito</a>, <a href=\"http://www.bakeca.it/\" rel=\"nofollow\" target=\"_blank\">Bakeca</a>, <a href=\"https://www.kijiji.it/\" rel=\"nofollow\" target=\"_blank\">Kijiji</a>, <a href=\"https://www.secondamano.it/\" rel=\"nofollow\" target=\"_blank\">Secondamano</a> e molte altre. Abbiamo anche i social network come Facebook con i gruppi professionali dove puoi semplicemente iscriverti e pubblicare il tuo annuncio ad un pubblico selezionato e mirato.</p>\n            <p>Gli annunci anche se un metodo classico di promozione per alcuni professionisti funzionano ancora, ma di certo <strong>esiste di meglio</strong>.</p>\n          </section>\n          <section>\n            <h2>2. Le piattaforme</h2>\n            <p>Poi ci sono le piattaforme di servizi locali adatte ai professionisti che vogliono avere un rapporto diretto con il potenziale cliente. Potenziale cliente perch\u00E9 queste piattaforme funzionano tramite l\u2019acquisto di un contatto (il cliente). Dopo l\u2019acquisto \u00E8 nelle mani del professionista puntare sulla comunicazione e sul prezzo per convertire il contatto in un cliente.</p>\n            <p>Tuttavia alcune di queste piattaforme partono con un piano gratuito, altre con un periodo di prova e altre sono a pagamento per sempre. Per elencare alcune: <a href=\"https://www.prontopro.it/\" rel=\"nofollow\" target=\"_blank\">ProntoPro</a>, <a href=\"https://www.fazland.com/\" rel=\"nofollow\" target=\"_blank\">Fazland</a>, <a href=\"https://www.habitissimo.it/\" rel=\"nofollow\" target=\"_blank\">Habitissimo</a>, <a href=\"https://www.instapro.it/\" rel=\"nofollow\" target=\"_blank\">Instapro</a>, <a href=\"https://www.preventivi.it/\" rel=\"nofollow\" target=\"_blank\">Preventivi</a> e molte altre.</p>\n            <p>Le scelte attuali di un professionista sono queste ma non \u00E8 detto che non si possa trovare o fare di meglio.</p>\n          </section>\n          <section>\n            <h2>3. Pubblicit\u00E0 online</h2>\n            <p>La pubblicit\u00E0 online invece \u00E8 un altro metodo valido per poter promuovere la propria attivit\u00E0 e acquisire nuovi clienti. Diversamente dagli altri modi questo dipende sia dal tuo annuncio, dal prezzo che spendi per l\u2019annuncio e dalla tua comunicazione.</p>\n            <p>Uno strumento semplice da utilizzare se sei confidente con il web e relativamente economico si chiama <a href=\"https://adwords.google.com/express/\" rel=\"nofollow\" target=\"_blank\">Google Adwords Express</a>.</p>\n            <p>Un altro strumento \u00E8 <a href=\"https://www.facebook.com/business\" rel=\"nofollow\" target=\"_blank\">Facebook Ads</a> che \u00E8 leggermente pi\u00F9 complessa ma vale la pena provare.</p>\n          </section>\n        </article>\n        "
+                    "html_body": "\n        <article>\n          <header>\n            <h1>Gli artigiani del web: 3 semplici modi per aumentare i clienti online</h1>\n            <p>\n              <time><i class=\"fa fa-calendar\" aria-hidden=\"true\"></i> 23 Lug, 2017</time>\n              <time><i class=\"fa fa-clock-o\" aria-hidden=\"true\"></i> 2 min</time>\n              <author><i class=\"fa fa-user\" aria-hidden=\"true\"></i> Harald Bregu</author>\n            </p>\n            <div class=\"share-links\">\n              <ul>\n              <li class=\"facebook\">\n                <a href=\"https://www.facebook.com/sharer/sharer.php?u=https%3A//www.starbook.co/blog/Gli-artigiani-del-web%3A-3-semplici-modi-per-aumentare-i-clienti-online\" title=\"\" target=\"_blank\" rel=\"nofollow\"><i class=\"fa fa-facebook\" aria-hidden=\"true\"></i> <span>Facebook</span></a>\n              </li>\n              <li class=\"twitter line\">\n                <a href=\"https://twitter.com/home?status=https%3A//www.starbook.co/blog/Gli-artigiani-del-web%3A-3-semplici-modi-per-aumentare-i-clienti-online\" title=\"\" target=\"_blank\" rel=\"nofollow\"><i class=\"fa fa-twitter\" aria-hidden=\"true\"></i> <span>Twitter</span></a>\n              </li>\n              <li class=\"google line\">\n                <a href=\"https://plus.google.com/share?url=https%3A//www.starbook.co/blog/Gli-artigiani-del-web%3A-3-semplici-modi-per-aumentare-i-clienti-online\" title=\"\" target=\"_blank\" rel=\"nofollow\"><i class=\"fa fa-google-plus\" aria-hidden=\"true\"></i> <span>Google+</span></a>\n              </li>\n              <li class=\"pinterest line\">\n                <a href=\"https://pinterest.com/pin/create/button/?url=&media=https%3A//www.starbook.co/blog/Gli-artigiani-del-web%3A-3-semplici-modi-per-aumentare-i-clienti-online&description=\" title=\"\" target=\"_blank\" rel=\"nofollow\"><i class=\"fa fa-pinterest-p\" aria-hidden=\"true\"></i> <span>Pinterest</span></a>\n              </li>\n              <li class=\"linkedin line\">\n                <a href=\"https://www.linkedin.com/shareArticle?mini=true&url=https%3A//www.starbook.co/blog/Gli-artigiani-del-web%3A-3-semplici-modi-per-aumentare-i-clienti-online&title=&summary=&source=\" title=\"\" target=\"_blank\" rel=\"nofollow\"><i class=\"fa fa-linkedin\" aria-hidden=\"true\"></i> <span>LinkedIn</span></a>\n              </li>\n              </ul>\n            </div>\n            <p>\n            </p>\n          </header>\n          <p>Hai un attivit\u00E0 professionale, sei un artigiano, idraulico, elettricista o altro e vuoi utilizzare il web per aumentare la tua <strong>clientela</strong>? Il web ti d\u00E0 tutti gli strumenti adatti per farlo, basta sapere sfruttarli al meglio.</p>\n          <p><img src=\"https://s3-eu-west-1.amazonaws.com/starbook-s3/blog/artigiani-sul-web.jpg\" alt=\"Gli artigiani sul web\" title=\"Gli artigiani sul web\"/></p>\n          <p>Sfruttarlo per aumentare le vostre vendite, crescere il vostre business, vendere i servizi professionali con lo scopo di aumentare il reddito annuale. Ecco quali sono i 3 modi che puoi seguire per utilizzarlo in modo saggio:</p>\n          <section>\n            <h2>1. Gli annunci</h2>\n            <p>Scontato come opzione ma sottovalutato da molti. Ci sono <strong>decina</strong> di siti di annunci disponibili in Italia da anni ormai dove puoi inserire la tua azienda, la tua professione o quello che offri. Siti come <a href=\"http://www.subito.it/\" rel=\"nofollow\" target=\"_blank\">Subito</a>, <a href=\"http://www.bakeca.it/\" rel=\"nofollow\" target=\"_blank\">Bakeca</a>, <a href=\"https://www.kijiji.it/\" rel=\"nofollow\" target=\"_blank\">Kijiji</a>, <a href=\"https://www.secondamano.it/\" rel=\"nofollow\" target=\"_blank\">Secondamano</a> e molte altre. Abbiamo anche i social network come Facebook con i gruppi professionali dove puoi semplicemente iscriverti e pubblicare il tuo annuncio a un pubblico selezionato e mirato.</p>\n            <p>Gli annunci anche se un metodo classico di promozione per alcuni professionisti funzionano ancora, ma di certo <strong>esiste di meglio</strong>.</p>\n          </section>\n          <section>\n            <h2>2. Le piattaforme</h2>\n            <p>Poi ci sono le piattaforme di servizi locali adatte ai professionisti che vogliono avere un rapporto diretto con il potenziale cliente. Potenziale cliente perch\u00E9 queste piattaforme funzionano tramite l\u2019acquisto di un contatto (il cliente). Dopo l\u2019acquisto \u00E8 nelle mani del professionista puntare sulla comunicazione e sul prezzo per convertire il contatto in un cliente.</p>\n            <p>Tuttavia alcune di queste piattaforme partono con un piano gratuito, altre con un periodo di prova e altre sono a pagamento per sempre. Per elencare alcune: <a href=\"https://www.prontopro.it/\" rel=\"nofollow\" target=\"_blank\">ProntoPro</a>, <a href=\"https://www.fazland.com/\" rel=\"nofollow\" target=\"_blank\">Fazland</a>, <a href=\"https://www.habitissimo.it/\" rel=\"nofollow\" target=\"_blank\">Habitissimo</a>, <a href=\"https://www.instapro.it/\" rel=\"nofollow\" target=\"_blank\">Instapro</a>, <a href=\"https://www.preventivi.it/\" rel=\"nofollow\" target=\"_blank\">Preventivi</a> e molte altre.</p>\n            <p>Le scelte attuali di un professionista sono queste ma non \u00E8 detto che non si possa trovare o fare di meglio.</p>\n          </section>\n          <section>\n            <h2>3. Pubblicit\u00E0 online</h2>\n            <p>La pubblicit\u00E0 online invece \u00E8 un altro metodo valido per poter promuovere la propria attivit\u00E0 e acquisire nuovi clienti. Diversamente dagli altri modi questo dipende sia dal tuo annuncio, dal prezzo che spendi per l\u2019annuncio e dalla tua comunicazione.</p>\n            <p>Uno strumento semplice da utilizzare se sei confidente con il web e relativamente economico si chiama <a href=\"https://adwords.google.com/express/\" rel=\"nofollow\" target=\"_blank\">Google Adwords Express</a>.</p>\n            <p>Un altro strumento \u00E8 <a href=\"https://www.facebook.com/business\" rel=\"nofollow\" target=\"_blank\">Facebook Ads</a> che \u00E8 leggermente pi\u00F9 complessa ma vale la pena provare.</p>\n          </section>\n        </article>\n        "
                 },
                 {
                     "title": "Le piattaforme digitali: come gestire il tempo nell'era della new economy",
@@ -2109,7 +2112,11 @@ var PostComponent = (function () {
         };
         this.selectedArticle = null;
         this.SeoData = {};
-        this.esempio = "<h1>Ciao bello</h1>";
+        this.Lead = {
+            email: '',
+            loading: false,
+            generated: false
+        };
         // var link = document.location.protocol + '//'+ document.location.hostname
     }
     PostComponent.prototype.ngOnInit = function () {
@@ -2158,6 +2165,42 @@ var PostComponent = (function () {
             this.fb.init(initParams);
         }
     };
+    // LEAD
+    PostComponent.prototype.sendEmail = function () {
+        var _this = this;
+        if (this.Lead.email.length === 0) {
+            return;
+        }
+        if (this.Lead.loading) {
+            return;
+        }
+        var email = {
+            subject: "Iscrizione agli aggiornamenti sull'artigianato",
+            message: 'email: ' + this.Lead.email
+        };
+        this.Lead.loading = true;
+        this.contactService.sendEmail(email).then(function (response) {
+            _this.Lead.loading = false;
+            _this.Lead.generated = true;
+            // this.Lead.email = ''
+            // this.recruiter_state.message_success = "Complimenti, hai inviato una richiesta di iscrizione su Starbook con successo.";
+            // this.recruiter_state.loading = false;
+            // this.Recruiter.firstname = null;
+            // this.Recruiter.lastname = null;
+            // this.Recruiter.phone = null;
+            // this.Recruiter.email = null;
+        }).catch(function (error) {
+            _this.Lead.loading = false;
+            _this.Lead.generated = true;
+            // this.recruiter_state.loading = false;
+            // this.Recruiter.firstname = null;
+            // this.Recruiter.lastname = null;
+            // this.Recruiter.phone = null;
+            // this.Recruiter.email = null;
+            // console.log('error: ' + JSON.stringify(error));
+        });
+    };
+    // Share links
     PostComponent.prototype.shareOnFacebook = function () {
         if (__WEBPACK_IMPORTED_MODULE_4_angular2_universal__["isBrowser"]) {
             // var sharelink = window.location.href
@@ -2190,18 +2233,15 @@ var PostComponent = (function () {
             return false;
         }
     };
-    PostComponent.prototype.shareLink = function () {
-        console.log('share link');
-    };
     PostComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'app-post',
             template: __webpack_require__(760)
         }), 
-        __metadata('design:paramtypes', [(typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["d" /* Router */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__angular_router__["d" /* Router */]) === 'function' && _a) || Object, (typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["e" /* ActivatedRoute */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__angular_router__["e" /* ActivatedRoute */]) === 'function' && _b) || Object, (typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__shared_navigation_service__["a" /* NavigationService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_3__shared_navigation_service__["a" /* NavigationService */]) === 'function' && _c) || Object, (typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_2__shared_seo_service__["a" /* SeoService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_2__shared_seo_service__["a" /* SeoService */]) === 'function' && _d) || Object, (typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_5__shared_common_service__["a" /* CommonService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_5__shared_common_service__["a" /* CommonService */]) === 'function' && _e) || Object, (typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_6_ngx_facebook__["a" /* FacebookService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_6_ngx_facebook__["a" /* FacebookService */]) === 'function' && _f) || Object])
+        __metadata('design:paramtypes', [(typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["d" /* Router */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__angular_router__["d" /* Router */]) === 'function' && _a) || Object, (typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["e" /* ActivatedRoute */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__angular_router__["e" /* ActivatedRoute */]) === 'function' && _b) || Object, (typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__shared_navigation_service__["a" /* NavigationService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_3__shared_navigation_service__["a" /* NavigationService */]) === 'function' && _c) || Object, (typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_2__shared_seo_service__["a" /* SeoService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_2__shared_seo_service__["a" /* SeoService */]) === 'function' && _d) || Object, (typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_5__shared_common_service__["a" /* CommonService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_5__shared_common_service__["a" /* CommonService */]) === 'function' && _e) || Object, (typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_6_ngx_facebook__["a" /* FacebookService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_6_ngx_facebook__["a" /* FacebookService */]) === 'function' && _f) || Object, (typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_7__shared_contact_service__["a" /* ContactService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_7__shared_contact_service__["a" /* ContactService */]) === 'function' && _g) || Object])
     ], PostComponent);
     return PostComponent;
-    var _a, _b, _c, _d, _e, _f;
+    var _a, _b, _c, _d, _e, _f, _g;
 }());
 //# sourceMappingURL=/Users/haraldbregu/Dropbox/StarbookWebApp/src/post.component.js.map
 
@@ -2807,7 +2847,7 @@ var CheckoutComponent = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_router__ = __webpack_require__(7);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_http__ = __webpack_require__(28);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__popups_popups_service__ = __webpack_require__(72);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__popups_popups_service__ = __webpack_require__(73);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__shared_auth_service__ = __webpack_require__(51);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return FacebookComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -3384,7 +3424,7 @@ var NotfoundComponent = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__(7);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__shared_navigation_service__ = __webpack_require__(9);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__shared_orders_service__ = __webpack_require__(87);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__popups_popups_service__ = __webpack_require__(72);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__popups_popups_service__ = __webpack_require__(73);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_angular2_universal__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_angular2_universal___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_angular2_universal__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__share_share_service__ = __webpack_require__(218);
@@ -5328,7 +5368,7 @@ var AuthService = (function () {
  * THIS IS TEMPORARY TO PATCH 2.1.1+ Core bugs
  */
 /* tslint:disable */
-var __compiler__ = __webpack_require__(66);
+var __compiler__ = __webpack_require__(67);
 var __core_private__ = __webpack_require__(0);
 var patch = false;
 if (!__core_private__.hasOwnProperty('ViewUtils')) {
@@ -5361,7 +5401,7 @@ if (patch) {
  * THIS IS TEMPORARY TO PATCH 2.1.1+ Core bugs
  */
 /* tslint:disable */
-var __compiler__ = __webpack_require__(66);
+var __compiler__ = __webpack_require__(67);
 
 if (!__WEBPACK_IMPORTED_MODULE_0__angular_core__["__core_private__"]['ViewUtils']) {
     __WEBPACK_IMPORTED_MODULE_0__angular_core__["__core_private__"]['ViewUtils'] = __WEBPACK_IMPORTED_MODULE_0__angular_core__["__core_private__"]['view_utils'];
@@ -5397,10 +5437,10 @@ if (__compiler__ && __compiler__.SelectorMatcher && __compiler__.CssSelector) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__shared_profile_service__ = __webpack_require__(74);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__shared_navigation_service__ = __webpack_require__(9);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__shared_orders_service__ = __webpack_require__(87);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__popups_popups_service__ = __webpack_require__(72);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__popups_popups_service__ = __webpack_require__(73);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__shared_payment_service__ = __webpack_require__(110);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__shared_seo_service__ = __webpack_require__(22);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__shared_contact_service__ = __webpack_require__(73);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__shared_contact_service__ = __webpack_require__(63);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__pages_share_share_service__ = __webpack_require__(218);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__shared_clipboard_service__ = __webpack_require__(357);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__app_component__ = __webpack_require__(541);
@@ -5639,7 +5679,7 @@ var AppModule = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_router__ = __webpack_require__(7);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__shared_auth_service__ = __webpack_require__(51);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__shared_navigation_service__ = __webpack_require__(9);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__popups_popups_service__ = __webpack_require__(72);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__popups_popups_service__ = __webpack_require__(73);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__shared_common_service__ = __webpack_require__(34);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__shared_seo_service__ = __webpack_require__(22);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return AppComponent; });
@@ -6483,7 +6523,7 @@ var CategoryComponent = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_angular2_universal___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_angular2_universal__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_router__ = __webpack_require__(7);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__shared_navigation_service__ = __webpack_require__(9);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__shared_contact_service__ = __webpack_require__(73);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__shared_contact_service__ = __webpack_require__(63);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return ContactComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -6609,10 +6649,10 @@ var ContactComponent = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__shared_profile_service__ = __webpack_require__(74);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_router__ = __webpack_require__(7);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__shared_navigation_service__ = __webpack_require__(9);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__popups_popups_service__ = __webpack_require__(72);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__popups_popups_service__ = __webpack_require__(73);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__shared_payment_service__ = __webpack_require__(110);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__shared_seo_service__ = __webpack_require__(22);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__shared_contact_service__ = __webpack_require__(73);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__shared_contact_service__ = __webpack_require__(63);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_angular2_universal__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_angular2_universal___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8_angular2_universal__);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return ProfileComponent; });
@@ -7203,7 +7243,7 @@ var ProfileComponent = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_angular2_universal___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_angular2_universal__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_router__ = __webpack_require__(7);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__shared_navigation_service__ = __webpack_require__(9);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__shared_contact_service__ = __webpack_require__(73);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__shared_contact_service__ = __webpack_require__(63);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__shared_seo_service__ = __webpack_require__(22);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return RequestsComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -7367,7 +7407,7 @@ var RequestsComponent = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_angular2_universal___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_angular2_universal__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_router__ = __webpack_require__(7);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__shared_navigation_service__ = __webpack_require__(9);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__shared_contact_service__ = __webpack_require__(73);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__shared_contact_service__ = __webpack_require__(63);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__share_service__ = __webpack_require__(218);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__shared_orders_service__ = __webpack_require__(87);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__shared_seo_service__ = __webpack_require__(22);
@@ -8680,7 +8720,7 @@ var PhonePipe = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_router__ = __webpack_require__(7);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__shared_auth_service__ = __webpack_require__(51);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__shared_navigation_service__ = __webpack_require__(9);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__popups_service__ = __webpack_require__(72);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__popups_service__ = __webpack_require__(73);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__shared_orders_service__ = __webpack_require__(87);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__shared_payment_service__ = __webpack_require__(110);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return PopupsComponent; });
@@ -10219,60 +10259,7 @@ var environment = {
 
 /***/ },
 
-/***/ 72:
-/***/ function(module, exports, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_angular2_universal__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_angular2_universal___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_angular2_universal__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Subject__ = __webpack_require__(57);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Subject___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_Subject__);
-/* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return PopupsService; });
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-var PopupsService = (function () {
-    function PopupsService() {
-        this.activePopup = new __WEBPACK_IMPORTED_MODULE_2_rxjs_Subject__["Subject"]();
-        this.popupResponse = new __WEBPACK_IMPORTED_MODULE_2_rxjs_Subject__["Subject"]();
-        if (__WEBPACK_IMPORTED_MODULE_0_angular2_universal__["isBrowser"]) {
-            this.getActivePopup$ = this.activePopup.asObservable();
-            this.getPopupResponse$ = this.popupResponse.asObservable();
-        }
-    }
-    PopupsService.prototype.activate = function (popup) {
-        if (popup && popup['type'] && popup['type'].length > 0) {
-            // console.log('popup is open');
-            $('body').addClass('disable-body-scroll');
-            $('app-home').addClass('visibility-hidden');
-            $('app-profile').addClass('visibility-hidden');
-        }
-        this.activePopup.next(popup);
-    };
-    PopupsService.prototype.actionComplete = function (data) {
-        this.popupResponse.next(data);
-    };
-    PopupsService = __decorate([
-        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_core__["Injectable"])(), 
-        __metadata('design:paramtypes', [])
-    ], PopupsService);
-    return PopupsService;
-}());
-//# sourceMappingURL=/Users/haraldbregu/Dropbox/StarbookWebApp/src/popups.service.js.map
-
-/***/ },
-
-/***/ 73:
+/***/ 63:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10345,6 +10332,59 @@ var ContactService = (function () {
     var _a;
 }());
 //# sourceMappingURL=/Users/haraldbregu/Dropbox/StarbookWebApp/src/contact.service.js.map
+
+/***/ },
+
+/***/ 73:
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_angular2_universal__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_angular2_universal___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_angular2_universal__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Subject__ = __webpack_require__(57);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Subject___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_Subject__);
+/* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return PopupsService; });
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+var PopupsService = (function () {
+    function PopupsService() {
+        this.activePopup = new __WEBPACK_IMPORTED_MODULE_2_rxjs_Subject__["Subject"]();
+        this.popupResponse = new __WEBPACK_IMPORTED_MODULE_2_rxjs_Subject__["Subject"]();
+        if (__WEBPACK_IMPORTED_MODULE_0_angular2_universal__["isBrowser"]) {
+            this.getActivePopup$ = this.activePopup.asObservable();
+            this.getPopupResponse$ = this.popupResponse.asObservable();
+        }
+    }
+    PopupsService.prototype.activate = function (popup) {
+        if (popup && popup['type'] && popup['type'].length > 0) {
+            // console.log('popup is open');
+            $('body').addClass('disable-body-scroll');
+            $('app-home').addClass('visibility-hidden');
+            $('app-profile').addClass('visibility-hidden');
+        }
+        this.activePopup.next(popup);
+    };
+    PopupsService.prototype.actionComplete = function (data) {
+        this.popupResponse.next(data);
+    };
+    PopupsService = __decorate([
+        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_core__["Injectable"])(), 
+        __metadata('design:paramtypes', [])
+    ], PopupsService);
+    return PopupsService;
+}());
+//# sourceMappingURL=/Users/haraldbregu/Dropbox/StarbookWebApp/src/popups.service.js.map
 
 /***/ },
 
@@ -10516,7 +10556,7 @@ module.exports = "<div class=\"blog-container\">\n  <!-- <div class=\"header\">\
 /***/ 760:
 /***/ function(module, exports) {
 
-module.exports = "<div class=\"article-container\" *ngIf=\"selectedArticle\">\n  <div [innerHtml]=\"selectedArticle.html_body\"></div>\n  <!-- <div class=\"header\">\n    <h1>{{selectedArticle.title}}</h1>\n    <div class=\"author\">\n      <img class=\"left\" [src]=\"selectedArticle.author.picture_url\" title=\"={{selectedArticle.author.fullname}}\" alt=\"{{selectedArticle.author.fullname}}\">\n      <div class=\"left\">\n        <div class=\"author-username\">{{selectedArticle.author.fullname}}</div>\n        <div class=\"headline\">{{selectedArticle.author.headline}}</div>\n      </div>\n    </div>\n    <div class=\"date\">\n      <div class=\"post-date\">{{selectedArticle.updated_at}} - {{selectedArticle.timing}}</div>\n    </div>\n    <div class=\"share right\">\n      <a class=\"btn btn-twitter\" (click)=\"shareOnTwitter()\">\n        <i class=\"fa fa-twitter\" aria-hidden=\"true\"></i>\n      </a>\n      <a class=\"btn btn-facebook\" (click)=\"shareOnFacebook()\">\n        <i class=\"fa fa-facebook-official\" aria-hidden=\"true\"></i>\n      </a>\n      <a class=\"btn btn-linkedin\" (click)=\"shareOnLinkedin()\">\n        <i class=\"fa fa-linkedin\" aria-hidden=\"true\"></i>\n      </a>\n    </div>\n  </div> -->\n  <!-- <div class=\"body\" *ngIf=\"browser\">\n    <div [innerHtml]=\"selectedArticle.html_body\"></div>\n    <markdown [data]=\"selectedArticle.markdown_body\"></markdown>\n  </div> -->\n  <!-- <div class=\"footer\">\n  </div> -->\n  <div class=\"lead-form\">\n    <div class=\"form-box\">\n      <div class=\"form-content\">\n        <div class=\"content\">\n          <h2>Vuoi rimanere aggiornato su una nuova piattaforma adatta a voi?</h2>\n          <p>Rimani sempre connesso alle nuove tecnologie e innovazioni per poter aumentare sempre il tuo profitto.</p>\n        </div>\n        <div class=\"picture\">\n\n        </div>\n      </div>\n      <div class=\"form-cta\">\n        <div class=\"input-group\">\n          <input type=\"text\" placeholder=\"Inserisci il tuo indirizzo email\" class=\"form-control\" id=\"emailInput\">\n          <span class=\"input-group-btn\">\n            <button type=\"button\" id=\"next\" class=\"btn btn-success\"><!-- <i class=\"fa fa-circle-o-notch animate\"></i> -->Aggiornami</button>\n          </span>\n          <!-- <small class=\"error-message\">errore</small> -->\n        </div>\n      </div>\n    </div>\n  </div>\n  <div class=\"facebook-comments\" *ngIf=\"browser\">\n    <fb-comments href=\"https://developers.facebook.com/docs/plugins/comments#{{selectedArticle.title}}\"></fb-comments>\n  </div>\n\n</div>\n\n<div class=\"footer-container\">\n  <div class=\"footer\">\n    <span>Starbook © 2017 Tutti i diritti riservati</span>\n  </div>\n</div>\n"
+module.exports = "<div class=\"article-container\" *ngIf=\"selectedArticle\">\n  <div [innerHtml]=\"selectedArticle.html_body\"></div>\n  <!-- <div class=\"header\">\n    <h1>{{selectedArticle.title}}</h1>\n    <div class=\"author\">\n      <img class=\"left\" [src]=\"selectedArticle.author.picture_url\" title=\"={{selectedArticle.author.fullname}}\" alt=\"{{selectedArticle.author.fullname}}\">\n      <div class=\"left\">\n        <div class=\"author-username\">{{selectedArticle.author.fullname}}</div>\n        <div class=\"headline\">{{selectedArticle.author.headline}}</div>\n      </div>\n    </div>\n    <div class=\"date\">\n      <div class=\"post-date\">{{selectedArticle.updated_at}} - {{selectedArticle.timing}}</div>\n    </div>\n    <div class=\"share right\">\n      <a class=\"btn btn-twitter\" (click)=\"shareOnTwitter()\">\n        <i class=\"fa fa-twitter\" aria-hidden=\"true\"></i>\n      </a>\n      <a class=\"btn btn-facebook\" (click)=\"shareOnFacebook()\">\n        <i class=\"fa fa-facebook-official\" aria-hidden=\"true\"></i>\n      </a>\n      <a class=\"btn btn-linkedin\" (click)=\"shareOnLinkedin()\">\n        <i class=\"fa fa-linkedin\" aria-hidden=\"true\"></i>\n      </a>\n    </div>\n  </div> -->\n  <!-- <div class=\"body\" *ngIf=\"browser\">\n    <div [innerHtml]=\"selectedArticle.html_body\"></div>\n    <markdown [data]=\"selectedArticle.markdown_body\"></markdown>\n  </div> -->\n  <!-- <div class=\"footer\">\n  </div> -->\n  <div class=\"lead-form\">\n    <div class=\"form-box\">\n      <div class=\"form-content\">\n        <div class=\"content\">\n          <h2><span>Nuovo metodo:</span> Scopri l'innovazione del web nel mondo dell'artigianato.</h2>\n          <p>Vuoi rimanere sempre <strong>un passo avanti</strong> alla <strong>concorrenza</strong> utilizzando le novità del web? <strong>Unisciti</strong> e ti aggiorneremmo su nuove <strong>opportunità</strong>.</p>\n          <!-- <p>Rimani sempre aggiornato alle nuove tecnologie e innovazioni perché saranno loro ad avere un cambiamento nella vostra vita.</p> -->\n        </div>\n      </div>\n      <div class=\"form-cta\" *ngIf=\"!Lead.generated\">\n        <div class=\"input-group\">\n          <input type=\"text\" placeholder=\"Inserisci il tuo indirizzo email\" class=\"form-control\" id=\"emailInput\" [(ngModel)]=\"Lead.email\" [ngModelOptions]=\"{standalone: true}\">\n          <span class=\"input-group-btn\">\n            <button type=\"button\" id=\"next\" class=\"btn btn-success\" (click)=\"sendEmail()\"><i class=\"fa fa-circle-o-notch animate\" *ngIf=\"Lead.loading\"></i><div *ngIf=\"!Lead.loading\">Aggiornami</div></button>\n          </span>\n        </div>\n      </div>\n      <div class=\"form-cta\" *ngIf=\"Lead.generated\">\n        <div class=\"done\">\n          <i class=\"fa fa-check-circle\" aria-hidden=\"true\"></i>\n          <span>Fatto!</span>\n        </div>\n      </div>\n    </div>\n  </div>\n  <div class=\"facebook-comments\" *ngIf=\"browser\">\n    <fb-comments href=\"https://developers.facebook.com/docs/plugins/comments#{{selectedArticle.title}}\"></fb-comments>\n  </div>\n\n</div>\n\n<div class=\"footer-container\">\n  <div class=\"footer\">\n    <span>Starbook © 2017 Tutti i diritti riservati</span>\n  </div>\n</div>\n"
 
 /***/ },
 
