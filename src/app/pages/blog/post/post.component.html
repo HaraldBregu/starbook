@@ -1,7 +1,7 @@
 <div class="article-container" *ngIf="selectedArticle">
   <div class="breadcrumb-container">
     <div class="breadcrumb">
-      Tu sei qui: <span><a href="/">Home</a></span><span class="separator">/</span><span><a href="/blog">Blog</a></span><span class="separator">/</span><span>{{selectedArticle.title}}</span>
+      Tu sei qui: <span><a routerLink="/">Home</a></span><span class="separator">/</span><span><a routerLink="/blog">Blog</a></span><span class="separator">/</span><span>{{selectedArticle.title}}</span>
     </div>
   </div>
   <div class="article" [innerHtml]="selectedArticle.html_body"></div>
@@ -38,15 +38,15 @@
         <div class="col-md-3">
           <h4>Scopri di più</h4>
           <ul>
-            <li><a href="/info/about">Chi Siamo</a></li>
-            <li><a href="/info/contact">Contatti</a></li>
+            <li><a routerLink="/info/about">Chi Siamo</a></li>
+            <!-- <li><a routerLink="/info/contact">Contatti</a></li> -->
           </ul>
         </div>
         <div class="col-md-3">
           <h4>Pagine principali</h4>
           <ul>
-            <li><a href="/blog">Blog</a></li>
-            <li><a href="/">Starbook</a></li>
+            <li><a routerLink="/blog">Blog</a></li>
+            <li><a routerLink="/">Starbook</a></li>
           </ul>
         </div>
         <div class="col-md-3">
