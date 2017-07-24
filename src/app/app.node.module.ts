@@ -21,7 +21,6 @@ import { Ng2PageScrollModule } from 'ng2-page-scroll';
 // import { ClipboardModule } from 'ngx-clipboard';
 // import { MasonryModule } from 'angular2-masonry';
 // import { NgbModule, NgbDateParserFormatter } from '@ng-bootstrap/ng-bootstrap';
-import { MarkdownModule } from 'angular2-markdown';
 
 import { FacebookModule } from 'ngx-facebook';
 
@@ -29,19 +28,19 @@ import { FacebookModule } from 'ngx-facebook';
 import { ClipboardModule } from 'ngx-clipboard';
 
 import { routing } from './app.routing';
-import { CommonService } from './shared/common.service';
 
+import { CommonService } from './shared/common.service';
 import { AuthService } from './shared/auth.service';
 import { ProfileService } from './shared/profile.service';
 import { NavigationService } from './shared/navigation.service';
 import { OrdersService } from './shared/orders.service';
 import { PopupsService } from './popups/popups.service';
 import { PaymentService } from './shared/payment.service';
-
 import { SeoService } from './shared/seo.service';
 import { ContactService } from './shared/contact.service';
 import { ShareService } from './pages/share/share.service';
 import { ClipboardService } from './shared/clipboard.service';
+import { PostsService } from './pages/blog/posts.service';
 
 import { AppComponent } from './app.component';
 import { LandingComponent } from './landing/landing.component';
@@ -107,7 +106,6 @@ let imports = [
   ClipboardModule,
   Ng2PageScrollModule.forRoot(),
   FacebookModule.forRoot(),
-  MarkdownModule.forRoot(),
 ];
 let declarations = [
   AppComponent,
@@ -194,6 +192,7 @@ else {
     ContactService,
     ShareService,
     ClipboardService,
+    PostsService,
     CurrencyPipe,
     CurrencyFormatPipe,
     CurrencyCentPipe

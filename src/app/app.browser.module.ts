@@ -17,19 +17,19 @@ import { Ng2PageScrollModule } from 'ng2-page-scroll';
 import { FacebookModule } from 'ngx-facebook';
 
 import { routing } from './app.routing';
-import { CommonService } from './shared/common.service';
 
+import { CommonService } from './shared/common.service';
 import { AuthService } from './shared/auth.service';
 import { ProfileService } from './shared/profile.service';
 import { NavigationService } from './shared/navigation.service';
 import { OrdersService } from './shared/orders.service';
 import { PopupsService } from './popups/popups.service';
 import { PaymentService } from './shared/payment.service';
-
 import { SeoService } from './shared/seo.service';
 import { ContactService } from './shared/contact.service';
 import { ShareService } from './pages/share/share.service';
 import { ClipboardService } from './shared/clipboard.service';
+import { PostsService } from './pages/blog/posts.service';
 
 import { AppComponent } from './app.component';
 
@@ -72,8 +72,6 @@ import { FormatterDirective } from './directives/formatter.directive';
 import { CurrencyPipe } from './pipes/currency.pipe';
 import { CurrencyFormatPipe } from './pipes/currency-format.pipe';
 
-import { MarkdownModule } from 'angular2-markdown';
-
 export class HammerConfig extends HammerGestureConfig  {
   overrides = <any> {
     'swipe': {velocity: 0.4, threshold: 20}
@@ -91,7 +89,6 @@ let imports = [
   ClickOutsideModule,
   Ng2PageScrollModule.forRoot(),
   FacebookModule.forRoot(),
-  MarkdownModule.forRoot(),
 ];
 let declarations = [
   AppComponent,
@@ -177,6 +174,7 @@ else {
     ContactService,
     ShareService,
     ClipboardService,
+    PostsService,
     CurrencyPipe
   ],
   exports:exp

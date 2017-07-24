@@ -2,57 +2,25 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Router, Route, ActivatedRoute, Params } from '@angular/router';
 import { SeoService } from '../../shared/seo.service';
 import { NavigationService } from '../../shared/navigation.service';
+import { PostsService } from './posts.service';
+import { ContactService } from '../../shared/contact.service';
 
 @Component({
   selector: 'app-blog',
   templateUrl: './blog.component.html',
 })
 export class BlogComponent implements OnInit {
-  public blog = {
-    title: "",
-    articles: [
-      {
-        "title" : "Gli artigiani del web: 3 semplici modi per aumentare i clienti online",
-        "subtitle" : "Hai un attività professionale, sei artigiano, idraulico, elettricista o altro e vuoi utilizzare il web per aumentare la tua clientela? Il web ti dà tutti gli strumenti adatti per farlo, basta sapere sfruttarli al meglio.",
-        "picture_url" : "https://s3-eu-west-1.amazonaws.com/starbook-s3/blog/artigiani-sul-web.jpg",
-        "author": {
-          "fullname" : "Harald Bregu",
-          "headline" : "Sviluppatore, Software, Starbook, Startup",
-          "picture_url" : "https://s3-eu-west-1.amazonaws.com/starbook-s3/accounts/595ccfb42bf14e6650ce6e3d/avatar/0"
-        },
-        "updated_at" : "22 Lug 2017",
-        "timing" : "3 min lettura"
-      },
-      {
-        "title" : "Le piattaforme digitali: come gestire il tempo nell'era della new economy",
-        "subtitle" : "Il tempo è un'illusione eppure è l'unica risorsa con maggior valore nella nostra vita e nel era digitale il tempo è diventato uno strumento difficile da gestire ma cruciale per sopravvivere.",
-        "picture_url" : "https://s3-eu-west-1.amazonaws.com/starbook-s3/blog/online-booking-servizi.png",
-        "author": {
-          "fullname" : "Harald Bregu",
-          "headline" : "Sviluppatore, Software, Starbook, Startup",
-          "picture_url" : "https://s3-eu-west-1.amazonaws.com/starbook-s3/accounts/595ccfb42bf14e6650ce6e3d/avatar/0"
-        },
-        "updated_at" : "19 Lug 2017",
-        "timing" : "3 min lettura"
-      },
-      {
-        "title" : "Il booking dei servizi: un fenomeno in crescita destinato ad espandersi",
-        "subtitle" : "Nuovi sistemi innovativi, nuove tecnologie è nuovi modi per trovare o prenotare quello che ti serve.",
-        "picture_url" : "https://s3-eu-west-1.amazonaws.com/starbook-s3/blog/prenotazioni-servizi-professionali-online.jpg",
-        "author": {
-          "fullname" : "Starbook Team",
-          "headline" : "Piattaforma di booking per i servizi professionali.",
-          "picture_url" : "https://s3-eu-west-1.amazonaws.com/starbook-s3/accounts/5920099fde98d19d5836ef56/avatar/0"
-        },
-        "updated_at" : "16 Lug 2017",
-        "timing" : "3 min lettura"
-      },
-    ]
-  }
+  public articles = []
   public SeoData = {}
+  public Lead = {
+    email : '',
+    loading : false,
+    generated: false
+  }
 
-  constructor(private router: Router, private navigationService: NavigationService, private seoService: SeoService) {
+  constructor(private router: Router, private navigationService: NavigationService, private seoService: SeoService, private postsService: PostsService, private contactService: ContactService) {
     this.navigationService.updateMessage("")
+    this.articles = this.postsService.articles
     this.SeoData['title'] = "Starbook Blog"
     this.SeoData['description'] = "Starbook è una piattaforma che ti connette ai professionisti in modo piu sicuro e diretto."
     this.SeoData['url'] = "https://www.starbook.co/blog/Il-booking-dei-servizi%3A-un-fenomeno-in-crescita-destinatoad-espandersi"
@@ -80,4 +48,21 @@ export class BlogComponent implements OnInit {
     this.router.navigate(['/blog/' + article.title.replace(/\s+/g, '-')])
   }
 
+  // LEAD
+  sendEmail() {
+    if (this.Lead.email.length===0) {return}
+    if (this.Lead.loading) {return}
+    var email = {
+      subject : "Iscrizione agli aggiornamenti blog",
+      message : 'email: ' + this.Lead.email
+    }
+    this.Lead.loading = true
+    this.contactService.sendEmail(email).then((response) => {
+      this.Lead.loading = false
+      this.Lead.generated = true
+    }).catch((error) => {
+      this.Lead.loading = false
+      this.Lead.generated = true
+    });
+  }
 }

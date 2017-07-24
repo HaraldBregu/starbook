@@ -10,10 +10,38 @@ app-post {
     width: 100%;
     height: 100%;
     background-color: #FFFFFF;
-    padding: 50px 20px 0;
-    max-width: 790px;
-    margin: auto;
-
+    .breadcrumb-container {
+      padding: 3px 20px;
+      background-color: #eceeef;
+      .breadcrumb {
+        background-color: #eceeef;
+        max-width: 1140px;
+        margin: auto;
+        font-size: 12px;
+        line-height: normal;
+        text-align: left;
+        color: #495161;
+        text-shadow: 0px 1px 0px #ffffff;
+        padding: 0;
+        a {
+          color: #3B5998;
+          text-decoration: none;
+          transition: all 0.1s ease-in;
+        }
+        a:hover {
+          text-decoration: underline;
+          color: #5f7ec1;
+        }
+        .separator {
+          margin: 0 4px;
+        }
+      }
+    }
+    .article {
+      padding: 50px 20px 0;
+      max-width: 790px;
+      margin: auto;
+    }
     article {
       text-align: left;
       p {
@@ -139,7 +167,11 @@ app-post {
       }
     }
     .lead-form {
+      padding: 50px 20px 0;
+      max-width: 790px;
+      margin: auto;
       margin-top: 30px;
+      margin-bottom: 30px;
       .form-box {
         width: 100%;
         background: #2F509D;
@@ -268,121 +300,70 @@ app-post {
         }
       }
     }
-
-    .header {
-      padding: 50px 20px 0;
-      max-width: 790px;
-      margin: auto;
-      overflow: auto;
-      h1 {
-        font-size: 44px;
-        font-weight: 600;
-        color: rgba(0, 0, 0, 0.8);
-        line-height: 53px;
-      }
-      .author {
-        padding: 20px 0;
-        text-align: left;
-        overflow: auto;
-        img {
-          width: 50px;
-          border-radius: 25px;
+    .links-container {
+      background: #203157;
+      color: #a8b9dd;
+      text-shadow: 0px 2px 0px rgba(0, 0, 0, 0.1);
+      padding: 40px 20px;
+      .links {
+        max-width: 1140px;
+        margin: auto;
+        h4 {
+          font-family: PT Serif Caption;
+          font-weight: 700;
+          line-height: inherit;
+          text-transform: uppercase;
+          margin-bottom: 20px;
         }
-        .author-username {
-          margin-left: 10px;
-          margin-top: 4px;
-          font-size: 18px;
-          font-weight: 300;
-          color: rgba(0, 0, 0, 1);
-          font-weight: 400;
+        li {
+          padding-bottom: 10px;
         }
-        .headline {
-          margin-left: 10px;
-          margin-top: 1px;
-          color: rgba(0, 0, 0, 0.44);
+        a {
+          color: #b0bfe0;
+          text-shadow: 0px 2px 0px rgba(0, 0, 0, 0.1);
+          border-bottom: none;
           font-size: 15px;
-          font-weight: 400;
+          font-weight: 500;
         }
-      }
-      .date {
-        overflow: auto;
-        margin-top: 10px;
-        border-bottom: 1px solid rgb(219, 219, 219);
-        .post-date {
-          color: rgba(0, 0, 0, 0.8);
-          font-size: 16px;
-          font-weight: 400;
+        a:hover {
+          color: white;
+          text-shadow: 0px 2px 0px rgba(0, 0, 0, 0.1);
+          text-decoration: none;
         }
-      }
-      .share {
-        overflow: auto;
-        margin-top: 10px;
-        .btn-twitter, .btn-facebook, .btn-linkedin, .btn-google-plus {
-          background: white;
-          padding: 0 5px;
-        }
-        i {
-          font-size: 18px;
-          color: rgba(0, 0, 0, 0.7);
+        .social {
+          margin-right: 10px;
+          i {
+            font-size: 30px;
+          }
         }
       }
     }
-    .body {
-      padding: 20px;
-      max-width: 790px;
-      margin: auto;
-      text-align: center;
-      .image-preview {
-        position: relative;
-        background-size: cover;
-        background-repeat: no-repeat;
-        background-position: center;
-        width: 100%;
-        height: 250px;
-      }
-      p img {
-        box-shadow: 2px 2px 0 rgba(192, 192, 192, 0.3);
-        border-radius: 3px;
-        background-color: #fff;
-        border: 1px solid #c0c0c0;
-      }
-      h2 {
-        text-align: left;
-        font-size: 32px;
-        font-weight: 600;
-        color: rgba(0, 0, 0, 0.8);
-        line-height: 38px;
-        margin-top: 40px;
-      }
-      a.starbook-banner {
-        display: block;
-        margin-top: 30px;
-        background: #324977;
-        line-height: 60px;
-        text-align: center;
-        color: white;
-        font-size: 22px;
-      }
-      a.starbook-banner:hover, a.starbook-banner:focus {
-        background: #1d325d;
-        text-decoration: none;
-      }
-    }
-
-    // .line {
-    //   border-bottom: 1px solid rgb(219, 219, 219);
-    // }
   }
   .footer-container {
     position: relative;
-    background: white;
-    padding: 0;
+    background: #203157;
     border: 0;
+    padding: 40px 20px;
     .footer {
-      max-width: 1000px;
+      max-width: 1140px;
       margin: auto;
-      padding: 20px 10px;
-      border-top: 1px solid #DBDBDB;
+      color: #7893cb;
+      text-shadow: 0px 2px 0px rgba(0, 0, 0, 0.1);
+      p {
+        font-size: 14px !important;
+      }
+      a {
+        color: #b0bfe0;
+        text-shadow: 0px 2px 0px rgba(0, 0, 0, 0.1);
+        border-bottom: none;
+        font-size: 15px;
+        font-weight: 500;
+      }
+      a:hover {
+        color: #d4ddee;
+        text-shadow: 0px 2px 0px rgba(0, 0, 0, 0.1);
+        text-decoration: none;
+      }
       span {
         font-size: 16px;
       }
@@ -395,6 +376,9 @@ app-post {
 }
 
 @media (max-width: 425px) {
+  app-post .article-container .breadcrumb-container .breadcrumb {
+    text-align: center;
+  }
   app-post .article-container .lead-form .form-box .form-cta .emailfield {
     width: 100%;
   }
@@ -402,12 +386,19 @@ app-post {
     padding-left: 0;
     width: 100%;
   }
-  app-post .article-container {
+  app-post .article-container .article {
     padding: 30px 20px 0;
   }
-  app-post .article-container article header h1 {
+  app-post .article-container .article article header h1 {
     font-size: 38px;
     line-height: 47px;
+  }
+  app-post .article-container .lead-container .lead-actions .emailfield {
+    width: 100%;
+  }
+  app-post .article-container .lead-container .lead-actions .sendbutton {
+    width: 100%;
+    padding-left: 0;
   }
   // app-post .article-container .body {
   //   padding: 30px 20px;

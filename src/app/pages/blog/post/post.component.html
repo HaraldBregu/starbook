@@ -1,35 +1,10 @@
 <div class="article-container" *ngIf="selectedArticle">
-  <div [innerHtml]="selectedArticle.html_body"></div>
-  <!-- <div class="header">
-    <h1>{{selectedArticle.title}}</h1>
-    <div class="author">
-      <img class="left" [src]="selectedArticle.author.picture_url" title="={{selectedArticle.author.fullname}}" alt="{{selectedArticle.author.fullname}}">
-      <div class="left">
-        <div class="author-username">{{selectedArticle.author.fullname}}</div>
-        <div class="headline">{{selectedArticle.author.headline}}</div>
-      </div>
+  <div class="breadcrumb-container">
+    <div class="breadcrumb">
+      Tu sei qui: <span><a href="/">Home</a></span><span class="separator">/</span><span><a href="/blog">Blog</a></span><span class="separator">/</span><span>{{selectedArticle.title}}</span>
     </div>
-    <div class="date">
-      <div class="post-date">{{selectedArticle.updated_at}} - {{selectedArticle.timing}}</div>
-    </div>
-    <div class="share right">
-      <a class="btn btn-twitter" (click)="shareOnTwitter()">
-        <i class="fa fa-twitter" aria-hidden="true"></i>
-      </a>
-      <a class="btn btn-facebook" (click)="shareOnFacebook()">
-        <i class="fa fa-facebook-official" aria-hidden="true"></i>
-      </a>
-      <a class="btn btn-linkedin" (click)="shareOnLinkedin()">
-        <i class="fa fa-linkedin" aria-hidden="true"></i>
-      </a>
-    </div>
-  </div> -->
-  <!-- <div class="body" *ngIf="browser">
-    <div [innerHtml]="selectedArticle.html_body"></div>
-    <markdown [data]="selectedArticle.markdown_body"></markdown>
-  </div> -->
-  <!-- <div class="footer">
-  </div> -->
+  </div>
+  <div class="article" [innerHtml]="selectedArticle.html_body"></div>
   <div class="lead-form">
     <div class="form-box">
       <div class="form-content">
@@ -45,13 +20,6 @@
         <span class="form-group sendbutton">
           <button type="button" id="next" class="btn btn-success" (click)="sendEmail()"><i class="fa fa-circle-o-notch animate" *ngIf="Lead.loading"></i><div *ngIf="!Lead.loading">Aggiornami</div></button>
         </span>
-
-        <!-- <div class="input-group">
-          <input type="text" placeholder="Inserisci il tuo indirizzo email" class="form-control" id="emailInput" [(ngModel)]="Lead.email" [ngModelOptions]="{standalone: true}">
-          <span class="input-group-btn">
-            <button type="button" id="next" class="btn btn-success" (click)="sendEmail()"><i class="fa fa-circle-o-notch animate" *ngIf="Lead.loading"></i><div *ngIf="!Lead.loading">Aggiornami</div></button>
-          </span>
-        </div> -->
       </div>
       <div class="form-cta" *ngIf="Lead.generated">
         <div class="done">
@@ -64,11 +32,47 @@
   <div class="facebook-comments" *ngIf="browser">
     <fb-comments href="https://developers.facebook.com/docs/plugins/comments#{{selectedArticle.title}}"></fb-comments>
   </div>
-
+  <div class="links-container">
+    <div class="links">
+      <div class="row">
+        <div class="col-md-3">
+          <h4>Scopri di più</h4>
+          <ul>
+            <li><a href="/info/about">Chi Siamo</a></li>
+            <li><a href="/info/contact">Contatti</a></li>
+          </ul>
+        </div>
+        <div class="col-md-3">
+          <h4>Pagine principali</h4>
+          <ul>
+            <li><a href="/blog">Blog</a></li>
+            <li><a href="/">Starbook</a></li>
+          </ul>
+        </div>
+        <div class="col-md-3">
+          <h4>Articoli</h4>
+          <ul>
+            <li><a href="/blog/Gli-artigiani-del-web%3A-3-semplici-modi-per-aumentare-i-clienti-online" target="_blank">Gli artigiani del web: 3 semplici modi per aumentare i clienti online</a></li>
+            <li><a href="/blog/Le-piattaforme-digitali%3A-come-gestire-il-tempo-nell'era-della-new-economy" target="_blank">Le piattaforme digitali: come gestire il tempo nell'era della new economy</a></li>
+          </ul>
+        </div>
+        <div class="col-md-3">
+          <h4>Seguici su</h4>
+          <ul>
+            <li>
+              <a class="social" href="https://www.facebook.com/starbook.co/?ref=aymt_homepage_panel" target="_blank"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+              <a class="social" href="https://twitter.com/starbookco" target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+              <a class="social" href="https://www.linkedin.com/company-beta/10928230/" target="_blank"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
+              <a class="social" href="https://plus.google.com/u/1/communities/101402164822702062201" target="_blank"><i class="fa fa-google-plus" aria-hidden="true"></i></a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
-
 <div class="footer-container">
   <div class="footer">
-    <span>Starbook © 2017 Tutti i diritti riservati</span>
+    <p>© 2017 • Starbook Tutti i diritti riservati • <a href="/info/legal" target="_blank">Terms</a> & <a href="/info/legal" target="_blank">Privacy Policy</a></p>
   </div>
 </div>
