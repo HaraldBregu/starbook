@@ -41,7 +41,7 @@ export class PostComponent implements OnInit {
                 <a href="https://plus.google.com/share?url=https%3A//www.starbook.co/blog/Gli-artigiani-del-web%3A-3-semplici-modi-per-aumentare-i-clienti-online" title="" target="_blank" rel="nofollow"><i class="fa fa-google-plus" aria-hidden="true"></i> <span>Google+</span></a>
               </li>
               <li class="pinterest line">
-                <a href="https://pinterest.com/pin/create/button/?url=&media=https%3A//www.starbook.co/blog/Gli-artigiani-del-web%3A-3-semplici-modi-per-aumentare-i-clienti-online&description=" title="" target="_blank" rel="nofollow"><i class="fa fa-pinterest-p" aria-hidden="true"></i> <span>Pinterest</span></a>
+                <a href="https://pinterest.com/pin/create/button/?url=https%3A//www.starbook.co/blog/Gli-artigiani-del-web%3A-3-semplici-modi-per-aumentare-i-clienti-online&media=https://s3-eu-west-1.amazonaws.com/starbook-s3/blog/artigiani-sul-web.jpg&description=Gli artigiani del web: 3 semplici modi per aumentare i clienti online" title="" target="_blank" rel="nofollow"><i class="fa fa-pinterest-p" aria-hidden="true"></i> <span>Pinterest</span></a>
               </li>
               <li class="linkedin line">
                 <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A//www.starbook.co/blog/Gli-artigiani-del-web%3A-3-semplici-modi-per-aumentare-i-clienti-online&title=&summary=&source=" title="" target="_blank" rel="nofollow"><i class="fa fa-linkedin" aria-hidden="true"></i> <span>LinkedIn</span></a>
@@ -99,7 +99,7 @@ export class PostComponent implements OnInit {
                 <a href="https://plus.google.com/share?url=https%3A//www.starbook.co/blog/Le-piattaforme-digitali%3A-come-gestire-il-tempo-nell'era-della-new-economy" title="" target="_blank" rel="nofollow"><i class="fa fa-google-plus" aria-hidden="true"></i> <span>Google+</span></a>
               </li>
               <li class="pinterest line">
-                <a href="https://pinterest.com/pin/create/button/?url=&media=https%3A//www.starbook.co/blog/Le-piattaforme-digitali%3A-come-gestire-il-tempo-nell'era-della-new-economy&description=" title="" target="_blank" rel="nofollow"><i class="fa fa-pinterest-p" aria-hidden="true"></i> <span>Pinterest</span></a>
+                <a href="https://pinterest.com/pin/create/button/?url=https%3A//www.starbook.co/blog/Le-piattaforme-digitali%3A-come-gestire-il-tempo-nell&media=https://s3-eu-west-1.amazonaws.com/starbook-s3/blog/online-booking-servizi.png&description=Le piattaforme digitali: come gestire il tempo nell'era della new economy'era-della-new-economy&description=" title="" target="_blank" rel="nofollow"><i class="fa fa-pinterest-p" aria-hidden="true"></i> <span>Pinterest</span></a>
               </li>
               <li class="linkedin line">
                 <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A//www.starbook.co/blog/Le-piattaforme-digitali%3A-come-gestire-il-tempo-nell'era-della-new-economy&title=&summary=&source=" title="" target="_blank" rel="nofollow"><i class="fa fa-linkedin" aria-hidden="true"></i> <span>LinkedIn</span></a>
@@ -152,7 +152,7 @@ export class PostComponent implements OnInit {
                 <a href="https://plus.google.com/share?url=https%3A//www.starbook.co/blog/Il-booking-dei-servizi%3A-un-fenomeno-in-crescita-destinato-ad-espandersi" title="" target="_blank" rel="nofollow"><i class="fa fa-google-plus" aria-hidden="true"></i> <span>Google+</span></a>
               </li>
               <li class="pinterest line">
-                <a href="https://pinterest.com/pin/create/button/?url=&media=https%3A//www.starbook.co/blog/Il-booking-dei-servizi%3A-un-fenomeno-in-crescita-destinato-ad-espandersi&description=" title="" target="_blank" rel="nofollow"><i class="fa fa-pinterest-p" aria-hidden="true"></i> <span>Pinterest</span></a>
+                <a href="https://pinterest.com/pin/create/button/?url=https%3A//www.starbook.co/blog/Il-booking-dei-servizi%3A-un-fenomeno-in-crescita-destinato-ad-espandersi&media=https://s3-eu-west-1.amazonaws.com/starbook-s3/blog/prenotazioni-servizi-professionali-online.jpg&description=&description=Il booking dei servizi: un fenomeno in crescita destinato ad espandersi" title="" target="_blank" rel="nofollow"><i class="fa fa-pinterest-p" aria-hidden="true"></i> <span>Pinterest</span></a>
               </li>
               <li class="linkedin line">
                 <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A//www.starbook.co/blog/Il-booking-dei-servizi%3A-un-fenomeno-in-crescita-destinato-ad-espandersi&title=&summary=&source=" title="" target="_blank" rel="nofollow"><i class="fa fa-linkedin" aria-hidden="true"></i> <span>LinkedIn</span></a>

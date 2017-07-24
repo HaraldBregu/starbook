@@ -36,16 +36,22 @@
         <div class="content">
           <h2><span>Nuovo metodo:</span> Scopri l'innovazione del web nel mondo dell'artigianato.</h2>
           <p>Vuoi rimanere sempre <strong>un passo avanti</strong> alla <strong>concorrenza</strong> utilizzando le novità del web? <strong>Unisciti</strong> e ti aggiorneremmo su nuove <strong>opportunità</strong>.</p>
-          <!-- <p>Rimani sempre aggiornato alle nuove tecnologie e innovazioni perché saranno loro ad avere un cambiamento nella vostra vita.</p> -->
         </div>
       </div>
       <div class="form-cta" *ngIf="!Lead.generated">
-        <div class="input-group">
+        <div class="form-group emailfield">
+          <input type="text" placeholder="Inserisci il tuo indirizzo email" class="form-control" id="emailInput" [(ngModel)]="Lead.email" [ngModelOptions]="{standalone: true}">
+        </div>
+        <span class="form-group sendbutton">
+          <button type="button" id="next" class="btn btn-success" (click)="sendEmail()"><i class="fa fa-circle-o-notch animate" *ngIf="Lead.loading"></i><div *ngIf="!Lead.loading">Aggiornami</div></button>
+        </span>
+
+        <!-- <div class="input-group">
           <input type="text" placeholder="Inserisci il tuo indirizzo email" class="form-control" id="emailInput" [(ngModel)]="Lead.email" [ngModelOptions]="{standalone: true}">
           <span class="input-group-btn">
             <button type="button" id="next" class="btn btn-success" (click)="sendEmail()"><i class="fa fa-circle-o-notch animate" *ngIf="Lead.loading"></i><div *ngIf="!Lead.loading">Aggiornami</div></button>
           </span>
-        </div>
+        </div> -->
       </div>
       <div class="form-cta" *ngIf="Lead.generated">
         <div class="done">

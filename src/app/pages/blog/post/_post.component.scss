@@ -167,6 +167,7 @@ app-post {
           padding: 15px;
           background: #112F75;
           text-align: center;
+          overflow: auto;
           .done {
             i {
               color: #2cb92a;
@@ -198,13 +199,13 @@ app-post {
             color: #1E2E4F !important;
             opacity: 1 !important;
           }
-          .input-group-btn {
+          .form-group-btn {
             padding-left: 15px;
           }
-          .input-group {
+          .form-group {
             margin-bottom: 5px;
           }
-          .input-group .form-control {
+          .form-group .form-control {
             height: 60px !important;
             border: 1px solid rgba(0, 0, 0, 0.2);
             text-align: center;
@@ -212,13 +213,14 @@ app-post {
             font-weight: 300;
             font-style: italic;
           }
-          .input-group input[type="text"] {
+          .form-group input[type="text"] {
             background-color : #F8F8F8;
           }
           .btn-success {
             background: #58b957 !important;
             height: 60px;
             padding: 0 40px;
+            width: 100%;
             font-weight: 500;
             font-size: 25px;
             // text-shadow: 0 2px 0 rgba(0, 0, 0, 0.3);
@@ -228,6 +230,15 @@ app-post {
           }
           .btn-success:active {
             background: #2cb92a !important;
+          }
+          .emailfield {
+            float: left;
+            width: 70%;
+          }
+          .sendbutton {
+            float: left;
+            width: 30%;
+            padding-left: 10px;
           }
         }
       }
@@ -382,21 +393,29 @@ app-post {
 @media (max-width: 768px) {
 
 }
+
 @media (max-width: 425px) {
-  app-post .article-container .header {
+  app-post .article-container .lead-form .form-box .form-cta .emailfield {
+    width: 100%;
+  }
+  app-post .article-container .lead-form .form-box .form-cta .sendbutton {
+    padding-left: 0;
+    width: 100%;
+  }
+  app-post .article-container {
     padding: 30px 20px 0;
   }
-  app-post .article-container .header h1 {
+  app-post .article-container article header h1 {
     font-size: 38px;
     line-height: 47px;
   }
-  app-post .article-container .body {
-    padding: 30px 20px;
-  }
-  app-post .article-container .body p {
-    margin-top: 20px;
-  }
-  app-post .article-container .body h2 {
-    margin-top: 30px;
-  }
+  // app-post .article-container .body {
+  //   padding: 30px 20px;
+  // }
+  // app-post .article-container .body p {
+  //   margin-top: 20px;
+  // }
+  // app-post .article-container .body h2 {
+  //   margin-top: 30px;
+  // }
 }
