@@ -499,22 +499,29 @@ export class AuthComponent implements OnInit {
     this.registration_state.message_error = null;
     if (this.Account.email.length===0 || this.Account.phone_number.length===0 ||
       this.Account.profile.firstname.length===0 || this.Account.profile.lastname.length===0 ||
-      this.Account.business.tagline.length===0 || this.Account.price.hourly<=0 ||
+      // this.Account.business.tagline.length===0 || this.Account.price.hourly<=0 ||
       this.Password.new.length===0) {
       this.registration_state.message_error = "Per favore, inserisci tutti i campi.";
       return
     }
     this.Account.price.hourly *= 100
-    if (this.Picture.url.length===0) {
-      this.registration_state.message_error = "Per favore, carica una foto del tuo volto.";
-      return
-    }
+    // if (this.Picture.url.length===0) {
+    //   this.registration_state.message_error = "Per favore, carica una foto del tuo volto.";
+    //   return
+    // }
     this.Account['password'] = this.Password.new
     this.registration_state.loading = true
     this.authService.registerWorker(this.Account).then((data) => {
       this.navigationService.updatePersonalMenu(data);
       this.registration_state.message_error = null;
-      this.savePictureToPath(this.Picture.file, 'accounts/' + data._id + '/avatar/0')
+      if (this.Picture.url.length>0) {
+        console.log('picture exists');
+        this.savePictureToPath(this.Picture.file, 'accounts/' + data._id + '/avatar/0')
+      } else {
+        console.log('no picture exists');
+        this.registration_state.loading = false
+        this.router.navigate(['account/profile'])
+      }
     }).catch((error) => {
       this.registration_state.loading = false
       this.registration_state.message_error = null;

@@ -100,7 +100,7 @@ export class PostsService {
               <a href="https://plus.google.com/share?url=https%3A//www.starbook.co/blog/Le-piattaforme-digitali%3A-come-gestire-il-tempo-nell'era-della-new-economy" title="" target="_blank" rel="nofollow"><i class="fa fa-google-plus" aria-hidden="true"></i> <span>Google+</span></a>
             </li>
             <li class="pinterest line">
-              <a href="https://pinterest.com/pin/create/button/?url=https%3A//www.starbook.co/blog/Le-piattaforme-digitali%3A-come-gestire-il-tempo-nell&media=https://s3-eu-west-1.amazonaws.com/starbook-s3/blog/online-booking-servizi.png&description=Le piattaforme digitali: come gestire il tempo nell'era della new economy'era-della-new-economy&description=" title="" target="_blank" rel="nofollow"><i class="fa fa-pinterest-p" aria-hidden="true"></i> <span>Pinterest</span></a>
+              <a href="https://pinterest.com/pin/create/button/?url=https%3A//www.starbook.co/blog/Le-piattaforme-digitali%3A-come-gestire-il-tempo-nell&media=https://s3-eu-west-1.amazonaws.com/starbook-s3/blog/online-booking-servizi.png&description=Le piattaforme digitali: come gestire il tempo nell'era della new economy'era-della-new-economy" title="" target="_blank" rel="nofollow"><i class="fa fa-pinterest-p" aria-hidden="true"></i> <span>Pinterest</span></a>
             </li>
             <li class="linkedin line">
               <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A//www.starbook.co/blog/Le-piattaforme-digitali%3A-come-gestire-il-tempo-nell'era-della-new-economy&title=&summary=&source=" title="" target="_blank" rel="nofollow"><i class="fa fa-linkedin" aria-hidden="true"></i> <span>LinkedIn</span></a>
