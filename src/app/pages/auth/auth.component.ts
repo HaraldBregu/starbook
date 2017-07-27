@@ -515,10 +515,8 @@ export class AuthComponent implements OnInit {
       this.navigationService.updatePersonalMenu(data);
       this.registration_state.message_error = null;
       if (this.Picture.url.length>0) {
-        console.log('picture exists');
         this.savePictureToPath(this.Picture.file, 'accounts/' + data._id + '/avatar/0')
       } else {
-        console.log('no picture exists');
         this.registration_state.loading = false
         this.router.navigate(['account/profile'])
       }
