@@ -7877,18 +7877,36 @@ app-post {
           border-bottom-style: solid;
           color: #5f7ec1;
           border-bottom: 1px solid rgba(59, 89, 152, 0.6); }
+        app-post .article-container article section p {
+          font-size: 20px !important; }
         app-post .article-container article section h2 {
           text-align: left;
           font-size: 32px;
           font-weight: 600;
           color: rgba(0, 0, 0, 0.8);
           line-height: 38px; }
+        app-post .article-container article section h3 {
+          text-align: left;
+          font-weight: 600;
+          color: rgba(0, 0, 0, 0.8); }
+        app-post .article-container article section ul {
+          display: block;
+          list-style-type: disc;
+          -webkit-margin-before: 1em;
+          -webkit-margin-after: 1em;
+          -webkit-margin-start: 0px;
+          -webkit-margin-end: 0px;
+          -webkit-padding-start: 40px;
+          font-size: 18px; }
+        app-post .article-container article section ul li {
+          display: list-item;
+          text-align: -webkit-match-parent; }
     app-post .article-container .lead-form {
-      padding: 50px 20px 0;
+      padding: 0 20px;
       max-width: 790px;
       margin: auto;
-      margin-top: 30px;
-      margin-bottom: 30px; }
+      margin-top: 50px;
+      margin-bottom: 50px; }
       app-post .article-container .lead-form .form-box {
         width: 100%;
         background: #2F509D; }
@@ -7968,7 +7986,7 @@ app-post {
             width: 30%;
             padding-left: 10px; }
     app-post .article-container .facebook-comments {
-      padding: 30px 0 80px;
+      padding: 30px 10px 80px;
       max-width: 790px;
       margin: auto; }
       app-post .article-container .facebook-comments .btn-twitter, app-post .article-container .facebook-comments .btn-facebook, app-post .article-container .facebook-comments .btn-linkedin, app-post .article-container .facebook-comments .btn-google-plus {

@@ -25,7 +25,6 @@ export class PostComponent implements OnInit {
 
   constructor(private router: Router, private route: ActivatedRoute, private navigationService: NavigationService, private seoService: SeoService, private commonService: CommonService, private fb: FacebookService, private contactService: ContactService, private postsService: PostsService) {
     this.articles = this.postsService.articles
-
   }
 
   ngOnInit() {
@@ -76,13 +75,12 @@ export class PostComponent implements OnInit {
     }
   }
 
-
   // LEAD
   sendEmail() {
     if (this.Lead.email.length===0) {return}
     if (this.Lead.loading) {return}
     var email = {
-      subject : "Iscrizione agli aggiornamenti sull'artigianato",
+      subject : "Iscrizione ai segreti delle imprese di successo",
       message : 'email: ' + this.Lead.email
     }
     this.Lead.loading = true
