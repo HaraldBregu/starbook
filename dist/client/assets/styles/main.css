@@ -4276,6 +4276,8 @@ app-company {
     background: #e49616; }
   app-company .btn-warning:hover {
     background: #e49616; }
+  app-company .white-background {
+    background: white !important; }
   app-company .company-container {
     background: white; }
     app-company .company-container .header-container {
@@ -4287,12 +4289,12 @@ app-company {
         max-width: 1120px;
         margin: auto;
         color: white;
-        padding: 120px 0;
+        padding: 140px 0 150px;
         text-align: center; }
         app-company .company-container .header-container .header h1 {
           font-family: Helvetica Neue, sans-serif;
           font-weight: 600;
-          font-size: 41px;
+          font-size: 45px;
           line-height: 50px;
           color: #263961;
           text-shadow: 0 1px 0px rgba(255, 255, 255, 0.8); }
@@ -4358,6 +4360,37 @@ app-company {
         app-company .company-container .header-container .header .btn:active {
           background-color: #419641;
           border: 1px solid #3e8f3e; }
+    app-company .company-container .section-container {
+      background: #f9fafa; }
+      app-company .company-container .section-container .section {
+        max-width: 1350px;
+        text-align: center;
+        margin: auto;
+        padding: 86px 0 90px;
+        overflow: auto; }
+        app-company .company-container .section-container .section h2 {
+          font-weight: 400;
+          font-size: 40px;
+          color: #36464f; }
+        app-company .company-container .section-container .section h3 {
+          color: #36464f;
+          font-size: 38px;
+          text-align: left;
+          margin: 0 0 33px;
+          font-weight: 900;
+          word-spacing: 2px;
+          letter-spacing: 0px; }
+        app-company .company-container .section-container .section p {
+          font-size: 26px !important;
+          max-width: 700px;
+          text-align: left; }
+        app-company .company-container .section-container .section .image {
+          float: left;
+          max-width: 267px;
+          margin: 0 38px 0 118px; }
+        app-company .company-container .section-container .section .descr {
+          overflow: hidden;
+          padding: 31px 38px 0 0; }
     app-company .company-container .message-container {
       background: #3B5998;
       padding: 70px 20px;
