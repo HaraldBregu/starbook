@@ -7559,7 +7559,8 @@ app-blog {
               font-weight: 500;
               text-align: left;
               line-height: 26px;
-              color: rgba(0, 0, 0, 0.8); }
+              color: rgba(0, 0, 0, 0.8);
+              height: 78px; }
             app-blog .blog-container .body .post-container .post .post-body .post-description {
               font-size: 14px;
               font-weight: 400;
@@ -7823,7 +7824,8 @@ app-post {
     app-post .article-container article {
       text-align: left; }
       app-post .article-container article p {
-        margin-top: 20px; }
+        margin-top: 20px;
+        font-size: 20px !important; }
       app-post .article-container article p img {
         box-shadow: 2px 2px 0 rgba(192, 192, 192, 0.3);
         border-radius: 3px;
@@ -7900,6 +7902,8 @@ app-post {
             color: #212121 !important; }
       app-post .article-container article section {
         margin-top: 40px; }
+        app-post .article-container article section p {
+          font-size: 20px !important; }
         app-post .article-container article section a {
           color: #3B5998;
           text-decoration: none;
@@ -7910,8 +7914,6 @@ app-post {
           border-bottom-style: solid;
           color: #5f7ec1;
           border-bottom: 1px solid rgba(59, 89, 152, 0.6); }
-        app-post .article-container article section p {
-          font-size: 20px !important; }
         app-post .article-container article section h2 {
           text-align: left;
           font-size: 32px;

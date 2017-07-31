@@ -46,6 +46,7 @@ app-post {
       text-align: left;
       p {
         margin-top: 20px;
+        font-size: 20px !important;
       }
       p img {
         box-shadow: 2px 2px 0 rgba(192, 192, 192, 0.3);
@@ -145,6 +146,9 @@ app-post {
       }
       section {
         margin-top: 40px;
+        p {
+          font-size: 20px !important;
+        }
         a {
           color: #3B5998;
           text-decoration: none;
@@ -156,9 +160,6 @@ app-post {
           border-bottom-style: solid;
           color: #5f7ec1;
           border-bottom: 1px solid rgba(59, 89, 152, 0.6);
-        }
-        p {
-          font-size: 20px !important;
         }
         h2 {
           text-align: left;
