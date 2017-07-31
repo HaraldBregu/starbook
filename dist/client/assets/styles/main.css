@@ -4390,7 +4390,8 @@ app-company {
           margin: 0 38px 0 118px; }
         app-company .company-container .section-container .section .descr {
           overflow: hidden;
-          padding: 31px 38px 0 0; }
+          padding: 31px 38px 0 0;
+          max-width: 900px; }
     app-company .company-container .message-container {
       background: #3B5998;
       padding: 70px 20px;

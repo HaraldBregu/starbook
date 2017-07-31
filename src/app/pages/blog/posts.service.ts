@@ -5,7 +5,7 @@ export class PostsService {
   public articles = [
     {
       "title" : "Crescere la tua impresa online, facile come fissare un tassello",
-      "subtitle" : "Ci sono due scenari: primo che hai un impresa edile giovane e che vuoi farla crescere, secondo è che hai già un impresa edile ma che è in crisi e non hai fatturato abbastanza l’ultimo anno. La soluzione è semplice, investi online per incrementare il fatturato e crescere la tua impresa.",
+      "subtitle" : "Ci sono due scenari: primo che hai un'impresa edile giovane e che vuoi farla crescere, secondo è che hai già un'impresa edile ma che è in crisi e non hai fatturato abbastanza l’ultimo anno. La soluzione è semplice, investi online per incrementare il fatturato e crescere la tua impresa.",
       "picture_url" : "https://s3-eu-west-1.amazonaws.com/starbook-s3/blog/crescere-la-tua-impresa-online-facile-come-fissare-un-tassello.jpg",
       "author": {
         "fullname" : "Harald Bregu",
@@ -35,15 +35,15 @@ export class PostsService {
               <a href="https://plus.google.com/share?url=https%3A//www.starbook.co/blog/Crescere-la-tua-impresa-online%2C-facile-come-fissare-un-tassello" title="" target="_blank" rel="nofollow"><i class="fa fa-google-plus" aria-hidden="true"></i> <span>Google+</span></a>
             </li>
             <li class="pinterest line">
-              <a href="https://pinterest.com/pin/create/button/?url=https%3A//www.starbook.co/blog/Crescere-la-tua-impresa-online%2C-facile-come-fissare-un-tassello&media=https://s3-eu-west-1.amazonaws.com/starbook-s3/blog/crescere-la-tua-impresa-online-facile-come-fissare-un-tassello.jpg&description=Crescere-la-tua-impresa-online%2C-facile-come-fissare-un-tassello" title="" target="_blank" rel="nofollow"><i class="fa fa-pinterest-p" aria-hidden="true"></i> <span>Pinterest</span></a>
+              <a href="https://pinterest.com/pin/create/button/?url=https%3A//www.starbook.co/blog/Crescere-la-tua-impresa-online%2C-facile-come-fissare-un-tassello&media=https://s3-eu-west-1.amazonaws.com/starbook-s3/blog/crescere-la-tua-impresa-online-facile-come-fissare-un-tassello.jpg&description=Crescere la tua impresa online, facile come fissare un tassello" title="" target="_blank" rel="nofollow"><i class="fa fa-pinterest-p" aria-hidden="true"></i> <span>Pinterest</span></a>
             </li>
             <li class="linkedin line">
-              <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A//www.starbook.co/blog/Crescere-la-tua-impresa-online%2C-facile-come-fissare-un-tassello&title=Crescere-la-tua-impresa-online%2C-facile-come-fissare-un-tassello&summary=Ci sono due scenari: primo che hai un impresa edile giovane e che vuoi farla crescere, secondo è che hai già un impresa edile ma che è in crisi e non hai fatturato abbastanza l’ultimo anno. La soluzione è semplice, investi online per incrementare il fatturato e crescere la tua impresa&source=" title="" target="_blank" rel="nofollow"><i class="fa fa-linkedin" aria-hidden="true"></i> <span>LinkedIn</span></a>
+              <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A//www.starbook.co/blog/Crescere-la-tua-impresa-online%2C-facile-come-fissare-un-tassello&title=Crescere la tua impresa online, facile come fissare un tassello&summary=Ci sono due scenari: primo che hai un'impresa edile giovane e che vuoi farla crescere, secondo è che hai già un'impresa edile ma che è in crisi e non hai fatturato abbastanza l’ultimo anno. La soluzione è semplice, investi online per incrementare il fatturato e crescere la tua impresa&source=" title="" target="_blank" rel="nofollow"><i class="fa fa-linkedin" aria-hidden="true"></i> <span>LinkedIn</span></a>
             </li>
             </ul>
           </div>
         </header>
-        <p>Ci sono <strong>due</strong> scenari: <strong>primo</strong> che hai un impresa edile giovane e che vuoi farla crescere, <strong>secondo</strong> è che hai già un impresa edile ma che è in crisi e non hai fatturato abbastanza l’ultimo anno. La soluzione è semplice, investi online per incrementare il fatturato e crescere la tua impresa.</p>
+        <p>Ci sono <strong>due</strong> scenari: <strong>primo</strong> che hai un'impresa edile giovane e che vuoi farla crescere, <strong>secondo</strong> è che hai già un'impresa edile ma che è in crisi e non hai fatturato abbastanza l’ultimo anno. La soluzione è semplice, investi online per incrementare il fatturato e crescere la tua impresa.</p>
         <p><img src="https://s3-eu-west-1.amazonaws.com/starbook-s3/blog/crescere-la-tua-impresa-online-facile-come-fissare-un-tassello.jpg" alt="Gli artigiani sul web" title="Gli artigiani sul web"/></p>
         <p>Pochi sono quelli che utilizzano il web come uno strumento per poter crescere la propria attività e in questo caso la loro impresa edile. Proprio per questo fatto solo chi sarà tra i primi a utilizzare il web nel modo corretto avrà i benefici. Non pensarci troppo, mettiti seduto per 2 minuti, leggi questo articolo e scopri perché il web e la tua salvezza.</p>
         <section>
