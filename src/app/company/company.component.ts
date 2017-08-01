@@ -3,7 +3,6 @@ import { isBrowser } from 'angular2-universal';
 import { SeoService } from '../shared/seo.service';
 import { Router, Route, ActivatedRoute, Params } from '@angular/router';
 import { AuthService } from '../shared/auth.service';
-import { FacebookService, InitParams, LoginResponse } from 'ngx-facebook';
 
 @Component({
   selector: 'app-company',
@@ -13,7 +12,7 @@ export class CompanyComponent implements OnInit {
   public seoObject = {}
   public page = null
 
-  constructor(private router: Router, private route: ActivatedRoute, private seoService: SeoService, private authServics: AuthService, private fb: FacebookService) {
+  constructor(private router: Router, private route: ActivatedRoute, private seoService: SeoService, private authServics: AuthService) {
     if (isBrowser) {window.scrollTo(0, 0);}
   }
 
@@ -90,33 +89,3 @@ export class CompanyComponent implements OnInit {
     this.router.navigate(["/insert/product"])
   }
 }
-// if (isBrowser) {
-//   this.fb.login().then((response: LoginResponse) => {
-//     console.log(JSON.stringify(response))
-//     var accessToken = response.authResponse.accessToken
-//     console.log('access token is: ' + accessToken);
-//     this.authServics.facebookLogin(accessToken).then((userData) => {
-//       this.router.navigate(["/account/profile"])
-//     }).catch((error) => {
-//       console.log('not logged in');
-//     })
-//   }).catch((error: any) => {
-//     console.error(error)
-//   })
-// }
-
-
-    // if (isBrowser) {
-    //   // window.scrollTo(0, 0)
-    //   // // let initParams: InitParams = {
-    //   // //   appId: '1108461325907277',
-    //   // //   xfbml: true,
-    //   // //   version: 'v2.7'
-    //   // // }
-    //   // let initParams: InitParams = {
-    //   //   appId: '1251898728230202',
-    //   //   xfbml: true,
-    //   //   version: 'v2.8'
-    //   // }
-    //   // this.fb.init(initParams);
-    // }
