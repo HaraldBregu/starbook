@@ -49,76 +49,55 @@ export class CompanyComponent implements OnInit {
     })
 
     if (isBrowser) {
-      window.scrollTo(0, 0)
+      // window.scrollTo(0, 0)
+      // // let initParams: InitParams = {
+      // //   appId: '1108461325907277',
+      // //   xfbml: true,
+      // //   version: 'v2.7'
+      // // }
       // let initParams: InitParams = {
-      //   appId: '1108461325907277',
+      //   appId: '1251898728230202',
       //   xfbml: true,
-      //   version: 'v2.7'
+      //   version: 'v2.8'
       // }
-      let initParams: InitParams = {
-        appId: '1251898728230202',
-        xfbml: true,
-        version: 'v2.7'
-      }
-      this.fb.init(initParams);
+      // this.fb.init(initParams);
     }
-
+// redirect_uri
   }
 
   continueWithFacebook() {
-    // this.authServics.facebookLogin('EAARymGL9rToBALfkmkOljr2uQbHZBDmM9FgHm2ER7ocHEC11KfwbZCOXZC6wpLO9KShTN9P3645oTn3wbkI4IhkuoLK8ps6DVwDRCfrIVumtuzRRQVdRHlGRxN0aASchfvtOlbQQpx9A8s3DGMMIFyjOfYgpG3IugqLB9Pd97GZArNzgogJMRDAyXtjAEjgZD').then((userData) => {
-    //   this.router.navigate(["/account/profile"])
-    // }).catch((error) => {
-    //   console.log('not logged in');
-    // })
-
-    this.fb.login().then((response: LoginResponse) => {
-      console.log(JSON.stringify(response))
-      var accessToken = response.authResponse.accessToken
-      console.log('access token is: ' + accessToken);
-      this.authServics.facebookLogin(accessToken).then((userData) => {
-        this.router.navigate(["/account/profile"])
-      }).catch((error) => {
-        console.log('not logged in');
-      })
-    }).catch((error: any) => {
-      console.error(error)
-    })
-
     // if (isBrowser) {
-    //   let left = Math.round((document.documentElement.clientWidth / 2) - 285);
-    //   let facebookPopup = window.open(
-    //     'https://www.facebook.com/v2.8/dialog/oauth?client_id=1108461325907277&response_type=token&scope=email,public_profile&redirect_uri=https://www.starbook.co/facebook',
-    //       // '_blank',
-    //       'location=yes,height=570,width=520,left=' + left + ', top=100,scrollbars=yes,status=yes');
-    //   this.checkAccessToken(facebookPopup, 1);
+    //   this.fb.login().then((response: LoginResponse) => {
+    //     console.log(JSON.stringify(response))
+    //     var accessToken = response.authResponse.accessToken
+    //     console.log('access token is: ' + accessToken);
+    //     this.authServics.facebookLogin(accessToken).then((userData) => {
+    //       this.router.navigate(["/account/profile"])
+    //     }).catch((error) => {
+    //       console.log('not logged in');
+    //     })
+    //   }).catch((error: any) => {
+    //     console.error(error)
+    //   })
     // }
+
+    if (isBrowser) {
+      let left = Math.round((document.documentElement.clientWidth / 2) - 285);
+      let facebookPopup = window.open('https://www.facebook.com/v2.8/dialog/oauth?client_id=1108461325907277&response_type=token&scope=email,public_profile,user_location,user_website,user_work_history&redirect_uri=https://glacial-shore-66987.herokuapp.com/facebook', '_blank', 'location=yes,height=570,width=520,left=' + left + ', top=100,scrollbars=yes,status=yes')
+      // let facebookPopup = window.open('https://www.facebook.com/v2.8/dialog/oauth?client_id=1251898728230202&response_type=token&scope=email,public_profile,user_location,user_website,user_work_history&redirect_uri=http://localhost:4200/facebook', '_blank', 'location=yes,height=570,width=520,left=' + left + ', top=100,scrollbars=yes,status=yes')
+      // let facebookPopup = window.open('https://www.facebook.com/v2.8/dialog/oauth?client_id=1108461325907277&response_type=token&scope=email,public_profile,user_location,user_website,user_work_history&redirect_uri=http://www.starbook.co/facebook', '_blank', 'location=yes,height=570,width=520,left=' + left + ', top=100,scrollbars=yes,status=yes')
+      this.checkAccessToken(facebookPopup, 1);
+    }
   }
   checkAccessToken(facebookWindow: Window, context) {
     if (facebookWindow.closed) {
       let accessToken = localStorage.getItem('facebook_token');
       this.authServics.facebookLogin(accessToken).then((userData) => {
-            if(!userData.phone_number) {
-              console.log('is logged in');
-              // this.closePopup(true);
-              // this.finishPopupState = 'active';
-              // this.finishPopupData.title = 'Completa il profilo';
-              // this.finishPopupData.text.push('Per restare in contatto con i professionisti inserisci il tuo numero di telefono.');
-              // this.finishPopupData.type = 'phone';
-              // this.finishPopupData.data = { userData: userData };
-              // if (this.loginData.type === 'fromOrder') {
-              //   this.finishPopupData.from = 'order';
-              // }
-            } else if (!userData.email) {
-              // this.closePopup(true);
-              // ok
-            } else {
-              // this.closePopup(false);
-            }
-          })
-          .catch((error) => {
-            console.log('not logged in');
-          });
+        console.log('is logged in');
+        this.router.navigate(["/account/profile"])
+      }).catch((error) => {
+        console.log('not logged in');
+      })
     } else {
       let self = this;
       setTimeout(function() {self.checkAccessToken(facebookWindow, context + 1)}, 200);
