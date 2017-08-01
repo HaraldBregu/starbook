@@ -519,8 +519,18 @@ export class PopupsComponent implements OnInit, OnDestroy {
   facebookLogin() {
     if (isBrowser) {
       let left = Math.round((document.documentElement.clientWidth / 2) - 285);
-      let facebookPopup = window.open('https://www.facebook.com/v2.8/dialog/oauth?client_id=1108461325907277&response_type=token&scope=email,public_profile,user_location,user_website,user_work_history&redirect_uri=http://www.starbook.co/facebook', '_blank', 'location=yes,height=570,width=520,left=' + left + ', top=100,scrollbars=yes,status=yes')
+      if (document.location.hostname === "www.starbook.co") {
+        link = 'https://www.facebook.com/v2.8/dialog/oauth?client_id=1108461325907277&response_type=token&scope=email,public_profile,user_location,user_website,user_work_history&redirect_uri=https://www.starbook.co/facebook'
+      } else if (document.location.hostname === "glacial-shore-66987.herokuapp.com") {
+        link = 'https://www.facebook.com/v2.8/dialog/oauth?client_id=1251898728230202&response_type=token&scope=email,public_profile,user_location,user_website,user_work_history&redirect_uri=http://glacial-shore-66987.herokuapp.com/facebook'
+      } else if (document.location.hostname === "localhost") {
+        link = 'https://www.facebook.com/v2.8/dialog/oauth?client_id=1251898728230202&response_type=token&scope=email,public_profile,user_location,user_website,user_work_history&redirect_uri=http://localhost:4200/facebook'
+      }
+      let facebookPopup = window.open(link, '_blank', 'location=yes,height=570,width=520,left=' + left + ', top=100,scrollbars=yes,status=yes')
       this.checkAccessToken(facebookPopup, 1);
+      // let left = Math.round((document.documentElement.clientWidth / 2) - 285);
+      // let facebookPopup = window.open('https://www.facebook.com/v2.8/dialog/oauth?client_id=1108461325907277&response_type=token&scope=email,public_profile,user_location,user_website,user_work_history&redirect_uri=http://www.starbook.co/facebook', '_blank', 'location=yes,height=570,width=520,left=' + left + ', top=100,scrollbars=yes,status=yes')
+      // this.checkAccessToken(facebookPopup, 1);
     }
   }
 
