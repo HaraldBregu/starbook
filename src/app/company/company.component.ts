@@ -47,49 +47,23 @@ export class CompanyComponent implements OnInit {
         // this.router.navigate([''])
       }
     })
-
-    if (isBrowser) {
-      // window.scrollTo(0, 0)
-      // // let initParams: InitParams = {
-      // //   appId: '1108461325907277',
-      // //   xfbml: true,
-      // //   version: 'v2.7'
-      // // }
-      // let initParams: InitParams = {
-      //   appId: '1251898728230202',
-      //   xfbml: true,
-      //   version: 'v2.8'
-      // }
-      // this.fb.init(initParams);
-    }
-// redirect_uri
   }
 
   continueWithFacebook() {
-    // if (isBrowser) {
-    //   this.fb.login().then((response: LoginResponse) => {
-    //     console.log(JSON.stringify(response))
-    //     var accessToken = response.authResponse.accessToken
-    //     console.log('access token is: ' + accessToken);
-    //     this.authServics.facebookLogin(accessToken).then((userData) => {
-    //       this.router.navigate(["/account/profile"])
-    //     }).catch((error) => {
-    //       console.log('not logged in');
-    //     })
-    //   }).catch((error: any) => {
-    //     console.error(error)
-    //   })
-    // }
-
     if (isBrowser) {
+      // console.log('host name: ' + document.location.hostname);
       let left = Math.round((document.documentElement.clientWidth / 2) - 285);
+      let link = ""
+      // link = 'https://www.facebook.com/v2.8/dialog/oauth?client_id=1251898728230202&response_type=token&scope=email,public_profile,user_location,user_website,user_work_history&redirect_uri=http://localhost:4200/facebook'
+      if (document.location.hostname === "www.starbook.co") {
+        link = 'https://www.facebook.com/v2.8/dialog/oauth?client_id=1108461325907277&response_type=token&scope=email,public_profile,user_location,user_website,user_work_history&redirect_uri=http://www.starbook.co/facebook'
+      } else if (document.location.hostname === "glacial-shore-66987.herokuapp.com") {
+        link = 'https://www.facebook.com/v2.8/dialog/oauth?client_id=1251898728230202&response_type=token&scope=email,public_profile,user_location,user_website,user_work_history&redirect_uri=https://glacial-shore-66987.herokuapp.com/facebook'
+      } else if (document.location.hostname === "localhost") {
+        link = 'https://www.facebook.com/v2.8/dialog/oauth?client_id=1251898728230202&response_type=token&scope=email,public_profile,user_location,user_website,user_work_history&redirect_uri=http://localhost:4200/facebook'
+      }
 
-      // TEST
-      let facebookPopup = window.open('https://www.facebook.com/v2.8/dialog/oauth?client_id=1251898728230202&response_type=token&scope=email,public_profile,user_location,user_website,user_work_history&redirect_uri=https://glacial-shore-66987.herokuapp.com/facebook', '_blank', 'location=yes,height=570,width=520,left=' + left + ', top=100,scrollbars=yes,status=yes')
-      // let facebookPopup = window.open('https://www.facebook.com/v2.8/dialog/oauth?client_id=1251898728230202&response_type=token&scope=email,public_profile,user_location,user_website,user_work_history&redirect_uri=http://localhost:4200/facebook', '_blank', 'location=yes,height=570,width=520,left=' + left + ', top=100,scrollbars=yes,status=yes')
-
-      // PROD
-      // let facebookPopup = window.open('https://www.facebook.com/v2.8/dialog/oauth?client_id=1108461325907277&response_type=token&scope=email,public_profile,user_location,user_website,user_work_history&redirect_uri=http://www.starbook.co/facebook', '_blank', 'location=yes,height=570,width=520,left=' + left + ', top=100,scrollbars=yes,status=yes')
+      let facebookPopup = window.open(link, '_blank', 'location=yes,height=570,width=520,left=' + left + ', top=100,scrollbars=yes,status=yes')
       this.checkAccessToken(facebookPopup, 1);
     }
   }
@@ -97,10 +71,11 @@ export class CompanyComponent implements OnInit {
     if (facebookWindow.closed) {
       let accessToken = localStorage.getItem('facebook_token');
       this.authServics.facebookLogin(accessToken).then((userData) => {
-        console.log('is logged in');
+        // console.log('is logged in');
+        // console.log('userData: ' + JSON.stringify(userData));
         this.router.navigate(["/account/profile"])
       }).catch((error) => {
-        console.log('not logged in');
+        // console.log('not logged in');
       })
     } else {
       let self = this;
@@ -115,3 +90,33 @@ export class CompanyComponent implements OnInit {
     this.router.navigate(["/insert/product"])
   }
 }
+// if (isBrowser) {
+//   this.fb.login().then((response: LoginResponse) => {
+//     console.log(JSON.stringify(response))
+//     var accessToken = response.authResponse.accessToken
+//     console.log('access token is: ' + accessToken);
+//     this.authServics.facebookLogin(accessToken).then((userData) => {
+//       this.router.navigate(["/account/profile"])
+//     }).catch((error) => {
+//       console.log('not logged in');
+//     })
+//   }).catch((error: any) => {
+//     console.error(error)
+//   })
+// }
+
+
+    // if (isBrowser) {
+    //   // window.scrollTo(0, 0)
+    //   // // let initParams: InitParams = {
+    //   // //   appId: '1108461325907277',
+    //   // //   xfbml: true,
+    //   // //   version: 'v2.7'
+    //   // // }
+    //   // let initParams: InitParams = {
+    //   //   appId: '1251898728230202',
+    //   //   xfbml: true,
+    //   //   version: 'v2.8'
+    //   // }
+    //   // this.fb.init(initParams);
+    // }

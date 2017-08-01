@@ -45,7 +45,7 @@ export class AuthService {
       }
     }
     this.api = this.protocol + "://" + this.hostname + "/" + this.api_version + "/";
-    // this.api = 'http://localhost/t0.9.1/';
+    this.api = 'http://localhost/t0.9.1/';
   }
 
   private _makeHeadersFacebook(access_token) {
@@ -257,55 +257,46 @@ export class AuthService {
   }
 
   facebookLogin(access_token) {
-    return this.http.post(this.api + 'facebook_login', {}, {headers: this._makeHeadersFacebook(access_token)})
-        .toPromise()
-        .then((response) => {
-          let data = response.json();
-          if (data.success === true) {
-            let authData = {
-              _id: data.result._id,
-              email: data.result.email,
-              email_verified: data.result.email_verified,
-              phone_number: data.result.phone_number,
-              account_types: data.result.account_types,
-              is_social_account: data.result.is_social_account,
-              profile: data.result.profile,
-              company: data.result.company,
-              address: data.result.address,
-              services: data.result.services,
-              locations: data.result.locations,
-              payment: data.result.payment,
-              created_at: data.result.created_at,
-              updated_at: data.result.updated_at,
-              token: data.token
-            };
-
-            if (isBrowser) {
-              localStorage.setItem('auth', JSON.stringify(authData));
-            }
-
-            this.navigationService.updatePersonalMenu(data.result);
-            return authData;
-          } else {
-            this.handleError(data.message);
-          }
-        })
-        .catch(this.handleError);
+    return this.http.post(this.api + 'facebook_login', {}, {headers: this._makeHeadersFacebook(access_token)}).toPromise().then((response) => {
+      let data = response.json();
+      if (data.success === true) {
+        let authData = {
+          _id: data.result._id,
+          email: data.result.email,
+          email_verified: data.result.email_verified,
+          phone_number: data.result.phone_number,
+          account_types: data.result.account_types,
+          is_social_account: data.result.is_social_account,
+          profile: data.result.profile,
+          company: data.result.company,
+          address: data.result.address,
+          locations: data.result.locations,
+          payment: data.result.payment,
+          created_at: data.result.created_at,
+          updated_at: data.result.updated_at,
+          token: data.token
+        };
+        if (isBrowser) {
+          localStorage.setItem('auth', JSON.stringify(authData));
+        }
+        this.navigationService.updatePersonalMenu(data.result);
+        return authData;
+      } else {
+        this.handleError(data.message);
+      }
+    }).catch(this.handleError);
   }
 
   addPhone(phone) {
-    return this.http.put(this.api + 'me', {phone_number: phone}, {headers: this._makeHeaders()})
-        .toPromise()
-        .then((result) => {
-          let data = result.json();
-          if (isBrowser && data.success === true) {
-            let userData = JSON.parse(localStorage.getItem('auth'));
-            userData.phone_number = phone;
-            localStorage.setItem('auth', JSON.stringify(userData));
-            return userData;
-          }
-        })
-        .catch(this.handleError);
+    return this.http.put(this.api + 'me', {phone_number: phone}, {headers: this._makeHeaders()}).toPromise().then((result) => {
+      let data = result.json();
+      if (isBrowser && data.success === true) {
+        let userData = JSON.parse(localStorage.getItem('auth'));
+        userData.phone_number = phone;
+        localStorage.setItem('auth', JSON.stringify(userData));
+        return userData;
+      }
+    }).catch(this.handleError);
   }
 
   private handleError(error: any): Promise<any> {
