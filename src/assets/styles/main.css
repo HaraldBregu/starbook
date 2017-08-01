@@ -588,7 +588,7 @@ p {
   color: black !important; }
 
 .btn-facebook {
-  background: #3B5998;
+  background: #4267b2;
   color: white;
   font-family: Roboto, sans-serif;
   font-weight: 400;
@@ -4276,8 +4276,6 @@ app-company {
     background: #e49616; }
   app-company .btn-warning:hover {
     background: #e49616; }
-  app-company .white-background {
-    background: white !important; }
   app-company .company-container {
     background: white; }
     app-company .company-container .header-container {
@@ -4286,25 +4284,29 @@ app-company {
       background-repeat: no-repeat;
       background-position: center; }
       app-company .company-container .header-container .header {
-        max-width: 1120px;
+        max-width: 1200px;
         margin: auto;
         color: white;
-        padding: 140px 0 150px;
+        padding: 100px 0;
         text-align: center; }
         app-company .company-container .header-container .header h1 {
           font-family: Helvetica Neue, sans-serif;
           font-weight: 600;
-          font-size: 45px;
+          font-size: 46px;
           line-height: 50px;
           color: #263961;
           text-shadow: 0 1px 0px rgba(255, 255, 255, 0.8); }
         app-company .company-container .header-container .header p {
-          font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-          font-weight: 400;
-          font-size: 20px !important;
+          font-size: 30px !important;
+          line-height: 46px;
           color: #1E2E4F;
           margin-top: 30px;
           text-shadow: 0 1px 0px rgba(255, 255, 255, 0.8); }
+        app-company .company-container .header-container .header small {
+          display: block;
+          color: #1E2E4F;
+          font-size: 14px;
+          margin-top: 10px; }
         app-company .company-container .header-container .header .form-group {
           width: 550px;
           margin: 70px auto 0; }
@@ -4344,22 +4346,17 @@ app-company {
         app-company .company-container .header-container .header .form-group input[type="text"] {
           background-color: #F8F8F8; }
         app-company .company-container .header-container .header .btn {
-          background-image: linear-gradient(to bottom, #5cb85c 0%, #4cae4c 100%);
-          box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 3px 0px #357935;
-          border: 1px solid #3e8f3e;
-          margin-top: 60px;
+          margin-top: 100px;
           border-radius: 6px;
-          height: 90px;
-          padding: 0 80px;
-          font-weight: 700;
-          font-size: 35px;
-          text-shadow: 0 2px 0 rgba(0, 0, 0, 0.3); }
-        app-company .company-container .header-container .header .btn:hover {
-          background-image: linear-gradient(to bottom, #67bd67 0%, #47a447 100%);
-          border-color: #388038; }
-        app-company .company-container .header-container .header .btn:active {
-          background-color: #419641;
-          border: 1px solid #3e8f3e; }
+          height: 70px;
+          padding: 0 30px 0 13px;
+          font-weight: 600;
+          font-size: 29px;
+          vertical-align: middle; }
+          app-company .company-container .header-container .header .btn i {
+            font-size: 50px;
+            vertical-align: inherit;
+            margin-right: 20px; }
     app-company .company-container .section-container {
       background: #f9fafa; }
       app-company .company-container .section-container .section {
@@ -4372,26 +4369,79 @@ app-company {
           font-weight: 400;
           font-size: 40px;
           color: #36464f; }
-        app-company .company-container .section-container .section h3 {
-          color: #36464f;
-          font-size: 38px;
-          text-align: left;
-          margin: 0 0 33px;
-          font-weight: 900;
-          word-spacing: 2px;
-          letter-spacing: 0px; }
-        app-company .company-container .section-container .section p {
-          font-size: 26px !important;
-          max-width: 700px;
-          text-align: left; }
         app-company .company-container .section-container .section .image {
           float: left;
-          max-width: 267px;
-          margin: 0 38px 0 118px; }
+          width: 27%; }
+          app-company .company-container .section-container .section .image img {
+            float: right;
+            width: 150px; }
         app-company .company-container .section-container .section .descr {
           overflow: hidden;
-          padding: 31px 38px 0 0;
-          max-width: 900px; }
+          width: 73%;
+          padding: 0 40px; }
+          app-company .company-container .section-container .section .descr h3 {
+            color: #36464f;
+            font-size: 40px;
+            text-align: left;
+            font-weight: 700;
+            word-spacing: 2px;
+            letter-spacing: 0px; }
+          app-company .company-container .section-container .section .descr p {
+            margin-top: 35px;
+            font-size: 24px !important;
+            max-width: 600px;
+            text-align: left;
+            letter-spacing: 0px !important; }
+        app-company .company-container .section-container .section .actions {
+          text-align: center; }
+          app-company .company-container .section-container .section .actions .btn {
+            border-radius: 6px;
+            height: 70px;
+            padding: 0 30px 0 13px;
+            font-weight: 600;
+            font-size: 29px;
+            vertical-align: middle; }
+            app-company .company-container .section-container .section .actions .btn i {
+              font-size: 50px;
+              vertical-align: inherit;
+              margin-right: 20px; }
+        app-company .company-container .section-container .section .links {
+          margin-top: 60px; }
+          app-company .company-container .section-container .section .links h5 {
+            font-size: 30px;
+            font-weight: 800; }
+          app-company .company-container .section-container .section .links p {
+            font-size: 22px !important;
+            margin-top: 20px; }
+          app-company .company-container .section-container .section .links .contact-list {
+            margin-top: 30px; }
+            app-company .company-container .section-container .section .links .contact-list li {
+              display: inline-block;
+              vertical-align: top;
+              padding: 20px; }
+              app-company .company-container .section-container .section .links .contact-list li i {
+                font-size: 28px;
+                color: #ff6d22; }
+              app-company .company-container .section-container .section .links .contact-list li span {
+                display: block;
+                font-size: 18px;
+                margin-top: 15px; }
+    app-company .company-container .small .section {
+      padding: 40px 0 45px; }
+      app-company .company-container .small .section .image {
+        width: 23%; }
+      app-company .company-container .small .section .descr {
+        width: 77%; }
+      app-company .company-container .small .section .image img {
+        width: 100px; }
+      app-company .company-container .small .section .descr h3 {
+        font-size: 30px; }
+      app-company .company-container .small .section .descr p {
+        font-size: 22px !important;
+        margin-top: 15px;
+        max-width: none; }
+    app-company .company-container .white-backgound {
+      background: white; }
     app-company .company-container .message-container {
       background: #3B5998;
       padding: 70px 20px;
