@@ -329,6 +329,11 @@ app-root {
   }
 }
 
+@media (max-width: 425px) {
+  app-root .container-starbook {
+    padding: 0 10px;
+  }
+}
 
 // General styles
 $letter-spacing: 0.08px;
