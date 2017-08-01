@@ -519,6 +519,7 @@ export class PopupsComponent implements OnInit, OnDestroy {
   facebookLogin() {
     if (isBrowser) {
       let left = Math.round((document.documentElement.clientWidth / 2) - 285);
+      let link = ""
       if (document.location.hostname === "www.starbook.co") {
         link = 'https://www.facebook.com/v2.8/dialog/oauth?client_id=1108461325907277&response_type=token&scope=email,public_profile,user_location,user_website,user_work_history&redirect_uri=https://www.starbook.co/facebook'
       } else if (document.location.hostname === "glacial-shore-66987.herokuapp.com") {
