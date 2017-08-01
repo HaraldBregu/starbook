@@ -85,6 +85,9 @@ export class AppComponent implements OnInit, OnDestroy {
               this.hasCenterContainer = false;
               this.hasPublishService = true;
             }
+            if (this.page === "Company") {
+              this.hasCenterContainer = false;
+            }
             else if (this.page === "Insert") {
               // this.hasBottomBorderNav = false;
               this.hasCenterContainer = false;
@@ -202,6 +205,9 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   clickBrandLogo() {
+    if (this.page === "Company") {
+      return;
+    }
     this.router.navigate(['']);
 
     // if (this.screenWidth <= 425) {
@@ -220,6 +226,9 @@ export class AppComponent implements OnInit, OnDestroy {
   }
   brandLogo() {
     if (this.screenWidth > 768) {
+      return "/assets/images/brand-logo-name-rotated.png"
+    }
+    else if ((this.screenWidth < 769) && this.page === "Company") {
       return "/assets/images/brand-logo-name-rotated.png"
     }
     else if ((this.screenWidth < 769) && this.hasRightContainer && !this.collapsed) {
