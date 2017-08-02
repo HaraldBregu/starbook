@@ -4,57 +4,54 @@ app-account {
   width: 100%;
   height: 100%;
   min-height: 100vh;
-  padding: 70px 0 0;
+  padding: 70px 0 50px;
   -webkit-overflow-scrolling: touch;
+  background-color: #EDEFF3;
   .top-bar-container {
     position: relative;
     width: 100%;
     background: white;
-    border-bottom: 1px solid #DBDBDB;
+    box-shadow: 0 1px 0px #E5E6E9;
     z-index: 1024;
-  }
-  .top-bar {
-    list-style: none;
-    overflow: hidden;
-    font: 18px Sans-Serif;
-    padding: 0;
-    z-index: 1;
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 0 15px;
-  }
-  .top-bar li {
-    color: rgba(33, 33, 33, 0.7);
-    float: left;
-    height: 60px;
-    line-height: 60px;
-    text-align: center;
-    font-weight: 300;
-    cursor: pointer;
-    margin-right: 40px;
-  }
-  .top-bar li:hover {
-    color: black;
-  }
-  .top-bar .active {
-    color: rgba(33, 33, 33, 1);
-    border-bottom: 4px solid #212121;
+    .top-bar {
+      list-style: none;
+      overflow: hidden;
+      padding: 0;
+      z-index: 1;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .top-bar li {
+      color: #4b4f56;
+      float: left;
+      height: 50px;
+      line-height: 50px;
+      text-align: center;
+      cursor: pointer;
+      font-weight: 400;
+      span {
+        font-family: Arial, sans-serif;
+        padding: 0 20px;
+        font-size: 16px;
+      }
+    }
+    .top-bar li:hover {
+      color: black;
+    }
+    .top-bar .active {
+      font-weight: 500;
+      color: #1d2129;
+      border-bottom: 3px solid #4567ab;
+    }
   }
 
   .account-container {
     padding: 0 10px;
-    // .input-group input {
-    //   height: 60px;
-    //   font-size: 22px;
-    // }
     .input-group textarea {
       height: auto;
       font-size: 22px;
       text-align: center;
     }
-    // .input-group .form-control:focus {
-    //   border: 2px solid #16A084 !important;
-    // }
     .half-group {
       float: left;
       width: 50%;
@@ -69,11 +66,13 @@ app-account {
     .account {
       max-width: 1100px;
       margin: auto;
-      border: 1px solid #DBDBDB;
+      box-shadow: 0 1px 0px #E5E6E9, 0 -1px 0px #E5E6E9, 1px 0px 0px #DFE0E4, -1px 0px 0px #DFE0E4;
       margin-top: 30px;
-      margin-bottom: 30px;
+      margin-bottom: 10px;
+      background: white;
+      border-radius: 3px;
       .account-top-bar {
-        background: #edefed;
+        // background: white;
         color: #484848;
         font-size: 16px;
         padding: 12px 20px;
@@ -81,9 +80,8 @@ app-account {
         font-weight: 500;
       }
       .account-header {
-        text-align: center;
-        padding-bottom: 30px;
-        max-width: 700px;
+        text-align: left;
+        padding: 50px 60px 0;
         margin: auto;
         h1 {
           font-weight: 300;
@@ -99,46 +97,58 @@ app-account {
             color: #f39c12;
           }
         }
+        h2 {
+          font-weight: 300;
+        }
         p {
           font-weight: 300;
           margin-top: 20px;
         }
       }
       .account-body {
-        padding: 30px;
-        overflow: auto;
-        .avatar {
-          position: relative;
-          display: inline-block;
-          text-align: center;
-          width: 100%;
-          height: 230px;
-          background-color: #bbb;
-          background-size: cover;
-          background-repeat: no-repeat;
-          background-position: center;
-          // background-image: url("https://a0.muscache.com/im/pictures/e370dcdf-89d7-42af-9fde-f3880ba076ab.jpg?aki_policy=profile_x_medium");
-          .overlay {
-            width: 100%;
-            height: 100%;
-            background: -moz-radial-gradient(transparent 115px, rgba(255, 255, 255, 0.4) 115px);
-            background: -webkit-radial-gradient(transparent 115px, rgba(255, 255, 255, 0.4) 115px);
-            background: -ms-radial-gradient(transparent 115px, rgba(255, 255, 255, 0.4) 115px);
-            background: -o-radial-gradient(transparent 115px, rgba(255, 255, 255, 0.4) 115px);
-            pointer-events: none;
+        padding: 60px;
+        .avatar-section {
+          overflow: auto;
+          .avatar-container {
+            float: left;
+            width: 140px;
+            .avatar {
+              position: relative;
+              display: inline-block;
+              text-align: center;
+              height: 140px;
+              width: 140px;
+              background-color: #bbb;
+              background-size: cover;
+              background-repeat: no-repeat;
+              background-position: center;
+              // background-image: url("https://a0.muscache.com/im/pictures/e370dcdf-89d7-42af-9fde-f3880ba076ab.jpg?aki_policy=profile_x_medium");
+              // .overlay {
+              //   width: 100%;
+              //   height: 100%;
+              //   background: -moz-radial-gradient(transparent 115px, rgba(255, 255, 255, 0.4) 115px);
+              //   background: -webkit-radial-gradient(transparent 115px, rgba(255, 255, 255, 0.4) 115px);
+              //   background: -ms-radial-gradient(transparent 115px, rgba(255, 255, 255, 0.4) 115px);
+              //   background: -o-radial-gradient(transparent 115px, rgba(255, 255, 255, 0.4) 115px);
+              //   pointer-events: none;
+              // }
+            }
           }
-        }
-        .content {
-          margin-top: 10px;
-          .btn {
-            padding: 0 30px;
-            font-size: 18px;
-            border-radius: 3px;
-            margin-top: 20px;
-          }
-          p {
-            font-size: 16px !important;
-            color: #484848;
+          .content {
+            margin-left: 140px;
+            padding: 0 20px;
+            .btn {
+              padding: 0 30px;
+              font-size: 16px;
+              border-radius: 3px;
+              margin-top: 20px;
+              line-height: 40px;
+              height: 40px;
+              background: #F6F6F6;
+            }
+            p {
+              font-size: 16px !important;
+            }
           }
         }
         .services {
@@ -207,6 +217,15 @@ app-account {
           }
         }
 
+        .actions {
+          margin-top: 30px;
+          .btn {
+            background: #259874;
+            padding: 0 50px;
+            font-size: 20px
+          }
+        }
+
         label {
           text-align: right;
           font-size: 16px !important;
@@ -218,22 +237,22 @@ app-account {
         textarea.form-control {
           resize: vertical;
         }
-        .avatar-container {
-          background: grey;
-          .avatar {
-            float: left;
-            width: 230px;
-            height: 230px;
-          }
-          .content {
-            float: left;
-            padding: 20px;
-            p {
-              font-size: 16px !important;
-              color: #484848;
-            }
-          }
-        }
+        // .avatar-container {
+        //   background: grey;
+        //   .avatar {
+        //     float: left;
+        //     width: 230px;
+        //     height: 230px;
+        //   }
+        //   .content {
+        //     float: left;
+        //     padding: 20px;
+        //     p {
+        //       font-size: 16px !important;
+        //       color: #484848;
+        //     }
+        //   }
+        // }
 
         .row-actions {
           .btn {
@@ -259,9 +278,6 @@ app-account {
             color: #f75c4b;
           }
         }
-        // .actions {
-        //   margin-top: 30px;
-        // }
         .price-per-unit {
           height: 60px;
           overflow: auto;
@@ -363,6 +379,36 @@ app-account {
         padding: 30px;
       }
     }
+    .gift {
+      max-width: 1100px;
+      margin: auto;
+      box-shadow: 0 1px 0px #E5E6E9, 0 -1px 0px #E5E6E9, 1px 0px 0px #DFE0E4, -1px 0px 0px #DFE0E4;
+      margin-top: 30px;
+      margin-bottom: 10px;
+      background: white;
+      border-radius: 3px;
+      overflow: auto;
+      padding: 40px;
+      .image {
+        float: left;
+        width: 140px;
+        padding: 10px;
+        text-align: center;
+      }
+      .descr {
+        padding: 20px;
+        margin-left: 140px;
+        h3 {
+          font-size: 30px;
+          font-weight: 300;
+          color: #000000;
+        }
+        p {
+          font-size: 16px !important;
+          margin-top: 20px;
+        }
+      }
+    }
 
     .footer-actions {
       max-width: 1100px;
@@ -376,10 +422,15 @@ app-account {
       }
     }
   }
-  .footer-container {
+  .account-footer {
     .footer {
       max-width: 1100px;
       margin: auto;
+      padding: 0 15px;
+      p {
+        font-size: 14px !important;
+        color: #4A4A4A;
+      }
       .links {
         text-align: right;
       }
@@ -394,13 +445,25 @@ app-account {
           text-decoration: underline;
         }
       }
+      a {
+        cursor: pointer;
+      }
     }
   }
+}
+
+@media (max-width: 1024px) {
 }
 
 @media (max-width: 768px) {
   app-account .account-container .account .account-body .services .service-container {
     width: calc(100% / 3);
+  }
+  app-account .account-container .account .account-header {
+    padding: 30px 40px 0;
+  }
+  app-account .account-container .account .account-body {
+    padding: 40px;
   }
 }
 
@@ -435,5 +498,46 @@ app-account {
   app-account .footer-container .footer li {
     margin-left: 0;
     margin-right: 10px;
+  }
+  app-account .account-container .gift {
+    padding: 20px;
+  }
+  app-account .account-container .gift .image {
+    width: 90px;
+  }
+  app-account .account-container .gift .descr {
+    margin-left: 0;
+    padding: 10px;
+  }
+  app-account .account-container .gift .descr h3 {
+    font-size: 25px;
+  }
+  app-account .account-container .gift .descr p {
+    margin-top: 10px;
+  }
+  app-account .account-container .account .account-header {
+    padding: 30px 30px 0;
+  }
+  app-account .account-container .account .account-header h2 {
+    font-size: 26px;
+    font-weight: 400;
+  }
+  app-account .account-container .account .account-body {
+    padding: 30px;
+  }
+  app-account .account-container .account .account-body .avatar-section .avatar-container {
+    width: 100%;
+    float: none;
+  }
+  app-account .account-container .account .account-body .avatar-section .avatar-container .avatar {
+    height: 100px;
+    width: 100px;
+  }
+  app-account .account-container .account .account-body .avatar-section .content {
+    margin-left: 0;
+    padding: 0;
+  }
+  app-account .account-footer .footer .links {
+    text-align: left;
   }
 }

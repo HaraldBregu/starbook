@@ -23,8 +23,9 @@ export class AccountComponent implements OnInit {
   public page = ''
   public tabs = [
     {name: 'Profilo', route: 'profile', icon:"fa-info"},
+    {name: 'Attività', route: 'company'},
     {name: 'Servizi', route: 'services', icon: "fa-credit-card"},
-    {name: 'Recensioni', route: 'reviews', icon: "fa-credit-card"},
+    // {name: 'Recensioni', route: 'reviews', icon: "fa-credit-card"},
     {name: 'Impostazioni', route: 'settings', icon:"fa-cog"},
   ]
 
@@ -38,7 +39,9 @@ export class AccountComponent implements OnInit {
     },
     business: {
       name:'',
-      tagline: ''
+      tagline: '',
+      description: '',
+      vat: ''
     },
     price: {
       hourly:0,
@@ -129,13 +132,20 @@ export class AccountComponent implements OnInit {
         }).catch((error) => {
           // console.log('service error' + JSON.stringify(error));
         })
-      } else if (this.page==="profile") {
+      }
+      else if (this.page==="profile") {
 
-      } else if (this.page==="reviews") {
+      }
+      else if (this.page==="company") {
 
-      } else if (this.page==="settings") {
+      }
+      else if (this.page==="reviews") {
 
-      } else {
+      }
+      else if (this.page==="settings") {
+
+      }
+      else {
         this.router.navigate(['/account/profile'])
       }
     })

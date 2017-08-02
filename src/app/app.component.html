@@ -61,18 +61,21 @@
       </a>
       <ul class="dropdown-menu">
         <!-- <li class="list-item"><a class="btn btn-default" routerLink="/">Home</a></li> -->
-        <li class="list-item" *ngIf="auth"><a class="btn btn-default" routerLink="/account/profile">{{getUsername()}}</a></li>
-        <li class="list-item" *ngIf="!auth" (click)="getLoginPopup()"><a class="btn btn-default">Entra adesso</a></li>
+        <!-- <li class="list-item" *ngIf="auth"><a class="btn btn-default" routerLink="/account/profile">{{getUsername()}}</a></li> -->
+        <li class="list-item" *ngIf="auth"><a class="btn btn-default" routerLink="/account/profile">Il Tuo Profilo</a></li>
+        <li class="list-item" *ngIf="auth"><a class="btn btn-default" routerLink="/account/company">Attività</a></li>
+        <li class="list-item" *ngIf="auth"><a class="btn btn-default" routerLink="/account/services">Servizi</a></li>
+        <li class="list-item" *ngIf="!auth" (click)="getLoginPopup()"><a class="btn btn-default">Accedi adesso</a></li>
         <li class="list-item" *ngIf="!auth"><a class="btn btn-default" routerLink="/company">Sei un professionista?</a></li>
-        <li class="list-item"><a class="btn btn-default" routerLink="/insert/product">Pubblica un servizio</a></li>
-        <li class="list-item" *ngIf="auth"><a class="btn btn-default" routerLink="/orders/requests">Ordini</a></li>
+        <!-- <li class="list-item"><a class="btn btn-default" routerLink="/insert/product">Pubblica un servizio</a></li> -->
+        <!-- <li class="list-item" *ngIf="auth"><a class="btn btn-default" routerLink="/orders/requests">Ordini</a></li> -->
         <li class="list-item line"></li>
         <!-- <li class="list-item" *ngIf="auth"><a class="btn btn-default" routerLink="/account/profile">Account</a></li> -->
         <li class="list-item"><a class="btn btn-default" routerLink="/blog">Blog</a></li>
         <li class="list-item line"></li>
         <li class="list-item"><a class="btn btn-default" routerLink="/info/legal">Privacy & Condizioni</a></li>
         <!-- <li class="list-item"><a class="btn btn-default" routerLink="/info/about">Chi siamo</a></li> -->
-        <li class="list-item line"></li>
+        <!-- <li class="list-item line"></li> -->
         <li class="list-item"><a class="btn btn-default" routerLink="/info/help">Aiuto</a></li>
         <!-- <li class="list-item" *ngIf="auth" (click)="logout()"><a class="btn btn-default">Esci</a></li> -->
       </ul>
