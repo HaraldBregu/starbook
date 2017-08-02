@@ -70,7 +70,7 @@ export class CompanyComponent implements OnInit {
     if (facebookWindow.closed) {
       let accessToken = localStorage.getItem('facebook_token');
       this.authServics.facebookLogin(accessToken).then((userData) => {
-        // this.router.navigate(["/account/profile"])
+        this.router.navigate(["/account/profile"])
       }).catch((error) => {
       })
     } else {
