@@ -17,12 +17,12 @@ export class CompanyComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.seoObject['title'] = "Starbook | Il tuo futuro dipende dalle tue decisioni";
-    this.seoObject['description'] = "Starbook è un online marketplace di mestieri e servizi professionali. Puoi inserire i servizi che offri e ricevere prenotazioni da clienti interessati.";
+    this.seoObject['title'] = "Cresci la tua impresa, facile come fissare un tassello";
+    this.seoObject['description'] = "Passa alla migliore piattaforma professionale per aumentare i tuoi clienti.";
     this.seoObject['url'] = 'https://www.starbook.co' + this.router.url;
-    this.seoObject['image_url'] = "https://s3-eu-west-1.amazonaws.com/starbook-s3/website/kayak-go-far.png";
+    this.seoObject['image_url'] = "https://s3-eu-west-1.amazonaws.com/starbook-s3/website/starbook-logo-background.png";
 
-    this.seoService.setTitle(this.seoObject['title']);
+    this.seoService.setTitle("Starbook | Registrazione impresa");
     this.seoService.setMetaElem('description', this.seoObject['description']);
     this.seoService.setOgElem('twitter:card', "summary_large_image");
     this.seoService.setOgElem('twitter:title', this.seoObject['title']);
@@ -38,8 +38,10 @@ export class CompanyComponent implements OnInit {
 
     this.route.params.subscribe((params: Params) => {
       this.page = params['page']
+      if (this.page) {
+        this.router.navigate(['/company'])
+      }
       if (this.page==='1') {
-
       }
       else {
         this.page = null
