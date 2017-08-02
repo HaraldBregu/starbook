@@ -70,11 +70,8 @@ export class CompanyComponent implements OnInit {
     if (facebookWindow.closed) {
       let accessToken = localStorage.getItem('facebook_token');
       this.authServics.facebookLogin(accessToken).then((userData) => {
-        // console.log('is logged in');
-        // console.log('userData: ' + JSON.stringify(userData));
-        this.router.navigate(["/account/profile"])
+        // this.router.navigate(["/account/profile"])
       }).catch((error) => {
-        // console.log('not logged in');
       })
     } else {
       let self = this;
