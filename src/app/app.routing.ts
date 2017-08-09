@@ -43,8 +43,9 @@ const routes: Routes = [
 
   { path: 'orders', component: OrdersComponent, data: { name: 'Orders' } },
   { path: 'orders/:page', component: OrdersComponent, data: { name: 'Orders' } },
-  // { path: 'profile', component: ProfileComponent },
-  // { path: 'profile/:page', component: ProfileComponent },
+
+  { path: 'profile', component: ProfileComponent, data: { name: 'Profile' } },
+  { path: 'profile/:page', component: ProfileComponent, data: { name: 'Profile' } },
 
   { path: 'facebook', component: FacebookComponent },
 

@@ -268,10 +268,11 @@ export class AuthService {
           account_types: data.result.account_types,
           is_social_account: data.result.is_social_account,
           profile: data.result.profile,
-          company: data.result.company,
+          business: data.result.business,
           address: data.result.address,
-          locations: data.result.locations,
           payment: data.result.payment,
+          birthday: data.result.birthday,
+          gender: data.result.gender,
           created_at: data.result.created_at,
           updated_at: data.result.updated_at,
           token: data.token

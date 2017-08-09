@@ -424,6 +424,20 @@ p {
   font-size: 18px !important;
   letter-spacing: 0.11px !important; }
 
+.btn-default {
+  height: 50px;
+  border: 1px solid #DCDCDC;
+  font-size: 22px;
+  font-family: Roboto, sans-serif;
+  font-weight: 400;
+  outline: none !important; }
+
+.btn-default:active:focus {
+  background-color: #e6e6e6; }
+
+.btn-default:hover {
+  background-color: #e6e6e6; }
+
 .btn-success {
   background: #1abc9c;
   border-radius: 0;
@@ -597,6 +611,16 @@ p {
   border-radius: 0;
   outline: none !important; }
 
+.btn-pinterest {
+  background: #cd1c1f;
+  color: white;
+  font-family: Roboto, sans-serif;
+  font-weight: 400;
+  letter-spacing: 0.1px;
+  outline: none;
+  border-radius: 0;
+  outline: none !important; }
+
 .btn-twitter {
   background: #00aced;
   color: white;
@@ -632,7 +656,7 @@ p {
   font-size: 16px;
   letter-spacing: 0.1px;
   padding: 0 20px;
-  border-radius: 1px;
+  border-radius: 3px !important;
   background-color: #FFFFFF;
   border: 1px solid #cbd3d5; }
 
@@ -651,6 +675,11 @@ textarea.form-control {
 
 .form-group input {
   height: 50px !important; }
+
+.form-group select {
+  height: 50px !important;
+  -webkit-appearance: none;
+  -webkit-border-radius: 3px; }
 
 .form-group .error-input {
   border: 1px solid #f75c4b !important; }
@@ -6364,6 +6393,127 @@ app-orders {
     app-orders .orders-container .orders .order-container .order .order-body .content .price {
       width: 100%; } }
 
+app-profile {
+  display: block;
+  float: left;
+  width: 100%;
+  height: 100%;
+  min-height: 100vh;
+  padding: 70px 10px 0;
+  -webkit-overflow-scrolling: touch;
+  background-color: #EDEFF3; }
+  app-profile .profile-container .profile {
+    position: relative;
+    display: block;
+    padding: 60px;
+    max-width: 1100px;
+    margin: 30px auto 10px;
+    background: white;
+    box-shadow: 0 1px 0px #E5E6E9, 0 -1px 0px #E5E6E9, 1px 0px 0px #DFE0E4, -1px 0px 0px #DFE0E4;
+    border-radius: 3px; }
+    app-profile .profile-container .profile .profile-header {
+      padding-bottom: 30px;
+      overflow: auto; }
+      app-profile .profile-container .profile .profile-header .avatar-container {
+        position: relative;
+        width: 200px;
+        height: 200px;
+        z-index: 1000;
+        float: left; }
+        app-profile .profile-container .profile .profile-header .avatar-container .avatar {
+          width: 100%;
+          height: 100%;
+          background: white;
+          -moz-box-shadow: 1px 1px 1px #d2d2d2;
+          -webkit-box-shadow: 1px 1px 1px #d2d2d2;
+          box-shadow: 1px 1px 1px #d2d2d2;
+          background-size: cover;
+          background-repeat: no-repeat;
+          background-position: center; }
+        app-profile .profile-container .profile .profile-header .avatar-container .avatar-sm {
+          position: absolute;
+          bottom: 0;
+          right: 0;
+          width: 50px;
+          height: 50px;
+          border: none; }
+      app-profile .profile-container .profile .profile-header .info-container {
+        margin-left: 240px; }
+        app-profile .profile-container .profile .profile-header .info-container h2 {
+          font-weight: 600; }
+        app-profile .profile-container .profile .profile-header .info-container h6 {
+          font-weight: 400;
+          margin-top: 5px; }
+        app-profile .profile-container .profile .profile-header .info-container p {
+          margin-top: 15px;
+          letter-spacing: initial;
+          color: rgba(0, 0, 0, 0.7); }
+        app-profile .profile-container .profile .profile-header .info-container .communications {
+          margin-top: 10px; }
+          app-profile .profile-container .profile .profile-header .info-container .communications i {
+            font-size: 24px;
+            margin-right: 10px; }
+    app-profile .profile-container .profile .profile-body .btn-warning {
+      padding: 0 40px;
+      font-weight: 500;
+      border-radius: 3px; }
+  app-profile .account-footer .footer {
+    max-width: 1100px;
+    margin: auto;
+    padding: 0 15px;
+    margin-bottom: 20px; }
+    app-profile .account-footer .footer p {
+      font-size: 14px !important;
+      color: #4A4A4A; }
+    app-profile .account-footer .footer .links {
+      text-align: right; }
+    app-profile .account-footer .footer li {
+      display: inline-block;
+      font-size: 16px;
+      color: rgba(0, 0, 0, 0.6);
+      margin-left: 10px; }
+      app-profile .account-footer .footer li a:hover {
+        cursor: pointer;
+        color: #014c8c;
+        text-decoration: underline; }
+    app-profile .account-footer .footer a {
+      cursor: pointer; }
+
+@media (max-width: 1024px) {
+  app-profile .profile-container .profile {
+    margin-top: 10px; } }
+@media (max-width: 768px) {
+  app-profile .profile-container .profile {
+    padding: 30px; }
+
+  app-profile .profile-container .profile .profile-header .avatar-container {
+    width: 170px;
+    height: 170px; }
+
+  app-profile .profile-container .profile .profile-header .info-container {
+    margin-left: 200px; } }
+@media (max-width: 425px) {
+  app-profile .profile-container .profile .profile-header .avatar-container {
+    float: none;
+    margin: auto;
+    width: 120px;
+    height: 120px; }
+
+  app-profile .profile-container .profile .profile-header .avatar-container .avatar-sm {
+    width: 40px;
+    height: 40px; }
+
+  app-profile .profile-container .profile .profile-header .info-container {
+    margin-left: 0;
+    margin-top: 20px;
+    text-align: center; }
+
+  app-profile .profile-container .profile .profile-body .btn-warning {
+    width: 100%;
+    padding: 0; }
+
+  app-profile .account-footer .footer .links {
+    text-align: left; } }
 app-popups .dark-screen {
   display: block;
   position: fixed;
@@ -7156,7 +7306,7 @@ app-account {
       max-width: 1100px;
       margin: 0 auto; }
     app-account .top-bar-container .top-bar li {
-      color: #4b4f56;
+      color: rgba(0, 0, 0, 0.8);
       float: left;
       height: 50px;
       line-height: 50px;
@@ -7171,21 +7321,27 @@ app-account {
       color: black; }
     app-account .top-bar-container .top-bar .active {
       font-weight: 500;
-      color: #1d2129;
+      color: black;
       border-bottom: 3px solid #4567ab; }
+  app-account .input-group label, app-account .form-group label {
+    text-align: left;
+    font-size: 16px !important;
+    font-weight: 500;
+    color: black !important; }
+  app-account .form-group select {
+    height: 45px !important; }
+  app-account small {
+    font-size: 14px; }
+  app-account textarea.form-control {
+    resize: vertical; }
+  app-account .form-group {
+    margin-bottom: 20px; }
+  app-account .form-group input {
+    height: 45px !important; }
+  app-account .form-group .form-control {
+    border: 1px solid #dcdcdc; }
   app-account .account-container {
     padding: 0 10px; }
-    app-account .account-container .input-group textarea {
-      height: auto;
-      font-size: 22px;
-      text-align: center; }
-    app-account .account-container .half-group {
-      float: left;
-      width: 50%; }
-      app-account .account-container .half-group .price {
-        text-align: center; }
-      app-account .account-container .half-group .unit {
-        text-align: center; }
     app-account .account-container .account {
       max-width: 1100px;
       margin: auto;
@@ -7194,12 +7350,6 @@ app-account {
       margin-bottom: 10px;
       background: white;
       border-radius: 3px; }
-      app-account .account-container .account .account-top-bar {
-        color: #484848;
-        font-size: 16px;
-        padding: 12px 20px;
-        border-bottom: 1px solid #DBDBDB;
-        font-weight: 500; }
       app-account .account-container .account .account-header {
         text-align: left;
         padding: 50px 60px 0;
@@ -7217,38 +7367,120 @@ app-account {
         app-account .account-container .account .account-header h2 {
           font-weight: 300; }
         app-account .account-container .account .account-header p {
-          font-weight: 300;
-          margin-top: 20px; }
+          margin-top: 10px;
+          font-size: 16px !important;
+          color: #4A4A4A; }
       app-account .account-container .account .account-body {
-        padding: 60px; }
-        app-account .account-container .account .account-body .avatar-section {
-          overflow: auto; }
-          app-account .account-container .account .account-body .avatar-section .avatar-container {
+        padding: 20px 60px 60px; }
+        app-account .account-container .account .account-body .avatar-section .avatar-container {
+          float: left;
+          width: 140px;
+          height: 140px; }
+          app-account .account-container .account .account-body .avatar-section .avatar-container .avatar {
+            position: relative;
+            display: inline-block;
+            text-align: center;
+            height: 100%;
+            width: 100%;
+            background-color: #bbb;
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            border: 1px solid #C6C4C7; }
+            app-account .account-container .account .account-body .avatar-section .avatar-container .avatar .overlay {
+              background: rgba(0, 0, 0, 0.5);
+              width: 100%;
+              height: 100%;
+              line-height: 140px; }
+              app-account .account-container .account .account-body .avatar-section .avatar-container .avatar .overlay i {
+                color: white; }
+        app-account .account-container .account .account-body .avatar-section .content {
+          margin-left: 140px;
+          margin-top: 10px;
+          padding: 0 20px; }
+          app-account .account-container .account .account-body .avatar-section .content p {
+            font-size: 16px !important;
+            font-weight: 300;
+            margin-top: 10px; }
+          app-account .account-container .account .account-body .avatar-section .content .btn {
+            padding: 0 30px;
+            font-size: 14px;
+            border-radius: 3px;
+            margin-top: 15px;
+            line-height: 35px;
+            height: 35px;
+            background: #F6F6F6; }
+        app-account .account-container .account .account-body form {
+          margin-bottom: 30px; }
+        app-account .account-container .account .account-body .birthday {
+          overflow: auto;
+          margin-left: -15px;
+          margin-right: -15px; }
+          app-account .account-container .account .account-body .birthday .day {
             float: left;
-            width: 140px; }
-            app-account .account-container .account .account-body .avatar-section .avatar-container .avatar {
-              position: relative;
+            width: 130px;
+            padding-left: 15px;
+            padding-right: 15px; }
+          app-account .account-container .account .account-body .birthday .month {
+            float: left;
+            width: 140px;
+            padding-left: 15px;
+            padding-right: 15px; }
+          app-account .account-container .account .account-body .birthday .year {
+            float: left;
+            width: 150px;
+            padding-left: 15px;
+            padding-right: 15px; }
+        app-account .account-container .account .account-body .control-group {
+          vertical-align: top;
+          background: white;
+          text-align: left; }
+          app-account .account-container .account .account-body .control-group .form-group {
+            margin-bottom: 0; }
+          app-account .account-container .account .account-body .control-group .select {
+            position: relative;
+            display: inline-block;
+            width: 100%; }
+            app-account .account-container .account .account-body .control-group .select select {
               display: inline-block;
-              text-align: center;
-              height: 140px;
-              width: 140px;
-              background-color: #bbb;
-              background-size: cover;
-              background-repeat: no-repeat;
-              background-position: center; }
-          app-account .account-container .account .account-body .avatar-section .content {
-            margin-left: 140px;
-            padding: 0 20px; }
-            app-account .account-container .account .account-body .avatar-section .content .btn {
-              padding: 0 30px;
-              font-size: 16px;
+              width: 100%;
+              cursor: pointer;
+              padding: 10px 15px;
+              outline: 0;
+              border: 0;
+              border-radius: 0;
+              background: white;
+              color: black;
+              appearance: none;
+              -webkit-appearance: none;
+              -moz-appearance: none;
               border-radius: 3px;
-              margin-top: 20px;
-              line-height: 40px;
-              height: 40px;
-              background: #F6F6F6; }
-            app-account .account-container .account .account-body .avatar-section .content p {
-              font-size: 16px !important; }
+              border: 1px solid #dcdcdc;
+              font-size: 16px;
+              letter-spacing: 0.1px; }
+              app-account .account-container .account .account-body .control-group .select select::-ms-expand {
+                display: none; }
+              app-account .account-container .account .account-body .control-group .select select:hover, app-account .account-container .account .account-body .control-group .select select:focus {
+                color: black;
+                background: #efefef; }
+              app-account .account-container .account .account-body .control-group .select select:disabled {
+                opacity: 0.5;
+                pointer-events: none; }
+            app-account .account-container .account .account-body .control-group .select .select__arrow {
+              position: absolute;
+              top: 20px;
+              right: 20px;
+              width: 0;
+              height: 0;
+              pointer-events: none;
+              border-style: solid;
+              border-width: 8px 5px 0 5px;
+              border-color: #7b7b7b transparent transparent transparent; }
+            .select select:hover ~ app-account .account-container .account .account-body .control-group .select
+            .select select:focus ~ app-account .account-container .account .account-body .control-group .select {
+              border-top-color: black; }
+            .select select:disabled ~ app-account .account-container .account .account-body .control-group .select {
+              border-top-color: grey; }
         app-account .account-container .account .account-body .services {
           overflow: auto; }
           app-account .account-container .account .account-body .services .service-container {
@@ -7304,18 +7536,40 @@ app-account {
             app-account .account-container .account .account-body .services .service-container .actions {
               margin-top: 5px; }
         app-account .account-container .account .account-body .actions {
+          position: relative;
           margin-top: 30px; }
+          app-account .account-container .account .account-body .actions .saving {
+            display: block;
+            position: absolute;
+            top: -20px; }
           app-account .account-container .account .account-body .actions .btn {
             background: #259874;
             padding: 0 50px;
             font-size: 20px; }
-        app-account .account-container .account .account-body label {
-          text-align: right;
-          font-size: 16px !important; }
-        app-account .account-container .account .account-body small {
-          font-size: 14px; }
-        app-account .account-container .account .account-body textarea.form-control {
-          resize: vertical; }
+        app-account .account-container .account .account-body .share-actions {
+          overflow: hidden; }
+          app-account .account-container .account .account-body .share-actions .btn-default {
+            height: 50px;
+            border: 1px solid #DCDCDC;
+            font-size: 16px;
+            padding-left: 30px;
+            padding-right: 30px; }
+          app-account .account-container .account .account-body .share-actions li {
+            display: inline;
+            list-style-type: none;
+            float: left;
+            padding: 10px 20px 0 0; }
+            app-account .account-container .account .account-body .share-actions li .btn {
+              height: 40px;
+              line-height: 40px;
+              font-size: 16px;
+              padding: 0; }
+            app-account .account-container .account .account-body .share-actions li i {
+              font-size: 18px !important;
+              width: 40px; }
+            app-account .account-container .account .account-body .share-actions li span {
+              margin-right: 20px;
+              font-size: 14px; }
         app-account .account-container .account .account-body .row-actions .btn {
           padding: 0 30px;
           font-size: 18px;
@@ -7450,7 +7704,8 @@ app-account {
   app-account .account-footer .footer {
     max-width: 1100px;
     margin: auto;
-    padding: 0 15px; }
+    padding: 0 15px;
+    margin-bottom: 20px; }
     app-account .account-footer .footer p {
       font-size: 14px !important;
       color: #4A4A4A; }
@@ -7468,6 +7723,9 @@ app-account {
     app-account .account-footer .footer a {
       cursor: pointer; }
 
+@media (max-width: 1024px) {
+  app-account .account-container .account {
+    margin-top: 10px; } }
 @media (max-width: 768px) {
   app-account .account-container .account .account-body .services .service-container {
     width: calc(100% / 3); }
@@ -7476,8 +7734,11 @@ app-account {
     padding: 30px 40px 0; }
 
   app-account .account-container .account .account-body {
-    padding: 40px; } }
+    padding: 10px 40px 40px; } }
 @media (max-width: 425px) {
+  app-account .account-container .account .account-body .avatar-section .avatar-container .avatar .overlay {
+    line-height: 100px; }
+
   app-account .account-container .account .account-body .avatar {
     width: 230px; }
 
@@ -7502,13 +7763,6 @@ app-account {
   app-account .account-container .account .account-body .services .service-container {
     width: 100%; }
 
-  app-account .footer-container .footer .links {
-    text-align: left; }
-
-  app-account .footer-container .footer li {
-    margin-left: 0;
-    margin-right: 10px; }
-
   app-account .account-container .gift {
     padding: 20px; }
 
@@ -7526,22 +7780,19 @@ app-account {
     margin-top: 10px; }
 
   app-account .account-container .account .account-header {
-    padding: 30px 30px 0; }
+    padding: 30px 20px 0; }
 
   app-account .account-container .account .account-header h2 {
     font-size: 26px;
     font-weight: 400; }
 
   app-account .account-container .account .account-body {
-    padding: 30px; }
+    padding: 20px 20px 30px; }
 
   app-account .account-container .account .account-body .avatar-section .avatar-container {
-    width: 100%;
-    float: none; }
-
-  app-account .account-container .account .account-body .avatar-section .avatar-container .avatar {
-    height: 100px;
-    width: 100px; }
+    float: none;
+    width: 100px;
+    height: 100px; }
 
   app-account .account-container .account .account-body .avatar-section .content {
     margin-left: 0;

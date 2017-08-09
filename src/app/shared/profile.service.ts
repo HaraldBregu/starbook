@@ -9,7 +9,7 @@ export class ProfileService {
   private auth;
   constructor(private http: Http) {
     this.api = 'https://api.starbook.co/v0.9.1/'
-    // this.api = 'http://localhost/t0.9.1/'
+    //this.api = 'http://localhost/t0.9.1/'
   }
 
   private _makeHeaders() {

@@ -7,6 +7,7 @@ import { PopupsService } from './popups.service';
 import { OrdersService } from '../shared/orders.service';
 import { PaymentService } from '../shared/payment.service';
 import { Subscription }   from 'rxjs/Subscription';
+import { FacebookService, InitParams, LoginResponse, LoginOptions, UIResponse, UIParams, FBVideoComponent } from 'ngx-facebook';
 declare let $: any;
 
 @Component({
@@ -375,8 +376,22 @@ export class PopupsComponent implements OnInit, OnDestroy {
 
   public popup = ''
 
-  constructor(private authServics: AuthService, private navigationService: NavigationService, private popupService: PopupsService, private ordersService: OrdersService, private orderService: OrdersService, private paymentService: PaymentService, private router: Router) {
+  constructor(private authServics: AuthService, private navigationService: NavigationService, private popupService: PopupsService, private ordersService: OrdersService, private orderService: OrdersService, private paymentService: PaymentService, private router: Router, private fb: FacebookService) {
     this.emailPattern = /^[a-z0-9!#$%&'*+\/=?^_`{|}~.-]+@[a-z0-9]([a-z0-9-]*[a-z0-9])?(\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)*$/i;
+    if (isBrowser) {
+      if (document.location.hostname === "www.starbook.co") {
+        fb.init({
+          appId: '1108461325907277',
+          version: 'v2.7'
+        });
+      } else if (document.location.hostname === "glacial-shore-66987.herokuapp.com" ||
+      document.location.hostname === "localhost") {
+        fb.init({
+          appId: '1251898728230202',
+          version: 'v2.7'
+        });
+      }
+    }
   }
 
   getPopup(type: string) {
@@ -517,58 +532,85 @@ export class PopupsComponent implements OnInit, OnDestroy {
   }
 
   facebookLogin() {
-    if (isBrowser) {
-      let left = Math.round((document.documentElement.clientWidth / 2) - 285);
-      let link = ""
-      if (document.location.hostname === "www.starbook.co") {
-        link = 'https://www.facebook.com/v2.8/dialog/oauth?client_id=1108461325907277&response_type=token&scope=email,public_profile&redirect_uri=https://www.starbook.co/facebook'
-      } else if (document.location.hostname === "glacial-shore-66987.herokuapp.com") {
-        link = 'https://www.facebook.com/v2.8/dialog/oauth?client_id=1251898728230202&response_type=token&scope=email,public_profile&redirect_uri=http://glacial-shore-66987.herokuapp.com/facebook'
-      } else if (document.location.hostname === "localhost") {
-        link = 'https://www.facebook.com/v2.8/dialog/oauth?client_id=1251898728230202&response_type=token&scope=email,public_profile&redirect_uri=http://localhost:4200/facebook'
-      }
-      let facebookPopup = window.open(link, '_blank', 'location=yes,height=570,width=520,left=' + left + ', top=100,scrollbars=yes,status=yes')
-      this.checkAccessToken(facebookPopup, 1);
-      // let left = Math.round((document.documentElement.clientWidth / 2) - 285);
-      // let facebookPopup = window.open('https://www.facebook.com/v2.8/dialog/oauth?client_id=1108461325907277&response_type=token&scope=email,public_profile,user_location,user_website,user_work_history&redirect_uri=http://www.starbook.co/facebook', '_blank', 'location=yes,height=570,width=520,left=' + left + ', top=100,scrollbars=yes,status=yes')
-      // this.checkAccessToken(facebookPopup, 1);
-    }
+    this.fb.login().then((res: LoginResponse) => {
+      let fb_token = res.authResponse.accessToken
+      this.authServics.facebookLogin(fb_token).then((userData) => {
+        if(!userData.phone_number) {
+          this.closePopup(true);
+          this.finishPopupState = 'active';
+          this.finishPopupData.title = 'Completa il profilo';
+          this.finishPopupData.text.push('Per restare in contatto con i professionisti inserisci il tuo numero di telefono.');
+          this.finishPopupData.type = 'phone';
+          this.finishPopupData.data = { userData: userData };
+          if (this.loginData.type === 'fromOrder') {
+            this.finishPopupData.from = 'order';
+          }
+        } else if (!userData.email) {
+          this.closePopup(true);
+
+        } else {
+          this.closePopup(false);
+        }
+      }).catch((error) => {
+        this.formError = {
+          title: 'Errore!',
+          message: 'Authorization error'
+        };
+      })
+    }).catch((error) => {
+
+    })
+
+    // if (isBrowser) {
+    //   let left = Math.round((document.documentElement.clientWidth / 2) - 285);
+    //   let link = ""
+    //   if (document.location.hostname === "www.starbook.co") {
+    //     link = 'https://www.facebook.com/v2.8/dialog/oauth?client_id=1108461325907277&response_type=token&scope=email,public_profile&redirect_uri=https://www.starbook.co/facebook'
+    //   } else if (document.location.hostname === "glacial-shore-66987.herokuapp.com") {
+    //     link = 'https://www.facebook.com/v2.8/dialog/oauth?client_id=1251898728230202&response_type=token&scope=email,public_profile&redirect_uri=http://glacial-shore-66987.herokuapp.com/facebook'
+    //   } else if (document.location.hostname === "localhost") {
+    //     link = 'https://www.facebook.com/v2.8/dialog/oauth?client_id=1251898728230202&response_type=token&scope=email,public_profile&redirect_uri=http://localhost:4200/facebook'
+    //   }
+    //   let facebookPopup = window.open(link, '_blank', 'location=yes,height=570,width=520,left=' + left + ', top=100,scrollbars=yes,status=yes')
+    //   this.checkAccessToken(facebookPopup, 1);
+    //   // let left = Math.round((document.documentElement.clientWidth / 2) - 285);
+    //   // let facebookPopup = window.open('https://www.facebook.com/v2.8/dialog/oauth?client_id=1108461325907277&response_type=token&scope=email,public_profile,user_location,user_website,user_work_history&redirect_uri=http://www.starbook.co/facebook', '_blank', 'location=yes,height=570,width=520,left=' + left + ', top=100,scrollbars=yes,status=yes')
+    //   // this.checkAccessToken(facebookPopup, 1);
+    // }
   }
 
-  checkAccessToken(facebookWindow: Window, context) {
-    if (facebookWindow.closed) {
-      let accessToken = localStorage.getItem('facebook_token');
-
-      this.authServics.facebookLogin(accessToken)
-          .then((userData) => {
-            if(!userData.phone_number) {
-              this.closePopup(true);
-              this.finishPopupState = 'active';
-              this.finishPopupData.title = 'Completa il profilo';
-              this.finishPopupData.text.push('Per restare in contatto con i professionisti inserisci il tuo numero di telefono.');
-              this.finishPopupData.type = 'phone';
-              this.finishPopupData.data = { userData: userData };
-              if (this.loginData.type === 'fromOrder') {
-                this.finishPopupData.from = 'order';
-              }
-            } else if (!userData.email) {
-              this.closePopup(true);
-
-            } else {
-              this.closePopup(false);
-            }
-          })
-          .catch((error) => {
-            this.formError = {
-              title: 'Errore!',
-              message: 'Authorization error'
-            };
-          });
-    } else {
-      let self = this;
-      setTimeout(function() {self.checkAccessToken(facebookWindow, context + 1)}, 200);
-    }
-  }
+  // checkAccessToken(facebookWindow: Window, context) {
+  //   if (facebookWindow.closed) {
+  //     let accessToken = localStorage.getItem('facebook_token');
+  //
+  //     this.authServics.facebookLogin(accessToken).then((userData) => {
+  //       if(!userData.phone_number) {
+  //         this.closePopup(true);
+  //         this.finishPopupState = 'active';
+  //         this.finishPopupData.title = 'Completa il profilo';
+  //         this.finishPopupData.text.push('Per restare in contatto con i professionisti inserisci il tuo numero di telefono.');
+  //         this.finishPopupData.type = 'phone';
+  //         this.finishPopupData.data = { userData: userData };
+  //         if (this.loginData.type === 'fromOrder') {
+  //           this.finishPopupData.from = 'order';
+  //         }
+  //       } else if (!userData.email) {
+  //         this.closePopup(true);
+  //
+  //       } else {
+  //         this.closePopup(false);
+  //       }
+  //     }).catch((error) => {
+  //       this.formError = {
+  //         title: 'Errore!',
+  //         message: 'Authorization error'
+  //       };
+  //     })
+  //   } else {
+  //     let self = this;
+  //     setTimeout(function() {self.checkAccessToken(facebookWindow, context + 1)}, 200);
+  //   }
+  // }
 
   checkEmail(type: string, email: string) {
     if (this.emailPattern.test(email)) {

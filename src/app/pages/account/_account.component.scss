@@ -22,7 +22,7 @@ app-account {
       margin: 0 auto;
     }
     .top-bar li {
-      color: #4b4f56;
+      color: rgba(0, 0, 0, 0.8);
       float: left;
       height: 50px;
       line-height: 50px;
@@ -40,29 +40,38 @@ app-account {
     }
     .top-bar .active {
       font-weight: 500;
-      color: #1d2129;
+      color: black;
       border-bottom: 3px solid #4567ab;
     }
   }
 
+  .input-group label, .form-group label {
+    text-align: left;
+    font-size: 16px !important;
+    font-weight: 500;
+    color: black !important;
+  }
+  .form-group select {
+    height: 45px !important;
+  }
+  small {
+    font-size: 14px;
+  }
+  textarea.form-control {
+    resize: vertical;
+  }
+  .form-group {
+    margin-bottom: 20px;
+  }
+  .form-group input {
+    height: 45px !important;
+  }
+  .form-group .form-control {
+    border: 1px solid #dcdcdc;
+  }
+
   .account-container {
     padding: 0 10px;
-    .input-group textarea {
-      height: auto;
-      font-size: 22px;
-      text-align: center;
-    }
-    .half-group {
-      float: left;
-      width: 50%;
-      .price {
-        text-align: center;
-      }
-      .unit {
-        text-align: center;
-      }
-    }
-
     .account {
       max-width: 1100px;
       margin: auto;
@@ -71,14 +80,6 @@ app-account {
       margin-bottom: 10px;
       background: white;
       border-radius: 3px;
-      .account-top-bar {
-        // background: white;
-        color: #484848;
-        font-size: 16px;
-        padding: 12px 20px;
-        border-bottom: 1px solid #DBDBDB;
-        font-weight: 500;
-      }
       .account-header {
         text-align: left;
         padding: 50px 60px 0;
@@ -101,56 +102,151 @@ app-account {
           font-weight: 300;
         }
         p {
-          font-weight: 300;
-          margin-top: 20px;
+          margin-top: 10px;
+          font-size: 16px !important;
+          color: #4A4A4A;
         }
       }
       .account-body {
-        padding: 60px;
+        padding: 20px 60px 60px;
         .avatar-section {
-          overflow: auto;
           .avatar-container {
             float: left;
             width: 140px;
+            height: 140px;
             .avatar {
               position: relative;
               display: inline-block;
               text-align: center;
-              height: 140px;
-              width: 140px;
+              height: 100%;
+              width: 100%;
               background-color: #bbb;
               background-size: cover;
               background-repeat: no-repeat;
               background-position: center;
-              // background-image: url("https://a0.muscache.com/im/pictures/e370dcdf-89d7-42af-9fde-f3880ba076ab.jpg?aki_policy=profile_x_medium");
-              // .overlay {
-              //   width: 100%;
-              //   height: 100%;
-              //   background: -moz-radial-gradient(transparent 115px, rgba(255, 255, 255, 0.4) 115px);
-              //   background: -webkit-radial-gradient(transparent 115px, rgba(255, 255, 255, 0.4) 115px);
-              //   background: -ms-radial-gradient(transparent 115px, rgba(255, 255, 255, 0.4) 115px);
-              //   background: -o-radial-gradient(transparent 115px, rgba(255, 255, 255, 0.4) 115px);
-              //   pointer-events: none;
-              // }
+              border: 1px solid #C6C4C7;
+              .overlay {
+                background: rgba(0, 0, 0, 0.5);
+                width: 100%;
+                height: 100%;
+                line-height: 140px;
+                i {
+                  color: white;
+                }
+              }
             }
           }
           .content {
             margin-left: 140px;
+            margin-top: 10px;
             padding: 0 20px;
-            .btn {
-              padding: 0 30px;
-              font-size: 16px;
-              border-radius: 3px;
-              margin-top: 20px;
-              line-height: 40px;
-              height: 40px;
-              background: #F6F6F6;
+            h4 {
+
             }
             p {
               font-size: 16px !important;
+              font-weight: 300;
+              margin-top: 10px;
+            }
+            .btn {
+              padding: 0 30px;
+              font-size: 14px;
+              border-radius: 3px;
+              margin-top: 15px;
+              line-height: 35px;
+              height: 35px;
+              background: #F6F6F6;
             }
           }
         }
+        form {
+          margin-bottom: 30px;
+        }
+        .birthday {
+          overflow: auto;
+          margin-left: -15px;
+          margin-right: -15px;
+          .day {
+            float: left;
+            width: 130px;
+            padding-left: 15px;
+            padding-right: 15px;
+          }
+          .month {
+            float: left;
+            width: 140px;
+            padding-left: 15px;
+            padding-right: 15px;
+          }
+          .year {
+            float: left;
+            width: 150px;
+            padding-left: 15px;
+            padding-right: 15px;
+          }
+        }
+        .control-group {
+          vertical-align: top;
+          background: white;
+          text-align: left;
+          .form-group {
+            margin-bottom: 0;
+          }
+          .select {
+            position: relative;
+            display: inline-block;
+            width: 100%;
+            select {
+              display: inline-block;
+              width: 100%;
+              cursor: pointer;
+              padding: 10px 15px;
+              outline: 0;
+              border: 0;
+              border-radius: 0;
+              background: white;
+              color: black;
+              appearance: none;
+              -webkit-appearance: none;
+              -moz-appearance: none;
+              border-radius: 3px;
+              border: 1px solid #dcdcdc;
+              font-size: 16px;
+              letter-spacing: 0.1px;
+              &::-ms-expand {
+                display: none;
+              }
+              &:hover,
+              &:focus {
+                color: black;
+                background: #efefef;
+              }
+              &:disabled {
+                opacity: 0.5;
+                pointer-events: none;
+              }
+            }
+            .select__arrow {
+              position: absolute;
+              top: 20px;
+              right: 20px;
+              width: 0;
+              height: 0;
+              pointer-events: none;
+              border-style: solid;
+              border-width: 8px 5px 0 5px;
+              border-color: #7b7b7b transparent transparent transparent;
+            }
+            .select select:hover ~ &
+            .select select:focus ~ & {
+              border-top-color: black;
+            }
+            .select select:disabled ~ & {
+              border-top-color: grey;
+            }
+          }
+        }
+
         .services {
           overflow: auto;
           .service-container {
@@ -218,41 +314,59 @@ app-account {
         }
 
         .actions {
+          position: relative;
           margin-top: 30px;
+          .saving {
+            display: block;
+            position: absolute;
+            top: -20px;
+          }
           .btn {
             background: #259874;
             padding: 0 50px;
-            font-size: 20px
+            font-size: 20px;
           }
         }
+        .share-actions {
+          overflow: hidden;
+          .btn-default {
+            height: 50px;
+            border: 1px solid #DCDCDC;
+            font-size: 16px;
+            padding-left: 30px;
+            padding-right: 30px;
+          }
+          li {
+            display: inline;
+            list-style-type: none;
+            float: left;
+            padding: 10px 20px 0 0;
+            .btn {
+              height: 40px;
+              line-height: 40px;
+              font-size: 16px;
+              padding: 0;
+            }
+            i {
+              // display: inline-block;
+              // vertical-align: middle;
+              // text-align: center;
+              // line-height: 40px;
+              font-size: 18px !important;
+              width: 40px;
+              // height: 40px;
+            }
+            span {
+              margin-right: 20px;
+              font-size: 14px;
+            }
+          }
 
-        label {
-          text-align: right;
-          font-size: 16px !important;
-          // padding-top: 14px;
+          // .btn {
+          //   padding: 0 50px;
+          //   font-size: 18px;
+          // }
         }
-        small {
-          font-size: 14px;
-        }
-        textarea.form-control {
-          resize: vertical;
-        }
-        // .avatar-container {
-        //   background: grey;
-        //   .avatar {
-        //     float: left;
-        //     width: 230px;
-        //     height: 230px;
-        //   }
-        //   .content {
-        //     float: left;
-        //     padding: 20px;
-        //     p {
-        //       font-size: 16px !important;
-        //       color: #484848;
-        //     }
-        //   }
-        // }
 
         .row-actions {
           .btn {
@@ -427,6 +541,7 @@ app-account {
       max-width: 1100px;
       margin: auto;
       padding: 0 15px;
+      margin-bottom: 20px;
       p {
         font-size: 14px !important;
         color: #4A4A4A;
@@ -453,6 +568,9 @@ app-account {
 }
 
 @media (max-width: 1024px) {
+  app-account .account-container .account {
+    margin-top: 10px;
+  }
 }
 
 @media (max-width: 768px) {
@@ -463,11 +581,14 @@ app-account {
     padding: 30px 40px 0;
   }
   app-account .account-container .account .account-body {
-    padding: 40px;
+    padding: 10px 40px 40px;
   }
 }
 
 @media (max-width: 425px) {
+  app-account .account-container .account .account-body .avatar-section .avatar-container .avatar .overlay {
+    line-height: 100px;
+  }
   app-account .account-container .account .account-body .avatar {
     width: 230px;
   }
@@ -492,13 +613,13 @@ app-account {
   app-account .account-container .account .account-body .services .service-container {
     width: 100%;
   }
-  app-account .footer-container .footer .links {
-    text-align: left;
-  }
-  app-account .footer-container .footer li {
-    margin-left: 0;
-    margin-right: 10px;
-  }
+  // app-account .footer-container .footer .links {
+  //   text-align: left;
+  // }
+  // app-account .footer-container .footer li {
+  //   margin-left: 0;
+  //   margin-right: 10px;
+  // }
   app-account .account-container .gift {
     padding: 20px;
   }
@@ -516,22 +637,19 @@ app-account {
     margin-top: 10px;
   }
   app-account .account-container .account .account-header {
-    padding: 30px 30px 0;
+    padding: 30px 20px 0;
   }
   app-account .account-container .account .account-header h2 {
     font-size: 26px;
     font-weight: 400;
   }
   app-account .account-container .account .account-body {
-    padding: 30px;
+    padding: 20px 20px 30px;
   }
   app-account .account-container .account .account-body .avatar-section .avatar-container {
-    width: 100%;
     float: none;
-  }
-  app-account .account-container .account .account-body .avatar-section .avatar-container .avatar {
-    height: 100px;
     width: 100px;
+    height: 100px;
   }
   app-account .account-container .account .account-body .avatar-section .content {
     margin-left: 0;

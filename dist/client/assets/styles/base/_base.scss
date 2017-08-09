@@ -39,6 +39,23 @@ p {
   letter-spacing: 0.11px !important;
 }
 
+
+.btn-default {
+  height: 50px;
+  border: 1px solid #DCDCDC;
+  font-size: 22px;
+  font-family: $font-name;
+  font-weight: 400;
+  outline: none !important;
+}
+.btn-default:active:focus {
+  // color: white !important;
+  background-color: #e6e6e6;
+}
+.btn-default:hover {
+  background-color: #e6e6e6;
+}
+
 .btn-success {
   background: #1abc9c;
   border-radius: 0;
@@ -233,6 +250,25 @@ p {
   // color: black !important;
   // background-color: #7FC443 !important;
 }
+.btn-pinterest {
+  background: #cd1c1f;
+  color: white;
+  font-family: $font-name;
+  font-weight: 400;
+  letter-spacing: 0.1px;
+  outline: none;
+  border-radius: 0;
+  outline: none !important;
+}
+.btn-pinterest:active:focus {
+  // color: black !important;
+  // background-color: #FFC845 !important;
+}
+.btn-pinterest:hover {
+  // color: black !important;
+  // background-color: #7FC443 !important;
+}
+
 .btn-twitter {
   background: #00aced;
   color: white;
@@ -288,18 +324,15 @@ p {
   // background-color: #7FC443 !important;
 }
 
-
-
 .form-control {
   color: black;
   font-size: 16px;
   letter-spacing: 0.1px;
   padding: 0 20px;
-  border-radius: 1px;
+  border-radius: 3px !important;
   background-color: #FFFFFF;
   border: 1px solid #cbd3d5;
 }
-
 .form-control.text-small {
   font-size: 12px;
 }
@@ -310,23 +343,20 @@ textarea.form-control {
   box-shadow: none;
   padding: 20px;
 }
-// .form-control:focus {
-//   outline: none;
-//   background-color: white;
-// }
 .form-group {
   margin-bottom: 15px;
 }
 .form-group input {
   height: 50px !important;
-  // border: 1px solid #DCDCDC;
 }
-// .input-group input {
-//   height: 60px;
-//   border: 1px solid #DCDCDC;
-//   width: 100%;
-// }
-
+.form-group select {
+  height: 50px !important;
+  -webkit-appearance: none;
+  -webkit-border-radius: 3px;
+  // background: url("data:image/svg+xml;utf8,<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' width='24' height='24' viewBox='0 0 24 24'><path fill='#444' d='M7.406 7.828l4.594 4.594 4.594-4.594 1.406 1.406-6 6-6-6z'></path></svg>");
+  // background-position: 93% 50%;
+  // background-repeat: no-repeat;
+}
 .form-group .error-input {
   border: 1px solid #f75c4b !important;
 }

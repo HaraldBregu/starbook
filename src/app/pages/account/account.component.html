@@ -7,7 +7,7 @@
 </div>
 
 <div class="account-container">
-  <div class="gift">
+  <!-- <div class="gift">
     <div class="image">
       <img src="../assets/images/gift.png" alt="">
     </div>
@@ -15,11 +15,12 @@
       <h3>Grandi novità in arrivo su Starbook!</h3>
       <p>Ti informiamo che a breve ci saranno delle modifiche, miglioramenti, funzionalità interessanti e innovative su Starbook. Se hai qualche richiesta particolare scrivici su <a href="mailto:info@starbook.co" target="_blank">info@starbook.co</a>.</p>
     </div>
-  </div>
+  </div> -->
 
   <div class="account" *ngIf="page==='profile' && Account">
     <div class="account-header">
-      <h2>Informazioni del profilo</h2>
+      <h2>Profilo personale</h2>
+      <p>Aggiorna le informazioni del tuo profilo personale.</p>
     </div>
     <div class="account-body">
       <form>
@@ -27,75 +28,206 @@
           <div class="form-group col-md-12">
             <div class="avatar-section">
               <div class="avatar-container">
-                <div class="avatar" [ngStyle]="{'background-image' : ' url(' + checkImageUrlFromAccount(Account) + ')'}">
-                  <div class="overlay"></div>
+                <div class="avatar" [ngStyle]="{'background-image' : ' url(' + checkPicture(Account) + ')'}">
+                  <div class="overlay" *ngIf="picture_state.loading">
+                    <i class="fa fa-circle-o-notch animate"></i>
+                  </div>
                 </div>
               </div>
               <div class="content">
-                <p>Un modo più professionale per poter comunicare con un cliente. Carica una foto dalla tua galleria e continua a usare Starbook in modo regolare.</p>
+                <h4>Foto del profilo</h4>
+                <p>Carica una foto profilo o cambia quella attuale.</p>
                 <input type="file" (change)="selectProfilePicture($event)" style="display: none;" #file>
-                <button type="button" class="btn btn-secondary" name="button" (click)="file.click()"><i class="fa fa-circle-o-notch animate" *ngIf="picture_state.loading"></i> Carica una foto</button>
+                <button type="button" class="btn btn-secondary" name="button" (click)="file.click()">Carica una foto</button>
               </div>
             </div>
           </div>
+        </div>
+      </form>
+      <form>
+        <div class="row">
           <div class="form-group col-md-6">
-            <label for="firstname-input">Nome</label>
+            <label for="firstname-input">Il tuo nome</label>
             <input class="form-control" type="text" id="firstname-input" [ngClass]="{'error-input': account_state.firstname_error}" [(ngModel)]="Account.profile.firstname" [ngModelOptions]="{standalone: true}">
           </div>
           <div class="form-group col-md-6">
-            <label for="lastname-input">Cognome</label>
+            <label for="lastname-input">Il tuo cognome</label>
             <input class="form-control" type="text" id="lastname-input" [ngClass]="{'error-input': account_state.lastname_error}" [(ngModel)]="Account.profile.lastname" [ngModelOptions]="{standalone: true}">
           </div>
           <div class="form-group col-md-12">
             <label for="description-input">La tua presentazione</label>
-            <textarea id="description-input" class="form-control" placeholder="" rows="2" [(ngModel)]="Account.profile.description" [ngModelOptions]="{standalone: true}"></textarea>
+            <textarea id="description-input" class="form-control" placeholder="" rows="3" [(ngModel)]="Account.profile.description" [ngModelOptions]="{standalone: true}"></textarea>
           </div>
           <div class="form-group col-md-12">
-            <label for="phone-input">Numero di telefono</label>
-            <input class="form-control" type="text" id="phone-input" [(ngModel)]="Account.phone_number" [ngModelOptions]="{standalone: true}">
+            <label for="phone-input">Telefono personale</label>
+            <input class="form-control" type="text" id="phone-input" [(ngModel)]="Account.profile.phone_number" [ngModelOptions]="{standalone: true}">
+          </div>
+        </div>
+      </form>
+      <form>
+        <div class="row">
+          <div class="form-group control-group col-md-4">
+            <label class="control-label">Giorno di nascita</label>
+            <div class="form-group">
+              <div class="select">
+                <select name="day" [(ngModel)]="Account.birthday.day">
+                  <option *ngFor="let day of days" [value]="day.value">{{day.display}}</option>
+                </select>
+                <div class="select__arrow"></div>
+              </div>
+            </div>
+          </div>
+          <div class="form-group control-group col-md-4">
+            <label class="control-label">Mese di nascita</label>
+            <div class="form-group">
+              <div class="select">
+                <select name="month" [(ngModel)]="Account.birthday.month">
+                  <option *ngFor="let month of months" [value]="month.value">{{month.display}}</option>
+                </select>
+                <div class="select__arrow"></div>
+              </div>
+            </div>
+          </div>
+          <div class="form-group control-group col-md-4">
+            <label class="control-label">Anno di nascita</label>
+            <div class="form-group">
+              <div class="select">
+                <select name="year" [(ngModel)]="Account.birthday.year">
+                  <option *ngFor="let year of years" [value]="year.value">{{year.display}}</option>
+                </select>
+                <div class="select__arrow"></div>
+              </div>
+            </div>
+          </div>
+          <div class="form-group control-group col-md-4">
+            <label class="control-label">Sesso</label>
+            <div class="select">
+              <select name="gender" [(ngModel)]="Account.gender">
+                <option *ngFor="let gender of genders" [value]="gender.value">{{gender.display}}</option>
+              </select>
+              <div class="select__arrow"></div>
+            </div>
           </div>
         </div>
       </form>
       <div class="actions">
-        <button type="button" class="btn btn-success" name="button" (click)="saveInformations()"><i class="fa fa-circle-o-notch animate" *ngIf="account_state.loading"></i> Salva le modifiche</button>
+        <span class="saving" *ngIf="account_state.loading"><i class="fa fa-circle-o-notch animate"></i> salvando</span>
+        <button type="button" class="btn btn-success" name="button" (click)="saveInformations()"> Salva le modifiche</button>
       </div>
     </div>
   </div>
   <div class="account" *ngIf="page==='company' && Account">
     <div class="account-header">
-      <h2>Informazioni attività</h2>
+      <h2>Profilo aziendale</h2>
+      <p>Aggiorna le tue informazioni della tua azienda o attività.</p>
     </div>
     <div class="account-body">
       <form>
         <div class="row">
+          <div class="form-group col-md-12">
+            <div class="avatar-section">
+              <div class="avatar-container">
+                <div class="avatar" [ngStyle]="{'background-image' : ' url(' + checkLogo(Account) + ')'}">
+                  <div class="overlay" *ngIf="logo_state.loading">
+                    <i class="fa fa-circle-o-notch animate"></i>
+                  </div>
+                </div>
+              </div>
+              <div class="content">
+                <h4>Logo aziendale</h4>
+                <p>Carica il logo o cambia quella attuale.</p>
+                <input type="file" (change)="selectCompanyLogo($event)" style="display: none;" #file>
+                <button type="button" class="btn btn-secondary" name="button" (click)="file.click()">Carica un logo</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+      <form>
+        <div class="row">
           <div class="form-group col-md-6">
-            <label for="business-name-input">Nome attività</label>
+            <label for="business-name-input">Ragione sociale</label>
             <input class="form-control" type="text" id="business-name-input"  [(ngModel)]="Account.business.name" [ngModelOptions]="{standalone: true}">
           </div>
-          <!-- <div class="form-group row">
-           <label for="profession-input" class="col-md-2 col-form-label">Professione o attività</label>
-           <div class="col-md-9">
-             <input type="text" placeholder="Professione o attività" class="form-control" id="profession-input" [(ngModel)]="Account.business.tagline" [ngModelOptions]="{standalone: true}">
-           </div>
-         </div>  -->
           <div class="form-group col-md-6">
             <label for="vat-input">P.IVA</label>
             <input class="form-control" type="text" id="vat-input" [(ngModel)]="Account.business.vat" [ngModelOptions]="{standalone: true}">
           </div>
           <div class="form-group col-md-12">
+            <label for="business-description-input">Categoria servizio</label>
+            <input class="form-control" type="text" id="vat-input" [(ngModel)]="Account.business.tagline" [ngModelOptions]="{standalone: true}">
+          </div>
+          <div class="form-group col-md-12">
             <label for="business-description-input">Descrizione</label>
-            <textarea id="business-description-input" class="form-control" placeholder="" rows="2" [(ngModel)]="Account.business.description" [ngModelOptions]="{standalone: true}"></textarea>
+            <textarea id="business-description-input" class="form-control" placeholder="Di che cosa si occupa la tua azienda..." rows="3" [(ngModel)]="Account.business.description" [ngModelOptions]="{standalone: true}"></textarea>
+          </div>
+          <div class="form-group col-md-12">
+            <label for="vat-input">Telefono aziendale</label>
+            <input class="form-control" type="text" id="vat-input" [(ngModel)]="Account.business.phone_number" [ngModelOptions]="{standalone: true}">
+          </div>
+        </div>
+      </form>
+      <form>
+        <div class="row">
+          <div class="form-group col-md-6">
+            <label for="vat-input">Indirizzo</label>
+            <input class="form-control" type="text" id="address-input" placeholder="Via Verdi 12" [(ngModel)]="Account.address.street" [ngModelOptions]="{standalone: true}">
+          </div>
+          <div class="form-group col-md-2">
+            <label for="vat-input">CAP</label>
+            <input class="form-control" type="text" id="cap-input" placeholder="CAP" [(ngModel)]="Account.address.postal_code" [ngModelOptions]="{standalone: true}">
+          </div>
+          <div class="form-group col-md-4">
+            <label for="vat-input">Città</label>
+            <input class="form-control" type="text" id="city-input" placeholder="Città" [(ngModel)]="Account.address.city" [ngModelOptions]="{standalone: true}">
+          </div>
+        </div>
+      </form>
+      <form>
+        <div class="row">
+          <div class="form-group col-md-6">
+            <label for="vat-input">Email aziendale</label>
+            <input class="form-control" type="text" id="vat-input" [(ngModel)]="Account.business.email" [ngModelOptions]="{standalone: true}">
+          </div>
+          <div class="form-group col-md-6">
+            <label for="vat-input">Sito web</label>
+            <input class="form-control" type="text" id="vat-input" [(ngModel)]="Account.business.website" [ngModelOptions]="{standalone: true}">
           </div>
         </div>
       </form>
       <div class="actions">
-        <button type="button" class="btn btn-success" name="button" (click)="saveInformations()"><i class="fa fa-circle-o-notch animate" *ngIf="account_state.loading"></i> Salva le modifiche</button>
+        <span class="saving" *ngIf="account_state.loading"><i class="fa fa-circle-o-notch animate"></i> salvando</span>
+        <button type="button" class="btn btn-success" name="button" (click)="saveInformations()"> Salva le modifiche</button>
       </div>
     </div>
   </div>
 
-  <div class="account" *ngIf="page==='services'">
-    <div class="account-top-bar">I miei servizi</div>
+  <div class="account" *ngIf="page==='share' && Account">
+    <div class="account-header">
+      <h2>Condividi</h2>
+      <p>Il tuo profilo può diventare ancora più visitato se condiviso sui social media preferiti. Condividi subito, invia ad un amico o copia il link.</p>
+    </div>
+    <div class="account-body">
+      <ul class="share-actions">
+        <div class="input-group">
+          <input type="text" class="form-control" id="link" placeholder="" [(ngModel)]="profile_link" #link disabled>
+          <span class="input-group-btn">
+            <button type="button" id="next" class="btn btn-default" [clipboard]="link.value" (clipboardCopy)="copyLink($event)" (clipboardError)="copyError($event)"><span>Copia</span></button>
+          </span>
+        </div>
+        <li><button type="button" id="facebook" class="btn btn-facebook" (click)="shareOnFacebook()"><i class="fa fa-facebook"></i><span>Facebook</span></button></li>
+        <li><button type="button" id="twitter" class="btn btn-twitter" (click)="shareOnTwitter()"><i class="fa fa-twitter"></i><span>Twitter</span></button></li>
+        <li><button type="button" id="google" class="btn btn-google-plus" (click)="shareOnGoogle()"><i class="fa fa-google-plus"></i><span>Google +</span></button></li>
+        <li><button type="button" id="linkedin" class="btn btn-linkedin" (click)="shareOnLinkedin()"><i class="fa fa-linkedin"></i><span>LinkedIn</span></button></li>
+        <li><button type="button" id="linkedin" class="btn btn-pinterest" (click)="shareOnPinterest()"><i class="fa fa-pinterest-p"></i><span>Pinterest</span></button></li>
+        <li><button type="button" id="email" class="btn btn-white" (click)="shareWithEmail()"><i class="fa fa-envelope"></i><span>Email</span></button></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="account" *ngIf="page==='services' && Account">
+    <div class="account-header">
+    </div>
     <div class="account-body">
       <div class="services">
         <div class="service-container" *ngFor="let service of Services">
