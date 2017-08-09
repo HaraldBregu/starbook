@@ -208,9 +208,9 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   clickBrandLogo() {
-    if (this.page === "Company") {
-      return;
-    }
+    // if (this.page === "Company") {
+    //   return;
+    // }
     this.router.navigate(['']);
 
     // if (this.screenWidth <= 425) {

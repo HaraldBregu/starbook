@@ -43,7 +43,7 @@ export const routes: string[] = [
 
   'info/help',
   'info/legal',
-  'info/about',
+  // 'info/about',
 
   // TESTS
   'customer',

@@ -86,7 +86,7 @@ const routes: Routes = [
 
   { path: 'info/help', component: HelpComponent, data: { name: 'Info' } },
   { path: 'info/legal', component: LegalComponent, data: { name: 'Info' } },
-  { path: 'info/about', component: AboutComponent, data: { name: 'Info' } },
+  // { path: 'info/about', component: AboutComponent, data: { name: 'Info' } },
 
   // TESTS
   { path: 'customer', component: TestsComponent, data: { name: 'Customer' } },

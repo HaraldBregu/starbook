@@ -57,18 +57,21 @@
       <li>Lavori</li>
       <li>Account</li>
     </ul> -->
+    <!-- <div class="user-container dropdown" *ngIf="hasRightContainer && page==='Landing'"> -->
 
     <div class="user-container dropdown" *ngIf="hasRightContainer">
       <a class="user" data-toggle="dropdown">
         <img *ngIf="!auth" class="image" src="../assets/images/no_user.png" alt="Starbook User">
         <img *ngIf="auth" class="image" [src]="account_avatar_url" (error)="errorHandler($event)" alt="Starbook User">
       </a>
+      <!-- <a class="user" *ngIf="auth" data-toggle="dropdown">{{auth.profile.firstname}}</a>
+      <a class="user" *ngIf="!auth" data-toggle="dropdown">Accedi</a> -->
       <ul class="dropdown-menu">
-        <li class="list-item" *ngIf="auth"><a class="btn" routerLink="/account/profile">Il Tuo Profilo</a></li>
-        <li class="list-item" *ngIf="auth"><a class="btn" routerLink="/account/company">Attività</a></li>
-        <li class="list-item" *ngIf="auth"><a class="btn" routerLink="/account/services">Servizi</a></li>
-        <li class="list-item" *ngIf="!auth" (click)="getLoginPopup()"><a class="btn">Accedi adesso</a></li>
-        <li class="list-item" *ngIf="!auth"><a class="btn" routerLink="/company">Sei un professionista?</a></li>
+        <li class="list-item" *ngIf="auth"><a class="btn" routerLink="/account/profile">Profilo</a></li>
+        <li class="list-item" *ngIf="auth"><a class="btn" routerLink="/account/company">Azienda</a></li>
+        <li class="list-item" *ngIf="auth"><a class="btn" routerLink="/account/services">Condividi</a></li>
+        <li class="list-item" *ngIf="!auth" (click)="getLoginPopup()"><a class="btn">Accedi</a></li>
+        <li class="list-item" *ngIf="!auth"><a class="btn" routerLink="/company">Per le aziende</a></li>
         <li class="list-item line"></li>
         <li class="list-item"><a class="btn" routerLink="/blog">Blog</a></li>
         <li class="list-item line"></li>
