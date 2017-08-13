@@ -69,6 +69,7 @@ import { AccountComponent } from './pages/account/account.component';
 import { AuthComponent } from './pages/auth/auth.component';
 import { RequestsComponent } from './pages/requests/requests.component';
 import { ShareComponent } from './pages/share/share.component';
+import { QuotationComponent } from './pages/quotation/quotation.component';
 
 import { ContactComponent } from './pages/contact/contact.component';
 import { NotfoundComponent } from './pages/notfound/notfound.component';
@@ -131,6 +132,7 @@ let declarations = [
   ShareComponent,
   BlogComponent,
   PostComponent,
+  QuotationComponent,
   CategoryComponent,
   ContactComponent,
   NotfoundComponent,

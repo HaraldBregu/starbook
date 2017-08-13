@@ -49,6 +49,9 @@ export const routes: string[] = [
   'customer',
   'customer/:page',
 
+  'quotation',
+  'quotation/:id',
+
   // 'worker',
   // 'worker/:page',
 

@@ -30,6 +30,7 @@ import { TestsComponent } from './pages/tests/tests.component';
 
 import { BlogComponent } from './pages/blog/blog.component';
 import { PostComponent } from './pages/blog/post/post.component';
+import { QuotationComponent } from './pages/quotation/quotation.component';
 
 const routes: Routes = [
   { path: '', component: LandingComponent, data: { name: 'Landing' } },
@@ -87,6 +88,9 @@ const routes: Routes = [
   { path: 'info/help', component: HelpComponent, data: { name: 'Info' } },
   { path: 'info/legal', component: LegalComponent, data: { name: 'Info' } },
   // { path: 'info/about', component: AboutComponent, data: { name: 'Info' } },
+
+  { path: 'quotation', component: QuotationComponent, data: { name: 'Quotation' } },
+  { path: 'quotation/:id', component: QuotationComponent, data: { name: 'Quotation' } },
 
   // TESTS
   { path: 'customer', component: TestsComponent, data: { name: 'Customer' } },

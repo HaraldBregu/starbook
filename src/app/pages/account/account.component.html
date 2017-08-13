@@ -6,321 +6,579 @@
   </ul>
 </div>
 
-<div class="account-container">
-  <!-- <div class="gift">
-    <div class="image">
-      <img src="../assets/images/gift.png" alt="">
-    </div>
-    <div class="descr">
-      <h3>Grandi novità in arrivo su Starbook!</h3>
-      <p>Ti informiamo che a breve ci saranno delle modifiche, miglioramenti, funzionalità interessanti e innovative su Starbook. Se hai qualche richiesta particolare scrivici su <a href="mailto:info@starbook.co" target="_blank">info@starbook.co</a>.</p>
-    </div>
-  </div> -->
-
-  <div class="account" *ngIf="page==='profile' && Account">
-    <div class="account-header">
-      <h2>Profilo personale</h2>
-      <p>Aggiorna le informazioni del tuo profilo personale.</p>
-    </div>
-    <div class="account-body">
-      <form>
-        <div class="row">
-          <div class="form-group col-md-12">
-            <div class="avatar-section">
-              <div class="avatar-container">
-                <div class="avatar" [ngStyle]="{'background-image' : ' url(' + checkPicture(Account) + ')'}">
-                  <div class="overlay" *ngIf="picture_state.loading">
-                    <i class="fa fa-circle-o-notch animate"></i>
-                  </div>
-                </div>
-              </div>
-              <div class="content">
-                <h4>Foto del profilo</h4>
-                <p>Carica una foto profilo o cambia quella attuale.</p>
-                <input type="file" (change)="selectProfilePicture($event)" style="display: none;" #file>
-                <button type="button" class="btn btn-secondary" name="button" (click)="file.click()">Carica una foto</button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </form>
-      <form>
-        <div class="row">
-          <div class="form-group col-md-6">
-            <label for="firstname-input">Il tuo nome</label>
-            <input class="form-control" type="text" id="firstname-input" [ngClass]="{'error-input': account_state.firstname_error}" [(ngModel)]="Account.profile.firstname" [ngModelOptions]="{standalone: true}">
-          </div>
-          <div class="form-group col-md-6">
-            <label for="lastname-input">Il tuo cognome</label>
-            <input class="form-control" type="text" id="lastname-input" [ngClass]="{'error-input': account_state.lastname_error}" [(ngModel)]="Account.profile.lastname" [ngModelOptions]="{standalone: true}">
-          </div>
-          <div class="form-group col-md-12">
-            <label for="description-input">La tua presentazione</label>
-            <textarea id="description-input" class="form-control" placeholder="" rows="3" [(ngModel)]="Account.profile.description" [ngModelOptions]="{standalone: true}"></textarea>
-          </div>
-          <div class="form-group col-md-12">
-            <label for="phone-input">Telefono personale</label>
-            <input class="form-control" type="text" id="phone-input" [(ngModel)]="Account.profile.phone_number" [ngModelOptions]="{standalone: true}">
-          </div>
-        </div>
-      </form>
-      <form>
-        <div class="row">
-          <div class="form-group control-group col-md-4">
-            <label class="control-label">Giorno di nascita</label>
-            <div class="form-group">
-              <div class="select">
-                <select name="day" [(ngModel)]="Account.birthday.day">
-                  <option *ngFor="let day of days" [value]="day.value">{{day.display}}</option>
-                </select>
-                <div class="select__arrow"></div>
-              </div>
-            </div>
-          </div>
-          <div class="form-group control-group col-md-4">
-            <label class="control-label">Mese di nascita</label>
-            <div class="form-group">
-              <div class="select">
-                <select name="month" [(ngModel)]="Account.birthday.month">
-                  <option *ngFor="let month of months" [value]="month.value">{{month.display}}</option>
-                </select>
-                <div class="select__arrow"></div>
-              </div>
-            </div>
-          </div>
-          <div class="form-group control-group col-md-4">
-            <label class="control-label">Anno di nascita</label>
-            <div class="form-group">
-              <div class="select">
-                <select name="year" [(ngModel)]="Account.birthday.year">
-                  <option *ngFor="let year of years" [value]="year.value">{{year.display}}</option>
-                </select>
-                <div class="select__arrow"></div>
-              </div>
-            </div>
-          </div>
-          <div class="form-group control-group col-md-4">
-            <label class="control-label">Sesso</label>
-            <div class="select">
-              <select name="gender" [(ngModel)]="Account.gender">
-                <option *ngFor="let gender of genders" [value]="gender.value">{{gender.display}}</option>
-              </select>
-              <div class="select__arrow"></div>
-            </div>
-          </div>
-        </div>
-      </form>
-      <div class="actions">
-        <span class="saving" *ngIf="account_state.loading"><i class="fa fa-circle-o-notch animate"></i> salvando</span>
-        <button type="button" class="btn btn-success" name="button" (click)="saveInformations()"> Salva le modifiche</button>
-      </div>
-    </div>
-  </div>
-  <div class="account" *ngIf="page==='company' && Account">
-    <div class="account-header">
-      <h2>Profilo aziendale</h2>
-      <p>Aggiorna le tue informazioni della tua azienda o attività.</p>
-    </div>
-    <div class="account-body">
-      <form>
-        <div class="row">
-          <div class="form-group col-md-12">
-            <div class="avatar-section">
-              <div class="avatar-container">
-                <div class="avatar" [ngStyle]="{'background-image' : ' url(' + checkLogo(Account) + ')'}">
-                  <div class="overlay" *ngIf="logo_state.loading">
-                    <i class="fa fa-circle-o-notch animate"></i>
-                  </div>
-                </div>
-              </div>
-              <div class="content">
-                <h4>Logo aziendale</h4>
-                <p>Carica il logo o cambia quella attuale.</p>
-                <input type="file" (change)="selectCompanyLogo($event)" style="display: none;" #file>
-                <button type="button" class="btn btn-secondary" name="button" (click)="file.click()">Carica un logo</button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </form>
-      <form>
-        <div class="row">
-          <div class="form-group col-md-6">
-            <label for="business-name-input">Ragione sociale</label>
-            <input class="form-control" type="text" id="business-name-input"  [(ngModel)]="Account.business.name" [ngModelOptions]="{standalone: true}">
-          </div>
-          <div class="form-group col-md-6">
-            <label for="vat-input">P.IVA</label>
-            <input class="form-control" type="text" id="vat-input" [(ngModel)]="Account.business.vat" [ngModelOptions]="{standalone: true}">
-          </div>
-          <div class="form-group col-md-12">
-            <label for="business-description-input">Categoria servizio</label>
-            <input class="form-control" type="text" id="vat-input" [(ngModel)]="Account.business.tagline" [ngModelOptions]="{standalone: true}">
-          </div>
-          <div class="form-group col-md-12">
-            <label for="business-description-input">Descrizione</label>
-            <textarea id="business-description-input" class="form-control" placeholder="Di che cosa si occupa la tua azienda..." rows="3" [(ngModel)]="Account.business.description" [ngModelOptions]="{standalone: true}"></textarea>
-          </div>
-          <div class="form-group col-md-12">
-            <label for="vat-input">Telefono aziendale</label>
-            <input class="form-control" type="text" id="vat-input" [(ngModel)]="Account.business.phone_number" [ngModelOptions]="{standalone: true}">
-          </div>
-        </div>
-      </form>
-      <form>
-        <div class="row">
-          <div class="form-group col-md-6">
-            <label for="vat-input">Indirizzo</label>
-            <input class="form-control" type="text" id="address-input" placeholder="Via Verdi 12" [(ngModel)]="Account.address.street" [ngModelOptions]="{standalone: true}">
-          </div>
-          <div class="form-group col-md-2">
-            <label for="vat-input">CAP</label>
-            <input class="form-control" type="text" id="cap-input" placeholder="CAP" [(ngModel)]="Account.address.postal_code" [ngModelOptions]="{standalone: true}">
-          </div>
-          <div class="form-group col-md-4">
-            <label for="vat-input">Città</label>
-            <input class="form-control" type="text" id="city-input" placeholder="Città" [(ngModel)]="Account.address.city" [ngModelOptions]="{standalone: true}">
-          </div>
-        </div>
-      </form>
-      <form>
-        <div class="row">
-          <div class="form-group col-md-6">
-            <label for="vat-input">Email aziendale</label>
-            <input class="form-control" type="text" id="vat-input" [(ngModel)]="Account.business.email" [ngModelOptions]="{standalone: true}">
-          </div>
-          <div class="form-group col-md-6">
-            <label for="vat-input">Sito web</label>
-            <input class="form-control" type="text" id="vat-input" [(ngModel)]="Account.business.website" [ngModelOptions]="{standalone: true}">
-          </div>
-        </div>
-      </form>
-      <div class="actions">
-        <span class="saving" *ngIf="account_state.loading"><i class="fa fa-circle-o-notch animate"></i> salvando</span>
-        <button type="button" class="btn btn-success" name="button" (click)="saveInformations()"> Salva le modifiche</button>
-      </div>
-    </div>
-  </div>
-
-  <div class="account" *ngIf="page==='share' && Account">
-    <div class="account-header">
-      <h2>Condividi</h2>
-      <p>Il tuo profilo può diventare ancora più visitato se condiviso sui social media preferiti. Condividi subito, invia ad un amico o copia il link.</p>
-    </div>
-    <div class="account-body">
-      <ul class="share-actions">
-        <div class="input-group">
-          <input type="text" class="form-control" id="link" placeholder="" [(ngModel)]="profile_link" #link disabled>
-          <span class="input-group-btn">
-            <button type="button" id="next" class="btn btn-default" [clipboard]="link.value" (clipboardCopy)="copyLink($event)" (clipboardError)="copyError($event)"><span>Copia</span></button>
-          </span>
-        </div>
-        <li><button type="button" id="facebook" class="btn btn-facebook" (click)="shareOnFacebook()"><i class="fa fa-facebook"></i><span>Facebook</span></button></li>
-        <li><button type="button" id="twitter" class="btn btn-twitter" (click)="shareOnTwitter()"><i class="fa fa-twitter"></i><span>Twitter</span></button></li>
-        <li><button type="button" id="google" class="btn btn-google-plus" (click)="shareOnGoogle()"><i class="fa fa-google-plus"></i><span>Google +</span></button></li>
-        <li><button type="button" id="linkedin" class="btn btn-linkedin" (click)="shareOnLinkedin()"><i class="fa fa-linkedin"></i><span>LinkedIn</span></button></li>
-        <li><button type="button" id="linkedin" class="btn btn-pinterest" (click)="shareOnPinterest()"><i class="fa fa-pinterest-p"></i><span>Pinterest</span></button></li>
-        <li><button type="button" id="email" class="btn btn-white" (click)="shareWithEmail()"><i class="fa fa-envelope"></i><span>Email</span></button></li>
+<div class="account-container" *ngIf="page==='profile' && Account">
+  <div class="account">
+    <div class="account-tab">
+      <ul>
+        <li><a class="btn btn-transparent" (click)="clickLeftTabItem('personal')" [ngClass]="{'active':profile_tab==='personal'}"><i class="fa fa-user-circle" aria-hidden="true"></i>Personale</a></li>
+        <li><a class="btn btn-transparent" (click)="clickLeftTabItem('company')" [ngClass]="{'active':profile_tab==='company'}"><i class="fa fa-building" aria-hidden="true"></i>Azienda</a></li>
+        <li><a class="btn btn-transparent" (click)="clickLeftTabItem('account')" [ngClass]="{'active':profile_tab==='account'}"><i class="fa fa-wrench" aria-hidden="true"></i>Account</a></li>
+        <li><a class="btn btn-transparent" (click)="clickLeftTabItem('share')" [ngClass]="{'active':profile_tab==='share'}"><i class="fa fa-share" aria-hidden="true"></i>Condividi</a></li>
       </ul>
     </div>
-  </div>
-
-  <div class="account" *ngIf="page==='services' && Account">
-    <div class="account-header">
-    </div>
-    <div class="account-body">
-      <div class="services">
-        <div class="service-container" *ngFor="let service of Services">
-          <div class="service" (click)="showService(service)" [ngStyle]="{'background-image' : ' url(' + checkImageUrlFromService(service) + ')'}">
-            <div class="overlay">
-              <div class="text-container">
-                <div class="title">
-                  <span>{{service.title}}</span>
+    <div class="account-content tabbed-content" *ngIf="profile_tab==='personal'">
+      <div class="account-header">
+        <h2>Profilo personale</h2>
+        <p>Le tue informazioni personali del profilo sono importanti per il profilo pubblico. Inserisci tutti i campi e un immagine di profilo per un profilo più completo.</p>
+      </div>
+      <div class="account-body">
+        <form>
+          <div class="row">
+            <div class="form-group col-md-12">
+              <div class="avatar-section">
+                <div class="avatar-container">
+                  <div class="avatar" [ngStyle]="{'background-image' : checkPicture(Account)}">
+                    <div class="overlay" *ngIf="picture_state.loading">
+                      <i class="fa fa-circle-o-notch animate"></i>
+                    </div>
+                  </div>
+                </div>
+                <div class="content">
+                  <h5>Foto del profilo</h5>
+                  <p>Carica una foto profilo o cambia quella attuale.</p>
+                  <input type="file" (change)="selectProfilePicture($event)" style="display: none;" #file>
+                  <button type="button" class="btn btn-secondary" name="button" (click)="file.click()">Carica una foto</button>
                 </div>
               </div>
             </div>
           </div>
+        </form>
+        <form>
+          <div class="row">
+            <div class="form-group col-md-6">
+              <label for="firstname-input">Il tuo nome</label>
+              <input class="form-control" type="text" id="firstname-input" [ngClass]="{'error-input': account_state.firstname_error}" [(ngModel)]="Account.profile.firstname" [ngModelOptions]="{standalone: true}">
+            </div>
+            <div class="form-group col-md-6">
+              <label for="lastname-input">Il tuo cognome</label>
+              <input class="form-control" type="text" id="lastname-input" [ngClass]="{'error-input': account_state.lastname_error}" [(ngModel)]="Account.profile.lastname" [ngModelOptions]="{standalone: true}">
+            </div>
+            <div class="form-group col-md-12">
+              <label for="description-input">La tua presentazione</label>
+              <textarea id="description-input" class="form-control" placeholder="" rows="3" [(ngModel)]="Account.profile.description" [ngModelOptions]="{standalone: true}"></textarea>
+            </div>
+            <div class="form-group col-md-12">
+              <label for="phone-input">Telefono personale</label>
+              <input class="form-control" type="text" id="phone-input" [(ngModel)]="Account.profile.phone_number" [ngModelOptions]="{standalone: true}">
+            </div>
+            <div class="form-group control-group col-md-4">
+              <label class="control-label">Giorno di nascita</label>
+              <div class="form-group">
+                <div class="select">
+                  <select name="day" [(ngModel)]="Account.birthday.day">
+                    <option *ngFor="let day of days" [value]="day.value">{{day.display}}</option>
+                  </select>
+                  <div class="select__arrow"></div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group control-group col-md-4">
+              <label class="control-label">Mese di nascita</label>
+              <div class="form-group">
+                <div class="select">
+                  <select name="month" [(ngModel)]="Account.birthday.month">
+                    <option *ngFor="let month of months" [value]="month.value">{{month.display}}</option>
+                  </select>
+                  <div class="select__arrow"></div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group control-group col-md-4">
+              <label class="control-label">Anno di nascita</label>
+              <div class="form-group">
+                <div class="select">
+                  <select name="year" [(ngModel)]="Account.birthday.year">
+                    <option *ngFor="let year of years" [value]="year.value">{{year.display}}</option>
+                  </select>
+                  <div class="select__arrow"></div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group control-group col-md-4">
+              <label class="control-label">Sesso</label>
+              <div class="select">
+                <select name="gender" [(ngModel)]="Account.gender">
+                  <option *ngFor="let gender of genders" [value]="gender.value">{{gender.display}}</option>
+                </select>
+                <div class="select__arrow"></div>
+              </div>
+            </div>
+          </div>
+        </form>
+        <div class="actions">
+          <span class="saving" *ngIf="account_state.loading"><i class="fa fa-circle-o-notch animate"></i> salvando</span>
+          <button type="button" class="btn btn-success" name="button" (click)="saveInformations()">Salva le modifiche</button>
+        </div>
+      </div>
+    </div>
+    <div class="account-content tabbed-content" *ngIf="profile_tab==='company'">
+      <div class="account-header">
+        <h2>Profilo aziendale</h2>
+        <p>Le informazioni della tua azienda ti danno la possibilità di avere anche un profilo aziendale pubblico. Inserisci un logo e tutti i campi richiesti.</p>
+      </div>
+      <div class="account-body">
+        <form>
+          <div class="row">
+            <div class="form-group col-md-12">
+              <div class="avatar-section">
+                <div class="avatar-container">
+                  <div class="avatar" [ngStyle]="{'background-image':checkLogo(Account)}">
+                    <div class="overlay" *ngIf="logo_state.loading">
+                      <i class="fa fa-circle-o-notch animate"></i>
+                    </div>
+                  </div>
+                </div>
+                <div class="content">
+                  <h5>Logo aziendale</h5>
+                  <p>Carica il logo o cambia quella attuale.</p>
+                  <input type="file" (change)="selectCompanyLogo($event)" style="display: none;" #file>
+                  <button type="button" class="btn btn-secondary" name="button" (click)="file.click()">Carica un logo</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+        <form>
+          <div class="row">
+            <div class="form-group col-md-6">
+              <label for="business-name-input">Ragione sociale</label>
+              <input class="form-control" type="text" id="business-name-input"  [(ngModel)]="Account.business.name" [ngModelOptions]="{standalone: true}">
+            </div>
+            <div class="form-group col-md-6">
+              <label for="vat-input">P.IVA</label>
+              <input class="form-control" type="text" id="vat-input" [(ngModel)]="Account.business.vat" [ngModelOptions]="{standalone: true}">
+            </div>
+            <div class="form-group col-md-12">
+              <label for="business-description-input">Categoria servizio</label>
+              <input class="form-control" type="text" id="vat-input" [(ngModel)]="Account.business.tagline" [ngModelOptions]="{standalone: true}">
+            </div>
+            <div class="form-group col-md-12">
+              <label for="business-description-input">Descrizione</label>
+              <textarea id="business-description-input" class="form-control" placeholder="Di che cosa si occupa la tua azienda..." rows="3" [(ngModel)]="Account.business.description" [ngModelOptions]="{standalone: true}"></textarea>
+            </div>
+            <div class="form-group col-md-12">
+              <label for="vat-input">Telefono aziendale</label>
+              <input class="form-control" type="text" id="vat-input" [(ngModel)]="Account.business.phone_number" [ngModelOptions]="{standalone: true}">
+            </div>
+            <div class="form-group col-md-6">
+              <label for="address-input">Indirizzo</label>
+              <input class="form-control" type="text" id="address-input" placeholder="Via Verdi 12" [(ngModel)]="Account.address.street" [ngModelOptions]="{standalone: true}">
+            </div>
+            <div class="form-group col-md-2">
+              <label for="cap-input">CAP</label>
+              <input class="form-control" type="text" id="cap-input" placeholder="CAP" [(ngModel)]="Account.address.postal_code" [ngModelOptions]="{standalone: true}">
+            </div>
+            <div class="form-group col-md-4">
+              <label for="city-input">Città</label>
+              <input class="form-control" type="text" id="city-input" placeholder="Città" [(ngModel)]="Account.address.city" [ngModelOptions]="{standalone: true}">
+            </div>
+            <div class="form-group col-md-6">
+              <label for="email-company-input">Email aziendale</label>
+              <input class="form-control" type="text" id="email-company-input" [(ngModel)]="Account.business.email" [ngModelOptions]="{standalone: true}">
+            </div>
+            <div class="form-group col-md-6">
+              <label for="website-input">Sito web</label>
+              <input class="form-control" type="text" id="email-company-input" [(ngModel)]="Account.business.website" [ngModelOptions]="{standalone: true}">
+            </div>
+          </div>
+        </form>
+        <div class="actions">
+          <span class="saving" *ngIf="account_state.loading"><i class="fa fa-circle-o-notch animate"></i> salvando</span>
+          <button type="button" class="btn btn-success" name="button" (click)="saveInformations()">Salva le modifiche</button>
+        </div>
+      </div>
+    </div>
+    <div class="account-content tabbed-content" *ngIf="profile_tab==='account'">
+      <div class="account-header">
+        <h2>Gestisci la tua email</h2>
+      </div>
+      <div class="account-body">
+        <form>
+          <div class="row">
+            <div class="form-group col-md-12">
+              <label for="email-input">Indirizzo email</label>
+              <input class="form-control" type="text" id="email-input" [(ngModel)]="Account.email" [ngModelOptions]="{standalone: true}">
+              <small class="form-text text-muted">Non condivideremo il tuo indirizzo privato di posta elettronica con altri utenti e non sara mai pubblico.</small>
+            </div>
+          </div>
+        </form>
+        <div class="actions">
+          <span class="error-message" *ngIf="account_state.message_error">{{account_state.message_error}}</span>
+          <span class="success-message" *ngIf="account_state.message_success">{{account_state.message_success}}</span>
+          <button type="submit" class="btn btn-warning" (click)="updateEmail()">Aggiorna Email</button>
+        </div>
+      </div>
+    </div>
+    <div class="account-content tabbed-content" *ngIf="profile_tab==='account'">
+      <div class="account-header">
+        <h2>Gestisci la tua password</h2>
+      </div>
+      <div class="account-body">
+        <form>
+          <div class="row">
+            <div class="form-group col-md-4">
+              <label for="old-password-input">Vecchia Password</label>
+              <input type="password" class="form-control" id="old-password-input" name="password" [ngClass]="{'error-input': password_state.message_error}" [(ngModel)]="Password.old">
+            </div>
+            <div class="form-group col-md-4">
+              <label for="new-password-input">Nuova Password</label>
+              <input type="password" class="form-control" id="new-password-input" name="password" [ngClass]="{'error-input': password_state.message_error}" [(ngModel)]="Password.new">
+            </div>
+            <div class="form-group col-md-4">
+              <label for="confirm-password-input">Conferma Password</label>
+              <input type="password" class="form-control" id="confirm-password-input" name="password" [ngClass]="{'error-input': password_state.message_error}" [(ngModel)]="Password.confirm">
+            </div>
+          </div>
+        </form>
+        <div class="actions">
+          <span class="error-message" *ngIf="password_state.message_error">{{password_state.message_error}}</span>
+          <span class="success-message" *ngIf="password_state.message_success">{{password_state.message_success}}</span>
+          <button type="submit" class="btn btn-warning" (click)="updatePassword()"><i class="fa fa-circle-o-notch animate" *ngIf="password_state.loading"></i> Aggiorna Password</button>
+        </div>
+      </div>
+    </div>
+    <div class="account-content tabbed-content" *ngIf="profile_tab==='share'">
+      <div class="account-header">
+        <h2>Condividi</h2>
+        <p>Il tuo profilo può diventare ancora più visitato se condiviso sui social media preferiti. Condividi subito, invia ad un amico o copia il link.</p>
+      </div>
+      <div class="account-body">
+        <ul class="share-actions">
+          <div class="input-group">
+            <input type="text" class="form-control" id="link" placeholder="" [(ngModel)]="profile_link" #link disabled>
+            <span class="input-group-btn">
+              <button type="button" id="next" class="btn btn-default" [clipboard]="link.value" (clipboardCopy)="copyLink($event)" (clipboardError)="copyError($event)"><span>Copia</span></button>
+            </span>
+          </div>
+          <li><button type="button" id="facebook" class="btn btn-facebook" (click)="shareOnFacebook()"><i class="fa fa-facebook"></i><span>Facebook</span></button></li>
+          <li><button type="button" id="twitter" class="btn btn-twitter" (click)="shareOnTwitter()"><i class="fa fa-twitter"></i><span>Twitter</span></button></li>
+          <li><button type="button" id="google" class="btn btn-google-plus" (click)="shareOnGoogle()"><i class="fa fa-google-plus"></i><span>Google +</span></button></li>
+          <li><button type="button" id="linkedin" class="btn btn-linkedin" (click)="shareOnLinkedin()"><i class="fa fa-linkedin"></i><span>LinkedIn</span></button></li>
+          <li><button type="button" id="linkedin" class="btn btn-pinterest" (click)="shareOnPinterest()"><i class="fa fa-pinterest-p"></i><span>Pinterest</span></button></li>
+          <li><button type="button" id="email" class="btn btn-white" (click)="shareWithEmail()"><i class="fa fa-envelope"></i><span>Email</span></button></li>
+        </ul>
+      </div>
+    </div>
+    <div class="account-footer tabbed-content">
+      <div class="footer">
+          <div class="row">
+            <div class="col-md-6">
+              <p>© 2017 • Starbook Tutti i diritti riservati • <a href="/info/legal" target="_blank"><strong>Terms</strong></a> & <a href="/info/legal" target="_blank"><strong>Privacy Policy</strong></a></p>
+            </div>
+            <div class="col-md-6 links">
+              <p><a routerLink="/info/help" target="_blank">Aiuto e Assistenza</a> • <a (click)="logout()">Esci</a></p>
+            </div>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="account-container" *ngIf="page==='quotation'">
+  <div class="account">
+    <div class="account-tab">
+      <ul>
+        <li><a class="btn btn-transparent" (click)="clickLeftTabQuotation('sent')" [ngClass]="{'active':quotation_tab==='sent'}"><i class="fa fa-paper-plane" aria-hidden="true"></i>Inviati</a></li>
+        <li><a class="btn btn-transparent" (click)="clickLeftTabQuotation('received')" [ngClass]="{'active':quotation_tab==='received'}"><i class="fa fa-archive" aria-hidden="true"></i>Ricevuti</a></li>
+        <li><a class="btn btn-success" (click)="clickLeftTabQuotation('new')"><i aria-hidden="true" class="fa fa-plus"></i>Nuovo</a></li>
+      </ul>
+    </div>
+    <div *ngIf="quotation_tab==='sent'">
+      <div class="quotation-content tabbed-content" *ngIf="sent_quotations.length===0 && loading_sent_quotation===false">
+        <div class="quotation-header">
+          <p>Non ci sono preventivi inviati</p>
+        </div>
+      </div>
+      <div *ngFor="let quotation of sent_quotations">
+        <div class="quotation-content tabbed-content">
+          <div class="quotation-header">
+            <div class="vendor">
+              <h4 *ngIf="quotation.vendor.businessname">{{quotation.vendor.businessname}}</h4>
+              <h4 *ngIf="!quotation.vendor.businessname">{{quotation.vendor.firstname}} {{quotation.vendor.lastname}}</h4>
+              <!-- <span class="slogan"><i>Servizi professionali per la casa</i></span>
+              <div class="address">
+                <span class="street">Via Pirandello 44</span>
+                <span class="cap-city">Busto Arsizio 21052</span>
+              </div> -->
+            </div>
+            <div class="customer">
+              <h5>PREVENTIVO</h5>
+              <span class="date">{{formatedDateFromString(quotation.created_at)}}</span>
+              <h6>{{quotation.customer.firstname}} {{quotation.customer.lastname}}</h6>
+            </div>
+          </div>
+          <div class="quotation-body">
+            <p>{{quotation.title}}</p>
+            <p>{{quotation.description}}</p>
+            <!-- <div class="details">
+              <div><i class="fa fa-calendar-check-o" aria-hidden="true"></i> <span>{{formatedDateFromString(quotation.date)}}</span></div>
+              <div><i class="fa fa-map-marker" aria-hidden="true"></i> <span>{{formatedAddressFromObject(quotation.address)}}</span></div>
+            </div> -->
+          </div>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="quotation_tab==='received'">
+      <div class="quotation-content tabbed-content" *ngIf="received_quotations.length===0 && loading_received_quotation===false">
+        <div class="quotation-header">
+          <p>Non hai nessun preventivo ricevuto o salvato</p>
+        </div>
+      </div>
+      <div *ngFor="let quotation of received_quotations">
+        <div class="quotation-content tabbed-content">
+          <div class="quotation-header">
+            <div class="vendor">
+              <h4 *ngIf="quotation.vendor.businessname">{{quotation.vendor.businessname}}</h4>
+              <h4 *ngIf="!quotation.vendor.businessname">{{quotation.vendor.firstname}} {{quotation.vendor.lastname}}</h4>
+              <!-- <span class="slogan"><i>Servizi professionali per la casa</i></span>
+              <div class="address">
+                <span class="street">Via Pirandello 44</span>
+                <span class="cap-city">Busto Arsizio 21052</span>
+              </div> -->
+            </div>
+            <div class="customer">
+              <h5>PREVENTIVO</h5>
+              <span class="date">{{formatedDateFromString(quotation.created_at)}}</span>
+              <h6>{{quotation.customer.firstname}} {{quotation.customer.lastname}}</h6>
+            </div>
+          </div>
+          <div class="quotation-body">
+            <p>{{quotation.title}}</p>
+            <p>{{quotation.description}}</p>
+            <!-- <div class="details">
+              <div><i class="fa fa-calendar-check-o" aria-hidden="true"></i> <span>{{formatedDateFromString(quotation.date)}}</span></div>
+              <div><i class="fa fa-map-marker" aria-hidden="true"></i> <span>{{formatedAddressFromObject(quotation.address)}}</span></div>
+            </div> -->
+          </div>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="quotation_tab==='new'">
+      <div class="quotation-content tabbed-content" *ngIf="quotation_state.created">
+        <div class="quotation-header">
+          <p>Preventivo inviato con successo!</p>
+        </div>
+      </div>
+      <div class="account-content tabbed-content" *ngIf="!quotation_state.created">
+        <div class="right-triangle"></div>
+        <div class="account-header">
+          <h2>Nuovo preventivo</h2>
+          <p>Compila il form con tutti i dati necessari per poter inviare un preventivo personalizzato ad un tuo cliente. Inserisci un titolo, la descrizione e i dati del tuo cliente correttamente.</p>
+        </div>
+        <div class="account-body">
+          <form>
+            <div class="row">
+              <div class="form-group col-md-12">
+                <label for="title-input">Titolo o categoria</label>
+                <input class="form-control" type="text" id="title-input" placeholder="Inserisci il titolo" [ngClass]="{'error-input': quotation_state.creating && !Quotation.title}" [(ngModel)]="Quotation.title" [ngModelOptions]="{standalone: true}">
+                <small class="error-message" *ngIf="quotation_state.creating && !Quotation.title">Inserisci un titolo</small>
+              </div>
+              <div class="form-group col-md-12">
+                <textarea id="quotation-description-input" class="form-control" placeholder="Inserisci una descrizione" rows="6" [ngClass]="{'error-input': quotation_state.creating && !Quotation.description}" [(ngModel)]="Quotation.description" [ngModelOptions]="{standalone: true}"></textarea>
+                <small class="error-message" *ngIf="quotation_state.creating && !Quotation.description">Inserisci una descrizione</small>
+              </div>
+            </div>
+          </form>
+          <div class="section">
+            <h4>Indirizzo e data</h4>
+            <p>Questi dati sono necessari per tenere traccia delle date e gli indirizzi utilizzati dal cliente. Inserisci la via, il codice postale e la città.</p>
+          </div>
+          <form>
+            <div class="row">
+              <div class="form-group col-md-5">
+                <label for="address-input">Indirizzo</label>
+                <input class="form-control" type="text" id="address-input" placeholder="Via Verdi 12" [(ngModel)]="Quotation.address.street" [ngModelOptions]="{standalone: true}">
+              </div>
+              <div class="form-group col-md-3">
+                <label for="cap-input">CAP</label>
+                <input class="form-control" type="text" id="cap-input" placeholder="CAP" [(ngModel)]="Quotation.address.postal_code" [ngModelOptions]="{standalone: true}">
+              </div>
+              <div class="form-group col-md-3">
+                <label for="city-input">Città</label>
+                <input class="form-control" type="text" id="city-input" placeholder="Città" [(ngModel)]="Quotation.address.city" [ngModelOptions]="{standalone: true}">
+              </div>
+              <div class="form-group col-md-6">
+                <label for="city-input">Data</label>
+                <input class="form-control" type="date" id="city-input" placeholder="Città" [(ngModel)]="Quotation.date" [ngModelOptions]="{standalone: true}">
+              </div>
+            </div>
+          </form>
+          <div class="section">
+            <h4>Dati del cliente</h4>
+            <p>Inserisci correttamente tutti i campi. Questi dati servono per controllare se il cliente è regolare e interessato al tuo preventivo.</p>
+          </div>
+          <form>
+            <div class="row">
+              <div class="form-group col-md-6">
+                <label for="firstname-input">Nome cliente*</label>
+                <input class="form-control" type="text" id="firstname-input" [ngClass]="{'error-input': quotation_state.creating && !Quotation.customer.firstname}" [(ngModel)]="Quotation.customer.firstname" [ngModelOptions]="{standalone: true}">
+                <small class="error-message" *ngIf="quotation_state.creating && !Quotation.customer.firstname">Inserisci nome cliente</small>
+              </div>
+              <div class="form-group col-md-6">
+                <label for="lastname-input">Cognome cliente*</label>
+                <input class="form-control" type="text" id="lastname-input" [ngClass]="{'error-input': quotation_state.creating && !Quotation.customer.lastname}" [(ngModel)]="Quotation.customer.lastname" [ngModelOptions]="{standalone: true}">
+                <small class="error-message" *ngIf="quotation_state.creating && !Quotation.customer.lastname">Inserisci cognome cliente</small>
+              </div>
+              <div class="form-group col-md-6">
+                <label for="email-input">Email cliente*</label>
+                <input class="form-control" type="text" id="email-input" [ngClass]="{'error-input': quotation_state.creating && !Quotation.customer.email}" [(ngModel)]="Quotation.customer.email" [ngModelOptions]="{standalone: true}">
+                <small class="error-message" *ngIf="quotation_state.creating && !Quotation.customer.email">Inserisci email cliente</small>
+              </div>
+              <div class="form-group col-md-6">
+                <label for="phone-input">Telefono cliente*</label>
+                <input class="form-control" type="text" id="phone-input" [ngClass]="{'error-input': quotation_state.creating && !Quotation.customer.phone_number}" [(ngModel)]="Quotation.customer.phone_number" [ngModelOptions]="{standalone: true}">
+                <small class="error-message" *ngIf="quotation_state.creating && !Quotation.customer.phone_number">Inserisci telefono cliente</small>
+              </div>
+            </div>
+          </form>
+          <div class="section">
+            <h4>Informazioni facoltativi</h4>
+            <p>Inserisci la piattaforma dove hai acquistato questo contatto. In questo modo noi controlleremo quali delle piattaforme funziona per la sua attività. Questo campo non verrà visualizzato dal cliente.</p>
+          </div>
+          <form>
+            <div class="row">
+              <div class="form-group control-group col-md-6">
+                <label class="control-label">Dove hai trovato questo contatto?</label>
+                <div class="form-group">
+                  <div class="select">
+                    <select name="day" [(ngModel)]="Quotation.platform.name">
+                      <option *ngFor="let contact of contact_platform" [value]="contact.value">{{contact.display}}</option>
+                    </select>
+                    <div class="select__arrow"></div>
+                  </div>
+                </div>
+              </div>
+              <!-- <div class="form-group col-md-6" *ngIf="Quotation.platform.name ==='other'">
+                <label for="platform-input">Dove hai trovato il contatto?</label>
+                <input class="form-control" type="text" id="platform-input" [(ngModel)]="Quotation.platform.name" [ngModelOptions]="{standalone: true}">
+              </div> -->
+            </div>
+          </form>
           <div class="actions">
-            <button (click)="shareOnFacebook(service)"><i class="fa fa-facebook" aria-hidden="true"></i></button>
-            <button (click)="shareOnTwitter(service)"><i class="fa fa-twitter" aria-hidden="true"></i></button>
-            <button (click)="shareOnLinkedin(service)"><i class="fa fa-linkedin" aria-hidden="true"></i></button>
-          </div>
-        </div>
-        <div class="service-container">
-          <div class="service" (click)="createService()">
-            <i class="fa fa-plus" aria-hidden="true"></i>
+            <span class="saving" *ngIf="quotation_state.loading"><i class="fa fa-circle-o-notch animate"></i> inviando</span>
+            <button type="button" class="btn btn-success" name="button" (click)="sendQuotation(Quotation)">Invia il preventivo</button>
           </div>
         </div>
       </div>
     </div>
   </div>
+</div>
 
-  <div class="account" *ngIf="page==='reviews'">
-    <div class="account-top-bar">Le mie recensioni</div>
-    <div class="account-body">
-      <div class="reviews">
-        <p>Al momento non ci sono ancora recensioni pubblicate o ricevute.</p>
+<div class="account-container" *ngIf="page==='help'">
+  <div class="account">
+    <div class="account-tab">
+      <ul>
+        <li><a class="btn btn-transparent" (click)="clickLeftTabHelp('request')" [ngClass]="{'active':help_tab==='request'}"><i class="fa fa-question-circle" aria-hidden="true"></i>Richiesta</a></li>
+        <li><a class="btn btn-transparent" (click)="clickLeftTabHelp('assistance')" [ngClass]="{'active':help_tab==='assistance'}"><i class="fa fa-assistive-listening-systems" aria-hidden="true"></i>Assistenza</a></li>
+      </ul>
+    </div>
+    <div class="account-content tabbed-content" *ngIf="help_tab==='request'">
+      <div class="account-header">
+        <h2>Invia una richiesta</h2>
+        <p>Hai una richiesta in particolare o bisogno di aiuto? Scrivi qui sotto quello che ti serve. La tua opinione è molto importante per migliorare il nostro servizio e servirti al meglio.</p>
+      </div>
+      <div class="account-body">
+        <form>
+          <div class="row">
+            <div class="form-group col-md-12">
+              <textarea id="help-description-input" class="form-control" placeholder="Descrivi la tua richiesta" rows="6" [(ngModel)]="help_email.message" [ngModelOptions]="{standalone: true}"></textarea>
+            </div>
+          </div>
+        </form>
+        <div class="actions">
+          <span class="saving" *ngIf="help_email_state.loading"><i class="fa fa-circle-o-notch animate"></i> inviando</span>
+          <button type="button" class="btn btn-success" name="button" (click)="sendHelpEmail()">Invia richiesta</button>
+        </div>
+      </div>
+    </div>
+    <div class="account-content tabbed-content" *ngIf="help_tab==='assistance'">
+      <div class="account-header">
+        <h2>Assistenza e Contatti</h2>
+        <p><i class="fa fa-phone" aria-hidden="true"></i> +39 327 24 15 028</p>
+        <p><i class="fa fa-envelope" aria-hidden="true"></i> info@starbook.co</p>
+        <p><a href="https://www.facebook.com/starbook.co/?ref=bookmarks" target="_blank"><i class="fa fa-facebook" aria-hidden="true"></i></a><a href="https://twitter.com/starbookco" target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i></a></p>
       </div>
     </div>
   </div>
+</div>
 
-  <div class="account" *ngIf="page==='settings'">
-    <div class="account-header">
-      <h2>Gestisci la tua email</h2>
-    </div>
-    <div class="account-body">
-      <form>
-        <div class="form-group row">
-          <label for="email-input" class="col-md-2 col-form-label">Indirizzo email</label>
-          <div class="col-md-10">
-            <input class="form-control" type="text" id="email-input" [(ngModel)]="Account.email" [ngModelOptions]="{standalone: true}">
-            <small class="form-text text-muted">Non condivideremo il tuo indirizzo privato di posta elettronica con altri utenti e non sara mai pubblico.</small>
+<div class="account-container" *ngIf="page==='services' && Account">
+  <div class="account">
+    <div class="account-content">
+      <div class="account-header">
+      </div>
+      <div class="account-body">
+        <div class="services">
+          <div class="service-container" *ngFor="let service of Services">
+            <div class="service" (click)="showService(service)" [ngStyle]="{'background-image' : ' url(' + checkImageUrlFromService(service) + ')'}">
+              <div class="overlay">
+                <div class="text-container">
+                  <div class="title">
+                    <span>{{service.title}}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="actions">
+              <button (click)="shareOnFacebook(service)"><i class="fa fa-facebook" aria-hidden="true"></i></button>
+              <button (click)="shareOnTwitter(service)"><i class="fa fa-twitter" aria-hidden="true"></i></button>
+              <button (click)="shareOnLinkedin(service)"><i class="fa fa-linkedin" aria-hidden="true"></i></button>
+            </div>
+          </div>
+          <div class="service-container">
+            <div class="service" (click)="createService()">
+              <i class="fa fa-plus" aria-hidden="true"></i>
+            </div>
           </div>
         </div>
-        <div class="row row-actions text-right">
-          <div class="col-md-12">
-            <span class="error-message" *ngIf="account_state.message_error">{{account_state.message_error}}</span>
-            <span class="success-message" *ngIf="account_state.message_success">{{account_state.message_success}}</span>
-            <button type="submit" class="btn btn-danger" (click)="updateEmail()">Aggiorna Email</button>
-          </div>
-        </div>
-      </form>
-    </div>
-  </div>
-  <div class="account" *ngIf="page==='settings'">
-    <div class="account-header">
-      <h2>Gestisci la tua password</h2>
-    </div>
-    <div class="account-body">
-      <form>
-        <div class="form-group row">
-          <label for="old-password-input" class="col-md-2 col-form-label">Vecchia Password</label>
-          <div class="col-md-10">
-            <input type="password" class="form-control" id="old-password-input" name="password" [ngClass]="{'error-input': password_state.message_error}" [(ngModel)]="Password.old">
-          </div>
-        </div>
-        <div class="form-group row">
-          <label for="new-password-input" class="col-md-2 col-form-label">Nuova Password</label>
-          <div class="col-md-10">
-            <input type="password" class="form-control" id="new-password-input" name="password" [ngClass]="{'error-input': password_state.message_error}" [(ngModel)]="Password.new">
-          </div>
-        </div>
-        <div class="form-group row">
-          <label for="confirm-password-input" class="col-md-2 col-form-label">Conferma Password:</label>
-          <div class="col-md-10">
-            <input type="password" class="form-control" id="confirm-password-input" name="password" [ngClass]="{'error-input': password_state.message_error}" [(ngModel)]="Password.confirm">
-          </div>
-        </div>
-        <div class="row row-actions text-right">
-          <div class="col-md-12">
-            <span class="error-message" *ngIf="password_state.message_error">{{password_state.message_error}}</span>
-            <span class="success-message" *ngIf="password_state.message_success">{{password_state.message_success}}</span>
-            <button type="submit" class="btn btn-danger" (click)="updatePassword()"><i class="fa fa-circle-o-notch animate" *ngIf="password_state.loading"></i> Aggiorna Password</button>
-          </div>
-        </div>
-      </form>
+      </div>
     </div>
   </div>
+  <div class="account-footer">
+    <div class="footer">
+        <div class="row">
+          <div class="col-md-6">
+            <p>© 2017 • Starbook Tutti i diritti riservati • <a href="/info/legal" target="_blank"><strong>Terms</strong></a> & <a href="/info/legal" target="_blank"><strong>Privacy Policy</strong></a></p>
+          </div>
+          <div class="col-md-6 links">
+            <p><a routerLink="/info/help" target="_blank">Aiuto e Assistenza</a> • <a (click)="logout()">Esci</a></p>
+          </div>
+        </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- <div class="account-footer">
+  <div class="footer">
+      <div class="row">
+        <div class="col-md-6">
+          <p>© 2017 • Starbook Tutti i diritti riservati • <a href="/info/legal" target="_blank"><strong>Terms</strong></a> & <a href="/info/legal" target="_blank"><strong>Privacy Policy</strong></a></p>
+        </div>
+        <div class="col-md-6 links">
+          <p><a routerLink="/info/help" target="_blank">Aiuto e Assistenza</a> • <a (click)="logout()">Esci</a></p>
+        </div>
+      </div>
+  </div>
+</div> -->
+
+<!-- <div class="account" *ngIf="page==='reviews'">
+  <div class="account-top-bar">Le mie recensioni</div>
+  <div class="account-body">
+    <div class="reviews">
+      <p>Al momento non ci sono ancora recensioni pubblicate o ricevute.</p>
+    </div>
+  </div>
+</div> -->
+<!-- <div class="gift">
+  <div class="image">
+    <img src="../assets/images/gift.png" alt="">
+  </div>
+  <div class="descr">
+    <h3>Grandi novità in arrivo su Starbook!</h3>
+    <p>Ti informiamo che a breve ci saranno delle modifiche, miglioramenti, funzionalità interessanti e innovative su Starbook. Se hai qualche richiesta particolare scrivici su <a href="mailto:info@starbook.co" target="_blank">info@starbook.co</a>.</p>
+  </div>
+</div> -->
 
   <!-- <div class="account" *ngIf="page==='no'">
     <div class="profile-box">
@@ -478,17 +736,3 @@
       </div>
     </div>
   </div> -->
-</div>
-
-<div class="account-footer">
-  <div class="footer">
-      <div class="row">
-        <div class="col-md-6">
-          <p>© 2017 • Starbook Tutti i diritti riservati • <a href="/info/legal" target="_blank"><strong>Terms</strong></a> & <a href="/info/legal" target="_blank"><strong>Privacy Policy</strong></a></p>
-        </div>
-        <div class="col-md-6 links">
-          <p><a routerLink="/info/help" target="_blank">Aiuto e Assistenza</a> • <a (click)="logout()">Esci</a></p>
-        </div>
-      </div>
-  </div>
-</div>

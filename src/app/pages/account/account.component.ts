@@ -9,7 +9,7 @@ import { SeoService } from '../../shared/seo.service';
 import { PopupsService } from '../../popups/popups.service';
 import { Subscription }   from 'rxjs/Subscription';
 import { CommonService } from '../../shared/common.service';
-
+import * as globals from '../../globals';
 require('aws-sdk/dist/aws-sdk')
 
 @Component({
@@ -18,20 +18,17 @@ require('aws-sdk/dist/aws-sdk')
 })
 
 export class AccountComponent implements OnInit {
-  public emailPattern: any;
+  public emailPattern = globals.emailPattern
   subscription: Subscription;
   public page = ''
   public tabs = [
     {name: 'Profilo', route: 'profile'},
-    {name: 'Azienda', route: 'company'},
-    // {name: 'Rete', route: 'share'},
-    {name: 'Condividi', route: 'share'},
-    // {name: 'Preventivi', route: 'estimate'},
-    // {name: 'Lavori', route: 'jobs'},
-    {name: 'Servizi', route: 'services'},
-    {name: 'Impostazioni', route: 'settings'},
-    // {name: 'Assistenza', route: 'support'},
+    {name: 'Preventivi', route: 'quotation'},
+    {name: 'Aiuto', route: 'help'},
   ]
+  public profile_tab = 'personal'
+  public quotation_tab = 'new'
+  public help_tab = 'request'
 
   public Account = {
     _id: '',
@@ -117,54 +114,65 @@ export class AccountComponent implements OnInit {
   public Services = []
 
   public day = 0;
-  public days = []
+  public days = globals.days
   public month = 0;
-  public months = [
-    { value: 0, display: "mese" },
-    { value: 1, display: "Gennaio" },
-    { value: 2, display: "Febbraio" },
-    { value: 3, display: "Marzo" },
-    { value: 4, display: "Aprile" },
-    { value: 5, display: "Maggio" },
-    { value: 6, display: "Giugno" },
-    { value: 7, display: "Luglio" },
-    { value: 8, display: "Agosto" },
-    { value: 9, display: "Settembre" },
-    { value: 10, display: "Ottobre" },
-    { value: 11, display: "Novembre" },
-    { value: 12, display: "Dicembre" },
-  ]
+  public months = globals.months
   public year = 0;
-  public years = []
+  public years = globals.years
   public gender = 'none'
-  public genders = [
-    { value: 'none', display:"nessuno" },
-    { value: 'female', display:"Donna" },
-    { value: 'male', display:"Uomo" }
-  ]
-
+  public genders = globals.genders
+  public it = globals.it_calendar
   public profile_link = ''
+
+  public Quotation = {
+    title: '',
+    description: '',
+    details: '',
+    address: {},
+    date: '',
+    vendor: {
+      firstname: '',
+      lastname: '',
+      businessname: ''
+    },
+    customer: {
+      firstname: '',
+      lastname: '',
+      phone_number: '',
+      email: ''
+    },
+    platform: {
+      name: 'none'
+    }
+  }
+  public contact_platform = globals.contact_platforms
+  public quotation_state = {
+    creating: false,
+    loading: false,
+    created: false
+  }
+
+  public sent_quotations = []
+  public loading_sent_quotation = false
+  public received_quotations = []
+  public loading_received_quotation = false
+
+  public help_email = {
+    subject:"",
+    message:""
+  }
+  public help_email_state = {
+    loading:false
+  }
+
 
   constructor(private route: ActivatedRoute, private router: Router, private navigationService: NavigationService, private profileService: ProfileService, private authService: AuthService, private seoService: SeoService, private contactService: ContactService, private popupsService: PopupsService, private commonService: CommonService) {
     this.navigationService.updateMessage("Pannello di controllo")
-    this.emailPattern = /^[a-z0-9!#$%&'*+\/=?^_`{|}~.-]+@[a-z0-9]([a-z0-9-]*[a-z0-9])?(\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)*$/i;
-
-    this.days.push({ value: 0, display: "giorno" })
-    for (var i = 0; i < 31; i++) {
-      var v = 1;
-      v += i;
-      this.days.push({ value: v, display: v.toString() })
-    }
-    this.years.push({ value: 0, display: "anno" })
-    for (var i = 0; i < 60; i++) {
-      var v = 1950;
-      v += i;
-      this.years.push({ value: v, display: v.toString() })
-    }
-
     if (isBrowser) {
       let account = JSON.parse(localStorage.getItem('auth'))
       this.profile_link = "https://www.starbook.co/profile/" + account._id
+      this.checkPicture(account)
+      this.checkLogo(account)
 
       if (!account) {
         this.router.navigate(['/'])
@@ -218,10 +226,10 @@ export class AccountComponent implements OnInit {
       if (isBrowser) { window.scrollTo(0, 0) }
       if (this.page==="services") {
         this.commonService.getMyServices().then((data) => {
-          // console.log('service data' + JSON.stringify(data));
           this.Services = data.result;
+
         }).catch((error) => {
-          // console.log('service error' + JSON.stringify(error));
+
         })
       }
       else if (this.page==="profile") {
@@ -230,10 +238,16 @@ export class AccountComponent implements OnInit {
       else if (this.page==="company") {
 
       }
+      else if (this.page==="settings") {
+
+      }
       else if (this.page==="share") {
 
       }
-      else if (this.page==="settings") {
+      else if (this.page==="quotation") {
+
+      }
+      else if (this.page==="help") {
 
       }
       else {
@@ -279,12 +293,12 @@ export class AccountComponent implements OnInit {
   }
   checkPicture(account) {
     if (isBrowser) {
-      var picture_image = new Image()
-      picture_image.src = 'https://s3-eu-west-1.amazonaws.com/starbook-s3/accounts/' + account._id + '/avatar/0'
       if (this.Picture.url) {
-        return this.Picture.url
+        return 'url(' + this.Picture.url + ')'
       } else {
-        return (picture_image.width > 0) ? picture_image.src : '../assets/images/no_picture.png'
+        var picture_image = new Image()
+        picture_image.src = 'https://s3-eu-west-1.amazonaws.com/starbook-s3/accounts/' + account._id + '/avatar/0'
+        return (picture_image.width > 0) ? 'url(' + picture_image.src + ')' : '../assets/images/no_picture.png'
       }
     }
   }
@@ -326,12 +340,12 @@ export class AccountComponent implements OnInit {
   }
   checkLogo(account) {
     if (isBrowser) {
-      var picture_image = new Image()
-      picture_image.src = 'https://s3-eu-west-1.amazonaws.com/starbook-s3/accounts/' + account._id + '/avatar/1'
       if (this.Logo.url) {
-        return this.Logo.url
+        return 'url(' + this.Logo.url + ')'
       } else {
-        return (picture_image.width > 0) ? picture_image.src : '../assets/images/no_logo.png'
+        var picture_image = new Image()
+        picture_image.src = 'https://s3-eu-west-1.amazonaws.com/starbook-s3/accounts/' + account._id + '/avatar/1'
+        return (picture_image.width > 0) ? 'url(' + picture_image.src + ')'  : '../assets/images/no_logo.png'
       }
     }
   }
@@ -353,6 +367,33 @@ export class AccountComponent implements OnInit {
       }
     }).catch((error) => {
       this.account_state.loading = false
+    })
+  }
+
+  // SAVE QUOTATION
+  sendQuotation(quotation) {
+    this.quotation_state.creating = true
+    if (!quotation.title || !quotation.description || !quotation.customer.firstname || !quotation.customer.lastname || !quotation.customer.email || !quotation.customer.phone_number) {
+      return
+    }
+    quotation.vendor.firstname = this.Account.profile.firstname
+    quotation.vendor.lastname = this.Account.profile.lastname
+    quotation.vendor.businessname = this.Account.business.name
+    this.quotation_state.loading = true
+    this.commonService.postMethod('quotations', quotation).then((data) => {
+      this.quotation_state.created = true
+      this.quotation_state.loading = false
+      this.quotation_state.creating = false
+      quotation.title = ""
+      quotation.description = ""
+      quotation.customer = {}
+      quotation.vendor = {}
+      quotation.address = {}
+      quotation.date = ''
+      quotation.platform = {}
+    }).catch((error) => {
+      this.quotation_state.loading = false
+      this.quotation_state.creating = false
     })
   }
 
@@ -583,13 +624,99 @@ export class AccountComponent implements OnInit {
   createService() {
     this.router.navigate(['/insert/product']);
   }
+
+  sendHelpEmail() {
+    this.help_email_state.loading = true
+    this.help_email.subject = "Richiesta di aiuto su Starbook"
+    this.contactService.sendEmail(this.help_email).then((data) => {
+      this.help_email_state.loading = false
+      this.help_email.message = ""
+      // console.log('data: ' + JSON.stringify(data));
+    }).catch((error) => {
+      this.help_email_state.loading = false
+      // console.log('error: ' + JSON.stringify(error));
+    })
+  }
+
+  // TABS
   clickTabItem(route) {
-    this.router.navigate(['/account/' + route]);
+    this.router.navigate(['/account/' + route])
+  }
+  clickLeftTabItem(item) {
+    this.profile_tab = item
+  }
+  clickLeftTabQuotation(item) {
+    this.quotation_tab = item
+    if (item==="sent") {
+      this.loading_sent_quotation = true
+      this.commonService.getMethod('quotations?type=sent').then((data) => {
+        this.sent_quotations = data.result
+        this.loading_sent_quotation = false
+      }).catch((error) => {
+        this.loading_sent_quotation = false
+      })
+    } else if (item==="received") {
+      this.loading_received_quotation = true
+      this.commonService.getMethod('quotations?type=received').then((data) => {
+        this.received_quotations = data.result
+        this.loading_received_quotation = false
+      }).catch((error) => {
+        this.loading_received_quotation = false
+      })
+    }
+    else if (item==="new") {
+      this.quotation_state.created = false
+    }
+  }
+  clickLeftTabHelp(item) {
+    this.help_tab = item
   }
 
   logout() {
     this.popupsService.activate({type: 'logout', data: {}});
   }
+
+  // UTILS
+  formatedDateFromString(date) {
+    let returnDate = '';
+    if (date !== 'now') {
+      let dateString = date.substring(0, date.length - 5);
+      dateString = dateString.split('T');
+      let dateComponents = dateString[0].split('-');
+      let hourComponents = dateString[1].split(':');
+      // returnDate = dateComponents[2] + ' ' + this.it.monthNames[dateComponents[1]-1] + ' ' + dateComponents[0] + ' ' + hourComponents[0] + ':' + hourComponents[1];
+      returnDate = dateComponents[2] + ' ' + this.it.monthNames[dateComponents[1] - 1] + ' ' + dateComponents[0];
+    } else {
+      let currentDate = new Date();
+      let day = currentDate.getDate();
+      let month = 1 + currentDate.getMonth();
+      let year = currentDate.getFullYear();
+      let hours = currentDate.getHours();
+      let minutes = currentDate.getMinutes();
+      let seconds = currentDate.getSeconds();
+      returnDate += year;
+      returnDate += month > 9 ? '-' + month : '-0' + month;
+      returnDate += day > 9 ? '-' + day : '-0' + day;
+      returnDate += hours > 9 ? 'T' + hours : 'T0' + hours;
+      returnDate += minutes > 9 ? ':' + minutes : ':0' + minutes;
+      returnDate += seconds > 9 ? ':' + seconds + '.000Z' : ':0' + seconds + '.000Z';
+    }
+    return returnDate;
+  }
+  formatedAddressFromObject(address) {
+    let returnAddress = '';
+    if (address.street) {
+      returnAddress += address.street
+    }
+    if (address.postal_code) {
+      returnAddress += ' ' + address.postal_code
+    }
+    if (address.city) {
+      returnAddress += ', ' + address.city
+    }
+    return returnAddress;
+  }
+
 
   // EXTRA
   // selectCard(card_id) {

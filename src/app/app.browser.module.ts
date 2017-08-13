@@ -30,6 +30,7 @@ import { ContactService } from './shared/contact.service';
 import { ShareService } from './pages/share/share.service';
 import { ClipboardService } from './shared/clipboard.service';
 import { PostsService } from './pages/blog/posts.service';
+import { QuotationComponent } from './pages/quotation/quotation.component';
 
 import { AppComponent } from './app.component';
 
@@ -113,6 +114,7 @@ let declarations = [
   ShareComponent,
   BlogComponent,
   PostComponent,
+  QuotationComponent,
   CategoryComponent,
   ContactComponent,
   NotfoundComponent,

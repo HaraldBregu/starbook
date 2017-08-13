@@ -41,6 +41,23 @@ export class CommonService {
     }
   }
 
+  postMethod(path, data) {
+    return this.http.post(this.api + path, data, { headers: this._makeHeaders() }).toPromise().then((response) => {
+      return response.json();
+    }).catch(this.handleError);
+  }
+  getMethod(path) {
+    return this.http.get(this.api + path, { headers: this._makeHeaders() }).toPromise().then((response) => {
+      return response.json();
+    }).catch(this.handleError);
+  }
+  putMethod(path, data) {
+    return this.http.put(this.api + path, data, {headers: this._makeHeaders()}).toPromise().then((response) => {
+      return response.json()
+    }).catch(this.handleError)
+  }
+
+
   // EMAIL SMS
   requireNewService(data) {
     return this.http.post(this.api + 'request_service', data).toPromise().then((services) => {

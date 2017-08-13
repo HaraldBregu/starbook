@@ -1,0 +1,26 @@
+<div class="quotation-container" *ngIf="quotation">
+  <div class="quotation">
+    <div class="quotation-content">
+      <div class="quotation-header">
+        <div class="vendor" *ngIf="quotation.vendor">
+          <h2 *ngIf="quotation.vendor.businessname">{{quotation.vendor.businessname}}</h2>
+          <h5 *ngIf="quotation.vendor.businessname">{{quotation.vendor.firstname}} {{quotation.vendor.lastname}}</h5>
+          <h2 *ngIf="!quotation.vendor.businessname">{{quotation.vendor.firstname}} {{quotation.vendor.lastname}}</h2>
+        </div>
+        <div class="customer" *ngIf="quotation.customer">
+          <h4>PREVENTIVO</h4>
+          <span class="date">{{formatedDateFromString(quotation.created_at)}}</span>
+          <h5>{{quotation.customer.firstname}} {{quotation.customer.lastname}}</h5>
+        </div>
+      </div>
+      <div class="quotation-body">
+        <p>{{quotation.title}}</p>
+        <p>{{quotation.description}}</p>
+      </div>
+      <div class="quotation-footer">
+        <button type="button" class="btn btn-secondary" *ngIf="Account" (click)="saveQuotation()">Salva</button>
+        <button type="button" class="btn btn-facebook"  *ngIf="!Account" (click)="continueWithFacebook()"><i class="fa fa-facebook-official" aria-hidden="true"></i>Salva con Facebook</button>
+      </div>
+    </div>
+  </div>
+</div>
