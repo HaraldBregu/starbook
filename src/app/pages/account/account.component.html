@@ -421,12 +421,12 @@
               </div>
               <div class="form-group col-md-6">
                 <label for="email-input">Email cliente*</label>
-                <input class="form-control" type="text" id="email-input" [ngClass]="{'error-input': quotation_state.creating && !Quotation.customer.email}" [(ngModel)]="Quotation.customer.email" [ngModelOptions]="{standalone: true}">
+                <input class="form-control" type="email" id="email-input" [ngClass]="{'error-input': quotation_state.creating && !Quotation.customer.email}" [(ngModel)]="Quotation.customer.email" [ngModelOptions]="{standalone: true}">
                 <small class="error-message" *ngIf="quotation_state.creating && !Quotation.customer.email">Inserisci email cliente</small>
               </div>
               <div class="form-group col-md-6">
                 <label for="phone-input">Telefono cliente*</label>
-                <input class="form-control" type="text" id="phone-input" [ngClass]="{'error-input': quotation_state.creating && !Quotation.customer.phone_number}" [(ngModel)]="Quotation.customer.phone_number" [ngModelOptions]="{standalone: true}">
+                <input class="form-control" type="tel" id="phone-input" [ngClass]="{'error-input': quotation_state.creating && !Quotation.customer.phone_number}" [(ngModel)]="Quotation.customer.phone_number" [ngModelOptions]="{standalone: true}">
                 <small class="error-message" *ngIf="quotation_state.creating && !Quotation.customer.phone_number">Inserisci telefono cliente</small>
               </div>
             </div>
