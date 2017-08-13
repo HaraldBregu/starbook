@@ -235,15 +235,15 @@ export class AccountComponent implements OnInit {
       else if (this.page==="profile") {
 
       }
-      else if (this.page==="company") {
-
-      }
-      else if (this.page==="settings") {
-
-      }
-      else if (this.page==="share") {
-
-      }
+      // else if (this.page==="company") {
+      //
+      // }
+      // else if (this.page==="settings") {
+      //
+      // }
+      // else if (this.page==="share") {
+      //
+      // }
       else if (this.page==="quotation") {
 
       }
