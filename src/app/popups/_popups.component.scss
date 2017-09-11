@@ -140,7 +140,7 @@ app-popups {
     background-color: $dark-background-color;
     z-index: 1040;
   }
-  .popup {
+  .popup2 {
     display: block;
     position: fixed;
     background: $popup-background-color;
@@ -154,11 +154,11 @@ app-popups {
     padding: 35px 30px 27px;
     z-index: 1041;
     // border-radius: 3px;
-    .popup-container {
+    .popup2-container {
       height: 100%;
     }
   }
-  .popup .header {
+  .popup2 .header {
     display: block;
     width: 100%;
     margin-bottom: 20px;
@@ -170,7 +170,7 @@ app-popups {
       font-weight: 400;
     }
   }
-  .popup .double-form {
+  .popup2 .double-form {
 
     font-size: $popup-form-font-size;
     color: $popup-form-font-color;
@@ -180,7 +180,7 @@ app-popups {
     margin-bottom: 1rem;
     height: 61px;
   }
-  .popup .form-group label {
+  .popup2 .form-group label {
 
     font-size: $popup-form-font-size;
     color: $popup-form-font-color;
@@ -189,7 +189,7 @@ app-popups {
     padding: 0 0 0 2px;
     margin-bottom: 2px;
   }
-  .popup .form-group a.recovery {
+  .popup2 .form-group a.recovery {
     // position: absolute;
     float: right;
     top: 0;
@@ -203,7 +203,7 @@ app-popups {
     text-decoration: none;
     cursor: pointer;
   }
-  .popup .form-group .form-control {
+  .popup2 .form-group .form-control {
     // height: 45px !important;
   }
   .form-group .form-control:focus {
@@ -212,7 +212,7 @@ app-popups {
   // .pupup .form-control:focus {
   //   border: 2px solid #7FC443 !important;
   // }
-  // .popup .form-group .form-control {
+  // .popup2 .form-group .form-control {
   //   height: 40px;
   //   border: $popup-input-border;
   //   border-radius: 3px;
@@ -223,10 +223,10 @@ app-popups {
   //   padding: 5px 7px;
   //   box-shadow: none !important;
   // }
-  .popup .form-group .error {
+  .popup2 .form-group .error {
     display: none;
   }
-  .popup .form-group.isError .error, .popup .form-group .isError .error {
+  .popup2 .form-group.isError .error, .popup2 .form-group .isError .error {
     display: block;
 
     font-size: $popup-form-error-font-size;
@@ -236,17 +236,17 @@ app-popups {
     margin-left: 2px;
     line-height: 16px;
   }
-  .popup .form-group .form-control.ng-invalid.ng-dirty,
-  .popup .form-group .form-control.ng-invalid.ng-touched,
-  .popup .form-group.isError .form-control
+  .popup2 .form-group .form-control.ng-invalid.ng-dirty,
+  .popup2 .form-group .form-control.ng-invalid.ng-touched,
+  .popup2 .form-group.isError .form-control
   {
     border: $popup-input-warning-border;
   }
-  .popup .form-group .isError .form-control
+  .popup2 .form-group .isError .form-control
   {
     border: $popup-input-warning-border;
   }
-  .popup .form-group .btn.btn-warning {
+  .popup2 .form-group .btn.btn-warning {
     width: 100%;
     height: 50px;
     font-size: 22px;
@@ -255,13 +255,13 @@ app-popups {
     outline: none;
     line-height: 50px;
   }
-  .popup .form-group a.btn.btn-warning {
+  .popup2 .form-group a.btn.btn-warning {
     // padding: 9px 7px;
   }
-  .popup .form-group .btn.btn-warning.new-order-btn {
+  .popup2 .form-group .btn.btn-warning.new-order-btn {
     position: relative;
   }
-  .popup .form-group .btn.btn-warning.new-order-btn .fa.fa-lock {
+  .popup2 .form-group .btn.btn-warning.new-order-btn .fa.fa-lock {
     position: absolute;
     top: 11px;
     left: 19px;
@@ -270,20 +270,20 @@ app-popups {
   .recovery-form .form-group .btn.btn-warning {
     margin-top: 10px;
   }
-  .popup .form-group .btn.btn-secondary {
+  .popup2 .form-group .btn.btn-secondary {
     width: 100%;
     height: 50px;
     outline: none;
     background-color: $popup-btn-background-color-gray;
   }
-  .popup .login-form .form-group .btn.btn-secondary {
+  .popup2 .login-form .form-group .btn.btn-secondary {
     // margin-top: 7px;
   }
-  .popup .form-group a.btn.btn-secondary {
+  .popup2 .form-group a.btn.btn-secondary {
     // padding: 9px 7px;
   }
 
-  .popup .form-group .btn.btn-facebook {
+  .popup2 .form-group .btn.btn-facebook {
     position: relative;
     width: 100%;
     height: 50px;
@@ -293,10 +293,10 @@ app-popups {
     line-height: 50px;
     padding: 0;
   }
-  .popup .form-group.registration .btn.btn-facebook {
+  .popup2 .form-group.registration .btn.btn-facebook {
     // margin-top: 20px;
   }
-  .popup .form-group .btn.btn-facebook i {
+  .popup2 .form-group .btn.btn-facebook i {
     display: block;
     position: absolute;
     top: 12px;
@@ -307,18 +307,18 @@ app-popups {
     background-repeat: no-repeat;
     background-size: contain;
   }
-  .popup .form-group a.btn.btn-warning {
+  .popup2 .form-group a.btn.btn-warning {
     // padding: 9px 7px;
   }
 
-  .popup .form-description {
+  .popup2 .form-description {
     display: block;
     position: relative;
     width: 100%;
     margin-top: 10px;
     border-top: 1px solid #E7E7E7;
   }
-  .popup .form-description span {
+  .popup2 .form-description span {
     display: block;
     position: absolute;
     top: -12px;
@@ -423,12 +423,12 @@ app-popups {
     text-decoration: none;
     cursor: pointer;
   }
-  .popup .finish-message {
+  .popup2 .finish-message {
     display: block;
     width: 100%;
     position: relative;
   }
-  .popup .finish-message .header {
+  .popup2 .finish-message .header {
     display: block;
     width: 100%;
     text-align: left;
@@ -439,20 +439,20 @@ app-popups {
     font-weight: 400;
   }
 
-  .popup .finish-message.isForm .header {
+  .popup2 .finish-message.isForm .header {
     font-size: $popup-phone-enter-form-header-size;
     letter-spacing: $popup-phone-enter-form-header-letter-spacing;
     margin-bottom: 0;
     margin-top: 4px;
     padding-bottom: 0;
   }
-  .popup .finish-message.isLeft .header {
+  .popup2 .finish-message.isLeft .header {
     text-align: left;
     font-size: $popup-header-font-size;
     letter-spacing: $popup-header-letter-spacing;
     margin-top: 5px;
   }
-  .popup .finish-message p {
+  .popup2 .finish-message p {
     display: block;
     width: 100%;
     text-align: left;
@@ -462,32 +462,32 @@ app-popups {
     letter-spacing: $popup-finish-text-letter-spacing;
     font-weight: 400;
   }
-  .popup .finish-message.isForm p {
+  .popup2 .finish-message.isForm p {
     margin-top: 14px;
   }
-  .popup .finish-message.isLeft p {
+  .popup2 .finish-message.isLeft p {
     text-align: left;
     font-size: $popup-form-font-size;
     letter-spacing: $popup-text-letter-spacing;
     margin-top: 13px;
     margin-bottom: 17px;
   }
-  .popup .finish-message.isForm .form-group.phone-field {
+  .popup2 .finish-message.isForm .form-group.phone-field {
     margin-top: 46px;
   }
-  .popup .finish-message.isForm .form-group label {
+  .popup2 .finish-message.isForm .form-group label {
     letter-spacing: $popup-phone-enter-form-label-letter-spacing;
   }
-  .popup .finish-message.isForm .form-group .form-control {
+  .popup2 .finish-message.isForm .form-group .form-control {
     border-radius: 3px;
   }
-  .popup .finish-message.isForm .form-group .btn.btn-warning {
+  .popup2 .finish-message.isForm .form-group .btn.btn-warning {
     margin-top: 22px;
   }
-  .popup .finish-message.isForm .form-group .btn.btn-secondary {
+  .popup2 .finish-message.isForm .form-group .btn.btn-secondary {
     margin-top: 38px;
   }
-  .popup .finish-message .close-popup {
+  .popup2 .finish-message .close-popup {
     display: block;
     position: absolute;
     top:-19px;
@@ -498,7 +498,7 @@ app-popups {
     background-repeat: no-repeat;
     cursor: pointer;
   }
-  .popup .finish-message.isForm .close-popup {
+  .popup2 .finish-message.isForm .close-popup {
     display: none;
   }
   .confirm-order-form .btn-secondary {
@@ -641,7 +641,7 @@ app-popups {
     margin-top: 20px;
     margin-bottom: 1px;
   }
-  .popup .confirm-order-form .form-group .btn.btn-secondary {
+  .popup2 .confirm-order-form .form-group .btn.btn-secondary {
     background-color: $popup-order-confirm-gray-background;
   }
   .add-card-form .cards-logo {
@@ -670,17 +670,17 @@ app-popups {
   .add-card-form .cards-logo .card-item.mastercard {
     background-image: url($cards-mastercard-mini);
   }
-  .popup .add-card-form .form-group label {
+  .popup2 .add-card-form .form-group label {
      font-weight: 500;
     letter-spacing: $popup-text-letter-spacing;
   }
-  .popup .add-card-form .form-group .btn.btn-secondary {
+  .popup2 .add-card-form .form-group .btn.btn-secondary {
     margin-top: 15px;
   }
-  .popup .add-card-form .form-group {
+  .popup2 .add-card-form .form-group {
     min-height: 56px;
   }
-  .popup .add-card-form .subheader {
+  .popup2 .add-card-form .subheader {
     display: block;
     width: 100%;
     text-align: center;
@@ -732,7 +732,7 @@ app-popups {
     margin-top: -11px;
     margin-bottom: 22px;
   }
-  .popup .confirm-action .form-group .btn.btn-secondary {
+  .popup2 .confirm-action .form-group .btn.btn-secondary {
     background-color: $popup-order-confirm-gray-background;
   }
   .confirm-action .action {
@@ -814,7 +814,7 @@ app-popups {
     font-size: $tooltip-font-size;
     letter-spacing: $popup-text-letter-spacing;
   }
-  .popup.new-version .popup-spinner {
+  .popup2.new-version .popup2-spinner {
     display: block;
     width: 100%;
     height: 40px;
@@ -822,7 +822,7 @@ app-popups {
     margin-bottom: 10px;
     text-align: center;
   }
-  .popup.new-version .success-icon {
+  .popup2.new-version .success-icon {
     display: block;
     width: 100%;
     height: 40px;
@@ -830,7 +830,7 @@ app-popups {
     margin-bottom: 10px;
     text-align: center;
   }
-  .popup.new-version .success-icon span {
+  .popup2.new-version .success-icon span {
     display: block;
     width: 40px;
     height: 40px;
@@ -839,7 +839,7 @@ app-popups {
     background-repeat: no-repeat;
     background-size: contain;
   }
-  .popup.new-version .header {
+  .popup2.new-version .header {
 
     font-weight: normal;
     text-align: center;
@@ -847,7 +847,7 @@ app-popups {
     letter-spacing: $popup-confirm-header-letter-spacing;
     margin-bottom: 33px;
   }
-  .popup.new-version .confirm-order-form p {
+  .popup2.new-version .confirm-order-form p {
     margin-top: 0;
 
     font-weight: normal;
@@ -857,10 +857,10 @@ app-popups {
     letter-spacing: $popup-confirm-message-letter-spacing;
     margin-bottom: 13px;
   }
-  .popup.new-version .confirm-order-form p.conferma-finish {
+  .popup2.new-version .confirm-order-form p.conferma-finish {
     margin-bottom: 26px;
   }
-  .popup.add-price .header {
+  .popup2.add-price .header {
 
     font-weight: normal;
     font-size: $popup-completa-header-text-size;
@@ -869,7 +869,7 @@ app-popups {
     margin-top: 2px;
     margin-bottom: 21px;
   }
-  .popup.add-price .confirm-action p {
+  .popup2.add-price .confirm-action p {
 
     font-weight: normal;
     font-size: $popup-completa-message-text-size;
@@ -878,30 +878,30 @@ app-popups {
     margin-top: 0;
     margin-bottom: 24px;
   }
-  .popup.new-version .header.without-message {
+  .popup2.new-version .header.without-message {
     margin-bottom: 27px;
   }
-  .popup .form-group .btn-warning.logout-btn {
+  .popup2 .form-group .btn-warning.logout-btn {
     // margin-top: -16px;
   }
 
   // Loading style
-  .popup .loader {
+  .popup2 .loader {
     display: block;
     width: 100%;
     height: 40px;
   }
-  .popup .loader svg {
+  .popup2 .loader svg {
     display: block;
     width: 40px;
     height: 40px;
     margin: 10px auto;
   }
-  .popup.add-price .loader {
+  .popup2.add-price .loader {
     margin-bottom: 20px;
   }
   @media (max-width: 480px) {
-    .popup {
+    .popup2 {
       width: 100%;
       position: fixed;
       top: 0;
@@ -915,13 +915,13 @@ app-popups {
       box-shadow: none;
       height: 100%;
     }
-    .popup .add-card-form .form-group .btn.btn-secondary {
+    .popup2 .add-card-form .form-group .btn.btn-secondary {
       margin-bottom: 70px;
     }
     .login-offer {
       margin-bottom: 70px;
     }
-    .popup .form-group .btn.btn-secondary {
+    .popup2 .form-group .btn.btn-secondary {
       // margin-bottom: 70px;
     }
     .dark-screen {

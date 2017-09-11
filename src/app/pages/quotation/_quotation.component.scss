@@ -18,33 +18,39 @@ app-quotation {
       background: white;
       .quotation-content {
         .quotation-header {
-          padding: 60px 40px 40px;
+          padding: 20px 30px;
           border-bottom: 1px solid #eceeef;
           overflow: auto;
+          .title {
+            font-size: 20px;
+            font-weight: 500;
+            color: rgba(0, 0, 0, 0.5);
+          }
+          .date {
+            float: right;
+            font-size: 17px;
+            line-height: 28px;
+          }
+        }
+        .quotation-body {
+          padding: 30px 50px;
+          overflow: auto;
+          p {
+            span {
+              font-weight: 500;
+            }
+          }
           .vendor {
             float: left;
             width: 50%;
-            .slogan {
+            margin-bottom: 20px;
+            .businessname {
               display: block;
-              font-weight: 300;
+              font-size: 26px;
             }
-            .address {
-              margin-top: 10px;
-              span {
-                display: block;
-                font-size: 15px;
-              }
-            }
-            h4 {
-              font-weight: 500;
-            }
-            h5 {
-              font-weight: 400;
-              margin-top: 10px;
-            }
-            h6 {
-              font-weight: 300;
-              margin-top: 5px;
+            .username {
+              display: block;
+              font-size: 16px;
             }
           }
           .customer {
@@ -67,18 +73,21 @@ app-quotation {
             h6 {
               margin-top: 20px;
             }
+            .username {
+              display: block;
+              font-size: 20px;
+            }
           }
-        }
-        .quotation-body {
-          padding: 30px 40px;
-          p {
-            span {
-              font-weight: 500;
+          .description {
+            overflow: auto;
+            width: 100%;
+            p {
+              margin-bottom: 10px;
             }
           }
         }
         .quotation-footer {
-          padding: 15px 40px;
+          padding: 20px 30px;
           border-top: 1px solid #eceeef;
           text-align: right;
           .btn {
@@ -97,9 +106,6 @@ app-quotation {
               margin-right: 20px;
               margin-top: -2px;
             }
-          }
-          .btn-secondary {
-
           }
         }
       }

@@ -1,7 +1,6 @@
 import { isBrowser } from 'angular2-universal';
 import { Component, OnInit, OnDestroy, Compiler } from '@angular/core';
 import { Router, Event, NavigationEnd, ActivatedRoute, Params } from '@angular/router';
-// import { AnalyticsService } from './shared/analytics.service';
 import { AuthService } from './shared/auth.service';
 import { NavigationService } from './shared/navigation.service';
 import { PopupsService } from './popups/popups.service';
@@ -86,6 +85,7 @@ export class AppComponent implements OnInit, OnDestroy {
               this.hasPublishService = true;
             }
             if (this.page === "Company") {
+              // this.hasNavigation = false
               this.hasCenterContainer = false;
             }
             else if (this.page === "Insert") {

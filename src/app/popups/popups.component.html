@@ -1,8 +1,8 @@
 <div class="dark-screen" [@shadowState]="shadowState" (click)="closePopup()"></div>
 
 <!-- Login popup -->
-<div class="popup" [@loginPopupState]="loginPopupState">
-  <div class="popup-container">
+<div class="popup2" [@loginPopupState]="loginPopupState">
+  <div class="popup-container2">
     <div class="alert-block" *ngIf="formError">
       <div class="alert-container">
         <p><span>Errore!</span> {{formError.message}}</p>
@@ -41,7 +41,7 @@
 </div>
 
 <!-- Registration popup -->
-<div class="popup" [@registrationPopupState]="registrationPopupState">
+<div class="popup2" [@registrationPopupState]="registrationPopupState">
   <div class="alert-block" *ngIf="formError">
     <div class="alert-icn"></div>
     <div class="alert-container">
@@ -106,7 +106,7 @@
 </div>
 
 <!-- Recovery popup -->
-<div class="popup" [@recoveryPopupState]="recoveryPopupState">
+<div class="popup2" [@recoveryPopupState]="recoveryPopupState">
   <div class="alert-block" *ngIf="formError">
     <div class="alert-icn"></div>
     <div class="alert-container">
@@ -131,8 +131,8 @@
 </div>
 
 <!-- Confirm Order popup -->
-<div class="popup" [@confirmPopupState]="confirmPopupState" [ngClass]="{'new-version': confirmPopupData.type === 'conferma' || confirmPopupData.type === 'confermaEnd' || confirmPopupData.type === 'addPriceEnd'}">
-  <div class="popup-container">
+<div class="popup2" [@confirmPopupState]="confirmPopupState" [ngClass]="{'new-version': confirmPopupData.type === 'conferma' || confirmPopupData.type === 'confermaEnd' || confirmPopupData.type === 'addPriceEnd'}">
+  <div class="popup-container2">
     <div class="alert-block" *ngIf="formError">
       <div class="alert-icn"></div>
       <div class="alert-container">
@@ -200,8 +200,8 @@
 </div>
 
 <!-- Confirm Order Finish popup -->
-<div class="popup" [@confirmFinishPopupState]="confirmFinishPopupState">
-  <div class="popup-container">
+<div class="popup2" [@confirmFinishPopupState]="confirmFinishPopupState">
+  <div class="popup-container2">
     <div class="finish-message" [ngClass]="{isLeft: confirmFinishPopupData.type === 'left'}">
       <div class="header">{{ confirmFinishPopupData.title }}</div>
       <p>{{ confirmFinishPopupData.text }}</p>
@@ -213,8 +213,8 @@
 </div>
 
 <!-- Finish popup -->
-<div class="popup" [@finishPopupState]="finishPopupState">
-  <div class="popup-container">
+<div class="popup2" [@finishPopupState]="finishPopupState">
+  <div class="popup-container2">
     <div class="finish-message" [ngClass]="{'isForm': finishPopupData.type !== ''}">
       <a (click)="closePopup()" class="close-popup"></a>
       <div class="header">{{ finishPopupData.title }}</div>
@@ -236,8 +236,8 @@
 </div>
 
 <!-- Add Card popup -->
-<div class="popup" [@addCardPopupState]="addCardPopupState">
-  <div class="popup-container">
+<div class="popup2" [@addCardPopupState]="addCardPopupState">
+  <div class="popup-container2">
     <div class="header">Metodo di pagamento</div>
     <form class="add-card-form" #addCardForm="ngForm">
       <app-loading *ngIf="isPopupLoading"></app-loading>
@@ -322,8 +322,8 @@
 </div>
 
 <!-- Confirm popup with action -->
-<div class="popup" [@confirmActionPopupState]="confirmActionPopupState" [ngClass]="{'add-price': confirmActionPopupData.type === 'addPrice'}">
-  <div class="popup-container">
+<div class="popup2" [@confirmActionPopupState]="confirmActionPopupState" [ngClass]="{'add-price': confirmActionPopupData.type === 'addPrice'}">
+  <div class="popup-container2">
     <div class="alert-block" *ngIf="formError">
       <div class="alert-icn"></div>
       <div class="alert-container">

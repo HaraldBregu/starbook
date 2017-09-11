@@ -9,6 +9,8 @@ import { SeoService } from '../../shared/seo.service';
 import { PopupsService } from '../../popups/popups.service';
 import { Subscription }   from 'rxjs/Subscription';
 import { CommonService } from '../../shared/common.service';
+import { PaymentService } from '../../shared/payment.service';
+
 import * as globals from '../../globals';
 require('aws-sdk/dist/aws-sdk')
 
@@ -22,12 +24,13 @@ export class AccountComponent implements OnInit {
   subscription: Subscription;
   public page = ''
   public tabs = [
-    {name: 'Profilo', route: 'profile'},
+    {name: 'Account', route: 'profile'},
     {name: 'Preventivi', route: 'quotation'},
     {name: 'Aiuto', route: 'help'},
   ]
   public profile_tab = 'personal'
   public quotation_tab = 'new'
+  public payment_tab = 'cards'
   public help_tab = 'request'
 
   public Account = {
@@ -143,6 +146,15 @@ export class AccountComponent implements OnInit {
     },
     platform: {
       name: 'none'
+    },
+    notifications: {
+      email: true,
+      sms: false,
+      push: false
+    },
+    formats: {
+      web: true,
+      pdf: false,
     }
   }
   public contact_platform = globals.contact_platforms
@@ -164,9 +176,36 @@ export class AccountComponent implements OnInit {
   public help_email_state = {
     loading:false
   }
+  public popup = null
 
+  public Card = {
+    number: null,
+    exp_month: null,
+    exp_year: null,
+    exp_date: null,
+    cvc: '',
+    name: '',           // Nome intestatario
+    address_line1: '',  // Via
+    address_line2: '',  // Nr
+    address_city: '',   // Città
+    address_zip: '',    // CAP
+    address_state: '',  // Provincia
+    address_country: '' // Paese
+  };
+  public card_state = {
+    loading: false,
+    button_title: "Salva",
+    message_error: null,
+    message_success: null,
+    number_error:null,
+    exp_date_error: null,
+    cvc_error: null
+  }
+  public cards = []
+  public defaultCard = null
+  public selectedCardId = null
 
-  constructor(private route: ActivatedRoute, private router: Router, private navigationService: NavigationService, private profileService: ProfileService, private authService: AuthService, private seoService: SeoService, private contactService: ContactService, private popupsService: PopupsService, private commonService: CommonService) {
+  constructor(private route: ActivatedRoute, private router: Router, private navigationService: NavigationService, private profileService: ProfileService, private authService: AuthService, private seoService: SeoService, private contactService: ContactService, private popupsService: PopupsService, private commonService: CommonService, private paymentService: PaymentService) {
     this.navigationService.updateMessage("Pannello di controllo")
     if (isBrowser) {
       let account = JSON.parse(localStorage.getItem('auth'))
@@ -216,6 +255,8 @@ export class AccountComponent implements OnInit {
           break;
         }
       })
+
+      this.getAllCards()
     }
   }
 
@@ -227,9 +268,7 @@ export class AccountComponent implements OnInit {
       if (this.page==="services") {
         this.commonService.getMyServices().then((data) => {
           this.Services = data.result;
-
         }).catch((error) => {
-
         })
       }
       else if (this.page==="profile") {
@@ -247,6 +286,9 @@ export class AccountComponent implements OnInit {
       else if (this.page==="quotation") {
 
       }
+      // else if (this.page==="payment") {
+      //
+      // }
       else if (this.page==="help") {
 
       }
@@ -370,7 +412,7 @@ export class AccountComponent implements OnInit {
     })
   }
 
-  // SAVE QUOTATION
+  // SEND QUOTATION
   sendQuotation(quotation) {
     this.quotation_state.creating = true
     if (!quotation.title || !quotation.description || !quotation.customer.firstname || !quotation.customer.lastname || !quotation.customer.email || !quotation.customer.phone_number) {
@@ -392,6 +434,16 @@ export class AccountComponent implements OnInit {
       quotation.date = ''
       quotation.platform = {}
     }).catch((error) => {
+      // console.log(JSON.stringify(error))
+      if (error.status===400) {
+        this.popup = "NEW_CARD_POPUP_AND_CONTINUE"
+        // Mostrare un popup per inserire la carta
+        // console.log('no_stripe_customer')
+      } else if (error.status===402) {
+        this.popup = "NEW_CARD_POPUP_AND_CONTINUE"
+        // Mostrare un popup per inserire la carta
+        // console.log('no_cards')
+      }
       this.quotation_state.loading = false
       this.quotation_state.creating = false
     })
@@ -470,56 +522,6 @@ export class AccountComponent implements OnInit {
   }
 
   // SHARE LINK
-  // sendInvitations() {
-  //   var phone_numbers = [];
-  //   var email_addresses = [];
-  //   var strings = this.contacts.split(',');
-  //   for (var i = 0; i < strings.length; i++) {
-  //     var string = strings[i];
-  //     string = string.replace(/\s/g, '');
-  //     if (this.emailPattern.test(string)) {
-  //       email_addresses.push(string);
-  //     } else if (this.numPattern.test(string)) {
-  //       if (string.length === 13 && string.charAt(0) === '+') {
-  //         phone_numbers.push(string);
-  //       } else if (string.length === 12) {
-  //         phone_numbers.push('+' + string);
-  //       } else if (string.length === 10) {
-  //         phone_numbers.push('+39' + string);
-  //       } else if (string.length === 14) {
-  //         phone_numbers.push(string);
-  //       }
-  //     }
-  //   }
-  //   var phones = '';
-  //   for (var i = 0; i < phone_numbers.length; i++) {
-  //     var p = phone_numbers[i]
-  //     phones += (i != 0) ? ',' : ''
-  //     phones += p
-  //   }
-  //
-  //   var emails = '';
-  //   for (var i = 0; i < email_addresses.length; i++) {
-  //     var e = email_addresses[i]
-  //     emails += (i != 0) ? ',' : ''
-  //     emails += e
-  //   }
-  //
-  //   // console.log('phone_numbers: ' + phone_numbers);
-  //   if (phones==='' && emails==='') {
-  //     this.invitation_state.message_success = null;
-  //     this.invitation_state.message_error = "Inserisci numeri di telefono e email validi";
-  //     return;
-  //   }
-  //   this.invitation_state.message_success = null;
-  //   this.invitation_state.message_error = null;
-  //   this.joinService.sendInvitations(this.sharelink, phones, emails).then((response) => {
-  //     // console.log('response: ' + JSON.stringify(response));
-  //     this.invitation_state.message_success = "Complimenti, hai inviato un codice sconto ai contatti inseriti";
-  //   }).catch((error) => {
-  //     // console.log('error: ' + JSON.stringify(error));
-  //   });
-  // }
   shareOnFacebook() {
     if (isBrowser) {
       let left = Math.round((document.documentElement.clientWidth / 2) - 285);
@@ -624,7 +626,6 @@ export class AccountComponent implements OnInit {
   createService() {
     this.router.navigate(['/insert/product']);
   }
-
   sendHelpEmail() {
     this.help_email_state.loading = true
     this.help_email.subject = "Richiesta di aiuto su Starbook"
@@ -671,6 +672,178 @@ export class AccountComponent implements OnInit {
   clickLeftTabHelp(item) {
     this.help_tab = item
   }
+  clickLeftTabPayment(item) {
+    this.payment_tab = item
+  }
+
+  // open popup
+  showAddCard() {
+    this.popup = "NEW_CARD_POPUP"
+  }
+
+  // CARD
+  addCard() {
+    if (this.card_state.loading) {return;}
+    this.card_state.loading = true;
+    this.card_state.button_title = "Salvando carta...";
+    this.card_state.message_error = null;
+    this.card_state.number_error = null;
+    this.card_state.exp_date_error = null;
+    this.card_state.cvc_error = null;
+    if (this.Card !== null) {
+      if (this.paymentService.cardNumberValidate(this.Card.number)) {
+        this.card_state.number_error = null;
+      } else {
+        this.card_state.number_error = "Il numero della carta non è corretto.";
+      }
+    }
+    if (this.Card.exp_date && this.Card.exp_date.length === 5) {
+      let exp_parts = this.Card.exp_date.split('/');
+      if (exp_parts[0] !== this.Card.exp_date) {
+        this.Card.exp_month = exp_parts[0];
+        this.Card.exp_year = exp_parts[1];
+      } else {
+        this.card_state.exp_date_error = "Errore data";
+      }
+    }
+    else {
+      this.card_state.exp_date_error = "La data non è completa";
+    }
+    this.paymentService.addNewCard(this.Card).then((response) => {
+      this.card_state.loading = false
+      this.card_state.button_title = "Continua"
+      this.card_state.message_error = null
+      this.card_state.number_error = null
+      this.card_state.exp_date_error = null
+      this.card_state.cvc_error = null
+      this.popup = null
+      this.clearCardData()
+      this.cards.push(response)
+    }).catch((error) => {
+      this.card_state.loading = false;
+      this.card_state.button_title = "Continua";
+      this.card_state.message_error = null;
+      this.card_state.number_error = null;
+      this.card_state.exp_date_error = null;
+      this.card_state.cvc_error = null;
+      if (error === 400) {
+        this.card_state.message_error = "Per favore inserisci correttamente i dati della carta";
+      }
+      else if (error === 402) {
+        this.card_state.message_error = "Per favore inserisci correttamente i dati della carta";
+      }
+      else {
+        this.card_state.message_error = "Controlla i campi inseriti e riprova.";
+      }
+    })
+  }
+  addCardAndContinue() {
+    if (this.card_state.loading) {return;}
+    this.card_state.loading = true;
+    this.card_state.button_title = "Salvando carta...";
+    this.card_state.message_error = null;
+    this.card_state.number_error = null;
+    this.card_state.exp_date_error = null;
+    this.card_state.cvc_error = null;
+    if (this.Card !== null) {
+      if (this.paymentService.cardNumberValidate(this.Card.number)) {
+        this.card_state.number_error = null;
+      } else {
+        this.card_state.number_error = "Il numero della carta non è corretto.";
+      }
+    }
+    if (this.Card.exp_date && this.Card.exp_date.length === 5) {
+      let exp_parts = this.Card.exp_date.split('/');
+      if (exp_parts[0] !== this.Card.exp_date) {
+        this.Card.exp_month = exp_parts[0];
+        this.Card.exp_year = exp_parts[1];
+      } else {
+        this.card_state.exp_date_error = "Errore data";
+      }
+    }
+    else {
+      this.card_state.exp_date_error = "La data non è completa";
+    }
+    this.paymentService.addNewCard(this.Card).then((response) => {
+      this.card_state.loading = false
+      this.card_state.button_title = "Continua"
+      this.card_state.message_error = null
+      this.card_state.number_error = null
+      this.card_state.exp_date_error = null
+      this.card_state.cvc_error = null
+      this.popup = null
+      this.sendQuotation(this.Quotation)
+      this.clearCardData()
+      this.cards.push(response)
+    }).catch((error) => {
+      this.card_state.loading = false
+      this.card_state.button_title = "Continua"
+      this.card_state.message_error = null
+      this.card_state.number_error = null
+      this.card_state.exp_date_error = null
+      this.card_state.cvc_error = null
+      if (error === 400) {
+        this.card_state.message_error = "Per favore inserisci correttamente i dati della carta"
+      }
+      else if (error === 402) {
+        this.card_state.message_error = "Per favore inserisci correttamente i dati della carta"
+      }
+      else {
+        this.card_state.message_error = "Controlla i campi inseriti e riprova."
+      }
+    })
+  }
+  getAllCards() {
+    this.paymentService.getCards().then((response) => {
+      this.cards = response.sources.data
+      this.defaultCard = response.default_source
+    }).catch((error) => {
+      // console.log('error: ' + JSON.stringify(error));
+    })
+  }
+  selectCard(card_id) {
+    if (this.card_state.loading) {return}
+    this.card_state.loading = true
+    this.paymentService.selectCard(card_id).then((status) => {
+      this.defaultCard = status.default_source
+      this.card_state.loading = false
+    }).catch((error) => {
+      this.card_state.loading = false
+    })
+  }
+  deleteCard(card_id) {
+    if (this.card_state.loading) {return}
+    this.card_state.loading = true
+    this.paymentService.deleteCard(card_id).then((status) => {
+      let i = 0;
+      this.cards.forEach((card) => {
+        if (card.id === card_id) {
+          this.cards.splice(i, 1);
+        }
+        i++;
+      })
+      if (card_id === this.defaultCard && this.cards.length > 0) {
+        let otherCard = '';
+        this.cards.forEach((card) => {
+          if (card.id !== card_id) {
+            otherCard = card.id;
+          }
+        });
+        this.selectCard(otherCard);
+      }
+      this.card_state.loading = false
+      this.popup = null
+    }).catch((error) => {
+      this.card_state.loading = false
+      this.popup = null
+    })
+  }
+  clearCardData(){
+    this.Card.number = null
+    this.Card.exp_month = null
+    this.Card.exp_year = null
+    this.Card.cvc = null
+  }
 
   logout() {
     this.popupsService.activate({type: 'logout', data: {}});
@@ -716,40 +889,140 @@ export class AccountComponent implements OnInit {
     }
     return returnAddress;
   }
+  getQuotationSendingPrice(Quotation) {
+    var sms_price = Quotation.notifications.sms ? 0.50 : 0
+    var pdf_price = Quotation.formats.pdf ? 0.50 : 0
+    var total_price = sms_price + pdf_price
+    if (total_price > 0) {
+      return "€" + total_price
+    } else {
+      return ""
+    }
+  }
+  checkExpiry(value) {
+    let result = '';
+    let date = new Date();
+    let month = (1 + date.getMonth()).toString();
+    if ((date.getMonth() + 1) < 10) {
+      month = '0' + month.toString();
+    }
+    let yearElems = date.getFullYear().toString().split('');
+    let year = parseInt(yearElems[2].toString() + yearElems[3].toString());
+    if (value) {
+      let dateElems = value.split('');
+      let i = 0;
+      dateElems.forEach((elem) => {
+        if (elem === '/') {
+          dateElems.splice(i, 1);
+        }
+        i++;
+      });
+      if (dateElems.length > 1) {
+        let i = 0;
+        dateElems.forEach((elem) => {
+          if (i < 4) {
+            if (i === 2) {
+              result += '/';
+            }
+            result += elem;
+          }
+          i++;
+        });
+      } else {
+        dateElems.forEach((elem) => {
+          result += elem;
+        });
+      }
+    }
 
+    if (result.length !== 5) {
+      this.card_state.exp_date_error = "Inserisci la data in formato MM/AA (mese/anno)";
+    }
+
+    if (result.length === 5) {
+      let parts = result.split('/');
+      if (parts[0] !== result) {
+        if (parseInt(parts[1]) > year) {
+          this.card_state.exp_date_error = null;
+        } else {
+          if (parseInt(parts[0]) >= parseInt(month) && parseInt(parts[1]) === year) {
+            this.card_state.exp_date_error = null;
+          } else {
+            this.card_state.exp_date_error = "Inserisci una data corretta";
+          }
+        }
+      } else {
+        this.card_state.exp_date_error = null;
+      }
+    }
+    this.Card.exp_date = result
+    return result;
+  }
+  formatYear(year) {
+    let i = 0;
+    let formatedYear = '';
+    let yearArray = year.toString().split('');
+    yearArray.forEach((num) => {
+      if (i > 1) {
+        formatedYear += num;
+      }
+      i++;
+    });
+    return formatedYear;
+  }
 
   // EXTRA
-  // selectCard(card_id) {
-  //   this.paymentService.selectCard(card_id).then((status) => {
-  //     this.defaultCard = status.default_source;
-  //   }).catch((error) => {
-  //
-  //   });
-  // }
-  // deleteCard(card_id) {
-  //   this.paymentService.deleteCard(card_id).then((status) => {
-  //     let i = 0;
-  //     this.cards.forEach((card) => {
-  //       if (card.id === card_id) {
-  //         this.cards.splice(i, 1);
+  // sendInvitations() {
+  //   var phone_numbers = [];
+  //   var email_addresses = [];
+  //   var strings = this.contacts.split(',');
+  //   for (var i = 0; i < strings.length; i++) {
+  //     var string = strings[i];
+  //     string = string.replace(/\s/g, '');
+  //     if (this.emailPattern.test(string)) {
+  //       email_addresses.push(string);
+  //     } else if (this.numPattern.test(string)) {
+  //       if (string.length === 13 && string.charAt(0) === '+') {
+  //         phone_numbers.push(string);
+  //       } else if (string.length === 12) {
+  //         phone_numbers.push('+' + string);
+  //       } else if (string.length === 10) {
+  //         phone_numbers.push('+39' + string);
+  //       } else if (string.length === 14) {
+  //         phone_numbers.push(string);
   //       }
-  //       i ++;
-  //     });
-  //     if (card_id === this.defaultCard && this.cards.length > 0) {
-  //       let otherCard = '';
-  //       this.cards.forEach((card) => {
-  //         if (card.id !== card_id) {
-  //           otherCard = card.id;
-  //         }
-  //       });
-  //       this.selectCard(otherCard);
-  //     } else {
-  //
   //     }
-  //   }).catch((error) => {
+  //   }
+  //   var phones = '';
+  //   for (var i = 0; i < phone_numbers.length; i++) {
+  //     var p = phone_numbers[i]
+  //     phones += (i != 0) ? ',' : ''
+  //     phones += p
+  //   }
   //
+  //   var emails = '';
+  //   for (var i = 0; i < email_addresses.length; i++) {
+  //     var e = email_addresses[i]
+  //     emails += (i != 0) ? ',' : ''
+  //     emails += e
+  //   }
+  //
+  //   // console.log('phone_numbers: ' + phone_numbers);
+  //   if (phones==='' && emails==='') {
+  //     this.invitation_state.message_success = null;
+  //     this.invitation_state.message_error = "Inserisci numeri di telefono e email validi";
+  //     return;
+  //   }
+  //   this.invitation_state.message_success = null;
+  //   this.invitation_state.message_error = null;
+  //   this.joinService.sendInvitations(this.sharelink, phones, emails).then((response) => {
+  //     // console.log('response: ' + JSON.stringify(response));
+  //     this.invitation_state.message_success = "Complimenti, hai inviato un codice sconto ai contatti inseriti";
+  //   }).catch((error) => {
+  //     // console.log('error: ' + JSON.stringify(error));
   //   });
   // }
+
   // addCard() {
   //   if (this.card_state.loading) {return;}
   //   this.card_state.loading = true;
@@ -861,18 +1134,6 @@ export class AccountComponent implements OnInit {
   //   }
   //   this.Card.exp_date = result
   //   return result;
-  // }
-  // formatYear(year) {
-  //   let i = 0;
-  //   let formatedYear = '';
-  //   let yearArray = year.toString().split('');
-  //   yearArray.forEach((num) => {
-  //     if (i > 1) {
-  //       formatedYear += num;
-  //     }
-  //     i++;
-  //   });
-  //   return formatedYear;
   // }
   // formatCssClass(brand) {
   //   let result = '';

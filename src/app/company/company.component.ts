@@ -12,10 +12,12 @@ import { FacebookService, InitParams, LoginResponse, LoginOptions, UIResponse, U
 export class CompanyComponent implements OnInit {
   public seoObject = {}
   public page = null
+  public Account;
 
   constructor(private router: Router, private route: ActivatedRoute, private seoService: SeoService, private authServics: AuthService, private fb: FacebookService) {
     if (isBrowser) {
       window.scrollTo(0, 0);
+      this.Account = JSON.parse(localStorage.getItem('auth'))
       if (document.location.hostname === "www.starbook.co") {
         fb.init({appId: '1108461325907277', version: 'v2.7'})
       } else if (document.location.hostname === "glacial-shore-66987.herokuapp.com" || document.location.hostname === "localhost") {
@@ -46,28 +48,25 @@ export class CompanyComponent implements OnInit {
 
     this.route.params.subscribe((params: Params) => {
       this.page = params['page']
-      if (this.page) {
-        this.router.navigate(['/company'])
-      }
-      else if (this.page==='1') {
+      if (isBrowser) {window.scrollTo(0, 0)}
+      if (this.page==='quotations') {
+
       }
       else {
-        this.page = null
+        // this.page = null
+        this.router.navigate(['/company'])
         // this.router.navigate([''])
       }
     })
   }
-  continueWithFacebook() {
+  continueWithFacebook(route) {
     this.fb.login().then((res: LoginResponse) => {
       let fb_token = res.authResponse.accessToken
       this.authServics.facebookLogin(fb_token).then((userData) => {
-        // console.log('user data: ' + JSON.stringify(userData));
-        this.router.navigate(["/account/profile"])
+        this.router.navigate([route])
       }).catch((error) => {
-
       })
     }).catch((error) => {
-
     })
   }
 

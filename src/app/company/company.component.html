@@ -1,247 +1,325 @@
 <div class="company-container" *ngIf="!page">
-  <div class="header-container">
+  <!-- <div class="header-container">
     <div class="overlay">
       <div class="header">
         <h1>Cresci la tua impresa, facile come fissare un tassello</h1>
         <p>Passa alla migliore piattaforma professionale per aumentare i tuoi clienti.<br>Prova Starbook adesso!</p>
-        <button class="btn btn-facebook" id="continueWithFacebook" (click)="continueWithFacebook()"><i class="fa fa-facebook-official" aria-hidden="true"></i>   Continua con Facebook</button>
+        <button class="btn btn-facebook" id="continueWithFacebook" (click)="continueWithFacebook('/account/profile')"><i class="fa fa-facebook-official" aria-hidden="true"></i>   Continua con Facebook</button>
         <small>Diamo valore alla privacy e non condividiamo mai le tue informazioni</small>
       </div>
     </div>
-  </div>
-
-  <div class="section-container">
-    <div class="section title-section">
-      <h2>Come Starbook cambierà la tua impresa?</h2>
-    </div>
-  </div>
-  <div class="section-container white-backgound">
-    <div class="section">
-      <div class="image left">
-        <img src="../assets/images/crescita-clienti-guadagni.png" alt="Crescita clienti e guadagni">
-      </div>
-      <div class="descr">
-        <h3>Crescita di clienti e dei guadagni, gratis!</h3>
-        <p>Aumentando la clientela, si aumenta il guadagno e il fatturato annuale. Utilizzerai i giusti strumenti per farlo, gratis per sempre!</p>
-      </div>
-    </div>
-  </div>
-  <div class="section-container">
-    <div class="section">
-      <div class="image left">
-        <img src="../assets/images/calculator.png" alt="Prezzo lo decidi tu">
-      </div>
-      <div class="descr">
-        <h3>Mantenendo il prezzo giusto per sempre</h3>
-        <p>Scegli il prezzo che lo ritieni più giusto senza dover giocare al ribasso. Mostra professionalità, correttezza e il tuo prezzo per sempre.</p>
-      </div>
-    </div>
-  </div>
-  <div class="section-container white-backgound">
-    <div class="section">
-      <div class="image left">
-        <img src="../assets/images/trophy.png" alt="Diventando più competitivi della concorrenza">
-      </div>
-      <div class="descr">
-        <h3>Diventando più competitivi della concorrenza</h3>
-        <p>Per battere la concorrenza bisogna diventare competitivi. Con Starbook diventerete veloci, accurati, professionali e migliori della concorrenza.</p>
-      </div>
-    </div>
-  </div>
-  <div class="section-container">
-    <div class="section">
-      <div class="image left">
-        <img src="../assets/images/computer.png" alt="Presenza professionale online e gratis">
-      </div>
-      <div class="descr left">
-        <h3>Presenza professionale online e gratis!</h3>
-        <p>La professionalità prima di percepirla deve essere mostrata. Avrai tutte le funzionalità che ti servono per migliorare l'immagine della tua impresa.</p>
-      </div>
-    </div>
-  </div>
-  <div class="section-container small white-backgound">
-    <div class="section action-section">
-      <div class="actions">
-        <button class="btn btn-facebook" id="continueWithFacebook" (click)="continueWithFacebook()"><i class="fa fa-facebook-official" aria-hidden="true"></i>   Continua con Facebook</button>
-      </div>
-    </div>
-  </div>
-
-  <div class="section-container small">
-    <div class="section title-section">
-      <h2>Senza dimenticare i servizi aggiuntivi</h2>
-    </div>
-  </div>
-  <div class="section-container small white-backgound">
-    <div class="section">
-      <div class="image left">
-        <img src="../assets/images/pie-chart.png" alt="Marketing gratis">
-      </div>
-      <div class="descr left">
-        <h3>Marketing gratis della tua azienda</h3>
-        <p>Utilizzeremo i metodi più efficienti per promuovere la tua azienda senza costi aggiuntivi. Non hai bisogno di utilizzare agenzie di pubblicità ma solo degli strumenti necessari per poter crescere la tua attività.</p>
-      </div>
-    </div>
-  </div>
-  <div class="section-container small">
-    <div class="section">
-      <div class="image left">
-        <img src="../assets/images/office-material.png" alt="Professionalità e competenze">
-      </div>
-      <div class="descr left">
-        <h3>Riconquista i vecchi clienti</h3>
-        <p>Anche i tuoi vecchi clienti si possono conquistare, ma per farlo devono essere utilizzate le ultime metodi e tecnologie. Ti sarà facile poi con un click invitare tutti i tuoi vecchi clienti a vedere il tuo profilo e riconquistarli.</p>
-      </div>
-    </div>
-  </div>
-  <div class="section-container small white-backgound">
-    <div class="section">
-      <div class="image left">
-        <img src="../assets/images/list.png" alt="Marketing gratis">
-      </div>
-      <div class="descr left">
-        <h3>Preventivi digitali con la tua firma</h3>
-        <p>Non devi scrivere più a mano tutto il preventivo e spedirlo tramite email. Noi ti offriamo lo strumento perfetto per inviare email professionali con la tua firma. Non dimenticare, inviando email professionali hai 90% di probabilità di successo in più rispetto alla tua concorrenza.</p>
-      </div>
-    </div>
-  </div>
-  <div class="section-container small">
-    <div class="section">
-      <div class="image left">
-        <img src="../assets/images/barchart.png" alt="Marketing gratis">
-      </div>
-      <div class="descr left">
-        <h3>Espansione della tua attività</h3>
-        <p>L'obbiettivo della tua impresa è il guadagno ma per farlo a volte bisogna cercare di espanderla. Noi ti aiuteremo con i giusti metodi e strumenti di iniziare in modo sano e sicuro.</p>
-      </div>
-    </div>
-  </div>
-  <div class="section-container small white-backgound">
-    <div class="section">
-      <div class="image left">
-        <img src="../assets/images/customer-service.png" alt="Assistenza 24/24 - 7/7 senza sosta">
-      </div>
-      <div class="descr left">
-        <h3>Assistenza senza sosta</h3>
-        <p>L’assistenza è molto importante per poter facilitare il tuo lavoro e risolvere problemi. Per questo siamo qui 24/24 - 7/7 a tempo pieno. Non esitare a chiamare o a inviarci una mail con domande o segnalazioni.</p>
-      </div>
-    </div>
-  </div>
-  <div class="section-container small">
-    <div class="section action-section">
-      <div class="actions">
-        <button class="btn btn-facebook" id="continueWithFacebook" (click)="continueWithFacebook()"><i class="fa fa-facebook-official" aria-hidden="true"></i>   Continua con Facebook</button>
-      </div>
-    </div>
-  </div>
-  <div class="section-container small white-backgound">
-    <div class="section footer-section">
-      <div class="links">
-        <h5>Siamo qui per te</h5>
-        <p>Per qualsiasi domanda o richiesta contattaci</p>
-        <ul class="contact-list">
-          <li><a href="mailto:info@starbook.co" target="_blank"><i class="fa fa-envelope" aria-hidden="true"></i><span>info@starbook.co</span></a></li>
-          <li><a href="tel:+393272415028" target="_blank"><i class="fa fa-phone" aria-hidden="true"></i><span>(39) 327 2415028</span></a></li>
-        </ul>
-        <p><a href="/info/legal" target="_blank">Termini e Condizioni</a></p>
-      </div>
-    </div>
-  </div>
-
-  <!-- <div class="bullets-container">
-    <h1>Come funziona</h1>
-    <div class="row bullets">
-      <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12">
-        <div class="box">
-          <img src="../../../assets/images/subscribe-icon.png" class="rounded mx-auto d-block" alt="Seleziona il servizio">
-          <h3>Iscriviti</h3>
-          <h5>Racontaci del servizio che offri, quanto costa e carica una foto. É cosi semplice, ed é gratis!</h5>
-        </div>
-      </div>
-      <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12">
-        <div class="box">
-          <img src="../../../assets/images/client-icon.png" class="rounded mx-auto d-block" alt="Calcola preventivo">
-          <h3>Ricevi clienti</h3>
-          <h5>Niente preventivi e attese, noi ti assicuriamo clienti reali e lavori pronti.</h5>
-        </div>
-      </div>
-      <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12">
-        <div class="box">
-          <img src="../../../assets/images/payment-icon.png" class="rounded mx-auto d-block" alt="Ordina il servizio">
-          <h3>Pagamenti sicuri</h3>
-          <h5>Per i pagamenti ci pensiamo noi! Tutto passa attraverso la nostra piattaforma di pagamento.</h5>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="frase-container">
-    <div class="overlay">
-      <div class="frase">
-        <h1>Vuoi andare oltre?</h1>
-        <h4>Puoi pubblicare i tuoi servizi personalizzati con i tuoi prezzi. Vai alla pagina del inserimento del servizio e inizia subito.</h4>
-        <button class="btn btn-warning" (click)="publishService()">Pubblica il tuo servizio</button>
-      </div>
-    </div>
-  </div>
-  <div class="prefooter-container">
-    <div class="row prefooter">
-      <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12">
-        <p>Sicurezza del sito</p>
-        <div class="list-security">
-          <img src="../../../assets/images/norton.png" alt="Norton Security">
-          <img src="../../../assets/images/secure.png" alt="100% Secure">
-          <img src="../../../assets/images/trust.png" alt="Trusted Website">
-        </div>
-      </div>
-      <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12">
-        <p>Sistemi di pagamento</p>
-        <div class="list-payment-methods">
-          <img src="../../../assets/images/mastercard.png" alt="Mastercard">
-          <img src="../../../assets/images/visa.png" alt="Visa">
-          <img src="../../../assets/images/americanexpress.png" alt="American Express">
-        </div>
-      </div>
-      <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12">
-        <p><a routerLink="/info/legal">Privacy e Condizioni</a></p>
-        <p><a routerLink="/insert/product">Pubblica un servizio</a></p>
-        <p><a routerLink="/info/about">Chi siamo</a></p>
-      </div>
-      <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12">
-        <p>Seguici su</p>
-        <div class="list-socials">
-          <a href="https://www.facebook.com/starbook.co/" target="_blank"><img src="../../../assets/images/facebook.png" alt="Facebook"></a>
-          <a href="https://twitter.com/starbookco/" target="_blank"><img src="../../../assets/images/twitter.png" alt="Twitter"></a>
-          <a href="https://www.instagram.com/starbook.co/" target="_blank"><img src="../../../assets/images/instagram.png" alt="Instagram"></a>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="footer">
-    <p><a routerLink="/"><strong>Starbook</strong> © 2017 Tutti i diritti riservati</a></p>
   </div> -->
+  <div class="section-container grey-backgound">
+    <div class="section">
+      <div class="section-content">
+        <div class="section-body">
+          <div class="left-content">
+            <h1>Soluzioni web per le aziende</h1>
+            <h3>Gestisci i tuoi contatti e clienti, promuovi i tuoi servizi, cresci la tua attività con gli strumenti web di Starbook.</h3>
+            <button class="btn btn-facebook" id="continueWithFacebook" (click)="continueWithFacebook('/account/profile')"><i class="fa fa-facebook-official" aria-hidden="true"></i>Continua con Facebook</button>
+          </div>
+          <div class="right-media hide-mobile">
+            <img src="../assets/images/solutions.png" title="Preventivi Web" alt="Preventivi Web">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="section-container">
+    <div class="section">
+      <div class="section-content">
+        <div class="section-header">
+          <h2>Come crescerà la tua azienda su Starbook?</h2>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="section-container grey-backgound">
+    <div class="section">
+      <div class="section-content">
+        <div class="section-body">
+          <div class="left-media">
+            <img class="shadow" src="../assets/images/professional-profile.png" title="Preventivi Web" alt="Preventivi Web">
+          </div>
+          <div class="right-content">
+            <h2><strong>Profilo professionale della tua attività</strong></h2>
+            <p>La prima cosa che un cliente vede è la tua <strong>immagine aziendale e professionale</strong>, la tua <strong>disponibilità</strong> e basandosi su questo deciderà se la tua attività è quella che sta cercando. Su <strong>Starbook</strong> la tua attività avrà il suo <strong>profilo professionale</strong>, <strong>una pagina</strong> per le <strong>richieste</strong> dei clienti e <strong>gestione</strong> dei clienti.</p>
+            <ul>
+              <li><i class="fa fa-check" aria-hidden="true"></i>Profilo aziendale</li>
+              <li><i class="fa fa-check" aria-hidden="true"></i>Profilo professionale</li>
+              <li><i class="fa fa-check" aria-hidden="true"></i>Gestione delle richieste dei clienti</li>
+              <li><i class="fa fa-check" aria-hidden="true"></i>Strumenti di promozione attività</li>
+            </ul>
+            <button class="btn btn-facebook" id="continueWithFacebook" (click)="continueWithFacebook('/account/profile')"><i class="fa fa-facebook-official" aria-hidden="true"></i>Continua con Facebook</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="section-container">
+    <div class="section">
+      <div class="section-content">
+        <div class="section-body">
+          <div class="left-content">
+            <h2><strong>Preventivi dinamici</strong></h2>
+            <p>Un sistema innovativo per conquistare i tuoi clienti, fidelizzarli e mantenerli. Porta al livello successivo i tuoi preventivi della tua azienda con i preventivi dinamici di Starbook.</p>
+            <ul>
+              <li><i class="fa fa-check" aria-hidden="true"></i>Nessuna complessità, <strong>crea e invia</strong> il preventivo <strong>in un click.</strong></li>
+              <li><i class="fa fa-check" aria-hidden="true"></i>Il modo migliore per inviare preventivi <strong>rapidamente.</strong></li>
+              <li><i class="fa fa-check" aria-hidden="true"></i>Una marcia in più che <strong>ti rende competitivo.</strong></li>
+              <li><i class="fa fa-check" aria-hidden="true"></i>Invia in <strong>tutti formati</strong> necessari, Web, Email, PDF e SMS.</li>
+              <li><i class="fa fa-check" aria-hidden="true"></i><strong>Avvisa</strong> con le Notifiche Push, SMS ed Email.</li>
+            </ul>
+            <button class="btn btn-success" id="goToQuotationsLandingPage" routerLink="/company/quotations">Scopri di più</button>
+          </div>
+          <div class="right-media">
+            <img class="shadow" src="../assets/images/quotation-options.png" title="Preventivi Web" alt="Preventivi Web">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- <div class="section-container grey-backgound">
+    <div class="section">
+      <div class="section-content">
+        <div class="section-body">
+          <div class="left-media">
+            <img class="shadow" src="../assets/images/trophy.png" alt="Diventando più competitivi della concorrenza">
+          </div>
+          <div class="right-content">
+            <h2>Diventando più competitivi della concorrenza</h2>
+            <p>Per battere la concorrenza bisogna diventare competitivi. Con Starbook diventerete veloci, accurati, professionali e migliori della concorrenza.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="section-container">
+    <div class="section">
+      <div class="section-content">
+        <div class="section-body">
+          <div class="left-content">
+            <h3>Presenza professionale online e gratis!</h3>
+            <p>La professionalità prima di percepirla deve essere mostrata. Avrai tutte le funzionalità che ti servono per migliorare l'immagine della tua impresa.</p>
+          </div>
+          <div class="right-media">
+            <img class="shadow" src="../assets/images/computer.png" alt="Presenza professionale online e gratis">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="section-container grey-backgound">
+    <div class="section">
+      <div class="section-content">
+        <div class="section-header">
+          <button class="btn btn-facebook" id="continueWithFacebook" (click)="continueWithFacebook('/account/profile')"><i class="fa fa-facebook-official" aria-hidden="true"></i>   Continua con Facebook</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="section-container">
+    <div class="section">
+      <div class="section-content">
+        <div class="section-header">
+          <h2>Senza dimenticare i servizi aggiuntivi</h2>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="section-container grey-backgound">
+    <div class="section">
+      <div class="section-content">
+        <div class="section-body">
+          <div class="left-media">
+            <img class="shadow" src="../assets/images/pie-chart.png" alt="Marketing gratis">
+          </div>
+          <div class="right-content">
+            <h2>Marketing gratis della tua azienda</h2>
+            <p>Utilizzeremo i metodi più efficienti per promuovere la tua azienda senza costi aggiuntivi. Non hai bisogno di utilizzare agenzie di pubblicità ma solo degli strumenti necessari per poter crescere la tua attività.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="section-container">
+    <div class="section">
+      <div class="section-content">
+        <div class="section-body">
+          <div class="left-media">
+            <img class="shadow" src="../assets/images/office-material.png" alt="Professionalità e competenze">
+          </div>
+          <div class="right-content">
+            <h2>Riconquista i vecchi clienti</h2>
+            <p>Anche i tuoi vecchi clienti si possono conquistare, ma per farlo devono essere utilizzate le ultime metodi e tecnologie. Ti sarà facile poi con un click invitare tutti i tuoi vecchi clienti a vedere il tuo profilo e riconquistarli.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="section-container grey-backgound">
+    <div class="section">
+      <div class="section-content">
+        <div class="section-body">
+          <div class="left-media">
+            <img class="shadow" src="../assets/images/list.png" alt="Marketing gratis">
+          </div>
+          <div class="right-content">
+            <h2>Preventivi digitali con la tua firma</h2>
+            <p>Non devi scrivere più a mano tutto il preventivo e spedirlo tramite email. Noi ti offriamo lo strumento perfetto per inviare email professionali con la tua firma. Non dimenticare, inviando email professionali hai 90% di probabilità di successo in più rispetto alla tua concorrenza.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="section-container">
+    <div class="section">
+      <div class="section-content">
+        <div class="section-body">
+          <div class="left-media">
+            <img class="shadow" src="../assets/images/barchart.png" alt="Marketing gratis">
+          </div>
+          <div class="right-content">
+            <h2>Espansione della tua attività</h2>
+            <p>L'obbiettivo della tua impresa è il guadagno ma per farlo a volte bisogna cercare di espanderla. Noi ti aiuteremo con i giusti metodi e strumenti di iniziare in modo sano e sicuro.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="section-container grey-backgound">
+    <div class="section">
+      <div class="section-content">
+        <div class="section-body">
+          <div class="left-media">
+            <img class="shadow" src="../assets/images/customer-service.png" alt="Assistenza 24/24 - 7/7 senza sosta">
+          </div>
+          <div class="right-content">
+            <h2>Assistenza senza sosta</h2>
+            <p>L’assistenza è molto importante per poter facilitare il tuo lavoro e risolvere problemi. Per questo siamo qui 24/24 - 7/7 a tempo pieno. Non esitare a chiamare o a inviarci una mail con domande o segnalazioni.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div> -->
+  <div class="section-container grey-backgound">
+    <div class="section action-section">
+      <div class="section-content">
+        <div class="section-header">
+          <button class="btn btn-facebook" id="continueWithFacebook" (click)="continueWithFacebook('/account/profile')"><i class="fa fa-facebook-official" aria-hidden="true"></i>Continua con Facebook</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="section-container">
+    <div class="section">
+      <div class="section-content">
+        <div class="section-body">
+          <div class="links">
+            <p>Per qualsiasi domanda o richiesta contattaci</p>
+            <ul class="contact-list">
+              <li><a href="mailto:info@starbook.co" target="_blank"><i class="fa fa-envelope" aria-hidden="true"></i><span>info@starbook.co</span></a></li>
+              <li><a href="tel:+393272415028" target="_blank"><i class="fa fa-phone" aria-hidden="true"></i><span>(39) 327 2415028</span></a></li>
+            </ul>
+            <p><a href="/info/legal" target="_blank">Termini e Condizioni</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 
-<div class="company-container" *ngIf="page==='1'">
-  <div class="header-container">
-    <div class="header">
-      <h1>Fai crescere la tua attività senza spendere niente. Per sempre.</h1>
-      <p>Perché non lavorare continuamente per sempre e senza costi di acquisizione clienti? Prova Starbook adesso. Inserisci la tua email e ti aggiorneremo sulla novità a breve.</p>
-      <div class="form-group">
-        <input type="text" class="form-control" placeholder="Inserisci il tuo indirizzo email" id="emailInput">
-        <small>Diamo valore al privacy e non condividiamo mai le tue informazioni</small>
+<div class="company-container" *ngIf="page==='quotations'">
+  <div class="section-container grey-backgound">
+    <div class="section">
+      <div class="section-content">
+        <div class="section-body">
+          <div class="left-content">
+            <h1>Preventivi dinamici</h1>
+            <h3>Il miglior sistema per conquistare i tuoi clienti, fidelizzarli e mantenerli. Porta al livello successivo i tuoi preventivi della tua azienda.</h3>
+            <button class="btn btn-facebook" id="continueWithFacebook" (click)="continueWithFacebook('/account/quotation')"><i class="fa fa-facebook-official" aria-hidden="true"></i>Continua con Facebook</button>
+          </div>
+          <div class="right-media hide-mobile">
+            <img src="../assets/images/computer.png" title="Preventivi Web" alt="Preventivi Web">
+          </div>
+        </div>
       </div>
-      <button class="btn btn-success myButton">Aggiornami</button>
-      <!-- <button class="btn btn-warning" (click)="registerCompany()">Iscrivi la tua attività</button> -->
     </div>
   </div>
-  <div class="message-container">
-    <div class="message">
-      <div class="left picture">
-        <img src="../../assets/images/robot.png" alt="Automatizza">
+  <div class="section-container">
+    <div class="section">
+      <div class="section-content">
+        <div class="section-header">
+          <h2>Perché utilizzare solo preventivi dinamici?</h2>
+        </div>
       </div>
-      <div class="left content">
-        <h2>AUTOMATIZZA LA TUA ATTIVITÁ PROFESSIONALE</h2>
-        <p>Cercare di crescere un attività professionale, trovare e fidelizzare i clienti è diventato un problema per molti professionisti, artigiani e giovanni intraprendenti. Un problema molto comune non solo in tempi di crisi ma anche quando la domanda sul mercato è abondante. Abbiamo costruito Starbook per rendere tutto questo più facile e gestito tutto tramite Internet. Piattaforma disponibile in tutta l’italia a tutti i professionisti.</p>
+    </div>
+  </div>
+  <div class="section-container grey-backgound">
+    <div class="section">
+      <div class="section-content">
+        <div class="section-body">
+          <div class="left-media">
+            <img class="shadow" src="../assets/images/quotation-options.png" alt="Prezzo lo decidi tu">
+          </div>
+          <div class="right-content">
+            <h2>Più <strong>semplici</strong> da creare e più <strong>veloci</strong> da inviare</h2>
+            <p>Vuoi un metodo semplice per scrivere <strong>preventivi più efficaci?</strong> Nessun problema. Starbook ti offre <strong>un semplice sistema</strong> per creare preventivi professionali e crescere il tasso di conversione.</p>
+            <ul>
+              <li><i class="fa fa-check" aria-hidden="true"></i>Nessuna complessità, <strong>crea e invia</strong> il preventivo <strong>in un click.</strong></li>
+              <li><i class="fa fa-check" aria-hidden="true"></i>Il modo migliore per inviare preventivi <strong>rapidamente.</strong></li>
+              <li><i class="fa fa-check" aria-hidden="true"></i>Una marcia in più che <strong>ti rende competitivo.</strong></li>
+              <li><i class="fa fa-check" aria-hidden="true"></i>Invia in <strong>tutti formati</strong> necessari, Web, Email, PDF e SMS.</li>
+              <li><i class="fa fa-check" aria-hidden="true"></i><strong>Avvisa</strong> con le Notifiche Push, SMS ed Email.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="section-container">
+    <div class="section">
+      <div class="section-content">
+        <div class="section-body">
+          <div class="left-content">
+            <h2><strong>Verifica</strong> i contatti e <strong>traccia</strong> i preventivi</h2>
+            <p>Ti sei mai chiesto se il tuo preventivo <strong>viene visualizzato dal cliente</strong> e quante volte? Ti sei mai chiesto che <strong>il tuo contatto è reale?</strong> Immagino proprio di si ma per scoprirlo <strong>devi utilizzare gli strumenti adatti.</strong></p>
+            <ul>
+              <li><i class="fa fa-check" aria-hidden="true"></i>Traccia le <strong>azioni</strong> e le <strong>visualizzazioni.</strong></li>
+              <li><i class="fa fa-check" aria-hidden="true"></i><strong>Verifica i contatti email e numeri di telefono.</strong></li>
+              <li><i class="fa fa-check" aria-hidden="true"></i>Controlla la <strong>piattaforma di acquisizione</strong> contatti.</li>
+            </ul>
+          </div>
+          <div class="right-media">
+            <img class="shadow" src="../assets/images/test.png" alt="Prezzo lo decidi tu">
+            <!-- <img class="shadow" src="../assets/images/quotation-analytics.png" alt="Prezzo lo decidi tu"> -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="section-container grey-backgound">
+    <div class="section">
+      <div class="section-content">
+        <div class="section-header">
+          <button class="btn btn-facebook" id="continueWithFacebook" (click)="continueWithFacebook('/account/quotation')"><i class="fa fa-facebook-official" aria-hidden="true"></i>   Continua con Facebook</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="section-container">
+    <div class="section">
+      <div class="section-content">
+        <div class="section-body">
+          <div class="links">
+            <p>Per qualsiasi domanda o richiesta contattaci</p>
+            <ul class="contact-list">
+              <li><a href="mailto:info@starbook.co" target="_blank"><i class="fa fa-envelope" aria-hidden="true"></i><span>info@starbook.co</span></a></li>
+              <li><a href="tel:+393272415028" target="_blank"><i class="fa fa-phone" aria-hidden="true"></i><span>(39) 327 2415028</span></a></li>
+            </ul>
+            <p><a href="/info/legal" target="_blank">Termini e Condizioni</a></p>
+          </div>
+        </div>
       </div>
     </div>
   </div>

@@ -20,7 +20,6 @@ export class QuotationComponent implements OnInit {
     this.navigationService.updateMessage("Preventivo")
     if (isBrowser) {
       this.Account = JSON.parse(localStorage.getItem('auth'))
-
       window.scrollTo(0, 0);
       if (document.location.hostname === "www.starbook.co") {
         fb.init({appId: '1108461325907277', version: 'v2.7'})
@@ -37,6 +36,11 @@ export class QuotationComponent implements OnInit {
         this.commonService.getMethod('quotations?token=' + token).then((data) => {
           this.quotation = data.result
           // console.log('data: ' + JSON.stringify(data))
+          this.commonService.putMethod('view/quotations/' + this.quotation['_id'], {}).then((data) => {
+            // console.log('data: ' + JSON.stringify(data))
+          }).catch((error) => {
+            // console.log('error: ' + JSON.stringify(error))
+          })
         }).catch((error) => {
           this.router.navigate([''])
         })

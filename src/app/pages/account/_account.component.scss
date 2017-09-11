@@ -114,6 +114,14 @@ app-account {
           }
           h2 {
             font-weight: 400;
+            .btn {
+              font-size: 12px;
+              padding: 0 10px;
+              line-height: 30px;
+              height: 30px;
+              border-radius: 3px;
+              font-weight: 600;
+            }
           }
           p {
             margin-top: 5px;
@@ -521,6 +529,88 @@ app-account {
             font-size: 20px;
             padding: 0 20px;
           }
+          .form-group .form-check-label input {
+            height: 16px !important;
+            margin-right: 10px;
+          }
+          .paycard-container {
+            overflow: auto;
+            .paycard {
+              position: relative;
+              display: block;
+              margin-bottom: .75rem;
+              background-color: #fff;
+              border-radius: .25rem;
+              border: 1px solid rgba(0,0,0,.125);
+              .paycard-content {
+                .paycard-header {
+                  background-color: #f5f5f5;
+                  padding: 12px 20px;
+                  border-bottom: 1px solid rgba(0,0,0,.125);
+                }
+                .paycard-body {
+                  background-color: white;
+                  padding: 20px;
+                  overflow: auto;
+                  .name-card {
+                    margin-right: 10px;
+                  }
+                  .number-card {
+                    margin-right: 10px;
+                  }
+                  .exp-card {
+                    // margin-right: 10px;
+                  }
+                  .actions {
+                    float: right;
+                    .btn {
+                      font-size: 14px;
+                      padding: 0;
+                    }
+                    .btn-link {
+                      color: #3297d3;
+                      width: auto;
+                    }
+                    .default-card {
+                      margin-right: 10px;
+                      padding: 2px 8px;
+                      height: auto;
+                      font-size: 12px;
+                      border-radius: 20px;
+                      color: #3297d3;
+                      border: 1px solid #3297d3;
+                      font-weight: 600;
+                      line-height: 16px;
+                    }
+                    .not-default-card {
+                      cursor: pointer;
+                      margin-right: 10px;
+                      padding: 2px 8px;
+                      height: auto;
+                      font-size: 12px;
+                      border-radius: 20px;
+                      color: rgba(50, 151, 211, 0.2);
+                      border: 1px solid rgba(50, 151, 211, 0.2);
+                      font-weight: 600;
+                      line-height: 16px;
+                      i {
+                        margin-right: 5px;
+                      }
+                    }
+                    .not-default-card:hover {
+                      color: #3297d3;
+                      border: 1px solid #3297d3;
+                    }
+                  }
+                }
+                .paycard-footer {
+                  background-color: #f5f5f5;
+                  padding: 12px 20px;
+                  border-top: 1px solid rgba(0,0,0,.125);
+                }
+              }
+            }
+          }
         }
       }
       .quotation-content {
@@ -533,51 +623,15 @@ app-account {
           padding: 20px 30px;
           border-bottom: 1px solid #eceeef;
           overflow: auto;
-          .vendor {
-            float: left;
-            width: 50%;
-            .slogan {
-              display: block;
-              font-weight: 300;
-            }
-            .address {
-              margin-top: 10px;
-              span {
-                display: block;
-                font-size: 15px;
-              }
-            }
-            h4 {
-              font-weight: 500;
-            }
-            h5 {
-              font-weight: 300;
-            }
-            h6 {
-              font-weight: 300;
-              margin-top: 5px;
-            }
+          .title {
+            font-size: 20px;
+            font-weight: 500;
+            color: rgba(0, 0, 0, 0.5);
           }
-          .customer {
-            text-align: right;
+          .date {
             float: right;
-            width: 50%;
-            .date {
-              display: block;
-              font-weight: 300;
-              margin-top: 5px;
-            }
-            h4 {
-              font-weight: 400;
-              color: rgba(0, 0, 0, 0.5);
-            }
-            h5 {
-              // font-weight: 400;
-              color: rgba(0, 0, 0, 0.5);
-            }
-            h6 {
-              margin-top: 20px;
-            }
+            font-size: 17px;
+            line-height: 28px;
           }
         }
         .quotation-body {
@@ -600,12 +654,70 @@ app-account {
               font-size: 15px;
             }
           }
+          .vendor {
+            float: left;
+            width: 50%;
+            margin-bottom: 20px;
+            .businessname {
+              display: block;
+              font-size: 26px;
+            }
+            .username {
+              display: block;
+              font-size: 16px;
+            }
+          }
+          .customer {
+            text-align: right;
+            float: right;
+            width: 50%;
+            .date {
+              display: block;
+              margin-top: 5px;
+              font-size: 18px;
+            }
+            h4 {
+              font-weight: 500;
+              color: rgba(0, 0, 0, 0.5);
+            }
+            h5 {
+              margin-top: 20px;
+              font-weight: 400;
+            }
+            h6 {
+              margin-top: 20px;
+            }
+            .username {
+              display: block;
+              font-size: 20px;
+            }
+          }
+          .description {
+            overflow: auto;
+            width: 100%;
+            p {
+              margin-bottom: 10px;
+            }
+          }
+        }
+        .quotation-footer {
+          padding: 20px 30px;
+          border-top: 1px solid #eceeef;
+          // text-align: right;
+          .btn {
+            padding: 0 30px;
+            border-radius: 3px;
+            height: 45px;
+            line-height: 45px;
+            font-size: 17px;
+            font-weight: 500;
+          }
         }
       }
     }
     .account-tab {
       float: left;
-      width: 160px;
+      width: 200px;
       ul {
         li {
           margin-bottom: 10px;
@@ -620,8 +732,8 @@ app-account {
           }
           .btn-success {
             font-weight: 500;
-            width: auto;
-            padding: 0 30px;
+            width: 100%;
+            padding: 0 20px;
             margin: 10px 0;
             i {
               margin-right: 5px;
@@ -661,7 +773,7 @@ app-account {
       }
     }
     .tabbed-content {
-      margin-left: 170px;
+      margin-left: 220px;
     }
     .right-triangle {
       position: absolute;
@@ -846,5 +958,9 @@ app-account {
   }
   app-account .account-container .account .tabbed-content {
     margin-left: 0;
+  }
+  app-account .account-container .account .account-content .account-body .paycard-container .paycard .paycard-content .paycard-body .actions {
+    width: 100%;
+    margin-top: 15px;
   }
 }

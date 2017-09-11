@@ -7,13 +7,29 @@ import 'rxjs/add/operator/toPromise';
 
 @Injectable()
 export class CommonService {
-  private api: string;
-  private auth;
-  private data = {};
+  private data = {}
+  private protocol = "https"
+  private hostname = "api.starbook.co"
+  private api_version = "v0.9.1"
+  private api = ""
+  private auth
 
   constructor(private http: Http/*, private navigationService: NavigationService */) {
-    this.api = 'https://api.starbook.co/v0.9.1/';
-    // this.api = 'http://localhost/t0.9.1/';
+    if (isBrowser) {
+      if (document.location.hostname === "www.starbook.co") {
+        this.api_version = "v0.9.1"
+      } else {
+        this.api_version = "t0.9.1"
+      }
+      // https:
+      // console.log('protocol: ' + document.location.protocol);
+      // glacial-shore-66987.herokuapp.com
+      // www.starbook.co
+      // console.log('hostname: ' + document.location.hostname);
+      // console.log('port: ' + document.location.port);
+    }
+    this.api = this.protocol + "://" + this.hostname + "/" + this.api_version + "/"
+    // this.api = 'http://localhost/t0.9.1/'
   }
 
   setObjectForKey(object, key) {

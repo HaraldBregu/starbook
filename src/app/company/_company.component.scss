@@ -3,33 +3,15 @@ app-company {
   width: 100%;
   height: 100%;
   padding: 70px 0 0;
-
-  .btn-warning {
-    background: #F6A623;
-  }
-  .btn-warning:focus {
-    background: #F6A623;
-  }
-  .btn-warning:active:focus {
-    background: #e49616;
-  }
-  .btn-warning:hover {
-    background: #e49616;
-  }
-
   .company-container {
     background: white;
     .header-container {
-      // background-image: url('https://s3-eu-west-1.amazonaws.com/starbook-s3/website/woman-hand-smartphone-laptop.jpg');
-      background-image: url('https://s3-eu-west-1.amazonaws.com/starbook-s3/website/bg-company-landing-page.png');
-      background-size: cover;
-      background-repeat: no-repeat;
-      background-position: center;
+      background-color: #EDEFF3;
       .header {
         max-width: 1240px;
         margin: auto;
         color: white;
-        padding: 100px 20px;
+        padding: 70px 20px;
         text-align: center;
         h1 {
           font-family: Helvetica Neue, sans-serif;
@@ -40,8 +22,6 @@ app-company {
           text-shadow: 0 1px 0px rgba(255, 255, 255, 0.8);
         }
         p {
-          // font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-          // font-weight: 400;
           font-size: 30px !important;
           line-height: 46px;
           color: #1E2E4F;
@@ -98,16 +78,12 @@ app-company {
         }
         .btn {
           position: relative;
-          // background-image: linear-gradient(to bottom, #5cb85c 0%, #4cae4c 100%);
-          // box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 3px 0px #357935;
-          // border: 1px solid #3e8f3e;
           margin-top: 100px;
           border-radius: 3px;
           height: 70px;
           padding: 0 30px 0 13px;
           font-weight: 600;
           font-size: 29px;
-          // text-shadow: 0 2px 0 rgba(0, 0, 0, 0.3);
           vertical-align: middle;
           i {
             font-size: 50px;
@@ -115,434 +91,287 @@ app-company {
             margin-right: 20px;
           }
         }
-        .btn:hover {
-          // background-image: linear-gradient(to bottom, #67bd67 0%, #47a447 100%);
-          // border-color: #388038;
+        .header-content {
+          overflow: auto;
+          .left-content {
+            float: left;
+            width: 50%;
+            text-align: left;
+            h1 {
+              font-size: 44px;
+              line-height: 56px;
+            }
+            p {
+              font-size: 28px !important;
+              line-height: 38px;
+            }
+            .btn {
+              margin-top: 40px;
+              height: 60px;
+              font-size: 26px;
+              i {
+                font-size: 42px;
+              }
+            }
+          }
+          .right-content {
+            float: right;
+            width: 50%;
+            img {
+              width: 55%;
+            }
+            .btn {
+              margin-top: 40px;
+              height: 60px;
+              font-size: 26px;
+              i {
+                font-size: 42px;
+              }
+            }
+          }
         }
-        .btn:active {
-          // background-color: #419641;
-          // border: 1px solid #3e8f3e;
-        }
-      }
-      .overlay {
-        // background-color: rgba(0, 0, 0, 0.5);
       }
     }
+
     .section-container {
       background: #f9fafa;
       .section {
-        max-width: 1350px;
-        text-align: center;
+        max-width: 1140px;
         margin: auto;
-        padding: 90px 20px;
-        overflow: auto;
-        h2 {
-          font-weight: 400;
-          font-size: 40px;
-          color: #36464f;
-          line-height: 58px;
-        }
-        .image {
-          float: left;
-          width: 27%;
-          // margin: 0 38px 0 118px;
-          img {
-            float: right;
-            width: 150px;
-          }
-        }
-        .descr {
-          overflow: hidden;
-          width: 73%;
-          padding: 0 40px;
-          h3 {
-            color: #36464f;
-            font-size: 40px;
-            text-align: left;
-            font-weight: 900;
-            word-spacing: 2px;
-            letter-spacing: 0px;
-          }
-          p {
-            margin-top: 35px;
-            font-size: 24px !important;
-            max-width: 600px;
-            text-align: left;
-            letter-spacing: 0px !important;
-          }
-        }
-        .actions {
-          text-align: center;
-          .btn {
-            position: relative;
-            border-radius: 3px;
-            height: 70px;
-            padding: 0 30px 0 13px;
-            font-weight: 600;
-            font-size: 29px;
-            vertical-align: middle;
-            i {
-              font-size: 50px;
-              vertical-align: inherit;
-              margin-right: 20px;
+        .section-content {
+          .section-header {
+            padding: 70px 20px;
+            overflow: auto;
+            text-align: center;
+            h2 {
+              font-weight: 400;
+              font-size: 40px;
+              color: #36464f;
+              line-height: 58px;
             }
-          }
-        }
-        .links {
-          margin-top: 60px;
-          h5 {
-            font-size: 30px;
-            font-weight: 500;
-          }
-          p {
-            font-size: 22px !important;
-            margin-top: 20px;
-          }
-          .contact-list {
-            margin-top: 30px;
-            li {
-              display: inline-block;
-              vertical-align: top;
-              padding: 20px;
+            .btn {
+              position: relative;
+              border-radius: 3px;
+              height: 60px;
+              padding: 0 30px 0 13px;
+              font-weight: 500;
+              font-size: 23px;
+              vertical-align: middle;
               i {
-                font-size: 28px;
-                color: #ff6d22;
+                font-size: 42px;
+                vertical-align: inherit;
+                margin-right: 14px;
               }
-              span {
-                display: block;
+            }
+          }
+          .section-body {
+            padding: 70px 20px;
+            overflow: auto;
+            h1 {
+              font-family: Helvetica Neue, sans-serif;
+              font-weight: 600;
+              font-size: 46px;
+              line-height: 50px;
+              color: #263961;
+              text-shadow: 0 1px 0px rgba(255, 255, 255, 0.8);
+            }
+            h2 {
+              font-weight: 400;
+            }
+            h3 {
+              font-size: 28px !important;
+              font-weight: 400;
+              line-height: 38px;
+              color: #1E2E4F;
+              margin-top: 30px;
+              text-shadow: 0 1px 0px rgba(255, 255, 255, 0.8);
+            }
+            p {
+              margin-top: 20px;
+            }
+            ul {
+              margin-top: 30px;
+              margin-bottom: 1em;
+              max-width: 500px;
+              li {
+                position: relative;
                 font-size: 18px;
-                margin-top: 15px;
+                margin-bottom: 0.5em;
+                padding-left: 26px;
+                i {
+                  position: absolute;
+                  top: 2px;
+                  left: 0;
+                  margin-right: 5px;
+                  font-size: 20px;
+                }
+              }
+            }
+            .btn {
+              position: relative;
+              margin-top: 40px;
+              border-radius: 3px;
+              padding: 0 40px;
+              height: 60px;
+              font-weight: 500;
+              font-size: 23px;
+              vertical-align: middle;
+            }
+            .btn-facebook {
+              padding: 0 30px 0 13px;
+              i {
+                font-size: 42px;
+                vertical-align: inherit;
+                margin-right: 14px;
+              }
+            }
+            .left-content {
+              float: left;
+              text-align: left;
+              width: 65%;
+              padding-right: 80px;
+            }
+            .right-media {
+              float: left;
+              width: 35%;
+              img {
+
+              }
+              .shadow {
+                border-radius: 3px;
+                border: 1px solid #c0c0c0;
+                box-shadow: 8px 8px 0 rgba(192, 192, 192, 0.3);
+              }
+            }
+            .right-content {
+              float: left;
+              text-align: left;
+              width: 65%;
+              padding-left: 80px;
+            }
+            .left-media {
+              float: left;
+              width: 35%;
+              img {
+
+              }
+              .shadow {
+                border-radius: 3px;
+                border: 1px solid #c0c0c0;
+                box-shadow: 8px 8px 0 rgba(192, 192, 192, 0.3);
+              }
+            }
+            .links {
+              text-align: center;
+              h5 {
+                font-size: 30px;
+                font-weight: 500;
+              }
+              p {
+                font-size: 22px !important;
+                margin-top: 20px;
+              }
+              .contact-list {
+                margin-top: 30px;
+                max-width: none;
+                li {
+                  display: inline-block;
+                  vertical-align: top;
+                  padding: 20px;
+                  i {
+                    position: relative;
+                    font-size: 28px;
+                    color: #ff6d22;
+                  }
+                  span {
+                    display: block;
+                    font-size: 18px;
+                    margin-top: 15px;
+                  }
+                }
               }
             }
           }
         }
-      }
-      .action-section {
-        padding: 40px 20px;
-      }
-      .title-section {
-        padding: 40px 20px;
-      }
-      .footer-section {
-
-      }
-    }
-    .small {
-      .section {
-        padding: 60px 20px;
-        .image {
-          width: 23%;
-        }
-        .descr {
-          width: 77%;
-        }
-        .image {
-          img {
-            width: 100px;
-          }
-        }
-        .descr {
-          h3 {
-            font-size: 30px;
-          }
-          p {
-            font-size: 22px !important;
-            margin-top: 15px;
-            max-width: none;
-          }
-        }
-      }
-      .action-section {
-        padding: 100px 20px;
-      }
-      .title-section {
-        padding: 40px 20px;
       }
     }
     .white-backgound {
       background: white;
     }
-
-    .message-container {
-      background: #3B5998;
-      padding: 70px 20px;
-      overflow: auto;
-      .message {
-        max-width: 1120px;
-        margin: auto;
-        overflow: auto;
-        color: white;
-        .picture {
-          width: 15%;
-          // background-image: url('../../assets/images/robot.png');
-          // background-size: cover;
-          // background-repeat: no-repeat;
-          // background-position: center;
-        }
-        .content {
-          width: 85%;
-          h2 {
-            font-size: 25px;
-            font-weight: 800;
-          }
-          p {
-            font-size: 20px !important;
-            font-weight: 400;
-            line-height: initial;
-            margin-top: 20px;
-          }
-        }
-      }
-    }
-    .bullets-container {
-      display: block;
-      text-align: center;
-      padding: 100px 0;
-      max-width: 1440px;
-      margin: auto;
-      h1 {
-        text-align: center;
-        color: #324978;
-      }
-      img {
-        margin: 0 0 30px;
-        width: 30%;
-      }
-      h3 {
-        margin: 0 auto 10px;
-        color: #324976;
-        max-width: 300px;
-        font-weight: 400;
-      }
-      h5 {
-        margin: auto;
-        font-weight: 300;
-        max-width: 310px;
-        line-height: 26px;
-        color: rgba(0, 0, 0, 0.7);
-      }
-      .bullets {
-        padding-top: 40px;
-      }
-    }
-    .frase-container {
-      background-image: url('https://s3-eu-west-1.amazonaws.com/starbook-s3/website/city-from-top.png');
-      background-size: cover;
-      background-repeat: no-repeat;
-      background-position: center;
-      .overlay {
-        background-color: rgba(0, 0, 0, 0.75);
-      }
-      .frase {
-        color: white;
-        padding: 80px 30px;
-        max-width: 1200px;
-        margin: auto;
-        text-align: center;
-        h1 {
-          font-weight: 300;
-        }
-        h4 {
-          font-weight: 300;
-          margin-top: 22px;
-          color: rgba(255, 255, 255, 0.8);
-        }
-        .btn {
-          margin-top: 50px;
-          font-weight: 600;
-          height: 60px;
-          padding: 0 40px;
-          border-radius: 3px;
-        }
-      }
-    }
-    .prefooter-container {
-      overflow: auto;
-      color: rgba(255, 255, 255, 0.7);
-      text-align: left;
-      background: #161517;
-      padding: 50px;
-      font-weight: 300;
-      .prefooter {
-        max-width: 1440px;
-        margin: auto;
-        h6 {
-          font-weight: 300;
-        }
-        a, a:hover {
-          text-decoration: none;
-        }
-        .list-security {
-          display: inline-block;
-          max-width: 280px;
-          margin: auto;
-          padding-top: 10px;
-          padding-bottom: 10px;
-        }
-        .list-security img {
-          max-height: 40px;
-          margin: 5px;
-          float: left;
-        }
-        .list-payment-methods {
-          display: inline-block;
-          max-width: 280px;
-          margin: auto;
-          padding-top: 10px;
-          padding-bottom: 10px;
-        }
-        .list-payment-methods img {
-          max-height: 40px;
-          margin: 5px;
-          float: left;
-        }
-        .list-socials {
-          display: inline-block;
-          max-width: 280px;
-          margin: auto;
-          padding-top: 10px;
-          padding-bottom: 10px;
-        }
-        .list-socials img {
-          max-height: 40px;
-          margin: 5px;
-          float: left;
-        }
-      }
-    }
-    .footer {
-      padding: 20px;
-      background: #0C0B0D;
-      border: none;
-      p {
-        text-align: center;
-        font-weight: 300;
-        color: rgba(255, 255, 255, 0.7);
-      }
-      a, a:hover {
-         display: inline;
-         color: rgba(255, 255, 255, 0.7);
-         text-decoration: none;
-       }
+    .grey-backgound {
+      background: #EDEFF3;
     }
   }
 }
 
 @media (max-width: 1024px) {
-  app-company .company-container .header-container .header {
+  app-company .company-container .section-container .section .section-content .section-body {
     padding: 40px;
   }
-  app-company .company-container .header-container .header .btn {
-    margin-top: 50px;
-  }
-  app-company .company-container .header-container .header h1 {
-    font-size: 43px;
+  app-company .company-container .section-container .section .section-content .section-body h1 {
+    font-size: 41px;
     line-height: 49px;
   }
-  app-company .company-container .header-container .header p {
+  app-company .company-container .section-container .section .section-content .section-body h3 {
     font-size: 26px !important;
     line-height: 39px;
     margin-top: 20px;
   }
-  app-company .company-container .section-container .section .links {
-    margin-top: 0;
+  app-company .company-container .section-container .section .section-content .section-header h2 {
+    font-size: 36px;
   }
 }
 
 @media (max-width: 768px) {
-  app-company .company-container .header-container .header h1 {
+  app-company .company-container .section-container .section .section-content .section-body {
+    padding: 30px;
+  }
+  app-company .company-container .section-container .section .section-content .section-body h1 {
     font-size: 36px;
+    line-height: 42px;
   }
-  app-company .company-container .header-container .header p {
-    font-size: 20px !important;
+  app-company .company-container .section-container .section .section-content .section-body h3 {
+    font-size: 22px !important;
     line-height: 32px;
-    margin-top: 8px;
+    margin-top: 15px;
   }
-  app-company .company-container .header-container .header .btn {
-    height: 60px;
-    font-size: 25px;
-  }
-  app-company .company-container .header-container .header .btn i {
-    font-size: 44px;
-  }
-  app-company .company-container .section-container .section {
-    padding: 60px 20px;
-  }
-  app-company .company-container .section-container .section .image {
-    width: 25%;
-  }
-  app-company .company-container .section-container .section .descr {
-    width: 75%;
-  }
-  app-company .company-container .section-container .section .descr h3 {
-    font-size: 27px;
-    line-height: 34px;
-  }
-  app-company .company-container .section-container .section .descr p {
-    margin-top: 10px;
-    font-size: 19px !important;
-  }
-  app-company .company-container .small .section .image {
-    width: 17%;
-  }
-  app-company .company-container .small .section .descr {
-    width: 83%;
-    padding: 0 20px;
-  }
-  app-company .company-container .small .section .descr h3 {
-    font-size: 24px;
-  }
-  app-company .company-container .small .section .descr p {
-    margin-top: 5px;
-    font-size: 17px !important;
-  }
-  app-company .company-container .section-container .section h2 {
+  app-company .company-container .section-container .section .section-content .section-header h2 {
     font-size: 32px;
-    line-height: 44px;
+    line-height: 42px;
   }
-  app-company .company-container .section-container .section .actions .btn {
-    height: 60px;
-    font-size: 25px;
+  app-company .company-container .section-container .section .section-content .section-body .left-content {
+    padding-right: 40px;
   }
-  app-company .company-container .section-container .section .links h5 {
-    font-size: 24px;
+  app-company .company-container .section-container .section .section-content .section-body .right-content {
+    padding-left: 40px;
   }
-  app-company .company-container .section-container .section .links p {
-    font-size: 16px !important;
-  }
-  app-company .company-container .section-container .section .links .contact-list {
-    margin-top: 10px;
-  }
-  app-company .company-container .section-container .footer-section {
-    padding: 30px 20px;
-  }
-
 }
 
 @media (max-width: 425px) {
-  app-company .company-container .section-container .section {
-    padding: 20px 20px;
+  app-company .company-container .section-container .section .section-content .section-body {
+    padding: 30px 20px;
   }
-  app-company .company-container .section-container .section h2 {
-    font-size: 26px;
-    line-height: 37px;
+  app-company .company-container .section-container .section .section-content .section-header {
+    padding: 30px 20px;
   }
-  app-company .company-container .header-container .overlay .header {
-    padding: 20px;
-    text-align: left;
+  app-company .hide-mobile {
+    display: none;
   }
-  app-company .company-container .header-container .header p {
-    font-size: 17px !important;
-    line-height: 23px;
-    margin-top: 4px;
-    text-align: center;
+  app-company .company-container .section-container .section .section-content .section-body .left-content {
+    padding: 0;
+    float: none;
+    width: 100%;
   }
-  app-company .company-container .header-container .overlay .header h1 {
-    font-size: 31px;
-    line-height: 38px;
-    text-align: center;
+  app-company .company-container .section-container .section .section-content .section-body .left-media {
+    float: none;
   }
-  app-company .company-container .header-container .overlay .header .btn {
+  app-company .company-container .section-container .section .section-content .section-body .right-content {
+    padding: 0;
+    float: none;
+    width: 100%;
+    margin-top: 20px;
+  }
+  app-company .company-container .section-container .section .section-content .section-body .btn-facebook {
     margin-top: 40px;
     width: 100%;
     padding: 0;
@@ -550,70 +379,44 @@ app-company {
     height: 50px;
     padding-left: 30px;
   }
-  app-company .company-container .bullets-container {
-    padding: 40px 0;
-  }
-  app-company .company-container .frase-container .frase {
-    padding: 40px 20px;
-  }
-  app-company .company-container .frase-container .frase .btn {
-    margin-top: 20px;
-    width: 100%;
-  }
-  app-company .company-container .header-container .header .btn i {
+  app-company .company-container .section-container .section .section-content .section-body .btn-facebook i {
     position: absolute;
     left: 10px;
     top: 5px;
     font-size: 37px;
   }
-  app-company .company-container .header-container .header small {
-    font-size: 11px;
-    margin-top: 4px;
-    text-align: center;
-  }
-  app-company .company-container .section-container .section .image {
+  app-company .company-container .section-container .section .section-content .section-header .btn-facebook {
     width: 100%;
-    padding: 10px;
+    padding: 0;
+    font-size: 21px;
+    height: 50px;
+    padding-left: 30px;
   }
-  app-company .company-container .section-container .section .image img {
-    float: none;
-    width: 80px;
+  app-company .company-container .section-container .section .section-content .section-header .btn-facebook i {
+    position: absolute;
+    left: 10px;
+    top: 5px;
+    font-size: 37px;
   }
-  app-company .company-container .section-container .section .descr {
-    width: 100%;
-    padding: 20px 0 20px;
-  }
-  app-company .company-container .section-container .section .descr h3 {
-    font-size: 23px;
-    line-height: 29px;
-  }
-  app-company .company-container .section-container .section .descr p {
-    font-size: 17px !important;
-  }
-  app-company .company-container .section-container .section .actions .btn {
+  app-company .company-container .section-container .section .section-content .section-body .btn-success {
+    margin-top: 40px;
     width: 100%;
     padding: 0;
     font-size: 21px;
     height: 50px;
   }
-  app-company .company-container .section-container .section .actions .btn i {
-    position: absolute;
-    left: 10px;
-    top: 5px;
-    font-size: 37px;
-  }
-  app-company .company-container .small .action-section {
-    padding: 50px 20px;
+  app-company .company-container .section-container .section .section-content .section-body .right-media {
+    margin-top: 20px;
   }
 }
 
 @media (max-width: 320px) {
-  app-company .company-container .header-container .overlay .header .btn {
+  app-company .company-container .section-container .section .section-content .section-body .btn-facebook {
     font-size: 17px;
     height: 50px;
     padding-left: 30px;
   }
-  app-company .company-container .section-container .section .actions .btn {
+  app-company .company-container .section-container .section .section-content .section-header .btn-facebook {
     font-size: 17px;
     padding-left: 30px;
   }

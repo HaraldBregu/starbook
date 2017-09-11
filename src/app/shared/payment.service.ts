@@ -13,9 +13,8 @@ export class PaymentService {
   private protocol = "https"
   private hostname = "api.starbook.co"
   private api_version = "v0.9.1"
-  private api = ""; //'https://api.starbook.co/v0.9.1/';
-  // private api = 'http://localhost/v0.9.1/';
-  private auth;
+  private api = ""
+  private auth
 
   constructor(private http: Http) {
     if (isBrowser) {
@@ -31,7 +30,8 @@ export class PaymentService {
       // console.log('hostname: ' + document.location.hostname);
       // console.log('port: ' + document.location.port);
     }
-    this.api = this.protocol + "://" + this.hostname + "/" + this.api_version + "/";
+    this.api = this.protocol + "://" + this.hostname + "/" + this.api_version + "/"
+    // this.api = 'http://localhost/t0.9.1/'
   }
 
   private _makeHeaders() {
@@ -133,12 +133,9 @@ export class PaymentService {
   }
 
   public getCards() {
-    return this.http.get(this.api + 'me/customers', this._makeHeaders())
-        .toPromise()
-        .then((response) => {
-            return response.json();
-        })
-        .catch(this.handleError);
+    return this.http.get(this.api + 'me/customers', this._makeHeaders()).toPromise().then((response) => {
+      return response.json()
+    }).catch(this.handleError);
   }
 
   private handleError(error: any): Promise<any> {
