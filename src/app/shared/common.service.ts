@@ -29,7 +29,6 @@ export class CommonService {
       // console.log('port: ' + document.location.port);
     }
     this.api = this.protocol + "://" + this.hostname + "/" + this.api_version + "/"
-    
     // this.api = 'http://localhost/t0.9.1/'
   }
 
