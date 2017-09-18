@@ -4,6 +4,77 @@ import { Injectable } from '@angular/core';
 export class PostsService {
   public articles = [
     {
+      "title" : "Preventivi dinamici: come funzionano e perché usarli?",
+      "subtitle" : "Avrai sicuramente inviato preventivi almeno una volta nella vita se sei un professionista. Quello che non hai visto è quanto sia stato efficiente la tua offerta. La soluzione? Semplice, utilizzando i preventivi dinamici misurabili e professionali.",
+      "picture_url" : "https://s3-eu-west-1.amazonaws.com/starbook-s3/blog/preventivi-dinamici-blog.png",
+      "author": {
+        "fullname" : "Harald Bregu",
+        "headline" : "Sviluppatore, Software, Starbook, Startup",
+        "picture_url" : "https://s3-eu-west-1.amazonaws.com/starbook-s3/accounts/595ccfb42bf14e6650ce6e3d/avatar/0"
+      },
+      "updated_at" : "18 Set 2017",
+      "timing" : "3 min lettura",
+      "html_body" : `
+      <article>
+        <header>
+          <h1>Preventivi dinamici: come funzionano e perché usarli?</h1>
+          <p>
+            <time><i class="fa fa-calendar" aria-hidden="true"></i> 18 Set 2017</time>
+            <time><i class="fa fa-clock-o" aria-hidden="true"></i> 3 min</time>
+            <author><i class="fa fa-user" aria-hidden="true"></i> Harald Bregu</author>
+          </p>
+          <div class="share-links">
+            <ul>
+            <li class="facebook">
+              <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A//www.starbook.co/blog/Preventivi-dinamici%3A-come-funzionano-e-perché-usarli%3F" title="" target="_blank" rel="nofollow"><i class="fa fa-facebook" aria-hidden="true"></i> <span>Facebook</span></a>
+            </li>
+            <li class="twitter line">
+              <a href="https://twitter.com/home?status=https%3A//www.starbook.co/blog/Preventivi-dinamici%3A-come-funzionano-e-perché-usarli%3F" title="" target="_blank" rel="nofollow"><i class="fa fa-twitter" aria-hidden="true"></i> <span>Twitter</span></a>
+            </li>
+            <li class="google line">
+              <a href="https://plus.google.com/share?url=https%3A//www.starbook.co/blog/Preventivi-dinamici%3A-come-funzionano-e-perché-usarli%3F" title="" target="_blank" rel="nofollow"><i class="fa fa-google-plus" aria-hidden="true"></i> <span>Google+</span></a>
+            </li>
+            <li class="pinterest line">
+              <a href="https://pinterest.com/pin/create/button/?url=https%3A//www.starbook.co/blog/Preventivi-dinamici%3A-come-funzionano-e-perché-usarli%3F&media=https://s3-eu-west-1.amazonaws.com/starbook-s3/blog/preventivi-dinamici-blog.png&description=Preventivi dinamici: come funzionano e perché usarli?" title="" target="_blank" rel="nofollow"><i class="fa fa-pinterest-p" aria-hidden="true"></i> <span>Pinterest</span></a>
+            </li>
+            <li class="linkedin line">
+              <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A//www.starbook.co/blog/Preventivi-dinamici%3A-come-funzionano-e-perché-usarli%3F&title=Preventivi dinamici: come funzionano e perché usarli?&summary=Avrai sicuramente inviato preventivi almeno una volta per acqisire un potenziale cliente. A volte è andato bene ed è stato accettato dal cliente, altre volte invece non è andato a buon fine. Quelle volte che non è andato come speravi non sapevi nemmeno il motivo.&source=" title="" target="_blank" rel="nofollow"><i class="fa fa-linkedin" aria-hidden="true"></i> <span>LinkedIn</span></a>
+            </li>
+            </ul>
+          </div>
+        </header>
+        <p>Avrai sicuramente inviato preventivi almeno una volta per acquisire un potenziale cliente. A volte è andato bene ed è stato accettato dal cliente, altre volte invece non è andato a buon fine. Quelle volte che non è andato come speravi non sapevi nemmeno il motivo. </p>
+        <p><img src="https://s3-eu-west-1.amazonaws.com/starbook-s3/blog/preventivi-dinamici-blog.png" alt="Preventivi dinamici" title="Preventivi dinamici"/></p>
+        <p>Con i preventivi dinamici si può fare più di una semplice proposta al tuo cliente. Puoi inviare la tua proposta in modo più professionale e attivando anche le notifiche in modo da arrivare al cliente prima dei tuoi concorrenti.</p>
+        <section>
+          <h2>1. Crea</h2>
+          <p>Scrivi il preventivo come qualsiasi altro preventivo. Inserisci un titolo e la descrizione della tua offerta. <a href="https://www.starbook.co/company/quotations" rel="nofollow" target="_blank">Inizia qui.</a></p>
+          <p><img src="https://s3-eu-west-1.amazonaws.com/starbook-s3/blog/oggetto-preventivo.png" alt="Oggetto del preventivo e la descrizione" title="Oggetto del preventivo e la descrizione"/></p>
+        </section>
+        <section>
+          <h2>2. Dati del cliente</h2>
+          <p>Inserisci i dati del cliente per poter inviare il preventivo, nome, cognome, email e telefono.</p>
+          <p><img src="https://s3-eu-west-1.amazonaws.com/starbook-s3/blog/dati-cliente-preventivo.png" alt="Dati del cliente sul preventivo" title="Dati del cliente sul preventivo"/></p>
+        </section>
+        <section>
+          <h2>3. Opzioni</h2>
+          <p>Hai un opzione per il formato <strong>PDF</strong> e un opzione per la notifica tramite <strong>SMS</strong>. Il <strong>PDF</strong> viene allegato al preventivo spedito, invece <strong>l’SMS</strong> viene utilizzato per notificare il potenziale cliente prima dei tuoi concorrenti.</p>
+          <p><img src="https://s3-eu-west-1.amazonaws.com/starbook-s3/blog/opzioni-preventivo.png" alt="Opzioni del preventivo" title="Opzioni del preventivo"/></p>
+        </section>
+        <section>
+          <h2>4. Invia preventivo</h2>
+          <p>Invia il preventivo dopo aver inserito tutti i campi del form. Se hai scelto le opzioni SMS e PDF di verrà addebitato 50 cent per ciascuna. Se invece invii il preventivo senza nessun opzione il cliente riceverà solo la mail.</p>
+          <p><img src="https://s3-eu-west-1.amazonaws.com/starbook-s3/blog/invia-preventivo.png" alt="Invia preventivo" title="Invia preventivo"/></p>
+        </section>
+        <section>
+          <h2>5. Analizza</h2>
+          <p>Dopo aver inviato il preventivo vedrai e analizzerai quante volte il cliente ha aperto il preventivo e ha visto la pagina della tua offerta. In questo modo puoi sapere se il tuo preventivo è stato efficiente o meno.</p>
+          <p><img src="https://s3-eu-west-1.amazonaws.com/starbook-s3/blog/analizza-preventivo.png" alt="Analizza il preventivo" title="Analizza il preventivo"/></p>
+        </section>
+      </article>
+      `
+    },
+    {
       "title" : "Crescere la tua impresa online, facile come fissare un tassello",
       "subtitle" : "Ci sono due scenari: primo che hai un'impresa edile giovane e che vuoi farla crescere, secondo è che hai già un'impresa edile ma che è in crisi e non hai fatturato abbastanza l’ultimo anno. La soluzione è semplice, investi online per incrementare il fatturato e crescere la tua impresa.",
       "picture_url" : "https://s3-eu-west-1.amazonaws.com/starbook-s3/blog/crescere-la-tua-impresa-online-facile-come-fissare-un-tassello.jpg",
