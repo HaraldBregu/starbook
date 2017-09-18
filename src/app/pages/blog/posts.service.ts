@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
 export class PostsService {
   public articles = [
     {
-      "title" : "Preventivi dinamici: come funzionano e perché usarli?",
+      "title" : "Preventivi dinamici: come funzionano e perché usarli",
       "subtitle" : "Avrai sicuramente inviato preventivi almeno una volta nella vita se sei un professionista. Quello che non hai visto è quanto sia stato efficiente la tua offerta. La soluzione? Semplice, utilizzando i preventivi dinamici misurabili e professionali.",
       "picture_url" : "https://s3-eu-west-1.amazonaws.com/starbook-s3/blog/preventivi-dinamici-blog.png",
       "author": {
@@ -17,7 +17,7 @@ export class PostsService {
       "html_body" : `
       <article>
         <header>
-          <h1>Preventivi dinamici: come funzionano e perché usarli?</h1>
+          <h1>Preventivi dinamici: come funzionano e perché usarli</h1>
           <p>
             <time><i class="fa fa-calendar" aria-hidden="true"></i> 18 Set 2017</time>
             <time><i class="fa fa-clock-o" aria-hidden="true"></i> 3 min</time>
