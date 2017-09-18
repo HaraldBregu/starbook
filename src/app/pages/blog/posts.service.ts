@@ -26,19 +26,19 @@ export class PostsService {
           <div class="share-links">
             <ul>
             <li class="facebook">
-              <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A//www.starbook.co/blog/Preventivi-dinamici%3A-come-funzionano-e-perché-usarli%3F" title="" target="_blank" rel="nofollow"><i class="fa fa-facebook" aria-hidden="true"></i> <span>Facebook</span></a>
+              <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A//www.starbook.co/blog/Preventivi-dinamici%3A-come-funzionano-e-perché-usarli" title="" target="_blank" rel="nofollow"><i class="fa fa-facebook" aria-hidden="true"></i> <span>Facebook</span></a>
             </li>
             <li class="twitter line">
-              <a href="https://twitter.com/home?status=https%3A//www.starbook.co/blog/Preventivi-dinamici%3A-come-funzionano-e-perché-usarli%3F" title="" target="_blank" rel="nofollow"><i class="fa fa-twitter" aria-hidden="true"></i> <span>Twitter</span></a>
+              <a href="https://twitter.com/home?status=https%3A//www.starbook.co/blog/Preventivi-dinamici%3A-come-funzionano-e-perché-usarli" title="" target="_blank" rel="nofollow"><i class="fa fa-twitter" aria-hidden="true"></i> <span>Twitter</span></a>
             </li>
             <li class="google line">
-              <a href="https://plus.google.com/share?url=https%3A//www.starbook.co/blog/Preventivi-dinamici%3A-come-funzionano-e-perché-usarli%3F" title="" target="_blank" rel="nofollow"><i class="fa fa-google-plus" aria-hidden="true"></i> <span>Google+</span></a>
+              <a href="https://plus.google.com/share?url=https%3A//www.starbook.co/blog/Preventivi-dinamici%3A-come-funzionano-e-perché-usarli" title="" target="_blank" rel="nofollow"><i class="fa fa-google-plus" aria-hidden="true"></i> <span>Google+</span></a>
             </li>
             <li class="pinterest line">
-              <a href="https://pinterest.com/pin/create/button/?url=https%3A//www.starbook.co/blog/Preventivi-dinamici%3A-come-funzionano-e-perché-usarli%3F&media=https://s3-eu-west-1.amazonaws.com/starbook-s3/blog/preventivi-dinamici-blog.png&description=Preventivi dinamici: come funzionano e perché usarli?" title="" target="_blank" rel="nofollow"><i class="fa fa-pinterest-p" aria-hidden="true"></i> <span>Pinterest</span></a>
+              <a href="https://pinterest.com/pin/create/button/?url=https%3A//www.starbook.co/blog/Preventivi-dinamici%3A-come-funzionano-e-perché-usarli&media=https://s3-eu-west-1.amazonaws.com/starbook-s3/blog/preventivi-dinamici-blog.png&description=Preventivi dinamici: come funzionano e perché usarli?" title="" target="_blank" rel="nofollow"><i class="fa fa-pinterest-p" aria-hidden="true"></i> <span>Pinterest</span></a>
             </li>
             <li class="linkedin line">
-              <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A//www.starbook.co/blog/Preventivi-dinamici%3A-come-funzionano-e-perché-usarli%3F&title=Preventivi dinamici: come funzionano e perché usarli?&summary=Avrai sicuramente inviato preventivi almeno una volta per acqisire un potenziale cliente. A volte è andato bene ed è stato accettato dal cliente, altre volte invece non è andato a buon fine. Quelle volte che non è andato come speravi non sapevi nemmeno il motivo.&source=" title="" target="_blank" rel="nofollow"><i class="fa fa-linkedin" aria-hidden="true"></i> <span>LinkedIn</span></a>
+              <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A//www.starbook.co/blog/Preventivi-dinamici%3A-come-funzionano-e-perché-usarli&title=Preventivi dinamici: come funzionano e perché usarli?&summary=Avrai sicuramente inviato preventivi almeno una volta per acqisire un potenziale cliente. A volte è andato bene ed è stato accettato dal cliente, altre volte invece non è andato a buon fine. Quelle volte che non è andato come speravi non sapevi nemmeno il motivo.&source=" title="" target="_blank" rel="nofollow"><i class="fa fa-linkedin" aria-hidden="true"></i> <span>LinkedIn</span></a>
             </li>
             </ul>
           </div>
