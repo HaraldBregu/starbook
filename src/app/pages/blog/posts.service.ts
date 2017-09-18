@@ -5,7 +5,7 @@ export class PostsService {
   public articles = [
     {
       "title" : "Preventivi dinamici: come funzionano e perché usarli",
-      "subtitle" : "Avrai sicuramente inviato preventivi almeno una volta nella vita se sei un professionista. Quello che non hai visto è quanto sia stato efficiente la tua offerta. La soluzione? Semplice, utilizzando i preventivi dinamici misurabili e professionali.",
+      "subtitle" : "Avrai sicuramente inviato almeno una volta un preventivo per acquisire un potenziale cliente per la tua azienda. A volte è andato bene ed è stato accettato dal cliente, altre volte invece non è andato a buon fine. Quelle volte che non è andato come speravi non sapevi nemmeno il motivo.",
       "picture_url" : "https://s3-eu-west-1.amazonaws.com/starbook-s3/blog/preventivi-dinamici-blog.png",
       "author": {
         "fullname" : "Harald Bregu",
@@ -43,7 +43,7 @@ export class PostsService {
             </ul>
           </div>
         </header>
-        <p>Avrai sicuramente inviato preventivi almeno una volta per acquisire un potenziale cliente. A volte è andato bene ed è stato accettato dal cliente, altre volte invece non è andato a buon fine. Quelle volte che non è andato come speravi non sapevi nemmeno il motivo. </p>
+        <p>Avrai sicuramente inviato almeno una volta un preventivo per acquisire un potenziale cliente per la tua azienda. A volte è andato bene ed è stato accettato dal cliente, altre volte invece non è andato a buon fine. Quelle volte che non è andato come speravi non sapevi nemmeno il motivo. </p>
         <p><img src="https://s3-eu-west-1.amazonaws.com/starbook-s3/blog/preventivi-dinamici-blog.png" alt="Preventivi dinamici" title="Preventivi dinamici"/></p>
         <p>Con i preventivi dinamici si può fare più di una semplice proposta al tuo cliente. Puoi inviare la tua proposta in modo più professionale e attivando anche le notifiche in modo da arrivare al cliente prima dei tuoi concorrenti.</p>
         <section>
