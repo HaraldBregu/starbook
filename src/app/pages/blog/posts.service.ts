@@ -71,6 +71,10 @@ export class PostsService {
           <p>Dopo aver inviato il preventivo vedrai e analizzerai quante volte il cliente ha aperto il preventivo e ha visto la pagina della tua offerta. In questo modo puoi sapere se il tuo preventivo è stato efficiente o meno.</p>
           <p><img src="https://s3-eu-west-1.amazonaws.com/starbook-s3/blog/analizza-preventivo.png" alt="Analizza il preventivo" title="Analizza il preventivo"/></p>
         </section>
+        <section>
+          <h2>Prova adesso</h2>
+          <p>Vai nella <a href="https://www.starbook.co/company/quotations" rel="nofollow" target="_blank">landing page</a> per leggere la descrizione e accedi per provare.</p>
+        </section>
       </article>
       `
     },
