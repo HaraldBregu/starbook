@@ -45,7 +45,7 @@ export class AuthService {
       }
     }
     this.api = this.protocol + "://" + this.hostname + "/" + this.api_version + "/";
-    this.api = 'http://localhost/t0.9.1/';
+    // this.api = 'http://localhost/t0.9.1/';
   }
 
   private _makeHeadersFacebook(access_token) {
