@@ -65,6 +65,9 @@ export class CompanyComponent implements OnInit {
     console.log('fb login status');
     console.log('fb login status: ' + JSON.stringify(this.fb.getLoginStatus()));
     this.fb.login().then((res: LoginResponse) => {
+
+      console.log('LoginResponse login status: ' + JSON.stringify(res.authResponse));
+
       let fb_token = res.authResponse.accessToken
       this.authServics.facebookLogin(fb_token).then((userData) => {
         this.router.navigate([route])
