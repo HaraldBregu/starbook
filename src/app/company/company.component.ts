@@ -60,7 +60,10 @@ export class CompanyComponent implements OnInit {
       }
     })
   }
+
   continueWithFacebook(route) {
+    console.log('fb login status');
+    console.log('fb login status: ' + JSON.stringify(this.fb.getLoginStatus()));
     this.fb.login().then((res: LoginResponse) => {
       let fb_token = res.authResponse.accessToken
       this.authServics.facebookLogin(fb_token).then((userData) => {
