@@ -18,6 +18,7 @@ export class CompanyComponent implements OnInit {
     if (isBrowser) {
       window.scrollTo(0, 0);
       this.Account = JSON.parse(localStorage.getItem('auth'))
+      // fb.init({appId: '1108461325907277', version: 'v2.7'})
       if (document.location.hostname === "www.starbook.co") {
         fb.init({appId: '1108461325907277', version: 'v2.7'})
       } else if (document.location.hostname === "glacial-shore-66987.herokuapp.com" || document.location.hostname === "localhost") {
@@ -65,8 +66,10 @@ export class CompanyComponent implements OnInit {
       this.authServics.facebookLogin(fb_token).then((userData) => {
         this.router.navigate([route])
       }).catch((error) => {
+        console.log("authServics login error: " + error);
       })
     }).catch((error) => {
+      console.log("fb login error: " + error);
     })
   }
 

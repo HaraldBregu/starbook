@@ -547,11 +547,11 @@ export class PopupsComponent implements OnInit, OnDestroy {
           }
         } else if (!userData.email) {
           this.closePopup(true);
-
         } else {
           this.closePopup(false);
         }
       }).catch((error) => {
+        // console.log(error);
         this.formError = {
           title: 'Errore!',
           message: 'Authorization error'
