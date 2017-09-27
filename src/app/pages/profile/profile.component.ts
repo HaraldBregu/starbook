@@ -57,7 +57,16 @@ export class ProfileComponent implements OnInit {
             this.seoObject['title'] = this.checkCompanyName(this.Account)
             this.seoObject['description'] = this.checkTagline(this.Account)
             this.seoObject['url'] = 'https://www.starbook.co' + this.router.url;
-            this.seoObject['image_url'] = "https://s3-eu-west-1.amazonaws.com/starbook-s3/website/icon_256.png";
+            // this.seoObject['image_url'] = "https://s3-eu-west-1.amazonaws.com/starbook-s3/website/icon_256.png"
+            this.seoObject['image_url'] = 'https://s3-eu-west-1.amazonaws.com/starbook-s3/accounts/' + this.Account._id + '/avatar/1'
+            // var logo = new Image()
+            // logo.src = 'https://s3-eu-west-1.amazonaws.com/starbook-s3/accounts/' + this.Account._id + '/avatar/1'
+            // if (logo.width>0) {
+            //   this.seoObject['image_url'] = logo.src
+            // } else {
+            //   this.seoObject['image_url'] = '../assets/images/no_logo.png'
+            // }
+
 
             this.seoService.setTitle(this.checkCompanyName(this.Account));
             this.seoService.setMetaElem('description', this.seoObject['description']);
