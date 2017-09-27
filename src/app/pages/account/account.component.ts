@@ -25,6 +25,8 @@ export class AccountComponent implements OnInit {
   public page = ''
   public tabs = [
     {name: 'Account', route: 'profile'},
+    {name: 'Promuovi', route: 'new_promotion'},
+    {name: 'Richieste', route: 'requests'},
     {name: 'Preventivi', route: 'quotation'},
     {name: 'Aiuto', route: 'help'},
   ]
@@ -32,6 +34,7 @@ export class AccountComponent implements OnInit {
   public quotation_tab = 'new'
   public payment_tab = 'cards'
   public help_tab = 'request'
+  public inbox_tab = 'received'
 
   public Account = {
     _id: '',
@@ -205,11 +208,63 @@ export class AccountComponent implements OnInit {
   public defaultCard = null
   public selectedCardId = null
 
+  // CROSS ADS
+  public inprogress_promotions = []
+  public CrossAdvertising = {
+    title : '',
+    subtitle : '',
+    description : '',
+    city : '',
+    email : '',
+    phone_number : '',
+  }
+  public CrossAdvertisingDailyPrices = [
+    {
+      price: 200,
+      currency: "€"
+    },
+    {
+      price: 400,
+      currency: "€"
+    },
+    {
+      price: 800,
+      currency: "€"
+    },
+  ]
+  public DefaultCrossAdvertisingDailyPrice = {
+    price: 400,
+    currency: "€"
+  }
+  public CrossAdvertisingWeekPeriod = [
+    {
+      count: 1,
+      item: "Settimana"
+    },
+    {
+      count: 2,
+      item: "Settimane"
+    },
+    {
+      count: 4,
+      item: "Settimane"
+    },
+  ]
+  public DefaultCrossAdvertisingWeekPeriod = {
+    count: 2,
+    item: "Settimane"
+  }
+  public advertising_state = {
+    creating: false,
+    loading: false,
+    created: false
+  }
+
   constructor(private route: ActivatedRoute, private router: Router, private navigationService: NavigationService, private profileService: ProfileService, private authService: AuthService, private seoService: SeoService, private contactService: ContactService, private popupsService: PopupsService, private commonService: CommonService, private paymentService: PaymentService) {
     this.navigationService.updateMessage("Pannello di controllo")
     if (isBrowser) {
       let account = JSON.parse(localStorage.getItem('auth'))
-      this.profile_link = "https://www.starbook.co/profile/" + account._id
+
       this.checkPicture(account)
       this.checkLogo(account)
 
@@ -257,12 +312,19 @@ export class AccountComponent implements OnInit {
       })
 
       this.getAllCards()
+      this.readPromotions()
     }
   }
 
   ngOnInit() {
     this.route.params.subscribe(params => {
-      this.profile_link = "https://www.starbook.co/profile/" + this.Account._id
+      
+      if (this.Account['business'] && this.Account['business']['username']) {
+        this.profile_link = "https://www.starbook.co/business/" + this.Account['business']['username']
+      } else {
+        this.profile_link = "https://www.starbook.co/business/" + this.Account._id
+      }
+
       this.page = params['page']
       if (isBrowser) { window.scrollTo(0, 0) }
       if (this.page==="services") {
@@ -274,12 +336,18 @@ export class AccountComponent implements OnInit {
       else if (this.page==="profile") {
 
       }
-      // else if (this.page==="company") {
-      //
-      // }
-      // else if (this.page==="settings") {
-      //
-      // }
+      else if (this.page==="inprogress_promotion") {
+
+      }
+      else if (this.page==="terminated_promotion") {
+
+      }
+      else if (this.page==="new_promotion") {
+
+      }
+      else if (this.page==="requests") {
+
+      }
       // else if (this.page==="share") {
       //
       // }
@@ -298,7 +366,9 @@ export class AccountComponent implements OnInit {
     })
   }
 
-  // PROFILE LOGO
+  // ******************************** //
+  // PROFILE & COMPANY INFORMATIONS
+  // ******************************** //
   selectProfilePicture(fileInput:any) {
     this.picture_state.loading = true
     this.Picture.url = fileInput.target.files[0];
@@ -340,12 +410,10 @@ export class AccountComponent implements OnInit {
       } else {
         var picture_image = new Image()
         picture_image.src = 'https://s3-eu-west-1.amazonaws.com/starbook-s3/accounts/' + account._id + '/avatar/0'
-        return (picture_image.width > 0) ? 'url(' + picture_image.src + ')' : '../assets/images/no_picture.png'
+        return (picture_image.width > 0) ? 'url(' + picture_image.src + ')' : 'url(../assets/images/no_picture.png)'
       }
     }
   }
-
-  // COMPANY LOGO
   selectCompanyLogo(fileInput:any) {
     this.logo_state.loading = true
     this.Logo.url = fileInput.target.files[0];
@@ -387,12 +455,10 @@ export class AccountComponent implements OnInit {
       } else {
         var picture_image = new Image()
         picture_image.src = 'https://s3-eu-west-1.amazonaws.com/starbook-s3/accounts/' + account._id + '/avatar/1'
-        return (picture_image.width > 0) ? 'url(' + picture_image.src + ')'  : '../assets/images/no_logo.png'
+        return (picture_image.width > 0) ? 'url(' + picture_image.src + ')' : 'url(../assets/images/no_logo.png)'
       }
     }
   }
-
-  // SAVE INFORMATION
   saveInformations() {
     this.account_state.loading = true
     this.profileService.updateProfile(this.Account).then((data) => {
@@ -411,8 +477,36 @@ export class AccountComponent implements OnInit {
       this.account_state.loading = false
     })
   }
+  saveInformationsAndPromote() {
+    this.account_state.loading = true
+    this.profileService.updateProfile(this.Account).then((data) => {
+      if (data.success) {
+        let profileData = {};
+        if (isBrowser) {
+          this.Account['profile']['fullname'] = this.Account['profile']['firstname'] + ' ' + this.Account['profile']['lastname']
+          if (localStorage.getItem('auth') !== null) {
+            localStorage.setItem('auth', JSON.stringify(this.Account));
+          }
+        }
+        this.navigationService.updatePersonalMenu(this.Account);
+        this.account_state.loading = false
+        this.router.navigate(['/account/new_promotion'])
+      }
+    }).catch((error) => {
+      this.account_state.loading = false
+    })
+  }
+  getProfileRouter() {
+    if (this.Account['business'] && this.Account['business']['username']) {
+      return "/business/" + this.Account['business']['username']
+    } else {
+      return "/business/" + this.Account._id
+    }
+  }
 
-  // SEND QUOTATION
+  // ******************************** //
+  // QUOTATION SECTION
+  // ******************************** //
   sendQuotation(quotation) {
     this.quotation_state.creating = true
     if (!quotation.title || !quotation.description || !quotation.customer.firstname || !quotation.customer.lastname || !quotation.customer.email || !quotation.customer.phone_number) {
@@ -447,6 +541,164 @@ export class AccountComponent implements OnInit {
       this.quotation_state.loading = false
       this.quotation_state.creating = false
     })
+  }
+
+  // ******************************** //
+  // PROMOTION SECTION
+  // ******************************** //
+  startPromotion() {
+    this.advertising_state.creating = true
+
+    this.advertising_state.loading = true
+
+    var ad = {}
+    ad['title1'] = this.Account.business.name
+    ad['title2'] = this.Account.business.tagline
+    ad['description'] = this.Account.business.description
+    ad['city'] = this.Account.address.city
+    ad['email'] = this.Account.email
+    ad['phone_number'] = this.Account.phone_number
+    ad['number_of_weeks'] = this.DefaultCrossAdvertisingWeekPeriod.count
+    ad['total_offer'] = this.getTotalCostPromotion()
+
+    this.commonService.postMethod('promotions', ad).then((data) => {
+      // console.log(JSON.stringify(data))
+      this.advertising_state.created = true
+      this.advertising_state.loading = false
+      this.advertising_state.creating = false
+      this.popup = null
+      this.router.navigate(['/account/inprogress_promotion'])
+    }).catch((error) => {
+      // console.log(JSON.stringify(error))
+      if (error.status===400) {
+        this.popup = "ADD_PROMOTION_CARD_AND_CONTINUE_POPUP"
+        // Mostrare un popup per inserire la carta
+        // console.log('no_stripe_customer')
+      } else if (error.status===402) {
+        this.popup = "ADD_PROMOTION_CARD_AND_CONTINUE_POPUP"
+        // Mostrare un popup per inserire la carta
+        // console.log('no_cards')
+      }
+      this.advertising_state.loading = false
+      this.advertising_state.creating = false
+    })
+  }
+  savePromotionCardAndContinue() {
+    if (this.card_state.loading) {return;}
+    this.card_state.loading = true;
+    this.card_state.button_title = "Salvando carta...";
+    this.card_state.message_error = null;
+    this.card_state.number_error = null;
+    this.card_state.exp_date_error = null;
+    this.card_state.cvc_error = null;
+    if (this.Card !== null) {
+      if (this.paymentService.cardNumberValidate(this.Card.number)) {
+        this.card_state.number_error = null;
+      } else {
+        this.card_state.number_error = "Il numero della carta non è corretto.";
+      }
+    }
+    if (this.Card.exp_date && this.Card.exp_date.length === 5) {
+      let exp_parts = this.Card.exp_date.split('/');
+      if (exp_parts[0] !== this.Card.exp_date) {
+        this.Card.exp_month = exp_parts[0];
+        this.Card.exp_year = exp_parts[1];
+      } else {
+        this.card_state.exp_date_error = "Errore data";
+      }
+    }
+    else {
+      this.card_state.exp_date_error = "La data non è completa";
+    }
+    this.paymentService.addNewCard(this.Card).then((response) => {
+      this.card_state.loading = false
+      this.card_state.button_title = "Continua"
+      this.card_state.message_error = null
+      this.card_state.number_error = null
+      this.card_state.exp_date_error = null
+      this.card_state.cvc_error = null
+      this.popup = "PREVIEW_PROMOTION_POPUP"
+      this.startPromotion()
+      this.clearCardData()
+      this.cards.push(response)
+    }).catch((error) => {
+      this.card_state.loading = false
+      this.card_state.button_title = "Continua"
+      this.card_state.message_error = null
+      this.card_state.number_error = null
+      this.card_state.exp_date_error = null
+      this.card_state.cvc_error = null
+      if (error === 400) {
+        this.card_state.message_error = "Per favore inserisci correttamente i dati della carta"
+      }
+      else if (error === 402) {
+        this.card_state.message_error = "Per favore inserisci correttamente i dati della carta"
+      }
+      else {
+        this.card_state.message_error = "Controlla i campi inseriti e riprova."
+      }
+    })
+  }
+  readPromotions() {
+    this.commonService.getMethod('promotions').then((data) => {
+      // console.log('data');
+      console.log(JSON.stringify(data))
+      this.inprogress_promotions = data.result
+    }).catch((error) => {
+      // console.log('error');
+      console.log(JSON.stringify(error))
+    })
+  }
+  selectAdPrice(option) {
+    this.DefaultCrossAdvertisingDailyPrice = option
+  }
+  selectAdPeriod(option) {
+    this.DefaultCrossAdvertisingWeekPeriod = option
+  }
+  getTotalCostPromotion() {
+    return this.DefaultCrossAdvertisingDailyPrice.price * (this.DefaultCrossAdvertisingWeekPeriod.count * 7)
+  }
+  getTotalCoveragePromotion() {
+    // 56 euro
+    // 5100 dita
+    // * 7 = 35700
+    // * 14 = 71400
+    // * 28 = 142800
+    // 25-160 click
+    return (this.getTotalCostPromotion()/100) * 2535
+  }
+  getGrowPercentage() {
+    if (this.DefaultCrossAdvertisingWeekPeriod.count===1) {
+      if (this.DefaultCrossAdvertisingDailyPrice.price===200) {
+        return 45
+      } else if (this.DefaultCrossAdvertisingDailyPrice.price>200 && this.DefaultCrossAdvertisingDailyPrice.price<800) {
+        return 68
+      } else if (this.DefaultCrossAdvertisingDailyPrice.price===800) {
+        return 89
+      }
+      return 70
+    }
+    if (this.DefaultCrossAdvertisingWeekPeriod.count===2) {
+      if (this.DefaultCrossAdvertisingDailyPrice.price===200) {
+        return 75
+      } else if (this.DefaultCrossAdvertisingDailyPrice.price>200 && this.DefaultCrossAdvertisingDailyPrice.price<800) {
+        return 89
+      } else if (this.DefaultCrossAdvertisingDailyPrice.price===800) {
+        return 95
+      }
+      return 89
+    }
+    if (this.DefaultCrossAdvertisingWeekPeriod.count===4) {
+      if (this.DefaultCrossAdvertisingDailyPrice.price===200) {
+        return 85
+      } else if (this.DefaultCrossAdvertisingDailyPrice.price>200 && this.DefaultCrossAdvertisingDailyPrice.price<800) {
+        return 90
+      } else if (this.DefaultCrossAdvertisingDailyPrice.price===800) {
+        return 99
+      }
+      return 99
+    }
+    return 100
   }
 
   // EMAIL UPDATE
@@ -674,6 +926,12 @@ export class AccountComponent implements OnInit {
   }
   clickLeftTabPayment(item) {
     this.payment_tab = item
+  }
+  clickLeftTabAds(item) {
+    this.router.navigate(['/account/' + item])
+  }
+  clickLeftTabInbox(item) {
+    this.inbox_tab = item
   }
 
   // open popup
@@ -1022,7 +1280,6 @@ export class AccountComponent implements OnInit {
   //     // console.log('error: ' + JSON.stringify(error));
   //   });
   // }
-
   // addCard() {
   //   if (this.card_state.loading) {return;}
   //   this.card_state.loading = true;

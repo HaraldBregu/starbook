@@ -16,6 +16,9 @@ export const routes: string[] = [
 
   'account',
   'account/:page',
+
+  // 'ads/:page',
+
   'auth/:page',
 
   'services',
@@ -29,6 +32,8 @@ export const routes: string[] = [
 
   'profile',
   'profile/:page',
+  'business',
+  'business/:page',
 
   'facebook',
 

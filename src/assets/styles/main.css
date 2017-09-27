@@ -427,6 +427,8 @@ p {
 
 .btn-default {
   height: 50px;
+  line-height: 50px;
+  padding: 0 20px;
   border: 1px solid #DCDCDC;
   font-size: 22px;
   font-family: Roboto, sans-serif;
@@ -450,7 +452,8 @@ p {
   font-weight: 400;
   outline: none !important;
   padding: 0;
-  line-height: 50px; }
+  line-height: 50px;
+  padding: 0 20px; }
 
 .btn-success:focus {
   background: #1abc9c;
@@ -461,9 +464,7 @@ p {
   font-size: 22px;
   font-family: Roboto, sans-serif;
   font-weight: 400;
-  outline: none !important;
-  padding: 0;
-  line-height: 50px; }
+  outline: none !important; }
 
 .btn-success:active:focus {
   color: white !important;
@@ -483,7 +484,7 @@ p {
   font-family: Roboto, sans-serif;
   font-weight: 400;
   outline: none !important;
-  padding: 0;
+  padding: 0 20px;
   line-height: 50px; }
 
 .btn-danger:focus {
@@ -520,6 +521,16 @@ p {
 .btn-secondary:focus {
   background: white; }
 
+.btn-info {
+  border-radius: 0;
+  height: 50px;
+  font-size: 22px;
+  font-family: Roboto, sans-serif;
+  font-weight: 400;
+  outline: none !important;
+  padding: 0 20px;
+  line-height: 50px; }
+
 .btn-warning {
   background: #FFC845;
   color: white;
@@ -532,7 +543,8 @@ p {
   border-radius: 0;
   border: 0;
   outline: none !important;
-  height: 50px; }
+  height: 50px;
+  line-height: 50px; }
 
 .btn-warning:focus {
   background: #FFC845; }
@@ -1180,6 +1192,10 @@ input::-ms-clear {
         .popup-container .popup .popup-content .popup-footer .btn-danger:hover {
           border-color: #ff7e82;
           background-color: #ff7e82; }
+        .popup-container .popup .popup-content .popup-footer .error-container {
+          margin-bottom: 10px; }
+          .popup-container .popup .popup-content .popup-footer .error-container .error {
+            color: #f75c4b; }
 
 @media (max-width: 425px) {
   .popup-container {
@@ -6374,27 +6390,26 @@ app-profile {
   width: 100%;
   height: 100%;
   min-height: 100vh;
-  padding: 70px 10px 0;
+  padding: 70px 0px 0;
   -webkit-overflow-scrolling: touch;
-  background-color: #EDEFF3; }
+  background-color: white; }
   app-profile .profile-container .profile {
     position: relative;
     display: block;
-    padding: 60px;
-    max-width: 1100px;
-    margin: 30px auto 10px;
     background: white;
     box-shadow: 0 1px 0px #E5E6E9, 0 -1px 0px #E5E6E9, 1px 0px 0px #DFE0E4, -1px 0px 0px #DFE0E4;
     border-radius: 3px; }
     app-profile .profile-container .profile .profile-header {
       padding-bottom: 30px;
-      overflow: auto; }
+      overflow: auto;
+      padding: 30px 10px;
+      background: #f1f1f1; }
       app-profile .profile-container .profile .profile-header .avatar-container {
         position: relative;
-        width: 200px;
-        height: 200px;
+        width: 180px;
+        height: 180px;
         z-index: 1000;
-        float: left; }
+        margin: auto; }
         app-profile .profile-container .profile .profile-header .avatar-container .avatar {
           width: 100%;
           height: 100%;
@@ -6405,62 +6420,80 @@ app-profile {
           background-size: cover;
           background-repeat: no-repeat;
           background-position: center; }
+        app-profile .profile-container .profile .profile-header .avatar-container .avatar:hover {
+          box-shadow: 0px 0px 0px #d2d2d2; }
         app-profile .profile-container .profile .profile-header .avatar-container .avatar-sm {
           position: absolute;
           bottom: 0;
           right: 0;
-          width: 50px;
-          height: 50px;
+          width: 30px;
+          height: 30px;
           border: none; }
-      app-profile .profile-container .profile .profile-header .info-container {
-        margin-left: 240px; }
-        app-profile .profile-container .profile .profile-header .info-container h2 {
+      app-profile .profile-container .profile .profile-header .account-info {
+        padding: 35px 0 20px;
+        text-align: center; }
+        app-profile .profile-container .profile .profile-header .account-info h2 {
           font-weight: 600; }
-        app-profile .profile-container .profile .profile-header .info-container h6 {
+        app-profile .profile-container .profile .profile-header .account-info h6 {
           font-weight: 400;
           margin-top: 5px; }
-        app-profile .profile-container .profile .profile-header .info-container p {
+        app-profile .profile-container .profile .profile-header .account-info p {
           margin-top: 15px;
           letter-spacing: initial;
-          color: rgba(0, 0, 0, 0.7); }
-        app-profile .profile-container .profile .profile-header .info-container .communications {
-          margin-top: 10px; }
-          app-profile .profile-container .profile .profile-header .info-container .communications i {
-            font-size: 24px;
-            margin-right: 10px; }
-    app-profile .profile-container .profile .profile-body .btn-warning {
-      padding: 0 40px;
-      font-weight: 500;
-      border-radius: 3px; }
-  app-profile .account-footer .footer {
-    max-width: 1100px;
-    margin: auto;
-    padding: 0 15px;
-    margin-bottom: 20px; }
-    app-profile .account-footer .footer p {
-      font-size: 14px !important;
-      color: #4A4A4A; }
-    app-profile .account-footer .footer .links {
-      text-align: right; }
-    app-profile .account-footer .footer li {
-      display: inline-block;
-      font-size: 16px;
-      color: rgba(0, 0, 0, 0.6);
-      margin-left: 10px; }
-      app-profile .account-footer .footer li a:hover {
-        cursor: pointer;
-        color: #014c8c;
-        text-decoration: underline; }
-    app-profile .account-footer .footer a {
-      cursor: pointer; }
+          color: rgba(0, 0, 0, 0.5);
+          font-size: 14px !important; }
+        app-profile .profile-container .profile .profile-header .account-info .description {
+          text-transform: uppercase;
+          font-weight: 600; }
+        app-profile .profile-container .profile .profile-header .account-info .user-address {
+          margin-top: 20px; }
+          app-profile .profile-container .profile .profile-header .account-info .user-address .user {
+            margin: 0 10px;
+            font-size: 16px !important;
+            color: rgba(0, 0, 0, 0.7); }
+          app-profile .profile-container .profile .profile-header .account-info .user-address .address {
+            margin: 0 10px;
+            font-size: 16px !important;
+            color: rgba(0, 0, 0, 0.7); }
+      app-profile .profile-container .profile .profile-header .actions {
+        padding: 10px 0 20px;
+        text-align: center; }
+        app-profile .profile-container .profile .profile-header .actions .btn {
+          border-radius: 30px;
+          margin-right: 10px;
+          margin-bottom: 10px; }
+    app-profile .profile-container .profile .profile-body .actions {
+      padding: 10px 0 20px;
+      text-align: center; }
+      app-profile .profile-container .profile .profile-body .actions .btn {
+        border-radius: 30px;
+        margin-right: 10px;
+        margin-bottom: 10px; }
+  app-profile .account-footer {
+    padding: 10px 0; }
+    app-profile .account-footer .footer {
+      max-width: 1440px;
+      margin: auto;
+      padding: 0 15px;
+      margin-bottom: 20px; }
+      app-profile .account-footer .footer p {
+        font-size: 14px !important;
+        color: #4A4A4A; }
+      app-profile .account-footer .footer .links {
+        text-align: right; }
+      app-profile .account-footer .footer li {
+        display: inline-block;
+        font-size: 16px;
+        color: rgba(0, 0, 0, 0.6);
+        margin-left: 10px; }
+        app-profile .account-footer .footer li a:hover {
+          cursor: pointer;
+          color: #014c8c;
+          text-decoration: underline; }
+      app-profile .account-footer .footer a {
+        cursor: pointer; }
 
-@media (max-width: 1024px) {
-  app-profile .profile-container .profile {
-    margin-top: 10px; } }
 @media (max-width: 768px) {
-  app-profile .profile-container .profile {
-    padding: 30px; }
-
   app-profile .profile-container .profile .profile-header .avatar-container {
     width: 170px;
     height: 170px; }
@@ -6475,8 +6508,8 @@ app-profile {
     height: 120px; }
 
   app-profile .profile-container .profile .profile-header .avatar-container .avatar-sm {
-    width: 40px;
-    height: 40px; }
+    width: 20px;
+    height: 20px; }
 
   app-profile .profile-container .profile .profile-header .info-container {
     margin-left: 0;
@@ -7290,8 +7323,11 @@ app-account {
       font-weight: 400; }
       app-account .top-bar-container .top-bar li span {
         font-family: Arial, sans-serif;
-        padding: 0 20px;
+        padding: 0 15px;
         font-size: 16px; }
+      app-account .top-bar-container .top-bar li .new_funct {
+        color: #f39c12;
+        font-weight: 700; }
     app-account .top-bar-container .top-bar li:hover {
       color: black; }
     app-account .top-bar-container .top-bar .active {
@@ -7356,10 +7392,10 @@ app-account {
           app-account .account-container .account .account-content .account-header h2 {
             font-weight: 400; }
             app-account .account-container .account .account-content .account-header h2 .btn {
-              font-size: 12px;
-              padding: 0 10px;
-              line-height: 30px;
-              height: 30px;
+              font-size: 15px;
+              padding: 0 20px;
+              line-height: 40px;
+              height: 40px;
               border-radius: 3px;
               font-weight: 600; }
           app-account .account-container .account .account-content .account-header p {
@@ -7368,6 +7404,11 @@ app-account {
             color: rgba(0, 0, 0, 0.5); }
             app-account .account-container .account .account-content .account-header p a {
               margin-right: 10px; }
+          app-account .account-container .account .account-content .account-header .list-ad-platforms {
+            margin-top: 5px; }
+            app-account .account-container .account .account-content .account-header .list-ad-platforms img {
+              width: 85px;
+              margin-right: 20px; }
         app-account .account-container .account .account-content .account-body {
           padding: 0 40px 40px; }
           app-account .account-container .account .account-content .account-body .avatar-section .avatar-container {
@@ -7411,6 +7452,47 @@ app-account {
               background: #F6F6F6; }
           app-account .account-container .account .account-content .account-body form {
             margin-bottom: 30px; }
+            app-account .account-container .account .account-content .account-body form .option-container {
+              text-align: center; }
+              app-account .account-container .account .account-content .account-body form .option-container .option {
+                cursor: pointer;
+                border-radius: 35px;
+                border: 1px solid #b1b1b1;
+                padding: 20px;
+                margin-bottom: 10px; }
+                app-account .account-container .account .account-content .account-body form .option-container .option span {
+                  font-size: 20px;
+                  font-weight: 500; }
+              app-account .account-container .account .account-content .account-body form .option-container .option:hover {
+                background: #eaeaea; }
+              app-account .account-container .account .account-content .account-body form .option-container .selected {
+                background: #9b59b6;
+                color: white;
+                border: 0; }
+              app-account .account-container .account .account-content .account-body form .option-container .selected:hover {
+                background: #9b59b6; }
+            app-account .account-container .account .account-content .account-body form .estimate-container {
+              text-align: center; }
+              app-account .account-container .account .account-content .account-body form .estimate-container .estimate {
+                margin-bottom: 10px; }
+                app-account .account-container .account .account-content .account-body form .estimate-container .estimate .amount {
+                  font-size: 46px;
+                  font-weight: 600; }
+                app-account .account-container .account .account-content .account-body form .estimate-container .estimate .weeks {
+                  font-size: 20px;
+                  font-weight: 500;
+                  color: #34495e; }
+                app-account .account-container .account .account-content .account-body form .estimate-container .estimate .sun-flower {
+                  color: #f1c40f; }
+                app-account .account-container .account .account-content .account-body form .estimate-container .estimate .wet-asphalt {
+                  color: #34495e; }
+                app-account .account-container .account .account-content .account-body form .estimate-container .estimate .nephritis {
+                  color: #27ae60; }
+                app-account .account-container .account .account-content .account-body form .estimate-container .estimate .title {
+                  display: block;
+                  font-size: 20px;
+                  font-weight: 300;
+                  color: #7f8c8d; }
           app-account .account-container .account .account-content .account-body .section {
             margin-bottom: 30px; }
             app-account .account-container .account .account-content .account-body .section h4 {
@@ -7550,8 +7632,13 @@ app-account {
               top: -20px; }
             app-account .account-container .account .account-content .account-body .actions .btn {
               padding: 0 40px;
-              font-size: 20px;
-              font-weight: 500; }
+              font-size: 22px;
+              font-weight: 500;
+              border-radius: 3px; }
+            app-account .account-container .account .account-content .account-body .actions .btn-warning {
+              height: 60px; }
+            app-account .account-container .account .account-content .account-body .actions .btn-success {
+              height: 60px; }
           app-account .account-container .account .account-content .account-body .share-actions {
             overflow: hidden; }
             app-account .account-container .account .account-content .account-body .share-actions .btn-default {
@@ -7562,6 +7649,7 @@ app-account {
               padding-right: 30px; }
             app-account .account-container .account .account-content .account-body .share-actions .input-group-btn .btn-default {
               height: 45px;
+              line-height: 45px;
               border: 1px solid #b1b1b1 !important;
               border-radius: 0px; }
             app-account .account-container .account .account-content .account-body .share-actions li {
@@ -7814,7 +7902,7 @@ app-account {
             font-weight: 500; }
     app-account .account-container .account-tab {
       float: left;
-      width: 200px; }
+      width: 160px; }
       app-account .account-container .account-tab ul li {
         margin-bottom: 10px;
         padding: 0 5px; }
@@ -7854,7 +7942,7 @@ app-account {
           app-account .account-container .account-tab ul li .active:hover i {
             color: #5080e0; }
     app-account .account-container .tabbed-content {
-      margin-left: 220px; }
+      margin-left: 180px; }
     app-account .account-container .right-triangle {
       position: absolute;
       width: 0;

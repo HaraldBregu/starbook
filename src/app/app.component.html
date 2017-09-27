@@ -2,18 +2,28 @@
   <div class="container-starbook">
     <a class="navbar-brand" routerLink="/"><img src="/assets/images/brand-logo-name-rotated.png" alt="starbook"></a>
     <ul class="nav navbar-nav navbar-right">
+
       <!-- <li class="nav-item" *ngIf="auth">
         <a class="btn btn-navbar"><i class="fa fa-th-large" aria-hidden="true"></i></a>
       </li>
       <li class="nav-item" *ngIf="auth">
         <a class="btn btn-navbar"><i class="fa fa-th" aria-hidden="true"></i></a>
       </li> -->
-      <li class="nav-item signup-item" *ngIf="!auth">
+
+      <!-- <li class="nav-item" *ngIf="!auth && page==='Business'">
+        <a class="btn btn-navbar" routerLink="/company">Aziende</a>
+      </li> -->
+      <li class="nav-item signup-item" *ngIf="!auth && page!=='Business'">
         <a class="btn btn-success btn-signup" routerLink="/auth/worker">Iscriviti</a>
       </li>
+      <!-- <li class="nav-item signup-item" *ngIf="page==='Business'">
+        <a class="btn btn-success btn-signup" routerLink="/auth/worker">Iscriviti</a>
+      </li> -->
+
       <li class="nav-item account" *ngIf="auth">
         <a class="nav-link" routerLink="/account/profile"><img class="image" [src]="account_avatar_url" (error)="errorHandler($event)" alt="Starbook User"><span>{{auth.profile.firstname}}</span></a>
       </li>
+
       <li class="nav-item">
         <div class="user-container dropdown">
           <a class="btn btn-navbar" data-toggle="dropdown"><i class="fa fa-bars" aria-hidden="true"></i></a>

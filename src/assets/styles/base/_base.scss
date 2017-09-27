@@ -43,6 +43,8 @@ p {
 
 .btn-default {
   height: 50px;
+  line-height: 50px;
+  padding: 0 20px;
   border: 1px solid #DCDCDC;
   font-size: 22px;
   font-family: $font-name;
@@ -69,6 +71,7 @@ p {
   outline: none !important;
   padding: 0;
   line-height: 50px;
+  padding: 0 20px;
 }
 .btn-success:focus {
   background: #1abc9c;
@@ -80,8 +83,6 @@ p {
   font-family: $font-name;
   font-weight: 400;
   outline: none !important;
-  padding: 0;
-  line-height: 50px;
 }
 .btn-success:active:focus {
   color: white !important;
@@ -102,7 +103,7 @@ p {
   font-family: $font-name;
   font-weight: 400;
   outline: none !important;
-  padding: 0;
+  padding: 0 20px;
   line-height: 50px;
 }
 .btn-danger:focus {
@@ -148,6 +149,28 @@ p {
   // color: white;
   // background-color: #EBB431 !important;
 }
+.btn-info {
+  border-radius: 0;
+  height: 50px;
+  font-size: 22px;
+  font-family: $font-name;
+  font-weight: 400;
+  outline: none !important;
+  padding: 0 20px;
+  line-height: 50px;
+}
+.btn-info:focus {
+  // background: white;
+}
+.btn-info:active:focus {
+  // color: white;
+  // background-color: #EBB431;
+}
+.btn-info:hover {
+  // color: white;
+  // background-color: #EBB431 !important;
+}
+
 
 .btn-warning {
   background: #FFC845;
@@ -162,6 +185,7 @@ p {
   border: 0;
   outline: none !important;
   height: 50px;
+  line-height: 50px;
 }
 .btn-warning:focus {
   background: #FFC845;
@@ -974,6 +998,12 @@ input::-ms-clear {
         .btn-danger:hover {
           border-color: #ff7e82;
           background-color: #ff7e82;
+        }
+        .error-container {
+          margin-bottom: 10px;
+          .error {
+            color: #f75c4b;
+          }
         }
       }
     }

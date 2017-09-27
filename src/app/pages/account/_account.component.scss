@@ -31,8 +31,12 @@ app-account {
       font-weight: 400;
       span {
         font-family: Arial, sans-serif;
-        padding: 0 20px;
+        padding: 0 15px;
         font-size: 16px;
+      }
+      .new_funct {
+        color: #f39c12;
+        font-weight: 700;
       }
     }
     .top-bar li:hover {
@@ -115,10 +119,10 @@ app-account {
           h2 {
             font-weight: 400;
             .btn {
-              font-size: 12px;
-              padding: 0 10px;
-              line-height: 30px;
-              height: 30px;
+              font-size: 15px;
+              padding: 0 20px;
+              line-height: 40px;
+              height: 40px;
               border-radius: 3px;
               font-weight: 600;
             }
@@ -129,6 +133,13 @@ app-account {
             color: rgba(0, 0, 0, 0.5);
             a {
               margin-right: 10px;
+            }
+          }
+          .list-ad-platforms {
+            margin-top: 5px;
+            img {
+              width: 85px;
+              margin-right: 20px;
             }
           }
         }
@@ -187,6 +198,62 @@ app-account {
           }
           form {
             margin-bottom: 30px;
+            .option-container {
+              text-align: center;
+              .option {
+                cursor: pointer;
+                border-radius: 35px;
+                border: 1px solid #b1b1b1;
+                padding: 20px;
+                margin-bottom: 10px;
+                span {
+                  font-size: 20px;
+                  font-weight: 500;
+                }
+              }
+              .option:hover {
+                background: #eaeaea;
+              }
+              .selected {
+                background: #9b59b6;
+                color: white;
+                border: 0;
+              }
+              .selected:hover {
+                background: #9b59b6;
+              }
+            }
+            .estimate-container {
+              text-align: center;
+              .estimate {
+                // padding: 20px;
+                margin-bottom: 10px;
+                .amount {
+                  font-size: 46px;
+                  font-weight: 600;
+                }
+                .weeks {
+                  font-size: 20px;
+                  font-weight: 500;
+                  color: #34495e;
+                }
+                .sun-flower {
+                  color: #f1c40f;
+                }
+                .wet-asphalt {
+                  color: #34495e;
+                }
+                .nephritis {
+                  color: #27ae60;
+                }
+                .title {
+                  display: block;
+                  font-size: 20px;
+                  font-weight: 300;
+                  color: #7f8c8d;
+                }
+              }
+            }
           }
           .section {
             margin-bottom: 30px;
@@ -198,6 +265,9 @@ app-account {
               font-weight: 400;
               margin-top: 5px;
               color: rgba(0, 0, 0, 0.5);
+            }
+            .details {
+
             }
           }
           .birthday {
@@ -361,8 +431,15 @@ app-account {
             }
             .btn {
               padding: 0 40px;
-              font-size: 20px;
+              font-size: 22px;
               font-weight: 500;
+              border-radius: 3px;
+            }
+            .btn-warning {
+              height: 60px;
+            }
+            .btn-success {
+              height: 60px;
             }
           }
           .share-actions {
@@ -376,6 +453,7 @@ app-account {
             }
             .input-group-btn .btn-default {
               height: 45px;
+              line-height: 45px;
               border: 1px solid #b1b1b1 !important;
               border-radius: 0px;
             }
@@ -717,7 +795,7 @@ app-account {
     }
     .account-tab {
       float: left;
-      width: 200px;
+      width: 160px;
       ul {
         li {
           margin-bottom: 10px;
@@ -773,7 +851,7 @@ app-account {
       }
     }
     .tabbed-content {
-      margin-left: 220px;
+      margin-left: 180px;
     }
     .right-triangle {
       position: absolute;

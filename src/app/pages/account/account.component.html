@@ -1,11 +1,13 @@
 <div class="top-bar-container noselect">
   <ul class="top-bar">
-    <li *ngFor="let tab of tabs" [ngClass]="{'active':tab.route === page}" (click)="clickTabItem(tab.route)">
-      <span>{{tab.name}}</span>
+    <li *ngFor="let tab of tabs" [ngClass]="{'active':(tab.route===page)}" (click)="clickTabItem(tab.route)">
+      <span [ngClass]="{'new_funct':(tab.route==='inprogress_promotion' || tab.route==='terminated_promotion' || tab.route==='new_promotion')}">{{tab.name}}</span>
     </li>
   </ul>
 </div>
 
+
+<!-- ACCOUNT -->
 <div class="account-container" *ngIf="page==='profile' && Account">
   <div class="account">
     <div class="account-tab">
@@ -13,13 +15,13 @@
         <li><a class="btn btn-transparent" (click)="clickLeftTabItem('personal')" [ngClass]="{'active':profile_tab==='personal'}"><i class="fa fa-user-circle" aria-hidden="true"></i>Personale</a></li>
         <li><a class="btn btn-transparent" (click)="clickLeftTabItem('company')" [ngClass]="{'active':profile_tab==='company'}"><i class="fa fa-building" aria-hidden="true"></i>Azienda</a></li>
         <li><a class="btn btn-transparent" (click)="clickLeftTabItem('settings')" [ngClass]="{'active':profile_tab==='settings'}"><i class="fa fa-wrench" aria-hidden="true"></i>Impostazioni</a></li>
-        <li><a class="btn btn-transparent" (click)="clickLeftTabItem('payment_method')" [ngClass]="{'active':profile_tab==='payment_method'}"><i class="fa fa-credit-card" aria-hidden="true"></i>Metodo di pagamento</a></li>
+        <li><a class="btn btn-transparent" (click)="clickLeftTabItem('payment_method')" [ngClass]="{'active':profile_tab==='payment_method'}"><i class="fa fa-credit-card" aria-hidden="true"></i>Pagamento</a></li>
         <li><a class="btn btn-transparent" (click)="clickLeftTabItem('share')" [ngClass]="{'active':profile_tab==='share'}"><i class="fa fa-share" aria-hidden="true"></i>Condividi</a></li>
       </ul>
     </div>
     <div class="account-content tabbed-content" *ngIf="profile_tab==='personal'">
       <div class="account-header">
-        <h2>Profilo personale <a class="btn btn-secondary" routerLink="/profile/{{Account._id}}" target="_blank">VISITA</a></h2>
+        <h2>Profilo personale <a class="btn btn-primary" routerLink="{{getProfileRouter()}}" target="_blank">VISITA</a></h2>
         <p>Le tue informazioni personali sono importanti per il profilo pubblico. Inserisci tutti i campi e un immagine di profilo per un profilo più completo.</p>
       </div>
       <div class="account-body">
@@ -114,7 +116,7 @@
     </div>
     <div class="account-content tabbed-content" *ngIf="profile_tab==='company'">
       <div class="account-header">
-        <h2>Profilo aziendale <a class="btn btn-secondary" routerLink="/profile/{{Account._id}}" target="_blank">VISITA</a></h2>
+        <h2>Profilo aziendale <a class="btn btn-primary" routerLink="{{getProfileRouter()}}" target="_blank">VISITA</a></h2>
         <p>Le informazioni della tua azienda ti danno la possibilità di avere anche un profilo aziendale pubblico. Inserisci un logo e tutti i campi richiesti.</p>
       </div>
       <div class="account-body">
@@ -186,6 +188,7 @@
         <div class="actions">
           <span class="saving" *ngIf="account_state.loading"><i class="fa fa-circle-o-notch animate"></i> salvando</span>
           <button type="button" class="btn btn-success" name="button" (click)="saveInformations()">Salva le modifiche</button>
+          <button type="button" class="btn btn-warning" name="button" (click)="saveInformationsAndPromote()">Promuovi</button>
         </div>
       </div>
     </div>
@@ -299,13 +302,318 @@
   </div>
 </div>
 
+
+<!-- PROMOTION -->
+<div class="account-container" *ngIf="page==='inprogress_promotion' || page==='terminated_promotion' || page==='new_promotion'">
+  <div class="account">
+    <div class="account-tab">
+      <ul>
+        <li><a class="btn btn-transparent" (click)="clickLeftTabAds('inprogress_promotion')" [ngClass]="{'active':page==='inprogress_promotion'}"><i class="fa fa-bar-chart" aria-hidden="true"></i>In corso</a></li>
+        <li><a class="btn btn-transparent" (click)="clickLeftTabAds('terminated_promotion')" [ngClass]="{'active':page==='terminated_promotion'}"><i class="fa fa-times" aria-hidden="true"></i>Terminati</a></li>
+        <li><a class="btn btn-success" (click)="clickLeftTabAds('new_promotion')"><i class="fa fa-plus" aria-hidden="true"></i>Promuovi</a></li>
+      </ul>
+    </div>
+    <div *ngIf="page==='inprogress_promotion'">
+      <div class="quotation-content tabbed-content" *ngIf="inprogress_promotions.length===0">
+        <div class="quotation-header">
+          <p>Non hai pubblicato ancora nessuna promozione. Inizia ora.</p>
+        </div>
+      </div>
+      <div *ngFor="let promotion of inprogress_promotions">
+        <div class="quotation-content tabbed-content">
+          <div class="quotation-header">
+            <span class="title">PROMOZIONE {{promotion._id}}</span>
+            <span class="date">{{formatedDateFromString(promotion.created_at)}}</span>
+          </div>
+          <!-- <div class="quotation-body">
+            <div class="vendor">
+              <span class="businessname" *ngIf="quotation.vendor.businessname">{{quotation.vendor.businessname}}</span>
+              <span class="username" *ngIf="!quotation.vendor.businessname">{{quotation.vendor.firstname}} {{quotation.vendor.lastname}}</span>
+            </div>
+            <div class="customer">
+              <span class="username">{{quotation.customer.firstname}} {{quotation.customer.lastname}}</span>
+            </div>
+            <div class="description">
+              <p>{{quotation.title}}</p>
+              <p>{{quotation.description}}</p>
+            </div>
+          </div>
+          <div class="quotation-footer">
+            <div *ngIf="!quotation.views"><i class="fa fa-eye" aria-hidden="true"></i> 0</div>
+            <div *ngIf="quotation.views"><i class="fa fa-eye" aria-hidden="true"></i> {{quotation.views}}</div>
+          </div> -->
+        </div>
+      </div>
+    </div>
+    <div *ngIf="page==='terminated_promotion'">
+      <div class="quotation-content tabbed-content" *ngIf="received_quotations.length===0 && loading_received_quotation===false">
+        <div class="quotation-header">
+          <p>Non ci sono promozioni terminate.</p>
+        </div>
+      </div>
+      <div *ngFor="let quotation of received_quotations">
+        <div class="quotation-content tabbed-content">
+          <div class="quotation-header">
+            <div class="vendor">
+              <h4 *ngIf="quotation.vendor.businessname">{{quotation.vendor.businessname}}</h4>
+              <h4 *ngIf="!quotation.vendor.businessname">{{quotation.vendor.firstname}} {{quotation.vendor.lastname}}</h4>
+              <!-- <span class="slogan"><i>Servizi professionali per la casa</i></span>
+              <div class="address">
+                <span class="street">Via Pirandello 44</span>
+                <span class="cap-city">Busto Arsizio 21052</span>
+              </div> -->
+            </div>
+            <div class="customer">
+              <h5>PREVENTIVO</h5>
+              <span class="date">{{formatedDateFromString(quotation.created_at)}}</span>
+              <h6>{{quotation.customer.firstname}} {{quotation.customer.lastname}}</h6>
+            </div>
+          </div>
+          <div class="quotation-body">
+            <p>{{quotation.title}}</p>
+            <p>{{quotation.description}}</p>
+            <!-- <div class="details">
+              <div><i class="fa fa-calendar-check-o" aria-hidden="true"></i> <span>{{formatedDateFromString(quotation.date)}}</span></div>
+              <div><i class="fa fa-map-marker" aria-hidden="true"></i> <span>{{formatedAddressFromObject(quotation.address)}}</span></div>
+            </div> -->
+          </div>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="page==='new_promotion'">
+      <div class="account-content tabbed-content">
+        <div class="account-header">
+          <h2>Promuovi e trova clienti</h2>
+          <p>Pubblicizza la tua attività nelle piattaforme con maggior numero di utenti al mondo. Semplice in pochi passi la tua azienda verra notata e contattata da tutte le persone che si trovano nella tua zona dove lavori.</p>
+          <div class="list-ad-platforms">
+            <img src="../../../assets/images/facebook_ads.jpeg" alt="Facebook Ads">
+            <img src="../../../assets/images/google_adwords.png" alt="Google Adwords">
+            <img src="../../../assets/images/linkedin_ad.jpg" alt="Linkedin Advertising">
+          </div>
+        </div>
+        <div class="account-body">
+          <!-- <div class="section">
+            <h4>Informazioni base</h4>
+            <p>Per poter completare la promozione inserisci tutti i campi richiesti.</p>
+          </div>
+          <form>
+            <div class="row">
+              <div class="form-group col-md-4">
+                <label for="title-input">Nome azienda</label>
+                <input class="form-control" type="text" id="title-input" placeholder="Nome azienda" [ngClass]="{'error-input': quotation_state.creating && !Quotation.title}" [(ngModel)]="CrossAdvertising.title" [ngModelOptions]="{standalone: true}">
+              </div>
+              <div class="form-group col-md-8">
+                <label for="title-input">Categoria dei servizi che offri</label>
+                <input class="form-control" type="text" id="title-input" placeholder="Categoria dei servizi che offri" [ngClass]="{'error-input': quotation_state.creating && !Quotation.title}" [(ngModel)]="CrossAdvertising.subtitle" [ngModelOptions]="{standalone: true}">
+              </div>
+              <div class="form-group col-md-12">
+                <textarea id="quotation-description-input" class="form-control" placeholder="Inserisci una descrizione" rows="5" [ngClass]="{'error-input': quotation_state.creating && !Quotation.description}" [(ngModel)]="CrossAdvertising.description" [ngModelOptions]="{standalone: true}"></textarea>
+              </div>
+              <div class="form-group col-md-4">
+                <label for="city-input">Città</label>
+                <input class="form-control" type="text" id="city-input" placeholder="Città" [(ngModel)]="CrossAdvertising.city" [ngModelOptions]="{standalone: true}">
+              </div>
+              <div class="form-group col-md-4">
+                <label for="email-company-input">Email</label>
+                <input class="form-control" type="email" id="email-company-input" placeholder="Email" [(ngModel)]="CrossAdvertising.email" [ngModelOptions]="{standalone: true}">
+              </div>
+              <div class="form-group col-md-4">
+                <label for="company-tel-input">Telefono</label>
+                <input class="form-control" type="tel" id="company-tel-input" placeholder="Telefono" [(ngModel)]="CrossAdvertising.phone_number" [ngModelOptions]="{standalone: true}">
+              </div>
+            </div>
+          </form> -->
+          <div class="section">
+            <h4>Seleziona la durata</h4>
+            <p>Inserisci il tempo che vuoi visualizzare la tua promozione. Seleziona una delle opzioni sotto e continua.</p>
+          </div>
+          <form>
+            <div class="row">
+              <div class="col-md-4 option-container noselect" *ngFor="let option of CrossAdvertisingWeekPeriod">
+                <div class="option" [ngClass]="{'selected':option.count===DefaultCrossAdvertisingWeekPeriod.count}" (click)="selectAdPeriod(option)">
+                  <span>{{option.count}} {{option.item}}</span>
+                </div>
+              </div>
+            </div>
+          </form>
+          <div class="section">
+            <h4>Costo giornaliero</h4>
+            <p>Scegli la somma massima che vuoi spendere al giorno per la tua promozione. Il totale viene calcolato in base ai giorni e settimane che hai selezionato. (l'offerta minima è 2€ al giorno)</p>
+          </div>
+          <form>
+            <div class="row">
+              <div class="col-md-4 option-container noselect" *ngFor="let option of CrossAdvertisingDailyPrices">
+                <div class="option" [ngClass]="{'selected':option.price===DefaultCrossAdvertisingDailyPrice.price}" (click)="selectAdPrice(option)">
+                  <span>{{option.price/100}}{{option.currency}} / giorno</span>
+                </div>
+              </div>
+            </div>
+          </form>
+          <div class="section">
+            <h4>Stime e attività della promozione</h4>
+            <p>Controlla il costo e la stima di visite della tua promozione.</p>
+          </div>
+          <form>
+            <div class="row">
+              <div class="col-md-4 estimate-container">
+                <div class="estimate">
+                  <span class="amount sun-flower">{{getTotalCostPromotion()/100}}€</span><span class="weeks"> / {{DefaultCrossAdvertisingWeekPeriod.count}} {{DefaultCrossAdvertisingWeekPeriod.item}}</span>
+                  <span class="title">Costo per il periodo</span>
+                </div>
+              </div>
+              <div class="col-md-4 estimate-container">
+                <div class="estimate">
+                  <span class="amount wet-asphalt">{{getTotalCoveragePromotion()}}</span>
+                  <span class="title">Visualizzazioni nella tua zona</span>
+                </div>
+              </div>
+              <div class="col-md-4 estimate-container">
+                <div class="estimate">
+                  <span class="amount nephritis">{{getGrowPercentage()}}%</span>
+                  <span class="title">Crescita stimata dei clienti</span>
+                </div>
+              </div>
+            </div>
+          </form>
+          <div class="actions">
+            <button type="button" class="btn btn-warning" name="button" (click)="popup='PREVIEW_PROMOTION_POPUP';">Prepara la promozione</button>
+          </div>
+        </div>
+        <!-- <div class="account-footer">
+          <div class="actions">
+            <button type="button" class="btn btn-warning" name="button" (click)="popup='PREVIEW_PROMOTION_POPUP';">Anteprima promozione</button>
+          </div>
+        </div> -->
+      </div>
+    </div>
+    <div class="account-footer tabbed-content">
+      <div class="footer">
+          <div class="row">
+            <div class="col-md-6">
+              <p>© 2017 • Starbook Tutti i diritti riservati • <a href="/info/legal" target="_blank"><strong>Terms</strong></a> & <a href="/info/legal" target="_blank"><strong>Privacy Policy</strong></a></p>
+            </div>
+            <div class="col-md-6 links">
+              <p><a routerLink="/info/help" target="_blank">Aiuto e Assistenza</a> • <a (click)="logout()">Esci</a></p>
+            </div>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="popup-container" [ngStyle]="{'display' : popup==='PREVIEW_PROMOTION_POPUP' ? 'block' : 'none'}">
+  <div class="popup-shadow" [ngStyle]="{'display' : popup ? 'block' : 'none'}" (click)="popup=null;"></div>
+  <div class="popup">
+    <div class="popup-content">
+      <div class="popup-nav">
+        <button type="button" class="close" (click)="popup=null;">&times;</button>Riepilogo della promozione
+      </div>
+      <div class="popup-header">
+        <p><span>La promozione verra pubblicata su <u>Facebook Ads</u>, <u>Google Adwords</u>, <u>Linkedin Advertising</u> per {{DefaultCrossAdvertisingWeekPeriod.count}} {{DefaultCrossAdvertisingWeekPeriod.item}} a {{getTotalCostPromotion()/100}}€.</span></p>
+      </div>
+      <div class="popup-body">
+      </div>
+      <div class="popup-footer">
+        <button id="startPromotion" type="button" class="btn btn-danger" (click)="startPromotion()"><i class="fa fa-circle-o-notch animate" *ngIf="advertising_state.loading"></i>Inizia promozione</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="popup-container" [ngStyle]="{'display' : popup==='ADD_PROMOTION_CARD_AND_CONTINUE_POPUP' ? 'block' : 'none'}">
+  <div class="popup-shadow" [ngStyle]="{'display' : popup ? 'block' : 'none'}"></div>
+  <div class="popup">
+    <div class="popup-content">
+      <div class="popup-nav">
+        <button type="button" class="close" (click)="popup=null;">&times;</button>Aggiungi un metodo di pagamento
+      </div>
+      <div class="popup-header">
+        <div class="list-cards">
+          <img src="../../../assets/images/visa.png" alt="Visa">
+          <img src="../../../assets/images/mastercard.png" alt="Mastercard">
+          <img src="../../../assets/images/americanexpress.png" alt="AmericanExpress">
+          <img src="../../../assets/images/discover.png" alt="Discover">
+        </div>
+      </div>
+      <div class="popup-body">
+        <form>
+          <div class="row">
+            <div class="form-group col-md-12">
+              <label for="firstname-input">Numero carta *</label>
+              <input autocomplete="off" type="text" placeholder="Numero" class="form-control" [ngClass]="{'error-input': card_state.message_error}" id="numberInput" [(ngModel)]="Card.number" [ngModelOptions]="{standalone: true}">
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="dateInput">Scadenza *</label>
+                <input autocomplete="off" type="text" placeholder="MM/AA" class="form-control" [ngClass]="{'error-input': card_state.message_error}" id="dateInput" [(ngModel)]="Card.exp_date" (keyup)="checkExpiry(Card.exp_date)" (change)="checkExpiry(Card.exp_date)" [ngModelOptions]="{standalone: true}">
+              </div>
+            </div>
+            <div class="form-group col-md-6">
+              <label for="numberInput">Codice di sicurezza *</label>
+              <input autocomplete="off" type="text" placeholder="CVC/CVV" class="form-control" [ngClass]="{'error-input': card_state.message_error}" id="numberInput" [(ngModel)]="Card.cvc" [ngModelOptions]="{standalone: true}">
+            </div>
+            <div class="form-group col-md-12">
+              <label for="nameInput">Nome e cognome</label>
+              <input type="name" name="name" placeholder="" class="form-control" id="nameInput" [(ngModel)]="Card.name" [ngModelOptions]="{standalone: true}">
+            </div>
+            <div class="form-group col-md-6">
+              <label for="capInput">Codice postale</label>
+              <input type="text" placeholder="" class="form-control" id="capInput" [(ngModel)]="Card.address_zip" [ngModelOptions]="{standalone: true}">
+            </div>
+            <div class="form-group col-md-6">
+              <label for="countryInput">Paese</label>
+              <input type="text" placeholder="" class="form-control" id="countryInput" [(ngModel)]="Card.address_country" [ngModelOptions]="{standalone: true}">
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="popup-footer">
+        <div class="error-container" *ngIf="card_state.message_error">
+          <span class="error">{{card_state.message_error}}</span>
+        </div>
+        <div class="actions">
+          <button type="button" id="next" class="btn btn-secondary" (click)="popup='PREVIEW_PROMOTION_POPUP';">Annulla</button>
+          <button id="addCard" type="button" class="btn btn-danger" (click)="savePromotionCardAndContinue()"><i class="fa fa-circle-o-notch animate" *ngIf="card_state.loading"></i>Salva Carta E Continua</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- REQUESTS -->
+<div class="account-container" *ngIf="page==='requests'">
+  <div class="account">
+    <div class="account-tab">
+      <ul>
+        <li><a class="btn btn-transparent" (click)="clickLeftTabInbox('received')" [ngClass]="{'active':inbox_tab==='received'}"><i class="fa fa-inbox" aria-hidden="true"></i>Ricevute</a></li>
+        <li><a class="btn btn-transparent" (click)="clickLeftTabInbox('sent')" [ngClass]="{'active':inbox_tab==='sent'}"><i class="fa fa-paper-plane" aria-hidden="true"></i>Inviate</a></li>
+      </ul>
+    </div>
+    <div *ngIf="inbox_tab==='sent'">
+      <div class="quotation-content tabbed-content">
+        <div class="quotation-header">
+          <p>Non ci ancora richieste ricevute. Se non hai ancora creato una promozione, inizia ora. <a routerLink="/account/new_promotion">Vai qui.</a></p>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="inbox_tab==='received'">
+      <div class="quotation-content tabbed-content">
+        <div class="quotation-header">
+          <p>Non ci ancora richieste inviate. Se non hai ancora creato una promozione, inizia ora. <a routerLink="/account/new_promotion">Vai qui.</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- QUOTATION -->
 <div class="account-container" *ngIf="page==='quotation'">
   <div class="account">
     <div class="account-tab">
       <ul>
         <li><a class="btn btn-transparent" (click)="clickLeftTabQuotation('sent')" [ngClass]="{'active':quotation_tab==='sent'}"><i class="fa fa-paper-plane" aria-hidden="true"></i>Inviati</a></li>
         <li><a class="btn btn-transparent" (click)="clickLeftTabQuotation('received')" [ngClass]="{'active':quotation_tab==='received'}"><i class="fa fa-inbox" aria-hidden="true"></i>Ricevuti</a></li>
-        <li><a class="btn btn-success" (click)="clickLeftTabQuotation('new')"><i aria-hidden="true" class="fa fa-plus"></i>Preventivo</a></li>
+        <li><a class="btn btn-success" (click)="clickLeftTabQuotation('new')"><i class="fa fa-plus" aria-hidden="true"></i>Nuovo</a></li>
       </ul>
     </div>
     <div *ngIf="quotation_tab==='sent'">
@@ -525,6 +833,7 @@
     </div>
   </div>
 </div>
+
 
 <div class="account-container" *ngIf="page==='help'">
   <div class="account">
@@ -869,7 +1178,6 @@
     </div>
   </div>
 </div> -->
-
 <!-- <div *ngFor="let card of cards">
   <div class="row">
     <div class="col-lg-8 col-md-8">

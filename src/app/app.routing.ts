@@ -40,14 +40,25 @@ const routes: Routes = [
 
   { path: 'account', component: AccountComponent },
   { path: 'account/:page', component: AccountComponent, data: { name: 'Account' } },
+
+  // { path: 'ads/:page', component: AccountComponent, data: { name: 'Account' } },
+
   { path: 'auth/:page', component: AuthComponent, data: { name: 'Auth' } },
 
   { path: 'orders', component: OrdersComponent, data: { name: 'Orders' } },
   { path: 'orders/:page', component: OrdersComponent, data: { name: 'Orders' } },
 
+  //
+  // Pubblic profiles
+  //
   { path: 'profile', component: ProfileComponent, data: { name: 'Profile' } },
   { path: 'profile/:page', component: ProfileComponent, data: { name: 'Profile' } },
+  { path: 'business', component: ProfileComponent, data: { name: 'Business' } },
+  { path: 'business/:page', component: ProfileComponent, data: { name: 'Business' } },
+  // { path: 'professional', component: ProfileComponent, data: { name: 'Business' } },
+  // { path: 'professional/:page', component: ProfileComponent, data: { name: 'Business' } },
 
+  
   { path: 'facebook', component: FacebookComponent },
 
   // { path: 'contact', component: ContactComponent },
