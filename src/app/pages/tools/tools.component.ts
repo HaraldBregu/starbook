@@ -44,7 +44,7 @@ export class ToolsComponent implements OnInit {
 
       if (this.page==="facebook_reachestimate") {
         this.seoObject['title'] = "Clienti su Facebook? Scopri quanti ci sono nella tua zona!";
-        this.seoObject['description'] = "Molti sottovalitano l'importanza di questo social network quando si parla di pubblicità per le imprese e professionisti. Su Facebook puoi trovare milliaia di utenti e far conoscere la propria attività spendendo poco.";
+        this.seoObject['description'] = "Molti sottovalitano l'importanza di questo social network quando si parla di pubblicità per le imprese e professionisti. Su Facebook puoi trovare migliaia di utenti e far conoscere la propria attività spendendo poco.";
         this.seoObject['url'] = 'https://www.starbook.co' + this.router.url;
         this.seoObject['image_url'] = "https://s3-eu-west-1.amazonaws.com/starbook-s3/website/facebook-reach-estimate.png";
       }
