@@ -9020,7 +9020,8 @@ app-tools {
             border: 0; }
         app-tools .tools-container .tools .facebook-reachestimate .reachestimate-body .actions {
           margin: auto;
-          text-align: center; }
+          text-align: center;
+          margin-top: 40px; }
           app-tools .tools-container .tools .facebook-reachestimate .reachestimate-body .actions .btn-circular {
             position: relative;
             border: 10px solid #f1c40f;
