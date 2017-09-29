@@ -24,6 +24,8 @@ import { AuthComponent } from './pages/auth/auth.component';
 import { RequestsComponent } from './pages/requests/requests.component';
 import { ShareComponent } from './pages/share/share.component';
 import { ContactComponent } from './pages/contact/contact.component';
+import { ToolsComponent } from './pages/tools/tools.component';
+
 import { NotfoundComponent } from './pages/notfound/notfound.component';
 
 import { TestsComponent } from './pages/tests/tests.component';
@@ -37,6 +39,9 @@ const routes: Routes = [
 
   { path: 'company', component: CompanyComponent, data: { name: 'Company' } },
   { path: 'company/:page', component: CompanyComponent, data: { name: 'Company' } },
+
+  { path: 'tools', component: ToolsComponent, data: { name: 'Tools' } },
+  { path: 'tools/:page', component: ToolsComponent, data: { name: 'Tools' } },
 
   { path: 'account', component: AccountComponent },
   { path: 'account/:page', component: AccountComponent, data: { name: 'Account' } },
@@ -58,7 +63,7 @@ const routes: Routes = [
   // { path: 'professional', component: ProfileComponent, data: { name: 'Business' } },
   // { path: 'professional/:page', component: ProfileComponent, data: { name: 'Business' } },
 
-  
+
   { path: 'facebook', component: FacebookComponent },
 
   // { path: 'contact', component: ContactComponent },

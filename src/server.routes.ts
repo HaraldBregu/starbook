@@ -14,6 +14,9 @@ export const routes: string[] = [
   'company',
   'company/:page',
 
+  'tools',
+  'tools/:page',
+
   'account',
   'account/:page',
 

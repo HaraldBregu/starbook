@@ -26,7 +26,7 @@ export class AccountComponent implements OnInit {
   public tabs = [
     {name: 'Account', route: 'profile'},
     {name: 'Promuovi', route: 'new_promotion'},
-    {name: 'Richieste', route: 'requests'},
+    {name: 'Messaggi', route: 'requests'},
     {name: 'Preventivi', route: 'quotation'},
     {name: 'Aiuto', route: 'help'},
   ]
@@ -318,7 +318,7 @@ export class AccountComponent implements OnInit {
 
   ngOnInit() {
     this.route.params.subscribe(params => {
-      
+
       if (this.Account['business'] && this.Account['business']['username']) {
         this.profile_link = "https://www.starbook.co/business/" + this.Account['business']['username']
       } else {

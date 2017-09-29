@@ -72,6 +72,8 @@ import { ShareComponent } from './pages/share/share.component';
 import { QuotationComponent } from './pages/quotation/quotation.component';
 
 import { ContactComponent } from './pages/contact/contact.component';
+import { ToolsComponent } from './pages/tools/tools.component';
+
 import { NotfoundComponent } from './pages/notfound/notfound.component';
 
 import { TestsComponent } from './pages/tests/tests.component';
@@ -135,6 +137,8 @@ let declarations = [
   QuotationComponent,
   CategoryComponent,
   ContactComponent,
+  ToolsComponent,
+  
   NotfoundComponent,
   TestsComponent,
 

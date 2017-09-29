@@ -57,6 +57,25 @@ export class CommonService {
     }
   }
 
+  facebookReachestimate(cap) {
+    let access_token = "EAAPwI8OT9U0BADFuxBf0aYROg3L6S60cc9b0R6jeZAQf4ZAB0W1OhiGQG7H2WFVMADhDqW58MR3HfL6sel5R3JcIGYhCxM2jrN7BQrjOZCr4WAdopRBUMgVymWZCfrCUeT65viE3DtKZCYjrD9wCHtbZC38ve58dnSzZAcC2wQSZCwZDZD"
+    let ads_account_id = "act_42190415"
+    let params: URLSearchParams = new URLSearchParams()
+    params.append("currency", "EUR")
+    params.append("optimize_for", "OFFSITE_CONVERSIONS")
+    var targeting_spec = {"geo_locations":{"zips":[{"key":"IT:20025"}]},"age_min":18,"age_max":90}
+    if (cap) {
+      targeting_spec.geo_locations.zips = [{"key":"IT:" + cap}]
+    } else {
+      targeting_spec.geo_locations['countries'] = ["IT"]
+    }
+    params.append("targeting_spec", JSON.stringify(targeting_spec))
+    params.append('access_token', access_token)
+    return this.http.get("https://graph.facebook.com/v2.10/" + ads_account_id +"/reachestimate", { search : params }).toPromise().then((response) => {
+      return response.json()
+    }).catch(this.handleError)
+  }
+
   postMethod(path, data) {
     return this.http.post(this.api + path, data, { headers: this._makeHeaders() }).toPromise().then((response) => {
       return response.json();

@@ -1,7 +1,8 @@
 <div class="top-bar-container noselect">
   <ul class="top-bar">
     <li *ngFor="let tab of tabs" [ngClass]="{'active':(tab.route===page)}" (click)="clickTabItem(tab.route)">
-      <span [ngClass]="{'new_funct':(tab.route==='inprogress_promotion' || tab.route==='terminated_promotion' || tab.route==='new_promotion')}">{{tab.name}}</span>
+      <!-- <span [ngClass]="{'new_funct':(tab.route==='inprogress_promotion' || tab.route==='terminated_promotion' || tab.route==='new_promotion')}">{{tab.name}}</span> -->
+      <span>{{tab.name}}</span>
     </li>
   </ul>
 </div>
