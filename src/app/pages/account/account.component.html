@@ -13,17 +13,16 @@
   <div class="account">
     <div class="account-tab">
       <ul>
-        <li><a class="btn btn-transparent" (click)="clickLeftTabItem('personal')" [ngClass]="{'active':profile_tab==='personal'}"><i class="fa fa-user-circle" aria-hidden="true"></i>Personale</a></li>
-        <li><a class="btn btn-transparent" (click)="clickLeftTabItem('company')" [ngClass]="{'active':profile_tab==='company'}"><i class="fa fa-building" aria-hidden="true"></i>Azienda</a></li>
+        <li><a class="btn btn-transparent" (click)="clickLeftTabItem('informations')" [ngClass]="{'active':profile_tab==='informations'}"><i class="fa fa-user-circle" aria-hidden="true"></i>Informazioni</a></li>
         <li><a class="btn btn-transparent" (click)="clickLeftTabItem('settings')" [ngClass]="{'active':profile_tab==='settings'}"><i class="fa fa-wrench" aria-hidden="true"></i>Impostazioni</a></li>
         <li><a class="btn btn-transparent" (click)="clickLeftTabItem('payment_method')" [ngClass]="{'active':profile_tab==='payment_method'}"><i class="fa fa-credit-card" aria-hidden="true"></i>Pagamento</a></li>
         <li><a class="btn btn-transparent" (click)="clickLeftTabItem('share')" [ngClass]="{'active':profile_tab==='share'}"><i class="fa fa-share" aria-hidden="true"></i>Condividi</a></li>
       </ul>
     </div>
-    <div class="account-content tabbed-content" *ngIf="profile_tab==='personal'">
+    <div class="account-content tabbed-content" *ngIf="profile_tab==='informations'">
       <div class="account-header">
-        <h2>Profilo personale <a class="btn btn-primary" routerLink="{{getProfileRouter()}}" target="_blank">VISITA</a></h2>
-        <p>Le tue informazioni personali sono importanti per il profilo pubblico. Inserisci tutti i campi e un immagine di profilo per un profilo più completo.</p>
+        <h2>Le mie informazioni <a class="btn btn-primary" routerLink="{{getProfileRouter()}}" target="_blank">Guarda pagina</a></h2>
+        <p>Aggiorna le tue informazioni personali e il profilo pubblico. Più informazioni inserisci più completo diventerà il tuo profilo pubblico.</p>
       </div>
       <div class="account-body">
         <form>
@@ -38,34 +37,30 @@
                   </div>
                 </div>
                 <div class="content">
-                  <h5>Foto del profilo</h5>
-                  <p>Carica una foto profilo o cambia quella attuale.</p>
+                  <h5>Foto personale</h5>
+                  <p>Carica una foto personale o cambia quella attuale.</p>
                   <input type="file" (change)="selectProfilePicture($event)" style="display: none;" #file>
                   <button type="button" class="btn btn-secondary" name="button" (click)="file.click()">Carica una foto</button>
                 </div>
               </div>
             </div>
-          </div>
-        </form>
-        <form>
-          <div class="row">
             <div class="form-group col-md-6">
-              <label for="firstname-input">Il tuo nome</label>
+              <label for="firstname-input">Nome</label>
               <input class="form-control" type="text" id="firstname-input" [ngClass]="{'error-input': account_state.firstname_error}" [(ngModel)]="Account.profile.firstname" [ngModelOptions]="{standalone: true}">
             </div>
             <div class="form-group col-md-6">
-              <label for="lastname-input">Il tuo cognome</label>
+              <label for="lastname-input">Cognome</label>
               <input class="form-control" type="text" id="lastname-input" [ngClass]="{'error-input': account_state.lastname_error}" [(ngModel)]="Account.profile.lastname" [ngModelOptions]="{standalone: true}">
             </div>
-            <div class="form-group col-md-12">
-              <label for="description-input">La tua presentazione</label>
+            <!-- <div class="form-group col-md-12">
+              <label for="description-input">Presentazione</label>
               <textarea id="description-input" class="form-control" placeholder="" rows="3" [(ngModel)]="Account.profile.description" [ngModelOptions]="{standalone: true}"></textarea>
-            </div>
-            <div class="form-group col-md-12">
+            </div> -->
+            <!-- <div class="form-group col-md-12">
               <label for="phone-input">Telefono personale</label>
               <input class="form-control" type="text" id="phone-input" [(ngModel)]="Account.phone_number" [ngModelOptions]="{standalone: true}">
-            </div>
-            <div class="form-group control-group col-md-4">
+            </div> -->
+            <!-- <div class="form-group control-group col-md-4">
               <label class="control-label">Giorno di nascita</label>
               <div class="form-group">
                 <div class="select">
@@ -106,16 +101,74 @@
                 </select>
                 <div class="select__arrow"></div>
               </div>
+            </div> -->
+            <div class="form-group col-md-12">
+              <div class="avatar-section">
+                <div class="avatar-container">
+                  <div class="avatar" [ngStyle]="{'background-image':checkLogo(Account)}">
+                    <div class="overlay" *ngIf="logo_state.loading">
+                      <i class="fa fa-circle-o-notch animate"></i>
+                    </div>
+                  </div>
+                </div>
+                <div class="content">
+                  <h5>Logo aziendale</h5>
+                  <p>Tieni sempre aggiornato il tuo logo aziendale.</p>
+                  <input type="file" (change)="selectCompanyLogo($event)" style="display: none;" #file>
+                  <button type="button" class="btn btn-secondary" name="button" (click)="file.click()">Carica un logo</button>
+                </div>
+              </div>
             </div>
+            <div class="form-group col-md-6">
+              <label for="business-name-input">Ragione sociale</label>
+              <input class="form-control" placeholder="Nome dell'azienda" type="text" id="business-name-input"  [(ngModel)]="Account.business.name" [ngModelOptions]="{standalone: true}">
+            </div>
+            <div class="form-group col-md-6">
+              <label for="vat-input">P.IVA</label>
+              <input class="form-control" placeholder="Partita IVA" type="text" id="vat-input" [(ngModel)]="Account.business.vat" [ngModelOptions]="{standalone: true}">
+            </div>
+            <div class="form-group col-md-12">
+              <label for="business-description-input">Categoria servizio</label>
+              <input class="form-control" type="text" id="vat-input" [(ngModel)]="Account.business.tagline" [ngModelOptions]="{standalone: true}">
+            </div>
+            <div class="form-group col-md-12">
+              <label for="business-description-input">Descrizione dell'azienda</label>
+              <textarea id="business-description-input" placeholder="Qualcosa in più sulla tua azienda" class="form-control" rows="3" [(ngModel)]="Account.business.description" [ngModelOptions]="{standalone: true}"></textarea>
+            </div>
+            <div class="form-group col-md-6">
+              <label for="company-tel-input">Telefono aziendale</label>
+              <input class="form-control" type="tel" id="company-tel-input" [(ngModel)]="Account.business.phone_number" [ngModelOptions]="{standalone: true}">
+            </div>
+            <div class="form-group col-md-6">
+              <label for="email-company-input">Email aziendale</label>
+              <input class="form-control" type="email" id="email-company-input" [(ngModel)]="Account.business.email" [ngModelOptions]="{standalone: true}">
+            </div>
+            <div class="form-group col-md-6">
+              <label for="address-input">Indirizzo</label>
+              <input class="form-control" type="text" id="address-input" placeholder="Via Verdi 12" [(ngModel)]="Account.address.street" [ngModelOptions]="{standalone: true}">
+            </div>
+            <div class="form-group col-md-2">
+              <label for="cap-input">CAP</label>
+              <input class="form-control" type="text" id="cap-input" placeholder="CAP" [(ngModel)]="Account.address.postal_code" [ngModelOptions]="{standalone: true}">
+            </div>
+            <div class="form-group col-md-4">
+              <label for="city-input">Città</label>
+              <input class="form-control" type="text" id="city-input" placeholder="Città" [(ngModel)]="Account.address.city" [ngModelOptions]="{standalone: true}">
+            </div>
+            <!-- <div class="form-group col-md-6">
+              <label for="website-input">Sito web</label>
+              <input class="form-control" type="url" id="email-company-input" [(ngModel)]="Account.business.website" [ngModelOptions]="{standalone: true}">
+            </div> -->
           </div>
         </form>
         <div class="actions">
-          <span class="saving" *ngIf="account_state.loading"><i class="fa fa-circle-o-notch animate"></i> salvando</span>
-          <button type="button" class="btn btn-success" name="button" (click)="saveInformations()">Salva le modifiche</button>
+          <!-- <span class="saving" *ngIf="account_state.loading"><i class="fa fa-circle-o-notch animate"></i> salvando</span> -->
+          <button type="button" class="btn btn-success" name="button" (click)="saveInformations()"><i *ngIf="account_state.loading" class="fa fa-circle-o-notch animate"></i>Salva le modifiche</button>
+          <button type="button" class="btn btn-warning" name="button" (click)="saveInformationsAndPromote()">Promuovi</button>
         </div>
       </div>
     </div>
-    <div class="account-content tabbed-content" *ngIf="profile_tab==='company'">
+    <!-- <div class="account-content tabbed-content" *ngIf="profile_tab==='company'">
       <div class="account-header">
         <h2>Profilo aziendale <a class="btn btn-primary" routerLink="{{getProfileRouter()}}" target="_blank">VISITA</a></h2>
         <p>Le informazioni della tua azienda ti danno la possibilità di avere anche un profilo aziendale pubblico. Inserisci un logo e tutti i campi richiesti.</p>
@@ -192,7 +245,7 @@
           <button type="button" class="btn btn-warning" name="button" (click)="saveInformationsAndPromote()">Promuovi</button>
         </div>
       </div>
-    </div>
+    </div> -->
     <div class="account-content tabbed-content" *ngIf="profile_tab==='settings'">
       <div class="account-header">
         <h2>Gestisci la tua email</h2>

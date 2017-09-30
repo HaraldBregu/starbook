@@ -7415,8 +7415,8 @@ app-account {
           padding: 0 40px 40px; }
           app-account .account-container .account .account-content .account-body .avatar-section .avatar-container {
             float: left;
-            width: 120px;
-            height: 120px; }
+            width: 100px;
+            height: 100px; }
             app-account .account-container .account .account-content .account-body .avatar-section .avatar-container .avatar {
               position: relative;
               display: inline-block;
@@ -7436,7 +7436,7 @@ app-account {
                 app-account .account-container .account .account-content .account-body .avatar-section .avatar-container .avatar .overlay i {
                   color: white; }
           app-account .account-container .account .account-content .account-body .avatar-section .content {
-            margin-left: 120px;
+            margin-left: 100px;
             margin-top: 10px;
             padding: 5px 20px; }
             app-account .account-container .account .account-content .account-body .avatar-section .content p {

@@ -30,7 +30,7 @@ export class AccountComponent implements OnInit {
     {name: 'Preventivi', route: 'quotation'},
     {name: 'Aiuto', route: 'help'},
   ]
-  public profile_tab = 'personal'
+  public profile_tab = 'informations'
   public quotation_tab = 'new'
   public payment_tab = 'cards'
   public help_tab = 'request'
