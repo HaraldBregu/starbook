@@ -31,7 +31,7 @@ export class CompanyComponent implements OnInit {
     this.seoObject['title'] = "Soluzioni web per aziende e professionisti";
     this.seoObject['description'] = "Promuovi la tua attività online utilizzando le migliori piattaforme. Gestisci le richieste dei tuoi clienti. Invia preventivi dinamici e cresci la tua attività.";
     this.seoObject['url'] = 'https://www.starbook.co' + this.router.url;
-    this.seoObject['image_url'] = "https://s3-eu-west-1.amazonaws.com/starbook-s3/website/starbook-logo-background.png";
+    this.seoObject['image_url'] = "https://s3-eu-west-1.amazonaws.com/starbook-s3/website/icon_256.png";
 
     this.seoService.setTitle("Starbook | Registrazione impresa");
     this.seoService.setMetaElem('description', this.seoObject['description']);
