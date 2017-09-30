@@ -35,7 +35,8 @@ import { PostComponent } from './pages/blog/post/post.component';
 import { QuotationComponent } from './pages/quotation/quotation.component';
 
 const routes: Routes = [
-  { path: '', component: LandingComponent, data: { name: 'Landing' } },
+  // { path: '', component: LandingComponent, data: { name: 'Landing' } },
+  { path: '', component: CompanyComponent, data: { name: 'Company' } },
 
   { path: 'company', component: CompanyComponent, data: { name: 'Company' } },
   { path: 'company/:page', component: CompanyComponent, data: { name: 'Company' } },

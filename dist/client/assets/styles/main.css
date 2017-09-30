@@ -9130,6 +9130,9 @@ app-tools {
 
   app-profile .tools-footer .footer .links {
     text-align: left; } }
+@media (max-width: 320px) {
+  app-tools .tools-container .tools .facebook-reachestimate .reachestimate-body .actions .btn-success {
+    padding: 0 20px; } }
 app-tests {
   display: block;
   position: absolute;

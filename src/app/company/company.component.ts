@@ -55,8 +55,8 @@ export class CompanyComponent implements OnInit {
       }
       else {
         // this.page = null
-        this.router.navigate(['/company'])
-        // this.router.navigate([''])
+        // this.router.navigate(['/company'])
+        this.router.navigate([''])
       }
     })
   }
