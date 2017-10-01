@@ -317,46 +317,46 @@ export class CheckoutComponent implements OnInit {
   }
 
   signup() {
-    if (this.signup_state.loading) { return; }
-    this.signup_state.email_error = null;
-    this.signup_state.first_name_error = null;
-    this.signup_state.last_name_error = null;
-    this.signup_state.phone_error = null;
-    this.signup_state.password_error = null;
-    if (this.signupParameters.email.length===0 || this.signupParameters.firstname.length===0 || this.signupParameters.lastname.length===0 || this.signupParameters.phone.length===0 || this.signupParameters.password.length===0) {
-      if (!this.emailPattern.test(this.signupParameters.email)) {
-        this.signup_state.email_error = "Inserisci un indirizzo email corretto";
-      }
-      this.signup_state.email_error = (this.signupParameters.email.length===0) ? "Inserisci un indirizzo email" : null;
-      this.signup_state.first_name_error = (this.signupParameters.firstname.length===0) ? "Inserisci un nome" : null;
-      this.signup_state.last_name_error = (this.signupParameters.lastname.length===0) ? "Inserisci un cognome" : null;
-      this.signup_state.phone_error = (this.signupParameters.phone.length<9) ? "Inserisci un numero di telefono corretto" : null;
-      this.signup_state.password_error = (this.signupParameters.password.length===0) ? "Inserisci una password" : null;
-      return;
-    }
-    this.signup_state.loading = true;
-    this.signup_state.button_title = "Registrando...";
-    this.authService.signup(this.signupParameters.firstname, this.signupParameters.lastname, this.signupParameters.phone, this.signupParameters.email, this.signupParameters.password).then((data) => {
-      this.navigationService.updatePersonalMenu(data);
-      this.steps[3] = 'payment'
-      this.router.navigate(['checkout/payment'])
-    }).catch((error) => {
-      this.signup_state.loading = false;
-      this.signup_state.button_title = "Registrati";
-      switch (error) {
-        case 409:
-        this.signup_state.error_message = "Questo indirizzo email è gia in uso. Prova ad accedere.";
-          break;
-        case 422:
-        this.signup_state.error_message = "Inserisci tutti i campi richiesti";
-          break;
-        case 404:
-        this.signup_state.error_message = "C'è stato un errore sconosciuto, per favore riprova più tardi";
-          break;
-        default:
-        this.signup_state.error_message = null;
-      }
-    });
+    // if (this.signup_state.loading) { return; }
+    // this.signup_state.email_error = null;
+    // this.signup_state.first_name_error = null;
+    // this.signup_state.last_name_error = null;
+    // this.signup_state.phone_error = null;
+    // this.signup_state.password_error = null;
+    // if (this.signupParameters.email.length===0 || this.signupParameters.firstname.length===0 || this.signupParameters.lastname.length===0 || this.signupParameters.phone.length===0 || this.signupParameters.password.length===0) {
+    //   if (!this.emailPattern.test(this.signupParameters.email)) {
+    //     this.signup_state.email_error = "Inserisci un indirizzo email corretto";
+    //   }
+    //   this.signup_state.email_error = (this.signupParameters.email.length===0) ? "Inserisci un indirizzo email" : null;
+    //   this.signup_state.first_name_error = (this.signupParameters.firstname.length===0) ? "Inserisci un nome" : null;
+    //   this.signup_state.last_name_error = (this.signupParameters.lastname.length===0) ? "Inserisci un cognome" : null;
+    //   this.signup_state.phone_error = (this.signupParameters.phone.length<9) ? "Inserisci un numero di telefono corretto" : null;
+    //   this.signup_state.password_error = (this.signupParameters.password.length===0) ? "Inserisci una password" : null;
+    //   return;
+    // }
+    // this.signup_state.loading = true;
+    // this.signup_state.button_title = "Registrando...";
+    // this.authService.signup(this.signupParameters.firstname, this.signupParameters.lastname, this.signupParameters.phone, this.signupParameters.email, this.signupParameters.password).then((data) => {
+    //   this.navigationService.updatePersonalMenu(data);
+    //   this.steps[3] = 'payment'
+    //   this.router.navigate(['checkout/payment'])
+    // }).catch((error) => {
+    //   this.signup_state.loading = false;
+    //   this.signup_state.button_title = "Registrati";
+    //   switch (error) {
+    //     case 409:
+    //     this.signup_state.error_message = "Questo indirizzo email è gia in uso. Prova ad accedere.";
+    //       break;
+    //     case 422:
+    //     this.signup_state.error_message = "Inserisci tutti i campi richiesti";
+    //       break;
+    //     case 404:
+    //     this.signup_state.error_message = "C'è stato un errore sconosciuto, per favore riprova più tardi";
+    //       break;
+    //     default:
+    //     this.signup_state.error_message = null;
+    //   }
+    // });
   }
 
   login() {
