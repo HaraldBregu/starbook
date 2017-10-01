@@ -499,7 +499,7 @@ export class PopupsComponent implements OnInit, OnDestroy {
             this.popupService.activate({type: 'confirmNewOrder', data: this.loginData.orderData});
           } else {
             this.closePopup();
-            // this.router.navigate(['/']);
+            this.router.navigate(['/account/profile']);
           }
         }).catch((error) => {
           this.isPopupLoading = false;
@@ -535,21 +535,24 @@ export class PopupsComponent implements OnInit, OnDestroy {
     this.fb.login().then((res: LoginResponse) => {
       let fb_token = res.authResponse.accessToken
       this.authServics.facebookLogin(fb_token).then((userData) => {
-        if(!userData.phone_number) {
-          this.closePopup(true);
-          this.finishPopupState = 'active';
-          this.finishPopupData.title = 'Completa il profilo';
-          this.finishPopupData.text.push('Per restare in contatto con i professionisti inserisci il tuo numero di telefono.');
-          this.finishPopupData.type = 'phone';
-          this.finishPopupData.data = { userData: userData };
-          if (this.loginData.type === 'fromOrder') {
-            this.finishPopupData.from = 'order';
-          }
-        } else if (!userData.email) {
-          this.closePopup(true);
-        } else {
-          this.closePopup(false);
-        }
+        // if(!userData.phone_number) {
+        //   this.closePopup(true);
+        //   this.finishPopupState = 'active';
+        //   this.finishPopupData.title = 'Completa il profilo';
+        //   this.finishPopupData.text.push('Per restare in contatto con i professionisti inserisci il tuo numero di telefono.');
+        //   this.finishPopupData.type = 'phone';
+        //   this.finishPopupData.data = { userData: userData };
+        //   if (this.loginData.type === 'fromOrder') {
+        //     this.finishPopupData.from = 'order';
+        //   }
+        // } else if (!userData.email) {
+        //   this.closePopup(true);
+        // } else {
+        //   this.closePopup(false);
+        // }
+        this.closePopup(true)
+        this.shadowState = 'inactive';
+        this.router.navigate(['/account/profile'])
       }).catch((error) => {
         // console.log(error);
         this.formError = {
@@ -800,68 +803,67 @@ export class PopupsComponent implements OnInit, OnDestroy {
     // }
   }
 
-  registration(firstname: string, lastname: string, phone: string, email: string, password: string) {
-    if (this.emailPattern.test(email) &&
-    // password === passwordConfirm &&
-    password.length > 0 &&
-    firstname.length > 0 &&
-    lastname.length > 0 &&
-    phone.length > 8) {
-      this.isPopupLoading = true;
-      let timeStart = Date.now();
-      this.authServics.signup(firstname, lastname, phone, email, password)
-        .then((data) => {
-          this.isPopupLoading = false;
-          this.auth = data;
-          this.navigationService.updatePersonalMenu(data);
-          this.closePopup();
-          // this.router.navigate(['/profile/payment']);
-        })
-        .catch((error) => {
-          this.isPopupLoading = false;
-          switch (error) {
-            case 409:
-              this.formError = {
-                title: 'Indirizzo e-mail già in uso.',
-                message: `Hai indicato di essere un nuovo cliente ma è già
-                presente un account collegato all'indirizzo email: ` + email
-              };
-              break;
-            case 422:
-              this.formError = {
-                title: 'Parametri mancanti',
-                message: `Inserisci tutti i parametri per procedere con la registrazione`
-              };
-              break;
-            case 404:
-              this.formError = {
-                title: 'Errore',
-                message: `C'è stato un errore sconosciuto, per favore riprova più tardi`
-              };
-              break;
-            default:
-              this.formError = false;
-          }
-        });
-    } else {
-      if (!this.emailPattern.test(email)) {
-        this.registrationError.email = true;
-      }
-      // if (password !== passwordConfirm) {
-      //   this.registrationError.password = true;
-      // }
-      if (password.length < 1) {
-        this.registrationError.passwordFirst = true;
-      }
-      if (firstname.length < 1) {
-        this.registrationError.firstname = true;
-      }
-      if (lastname.length < 1) {
-        this.registrationError.lastname = true;
-      }
-    }
-    return false;
-  }
+  // registration(firstname: string, lastname: string, phone: string, email: string, password: string) {
+  //   if (this.emailPattern.test(email) &&
+  //   password.length > 0 &&
+  //   firstname.length > 0 &&
+  //   lastname.length > 0 &&
+  //   phone.length > 8) {
+  //     this.isPopupLoading = true;
+  //     let timeStart = Date.now();
+  //     this.authServics.signup(firstname, lastname, phone, email, password)
+  //       .then((data) => {
+  //         this.isPopupLoading = false;
+  //         this.auth = data;
+  //         this.navigationService.updatePersonalMenu(data);
+  //         this.closePopup();
+  //         // this.router.navigate(['/profile/payment']);
+  //       })
+  //       .catch((error) => {
+  //         this.isPopupLoading = false;
+  //         switch (error) {
+  //           case 409:
+  //             this.formError = {
+  //               title: 'Indirizzo e-mail già in uso.',
+  //               message: `Hai indicato di essere un nuovo cliente ma è già
+  //               presente un account collegato all'indirizzo email: ` + email
+  //             };
+  //             break;
+  //           case 422:
+  //             this.formError = {
+  //               title: 'Parametri mancanti',
+  //               message: `Inserisci tutti i parametri per procedere con la registrazione`
+  //             };
+  //             break;
+  //           case 404:
+  //             this.formError = {
+  //               title: 'Errore',
+  //               message: `C'è stato un errore sconosciuto, per favore riprova più tardi`
+  //             };
+  //             break;
+  //           default:
+  //             this.formError = false;
+  //         }
+  //       });
+  //   } else {
+  //     if (!this.emailPattern.test(email)) {
+  //       this.registrationError.email = true;
+  //     }
+  //     // if (password !== passwordConfirm) {
+  //     //   this.registrationError.password = true;
+  //     // }
+  //     if (password.length < 1) {
+  //       this.registrationError.passwordFirst = true;
+  //     }
+  //     if (firstname.length < 1) {
+  //       this.registrationError.firstname = true;
+  //     }
+  //     if (lastname.length < 1) {
+  //       this.registrationError.lastname = true;
+  //     }
+  //   }
+  //   return false;
+  // }
 
   recovery(email: string) {
     if (this.emailPattern.test(email)) {

@@ -8115,9 +8115,10 @@ app-auth {
   height: 100%;
   min-height: 100vh;
   padding: 70px 0 0;
-  -webkit-overflow-scrolling: touch; }
+  -webkit-overflow-scrolling: touch;
+  background: white; }
   app-auth .auth-container .auth {
-    padding: 60px 10px;
+    padding: 50px 10px;
     max-width: 500px;
     margin: auto; }
     app-auth .auth-container .auth .auth-header {
@@ -8163,11 +8164,11 @@ app-auth {
         font-weight: 300; }
     app-auth .auth-container .auth .auth-body .btn {
       padding: 0 30px;
-      text-transform: uppercase;
-      font-size: 20px;
-      font-weight: 600;
+      font-size: 24px;
+      font-weight: 500;
       border-radius: 2px;
-      height: 60px; }
+      height: 60px;
+      width: 100%; }
     app-auth .auth-container .auth .auth-body .picture-container {
       margin-bottom: 30px; }
       app-auth .auth-container .auth .auth-body .picture-container .service-picture {
@@ -8213,13 +8214,20 @@ app-auth {
     app-auth .auth-container .auth .auth-body .form-group .ui-inputtext {
       color: black;
       font-size: 16px; }
+    app-auth .auth-container .auth .auth-body .btn-facebook i {
+      font-size: 42px;
+      vertical-align: inherit;
+      position: absolute;
+      left: 28px;
+      top: 9px; }
     app-auth .auth-container .auth .auth-body .footer-group {
       text-align: center;
       font-size: 16px;
-      font-weight: 300;
-      padding: 10px 0; }
+      font-weight: 300; }
       app-auth .auth-container .auth .auth-body .footer-group .text {
         display: block; }
+      app-auth .auth-container .auth .auth-body .footer-group .login {
+        margin-top: 20px; }
       app-auth .auth-container .auth .auth-body .footer-group .enter, app-auth .auth-container .auth .auth-body .footer-group .password-forget, app-auth .auth-container .auth .auth-body .footer-group .facebook-continue {
         color: #16a085;
         font-weight: 400;
@@ -8304,6 +8312,9 @@ app-auth {
           cursor: pointer; }
 
 @media (max-width: 425px) {
+  app-auth .auth-container .auth {
+    padding: 40px 10px; }
+
   app-auth .auth-container .worker .worker-body .avatar {
     width: 150px; }
 

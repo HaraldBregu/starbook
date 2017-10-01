@@ -45,7 +45,7 @@ export class AuthService {
       }
     }
     this.api = this.protocol + "://" + this.hostname + "/" + this.api_version + "/";
-    // this.api = 'http://localhost/t0.9.1/';
+    this.api = 'http://localhost/t0.9.1/';
   }
 
   private _makeHeadersFacebook(access_token) {
@@ -147,6 +147,17 @@ export class AuthService {
       }
     }).catch(this.handleError);
   }
+  signup(data) {
+    return this.http.post(this.api + 'signup', data).toPromise().then((response) => {
+      if (isBrowser) {
+        let data = response.json()
+        var account = data.result
+        account['token'] = data.token
+        localStorage.setItem('auth', JSON.stringify(account))
+        return data.result
+      }
+    }).catch(this.handleError);
+  }
 
   signupProfessional(firstname: string, lastname: string, phone: string, email: string, password: string, account_type: string) {
     return this.http.post(this.api + 'signup', {
@@ -181,45 +192,6 @@ export class AuthService {
         // } else {
         //   this.handleError(data.message);
         // }
-      })
-      .catch(this.handleError);
-  }
-
-  signup(firstname: string, lastname: string, phone: string, email: string, password: string) {
-    return this.http.post(this.api + 'signup', { phone_number: phone, email: email, password: password, profile: {firstname: firstname, lastname: lastname}})
-      .toPromise()
-      .then((response) => {
-        if (isBrowser) {
-          let data = response.json()
-          var account = data.result
-          account['token'] = data.token
-          localStorage.setItem('auth', JSON.stringify(account))
-          return data.result
-        }
-
-        // let data = response.json()
-        // if (data.success === true) {
-          // let authData = {
-          //   _id: data.result._id,
-          //   email: data.result.email,
-          //   email_verified: data.result.email_verified,
-          //   phone_number: data.result.phone_number,
-          //   account_types: data.result.account_types,
-          //   profile: data.result.profile,
-          //   company: data.result.company,
-          //   address: data.result.address,
-          //   services: data.result.services,
-          //   locations: data.result.locations,
-          //   payment: data.result.payment,
-          //   created_at: data.result.created_at,
-          //   updated_at: data.result.updated_at,
-          //   token: data.token
-          // }
-          //
-          // if (isBrowser) {
-          //   localStorage.setItem('auth', JSON.stringify(authData));
-          // }
-          // return data.result;
       })
       .catch(this.handleError);
   }

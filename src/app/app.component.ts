@@ -15,37 +15,31 @@ declare let ga: Function;
   templateUrl: './app.component.html'
 })
 export class AppComponent implements OnInit, OnDestroy {
-  public tagline: string;
-  public auth;
-  public activePopup = '';
-  public popupState = 'inactive';
-  public navbarState = false;
-  public isLoading = false;
-  public isFindField = false;
-  public spinerView = false;
-  public clearView = false;
-  public findValue: string = '';
-  public results: string[] = [];
-  public isSearched = false;
-  public browser = isBrowser;
-
-  subscription: Subscription;
-  authSubscription: Subscription;
-
-  public screenWidth;
+  public tagline: string
+  public auth
+  public activePopup = ''
+  public popupState = 'inactive'
+  public navbarState = false
+  public isLoading = false
+  public isFindField = false
+  public spinerView = false
+  public clearView = false
+  public findValue: string = ''
+  public results: string[] = []
+  public isSearched = false
+  public browser = isBrowser
+  subscription: Subscription
+  authSubscription: Subscription
+  public screenWidth
   public newServiceRequest = {
     message: 'Richiedi?'
-  };
-  public collapsed = false;
-  public page = null;
-  // public hasBottomBorderNav = true;
-  public hasCenterContainer = true;
-  public hasRightContainer = true;
-  public hasPublishService = false;
-  public hasNavigation = true;
-
+  }
+  public collapsed = false
+  public page = null
+  public hasCenterContainer = true
+  public hasPublishService = false
+  public hasNavigation = true
   public border_bottom_color = "1px solid #DBDBDB"
-
   public account_avatar_url = ''
 
   constructor (public router:Router, private route: ActivatedRoute, private authServics: AuthService, private navigationService: NavigationService, private popupsService: PopupsService, private commonService: CommonService, private seoService: SeoService) {
@@ -70,7 +64,6 @@ export class AppComponent implements OnInit, OnDestroy {
           this.page = null;
           // this.hasBottomBorderNav = true;
           this.hasCenterContainer = true;
-          this.hasRightContainer = true;
           this.hasPublishService = false;
           this.hasNavigation = true;
 
@@ -97,36 +90,29 @@ export class AppComponent implements OnInit, OnDestroy {
             else if (this.page === "Insert") {
               // this.hasBottomBorderNav = false;
               this.hasCenterContainer = false;
-              this.hasRightContainer = false;
               this.border_bottom_color = "0"
             }
             else if (this.page==='Service') {
               // this.hasPublishService = false;
             }
             else if (this.page === "Account") {
-              //this.hasRightContainer = false;
             }
             else if (this.page === "Auth") {
-              this.hasRightContainer = false;
               this.border_bottom_color = "1px solid #1abc9c"
             }
             else if (this.page === "Order") {
-              this.hasRightContainer = false;
             }
             else if (this.page === "Orders") {
               this.hasNavigation = true;
             }
             else if (this.page === "Checkout") {
-              this.hasRightContainer = false;
               this.border_bottom_color = "0"
             }
             else if (this.page === "Blog") {
               this.hasCenterContainer = false;
-              this.hasRightContainer = true;
             }
             else if (this.page === "Info") {
               this.hasCenterContainer = false;
-              this.hasRightContainer = true;
             }
             else if (this.page === "Customer") {
               this.hasNavigation = false
@@ -137,7 +123,6 @@ export class AppComponent implements OnInit, OnDestroy {
             else {
               this.hasNavigation = true
               this.hasCenterContainer = true;
-              this.hasRightContainer = true;
             }
           }
           // console.log('page is: ' + this.page);
@@ -240,13 +225,13 @@ export class AppComponent implements OnInit, OnDestroy {
     else if ((this.screenWidth < 769) && this.page === "Company") {
       return "/assets/images/brand-logo-name-rotated.png"
     }
-    else if ((this.screenWidth < 769) && this.hasRightContainer && !this.collapsed) {
+    else if ((this.screenWidth < 769) && !this.collapsed) {
       return "/assets/images/brand-logo-rotated.png"
     }
-    else if ((this.screenWidth < 769) && this.hasRightContainer && this.collapsed) {
+    else if ((this.screenWidth < 769) && this.collapsed) {
       return "/assets/images/brand-logo-right.png"
     }
-    else if ((this.screenWidth < 769) && !this.hasRightContainer) {
+    else if ((this.screenWidth < 769)) {
       // console.log('this.page: ' + this.page);
       if (this.page === "Auth") {
         return "/assets/images/brand-logo-name-rotated.png"

@@ -6,12 +6,14 @@ import { isBrowser } from "angular2-universal";
 import { AuthService } from '../../shared/auth.service';
 import { ContactService } from '../../shared/contact.service';
 import { SeoService } from '../../shared/seo.service';
+import { FacebookService, InitParams, LoginResponse, LoginOptions, UIResponse, UIParams, FBVideoComponent } from 'ngx-facebook';
 require('aws-sdk/dist/aws-sdk')
 
 @Component({
   selector: 'app-auth',
   templateUrl: './auth.component.html'
 })
+
 export class AuthComponent implements OnInit {
   public page = ''
   public emailPattern: any;
@@ -71,30 +73,23 @@ export class AuthComponent implements OnInit {
     email_error: null,
     password_error: null,
   };
-  public signupParameters = {
-    firstname: '',
-    lastname: '',
-    phone: '',
+  public Signup = {
+    profile : {
+      firstname: '',
+      lastname: '',
+    },
+    business : {
+      name : '',
+    },
     email: '',
-    password: '',
-    confirmPassword: ''
+    password: ''
   };
-  public signup_state = {
+  public Signup_State = {
+    creating: false,
     loading: false,
-    button_title: "Registrati",
+    created: false,
     error_message: null,
-    email_error: null,
-    first_name_error: null,
-    last_name_error: null,
-    phone_error: null,
-    password_error: null,
-    confirm_password_error: null
   };
-  public facebook_state = {
-    loading: false,
-    button_title: "Continua con Facebook",
-    error_message: null,
-  }
   public profession = '';
   public currentUser;
   public seoObject = {}
@@ -137,10 +132,17 @@ export class AuthComponent implements OnInit {
     file_error: null
   }
 
-  constructor(private route: ActivatedRoute, private router: Router, private navigationService: NavigationService, private profileService: ProfileService, private authService: AuthService, private seoService: SeoService, private contactService: ContactService) {
-    this.emailPattern = /^[a-z0-9!#$%&'*+\/=?^_`{|}~.-]+@[a-z0-9]([a-z0-9-]*[a-z0-9])?(\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)*$/i;
-    if (isBrowser) { this.currentUser = JSON.parse(localStorage.getItem('auth')) }
+  constructor(private route: ActivatedRoute, private router: Router, private navigationService: NavigationService, private profileService: ProfileService, private authService: AuthService, private seoService: SeoService, private contactService: ContactService, private fb: FacebookService) {
     this.navigationService.updateMessage('')
+    this.emailPattern = /^[a-z0-9!#$%&'*+\/=?^_`{|}~.-]+@[a-z0-9]([a-z0-9-]*[a-z0-9])?(\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)*$/i;
+    if (isBrowser) {
+      this.currentUser = JSON.parse(localStorage.getItem('auth'))
+      if (document.location.hostname === "www.starbook.co") {
+        fb.init({appId: '1108461325907277', version: 'v2.7'})
+      } else if (document.location.hostname === "glacial-shore-66987.herokuapp.com" || document.location.hostname === "localhost") {
+        fb.init({appId: '1251898728230202', version: 'v2.7'})
+      }
+    }
   }
 
   ngOnInit() {
@@ -148,27 +150,19 @@ export class AuthComponent implements OnInit {
       this.page = params['page']
 
       this.seoObject['image_url'] = "https://s3-eu-west-1.amazonaws.com/starbook-s3/website/icon_256.png";
+      this.seoObject['url'] = 'https://www.starbook.co' + this.router.url;
 
       this.route.queryParams.subscribe((params: Params) => {
-        if (this.page === 'login' && !this.currentUser) {
-          this.seoObject['title'] = "Iscriviti a Starbook";
-          this.seoObject['description'] = "Su Starbook troverai i migliori servizi per la tua casa e i migliori professionisti della tua zona.";
+        if (this.page==='login' && !this.currentUser) {
+          this.seoObject['title'] = "Starbook | Accedi"
+          this.seoObject['description'] = "Su Starbook troverai i migliori servizi per la tua casa e i migliori professionisti della tua zona."
         }
-        else if (this.page === 'signup' && !this.currentUser) {
-          this.seoObject['title'] = "Iscriviti a Starbook";
-          this.seoObject['description'] = "Su Starbook troverai i migliori servizi per la tua casa e i migliori professionisti della tua zona.";
+        else if (this.page==='signup' && !this.currentUser) {
+          this.seoObject['title'] = "Starbook | Iscriviti"
+          this.seoObject['description'] = "Hai una professione, un attivita o un'azienda e vuoi promuoverla? Iscriviti su Starbook gratuitamente e crea la tua pagina professionale."
         }
-        else if (this.page === 'professional' && !this.currentUser) {
-          this.seoObject['title'] = "Registra la tua attività gratuitamente";
-          this.seoObject['description'] = "Lavori nel mondo dell'edilizia, idraulica, sei un elettrico e esegui lavori particolari artigianali nelle case? Unisciti a noi e collaboreremo per aumentare la professionalità e la clientela in modo smart.";
-        }
-        else if (this.page === 'worker' && !this.currentUser) {
-          this.seoObject['title'] = "Iscriviti su Starbook e ricevi 25€"
-          this.seoObject['description'] = "Sei un professionista, hai un mestiere particolare, un attività o lavori in proprio? Iscriviti su Starbook e al primo servizio effettuato riceverai 25€"
-          this.seoObject['image_url'] = "https://s3-eu-west-1.amazonaws.com/starbook-s3/website/promotion_25_euro_bonus.png";
-        }
-        else if (this.page === 'password_recovery' && !this.currentUser) {
-          this.seoObject['title'] = "Iscriviti a Starbook";
+        else if (this.page === 'password_recovery'&&!this.currentUser) {
+          this.seoObject['title'] = "Starbook | Recupera password";
           this.seoObject['description'] = "Su Starbook troverai i migliori servizi per la tua casa e i migliori professionisti della tua zona.";
         }
         else if (this.page === 'email_verification') {
@@ -213,13 +207,13 @@ export class AuthComponent implements OnInit {
           }
           this.new_password_creation.code = code;
         }
-        else {
-          this.router.navigate(['']);
+        else if (!this.currentUser) {
+          this.router.navigate(['/auth/login'])
+        } else {
+          this.router.navigate(['/'])
         }
       })
     })
-
-    this.seoObject['url'] = 'https://www.starbook.co' + this.router.url;
 
     this.seoService.setTitle(this.seoObject['title']);
     this.seoService.setMetaElem('description', this.seoObject['description']);
@@ -237,7 +231,7 @@ export class AuthComponent implements OnInit {
   }
 
   login() {
-    if (this.login_state.loading || this.facebook_state.loading) {return;}
+    if (this.login_state.loading) {return;}
     if (this.loginParameters.email.length === 0 ||
       this.loginParameters.password.length === 0) {
       if (this.loginParameters.email.length === 0) {
@@ -276,90 +270,55 @@ export class AuthComponent implements OnInit {
       });
   }
   signup() {
-    if (this.signup_state.loading || this.facebook_state.loading) {return;}
-    if (this.signupParameters.email.length > 0 && this.signupParameters.firstname.length > 0 && this.signupParameters.lastname.length > 0 && this.signupParameters.phone.length > 0 && this.signupParameters.password.length > 0 && this.signupParameters.confirmPassword.length > 0) {
-      if (this.signupParameters.password !== this.signupParameters.confirmPassword) {
-        this.signup_state.password_error = null;
-        this.signup_state.confirm_password_error = "Inserisci una password uguale alla prima";
-        return;
-      } else {
-        this.signup_state.password_error = null;
-        this.signup_state.confirm_password_error = null;
-      }
-      if (!this.emailPattern.test(this.signupParameters.email)) {
-        this.signup_state.email_error = "Inserisci un indirizzo email corretto";
-        return;
-      }
+    if (this.Signup_State.loading) {return}
+    this.Signup_State.creating = true
+    this.Signup_State.error_message = null
+    if (!this.Signup.profile.firstname || !this.Signup.profile.lastname || !this.Signup.business.name || !this.Signup.email || !this.Signup.password) {
+      this.Signup_State.error_message = "Per favore, inserisci tutti i campi richiesti."
+      return
     }
-    else {
-      if (this.signupParameters.email.length === 0) {
-        this.signup_state.email_error = "Inserisci un indirizzo email";
-      } else if (this.signupParameters.email.length > 0 && !this.emailPattern.test(this.signupParameters.email)) {
-        this.signup_state.email_error = "Inserisci un indirizzo email corretto";
-      } else {
-        this.signup_state.email_error = null;
-      }
-      if (this.signupParameters.firstname.length === 0) {
-        this.signup_state.first_name_error = "Inserisci un nome";
-      } else {
-        this.signup_state.first_name_error = null;
-      }
-      if (this.signupParameters.lastname.length === 0) {
-        this.signup_state.last_name_error = "Inserisci un cognome";
-      } else {
-        this.signup_state.last_name_error = null;
-      }
-      if (this.signupParameters.phone.length < 9) {
-        this.signup_state.phone_error = "Inserisci un numero di telefono corretto";
-        if (this.signupParameters.phone.length === 0) {
-          this.signup_state.phone_error = "Inserisci un numero di telefono";
-        }
-      } else {
-        this.signup_state.phone_error = null;
-      }
-      if (this.signupParameters.password.length === 0) {
-        this.signup_state.password_error = "Inserisci una password";
-      } else {
-        this.signup_state.password_error = null;
-      }
-      if (this.signupParameters.confirmPassword.length === 0) {
-        this.signup_state.confirm_password_error = "Inserisci di nuovo la password";
-      } else {
-        this.signup_state.confirm_password_error = null;
-      }
-      if (this.signupParameters.password.length > 0 &&
-        this.signupParameters.confirmPassword.length > 0
-        && this.signupParameters.password !== this.signupParameters.confirmPassword) {
-        this.signup_state.password_error = null;
-        this.signup_state.confirm_password_error = "Inserisci una password uguale alla prima";
-      }
-      return;
-    }
-    this.signup_state.loading = true;
-    this.signup_state.button_title = "Registrando...";
-    this.authService.signup(this.signupParameters.firstname, this.signupParameters.lastname, this.signupParameters.phone, this.signupParameters.email, this.signupParameters.password).then((data) => {
-      this.navigationService.updatePersonalMenu(data);
-      this.signup_state.error_message = null;
-      this.signup_state.loading = false;
-      this.signup_state.button_title = "Registrati";
-      this.router.navigate(['']);
+    this.Signup_State.loading = true
+    this.Signup.profile['fullname'] = this.Signup.profile.firstname.trim() + ' ' + this.Signup.profile.lastname.trim()
+    this.authService.signup(this.Signup).then((data) => {
+      this.navigationService.updatePersonalMenu(data)
+      this.Signup_State.error_message = null
+      this.Signup_State.creating = false
+      this.Signup_State.loading = false
+      this.Signup_State.created = true
+      this.router.navigate(['/account/profile'])
     }).catch((error) => {
-      this.signup_state.loading = false;
-      this.signup_state.button_title = "Registrati";
+      this.Signup_State.creating = false
+      this.Signup_State.loading = false
+      this.Signup_State.created = false
       switch (error) {
         case 409:
-        this.signup_state.error_message = "Questo indirizzo email è gia in uso. Prova ad accedere.";
+        this.Signup_State.error_message = "Questo indirizzo email è gia in uso. Prova ad accedere."
           break;
         case 422:
-        this.signup_state.error_message = "Inserisci tutti i campi richiesti";
+        this.Signup_State.error_message = "Inserisci tutti i campi richiesti"
           break;
         case 404:
-        this.signup_state.error_message = "C'è stato un errore sconosciuto, per favore riprova più tardi";
-          break;
+        this.Signup_State.error_message = "C'è stato un errore sconosciuto, per favore riprova più tardi"
+          break
         default:
-        this.signup_state.error_message = null;
+        this.Signup_State.error_message = null
       }
-    });
+    })
+  }
+  continueWithFacebook(route) {
+    if (this.Signup_State.loading || this.login_state.loading) {return}
+    this.fb.logout()
+    this.fb.login().then((res: LoginResponse) => {
+      let fb_token = res.authResponse.accessToken
+      this.authService.facebookLogin(fb_token).then((userData) => {
+        this.navigationService.updatePersonalMenu(userData);
+        this.router.navigate([route])
+      }).catch((error) => {
+
+      })
+    }).catch((error) => {
+      // console.log("fb login error: " + error);
+    })
   }
   recoverPassword(email) {
     this.authService.recovery(email).then((status) => {
@@ -367,132 +326,6 @@ export class AuthComponent implements OnInit {
     }).catch((error) => {
       this.router.navigate(['']);
     });
-  }
-  signupAsProfessional() {
-    if (this.signup_state.loading || this.facebook_state.loading) {return;}
-    if (this.signupParameters.email.length > 0 && this.signupParameters.firstname.length > 0 && this.signupParameters.lastname.length > 0 && this.signupParameters.phone.length > 0 && this.signupParameters.password.length > 0 && this.signupParameters.confirmPassword.length > 0) {
-      if (this.signupParameters.password !== this.signupParameters.confirmPassword) {
-        this.signup_state.password_error = null;
-        this.signup_state.confirm_password_error = "Inserisci una password uguale alla prima";
-        return;
-      } else {
-        this.signup_state.password_error = null;
-        this.signup_state.confirm_password_error = null;
-      }
-      if (!this.emailPattern.test(this.signupParameters.email)) {
-        this.signup_state.email_error = "Inserisci un indirizzo email corretto";
-        return;
-      }
-    } else {
-      if (this.signupParameters.email.length === 0) {
-        this.signup_state.email_error = "Inserisci un indirizzo email";
-      } else if (this.signupParameters.email.length > 0 && !this.emailPattern.test(this.signupParameters.email)) {
-        this.signup_state.email_error = "Inserisci un indirizzo email corretto";
-      } else {
-        this.signup_state.email_error = null;
-      }
-      if (this.signupParameters.firstname.length === 0) {
-        this.signup_state.first_name_error = "Inserisci un nome";
-      } else {
-        this.signup_state.first_name_error = null;
-      }
-      if (this.signupParameters.lastname.length === 0) {
-        this.signup_state.last_name_error = "Inserisci un cognome";
-      } else {
-        this.signup_state.last_name_error = null;
-      }
-      if (this.signupParameters.phone.length < 9) {
-        this.signup_state.phone_error = "Inserisci un numero di telefono corretto";
-        if (this.signupParameters.phone.length === 0) {
-          this.signup_state.phone_error = "Inserisci un numero di telefono";
-        }
-      } else {
-        this.signup_state.phone_error = null;
-      }
-      if (this.signupParameters.password.length === 0) {
-        this.signup_state.password_error = "Inserisci una password";
-      } else {
-        this.signup_state.password_error = null;
-      }
-      if (this.signupParameters.confirmPassword.length === 0) {
-        this.signup_state.confirm_password_error = "Inserisci di nuovo la password";
-      } else {
-        this.signup_state.confirm_password_error = null;
-      }
-      if (this.signupParameters.password.length > 0 &&
-        this.signupParameters.confirmPassword.length > 0
-        && this.signupParameters.password !== this.signupParameters.confirmPassword) {
-        this.signup_state.password_error = null;
-        this.signup_state.confirm_password_error = "Inserisci una password uguale alla prima";
-      }
-      return;
-    }
-    this.signup_state.loading = true;
-    this.signup_state.button_title = "Registrando...";
-    this.authService.signup(this.signupParameters.firstname, this.signupParameters.lastname, this.signupParameters.phone, this.signupParameters.email, this.signupParameters.password).then((data) => {
-      this.navigationService.updatePersonalMenu(data);
-      this.signup_state.error_message = null;
-      this.signup_state.loading = false;
-      this.signup_state.button_title = "Registrando...";
-      var message =
-      'Nome: ' + this.signupParameters.firstname +
-      '<br>Cognome: ' + this.signupParameters.lastname +
-      '<br>Telefono: ' + this.signupParameters.phone +
-      '<br>Email: ' + this.signupParameters.email +
-      '<br>Message: ' + this.profession
-      this.sendEmail('Registrazione come professionista', message)
-      this.router.navigate(['']);
-    }).catch((error) => {
-      this.signup_state.loading = false;
-      this.signup_state.button_title = "Registrati";
-      switch (error) {
-        case 409:
-        this.signup_state.error_message = "Questo indirizzo email è gia in uso. Prova ad accedere.";
-          break;
-        case 422:
-        this.signup_state.error_message = "Inserisci tutti i campi richiesti";
-          break;
-        case 404:
-        this.signup_state.error_message = "C'è stato un errore sconosciuto, per favore riprova più tardi";
-          break;
-        default:
-        this.signup_state.error_message = null;
-      }
-    });
-  }
-  continueWithFacebook () {
-    if (this.login_state.loading || this.signup_state.loading) {return;}
-    this.facebook_state.loading = true;
-    this.facebook_state.button_title = "Accedendo..."
-    this.facebook_state.error_message = null;
-    if (isBrowser) {
-      let timeStart = Date.now();
-      let left = Math.round((document.documentElement.clientWidth / 2) - 285);
-      let facebookPopup = window.open(
-          'https://www.facebook.com/v2.8/dialog/oauth?client_id=1108461325907277&response_type=token&scope=email,public_profile&redirect_uri=https://www.starbook.co/facebook',
-          // 'https://www.facebook.com/v2.8/dialog/oauth?client_id=1108461325907277&response_type=token&scope=email,public_profile&redirect_uri=https://glacial-shore-66987.herokuapp.com/facebook',
-          '_blank',
-          'location=yes,height=570,width=520,left=' + left + ', top=100,scrollbars=yes,status=yes');
-      this.checkAccessToken(facebookPopup, 1, timeStart);
-    }
-  }
-  checkAccessToken(facebookWindow: Window, context, timeStart) {
-    if (facebookWindow.closed) {
-      let accessToken = localStorage.getItem('facebook_token');
-      this.authService.facebookLogin(accessToken).then((userData) => {
-        this.navigationService.updatePersonalMenu(userData);
-        this.facebook_state.loading = false;
-        this.facebook_state.button_title = "Continua con Facebook";
-        this.facebook_state.error_message = null;
-      }).catch((error) => {
-        this.facebook_state.loading = false;
-        this.facebook_state.button_title = "Continua con Facebook";
-        this.facebook_state.error_message = "Errore di accesso con Facebook!";
-      });
-    } else {
-      let self = this;
-      setTimeout(function() {self.checkAccessToken(facebookWindow, context + 1, timeStart)}, 200);
-    }
   }
 
   registerWorker() {
@@ -608,16 +441,5 @@ export class AuthComponent implements OnInit {
       this.new_password_creation.title = 'Errore creazione password!';
       this.new_password_creation.spinner.visible = false;
     });
-  }
-  changeToSignup() {
-    if (this.login_state.loading) {return;}
-    this.router.navigate(['auth/worker']);
-  }
-  changeToLogin() {
-    if (this.signup_state.loading) {return;}
-    this.router.navigate(['auth/login']);
-  }
-  goToHomePage() {
-    this.router.navigate(['']);
   }
 }

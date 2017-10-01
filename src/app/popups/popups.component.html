@@ -27,8 +27,7 @@
         <a class="btn btn-warning" href="#" (click)="login(email.value, password.value)">Accedi</a>
       </div>
       <div class="form-group">
-        <a class="btn btn-secondary" (click)="getPopup('registration')">Iscriviti</a>
-        <!-- <a class="btn btn-secondary" (click)="changeToRegisterWorker()">Iscriviti</a> -->
+        <a class="btn btn-secondary" (click)="loginPopupState='inactive'; shadowState='inactive';" routerLink="/auth/signup">Iscriviti</a>
       </div>
       <div class="form-group">
         <a class="btn btn-facebook" id="continueWithFacebook" (click)="facebookLogin()">
@@ -41,7 +40,7 @@
 </div>
 
 <!-- Registration popup -->
-<div class="popup2" [@registrationPopupState]="registrationPopupState">
+<!-- <div class="popup2" [@registrationPopupState]="registrationPopupState">
   <div class="alert-block" *ngIf="formError">
     <div class="alert-icn"></div>
     <div class="alert-container">
@@ -83,18 +82,10 @@
       <input id="regPassword" class="form-control" type="password" name="password" placeholder="" required [(ngModel)]="registrationData.password" #regPassword="ngModel" (keyup)="checkNonEmpty('registrationPassword', regPassword.value)">
       <span class="error">Inserisci una password</span>
     </div>
-    <!-- <div class="form-group" [ngClass]="{'isError': registrationError.password}">
-      <label for="regPasswordConfirm">Di nuovo la password</label>
-      <input id="regPasswordConfirm" class="form-control" type="password" name="passwordConfirm" placeholder="" required [(ngModel)]="registrationData.passwordConfirm" #regPasswordConfirm="ngModel" (keyup)="checkPassword(regPassword.value, regPasswordConfirm.value)">
-      <span class="error">Le password non corrispondono</span>
-    </div> -->
     <div class="form-group">
       <button class="btn btn-warning" type="submit" (click)="registration(regFirstName.value, regLastName.value, regPhone.value, regEmail.value, regPassword.value)">Crea account</button>
     </div>
   </form>
-  <!-- <div class="form-description">
-    <span>o</span>
-  </div> -->
   <div class="form-group registration">
     <a class="btn btn-facebook" id="continueWithFacebook" (click)="facebookLogin()">
       <i></i>
@@ -103,7 +94,7 @@
   </div>
   <div class="form-notice">Continuando dichiari di aver letto e accetti le <a routerLink="/info/legal" target="_blank">condizioni generali e l’informativa sulla privacy</a></div>
   <div class="login-offer registration">Hai gia un account su Starbook? <a (click)="getPopup('login')">Accedi</a></div>
-</div>
+</div> -->
 
 <!-- Recovery popup -->
 <div class="popup2" [@recoveryPopupState]="recoveryPopupState">
