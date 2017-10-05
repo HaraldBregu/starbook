@@ -90,6 +90,18 @@ export class ProfileComponent implements OnInit {
     })
   }
 
+  businessName(){
+    if (this.Account) {
+      if (this.Account['business'] && this.Account['business']!==null) {
+        if (this.Account['business']['name'] && this.Account['business']['name']!==null) {
+          return this.Account['business']['name']
+        }
+      }
+      else {
+        return ""
+      }
+    }
+  }
   checkCompanyName(account) {
     if (account.business && account.business.name) {
       return account.business.name
@@ -100,6 +112,13 @@ export class ProfileComponent implements OnInit {
   checkTagline(account) {
     if (account.business && account.business.tagline) {
       return account.business.tagline
+    } else {
+      return false
+    }
+  }
+  businessDescription(account) {
+    if (account.business && account.business.description) {
+      return account.business.description
     } else {
       return false
     }
@@ -225,8 +244,10 @@ export class ProfileComponent implements OnInit {
       if (this.Account['phone_number'] && this.Account['phone_number']!==null) {
         return this.Account['phone_number']
       }
-      else if (this.Account['business']['phone_number'] && this.Account['business']['phone_number']!==null) {
-        return this.Account['business']['phone_number']
+      else if (this.Account['business'] && this.Account['business']!==null) {
+        if (this.Account['business']['phone_number'] && this.Account['business']['phone_number']!==null) {
+          return this.Account['business']['phone_number']
+        }
       }
       else {
         return ""
@@ -235,8 +256,10 @@ export class ProfileComponent implements OnInit {
   }
   getEmailAddress() {
     if (this.Account) {
-      if (this.Account['business']['email'] && this.Account['business']['email']!==null) {
-        return this.Account['business']['email']
+      if (this.Account['business'] && this.Account['business']!==null) {
+        if (this.Account['business']['email'] && this.Account['business']['email']!==null) {
+          return this.Account['business']['email']
+        }
       }
       else if (this.Account['email'] && this.Account['email']!==null) {
         return this.Account['email']

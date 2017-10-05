@@ -6433,7 +6433,9 @@ app-profile {
           border: none; }
       app-profile .profile-container .profile .profile-header .account-info {
         padding: 35px 0 20px;
-        text-align: center; }
+        text-align: center;
+        max-width: 700px;
+        margin: auto; }
         app-profile .profile-container .profile .profile-header .account-info h2 {
           font-weight: 600; }
         app-profile .profile-container .profile .profile-header .account-info h6 {
@@ -6444,9 +6446,12 @@ app-profile {
           letter-spacing: initial;
           color: rgba(0, 0, 0, 0.5);
           font-size: 14px !important; }
-        app-profile .profile-container .profile .profile-header .account-info .description {
+        app-profile .profile-container .profile .profile-header .account-info .tagline {
           text-transform: uppercase;
           font-weight: 600; }
+        app-profile .profile-container .profile .profile-header .account-info .description {
+          font-size: 17px;
+          color: rgba(0, 0, 0, 0.7); }
         app-profile .profile-container .profile .profile-header .account-info .user-address {
           margin-top: 20px; }
           app-profile .profile-container .profile .profile-header .account-info .user-address .user {

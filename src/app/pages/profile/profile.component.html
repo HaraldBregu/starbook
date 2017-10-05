@@ -11,9 +11,10 @@
       </div>
       <div class="account-info">
         <h2>{{checkCompanyName(Account)}}</h2>
-        <p *ngIf="checkTagline(Account)"><span class="description">{{checkTagline(Account)}}</span></p>
+        <p *ngIf="checkTagline(Account)"><span class="tagline">{{checkTagline(Account)}}</span></p>
+        <p *ngIf="businessDescription(Account)"><span class="description">{{businessDescription(Account)}}</span></p>
         <div class="user-address" *ngIf="Account.profile.fullname || Account.address.city">
-          <span class="user" *ngIf="Account.business.name"><i class="fa fa-user" aria-hidden="true"></i> {{Account.profile.fullname}}</span>
+          <span class="user" *ngIf="businessName()"><i class="fa fa-user" aria-hidden="true"></i> {{Account.profile.fullname}}</span>
           <span class="address" *ngIf="Account.address.city"><i class="fa fa-map-marker" aria-hidden="true"></i> {{Account.address.city}}</span>
         </div>
       </div>
