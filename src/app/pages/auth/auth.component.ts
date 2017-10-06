@@ -136,6 +136,7 @@ export class AuthComponent implements OnInit {
     this.navigationService.updateMessage('')
     this.emailPattern = /^[a-z0-9!#$%&'*+\/=?^_`{|}~.-]+@[a-z0-9]([a-z0-9-]*[a-z0-9])?(\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)*$/i;
     if (isBrowser) {
+      window.scrollTo(0, 0)
       this.currentUser = JSON.parse(localStorage.getItem('auth'))
       if (document.location.hostname === "www.starbook.co") {
         fb.init({appId: '1108461325907277', version: 'v2.7'})
@@ -252,7 +253,7 @@ export class AuthComponent implements OnInit {
       this.login_state.loading = false;
       this.login_state.button_title = "Accedi";
       this.login_state.error_message = null;
-      this.router.navigate(['']);
+      this.router.navigate(['/account/profile'])
       }).catch((error) => {
         this.login_state.email_error = null;
         this.login_state.password_error = null;

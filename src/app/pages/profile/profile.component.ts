@@ -138,8 +138,10 @@ export class ProfileComponent implements OnInit {
       // }
       if (logo.width>0) {
         return logo.src
+        // return "{'background-image' : 'url('" + logo.src + "')'}"
       } else {
         return '../assets/images/no_logo.png'
+        // return "{'background-image' : ' url('../assets/images/no_logo.png')'}"
       }
     }
   }

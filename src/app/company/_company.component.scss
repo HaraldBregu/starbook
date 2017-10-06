@@ -149,7 +149,7 @@ app-company {
               color: #36464f;
               line-height: 58px;
             }
-            .btn {
+            .btn-facebook {
               position: relative;
               border-radius: 3px;
               height: 60px;
@@ -161,6 +161,25 @@ app-company {
                 font-size: 42px;
                 vertical-align: inherit;
                 margin-right: 14px;
+              }
+            }
+            .btn-success {
+              position: relative;
+              border-radius: 3px;
+              height: 60px;
+              padding: 0 40px;
+              font-weight: 500;
+              font-size: 23px;
+              vertical-align: middle;
+            }
+            .quote {
+              max-width: 700px;
+              margin: 0 auto 20px;
+              .text {
+                font-size: 24px!important;
+              }
+              .author {
+
               }
             }
           }
@@ -399,6 +418,19 @@ app-company {
     font-size: 37px;
   }
   app-company .company-container .section-container .section .section-content .section-body .btn-success {
+    margin-top: 40px;
+    width: 100%;
+    padding: 0;
+    font-size: 21px;
+    height: 50px;
+  }
+  app-company .company-container .section-container .section .section-content .section-header .btn-success {
+    width: 100%;
+    padding: 0;
+    font-size: 21px;
+    height: 50px;
+  }
+  app-company .company-container .section-container .section .section-content .section-body .btn-warning {
     margin-top: 40px;
     width: 100%;
     padding: 0;

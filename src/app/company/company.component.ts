@@ -16,7 +16,7 @@ export class CompanyComponent implements OnInit {
 
   constructor(private router: Router, private route: ActivatedRoute, private seoService: SeoService, private authServics: AuthService, private fb: FacebookService) {
     if (isBrowser) {
-      window.scrollTo(0, 0);
+      window.scrollTo(0, 0)
       this.Account = JSON.parse(localStorage.getItem('auth'))
       // fb.init({appId: '1108461325907277', version: 'v2.7'})
       if (document.location.hostname === "www.starbook.co") {

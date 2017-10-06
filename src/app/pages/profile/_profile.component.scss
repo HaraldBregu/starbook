@@ -37,9 +37,9 @@ app-profile {
             background-repeat: no-repeat;
             background-position: center;
           }
-          .avatar:hover {
-            box-shadow: 0px 0px 0px #d2d2d2;
-          }
+          // .avatar:hover {
+          //   box-shadow: 0px 0px 0px #d2d2d2;
+          // }
           .avatar-sm {
             position: absolute;
             bottom: 0;
@@ -112,6 +112,13 @@ app-profile {
         }
       }
       .profile-footer {
+      }
+      .loader {
+        text-align: center;
+        padding: 50px;
+        i {
+          font-size: 30px;
+        }
       }
     }
   }

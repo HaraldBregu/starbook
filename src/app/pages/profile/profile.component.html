@@ -1,12 +1,20 @@
 
 <!-- PROFILE -->
 <div class="profile-container">
+  <div class="profile" *ngIf="!Account">
+    <div class="loader">
+      <i class="fa fa-circle-o-notch animate"></i>
+    </div>
+  </div>
   <div class="profile" *ngIf="Account">
     <div class="profile-header">
       <div class="avatar-container">
+        <!-- <div class="avatar" [ngStyle]="checkBigPicture(Account)"> -->
         <div class="avatar" [ngStyle]="{'background-image' : ' url(' + checkBigPicture(Account) + ')'}">
-          <div class="avatar avatar-sm" [ngStyle]="{'background-image' : ' url(' + checkSmallPicture(Account) + ')'}">
-          </div>
+          <!-- <div *ngIf="!checkBigPicture(Account)">
+            <h1>loading...</h1>
+          </div> -->
+          <!-- <div class="avatar avatar-sm" [ngStyle]="{'background-image' : ' url(' + checkSmallPicture(Account) + ')'}"></div> -->
         </div>
       </div>
       <div class="account-info">

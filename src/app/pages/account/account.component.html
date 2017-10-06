@@ -21,7 +21,7 @@
     </div>
     <div class="account-content tabbed-content" *ngIf="profile_tab==='informations'">
       <div class="account-header">
-        <h2>Le mie informazioni <a class="btn btn-primary" routerLink="{{getProfileRouter()}}" target="_blank">Guarda pagina</a></h2>
+        <h2>Le mie informazioni <a class="btn btn-primary" routerLink="{{getProfileRouter()}}">Guarda pagina</a></h2>
         <p>Aggiorna le tue informazioni personali e il profilo pubblico. Più informazioni inserisci più completo diventerà il tuo profilo pubblico.</p>
       </div>
       <div class="account-body">
@@ -39,8 +39,8 @@
                 <div class="content">
                   <h5>Foto personale</h5>
                   <p>Carica una foto personale o cambia quella attuale.</p>
-                  <input type="file" (change)="selectProfilePicture($event)" style="display: none;" #file>
-                  <button type="button" class="btn btn-secondary" name="button" (click)="file.click()">Carica una foto</button>
+                  <input type="file" (change)="selectProfilePicture($event)" style="display: none;" #fileProfile>
+                  <button type="button" class="btn btn-secondary" name="button" (click)="fileProfile.click()">Carica una foto</button>
                 </div>
               </div>
             </div>
@@ -114,8 +114,8 @@
                 <div class="content">
                   <h5>Logo aziendale</h5>
                   <p>Tieni sempre aggiornato il tuo logo aziendale.</p>
-                  <input type="file" (change)="selectCompanyLogo($event)" style="display: none;" #file>
-                  <button type="button" class="btn btn-secondary" name="button" (click)="file.click()">Carica un logo</button>
+                  <input type="file" (change)="selectCompanyLogo($event)" style="display: none;" #fileCompany>
+                  <button type="button" class="btn btn-secondary" name="button" (click)="fileCompany.click()">Carica un logo</button>
                 </div>
               </div>
             </div>
@@ -164,7 +164,7 @@
         <div class="actions">
           <!-- <span class="saving" *ngIf="account_state.loading"><i class="fa fa-circle-o-notch animate"></i> salvando</span> -->
           <button type="button" class="btn btn-success" name="button" (click)="saveInformations()"><i *ngIf="account_state.loading" class="fa fa-circle-o-notch animate"></i>Salva le modifiche</button>
-          <button type="button" class="btn btn-warning" name="button" (click)="saveInformationsAndPromote()">Promuovi</button>
+          <!-- <button type="button" class="btn btn-warning" name="button" (click)="saveInformationsAndPromote()">Promuovi</button> -->
         </div>
       </div>
     </div>

@@ -1,14 +1,4 @@
 <div class="company-container" *ngIf="!page">
-  <!-- <div class="header-container">
-    <div class="overlay">
-      <div class="header">
-        <h1>Cresci la tua impresa, facile come fissare un tassello</h1>
-        <p>Passa alla migliore piattaforma professionale per aumentare i tuoi clienti.<br>Prova Starbook adesso!</p>
-        <button class="btn btn-facebook" id="continueWithFacebook" (click)="continueWithFacebook('/account/profile')"><i class="fa fa-facebook-official" aria-hidden="true"></i>   Continua con Facebook</button>
-        <small>Diamo valore alla privacy e non condividiamo mai le tue informazioni</small>
-      </div>
-    </div>
-  </div> -->
   <div class="section-container grey-backgound">
     <div class="section">
       <div class="section-content">
@@ -16,7 +6,9 @@
           <div class="left-content">
             <h1>Soluzioni web per aziende e professionisti</h1>
             <h3>Promuovi la tua attività online utilizzando le migliori piattaforme. Gestisci le richieste dei tuoi clienti. Invia preventivi dinamici e cresci la tua attività.</h3>
-            <button class="btn btn-facebook" id="continueWithFacebook" (click)="continueWithFacebook('/account/profile')"><i class="fa fa-facebook-official" aria-hidden="true"></i>Continua con Facebook</button>
+            <button *ngIf="!Account" class="btn btn-success" id="goToSignupPage" routerLink="/auth/signup">Iscrivi la tua azienda</button>
+            <button *ngIf="Account" class="btn btn-success" id="goToSignupPage" routerLink="/account/profile">Vai al tuo account</button>
+            <!-- <button class="btn btn-facebook" id="continueWithFacebook" (click)="continueWithFacebook('/account/profile')"><i class="fa fa-facebook-official" aria-hidden="true"></i>Continua con Facebook</button> -->
           </div>
           <div class="right-media hide-mobile">
             <img src="../assets/images/solutions.png" title="Preventivi Web" alt="Preventivi Web">
@@ -42,14 +34,16 @@
             <img class="shadow" src="../assets/images/professional-profile.png" title="Preventivi Web" alt="Preventivi Web">
           </div>
           <div class="right-content">
-            <h2><strong>Pagina professionale</strong></h2>
-            <p>La pagina della tua attività su Starbook non è una semplice pagina. É un sito web, una presenza online della tua azienda e della tua professione. Puoi ricevere richieste da clienti, indirizzare persone alla tua posizione, ricevere telefonate e email, tutto direttamente dalla tua pagina Starbook.</p>
+            <h2><strong>Pagina web</strong></h2>
+            <p>La pagina della tua attività su Starbook non è una semplice pagina. É un sito web, una presenza online della tua azienda e della tua professione.</p>
             <ul>
-              <li><i class="fa fa-check" aria-hidden="true"></i>Profilo professionale della tua attività</li>
-              <li><i class="fa fa-check" aria-hidden="true"></i>Gestione delle richieste dei clienti</li>
-              <li><i class="fa fa-check" aria-hidden="true"></i>Strumenti di promozione attività</li>
+              <li><i class="fa fa-check" aria-hidden="true"></i>Profilo professionale</li>
+              <li><i class="fa fa-check" aria-hidden="true"></i>Gestione delle richieste</li>
+              <li><i class="fa fa-check" aria-hidden="true"></i>Promozione servizi</li>
+              <li><i class="fa fa-check" aria-hidden="true"></i>Funzionalità personalizzabili</li>
             </ul>
-            <button class="btn btn-facebook" id="continueWithFacebook" (click)="continueWithFacebook('/account/profile')"><i class="fa fa-facebook-official" aria-hidden="true"></i>Continua con Facebook</button>
+            <!-- <button  *ngIf="!Account" class="btn btn-success" id="goToSignupPage" routerLink="/auth/signup">Iscrivi la tua azienda</button> -->
+            <!-- <button class="btn btn-facebook" id="continueWithFacebook" (click)="continueWithFacebook('/account/profile')"><i class="fa fa-facebook-official" aria-hidden="true"></i>Continua con Facebook</button> -->
           </div>
         </div>
       </div>
@@ -69,7 +63,8 @@
               <li><i class="fa fa-check" aria-hidden="true"></i>Pubblicità mirata a potenziali clienti.</li>
               <li><i class="fa fa-check" aria-hidden="true"></i>Ricevi richieste, messaggi, email, chiamate e localizzazione.</li>
             </ul>
-            <button class="btn btn-facebook" id="continueWithFacebook" (click)="continueWithFacebook('/account/new_promotion')"><i class="fa fa-facebook-official" aria-hidden="true"></i>Continua con Facebook</button>
+            <!-- <button *ngIf="!Account" class="btn btn-success" id="goToSignupPage" routerLink="/auth/signup">Iscrivi la tua azienda</button> -->
+            <!-- <button class="btn btn-facebook" id="continueWithFacebook" (click)="continueWithFacebook('/account/new_promotion')"><i class="fa fa-facebook-official" aria-hidden="true"></i>Continua con Facebook</button> -->
           </div>
           <div class="right-media hide-mobile">
             <img class="shadow" src="../assets/images/multyplatform-advertising.png" title="Preventivi Web" alt="Pubblicità multipiattaforma">
@@ -95,17 +90,22 @@
               <li><i class="fa fa-check" aria-hidden="true"></i>Invia in <strong>tutti formati</strong> necessari, Web, Email, PDF e SMS.</li>
               <li><i class="fa fa-check" aria-hidden="true"></i><strong>Avvisa</strong> con le Notifiche Push, SMS ed Email.</li>
             </ul>
-            <button class="btn btn-success" id="goToQuotationsLandingPage" routerLink="/company/quotations">Scopri di più</button>
+            <button class="btn btn-warning" id="goToQuotationsLandingPage" routerLink="/company/quotations">Scopri di più</button>
           </div>
         </div>
       </div>
     </div>
   </div>
-  <div class="section-container">
+  <div class="section-container" *ngIf="!Account">
     <div class="section action-section">
       <div class="section-content">
         <div class="section-header">
-          <button class="btn btn-facebook" id="continueWithFacebook" (click)="continueWithFacebook('/account/profile')"><i class="fa fa-facebook-official" aria-hidden="true"></i>Continua con Facebook</button>
+          <div class="quote">
+            <p class="text"><i>Dietro ogni impresa di successo c'è qualcuno che ha preso una decisione coraggiosa.</i></p>
+            <p class="author">Andrew Carnegie</p>
+          </div>
+          <button *ngIf="!Account" class="btn btn-success" id="goToSignupPage" routerLink="/auth/signup">Iscrivi la tua azienda</button>
+          <!-- <button *ngIf="!Account" class="btn btn-facebook" id="continueWithFacebook" (click)="continueWithFacebook('/account/profile')"><i class="fa fa-facebook-official" aria-hidden="true"></i>Continua con Facebook</button> -->
         </div>
       </div>
     </div>
@@ -136,7 +136,9 @@
           <div class="left-content">
             <h1>Preventivi dinamici</h1>
             <h3>Il miglior sistema per conquistare i tuoi clienti, fidelizzarli e mantenerli. Porta al livello successivo i tuoi preventivi della tua azienda.</h3>
-            <button class="btn btn-facebook" id="continueWithFacebook" (click)="continueWithFacebook('/account/quotation')"><i class="fa fa-facebook-official" aria-hidden="true"></i>Continua con Facebook</button>
+            <!-- <button *ngIf="!Account" class="btn btn-success" id="goToSignupPage" routerLink="/auth/signup">Iscrivi la tua azienda</button> -->
+            <button *ngIf="Account" class="btn btn-success" id="goToSignupPage" routerLink="/account/quotation">Invia un preventivo</button>
+            <!-- <button *ngIf="!Account" class="btn btn-facebook" id="continueWithFacebook" (click)="continueWithFacebook('/account/quotation')"><i class="fa fa-facebook-official" aria-hidden="true"></i>Continua con Facebook</button> -->
           </div>
           <div class="right-media hide-mobile">
             <img src="../assets/images/computer.png" title="Preventivi Web" alt="Preventivi Web">
@@ -196,11 +198,12 @@
       </div>
     </div>
   </div>
-  <div class="section-container grey-backgound">
+  <div class="section-container grey-backgound" *ngIf="!Account">
     <div class="section">
       <div class="section-content">
         <div class="section-header">
-          <button class="btn btn-facebook" id="continueWithFacebook" (click)="continueWithFacebook('/account/quotation')"><i class="fa fa-facebook-official" aria-hidden="true"></i>   Continua con Facebook</button>
+          <button class="btn btn-success" id="goToSignupPage" routerLink="/auth/signup">Iscrivi la tua azienda</button>
+          <!-- <button class="btn btn-facebook" id="continueWithFacebook" (click)="continueWithFacebook('/account/quotation')"><i class="fa fa-facebook-official" aria-hidden="true"></i>   Continua con Facebook</button> -->
         </div>
       </div>
     </div>
