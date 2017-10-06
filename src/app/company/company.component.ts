@@ -28,12 +28,12 @@ export class CompanyComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.seoObject['title'] = "Soluzioni web per aziende e professionisti";
+    this.seoObject['title'] = "Starbook | Soluzioni web per aziende e professionisti";
     this.seoObject['description'] = "Promuovi la tua attività online utilizzando le migliori piattaforme. Gestisci le richieste dei tuoi clienti. Invia preventivi dinamici e cresci la tua attività.";
     this.seoObject['url'] = 'https://www.starbook.co' + this.router.url;
     this.seoObject['image_url'] = "https://s3-eu-west-1.amazonaws.com/starbook-s3/website/icon_256.png";
 
-    this.seoService.setTitle("Starbook | Registrazione impresa");
+    this.seoService.setTitle(this.seoObject['title']);
     this.seoService.setMetaElem('description', this.seoObject['description']);
     this.seoService.setOgElem('twitter:card', "summary_large_image");
     this.seoService.setOgElem('twitter:title', this.seoObject['title']);
