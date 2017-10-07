@@ -3639,7 +3639,7 @@ app-root .navbar {
   app-root .navbar .nav .nav-item .btn,
   app-root .navbar .nav .btn,
   app-root .navbar .btn {
-    border-radius: 3px;
+    border-radius: 35px;
     margin-left: 5px;
     margin-right: 5px;
     font-size: 20px;
@@ -6460,21 +6460,22 @@ app-profile {
         text-align: center;
         max-width: 700px;
         margin: auto; }
-        app-profile .profile-container .profile .profile-header .account-info h2 {
+        app-profile .profile-container .profile .profile-header .account-info h1 {
           font-weight: 600; }
+        app-profile .profile-container .profile .profile-header .account-info h2 {
+          font-size: 23px; }
+        app-profile .profile-container .profile .profile-header .account-info h3 {
+          font-size: 19px; }
         app-profile .profile-container .profile .profile-header .account-info h6 {
           font-weight: 400;
           margin-top: 5px; }
-        app-profile .profile-container .profile .profile-header .account-info p {
-          margin-top: 15px;
-          letter-spacing: initial;
-          color: rgba(0, 0, 0, 0.5);
-          font-size: 14px !important; }
         app-profile .profile-container .profile .profile-header .account-info .tagline {
-          text-transform: uppercase;
-          font-weight: 600; }
+          margin-top: 15px;
+          font-weight: 400;
+          color: rgba(0, 0, 0, 0.5); }
         app-profile .profile-container .profile .profile-header .account-info .description {
-          font-size: 17px;
+          font-weight: 400;
+          margin-top: 15px;
           color: rgba(0, 0, 0, 0.7); }
         app-profile .profile-container .profile .profile-header .account-info .user-address {
           margin-top: 20px; }
@@ -6589,6 +6590,9 @@ app-popups .popup2 .header {
   margin-bottom: 20px;
   text-align: center; }
   app-popups .popup2 .header h1 {
+    font-weight: 400; }
+  app-popups .popup2 .header .title {
+    font-size: 36px;
     font-weight: 400; }
 app-popups .popup2 .double-form {
   font-size: 14px;

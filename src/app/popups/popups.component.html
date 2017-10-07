@@ -10,7 +10,7 @@
     </div>
     <app-loading *ngIf="isPopupLoading"></app-loading>
     <div class="header">
-      <h1>Accedi</h1>
+      <span class="title">Accedi</span>
     </div>
     <form class="login-form" #loginForm="ngForm" (keyup.enter)="login(email.value, password.value)">
       <div class="form-group" [ngClass]="{'isError': loginError.email}">
@@ -106,7 +106,7 @@
     </div>
   </div>
   <div class="header">
-    <h1>Recupera password</h1>
+    <span class="title">Recupera password</span>
   </div>
   <form class="recovery-form" #recoveryForm="ngForm">
     <div class="form-group" [ngClass]="{'isError': recoveryError.email}">

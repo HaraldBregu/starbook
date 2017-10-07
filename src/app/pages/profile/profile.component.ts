@@ -57,30 +57,22 @@ export class ProfileComponent implements OnInit {
             this.seoObject['title'] = this.checkCompanyName(this.Account)
             this.seoObject['description'] = this.checkTagline(this.Account)
             this.seoObject['url'] = 'https://www.starbook.co' + this.router.url;
-            // this.seoObject['image_url'] = "https://s3-eu-west-1.amazonaws.com/starbook-s3/website/icon_256.png"
             this.seoObject['image_url'] = 'https://s3-eu-west-1.amazonaws.com/starbook-s3/accounts/' + this.Account._id + '/avatar/1'
-            // var logo = new Image()
-            // logo.src = 'https://s3-eu-west-1.amazonaws.com/starbook-s3/accounts/' + this.Account._id + '/avatar/1'
-            // if (logo.width>0) {
-            //   this.seoObject['image_url'] = logo.src
-            // } else {
-            //   this.seoObject['image_url'] = '../assets/images/no_logo.png'
-            // }
 
+            this.seoService.setTitle(this.checkCompanyName(this.Account) + " | Starbook.co")
 
-            this.seoService.setTitle(this.checkCompanyName(this.Account));
-            this.seoService.setMetaElem('description', this.seoObject['description']);
-            this.seoService.setOgElem('twitter:card', "summary_large_image");
-            this.seoService.setOgElem('twitter:title', this.seoObject['title']);
-            this.seoService.setOgElem('twitter:site', "@starbookco");
-            this.seoService.setOgElem('twitter:creator', "@HaraldBregu");
-            this.seoService.setOgElem('twitter:description', this.seoObject['description']);
-            this.seoService.setOgElem('twitter:image', this.seoObject['image_url']);
-            this.seoService.setOgElem('og:title', this.seoObject['title']);
-            this.seoService.setOgElem('og:description', this.seoObject['description']);
-            this.seoService.setOgElem('og:url', this.seoObject['url']);
-            this.seoService.setOgElem('og:image', this.seoObject['image_url']);
-            this.seoService.setOgElem('og:image:secure_url', this.seoObject['image_url']);
+            this.seoService.setMetaElem('description', this.seoObject['description'])
+            this.seoService.setOgElem('og:title', this.seoObject['title'])
+            this.seoService.setOgElem('og:description', this.seoObject['description'])
+            this.seoService.setOgElem('og:url', this.seoObject['url'])
+            this.seoService.setOgElem('og:image', this.seoObject['image_url'])
+            this.seoService.setOgElem('og:image:secure_url', this.seoObject['image_url'])
+            this.seoService.setOgElem('twitter:card', "summary_large_image")
+            this.seoService.setOgElem('twitter:title', this.seoObject['title'])
+            this.seoService.setOgElem('twitter:site', "@starbookco")
+            this.seoService.setOgElem('twitter:creator', "@HaraldBregu")
+            this.seoService.setOgElem('twitter:description', this.seoObject['description'])
+            this.seoService.setOgElem('twitter:image', this.seoObject['image_url'])
           }
         }).catch((error) => {
           // console.log(JSON.stringify(error))

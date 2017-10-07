@@ -18,19 +18,19 @@
         </div>
       </div>
       <div class="account-info">
-        <h2>{{checkCompanyName(Account)}}</h2>
-        <p *ngIf="checkTagline(Account)"><span class="tagline">{{checkTagline(Account)}}</span></p>
-        <p *ngIf="businessDescription(Account)"><span class="description">{{businessDescription(Account)}}</span></p>
+        <h1 class="name">{{checkCompanyName(Account)}}</h1>
+        <!-- <h2 class="tagline" *ngIf="checkTagline(Account)">{{checkTagline(Account)}}</h2> -->
+        <h3 class="description" *ngIf="businessDescription(Account)">{{businessDescription(Account)}}</h3>
         <div class="user-address" *ngIf="Account.profile.fullname || Account.address.city">
           <span class="user" *ngIf="businessName()"><i class="fa fa-user" aria-hidden="true"></i> {{Account.profile.fullname}}</span>
           <span class="address" *ngIf="Account.address.city"><i class="fa fa-map-marker" aria-hidden="true"></i> {{Account.address.city}}</span>
         </div>
       </div>
       <div class="actions">
-        <button type="button" name="button" class="btn btn-success" (click)="popup='SEND_PRIVATE_MESSAGE_POPUP';"><i class="fa fa-paper-plane" aria-hidden="true"></i> Messaggio</button>
-        <a *ngIf="getGoogleMapsLink(Account)" role="button" name="button" class="btn btn-primary" href="{{getGoogleMapsLink(Account)}}" target="_blank"><i class="fa fa-location-arrow" aria-hidden="true"></i> Vai</a>
-        <button *ngIf="getPhoneNumber()" type="button" name="button" class="btn btn-warning" (click)="popup='PHONE_NUMBER_POPUP';"><i class="fa fa-phone" aria-hidden="true"></i> Telefono</button>
-        <button *ngIf="getEmailAddress()" type="button" name="button" class="btn btn-info" (click)="popup='EMAIL_POPUP';"><i class="fa fa-envelope" aria-hidden="true"></i> Email</button>
+        <button type="button" name="button" class="btn btn-success" (click)="popup='SEND_PRIVATE_MESSAGE_POPUP';"><i class="fa fa-paper-plane" aria-hidden="true"></i> <b>Messaggio</b></button>
+        <a *ngIf="getGoogleMapsLink(Account)" role="button" name="button" class="btn btn-primary" href="{{getGoogleMapsLink(Account)}}" target="_blank"><i class="fa fa-location-arrow" aria-hidden="true"></i> <b>Vai</b></a>
+        <button *ngIf="getPhoneNumber()" type="button" name="button" class="btn btn-warning" (click)="popup='PHONE_NUMBER_POPUP';"><i class="fa fa-phone" aria-hidden="true"></i> <b>Telefono</b></button>
+        <button *ngIf="getEmailAddress()" type="button" name="button" class="btn btn-info" (click)="popup='EMAIL_POPUP';"><i class="fa fa-envelope" aria-hidden="true"></i> <b>Email</b></button>
       </div>
     </div>
     <div class="profile-body">

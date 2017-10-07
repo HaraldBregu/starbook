@@ -1,6 +1,6 @@
 <nav *ngIf="page && hasNavigation" class="navbar navbar-fixed-top" [style.border-bottom]="border_bottom_color" (window:resize)="onResize()">
   <div class="container-starbook">
-    <a class="navbar-brand" routerLink="/"><img src="/assets/images/brand-logo-name-rotated.png" alt="starbook"></a>
+    <a class="navbar-brand" routerLink="/"><img src="/assets/images/brand-logo-name-rotated.png" alt="starbook.co"></a>
     <ul class="nav navbar-nav navbar-right">
 
       <!-- <li class="nav-item" *ngIf="auth">
@@ -13,7 +13,7 @@
       <!-- <li class="nav-item" *ngIf="!auth && page==='Business'">
         <a class="btn btn-navbar" routerLink="/company">Aziende</a>
       </li> -->
-      <li class="nav-item signup-item" *ngIf="!auth && page==='Company'">
+      <li class="nav-item signup-item" *ngIf="!auth && (page==='Company' || page==='Business')">
         <a class="btn btn-success btn-signup" routerLink="/auth/signup">Iscriviti</a>
       </li>
       <!-- <li class="nav-item signup-item" *ngIf="page==='Business'">
@@ -21,7 +21,7 @@
       </li> -->
 
       <li class="nav-item account" *ngIf="auth">
-        <a class="nav-link" routerLink="/account/profile"><img class="image" [src]="account_avatar_url" (error)="errorHandler($event)" alt="Starbook User"><span>{{auth.profile.firstname}}</span></a>
+        <a class="nav-link" routerLink="/account/profile"><img class="image" [src]="account_avatar_url" (error)="errorHandler($event)" alt="avatar"><span>{{auth.profile.firstname}}</span></a>
       </li>
 
       <li class="nav-item">
