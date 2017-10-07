@@ -41,6 +41,7 @@ export class AppComponent implements OnInit, OnDestroy {
   public hasNavigation = true
   public border_bottom_color = "1px solid #DBDBDB"
   public account_avatar_url = ''
+  public popup = null
 
   constructor (public router:Router, private route: ActivatedRoute, private authServics: AuthService, private navigationService: NavigationService, private popupsService: PopupsService, private commonService: CommonService, private seoService: SeoService) {
     this.navbarState = false;
@@ -247,7 +248,11 @@ export class AppComponent implements OnInit, OnDestroy {
     this.collapsed = false;
   }
   logout() {
-    this.popupsService.activate({type: 'logout', data: {}});
+    this.navigationService.updatePersonalMenu(false);
+    if (isBrowser) {
+      localStorage.removeItem('auth')
+      this.router.navigate(['/'])
+    }
   }
   getRegistrationPopup() {
     this.popupsService.activate({type: 'registration'});

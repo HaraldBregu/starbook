@@ -43,6 +43,7 @@
             <li class="list-item" *ngIf="auth"><a class="btn" routerLink="/tools/facebook_reachestimate">Cerca clienti</a></li>
             <li class="list-item"><a class="btn" routerLink="/info/legal">Privacy & Condizioni</a></li>
             <li class="list-item" *ngIf="!auth"><a class="btn" routerLink="/info/help">Aiuto</a></li>
+            <li class="list-item" *ngIf="auth"><a class="btn" (click)="popup='LOGOUT_POPUP'">Esci</a></li>
           </ul>
         </div>
       </li>
@@ -51,6 +52,24 @@
 </nav>
 <router-outlet></router-outlet>
 <app-popups></app-popups>
+
+<div class="popup-container" [ngStyle]="{'display' : popup==='LOGOUT_POPUP' ? 'block' : 'none'}">
+  <div class="popup-shadow" [ngStyle]="{'display' : popup ? 'block' : 'none'}" (click)="popup=null;"></div>
+  <div class="popup">
+    <div class="popup-content">
+      <div class="popup-nav">
+        <button type="button" class="close" (click)="popup=null;">&times;</button>Sicuro di voler uscire?
+      </div>
+      <div class="popup-body">
+        <p>Si consiglia di uscire solo se si vuole cambiare l'utenza o si sta lavorando in un dispositivo non proprietario.</p>
+      </div>
+      <div class="popup-footer">
+        <button type="button" id="next" class="btn btn-secondary" (click)="popup=null;">Annulla</button>
+        <button id="addCard" type="button" class="btn btn-danger" (click)="popup=null;logout();">Esci</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 <!-- <nav *ngIf="page && hasNavigation" class="navbar navbar-dark navbar-fixed-top bg-inverse" [style.border-bottom]="border_bottom_color" (window:resize)="onResize()">
   <div class="container-starbook top-menu">

@@ -27,10 +27,10 @@
         </div>
       </div>
       <div class="actions">
-        <button type="button" name="button" class="btn btn-success" (click)="popup='SEND_PRIVATE_MESSAGE_POPUP';"><i class="fa fa-paper-plane" aria-hidden="true"></i> <b>Messaggio</b></button>
         <a *ngIf="getGoogleMapsLink(Account)" role="button" name="button" class="btn btn-primary" href="{{getGoogleMapsLink(Account)}}" target="_blank"><i class="fa fa-location-arrow" aria-hidden="true"></i> <b>Vai</b></a>
         <button *ngIf="getPhoneNumber()" type="button" name="button" class="btn btn-warning" (click)="popup='PHONE_NUMBER_POPUP';"><i class="fa fa-phone" aria-hidden="true"></i> <b>Telefono</b></button>
         <button *ngIf="getEmailAddress()" type="button" name="button" class="btn btn-info" (click)="popup='EMAIL_POPUP';"><i class="fa fa-envelope" aria-hidden="true"></i> <b>Email</b></button>
+        <button type="button" name="button" class="btn btn-success" (click)="popup='SEND_PRIVATE_MESSAGE_POPUP';"><i class="fa fa-paper-plane" aria-hidden="true"></i> <b>Messaggio</b></button>
       </div>
     </div>
     <div class="profile-body">

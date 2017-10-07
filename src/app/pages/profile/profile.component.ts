@@ -254,6 +254,9 @@ export class ProfileComponent implements OnInit {
         if (this.Account['business']['email'] && this.Account['business']['email']!==null) {
           return this.Account['business']['email']
         }
+        else if (this.Account['email'] && this.Account['email']!==null) {
+          return this.Account['email']
+        }
       }
       else if (this.Account['email'] && this.Account['email']!==null) {
         return this.Account['email']
