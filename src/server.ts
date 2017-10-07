@@ -75,22 +75,18 @@ app.use('/', express.static(path.join(ROOT, 'client'), {index: false}));
 
 /* There are code from old server */
 if (environment.production) {
-  // app.all('/*', function(req: any, res: any, next) {
-  //   if(!/^www\./.test(req.headers.host) && req.headers.host === "starbook.co") {
-  //     res.status(301).redirect(req.protocol + '://www.' + req.headers.host + req.url)
-  //   } else {
-  //     next()
-  //   }
-  // })
-  // app.use('/', require('redirect-https')({
-  //   body: '',
-  //   port: 443,
-  //   trustProxy: true
-  // }))
-
-  app.use('*',function(req,res){
-    res.redirect('https://www.starbook.co'+req.url)
+  app.all('/*', function(req: any, res: any, next) {
+    if(!/^www\./.test(req.headers.host) && req.headers.host === "starbook.co") {
+      res.status(301).redirect(req.protocol + '://www.' + req.headers.host + req.url)
+    } else {
+      next()
+    }
   })
+  app.use('/', require('redirect-https')({
+    body: '',
+    port: 443,
+    trustProxy: true
+  }))
 
   // app.all('/*', function(req: any, res: any, next) {
   //   if(!/^www\./.test(req.headers.host) && req.headers.host === "starbook.co") {
