@@ -19,7 +19,7 @@
       </div>
       <div class="account-info">
         <h1 class="name">{{checkCompanyName(Account)}}</h1>
-        <!-- <h2 class="tagline" *ngIf="checkTagline(Account)">{{checkTagline(Account)}}</h2> -->
+        <h2 class="tagline" *ngIf="checkTagline(Account)">{{checkTagline(Account)}}</h2>
         <h3 class="description" *ngIf="businessDescription(Account)">{{businessDescription(Account)}}</h3>
         <div class="user-address" *ngIf="Account.profile.fullname || Account.address.city">
           <span class="user" *ngIf="businessName()"><i class="fa fa-user" aria-hidden="true"></i> {{Account.profile.fullname}}</span>
