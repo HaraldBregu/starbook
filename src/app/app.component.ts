@@ -159,9 +159,9 @@ export class AppComponent implements OnInit, OnDestroy {
         switch (action.type) {
           case 'logout':
           if (isBrowser) {
-            if (localStorage.getItem('auth')!==null) {
-              localStorage.removeItem('auth')
-            }
+            // if (localStorage.getItem('auth')!==null) {
+            //   localStorage.removeItem('auth')
+            // }
           }
           this.navigationService.updatePersonalMenu(false)
           if (this.page === "Account") {
@@ -248,11 +248,11 @@ export class AppComponent implements OnInit, OnDestroy {
     this.collapsed = false;
   }
   logout() {
-    this.navigationService.updatePersonalMenu(false);
-    if (isBrowser) {
-      localStorage.removeItem('auth')
-      this.router.navigate(['/'])
-    }
+    this.navigationService.updatePersonalMenu(false)
+    localStorage.removeItem('auth')
+    this.router.navigate(['/'])
+    // if (isBrowser) {
+    // }
   }
   getRegistrationPopup() {
     this.popupsService.activate({type: 'registration'});
