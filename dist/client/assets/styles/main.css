@@ -3424,7 +3424,8 @@ app-root .navbar {
       line-height: 50px; }
     app-root .navbar .container-starbook .navbar-nav .nav-link:hover,
     app-root .navbar .container-starbook .navbar-nav .nav-link.active {
-      background-color: #F7F7F7; }
+      background-color: #f0f0f0;
+      transition: width .0s ease; }
     app-root .navbar .container-starbook .navbar-nav .register-item {
       background: #f7941e;
       padding: 0 10px; }
@@ -3653,7 +3654,8 @@ app-root .navbar {
     padding: 0;
     line-height: 48px; }
   app-root .navbar .nav .nav-item .btn-navbar:hover {
-    background: #F7F7F7; }
+    background-color: #f0f0f0;
+    transition: width .0s ease; }
   app-root .navbar .nav .account .nav-link {
     color: #696969 !important;
     border-radius: 50px;
@@ -4577,6 +4579,14 @@ app-company {
             font-weight: 500;
             font-size: 23px;
             vertical-align: middle; }
+          app-company .company-container .section-container .section .section-content .section-header .btn-primary {
+            position: relative;
+            border-radius: 5px;
+            height: 60px;
+            padding: 0 40px;
+            font-weight: 500;
+            font-size: 23px;
+            vertical-align: middle; }
           app-company .company-container .section-container .section .section-content .section-header .quote {
             max-width: 700px;
             margin: 0 auto 20px; }
@@ -4589,7 +4599,7 @@ app-company {
             font-family: Helvetica Neue, sans-serif;
             font-weight: 600;
             font-size: 46px;
-            line-height: 50px;
+            line-height: 55px;
             color: #263961;
             text-shadow: 0 1px 0px rgba(255, 255, 255, 0.8); }
           app-company .company-container .section-container .section .section-content .section-body h2 {
@@ -4602,26 +4612,33 @@ app-company {
             margin-top: 30px;
             text-shadow: 0 1px 0px rgba(255, 255, 255, 0.8); }
           app-company .company-container .section-container .section .section-content .section-body p {
-            margin-top: 20px; }
+            margin-top: 20px;
+            font-size: 22px !important; }
           app-company .company-container .section-container .section .section-content .section-body ul {
             margin-top: 30px;
             margin-bottom: 1em;
             max-width: 500px; }
             app-company .company-container .section-container .section .section-content .section-body ul li {
               position: relative;
-              font-size: 18px;
+              font-size: 20px;
               margin-bottom: 0.5em;
-              padding-left: 26px; }
+              padding-left: 30px; }
               app-company .company-container .section-container .section .section-content .section-body ul li i {
+                padding: 0px;
                 position: absolute;
                 top: 2px;
                 left: 0;
                 margin-right: 5px;
                 font-size: 20px; }
+              app-company .company-container .section-container .section .section-content .section-body ul li .tick {
+                background: #88bd4b;
+                padding: 2px;
+                color: white;
+                border-radius: 2px; }
           app-company .company-container .section-container .section .section-content .section-body .btn {
             position: relative;
             margin-top: 40px;
-            border-radius: 3px;
+            border-radius: 5px;
             padding: 0 40px;
             height: 60px;
             font-weight: 500;
@@ -4723,6 +4740,12 @@ app-company {
   app-company .company-container .section-container .section .section-content .section-body .right-content {
     padding-left: 40px; } }
 @media (max-width: 425px) {
+  app-company .company-container .section-container .section .section-content .section-body .btn {
+    width: 100%; }
+
+  app-company .company-container .section-container .section .section-content .section-header .btn-primary {
+    width: 100%; }
+
   app-company .company-container .section-container .section .section-content .section-body {
     padding: 30px 20px; }
 
@@ -4794,7 +4817,8 @@ app-company {
     height: 50px; }
 
   app-company .company-container .section-container .section .section-content .section-body .right-media {
-    margin-top: 20px; } }
+    margin-top: 20px;
+    width: 100%; } }
 @media (max-width: 320px) {
   app-company .company-container .section-container .section .section-content .section-body .btn-facebook {
     font-size: 17px;
@@ -7662,6 +7686,7 @@ app-account {
               position: absolute;
               top: -20px; }
             app-account .account-container .account .account-content .account-body .actions .btn {
+              margin-top: 10px;
               padding: 0 40px;
               font-size: 22px;
               font-weight: 500;
@@ -7669,6 +7694,8 @@ app-account {
             app-account .account-container .account .account-content .account-body .actions .btn-warning {
               height: 60px; }
             app-account .account-container .account .account-content .account-body .actions .btn-success {
+              height: 60px; }
+            app-account .account-container .account .account-content .account-body .actions .btn-primary {
               height: 60px; }
           app-account .account-container .account .account-content .account-body .share-actions {
             overflow: hidden; }

@@ -25,7 +25,8 @@ app-root {
         }
         .nav-link:hover,
         .nav-link.active {
-          background-color: #F7F7F7;
+          background-color: #f0f0f0;
+          transition: width .0s ease;
         }
         .register-item {
           background: #f7941e;
@@ -304,7 +305,8 @@ app-root {
       line-height: 48px;
     }
     .nav .nav-item .btn-navbar:hover {
-      background: #F7F7F7;
+      background-color: #f0f0f0;
+      transition: width .0s ease;
     }
     .nav .account {
       // max-width: 130px;

@@ -172,6 +172,15 @@ app-company {
               font-size: 23px;
               vertical-align: middle;
             }
+            .btn-primary {
+              position: relative;
+              border-radius: 5px;
+              height: 60px;
+              padding: 0 40px;
+              font-weight: 500;
+              font-size: 23px;
+              vertical-align: middle;
+            }
             .quote {
               max-width: 700px;
               margin: 0 auto 20px;
@@ -190,7 +199,7 @@ app-company {
               font-family: Helvetica Neue, sans-serif;
               font-weight: 600;
               font-size: 46px;
-              line-height: 50px;
+              line-height: 55px;
               color: #263961;
               text-shadow: 0 1px 0px rgba(255, 255, 255, 0.8);
             }
@@ -207,6 +216,7 @@ app-company {
             }
             p {
               margin-top: 20px;
+              font-size: 22px !important;
             }
             ul {
               margin-top: 30px;
@@ -214,22 +224,29 @@ app-company {
               max-width: 500px;
               li {
                 position: relative;
-                font-size: 18px;
+                font-size: 20px;
                 margin-bottom: 0.5em;
-                padding-left: 26px;
+                padding-left: 30px;
                 i {
+                  padding: 0px;
                   position: absolute;
                   top: 2px;
                   left: 0;
                   margin-right: 5px;
                   font-size: 20px;
                 }
+                .tick {
+                  background: rgba(136, 189, 75, 1);
+                  padding: 2px;
+                  color: white;
+                  border-radius: 2px;
+                }
               }
             }
             .btn {
               position: relative;
               margin-top: 40px;
-              border-radius: 3px;
+              border-radius: 5px;
               padding: 0 40px;
               height: 60px;
               font-weight: 500;
@@ -367,6 +384,12 @@ app-company {
 }
 
 @media (max-width: 425px) {
+  app-company .company-container .section-container .section .section-content .section-body .btn {
+    width: 100%;
+  }
+  app-company .company-container .section-container .section .section-content .section-header .btn-primary {
+    width: 100%;
+  }
   app-company .company-container .section-container .section .section-content .section-body {
     padding: 30px 20px;
   }
@@ -439,6 +462,7 @@ app-company {
   }
   app-company .company-container .section-container .section .section-content .section-body .right-media {
     margin-top: 20px;
+    width: 100%;
   }
 }
 

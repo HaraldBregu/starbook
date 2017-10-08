@@ -32,14 +32,15 @@
             <li class="list-item" *ngIf="auth"><a class="btn" routerLink="/account/new_promotion"><i class="fa fa-bullhorn" aria-hidden="true"></i><span>Promuovi</span></a></li>
             <li class="list-item" *ngIf="auth"><a class="btn" routerLink="/account/requests"><i class="fa fa-inbox" aria-hidden="true"></i><span>Messaggi</span></a></li>
             <li class="list-item" *ngIf="auth"><a class="btn" routerLink="/account/quotation"><i class="fa fa-wpforms" aria-hidden="true"></i><span>Preventivi</span></a></li>
-            <li class="list-item" *ngIf="!auth" (click)="getLoginPopup()"><a class="btn">Accedi</a></li>
-            <li class="list-item" *ngIf="!auth"><a class="btn" routerLink="/company">Soluzioni professionali</a></li>
+            <!-- <li class="list-item" *ngIf="!auth" (click)="getLoginPopup()"><a class="btn">Accedi</a></li> -->
+            <li class="list-item" *ngIf="!auth" routerLink="/auth/login"><a class="btn">Accedi</a></li>
+            <li class="list-item" *ngIf="!auth"><a class="btn" routerLink="/company">Soluzioni web</a></li>
             <li class="list-item" *ngIf="!auth"><a class="btn" routerLink="/tools/facebook_reachestimate">Cerca clienti</a></li>
             <li class="list-item line"></li>
             <li class="list-item"><a class="btn" routerLink="/blog">Blog</a></li>
             <li class="list-item" *ngIf="auth"><a class="btn" routerLink="/account/help">Aiuto</a></li>
             <li class="list-item line"></li>
-            <li class="list-item" *ngIf="auth"><a class="btn" routerLink="/company">Soluzioni professionali</a></li>
+            <li class="list-item" *ngIf="auth"><a class="btn" routerLink="/company">Soluzioni web</a></li>
             <li class="list-item" *ngIf="auth"><a class="btn" routerLink="/tools/facebook_reachestimate">Cerca clienti</a></li>
             <li class="list-item"><a class="btn" routerLink="/info/legal">Privacy & Condizioni</a></li>
             <li class="list-item" *ngIf="!auth"><a class="btn" routerLink="/info/help">Aiuto</a></li>

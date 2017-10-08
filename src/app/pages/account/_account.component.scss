@@ -430,6 +430,7 @@ app-account {
               // background: #259874;
             }
             .btn {
+              margin-top: 10px;
               padding: 0 40px;
               font-size: 22px;
               font-weight: 500;
@@ -439,6 +440,9 @@ app-account {
               height: 60px;
             }
             .btn-success {
+              height: 60px;
+            }
+            .btn-primary {
               height: 60px;
             }
           }
