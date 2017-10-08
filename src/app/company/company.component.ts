@@ -29,7 +29,7 @@ export class CompanyComponent implements OnInit {
 
   ngOnInit() {
     this.seoObject['title'] = "Starbook | Soluzioni web per aziende e professionisti"
-    this.seoObject['description'] = "Crea una pagina professionale, pubblicizza con pochi click, ricevi richieste da clienti e invia preventivi."
+    this.seoObject['description'] = "Crea una pagina professionale, pubblicizza online con pochi click, ricevi richieste da clienti e invia preventivi."
     this.seoObject['url'] = 'https://www.starbook.co' + this.router.url
     this.seoObject['image_url'] = "https://s3-eu-west-1.amazonaws.com/starbook-s3/website/icon_256.png"
 
