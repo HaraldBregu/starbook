@@ -156,11 +156,11 @@ export class AuthComponent implements OnInit {
 
       this.route.queryParams.subscribe((params: Params) => {
         if (this.page==='login' && !this.currentUser) {
-          this.seoObject['title'] = "Starbook | Accedi"
-          this.seoObject['description'] = "Su Starbook troverai i migliori servizi per la tua casa e i migliori professionisti della tua zona."
+          this.seoObject['title'] = "Accedi | Starbook"
+          this.seoObject['description'] = "Crea una pagina professionale, pubblicizza online con pochi click, ricevi richieste da clienti e invia preventivi."
         }
         else if (this.page==='signup' && !this.currentUser) {
-          this.seoObject['title'] = "Starbook | Iscriviti"
+          this.seoObject['title'] = "Iscriviti | Starbook"
           this.seoObject['description'] = "Hai una professione, un attivita o un'azienda e vuoi promuoverla? Iscriviti su Starbook gratuitamente e crea la tua pagina professionale."
         }
         else if (this.page === 'password_recovery'&&!this.currentUser) {
@@ -210,6 +210,9 @@ export class AuthComponent implements OnInit {
           this.new_password_creation.code = code;
         }
         else if (this.page === 'token_auth') {
+          this.seoObject['title'] = "Accedi"
+          this.seoObject['description'] = "Crea una pagina professionale, pubblicizza online con pochi click, ricevi richieste da clienti e invia preventivi."
+
           this.route.queryParams.subscribe(params => {
             var token = params['token']
             if (token) {
