@@ -79,7 +79,7 @@ export class ShareComponent implements OnInit {
           this.seoObject.description = "";
           this.seoObject.url = 'https://www.starbook.co' + this.router.url;
           this.seoObject.image_url = "https://st.depositphotos.com/1006214/4163/i/950/depositphotos_41638005-stock-photo-contractors-estimate-form.jpg";
-        });
+        })
       } else {
         this.router.navigate(['']);
       }

@@ -6,6 +6,7 @@ import { isBrowser } from "angular2-universal";
 import { AuthService } from '../../shared/auth.service';
 import { ContactService } from '../../shared/contact.service';
 import { SeoService } from '../../shared/seo.service';
+import { CommonService } from '../../shared/common.service';
 import { FacebookService, InitParams, LoginResponse, LoginOptions, UIResponse, UIParams, FBVideoComponent } from 'ngx-facebook';
 require('aws-sdk/dist/aws-sdk')
 
@@ -132,7 +133,7 @@ export class AuthComponent implements OnInit {
     file_error: null
   }
 
-  constructor(private route: ActivatedRoute, private router: Router, private navigationService: NavigationService, private profileService: ProfileService, private authService: AuthService, private seoService: SeoService, private contactService: ContactService, private fb: FacebookService) {
+  constructor(private route: ActivatedRoute, private router: Router, private navigationService: NavigationService, private profileService: ProfileService, private authService: AuthService, private seoService: SeoService, private contactService: ContactService, private fb: FacebookService, private commonService: CommonService) {
     this.navigationService.updateMessage('')
     this.emailPattern = /^[a-z0-9!#$%&'*+\/=?^_`{|}~.-]+@[a-z0-9]([a-z0-9-]*[a-z0-9])?(\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)*$/i;
     if (isBrowser) {
@@ -208,6 +209,30 @@ export class AuthComponent implements OnInit {
           }
           this.new_password_creation.code = code;
         }
+        else if (this.page === 'token_auth') {
+          this.route.queryParams.subscribe(params => {
+            var token = params['token']
+            if (token) {
+              this.commonService.postMethod("login", {token:token}).then((data) => {
+                localStorage.clear()
+                var account = data.result
+                account['token'] = data.token
+                localStorage.setItem('auth', JSON.stringify(account))
+                this.navigationService.updatePersonalMenu(data.result)
+                this.router.navigate(['/account/profile'])
+              }).catch((error) => {
+                this.router.navigate(['/login'])
+                switch (error) {
+                  case 404:
+                    break;
+                  case 401:
+                    break;
+                  default:
+                }
+              })
+            }
+          })
+        }
         else if (!this.currentUser) {
           this.router.navigate(['/auth/login'])
         } else {
@@ -254,21 +279,21 @@ export class AuthComponent implements OnInit {
       this.login_state.button_title = "Accedi";
       this.login_state.error_message = null;
       this.router.navigate(['/account/profile'])
-      }).catch((error) => {
-        this.login_state.email_error = null;
-        this.login_state.password_error = null;
-        this.login_state.loading = false;
-        this.login_state.button_title = "Accedi";
-        switch (error) {
-          case 404:
-          this.login_state.error_message = "Non esiste un account con questa mail! Crea un nuovo account."
-            break;
-          case 401:
-          this.login_state.error_message = "La password non è corretta!"
-            break;
-          default:
-        }
-      });
+    }).catch((error) => {
+      this.login_state.email_error = null;
+      this.login_state.password_error = null;
+      this.login_state.loading = false;
+      this.login_state.button_title = "Accedi";
+      switch (error) {
+        case 404:
+        this.login_state.error_message = "Non esiste un account con questa mail! Crea un nuovo account."
+          break;
+        case 401:
+        this.login_state.error_message = "La password non è corretta!"
+          break;
+        default:
+      }
+    })
   }
   signup() {
     if (this.Signup_State.loading) {return}
