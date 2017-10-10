@@ -7,7 +7,6 @@
   </ul>
 </div>
 
-
 <!-- ACCOUNT -->
 <div class="account-container" *ngIf="page==='profile' && Account">
   <div class="account">
@@ -359,7 +358,6 @@
   </div>
 </div>
 
-
 <!-- PROMOTION -->
 <div class="account-container" *ngIf="page==='inprogress_promotion' || page==='terminated_promotion' || page==='new_promotion'">
   <div class="account">
@@ -635,14 +633,13 @@
   </div>
 </div>
 
-
 <!-- REQUESTS -->
 <div class="account-container" *ngIf="page==='requests'">
   <div class="account">
     <div class="account-tab">
       <ul>
-        <li><a class="btn btn-transparent" (click)="clickLeftTabInbox('received')" [ngClass]="{'active':inbox_tab==='received'}"><i class="fa fa-inbox" aria-hidden="true"></i>Ricevute</a></li>
-        <li><a class="btn btn-transparent" (click)="clickLeftTabInbox('sent')" [ngClass]="{'active':inbox_tab==='sent'}"><i class="fa fa-paper-plane" aria-hidden="true"></i>Inviate</a></li>
+        <li><a class="btn btn-transparent" (click)="clickLeftTabInbox('received')" [ngClass]="{'active':inbox_tab==='received'}"><i class="fa fa-inbox" aria-hidden="true"></i>Ricevuti</a></li>
+        <li><a class="btn btn-transparent" (click)="clickLeftTabInbox('sent')" [ngClass]="{'active':inbox_tab==='sent'}"><i class="fa fa-paper-plane" aria-hidden="true"></i>Inviati</a></li>
       </ul>
     </div>
     <div *ngIf="inbox_tab==='sent'">
@@ -661,7 +658,6 @@
     </div>
   </div>
 </div>
-
 
 <!-- QUOTATION -->
 <div class="account-container" *ngIf="page==='quotation'">
@@ -890,7 +886,6 @@
     </div>
   </div>
 </div>
-
 
 <div class="account-container" *ngIf="page==='help'">
   <div class="account">
