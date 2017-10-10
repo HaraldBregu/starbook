@@ -336,14 +336,19 @@ export class AuthComponent implements OnInit {
   }
   continueWithFacebook(route) {
     if (this.Signup_State.loading || this.login_state.loading) {return}
+    this.login_state.loading = true
+    this.Signup_State.loading = true
     this.fb.logout()
     this.fb.login().then((res: LoginResponse) => {
       let fb_token = res.authResponse.accessToken
       this.authService.facebookLogin(fb_token).then((userData) => {
-        this.navigationService.updatePersonalMenu(userData);
+        this.navigationService.updatePersonalMenu(userData)
+        this.login_state.loading = false
+        this.Signup_State.loading = false
         this.router.navigate([route])
       }).catch((error) => {
-
+        this.login_state.loading = false
+        this.Signup_State.loading = false
       })
     }).catch((error) => {
       // console.log("fb login error: " + error);
