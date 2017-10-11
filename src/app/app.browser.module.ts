@@ -16,6 +16,8 @@ import { ClickOutsideModule } from 'ng2-click-outside';
 import { Ng2PageScrollModule } from 'ng2-page-scroll';
 import { FacebookModule } from 'ngx-facebook';
 
+// import { SliderModule } from 'primeng/primeng';
+
 import { routing } from './app.routing';
 
 import { CommonService } from './shared/common.service';
@@ -120,7 +122,7 @@ let declarations = [
   CategoryComponent,
   ContactComponent,
   ToolsComponent,
-  
+
   NotfoundComponent,
 
   TestsComponent,
@@ -144,6 +146,8 @@ if (isBrowser) {
   imports.push(CalendarModule);
   let AutoCompleteModule = require('primeng/components/autocomplete/autocomplete').AutoCompleteModule;
   imports.push(AutoCompleteModule);
+  // let SliderModule = require('primeng/components/slider/slider').SliderModule;
+  // imports.push(SliderModule);
   // let ClickOutsideModule = require('ng2-click-outside/src/click-outside.module').ClickOutsideModule;
   // imports.push(ClickOutsideModule);
 }

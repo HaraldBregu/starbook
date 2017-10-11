@@ -25,7 +25,7 @@ export class AccountComponent implements OnInit {
   public page = ''
   public tabs = [
     {name: 'Account', route: 'profile'},
-    {name: 'Promuovi', route: 'new_promotion'},
+    {name: 'Promozioni', route: 'new_promotion'},
     {name: 'Messaggi', route: 'requests'},
     {name: 'Preventivi', route: 'quotation'},
     {name: 'Aiuto', route: 'help'},

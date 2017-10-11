@@ -1,7 +1,8 @@
 <nav *ngIf="page && hasNavigation" class="navbar navbar-fixed-top" [style.border-bottom]="border_bottom_color" (window:resize)="onResize()">
   <div class="container-starbook">
-    <a class="navbar-brand" *ngIf="screenWidth > 320" routerLink="/"><img src="/assets/images/brand-logo-name-rotated.png" alt="starbook.co"></a>
-    <a class="navbar-brand" *ngIf="screenWidth < 320 || screenWidth === 320" routerLink="/"><img src="/assets/images/brand-logo-rotated.png" alt="starbook.co"></a>
+    <a class="navbar-brand" *ngIf="!auth" routerLink="/"><img src="/assets/images/brand-logo-name-rotated.png" alt="starbook.co"></a>
+    <a class="navbar-brand" *ngIf="(screenWidth > 320) && auth" routerLink="/"><img src="/assets/images/brand-logo-name-rotated.png" alt="starbook.co"></a>
+    <a class="navbar-brand" *ngIf="(screenWidth < 320 || screenWidth === 320) && auth" routerLink="/"><img src="/assets/images/brand-logo-rotated.png" alt="starbook.co"></a>
     <ul class="nav navbar-nav navbar-right">
 
       <!-- <li class="nav-item" *ngIf="auth">
@@ -38,14 +39,16 @@
             <li class="list-item" *ngIf="auth"><a class="btn" routerLink="/account/quotation"><i class="fa fa-wpforms" aria-hidden="true"></i><span>Preventivi</span></a></li>
             <!-- <li class="list-item" *ngIf="!auth" (click)="getLoginPopup()"><a class="btn">Accedi</a></li> -->
             <li class="list-item" *ngIf="!auth" routerLink="/auth/login"><a class="btn">Accedi</a></li>
-            <li class="list-item" *ngIf="!auth"><a class="btn" routerLink="/company">Soluzioni web</a></li>
-            <li class="list-item" *ngIf="!auth"><a class="btn" routerLink="/tools/facebook_reachestimate">Cerca clienti</a></li>
+            <li class="list-item" *ngIf="!auth"><a class="btn" routerLink="/company">Soluzioni per le aziende</a></li>
+            <li class="list-item" *ngIf="!auth"><a class="btn" routerLink="/company/quotations">Preventivi dinamici</a></li>
+            <!-- <li class="list-item" *ngIf="!auth"><a class="btn" routerLink="/tools/facebook_reachestimate">Cerca clienti</a></li> -->
             <li class="list-item line"></li>
             <li class="list-item"><a class="btn" routerLink="/blog">Blog</a></li>
             <li class="list-item" *ngIf="auth"><a class="btn" routerLink="/account/help">Aiuto</a></li>
             <li class="list-item line"></li>
-            <li class="list-item" *ngIf="auth"><a class="btn" routerLink="/company">Soluzioni web</a></li>
-            <li class="list-item" *ngIf="auth"><a class="btn" routerLink="/tools/facebook_reachestimate">Cerca clienti</a></li>
+            <li class="list-item" *ngIf="auth"><a class="btn" routerLink="/company">Soluzioni per le aziende</a></li>
+            <li class="list-item" *ngIf="auth"><a class="btn" routerLink="/company/quotations">Preventivi dinamici</a></li>
+            <!-- <li class="list-item" *ngIf="auth"><a class="btn" routerLink="/tools/facebook_reachestimate">Cerca clienti</a></li> -->
             <li class="list-item"><a class="btn" routerLink="/info/legal">Privacy & Condizioni</a></li>
             <li class="list-item" *ngIf="!auth"><a class="btn" routerLink="/info/help">Aiuto</a></li>
             <li class="list-item" *ngIf="auth"><a class="btn" (click)="popup='LOGOUT_POPUP'">Esci</a></li>

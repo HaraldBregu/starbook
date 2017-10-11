@@ -35,6 +35,94 @@ export class ProfileComponent implements OnInit {
   public CurrentAccount = null
   public popup = null
 
+  public Promotion = {
+    facebook : {
+      start_date : null,
+    },
+    google : {
+      start_date : null,
+      indexing : false,
+      mapping : false
+    }
+  }
+  public FacebookPromotion = {
+    time_options : [
+      {
+        count: 1,
+        item: "Settimana"
+      },
+      {
+        count: 2,
+        item: "Settimane"
+      },
+      {
+        count: 4,
+        item: "Settimane"
+      },
+    ],
+    default_time_option : {
+      count: 4,
+      item: "Settimane"
+    },
+    price_options : [
+      {
+        price: 200,
+        currency: "€"
+      },
+      {
+        price: 400,
+        currency: "€"
+      },
+      {
+        price: 800,
+        currency: "€"
+      },
+    ],
+    default_price_options : {
+      price: 400,
+      currency: "€"
+    }
+  }
+  public GooglePromotion = {
+    active: false,
+    time_options : [
+      {
+        count: 1,
+        item: "Settimana"
+      },
+      {
+        count: 2,
+        item: "Settimane"
+      },
+      {
+        count: 4,
+        item: "Settimane"
+      },
+    ],
+    default_time_option : {
+      count: 4,
+      item: "Settimane"
+    },
+    price_options : [
+      {
+        price: 200,
+        currency: "€"
+      },
+      {
+        price: 400,
+        currency: "€"
+      },
+      {
+        price: 800,
+        currency: "€"
+      },
+    ],
+    default_price_options : {
+      price: 400,
+      currency: "€"
+    }
+  }
+
   constructor(private commonService: CommonService, private profileService: ProfileService, private router: Router, private navigationService: NavigationService, private route: ActivatedRoute, private joinService: ContactService, private seoService: SeoService) {
     this.navigationService.updateMessage('')
     if (isBrowser) {
@@ -265,5 +353,22 @@ export class ProfileComponent implements OnInit {
         return ""
       }
     }
+  }
+
+  // PROMOTIONS
+  startPromotion() {
+    console.log(JSON.stringify(this.Promotion))
+  }
+  selectFacebookAdPeriod(option) {
+    this.FacebookPromotion.default_time_option = option
+  }
+  selectFacebookAdPrice(option) {
+    this.FacebookPromotion.default_price_options = option
+  }
+  selectGoogleAdPeriod(option) {
+    this.GooglePromotion.default_time_option = option
+  }
+  selectGoogleAdPrice(option) {
+    this.GooglePromotion.default_price_options = option
   }
 }

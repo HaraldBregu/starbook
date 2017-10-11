@@ -1,21 +1,23 @@
-
-<!-- PROFILE -->
 <div class="profile-container">
   <div class="profile" *ngIf="!Account">
     <div class="loader">
       <i class="fa fa-circle-o-notch animate"></i>
     </div>
   </div>
+  <img src="../../../assets/images/adwords.png" alt="Visa">
+
   <div class="profile" *ngIf="Account">
     <div class="profile-header">
       <div class="avatar-container">
-        <!-- <div class="avatar" [ngStyle]="checkBigPicture(Account)"> -->
         <div class="avatar" [ngStyle]="{'background-image' : ' url(' + checkBigPicture(Account) + ')'}">
           <!-- <div *ngIf="!checkBigPicture(Account)">
             <h1>loading...</h1>
           </div> -->
           <!-- <div class="avatar avatar-sm" [ngStyle]="{'background-image' : ' url(' + checkSmallPicture(Account) + ')'}"></div> -->
         </div>
+      </div>
+      <div class="promotion-section">
+        <button type="button" name="button" class="btn btn-primary" (click)="popup='PROMOTE_NOW_POPUP';"><b>Promuovi</b></button>
       </div>
       <div class="account-info">
         <h1 class="name">{{checkCompanyName(Account)}}</h1>
@@ -39,6 +41,148 @@
     </div>
   </div>
 </div>
+
+<div class="popup-container" [ngStyle]="{'display' : popup==='PROMOTE_NOW_POPUP' ? 'block' : 'none'}">
+  <div class="popup-shadow" [ngStyle]="{'display' : popup ? 'block' : 'none'}" (click)="popup=null;"></div>
+  <div class="popup ads-popup">
+    <div class="popup-content">
+      <div class="popup-nav">
+        <button type="button" class="close" (click)="popup=null;">&times;</button>Promuovi la tua Pagina
+      </div>
+      <div class="popup-header">
+        <p>Selezione le opzioni della tua campagnia promozionale Starbook utilizzando le piattaforme <b>Facebook Ads</b> e <b>Google Adwords.</b></p>
+      </div>
+      <div class="popup-body">
+        <div class="platform-ads">
+          <div class="platform-ads-header">
+            <i class="fa fa-facebook-official" aria-hidden="true"></i><span>Facebook</span>
+          </div>
+          <div class="platform-ads-body">
+            <form>
+              <p>Seleziona la durata</p>
+              <div class="row">
+                <div class="col-md-4" *ngFor="let option of FacebookPromotion.time_options">
+                  <div class="option">
+                    <div class="option-content noselect" [ngClass]="{'facebook-option-selected':option.count===FacebookPromotion.default_time_option.count}" (click)="selectFacebookAdPeriod(option)">
+                      <span>{{option.count}} {{option.item}}</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </form>
+            <form>
+              <p>Budget giornaliero <strong>€/giorno</strong></p>
+              <div class="row">
+                <div class="col-md-4" *ngFor="let option of FacebookPromotion.price_options">
+                  <div class="option">
+                    <div class="option-content noselect" [ngClass]="{'facebook-option-selected':option.price===FacebookPromotion.default_price_options.price}" (click)="selectFacebookAdPrice(option)">
+                      <span>{{option.price/100}}{{option.currency}}</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </form>
+            <form>
+              <div class="row">
+                <div class="form-group col-md-12">
+                  <p>Data inizio campagna Facebook</p>
+                  <input class="form-control" type="date" id="city-input" placeholder="Città" [(ngModel)]="Promotion.facebook.start_date" [ngModelOptions]="{standalone: true}">
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+        <div class="platform-ads-facebook-divider"></div>
+        <div class="platform-ads">
+          <div class="platform-ads-header" (click)="GooglePromotion.active = !GooglePromotion.active">
+            <img src="../../../assets/images/adwords.png" title="Google Adwords" alt="Google Adwords"><span>Google</span>
+          </div>
+          <div class="platform-ads-body" *ngIf="GooglePromotion.active">
+            <form>
+              <p>Seleziona la durata</p>
+              <div class="row">
+                <div class="col-md-4" *ngFor="let option of GooglePromotion.time_options">
+                  <div class="option">
+                    <div class="option-content noselect" [ngClass]="{'google-option-selected':option.count===GooglePromotion.default_time_option.count}" (click)="selectGoogleAdPeriod(option)">
+                      <span>{{option.count}} {{option.item}}</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </form>
+            <form>
+              <p>Budget giornaliero <strong>€/giorno</strong></p>
+              <div class="row">
+                <div class="col-md-4" *ngFor="let option of GooglePromotion.price_options">
+                  <div class="option">
+                    <div class="option-content noselect" [ngClass]="{'google-option-selected':option.price===GooglePromotion.default_price_options.price}" (click)="selectGoogleAdPrice(option)">
+                      <span>{{option.price/100}}{{option.currency}}</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </form>
+            <form>
+              <div class="row">
+                <div class="form-group col-md-12">
+                  <p>Data inizio campagna Google</p>
+                  <input class="form-control" type="date" id="city-input" placeholder="Città" [(ngModel)]="Promotion.facebook.start_date" [ngModelOptions]="{standalone: true}">
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+        <div class="platform-ads-google-divider"></div>
+        <div class="platform-ads">
+          <div class="platform-ads-header">
+            <i class="fa fa-google" aria-hidden="true"></i><span>Google Search</span>
+            <p>Registra la tua pagina nel indice di Google Search</p>
+          </div>
+          <div class="platform-ads-body">
+            <form>
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="form-check">
+                    <label class="form-check-label">
+                      <input type="checkbox" class="form-check-input" [checked]="Promotion.google.indexing" (change)="Promotion.google.indexing = !Promotion.google.indexing"><span class="noselect">Indicizzazione su Google</span>
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+        <div class="platform-ads">
+          <div class="platform-ads-header">
+            <i class="fa fa-google" aria-hidden="true"></i><span>Google Maps</span>
+            <p>Registra la tua attività su Google Maps</p>
+          </div>
+          <div class="platform-ads-body">
+            <form>
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="form-check">
+                    <label class="form-check-label">
+                      <input type="checkbox" class="form-check-input" [checked]="Promotion.google.mapping" (change)="Promotion.google.mapping = !Promotion.google.mapping"><span class="noselect">Iscrizione su Google Maps</span>
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="popup-footer">
+        <div class="actions">
+          <button type="button" id="next" class="btn btn-secondary" (click)="popup=null;">Annulla</button>
+          <button type="button" id="next" class="btn btn-success" (click)="startPromotion()"><i class="fa fa-circle-o-notch animate" *ngIf="Message_State.loading"></i>Inizia promozione</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <div class="popup-container" [ngStyle]="{'display' : popup==='SEND_PRIVATE_MESSAGE_POPUP' ? 'block' : 'none'}">
   <div class="popup-shadow" [ngStyle]="{'display' : popup ? 'block' : 'none'}" (click)="popup=null;"></div>
   <div class="popup">

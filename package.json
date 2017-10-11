@@ -50,7 +50,7 @@
     "ngx-clipboard": "^5.1.0",
     "ngx-facebook": "^2.4.0",
     "normalize.css": "^5.0.0",
-    "primeng": "^1.0.1",
+    "primeng": "^1.1.4",
     "redirect-https": "^1.1.1",
     "rxjs": "5.0.0-beta.12",
     "ts-helpers": "^1.1.1",

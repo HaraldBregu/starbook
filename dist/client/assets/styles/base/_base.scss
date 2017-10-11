@@ -830,7 +830,7 @@ input::-ms-clear {
   }
   .popup {
     background: white;
-    width: 520px;
+    max-width: 520px;
     margin: 80px auto;
     overflow-x: hidden;
     overflow-y: scroll;
@@ -856,7 +856,7 @@ input::-ms-clear {
         }
       }
       .popup-body {
-        padding: 10px 20px 10px;
+        padding: 20px;
         .input-group-addon {
           padding: 0 20px;
           font-size: 18px;

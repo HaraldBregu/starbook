@@ -107,7 +107,14 @@ app-profile {
             margin-bottom: 10px;
           }
         }
-
+        .promotion-section {
+          padding: 30px 0 0;
+          text-align: center;
+          .btn {
+            border-radius: 3px;
+            margin-bottom: 10px;
+          }
+        }
       }
       .profile-body {
         .actions {
@@ -159,6 +166,96 @@ app-profile {
       a {
         cursor: pointer;
       }
+    }
+  }
+  .popup-container {
+    .popup {
+      .popup-content {
+        .popup-header {
+          // border-bottom: 1px solid #dce0e0;
+        }
+        .popup-body {
+          .platform-ads {
+            margin-bottom: 20px;
+            .platform-ads-header {
+              i {
+                font-size: 32px;
+                margin-right: 5px;
+              }
+              img {
+                height: 32px;
+              }
+              .fa-facebook-official {
+                color: #3b5998;
+              }
+              .fa-google {
+                color: #d62d20;
+              }
+              span {
+                font-size: 24px;
+                font-weight: 500;
+              }
+            }
+            .platform-ads-body {
+              form {
+                margin-top: 15px;
+                .option {
+                  padding: 5px 0;
+                  .option-content {
+                    cursor: pointer;
+                    background: white;
+                    text-align: center;
+                    border-radius: 3px;
+                    line-height: 50px;
+                    border: 1px solid rgba(0, 0, 0, 0.2);
+                    span {
+                      color: rgba(0, 0, 0, 0.7);
+                      font-weight: 400;
+                      font-size: 18px;
+                    }
+                  }
+                  .facebook-option-selected {
+                    background: #3b5998;
+                    span {
+                      color: white;
+                    }
+                  }
+                  .google-option-selected {
+                    background: #d62d20;
+                    span {
+                      color: white;
+                    }
+                  }
+                }
+                .form-check-label {
+                  text-align: left;
+                  font-size: 16px !important;
+                  font-weight: 500;
+                  color: #1d2129 !important;
+                  .form-check-input {
+                    height: 16px !important;
+                  }
+                  span {
+                    margin-left: 10px;
+                  }
+                }
+              }
+            }
+          }
+          .platform-ads-facebook-divider {
+            margin: 20px 0 30px;
+            border-bottom: 2px solid #3b5998;
+          }
+          .platform-ads-google-divider {
+            margin: 20px 0 30px;
+            border-bottom: 2px solid #d62d20;
+          }
+        }
+      }
+
+    }
+    .ads-popup {
+      max-width: 600px;
     }
   }
 }

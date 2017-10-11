@@ -138,7 +138,7 @@ let declarations = [
   CategoryComponent,
   ContactComponent,
   ToolsComponent,
-  
+
   NotfoundComponent,
   TestsComponent,
 
