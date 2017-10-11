@@ -4,16 +4,10 @@
       <i class="fa fa-circle-o-notch animate"></i>
     </div>
   </div>
-  <img src="../../../assets/images/adwords.png" alt="Visa">
-
   <div class="profile" *ngIf="Account">
     <div class="profile-header">
       <div class="avatar-container">
         <div class="avatar" [ngStyle]="{'background-image' : ' url(' + checkBigPicture(Account) + ')'}">
-          <!-- <div *ngIf="!checkBigPicture(Account)">
-            <h1>loading...</h1>
-          </div> -->
-          <!-- <div class="avatar avatar-sm" [ngStyle]="{'background-image' : ' url(' + checkSmallPicture(Account) + ')'}"></div> -->
         </div>
       </div>
       <div class="promotion-section">
@@ -35,13 +29,10 @@
         <button type="button" name="button" class="btn btn-success" (click)="popup='SEND_PRIVATE_MESSAGE_POPUP';"><i class="fa fa-paper-plane" aria-hidden="true"></i> <b>Messaggio</b></button>
       </div>
     </div>
-    <div class="profile-body">
-    </div>
-    <div class="profile-footer">
-    </div>
   </div>
 </div>
 
+<!-- PROMOTION -->
 <div class="popup-container" [ngStyle]="{'display' : popup==='PROMOTE_NOW_POPUP' ? 'block' : 'none'}">
   <div class="popup-shadow" [ngStyle]="{'display' : popup ? 'block' : 'none'}" (click)="popup=null;"></div>
   <div class="popup ads-popup">
@@ -81,7 +72,6 @@
                   </div>
                 </div>
               </div>
-
             </form>
             <form>
               <div class="row">
