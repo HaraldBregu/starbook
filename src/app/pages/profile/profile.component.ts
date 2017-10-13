@@ -7,6 +7,8 @@ import { SeoService } from '../../shared/seo.service';
 import { ContactService } from '../../shared/contact.service';
 import { isBrowser } from "angular2-universal";
 import { CommonService } from '../../shared/common.service';
+import { PaymentService } from '../../shared/payment.service';
+import * as globals from '../../globals';
 
 @Component({
   selector: 'app-profile',
@@ -17,7 +19,6 @@ export class ProfileComponent implements OnInit {
   public page = ''
   public logo = ''
   public seoObject = {}
-
   public Account = null
   public Message = {
     text : '',
@@ -35,17 +36,53 @@ export class ProfileComponent implements OnInit {
   public CurrentAccount = null
   public popup = null
 
+  public Card = {
+    number: null,
+    exp_month: null,
+    exp_year: null,
+    exp_date: null,
+    cvc: '',
+    name: '',           // Nome intestatario
+    address_line1: '',  // Via
+    address_line2: '',  // Nr
+    address_city: '',   // Città
+    address_zip: '',    // CAP
+    address_state: '',  // Provincia
+    address_country: '' // Paese
+  };
+  public card_state = {
+    loading: false,
+    button_title: "Salva",
+    message_error: null,
+    message_success: null,
+    number_error:null,
+    exp_date_error: null,
+    cvc_error: null
+  }
+  public cards = []
+  public defaultCard = null
+  public selectedCardId = null
+
+  public Promotion_State = {
+    loading : false,
+    error_message : null,
+  }
   public Promotion = {
+    min_start_date : new Date(),
+    start_date : new Date(),
     facebook : {
-      start_date : null,
+      days : 0,
+      daily_budget : 200,
     },
     google : {
-      start_date : null,
-      indexing : false,
-      mapping : false
+      days : 0,
+      daily_budget : 200,
+      indexing : true,
+      mapping : true,
     }
   }
   public FacebookPromotion = {
+    active : false,
     time_options : [
       {
         count: 1,
@@ -79,12 +116,12 @@ export class ProfileComponent implements OnInit {
       },
     ],
     default_price_options : {
-      price: 400,
+      price: 200,
       currency: "€"
     }
   }
   public GooglePromotion = {
-    active: false,
+    active : false,
     time_options : [
       {
         count: 1,
@@ -118,12 +155,12 @@ export class ProfileComponent implements OnInit {
       },
     ],
     default_price_options : {
-      price: 400,
+      price: 200,
       currency: "€"
     }
   }
 
-  constructor(private commonService: CommonService, private profileService: ProfileService, private router: Router, private navigationService: NavigationService, private route: ActivatedRoute, private joinService: ContactService, private seoService: SeoService) {
+  constructor(private commonService: CommonService, private profileService: ProfileService, private router: Router, private navigationService: NavigationService, private route: ActivatedRoute, private joinService: ContactService, private seoService: SeoService, private paymentService: PaymentService) {
     this.navigationService.updateMessage('')
     if (isBrowser) {
       this.CurrentAccount = JSON.parse(localStorage.getItem('auth'))
@@ -164,7 +201,7 @@ export class ProfileComponent implements OnInit {
           }
         }).catch((error) => {
           // console.log(JSON.stringify(error))
-          this.router.navigate(['/'])        //"username" : "universalcolor"
+          this.router.navigate(['/'])
         })
       }
     })
@@ -356,8 +393,94 @@ export class ProfileComponent implements OnInit {
   }
 
   // PROMOTIONS
+
   startPromotion() {
+    if (this.Promotion_State.loading) {return}
+    this.Promotion.facebook.days = this.FacebookPromotion.default_time_option.count * 7
+    this.Promotion.facebook.daily_budget = this.FacebookPromotion.default_price_options.price
+    this.Promotion.google.days = (this.GooglePromotion.active) ? (this.GooglePromotion.default_time_option.count * 7) : 0
+    this.Promotion.google.daily_budget = (this.GooglePromotion.active) ? this.GooglePromotion.default_price_options.price : 0
+    // console.log(JSON.stringify(this.Promotion))
+    this.Promotion_State.loading = true
+    this.Promotion_State.error_message = null
+    this.commonService.postMethod('promotions', this.Promotion).then((data) => {
+      // console.log("data: " + JSON.stringify(data))
+      this.Promotion_State.loading = false
+      this.Promotion_State.error_message = null
+      this.popup = null
+    }).catch((error) => {
+      this.Promotion_State.loading = false
+      // console.log("error: " + JSON.stringify(error))
+      if (error.status===400) {
+        // console.log('no_stripe_customer')
+        this.popup = "ADD_PROMOTION_CARD_AND_CONTINUE_POPUP"
+      } else if (error.status===402) {
+        // console.log('no_cards')
+        this.popup = "ADD_PROMOTION_CARD_AND_CONTINUE_POPUP"
+      } else {
+        this.Promotion_State.error_message = "Errore sconosciuto. Per favore riprova dopo aver aggirnato la pagina."
+      }
+    })
+  }
+  setupPromotion() {
+    this.popup = "PREVIEW_PROMOTION_POPUP"
     console.log(JSON.stringify(this.Promotion))
+  }
+  savePromotionCardAndContinue() {
+    if (this.card_state.loading) {return;}
+    this.card_state.loading = true;
+    this.card_state.button_title = "Salvando carta...";
+    this.card_state.message_error = null;
+    this.card_state.number_error = null;
+    this.card_state.exp_date_error = null;
+    this.card_state.cvc_error = null;
+    if (this.Card !== null) {
+      if (this.paymentService.cardNumberValidate(this.Card.number)) {
+        this.card_state.number_error = null;
+      } else {
+        this.card_state.number_error = "Il numero della carta non è corretto.";
+      }
+    }
+    if (this.Card.exp_date && this.Card.exp_date.length === 5) {
+      let exp_parts = this.Card.exp_date.split('/');
+      if (exp_parts[0] !== this.Card.exp_date) {
+        this.Card.exp_month = exp_parts[0];
+        this.Card.exp_year = exp_parts[1];
+      } else {
+        this.card_state.exp_date_error = "Errore data";
+      }
+    }
+    else {
+      this.card_state.exp_date_error = "La data non è completa";
+    }
+    this.paymentService.addNewCard(this.Card).then((response) => {
+      this.card_state.loading = false
+      this.card_state.button_title = "Continua"
+      this.card_state.message_error = null
+      this.card_state.number_error = null
+      this.card_state.exp_date_error = null
+      this.card_state.cvc_error = null
+      this.popup = "SETUP_PROMOTION_POPUP"
+      this.startPromotion()
+      this.clearCardData()
+      this.cards.push(response)
+    }).catch((error) => {
+      this.card_state.loading = false
+      this.card_state.button_title = "Continua"
+      this.card_state.message_error = null
+      this.card_state.number_error = null
+      this.card_state.exp_date_error = null
+      this.card_state.cvc_error = null
+      if (error === 400) {
+        this.card_state.message_error = "Per favore inserisci correttamente i dati della carta"
+      }
+      else if (error === 402) {
+        this.card_state.message_error = "Per favore inserisci correttamente i dati della carta"
+      }
+      else {
+        this.card_state.message_error = "Controlla i campi inseriti e riprova."
+      }
+    })
   }
   selectFacebookAdPeriod(option) {
     this.FacebookPromotion.default_time_option = option
@@ -371,4 +494,88 @@ export class ProfileComponent implements OnInit {
   selectGoogleAdPrice(option) {
     this.GooglePromotion.default_price_options = option
   }
+  totalPromotionCost() {
+    this.Promotion.facebook.days = this.FacebookPromotion.default_time_option.count * 7
+    this.Promotion.facebook.daily_budget = this.FacebookPromotion.default_price_options.price
+    this.Promotion.google.days = (this.GooglePromotion.active) ? (this.GooglePromotion.default_time_option.count * 7) : 0
+    this.Promotion.google.daily_budget = (this.GooglePromotion.active) ? this.GooglePromotion.default_price_options.price : 0
+
+    var fb_cost = this.Promotion.facebook.days * this.Promotion.facebook.daily_budget
+    var ggl_cost = this.Promotion.google.days * this.Promotion.google.daily_budget
+
+    return fb_cost + ggl_cost + 500
+  }
+
+  // UTILS
+
+  getStringDate(date) {
+    // console.log(date.toJSON().split('T')[0])
+    return date.toJSON().split('T')[0]
+  }
+  clearCardData(){
+    this.Card.number = null
+    this.Card.exp_month = null
+    this.Card.exp_year = null
+    this.Card.cvc = null
+  }
+  checkExpiry(value) {
+    let result = '';
+    let date = new Date();
+    let month = (1 + date.getMonth()).toString();
+    if ((date.getMonth() + 1) < 10) {
+      month = '0' + month.toString();
+    }
+    let yearElems = date.getFullYear().toString().split('');
+    let year = parseInt(yearElems[2].toString() + yearElems[3].toString());
+    if (value) {
+      let dateElems = value.split('');
+      let i = 0;
+      dateElems.forEach((elem) => {
+        if (elem === '/') {
+          dateElems.splice(i, 1);
+        }
+        i++;
+      });
+      if (dateElems.length > 1) {
+        let i = 0;
+        dateElems.forEach((elem) => {
+          if (i < 4) {
+            if (i === 2) {
+              result += '/';
+            }
+            result += elem;
+          }
+          i++;
+        });
+      } else {
+        dateElems.forEach((elem) => {
+          result += elem;
+        });
+      }
+    }
+
+    if (result.length !== 5) {
+      this.card_state.exp_date_error = "Inserisci la data in formato MM/AA (mese/anno)";
+    }
+
+    if (result.length === 5) {
+      let parts = result.split('/');
+      if (parts[0] !== result) {
+        if (parseInt(parts[1]) > year) {
+          this.card_state.exp_date_error = null;
+        } else {
+          if (parseInt(parts[0]) >= parseInt(month) && parseInt(parts[1]) === year) {
+            this.card_state.exp_date_error = null;
+          } else {
+            this.card_state.exp_date_error = "Inserisci una data corretta";
+          }
+        }
+      } else {
+        this.card_state.exp_date_error = null;
+      }
+    }
+    this.Card.exp_date = result
+    return result;
+  }
+
 }

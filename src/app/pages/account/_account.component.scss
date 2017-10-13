@@ -16,7 +16,7 @@ app-account {
     .top-bar {
       list-style: none;
       overflow: hidden;
-      padding: 0;
+      padding: 0 15px;
       z-index: 1;
       max-width: 1100px;
       margin: 0 auto;
@@ -937,6 +937,187 @@ app-account {
       }
     }
   }
+  .promotion-container {
+    padding: 0 10px;
+    .promotion {
+      max-width: 1100px;
+      margin: auto;
+      margin-top: 30px;
+      margin-bottom: 10px;
+      overflow: auto;
+      .promotion-content {
+        position: relative;
+        box-shadow: 0 1px 0px #E5E6E9, 0 -1px 0px #E5E6E9, 1px 0px 0px #DFE0E4, -1px 0px 0px #DFE0E4;
+        background: white;
+        border-radius: 3px;
+        margin-bottom: 10px;
+        .promotion-header {
+          padding: 20px;
+          border-bottom: 1px solid #eceeef;
+          overflow: auto;
+          .title {
+            font-size: 20px;
+            font-weight: 500;
+            color: rgba(0, 0, 0, 0.5);
+          }
+          .date {
+            float: right;
+            font-size: 17px;
+            line-height: 28px;
+          }
+        }
+        .promotion-body {
+          padding: 20px;
+          .image-container {
+            width: 80px;
+            float: left;
+            border: 2px solid #ffffff;
+          }
+          .text-container {
+            margin-left: 110px;
+            h5 {
+              font-weight: 600;
+            }
+            p {
+              margin-top: 5px;
+              font-size: 16px !important;
+            }
+            .btn {
+              border-radius: 3px;
+              margin-top: 5px;
+              font-size: 16px;
+              padding: 8px 50px;
+              line-height: unset;
+              height: auto;
+              font-weight: 600;
+            }
+          }
+        }
+        .promotion-footer {
+          padding: 20px 30px;
+          border-top: 1px solid #eceeef;
+          .btn {
+            padding: 0 30px;
+            border-radius: 3px;
+            height: 45px;
+            line-height: 45px;
+            font-size: 17px;
+            font-weight: 500;
+          }
+        }
+      }
+    }
+    .promotion-tab {
+      float: left;
+      width: 160px;
+      ul {
+        li {
+          margin-bottom: 10px;
+          padding: 0 5px;
+          .btn {
+            font-size: 16px;
+            height: 40px;
+            line-height: 40px;
+            border-radius: 3px;
+            width: 100%;
+            padding: 0 5px;
+          }
+          .btn-success {
+            font-weight: 500;
+            width: 100%;
+            padding: 0 20px;
+            margin: 10px 0;
+            i {
+              margin-right: 5px;
+            }
+          }
+          .btn-transparent {
+            text-align: left;
+            color: rgba(0, 0, 0, 0.7);
+            i {
+              margin-right: 5px;
+              color: rgba(0, 0, 0, 0.7);
+            }
+          }
+          .btn-transparent:hover {
+            font-weight: 400;
+            color: black;
+            i {
+              color: black;
+            }
+          }
+          .active {
+            font-weight: 500;
+            color: #5080e0;
+            i {
+              color: #5080e0;
+            }
+          }
+          .active:hover {
+            font-weight: 500;
+            color: #5080e0;
+            i {
+              color: #5080e0;
+            }
+          }
+
+        }
+      }
+    }
+    .tabbed-content {
+      margin-left: 180px;
+    }
+    .right-triangle {
+      position: absolute;
+      width: 0;
+      height: 0;
+      right: 0;
+      border-style: solid;
+      border-width: 0 30px 30px 0;
+      border-color: transparent #ea0023 transparent transparent;
+    }
+    .gift {
+      max-width: 1100px;
+      margin: auto;
+      box-shadow: 0 1px 0px #E5E6E9, 0 -1px 0px #E5E6E9, 1px 0px 0px #DFE0E4, -1px 0px 0px #DFE0E4;
+      margin-top: 30px;
+      margin-bottom: 10px;
+      background: white;
+      border-radius: 3px;
+      overflow: auto;
+      padding: 40px;
+      .image {
+        float: left;
+        width: 140px;
+        padding: 10px;
+        text-align: center;
+      }
+      .descr {
+        padding: 20px;
+        margin-left: 140px;
+        h3 {
+          font-size: 30px;
+          font-weight: 300;
+          color: #000000;
+        }
+        p {
+          font-size: 16px !important;
+          margin-top: 20px;
+        }
+      }
+    }
+    .footer-actions {
+      max-width: 1100px;
+      margin: auto;
+      margin-top: 30px;
+      margin-bottom: 30px;
+      .btn {
+        padding: 0 30px;
+        font-size: 18px;
+        border-radius: 3px;
+      }
+    }
+  }
 }
 
 @media (max-width: 1024px) {
@@ -961,6 +1142,9 @@ app-account {
 }
 
 @media (max-width: 425px) {
+  app-account .top-bar-container .top-bar {
+    padding: 0;
+  }
   app-account .account-container .account .account-body .avatar-section .avatar-container .avatar .overlay {
     line-height: 100px;
   }

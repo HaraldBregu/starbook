@@ -1,8 +1,8 @@
 <nav *ngIf="page && hasNavigation" class="navbar navbar-fixed-top" [style.border-bottom]="border_bottom_color" (window:resize)="onResize()">
   <div class="container-starbook">
     <a class="navbar-brand" *ngIf="!auth" routerLink="/"><img src="/assets/images/brand-logo-name-rotated.png" alt="starbook.co"></a>
-    <a class="navbar-brand" *ngIf="(screenWidth > 320) && auth" routerLink="/"><img src="/assets/images/brand-logo-name-rotated.png" alt="starbook.co"></a>
-    <a class="navbar-brand" *ngIf="(screenWidth < 320 || screenWidth === 320) && auth" routerLink="/"><img src="/assets/images/brand-logo-rotated.png" alt="starbook.co"></a>
+    <a class="navbar-brand" *ngIf="(screenWidth > 425) && auth" routerLink="/"><img src="/assets/images/brand-logo-name-rotated.png" alt="starbook.co"></a>
+    <a class="navbar-brand" *ngIf="(screenWidth < 425 || screenWidth === 425) && auth" routerLink="/"><img src="/assets/images/brand-logo-rotated.png" alt="starbook.co"></a>
     <ul class="nav navbar-nav navbar-right">
 
       <!-- <li class="nav-item" *ngIf="auth">
@@ -22,8 +22,17 @@
         <a class="btn btn-success btn-signup" routerLink="/auth/worker">Iscriviti</a>
       </li> -->
 
-      <li class="nav-item account" *ngIf="auth">
+      <!-- <li class="nav-item account" *ngIf="auth">
         <a class="nav-link" routerLink="/account/profile"><img class="image" [src]="account_avatar_url" (error)="errorHandler($event)" alt="avatar"><span>{{auth.profile.firstname}}</span></a>
+      </li> -->
+
+      <li class="nav-item account" *ngIf="auth">
+        <!-- <a class="nav-link" [ngClass]="{'active': (page==='Business')}" routerLink="{{getProfileRouter()}}"><img class="image" [src]="account_avatar_url" (error)="errorHandler($event)" alt="avatar"><span>{{auth.profile.firstname}}</span></a> -->
+        <!-- <a class="nav-link" [ngClass]="{'active': (page==='Business')}" routerLink="{{getProfileRouter()}}"><img class="image" src="../assets/images/no_logo_black.png" alt="avatar"><span>Pagina</span></a> -->
+        <a class="nav-link" [ngClass]="{'active': (page==='Business')}" routerLink="{{getProfileRouter()}}"><img class="image" [src]="account_avatar_url" (error)="errorHandler($event)" alt="avatar"><span>Pagina</span></a>
+      </li>
+      <li class="nav-item account" *ngIf="auth">
+        <a class="nav-link message" routerLink="/account/new_promotion"><i class="fa fa-bullhorn" aria-hidden="true"></i></a>
       </li>
       <li class="nav-item account" *ngIf="auth">
         <a class="nav-link message" routerLink="/account/requests"><i class="fa fa-inbox" aria-hidden="true"></i></a>

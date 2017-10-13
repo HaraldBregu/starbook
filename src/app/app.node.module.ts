@@ -23,6 +23,7 @@ import { Ng2PageScrollModule } from 'ng2-page-scroll';
 // import { NgbModule, NgbDateParserFormatter } from '@ng-bootstrap/ng-bootstrap';
 
 import { FacebookModule } from 'ngx-facebook';
+import { DateValueAccessorModule } from 'angular-date-value-accessor';
 
 /* Feature Modules */
 import { ClipboardModule } from 'ngx-clipboard';
@@ -109,6 +110,7 @@ let imports = [
   ClipboardModule,
   Ng2PageScrollModule.forRoot(),
   FacebookModule.forRoot(),
+  DateValueAccessorModule,
 ];
 let declarations = [
   AppComponent,

@@ -14,6 +14,7 @@ declare let ga: Function;
   selector: 'app-root',
   templateUrl: './app.component.html'
 })
+
 export class AppComponent implements OnInit, OnDestroy {
   public tagline: string
   public auth
@@ -190,6 +191,14 @@ export class AppComponent implements OnInit, OnDestroy {
 
   }
 
+  getProfileRouter() {
+    if (this.auth['business'] && this.auth['business']['username']) {
+      return "/business/" + this.auth['business']['username']
+    } else {
+      return "/business/" + this.auth._id
+    }
+  }
+
   publishService() {
     this.router.navigate(['insert/product']);
     this.collapsed = false;
@@ -331,7 +340,7 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   errorHandler(error) {
-    this.account_avatar_url = "../assets/images/no_user.png"
+    this.account_avatar_url = "../assets/images/no_logo_black.png"
   }
   ngOnDestroy() {
     if(isBrowser) {

@@ -209,6 +209,7 @@ export class AccountComponent implements OnInit {
   public selectedCardId = null
 
   // CROSS ADS
+  
   public inprogress_promotions = []
   public CrossAdvertising = {
     title : '',
@@ -369,6 +370,7 @@ export class AccountComponent implements OnInit {
   // ******************************** //
   // PROFILE & COMPANY INFORMATIONS
   // ******************************** //
+
   selectProfilePicture(fileInput:any) {
     this.picture_state.loading = true
     this.Picture.url = fileInput.target.files[0];
@@ -507,6 +509,7 @@ export class AccountComponent implements OnInit {
   // ******************************** //
   // QUOTATION SECTION
   // ******************************** //
+
   sendQuotation(quotation) {
     this.quotation_state.creating = true
     if (!quotation.title || !quotation.description || !quotation.customer.firstname || !quotation.customer.lastname || !quotation.customer.email || !quotation.customer.phone_number) {
@@ -546,6 +549,7 @@ export class AccountComponent implements OnInit {
   // ******************************** //
   // PROMOTION SECTION
   // ******************************** //
+
   startPromotion() {
     this.advertising_state.creating = true
 
@@ -702,6 +706,7 @@ export class AccountComponent implements OnInit {
   }
 
   // EMAIL UPDATE
+
   updateEmail() {
     if (this.account_state.loading) {return}
     if (this.Account['email'].length === 0) {
@@ -727,6 +732,7 @@ export class AccountComponent implements OnInit {
   }
 
   // PASSWORD UPDATE
+
   updatePassword() {
     if (this.password_state.loading) {return;}
     if (this.Password.old.length !== 0 && this.Password.new.length !== 0 && this.Password.confirm.length !== 0) {
@@ -774,6 +780,7 @@ export class AccountComponent implements OnInit {
   }
 
   // SHARE LINK
+
   shareOnFacebook() {
     if (isBrowser) {
       let left = Math.round((document.documentElement.clientWidth / 2) - 285);
@@ -862,6 +869,7 @@ export class AccountComponent implements OnInit {
   }
 
   // SERVICES
+
   checkImageUrlFromService(service) {
     var image = new Image()
     image.src = 'https://s3-eu-west-1.amazonaws.com/starbook-s3/services/' + service._id + '/cover/0';
@@ -892,6 +900,7 @@ export class AccountComponent implements OnInit {
   }
 
   // TABS
+
   clickTabItem(route) {
     this.router.navigate(['/account/' + route])
   }
@@ -935,11 +944,13 @@ export class AccountComponent implements OnInit {
   }
 
   // open popup
+
   showAddCard() {
     this.popup = "NEW_CARD_POPUP"
   }
 
   // CARD
+
   addCard() {
     if (this.card_state.loading) {return;}
     this.card_state.loading = true;

@@ -359,56 +359,59 @@
 </div>
 
 <!-- PROMOTION -->
-<div class="account-container" *ngIf="page==='inprogress_promotion' || page==='terminated_promotion' || page==='new_promotion'">
-  <div class="account">
-    <div class="account-tab">
+<div class="promotion-container" *ngIf="page==='inprogress_promotion' || page==='terminated_promotion' || page==='new_promotion'">
+  <div class="promotion">
+    <div class="promotion-tab">
       <ul>
         <li><a class="btn btn-transparent" (click)="clickLeftTabAds('inprogress_promotion')" [ngClass]="{'active':page==='inprogress_promotion'}"><i class="fa fa-bar-chart" aria-hidden="true"></i>In corso</a></li>
         <li><a class="btn btn-transparent" (click)="clickLeftTabAds('terminated_promotion')" [ngClass]="{'active':page==='terminated_promotion'}"><i class="fa fa-times" aria-hidden="true"></i>Terminati</a></li>
-        <li><a class="btn btn-success" (click)="clickLeftTabAds('new_promotion')"><i class="fa fa-plus" aria-hidden="true"></i>Promuovi</a></li>
+        <li><a class="btn btn-success" (click)="clickLeftTabAds('new_promotion')"><i class="fa fa-plus" aria-hidden="true"></i>Crea</a></li>
       </ul>
     </div>
     <div *ngIf="page==='inprogress_promotion'">
-      <div class="quotation-content tabbed-content" *ngIf="inprogress_promotions.length===0">
-        <div class="quotation-header">
-          <p>Non hai pubblicato ancora nessuna promozione. Inizia ora.</p>
+      <div class="promotion-content tabbed-content" *ngIf="inprogress_promotions.length===0">
+        <div class="promotion-header">
+          <p>Non ci sono promozioni terminate.</p>
+        </div>
+        <div class="promotion-body">
+          <div class="image-container">
+            <img class="image" src="../assets/images/starbook_promotion_icon.png" alt="avatar">
+          </div>
+          <div class="text-container">
+            <h5>Pubblicizza la tua attività</h5>
+            <p>Promuovi la tua pagina professionale. Scegli il budget giornaliero, seleziona la durata e inizia subito.</p>
+            <button type="button" name="button" class="btn btn-primary" (click)="popup='SETUP_PROMOTION_POPUP';">Promuovi adesso</button>
+          </div>
         </div>
       </div>
       <div *ngFor="let promotion of inprogress_promotions">
-        <div class="quotation-content tabbed-content">
-          <div class="quotation-header">
-            <span class="title">PROMOZIONE {{promotion._id}}</span>
+        <div class="promotion-content tabbed-content">
+          <div class="promotion-header">
+            <span class="title">PROMOZIONE ID:</span><span>{{promotion._id}}</span>
             <span class="date">{{formatedDateFromString(promotion.created_at)}}</span>
           </div>
-          <!-- <div class="quotation-body">
-            <div class="vendor">
-              <span class="businessname" *ngIf="quotation.vendor.businessname">{{quotation.vendor.businessname}}</span>
-              <span class="username" *ngIf="!quotation.vendor.businessname">{{quotation.vendor.firstname}} {{quotation.vendor.lastname}}</span>
-            </div>
-            <div class="customer">
-              <span class="username">{{quotation.customer.firstname}} {{quotation.customer.lastname}}</span>
-            </div>
-            <div class="description">
-              <p>{{quotation.title}}</p>
-              <p>{{quotation.description}}</p>
-            </div>
-          </div>
-          <div class="quotation-footer">
-            <div *ngIf="!quotation.views"><i class="fa fa-eye" aria-hidden="true"></i> 0</div>
-            <div *ngIf="quotation.views"><i class="fa fa-eye" aria-hidden="true"></i> {{quotation.views}}</div>
-          </div> -->
         </div>
       </div>
     </div>
     <div *ngIf="page==='terminated_promotion'">
-      <div class="quotation-content tabbed-content" *ngIf="received_quotations.length===0 && loading_received_quotation===false">
-        <div class="quotation-header">
+      <div class="promotion-content tabbed-content" *ngIf="received_quotations.length===0 && loading_received_quotation===false">
+        <div class="promotion-header">
           <p>Non ci sono promozioni terminate.</p>
+        </div>
+        <div class="promotion-body">
+          <div class="image-container">
+            <img class="image" src="../assets/images/starbook_promotion_icon.png" alt="avatar">
+          </div>
+          <div class="text-container">
+            <h5>Pubblicizza la tua attività</h5>
+            <p>Promuovi la tua pagina professionale. Scegli il budget giornaliero, seleziona la durata e inizia subito.</p>
+            <button type="button" name="button" class="btn btn-primary" (click)="popup='SETUP_PROMOTION_POPUP';">Promuovi adesso</button>
+          </div>
         </div>
       </div>
       <div *ngFor="let quotation of received_quotations">
-        <div class="quotation-content tabbed-content">
-          <div class="quotation-header">
+        <div class="promotion-content tabbed-content">
+          <div class="promotion-header">
             <div class="vendor">
               <h4 *ngIf="quotation.vendor.businessname">{{quotation.vendor.businessname}}</h4>
               <h4 *ngIf="!quotation.vendor.businessname">{{quotation.vendor.firstname}} {{quotation.vendor.lastname}}</h4>
@@ -424,7 +427,7 @@
               <h6>{{quotation.customer.firstname}} {{quotation.customer.lastname}}</h6>
             </div>
           </div>
-          <div class="quotation-body">
+          <div class="promotion-body">
             <p>{{quotation.title}}</p>
             <p>{{quotation.description}}</p>
             <!-- <div class="details">
@@ -436,8 +439,8 @@
       </div>
     </div>
     <div *ngIf="page==='new_promotion'">
-      <div class="account-content tabbed-content">
-        <div class="account-header">
+      <div class="promotion-content tabbed-content">
+        <div class="promotion-header">
           <h2>Promuovi e trova clienti</h2>
           <p>Pubblicizza la tua attività nelle piattaforme con maggior numero di utenti al mondo. Semplice in pochi passi la tua azienda verra notata e contattata da tutte le persone che si trovano nella tua zona dove lavori.</p>
           <div class="list-ad-platforms">
@@ -446,7 +449,7 @@
             <img src="../../../assets/images/linkedin_ad.jpg" alt="Linkedin Advertising">
           </div>
         </div>
-        <div class="account-body">
+        <div class="promotion-body">
           <!-- <div class="section">
             <h4>Informazioni base</h4>
             <p>Per poter completare la promozione inserisci tutti i campi richiesti.</p>
@@ -534,25 +537,21 @@
             <button type="button" class="btn btn-warning" name="button" (click)="popup='PREVIEW_PROMOTION_POPUP';">Prepara la promozione</button>
           </div>
         </div>
-        <!-- <div class="account-footer">
-          <div class="actions">
-            <button type="button" class="btn btn-warning" name="button" (click)="popup='PREVIEW_PROMOTION_POPUP';">Anteprima promozione</button>
-          </div>
-        </div> -->
       </div>
     </div>
-    <div class="account-footer tabbed-content">
+    <!-- <div class="promotion-footer tabbed-content">
       <div class="footer">
           <div class="row">
             <div class="col-md-6">
               <p>© 2017 • Starbook Tutti i diritti riservati • <a href="/info/legal" target="_blank"><strong>Terms</strong></a> & <a href="/info/legal" target="_blank"><strong>Privacy Policy</strong></a></p>
             </div>
             <div class="col-md-6 links">
-              <p><a routerLink="/info/help" target="_blank">Aiuto e Assistenza</a> • <a (click)="logout()">Esci</a></p>
+              <p><a routerLink="/info/help" target="_blank">Aiuto e Assistenza</a>
+              </p>
             </div>
           </div>
       </div>
-    </div>
+    </div> -->
   </div>
 </div>
 <div class="popup-container" [ngStyle]="{'display' : popup==='PREVIEW_PROMOTION_POPUP' ? 'block' : 'none'}">
@@ -964,7 +963,9 @@
             <p>© 2017 • Starbook Tutti i diritti riservati • <a href="/info/legal" target="_blank"><strong>Terms</strong></a> & <a href="/info/legal" target="_blank"><strong>Privacy Policy</strong></a></p>
           </div>
           <div class="col-md-6 links">
-            <p><a routerLink="/info/help" target="_blank">Aiuto e Assistenza</a> • <a (click)="logout()">Esci</a></p>
+            <p><a routerLink="/info/help" target="_blank">Aiuto e Assistenza</a>
+              <!-- • <a (click)="logout()">Esci</a> -->
+            </p>
           </div>
         </div>
     </div>

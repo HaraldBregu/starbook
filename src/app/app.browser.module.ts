@@ -15,6 +15,7 @@ import { RouterModule }   from '@angular/router';
 import { ClickOutsideModule } from 'ng2-click-outside';
 import { Ng2PageScrollModule } from 'ng2-page-scroll';
 import { FacebookModule } from 'ngx-facebook';
+import { DateValueAccessorModule } from 'angular-date-value-accessor';
 
 // import { SliderModule } from 'primeng/primeng';
 
@@ -94,6 +95,7 @@ let imports = [
   ClickOutsideModule,
   Ng2PageScrollModule.forRoot(),
   FacebookModule.forRoot(),
+  DateValueAccessorModule,
 ];
 let declarations = [
   AppComponent,
