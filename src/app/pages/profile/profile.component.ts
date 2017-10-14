@@ -63,105 +63,12 @@ export class ProfileComponent implements OnInit {
   public defaultCard = null
   public selectedCardId = null
 
-  public Promotion_State = {
-    loading : false,
-    error_message : null,
-  }
-  public Promotion = {
-    min_start_date : new Date(),
-    start_date : new Date(),
-    facebook : {
-      days : 0,
-      daily_budget : 200,
-    },
-    google : {
-      days : 0,
-      daily_budget : 200,
-      indexing : true,
-      mapping : true,
-    }
-  }
-  public FacebookPromotion = {
-    active : false,
-    time_options : [
-      {
-        count: 1,
-        item: "Settimana"
-      },
-      {
-        count: 2,
-        item: "Settimane"
-      },
-      {
-        count: 4,
-        item: "Settimane"
-      },
-    ],
-    default_time_option : {
-      count: 4,
-      item: "Settimane"
-    },
-    price_options : [
-      {
-        price: 200,
-        currency: "€"
-      },
-      {
-        price: 400,
-        currency: "€"
-      },
-      {
-        price: 800,
-        currency: "€"
-      },
-    ],
-    default_price_options : {
-      price: 200,
-      currency: "€"
-    }
-  }
-  public GooglePromotion = {
-    active : false,
-    time_options : [
-      {
-        count: 1,
-        item: "Settimana"
-      },
-      {
-        count: 2,
-        item: "Settimane"
-      },
-      {
-        count: 4,
-        item: "Settimane"
-      },
-    ],
-    default_time_option : {
-      count: 4,
-      item: "Settimane"
-    },
-    price_options : [
-      {
-        price: 200,
-        currency: "€"
-      },
-      {
-        price: 400,
-        currency: "€"
-      },
-      {
-        price: 800,
-        currency: "€"
-      },
-    ],
-    default_price_options : {
-      price: 200,
-      currency: "€"
-    }
-  }
+  public Promotion_State = globals.Promotion_State
+  public Promotion = globals.Promotion
+  public FacebookPromotion = globals.FacebookPromotion
+  public GooglePromotion = globals.GooglePromotion
 
   constructor(private commonService: CommonService, private profileService: ProfileService, private router: Router, private navigationService: NavigationService, private route: ActivatedRoute, private joinService: ContactService, private seoService: SeoService, private paymentService: PaymentService) {
-    this.navigationService.updateMessage('')
     if (isBrowser) {
       this.CurrentAccount = JSON.parse(localStorage.getItem('auth'))
     }
@@ -173,6 +80,7 @@ export class ProfileComponent implements OnInit {
       if (this.page==='' || this.page===undefined) {
         if (localStorage.getItem('auth') !== null) {
           this.Account = JSON.parse(localStorage.getItem('auth'))
+          this.navigationService.updateMessage(this.checkCompanyName(this.Account))
         }
       } else {
         this.profileService.getAccountById(this.page).then((data) => {
@@ -198,6 +106,8 @@ export class ProfileComponent implements OnInit {
             this.seoService.setOgElem('twitter:creator', "@HaraldBregu")
             this.seoService.setOgElem('twitter:description', this.seoObject['description'])
             this.seoService.setOgElem('twitter:image', this.seoObject['image_url'])
+
+            this.navigationService.updateMessage(this.checkCompanyName(this.Account))
           }
         }).catch((error) => {
           // console.log(JSON.stringify(error))

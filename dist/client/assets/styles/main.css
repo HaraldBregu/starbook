@@ -3523,12 +3523,13 @@ app-root .navbar {
         content: ''; }
   app-root .navbar .center-container {
     position: absolute;
-    left: 100px;
-    right: 100px;
+    left: 300px;
+    right: 300px;
     height: 70px;
-    padding: 10px;
+    padding: 0 10px;
     margin: auto;
-    max-width: 500px; }
+    max-width: 500px;
+    overflow: hidden; }
     app-root .navbar .center-container .search-block {
       width: 100%;
       height: 70px; }
@@ -3615,6 +3616,11 @@ app-root .navbar {
       font-size: 14px;
       letter-spacing: 0.1px;
       padding: 8px 21px; }
+    app-root .navbar .center-container .tagline {
+      text-align: center; }
+      app-root .navbar .center-container .tagline h4 {
+        line-height: 70px;
+        font-weight: 300; }
   app-root .navbar .navbar-right {
     float: right; }
   app-root .navbar .navbar-brand {
@@ -3683,6 +3689,9 @@ app-root .navbar {
     font-weight: 700;
     padding: 0 8px; }
 
+@media (max-width: 768px) {
+  app-root .navbar .center-container {
+    display: none; } }
 @media (max-width: 425px) {
   app-root .navbar .nav .account .nav-link span {
     display: none; } }
@@ -6526,6 +6535,16 @@ app-profile {
           line-height: unset;
           height: auto;
           font-weight: 600; }
+        app-profile .profile-container .profile .profile-header .account-info .promoted {
+          border: 1px solid #006621;
+          padding: 2px 15px;
+          color: #006621;
+          margin-top: 10px;
+          display: inline-block;
+          border-radius: 5px;
+          font-size: 14px;
+          font-weight: 500;
+          font-family: Roboto, sans-serif; }
       app-profile .profile-container .profile .profile-header .actions {
         padding: 10px 0 20px;
         text-align: center; }
@@ -6701,11 +6720,11 @@ app-profile {
     app-profile .popup-container .popup .popup-content .popup-body .platform-ads .google-disabled .description {
       color: rgba(0, 0, 0, 0.3); }
     app-profile .popup-container .popup .popup-content .popup-body .platform-ads .google-disabled:hover .image {
-      opacity: 0.7; }
+      opacity: 0.5; }
     app-profile .popup-container .popup .popup-content .popup-body .platform-ads .google-disabled:hover .title {
-      color: rgba(0, 0, 0, 0.5); }
+      color: rgba(0, 0, 0, 0.3); }
     app-profile .popup-container .popup .popup-content .popup-body .platform-ads .google-disabled:hover .description {
-      color: rgba(0, 0, 0, 0.5); }
+      color: rgba(0, 0, 0, 0.3); }
     app-profile .popup-container .popup .popup-content .popup-body .platform-ads .platform-ads-body {
       padding: 10px 0; }
       app-profile .popup-container .popup .popup-content .popup-body .platform-ads .platform-ads-body form {
@@ -7651,7 +7670,7 @@ app-account {
       max-width: 1100px;
       margin: auto;
       margin-top: 30px;
-      margin-bottom: 10px;
+      margin-bottom: 30px;
       overflow: auto; }
       app-account .account-container .account .account-content {
         position: relative;
@@ -8272,34 +8291,39 @@ app-account {
         padding: 0 30px;
         font-size: 18px;
         border-radius: 3px; }
-  app-account .account-footer .footer {
-    max-width: 1100px;
-    margin: auto;
-    padding: 0 15px;
-    margin-bottom: 20px; }
-    app-account .account-footer .footer p {
-      font-size: 14px !important;
-      color: #4A4A4A; }
-    app-account .account-footer .footer .links {
-      text-align: right; }
-    app-account .account-footer .footer li {
-      display: inline-block;
-      font-size: 16px;
-      color: rgba(0, 0, 0, 0.6);
-      margin-left: 10px; }
-      app-account .account-footer .footer li a:hover {
-        cursor: pointer;
-        color: #014c8c;
-        text-decoration: underline; }
-    app-account .account-footer .footer a {
-      cursor: pointer; }
+  app-account .account-footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #EDEFF3; }
+    app-account .account-footer .footer {
+      max-width: 1100px;
+      margin: auto;
+      padding: 0 15px; }
+      app-account .account-footer .footer p {
+        font-size: 14px !important;
+        color: #4A4A4A; }
+      app-account .account-footer .footer .links {
+        text-align: right; }
+      app-account .account-footer .footer li {
+        display: inline-block;
+        font-size: 16px;
+        color: rgba(0, 0, 0, 0.6);
+        margin-left: 10px; }
+        app-account .account-footer .footer li a:hover {
+          cursor: pointer;
+          color: #014c8c;
+          text-decoration: underline; }
+      app-account .account-footer .footer a {
+        cursor: pointer; }
   app-account .promotion-container {
     padding: 0 10px; }
     app-account .promotion-container .promotion {
       max-width: 1100px;
       margin: auto;
       margin-top: 30px;
-      margin-bottom: 10px;
+      margin-bottom: 30px;
       overflow: auto; }
       app-account .promotion-container .promotion .promotion-content {
         position: relative;
@@ -8308,7 +8332,7 @@ app-account {
         border-radius: 3px;
         margin-bottom: 10px; }
         app-account .promotion-container .promotion .promotion-content .promotion-header {
-          padding: 20px;
+          padding: 15px 20px;
           border-bottom: 1px solid #eceeef;
           overflow: auto; }
           app-account .promotion-container .promotion .promotion-content .promotion-header .title {
@@ -8320,7 +8344,8 @@ app-account {
             font-size: 17px;
             line-height: 28px; }
         app-account .promotion-container .promotion .promotion-content .promotion-body {
-          padding: 20px; }
+          padding: 20px;
+          overflow: auto; }
           app-account .promotion-container .promotion .promotion-content .promotion-body .image-container {
             width: 80px;
             float: left;
@@ -8340,9 +8365,21 @@ app-account {
               line-height: unset;
               height: auto;
               font-weight: 600; }
+            app-account .promotion-container .promotion .promotion-content .promotion-body .text-container .ads-container {
+              margin-top: 5px; }
+              app-account .promotion-container .promotion .promotion-content .promotion-body .text-container .ads-container .ads-icon {
+                width: 30px;
+                margin-right: 10px; }
+              app-account .promotion-container .promotion .promotion-content .promotion-body .text-container .ads-container p {
+                margin-top: 10px; }
+                app-account .promotion-container .promotion .promotion-content .promotion-body .text-container .ads-container p span {
+                  font-size: 18px; }
         app-account .promotion-container .promotion .promotion-content .promotion-footer {
-          padding: 20px 30px;
+          padding: 15px 20px;
           border-top: 1px solid #eceeef; }
+          app-account .promotion-container .promotion .promotion-content .promotion-footer span {
+            font-size: 15px;
+            margin-right: 20px; }
           app-account .promotion-container .promotion .promotion-content .promotion-footer .btn {
             padding: 0 30px;
             border-radius: 3px;
@@ -8363,12 +8400,12 @@ app-account {
           border-radius: 3px;
           width: 100%;
           padding: 0 5px; }
-        app-account .promotion-container .promotion-tab ul li .btn-success {
+        app-account .promotion-container .promotion-tab ul li .btn-success, app-account .promotion-container .promotion-tab ul li .btn-primary {
           font-weight: 500;
           width: 100%;
           padding: 0 20px;
           margin: 10px 0; }
-          app-account .promotion-container .promotion-tab ul li .btn-success i {
+          app-account .promotion-container .promotion-tab ul li .btn-success i, app-account .promotion-container .promotion-tab ul li .btn-primary i {
             margin-right: 5px; }
         app-account .promotion-container .promotion-tab ul li .btn-transparent {
           text-align: left;
@@ -8435,6 +8472,109 @@ app-account {
         padding: 0 30px;
         font-size: 18px;
         border-radius: 3px; }
+  app-account .popup-container .popup .popup-content .popup-header h3 {
+    font-weight: 600; }
+  app-account .popup-container .popup .popup-content .popup-header p {
+    margin-top: 5px; }
+  app-account .popup-container .popup .popup-content .popup-body .platform-ads {
+    margin-bottom: 20px; }
+    app-account .popup-container .popup .popup-content .popup-body .platform-ads .platform-ads-header {
+      overflow: hidden; }
+      app-account .popup-container .popup .popup-content .popup-body .platform-ads .platform-ads-header i {
+        font-size: 32px;
+        margin-right: 5px; }
+      app-account .popup-container .popup .popup-content .popup-body .platform-ads .platform-ads-header img {
+        height: 40px;
+        float: left;
+        margin-right: 10px; }
+      app-account .popup-container .popup .popup-content .popup-body .platform-ads .platform-ads-header .fa-facebook-official {
+        color: #3b5998; }
+      app-account .popup-container .popup .popup-content .popup-body .platform-ads .platform-ads-header .fa-google {
+        color: #d62d20; }
+      app-account .popup-container .popup .popup-content .popup-body .platform-ads .platform-ads-header .platform-name {
+        margin-top: 5px; }
+      app-account .popup-container .popup .popup-content .popup-body .platform-ads .platform-ads-header .title {
+        color: rgba(0, 0, 0, 0.8);
+        font-size: 26px;
+        font-weight: 600;
+        margin-right: 5px; }
+      app-account .popup-container .popup .popup-content .popup-body .platform-ads .platform-ads-header .description {
+        font-size: 18px;
+        line-height: initial; }
+      app-account .popup-container .popup .popup-content .popup-body .platform-ads .platform-ads-header .total {
+        font-size: 40px;
+        font-weight: 900;
+        color: #16a085; }
+    app-account .popup-container .popup .popup-content .popup-body .platform-ads .google-disabled .image {
+      opacity: 0.5; }
+    app-account .popup-container .popup .popup-content .popup-body .platform-ads .google-disabled .title {
+      color: rgba(0, 0, 0, 0.3); }
+    app-account .popup-container .popup .popup-content .popup-body .platform-ads .google-disabled .description {
+      color: rgba(0, 0, 0, 0.3); }
+    app-account .popup-container .popup .popup-content .popup-body .platform-ads .google-disabled:hover .image {
+      opacity: 0.5; }
+    app-account .popup-container .popup .popup-content .popup-body .platform-ads .google-disabled:hover .title {
+      color: rgba(0, 0, 0, 0.3); }
+    app-account .popup-container .popup .popup-content .popup-body .platform-ads .google-disabled:hover .description {
+      color: rgba(0, 0, 0, 0.3); }
+    app-account .popup-container .popup .popup-content .popup-body .platform-ads .platform-ads-body {
+      padding: 10px 0; }
+      app-account .popup-container .popup .popup-content .popup-body .platform-ads .platform-ads-body form {
+        margin-top: 15px; }
+        app-account .popup-container .popup .popup-content .popup-body .platform-ads .platform-ads-body form .option {
+          padding: 5px 0; }
+          app-account .popup-container .popup .popup-content .popup-body .platform-ads .platform-ads-body form .option .option-content {
+            cursor: pointer;
+            background: white;
+            text-align: center;
+            border-radius: 3px;
+            line-height: 50px;
+            border: 1px solid rgba(0, 0, 0, 0.2); }
+            app-account .popup-container .popup .popup-content .popup-body .platform-ads .platform-ads-body form .option .option-content span {
+              color: rgba(0, 0, 0, 0.7);
+              font-weight: 400;
+              font-size: 18px; }
+          app-account .popup-container .popup .popup-content .popup-body .platform-ads .platform-ads-body form .option .option-content:hover {
+            background: rgba(0, 0, 0, 0.05); }
+          app-account .popup-container .popup .popup-content .popup-body .platform-ads .platform-ads-body form .option .facebook-option-selected, app-account .popup-container .popup .popup-content .popup-body .platform-ads .platform-ads-body form .option .facebook-option-selected:hover {
+            background: #3b5998;
+            border: 0; }
+            app-account .popup-container .popup .popup-content .popup-body .platform-ads .platform-ads-body form .option .facebook-option-selected span, app-account .popup-container .popup .popup-content .popup-body .platform-ads .platform-ads-body form .option .facebook-option-selected:hover span {
+              color: white; }
+          app-account .popup-container .popup .popup-content .popup-body .platform-ads .platform-ads-body form .option .google-option-selected, app-account .popup-container .popup .popup-content .popup-body .platform-ads .platform-ads-body form .option .google-option-selected:hover {
+            background: #d62d20;
+            border: 0; }
+            app-account .popup-container .popup .popup-content .popup-body .platform-ads .platform-ads-body form .option .google-option-selected span, app-account .popup-container .popup .popup-content .popup-body .platform-ads .platform-ads-body form .option .google-option-selected:hover span {
+              color: white; }
+        app-account .popup-container .popup .popup-content .popup-body .platform-ads .platform-ads-body form .form-check-label {
+          text-align: left;
+          font-size: 16px !important;
+          font-weight: 500;
+          color: #1d2129 !important; }
+          app-account .popup-container .popup .popup-content .popup-body .platform-ads .platform-ads-body form .form-check-label .form-check-input {
+            height: 16px !important; }
+          app-account .popup-container .popup .popup-content .popup-body .platform-ads .platform-ads-body form .form-check-label span {
+            margin-left: 10px; }
+    app-account .popup-container .popup .popup-content .popup-body .platform-ads .selectable {
+      cursor: pointer; }
+  app-account .popup-container .popup .popup-content .popup-body .platform-ads-facebook-divider {
+    margin: 20px 0 30px;
+    border-bottom: 1px solid #dce0e0; }
+  app-account .popup-container .popup .popup-content .popup-body .platform-ads-google-divider {
+    margin: 20px 0 30px;
+    border-bottom: 1px solid #dce0e0; }
+  app-account .popup-container .popup .popup-content .popup-footer .btn {
+    min-width: 120px; }
+  app-account .popup-container .popup .popup-content .popup-footer .btn i {
+    margin-right: 0; }
+  app-account .popup-container .ads-popup {
+    max-width: 600px; }
+  app-account .popup-container .ads-popup .popup-content .popup-footer .btn {
+    min-width: 120px;
+    height: 50px;
+    padding: 0 40px;
+    font-size: 18px;
+    font-weight: 500; }
 
 @media (max-width: 1024px) {
   app-account .account-container .account {
@@ -8537,7 +8677,19 @@ app-account {
 
   app-account .account-container .account .account-content .account-body .paycard-container .paycard .paycard-content .paycard-body .actions {
     width: 100%;
-    margin-top: 15px; } }
+    margin-top: 15px; }
+
+  app-account .promotion-container .promotion-tab {
+    float: none; }
+
+  app-account .promotion-container .promotion .promotion-content {
+    margin-left: 0; }
+
+  app-account .promotion-container .promotion .promotion-content .promotion-footer span {
+    display: block; }
+
+  app-account .promotion-container .promotion {
+    margin-bottom: 50px; } }
 app-auth {
   display: block;
   float: left;

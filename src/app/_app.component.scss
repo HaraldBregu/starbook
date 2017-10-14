@@ -144,12 +144,13 @@ app-root {
     }
     .center-container {
       position: absolute;
-      left: 100px;
-      right: 100px;
+      left: 300px;
+      right: 300px;
       height: 70px;
-      padding: 10px;
+      padding: 0 10px;
       margin: auto;
       max-width: 500px;
+      overflow: hidden;
       .search-block {
         width: 100%;
         height: 70px;
@@ -256,6 +257,13 @@ app-root {
         letter-spacing: 0.1px;
         padding: 8px 21px;
       }
+      .tagline {
+        text-align: center;
+        h4 {
+          line-height: 70px;
+          font-weight: 300;
+        }
+      }
     }
     .navbar-right {
       float: right;
@@ -330,7 +338,6 @@ app-root {
       line-height: 48px !important;
       text-align: center;
     }
-
     .nav .account .nav-link img {
       height: 28px;
       border-radius: 20px;
@@ -340,6 +347,12 @@ app-root {
       font-weight: 700;
       padding: 0 8px;
     }
+  }
+}
+
+@media (max-width: 768px) {
+  app-root .navbar .center-container {
+    display: none;
   }
 }
 

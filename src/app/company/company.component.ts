@@ -4,6 +4,7 @@ import { SeoService } from '../shared/seo.service';
 import { Router, Route, ActivatedRoute, Params } from '@angular/router';
 import { AuthService } from '../shared/auth.service';
 import { FacebookService, InitParams, LoginResponse, LoginOptions, UIResponse, UIParams, FBVideoComponent } from 'ngx-facebook';
+import { NavigationService } from '../shared/navigation.service';
 
 @Component({
   selector: 'app-company',
@@ -14,7 +15,8 @@ export class CompanyComponent implements OnInit {
   public page = null
   public Account;
 
-  constructor(private router: Router, private route: ActivatedRoute, private seoService: SeoService, private authServics: AuthService, private fb: FacebookService) {
+  constructor(private navigationService: NavigationService, private router: Router, private route: ActivatedRoute, private seoService: SeoService, private authServics: AuthService, private fb: FacebookService) {
+    this.navigationService.updateMessage("Crea. Promuovi. Cresci.")
     if (isBrowser) {
       window.scrollTo(0, 0)
       this.Account = JSON.parse(localStorage.getItem('auth'))

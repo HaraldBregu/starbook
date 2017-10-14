@@ -11,6 +11,7 @@
       </div>
       <div class="account-info">
         <h1 class="name">{{checkCompanyName(Account)}}</h1>
+        <span class="promoted">Sponsorizzato</span>
         <h2 class="tagline" *ngIf="checkTagline(Account)">{{checkTagline(Account)}}</h2>
         <h3 class="description" *ngIf="businessDescription(Account)">{{businessDescription(Account)}}</h3>
         <button type="button" name="button" *ngIf="CurrentAccount && (CurrentAccount._id===Account._id)" class="btn btn-primary" routerLink="/account/profile">Modifica</button>

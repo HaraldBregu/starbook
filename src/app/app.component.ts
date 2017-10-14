@@ -70,18 +70,19 @@ export class AppComponent implements OnInit, OnDestroy {
           this.hasNavigation = true;
 
           this.border_bottom_color = "1px solid #DBDBDB"
+          // this.tagline = null;
 
           if ('name' in currentRoute.snapshot.data) {
             var data = currentRoute.snapshot.data;
             var name = data['name'];
             this.page = name;
             if (this.page === "Landing") {
-              this.hasCenterContainer = false;
+              this.hasCenterContainer = true;
               this.hasPublishService = true;
             }
             if (this.page === "Company") {
               // this.hasNavigation = false
-              this.hasCenterContainer = false;
+              this.hasCenterContainer = true;
             }
             else if (this.page === "Business") {
               this.hasCenterContainer = true;
@@ -98,6 +99,7 @@ export class AppComponent implements OnInit, OnDestroy {
               // this.hasPublishService = false;
             }
             else if (this.page === "Account") {
+              // this.tagline = "Dashboard";
             }
             else if (this.page === "Auth") {
               this.border_bottom_color = "1px solid #1abc9c"

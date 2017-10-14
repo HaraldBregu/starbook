@@ -10,7 +10,6 @@ import { PopupsService } from '../../popups/popups.service';
 import { Subscription }   from 'rxjs/Subscription';
 import { CommonService } from '../../shared/common.service';
 import { PaymentService } from '../../shared/payment.service';
-
 import * as globals from '../../globals';
 require('aws-sdk/dist/aws-sdk')
 
@@ -25,7 +24,7 @@ export class AccountComponent implements OnInit {
   public page = ''
   public tabs = [
     {name: 'Account', route: 'profile'},
-    {name: 'Promozioni', route: 'new_promotion'},
+    {name: 'Promozioni', route: 'inprogress_promotion'},
     {name: 'Messaggi', route: 'requests'},
     {name: 'Preventivi', route: 'quotation'},
     {name: 'Aiuto', route: 'help'},
@@ -209,60 +208,66 @@ export class AccountComponent implements OnInit {
   public selectedCardId = null
 
   // CROSS ADS
-  
+
   public inprogress_promotions = []
-  public CrossAdvertising = {
-    title : '',
-    subtitle : '',
-    description : '',
-    city : '',
-    email : '',
-    phone_number : '',
-  }
-  public CrossAdvertisingDailyPrices = [
-    {
-      price: 200,
-      currency: "€"
-    },
-    {
-      price: 400,
-      currency: "€"
-    },
-    {
-      price: 800,
-      currency: "€"
-    },
-  ]
-  public DefaultCrossAdvertisingDailyPrice = {
-    price: 400,
-    currency: "€"
-  }
-  public CrossAdvertisingWeekPeriod = [
-    {
-      count: 1,
-      item: "Settimana"
-    },
-    {
-      count: 2,
-      item: "Settimane"
-    },
-    {
-      count: 4,
-      item: "Settimane"
-    },
-  ]
-  public DefaultCrossAdvertisingWeekPeriod = {
-    count: 2,
-    item: "Settimane"
-  }
-  public advertising_state = {
-    creating: false,
-    loading: false,
-    created: false
-  }
+  // public CrossAdvertising = {
+  //   title : '',
+  //   subtitle : '',
+  //   description : '',
+  //   city : '',
+  //   email : '',
+  //   phone_number : '',
+  // }
+  // public CrossAdvertisingDailyPrices = [
+  //   {
+  //     price: 200,
+  //     currency: "€"
+  //   },
+  //   {
+  //     price: 400,
+  //     currency: "€"
+  //   },
+  //   {
+  //     price: 800,
+  //     currency: "€"
+  //   },
+  // ]
+  // public DefaultCrossAdvertisingDailyPrice = {
+  //   price: 400,
+  //   currency: "€"
+  // }
+  // public CrossAdvertisingWeekPeriod = [
+  //   {
+  //     count: 1,
+  //     item: "Settimana"
+  //   },
+  //   {
+  //     count: 2,
+  //     item: "Settimane"
+  //   },
+  //   {
+  //     count: 4,
+  //     item: "Settimane"
+  //   },
+  // ]
+  // public DefaultCrossAdvertisingWeekPeriod = {
+  //   count: 2,
+  //   item: "Settimane"
+  // }
+  // public advertising_state = {
+  //   creating: false,
+  //   loading: false,
+  //   created: false
+  // }
+
+  public Promotion_State = globals.Promotion_State
+  public Promotion = globals.Promotion
+  public FacebookPromotion = globals.FacebookPromotion
+  public GooglePromotion = globals.GooglePromotion
+
 
   constructor(private route: ActivatedRoute, private router: Router, private navigationService: NavigationService, private profileService: ProfileService, private authService: AuthService, private seoService: SeoService, private contactService: ContactService, private popupsService: PopupsService, private commonService: CommonService, private paymentService: PaymentService) {
-    this.navigationService.updateMessage("Pannello di controllo")
+    this.navigationService.updateMessage("Dashboard")
     if (isBrowser) {
       let account = JSON.parse(localStorage.getItem('auth'))
 
@@ -313,7 +318,11 @@ export class AccountComponent implements OnInit {
       })
 
       this.getAllCards()
-      this.readPromotions()
+
+      this.commonService.getMethod('promotions').then((data) => {
+        this.inprogress_promotions = data.result
+      }).catch((error) => {
+      })
     }
   }
 
@@ -343,9 +352,9 @@ export class AccountComponent implements OnInit {
       else if (this.page==="terminated_promotion") {
 
       }
-      else if (this.page==="new_promotion") {
-
-      }
+      // else if (this.page==="new_promotion") {
+      //
+      // }
       else if (this.page==="requests") {
 
       }
@@ -551,41 +560,36 @@ export class AccountComponent implements OnInit {
   // ******************************** //
 
   startPromotion() {
-    this.advertising_state.creating = true
-
-    this.advertising_state.loading = true
-
-    var ad = {}
-    ad['title1'] = this.Account.business.name
-    ad['title2'] = this.Account.business.tagline
-    ad['description'] = this.Account.business.description
-    ad['city'] = this.Account.address.city
-    ad['email'] = this.Account.email
-    ad['phone_number'] = this.Account.phone_number
-    ad['number_of_weeks'] = this.DefaultCrossAdvertisingWeekPeriod.count
-    ad['total_offer'] = this.getTotalCostPromotion()
-
-    this.commonService.postMethod('promotions', ad).then((data) => {
-      // console.log(JSON.stringify(data))
-      this.advertising_state.created = true
-      this.advertising_state.loading = false
-      this.advertising_state.creating = false
+    if (this.Promotion_State.loading) {return}
+    this.Promotion.facebook.days = this.FacebookPromotion.default_time_option.count * 7
+    this.Promotion.facebook.daily_budget = this.FacebookPromotion.default_price_options.price
+    this.Promotion.google.days = (this.GooglePromotion.active) ? (this.GooglePromotion.default_time_option.count * 7) : 0
+    this.Promotion.google.daily_budget = (this.GooglePromotion.active) ? this.GooglePromotion.default_price_options.price : 0
+    // console.log(JSON.stringify(this.Promotion))
+    this.Promotion_State.loading = true
+    this.Promotion_State.error_message = null
+    this.commonService.postMethod('promotions', this.Promotion).then((data) => {
+      // console.log("data: " + JSON.stringify(data))
+      this.Promotion_State.loading = false
+      this.Promotion_State.error_message = null
       this.popup = null
-      this.router.navigate(['/account/inprogress_promotion'])
     }).catch((error) => {
-      // console.log(JSON.stringify(error))
+      this.Promotion_State.loading = false
+      // console.log("error: " + JSON.stringify(error))
       if (error.status===400) {
-        this.popup = "ADD_PROMOTION_CARD_AND_CONTINUE_POPUP"
-        // Mostrare un popup per inserire la carta
         // console.log('no_stripe_customer')
-      } else if (error.status===402) {
         this.popup = "ADD_PROMOTION_CARD_AND_CONTINUE_POPUP"
-        // Mostrare un popup per inserire la carta
+      } else if (error.status===402) {
         // console.log('no_cards')
+        this.popup = "ADD_PROMOTION_CARD_AND_CONTINUE_POPUP"
+      } else {
+        this.Promotion_State.error_message = "Errore sconosciuto. Per favore riprova dopo aver aggirnato la pagina."
       }
-      this.advertising_state.loading = false
-      this.advertising_state.creating = false
     })
+  }
+  setupPromotion() {
+    this.popup = "PREVIEW_PROMOTION_POPUP"
+    console.log(JSON.stringify(this.Promotion))
   }
   savePromotionCardAndContinue() {
     if (this.card_state.loading) {return;}
@@ -621,7 +625,7 @@ export class AccountComponent implements OnInit {
       this.card_state.number_error = null
       this.card_state.exp_date_error = null
       this.card_state.cvc_error = null
-      this.popup = "PREVIEW_PROMOTION_POPUP"
+      this.popup = "SETUP_PROMOTION_POPUP"
       this.startPromotion()
       this.clearCardData()
       this.cards.push(response)
@@ -643,67 +647,188 @@ export class AccountComponent implements OnInit {
       }
     })
   }
-  readPromotions() {
-    this.commonService.getMethod('promotions').then((data) => {
-      // console.log('data');
-      console.log(JSON.stringify(data))
-      this.inprogress_promotions = data.result
-    }).catch((error) => {
-      // console.log('error');
-      console.log(JSON.stringify(error))
-    })
+  selectFacebookAdPeriod(option) {
+    this.FacebookPromotion.default_time_option = option
   }
-  selectAdPrice(option) {
-    this.DefaultCrossAdvertisingDailyPrice = option
+  selectFacebookAdPrice(option) {
+    this.FacebookPromotion.default_price_options = option
   }
-  selectAdPeriod(option) {
-    this.DefaultCrossAdvertisingWeekPeriod = option
+  selectGoogleAdPeriod(option) {
+    this.GooglePromotion.default_time_option = option
   }
-  getTotalCostPromotion() {
-    return this.DefaultCrossAdvertisingDailyPrice.price * (this.DefaultCrossAdvertisingWeekPeriod.count * 7)
+  selectGoogleAdPrice(option) {
+    this.GooglePromotion.default_price_options = option
   }
-  getTotalCoveragePromotion() {
-    // 56 euro
-    // 5100 dita
-    // * 7 = 35700
-    // * 14 = 71400
-    // * 28 = 142800
-    // 25-160 click
-    return (this.getTotalCostPromotion()/100) * 2535
+  totalPromotionCost() {
+    this.Promotion.facebook.days = this.FacebookPromotion.default_time_option.count * 7
+    this.Promotion.facebook.daily_budget = this.FacebookPromotion.default_price_options.price
+    this.Promotion.google.days = (this.GooglePromotion.active) ? (this.GooglePromotion.default_time_option.count * 7) : 0
+    this.Promotion.google.daily_budget = (this.GooglePromotion.active) ? this.GooglePromotion.default_price_options.price : 0
+
+    var fb_cost = this.Promotion.facebook.days * this.Promotion.facebook.daily_budget
+    var ggl_cost = this.Promotion.google.days * this.Promotion.google.daily_budget
+
+    return fb_cost + ggl_cost + 500
   }
-  getGrowPercentage() {
-    if (this.DefaultCrossAdvertisingWeekPeriod.count===1) {
-      if (this.DefaultCrossAdvertisingDailyPrice.price===200) {
-        return 45
-      } else if (this.DefaultCrossAdvertisingDailyPrice.price>200 && this.DefaultCrossAdvertisingDailyPrice.price<800) {
-        return 68
-      } else if (this.DefaultCrossAdvertisingDailyPrice.price===800) {
-        return 89
-      }
-      return 70
+
+  // startPromotion() {
+  //   // this.advertising_state.creating = true
+  //   //
+  //   // this.advertising_state.loading = true
+  //   //
+  //   // var ad = {}
+  //   // ad['title1'] = this.Account.business.name
+  //   // ad['title2'] = this.Account.business.tagline
+  //   // ad['description'] = this.Account.business.description
+  //   // ad['city'] = this.Account.address.city
+  //   // ad['email'] = this.Account.email
+  //   // ad['phone_number'] = this.Account.phone_number
+  //   // ad['number_of_weeks'] = this.DefaultCrossAdvertisingWeekPeriod.count
+  //   // ad['total_offer'] = this.getTotalCostPromotion()
+  //   //
+  //   // this.commonService.postMethod('promotions', ad).then((data) => {
+  //   //   // console.log(JSON.stringify(data))
+  //   //   this.advertising_state.created = true
+  //   //   this.advertising_state.loading = false
+  //   //   this.advertising_state.creating = false
+  //   //   this.popup = null
+  //   //   this.router.navigate(['/account/inprogress_promotion'])
+  //   // }).catch((error) => {
+  //   //   // console.log(JSON.stringify(error))
+  //   //   if (error.status===400) {
+  //   //     this.popup = "ADD_PROMOTION_CARD_AND_CONTINUE_POPUP"
+  //   //     // Mostrare un popup per inserire la carta
+  //   //     // console.log('no_stripe_customer')
+  //   //   } else if (error.status===402) {
+  //   //     this.popup = "ADD_PROMOTION_CARD_AND_CONTINUE_POPUP"
+  //   //     // Mostrare un popup per inserire la carta
+  //   //     // console.log('no_cards')
+  //   //   }
+  //   //   this.advertising_state.loading = false
+  //   //   this.advertising_state.creating = false
+  //   // })
+  // }
+  // savePromotionCardAndContinue() {
+  //   if (this.card_state.loading) {return;}
+  //   this.card_state.loading = true;
+  //   this.card_state.button_title = "Salvando carta...";
+  //   this.card_state.message_error = null;
+  //   this.card_state.number_error = null;
+  //   this.card_state.exp_date_error = null;
+  //   this.card_state.cvc_error = null;
+  //   if (this.Card !== null) {
+  //     if (this.paymentService.cardNumberValidate(this.Card.number)) {
+  //       this.card_state.number_error = null;
+  //     } else {
+  //       this.card_state.number_error = "Il numero della carta non è corretto.";
+  //     }
+  //   }
+  //   if (this.Card.exp_date && this.Card.exp_date.length === 5) {
+  //     let exp_parts = this.Card.exp_date.split('/');
+  //     if (exp_parts[0] !== this.Card.exp_date) {
+  //       this.Card.exp_month = exp_parts[0];
+  //       this.Card.exp_year = exp_parts[1];
+  //     } else {
+  //       this.card_state.exp_date_error = "Errore data";
+  //     }
+  //   }
+  //   else {
+  //     this.card_state.exp_date_error = "La data non è completa";
+  //   }
+  //   this.paymentService.addNewCard(this.Card).then((response) => {
+  //     this.card_state.loading = false
+  //     this.card_state.button_title = "Continua"
+  //     this.card_state.message_error = null
+  //     this.card_state.number_error = null
+  //     this.card_state.exp_date_error = null
+  //     this.card_state.cvc_error = null
+  //     this.popup = "PREVIEW_PROMOTION_POPUP"
+  //     this.startPromotion()
+  //     this.clearCardData()
+  //     this.cards.push(response)
+  //   }).catch((error) => {
+  //     this.card_state.loading = false
+  //     this.card_state.button_title = "Continua"
+  //     this.card_state.message_error = null
+  //     this.card_state.number_error = null
+  //     this.card_state.exp_date_error = null
+  //     this.card_state.cvc_error = null
+  //     if (error === 400) {
+  //       this.card_state.message_error = "Per favore inserisci correttamente i dati della carta"
+  //     }
+  //     else if (error === 402) {
+  //       this.card_state.message_error = "Per favore inserisci correttamente i dati della carta"
+  //     }
+  //     else {
+  //       this.card_state.message_error = "Controlla i campi inseriti e riprova."
+  //     }
+  //   })
+  // }
+  getCoversForPromotion(promotion) {
+    if (promotion.analitics) {
+      return promotion.analitics.covers
+    } else {
+      return 0
     }
-    if (this.DefaultCrossAdvertisingWeekPeriod.count===2) {
-      if (this.DefaultCrossAdvertisingDailyPrice.price===200) {
-        return 75
-      } else if (this.DefaultCrossAdvertisingDailyPrice.price>200 && this.DefaultCrossAdvertisingDailyPrice.price<800) {
-        return 89
-      } else if (this.DefaultCrossAdvertisingDailyPrice.price===800) {
-        return 95
-      }
-      return 89
-    }
-    if (this.DefaultCrossAdvertisingWeekPeriod.count===4) {
-      if (this.DefaultCrossAdvertisingDailyPrice.price===200) {
-        return 85
-      } else if (this.DefaultCrossAdvertisingDailyPrice.price>200 && this.DefaultCrossAdvertisingDailyPrice.price<800) {
-        return 90
-      } else if (this.DefaultCrossAdvertisingDailyPrice.price===800) {
-        return 99
-      }
-      return 99
-    }
-    return 100
   }
+  getClicksForPromotion(promotion) {
+    if (promotion.analitics) {
+      return promotion.analitics.clicks
+    } else {
+      return 0
+    }
+  }
+  // selectAdPrice(option) {
+  //   this.DefaultCrossAdvertisingDailyPrice = option
+  // }
+  // selectAdPeriod(option) {
+  //   this.DefaultCrossAdvertisingWeekPeriod = option
+  // }
+  // getTotalCostPromotion() {
+  //   return this.DefaultCrossAdvertisingDailyPrice.price * (this.DefaultCrossAdvertisingWeekPeriod.count * 7)
+  // }
+  // getTotalCoveragePromotion() {
+  //   // 56 euro
+  //   // 5100 dita
+  //   // * 7 = 35700
+  //   // * 14 = 71400
+  //   // * 28 = 142800
+  //   // 25-160 click
+  //   return (this.getTotalCostPromotion()/100) * 2535
+  // }
+  // getGrowPercentage() {
+  //   if (this.DefaultCrossAdvertisingWeekPeriod.count===1) {
+  //     if (this.DefaultCrossAdvertisingDailyPrice.price===200) {
+  //       return 45
+  //     } else if (this.DefaultCrossAdvertisingDailyPrice.price>200 && this.DefaultCrossAdvertisingDailyPrice.price<800) {
+  //       return 68
+  //     } else if (this.DefaultCrossAdvertisingDailyPrice.price===800) {
+  //       return 89
+  //     }
+  //     return 70
+  //   }
+  //   if (this.DefaultCrossAdvertisingWeekPeriod.count===2) {
+  //     if (this.DefaultCrossAdvertisingDailyPrice.price===200) {
+  //       return 75
+  //     } else if (this.DefaultCrossAdvertisingDailyPrice.price>200 && this.DefaultCrossAdvertisingDailyPrice.price<800) {
+  //       return 89
+  //     } else if (this.DefaultCrossAdvertisingDailyPrice.price===800) {
+  //       return 95
+  //     }
+  //     return 89
+  //   }
+  //   if (this.DefaultCrossAdvertisingWeekPeriod.count===4) {
+  //     if (this.DefaultCrossAdvertisingDailyPrice.price===200) {
+  //       return 85
+  //     } else if (this.DefaultCrossAdvertisingDailyPrice.price>200 && this.DefaultCrossAdvertisingDailyPrice.price<800) {
+  //       return 90
+  //     } else if (this.DefaultCrossAdvertisingDailyPrice.price===800) {
+  //       return 99
+  //     }
+  //     return 99
+  //   }
+  //   return 100
+  // }
 
   // EMAIL UPDATE
 
