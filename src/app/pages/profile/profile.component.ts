@@ -369,8 +369,8 @@ export class ProfileComponent implements OnInit {
         // console.log("response_body: " + JSON.stringify(response_body))
         console.log("response_body object: " + error._body)
 
-        // var stripe_result = response_body.result
-        // console.log("stripe_result object: " + stripe_result)
+        var stripe_result = response_body.result
+        console.log("stripe_result object: " + stripe_result)
         //
         // var raw = stripe_result.raw
         // console.log("raw: " + raw)
