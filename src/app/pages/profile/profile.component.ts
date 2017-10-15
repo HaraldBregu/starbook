@@ -387,8 +387,9 @@ export class ProfileComponent implements OnInit {
             // }
 
             if (raw.decline_code === "insufficient_funds") {
-              console.log("insufficient_funds")
-              this.Promotion_State.error_message = "La tua carta non ha i fondi sufficienti per eseguire questo pagamento. Per favore inserisci un altra carta o ricarica quella attuale."
+              // console.log("insufficient_funds")
+              // this.Promotion_State.error_message = "Fondi non sufficienti per eseguire questo pagamento. Per favore inserisci un altra carta o ricarica quella attuale."
+              this.card_state.message_error = "Fondi non sufficienti per eseguire questo pagamento. Per favore inserisci un altra carta o ricarica quella attuale."
             }
           }
         }
