@@ -365,6 +365,7 @@ export class ProfileComponent implements OnInit {
       } else if (error.status===402) {
         // var response_body = error._body
         console.log("stripe_result object: " + error._body['result'])
+        console.log("stripe_result success: " + error._body['success'])
         // console.log("response_body: " + JSON.stringify(response_body))
         console.log("response_body object: " + error._body)
 
