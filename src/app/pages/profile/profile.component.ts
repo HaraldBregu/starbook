@@ -364,7 +364,7 @@ export class ProfileComponent implements OnInit {
         this.popup = "ADD_PROMOTION_CARD_AND_CONTINUE_POPUP"
       } else if (error.status===402) {
         var response_body = error._body
-        // console.log("response_body: " + response_body)
+        console.log("response_body object: " + response_body)
         console.log("response_body: " + JSON.stringify(response_body))
 
         // var stripe_result = response_body.result
