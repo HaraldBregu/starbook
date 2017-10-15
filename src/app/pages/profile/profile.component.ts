@@ -364,7 +364,6 @@ export class ProfileComponent implements OnInit {
       } else if (error.status===402) {
         // console.log('no_cards')
         this.popup = "ADD_PROMOTION_CARD_AND_CONTINUE_POPUP"
-        if ()
       } else {
         this.Promotion_State.error_message = "Errore sconosciuto. Per favore riprova dopo aver aggirnato la pagina."
       }
