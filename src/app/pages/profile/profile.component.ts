@@ -68,6 +68,9 @@ export class ProfileComponent implements OnInit {
   public FacebookPromotion = globals.FacebookPromotion
   public GooglePromotion = globals.GooglePromotion
 
+  public PromotedPage = false
+  public PromotionChecked = false
+
   constructor(private commonService: CommonService, private profileService: ProfileService, private router: Router, private navigationService: NavigationService, private route: ActivatedRoute, private joinService: ContactService, private seoService: SeoService, private paymentService: PaymentService) {
     if (isBrowser) {
       this.CurrentAccount = JSON.parse(localStorage.getItem('auth'))
@@ -81,6 +84,18 @@ export class ProfileComponent implements OnInit {
         if (localStorage.getItem('auth') !== null) {
           this.Account = JSON.parse(localStorage.getItem('auth'))
           this.navigationService.updateMessage(this.checkCompanyName(this.Account))
+
+          this.commonService.getMethod('/account/' + this.Account['_id'] + '/check_promotions').then((data) => {
+            if(data.result.length===0) {
+              this.PromotedPage = false
+            } else {
+              this.PromotedPage = true
+            }
+            this.PromotionChecked = true
+          }).catch((error) => {
+            this.PromotedPage = false
+            this.PromotionChecked = true
+          })
         }
       } else {
         this.profileService.getAccountById(this.page).then((data) => {
@@ -108,9 +123,20 @@ export class ProfileComponent implements OnInit {
             this.seoService.setOgElem('twitter:image', this.seoObject['image_url'])
 
             this.navigationService.updateMessage(this.checkCompanyName(this.Account))
+
+            this.commonService.getMethod('/account/' + this.Account['_id'] + '/check_promotions').then((data) => {
+              if(data.result.length===0) {
+                this.PromotedPage = false
+              } else {
+                this.PromotedPage = true
+              }
+              this.PromotionChecked = true
+            }).catch((error) => {
+              this.PromotedPage = false
+              this.PromotionChecked = true
+            })
           }
         }).catch((error) => {
-          // console.log(JSON.stringify(error))
           this.router.navigate(['/'])
         })
       }
@@ -310,14 +336,25 @@ export class ProfileComponent implements OnInit {
     this.Promotion.facebook.daily_budget = this.FacebookPromotion.default_price_options.price
     this.Promotion.google.days = (this.GooglePromotion.active) ? (this.GooglePromotion.default_time_option.count * 7) : 0
     this.Promotion.google.daily_budget = (this.GooglePromotion.active) ? this.GooglePromotion.default_price_options.price : 0
-    // console.log(JSON.stringify(this.Promotion))
     this.Promotion_State.loading = true
     this.Promotion_State.error_message = null
     this.commonService.postMethod('promotions', this.Promotion).then((data) => {
-      // console.log("data: " + JSON.stringify(data))
       this.Promotion_State.loading = false
       this.Promotion_State.error_message = null
       this.popup = null
+
+      this.commonService.getMethod('/account/' + this.Account['_id'] + '/check_promotions').then((data) => {
+        if(data.result.length===0) {
+          this.PromotedPage = false
+        } else {
+          this.PromotedPage = true
+        }
+        this.PromotionChecked = true
+      }).catch((error) => {
+        this.PromotedPage = false
+        this.PromotionChecked = true
+      })
+
     }).catch((error) => {
       this.Promotion_State.loading = false
       // console.log("error: " + JSON.stringify(error))

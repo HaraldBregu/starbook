@@ -6535,16 +6535,6 @@ app-profile {
           line-height: unset;
           height: auto;
           font-weight: 600; }
-        app-profile .profile-container .profile .profile-header .account-info .promoted {
-          border: 1px solid #006621;
-          padding: 2px 15px;
-          color: #006621;
-          margin-top: 10px;
-          display: inline-block;
-          border-radius: 5px;
-          font-size: 14px;
-          font-weight: 500;
-          font-family: Roboto, sans-serif; }
       app-profile .profile-container .profile .profile-header .actions {
         padding: 10px 0 20px;
         text-align: center; }
@@ -6645,6 +6635,16 @@ app-profile {
               font-weight: 600; }
         app-profile .profile-container .profile .profile-header .promotion-section .promotion:hover {
           border: 1px solid rgba(0, 0, 0, 0.3); }
+      app-profile .profile-container .profile .profile-header .promotion-state .promoted {
+        border: 1px solid #006621;
+        padding: 2px 15px;
+        color: #006621;
+        margin-top: 10px;
+        display: inline-block;
+        border-radius: 5px;
+        font-size: 14px;
+        font-weight: 500;
+        font-family: Roboto, sans-serif; }
     app-profile .profile-container .profile .profile-body .actions {
       padding: 10px 0 20px;
       text-align: center; }

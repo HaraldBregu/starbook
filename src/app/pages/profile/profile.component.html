@@ -11,7 +11,9 @@
       </div>
       <div class="account-info">
         <h1 class="name">{{checkCompanyName(Account)}}</h1>
-        <span class="promoted">Sponsorizzato</span>
+        <div class="promotion-state" *ngIf="PromotedPage">
+          <span class="promoted">Sponsorizzato</span>
+        </div>
         <h2 class="tagline" *ngIf="checkTagline(Account)">{{checkTagline(Account)}}</h2>
         <h3 class="description" *ngIf="businessDescription(Account)">{{businessDescription(Account)}}</h3>
         <button type="button" name="button" *ngIf="CurrentAccount && (CurrentAccount._id===Account._id)" class="btn btn-primary" routerLink="/account/profile">Modifica</button>
@@ -26,7 +28,7 @@
         <button *ngIf="getEmailAddress()" type="button" name="button" class="btn btn-email" (click)="popup='EMAIL_POPUP';"><i class="fa fa-envelope" aria-hidden="true"></i> <b>Email</b></button>
         <button type="button" name="button" class="btn btn-message" (click)="popup='SEND_PRIVATE_MESSAGE_POPUP';"><i class="fa fa-paper-plane" aria-hidden="true"></i> <b>Messaggio</b></button>
       </div>
-      <div class="promotion-section" *ngIf="CurrentAccount && (CurrentAccount._id===Account._id)">
+      <div class="promotion-section" *ngIf="PromotionChecked && CurrentAccount && !PromotedPage && (CurrentAccount._id===Account._id)">
         <div class="promotion">
           <div class="image-container">
             <img class="image" src="../assets/images/starbook_promotion_icon.png" alt="avatar">

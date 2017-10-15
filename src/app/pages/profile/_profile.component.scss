@@ -28,21 +28,11 @@ app-profile {
             width: 100%;
             height: 100%;
             background: white;
-            // border: 1px solid #d2d2d2;
-            // -moz-box-shadow: 1px 1px 1px #d2d2d2;
-            // -webkit-box-shadow: 1px 1px 1px #d2d2d2;
-            // box-shadow: 1px 1px 1px #d2d2d2;
-            // -moz-box-shadow: 0px 0px 3px #d2d2d2;
-            // -webkit-box-shadow: 0px 0px 3px #d2d2d2;
-            // box-shadow: 0px 0px 3px #d2d2d2;
             border: 1px solid #d6d6d6;
             background-size: cover;
             background-repeat: no-repeat;
             background-position: center;
           }
-          // .avatar:hover {
-          //   box-shadow: 0px 0px 0px #d2d2d2;
-          // }
           .avatar-sm {
             position: absolute;
             bottom: 0;
@@ -70,9 +60,6 @@ app-profile {
           h6 {
             font-weight: 400;
             margin-top: 5px;
-          }
-          .name {
-
           }
           .tagline {
             margin-top: 15px;
@@ -107,17 +94,6 @@ app-profile {
             line-height: unset;
             height: auto;
             font-weight: 600;
-          }
-          .promoted {
-            border: 1px solid #006621;
-            padding: 2px 15px;
-            color: #006621;
-            margin-top: 10px;
-            display: inline-block;
-            border-radius: 5px;
-            font-size: 14px;
-            font-weight: 500;
-            font-family: Roboto, sans-serif;
           }
         }
         .actions {
@@ -243,6 +219,19 @@ app-profile {
             // -webkit-transition: border 500ms linear;
             // -ms-transition: border 500ms linear;
             // transition: border 500ms linear;
+          }
+        }
+        .promotion-state {
+          .promoted {
+            border: 1px solid #006621;
+            padding: 2px 15px;
+            color: #006621;
+            margin-top: 10px;
+            display: inline-block;
+            border-radius: 5px;
+            font-size: 14px;
+            font-weight: 500;
+            font-family: Roboto, sans-serif;
           }
         }
       }
