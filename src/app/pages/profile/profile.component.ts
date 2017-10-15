@@ -371,11 +371,26 @@ export class ProfileComponent implements OnInit {
 
         var stripe_result = response_body.result
         console.log("stripe_result object: " + stripe_result)
-        //
-        if (stripe_result.raw) {
-          var raw = stripe_result.raw
-          console.log("raw: " + JSON.stringify(raw))
 
+        if (stripe_result) {
+          if (stripe_result.raw) {
+            var raw = stripe_result.raw
+            console.log("raw: " + JSON.stringify(raw))
+            // {
+            //   "message":"Your card has insufficient funds.",
+            //   "type":"card_error",
+            //   "code":"card_declined",
+            //   "decline_code":"insufficient_funds",
+            //   "charge":"ch_1BDC9iDp0KDRDRdryMqdtCum",
+            //   "statusCode":402,
+            //   "requestId":"req_4zBvXlLozqXsVZ"
+            // }
+
+            if (raw.decline_code === "insufficient_funds") {
+              console.log("insufficient_funds")
+              this.Promotion_State.error_message = "La tua carta non ha i fondi sufficienti per eseguire questo pagamento. Per favore inserisci un altra carta o ricarica quella attuale."
+            }
+          }
         }
 
         // console.log("stripe_result: " + JSON.stringify(stripe_result))
