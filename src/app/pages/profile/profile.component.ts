@@ -358,6 +358,7 @@ export class ProfileComponent implements OnInit {
     }).catch((error) => {
       this.Promotion_State.loading = false
       console.log("error: " + JSON.stringify(error))
+      console.log("error body: " + JSON.stringify(error._body))
       if (error.status===400) {
         // console.log('no_stripe_customer')
         this.popup = "ADD_PROMOTION_CARD_AND_CONTINUE_POPUP"
