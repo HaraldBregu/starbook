@@ -364,16 +364,19 @@ export class ProfileComponent implements OnInit {
         this.popup = "ADD_PROMOTION_CARD_AND_CONTINUE_POPUP"
       } else if (error.status===402) {
         var response_body = JSON.parse(error._body)
-        console.log("stripe_result object: " + response_body['result'])
-        console.log("stripe_result success: " + response_body['success'])
+        // console.log("stripe_result object: " + response_body['result'])
+        // console.log("stripe_result success: " + response_body['success'])
         // console.log("response_body: " + JSON.stringify(response_body))
-        console.log("response_body object: " + error._body)
+        // console.log("response_body object: " + error._body)
 
         var stripe_result = response_body.result
         console.log("stripe_result object: " + stripe_result)
         //
-        // var raw = stripe_result.raw
-        // console.log("raw: " + raw)
+        if (stripe_result.raw) {
+          var raw = stripe_result.raw
+          console.log("raw: " + JSON.stringify(raw))
+
+        }
 
         // console.log("stripe_result: " + JSON.stringify(stripe_result))
         // var decline_code = raw.decline_code
