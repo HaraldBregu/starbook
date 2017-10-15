@@ -577,10 +577,19 @@ export class AccountComponent implements OnInit {
       this.Promotion_State.loading = false
       // console.log("error: " + JSON.stringify(error))
       if (error.status===400) {
-        // console.log('no_stripe_customer')
         this.popup = "ADD_PROMOTION_CARD_AND_CONTINUE_POPUP"
       } else if (error.status===402) {
-        // console.log('no_cards')
+        var response_body = JSON.parse(error._body)
+        // console.log("response_body: " + JSON.stringify(response_body))
+        var stripe_result = response_body.result
+        if (stripe_result) {
+          if (stripe_result.raw) {
+            var raw = stripe_result.raw
+            if (raw.decline_code === "insufficient_funds") {
+              this.card_state.message_error = "Fondi non sufficienti per eseguire questo pagamento. Per favore inserisci un altra carta o ricarica quella attuale."
+            }
+          }
+        }
         this.popup = "ADD_PROMOTION_CARD_AND_CONTINUE_POPUP"
       } else {
         this.Promotion_State.error_message = "Errore sconosciuto. Per favore riprova dopo aver aggirnato la pagina."

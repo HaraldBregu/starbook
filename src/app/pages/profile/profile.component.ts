@@ -357,49 +357,20 @@ export class ProfileComponent implements OnInit {
 
     }).catch((error) => {
       this.Promotion_State.loading = false
-      // console.log("error: " + JSON.stringify(error))
-      // console.log("error body: " + JSON.stringify(error._body))
       if (error.status===400) {
-        // console.log('no_stripe_customer')
         this.popup = "ADD_PROMOTION_CARD_AND_CONTINUE_POPUP"
       } else if (error.status===402) {
         var response_body = JSON.parse(error._body)
-        // console.log("stripe_result object: " + response_body['result'])
-        // console.log("stripe_result success: " + response_body['success'])
         // console.log("response_body: " + JSON.stringify(response_body))
-        // console.log("response_body object: " + error._body)
-
         var stripe_result = response_body.result
-        console.log("stripe_result object: " + stripe_result)
-
         if (stripe_result) {
           if (stripe_result.raw) {
             var raw = stripe_result.raw
-            console.log("raw: " + JSON.stringify(raw))
-            // {
-            //   "message":"Your card has insufficient funds.",
-            //   "type":"card_error",
-            //   "code":"card_declined",
-            //   "decline_code":"insufficient_funds",
-            //   "charge":"ch_1BDC9iDp0KDRDRdryMqdtCum",
-            //   "statusCode":402,
-            //   "requestId":"req_4zBvXlLozqXsVZ"
-            // }
-
             if (raw.decline_code === "insufficient_funds") {
-              // console.log("insufficient_funds")
-              // this.Promotion_State.error_message = "Fondi non sufficienti per eseguire questo pagamento. Per favore inserisci un altra carta o ricarica quella attuale."
               this.card_state.message_error = "Fondi non sufficienti per eseguire questo pagamento. Per favore inserisci un altra carta o ricarica quella attuale."
             }
           }
         }
-
-        // console.log("stripe_result: " + JSON.stringify(stripe_result))
-        // var decline_code = raw.decline_code
-        // console.log("decline_code: " + JSON.stringify(decline_code))
-        // if (decline_code==="insufficient_funds") {
-        //   this.Promotion_State.error_message = "La tua carta non ha i fondi sufficienti per eseguire questo pagamento. Per favore inserisci un altra carta o ricarica quella attuale."
-        // }
         this.popup = "ADD_PROMOTION_CARD_AND_CONTINUE_POPUP"
       } else {
         this.Promotion_State.error_message = "Errore sconosciuto. Per favore riprova dopo aver aggirnato la pagina."
