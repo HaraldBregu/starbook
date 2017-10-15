@@ -364,15 +364,17 @@ export class ProfileComponent implements OnInit {
         this.popup = "ADD_PROMOTION_CARD_AND_CONTINUE_POPUP"
       } else if (error.status===402) {
         // console.log('no_cards')
+        var response_body = error._body
+        var stripe_result = response_body.result
+        var decline_code = stripe_result.raw.decline_code
+        if (decline_code==="insufficient_funds") {
+          this.Promotion_State.error_message = "La tua carta non ha i fondi sufficienti per eseguire questo pagamento. Per favore inserisci un altra carta o ricarica quella attuale."
+        }
         this.popup = "ADD_PROMOTION_CARD_AND_CONTINUE_POPUP"
       } else {
         this.Promotion_State.error_message = "Errore sconosciuto. Per favore riprova dopo aver aggirnato la pagina."
       }
     })
-  }
-  setupPromotion() {
-    this.popup = "PREVIEW_PROMOTION_POPUP"
-    console.log(JSON.stringify(this.Promotion))
   }
   savePromotionCardAndContinue() {
     if (this.card_state.loading) {return;}
