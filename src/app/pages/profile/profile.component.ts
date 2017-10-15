@@ -357,19 +357,23 @@ export class ProfileComponent implements OnInit {
 
     }).catch((error) => {
       this.Promotion_State.loading = false
-      console.log("error: " + JSON.stringify(error))
-      console.log("error body: " + JSON.stringify(error._body))
+      // console.log("error: " + JSON.stringify(error))
+      // console.log("error body: " + JSON.stringify(error._body))
       if (error.status===400) {
         // console.log('no_stripe_customer')
         this.popup = "ADD_PROMOTION_CARD_AND_CONTINUE_POPUP"
       } else if (error.status===402) {
         var response_body = error._body
-        var stripe_result = response_body.result
-        console.log("stripe_result: " + JSON.stringify(stripe_result))
-        var raw = stripe_result.raw
-        console.log("raw: " + JSON.stringify(raw))
-        var decline_code = raw.decline_code
-        console.log("decline_code: " + JSON.stringify(decline_code))
+        console.log("response_body: " + response_body)
+        console.log("response_body: " + JSON.stringify(response_body))
+
+        // var stripe_result = response_body.result
+        //
+        // console.log("stripe_result: " + JSON.stringify(stripe_result))
+        // var raw = stripe_result.raw
+        // console.log("raw: " + JSON.stringify(raw))
+        // var decline_code = raw.decline_code
+        // console.log("decline_code: " + JSON.stringify(decline_code))
         if (decline_code==="insufficient_funds") {
           this.Promotion_State.error_message = "La tua carta non ha i fondi sufficienti per eseguire questo pagamento. Per favore inserisci un altra carta o ricarica quella attuale."
         }
