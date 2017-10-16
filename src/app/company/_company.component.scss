@@ -132,7 +132,6 @@ app-company {
         }
       }
     }
-
     .section-container {
       background: #f9fafa;
       .section {
@@ -327,15 +326,43 @@ app-company {
                 }
               }
             }
+            .width_45pc {
+              width: 45%
+            }
+            .width_55pc {
+              width: 55%
+            }
           }
         }
       }
     }
-    .white-backgound {
-      background: white;
-    }
-    .grey-backgound {
+    .grey-background {
       background: #EDEFF3;
+    }
+
+    .facebook-background {
+      background: #fff;
+      // background: #3b5998;
+      // color: white;
+      // #f8f8f8
+    }
+    .adwords-background {
+      // background: #3b5998;
+      background: black;
+      color: white;
+      // #f8f8f8
+    }
+    .google-background {
+      // background: #3b5998;
+      background: white;
+      // color: white;
+      // #f8f8f8
+    }
+    .maps-background {
+      // background: #3b5998;
+      background: #28b446;
+      color: white;
+      // #f8f8f8
     }
   }
 }
@@ -462,6 +489,9 @@ app-company {
   }
   app-company .company-container .section-container .section .section-content .section-body .right-media {
     margin-top: 20px;
+    width: 100%;
+  }
+  app-company .company-container .section-container .section .section-content .section-body .left-media {
     width: 100%;
   }
 }

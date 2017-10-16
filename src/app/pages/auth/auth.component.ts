@@ -134,7 +134,6 @@ export class AuthComponent implements OnInit {
   }
 
   constructor(private route: ActivatedRoute, private router: Router, private navigationService: NavigationService, private profileService: ProfileService, private authService: AuthService, private seoService: SeoService, private contactService: ContactService, private fb: FacebookService, private commonService: CommonService) {
-    this.navigationService.updateMessage('')
     this.emailPattern = /^[a-z0-9!#$%&'*+\/=?^_`{|}~.-]+@[a-z0-9]([a-z0-9-]*[a-z0-9])?(\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)*$/i;
     if (isBrowser) {
       window.scrollTo(0, 0)
@@ -156,18 +155,26 @@ export class AuthComponent implements OnInit {
 
       this.route.queryParams.subscribe((params: Params) => {
         if (this.page==='login' && !this.currentUser) {
+          this.navigationService.updateMessage('Accedi al tuo account')
+
           this.seoObject['title'] = "Accedi | Starbook"
           this.seoObject['description'] = "Crea una pagina professionale, pubblicizza online con pochi click, ricevi richieste da clienti e invia preventivi."
         }
         else if (this.page==='signup' && !this.currentUser) {
+          this.navigationService.updateMessage('Iscriviti su Starbook')
+
           this.seoObject['title'] = "Iscriviti | Starbook"
           this.seoObject['description'] = "Hai una professione, un attivita o un'azienda e vuoi promuoverla? Iscriviti su Starbook gratuitamente e crea la tua pagina professionale."
         }
         else if (this.page === 'password_recovery'&&!this.currentUser) {
+          this.navigationService.updateMessage('Recupera password')
+
           this.seoObject['title'] = "Starbook | Recupera password";
           this.seoObject['description'] = "Su Starbook troverai i migliori servizi per la tua casa e i migliori professionisti della tua zona.";
         }
         else if (this.page === 'email_verification') {
+          this.navigationService.updateMessage('Verifica la tua email')
+
           var code = params['code']
           if (code) {
             this.email_verification.spinner.visible = true;
@@ -185,6 +192,8 @@ export class AuthComponent implements OnInit {
           }
         }
         else if (this.page === 'password_verification') {
+          this.navigationService.updateMessage('Nuova password')
+
           var code = params['code']
           if (code) {
             this.password_verification.spinner.visible = true;
@@ -202,6 +211,8 @@ export class AuthComponent implements OnInit {
           }
         }
         else if (this.page === 'create_new_password') {
+          this.navigationService.updateMessage('Crea nuova password')
+
           var code = params['code']
           if (!code) {
             this.router.navigate(['']);

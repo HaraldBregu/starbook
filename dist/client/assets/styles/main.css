@@ -4719,10 +4719,22 @@ app-company {
                   display: block;
                   font-size: 18px;
                   margin-top: 15px; }
-    app-company .company-container .white-backgound {
-      background: white; }
-    app-company .company-container .grey-backgound {
+          app-company .company-container .section-container .section .section-content .section-body .width_45pc {
+            width: 45%; }
+          app-company .company-container .section-container .section .section-content .section-body .width_55pc {
+            width: 55%; }
+    app-company .company-container .grey-background {
       background: #EDEFF3; }
+    app-company .company-container .facebook-background {
+      background: #fff; }
+    app-company .company-container .adwords-background {
+      background: black;
+      color: white; }
+    app-company .company-container .google-background {
+      background: white; }
+    app-company .company-container .maps-background {
+      background: #28b446;
+      color: white; }
 
 @media (max-width: 1024px) {
   app-company .company-container .section-container .section .section-content .section-body {
@@ -4840,6 +4852,9 @@ app-company {
 
   app-company .company-container .section-container .section .section-content .section-body .right-media {
     margin-top: 20px;
+    width: 100%; }
+
+  app-company .company-container .section-container .section .section-content .section-body .left-media {
     width: 100%; } }
 @media (max-width: 320px) {
   app-company .company-container .section-container .section .section-content .section-body .btn-facebook {
@@ -7754,7 +7769,7 @@ app-account {
               height: 35px;
               background: #F6F6F6; }
           app-account .account-container .account .account-content .account-body form {
-            margin-bottom: 30px; }
+            margin-bottom: 10px; }
             app-account .account-container .account .account-content .account-body form .option-container {
               text-align: center; }
               app-account .account-container .account .account-content .account-body form .option-container .option {
@@ -7940,11 +7955,11 @@ app-account {
               font-weight: 500;
               border-radius: 3px; }
             app-account .account-container .account .account-content .account-body .actions .btn-warning {
-              height: 60px; }
+              height: 50px; }
             app-account .account-container .account .account-content .account-body .actions .btn-success {
-              height: 60px; }
+              height: 50px; }
             app-account .account-container .account .account-content .account-body .actions .btn-primary {
-              height: 60px; }
+              height: 50px; }
           app-account .account-container .account .account-content .account-body .share-actions {
             overflow: hidden; }
             app-account .account-container .account .account-content .account-body .share-actions .btn-default {
