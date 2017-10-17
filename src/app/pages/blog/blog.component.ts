@@ -19,7 +19,7 @@ export class BlogComponent implements OnInit {
   }
 
   constructor(private router: Router, private navigationService: NavigationService, private seoService: SeoService, private postsService: PostsService, private contactService: ContactService) {
-    this.navigationService.updateMessage("")
+    this.navigationService.updateMessage("Blog")
     this.articles = this.postsService.articles
     this.SeoData['title'] = "Starbook Blog"
     this.SeoData['description'] = "Starbook è una piattaforma che ti connette ai professionisti in modo piu sicuro e diretto."

@@ -4,6 +4,66 @@ import { Injectable } from '@angular/core';
 export class PostsService {
   public articles = [
     {
+      "title" : "Pubblicità su Facebook e Google per la tua azienda",
+      "subtitle" : "Hai sicuramente sentito parlare della pubblicità online nei social media e motori di ricerca. É esattamente la pubblicità online che ti permetterà di far crescere il tuo business e la tua azienda.",
+      "picture_url" : "https://s3-eu-west-1.amazonaws.com/starbook-s3/blog/pubblicita-online.png",
+      "author": {
+        "fullname" : "Harald Bregu",
+        "headline" : "Sviluppatore, Software, Starbook, Startup",
+        "picture_url" : "https://s3-eu-west-1.amazonaws.com/starbook-s3/accounts/595ccfb42bf14e6650ce6e3d/avatar/0"
+      },
+      "updated_at" : "17 Ott 2017",
+      "timing" : "2 min lettura",
+      "html_body" : `
+      <article>
+        <header>
+          <h1>Pubblicità su Facebook e Google per la tua azienda</h1>
+          <p>
+            <time><i class="fa fa-calendar" aria-hidden="true"></i> 17 Ott 2017</time>
+            <time><i class="fa fa-clock-o" aria-hidden="true"></i> 2 min</time>
+            <author><i class="fa fa-user" aria-hidden="true"></i> Harald Bregu</author>
+          </p>
+          <div class="share-links">
+            <ul>
+            <li class="facebook">
+              <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A//www.starbook.co/blog/Pubblicità-su-Facebook-e-Google-per-la-tua-azienda" title="" target="_blank" rel="nofollow"><i class="fa fa-facebook" aria-hidden="true"></i> <span>Facebook</span></a>
+            </li>
+            <li class="twitter line">
+              <a href="https://twitter.com/home?status=https%3A//www.starbook.co/blog/Pubblicità-su-Facebook-e-Google-per-la-tua-azienda" title="" target="_blank" rel="nofollow"><i class="fa fa-twitter" aria-hidden="true"></i> <span>Twitter</span></a>
+            </li>
+            <li class="google line">
+              <a href="https://plus.google.com/share?url=https%3A//www.starbook.co/blog/Pubblicità-su-Facebook-e-Google-per-la-tua-azienda" title="" target="_blank" rel="nofollow"><i class="fa fa-google-plus" aria-hidden="true"></i> <span>Google+</span></a>
+            </li>
+            <li class="pinterest line">
+              <a href="https://pinterest.com/pin/create/button/?url=https%3A//www.starbook.co/blog/Pubblicità-su-Facebook-e-Google-per-la-tua-azienda&media=https://s3-eu-west-1.amazonaws.com/starbook-s3/blog/pubblicita-online.png&description=Pubblicità su Facebook e Google per la tua azienda" title="" target="_blank" rel="nofollow"><i class="fa fa-pinterest-p" aria-hidden="true"></i> <span>Pinterest</span></a>
+            </li>
+            <li class="linkedin line">
+              <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A//www.starbook.co/blog/Pubblicità-su-Facebook-e-Google-per-la-tua-azienda&title=Pubblicità su Facebook e Google per la tua azienda&summary=Se hai un’azienda o sei un professionista, hai sicuramente sentito parlare della pubblicità online nei social media e motori di ricerca.&source=" title="" target="_blank" rel="nofollow"><i class="fa fa-linkedin" aria-hidden="true"></i> <span>LinkedIn</span></a>
+            </li>
+            </ul>
+          </div>
+        </header>
+        <p>Hai sicuramente sentito parlare della pubblicità online nei social media e motori di ricerca. É esattamente la pubblicità online che ti permetterà di far crescere il tuo business e la tua azienda.</p>
+        <p><a href="https://www.starbook.co/company/promotions" target="_blank"><img src="https://s3-eu-west-1.amazonaws.com/starbook-s3/blog/pubblicita-online.png" alt="Pubblicità online" title="Pubblicità online"/></a></p>
+        <p>Quali sono le opportunità che le piattaforme online ti offrono tra cui social network e motori di ricerca?</p>
+        <section>
+          <h2>Facebook Ads</h2>
+          <p>Il social network più diffuso del mondo conta più di 30 milioni utenti attivi ogni mese. Facebook tramite la piattaforma di advertising offre a tutti la possibilità di sponsorizzare la propria attività con un costo giornaliero minimo e durata della pubblicità personalizzata.</p>
+          <p><a href="https://www.starbook.co/company/promotions" target="_blank"><img src="https://s3-eu-west-1.amazonaws.com/starbook-s3/blog/pubblicita-facebook-statistiche.png" alt="Pubblicità Facebook" title="Pubblicità Facebook"/></a></p>
+        </section>
+        <section>
+          <h2>Google Adwords</h2>
+          <p>Google è il motore di ricerca più potente del mondo. Puoi raggiungere i tuoi clienti quando loro cercano un prodotto che tu offri. Tramite la pubblicità mirata su google puoi raggiungere solo i tipi di clienti che stanno cercando i servizi che tu offri.</p>
+          <p><a href="https://www.starbook.co/company/promotions" target="_blank"><img src="https://s3-eu-west-1.amazonaws.com/starbook-s3/blog/googleadwordsdata.png" alt="Pubblicità Google" title="Pubblicità Google"/></a></p>
+        </section>
+        <section>
+          <h2>Inizia</h2>
+          <p>Vai nella <a href="https://www.starbook.co/company/promotions" rel="nofollow" target="_blank">landing page</a> per leggere la descrizione e accedi per provare.</p>
+        </section>
+      </article>
+      `
+    },
+    {
       "title" : "Preventivi dinamici: come funzionano e perché usarli",
       "subtitle" : "Avrai sicuramente inviato almeno una volta un preventivo per acquisire un potenziale cliente per la tua azienda. A volte è andato bene ed è stato accettato dal cliente, altre volte invece non è andato a buon fine. Quelle volte che non è andato come speravi non sapevi nemmeno il motivo.",
       "picture_url" : "https://s3-eu-west-1.amazonaws.com/starbook-s3/blog/preventivi-dinamici-blog.png",

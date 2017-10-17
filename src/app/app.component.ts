@@ -113,7 +113,7 @@ export class AppComponent implements OnInit, OnDestroy {
               this.border_bottom_color = "0"
             }
             else if (this.page === "Blog") {
-              this.hasCenterContainer = false;
+              this.hasCenterContainer = true;
             }
             else if (this.page === "Info") {
               this.hasCenterContainer = false;

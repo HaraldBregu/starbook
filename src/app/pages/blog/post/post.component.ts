@@ -54,6 +54,8 @@ export class PostComponent implements OnInit {
             this.seoService.setOgElem('og:image', this.SeoData['image_url'])
             this.seoService.setOgElem('og:image:secure_url', this.SeoData['image_url'])
 
+            this.navigationService.updateMessage(article.title)
+
             this.selectedArticle = article
             break;
           }
