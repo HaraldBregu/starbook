@@ -426,6 +426,11 @@ app-account {
               position: absolute;
               top: -20px;
             }
+            .updated-message {
+              display: block;
+              position: absolute;
+              top: -20px;
+            }
             .btn-success {
               // background: #259874;
             }
@@ -444,6 +449,17 @@ app-account {
             }
             .btn-primary {
               height: 50px;
+            }
+            .btn-page {
+              padding: 0 20px;
+              font-size: 26px;
+              background: black;
+            }
+            .btn-page:active:focus {
+              background-color: #313131;
+            }
+            .btn-page:hover {
+              background-color: #313131;
             }
           }
           .share-actions {

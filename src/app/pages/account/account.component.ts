@@ -79,6 +79,7 @@ export class AccountComponent implements OnInit {
     message_success: null,
     firstname_error: null,
     lastname_error: null,
+    updated: false,
   }
 
   public Password = {
@@ -472,6 +473,7 @@ export class AccountComponent implements OnInit {
   }
   saveInformations() {
     this.account_state.loading = true
+    this.account_state.updated = false
     this.profileService.updateProfile(this.Account).then((data) => {
       if (data.success) {
         let profileData = {};
@@ -483,9 +485,11 @@ export class AccountComponent implements OnInit {
         }
         this.navigationService.updatePersonalMenu(this.Account);
         this.account_state.loading = false
+        this.account_state.updated = true
       }
     }).catch((error) => {
       this.account_state.loading = false
+      this.account_state.updated = true
     })
   }
   saveInformationsAndPromote() {

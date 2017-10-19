@@ -296,6 +296,19 @@
   <div class="section-container grey-background">
     <div class="section">
       <div class="section-content">
+        <div class="section-header">
+          <div class="quote">
+            <p class="text"><i>Le inserzioni di Facebook caratterizzate da una targetizzazione mirata permettono al pubblico italiano di venire a conoscenza della vostra attività.</i></p>
+          </div>
+          <button *ngIf="!Account" class="btn btn-primary" id="goToSignupPage" routerLink="/auth/signup">Iscriviti adesso</button>
+          <button *ngIf="Account" class="btn btn-success" id="goToPromotionPage" routerLink="/account/inprogress_promotion">Promuovi la tua azienda</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="section-container">
+    <div class="section">
+      <div class="section-content">
         <div class="section-body">
           <div class="left-content width_55pc">
             <h2><strong>Google Adwords</strong></h2>
@@ -310,6 +323,19 @@
           <div class="right-media width_45pc">
             <img class="shadow" src="../assets/images/google_adword_example.png" alt="google adwords example">
           </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="section-container grey-background">
+    <div class="section">
+      <div class="section-content">
+        <div class="section-header">
+          <div class="quote">
+            <p class="text"><i>Google Adwords aiuta ad aumentare il traffico nella tua pagina professionale, ricevere richieste direttamente e crescere il tuo business.</i></p>
+          </div>
+          <button *ngIf="!Account" class="btn btn-primary" id="goToSignupPage" routerLink="/auth/signup">Iscriviti adesso</button>
+          <button *ngIf="Account" class="btn btn-success" id="goToPromotionPage" routerLink="/account/inprogress_promotion">Promuovi la tua azienda</button>
         </div>
       </div>
     </div>

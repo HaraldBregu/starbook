@@ -15,8 +15,6 @@ app-auth {
       .auth-header {
         text-align: center;
         padding-bottom: 30px;
-        // max-width: 700px;
-        // margin: auto;
         h1 {
           font-weight: 300;
           color: black;
@@ -34,6 +32,23 @@ app-auth {
         p {
           font-weight: 300;
           margin-top: 20px;
+        }
+
+        span {
+          display: inline-block;
+          margin: 5px;
+          font-size: 16px;
+          border-radius: 23px;
+          padding: 5px 15px;
+        }
+        .sig {
+          border: 1px solid #2ecc71;
+        }
+        .create {
+          border: 1px solid #2980b9;
+        }
+        .promote {
+          border: 1px solid #e74c3c;
         }
       }
       .auth-body {

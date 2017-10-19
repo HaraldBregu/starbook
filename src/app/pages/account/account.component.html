@@ -162,11 +162,10 @@
           </div>
         </form>
         <div class="actions">
-          <!-- <span class="saving" *ngIf="account_state.loading"><i class="fa fa-circle-o-notch animate"></i> salvando</span> -->
+          <!-- <span class="saving" *ngIf="account_state.updated"><i class="fa fa-circle-o-notch animate"></i> Informazioni aggiornate</span> -->
+          <span class="updated-message" *ngIf="account_state.updated">Informazioni aggiornate</span>
           <button type="button" class="btn btn-success" name="button" (click)="saveInformations()"><i *ngIf="account_state.loading" class="fa fa-circle-o-notch animate"></i>Salva le modifiche</button>
-          <!-- <a class="btn btn-primary" routerLink="{{getProfileRouter()}}">Guarda pagina</a> -->
-          <!-- <button type="button" class="btn btn-warning" name="button" (click)="saveInformationsAndPromote()">Promuovi</button> -->
-          <!-- <button type="button" class="btn btn-primary" name="button" routerLink="{{getProfileRouter()}}">La tua pagina</button> -->
+          <a class="btn btn-primary btn-page" routerLink="{{getProfileRouter()}}" (click)="saveInformations()"><i class="fa fa-star" aria-hidden="true"></i></a>
         </div>
       </div>
     </div>

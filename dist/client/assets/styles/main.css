@@ -7951,6 +7951,10 @@ app-account {
               display: block;
               position: absolute;
               top: -20px; }
+            app-account .account-container .account .account-content .account-body .actions .updated-message {
+              display: block;
+              position: absolute;
+              top: -20px; }
             app-account .account-container .account .account-content .account-body .actions .btn {
               margin-top: 10px;
               padding: 0 40px;
@@ -7963,6 +7967,14 @@ app-account {
               height: 50px; }
             app-account .account-container .account .account-content .account-body .actions .btn-primary {
               height: 50px; }
+            app-account .account-container .account .account-content .account-body .actions .btn-page {
+              padding: 0 20px;
+              font-size: 26px;
+              background: black; }
+            app-account .account-container .account .account-content .account-body .actions .btn-page:active:focus {
+              background-color: #313131; }
+            app-account .account-container .account .account-content .account-body .actions .btn-page:hover {
+              background-color: #313131; }
           app-account .account-container .account .account-content .account-body .share-actions {
             overflow: hidden; }
             app-account .account-container .account .account-content .account-body .share-actions .btn-default {
@@ -8737,6 +8749,18 @@ app-auth {
       app-auth .auth-container .auth .auth-header p {
         font-weight: 300;
         margin-top: 20px; }
+      app-auth .auth-container .auth .auth-header span {
+        display: inline-block;
+        margin: 5px;
+        font-size: 16px;
+        border-radius: 23px;
+        padding: 5px 15px; }
+      app-auth .auth-container .auth .auth-header .sig {
+        border: 1px solid #2ecc71; }
+      app-auth .auth-container .auth .auth-header .create {
+        border: 1px solid #2980b9; }
+      app-auth .auth-container .auth .auth-header .promote {
+        border: 1px solid #e74c3c; }
     app-auth .auth-container .auth .auth-body .error {
       text-align: center; }
       app-auth .auth-container .auth .auth-body .error .error-text {
