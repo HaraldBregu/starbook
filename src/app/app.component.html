@@ -1,8 +1,8 @@
 <nav *ngIf="page && hasNavigation" class="navbar navbar-fixed-top" [style.border-bottom]="border_bottom_color" (window:resize)="onResize()">
   <div class="container-starbook">
     <a class="navbar-brand" *ngIf="!auth" routerLink="/"><img src="/assets/images/brand-logo-name-rotated.png" alt="starbook.co"></a>
-    <a class="navbar-brand" *ngIf="(screenWidth > 425) && auth" routerLink="/"><img src="/assets/images/brand-logo-name-rotated.png" alt="starbook.co"></a>
-    <a class="navbar-brand" *ngIf="(screenWidth < 425 || screenWidth === 425) && auth" routerLink="/"><img src="/assets/images/brand-logo-rotated.png" alt="starbook.co"></a>
+    <a class="navbar-brand" *ngIf="(screenWidth > 600) && auth" routerLink="/"><img src="/assets/images/brand-logo-name-rotated.png" alt="starbook.co"></a>
+    <a class="navbar-brand" *ngIf="(screenWidth < 600 || screenWidth === 600) && auth" routerLink="/"><img src="/assets/images/brand-logo-rotated.png" alt="starbook.co"></a>
     <div class="center-container" *ngIf="hasCenterContainer">
       <div class="tagline">
         <h4>{{tagline}}</h4>

@@ -4741,7 +4741,7 @@ app-company {
 
 @media (max-width: 1024px) {
   app-company .company-container .section-container .section .section-content .section-body {
-    padding: 40px; }
+    padding: 40px 60px; }
 
   app-company .company-container .section-container .section .section-content .section-body h1 {
     font-size: 41px;
@@ -8620,7 +8620,22 @@ app-account {
     padding: 0 25px 25px; }
 
   app-account .account-container .account .account-content .account-body form {
-    margin-bottom: 20px; } }
+    margin-bottom: 20px; }
+
+  app-account .account-container .account .account-tab {
+    float: none; }
+
+  app-account .account-container .account .account-content {
+    margin-left: 0; }
+
+  app-account .account-container .account .tabbed-content {
+    margin-left: 0; }
+
+  app-account .promotion-container .promotion-tab {
+    float: none; }
+
+  app-account .promotion-container .promotion .promotion-content {
+    margin-left: 0; } }
 @media (max-width: 425px) {
   app-account .top-bar-container .top-bar {
     padding: 0; }
@@ -8696,24 +8711,9 @@ app-account {
   app-account .account-container .account .account-body .section h4 {
     font-size: 22px; }
 
-  app-account .account-container .account .account-tab {
-    float: none; }
-
-  app-account .account-container .account .account-content {
-    margin-left: 0; }
-
-  app-account .account-container .account .tabbed-content {
-    margin-left: 0; }
-
   app-account .account-container .account .account-content .account-body .paycard-container .paycard .paycard-content .paycard-body .actions {
     width: 100%;
     margin-top: 15px; }
-
-  app-account .promotion-container .promotion-tab {
-    float: none; }
-
-  app-account .promotion-container .promotion .promotion-content {
-    margin-left: 0; }
 
   app-account .promotion-container .promotion .promotion-content .promotion-footer span {
     display: block; }
@@ -9411,7 +9411,8 @@ app-post {
         app-post .article-container article section h3 {
           text-align: left;
           font-weight: 600;
-          color: rgba(0, 0, 0, 0.8); }
+          color: rgba(0, 0, 0, 0.8);
+          margin: 20px 0; }
         app-post .article-container article section ul {
           display: block;
           list-style-type: disc;

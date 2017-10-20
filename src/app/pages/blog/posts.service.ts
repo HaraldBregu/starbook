@@ -4,6 +4,75 @@ import { Injectable } from '@angular/core';
 export class PostsService {
   public articles = [
     {
+      "title" : "Pubblicità online: Essere vs Farsi Vedere",
+      "subtitle" : "Essere e farsi vedere sono due concetti ancora sconosciuti dai giovani imprenditori, artigiani o capi di aziende quando si ha a che fare con il mondo del web. La differenza non è tanto evidente quanto sembra.",
+      "picture_url" : "https://s3-eu-west-1.amazonaws.com/starbook-s3/blog/essere-o-farsi-vedere.png",
+      "author": {
+        "fullname" : "Harald Bregu",
+        "headline" : "Sviluppatore, Software, Starbook, Startup",
+        "picture_url" : "https://s3-eu-west-1.amazonaws.com/starbook-s3/accounts/595ccfb42bf14e6650ce6e3d/avatar/0"
+      },
+      "updated_at" : "20 Ott 2017",
+      "timing" : "2 min lettura",
+      "html_body" : `
+      <article>
+        <header>
+          <h1>Pubblicità online: Essere vs Farsi Vedere</h1>
+          <p>
+            <time><i class="fa fa-calendar" aria-hidden="true"></i> 20 Ott 2017</time>
+            <time><i class="fa fa-clock-o" aria-hidden="true"></i> 2 min</time>
+            <author><i class="fa fa-user" aria-hidden="true"></i> Harald Bregu</author>
+          </p>
+          <div class="share-links">
+            <ul>
+            <li class="facebook">
+              <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A//www.starbook.co/blog/Pubblicità-online%3A-Essere-vs-Farsi-Vedere" title="" target="_blank" rel="nofollow"><i class="fa fa-facebook" aria-hidden="true"></i> <span>Facebook</span></a>
+            </li>
+            <li class="twitter line">
+              <a href="https://twitter.com/home?status=https%3A//www.starbook.co/blog/Pubblicità-online%3A-Essere-vs-Farsi-Vedere" title="" target="_blank" rel="nofollow"><i class="fa fa-twitter" aria-hidden="true"></i> <span>Twitter</span></a>
+            </li>
+            <li class="google line">
+              <a href="https://plus.google.com/share?url=https%3A//www.starbook.co/blog/Pubblicità-online%3A-Essere-vs-Farsi-Vedere" title="" target="_blank" rel="nofollow"><i class="fa fa-google-plus" aria-hidden="true"></i> <span>Google+</span></a>
+            </li>
+            <li class="pinterest line">
+              <a href="https://pinterest.com/pin/create/button/?url=https%3A//www.starbook.co/blog/Pubblicità-online%3A-Essere-vs-Farsi-Vedere&media=https://s3-eu-west-1.amazonaws.com/starbook-s3/blog/essere-o-farsi-vedere.png&description=Pubblicità online: Essere vs Farsi Vedere" title="" target="_blank" rel="nofollow"><i class="fa fa-pinterest-p" aria-hidden="true"></i> <span>Pinterest</span></a>
+            </li>
+            <li class="linkedin line">
+              <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A//www.starbook.co/blog/Pubblicità-online%3A-Essere-vs-Farsi-Vedere&title=Pubblicità online: Essere vs Farsi Vedere&summary=Essere e farsi vedere sono due concetti ancora sconosciuti dai giovani imprenditori, artigiani o capi di aziende quando si ha a che fare con il mondo del web. La differenza non è tanto evidente quanto sembra&source=" title="" target="_blank" rel="nofollow"><i class="fa fa-linkedin" aria-hidden="true"></i> <span>LinkedIn</span></a>
+            </li>
+            </ul>
+          </div>
+        </header>
+        <p>Essere e farsi vedere sono due concetti ancora sconosciuti dai giovani imprenditori, artigiani o capi di aziende quando si ha a che fare con il mondo del web. La differenza non è tanto evidente quanto sembra.</p>
+        <p><a href="https://www.starbook.co/company/promotions" target="_blank"><img src="https://s3-eu-west-1.amazonaws.com/starbook-s3/blog/essere-o-farsi-vedere.png" alt="Pubblicità online" title="Pubblicità online"/></a></p>
+        <p>Online il farsi vedere non vuol dire iscriversi in vari siti e creare pagine social gratis. Quello serve per presentarsi non a crescere la tua attività.</p>
+        <section>
+          <h2>Negozio vs Negozio Pubblicizzato</h2>
+          <p>1. Il negozio di vini nell'immagine a sinistra:</p>
+          <ul>
+            <li>Aspetto mediocre</li>
+            <li>Poco attraente</li>
+            <li>Niente pubblicità in vetrina</li>
+            <li>Poco notevole</li>
+          </ul>
+          <p><strong>Tipo cliente:</strong> persone che conoscono il venditore.</p>
+          <p>2. Il ristorante caffetteria nell'immagine a destra:</p>
+          <ul>
+            <li>Aspetto curato</li>
+            <li>Molto attraente</li>
+            <li>Molto elegante</li>
+            <li>Pubblicità in vetrina</li>
+            <li>Arredamento confortevole</li>
+          </ul>
+          <p><strong>Tipo cliente:</strong> persone che conoscono il venditore, persone che hanno visto il negozio di passaggio, persone che sono state consigliate da amici, persone che tornano di nuovo per il servizio offerto e le caraterisctiche che ha.</p>
+          <p>Come vedete, un attività che usa la pubblicità in tutte le sue forme ha più possibilità di crescita ed eventualmente più clienti.</p>
+          <h3>Essere presenti è un inizio, farsi vedere è un dovere.</h3>
+          <p><a href="https://www.starbook.co/company/promotions" target="_blank"><img src="https://s3-eu-west-1.amazonaws.com/starbook-s3/blog/starbook-promotion-ads.png" alt="Pubblicità online starbook" title="Pubblicità online starbook"/></a></p>
+        </section>
+      </article>
+      `
+    },
+    {
       "title" : "Pubblicità su Facebook e Google per la tua azienda",
       "subtitle" : "Hai sicuramente sentito parlare della pubblicità online nei social media e motori di ricerca. É esattamente la pubblicità online che ti permetterà di far crescere il tuo business e la tua azienda.",
       "picture_url" : "https://s3-eu-west-1.amazonaws.com/starbook-s3/blog/pubblicita-online.png",
@@ -57,8 +126,7 @@ export class PostsService {
           <p><a href="https://www.starbook.co/company/promotions" target="_blank"><img src="https://s3-eu-west-1.amazonaws.com/starbook-s3/blog/googleadwordsdata.png" alt="Pubblicità Google" title="Pubblicità Google"/></a></p>
         </section>
         <section>
-          <h2>Inizia</h2>
-          <p>Vai nella <a href="https://www.starbook.co/company/promotions" rel="nofollow" target="_blank">landing page</a> per leggere la descrizione e accedi per provare.</p>
+        <p><a href="https://www.starbook.co/company/promotions" target="_blank"><img src="https://s3-eu-west-1.amazonaws.com/starbook-s3/blog/starbook-promotion-ads.png" alt="Pubblicità online starbook" title="Pubblicità online starbook"/></a></p>
         </section>
       </article>
       `
@@ -132,8 +200,7 @@ export class PostsService {
           <p><img src="https://s3-eu-west-1.amazonaws.com/starbook-s3/blog/analizza-preventivo.png" alt="Analizza il preventivo" title="Analizza il preventivo"/></p>
         </section>
         <section>
-          <h2>Prova adesso</h2>
-          <p>Vai nella <a href="https://www.starbook.co/company/quotations" rel="nofollow" target="_blank">landing page</a> per leggere la descrizione e accedi per provare.</p>
+        <p><a href="https://www.starbook.co/company/promotions" target="_blank"><img src="https://s3-eu-west-1.amazonaws.com/starbook-s3/blog/starbook-promotion-ads.png" alt="Pubblicità online starbook" title="Pubblicità online starbook"/></a></p>
         </section>
       </article>
       `
@@ -194,7 +261,7 @@ export class PostsService {
           <p>Un altro motivo perché dovresti utilizzare il web per promuovere la tua attività è che non devi fare <strong>troppi sconti</strong>. Se sei unico sei anche prezioso e quindi il cliente non ha molta scelta. L’innovazione ti permette di essere <strong>all’avanguardia</strong> e di decidere anche il prezzo. Questo ti permette non solo di lavorare nel modo giusto ma anche di <strong>crescere i guadagni</strong> e il fatturato.</p>
         </section>
         <section>
-          <h2>Vuoi sapere di più? Inviami la tua email qui sotto.</h2>
+        <p><a href="https://www.starbook.co/company/promotions" target="_blank"><img src="https://s3-eu-west-1.amazonaws.com/starbook-s3/blog/starbook-promotion-ads.png" alt="Pubblicità online starbook" title="Pubblicità online starbook"/></a></p>
         </section>
       </article>
       `
@@ -269,6 +336,7 @@ export class PostsService {
             <li><strong>Diventare competitivi</strong></li>
           </ul>
           <p>Questi sono delle soluzioni validi per verificare i vostri clienti, crescere il successo dei preventivi, chiedere rimborsi e ovviamente crescere i guadagni.</p>
+          <p><a href="https://www.starbook.co/company/promotions" target="_blank"><img src="https://s3-eu-west-1.amazonaws.com/starbook-s3/blog/starbook-promotion-ads.png" alt="Pubblicità online starbook" title="Pubblicità online starbook"/></a></p>
         </section>
       </article>
       `
@@ -334,6 +402,7 @@ export class PostsService {
           <p>La pubblicità online invece è un altro metodo valido per poter promuovere la propria attività e acquisire nuovi clienti. Diversamente dagli altri modi questo dipende sia dal tuo annuncio, dal prezzo che spendi per l’annuncio e dalla tua comunicazione.</p>
           <p>Uno strumento semplice da utilizzare se sei confidente con il web e relativamente economico si chiama <a href="https://adwords.google.com/express/" rel="nofollow" target="_blank">Google Adwords Express</a>.</p>
           <p>Un altro strumento è <a href="https://www.facebook.com/business" rel="nofollow" target="_blank">Facebook Ads</a> che è leggermente più complessa ma vale la pena provare.</p>
+          <p><a href="https://www.starbook.co/company/promotions" target="_blank"><img src="https://s3-eu-west-1.amazonaws.com/starbook-s3/blog/starbook-promotion-ads.png" alt="Pubblicità online starbook" title="Pubblicità online starbook"/></a></p>
         </section>
       </article>
       `
@@ -394,6 +463,7 @@ export class PostsService {
           <p>Il tempo costa ed è per questo che deve essere sfruttato e non trascurato. Il consiglio non è altro che scegliere la piattaforma o l’app che fa al caso vostro per le vostre esigenze.</p>
           <p>Steve Jobs una volta ha paragonato i computer ad Aristotele, cosi come un mentore per le persone i computer hanno istruito il mondo. Quello che oggi noi vorremo dai computer è di fare ciò che noi ordiniamo di eseguire senza farci perdere tempo.</p>
           <p>Avere un aiutante digitale nella vostra vita che vi aiuta nei lavori di casa, trasporti, nelle commissioni da fare e molto altro ha un enorme vantaggio nel tempo e costi.</p>
+          <p><a href="https://www.starbook.co/company/promotions" target="_blank"><img src="https://s3-eu-west-1.amazonaws.com/starbook-s3/blog/starbook-promotion-ads.png" alt="Pubblicità online starbook" title="Pubblicità online starbook"/></a></p>
         </section>
       </article>
       `
@@ -447,8 +517,7 @@ export class PostsService {
           <p>Facile intuire il motivo di tanto apprezzamento da parte degli utilizzatori di questo servizio: oltre alla già citata semplicità di utilizzo e ai prezzi convenienti, a rassicurare coloro che scelgono i servizi di booking on line è la selezione dei professionisti che si appoggiano a queste piattaforme. Lo staff, infatti, garantisce che ogni addetto viene scelto per la sua capacità di rispondere alle richieste della clientela, rispettando obblighi di legge e standard elevati. Un ottimo modo per fare sì che domanda e offerta si incontrino.</p>
         </section>
         <section>
-          <h2>Un servizio da non sottovalutare</h2>
-          <p>Il consiglio, pertanto, non può che essere quello di provare questo tipo di servizio. Sia che si tratti di trovare un professionista che possa tinteggiare casa o, magari, installare dei nuovi sanitari, un motore di ricerca dedicato potrà aiutare il padrone di casa a mettersi in contatto con uno staff attento alle richieste della clientela e in grado di intervenire in poco tempo.</p>
+        <p><a href="https://www.starbook.co/company/promotions" target="_blank"><img src="https://s3-eu-west-1.amazonaws.com/starbook-s3/blog/starbook-promotion-ads.png" alt="Pubblicità online starbook" title="Pubblicità online starbook"/></a></p>
         </section>
       </article>
       `

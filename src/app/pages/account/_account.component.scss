@@ -1334,6 +1334,21 @@ app-account {
   app-account .account-container .account .account-content .account-body form {
     margin-bottom: 20px;
   }
+  app-account .account-container .account .account-tab {
+    float: none;
+  }
+  app-account .account-container .account .account-content {
+    margin-left: 0;
+  }
+  app-account .account-container .account .tabbed-content {
+    margin-left: 0;
+  }
+  app-account .promotion-container .promotion-tab {
+    float: none;
+  }
+  app-account .promotion-container .promotion .promotion-content {
+    margin-left: 0;
+  }
 }
 
 @media (max-width: 425px) {
@@ -1411,24 +1426,9 @@ app-account {
   app-account .account-container .account .account-body .section h4 {
     font-size: 22px;
   }
-  app-account .account-container .account .account-tab {
-    float: none;
-  }
-  app-account .account-container .account .account-content {
-    margin-left: 0;
-  }
-  app-account .account-container .account .tabbed-content {
-    margin-left: 0;
-  }
   app-account .account-container .account .account-content .account-body .paycard-container .paycard .paycard-content .paycard-body .actions {
     width: 100%;
     margin-top: 15px;
-  }
-  app-account .promotion-container .promotion-tab {
-    float: none;
-  }
-  app-account .promotion-container .promotion .promotion-content {
-    margin-left: 0;
   }
   app-account .promotion-container .promotion .promotion-content .promotion-footer span {
     display: block;
@@ -1436,4 +1436,8 @@ app-account {
   app-account .promotion-container .promotion {
     margin-bottom: 50px;
   }
+}
+
+@media (max-width: 425px) {
+
 }
