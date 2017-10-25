@@ -706,6 +706,22 @@
   </div>
 </div>
 
+<!-- CONTACTS -->
+<div class="account-container" *ngIf="page==='contacts'">
+  <div class="account">
+    <div class="account-content" *ngFor="let contact of Contacts">
+      <div class="account-header">
+        <p>{{contact.post.title}}</p>
+        <p>{{contact.created_at}}</p>
+        <p>{{contact._id}}</p>
+        <p>{{contact.post.customer.firstname}}</p>
+        <p>{{contact.post.customer.lastname}}</p>
+        <p>{{contact.post.customer.email}}</p>
+        <p>{{contact.post.customer.phone_number}}</p>
+      </div>
+    </div>
+  </div>
+</div>
 
 <!-- REQUESTS -->
 <div class="account-container" *ngIf="page==='requests'">
@@ -1342,7 +1358,6 @@
     </div>
   </div>
 </div> -->
-
 
 <div class="account-footer" *ngIf="Account">
   <div class="footer">

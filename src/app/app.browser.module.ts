@@ -34,19 +34,14 @@ import { ShareService } from './pages/share/share.service';
 import { ClipboardService } from './shared/clipboard.service';
 import { PostsService } from './pages/blog/posts.service';
 import { QuotationComponent } from './pages/quotation/quotation.component';
-
 import { AppComponent } from './app.component';
-
 import { LandingComponent } from './landing/landing.component';
 import { CompanyComponent } from './company/company.component';
-
 import { CategoryComponent } from './pages/category/category.component';
-
 import { ServiceComponent } from './pages/service/service.component';
 import { ServicesComponent } from './pages/services/services.component';
 import { InsertComponent } from './pages/insert/insert.component';
 import { CheckoutComponent } from './pages/checkout/checkout.component';
-
 import { OrdersComponent } from './pages/orders/orders.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { PopupsComponent } from './popups/popups.component';
@@ -64,13 +59,11 @@ import { RequestsComponent } from './pages/requests/requests.component';
 import { ShareComponent } from './pages/share/share.component';
 import { ContactComponent } from './pages/contact/contact.component';
 import { ToolsComponent } from './pages/tools/tools.component';
-
 import { NotfoundComponent } from './pages/notfound/notfound.component';
-
 import { TestsComponent } from './pages/tests/tests.component';
-
 import { BlogComponent } from './pages/blog/blog.component';
 import { PostComponent } from './pages/blog/post/post.component';
+import { HomeComponent } from './pages/home/home.component';
 
 import { ClipboardDirective } from './directives/clipboard.directive';
 
@@ -124,14 +117,11 @@ let declarations = [
   CategoryComponent,
   ContactComponent,
   ToolsComponent,
-
+  HomeComponent,
   NotfoundComponent,
-
   TestsComponent,
-
   ClipboardDirective,
   FormatterDirective,
-
   CurrencyPipe,
   PhonePipe,
   ExpiryPipe,

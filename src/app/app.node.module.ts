@@ -10,23 +10,15 @@
 import { NgModule, forwardRef } from '@angular/core';
 import { UniversalModule, isBrowser, NodeHttpModule } from 'angular2-universal';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
 import { RouterModule }   from '@angular/router';
-// import { AutoCompleteModule, CalendarModule } from 'primeng/primeng';
 import { ClickOutsideModule } from 'ng2-click-outside';
-
 import { Ng2PageScrollModule } from 'ng2-page-scroll';
-// import { ImageUploadModule } from 'angular2-image-upload';
-
-// import { ClipboardModule } from 'ngx-clipboard';
-// import { MasonryModule } from 'angular2-masonry';
-// import { NgbModule, NgbDateParserFormatter } from '@ng-bootstrap/ng-bootstrap';
-
 import { FacebookModule } from 'ngx-facebook';
 import { DateValueAccessorModule } from 'angular-date-value-accessor';
 
 /* Feature Modules */
 import { ClipboardModule } from 'ngx-clipboard';
+
 
 import { routing } from './app.routing';
 
@@ -71,16 +63,13 @@ import { AuthComponent } from './pages/auth/auth.component';
 import { RequestsComponent } from './pages/requests/requests.component';
 import { ShareComponent } from './pages/share/share.component';
 import { QuotationComponent } from './pages/quotation/quotation.component';
-
 import { ContactComponent } from './pages/contact/contact.component';
 import { ToolsComponent } from './pages/tools/tools.component';
-
 import { NotfoundComponent } from './pages/notfound/notfound.component';
-
 import { TestsComponent } from './pages/tests/tests.component';
-
 import { BlogComponent } from './pages/blog/blog.component';
 import { PostComponent } from './pages/blog/post/post.component';
+import { HomeComponent } from './pages/home/home.component';
 
 import { ClipboardDirective } from './directives/clipboard.directive';
 
@@ -140,13 +129,11 @@ let declarations = [
   CategoryComponent,
   ContactComponent,
   ToolsComponent,
-
+  HomeComponent,
   NotfoundComponent,
   TestsComponent,
-
   ClipboardDirective,
   FormatterDirective,
-
   CurrencyPipe,
   CurrencyFormatPipe,
   CurrencyCentPipe,

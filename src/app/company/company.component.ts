@@ -35,7 +35,7 @@ export class CompanyComponent implements OnInit {
     this.route.params.subscribe((params: Params) => {
       this.page = params['page']
       if (isBrowser) {window.scrollTo(0, 0)}
-      
+
       this.seoObject['title'] = "Soluzioni web per aziende e professionisti"
       this.seoObject['description'] = "Crea una pagina professionale, pubblicizza online con pochi click, ricevi richieste da clienti e invia preventivi."
       this.seoObject['image_url'] = "https://s3-eu-west-1.amazonaws.com/starbook-s3/website/icon_256.png"

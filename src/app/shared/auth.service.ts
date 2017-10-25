@@ -72,6 +72,13 @@ export class AuthService {
   authInit() {
     return this.auth;
   }
+
+  currentAccount() {
+    if (isBrowser) {
+      return JSON.parse(localStorage.getItem('auth'))
+    }
+  }
+
   // loginCallback(email: string, password: string, success:() => void, error:() => void) {
   //   return this.http.post(this.api + 'login', {email: email, password: password})
   //   .toPromise()

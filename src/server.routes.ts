@@ -60,6 +60,9 @@ export const routes: string[] = [
   'quotation',
   'quotation/:id',
 
+  'post',
+  'post/:id',
+
   // 'worker',
   // 'worker/:page',
 

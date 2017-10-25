@@ -339,30 +339,47 @@ app-company {
     .grey-background {
       background: #EDEFF3;
     }
-
+    .starbook-background {
+      background: #324977;
+      .section .section-content .section-body h1 {
+        color: white;
+        text-shadow: none;
+      }
+      .section .section-content .section-body h3 {
+        color: white;
+        text-shadow: none;
+      }
+      .btn-warning {
+        color: black;
+      }
+    }
+    .promotion-background {
+      background: #2ecc71;
+      .section .section-content .section-body h1 {
+        color: black;
+        text-shadow: none;
+      }
+      .section .section-content .section-body h3 {
+        color: black;
+        text-shadow: none;
+      }
+      .btn-warning {
+        color: black;
+      }
+    }
     .facebook-background {
       background: #fff;
-      // background: #3b5998;
-      // color: white;
-      // #f8f8f8
     }
     .adwords-background {
-      // background: #3b5998;
       background: black;
       color: white;
-      // #f8f8f8
     }
     .google-background {
-      // background: #3b5998;
       background: white;
-      // color: white;
-      // #f8f8f8
     }
     .maps-background {
-      // background: #3b5998;
       background: #28b446;
       color: white;
-      // #f8f8f8
     }
   }
 }

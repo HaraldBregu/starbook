@@ -1,7 +1,6 @@
 import { ModuleWithProviders }  from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-// import { HomeComponent } from './home/home.component';
 import { LandingComponent } from './landing/landing.component';
 import { CompanyComponent } from './company/company.component';
 
@@ -25,14 +24,12 @@ import { RequestsComponent } from './pages/requests/requests.component';
 import { ShareComponent } from './pages/share/share.component';
 import { ContactComponent } from './pages/contact/contact.component';
 import { ToolsComponent } from './pages/tools/tools.component';
-
 import { NotfoundComponent } from './pages/notfound/notfound.component';
-
 import { TestsComponent } from './pages/tests/tests.component';
-
 import { BlogComponent } from './pages/blog/blog.component';
 import { PostComponent } from './pages/blog/post/post.component';
 import { QuotationComponent } from './pages/quotation/quotation.component';
+import { HomeComponent } from './pages/home/home.component';
 
 const routes: Routes = [
   // { path: '', component: LandingComponent, data: { name: 'Landing' } },
@@ -77,6 +74,9 @@ const routes: Routes = [
   { path: 'insert/:step', component: InsertComponent, data: { name: 'Insert' } },
 
   { path: 'checkout/:step', component: CheckoutComponent, data: { name: 'Checkout' } },
+
+  { path: 'post', component: HomeComponent, data: { name: 'Home' } },
+  { path: 'post/:id', component: HomeComponent, data: { name: 'Home' } },
 
   // {
   //   path: 'services/:id',

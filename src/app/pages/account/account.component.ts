@@ -25,6 +25,7 @@ export class AccountComponent implements OnInit {
   public tabs = [
     {name: 'Account', route: 'profile'},
     {name: 'Promozioni', route: 'inprogress_promotion'},
+    {name: 'Contatti', route: 'contacts'},
     {name: 'Messaggi', route: 'requests'},
     {name: 'Preventivi', route: 'quotation'},
     {name: 'Aiuto', route: 'help'},
@@ -266,6 +267,7 @@ export class AccountComponent implements OnInit {
   public FacebookPromotion = globals.FacebookPromotion
   public GooglePromotion = globals.GooglePromotion
 
+  public Contacts = []
 
   constructor(private route: ActivatedRoute, private router: Router, private navigationService: NavigationService, private profileService: ProfileService, private authService: AuthService, private seoService: SeoService, private contactService: ContactService, private popupsService: PopupsService, private commonService: CommonService, private paymentService: PaymentService) {
     this.navigationService.updateMessage("Dashboard")
@@ -325,6 +327,7 @@ export class AccountComponent implements OnInit {
       }).catch((error) => {
       })
     }
+
   }
 
   ngOnInit() {
@@ -347,9 +350,18 @@ export class AccountComponent implements OnInit {
       else if (this.page==="profile") {
 
       }
+      else if (this.page==="contacts") {
+        this.commonService.getMethod('contacts').then((data) => {
+          this.Contacts = data.result
+          console.log(JSON.stringify(data))
+        }).catch((error) => {
+          console.log(JSON.stringify(error))
+        })
+      }
       else if (this.page==="inprogress_promotion") {
 
       }
+
       else if (this.page==="terminated_promotion") {
 
       }

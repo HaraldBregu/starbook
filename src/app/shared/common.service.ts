@@ -4,6 +4,7 @@ import { Http, Headers, URLSearchParams } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 
 // import { NavigationService } from '../shared/navigation.service';
+declare let $: any;
 
 @Injectable()
 export class CommonService {
@@ -29,7 +30,7 @@ export class CommonService {
       // console.log('port: ' + document.location.port);
     }
     this.api = this.protocol + "://" + this.hostname + "/" + this.api_version + "/"
-    // this.api = 'http://localhost/t0.9.1/'
+    this.api = 'http://localhost/t0.9.1/'
   }
 
   setObjectForKey(object, key) {
@@ -92,8 +93,8 @@ export class CommonService {
     }).catch(this.handleError)
   }
 
-
   // EMAIL SMS
+
   requireNewService(data) {
     return this.http.post(this.api + 'request_service', data).toPromise().then((services) => {
       return services.json();
@@ -200,6 +201,27 @@ export class CommonService {
   }
   private handleError(error: any): Promise<any> {
     return Promise.reject(error.message || error);
+  }
+
+  disableScroll() {
+    $('html').addClass('hide-scroll-y')
+    $('body').addClass('hide-scroll-y')
+  }
+  disableHtmlScroll() {
+    $('html').addClass('hide-scroll-y')
+  }
+  disableBodyScroll() {
+    $('body').addClass('hide-scroll-y')
+  }
+  enableScroll() {
+    $('html').removeClass('hide-scroll-y')
+    $('body').removeClass('hide-scroll-y')
+  }
+  enableHtmlScroll() {
+    $('html').removeClass('hide-scroll-y')
+  }
+  enableBodyScroll() {
+    $('body').removeClass('hide-scroll-y')
   }
 
   saveObjectToLocalWithName(object, name) {

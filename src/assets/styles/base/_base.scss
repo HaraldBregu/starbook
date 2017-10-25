@@ -52,7 +52,6 @@ p {
   outline: none !important;
 }
 .btn-default:active:focus {
-  // color: white !important;
   background-color: #e6e6e6;
 }
 .btn-default:hover {
@@ -668,8 +667,8 @@ $datepicker-hover-text-color: #ffffff;
   text-align: justify;
 }
 
-.disable-body-scroll {
-  overflow: hidden;
+.hide-scroll-y {
+  overflow-y: hidden;
 }
 @media (max-width: 480px) {
   .visibility-hidden {
@@ -829,12 +828,33 @@ input::-ms-clear {
     background: rgba(0, 0, 0, 0.75);
   }
   .popup {
+    position: relative;
     background: white;
     max-width: 520px;
     margin: 80px auto;
     overflow-x: hidden;
     overflow-y: scroll;
     box-shadow: 0 5px 15px rgba(0,0,0,.5);
+    .popup-loader {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: rgba(255, 255, 255, 0.7);
+      z-index: 2000;
+      .loader {
+        position: absolute;
+        font-size: 35px;
+        color: rgba(0, 0, 0, 0.7);
+        height: 1em;
+        width: 1em;
+        overflow: show;
+        margin: auto;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+      }
+    }
     .popup-content {
       background-color: #f5f5f5;
       .popup-nav {
@@ -848,7 +868,7 @@ input::-ms-clear {
         }
       }
       .popup-header {
-        padding: 20px;
+        padding: 10px 20px;
         .list-cards {
           img {
             width: 60px;
@@ -856,7 +876,13 @@ input::-ms-clear {
         }
       }
       .popup-body {
-        padding: 20px;
+        padding: 10px 20px;
+        .error-container {
+          margin-bottom: 10px;
+          .error {
+            color: #f75c4b;
+          }
+        }
         .input-group-addon {
           padding: 0 20px;
           font-size: 18px;

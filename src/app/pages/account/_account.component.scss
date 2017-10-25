@@ -6,7 +6,7 @@ app-account {
   min-height: 100vh;
   padding: 70px 0 0;
   -webkit-overflow-scrolling: touch;
-  background-color: #EDEFF3;
+  background-color: #f9f9f9;
   .top-bar-container {
     position: relative;
     width: 100%;
@@ -94,10 +94,13 @@ app-account {
       overflow: auto;
       .account-content {
         position: relative;
-        box-shadow: 0 1px 0px #E5E6E9, 0 -1px 0px #E5E6E9, 1px 0px 0px #DFE0E4, -1px 0px 0px #DFE0E4;
         background: white;
         border-radius: 3px;
         margin-bottom: 10px;
+        border: solid 1px #e0e0e0;
+        -webkit-box-shadow: 0 0 10px 0 rgba(50, 50, 50, 0.1);
+        -moz-box-shadow: 0 0 10px 0 rgba(50, 50, 50, 0.1);
+        box-shadow: 0 0 10px 0 rgba(50, 50, 50, 0.1);
         .account-header {
           text-align: left;
           padding: 40px;
@@ -713,10 +716,13 @@ app-account {
       }
       .quotation-content {
         position: relative;
-        box-shadow: 0 1px 0px #E5E6E9, 0 -1px 0px #E5E6E9, 1px 0px 0px #DFE0E4, -1px 0px 0px #DFE0E4;
         background: white;
         border-radius: 3px;
         margin-bottom: 10px;
+        border: solid 1px #e0e0e0;
+        -webkit-box-shadow: 0 0 10px 0 rgba(50, 50, 50, 0.1);
+        -moz-box-shadow: 0 0 10px 0 rgba(50, 50, 50, 0.1);
+        box-shadow: 0 0 10px 0 rgba(50, 50, 50, 0.1);
         .quotation-header {
           padding: 20px 30px;
           border-bottom: 1px solid #eceeef;
@@ -929,7 +935,7 @@ app-account {
     bottom: 0;
     left: 0;
     right: 0;
-    background-color: #EDEFF3;
+    background-color: #f9f9f9;
     .footer {
       max-width: 1100px;
       margin: auto;
@@ -967,10 +973,13 @@ app-account {
       overflow: auto;
       .promotion-content {
         position: relative;
-        box-shadow: 0 1px 0px #E5E6E9, 0 -1px 0px #E5E6E9, 1px 0px 0px #DFE0E4, -1px 0px 0px #DFE0E4;
         background: white;
         border-radius: 3px;
         margin-bottom: 10px;
+        border: solid 1px #e0e0e0;
+        -webkit-box-shadow: 0 0 10px 0 rgba(50, 50, 50, 0.1);
+        -moz-box-shadow: 0 0 10px 0 rgba(50, 50, 50, 0.1);
+        box-shadow: 0 0 10px 0 rgba(50, 50, 50, 0.1);
         .promotion-header {
           padding: 15px 20px;
           border-bottom: 1px solid #eceeef;

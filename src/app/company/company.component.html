@@ -1,12 +1,12 @@
 <div class="company-container" *ngIf="!page">
-  <div class="section-container grey-background">
+  <div class="section-container starbook-background">
     <div class="section">
       <div class="section-content">
         <div class="section-body">
           <div class="left-content">
             <h1>Soluzioni web per aziende e professionisti</h1>
             <h3>Crea una pagina professionale, pubblicizza online con pochi click, ricevi richieste da clienti e invia preventivi.</h3>
-            <button *ngIf="!Account" class="btn btn-primary" id="goToSignupPage" routerLink="/auth/signup">Iscrivi la tua azienda</button>
+            <button *ngIf="!Account" class="btn btn-warning" id="goToSignupPage" routerLink="/auth/signup">Iscrivi la tua azienda</button>
             <button *ngIf="Account" class="btn btn-success" id="goToAccountPage" routerLink="/account/profile">Vai al tuo account</button>
           </div>
           <div class="right-media">
@@ -246,15 +246,15 @@
 </div>
 
 <div class="company-container" *ngIf="page==='promotions'">
-  <div class="section-container">
+  <div class="section-container promotion-background">
     <div class="section">
       <div class="section-content">
         <div class="section-body">
           <div class="left-content">
             <h1>Promuovi la tua attività</h1>
             <h3>Raggiungi milioni di utenti pubblicizzando la tua attività online.</h3>
-            <button *ngIf="!Account" class="btn btn-primary" id="goToSignupPage" routerLink="/auth/signup">Iscrivi la tua azienda</button>
-            <button *ngIf="Account" class="btn btn-success" id="goToPromotionPage" routerLink="/account/inprogress_promotion">Promuovi</button>
+            <button *ngIf="!Account" class="btn btn-warning" id="goToSignupPage" routerLink="/auth/signup">Iscrivi la tua azienda</button>
+            <button *ngIf="Account" class="btn btn-primary" id="goToPromotionPage" routerLink="/account/inprogress_promotion">Promuovi</button>
           </div>
           <div class="right-media">
             <img src="../assets/images/cross_promotion_company.png" title="Preventivi Web" alt="Preventivi Web">

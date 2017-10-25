@@ -44,7 +44,7 @@ export class AppComponent implements OnInit, OnDestroy {
   public account_avatar_url = ''
   public popup = null
 
-  constructor (public router:Router, private route: ActivatedRoute, private authServics: AuthService, private navigationService: NavigationService, private popupsService: PopupsService, private commonService: CommonService, private seoService: SeoService) {
+  constructor (public router:Router, private route: ActivatedRoute, private authService: AuthService, private navigationService: NavigationService, private popupsService: PopupsService, private commonService: CommonService, private seoService: SeoService) {
     this.navbarState = false;
     this.hasNavigation = true;
     if (isBrowser) {
@@ -76,6 +76,7 @@ export class AppComponent implements OnInit, OnDestroy {
             var data = currentRoute.snapshot.data;
             var name = data['name'];
             this.page = name;
+            // console.log(this.page)
             if (this.page === "Landing") {
               this.hasCenterContainer = true;
               this.hasPublishService = true;
@@ -136,7 +137,7 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.auth = this.authServics.authInit();
+    this.auth = this.authService.authInit();
     this.account_avatar_url = "https://s3-eu-west-1.amazonaws.com/starbook-s3/accounts/" + this.auth._id + "/avatar/0"
     if (isBrowser) {
       this.screenWidth = document.querySelector('body').clientWidth;
