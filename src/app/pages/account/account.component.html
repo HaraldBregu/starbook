@@ -330,7 +330,7 @@
           <div class="input-group">
             <input type="text" class="form-control" id="link" placeholder="" [(ngModel)]="profile_link" #link disabled>
             <span class="input-group-btn">
-              <button type="button" id="next" class="btn btn-default" [clipboard]="link.value" (clipboardCopy)="copyLink($event)" (clipboardError)="copyError($event)"><span>Copia</span></button>
+              <!-- <button type="button" id="next" class="btn btn-default" [clipboard]="link.value" (clipboardCopy)="copyLink($event)" (clipboardError)="copyError($event)"><span>Copia</span></button> -->
             </span>
           </div>
           <li><button type="button" id="facebook" class="btn btn-facebook" (click)="shareOnFacebook()"><i class="fa fa-facebook"></i><span>Facebook</span></button></li>
@@ -711,13 +711,63 @@
   <div class="account">
     <div class="account-content" *ngFor="let contact of Contacts">
       <div class="account-header">
-        <p>{{contact.post.title}}</p>
-        <p>{{contact.created_at}}</p>
-        <p>{{contact._id}}</p>
-        <p>{{contact.post.customer.firstname}}</p>
-        <p>{{contact.post.customer.lastname}}</p>
-        <p>{{contact.post.customer.email}}</p>
-        <p>{{contact.post.customer.phone_number}}</p>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="contact-informations">
+              <span class="label">TITOLO: </span><span class="content">{{contact.post.title}}</span>
+            </div>
+          </div>
+          <div class="col-md-12">
+            <div class="contact-informations">
+              <span class="label label_mobile">DESCRIZIONE: </span><span class="content content_mobile">{{contact.post.description}}</span>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="col-md-12">
+                <div class="contact-informations">
+                  <span class="label">COGNOME: </span><span class="content">{{contact.post.customer.lastname}}</span>
+                </div>
+              </div>
+              <div class="col-md-12">
+                <div class="contact-informations">
+                  <span class="label">NOME: </span><span class="content">{{contact.post.customer.firstname}}</span>
+                </div>
+              </div>
+              <div class="col-md-12">
+                <div class="contact-informations">
+                  <span class="label">EMAIL: </span><span class="content">{{contact.post.customer.email}}</span>
+                </div>
+              </div>
+              <div class="col-md-12">
+                <div class="contact-informations">
+                  <span class="label">TELEFONO: </span><span class="content">{{contact.post.customer.phone_number}}</span>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="col-md-12">
+                <div class="contact-informations">
+                  <span class="label">COMUNE: </span><span class="content">{{contact.post.address.city}}</span>
+                </div>
+              </div>
+              <div class="col-md-12">
+                <div class="contact-informations">
+                  <span class="label">INDIRIZZO: </span><span class="content">{{contact.post.address.street}}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-12">
+            <div class="actions">
+              <a *ngIf="getPhoneNumber(contact.post)" role="button" href="tel:{{getPhoneNumber(contact.post)}}" target="_blank" name="button" class="btn btn-phone"><i class="fa fa-phone" aria-hidden="true"></i><b>Chiama</b></a>
+              <a *ngIf="getEmailAddress(contact.post)" role="button" href="mailto:{{getEmailAddress(contact.post)}}" target="_blank" name="button" class="btn btn-email"><i class="fa fa-envelope" aria-hidden="true"></i><b>Email</b></a>
+              <a *ngIf="getGoogleMapsLink(contact.post)" role="button" name="button" class="btn btn-map" href="{{getGoogleMapsLink(contact.post)}}" target="_blank"><i class="fa fa-location-arrow" aria-hidden="true"></i><b>Vai</b></a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="account-footer">
       </div>
     </div>
   </div>

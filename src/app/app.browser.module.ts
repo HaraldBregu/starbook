@@ -65,7 +65,7 @@ import { BlogComponent } from './pages/blog/blog.component';
 import { PostComponent } from './pages/blog/post/post.component';
 import { HomeComponent } from './pages/home/home.component';
 
-import { ClipboardDirective } from './directives/clipboard.directive';
+// import { ClipboardDirective } from './directives/clipboard.directive';
 
 import { FormatterDirective } from './directives/formatter.directive';
 import { CurrencyPipe } from './pipes/currency.pipe';
@@ -120,7 +120,7 @@ let declarations = [
   HomeComponent,
   NotfoundComponent,
   TestsComponent,
-  ClipboardDirective,
+  // ClipboardDirective,
   FormatterDirective,
   CurrencyPipe,
   PhonePipe,

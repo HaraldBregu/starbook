@@ -17,6 +17,7 @@ import * as globals from '../../globals';
 // import 'rxjs/add/operator/map';
 
 import { Observable, Subscription } from 'rxjs/Rx';
+import { FacebookService, InitParams, LoginResponse, LoginOptions, UIResponse, UIParams, FBVideoComponent } from 'ngx-facebook';
 
 @Component({
   selector: 'app-home',
@@ -24,12 +25,15 @@ import { Observable, Subscription } from 'rxjs/Rx';
 })
 
 export class HomeComponent implements OnInit {
+  public SeoData = {}
   public id = null
+  public params = null
   public CurrentAccount = null
   public popup = null
-  public posts = []
+  public posts = null
   public post = null
   public selected_post = null
+  public purchased_post = null
   public emailPattern;
 
   public AuthField = {
@@ -78,77 +82,39 @@ export class HomeComponent implements OnInit {
     seconds: 0
   }
 
-  constructor(private route: ActivatedRoute, private router: Router, private navigationService: NavigationService, public commonService: CommonService, private authService: AuthService, private paymentService: PaymentService) {
-    this.navigationService.updateMessage("Richieste per Idraulici")
+  public TestimonialAccounts = null
+
+  constructor(private route: ActivatedRoute, private router: Router, private navigationService: NavigationService, private seoService: SeoService, public commonService: CommonService, private authService: AuthService, private paymentService: PaymentService, private fb: FacebookService) {
+    this.navigationService.updateMessage("Bacheca del lavoro")
     this.emailPattern = /^[a-z0-9!#$%&'*+\/=?^_`{|}~.-]+@[a-z0-9]([a-z0-9-]*[a-z0-9])?(\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)*$/i;
-    if (isBrowser) { window.scrollTo(0, 0) }
-    // this.data = new Observable(observer => {
-    //   setTimeout(() => {
-    //     observer.next("Run after 1 second");
-    //   },1000);
-    //   // setInterval(() => {
-    //   //   observer.next(new Date())
-    //   // }, 1000);
-    //
-    //   // setTimeout(() => {
-    //   //   observer.next(22);
-    //   // },2000);
-    //   // setTimeout(() => {
-    //   //   observer.complete();
-    //   // },9000);
-    // });
-    // //
-    // let subscriber = this.data.subscribe(
-    //   value => console.log(value),
-    //   err => console.log(err),
-    //   () => console.log('done')
-    // );
+    if (isBrowser) {
+      window.scrollTo(0, 0)
+      if (document.location.hostname === "www.starbook.co") {
+        fb.init({appId: '1108461325907277', version: 'v2.7'})
+      } else if (document.location.hostname === "glacial-shore-66987.herokuapp.com" || document.location.hostname === "localhost") {
+        fb.init({appId: '1251898728230202', version: 'v2.7'})
+      }
+    }
+    this.route.params.subscribe(params => { this.params = params })
 
-    // Observable.interval(1000).switchMap(() =>
-    // console.log("mpa")
-    // ).map((data) =>
-    // data.json())
-    // .subscribe((data) => {
-    //        console.log(data);// see console you get output every 5 sec
-    //     });
-    // Observable.interval(1000).take(7).subscribe(x => {
-    //   console.log("mpa")
-    // });
-    // let obs = Observable.interval(1000).take(7);
-    // let firstsub = obs.subscribe(x => console.log('first sub: ' + x));
+    this.SeoData['title'] = "Bacheca del lavoro | Richieste giornaliere"
+    this.SeoData['description'] = "Trova una richiesta di lavoro in base alle tue competenze. Guarda i dati del contatto, invia un preventivo e lavora."
+    this.SeoData['url'] = 'https://www.starbook.co' + this.router.url
+    this.SeoData['image_url'] = "https://s3-eu-west-1.amazonaws.com/starbook-s3/website/view-request-customer.png"
+    this.seoService.setTitle(this.SeoData['title'])
+    this.seoService.setMetaElem('description', this.SeoData['description'])
+    this.seoService.setOgElem('twitter:card', "summary_large_image")
+    this.seoService.setOgElem('twitter:title', this.SeoData['title'])
+    this.seoService.setOgElem('twitter:site', "@starbookco")
+    this.seoService.setOgElem('twitter:creator', "@HaraldBregu")
+    this.seoService.setOgElem('twitter:description', this.SeoData['description'])
+    this.seoService.setOgElem('twitter:image', this.SeoData['image_url'])
+    this.seoService.setOgElem('og:title', this.SeoData['title'])
+    this.seoService.setOgElem('og:description', this.SeoData['description'])
+    this.seoService.setOgElem('og:url', this.SeoData['url'])
+    this.seoService.setOgElem('og:image', this.SeoData['image_url'])
+    this.seoService.setOgElem('og:image:secure_url', this.SeoData['image_url'])
 
-    // var source = Observable.interval(1000)
-    // source.subscribe(x => {
-    //   console.log(x)
-    // });
-
-    // setTimeout(() => {
-    //   console.log('first sub: ')
-    //   // let secondsub = obs.subscribe(x => console.log('second sub: ' + x));
-    // }, 3000)
-
-    // let newobs = Observable.interval(1000).take(5).map(x => Observable.timer(500).map(() => x));
-    //
-    // let newsub = newobs.subscribe(x => console.log(x));
-    // Observable.interval(1000).take(5).map(x => console.log('other'));
-
-    // Observable.interval(500).flatMap(() => {
-    //   console.log('other')
-    // });
-
-    // to be called when the route changes
-    // subscription.unsubscribe();
-
-    // var subscription = Observable.interval(5000).subscribe(res => {
-    //   console.log(res)
-    // })
-
-    // let subscription = Observable.interval(1000).startWith(0).map((x) => {
-    //     // let date1= Math.floor(new Date().getTime()/1000);
-    //     //     this.diff = date2 - date1;
-    //     }).subscribe((x) => {
-    //       console.log(x)
-    // });
   }
 
   ngOnInit() {
@@ -158,59 +124,35 @@ export class HomeComponent implements OnInit {
       })
     }
 
-    this.commonService.getMethod('posts').then((data) => {
-      this.posts = data.result
-    }).catch((error) => {})
-    this.route.params.subscribe(params => {
-      this.id = params['id']
-      if (this.id) {
-        this.router.navigate(['/post'])
-      }
-      // this.commonService.getMethod('posts/' + this.id).then((data) => {
-      //   this.post = data.result
-      //   console.log(JSON.stringify(data))
-      // }).catch((error) => {
-      //   console.log(JSON.stringify(error))
-      //   this.router.navigate(['/post'])
-      // })
+    this.commonService.getMethod('accounts').then((data) => {
+      // console.log(JSON.stringify(data))
+      this.TestimonialAccounts = data.result
+    }).catch((error) => {
+      this.TestimonialAccounts = null
+      // console.log(JSON.stringify(error))
     })
 
-    if (isBrowser) {
-      // var countDownDate = new Date("Jan 5, 2018 15:37:25").getTime();
-      // setInterval(function() {
-      //
-      //   // Get todays date and time
-      //   var now = new Date().getTime();
-      //
-      //   // Find the distance between now an the count down date
-      //   var distance = countDownDate - now;
-      //
-      //   // Time calculations for days, hours, minutes and seconds
-      //   // var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-      //   var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      //   var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-      //   var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-      //
-      //   this.countDownDate.hours = hours
-      //   this.countDownDate.minutes = minutes
-      //   this.countDownDate.seconds = seconds
-      //   // Display the result in the element with id="demo"
-      //   // document.getElementById("demo").innerHTML = days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
-      //
-      //   // console.log("Hours: " + hours + " minutes: " + minutes + " seconds: " + seconds)
-      //
-      //   // If the count down is finished, write some text
-      //   // if (distance < 0) {
-      //   //   clearInterval(x);
-      //   //   document.getElementById("demo").innerHTML = "EXPIRED";
-      //   // }
-      // }, 1000);
+    if (this.params['id']) {
+      this.commonService.getMethod('posts/' + this.params['id']).then((data) => {
+        // this.post = data.result
+        this.posts = [data.result]
+        this.navigationService.updateMessage(data.result.title)
+        // console.log(JSON.stringify(data))
+      }).catch((error) => {
+        // console.log(JSON.stringify(error))
+        this.router.navigate(['/post'])
+      })
+    } else {
+      // this.navigationService.updateMessage("Tutte le richieste")
+      this.commonService.getMethod('posts').then((data) => {
+        this.posts = data.result
+        // console.log(JSON.stringify(data))
+      }).catch((error) => {
+        // console.log(JSON.stringify(error))
+      })
     }
   }
 
-  checkPostLocation(post) {
-    return post.address.city + " (" + post.address.province + ")"
-  }
   checkCustomerFirstname(post) {
     return post.customer.firstname
   }
@@ -223,24 +165,31 @@ export class HomeComponent implements OnInit {
   checkPostDescription(post) {
     return post.description
   }
+  checkCustomerEmailAddress(post) {
+    return post.customer.email
+  }
+  checkCustomerPhoneNumber(post) {
+    return post.customer.phone_number
+  }
+  checkPostLocation(post) {
+    if (post.address.province) {
+      return post.address.city + " (" +  post.address.province + ")"
+    }
+    return post.address.city
+  }
+  checkAddressStreet(post) {
+    return post.address.street
+  }
   updateCountDownDate() {
-    // var fromDate = new Date("Jan 5, 2018 15:37:25").getTime();
     var now = new Date().getTime();
-
     var fromDate = new Date();
     fromDate.setHours(24,0,0,0);
     var toDate = fromDate.getTime();
-
-    // Find the distance between now an the count down date
     var distance = toDate - now;
-
-    // Time calculations for days, hours, minutes and seconds
     // var days = Math.floor(distance / (1000 * 60 * 60 * 24));
     var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))
     var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60))
     var seconds = Math.floor((distance % (1000 * 60)) / 1000)
-    // console.log("Hours: " + hours + " minutes: " + minutes + " seconds: " + seconds)
-
     this.CountDownDate.hours = hours
     this.CountDownDate.minutes = minutes
     this.CountDownDate.seconds = seconds
@@ -283,7 +232,7 @@ export class HomeComponent implements OnInit {
       this.AuthState.error = null
       this.CurrentAccount = data
       this.AuthState.loading = false
-      this.popup = "PREVIEW_PURCHASE_CONTACT_POPUP"
+      this.checkPurchasePost(this.selected_post)
     }).catch((error) => {
       this.AuthState.loading = false
       if (error===404) {
@@ -311,7 +260,7 @@ export class HomeComponent implements OnInit {
       this.navigationService.updatePersonalMenu(data)
       this.AuthState.error = null
       this.AuthState.loading = false
-      this.popup = "PREVIEW_PURCHASE_CONTACT_POPUP"
+      this.checkPurchasePost(this.selected_post)
     }).catch((error) => {
       this.AuthState.loading = false
       switch (error) {
@@ -329,35 +278,68 @@ export class HomeComponent implements OnInit {
       }
     })
   }
+  continueWithFacebook() {
+    if (this.AuthState.loading) {return}
+    this.AuthState.error = null
+    this.AuthState.loading = true
+    this.fb.logout()
+    this.fb.login().then((res: LoginResponse) => {
+      let fb_token = res.authResponse.accessToken
+      this.authService.facebookLogin(fb_token).then((data) => {
+        this.navigationService.updatePersonalMenu(data)
+        this.AuthState.error = null
+        this.CurrentAccount = data
+        this.AuthState.loading = false
+        this.checkPurchasePost(this.selected_post)
+      }).catch((error) => {
+        this.AuthState.loading = false
+      })
+    }).catch((error) => {
+      this.AuthState.loading = false
+    })
+  }
 
   previewPurchase(post) {
     this.selected_post = post
     if (!this.authService.currentAccount()) {
-      this.popup = "LOGIN_POPUP"
+      this.popup = "SIGNUP_POPUP"
       this.commonService.disableScroll()
       return
     }
+    this.checkPurchasePost(post)
+  }
+  checkPurchasePost(post) {
     this.popup = "PREVIEW_PURCHASE_CONTACT_POPUP"
+    this.PurchaseState.loading = true
+    this.PurchaseState.error = null
+    this.purchased_post = null
+    this.commonService.getMethod('contacts?' + "post_id=" + post['_id'] ).then((data) => {
+      this.PurchaseState.loading = false
+      // console.log(JSON.stringify(data))
+      if (data.result.length===0) {
+
+      } else {
+        this.purchased_post = data.result[0]['post']
+        this.popup = "PURCHASED_CONTACT_POPUP"
+      }
+    }).catch((error) => {
+      this.PurchaseState.loading = false
+    })
   }
   purchase(post) {
     if (this.PurchaseState.loading) {return}
     this.PurchaseState.loading = true
     this.PurchaseState.error = null
-
-    console.log(post)
-    console.log("post id:" + post._id)
-
+    this.purchased_post = null
     this.commonService.postMethod('posts/' + post._id + '/contacts', {}).then((data) => {
-      console.log(JSON.stringify(data))
-      this.popup = "PURCHASED_CONTACT_POPUP"
+      // this.purchased_post = post
+      // this.popup = "PURCHASED_CONTACT_POPUP"
       this.PurchaseState.loading = false
       this.PurchaseState.error = null
-      // this.router.navigate(['/account/contacts'])
+      this.checkPurchasePost(post)
     }).catch((error) => {
-      console.log(JSON.stringify(error))
       this.PurchaseState.loading = false
       this.PurchaseState.error = null
-
       if (error.status===400) {
         this.popup = "NEW_CARD_POPUP"
       }
@@ -389,9 +371,6 @@ export class HomeComponent implements OnInit {
     else if (this.Card && !this.paymentService.cardNumberValidate(this.Card.number)) {
       this.CardState.error = "Il numero della carta non è corretto."
     }
-
-    console.log(this.Card)
-
     if (this.Card.exp_date && this.Card.exp_date.length === 5) {
       let exp_parts = this.Card.exp_date.split('/');
       if (exp_parts[0] !== this.Card.exp_date) {
@@ -493,50 +472,58 @@ export class HomeComponent implements OnInit {
     this.Card.exp_date = result
     return result;
   }
-
+  imageForAccount(account) {
+    if (isBrowser) {
+      var logo = new Image()
+      logo.src = 'https://s3-eu-west-1.amazonaws.com/starbook-s3/accounts/' + account._id + '/avatar/1'
+      if (logo.width>0) {
+        return logo.src
+      } else {
+        logo.src = 'https://s3-eu-west-1.amazonaws.com/starbook-s3/accounts/' + account._id + '/avatar/0'
+        if (logo.width>0) {
+          return logo.src
+        } else {
+          return '../assets/images/no_logo_black.png'
+        }
+      }
+    }
+  }
+  checkCompanyName(account) {
+    if (account.business && account.business.name) {
+      return account.business.name
+    } else {
+      if (account.profile.fullname) {
+        return account.profile.fullname
+      } else {
+        return account.profile.firstname
+      }
+    }
+  }
   getGoogleMapsLink(post) {
-    return true
-
-    // if (account['address']['city']) {
-    //   return "https://maps.google.com/?q=" + account['address']['city'] + ", " + account['address']['street']
-    // } else {
-    //   return ""
-    // }
+    if (post['address']['city']) {
+      return "https://maps.google.com/?q=" + post['address']['city'] + ", " + post['address']['street']
+    } else {
+      return ""
+    }
   }
   getPhoneNumber(post) {
-    return true
-
-    // if (this.Account) {
-    //   if (this.Account['phone_number'] && this.Account['phone_number']!==null) {
-    //     return this.Account['phone_number']
-    //   }
-    //   else if (this.Account['business'] && this.Account['business']!==null) {
-    //     if (this.Account['business']['phone_number'] && this.Account['business']['phone_number']!==null) {
-    //       return this.Account['business']['phone_number']
-    //     }
-    //   }
-    //   else {
-    //     return ""
-    //   }
-    // }
+    if (post) {
+      if (post.customer['phone_number'] && post.customer['phone_number']!==null) {
+        return post.customer['phone_number']
+      }
+      else {
+        return ""
+      }
+    }
   }
   getEmailAddress(post) {
-    return true
-    // if (this.Account) {
-    //   if (this.Account['business'] && this.Account['business']!==null) {
-    //     if (this.Account['business']['email'] && this.Account['business']['email']!==null) {
-    //       return this.Account['business']['email']
-    //     }
-    //     else if (this.Account['email'] && this.Account['email']!==null) {
-    //       return this.Account['email']
-    //     }
-    //   }
-    //   else if (this.Account['email'] && this.Account['email']!==null) {
-    //     return this.Account['email']
-    //   }
-    //   else {
-    //     return ""
-    //   }
-    // }
+    if (post) {
+      if (post.customer['email'] && post.customer['email']!==null) {
+        return post.customer['email']
+      }
+      else {
+        return ""
+      }
+    }
   }
 }

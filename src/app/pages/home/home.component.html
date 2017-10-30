@@ -1,70 +1,149 @@
-<div class="home-container" *ngIf="!id">
+<div class="home-container">
   <div class="home">
     <div class="home-content">
+      <div class="home-header" *ngIf="posts && posts.length>0">
+        <h1 class="title">Richieste giornaliere</h1>
+        <div class="row">
+          <div class="col-md-3">
+            <i class="fa fa-circle" aria-hidden="true"></i><span>Trova una richiesta</span>
+          </div>
+          <div class="col-md-3">
+            <i class="fa fa-circle" aria-hidden="true"></i><span>Acquista il contatto</span>
+          </div>
+          <div class="col-md-3">
+            <i class="fa fa-circle" aria-hidden="true"></i><span>Invia preventivi</span>
+          </div>
+          <div class="col-md-3">
+            <i class="fa fa-circle" aria-hidden="true"></i><span>Lavora direttamente</span>
+          </div>
+        </div>
+        <p class="description">
+          Trova una richiesta di lavoro in base alle tue competenze. Guarda i dati del contatto, invia un preventivo e lavora.
+        </p>
+      </div>
       <div class="home-body">
-        <div class="post" *ngFor="let post of posts">
+        <div class="post" *ngIf="posts && posts.length===0">
           <div class="post-content">
             <div class="post-header">
-              <i class="fa fa-briefcase left-icon" aria-hidden="true"></i>
-              <h1 class="post-title">{{post.title}}</h1>
-              <span class="post-location">a {{checkPostLocation(post)}}</span>
+              <h3 class="title">Al momento non ci sono lavori pubblicati su Starbook!</h3>
             </div>
+          </div>
+        </div>
+        <div class="post" *ngIf="!posts">
+          <div class="loader">
+            <i class="fa fa-circle-o-notch animate"></i>
+          </div>
+        </div>
+        <div class="post" *ngFor="let post of posts">
+          <div class="post-content">
+            <!-- <div class="post-header">
+              <span>RICHIESTA DI LAVORO</span>
+            </div> -->
             <div class="post-body">
-              <div class="post-informations">
-                <span class="label">TITOLO: </span><span class="content">{{post.title}}</span>
+              <div class="post-initial">
+                <i class="fa fa-briefcase left-icon" aria-hidden="true"></i>
+                <h1 class="post-title">{{post.title}}</h1>
+                <span class="post-location">a {{checkPostLocation(post)}}</span>
               </div>
-              <div class="post-informations">
-                <span class="label">DETTAGLI: </span><span class="content">{{post.description}}</span>
-              </div>
-              <div class="post-informations">
-                <span class="label">DESCRIZIONE: </span><span class="content">{{post.description}}</span>
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="post-informations">
+                    <span class="label label_mobile">DESCRIZIONE:</span><span class="content content_mobile">{{post.description}}</span>
+                  </div>
+                </div>
+                <div class="col-md-12">
+                  <div class="post-informations">
+                    <span class="label">LAVORO:</span><span class="content">{{post.title}}</span>
+                  </div>
+                </div>
+                <div class="col-md-12">
+                  <div class="post-informations">
+                    <span class="label label_mobile">DETTAGLI:</span>
+                    <span class="content content_mobile" *ngFor="let detail of post.details">{{detail}}</span>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="post-informations">
+                    <span class="label">COMUNE:</span><span class="content">{{checkPostLocation(post)}}</span>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="post-informations">
+                    <span class="label">INDIRIZZO:</span><span class="content">{{checkAddressStreet(post)}}</span>
+                  </div>
+                </div>
               </div>
               <div class="divider"></div>
               <div class="row">
                 <div class="col-md-4">
                   <div class="post-customer">
+                    <span class="title">DATI DEL CLIENTE:</span>
                     <div class="info">
-                      <span class="label">COGNOME: </span><span class="content">{{checkCustomerLastname(post)}}</span>
+                      <span class="label">COGNOME:</span><span class="content">{{checkCustomerLastname(post)}}</span>
                     </div>
                     <div class="info">
-                      <span class="label">NOME: </span><span class="content">{{checkCustomerFirstname(post)}}</span>
+                      <span class="label">NOME:</span><span class="content">{{checkCustomerFirstname(post)}}</span>
                     </div>
                     <div class="info">
-                      <span class="label">EMAIL: </span><span class="content">h******@gmail.com</span>
+                      <span class="label">EMAIL:</span><span class="content">{{checkCustomerEmailAddress(post)}}</span>
                     </div>
                     <div class="info">
-                      <span class="label">TELEFONO: </span><span class="content">345******09</span>
-                    </div>
-                    <div class="info">
-                      <span class="label">COMUNE: </span><span class="content">Busto Arsizio (Varese)</span>
-                    </div>
-                    <div class="info">
-                      <span class="label">INDIRIZZO: </span><span class="content">Via ****** **</span>
+                      <span class="label">TELEFONO:</span><span class="content">{{checkCustomerPhoneNumber(post)}}</span>
                     </div>
                   </div>
                 </div>
                 <div class="col-md-4">
                   <div class="post-timer">
-                    <span class="title">CHIUSURA RICHIESTA TRA:</span>
+                    <span class="title">RICHIESTA TERMINA TRA:</span>
                     <div class="timer">
-                      <span class="hours">{{getCountDownHours(post)}}</span><span class="dots">:</span><span class="minutes">{{getCountDownMinutes(post)}}</span><span class="dots">:</span><span class="seconds">{{getCountDownSeconds(post)}}</span>
+                      <span><span class="hours">{{getCountDownHours(post)}}</span><span class="dots">:</span><p>ore</p></span>
+                      <span><span class="minutes">{{getCountDownMinutes(post)}}</span><span class="dots">:</span><p>min</p></span>
+                      <span><span class="seconds">{{getCountDownSeconds(post)}}</span><p>sec</p></span>
                     </div>
                   </div>
                 </div>
                 <div class="col-md-4">
                   <div class="post-actions">
-                    <span class="title">ACQUISTA CONTATTO</span>
-                    <div class="action" (click)="previewPurchase(post); commonService.disableScroll()"><span class="title">ACQUISTA</span><span class="price">1€</span></div>
-                    <!-- <button type="button" class="btn" name="button" (click)="previewPurchase(post); commonService.disableScroll()">ACQUISTA<span>1€</span></button> -->
-                    <span class="bottom-message">iva inclusa</span>
+                    <span class="title">VISUALIZZA IL CONTATTO</span>
+                    <button class="btn action" (click)="previewPurchase(post); commonService.disableScroll()"><span class="title">GUARDA</span><span class="price">1€</span></button>
+                    <span class="bottom-message">guarda l'anteprima del contatto</span>
                   </div>
                 </div>
               </div>
             </div>
             <div class="post-footer">
               <div class="post-message">
-                <span>Dopo aver acquistato la richiesta, riceverai via e-mail i dati completi di questo utente.</span>
+                <span>Dopo aver visualizzato il contatto del cliente, potrai contattarlo direttamente tramite telefono o email.</span>
               </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="home-footer">
+        <div class="footer">
+          <div class="row">
+            <div class="col-md-12" *ngIf="TestimonialAccounts && TestimonialAccounts.length>0">
+              <span class="testimonial-title">PROFESSIONISTI SU STARBOOK</span>
+              <div class="pagelist-container">
+                <div class="page-container" *ngFor="let account of TestimonialAccounts">
+                  <div class="page">
+                    <img class="image" [src]="imageForAccount(account)">
+                    <span class="pro-name">{{checkCompanyName(account)}}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-12">
+              <p>
+                © 2017 • Starbook Tutti i diritti riservati
+                <a routerLink="/info/legal" target="_blank">Termini e Condizioni</a>
+                <span> • </span>
+                <a routerLink="/info/legal" target="_blank">Privacy Policy</a>
+                <span> • </span>
+                <a routerLink="/info/help" target="_blank">Aiuto e Assistenza</a>
+                <span> • </span>
+                <a routerLink="/company" target="_blank">Per le aziende</a>
+              </p>
             </div>
           </div>
         </div>
@@ -90,29 +169,40 @@
         <div class="row">
           <div class="col-md-12">
             <div class="info">
-              <span class="label label_mobile">DETTAGLI: </span><span class="content content_mobile">{{selected_post.description}}</span>
+              <span class="label label_mobile">LAVORO:</span><span class="content content_mobile">{{selected_post.title}}</span>
+            </div>
+          </div>
+          <div class="col-md-12">
+            <div class="info">
+              <span class="label label_mobile">DESCRIZIONE: </span><span class="content content_mobile">{{selected_post.description}}</span>
+            </div>
+          </div>
+          <div class="col-md-12">
+            <div class="info">
+              <span class="label label_mobile">DETTAGLI:</span>
+              <span class="content content_mobile" *ngFor="let detail of selected_post.details">{{detail}}</span>
             </div>
           </div>
           <div class="col-md-6">
             <div class="info">
-              <span class="label">COGNOME: </span><span class="content">Bregu</span>
+              <span class="label">COGNOME: </span><span class="content">{{checkCustomerLastname(selected_post)}}</span>
             </div>
             <div class="info">
-              <span class="label">NOME: </span><span class="content">Harald</span>
+              <span class="label">NOME: </span><span class="content">{{checkCustomerFirstname(selected_post)}}</span>
             </div>
             <div class="info">
-              <span class="label">EMAIL: </span><span class="content">h********@gmail.com</span>
+              <span class="label">EMAIL: </span><span class="content">{{checkCustomerEmailAddress(selected_post)}}</span>
             </div>
             <div class="info">
-              <span class="label">TELEFONO: </span><span class="content">324*****09</span>
+              <span class="label">TELEFONO: </span><span class="content">{{checkCustomerPhoneNumber(selected_post)}}</span>
             </div>
           </div>
           <div class="col-md-6">
             <div class="info">
-              <span class="label">COMUNE: </span><span class="content">Busto Arsizio (Varese)</span>
+              <span class="label">COMUNE: </span><span class="content">{{checkPostLocation(selected_post)}}</span>
             </div>
             <div class="info">
-              <span class="label">INDIRIZZO: </span><span class="content">Via ****** **</span>
+              <span class="label">INDIRIZZO: </span><span class="content">{{checkAddressStreet(selected_post)}}</span>
             </div>
           </div>
         </div>
@@ -123,8 +213,8 @@
         </div>
         <div class="row">
           <div class="col-md-6">
-            <p class="description-purchase">ACQUISTA PER PRIMO QUESTA RICHIESTA</p>
-            <p class="description-small"><i>Questo è un esempio di richieste</i></p>
+            <p class="description-purchase">ANTEPRIMA DEI DATI CHE RICEVERAI</p>
+            <p class="description-small"><i>Procedi al acquisto e scoprili.</i></p>
           </div>
           <div class="col-md-6">
             <div class="post-timer">
@@ -148,7 +238,7 @@
     </div>
   </div>
 </div>
-<div class="popup-container" *ngIf="selected_post" [ngStyle]="{'display' : popup==='PURCHASED_CONTACT_POPUP' ? 'block' : 'none'}">
+<div class="popup-container" *ngIf="purchased_post" [ngStyle]="{'display' : popup==='PURCHASED_CONTACT_POPUP' ? 'block' : 'none'}">
   <div class="popup-shadow" [ngStyle]="{'display' : popup ? 'block' : 'none'}" (click)="popup=null; commonService.enableScroll()"></div>
   <div class="popup contact">
     <div class="popup-loader" *ngIf="PurchaseState.loading">
@@ -159,35 +249,46 @@
         <button type="button" class="close" (click)="popup=null; commonService.enableScroll()">&times;</button>Contatto acquistato
       </div>
       <div class="popup-header">
-        <h3 class="post-title">{{selected_post.title}}</h3>
+        <h3 class="post-title">{{purchased_post.title}}</h3>
       </div>
       <div class="popup-body">
         <div class="row">
           <div class="col-md-12">
             <div class="info">
-              <span class="label">DETTAGLI: </span><span class="content">{{selected_post.description}}</span>
+              <span class="label label_mobile">LAVORO:</span><span class="content content_mobile">{{purchased_post.title}}</span>
+            </div>
+          </div>
+          <div class="col-md-12">
+            <div class="info">
+              <span class="label label_mobile">DESCRIZIONE: </span><span class="content content_mobile">{{purchased_post.description}}</span>
+            </div>
+          </div>
+          <div class="col-md-12">
+            <div class="info">
+              <span class="label label_mobile">DETTAGLI:</span>
+              <span class="content content_mobile" *ngFor="let detail of purchased_post.details">{{detail}}</span>
             </div>
           </div>
           <div class="col-md-6">
             <div class="info">
-              <span class="label">COGNOME: </span><span class="content">Bregu</span>
+              <span class="label">COGNOME: </span><span class="content">{{checkCustomerLastname(purchased_post)}}</span>
             </div>
             <div class="info">
-              <span class="label">NOME: </span><span class="content">Harald</span>
+              <span class="label">NOME: </span><span class="content">{{checkCustomerFirstname(purchased_post)}}</span>
             </div>
             <div class="info">
-              <span class="label">EMAIL: </span><span class="content">harald.bregu@gmail.com</span>
+              <span class="label">EMAIL: </span><span class="content">{{checkCustomerEmailAddress(purchased_post)}}</span>
             </div>
             <div class="info">
-              <span class="label">TELEFONO: </span><span class="content">3243456709</span>
+              <span class="label">TELEFONO: </span><span class="content">{{checkCustomerPhoneNumber(purchased_post)}}</span>
             </div>
           </div>
           <div class="col-md-6">
             <div class="info">
-              <span class="label">COMUNE: </span><span class="content">Busto Arsizio (Varese)</span>
+              <span class="label">COMUNE: </span><span class="content">{{checkPostLocation(purchased_post)}}</span>
             </div>
             <div class="info">
-              <span class="label">INDIRIZZO: </span><span class="content">Via Pirandello 44</span>
+              <span class="label">INDIRIZZO: </span><span class="content">{{checkAddressStreet(purchased_post)}}</span>
             </div>
           </div>
         </div>
@@ -197,57 +298,11 @@
           <span class="error">{{PurchaseState.error}}</span>
         </div>
         <div class="actions">
-          <a *ngIf="getGoogleMapsLink(selected_post)" role="button" name="button" class="btn btn-map" href="{{getGoogleMapsLink(selected_post)}}" target="_blank"><i class="fa fa-location-arrow" aria-hidden="true"></i> <b>Vai</b></a>
-          <a *ngIf="getPhoneNumber(selected_post)" role="button" href="tel:{{getPhoneNumber(selected_post)}}" target="_blank" type="button" name="button" class="btn btn-phone"><i class="fa fa-phone" aria-hidden="true"></i> <b>Telefono</b></a>
-          <a *ngIf="getEmailAddress(selected_post)" role="button"href="mailto:{{getEmailAddress(selected_post)}}" target="_blank" type="button" name="button" class="btn btn-email"><i class="fa fa-envelope" aria-hidden="true"></i> <b>Email</b></a>
-          <a *ngIf="getEmailAddress(selected_post)" role="button" href="mailto:{{getEmailAddress(selected_post)}}" target="_blank" type="button" name="button" class="btn btn-email"><i class="fa fa-list" aria-hidden="true"></i></a>
+          <a *ngIf="getPhoneNumber(purchased_post)" role="button" href="tel:{{getPhoneNumber(purchased_post)}}" target="_blank" name="button" class="btn btn-phone"><i class="fa fa-phone" aria-hidden="true"></i><b>Chiama</b></a>
+          <a *ngIf="getEmailAddress(purchased_post)" role="button" href="mailto:{{getEmailAddress(purchased_post)}}" target="_blank" name="button" class="btn btn-email"><i class="fa fa-envelope" aria-hidden="true"></i><b>Email</b></a>
+          <a *ngIf="getGoogleMapsLink(purchased_post)" role="button" name="button" class="btn btn-map" href="{{getGoogleMapsLink(purchased_post)}}" target="_blank"><i class="fa fa-location-arrow" aria-hidden="true"></i><b>Vai</b></a>
+          <a *ngIf="getEmailAddress(purchased_post)" role="button" routerLink="/account/contacts" target="_blank" name="button" class="btn btn-list"><i class="fa fa-list" aria-hidden="true"></i></a>
         </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="popup-container" [ngStyle]="{'display' : popup==='LOGIN_POPUP' ? 'block' : 'none'}">
-  <div class="popup-shadow" [ngStyle]="{'display' : popup ? 'block' : 'none'}" (click)="popup=null; commonService.enableScroll()"></div>
-  <div class="popup">
-    <div class="popup-loader" *ngIf="AuthState.loading">
-      <i class="fa fa-circle-o-notch animate loader"></i>
-    </div>
-    <div class="popup-content">
-      <div class="popup-nav">
-        <button type="button" class="close" (click)="popup=null; commonService.enableScroll()">&times;</button>Login
-      </div>
-      <div class="popup-header">
-        <h3>Accedi per vedere il cliente</h3>
-      </div>
-      <div class="popup-body">
-        <form (keyup.enter)="login(AuthField)">
-          <div class="form-group">
-            <label for="email">Indirizzo email</label>
-            <input id="email" class="form-control" type="email" name="email" [ngClass]="{'error-input': AuthState.error}" [(ngModel)]="AuthField.email" [ngModelOptions]="{standalone: true}">
-          </div>
-          <div class="form-group">
-            <label for="password">Password</label>
-            <input id="password" class="form-control" type="password" name="password" [ngClass]="{'error-input': AuthState.error}" [(ngModel)]="AuthField.password" [ngModelOptions]="{standalone: true}">
-          </div>
-          <div class="form-group">
-            <div class="error-container" *ngIf="AuthState.error">
-              <span class="error">{{AuthState.error}}</span>
-            </div>
-          </div>
-          <div class="form-group">
-            <a class="btn btn-warning btn-form-login" (click)="login(AuthField)">Accedi</a>
-          </div>
-          <div class="form-group">
-            <a class="btn btn-secondary btn-form-signup" (click)="popup='SIGNUP_POPUP';">Iscriviti</a>
-          </div>
-          <div class="form-group">
-            <button type="button" class="btn btn-facebook btn-form-facebook" id="continueWithFacebook" (click)="continueWithFacebook('/account/profile')"><i class="fa fa-facebook-official" aria-hidden="true"></i>Continua con Facebook</button>
-          </div>
-        </form>
-      </div>
-      <div class="popup-footer">
-        <span class="text">Continuando dichiari di aver letto e accetti le <a routerLink="/info/legal" target="_blank">condizioni generali e l’informativa sulla privacy</a></span>
       </div>
     </div>
   </div>
@@ -260,14 +315,23 @@
     </div>
     <div class="popup-content">
       <div class="popup-nav">
-        <button type="button" class="close" (click)="popup=null;">&times;</button>Registrazione
+        <button type="button" class="close" (click)="popup=null; commonService.enableScroll();">&times;</button>Registrazione
       </div>
       <div class="popup-header">
-        <h3>Registrati per vedere il cliente</h3>
+        <h3 class="post-title">Registrati. Contatta il cliente.</h3>
+        <div class="post-timer">
+          <div class="timer">
+            <span class="text">Scade tra:</span><span class="hours">{{getCountDownHours(selected_post)}}</span><span class="dots">:</span><span class="minutes">{{getCountDownMinutes(selected_post)}}</span><span class="dots">:</span><span class="seconds">{{getCountDownSeconds(selected_post)}}</span>
+          </div>
+        </div>
       </div>
       <div class="popup-body">
         <form (keyup.enter)="signup(AuthField)">
           <div class="row">
+            <div class="form-group col-md-12">
+              <label for="business-name-input">Ragione Sociale:</label>
+              <input class="form-control" placeholder="Nome della tua azienda" type="text" [ngClass]="{'error-input': AuthState.error}" id="business-name-input" [(ngModel)]="AuthField.business.name" [ngModelOptions]="{standalone: true}">
+            </div>
             <div class="form-group col-md-6">
               <label for="firstNameInput">Nome</label>
               <input type="firstname" placeholder="Nome" class="form-control" [ngClass]="{'error-input': AuthState.error}" id="firstNameInput" [(ngModel)]="AuthField.profile.firstname" [ngModelOptions]="{standalone: true}">
@@ -277,10 +341,6 @@
               <input type="lastname" placeholder="Cognome" class="form-control" [ngClass]="{'error-input': AuthState.error}" id="lastNameInput" [(ngModel)]="AuthField.profile.lastname" [ngModelOptions]="{standalone: true}">
             </div>
             <div class="form-group col-md-12">
-              <label for="business-name-input">Azienda</label>
-              <input class="form-control" placeholder="Azienda" type="text" [ngClass]="{'error-input': AuthState.error}" id="business-name-input" [(ngModel)]="AuthField.business.name" [ngModelOptions]="{standalone: true}">
-            </div>
-            <div class="form-group col-md-12">
               <label for="emailInput">Email</label>
               <input type="email" placeholder="La tua mail" class="form-control" [ngClass]="{'error-input': AuthState.error}" id="emailInput" [(ngModel)]="AuthField.email" [ngModelOptions]="{standalone: true}">
             </div>
@@ -288,17 +348,19 @@
               <label for="passwordInput">Scegli una password</label>
               <input type="password" placeholder="Password" class="form-control" [ngClass]="{'error-input': AuthState.error}" id="passwordInput" [(ngModel)]="AuthField.password" [ngModelOptions]="{standalone: true}">
             </div>
-            <div class="form-group col-md-12" *ngIf="AuthState.error">
-              <div class="alert alert-danger" role="alert">{{AuthState.error}}</div>
+            <div class="form-group col-md-12">
+              <div class="error-container" *ngIf="AuthState.error">
+                <span class="error">{{AuthState.error}}</span>
+              </div>
             </div>
             <div class="form-group col-md-12">
-              <button type="button" id="signup" class="btn btn-warning btn-form-signup" (click)="signup(AuthField)">Iscriviti</button>
+              <button type="button" id="signup" class="btn btn-success btn-form-signup" (click)="signup(AuthField)">Iscriviti</button>
             </div>
             <div class="form-group col-md-12">
-              <a class="btn btn-secondary btn-form-login" (click)="popup='LOGIN_POPUP';">Accedi</a>
+              <a class="btn btn-secondary btn-form-login" (click)="popup='LOGIN_POPUP';">Sei gia iscritto</a>
             </div>
             <div class="form-group col-md-12">
-              <button type="button" class="btn btn-facebook btn-form-facebook" id="continueWithFacebook" (click)="continueWithFacebook('/account/profile')"><i class="fa fa-facebook-official" aria-hidden="true"></i>Continua con Facebook</button>
+              <button type="button" class="btn btn-facebook btn-form-facebook" id="continueWithFacebook" (click)="continueWithFacebook()"><i class="fa fa-facebook-official" aria-hidden="true"></i>Continua con Facebook</button>
             </div>
           </div>
         </form>
@@ -309,104 +371,111 @@
     </div>
   </div>
 </div>
-
+<div class="popup-container" [ngStyle]="{'display' : popup==='LOGIN_POPUP' ? 'block' : 'none'}">
+  <div class="popup-shadow" [ngStyle]="{'display' : popup ? 'block' : 'none'}" (click)="popup=null; commonService.enableScroll()"></div>
+  <div class="popup">
+    <div class="popup-loader" *ngIf="AuthState.loading">
+      <i class="fa fa-circle-o-notch animate loader"></i>
+    </div>
+    <div class="popup-content">
+      <div class="popup-nav">
+        <button type="button" class="close" (click)="popup=null; commonService.enableScroll()">&times;</button>Login
+      </div>
+      <div class="popup-header">
+        <h3 class="post-title">Accedi e contatta il cliente.</h3>
+        <div class="post-timer">
+          <div class="timer">
+            <span class="text">Scade tra:</span><span class="hours">{{getCountDownHours(selected_post)}}</span><span class="dots">:</span><span class="minutes">{{getCountDownMinutes(selected_post)}}</span><span class="dots">:</span><span class="seconds">{{getCountDownSeconds(selected_post)}}</span>
+          </div>
+        </div>
+      </div>
+      <div class="popup-body">
+        <form (keyup.enter)="login(AuthField)">
+          <div class="row">
+            <div class="form-group col-md-12">
+              <label for="email">Indirizzo email</label>
+              <input id="email" class="form-control" type="email" name="email" [ngClass]="{'error-input': AuthState.error}" [(ngModel)]="AuthField.email" [ngModelOptions]="{standalone: true}">
+            </div>
+            <div class="form-group col-md-12">
+              <label for="password">Password</label>
+              <input id="password" class="form-control" type="password" name="password" [ngClass]="{'error-input': AuthState.error}" [(ngModel)]="AuthField.password" [ngModelOptions]="{standalone: true}">
+            </div>
+            <div class="form-group col-md-12">
+              <div class="error-container" *ngIf="AuthState.error">
+                <span class="error">{{AuthState.error}}</span>
+              </div>
+            </div>
+            <div class="form-group col-md-12">
+              <a class="btn btn-success btn-form-login" (click)="login(AuthField)">Accedi</a>
+            </div>
+            <div class="form-group col-md-12">
+              <a class="btn btn-secondary btn-form-signup" (click)="popup='SIGNUP_POPUP';">Nuovo utente</a>
+            </div>
+            <div class="form-group col-md-12 text-center">
+              <a class="password-forgot" routerLink="/auth/password_recovery" target="_blank">Hai dimenticato la password?</a>
+            </div>
+            <div class="form-group col-md-12">
+              <button type="button" class="btn btn-facebook btn-form-facebook" id="continueWithFacebook" (click)="continueWithFacebook()"><i class="fa fa-facebook-official" aria-hidden="true"></i>Continua con Facebook</button>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="popup-footer">
+        <span class="text">Continuando dichiari di aver letto e accetti le <a routerLink="/info/legal" target="_blank">condizioni generali e l’informativa sulla privacy</a></span>
+      </div>
+    </div>
+  </div>
+</div>
 <div class="popup-container" [ngStyle]="{'display' : popup==='NEW_CARD_POPUP' ? 'block' : 'none'}">
-  <div class="popup-shadow" [ngStyle]="{'display' : popup ? 'block' : 'none'}" (click)="popup=null;"></div>
+  <div class="popup-shadow" [ngStyle]="{'display' : popup ? 'block' : 'none'}" (click)="popup='PREVIEW_PURCHASE_CONTACT_POPUP';"></div>
   <div class="popup">
     <div class="popup-loader" *ngIf="CardState.loading">
       <i class="fa fa-circle-o-notch animate loader"></i>
     </div>
     <div class="popup-content">
       <div class="popup-nav">
-        <button type="button" class="close" (click)="popup=null;">&times;</button>Aggiungi un metodo di pagamento
+        <button type="button" class="close" (click)="popup='PREVIEW_PURCHASE_CONTACT_POPUP';">&times;</button>Aggiungi un metodo di pagamento
       </div>
       <div class="popup-header">
+        <h3 class="post-title">Inserisci un metodo di pagamento</h3>
+        <p>Aggiungi un metodo di pagamento e procedi al'acquisto del contatto prima della scadenza.</p>
+        <div class="post-timer">
+          <div class="timer">
+            <span class="hours">{{getCountDownHours(selected_post)}}</span><span class="dots">:</span><span class="minutes">{{getCountDownMinutes(selected_post)}}</span><span class="dots">:</span><span class="seconds">{{getCountDownSeconds(selected_post)}}</span>
+          </div>
+        </div>
+      </div>
+      <div class="popup-body">
         <div class="list-cards">
           <img src="../../../assets/images/visa.png" alt="Visa">
           <img src="../../../assets/images/mastercard.png" alt="Mastercard">
           <img src="../../../assets/images/americanexpress.png" alt="AmericanExpress">
           <img src="../../../assets/images/discover.png" alt="Discover">
         </div>
-      </div>
-      <div class="popup-body">
         <form>
           <div class="row">
             <div class="form-group col-md-12">
               <label for="firstname-input">Numero carta *</label>
               <input autocomplete="off" type="text" placeholder="Numero" class="form-control" [ngClass]="{'error-input': CardState.error}" id="numberInput" [(ngModel)]="Card.number" [ngModelOptions]="{standalone: true}">
             </div>
-            <div class="col-md-6">
-              <div class="form-group">
-                <label for="dateInput">Scadenza *</label>
-                <input autocomplete="off" type="text" placeholder="MM/AA" class="form-control" [ngClass]="{'error-input': CardState.error}" id="dateInput" [(ngModel)]="Card.exp_date" (keyup)="checkExpiry(Card.exp_date)" (change)="checkExpiry(Card.exp_date)" [ngModelOptions]="{standalone: true}">
-              </div>
+            <div class="form-group col-md-6">
+              <label for="dateInput">Scadenza *</label>
+              <input autocomplete="off" type="text" placeholder="MM/AA" class="form-control" [ngClass]="{'error-input': CardState.error}" id="dateInput" [(ngModel)]="Card.exp_date" (keyup)="checkExpiry(Card.exp_date)" (change)="checkExpiry(Card.exp_date)" [ngModelOptions]="{standalone: true}">
             </div>
             <div class="form-group col-md-6">
               <label for="numberInput">Codice di sicurezza *</label>
               <input autocomplete="off" type="text" placeholder="CVC/CVV" class="form-control" [ngClass]="{'error-input': CardState.error}" id="numberInput" [(ngModel)]="Card.cvc" [ngModelOptions]="{standalone: true}">
             </div>
+            <div class="form-group col-md-12">
+              <div class="error-container" *ngIf="CardState.error">
+                <span class="error">{{CardState.error}}</span>
+              </div>
+            </div>
           </div>
         </form>
       </div>
       <div class="popup-footer">
-        <button type="button" id="next" class="btn btn-secondary" (click)="popup=null;">Annulla</button>
-        <button id="addCard" type="button" class="btn btn-danger" (click)="addCardAndContinue()">Salva e Continua</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="home-container" *ngIf="id && post">
-  <div class="home">
-    <div class="home-content">
-      <div class="home-body">
-        <div class="post" *ngIf="post">
-          <div class="post-content">
-            <div class="post-header">
-              <i class="fa fa-briefcase left-icon" aria-hidden="true"></i>
-              <h1 class="post-title">{{post.title}}</h1>
-              <span class="post-location">a {{checkPostLocation(post)}}</span>
-            </div>
-            <div class="post-body">
-              <div class="post-details">
-                <label>Tipo di lavoro: </label><span>Sistemazione</span>
-                <label>Installazione: </label><span>manuale</span>
-                <label>Applicazione: </label><span>Si</span>
-              </div>
-              <p class="post-description">{{post.description}}</p>
-              <div class="post-client">
-                <div class="detail">
-                  <label>Cognome: </label><span>{{checkCustomerLastname(post)}}</span>
-                </div>
-                <div class="detail">
-                  <label>Nome: </label><span>{{checkCustomerFirstname(post)}}</span>
-                </div>
-              </div>
-              <div class="post-address">
-                <div class="detail">
-                  <label>Comune: </label><span>Busto Arsizio</span>
-                </div>
-                <div class="detail">
-                  <label>Via: </label><span>Via***** *******lo</span>
-                </div>
-              </div>
-            </div>
-            <div class="post-footer">
-              <div class="post-status">
-                <span>Stato della richiesta: Attivo</span>
-              </div>
-              <div class="post-viewers">
-                <span>234 stanno visualizzando quensta offerta.</span>
-              </div>
-              <div class="post-deadline">
-                Rimangono 12 giorni alla chiusura
-              </div>
-              <div class="post-actions">
-                <button type="button" class="btn btn-success" name="button" (click)="previewPurchase(post)">Vedi contatto</button>
-              </div>
-            </div>
-          </div>
-        </div>
+        <button id="addCard" type="button" class="btn btn-danger" (click)="addCardAndContinue()">Salva e continua</button>
       </div>
     </div>
   </div>

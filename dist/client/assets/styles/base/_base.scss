@@ -9,7 +9,8 @@ html, body {
   position: relative;
   font-family: $font-name;
   overflow-x: hidden;
-  background: #EDEFF3;
+  // background: #EDEFF3;
+  background: #f9f9f9;
 }
 h1 {
   font-size: 36px;
@@ -354,12 +355,13 @@ p {
 
 .form-control {
   color: black;
-  font-size: 16px;
+  font-size: 17px;
   letter-spacing: 0.1px;
   padding: 0 20px;
   border-radius: 3px !important;
   background-color: #FFFFFF;
   border: 1px solid #cbd3d5;
+  font-weight: 300;
 }
 .form-control.text-small {
   font-size: 12px;
@@ -403,9 +405,9 @@ textarea.form-control {
 // }
 .form-group label, .input-group label {
   color: #212121 !important;
-  font-size: 14px !important;
+  font-size: 16px !important;
   font-family: $font-name;
-  font-weight: 400;
+  font-weight: 500;
   // padding: 0;
   margin-bottom: 5px !important;
 }
@@ -868,7 +870,7 @@ input::-ms-clear {
         }
       }
       .popup-header {
-        padding: 10px 20px;
+        padding: 20px;
         .list-cards {
           img {
             width: 60px;
@@ -877,6 +879,12 @@ input::-ms-clear {
       }
       .popup-body {
         padding: 10px 20px;
+        .list-cards {
+          margin-bottom: 20px;
+          img {
+            width: 60px;
+          }
+        }
         .error-container {
           margin-bottom: 10px;
           .error {
@@ -999,12 +1007,12 @@ input::-ms-clear {
         padding: 20px;
         border-top: 1px solid #dce0e0;
         .btn {
-          height: 40px;
-          font-size: 17px;
-          line-height: 40px;
-          padding: 0 20px;
           border-radius: 4px;
-          margin: 5px 0;
+          height: 50px;
+          line-height: 50px;
+          font-size: 21px;
+          padding: 0 30px;
+          font-weight: 400;
           i {
             margin-right: 10px;
           }

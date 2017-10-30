@@ -327,7 +327,6 @@ export class AccountComponent implements OnInit {
       }).catch((error) => {
       })
     }
-
   }
 
   ngOnInit() {
@@ -789,6 +788,7 @@ export class AccountComponent implements OnInit {
   //     }
   //   })
   // }
+
   getCoversForPromotion(promotion) {
     if (promotion.analitics) {
       return promotion.analitics.covers
@@ -1389,7 +1389,34 @@ export class AccountComponent implements OnInit {
     });
     return formatedYear;
   }
-
+  getGoogleMapsLink(post) {
+    if (post['address']['city']) {
+      return "https://maps.google.com/?q=" + post['address']['city'] + ", " + post['address']['street']
+    } else {
+      return ""
+    }
+  }
+  getPhoneNumber(post) {
+    if (post) {
+      if (post.customer['phone_number'] && post.customer['phone_number']!==null) {
+        return post.customer['phone_number']
+      }
+      else {
+        return ""
+      }
+    }
+  }
+  getEmailAddress(post) {
+    if (post) {
+      if (post.customer['email'] && post.customer['email']!==null) {
+        return post.customer['email']
+      }
+      else {
+        return ""
+      }
+    }
+  }
+  
   // EXTRA
   // sendInvitations() {
   //   var phone_numbers = [];

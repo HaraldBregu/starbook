@@ -16,11 +16,14 @@
         <a class="nav-link work" [ngClass]="{'active': (page==='Home')}" routerLink="/post"><i class="fa fa-briefcase" aria-hidden="true"></i></a>
       </li>
       <li class="nav-item account" *ngIf="auth">
+        <a class="nav-link message" routerLink="/account/contacts"><i class="fa fa-phone" aria-hidden="true"></i></a>
+      </li>
+      <!-- <li class="nav-item account" *ngIf="auth">
         <a class="nav-link message" routerLink="/account/requests"><i class="fa fa-inbox" aria-hidden="true"></i></a>
-      </li>
-      <li class="nav-item account" *ngIf="auth">
+      </li> -->
+      <!-- <li class="nav-item account" *ngIf="auth">
         <a class="nav-link message" routerLink="/account/inprogress_promotion"><i class="fa fa-bullhorn" aria-hidden="true"></i></a>
-      </li>
+      </li> -->
       <li class="nav-item account" *ngIf="auth && page==='Account'">
         <a class="nav-link" [ngClass]="{'active': (page==='Business')}" routerLink="{{getProfileRouter()}}"><img class="image" [src]="account_avatar_url" (error)="errorHandler($event)" alt="avatar"><span>Pagina</span></a>
       </li>

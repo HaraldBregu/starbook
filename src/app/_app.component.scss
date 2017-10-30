@@ -387,4 +387,8 @@ app-root {
   app-root .navbar .nav .signup-item {
     display: none;
   }
+  app-root .navbar .container-starbook .navbar-nav .nav-link {
+    margin-left: 0;
+    margin-right: 0;
+  }
 }
