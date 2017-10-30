@@ -315,9 +315,7 @@ export class HomeComponent implements OnInit {
     this.purchased_post = null
     this.commonService.getMethod('contacts?' + "post_id=" + post['_id'] ).then((data) => {
       this.PurchaseState.loading = false
-      // console.log(JSON.stringify(data))
       if (data.result.length===0) {
-
       } else {
         this.purchased_post = data.result[0]['post']
         this.popup = "PURCHASED_CONTACT_POPUP"
@@ -332,8 +330,6 @@ export class HomeComponent implements OnInit {
     this.PurchaseState.error = null
     this.purchased_post = null
     this.commonService.postMethod('posts/' + post._id + '/contacts', {}).then((data) => {
-      // this.purchased_post = post
-      // this.popup = "PURCHASED_CONTACT_POPUP"
       this.PurchaseState.loading = false
       this.PurchaseState.error = null
       this.checkPurchasePost(post)
@@ -387,7 +383,7 @@ export class HomeComponent implements OnInit {
     this.paymentService.addNewCard(this.Card).then((response) => {
       this.CardState.loading = false
       this.CardState.error = null
-      this.popup = "PURCHASED_CONTACT_POPUP"
+      this.popup = "PREVIEW_PURCHASE_CONTACT_POPUP"
       this.purchase(this.selected_post)
       this.Card.number = null
       this.Card.exp_month = null
