@@ -65,10 +65,10 @@ app-home {
                 overflow: auto;
                 .post-initial {
                   display: block;
-                  width: 100%;
                   overflow: auto;
                   padding: 10px 0px;
                   margin-bottom: 10px;
+                  float: left;
                   .left-icon {
                     color: #2980B9;
                     font-size: 80px;
@@ -158,24 +158,27 @@ app-home {
                   display: block;
                   margin-top: 5px;
                   text-align: center;
+                  float: right;
                   .title {
-                    font-size: 19px;
+                    font-size: 17px;
                     font-weight: 900;
                     color: #e74c3c;
                   }
                   .timer {
-                    margin-top: 10px;
+                    text-align: right;
+                    margin-top: 5px;
                     .dots {
-                      font-size: 40px;
+                      font-size: 22px;
                       margin: 0 5px;
                       color: #0F334D;
                     }
                     span {
                       display: inline-block;
                       p {
-                        max-width: 70px;
+                        max-width: 45px;
                         font-size: 16px !important;
                         font-weight: 400;
+                        text-align: center;
                       }
                     }
                     .hours, .minutes, .seconds {
@@ -184,10 +187,10 @@ app-home {
                       border: 1px solid #0a2a42;
                       color: white;
                       padding: 5px 10px;
-                      font-size: 40px;
-                      border-radius: 10px;
+                      font-size: 22px;
+                      border-radius: 3px;
                       font-weight: 600;
-                      width: 70px;
+                      width: 45px;
                       text-align: center;
                     }
                   }
@@ -197,9 +200,9 @@ app-home {
                   text-align: center;
                   margin-top: 5px;
                   .title {
-                    font-size: 24px;
+                    font-size: 19px;
                     font-weight: 900;
-                    color: #3e8f3e;
+                    // color: #3e8f3e;
                   }
                   .action {
                     display: block;
@@ -774,7 +777,14 @@ app-home {
     margin: 0;
   }
   app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-timer {
-    margin-top: 30px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    float: none;
+    width: 100%;
+    text-align: left;
+  }
+  app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-timer .timer {
+    text-align: left;
   }
   app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-actions {
     margin-top: 30px;
@@ -807,6 +817,13 @@ app-home {
   }
   app-home .home-container .home .home-content .home-footer .footer .pagelist-container .page-container {
     width: calc(100% / 2);
+  }
+  app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-customer {
+    margin-top: 30px;
+  }
+  app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-initial {
+    float: none;
+    width: 100%;
   }
 }
 

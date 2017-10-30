@@ -3806,10 +3806,10 @@ app-home {
               overflow: auto; }
               app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-initial {
                 display: block;
-                width: 100%;
                 overflow: auto;
                 padding: 10px 0px;
-                margin-bottom: 10px; }
+                margin-bottom: 10px;
+                float: left; }
                 app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-initial .left-icon {
                   color: #2980B9;
                   font-size: 80px;
@@ -3882,42 +3882,44 @@ app-home {
               app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-timer {
                 display: block;
                 margin-top: 5px;
-                text-align: center; }
+                text-align: center;
+                float: right; }
                 app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-timer .title {
-                  font-size: 19px;
+                  font-size: 17px;
                   font-weight: 900;
                   color: #e74c3c; }
                 app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-timer .timer {
-                  margin-top: 10px; }
+                  text-align: right;
+                  margin-top: 5px; }
                   app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-timer .timer .dots {
-                    font-size: 40px;
+                    font-size: 22px;
                     margin: 0 5px;
                     color: #0F334D; }
                   app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-timer .timer span {
                     display: inline-block; }
                     app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-timer .timer span p {
-                      max-width: 70px;
+                      max-width: 45px;
                       font-size: 16px !important;
-                      font-weight: 400; }
+                      font-weight: 400;
+                      text-align: center; }
                   app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-timer .timer .hours, app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-timer .timer .minutes, app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-timer .timer .seconds {
                     display: inline-block;
                     background: #0F334D;
                     border: 1px solid #0a2a42;
                     color: white;
                     padding: 5px 10px;
-                    font-size: 40px;
-                    border-radius: 10px;
+                    font-size: 22px;
+                    border-radius: 3px;
                     font-weight: 600;
-                    width: 70px;
+                    width: 45px;
                     text-align: center; }
               app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-actions {
                 display: block;
                 text-align: center;
                 margin-top: 5px; }
                 app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-actions .title {
-                  font-size: 24px;
-                  font-weight: 900;
-                  color: #3e8f3e; }
+                  font-size: 19px;
+                  font-weight: 900; }
                 app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-actions .action {
                   display: block;
                   position: relative;
@@ -4352,7 +4354,14 @@ app-home {
     margin: 0; }
 
   app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-timer {
-    margin-top: 30px; }
+    margin-top: 10px;
+    margin-bottom: 10px;
+    float: none;
+    width: 100%;
+    text-align: left; }
+
+  app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-timer .timer {
+    text-align: left; }
 
   app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-actions {
     margin-top: 30px; }
@@ -4384,7 +4393,14 @@ app-home {
     padding: 30px; }
 
   app-home .home-container .home .home-content .home-footer .footer .pagelist-container .page-container {
-    width: calc(100% / 2); } }
+    width: calc(100% / 2); }
+
+  app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-customer {
+    margin-top: 30px; }
+
+  app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-initial {
+    float: none;
+    width: 100%; } }
 @media (max-width: 320px) {
   app-home .popup-container .popup .popup-content .popup-footer .action .price {
     padding: 0 20px; }
