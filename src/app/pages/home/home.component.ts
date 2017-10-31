@@ -133,6 +133,8 @@ export class HomeComponent implements OnInit {
     })
 
     if (this.params['id']) {
+      this.router.navigate(['/post'])
+
       this.commonService.getMethod('posts/' + this.params['id']).then((data) => {
         // this.post = data.result
         this.posts = [data.result]
