@@ -41,9 +41,10 @@
             </div> -->
             <div class="post-body">
               <div class="post-initial">
+                <span class="top-title">RICHIESTA CLIENTE:</span>
                 <i class="fa fa-briefcase left-icon" aria-hidden="true"></i>
                 <h1 class="post-title">{{post.title}}</h1>
-                <span class="post-location">a {{checkPostLocation(post)}}</span>
+                <span class="post-location">zona: {{checkPostLocation(post)}}</span>
               </div>
               <div class="post-timer">
                 <span class="title">TERMINA TRA:</span>
@@ -55,31 +56,26 @@
               </div>
               <div class="row">
                 <div class="col-md-12">
-                  <div class="post-informations">
-                    <span class="label label_mobile">DESCRIZIONE:</span><span class="content content_mobile">{{post.description}}</span>
+                  <div class="post-description">
+                    <span class="title">DESCRIZIONE DEL LAVORO:</span>
+                    <div class="post-informations">
+                      <span class="content content-full-width">{{post.description}}</span>
+                    </div>
+                    <div class="post-informations">
+                      <span class="label">TITOLO:</span><span class="content">{{post.title}}</span>
+                    </div>
+                    <div class="post-informations">
+                      <span class="label label_mobile">DETTAGLI:</span>
+                      <span class="content content_mobile" *ngFor="let detail of post.details">{{detail}}</span>
+                    </div>
                   </div>
                 </div>
                 <div class="col-md-12">
-                  <div class="post-informations">
-                    <span class="label">LAVORO:</span><span class="content">{{post.title}}</span>
+                  <div class="post-description">
+                    <span class="label-strong">BUDGET:</span>
+                    <span class="content-budget">da: <span class="price">{{post.budget.min/100}}€ - {{post.budget.max/100}}€</span></span>
                   </div>
                 </div>
-                <div class="col-md-12">
-                  <div class="post-informations">
-                    <span class="label label_mobile">DETTAGLI:</span>
-                    <span class="content content_mobile" *ngFor="let detail of post.details">{{detail}}</span>
-                  </div>
-                </div>
-                <!-- <div class="col-md-4">
-                  <div class="post-informations">
-                    <span class="label">COMUNE:</span><span class="content">{{checkPostLocation(post)}}</span>
-                  </div>
-                </div>
-                <div class="col-md-4">
-                  <div class="post-informations">
-                    <span class="label">INDIRIZZO:</span><span class="content">{{checkAddressStreet(post)}}</span>
-                  </div>
-                </div> -->
               </div>
               <div class="divider"></div>
               <div class="row">
@@ -346,12 +342,13 @@
         <button type="button" class="close" (click)="popup=null; commonService.enableScroll();">&times;</button>Registrazione
       </div>
       <div class="popup-header">
-        <h3 class="post-title">Registrati. Contatta il cliente.</h3>
-        <div class="post-timer">
+        <h3 class="post-title">Registrati e contatta il cliente</h3>
+        <p>Non hai ancora un account su Starbook? Registrati inserendo i tuoi dati per contattare il cliente.</p>
+        <!-- <div class="post-timer">
           <div class="timer">
             <span class="text">Scade tra:</span><span class="hours">{{getCountDownHours(selected_post)}}</span><span class="dots">:</span><span class="minutes">{{getCountDownMinutes(selected_post)}}</span><span class="dots">:</span><span class="seconds">{{getCountDownSeconds(selected_post)}}</span>
           </div>
-        </div>
+        </div> -->
       </div>
       <div class="popup-body">
         <form (keyup.enter)="signup(AuthField)">
@@ -387,9 +384,9 @@
             <div class="form-group col-md-12">
               <a class="btn btn-secondary btn-form-login" (click)="popup='LOGIN_POPUP';">Sei gia iscritto</a>
             </div>
-            <div class="form-group col-md-12">
+            <!-- <div class="form-group col-md-12">
               <button type="button" class="btn btn-facebook btn-form-facebook" id="continueWithFacebook" (click)="continueWithFacebook()"><i class="fa fa-facebook-official" aria-hidden="true"></i>Continua con Facebook</button>
-            </div>
+            </div> -->
           </div>
         </form>
       </div>
@@ -410,12 +407,13 @@
         <button type="button" class="close" (click)="popup=null; commonService.enableScroll()">&times;</button>Login
       </div>
       <div class="popup-header">
-        <h3 class="post-title">Accedi e contatta il cliente.</h3>
-        <div class="post-timer">
+        <h3 class="post-title">Accedi e contatta il cliente</h3>
+        <p>Hai gia un account registrato su Starbook? Accedi per contattare il cliente.</p>
+        <!-- <div class="post-timer">
           <div class="timer">
             <span class="text">Scade tra:</span><span class="hours">{{getCountDownHours(selected_post)}}</span><span class="dots">:</span><span class="minutes">{{getCountDownMinutes(selected_post)}}</span><span class="dots">:</span><span class="seconds">{{getCountDownSeconds(selected_post)}}</span>
           </div>
-        </div>
+        </div> -->
       </div>
       <div class="popup-body">
         <form (keyup.enter)="login(AuthField)">
@@ -442,9 +440,9 @@
             <div class="form-group col-md-12 text-center">
               <a class="password-forgot" routerLink="/auth/password_recovery" target="_blank">Hai dimenticato la password?</a>
             </div>
-            <div class="form-group col-md-12">
+            <!-- <div class="form-group col-md-12">
               <button type="button" class="btn btn-facebook btn-form-facebook" id="continueWithFacebook" (click)="continueWithFacebook()"><i class="fa fa-facebook-official" aria-hidden="true"></i>Continua con Facebook</button>
-            </div>
+            </div> -->
           </div>
         </form>
       </div>
@@ -467,11 +465,11 @@
       <div class="popup-header">
         <h3 class="post-title">Inserisci un metodo di pagamento</h3>
         <p>Aggiungi un metodo di pagamento e procedi all'acquisto del contatto prima della scadenza.</p>
-        <div class="post-timer">
+        <!-- <div class="post-timer">
           <div class="timer">
             <span class="hours">{{getCountDownHours(selected_post)}}</span><span class="dots">:</span><span class="minutes">{{getCountDownMinutes(selected_post)}}</span><span class="dots">:</span><span class="seconds">{{getCountDownSeconds(selected_post)}}</span>
           </div>
-        </div>
+        </div> -->
       </div>
       <div class="popup-body">
         <div class="list-cards">
@@ -504,6 +502,30 @@
       </div>
       <div class="popup-footer">
         <button id="addCard" type="button" class="btn btn-danger" (click)="addCardAndContinue()">Salva e continua</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="popup-container" [ngStyle]="{'display' : popup==='SUCCESS_PURCHASED_CONTACT_POPUP' ? 'block' : 'none'}">
+  <div class="popup-shadow" [ngStyle]="{'display' : popup ? 'block' : 'none'}" (click)="popup=null; commonService.enableScroll()"></div>
+  <div class="popup thankyoupage">
+    <div class="popup-loader" *ngIf="PurchaseState.loading">
+      <i class="fa fa-circle-o-notch animate loader"></i>
+    </div>
+    <div class="popup-content">
+      <div class="popup-header">
+        <i class="fa fa-check-circle purchased-icon" aria-hidden="true"></i>
+        <h3 class="post-title">Contatto acquistato con successo</h3>
+        <p>Per sicurezza le invieremo via mail tutti i dati del cliente e la richiesta del lavoro.</p>
+      </div>
+      <div class="popup-body">
+        <div class="form-group">
+          <a class="btn btn-primary btn-done" (click)="popup=null; commonService.enableScroll()">Fatto</a>
+        </div>
+        <div class="form-group">
+          <p><i>Per maggiore sicurezza controlla l'indirizzo email e il numero di telefono nel suo account Starbook.</i></p>
+        </div>
       </div>
     </div>
   </div>

@@ -133,6 +133,7 @@ export class HomeComponent implements OnInit {
     })
 
     if (this.params['id']) {
+      // Bisogna nascondere i dati del cliente da questo endpoint
       this.router.navigate(['/post'])
 
       this.commonService.getMethod('posts/' + this.params['id']).then((data) => {
@@ -300,6 +301,7 @@ export class HomeComponent implements OnInit {
       this.AuthState.loading = false
     })
   }
+  // this.popup = "SUCCESS_PURCHASED_CONTACT_POPUP"
 
   previewPurchase(post) {
     this.selected_post = post
@@ -317,10 +319,16 @@ export class HomeComponent implements OnInit {
     this.purchased_post = null
     this.commonService.getMethod('contacts?' + "post_id=" + post['_id'] ).then((data) => {
       this.PurchaseState.loading = false
-      if (data.result.length===0) {
-      } else {
+      if (data.result.length > 0) {
         this.purchased_post = data.result[0]['post']
-        this.popup = "PURCHASED_CONTACT_POPUP"
+        // console.log(JSON.stringify(this.purchased_post.customer.complete))
+        if (this.purchased_post.customer.complete===false) {
+          this.popup = "SUCCESS_PURCHASED_CONTACT_POPUP"
+        } else {
+          this.popup = "PURCHASED_CONTACT_POPUP"
+        }
+      } else {
+        this.popup = "PREVIEW_PURCHASE_CONTACT_POPUP"
       }
     }).catch((error) => {
       this.PurchaseState.loading = false

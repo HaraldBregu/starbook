@@ -33,7 +33,8 @@ import { HomeComponent } from './pages/home/home.component';
 
 const routes: Routes = [
   // { path: '', component: LandingComponent, data: { name: 'Landing' } },
-  { path: '', component: CompanyComponent, data: { name: 'Company' } },
+  // { path: '', component: CompanyComponent, data: { name: 'Company' } },
+  { path: '', component: HomeComponent, data: { name: 'Home' } },
 
   { path: 'company', component: CompanyComponent, data: { name: 'Company' } },
   { path: 'company/:page', component: CompanyComponent, data: { name: 'Company' } },

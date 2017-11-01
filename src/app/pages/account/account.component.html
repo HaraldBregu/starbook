@@ -709,9 +709,29 @@
 <!-- CONTACTS -->
 <div class="account-container" *ngIf="page==='contacts'">
   <div class="account">
+    <div class="account-content" *ngIf="!ContactsState.loading && Contacts.length===0">
+      <div class="account-header">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="waiting-contact">
+              <p>NON CI SONO CLIENTI ACQUISTATI</p>
+            </div>
+            <p><i>Vai nella bacheca dei lavori per trovare richeste e acquistare nuovi clienti.</i></p>
+          </div>
+        </div>
+      </div>
+    </div>
     <div class="account-content" *ngFor="let contact of Contacts">
       <div class="account-header">
         <div class="row">
+          <div class="col-md-12">
+            <div class="waiting-contact" *ngIf="!contact.post.customer.complete">
+              <p>IN ATTESA DEI DATI DEL CLIENTE</p>
+            </div>
+            <div class="waiting-contact" *ngIf="contact.post.customer.complete">
+              <p>DATI DEL CLIENTE</p>
+            </div>
+          </div>
           <div class="col-md-12">
             <div class="contact-informations">
               <span class="label">TITOLO: </span><span class="content">{{contact.post.title}}</span>
@@ -759,15 +779,13 @@
             </div>
           </div>
           <div class="col-md-12">
-            <div class="actions">
+            <div class="actions" *ngIf="contact.post.customer.complete">
               <a *ngIf="getPhoneNumber(contact.post)" role="button" href="tel:{{getPhoneNumber(contact.post)}}" target="_blank" name="button" class="btn btn-phone"><i class="fa fa-phone" aria-hidden="true"></i><b>Chiama</b></a>
               <a *ngIf="getEmailAddress(contact.post)" role="button" href="mailto:{{getEmailAddress(contact.post)}}" target="_blank" name="button" class="btn btn-email"><i class="fa fa-envelope" aria-hidden="true"></i><b>Email</b></a>
               <a *ngIf="getGoogleMapsLink(contact.post)" role="button" name="button" class="btn btn-map" href="{{getGoogleMapsLink(contact.post)}}" target="_blank"><i class="fa fa-location-arrow" aria-hidden="true"></i><b>Vai</b></a>
             </div>
           </div>
         </div>
-      </div>
-      <div class="account-footer">
       </div>
     </div>
   </div>

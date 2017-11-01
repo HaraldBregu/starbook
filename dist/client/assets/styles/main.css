@@ -1,5 +1,6 @@
 @charset "UTF-8";
 @import url("https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i");
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i");
 .u-block {
   display: block !important; }
 
@@ -671,8 +672,7 @@ p {
   padding: 0 20px;
   border-radius: 3px !important;
   background-color: #FFFFFF;
-  border: 1px solid #cbd3d5;
-  font-weight: 300; }
+  border: 1px solid #cbd3d5; }
 
 .form-control.text-small {
   font-size: 12px; }
@@ -3810,6 +3810,12 @@ app-home {
                 padding: 10px 0px;
                 margin-bottom: 10px;
                 float: left; }
+                app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-initial .top-title {
+                  display: block;
+                  margin-bottom: 16px;
+                  color: rgba(0, 0, 0, 0.7);
+                  font-size: 17px;
+                  font-weight: 500; }
                 app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-initial .left-icon {
                   color: #2980B9;
                   font-size: 80px;
@@ -3817,12 +3823,13 @@ app-home {
                 app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-initial .post-title {
                   margin-left: 100px;
                   color: #2980B9;
-                  font-weight: 600; }
+                  font-weight: 500;
+                  text-transform: uppercase; }
                 app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-initial .post-location {
                   display: block;
                   margin-top: 10px;
                   font-size: 24px;
-                  font-weight: 400;
+                  font-weight: 300;
                   color: rgba(0, 0, 0, 0.7);
                   margin-left: 100px; }
               app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-informations {
@@ -3834,15 +3841,18 @@ app-home {
                   display: block;
                   float: left;
                   font-size: 17px;
-                  font-weight: 900;
+                  font-weight: 700;
                   color: #A3A3A3;
                   line-height: 26px; }
                 app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-informations .content {
                   display: block;
                   margin-left: 150px;
                   font-size: 18px;
-                  color: black; }
+                  color: rgba(0, 0, 0, 0.8); }
+                app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-informations .content-full-width {
+                  margin: 0 !important; }
               app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-customer {
+                font-family: 'Open Sans', sans-serif;
                 display: block; }
                 app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-customer .title {
                   display: block;
@@ -3855,13 +3865,12 @@ app-home {
                   app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-customer .info .label {
                     float: left;
                     font-size: 16px;
-                    font-weight: 900;
+                    font-weight: 700;
                     color: #A3A3A3; }
                   app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-customer .info .content {
                     display: block;
                     margin-left: 120px;
                     font-size: 17px;
-                    color: black;
                     white-space: nowrap;
                     overflow: hidden;
                     text-overflow: ellipsis; }
@@ -3882,7 +3891,7 @@ app-home {
               app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-timer {
                 display: block;
                 margin-top: 5px;
-                text-align: center;
+                text-align: left;
                 float: right; }
                 app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-timer .title {
                   font-size: 17px;
@@ -3913,6 +3922,29 @@ app-home {
                     font-weight: 600;
                     width: 45px;
                     text-align: center; }
+              app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-description {
+                font-family: 'Open Sans', sans-serif;
+                margin-top: 20px; }
+                app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-description .title {
+                  display: block;
+                  font-size: 19px;
+                  font-weight: 900;
+                  color: #1173be;
+                  margin-bottom: 10px; }
+                app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-description .label-strong {
+                  float: left;
+                  font-size: 19px;
+                  font-weight: 900;
+                  color: #1173be;
+                  margin-bottom: 10px; }
+                app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-description .content-budget {
+                  display: block;
+                  margin-left: 150px;
+                  font-size: 19px;
+                  color: rgba(0, 0, 0, 0.8); }
+                  app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-description .content-budget .price {
+                    color: #27ae60;
+                    font-weight: 700; }
               app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-actions {
                 display: block;
                 text-align: center;
@@ -4070,8 +4102,12 @@ app-home {
               cursor: pointer; }
   app-home .popup-container .contact {
     max-width: 700px; }
+  app-home .popup-container .popup .popup-content .popup-header p {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 16px !important;
+    margin-top: 5px;
+    line-height: 24px; }
   app-home .popup-container .popup .popup-content .popup-header .post-title {
-    color: #2980B9;
     font-weight: 600;
     margin-top: 5px; }
   app-home .popup-container .popup .popup-content .popup-header .post-timer {
@@ -4100,6 +4136,18 @@ app-home {
         width: 45px;
         text-align: center;
         height: 35px; }
+  app-home .popup-container .thankyoupage .popup-content .popup-header {
+    text-align: center; }
+    app-home .popup-container .thankyoupage .popup-content .popup-header .purchased-icon {
+      font-size: 110px;
+      color: #27ae60; }
+    app-home .popup-container .thankyoupage .popup-content .popup-header p {
+      padding-top: 10px; }
+  app-home .popup-container .thankyoupage .popup-content .popup-body {
+    text-align: center; }
+    app-home .popup-container .thankyoupage .popup-content .popup-body .btn-done {
+      padding: 0 30px;
+      border-radius: 3px; }
   app-home .popup-container .popup .popup-content .popup-body .btn-form-login {
     width: 100%;
     border-radius: 3px; }
@@ -4338,7 +4386,10 @@ app-home {
     margin: 0 2px; }
 
   app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-timer .timer span p {
-    max-width: 55px; } }
+    max-width: 55px; }
+
+  app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-description .content-budget {
+    margin-left: 120px; } }
 @media (max-width: 425px) {
   app-home .popup-container .popup .popup-content .popup-footer .post-timer {
     text-align: center;
@@ -4400,7 +4451,11 @@ app-home {
 
   app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-initial {
     float: none;
-    width: 100%; } }
+    width: 100%; }
+
+  app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-description .content-budget {
+    text-align: right;
+    margin-left: 50px; } }
 @media (max-width: 320px) {
   app-home .popup-container .popup .popup-content .popup-footer .action .price {
     padding: 0 20px; }
@@ -8466,6 +8521,13 @@ app-account {
             app-account .account-container .account .account-content .account-header .list-ad-platforms img {
               width: 85px;
               margin-right: 20px; }
+          app-account .account-container .account .account-content .account-header .waiting-contact {
+            display: block;
+            font-weight: 900;
+            margin-bottom: 10px; }
+            app-account .account-container .account .account-content .account-header .waiting-contact p {
+              font-size: 24px !important;
+              color: #1173be; }
           app-account .account-container .account .account-content .account-header .contact-informations {
             display: block;
             width: 100%;

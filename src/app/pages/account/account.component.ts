@@ -268,6 +268,10 @@ export class AccountComponent implements OnInit {
   public GooglePromotion = globals.GooglePromotion
 
   public Contacts = []
+  public ContactsState = {
+    loading: false,
+    error_message: null,
+  }
 
   constructor(private route: ActivatedRoute, private router: Router, private navigationService: NavigationService, private profileService: ProfileService, private authService: AuthService, private seoService: SeoService, private contactService: ContactService, private popupsService: PopupsService, private commonService: CommonService, private paymentService: PaymentService) {
     this.navigationService.updateMessage("Dashboard")
@@ -350,11 +354,14 @@ export class AccountComponent implements OnInit {
 
       }
       else if (this.page==="contacts") {
+        this.ContactsState.loading = true
         this.commonService.getMethod('contacts').then((data) => {
           this.Contacts = data.result
-          console.log(JSON.stringify(data))
+          // console.log(JSON.stringify(data))
+          this.ContactsState.loading = false
         }).catch((error) => {
-          console.log(JSON.stringify(error))
+          // console.log(JSON.stringify(error))
+          this.ContactsState.loading = false
         })
       }
       else if (this.page==="inprogress_promotion") {
@@ -1416,7 +1423,7 @@ export class AccountComponent implements OnInit {
       }
     }
   }
-  
+
   // EXTRA
   // sendInvitations() {
   //   var phone_numbers = [];
