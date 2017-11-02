@@ -224,6 +224,21 @@ export class HomeComponent implements OnInit {
     }
     return string_time
   }
+  // getPriceBasedOnBudget(post) {
+  //   let min_budget = post.budget.min
+  //   let max_budget = post.budget.max
+  //   let avg_budget = (min_budget + max_budget)/2
+  //   console.log(avg_budget)
+  //   if (avg_budget<200000) {
+  //     return 500
+  //   } else if (avg_budget >= 200000 && avg_budget<400000) {
+  //     return 1200
+  //   } else if (avg_budget<800000) {
+  //     return 2000
+  //   } else {
+  //     return 2800
+  //   }
+  // }
 
   // AUTHENTICATION
 
@@ -301,8 +316,6 @@ export class HomeComponent implements OnInit {
       this.AuthState.loading = false
     })
   }
-  // this.popup = "SUCCESS_PURCHASED_CONTACT_POPUP"
-
   previewPurchase(post) {
     this.selected_post = post
     if (!this.authService.currentAccount()) {

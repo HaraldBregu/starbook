@@ -46,40 +46,101 @@
                 <h1 class="post-title">{{post.title}}</h1>
                 <span class="post-location">zona: {{checkPostLocation(post)}}</span>
               </div>
-              <div class="post-timer">
+              <div class="post-interest">
+                <span class="title">Livello di interesse:</span>
+                <div class="icons">
+                  <i class="fa fa-smile-o" aria-hidden="true"></i>
+                  <i class="fa fa-smile-o" aria-hidden="true"></i>
+                  <i class="fa fa-smile-o" aria-hidden="true"></i>
+                  <i class="fa fa-smile-o" aria-hidden="true"></i>
+                  <i class="fa fa-smile-o" aria-hidden="true"></i>
+                </div>
+              </div>
+              <!-- <div class="post-timer">
                 <span class="title">TERMINA TRA:</span>
                 <div class="timer">
                   <span><span class="hours">{{getCountDownHours(post)}}</span><span class="dots">:</span><p>ore</p></span>
                   <span><span class="minutes">{{getCountDownMinutes(post)}}</span><span class="dots">:</span><p>min</p></span>
                   <span><span class="seconds">{{getCountDownSeconds(post)}}</span><p>sec</p></span>
                 </div>
-              </div>
+              </div> -->
               <div class="row">
                 <div class="col-md-12">
                   <div class="post-description">
                     <span class="title">DESCRIZIONE DEL LAVORO:</span>
                     <div class="post-informations">
-                      <span class="content content-full-width">{{post.description}}</span>
-                    </div>
-                    <div class="post-informations">
                       <span class="label">TITOLO:</span><span class="content">{{post.title}}</span>
                     </div>
                     <div class="post-informations">
+                      <span class="label label_mobile">DESCRIZIONE:</span><span class="content content_mobile">{{post.description}}</span>
+                    </div>
+                    <!-- <div class="post-informations">
+                      <span class="content content-full-width">{{post.description}}</span>
+                    </div> -->
+                    <div class="post-informations" *ngIf="post.details && post.details.length>0">
                       <span class="label label_mobile">DETTAGLI:</span>
                       <span class="content content_mobile" *ngFor="let detail of post.details">{{detail}}</span>
                     </div>
+                    <div class="post-informations">
+                      <span class="label">CLIENTE:</span><span class="content">Privato</span>
+                    </div>
+                    <div class="post-informations">
+                      <span class="label">BUDGET:</span>
+                      <span class="content price">{{post.budget.min/100}}€ - {{post.budget.max/100}}€</span>
+                    </div>
+                    <div class="post-informations">
+                      <span class="label">URGENZA:</span>
+                      <div class="content priority">
+                        <i class="fa fa-circle" aria-hidden="true"></i>
+                        <i class="fa fa-circle" aria-hidden="true"></i>
+                        <i class="fa fa-circle" aria-hidden="true"></i>
+                        <i class="fa fa-circle" aria-hidden="true"></i>
+                        <i class="fa fa-circle" aria-hidden="true"></i>
+                        <!-- <i class="fa fa-circle-o" aria-hidden="true"></i> -->
+                      </div>
+                    </div>
+                    <div class="post-informations">
+                      <span class="label">CONCORRENZA:</span>
+                      <div class="content competitors">
+                        <i class="fa fa-circle" aria-hidden="true"></i>
+                        <i class="fa fa-circle-o" aria-hidden="true"></i>
+                        <i class="fa fa-circle-o" aria-hidden="true"></i>
+                        <i class="fa fa-circle-o" aria-hidden="true"></i>
+                        <i class="fa fa-circle-o" aria-hidden="true"></i>
+                      </div>
+                    </div>
                   </div>
                 </div>
-                <div class="col-md-12">
+                <!-- <div class="col-md-12">
                   <div class="post-description">
                     <span class="label-strong">BUDGET:</span>
-                    <span class="content-budget">da: <span class="price">{{post.budget.min/100}}€ - {{post.budget.max/100}}€</span></span>
+                    <span class="content-budget"><span class="price">{{post.budget.min/100}}€ - {{post.budget.max/100}}€</span></span>
+                  </div>
+                </div> -->
+
+              </div>
+              <!-- <div class="divider"></div> -->
+              <div class="row">
+                <div class="col-md-12">
+                  <!-- <div class="post-timer">
+                    <span class="title">RICHIESTA TERMINA TRA:</span>
+                    <div class="timer">
+                      <span><span class="hours">{{getCountDownHours(post)}}</span><span class="dots">:</span><p>ore</p></span>
+                      <span><span class="minutes">{{getCountDownMinutes(post)}}</span><span class="dots">:</span><p>min</p></span>
+                      <span><span class="seconds">{{getCountDownSeconds(post)}}</span><p>sec</p></span>
+                    </div>
+                  </div> -->
+                  <div class="post-actions">
+                    <!-- <span class="title">Vuoi contattare questo cliente?</span> -->
+                    <button class="btn action" id="previewPurchaseContact" (click)="previewPurchase(post); commonService.disableScroll()">
+                      <span class="title">VISUALIZZA CONTATTO</span>
+                      <span class="price">10€</span>
+                      <!-- <span class="price">{{getPriceBasedOnBudget(post)/100}}€</span> -->
+                    </button>
+                    <!-- <span class="bottom-message">Visualizza l'anteprima del contatto</span> -->
                   </div>
                 </div>
-              </div>
-              <div class="divider"></div>
-              <div class="row">
-                <div class="col-md-4">
+                <!-- <div class="col-md-3">
                   <div class="post-customer">
                     <span class="title">DATI DEL CLIENTE:</span>
                     <div class="info">
@@ -96,7 +157,7 @@
                     </div>
                   </div>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-3">
                   <div class="post-customer">
                     <span class="title">INDIRIZZO:</span>
                     <div class="info">
@@ -106,33 +167,7 @@
                       <span class="label">VIA:</span><span class="content">{{checkAddressStreet(post)}}</span>
                     </div>
                   </div>
-                  <!-- <div class="post-timer">
-                    <span class="title">RICHIESTA TERMINA TRA:</span>
-                    <div class="timer">
-                      <span><span class="hours">{{getCountDownHours(post)}}</span><span class="dots">:</span><p>ore</p></span>
-                      <span><span class="minutes">{{getCountDownMinutes(post)}}</span><span class="dots">:</span><p>min</p></span>
-                      <span><span class="seconds">{{getCountDownSeconds(post)}}</span><p>sec</p></span>
-                    </div>
-                  </div> -->
-                </div>
-                <div class="col-md-4">
-                  <!-- <div class="post-timer">
-                    <span class="title">RICHIESTA TERMINA TRA:</span>
-                    <div class="timer">
-                      <span><span class="hours">{{getCountDownHours(post)}}</span><span class="dots">:</span><p>ore</p></span>
-                      <span><span class="minutes">{{getCountDownMinutes(post)}}</span><span class="dots">:</span><p>min</p></span>
-                      <span><span class="seconds">{{getCountDownSeconds(post)}}</span><p>sec</p></span>
-                    </div>
-                  </div> -->
-                  <div class="post-actions">
-                    <span class="title">VISUALIZZA IL CONTATTO</span>
-                    <button class="btn action" id="previewPurchaseContact" (click)="previewPurchase(post); commonService.disableScroll()">
-                      <span class="title">VISUALIZZA</span>
-                      <span class="price">10€</span>
-                    </button>
-                    <span class="bottom-message">Visualizza l'anteprima del contatto</span>
-                  </div>
-                </div>
+                </div> -->
               </div>
             </div>
             <div class="post-footer">
