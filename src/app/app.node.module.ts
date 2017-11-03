@@ -71,6 +71,8 @@ import { BlogComponent } from './pages/blog/blog.component';
 import { PostComponent } from './pages/blog/post/post.component';
 import { HomeComponent } from './pages/home/home.component';
 
+import { DataentryComponent } from './pages/dataentry/dataentry.component';
+
 // import { ClipboardDirective } from './directives/clipboard.directive';
 
 // import { RouterModule } from '@angular/router';
@@ -132,6 +134,7 @@ let declarations = [
   HomeComponent,
   NotfoundComponent,
   TestsComponent,
+  DataentryComponent,
   // ClipboardDirective,
   FormatterDirective,
   CurrencyPipe,

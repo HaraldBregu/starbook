@@ -1,0 +1,19 @@
+app-dataentry {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 100vh;
+  padding: 70px 0 0;
+  -webkit-overflow-scrolling: touch;
+  background: #f9f9f9;
+  .dataentry-container {
+    padding: 10px 10px 40px;
+    .dataentry {
+      max-width: 1140px;
+      margin: auto;
+      .dataentry-content {
+        position: relative;
+      }
+    }
+  }
+}

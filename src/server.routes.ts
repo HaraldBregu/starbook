@@ -63,6 +63,8 @@ export const routes: string[] = [
   'post',
   'post/:id',
 
+  'dataentry',
+
   // 'worker',
   // 'worker/:page',
 

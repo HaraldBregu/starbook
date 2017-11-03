@@ -31,6 +31,8 @@ import { PostComponent } from './pages/blog/post/post.component';
 import { QuotationComponent } from './pages/quotation/quotation.component';
 import { HomeComponent } from './pages/home/home.component';
 
+import { DataentryComponent } from './pages/dataentry/dataentry.component';
+
 const routes: Routes = [
   // { path: '', component: LandingComponent, data: { name: 'Landing' } },
   // { path: '', component: CompanyComponent, data: { name: 'Company' } },
@@ -114,8 +116,7 @@ const routes: Routes = [
   { path: 'customer', component: TestsComponent, data: { name: 'Customer' } },
   { path: 'customer/:page', component: TestsComponent, data: { name: 'Customer' } },
 
-  // { path: 'worker', component: TestsComponent, data: { name: 'Worker' } },
-  // { path: 'worker/:page', component: TestsComponent, data: { name: 'Worker' } },
+  { path: 'dataentry', component: DataentryComponent, data: { name: 'DataEntry' } },
 
   { path: '404', component: NotfoundComponent },
   { path: '**', redirectTo: '' }

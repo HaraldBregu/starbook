@@ -14,6 +14,7 @@ app-home {
       .home-content {
         position: relative;
         .home-header {
+          font-family: 'Open Sans', sans-serif;
           background: white;
           border-radius: 5px;
           border: solid 1px #e0e0e0;
@@ -22,9 +23,11 @@ app-home {
           box-shadow: 0 0 10px 0 rgba(50, 50, 50, 0.1);
           padding: 40px 50px;
           margin-top: 20px;
+          img {
+            width: 40px;
+          }
           .title {
             font-weight: 300;
-            margin-bottom: 20px;
             color: rgba(0, 0, 0, 0.70);
           }
           i {
@@ -38,9 +41,23 @@ app-home {
             // font-weight: 300;
           }
           .description {
-            font-weight: 300;
-            margin-top: 15px;
-            letter-spacing: 0.2px !important;
+            margin-top: 10px;
+            color: rgba(0, 0, 0, 0.8);
+          }
+          .options {
+            margin-top: 30px;
+            i {
+              display: block;
+            }
+            .opt-title {
+              display: block;
+              font-size: 22px;
+            }
+            .opt-description {
+              display: block;
+              font-weight: 300;
+              font-size: 16px;
+            }
           }
         }
         .home-body {
@@ -127,16 +144,25 @@ app-home {
                   }
                   .content {
                     display: block;
-                    margin-left: 150px;
+                    margin-left: 170px;
                     font-size: 18px;
                     color: rgba(0,0,0,0.8);
                   }
                   .content-full-width {
                     margin: 0 !important;
                   }
+                  .customer-type {
+                    text-transform: uppercase;
+                    font-weight: 700;
+                    color: rgba(0, 0, 0, 0.70);
+                  }
                   .price {
                     color: #27ae60;
                     font-weight: 700;
+                  }
+                  .contact-price {
+                    font-weight: 900;
+                    color: #3498db;
                   }
                   .priority {
                     color: #f39c12;
@@ -158,6 +184,9 @@ app-home {
                     float: left;
                     margin-right: 4px;
                     line-height: 25px;
+                  }
+                  img {
+                    height: 25px;
                   }
                 }
                 .post-customer {
@@ -252,6 +281,7 @@ app-home {
                   margin-top: 20px;
                   .title {
                     display: block;
+                    // overflow: auto;
                     font-size: 19px;
                     font-weight: 900;
                     color: #1173be;
@@ -277,7 +307,6 @@ app-home {
                 }
                 .post-actions {
                   display: block;
-                  // text-align: center;
                   margin-top: 30px;
                   .title {
                     font-size: 24px;
@@ -287,27 +316,31 @@ app-home {
                   .action {
                     display: block;
                     position: relative;
-                    // width: 100%;
+                    width: 100%;
                     margin-top: 10px;
                     text-align: center;
                     border-radius: 6px;
                     color: #fff;
                     background-color: #5cb85c;
                     text-shadow: 0 2px 0 rgba(0, 0, 0, 0.3);
-                    background-image: linear-gradient(to bottom, #3498db 0%, #1475b5 100%);
-                    box-shadow: inset 0 0 0 rgba(255, 255, 255, 0.15), 0 2px 0px #1475b5;
+                    // background-image: linear-gradient(to bottom, #3498db 0%, #1475b5 100%);
+                    background-image: linear-gradient(to bottom, #5cb85c 0%, #4cae4c 100%);
+                    // box-shadow: inset 0 0 0 rgba(255, 255, 255, 0.15), 0 2px 0px #1475b5;
+                    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 3px 0px #357935;
                     filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
                     background-repeat: repeat-x;
-                    border-color: #0e629a;
+                    // border-color: #0e629a;
+                    border-color: #398e39;
                     white-space: normal;
                     cursor: pointer;
                     outline: none;
                     .title {
+                      display: block;
                       font-weight: 800;
                       color: white;
                       line-height: 66px;
                       font-size: 26px;
-                      padding: 0 25px;
+                      padding: 0 60px;
                     }
                     .price {
                       float: right;
@@ -319,13 +352,16 @@ app-home {
                     }
                   }
                   .action:hover {
-                    background-image: linear-gradient(to bottom, #3498db 0%, #1475b5 100%);
-                    border-color: #0e629a;
+                    // background-image: linear-gradient(to bottom, #3f9de6 0%, #0f6bb0 100%);
+                    // border-color: #0e629a;
+                    background-image: linear-gradient(to bottom, #67bd67 0%, #47a447 100%);
+                    border-color: #388038;
                   }
                   .action:active:hover {
                     color: #fff;
                     background-color: #398439;
-                    border-color: #0e629a;
+                    // border-color: #0e629a;
+                    border-color: #398e39;
                     -webkit-box-shadow: none;
                     -moz-box-shadow: none;
                   	box-shadow: none;
@@ -384,6 +420,20 @@ app-home {
                   //     border-left: 1px solid white;
                   //   }
                   // }
+                }
+                .post-action-description {
+                  font-family: 'Open Sans', sans-serif;
+                  margin-top: 30px;
+                  .title-action {
+                    display: block;
+                    font-size: 20px;
+                    font-weight: 600;
+                  }
+                  .description-action {
+                    display: block;
+                    font-size: 16px;
+                    font-weight: 400;
+                  }
                 }
                 .divider {
                   border-top: 1px solid #E7E7E7;
@@ -506,7 +556,6 @@ app-home {
       }
     }
   }
-
   .popup-container .contact {
     max-width: 700px;
   }
@@ -617,9 +666,30 @@ app-home {
       }
       .content {
         display: block;
-        margin-left: 100px;
+        margin-left: 120px;
         font-size: 16px;
         color: black;
+      }
+      .customer-type {
+        text-transform: uppercase;
+        font-weight: 700;
+        color: rgba(0, 0, 0, 0.7);
+      }
+      .verified-image {
+        display: block;
+        font-size: 18px;
+        color: rgba(0, 0, 0, 0.8);
+        height: 22px;
+      }
+      .priority {
+        color: #f39c12;
+      }
+      .competitors {
+        color: #27ae60;
+      }
+      .price {
+        color: #27ae60;
+        font-weight: 700;
       }
     }
   }
@@ -793,6 +863,22 @@ app-home {
       }
     }
   }
+  .popup-container .popup .popup-content .popup-footer .refund {
+    float: left;
+  }
+  .popup-container .popup .popup-content .popup-footer .refund .refund-image {
+    height: 50px;
+    float: left;
+  }
+  .popup-container .popup .popup-content .popup-footer .refund .title {
+    margin-left: 10px;
+    font-size: 18px;
+    line-height: 50px;
+  }
+  .popup-container .popup .popup-content .popup-footer .btn {
+    width: 100%;
+    margin-top: 15px;
+  }
 }
 
 @media (max-width: 1024px) {
@@ -861,6 +947,31 @@ app-home {
   app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-informations .price {
     margin-left: 140px !important;
   }
+  app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-informations .customer-type {
+    margin-left: 140px !important;
+  }
+  app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-informations .verified-image {
+    margin-left: 140px !important;
+  }
+  app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-informations .contact-price {
+    margin-left: 140px !important;
+  }
+  app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-actions .action {
+    width: 100%;
+  }
+  app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-actions .action .price {
+    display: none;
+  }
+  app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-interest {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+  app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-interest .icons {
+    text-align: left;
+  }
+  app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-actions .action .title {
+    padding: 0 10px;
+  }
 }
 
 @media (max-width: 425px) {
@@ -875,6 +986,10 @@ app-home {
     float: none;
   }
   app-home .popup-container .popup .popup-content .popup-body .info .content_mobile {
+    margin: 0;
+  }
+  app-home .popup-container .popup .popup-content .popup-body .info .content-mobile-right {
+    float: right;
     margin: 0;
   }
   app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-timer {
@@ -922,12 +1037,6 @@ app-home {
   app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-actions .action {
     width: 100%;
   }
-  app-home .home-container .home .home-content .home-footer {
-    padding: 30px;
-  }
-  app-home .home-container .home .home-content .home-footer .footer .pagelist-container .page-container {
-    width: calc(100% / 2);
-  }
   app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-customer {
     margin-top: 30px;
   }
@@ -938,13 +1047,6 @@ app-home {
   app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-description .content-budget {
     text-align: right;
     margin-left: 50px;
-  }
-  app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-interest {
-    width: 100%;
-    margin-bottom: 10px;
-  }
-  app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-interest .icons {
-    text-align: left;
   }
   app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-informations .fa-circle {
     float: right;
@@ -957,6 +1059,33 @@ app-home {
   app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-informations .price {
     float: right;
     margin-left: 0px !important;
+  }
+  app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-informations .contact-price {
+    float: right;
+    margin-left: 0px !important;
+  }
+  app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-informations .customer-type {
+    float: right;
+    margin-left: 0px !important;
+  }
+  app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-informations .verified-image {
+    float: right;
+    margin-left: 0px !important;
+  }
+  app-home .home-container .home .home-content .home-footer {
+    padding: 30px;
+  }
+  app-home .home-container .home .home-content .home-footer .footer .pagelist-container .page-container {
+    width: calc(100% / 2);
+  }
+  app-home .popup-container .popup .popup-content .popup-footer .action {
+    margin-top: 20px;
+  }
+  app-home .home-container .home .home-content .home-header .title {
+    font-size: 30px;
+  }
+  app-home .home-container .home .home-content .home-header .description {
+    font-size: 16px !important;
   }
 }
 
@@ -980,12 +1109,18 @@ app-home {
     font-size: 15px;
   }
   app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-actions .action .price {
-    font-size: 18px;
-  }
-  app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-actions .action {
-    padding: 0;
+    font-size: 21px;
   }
 }
+
+// @media (min-width: 320px) {
+//   app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-actions .action .title {
+//     font-size: 18px;
+//   }
+//   app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-actions .action .price {
+//     font-size: 21px;
+//   }
+// }
 
 .awesome-title {
   -webkit-animation:colorchange 6s infinite alternate;

@@ -1,0 +1,71 @@
+<div class="dataentry-container">
+  <div class="dataentry">
+    <div class="dataentry-content">
+      <div class="dataentry-body">
+        <form>
+          <div class="row">
+            <div class="form-group col-md-12">
+              <label for="business-name-input">Titolo:</label>
+              <input class="form-control" placeholder="Titolo" type="text" id="title-input" [(ngModel)]="DataEntry.title" [ngModelOptions]="{standalone: true}">
+            </div>
+            <div class="form-group col-md-12">
+              <label for="business-name-input">Descrizione:</label>
+              <input class="form-control" placeholder="Descrizione" type="text" id="description-input" [(ngModel)]="DataEntry.description" [ngModelOptions]="{standalone: true}">
+            </div>
+            <div class="form-group col-md-12">
+              <label for="business-name-input">Detagli:</label>
+              <input class="form-control" placeholder="Dettaglio" type="text" id="detail-input" [(ngModel)]="DataEntry.details[0]" [ngModelOptions]="{standalone: true}">
+              <input class="form-control" placeholder="Dettaglio" type="text" id="detail-input" [(ngModel)]="DataEntry.details[1]" [ngModelOptions]="{standalone: true}">
+              <input class="form-control" placeholder="Dettaglio" type="text" id="detail-input" [(ngModel)]="DataEntry.details[2]" [ngModelOptions]="{standalone: true}">
+              <input class="form-control" placeholder="Dettaglio" type="text" id="detail-input" [(ngModel)]="DataEntry.details[3]" [ngModelOptions]="{standalone: true}">
+              <input class="form-control" placeholder="Dettaglio" type="text" id="detail-input" [(ngModel)]="DataEntry.details[4]" [ngModelOptions]="{standalone: true}">
+              <input class="form-control" placeholder="Dettaglio" type="text" id="detail-input" [(ngModel)]="DataEntry.details[5]" [ngModelOptions]="{standalone: true}">
+              <input class="form-control" placeholder="Dettaglio" type="text" id="detail-input" [(ngModel)]="DataEntry.details[6]" [ngModelOptions]="{standalone: true}">
+            </div>
+            <div class="form-group col-md-12">
+              <label for="business-name-input">Nome:</label>
+              <input class="form-control" placeholder="Nome" type="text" id="name-input" [(ngModel)]="DataEntry.firstname" [ngModelOptions]="{standalone: true}">
+            </div>
+            <div class="form-group col-md-12">
+              <label for="business-name-input">Cognome:</label>
+              <input class="form-control" placeholder="Cognome" type="text" id="lastname-input" [(ngModel)]="DataEntry.lastname" [ngModelOptions]="{standalone: true}">
+            </div>
+            <div class="form-group col-md-12">
+              <label for="business-name-input">Email:</label>
+              <input class="form-control" placeholder="Email" type="text" id="email-input" [(ngModel)]="DataEntry.email" [ngModelOptions]="{standalone: true}">
+            </div>
+            <div class="form-group col-md-12">
+              <label for="business-name-input">Telefono:</label>
+              <input class="form-control" placeholder="Telefono" type="text" id="phone-input" [(ngModel)]="DataEntry.phone" [ngModelOptions]="{standalone: true}">
+            </div>
+            <div class="form-group col-md-12">
+              <label for="business-name-input">Città:</label>
+              <input class="form-control" placeholder="Città" type="text" id="city-input" [(ngModel)]="DataEntry.city" [ngModelOptions]="{standalone: true}">
+            </div>
+            <div class="form-group col-md-12">
+              <label for="business-name-input">Provincia:</label>
+              <input class="form-control" placeholder="Provincia" type="text" id="province-input" [(ngModel)]="DataEntry.province" [ngModelOptions]="{standalone: true}">
+            </div>
+            <div class="form-group col-md-12">
+              <label for="business-name-input">Via:</label>
+              <input class="form-control" placeholder="Via" type="text" id="street-input" [(ngModel)]="DataEntry.street" [ngModelOptions]="{standalone: true}">
+            </div>
+
+            <div class="form-group col-md-12">
+              <button type="button" id="save" class="btn btn-success btn-form-signup" (click)="saveNewPost(DataEntry)">Salva</button>
+            </div>
+            <div class="form-group col-md-12">
+              <div class="error-container" *ngIf="DataEntryState.error">
+                <span class="error">{{DataEntryState.error}}</span>
+              </div>
+              <div class="error-container" *ngIf="DataEntryState.success">
+                <span>{{DataEntryState.success}}</span>
+              </div>
+            </div>
+
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
