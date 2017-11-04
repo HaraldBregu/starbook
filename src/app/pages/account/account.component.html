@@ -742,6 +742,12 @@
               <span class="label label_mobile">DESCRIZIONE: </span><span class="content content_mobile">{{contact.post.description}}</span>
             </div>
           </div>
+          <div class="col-md-12">
+            <div class="contact-informations">
+              <span class="label label_mobile">DETTAGLI:</span>
+              <span class="content content_mobile" *ngFor="let detail of contact.post.details">{{detail}}</span>
+            </div>
+          </div>
           <div class="row">
             <div class="col-md-6">
               <div class="col-md-12">
