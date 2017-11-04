@@ -876,8 +876,10 @@ app-home {
     line-height: 50px;
   }
   .popup-container .popup .popup-content .popup-footer .btn {
-    width: 100%;
     margin-top: 15px;
+  }
+  .popup-container .popup .popup-content .popup-footer .btn-full-width {
+    width: 100%;
   }
 }
 

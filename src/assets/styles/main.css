@@ -4418,8 +4418,9 @@ app-home {
     font-size: 18px;
     line-height: 50px; }
   app-home .popup-container .popup .popup-content .popup-footer .btn {
-    width: 100%;
     margin-top: 15px; }
+  app-home .popup-container .popup .popup-content .popup-footer .btn-full-width {
+    width: 100%; }
 
 @media (max-width: 1024px) {
   app-home .home-container .home .home-content .home-body .post {
