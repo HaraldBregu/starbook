@@ -48,7 +48,7 @@
                 <h1 class="post-title">{{post.title}}</h1>
                 <span class="post-location">zona: {{checkPostLocation(post)}}</span>
               </div>
-              <div class="post-interest">
+              <!-- <div class="post-interest">
                 <span class="title">Livello di interesse:</span>
                 <div class="icons">
                   <i class="fa fa-smile-o" aria-hidden="true"></i>
@@ -56,6 +56,14 @@
                   <i class="fa fa-smile-o" aria-hidden="true"></i>
                   <i class="fa fa-smile-o" aria-hidden="true"></i>
                   <i class="fa fa-smile-o" aria-hidden="true"></i>
+                </div>
+              </div> -->
+              <div class="post-warranty">
+                <span class="warranty-price">20€</span>
+                <div class="warranty-text">
+                  <span class="warranty-title">In garanzia</span>
+                  <span class="warranty-description"><i>a lavoro eseguito</i></span>
+                  <!-- <span class="warranty-description"><i>Solo in caso di accettazione</i></span> -->
                 </div>
               </div>
               <div class="row">
@@ -103,10 +111,10 @@
                       <span class="label">BUDGET:</span>
                       <span class="content price">{{post.budget.min/100}}€ - {{post.budget.max/100}}€</span>
                     </div>
-                    <div class="post-informations">
+                    <!-- <div class="post-informations">
                       <span class="label">COSTO:</span>
                       <span class="content contact-price">20€</span>
-                    </div>
+                    </div> -->
                   </div>
                 </div>
               </div>
@@ -167,6 +175,9 @@
             <div class="post-footer">
               <div class="post-message">
                 <span>Dopo aver visualizzato il contatto del cliente, potrai contattarlo direttamente tramite telefono o email.</span>
+              </div>
+              <div class="post-actions-right" *ngIf="!params.id">
+                <a routerLink="/post/{{post._id}}"><i class="fa fa-sign-out icon-new-page" aria-hidden="true"></i></a>
               </div>
             </div>
           </div>
@@ -552,7 +563,6 @@
     </div>
   </div>
 </div>
-
 <div class="popup-container" [ngStyle]="{'display' : popup==='SUCCESS_PURCHASED_CONTACT_POPUP' ? 'block' : 'none'}">
   <div class="popup-shadow" [ngStyle]="{'display' : popup ? 'block' : 'none'}" (click)="popup=null; commonService.enableScroll()"></div>
   <div class="popup thankyoupage">

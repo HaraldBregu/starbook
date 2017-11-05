@@ -3829,6 +3829,29 @@ app-home {
                   text-align: right;
                   font-size: 30px;
                   color: #27ae60; }
+              app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-warranty {
+                display: block;
+                margin-top: 5px;
+                text-align: right;
+                float: right; }
+                app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-warranty .warranty-price {
+                  font-size: 52px;
+                  font-weight: 900;
+                  color: #2ecc71;
+                  line-height: 44px;
+                  float: right;
+                  margin-left: 10px; }
+                app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-warranty .warranty-text {
+                  float: right;
+                  text-align: right; }
+                  app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-warranty .warranty-text .warranty-title {
+                    display: block;
+                    font-size: 17px;
+                    font-weight: 500;
+                    color: rgba(0, 0, 0, 0.7); }
+                  app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-warranty .warranty-text .warranty-description {
+                    display: block;
+                    color: rgba(0, 0, 0, 0.7); }
               app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-initial {
                 display: block;
                 overflow: auto;
@@ -3881,15 +3904,15 @@ app-home {
                   font-weight: 700;
                   color: rgba(0, 0, 0, 0.7); }
                 app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-informations .price {
-                  color: #27ae60;
+                  color: #1abc9c;
                   font-weight: 700; }
                 app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-informations .contact-price {
                   font-weight: 900;
                   color: #3498db; }
                 app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-informations .priority {
-                  color: #f39c12; }
+                  color: #e74c3c; }
                 app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-informations .competitors {
-                  color: #27ae60; }
+                  color: #1abc9c; }
                 app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-informations .fa-circle {
                   float: left;
                   margin-right: 4px;
@@ -4094,13 +4117,20 @@ app-home {
               app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-section {
                 overflow: auto; }
             app-home .home-container .home .home-content .home-body .post .post-content .post-footer {
+              overflow: hidden;
               border-top: solid 1px #e0e0e0;
               padding: 30px 50px; }
-              app-home .home-container .home .home-content .home-body .post .post-content .post-footer .post-message span {
-                font-family: 'Open Sans', sans-serif;
-                font-size: 18px;
-                font-style: italic;
-                font-weight: 300; }
+              app-home .home-container .home .home-content .home-body .post .post-content .post-footer .post-message {
+                float: left; }
+                app-home .home-container .home .home-content .home-body .post .post-content .post-footer .post-message span {
+                  font-family: 'Open Sans', sans-serif;
+                  font-size: 18px;
+                  font-style: italic;
+                  font-weight: 300; }
+              app-home .home-container .home .home-content .home-body .post .post-content .post-footer .post-actions-right {
+                float: right; }
+                app-home .home-container .home .home-content .home-body .post .post-content .post-footer .post-actions-right .icon-new-page {
+                  font-size: 24px; }
           app-home .home-container .home .home-content .home-body .post .loader {
             text-align: center;
             padding: 50px; }
@@ -4265,9 +4295,9 @@ app-home {
     app-home .popup-container .popup .popup-content .popup-body .info .priority {
       color: #f39c12; }
     app-home .popup-container .popup .popup-content .popup-body .info .competitors {
-      color: #27ae60; }
+      color: #1abc9c; }
     app-home .popup-container .popup .popup-content .popup-body .info .price {
-      color: #27ae60;
+      color: #1abc9c;
       font-weight: 700; }
   app-home .popup-container .popup .popup-content .popup-footer .description-purchase {
     text-align: center;
@@ -4507,8 +4537,25 @@ app-home {
   app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-interest .icons {
     text-align: left; }
 
+  app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-warranty {
+    width: 100%;
+    margin-bottom: 10px;
+    text-align: left; }
+
   app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-actions .action .title {
-    padding: 0 10px; } }
+    padding: 0 10px; }
+
+  app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-initial {
+    float: none; }
+
+  app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-warranty .warranty-price {
+    float: left;
+    margin: 0;
+    margin-right: 10px; }
+
+  app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-warranty .warranty-text {
+    float: left;
+    text-align: left; } }
 @media (max-width: 425px) {
   app-home .popup-container .popup .popup-content .popup-footer .post-timer {
     text-align: center;

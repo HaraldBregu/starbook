@@ -44,5 +44,10 @@ export class DataentryComponent implements OnInit {
 
   saveNewPost(data) {
     this.DataEntryState.success = JSON.stringify(data)
+    this.commonService.postMethod('posts', data).then((data) => {
+      console.log(JSON.stringify(data))
+    }).catch((error) => {
+      console.log(JSON.stringify(error))
+    })
   }
 }

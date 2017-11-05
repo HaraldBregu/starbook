@@ -96,6 +96,34 @@ app-home {
                     color: #27ae60;
                   }
                 }
+                .post-warranty {
+                  display: block;
+                  margin-top: 5px;
+                  text-align: right;
+                  float: right;
+                  .warranty-price {
+                    font-size: 52px;
+                    font-weight: 900;
+                    color: #2ecc71;
+                    line-height: 44px;
+                    float: right;
+                    margin-left: 10px;
+                  }
+                  .warranty-text {
+                    float: right;
+                    text-align: right;
+                    .warranty-title {
+                      display: block;
+                      font-size: 17px;
+                      font-weight: 500;
+                      color: rgba(0, 0, 0, 0.7);
+                    }
+                    .warranty-description {
+                      display: block;
+                      color: rgba(0, 0, 0, 0.7);
+                    }
+                  }
+                }
                 .post-initial {
                   display: block;
                   overflow: auto;
@@ -157,7 +185,7 @@ app-home {
                     color: rgba(0, 0, 0, 0.70);
                   }
                   .price {
-                    color: #27ae60;
+                    color: #1abc9c;
                     font-weight: 700;
                   }
                   .contact-price {
@@ -165,10 +193,10 @@ app-home {
                     color: #3498db;
                   }
                   .priority {
-                    color: #f39c12;
+                    color: #e74c3c;
                   }
                   .competitors {
-                    color: #27ae60;
+                    color: #1abc9c;
                   }
                   .fa-circle {
                     float: left;
@@ -448,9 +476,11 @@ app-home {
                 }
               }
               .post-footer {
+                overflow: hidden;
                 border-top: solid 1px #e0e0e0;
                 padding: 30px 50px;
                 .post-message {
+                  float: left;
                   span {
                     font-family: 'Open Sans', sans-serif;
                     font-size: 18px;
@@ -458,17 +488,11 @@ app-home {
                     font-weight: 300;
                   }
                 }
-                .post-status {
-
-                }
-                .post-viewers {
-
-                }
-                .post-actions {
-
-                }
-                .post-deadline {
-
+                .post-actions-right {
+                  float: right;
+                  .icon-new-page {
+                    font-size: 24px;
+                  }
                 }
               }
             }
@@ -685,10 +709,10 @@ app-home {
         color: #f39c12;
       }
       .competitors {
-        color: #27ae60;
+        color: #1abc9c;
       }
       .price {
-        color: #27ae60;
+        color: #1abc9c;
         font-weight: 700;
       }
     }
@@ -971,8 +995,25 @@ app-home {
   app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-interest .icons {
     text-align: left;
   }
+  app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-warranty {
+    width: 100%;
+    margin-bottom: 10px;
+    text-align: left;
+  }
   app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-actions .action .title {
     padding: 0 10px;
+  }
+  app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-initial {
+    float: none;
+  }
+  app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-warranty .warranty-price {
+    float: left;
+    margin: 0;
+    margin-right: 10px;
+  }
+  app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-warranty .warranty-text {
+    float: left;
+    text-align: left;
   }
 }
 

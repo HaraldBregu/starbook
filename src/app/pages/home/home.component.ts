@@ -95,8 +95,6 @@ export class HomeComponent implements OnInit {
         fb.init({appId: '1251898728230202', version: 'v2.7'})
       }
     }
-    this.route.params.subscribe(params => { this.params = params })
-
     this.SeoData['title'] = "Bacheca del lavoro | Richieste giornaliere"
     this.SeoData['description'] = "Trova una richiesta di lavoro in base alle tue competenze. Guarda i dati del contatto, invia un preventivo e lavora."
     this.SeoData['url'] = 'https://www.starbook.co' + this.router.url
@@ -114,7 +112,6 @@ export class HomeComponent implements OnInit {
     this.seoService.setOgElem('og:url', this.SeoData['url'])
     this.seoService.setOgElem('og:image', this.SeoData['image_url'])
     this.seoService.setOgElem('og:image:secure_url', this.SeoData['image_url'])
-
   }
 
   ngOnInit() {
@@ -123,24 +120,20 @@ export class HomeComponent implements OnInit {
         this.updateCountDownDate()
       })
     }
+    this.route.params.subscribe(params => { this.params = params })
 
     this.commonService.getMethod('accounts').then((data) => {
-      // console.log(JSON.stringify(data))
       this.TestimonialAccounts = data.result
     }).catch((error) => {
       this.TestimonialAccounts = null
-      // console.log(JSON.stringify(error))
     })
 
+    this.posts = null
     if (this.params['id']) {
-      // Bisogna nascondere i dati del cliente da questo endpoint
-      this.router.navigate(['/post'])
-
-      this.commonService.getMethod('posts/' + this.params['id']).then((data) => {
-        // this.post = data.result
-        this.posts = [data.result]
-        this.navigationService.updateMessage(data.result.title)
-        // console.log(JSON.stringify(data))
+      this.commonService.getMethod('posts?post_id=' + this.params['id']).then((data) => {
+        this.posts = data.result
+        this.navigationService.updateMessage(this.posts[0].title)
+        // console.log(JSON.stringify(this.posts))
       }).catch((error) => {
         // console.log(JSON.stringify(error))
         this.router.navigate(['/post'])
@@ -151,7 +144,6 @@ export class HomeComponent implements OnInit {
         this.posts = data.result
         // console.log(JSON.stringify(data))
       }).catch((error) => {
-        // console.log(JSON.stringify(error))
       })
     }
   }
