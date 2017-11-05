@@ -3773,7 +3773,8 @@ app-home {
           padding: 40px 50px;
           margin-top: 20px; }
           app-home .home-container .home .home-content .home-header img {
-            width: 40px; }
+            width: 40px;
+            float: left; }
           app-home .home-container .home .home-content .home-header .title {
             font-weight: 300;
             color: rgba(0, 0, 0, 0.7); }
@@ -3793,11 +3794,13 @@ app-home {
               display: block; }
             app-home .home-container .home .home-content .home-header .options .opt-title {
               display: block;
-              font-size: 22px; }
+              font-size: 22px;
+              margin-left: 50px; }
             app-home .home-container .home .home-content .home-header .options .opt-description {
               display: block;
               font-weight: 300;
-              font-size: 16px; }
+              font-size: 16px;
+              margin-left: 50px; }
         app-home .home-container .home .home-content .home-body .post {
           background: white;
           margin-top: 30px;
@@ -4598,14 +4601,14 @@ app-home {
     margin: 0; }
 
   app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-initial .left-icon {
-    font-size: 40px; }
+    display: none; }
 
   app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-initial .post-title {
-    margin-left: 55px;
+    margin-left: 0;
     font-size: 28px; }
 
   app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-initial .post-location {
-    margin-left: 55px;
+    margin-left: 0;
     font-size: 20px; }
 
   app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-actions .action .title {
@@ -4667,7 +4670,10 @@ app-home {
     font-size: 30px; }
 
   app-home .home-container .home .home-content .home-header .description {
-    font-size: 16px !important; } }
+    font-size: 16px !important; }
+
+  app-home .home-container .home .home-content .home-body .post .post-content .post-body {
+    padding: 20px; } }
 @media (max-width: 375px) {
   app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-actions .action .title {
     font-size: 18px; }

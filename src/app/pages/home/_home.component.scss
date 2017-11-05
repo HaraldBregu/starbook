@@ -25,6 +25,7 @@ app-home {
           margin-top: 20px;
           img {
             width: 40px;
+            float: left;
           }
           .title {
             font-weight: 300;
@@ -52,11 +53,13 @@ app-home {
             .opt-title {
               display: block;
               font-size: 22px;
+              margin-left: 50px;
             }
             .opt-description {
               display: block;
               font-weight: 300;
               font-size: 16px;
+              margin-left: 50px;
             }
           }
         }
@@ -1059,14 +1062,14 @@ app-home {
     margin: 0;
   }
   app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-initial .left-icon {
-    font-size: 40px;
+    display: none;
   }
   app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-initial .post-title {
-    margin-left: 55px;
+    margin-left: 0;
     font-size: 28px;
   }
   app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-initial .post-location {
-    margin-left: 55px;
+    margin-left: 0;
     font-size: 20px;
   }
   app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-actions .action .title {
@@ -1129,6 +1132,9 @@ app-home {
   }
   app-home .home-container .home .home-content .home-header .description {
     font-size: 16px !important;
+  }
+  app-home .home-container .home .home-content .home-body .post .post-content .post-body {
+    padding: 20px;
   }
 }
 

@@ -11,7 +11,7 @@
             <div class="col-md-4">
               <img src="../assets/images/verified-customer.png" alt="verificato">
               <span class="opt-title">Solo clienti verificati</span>
-              <span class="opt-description">I clienti sono verificati tramite mail e telefono. In caso contrario il contatto viene rimborsato.</span>
+              <span class="opt-description">I clienti sono sempre verificati e filtrati. Le richieste di lavoro sono selezionate.</span>
             </div>
             <div class="col-md-4">
               <img src="../assets/images/pay-for-job.png" alt="pagamento">
@@ -97,7 +97,7 @@
                         <!-- <i class="fa fa-circle-o" aria-hidden="true"></i> -->
                       </div>
                     </div>
-                    <div class="post-informations">
+                    <!-- <div class="post-informations">
                       <span class="label">CONCORRENZA:</span>
                       <div class="content competitors">
                         <i class="fa fa-circle" aria-hidden="true"></i>
@@ -106,7 +106,7 @@
                         <i class="fa fa-circle-o" aria-hidden="true"></i>
                         <i class="fa fa-circle-o" aria-hidden="true"></i>
                       </div>
-                    </div>
+                    </div> -->
                     <div class="post-informations">
                       <span class="label">BUDGET:</span>
                       <span class="content price">{{post.budget.min/100}}€ - {{post.budget.max/100}}€</span>
@@ -130,7 +130,7 @@
                   </div> -->
                   <div class="post-actions">
                     <button class="btn action" id="previewPurchaseContact" (click)="previewPurchase(post); commonService.disableScroll()">
-                      <span class="title" id="previewPurchaseContact">VISUALIZZA CONTATTO</span>
+                      <span class="title" id="previewPurchaseContact">CONTATTA CLIENTE</span>
                       <!-- <span class="price">10€</span> -->
                       <!-- <span class="price">{{getPriceBasedOnBudget(post)/100}}€</span> -->
                     </button>
@@ -284,7 +284,7 @@
                 <i class="fa fa-circle" aria-hidden="true"></i>
               </div>
             </div>
-            <div class="info">
+            <!-- <div class="info">
               <span class="label">CONCORRENZA:</span>
               <div class="content content-mobile-right competitors">
                 <i class="fa fa-circle" aria-hidden="true"></i>
@@ -293,7 +293,7 @@
                 <i class="fa fa-circle-o" aria-hidden="true"></i>
                 <i class="fa fa-circle-o" aria-hidden="true"></i>
               </div>
-            </div>
+            </div> -->
             <div class="info">
               <span class="label">BUDGET:</span>
               <span class="content content-mobile-right price">{{selected_post.budget.min/100}}€ - {{selected_post.budget.max/100}}€</span>
