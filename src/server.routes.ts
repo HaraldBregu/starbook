@@ -24,14 +24,14 @@ export const routes: string[] = [
 
   'auth/:page',
 
-  'services',
-  'services/:id',
+  // 'services',
+  // 'services/:id',
 
-  'insert/:step',
+  // 'insert/:step',
 
-  'orders',
-  'orders/:page',
-  'checkout/:step',
+  // 'orders',
+  // 'orders/:page',
+  // 'checkout/:step',
 
   'profile',
   'profile/:page',

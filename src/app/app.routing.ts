@@ -51,8 +51,8 @@ const routes: Routes = [
 
   { path: 'auth/:page', component: AuthComponent, data: { name: 'Auth' } },
 
-  { path: 'orders', component: OrdersComponent, data: { name: 'Orders' } },
-  { path: 'orders/:page', component: OrdersComponent, data: { name: 'Orders' } },
+  // { path: 'orders', component: OrdersComponent, data: { name: 'Orders' } },
+  // { path: 'orders/:page', component: OrdersComponent, data: { name: 'Orders' } },
 
   //
   // Pubblic profiles
@@ -70,13 +70,13 @@ const routes: Routes = [
   // { path: 'contact', component: ContactComponent },
   // { path: 'contact/:page', component: ContactComponent },
 
-  { path: 'services', component: ServicesComponent, data: { name: 'Service', isFindField: true } },
-  { path: 'services/:id', component: ServiceComponent, data: { name: 'Service', isFindField: true } },
+  // { path: 'services', component: ServicesComponent, data: { name: 'Service', isFindField: true } },
+  // { path: 'services/:id', component: ServiceComponent, data: { name: 'Service', isFindField: true } },
 
-  { path: 'insert', component: InsertComponent, data: { name: 'Insert' } },
-  { path: 'insert/:step', component: InsertComponent, data: { name: 'Insert' } },
+  // { path: 'insert', component: InsertComponent, data: { name: 'Insert' } },
+  // { path: 'insert/:step', component: InsertComponent, data: { name: 'Insert' } },
 
-  { path: 'checkout/:step', component: CheckoutComponent, data: { name: 'Checkout' } },
+  // { path: 'checkout/:step', component: CheckoutComponent, data: { name: 'Checkout' } },
 
   { path: 'post', component: HomeComponent, data: { name: 'Home' } },
   { path: 'post/:id', component: HomeComponent, data: { name: 'Home' } },
