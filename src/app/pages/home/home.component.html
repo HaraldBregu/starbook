@@ -130,7 +130,7 @@
                     </div>
                   </div> -->
                   <div class="post-actions">
-                    <button class="btn action" [ngClass]="{'purchased': (post.status && post.status==='PURCHASED')}" id="previewPurchaseContact" (click)="previewPurchase(post); commonService.disableScroll()">
+                    <button class="btn action" [ngClass]="{'purchased': (post.status && post.status==='PURCHASED')}" id="previewPurchaseContact" (click)="previewPurchase(post)">
                       <span *ngIf="!post.status || post.status!=='PURCHASED'" class="title" id="previewPurchaseContact">CONTATTA CLIENTE</span>
                       <span *ngIf="post.status && post.status==='PURCHASED'" class="title" id="previewPurchaseContact">CLIENTE PRENOTATO</span>
                     </button>

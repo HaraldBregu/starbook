@@ -314,9 +314,9 @@ export class HomeComponent implements OnInit {
     if(post.status && post.status==="PURCHASED") {
       return
     }
+    this.commonService.disableScroll()
     if (!this.authService.currentAccount()) {
       this.popup = "SIGNUP_POPUP"
-      this.commonService.disableScroll()
       return
     }
     this.checkPurchasePost(post)
