@@ -2,7 +2,7 @@
   <div class="home">
     <div class="home-content">
       <div class="home-header" *ngIf="posts && posts.length>0">
-        <h1 class="title">Richiesta per: <b>Infissi e Serramenti</b></h1>
+        <h1 class="title">Richiesta per: <b>Lavori e servizi</b></h1>
         <p class="description">
           Trova una richiesta di lavoro per la tua categoria, richiedi i dati del cliente, invia il tuo preventivo e inizia a lavorare.
         </p>
@@ -59,7 +59,7 @@
                 </div>
               </div> -->
               <div class="post-warranty">
-                <span class="warranty-price">20€</span>
+                <span class="warranty-price">{{getPriceBasedOnBudget(post)/100}}€</span>
                 <div class="warranty-text">
                   <span class="warranty-title">In garanzia</span>
                   <span class="warranty-description"><i>a lavoro eseguito</i></span>
@@ -113,7 +113,7 @@
                     </div>
                     <!-- <div class="post-informations">
                       <span class="label">COSTO:</span>
-                      <span class="content contact-price">20€</span>
+                      <span class="content contact-price">{{getPriceBasedOnBudget(post)/100}}€</span>
                     </div> -->
                   </div>
                 </div>
@@ -312,7 +312,7 @@
           </div>
           <div class="col-md-6">
             <div class="action" (click)="purchase(selected_post)">
-              <span class="title">GARANZIA</span><span class="price">20€</span>
+              <span class="title">GARANZIA</span><span class="price">{{getPriceBasedOnBudget(selected_post)/100}}€</span>
             </div>
           </div>
         </div>

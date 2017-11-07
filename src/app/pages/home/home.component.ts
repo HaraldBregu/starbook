@@ -216,23 +216,24 @@ export class HomeComponent implements OnInit {
     }
     return string_time
   }
-  // getPriceBasedOnBudget(post) {
-  //   let min_budget = post.budget.min
-  //   let max_budget = post.budget.max
-  //   let avg_budget = (min_budget + max_budget)/2
-  //   console.log(avg_budget)
-  //   if (avg_budget<200000) {
-  //     return 500
-  //   } else if (avg_budget >= 200000 && avg_budget<400000) {
-  //     return 1200
-  //   } else if (avg_budget<800000) {
-  //     return 2000
-  //   } else {
-  //     return 2800
-  //   }
-  // }
-
-  // AUTHENTICATION
+  getPriceBasedOnBudget(post) {
+    let min_budget = post.budget.min
+    let max_budget = post.budget.max
+    let avg_budget = (min_budget + max_budget)/2
+    // console.log(avg_budget)
+    if (avg_budget<30000) {
+      return 300
+    }
+    else if (avg_budget >= 30000 && avg_budget<50000) {
+      return 1200
+    }
+    else if (avg_budget >= 50000 && avg_budget<100000) {
+      return 1500
+    }
+    else {
+      return 2000
+    }
+  }
 
   login(data) {
     if (this.AuthState.loading) {return}
@@ -344,7 +345,8 @@ export class HomeComponent implements OnInit {
     this.PurchaseState.loading = true
     this.PurchaseState.error = null
     this.purchased_post = null
-    this.commonService.postMethod('posts/' + post._id + '/contacts', {}).then((data) => {
+    let price_contact = this.getPriceBasedOnBudget(post)
+    this.commonService.postMethod('posts/' + post._id + '/contacts', {price_contact:price_contact}).then((data) => {
       this.PurchaseState.loading = false
       this.PurchaseState.error = null
       this.checkPurchasePost(post)
