@@ -41,6 +41,7 @@
         </div>
         <div class="post" *ngFor="let post of posts">
           <div class="post-content">
+            <img class="purchased-image" *ngIf="post.status && post.status==='PURCHASED'" src='../assets/images/purchased-label.png'>
             <div class="post-body">
               <div class="post-initial">
                 <span class="top-title">RICHIESTA CLIENTE:</span>
@@ -129,10 +130,9 @@
                     </div>
                   </div> -->
                   <div class="post-actions">
-                    <button class="btn action" id="previewPurchaseContact" (click)="previewPurchase(post); commonService.disableScroll()">
-                      <span class="title" id="previewPurchaseContact">CONTATTA CLIENTE</span>
-                      <!-- <span class="price">10€</span> -->
-                      <!-- <span class="price">{{getPriceBasedOnBudget(post)/100}}€</span> -->
+                    <button class="btn action" [ngClass]="{'purchased': (post.status && post.status==='PURCHASED')}" id="previewPurchaseContact" (click)="previewPurchase(post); commonService.disableScroll()">
+                      <span *ngIf="!post.status || post.status!=='PURCHASED'" class="title" id="previewPurchaseContact">CONTATTA CLIENTE</span>
+                      <span *ngIf="post.status && post.status==='PURCHASED'" class="title" id="previewPurchaseContact">CLIENTE PRENOTATO</span>
                     </button>
                   </div>
                 </div>

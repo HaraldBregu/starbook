@@ -3812,6 +3812,7 @@ app-home {
           box-shadow: 0 0 10px 0 rgba(50, 50, 50, 0.1);
           overflow: auto; }
           app-home .home-container .home .home-content .home-body .post .post-content {
+            position: relative;
             background: white; }
             app-home .home-container .home .home-content .home-body .post .post-content .post-header {
               padding: 40px 50px;
@@ -4073,27 +4074,11 @@ app-home {
                   -webkit-box-shadow: none;
                   -moz-box-shadow: none;
                   box-shadow: none; }
-                app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-actions .purchase  {
-                  position: relative;
-                  border-radius: 5px;
-                  width: 100%;
-                  background: #2ecc71 !important;
-                  border: 1px solid #27ae60 !important;
-                  margin-top: 10px;
-                  height: 66px;
-                  text-align: left;
-                  padding-left: 60px;
-                  font-weight: 800; }
-                  app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-actions .purchase  span {
-                    position: absolute;
-                    right: 0;
-                    top: 0;
-                    bottom: 0;
-                    line-height: 66px;
-                    font-weight: 800;
-                    font-size: 34px;
-                    padding: 0 30px;
-                    border-left: 1px solid white; }
+                app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-actions .purchased  {
+                  background: #bdc3c7;
+                  border-color: #8e8e8e;
+                  box-shadow: none;
+                  text-shadow: none; }
                 app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-actions .bottom-message {
                   display: block;
                   font-size: 18px;
@@ -4134,6 +4119,10 @@ app-home {
                 float: right; }
                 app-home .home-container .home .home-content .home-body .post .post-content .post-footer .post-actions-right .icon-new-page {
                   font-size: 24px; }
+            app-home .home-container .home .home-content .home-body .post .post-content .purchased-image {
+              position: absolute;
+              width: 120px;
+              right: 0; }
           app-home .home-container .home .home-content .home-body .post .loader {
             text-align: center;
             padding: 50px; }

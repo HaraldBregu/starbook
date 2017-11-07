@@ -311,6 +311,9 @@ export class HomeComponent implements OnInit {
   }
   previewPurchase(post) {
     this.selected_post = post
+    if(post.status && post.status==="PURCHASED") {
+      return
+    }
     if (!this.authService.currentAccount()) {
       this.popup = "SIGNUP_POPUP"
       this.commonService.disableScroll()
