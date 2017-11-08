@@ -1,11 +1,19 @@
 <div class="home-container">
   <div class="home">
     <div class="home-content">
-      <div class="home-header" *ngIf="posts && posts.length>0">
-        <h1 class="title">Richiesta per: <b>Lavori e servizi</b></h1>
-        <p class="description">
-          Trova una richiesta di lavoro per la tua categoria, richiedi i dati del cliente, invia il tuo preventivo e inizia a lavorare.
-        </p>
+      <div class="home-header">
+        <div *ngIf="!params.id">
+          <h1 class="title">Richieste per: <b>Lavori, Servizi, Preventivi</b></h1>
+          <p class="description">
+            Trova una richiesta di lavoro per la tua categoria. Autorizza un pagamento in caso di lavoro accettato. Ricevi i dati del cliente e contattalo direttamente.
+          </p>
+        </div>
+        <div *ngIf="params.id && posts && posts.length===1">
+          <h1 class="title">Richiesta per: <b>{{posts[0].title}}</b></h1>
+          <p class="description">
+            Autorizza un pagamento per questa richiesta in caso di lavoro accettato. Ricevi i dati del cliente e contattalo direttamente.
+          </p>
+        </div>
         <div class="options">
           <div class="row">
             <div class="col-md-4">
@@ -53,7 +61,7 @@
                 <span class="warranty-price">{{getPriceBasedOnBudget(post)/100}}€</span>
                 <div class="warranty-text">
                   <span class="warranty-title">In garanzia</span>
-                  <span class="warranty-description"><i>a lavoro eseguito</i></span>
+                  <span class="warranty-description"><i>a lavoro accettato</i></span>
                 </div>
               </div>
               <div class="row">
@@ -124,7 +132,7 @@
                 </div>
               </div>
             </div>
-            <div class="post-footer">
+            <div class="post-footer" *ngIf="!post.status || post.status!=='PURCHASED'">
               <div class="post-message">
                 <span>Dopo aver visualizzato il contatto del cliente, potrai contattarlo direttamente tramite telefono o email.</span>
               </div>

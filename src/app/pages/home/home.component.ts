@@ -26,7 +26,6 @@ import { FacebookService, InitParams, LoginResponse, LoginOptions, UIResponse, U
 
 export class HomeComponent implements OnInit {
   public SeoData = {}
-  public id = null
   public params = null
   public CurrentAccount = null
   public popup = null

@@ -4137,7 +4137,7 @@ app-home {
           -moz-box-shadow: 0 0 10px 0 rgba(50, 50, 50, 0.1);
           box-shadow: 0 0 10px 0 rgba(50, 50, 50, 0.1);
           padding: 40px 50px;
-          margin-top: 20px; }
+          margin-top: 30px; }
           app-home .home-container .home .home-content .home-footer .footer {
             margin: auto; }
             app-home .home-container .home .home-content .home-footer .footer .testimonial-title {
@@ -4516,10 +4516,10 @@ app-home {
   app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-informations .contact-price {
     margin-left: 140px !important; }
 
-  app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-actions .action {
+  app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-actions .btn-action {
     width: 100%; }
 
-  app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-actions .action .price {
+  app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-actions .btn-action .price {
     display: none; }
 
   app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-interest {
@@ -4534,7 +4534,7 @@ app-home {
     margin-bottom: 10px;
     text-align: left; }
 
-  app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-actions .action .title {
+  app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-actions .btn-action .title {
     padding: 0 10px; }
 
   app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-initial {
@@ -4600,15 +4600,15 @@ app-home {
     margin-left: 0;
     font-size: 20px; }
 
-  app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-actions .action .title {
-    font-size: 21px;
+  app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-actions .btn-action .title {
+    font-size: 26px;
     padding: 0 5px; }
 
-  app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-actions .action .price {
+  app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-actions .btn-action .price {
     font-size: 24px;
     padding: 0 10px; }
 
-  app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-actions .action {
+  app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-actions .btn-action {
     width: 100%; }
 
   app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-customer {
@@ -4664,10 +4664,10 @@ app-home {
   app-home .home-container .home .home-content .home-body .post .post-content .post-body {
     padding: 20px; } }
 @media (max-width: 375px) {
-  app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-actions .action .title {
-    font-size: 18px; }
+  app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-actions .btn-action .title {
+    font-size: 24px; }
 
-  app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-actions .action .price {
+  app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-actions .btn-action .price {
     font-size: 21px; } }
 @media (max-width: 320px) {
   app-home .popup-container .popup .popup-content .popup-footer .action .price {
@@ -4676,10 +4676,10 @@ app-home {
   app-home .home-container .home .home-content .home-footer .footer .pagelist-container .page-container {
     width: calc(100% / 1); }
 
-  app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-actions .action .title {
-    font-size: 15px; }
+  app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-actions .btn-action .title {
+    font-size: 22px; }
 
-  app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-actions .action .price {
+  app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-actions .btn-action .price {
     font-size: 21px; } }
 .awesome-title {
   -webkit-animation: colorchange 6s infinite alternate; }
