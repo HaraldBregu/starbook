@@ -49,22 +49,11 @@
                 <h1 class="post-title">{{post.title}}</h1>
                 <span class="post-location">zona: {{checkPostLocation(post)}}</span>
               </div>
-              <!-- <div class="post-interest">
-                <span class="title">Livello di interesse:</span>
-                <div class="icons">
-                  <i class="fa fa-smile-o" aria-hidden="true"></i>
-                  <i class="fa fa-smile-o" aria-hidden="true"></i>
-                  <i class="fa fa-smile-o" aria-hidden="true"></i>
-                  <i class="fa fa-smile-o" aria-hidden="true"></i>
-                  <i class="fa fa-smile-o" aria-hidden="true"></i>
-                </div>
-              </div> -->
               <div class="post-warranty">
                 <span class="warranty-price">{{getPriceBasedOnBudget(post)/100}}€</span>
                 <div class="warranty-text">
                   <span class="warranty-title">In garanzia</span>
                   <span class="warranty-description"><i>a lavoro eseguito</i></span>
-                  <!-- <span class="warranty-description"><i>Solo in caso di accettazione</i></span> -->
                 </div>
               </div>
               <div class="row">
@@ -119,22 +108,13 @@
                   </div>
                 </div>
               </div>
-              <div class="row">
+              <div class="row" *ngIf="!post.status || post.status!=='PURCHASED'">
                 <div class="col-md-6">
-                  <!-- <div class="post-timer">
-                    <span class="title">RICHIESTA TERMINA TRA:</span>
-                    <div class="timer">
-                      <span><span class="hours">{{getCountDownHours(post)}}</span><span class="dots">:</span><p>ore</p></span>
-                      <span><span class="minutes">{{getCountDownMinutes(post)}}</span><span class="dots">:</span><p>min</p></span>
-                      <span><span class="seconds">{{getCountDownSeconds(post)}}</span><p>sec</p></span>
-                    </div>
-                  </div> -->
-                  <div class="post-actions">
-                    <button class="btn action" [ngClass]="{'purchased': (post.status && post.status==='PURCHASED')}" id="previewPurchaseContact" (click)="previewPurchase(post)">
-                      <span *ngIf="!post.status || post.status!=='PURCHASED'" class="title" id="previewPurchaseContact">CONTATTA CLIENTE</span>
-                      <span *ngIf="post.status && post.status==='PURCHASED'" class="title" id="previewPurchaseContact">CLIENTE PRENOTATO</span>
-                    </button>
-                  </div>
+                   <div class="post-actions">
+                     <button type="button" class="btn btn-action" id="previewPurchaseContact" (click)="previewPurchase(post)">
+                       <span class="title" id="previewPurchaseContact">CONTATTA CLIENTE</span>
+                     </button>
+                   </div>
                 </div>
                 <div class="col-md-6">
                   <div class="post-action-description">
@@ -142,34 +122,6 @@
                     <span class="description-action">Riceverai tutte le informazioni del contatto una volta garantito l'acquisto.</span>
                   </div>
                 </div>
-                <!-- <div class="col-md-3">
-                  <div class="post-customer">
-                    <span class="title">DATI DEL CLIENTE:</span>
-                    <div class="info">
-                      <span class="label">COGNOME:</span><span class="content">{{checkCustomerLastname(post)}}</span>
-                    </div>
-                    <div class="info">
-                      <span class="label">NOME:</span><span class="content">{{checkCustomerFirstname(post)}}</span>
-                    </div>
-                    <div class="info">
-                      <span class="label">EMAIL:</span><span class="content">{{checkCustomerEmailAddress(post)}}</span>
-                    </div>
-                    <div class="info">
-                      <span class="label">TELEFONO:</span><span class="content">{{checkCustomerPhoneNumber(post)}}</span>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-3">
-                  <div class="post-customer">
-                    <span class="title">INDIRIZZO:</span>
-                    <div class="info">
-                      <span class="label">COMUNE:</span><span class="content">{{checkPostLocation(post)}}</span>
-                    </div>
-                    <div class="info">
-                      <span class="label">VIA:</span><span class="content">{{checkAddressStreet(post)}}</span>
-                    </div>
-                  </div>
-                </div> -->
               </div>
             </div>
             <div class="post-footer">
@@ -402,11 +354,6 @@
       <div class="popup-header">
         <h3 class="post-title">Registrati e contatta il cliente</h3>
         <p>Non hai ancora un account su Starbook? Registrati inserendo i tuoi dati per contattare il cliente.</p>
-        <!-- <div class="post-timer">
-          <div class="timer">
-            <span class="text">Scade tra:</span><span class="hours">{{getCountDownHours(selected_post)}}</span><span class="dots">:</span><span class="minutes">{{getCountDownMinutes(selected_post)}}</span><span class="dots">:</span><span class="seconds">{{getCountDownSeconds(selected_post)}}</span>
-          </div>
-        </div> -->
       </div>
       <div class="popup-body">
         <form (keyup.enter)="signup(AuthField)">
@@ -467,11 +414,6 @@
       <div class="popup-header">
         <h3 class="post-title">Accedi e contatta il cliente</h3>
         <p>Hai gia un account registrato su Starbook? Accedi per contattare il cliente.</p>
-        <!-- <div class="post-timer">
-          <div class="timer">
-            <span class="text">Scade tra:</span><span class="hours">{{getCountDownHours(selected_post)}}</span><span class="dots">:</span><span class="minutes">{{getCountDownMinutes(selected_post)}}</span><span class="dots">:</span><span class="seconds">{{getCountDownSeconds(selected_post)}}</span>
-          </div>
-        </div> -->
       </div>
       <div class="popup-body">
         <form (keyup.enter)="login(AuthField)">
@@ -586,3 +528,13 @@
     </div>
   </div>
 </div>
+
+
+<!-- <div class="post-timer">
+  <span class="title">RICHIESTA TERMINA TRA:</span>
+  <div class="timer">
+    <span><span class="hours">{{getCountDownHours(post)}}</span><span class="dots">:</span><p>ore</p></span>
+    <span><span class="minutes">{{getCountDownMinutes(post)}}</span><span class="dots">:</span><p>min</p></span>
+    <span><span class="seconds">{{getCountDownSeconds(post)}}</span><p>sec</p></span>
+  </div>
+</div> -->

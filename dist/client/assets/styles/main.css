@@ -4032,7 +4032,7 @@ app-home {
                   font-size: 24px;
                   font-weight: 400;
                   color: rgba(0, 0, 0, 0.7); }
-                app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-actions .action {
+                app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-actions .btn-action {
                   display: block;
                   position: relative;
                   width: 100%;
@@ -4050,35 +4050,35 @@ app-home {
                   white-space: normal;
                   cursor: pointer;
                   outline: none; }
-                  app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-actions .action .title {
+                  app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-actions .btn-action .title {
                     display: block;
                     font-weight: 800;
                     color: white;
                     line-height: 66px;
                     font-size: 26px;
                     padding: 0 60px; }
-                  app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-actions .action .price {
+                  app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-actions .btn-action .price {
                     float: right;
                     line-height: 65px;
                     font-size: 30px;
                     font-weight: 900;
                     border-left: 1px solid white;
                     padding: 0 25px; }
-                app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-actions .action:hover {
+                app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-actions .btn-action:hover {
                   background-image: linear-gradient(to bottom, #67bd67 0%, #47a447 100%);
                   border-color: #388038; }
-                app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-actions .action:active:hover {
+                app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-actions .btn-action:active:hover {
                   color: #fff;
                   background-color: #398439;
                   border-color: #398e39;
                   -webkit-box-shadow: none;
                   -moz-box-shadow: none;
                   box-shadow: none; }
-                app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-actions .purchased  {
-                  background: #bdc3c7;
-                  border-color: #8e8e8e;
-                  box-shadow: none;
-                  text-shadow: none; }
+                app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-actions .btn-disabled  {
+                  background: #bdc3c7 !important;
+                  border-color: #8e8e8e !important;
+                  box-shadow: none !important;
+                  text-shadow: none !important; }
                 app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-actions .bottom-message {
                   display: block;
                   font-size: 18px;
