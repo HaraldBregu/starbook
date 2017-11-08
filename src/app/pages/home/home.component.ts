@@ -120,6 +120,9 @@ export class HomeComponent implements OnInit {
       })
     }
     this.route.params.subscribe(params => { this.params = params })
+    // this.route.fragment.subscribe((fragment: string) => {
+    //   console.log("My hash fragment is here => ", fragment)
+    // })
 
     this.commonService.getMethod('accounts').then((data) => {
       this.TestimonialAccounts = data.result
