@@ -312,7 +312,7 @@
                 <div class="actions">
                   <span class="default-card" *ngIf="defaultCard===card.id">DEFAULT</span>
                   <span class="not-default-card" *ngIf="defaultCard!==card.id" (click)="selectCard(card.id)"><i class="fa fa-circle-o-notch animate" *ngIf="card_state.loading"></i>DEFAULT</span>
-                  <button type="button" class="btn btn-link" (click)="popup='DELETE_CARD_POPUP'; selectedCardId=card.id;"><i class="fa fa-times" aria-hidden="true"></i> Rimuovi</button>
+                  <!-- <button type="button" class="btn btn-link" (click)="popup='DELETE_CARD_POPUP'; selectedCardId=card.id;"><i class="fa fa-times" aria-hidden="true"></i> Rimuovi</button> -->
                 </div>
               </div>
             </div>

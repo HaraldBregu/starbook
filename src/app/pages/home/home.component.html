@@ -5,13 +5,13 @@
         <div *ngIf="!params.id">
           <h1 class="title">Richieste per: <b>Lavori, Servizi, Preventivi</b></h1>
           <p class="description">
-            Trova una richiesta di lavoro per la tua categoria. Autorizza un pagamento in caso di lavoro accettato. Ricevi i dati del cliente e contattalo direttamente.
+            Trova una richiesta di lavoro per la tua categoria. Garantisci l'acquisto del contatto in caso di lavoro accettato. Ricevi i dati del cliente e contattalo direttamente.
           </p>
         </div>
         <div *ngIf="params.id && posts && posts.length===1">
           <h1 class="title">Richiesta per: <b>{{posts[0].title}}</b></h1>
           <p class="description">
-            Autorizza un pagamento per questa richiesta in caso di lavoro accettato. Ricevi i dati del cliente e contattalo direttamente.
+            Garantisci l'acquisto del contatto in caso di lavoro accettato. Ricevi i dati del cliente e contattalo direttamente.
           </p>
         </div>
         <div class="options">
