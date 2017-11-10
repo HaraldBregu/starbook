@@ -15,7 +15,6 @@ import * as globals from '../../globals';
 // import { Subscription } from 'rxjs/Subscription';
 // import 'rxjs/add/observable/interval';
 // import 'rxjs/add/operator/map';
-
 import { Observable, Subscription } from 'rxjs/Rx';
 import { FacebookService, InitParams, LoginResponse, LoginOptions, UIResponse, UIParams, FBVideoComponent } from 'ngx-facebook';
 

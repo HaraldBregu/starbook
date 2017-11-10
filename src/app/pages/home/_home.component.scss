@@ -340,7 +340,7 @@ app-home {
                 }
                 .post-actions {
                   display: block;
-                  margin-top: 30px;
+                  margin-top: 20px;
                   .title {
                     font-size: 24px;
                     font-weight: 400;
@@ -354,22 +354,25 @@ app-home {
                     text-align: center;
                     border-radius: 6px;
                     color: #fff;
-                    background-color: #5cb85c;
+                    // background-color: #5cb85c;
                     text-shadow: 0 2px 0 rgba(0, 0, 0, 0.3);
-                    background-image: linear-gradient(to bottom, #5cb85c 0%, #4cae4c 100%);
-                    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 3px 0px #357935;
+                    // background-image: linear-gradient(to bottom, #5cb85c 0%, #4cae4c 100%);
+                    // box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 3px 0px #357935;
+                    background-image: linear-gradient(to bottom, #3498db 0%, #0d6098 100%);
+                    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 3px 0px #052b44;
                     filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
                     background-repeat: repeat-x;
-                    border-color: #398e39;
+                    // border-color: #3e8f3e;
+                    border-color: #0d6098;
                     white-space: normal;
                     cursor: pointer;
                     outline: none;
                     .title {
                       display: block;
-                      font-weight: 800;
+                      font-weight: 500;
                       color: white;
                       line-height: 66px;
-                      font-size: 26px;
+                      font-size: 30px;
                       padding: 0 60px;
                     }
                     .price {
@@ -409,7 +412,7 @@ app-home {
                 }
                 .post-action-description {
                   font-family: 'Open Sans', sans-serif;
-                  margin-top: 30px;
+                  margin-top: 50px;
                   .title-action {
                     display: block;
                     font-size: 20px;
@@ -743,10 +746,11 @@ app-home {
       white-space: normal;
       font-size: 26px;
       line-height: 55px;
+      margin-top: 20px;
       .title {
-        font-weight: 800;
+        font-weight: 600;
         color: white;
-        font-size: 22px;
+        font-size: 24px;
         padding: 0 40px;
       }
       .price {
@@ -1096,6 +1100,13 @@ app-home {
   app-home .home-container .home .home-content .home-body .post .post-content .post-body {
     padding: 20px;
   }
+  app-home .popup-container .popup .popup-content .popup-footer .action .title {
+    padding: 0;
+  }
+  app-home .popup-container .popup .popup-content .popup-footer .action .price {
+    padding: 0 15px;
+    font-size: 26px;
+  }
 }
 
 @media (max-width: 375px) {
@@ -1108,8 +1119,12 @@ app-home {
 }
 
 @media (max-width: 320px) {
+  app-home .popup-container .popup .popup-content .popup-footer .action .title {
+    font-size: 22px;
+  }
   app-home .popup-container .popup .popup-content .popup-footer .action .price {
-    padding: 0 20px;
+    padding: 0 8px;
+    font-size: 22px;
   }
   app-home .home-container .home .home-content .home-footer .footer .pagelist-container .page-container {
     width: calc(100% / 1);
