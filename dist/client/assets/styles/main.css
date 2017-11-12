@@ -3765,7 +3765,7 @@ app-home {
         app-home .home-container .home .home-content .home-header {
           font-family: 'Open Sans', sans-serif;
           background: white;
-          border-radius: 5px;
+          border-radius: 10px;
           border: solid 1px #e0e0e0;
           -webkit-box-shadow: 0 0 10px 0 rgba(50, 50, 50, 0.1);
           -moz-box-shadow: 0 0 10px 0 rgba(50, 50, 50, 0.1);
@@ -3805,7 +3805,7 @@ app-home {
           background: white;
           margin-top: 30px;
           margin-bottom: 10px;
-          border-radius: 5px;
+          border-radius: 10px;
           border: solid 1px #e0e0e0;
           -webkit-box-shadow: 0 0 10px 0 rgba(50, 50, 50, 0.1);
           -moz-box-shadow: 0 0 10px 0 rgba(50, 50, 50, 0.1);
@@ -3894,13 +3894,13 @@ app-home {
                   float: left;
                   font-size: 17px;
                   font-weight: 700;
-                  color: #A3A3A3;
+                  color: #343a43;
                   line-height: 26px; }
                 app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-informations .content {
                   display: block;
                   margin-left: 170px;
                   font-size: 18px;
-                  color: rgba(0, 0, 0, 0.8); }
+                  color: #343a43; }
                 app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-informations .content-full-width {
                   margin: 0 !important; }
                 app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-informations .customer-type {
@@ -4027,7 +4027,7 @@ app-home {
                     font-weight: 700; }
               app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-actions {
                 display: block;
-                margin-top: 20px; }
+                margin-top: 40px; }
                 app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-actions .title {
                   font-size: 24px;
                   font-weight: 400;
@@ -4041,11 +4041,11 @@ app-home {
                   border-radius: 6px;
                   color: #fff;
                   text-shadow: 0 2px 0 rgba(0, 0, 0, 0.3);
-                  background-image: linear-gradient(to bottom, #3498db 0%, #0d6098 100%);
-                  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 3px 0px #052b44;
+                  background-image: linear-gradient(to bottom, #5cb85c 0%, #4cae4c 100%);
+                  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 3px 0px #357935;
                   filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
                   background-repeat: repeat-x;
-                  border-color: #0d6098;
+                  border-color: #3e8f3e;
                   white-space: normal;
                   cursor: pointer;
                   outline: none; }
@@ -4053,7 +4053,7 @@ app-home {
                     display: block;
                     font-weight: 500;
                     color: white;
-                    line-height: 66px;
+                    line-height: 60px;
                     font-size: 30px;
                     padding: 0 60px; }
                   app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-actions .btn-action .price {
@@ -4112,7 +4112,6 @@ app-home {
                 app-home .home-container .home .home-content .home-body .post .post-content .post-footer .post-message span {
                   font-family: 'Open Sans', sans-serif;
                   font-size: 18px;
-                  font-style: italic;
                   font-weight: 300; }
               app-home .home-container .home .home-content .home-body .post .post-content .post-footer .post-actions-right {
                 float: right; }
@@ -4130,7 +4129,7 @@ app-home {
         app-home .home-container .home .home-content .home-footer {
           position: relative;
           background: white;
-          border-radius: 5px;
+          border-radius: 10px;
           border: solid 1px #e0e0e0;
           -webkit-box-shadow: 0 0 10px 0 rgba(50, 50, 50, 0.1);
           -moz-box-shadow: 0 0 10px 0 rgba(50, 50, 50, 0.1);
@@ -4343,7 +4342,8 @@ app-home {
     white-space: normal;
     font-size: 26px;
     line-height: 55px;
-    margin-top: 20px; }
+    margin-top: 20px;
+    cursor: pointer; }
     app-home .popup-container .popup .popup-content .popup-footer .action .title {
       font-weight: 600;
       color: white;
@@ -4358,10 +4358,13 @@ app-home {
   app-home .popup-container .popup .popup-content .popup-footer .action:hover {
     background-image: linear-gradient(to bottom, #67bd67 0%, #47a447 100%);
     border-color: #388038; }
-  app-home .popup-container .popup .popup-content .popup-footer .action:focus {
-    background-color: #47a447;
-    background-position: 0 -15px;
-    border-color: #388038; }
+  app-home .popup-container .popup .popup-content .popup-footer .action:active:hover {
+    color: #fff;
+    background-color: #398439;
+    border-color: #398e39;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none; }
   app-home .popup-container .popup .popup-content .popup-footer .actions {
     text-align: center; }
     app-home .popup-container .popup .popup-content .popup-footer .actions .btn {
@@ -8594,41 +8597,28 @@ app-help {
     padding: 30px; } }
 app-legal {
   display: block;
-  position: relative;
   width: 100%;
   height: 100%;
-  padding-top: 50px;
-  background-color: white;
-  font-family: HelveticaNeue, sans-serif; }
-
-.legal-container {
-  background: white; }
-
-.legal-container h1 {
-  font-size: 30px;
-  letter-spacing: 0.22px;
-  margin-top: 40px;
-  margin-bottom: 20px;
-  font-weight: 600; }
-
-.legal-container h2 {
-  font-size: 26px;
-  letter-spacing: 0.22px; }
-
-.legal-container h3 {
-  font-size: 20px;
-  letter-spacing: 0.22px; }
-
-.legal-container h4 {
-  font-size: 14px;
-  letter-spacing: 0.22px; }
-
-.legal-container h6 {
-  font-size: 16px;
-  letter-spacing: 0.22px; }
-
-.legal-container .legal-content {
-  padding-bottom: 100px; }
+  min-height: 100vh;
+  padding: 70px 0 0;
+  -webkit-overflow-scrolling: touch;
+  background: #f9f9f9; }
+  app-legal .legal-container {
+    padding: 10px 10px 40px; }
+    app-legal .legal-container .legal {
+      max-width: 1140px;
+      margin: auto; }
+      app-legal .legal-container .legal .legal-content .legal-body .title {
+        margin-bottom: 30px;
+        margin-top: 50px; }
+      app-legal .legal-container .legal .legal-content .legal-body .subtitle {
+        margin-bottom: 10px;
+        margin-top: 30px; }
+      app-legal .legal-container .legal .legal-content .legal-body .description {
+        font-weight: 300;
+        margin-bottom: 10px;
+        line-height: 1.6em;
+        letter-spacing: 0.6px !important; }
 
 app-account {
   display: block;

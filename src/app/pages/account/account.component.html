@@ -16,6 +16,7 @@
         <li><a class="btn btn-transparent" (click)="clickLeftTabItem('settings')" [ngClass]="{'active':profile_tab==='settings'}"><i class="fa fa-wrench" aria-hidden="true"></i>Impostazioni</a></li>
         <li><a class="btn btn-transparent" (click)="clickLeftTabItem('payment_method')" [ngClass]="{'active':profile_tab==='payment_method'}"><i class="fa fa-credit-card" aria-hidden="true"></i>Pagamento</a></li>
         <li><a class="btn btn-transparent" (click)="clickLeftTabItem('share')" [ngClass]="{'active':profile_tab==='share'}"><i class="fa fa-share" aria-hidden="true"></i>Condividi</a></li>
+        <li *ngIf="isAffiliate"><a class="btn btn-transparent" (click)="clickLeftTabItem('affiliation')" [ngClass]="{'active':profile_tab==='affiliation'}"><i class="fa fa-share" aria-hidden="true"></i>Affiliazione</a></li>
       </ul>
     </div>
     <div class="account-content tabbed-content" *ngIf="profile_tab==='informations'">
@@ -340,6 +341,13 @@
           <li><button type="button" id="linkedin" class="btn btn-pinterest" (click)="shareOnPinterest()"><i class="fa fa-pinterest-p"></i><span>Pinterest</span></button></li>
           <li><button type="button" id="email" class="btn btn-white" (click)="shareWithEmail()"><i class="fa fa-envelope"></i><span>Email</span></button></li>
         </ul>
+      </div>
+    </div>
+    <div class="account-content tabbed-content" *ngIf="profile_tab==='affiliation'">
+      <div class="account-header">
+        <h2>Affiliazione lavori</h2>
+      </div>
+      <div class="account-body">
       </div>
     </div>
     <!-- <div class="account-footer tabbed-content">

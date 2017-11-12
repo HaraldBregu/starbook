@@ -10,11 +10,6 @@ import { PopupsService } from '../../popups/popups.service';
 import { CommonService } from '../../shared/common.service';
 import { PaymentService } from '../../shared/payment.service';
 import * as globals from '../../globals';
-// import 'rxjs/Rx';
-// import { Observable } from 'rxjs/Observable';
-// import { Subscription } from 'rxjs/Subscription';
-// import 'rxjs/add/observable/interval';
-// import 'rxjs/add/operator/map';
 import { Observable, Subscription } from 'rxjs/Rx';
 import { FacebookService, InitParams, LoginResponse, LoginOptions, UIResponse, UIParams, FBVideoComponent } from 'ngx-facebook';
 
@@ -218,22 +213,22 @@ export class HomeComponent implements OnInit {
     return string_time
   }
   getPriceBasedOnBudget(post) {
-    let min_budget = post.budget.min
-    let max_budget = post.budget.max
-    let avg_budget = (min_budget + max_budget)/2
-    // console.log(avg_budget)
-    if (avg_budget<30000) {
-      return 300
-    }
-    else if (avg_budget >= 30000 && avg_budget<50000) {
-      return 1200
-    }
-    else if (avg_budget >= 50000 && avg_budget<100000) {
-      return 1500
-    }
-    else {
-      return 2000
-    }
+    return post.budget.estimate_cost
+    // let min_budget = post.budget.min
+    // let max_budget = post.budget.max
+    // let avg_budget = (min_budget + max_budget)/2
+    // if (avg_budget<30000) {
+    //   return 300
+    // }
+    // else if (avg_budget >= 30000 && avg_budget<50000) {
+    //   return 1200
+    // }
+    // else if (avg_budget >= 50000 && avg_budget<100000) {
+    //   return 1500
+    // }
+    // else {
+    //   return 2000
+    // }
   }
 
   login(data) {

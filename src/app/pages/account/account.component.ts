@@ -273,10 +273,18 @@ export class AccountComponent implements OnInit {
     error_message: null,
   }
 
+  public isAffiliate = false
+
   constructor(private route: ActivatedRoute, private router: Router, private navigationService: NavigationService, private profileService: ProfileService, private authService: AuthService, private seoService: SeoService, private contactService: ContactService, private popupsService: PopupsService, private commonService: CommonService, private paymentService: PaymentService) {
     this.navigationService.updateMessage("Dashboard")
     if (isBrowser) {
       let account = JSON.parse(localStorage.getItem('auth'))
+      // console.log('account is: ' + JSON.stringify(account))
+      this.commonService.getMethod('me').then((data) => {
+        let user = data.result
+        this.isAffiliate = user.isAffiliate
+        // console.log('account is: ' + JSON.stringify(data))
+      }).catch((error) => {})
 
       this.checkPicture(account)
       this.checkLogo(account)
