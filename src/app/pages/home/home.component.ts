@@ -230,6 +230,16 @@ export class HomeComponent implements OnInit {
     //   return 2000
     // }
   }
+  getDecimalPartPrice(post) {
+    let price_contact = this.getPriceBasedOnBudget(post)/100
+    return Math.trunc(price_contact)
+  }
+  getFracPartPrice(post) {
+    var price_contact = this.getPriceBasedOnBudget(post)/100
+    var string_price_contact = price_contact.toFixed(2)
+    let dec_number = String(string_price_contact).substr(String(string_price_contact).indexOf('.')+1)
+    return dec_number
+  }
 
   login(data) {
     if (this.AuthState.loading) {return}

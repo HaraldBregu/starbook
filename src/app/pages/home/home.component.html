@@ -23,13 +23,13 @@
             </div>
             <div class="col-md-4">
               <img src="../assets/images/pay-for-job.png" alt="pagamento">
-              <span class="opt-title">Paghi solo se lavori</span>
+              <span class="opt-title">Acquisti con garanzie</span>
               <span class="opt-description">Il pagamento del totale viene effettuato solo se il cliente accetta la sua offerta.</span>
             </div>
             <div class="col-md-4">
               <img src="../assets/images/refund-guarantee.png" alt="rimborso">
               <span class="opt-title">Rimborso garantito</span>
-              <span class="opt-description">Riceverai un rimborso in caso di non accettazione del lavoro dal cliente.</span>
+              <span class="opt-description">Il tuo investimento ritorna sempre con il sistema dei rimborsi su Starbook.</span>
             </div>
           </div>
         </div>
@@ -58,10 +58,14 @@
                 <span class="post-location">a {{checkPostLocation(post)}}</span>
               </div>
               <div class="post-warranty">
-                <span class="warranty-price">{{getPriceBasedOnBudget(post)/100}}€</span>
+                <!-- <span class="top-title">GARANTISCI</span> -->
+                <div class="warranty-amount">
+                  <!-- <span class="warranty-price">{{getPriceBasedOnBudget(post)/100}}</span><span class="warranty-cent">,95€</span> -->
+                  <span class="warranty-price">{{ getDecimalPartPrice(post) }}</span><span class="warranty-cent">,{{ getFracPartPrice(post) }}€</span>
+                </div>
                 <div class="warranty-text">
-                  <span class="warranty-title">In garanzia</span>
-                  <span class="warranty-description"><i>a lavoro accettato</i></span>
+                  <span class="warranty-title">Garantisci:</span>
+                  <span class="warranty-description"><i>Per lavoro accettato</i></span>
                 </div>
               </div>
               <div class="row">
@@ -142,7 +146,7 @@
             </div>
             <div class="post-footer" *ngIf="!post.status || post.status!=='PURCHASED'">
               <div class="post-message">
-                <span>Riceverai tutte le informazioni del contatto una volta garantito l'acquisto e potrai contattare il cliente tramite mail e telefono.</span>
+                <span>Riceverai tutte le informazioni del contatto una volta garantito l'acquisto e potrai contattare il cliente tramite email e telefono.</span>
               </div>
               <div class="post-actions-right" *ngIf="!params.id">
                 <a routerLink="/post/{{post._id}}"><i class="fa fa-sign-out icon-new-page" aria-hidden="true"></i></a>
@@ -280,7 +284,12 @@
           </div>
           <div class="col-md-12">
             <div class="action" (click)="purchase(selected_post)">
-              <span class="title">Garanzia d'acquisto</span><span class="price">{{getPriceBasedOnBudget(selected_post)/100}}€</span>
+              <!-- <span class="title">Garanzia d'acquisto</span> -->
+              <span class="title">Garantisci</span>
+              <!-- <span class="price">{{getPriceBasedOnBudget(selected_post)/100}}€</span> -->
+              <div class="warranty-amount">
+                <span class="warranty-price">{{ getDecimalPartPrice(selected_post) }}</span><span class="warranty-cent">,{{ getFracPartPrice(selected_post) }}€</span>
+              </div>
             </div>
           </div>
         </div>

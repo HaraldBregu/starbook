@@ -102,16 +102,33 @@ app-home {
                 }
                 .post-warranty {
                   display: block;
+                  font-family: 'Open Sans', sans-serif;
                   margin-top: 5px;
                   text-align: right;
                   float: right;
-                  .warranty-price {
-                    font-size: 52px;
-                    font-weight: 900;
-                    color: #2ecc71;
-                    line-height: 44px;
+                  .top-title {
+                    display: block;
+                    margin-bottom: 15px;
+                    color: rgba(0, 0, 0, 0.7);
+                    font-size: 17px;
+                    font-weight: 500;
+                  }
+                  .warranty-amount {
                     float: right;
                     margin-left: 10px;
+                    display: inline-flex;
+                    .warranty-price {
+                      font-size: 52px;
+                      font-weight: 900;
+                      color: #2ecc71;
+                      line-height: 44px;
+                    }
+                    .warranty-cent {
+                      font-size: 26px;
+                      font-weight: 900;
+                      color: #2ecc71;
+                      line-height: 28px;
+                    }
                   }
                   .warranty-text {
                     float: right;
@@ -119,8 +136,8 @@ app-home {
                     .warranty-title {
                       display: block;
                       font-size: 17px;
-                      font-weight: 500;
-                      color: rgba(0, 0, 0, 0.7);
+                      font-weight: 700;
+                      color: #343a43;
                     }
                     .warranty-description {
                       display: block;
@@ -136,7 +153,7 @@ app-home {
                   float: left;
                   .top-title {
                     display: block;
-                    margin-bottom: 16px;
+                    margin-bottom: 15px;
                     color: rgba(0, 0, 0, 0.7);
                     font-size: 17px;
                     font-weight: 500;
@@ -352,12 +369,12 @@ app-home {
                     width: 100%;
                     margin-top: 10px;
                     text-align: center;
-                    border-radius: 6px;
+                    border-radius: 3px;
                     color: #fff;
                     // background-color: #5cb85c;
                     text-shadow: 0 2px 0 rgba(0, 0, 0, 0.3);
                     background-image: linear-gradient(to bottom, #5cb85c 0%, #4cae4c 100%);
-                    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 3px 0px #357935;
+                    // box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 3px 0px #357935;
                     // background-image: linear-gradient(to bottom, #566eb3 0%, #3a539b 100%);
                     // box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 3px 0px #132352;
                     filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
@@ -677,9 +694,20 @@ app-home {
       .competitors {
         color: #1abc9c;
       }
-      .price {
+      .warranty-amount {
         color: #1abc9c;
         font-weight: 700;
+        display: inline-flex;
+        .warranty-price {
+          font-size: 52px;
+          font-weight: 900;
+          line-height: 44px;
+        }
+        .warranty-cent {
+          font-size: 28px;
+          font-weight: 900;
+          line-height: 28px;
+        }
       }
     }
   }
@@ -733,13 +761,13 @@ app-home {
       width: 100%;
       font-size: 20px;
       line-height: 1.33;
-      border-radius: 6px;
+      border-radius: 3px;
       color: #fff;
       background-color: #5cb85c;
       border-color: #4cae4c;
       text-shadow: 0 2px 0 rgba(0, 0, 0, 0.3);
       background-image: linear-gradient(to bottom, #5cb85c 0%, #4cae4c 100%);
-      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 3px 0px #357935;
+      // box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 3px 0px #357935;
       filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
       background-repeat: repeat-x;
       border-color: #3e8f3e;
@@ -754,12 +782,24 @@ app-home {
         font-size: 24px;
         padding: 0 40px;
       }
-      .price {
+      .warranty-amount {
         float: right;
         font-size: 30px;
         font-weight: 900;
         border-left: 1px solid white;
         padding: 0 25px;
+        line-height: 56px;
+        display: inline-flex;
+        .warranty-price {
+          font-size: 30px;
+          font-weight: 900;
+          line-height: 56px;
+        }
+        .warranty-cent {
+          font-size: 20px;
+          font-weight: 500;
+          line-height: 47px;
+        }
       }
     }
     .action:hover {
@@ -978,10 +1018,10 @@ app-home {
   app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-initial {
     float: none;
   }
-  app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-warranty .warranty-price {
-    float: left;
+  app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-warranty .warranty-amount {
+    // float: left;
     margin: 0;
-    margin-right: 10px;
+    // margin-right: 10px;
   }
   app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-warranty .warranty-text {
     float: left;
@@ -1108,7 +1148,7 @@ app-home {
   app-home .popup-container .popup .popup-content .popup-footer .action .title {
     padding: 0;
   }
-  app-home .popup-container .popup .popup-content .popup-footer .action .price {
+  app-home .popup-container .popup .popup-content .popup-footer .action .warranty-amount {
     padding: 0 15px;
     font-size: 26px;
   }
@@ -1127,7 +1167,7 @@ app-home {
   app-home .popup-container .popup .popup-content .popup-footer .action .title {
     font-size: 22px;
   }
-  app-home .popup-container .popup .popup-content .popup-footer .action .price {
+  app-home .popup-container .popup .popup-content .popup-footer .action .warranty-amount {
     padding: 0 8px;
     font-size: 22px;
   }

@@ -3835,24 +3835,38 @@ app-home {
                   color: #27ae60; }
               app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-warranty {
                 display: block;
+                font-family: 'Open Sans', sans-serif;
                 margin-top: 5px;
                 text-align: right;
                 float: right; }
-                app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-warranty .warranty-price {
-                  font-size: 52px;
-                  font-weight: 900;
-                  color: #2ecc71;
-                  line-height: 44px;
+                app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-warranty .top-title {
+                  display: block;
+                  margin-bottom: 15px;
+                  color: rgba(0, 0, 0, 0.7);
+                  font-size: 17px;
+                  font-weight: 500; }
+                app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-warranty .warranty-amount {
                   float: right;
-                  margin-left: 10px; }
+                  margin-left: 10px;
+                  display: inline-flex; }
+                  app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-warranty .warranty-amount .warranty-price {
+                    font-size: 52px;
+                    font-weight: 900;
+                    color: #2ecc71;
+                    line-height: 44px; }
+                  app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-warranty .warranty-amount .warranty-cent {
+                    font-size: 26px;
+                    font-weight: 900;
+                    color: #2ecc71;
+                    line-height: 28px; }
                 app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-warranty .warranty-text {
                   float: right;
                   text-align: right; }
                   app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-warranty .warranty-text .warranty-title {
                     display: block;
                     font-size: 17px;
-                    font-weight: 500;
-                    color: rgba(0, 0, 0, 0.7); }
+                    font-weight: 700;
+                    color: #343a43; }
                   app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-warranty .warranty-text .warranty-description {
                     display: block;
                     color: rgba(0, 0, 0, 0.7); }
@@ -3864,7 +3878,7 @@ app-home {
                 float: left; }
                 app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-initial .top-title {
                   display: block;
-                  margin-bottom: 16px;
+                  margin-bottom: 15px;
                   color: rgba(0, 0, 0, 0.7);
                   font-size: 17px;
                   font-weight: 500; }
@@ -4038,11 +4052,10 @@ app-home {
                   width: 100%;
                   margin-top: 10px;
                   text-align: center;
-                  border-radius: 6px;
+                  border-radius: 3px;
                   color: #fff;
                   text-shadow: 0 2px 0 rgba(0, 0, 0, 0.3);
                   background-image: linear-gradient(to bottom, #5cb85c 0%, #4cae4c 100%);
-                  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 3px 0px #357935;
                   filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
                   background-repeat: repeat-x;
                   border-color: #3e8f3e;
@@ -4286,9 +4299,18 @@ app-home {
       color: #f39c12; }
     app-home .popup-container .popup .popup-content .popup-body .info .competitors {
       color: #1abc9c; }
-    app-home .popup-container .popup .popup-content .popup-body .info .price {
+    app-home .popup-container .popup .popup-content .popup-body .info .warranty-amount {
       color: #1abc9c;
-      font-weight: 700; }
+      font-weight: 700;
+      display: inline-flex; }
+      app-home .popup-container .popup .popup-content .popup-body .info .warranty-amount .warranty-price {
+        font-size: 52px;
+        font-weight: 900;
+        line-height: 44px; }
+      app-home .popup-container .popup .popup-content .popup-body .info .warranty-amount .warranty-cent {
+        font-size: 28px;
+        font-weight: 900;
+        line-height: 28px; }
   app-home .popup-container .popup .popup-content .popup-footer .description-purchase {
     text-align: center;
     font-size: 20px !important;
@@ -4329,13 +4351,12 @@ app-home {
     width: 100%;
     font-size: 20px;
     line-height: 1.33;
-    border-radius: 6px;
+    border-radius: 3px;
     color: #fff;
     background-color: #5cb85c;
     border-color: #4cae4c;
     text-shadow: 0 2px 0 rgba(0, 0, 0, 0.3);
     background-image: linear-gradient(to bottom, #5cb85c 0%, #4cae4c 100%);
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 3px 0px #357935;
     filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
     background-repeat: repeat-x;
     border-color: #3e8f3e;
@@ -4349,12 +4370,22 @@ app-home {
       color: white;
       font-size: 24px;
       padding: 0 40px; }
-    app-home .popup-container .popup .popup-content .popup-footer .action .price {
+    app-home .popup-container .popup .popup-content .popup-footer .action .warranty-amount {
       float: right;
       font-size: 30px;
       font-weight: 900;
       border-left: 1px solid white;
-      padding: 0 25px; }
+      padding: 0 25px;
+      line-height: 56px;
+      display: inline-flex; }
+      app-home .popup-container .popup .popup-content .popup-footer .action .warranty-amount .warranty-price {
+        font-size: 30px;
+        font-weight: 900;
+        line-height: 56px; }
+      app-home .popup-container .popup .popup-content .popup-footer .action .warranty-amount .warranty-cent {
+        font-size: 20px;
+        font-weight: 500;
+        line-height: 47px; }
   app-home .popup-container .popup .popup-content .popup-footer .action:hover {
     background-image: linear-gradient(to bottom, #67bd67 0%, #47a447 100%);
     border-color: #388038; }
@@ -4543,10 +4574,8 @@ app-home {
   app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-initial {
     float: none; }
 
-  app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-warranty .warranty-price {
-    float: left;
-    margin: 0;
-    margin-right: 10px; }
+  app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-warranty .warranty-amount {
+    margin: 0; }
 
   app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-warranty .warranty-text {
     float: left;
@@ -4670,7 +4699,7 @@ app-home {
   app-home .popup-container .popup .popup-content .popup-footer .action .title {
     padding: 0; }
 
-  app-home .popup-container .popup .popup-content .popup-footer .action .price {
+  app-home .popup-container .popup .popup-content .popup-footer .action .warranty-amount {
     padding: 0 15px;
     font-size: 26px; } }
 @media (max-width: 375px) {
@@ -4683,7 +4712,7 @@ app-home {
   app-home .popup-container .popup .popup-content .popup-footer .action .title {
     font-size: 22px; }
 
-  app-home .popup-container .popup .popup-content .popup-footer .action .price {
+  app-home .popup-container .popup .popup-content .popup-footer .action .warranty-amount {
     padding: 0 8px;
     font-size: 22px; }
 
