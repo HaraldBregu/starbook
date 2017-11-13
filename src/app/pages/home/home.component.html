@@ -23,13 +23,15 @@
             </div>
             <div class="col-md-4">
               <img src="../assets/images/pay-for-job.png" alt="pagamento">
-              <span class="opt-title">Acquisti con garanzie</span>
+              <span class="opt-title">Acquisti in sicurezza</span>
               <span class="opt-description">Il pagamento del totale viene effettuato solo se il cliente accetta la sua offerta.</span>
             </div>
             <div class="col-md-4">
               <img src="../assets/images/refund-guarantee.png" alt="rimborso">
-              <span class="opt-title">Rimborso garantito</span>
-              <span class="opt-description">Il tuo investimento ritorna sempre con il sistema dei rimborsi su Starbook.</span>
+              <span class="opt-title">Rimborso credito</span>
+              <span class="opt-description">Il tuoi acquisti ritornano sempre con il sistema del rimborso credito.</span>
+              <!-- <span class="opt-title">Ritorno sull'investimento</span>
+              <span class="opt-description">Il tuo investimento ritorna sempre con il sistema del rimborso credito.</span> -->
             </div>
           </div>
         </div>
@@ -52,7 +54,9 @@
             <img class="purchased-image" *ngIf="post.status && post.status==='PURCHASED'" src='../assets/images/purchased-label.png'>
             <div class="post-body">
               <div class="post-initial">
-                <span class="top-title">RICHIESTA CLIENTE:</span>
+                <div class="top-title">
+                  <span class="top-title-label">Richiesta:</span><span class="top-title-value loading-dots">In attesa di proposte</span>
+                </div>
                 <i class="fa fa-briefcase left-icon" aria-hidden="true"></i>
                 <h1 class="post-title">{{post.title}}</h1>
                 <span class="post-location">a {{checkPostLocation(post)}}</span>
@@ -65,7 +69,8 @@
                 </div>
                 <div class="warranty-text">
                   <span class="warranty-title">Garantisci:</span>
-                  <span class="warranty-description"><i>Per lavoro accettato</i></span>
+                  <span class="warranty-description"><i>iva inclusa</i></span>
+                  <!-- <span class="warranty-description"><i>Per lavoro accettato</i></span> -->
                 </div>
               </div>
               <div class="row">
@@ -281,6 +286,7 @@
           <div class="col-md-12">
             <!-- <p class="description-purchase">Garanzia di acquisizione contatto.</p> -->
             <p class="description-small"><i>Garanzia che verrà utilizzato in caso di lavoro accettato dal cliente.</i></p>
+            <p class="description-small"><i>IVA Inclusa</i></p>
           </div>
           <div class="col-md-12">
             <div class="action" (click)="purchase(selected_post)">

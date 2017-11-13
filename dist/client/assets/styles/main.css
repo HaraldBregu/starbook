@@ -3879,9 +3879,11 @@ app-home {
                 app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-initial .top-title {
                   display: block;
                   margin-bottom: 15px;
-                  color: rgba(0, 0, 0, 0.7);
                   font-size: 17px;
                   font-weight: 500; }
+                  app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-initial .top-title .top-title-label {
+                    color: #343a43;
+                    margin-right: 5px; }
                 app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-initial .left-icon {
                   color: #2980B9;
                   font-size: 80px;
@@ -4734,6 +4736,42 @@ app-home {
     color: #2980b9; }
   100% {
     color: #e74c3c; } }
+.loading-dots:after {
+  overflow: hidden;
+  display: inline-block;
+  vertical-align: bottom;
+  -webkit-animation: ellipsis steps(5, end) 2900ms infinite;
+  animation: ellipsis steps(5, end) 2900ms infinite;
+  content: "\2026";
+  /* ascii code for the ellipsis character */
+  width: 0px; }
+
+@keyframes ellipsis {
+  to {
+    width: 20px; }
+  0% {
+    color: transparent; }
+  25% {
+    color: rgba(0, 0, 0, 0.25); }
+  50% {
+    color: rgba(0, 0, 0, 0.5); }
+  75% {
+    color: rgba(0, 0, 0, 0.75); }
+  100% {
+    color: black; } }
+@-webkit-keyframes ellipsis {
+  to {
+    width: 20px; }
+  0% {
+    color: transparent; }
+  25% {
+    color: rgba(0, 0, 0, 0.25); }
+  50% {
+    color: rgba(0, 0, 0, 0.5); }
+  75% {
+    color: rgba(0, 0, 0, 0.75); }
+  100% {
+    color: black; } }
 app-landing {
   display: block;
   width: 100%;

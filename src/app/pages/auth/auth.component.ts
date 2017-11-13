@@ -233,7 +233,7 @@ export class AuthComponent implements OnInit {
                 account['token'] = data.token
                 localStorage.setItem('auth', JSON.stringify(account))
                 this.navigationService.updatePersonalMenu(data.result)
-                this.router.navigate(['/account/profile'])
+                this.router.navigate(['/'])
               }).catch((error) => {
                 this.router.navigate(['/login'])
                 switch (error) {
@@ -292,7 +292,7 @@ export class AuthComponent implements OnInit {
       this.login_state.loading = false;
       this.login_state.button_title = "Accedi";
       this.login_state.error_message = null;
-      this.router.navigate(['/account/profile'])
+      this.router.navigate(['/'])
     }).catch((error) => {
       this.login_state.email_error = null;
       this.login_state.password_error = null;
@@ -325,7 +325,7 @@ export class AuthComponent implements OnInit {
       this.Signup_State.creating = false
       this.Signup_State.loading = false
       this.Signup_State.created = true
-      this.router.navigate(['/account/profile'])
+      this.router.navigate(['/'])
     }).catch((error) => {
       this.Signup_State.creating = false
       this.Signup_State.loading = false
@@ -396,7 +396,7 @@ export class AuthComponent implements OnInit {
         this.savePictureToPath(this.Picture.file, 'accounts/' + data._id + '/avatar/0')
       } else {
         this.registration_state.loading = false
-        this.router.navigate(['account/profile'])
+        this.router.navigate(['/'])
       }
     }).catch((error) => {
       this.registration_state.loading = false
