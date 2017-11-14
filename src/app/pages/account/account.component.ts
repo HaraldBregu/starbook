@@ -273,7 +273,45 @@ export class AccountComponent implements OnInit {
     error_message: null,
   }
 
+  public AffiliatePosts = []
   public isAffiliate = false
+
+  public AffiliatePost = {
+    title : "",
+    description : "",
+    details : [],
+    customer : {
+      firstname : "",
+      lastname : "",
+      email : "",
+      phone_number : "",
+      complete : false
+    },
+    address : {
+      street : "",
+      street_number : "",
+      postal_code : "",
+      city : "",
+      province : "",
+      country : "Italia",
+      country_code : "IT"
+    },
+    budget: {
+      estimate_cost : 0,
+      min : 0,
+      max : 0
+    },
+    publish : false
+  }
+  public AffiliatePostDetails = []
+  public AffiliatePostSelected = null
+  public AffiliatePostTempDetail = ""
+  public AffiliatePostStatus = {
+    creating : false,
+    loading : false,
+    created : false,
+    error : null
+  }
 
   constructor(private route: ActivatedRoute, private router: Router, private navigationService: NavigationService, private profileService: ProfileService, private authService: AuthService, private seoService: SeoService, private contactService: ContactService, private popupsService: PopupsService, private commonService: CommonService, private paymentService: PaymentService) {
     this.navigationService.updateMessage("Dashboard")
@@ -339,6 +377,8 @@ export class AccountComponent implements OnInit {
       }).catch((error) => {
       })
     }
+
+    this.readPosts()
   }
 
   ngOnInit() {
@@ -1071,6 +1111,9 @@ export class AccountComponent implements OnInit {
   }
   clickLeftTabItem(item) {
     this.profile_tab = item
+    if (item==="affiliation") {
+      this.readPosts()
+    }
   }
   clickLeftTabQuotation(item) {
     this.quotation_tab = item
@@ -1283,7 +1326,52 @@ export class AccountComponent implements OnInit {
     this.popupsService.activate({type: 'logout', data: {}});
   }
 
+  // AFFILIATE SECTION
+
+  savePost() {
+    console.log(JSON.stringify(this.AffiliatePost))
+
+    if(this.AffiliatePost['_id']) {
+      this.commonService.putMethod('affiliate/me/posts/' + this.AffiliatePost['_id'], this.AffiliatePost).then((data) => {
+        console.log(JSON.stringify("Created post" + data))
+      }).catch((error) => {
+        console.log(JSON.stringify("Error creation" + error))
+      })
+    } else {
+      this.commonService.postMethod('affiliate/me/posts', this.AffiliatePost).then((data) => {
+        console.log(JSON.stringify("Created post" + data))
+      }).catch((error) => {
+        console.log(JSON.stringify("Error creation" + error))
+      })
+    }
+  }
+  readPosts() {
+    this.commonService.getMethod('affiliate/me/posts').then((data) => {
+      console.log(JSON.stringify(data))
+      this.AffiliatePosts = data.result
+    }).catch((error) => {
+      // console.log(JSON.stringify(error))
+      this.AffiliatePosts = []
+    })
+  }
+  addTempDetail() {
+    this.AffiliatePost.details.push(this.AffiliatePostTempDetail)
+    this.AffiliatePostTempDetail = null
+  }
+  detailAffiliatePostChangeAtIndex($event, i) {
+    this.AffiliatePost.details[i] = $event.target.value
+  }
+  openAndModyfyPost(post) {
+    this.AffiliatePostSelected = post
+    this.AffiliatePost = post
+    this.popup = "NEW_AFFILIATE_POST_POPUP"
+  }
+  // transform(val) {
+  //   return JSON.stringify(val, null, 2).replace(' ', '&nbsp;').replace('\n', '<br/>');
+  // }
+
   // UTILS
+
   formatedDateFromString(date) {
     let returnDate = '';
     if (date !== 'now') {

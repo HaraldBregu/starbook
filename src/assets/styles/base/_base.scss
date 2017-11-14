@@ -799,6 +799,7 @@ input::-ms-clear {
 ///////////////////////
 // POPUP CONTAINER
 ///////////////////////
+
 .popup-container {
   position: fixed;
   top: 0;
@@ -1040,6 +1041,9 @@ input::-ms-clear {
         }
       }
     }
+  }
+  .popup-post {
+    max-width: 700px;
   }
 }
 @media (max-width: 425px) {

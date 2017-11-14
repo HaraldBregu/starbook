@@ -346,11 +346,46 @@
     <div class="account-content tabbed-content" *ngIf="profile_tab==='affiliation'">
       <div class="account-header">
         <h2>Affiliazione lavori</h2>
+        <button type="button" name="button" class="btn btn-primary" (click)="popup='NEW_AFFILIATE_POST_POPUP';">Nuovo</button>
       </div>
       <div class="account-body">
+        <div class="post-container" *ngFor="let post of AffiliatePosts">
+          <div class="post">
+            <div class="post-content">
+              <div class="row">
+                <div class="col-md-12">
+                  <p class="jsontext">{{post | json}}</p>
+                </div>
+
+                <!-- <div class="col-md-12">
+                  <p>{{post._id}}</p>
+                </div>
+                <div class="col-md-12">
+                  <p>{{post.title}}</p>
+                </div>
+                <div class="col-md-12">
+                  <p>{{post.description}}</p>
+                </div>
+                <div class="col-md-12" *ngFor="let detail of post.details">
+                  <p>{{detail}}</p>
+                </div>
+                <div class="col-md-12">
+                  <p>Active: {{post.status.active}}</p>
+                </div>
+                <div class="col-md-12">
+                  <p>Public: {{post['_acl']['*']['read']}}</p>
+                </div> -->
+
+                <div class="col-md-12">
+                  <button type="button" name="button" class="btn btn-secondary" (click)="openAndModyfyPost(post)">Aggiorna</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-    <!-- <div class="account-footer tabbed-content">
+    <div class="account-footer tabbed-content">
       <div class="footer">
           <div class="row">
             <div class="col-md-6">
@@ -361,7 +396,7 @@
             </div>
           </div>
       </div>
-    </div> -->
+    </div>
   </div>
 </div>
 
@@ -1350,112 +1385,103 @@
     </div>
   </div>
 </div>
-<!-- <div class="popup-container" [ngStyle]="{'display' : popup ? 'block' : 'none'}">
-  <div class="popup-shadow" [ngStyle]="{'display' : popup ? 'block' : 'none'}" (click)="closePopup()"></div>
-  <div class="popup">
+
+<div class="popup-container" [ngStyle]="{'display' : popup==='NEW_AFFILIATE_POST_POPUP' ? 'block' : 'none'}">
+  <div class="popup-shadow" [ngStyle]="{'display' : popup ? 'block' : 'none'}" (click)="popup=null;"></div>
+  <div class="popup popup-post">
     <div class="popup-content">
       <div class="popup-nav">
-        <button type="button" class="close" (click)="closePopup()">&times;</button>Aggiungi un metodo di pagamento
+        <button type="button" class="close" (click)="popup=null;">&times;</button>Crea un nuovo post
       </div>
       <div class="popup-header">
-        <div class="list-cards">
-          <img src="../../../assets/images/visa.png" alt="Visa">
-          <img src="../../../assets/images/mastercard.png" alt="Mastercard">
-          <img src="../../../assets/images/americanexpress.png" alt="AmericanExpress">
-          <img src="../../../assets/images/discover.png" alt="Discover">
-        </div>
+        <h3>Crea un post</h3>
       </div>
       <div class="popup-body">
         <form>
           <div class="row">
             <div class="form-group col-md-12">
-              <label for="firstname-input">Numero carta *</label>
-              <input autocomplete="off" type="text" placeholder="Numero" class="form-control" [ngClass]="{'error-input': card_state.message_error}" id="numberInput" [(ngModel)]="Card.number" [ngModelOptions]="{standalone: true}">
+              <label for="title-input">Titolo</label>
+              <input id="title-input" type="text" placeholder="titolo" class="form-control" [ngClass]="{'error-input': AffiliatePostStatus.error}" [(ngModel)]="AffiliatePost.title" [ngModelOptions]="{standalone: true}">
             </div>
-            <div class="col-md-6">
-              <div class="form-group">
-                <label for="dateInput">Scadenza *</label>
-                <input autocomplete="off" type="text" placeholder="MM/AA" class="form-control" [ngClass]="{'error-input': card_state.message_error}" id="dateInput" [(ngModel)]="Card.exp_date" (keyup)="checkExpiry(Card.exp_date)" (change)="checkExpiry(Card.exp_date)" [ngModelOptions]="{standalone: true}">
+            <div class="form-group col-md-12">
+              <label for="description-input">Descrizione</label>
+              <textarea id="description-input" class="form-control" placeholder="Descrivi la tua richiesta" rows="4" [(ngModel)]="AffiliatePost.description" [ngModelOptions]="{standalone: true}"></textarea>
+            </div>
+            <div class="form-group col-md-12" *ngFor="let detail of AffiliatePost.details; let i=index">
+              <input id="details-input" type="text" class="form-control" value="{{detail}}" (change)="detailAffiliatePostChangeAtIndex($event, i)">
+            </div>
+            <div class="form-group col-md-12">
+              <label for="detail-input">Dettaglio</label>
+              <input id="detail-input" type="text" class="form-control" placeholder="dettaglio" autofocus="" [(ngModel)]="AffiliatePostTempDetail" (keyup.enter)="addTempDetail()" [ngModelOptions]="{standalone: true}">
+            </div>
+            <div class="form-group col-md-6">
+              <label for="firstname-input">Nome</label>
+              <input id="firstname-input" type="text" placeholder="Nome" class="form-control" [ngClass]="{'error-input': AffiliatePostStatus.error}" [(ngModel)]="AffiliatePost.customer.firstname" [ngModelOptions]="{standalone: true}">
+            </div>
+            <div class="form-group col-md-6">
+              <label for="lastname-input">Cognome</label>
+              <input id="lastname-input" type="text" placeholder="Cognome" class="form-control" [ngClass]="{'error-input': AffiliatePostStatus.error}" [(ngModel)]="AffiliatePost.customer.lastname" [ngModelOptions]="{standalone: true}">
+            </div>
+            <div class="form-group col-md-6">
+              <label for="phone-input">Telefono</label>
+              <input id="phone-input" type="text" placeholder="Telefono" class="form-control" [ngClass]="{'error-input': AffiliatePostStatus.error}" [(ngModel)]="AffiliatePost.customer.phone_number" [ngModelOptions]="{standalone: true}">
+            </div>
+            <div class="form-group col-md-6">
+              <label for="email-input">Email</label>
+              <input id="email-input" type="text" placeholder="Email" class="form-control" [ngClass]="{'error-input': AffiliatePostStatus.error}" [(ngModel)]="AffiliatePost.customer.email" [ngModelOptions]="{standalone: true}">
+            </div>
+            <div class="form-group col-md-9">
+              <label for="street-input">Via</label>
+              <input id="street-input" type="text" placeholder="Via" class="form-control" [ngClass]="{'error-input': AffiliatePostStatus.error}" [(ngModel)]="AffiliatePost.address.street" [ngModelOptions]="{standalone: true}">
+            </div>
+            <div class="form-group col-md-3">
+              <label for="street_number-input">Nr</label>
+              <input id="street_number-input" type="text" placeholder="nr" class="form-control" [ngClass]="{'error-input': AffiliatePostStatus.error}" [(ngModel)]="AffiliatePost.address.street_number" [ngModelOptions]="{standalone: true}">
+            </div>
+            <div class="form-group col-md-4">
+              <label for="city-input">Città</label>
+              <input id="city-input" type="text" placeholder="Città" class="form-control" [ngClass]="{'error-input': AffiliatePostStatus.error}" [(ngModel)]="AffiliatePost.address.city" [ngModelOptions]="{standalone: true}">
+            </div>
+            <div class="form-group col-md-4">
+              <label for="province-input">Province</label>
+              <input id="province-input" type="text" placeholder="Province" class="form-control" [ngClass]="{'error-input': AffiliatePostStatus.error}" [(ngModel)]="AffiliatePost.address.province" [ngModelOptions]="{standalone: true}">
+            </div>
+            <div class="form-group col-md-4">
+              <label for="postal_code-input">CAP</label>
+              <input id="postal_code-input" type="text" placeholder="CAP" class="form-control" [ngClass]="{'error-input': AffiliatePostStatus.error}" [(ngModel)]="AffiliatePost.address.postal_code" [ngModelOptions]="{standalone: true}">
+            </div>
+            <div class="form-group col-md-4">
+              <label for="min-budget-input">Budget Minimo</label>
+              <input id="min-budget-input" type="number" placeholder="Budget Minimo" class="form-control" [ngClass]="{'error-input': AffiliatePostStatus.error}" [(ngModel)]="AffiliatePost.budget.min" [ngModelOptions]="{standalone: true}">
+            </div>
+            <div class="form-group col-md-4">
+              <label for="max-budget-input">Budget Massimo</label>
+              <input id="max-budget-input" type="number" placeholder="Budget Massimo" class="form-control" [ngClass]="{'error-input': AffiliatePostStatus.error}" [(ngModel)]="AffiliatePost.budget.max" [ngModelOptions]="{standalone: true}">
+            </div>
+            <div class="form-group col-md-4">
+              <label for="estimate-cost-input">Costo Preventivo</label>
+              <input id="estimate-cost-input" type="number" placeholder="Preventivo" class="form-control" [ngClass]="{'error-input': AffiliatePostStatus.error}" [(ngModel)]="AffiliatePost.budget.estimate_cost" [ngModelOptions]="{standalone: true}">
+            </div>
+            <div class="form-group col-md-6">
+              <div class="form-check">
+                <label class="form-check-label">
+                  <input type="checkbox" class="form-check-input" [checked]="AffiliatePost.customer.complete" (change)="AffiliatePost.customer.complete = !AffiliatePost.customer.complete">Dati cliente completi
+                </label>
               </div>
             </div>
             <div class="form-group col-md-6">
-              <label for="numberInput">Codice di sicurezza *</label>
-              <input autocomplete="off" type="text" placeholder="CVC/CVV" class="form-control" [ngClass]="{'error-input': card_state.message_error}" id="numberInput" [(ngModel)]="Card.cvc" [ngModelOptions]="{standalone: true}">
-            </div>
-            <div class="form-group col-md-12">
-              <label for="nameInput">Nome e cognome</label>
-              <input type="name" name="name" placeholder="" class="form-control" id="nameInput" [(ngModel)]="Card.name" [ngModelOptions]="{standalone: true}">
-            </div>
-            <div class="form-group col-md-6">
-              <label for="capInput">Codice postale</label>
-              <input type="text" placeholder="" class="form-control" id="capInput" [(ngModel)]="Card.address_zip" [ngModelOptions]="{standalone: true}">
-            </div>
-            <div class="form-group col-md-6">
-              <label for="countryInput">Paese</label>
-              <input type="text" placeholder="" class="form-control" id="countryInput" [(ngModel)]="Card.address_country" [ngModelOptions]="{standalone: true}">
+              <div class="form-check">
+                <label class="form-check-label">
+                  <input type="checkbox" class="form-check-input" [checked]="AffiliatePost.publish" (change)="AffiliatePost.publish = !AffiliatePost.publish">Pubblica
+                </label>
+              </div>
             </div>
           </div>
         </form>
       </div>
       <div class="popup-footer">
-        <button type="button" id="next" class="btn btn-secondary" (click)="closePopup()">Annulla</button>
-        <button id="addCard" type="button" class="btn btn-danger" (click)="addCardAndContinue()"><i class="fa fa-circle-o-notch animate" *ngIf="card_state.loading"></i>Salva Carta E Continua</button>
+        <button id="addCard" type="button" class="btn btn-danger" (click)="savePost()"><i class="fa fa-circle-o-notch animate" *ngIf="AffiliatePostStatus.loading"></i>Salva</button>
       </div>
     </div>
-  </div>
-</div> -->
-<!-- <div *ngFor="let card of cards">
-  <div class="row">
-    <div class="col-lg-8 col-md-8">
-      <h4>{{card.brand}} <small>{{ card.funding }} {{ card.object }}</small> <small *ngIf="defaultCard === card.id">Default</small></h4>
-      <div class="information-block">
-        <span>Nome:</span>
-        {{ card.name }}
-      </div>
-      <div class="information-block">
-        <span>Numero:</span>
-        **** {{ card.last4 }}
-      </div>
-      <div class="information-block">
-        <span>Scadenza:</span>
-        {{ card.exp_month }}/{{ formatYear(card.exp_year) }}
-      </div>
-      <div class="information-block">
-        <span>Tipo:</span>
-        {{ card.brand }} {{ card.funding }} {{ card.object }}
-      </div>
-      <div class="information-block">
-        <span>Indirizzo:</span>
-        {{ card.address_line1 }} {{ card.address_line2 }} <br>
-        {{ card.address_state }} {{ card.address_city }} <br>
-        {{ card.address_zip }} {{ card.address_country }}
-      </div>
-    </div>
-    <div class="col-lg-4 col-md-4">
-      <div class="buttons-block">
-        <a class="btn btn-success" *ngIf="defaultCard !== card.id" (click)="selectCard(card.id)">Default</a>
-        <a class="btn btn-danger" (click)="deleteCard(card.id)">Rimuovi</a>
-        <a class="btn btn-secondary" (click)="editCard(card.id)">Modifica</a>
-      </div>
-    </div>
-  </div>
-</div> -->
-
-<div class="account-footer" *ngIf="Account">
-  <div class="footer">
-      <div class="row">
-        <div class="col-md-12 text-center">
-          <p>
-            © 2017 • Starbook Tutti i diritti riservati
-            <a routerLink="/info/legal" target="_blank">Termini e Condizioni</a>
-            <span> • </span>
-            <a routerLink="/info/legal" target="_blank">Privacy Policy</a>
-            <span> • </span>
-            <a routerLink="/info/help" target="_blank">Aiuto e Assistenza</a>
-            <span> • </span>
-            <a routerLink="/company" target="_blank">Per le aziende</a>
-          </p>
-        </div>
-      </div>
   </div>
 </div>

@@ -1225,6 +1225,8 @@ input::-ms-clear {
           margin-bottom: 10px; }
           .popup-container .popup .popup-content .popup-footer .error-container .error {
             color: #f75c4b; }
+  .popup-container .popup-post {
+    max-width: 700px; }
 
 @media (max-width: 425px) {
   .popup-container {
@@ -9331,6 +9333,12 @@ app-account {
                 background-color: #f5f5f5;
                 padding: 12px 20px;
                 border-top: 1px solid rgba(0, 0, 0, 0.125); }
+          app-account .account-container .account .account-content .account-body .post-container {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid grey; }
+            app-account .account-container .account .account-content .account-body .post-container .jsontext {
+              word-wrap: break-word; }
       app-account .account-container .account .quotation-content {
         position: relative;
         background: white;
@@ -9495,10 +9503,6 @@ app-account {
         font-size: 18px;
         border-radius: 3px; }
   app-account .account-footer {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
     background-color: #f9f9f9; }
     app-account .account-footer .footer {
       max-width: 1100px;

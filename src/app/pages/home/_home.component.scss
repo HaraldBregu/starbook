@@ -1191,6 +1191,7 @@ app-home {
 .awesome-title {
   -webkit-animation:colorchange 6s infinite alternate;
 }
+
 @-webkit-keyframes colorchange {
   0% {
     color: #3e8f3e;
@@ -1226,30 +1227,6 @@ app-home {
     color: #e74c3c;
   }
 }
-
-
-// .loading-dots:after {
-//   content: ' .';
-//   animation: dots 1s steps(5, end) infinite;
-// }
-//
-// @keyframes dots {
-//   0%, 20% {
-//     color: rgba(0,0,0,1);
-//     text-shadow: .25em 0 0 rgba(0,0,0,0), .5em 0 0 rgba(0,0,0,0);
-//   }
-//   40% {
-//     color: white;
-//     text-shadow: .25em 0 0 rgba(0,0,0,1), .5em 0 0 rgba(0,0,0,1);
-//   }
-//   60% {
-//     text-shadow: .25em 0 0 white, .5em 0 0 rgba(0,0,0,0);
-//   }
-//   80%, 100% {
-//     text-shadow: .25em 0 0 white, .5em 0 0 white;
-//   }
-// }
-//
 
 .loading-dots:after {
   overflow: hidden;
