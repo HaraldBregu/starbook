@@ -91,7 +91,7 @@ export class HomeComponent implements OnInit {
     this.SeoData['title'] = "Bacheca del lavoro | Richieste giornaliere"
     this.SeoData['description'] = "Trova una richiesta di lavoro in base alle tue competenze. Guarda i dati del contatto, invia un preventivo e lavora."
     this.SeoData['url'] = 'https://www.starbook.co' + this.router.url
-    this.SeoData['image_url'] = "https://s3-eu-west-1.amazonaws.com/starbook-s3/website/view-request-customer.png"
+    this.SeoData['image_url'] = "https://s3-eu-west-1.amazonaws.com/starbook-s3/website/richieste-lavoro-starbook.png"
     this.seoService.setTitle(this.SeoData['title'])
     this.seoService.setMetaElem('description', this.SeoData['description'])
     this.seoService.setOgElem('twitter:card', "summary_large_image")
@@ -126,6 +126,8 @@ export class HomeComponent implements OnInit {
 
     this.posts = null
     if (this.params['id']) {
+      this.SeoData['title'] = "Bacheca del lavoro | Richiesta"
+
       this.commonService.getMethod('posts?post_id=' + this.params['id']).then((data) => {
         this.posts = data.result
         this.navigationService.updateMessage(this.posts[0].title)
