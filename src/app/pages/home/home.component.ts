@@ -88,23 +88,6 @@ export class HomeComponent implements OnInit {
         fb.init({appId: '1251898728230202', version: 'v2.7'})
       }
     }
-    this.SeoData['title'] = "Bacheca del lavoro | Richieste giornaliere"
-    this.SeoData['description'] = "Trova una richiesta di lavoro in base alle tue competenze. Guarda i dati del contatto, invia un preventivo e lavora."
-    this.SeoData['url'] = 'https://www.starbook.co' + this.router.url
-    this.SeoData['image_url'] = "https://s3-eu-west-1.amazonaws.com/starbook-s3/website/richieste-lavoro-starbook.png"
-    this.seoService.setTitle(this.SeoData['title'])
-    this.seoService.setMetaElem('description', this.SeoData['description'])
-    this.seoService.setOgElem('twitter:card', "summary_large_image")
-    this.seoService.setOgElem('twitter:title', this.SeoData['title'])
-    this.seoService.setOgElem('twitter:site', "@starbookco")
-    this.seoService.setOgElem('twitter:creator', "@HaraldBregu")
-    this.seoService.setOgElem('twitter:description', this.SeoData['description'])
-    this.seoService.setOgElem('twitter:image', this.SeoData['image_url'])
-    this.seoService.setOgElem('og:title', this.SeoData['title'])
-    this.seoService.setOgElem('og:description', this.SeoData['description'])
-    this.seoService.setOgElem('og:url', this.SeoData['url'])
-    this.seoService.setOgElem('og:image', this.SeoData['image_url'])
-    this.seoService.setOgElem('og:image:secure_url', this.SeoData['image_url'])
   }
 
   ngOnInit() {
@@ -126,8 +109,7 @@ export class HomeComponent implements OnInit {
 
     this.posts = null
     if (this.params['id']) {
-      this.SeoData['title'] = "Bacheca del lavoro | Richiesta"
-
+      this.SeoData['image_url'] = "https://s3-eu-west-1.amazonaws.com/starbook-s3/website/richiesta-lavoro.png"
       this.commonService.getMethod('posts?post_id=' + this.params['id']).then((data) => {
         this.posts = data.result
         this.navigationService.updateMessage(this.posts[0].title)
@@ -137,6 +119,7 @@ export class HomeComponent implements OnInit {
         this.router.navigate(['/post'])
       })
     } else {
+      this.SeoData['image_url'] = "https://s3-eu-west-1.amazonaws.com/starbook-s3/website/richieste-lavoro-bacheca.png"
       // this.navigationService.updateMessage("Tutte le richieste")
       this.commonService.getMethod('posts').then((data) => {
         this.posts = data.result
@@ -144,6 +127,23 @@ export class HomeComponent implements OnInit {
       }).catch((error) => {
       })
     }
+
+    this.SeoData['title'] = "Bacheca del lavoro"
+    this.SeoData['description'] = "Trova una richiesta di lavoro in base alle tue competenze. Guarda i dati del contatto, invia un preventivo e lavora."
+    this.SeoData['url'] = 'https://www.starbook.co' + this.router.url
+    this.seoService.setTitle(this.SeoData['title'])
+    this.seoService.setMetaElem('description', this.SeoData['description'])
+    this.seoService.setOgElem('twitter:card', "summary_large_image")
+    this.seoService.setOgElem('twitter:title', this.SeoData['title'])
+    this.seoService.setOgElem('twitter:site', "@starbookco")
+    this.seoService.setOgElem('twitter:creator', "@HaraldBregu")
+    this.seoService.setOgElem('twitter:description', this.SeoData['description'])
+    this.seoService.setOgElem('twitter:image', this.SeoData['image_url'])
+    this.seoService.setOgElem('og:title', this.SeoData['title'])
+    this.seoService.setOgElem('og:description', this.SeoData['description'])
+    this.seoService.setOgElem('og:url', this.SeoData['url'])
+    this.seoService.setOgElem('og:image', this.SeoData['image_url'])
+    this.seoService.setOgElem('og:image:secure_url', this.SeoData['image_url'])
   }
 
   checkCustomerFirstname(post) {
