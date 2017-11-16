@@ -3777,7 +3777,7 @@ app-home {
           -moz-box-shadow: 0 0 10px 0 rgba(50, 50, 50, 0.1);
           box-shadow: 0 0 10px 0 rgba(50, 50, 50, 0.1);
           padding: 40px 50px;
-          margin-top: 20px; }
+          margin-top: 30px; }
           app-home .home-container .home .home-content .home-header img {
             width: 40px;
             float: left; }
@@ -3794,19 +3794,17 @@ app-home {
           app-home .home-container .home .home-content .home-header .description {
             margin-top: 10px;
             color: rgba(0, 0, 0, 0.8); }
-          app-home .home-container .home .home-content .home-header .options {
-            margin-top: 30px; }
-            app-home .home-container .home .home-content .home-header .options i {
-              display: block; }
-            app-home .home-container .home .home-content .home-header .options .opt-title {
-              display: block;
-              font-size: 22px;
-              margin-left: 50px; }
-            app-home .home-container .home .home-content .home-header .options .opt-description {
-              display: block;
-              font-weight: 300;
-              font-size: 16px;
-              margin-left: 50px; }
+          app-home .home-container .home .home-content .home-header .options i {
+            display: block; }
+          app-home .home-container .home .home-content .home-header .options .opt-title {
+            display: block;
+            font-size: 22px;
+            margin-left: 50px; }
+          app-home .home-container .home .home-content .home-header .options .opt-description {
+            display: block;
+            font-weight: 300;
+            font-size: 16px;
+            margin-left: 50px; }
         app-home .home-container .home .home-content .home-body .post {
           background: white;
           margin-top: 30px;
@@ -4160,8 +4158,11 @@ app-home {
           app-home .home-container .home .home-content .home-footer .footer {
             margin: auto; }
             app-home .home-container .home .home-content .home-footer .footer .testimonial-title {
-              font-size: 18px;
-              font-weight: 700; }
+              display: block;
+              font-size: 24px;
+              font-weight: 700;
+              text-align: center;
+              margin-bottom: 20px; }
             app-home .home-container .home .home-content .home-footer .footer .pagelist-container {
               overflow: auto;
               margin: 0 -15px;
@@ -4169,30 +4170,33 @@ app-home {
               app-home .home-container .home .home-content .home-footer .footer .pagelist-container .page-container {
                 float: left;
                 padding: 10px;
-                width: calc(100% / 3); }
+                width: calc(100% / 4);
+                margin-bottom: 20px;
+                text-align: center; }
                 app-home .home-container .home .home-content .home-footer .footer .pagelist-container .page-container .page {
                   background: white;
                   overflow: hidden;
-                  height: 30px; }
+                  text-align: center;
+                  text-decoration: none; }
                   app-home .home-container .home .home-content .home-footer .footer .pagelist-container .page-container .page .image {
-                    width: 30px;
-                    height: 30px;
-                    border-radius: 3px;
-                    float: left;
-                    display: inline-block; }
+                    width: 60px;
+                    height: 60px;
+                    border-radius: 30px;
+                    display: inline-block;
+                    border: 1px solid #324977; }
                   app-home .home-container .home .home-content .home-footer .footer .pagelist-container .page-container .page .pro-name {
-                    margin-left: 36px;
-                    font-size: 15px;
+                    margin-top: 10px;
+                    font-size: 17px;
                     display: block;
-                    line-height: 20px;
+                    line-height: 25px;
                     text-transform: uppercase;
-                    color: rgba(0, 0, 0, 0.7);
-                    overflow: hidden;
+                    color: #343a43;
                     text-overflow: ellipsis;
                     height: 20px; }
             app-home .home-container .home .home-content .home-footer .footer p {
               font-size: 14px !important;
-              color: #4A4A4A; }
+              color: #4A4A4A;
+              text-align: center; }
             app-home .home-container .home .home-content .home-footer .footer .links {
               text-align: right; }
             app-home .home-container .home .home-content .home-footer .footer li {

@@ -101,11 +101,20 @@ export class HomeComponent implements OnInit {
     //   console.log("My hash fragment is here => ", fragment)
     // })
 
-    this.commonService.getMethod('accounts').then((data) => {
+    // this.commonService.getMethod('accounts').then((data) => {
+    //   this.TestimonialAccounts = data.result
+    // }).catch((error) => {
+    //   this.TestimonialAccounts = null
+    // })
+    this.commonService.getMethod('companies?type=business_customers').then((data) => {
+      // console.log(JSON.stringify(data))
       this.TestimonialAccounts = data.result
+
     }).catch((error) => {
+      // console.log(JSON.stringify(error))
       this.TestimonialAccounts = null
     })
+
 
     this.posts = null
     if (this.params['id']) {
@@ -144,6 +153,7 @@ export class HomeComponent implements OnInit {
     this.seoService.setOgElem('og:url', this.SeoData['url'])
     this.seoService.setOgElem('og:image', this.SeoData['image_url'])
     this.seoService.setOgElem('og:image:secure_url', this.SeoData['image_url'])
+
   }
 
   checkCustomerFirstname(post) {
@@ -507,7 +517,8 @@ export class HomeComponent implements OnInit {
         if (logo.width>0) {
           return logo.src
         } else {
-          return '../assets/images/no_logo_black.png'
+          // return '../assets/images/no_logo_black.png'
+          return '../assets/images/no_logo_blue.png'
         }
       }
     }
