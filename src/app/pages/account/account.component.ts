@@ -28,7 +28,7 @@ export class AccountComponent implements OnInit {
     {name: 'Contatti', route: 'contacts'},
     {name: 'Messaggi', route: 'requests'},
     {name: 'Preventivi', route: 'quotation'},
-    {name: 'Aiuto', route: 'help'},
+    // {name: 'Aiuto', route: 'help'},
   ]
   public profile_tab = 'informations'
   public quotation_tab = 'new'
@@ -272,6 +272,7 @@ export class AccountComponent implements OnInit {
     loading: false,
     error_message: null,
   }
+  public SelectedContact = []
 
   public AffiliatePosts = []
   public isAffiliate = false
@@ -311,6 +312,15 @@ export class AccountComponent implements OnInit {
     loading : false,
     created : false,
     error : null
+  }
+
+  public NotifyCustomer = {
+
+  }
+  public NotifyCustomerState = {
+    loading: false,
+    notified: false,
+    error: null,
   }
 
   constructor(private route: ActivatedRoute, private router: Router, private navigationService: NavigationService, private profileService: ProfileService, private authService: AuthService, private seoService: SeoService, private contactService: ContactService, private popupsService: PopupsService, private commonService: CommonService, private paymentService: PaymentService) {
@@ -379,6 +389,7 @@ export class AccountComponent implements OnInit {
     }
 
     this.readPosts()
+    // this.getCountContactsForPostId("59f45823bc48b35cd3c12f5c")
   }
 
   ngOnInit() {
@@ -408,6 +419,7 @@ export class AccountComponent implements OnInit {
           // console.log(JSON.stringify(data))
           this.ContactsState.loading = false
         }).catch((error) => {
+          // this.Contacts = []
           // console.log(JSON.stringify(error))
           this.ContactsState.loading = false
         })
@@ -415,28 +427,18 @@ export class AccountComponent implements OnInit {
       else if (this.page==="inprogress_promotion") {
 
       }
-
       else if (this.page==="terminated_promotion") {
 
       }
-      // else if (this.page==="new_promotion") {
-      //
-      // }
       else if (this.page==="requests") {
 
       }
-      // else if (this.page==="share") {
-      //
-      // }
       else if (this.page==="quotation") {
 
       }
-      // else if (this.page==="payment") {
+      // else if (this.page==="help") {
       //
       // }
-      else if (this.page==="help") {
-
-      }
       else {
         this.router.navigate(['/account/profile'])
       }
@@ -1329,13 +1331,11 @@ export class AccountComponent implements OnInit {
   // AFFILIATE SECTION
 
   savePost() {
-    console.log(JSON.stringify(this.AffiliatePost))
-
     if(this.AffiliatePost['_id']) {
       this.commonService.putMethod('affiliate/me/posts/' + this.AffiliatePost['_id'], this.AffiliatePost).then((data) => {
-        console.log(JSON.stringify("Created post" + data))
+        // console.log(JSON.stringify("Created post" + data))
       }).catch((error) => {
-        console.log(JSON.stringify("Error creation" + error))
+        // console.log(JSON.stringify("Error creation" + error))
       })
     } else {
       this.commonService.postMethod('affiliate/me/posts', this.AffiliatePost).then((data) => {
@@ -1347,8 +1347,20 @@ export class AccountComponent implements OnInit {
   }
   readPosts() {
     this.commonService.getMethod('affiliate/me/posts').then((data) => {
-      console.log(JSON.stringify(data))
+      // console.log(JSON.stringify(data))
       this.AffiliatePosts = data.result
+
+      for (let i = 0; i < this.AffiliatePosts.length; i++) {
+        var affPost = this.AffiliatePosts[i]
+        this.commonService.getMethod('posts/' + affPost['_id'] + '/contacts').then((data) => {
+          // console.log(JSON.stringify(data))
+          // return data.result.length
+          this.AffiliatePosts[i]['count_of_prof'] = data.result.length
+        }).catch((error) => {
+          this.AffiliatePosts[i]['count_of_prof'] = 0
+          // console.log(JSON.stringify("Error creation" + error))
+        })
+      }
     }).catch((error) => {
       // console.log(JSON.stringify(error))
       this.AffiliatePosts = []
@@ -1366,9 +1378,39 @@ export class AccountComponent implements OnInit {
     this.AffiliatePost = post
     this.popup = "NEW_AFFILIATE_POST_POPUP"
   }
-  // transform(val) {
-  //   return JSON.stringify(val, null, 2).replace(' ', '&nbsp;').replace('\n', '<br/>');
-  // }
+  getCountContactsForPostId(post_id) {
+    this.commonService.getMethod('posts/' + post_id + '/contacts').then((data) => {
+      // console.log(JSON.stringify(data))
+      // return data.result.length
+    }).catch((error) => {
+      // return 0
+      // console.log(JSON.stringify("Error creation" + error))
+    })
+  }
+
+  // CONTACT SECTION
+
+  sendNotificationToCustomer(selectedContact) {
+    console.log(JSON.stringify(selectedContact))
+
+    this.NotifyCustomerState.loading = true
+    this.NotifyCustomerState.notified = false
+    let data = {
+      customer : selectedContact.post.customer
+    }
+
+    this.commonService.postMethod('contacts/' + selectedContact._id +'/notify', data).then((data) => {
+      console.log(JSON.stringify(data))
+      this.NotifyCustomerState.loading = false
+      this.NotifyCustomerState.notified = true
+      // this.popup = null
+    }).catch((error) => {
+      console.log(JSON.stringify(error))
+      this.NotifyCustomerState.loading = false
+      this.NotifyCustomerState.notified = true
+      // this.popup = null
+    })
+  }
 
   // UTILS
 

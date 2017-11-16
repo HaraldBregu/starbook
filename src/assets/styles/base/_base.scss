@@ -869,7 +869,12 @@ input::-ms-clear {
         }
       }
       .popup-header {
-        padding: 20px;
+        padding: 10px 20px;
+        .title {
+          display: block;
+          font-size: 28px;
+          font-weight: 600;
+        }
         .list-cards {
           img {
             width: 60px;
@@ -878,6 +883,9 @@ input::-ms-clear {
       }
       .popup-body {
         padding: 10px 20px;
+        .description-paragraph {
+
+        }
         .list-cards {
           margin-bottom: 20px;
           img {

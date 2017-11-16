@@ -1099,7 +1099,11 @@ input::-ms-clear {
           line-height: 24px;
           font-size: 30px; }
       .popup-container .popup .popup-content .popup-header {
-        padding: 20px; }
+        padding: 10px 20px; }
+        .popup-container .popup .popup-content .popup-header .title {
+          display: block;
+          font-size: 28px;
+          font-weight: 600; }
         .popup-container .popup .popup-content .popup-header .list-cards img {
           width: 60px; }
       .popup-container .popup .popup-content .popup-body {
@@ -8810,98 +8814,6 @@ app-account {
             app-account .account-container .account .account-content .account-header .list-ad-platforms img {
               width: 85px;
               margin-right: 20px; }
-          app-account .account-container .account .account-content .account-header .waiting-contact {
-            display: block;
-            font-weight: 900;
-            margin-bottom: 10px; }
-            app-account .account-container .account .account-content .account-header .waiting-contact p {
-              font-size: 24px !important;
-              color: #1173be; }
-          app-account .account-container .account .account-content .account-header .contact-informations {
-            display: block;
-            width: 100%;
-            overflow: auto;
-            padding: 5px 0; }
-            app-account .account-container .account .account-content .account-header .contact-informations .label {
-              float: left;
-              font-size: 17px;
-              font-weight: 900;
-              color: #A3A3A3; }
-            app-account .account-container .account .account-content .account-header .contact-informations .content {
-              display: block;
-              margin-left: 120px;
-              font-size: 18px;
-              color: black; }
-          app-account .account-container .account .account-content .account-header .actions {
-            text-align: right; }
-            app-account .account-container .account .account-content .account-header .actions .btn {
-              border-radius: 30px;
-              margin-right: 10px;
-              margin-bottom: 10px; }
-              app-account .account-container .account .account-content .account-header .actions .btn i {
-                margin-right: 10px; }
-            app-account .account-container .account .account-content .account-header .actions .btn-map {
-              background: #3498db;
-              height: 50px;
-              border: 0;
-              color: white !important;
-              font-size: 22px;
-              font-family: Roboto, sans-serif;
-              font-weight: 400;
-              outline: none !important;
-              padding: 0 20px;
-              line-height: 50px; }
-            app-account .account-container .account .account-content .account-header .actions .btn-map:active:focus {
-              background-color: #2980b9; }
-            app-account .account-container .account .account-content .account-header .actions .btn-map:hover {
-              background-color: #2980b9; }
-            app-account .account-container .account .account-content .account-header .actions .btn-phone {
-              background: #2ecc71;
-              height: 50px;
-              border: 0;
-              color: white !important;
-              font-size: 22px;
-              font-family: Roboto, sans-serif;
-              font-weight: 400;
-              outline: none !important;
-              padding: 0 20px;
-              line-height: 50px; }
-            app-account .account-container .account .account-content .account-header .actions .btn-phone:active:focus {
-              background-color: #27ae60; }
-            app-account .account-container .account .account-content .account-header .actions .btn-phone:hover {
-              background-color: #27ae60; }
-            app-account .account-container .account .account-content .account-header .actions .btn-email {
-              background: #95a5a6;
-              height: 50px;
-              border: 0;
-              color: white !important;
-              font-size: 22px;
-              font-family: Roboto, sans-serif;
-              font-weight: 400;
-              outline: none !important;
-              padding: 0 20px;
-              line-height: 50px; }
-            app-account .account-container .account .account-content .account-header .actions .btn-email:active:focus {
-              background-color: #7f8c8d; }
-            app-account .account-container .account .account-content .account-header .actions .btn-email:hover {
-              background-color: #7f8c8d; }
-            app-account .account-container .account .account-content .account-header .actions .btn-list {
-              background: #34495e;
-              height: 50px;
-              border: 0;
-              color: white !important;
-              font-size: 22px;
-              font-family: Roboto, sans-serif;
-              font-weight: 400;
-              outline: none !important;
-              padding: 0 20px;
-              line-height: 50px; }
-              app-account .account-container .account .account-content .account-header .actions .btn-list i {
-                margin-right: 0; }
-            app-account .account-container .account .account-content .account-header .actions .btn-list:active:focus {
-              background-color: #2c3e50; }
-            app-account .account-container .account .account-content .account-header .actions .btn-list:hover {
-              background-color: #2c3e50; }
         app-account .account-container .account .account-content .account-body {
           padding: 0 40px 40px; }
           app-account .account-container .account .account-content .account-body .avatar-section .avatar-container {
@@ -9682,10 +9594,129 @@ app-account {
         padding: 0 30px;
         font-size: 18px;
         border-radius: 3px; }
+  app-account .contacts-container {
+    padding: 0 10px; }
+    app-account .contacts-container .contacts {
+      max-width: 1100px;
+      margin: auto;
+      margin-top: 30px;
+      margin-bottom: 30px;
+      overflow: auto; }
+      app-account .contacts-container .contacts .contacts-content {
+        position: relative;
+        background: white;
+        border-radius: 3px;
+        margin-bottom: 10px;
+        border: solid 1px #e0e0e0;
+        -webkit-box-shadow: 0 0 10px 0 rgba(50, 50, 50, 0.1);
+        -moz-box-shadow: 0 0 10px 0 rgba(50, 50, 50, 0.1);
+        box-shadow: 0 0 10px 0 rgba(50, 50, 50, 0.1); }
+        app-account .contacts-container .contacts .contacts-content .contacts-header {
+          padding: 30px 40px;
+          border-bottom: 1px solid #eceeef; }
+          app-account .contacts-container .contacts .contacts-content .contacts-header .waiting-contact {
+            display: block;
+            font-weight: 900; }
+            app-account .contacts-container .contacts .contacts-content .contacts-header .waiting-contact p {
+              font-size: 24px !important;
+              color: #1173be; }
+        app-account .contacts-container .contacts .contacts-content .contacts-body {
+          padding: 30px 40px; }
+          app-account .contacts-container .contacts .contacts-content .contacts-body .contact-informations {
+            display: block;
+            width: 100%;
+            overflow: auto;
+            padding: 5px 0; }
+            app-account .contacts-container .contacts .contacts-content .contacts-body .contact-informations .label {
+              float: left;
+              font-size: 17px;
+              font-weight: 900;
+              color: #A3A3A3; }
+            app-account .contacts-container .contacts .contacts-content .contacts-body .contact-informations .content {
+              display: block;
+              margin-left: 120px;
+              font-size: 18px;
+              color: black; }
+        app-account .contacts-container .contacts .contacts-content .contacts-footer {
+          padding: 30px 40px;
+          border-top: 1px solid #eceeef; }
+          app-account .contacts-container .contacts .contacts-content .contacts-footer .actions {
+            text-align: right; }
+            app-account .contacts-container .contacts .contacts-content .contacts-footer .actions .btn {
+              border-radius: 5px;
+              margin-right: 10px;
+              margin-bottom: 10px; }
+            app-account .contacts-container .contacts .contacts-content .contacts-footer .actions .btn-map {
+              background: #3498db;
+              height: 50px;
+              width: 50px;
+              border: 0;
+              color: white !important;
+              font-size: 26px;
+              font-family: Roboto, sans-serif;
+              font-weight: 400;
+              outline: none !important;
+              line-height: 50px;
+              padding: 0; }
+            app-account .contacts-container .contacts .contacts-content .contacts-footer .actions .btn-map:active:focus {
+              background-color: #2980b9; }
+            app-account .contacts-container .contacts .contacts-content .contacts-footer .actions .btn-map:hover {
+              background-color: #2980b9; }
+            app-account .contacts-container .contacts .contacts-content .contacts-footer .actions .btn-phone {
+              background: #2ecc71;
+              height: 50px;
+              width: 50px;
+              border: 0;
+              color: white !important;
+              font-size: 26px;
+              font-family: Roboto, sans-serif;
+              font-weight: 400;
+              outline: none !important;
+              line-height: 50px;
+              padding: 0; }
+            app-account .contacts-container .contacts .contacts-content .contacts-footer .actions .btn-phone:active:focus {
+              background-color: #27ae60; }
+            app-account .contacts-container .contacts .contacts-content .contacts-footer .actions .btn-phone:hover {
+              background-color: #27ae60; }
+            app-account .contacts-container .contacts .contacts-content .contacts-footer .actions .btn-email {
+              background: #95a5a6;
+              height: 50px;
+              width: 50px;
+              border: 0;
+              color: white !important;
+              font-size: 26px;
+              font-family: Roboto, sans-serif;
+              font-weight: 400;
+              outline: none !important;
+              line-height: 50px;
+              padding: 0; }
+            app-account .contacts-container .contacts .contacts-content .contacts-footer .actions .btn-email:active:focus {
+              background-color: #7f8c8d; }
+            app-account .contacts-container .contacts .contacts-content .contacts-footer .actions .btn-email:hover {
+              background-color: #7f8c8d; }
+            app-account .contacts-container .contacts .contacts-content .contacts-footer .actions .btn-list {
+              background: #34495e;
+              height: 50px;
+              width: 50px;
+              border: 0;
+              color: white !important;
+              font-size: 26px;
+              font-family: Roboto, sans-serif;
+              font-weight: 400;
+              outline: none !important;
+              line-height: 50px;
+              padding: 0; }
+            app-account .contacts-container .contacts .contacts-content .contacts-footer .actions .btn-list:active:focus {
+              background-color: #2c3e50; }
+            app-account .contacts-container .contacts .contacts-content .contacts-footer .actions .btn-list:hover {
+              background-color: #2c3e50; }
   app-account .popup-container .popup .popup-content .popup-header h3 {
     font-weight: 600; }
   app-account .popup-container .popup .popup-content .popup-header p {
     margin-top: 5px; }
+  app-account .popup-container .popup .popup-content .popup-header .notified-icon {
+    font-size: 60px;
+    color: #27ae60; }
   app-account .popup-container .popup .popup-content .popup-body .platform-ads {
     margin-bottom: 20px; }
     app-account .popup-container .popup .popup-content .popup-body .platform-ads .platform-ads-header {
@@ -9785,6 +9816,8 @@ app-account {
     padding: 0 40px;
     font-size: 18px;
     font-weight: 500; }
+  app-account .popup-container .popup .popup-content .popup-footer .btn-primary-notification {
+    width: 100%; }
 
 @media (max-width: 1024px) {
   app-account .account-container .account {
@@ -9885,7 +9918,7 @@ app-account {
   app-account .account-footer .footer .links {
     text-align: left; }
 
-  app-account .account-container .account .account-body .actions .btn {
+  app-account .contacts-container .contacts .contacts-footer .actions .btn {
     width: 100%; }
 
   app-account .account-container .account .account-body .section h4 {
@@ -9901,14 +9934,26 @@ app-account {
   app-account .promotion-container .promotion {
     margin-bottom: 50px; }
 
-  app-account .account-container .account .account-content .account-header .contact-informations .label_mobile {
+  app-account .contacts-container .contacts .contacts-content .contacts-header {
+    padding: 20px 30px; }
+
+  app-account .contacts-container .contacts .contacts-content .contacts-body {
+    padding: 20px 30px; }
+
+  app-account .contacts-container .contacts .contacts-content .contacts-body .contact-informations .label_mobile {
     float: none; }
 
-  app-account .account-container .account .account-content .account-header .contact-informations .content {
+  app-account .contacts-container .contacts .contacts-content .contacts-body .contact-informations .content {
     margin-left: 100px; }
 
-  app-account .account-container .account .account-content .account-header .contact-informations .content_mobile {
-    margin: 0; } }
+  app-account .contacts-container .contacts .contacts-content .contacts-body .contact-informations .content_mobile {
+    margin: 0; }
+
+  app-account .contacts-container .contacts .contacts-content .contacts-footer {
+    padding: 20px 30px; }
+
+  app-account .contacts-container .contacts .contacts-content .contacts-footer .actions {
+    text-align: left; } }
 app-auth {
   display: block;
   float: left;

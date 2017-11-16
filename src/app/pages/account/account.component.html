@@ -7,7 +7,6 @@
   </ul>
 </div>
 
-<!-- ACCOUNT -->
 <div class="account-container" *ngIf="page==='profile' && Account">
   <div class="account">
     <div class="account-tab">
@@ -347,6 +346,7 @@
       <div class="account-header">
         <h2>Affiliazione lavori</h2>
         <button type="button" name="button" class="btn btn-primary" (click)="popup='NEW_AFFILIATE_POST_POPUP';">Nuovo</button>
+        <button type="button" name="button" class="btn btn-warning" (click)="readPosts();">Reload</button>
       </div>
       <div class="account-body">
         <div class="post-container" *ngFor="let post of AffiliatePosts">
@@ -355,6 +355,8 @@
               <div class="row">
                 <div class="col-md-12">
                   <p class="jsontext">{{post | json}}</p>
+                  <p>Cliente completo: {{post.customer.complete}}</p>
+                  <p>Acquistato da {{post.count_of_prof}} persone</p>
                 </div>
 
                 <!-- <div class="col-md-12">
@@ -410,7 +412,6 @@
         <li><a class="btn btn-primary" (click)="popup='SETUP_PROMOTION_POPUP';"><i class="fa fa-plus" aria-hidden="true"></i>Promuovi</a></li>
       </ul>
     </div>
-
     <div *ngIf="page==='inprogress_promotion'">
       <div class="promotion-content tabbed-content" *ngIf="inprogress_promotions.length===0">
         <div class="promotion-header">
@@ -458,7 +459,6 @@
         </div>
       </div>
     </div>
-
     <div *ngIf="page==='terminated_promotion'">
       <div class="promotion-content tabbed-content" *ngIf="received_quotations.length===0 && loading_received_quotation===false">
         <div class="promotion-header">
@@ -749,11 +749,10 @@
   </div>
 </div>
 
-<!-- CONTACTS -->
-<div class="account-container" *ngIf="page==='contacts'">
-  <div class="account">
-    <div class="account-content" *ngIf="!ContactsState.loading && Contacts.length===0">
-      <div class="account-header">
+<div class="contacts-container" *ngIf="page==='contacts'">
+  <div class="contacts">
+    <div class="contacts-content" *ngIf="!ContactsState.loading && Contacts.length===0">
+      <div class="contacts-header">
         <div class="row">
           <div class="col-md-12">
             <div class="waiting-contact">
@@ -764,17 +763,17 @@
         </div>
       </div>
     </div>
-    <div class="account-content" *ngFor="let contact of Contacts">
-      <div class="account-header">
+    <div class="contacts-content" *ngFor="let contact of Contacts">
+      <div class="contacts-header">
+        <div class="waiting-contact" *ngIf="!contact.post.customer.complete">
+          <p>IN ATTESA DEI DATI DEL CLIENTE</p>
+        </div>
+        <div class="waiting-contact" *ngIf="contact.post.customer.complete">
+          <p>DATI DEL CLIENTE</p>
+        </div>
+      </div>
+      <div class="contacts-body">
         <div class="row">
-          <div class="col-md-12">
-            <div class="waiting-contact" *ngIf="!contact.post.customer.complete">
-              <p>IN ATTESA DEI DATI DEL CLIENTE</p>
-            </div>
-            <div class="waiting-contact" *ngIf="contact.post.customer.complete">
-              <p>DATI DEL CLIENTE</p>
-            </div>
-          </div>
           <div class="col-md-12">
             <div class="contact-informations">
               <span class="label">TITOLO: </span><span class="content">{{contact.post.title}}</span>
@@ -827,13 +826,14 @@
               </div>
             </div>
           </div>
-          <div class="col-md-12">
-            <div class="actions" *ngIf="contact.post.customer.complete">
-              <a *ngIf="getPhoneNumber(contact.post)" role="button" href="tel:{{getPhoneNumber(contact.post)}}" target="_blank" name="button" class="btn btn-phone"><i class="fa fa-phone" aria-hidden="true"></i><b>Chiama</b></a>
-              <a *ngIf="getEmailAddress(contact.post)" role="button" href="mailto:{{getEmailAddress(contact.post)}}" target="_blank" name="button" class="btn btn-email"><i class="fa fa-envelope" aria-hidden="true"></i><b>Email</b></a>
-              <a *ngIf="getGoogleMapsLink(contact.post)" role="button" name="button" class="btn btn-map" href="{{getGoogleMapsLink(contact.post)}}" target="_blank"><i class="fa fa-location-arrow" aria-hidden="true"></i><b>Vai</b></a>
-            </div>
-          </div>
+        </div>
+      </div>
+      <div class="contacts-footer">
+        <div class="actions" *ngIf="contact.post.customer.complete">
+          <a *ngIf="getPhoneNumber(contact.post)" role="button" href="tel:{{getPhoneNumber(contact.post)}}" target="_blank" name="button" class="btn btn-phone"><i class="fa fa-phone" aria-hidden="true"></i></a>
+          <a *ngIf="getEmailAddress(contact.post)" role="button" href="mailto:{{getEmailAddress(contact.post)}}" target="_blank" name="button" class="btn btn-email"><i class="fa fa-envelope" aria-hidden="true"></i></a>
+          <a *ngIf="getGoogleMapsLink(contact.post)" role="button" name="button" class="btn btn-map" href="{{getGoogleMapsLink(contact.post)}}" target="_blank"><i class="fa fa-location-arrow" aria-hidden="true"></i></a>
+          <a role="button" name="button" class="btn btn-default" (click)="popup='SEND_NOTIFICATION_POPUP'; SelectedContact=contact; NotifyCustomerState.notified=false;"><b>Invia notifica</b></a>
         </div>
       </div>
     </div>
@@ -1094,154 +1094,6 @@
   </div>
 </div>
 
-<div class="account-container" *ngIf="page==='help'">
-  <div class="account">
-    <div class="account-tab">
-      <ul>
-        <li><a class="btn btn-transparent" (click)="clickLeftTabHelp('request')" [ngClass]="{'active':help_tab==='request'}"><i class="fa fa-question-circle" aria-hidden="true"></i>Richiesta</a></li>
-        <li><a class="btn btn-transparent" (click)="clickLeftTabHelp('assistance')" [ngClass]="{'active':help_tab==='assistance'}"><i class="fa fa-assistive-listening-systems" aria-hidden="true"></i>Assistenza</a></li>
-      </ul>
-    </div>
-    <div class="account-content tabbed-content" *ngIf="help_tab==='request'">
-      <div class="account-header">
-        <h2>Invia una richiesta</h2>
-        <p>Hai una richiesta in particolare o bisogno di aiuto? Scrivi qui sotto quello che ti serve. La tua opinione è molto importante per migliorare il nostro servizio e servirti al meglio.</p>
-      </div>
-      <div class="account-body">
-        <form>
-          <div class="row">
-            <div class="form-group col-md-12">
-              <textarea id="help-description-input" class="form-control" placeholder="Descrivi la tua richiesta" rows="6" [(ngModel)]="help_email.message" [ngModelOptions]="{standalone: true}"></textarea>
-            </div>
-          </div>
-        </form>
-        <div class="actions">
-          <span class="saving" *ngIf="help_email_state.loading"><i class="fa fa-circle-o-notch animate"></i> inviando</span>
-          <button type="button" class="btn btn-success" name="button" (click)="sendHelpEmail()">Invia richiesta</button>
-        </div>
-      </div>
-    </div>
-    <div class="account-content tabbed-content" *ngIf="help_tab==='assistance'">
-      <div class="account-header">
-        <h2>Assistenza e Contatti</h2>
-        <!-- <p><i class="fa fa-phone" aria-hidden="true"></i> +39 327 24 15 028</p> -->
-        <p><i class="fa fa-envelope" aria-hidden="true"></i> info@starbook.co</p>
-        <p><a href="https://www.facebook.com/starbook.co/?ref=bookmarks" target="_blank"><i class="fa fa-facebook" aria-hidden="true"></i></a><a href="https://twitter.com/starbookco" target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i></a></p>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="account-container" *ngIf="page==='services' && Account">
-  <div class="account">
-    <div class="account-content">
-      <div class="account-header">
-      </div>
-      <div class="account-body">
-        <div class="services">
-          <div class="service-container" *ngFor="let service of Services">
-            <div class="service" (click)="showService(service)" [ngStyle]="{'background-image' : ' url(' + checkImageUrlFromService(service) + ')'}">
-              <div class="overlay">
-                <div class="text-container">
-                  <div class="title">
-                    <span>{{service.title}}</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="actions">
-              <button (click)="shareOnFacebook(service)"><i class="fa fa-facebook" aria-hidden="true"></i></button>
-              <button (click)="shareOnTwitter(service)"><i class="fa fa-twitter" aria-hidden="true"></i></button>
-              <button (click)="shareOnLinkedin(service)"><i class="fa fa-linkedin" aria-hidden="true"></i></button>
-            </div>
-          </div>
-          <div class="service-container">
-            <div class="service" (click)="createService()">
-              <i class="fa fa-plus" aria-hidden="true"></i>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="account-footer">
-    <div class="footer">
-        <div class="row">
-          <div class="col-md-6">
-            <p>© 2017 • Starbook Tutti i diritti riservati • <a href="/info/legal" target="_blank"><strong>Terms</strong></a> & <a href="/info/legal" target="_blank"><strong>Privacy Policy</strong></a></p>
-          </div>
-          <div class="col-md-6 links">
-            <p><a routerLink="/info/help" target="_blank">Aiuto e Assistenza</a>
-              <!-- • <a (click)="logout()">Esci</a> -->
-            </p>
-          </div>
-        </div>
-    </div>
-  </div>
-</div>
-
-<div class="account-container" *ngIf="page==='payment'">
-  <div class="account">
-    <div class="account-tab">
-      <ul>
-        <li><a class="btn btn-transparent" (click)="clickLeftTabPayment('cards')" [ngClass]="{'active':payment_tab==='cards'}"><i class="fa fa-credit-card" aria-hidden="true"></i>Carte</a></li>
-        <li><a class="btn btn-success" (click)="clickLeftTabPayment('new')"><i aria-hidden="true" class="fa fa-plus"></i>Nuova carta</a></li>
-      </ul>
-    </div>
-    <div *ngIf="payment_tab==='cards'">
-      <div class="account-content tabbed-content">
-        <div class="account-header">
-          <h2>Le tue carte</h2>
-          <p>Inserisci, modifica o elimina le carte che utilizzerai sulla piattaforma.</p>
-        </div>
-        <div class="account-body" *ngFor="let card of cards">
-          <div class="row">
-            <div class="col-lg-8 col-md-8">
-              <h4>{{card.brand}} <small>{{ card.funding }} {{ card.object }}</small> <small *ngIf="defaultCard === card.id">Default</small></h4>
-              <div class="information-block">
-                <span>Nome:</span>
-                {{ card.name }}
-              </div>
-              <div class="information-block">
-                <span>Numero:</span>
-                **** {{ card.last4 }}
-              </div>
-              <div class="information-block">
-                <span>Scadenza:</span>
-                {{ card.exp_month }}/{{ formatYear(card.exp_year) }}
-              </div>
-              <div class="information-block">
-                <span>Tipo:</span>
-                {{ card.brand }} {{ card.funding }} {{ card.object }}
-              </div>
-              <div class="information-block">
-                <span>Indirizzo:</span>
-                {{ card.address_line1 }} {{ card.address_line2 }} <br>
-                {{ card.address_state }} {{ card.address_city }} <br>
-                {{ card.address_zip }} {{ card.address_country }}
-              </div>
-            </div>
-            <div class="col-lg-4 col-md-4">
-              <div class="buttons-block">
-                <a class="btn btn-success" *ngIf="defaultCard !== card.id" (click)="selectCard(card.id)">Default</a>
-                <a class="btn btn-danger" (click)="deleteCard(card.id)">Rimuovi</a>
-                <a class="btn btn-secondary" (click)="editCard(card.id)">Modifica</a>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!-- <div class="account-body">
-          <div class="actions">
-            <button type="button" class="btn btn-success" name="button" (click)="sendQuotation(Quotation)">Aggiun</button>
-            <a class="btn btn-secondary" *ngIf="cards?.length===0" (click)="showCardPage()">Aggiungi un metodo</a>
-            <a class="btn btn-secondary" *ngIf="cards?.length > 0" (click)="showCardPage()">Aggiungi un altro metodo</a>
-          </div>
-        </div> -->
-      </div>
-    </div>
-  </div>
-</div>
-
 <!-- POPUP -->
 <div class="popup-container" [ngStyle]="{'display' : popup==='NEW_CARD_POPUP' ? 'block' : 'none'}">
   <div class="popup-shadow" [ngStyle]="{'display' : popup ? 'block' : 'none'}" (click)="popup=null;"></div>
@@ -1385,7 +1237,6 @@
     </div>
   </div>
 </div>
-
 <div class="popup-container" [ngStyle]="{'display' : popup==='NEW_AFFILIATE_POST_POPUP' ? 'block' : 'none'}">
   <div class="popup-shadow" [ngStyle]="{'display' : popup ? 'block' : 'none'}" (click)="popup=null;"></div>
   <div class="popup popup-post">
@@ -1481,6 +1332,179 @@
       </div>
       <div class="popup-footer">
         <button id="addCard" type="button" class="btn btn-danger" (click)="savePost()"><i class="fa fa-circle-o-notch animate" *ngIf="AffiliatePostStatus.loading"></i>Salva</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="popup-container" [ngStyle]="{'display' : popup==='SEND_NOTIFICATION_POPUP' ? 'block' : 'none'}">
+  <div class="popup-shadow" [ngStyle]="{'display' : popup ? 'block' : 'none'}" (click)="popup=null;"></div>
+  <div class="popup">
+    <div class="popup-loader" *ngIf="NotifyCustomerState.loading">
+      <i class="fa fa-circle-o-notch animate loader"></i>
+    </div>
+    <div class="popup-content">
+      <div class="popup-nav">
+        <button type="button" class="close" (click)="popup=null;">&times;</button>Notifica
+      </div>
+      <div class="popup-header text-center">
+        <i *ngIf="NotifyCustomerState.notified" class="fa fa-check-circle notified-icon" aria-hidden="true"></i>
+        <span *ngIf="!NotifyCustomerState.notified" class="title">Invia una notifica</span>
+        <span *ngIf="NotifyCustomerState.notified" class="title">Notifica inviata</span>
+      </div>
+      <div class="popup-body text-center">
+        <p *ngIf="!NotifyCustomerState.notified" class="description-paragraph">Notifica il tuo contatto della tua azienda in modo da poter catturare la sua attenzione.</p>
+        <p *ngIf="NotifyCustomerState.notified" class="description-paragraph">Cliente notificato con successo.</p>
+      </div>
+      <div class="popup-footer">
+        <button *ngIf="!NotifyCustomerState.notified" id="sendNotification" type="button" class="btn btn-primary btn-primary-notification" (click)="sendNotificationToCustomer(SelectedContact)">Invia Notifica</button>
+        <button *ngIf="NotifyCustomerState.notified" id="closeNotificationPopup" type="button" class="btn btn-secondary btn-primary-notification" (click)="popup=null">Fatto</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Deprecated -->
+<div class="account-container" *ngIf="page==='help'">
+  <div class="account">
+    <div class="account-tab">
+      <ul>
+        <li><a class="btn btn-transparent" (click)="clickLeftTabHelp('request')" [ngClass]="{'active':help_tab==='request'}"><i class="fa fa-question-circle" aria-hidden="true"></i>Richiesta</a></li>
+        <li><a class="btn btn-transparent" (click)="clickLeftTabHelp('assistance')" [ngClass]="{'active':help_tab==='assistance'}"><i class="fa fa-assistive-listening-systems" aria-hidden="true"></i>Assistenza</a></li>
+      </ul>
+    </div>
+    <div class="account-content tabbed-content" *ngIf="help_tab==='request'">
+      <div class="account-header">
+        <h2>Invia una richiesta</h2>
+        <p>Hai una richiesta in particolare o bisogno di aiuto? Scrivi qui sotto quello che ti serve. La tua opinione è molto importante per migliorare il nostro servizio e servirti al meglio.</p>
+      </div>
+      <div class="account-body">
+        <form>
+          <div class="row">
+            <div class="form-group col-md-12">
+              <textarea id="help-description-input" class="form-control" placeholder="Descrivi la tua richiesta" rows="6" [(ngModel)]="help_email.message" [ngModelOptions]="{standalone: true}"></textarea>
+            </div>
+          </div>
+        </form>
+        <div class="actions">
+          <span class="saving" *ngIf="help_email_state.loading"><i class="fa fa-circle-o-notch animate"></i> inviando</span>
+          <button type="button" class="btn btn-success" name="button" (click)="sendHelpEmail()">Invia richiesta</button>
+        </div>
+      </div>
+    </div>
+    <div class="account-content tabbed-content" *ngIf="help_tab==='assistance'">
+      <div class="account-header">
+        <h2>Assistenza e Contatti</h2>
+        <!-- <p><i class="fa fa-phone" aria-hidden="true"></i> +39 327 24 15 028</p> -->
+        <p><i class="fa fa-envelope" aria-hidden="true"></i> info@starbook.co</p>
+        <p><a href="https://www.facebook.com/starbook.co/?ref=bookmarks" target="_blank"><i class="fa fa-facebook" aria-hidden="true"></i></a><a href="https://twitter.com/starbookco" target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i></a></p>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="account-container" *ngIf="page==='services' && Account">
+  <div class="account">
+    <div class="account-content">
+      <div class="account-header">
+      </div>
+      <div class="account-body">
+        <div class="services">
+          <div class="service-container" *ngFor="let service of Services">
+            <div class="service" (click)="showService(service)" [ngStyle]="{'background-image' : ' url(' + checkImageUrlFromService(service) + ')'}">
+              <div class="overlay">
+                <div class="text-container">
+                  <div class="title">
+                    <span>{{service.title}}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="actions">
+              <button (click)="shareOnFacebook(service)"><i class="fa fa-facebook" aria-hidden="true"></i></button>
+              <button (click)="shareOnTwitter(service)"><i class="fa fa-twitter" aria-hidden="true"></i></button>
+              <button (click)="shareOnLinkedin(service)"><i class="fa fa-linkedin" aria-hidden="true"></i></button>
+            </div>
+          </div>
+          <div class="service-container">
+            <div class="service" (click)="createService()">
+              <i class="fa fa-plus" aria-hidden="true"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="account-footer">
+    <div class="footer">
+        <div class="row">
+          <div class="col-md-6">
+            <p>© 2017 • Starbook Tutti i diritti riservati • <a href="/info/legal" target="_blank"><strong>Terms</strong></a> & <a href="/info/legal" target="_blank"><strong>Privacy Policy</strong></a></p>
+          </div>
+          <div class="col-md-6 links">
+            <p><a routerLink="/info/help" target="_blank">Aiuto e Assistenza</a>
+              <!-- • <a (click)="logout()">Esci</a> -->
+            </p>
+          </div>
+        </div>
+    </div>
+  </div>
+</div>
+<div class="account-container" *ngIf="page==='payment'">
+  <div class="account">
+    <div class="account-tab">
+      <ul>
+        <li><a class="btn btn-transparent" (click)="clickLeftTabPayment('cards')" [ngClass]="{'active':payment_tab==='cards'}"><i class="fa fa-credit-card" aria-hidden="true"></i>Carte</a></li>
+        <li><a class="btn btn-success" (click)="clickLeftTabPayment('new')"><i aria-hidden="true" class="fa fa-plus"></i>Nuova carta</a></li>
+      </ul>
+    </div>
+    <div *ngIf="payment_tab==='cards'">
+      <div class="account-content tabbed-content">
+        <div class="account-header">
+          <h2>Le tue carte</h2>
+          <p>Inserisci, modifica o elimina le carte che utilizzerai sulla piattaforma.</p>
+        </div>
+        <div class="account-body" *ngFor="let card of cards">
+          <div class="row">
+            <div class="col-lg-8 col-md-8">
+              <h4>{{card.brand}} <small>{{ card.funding }} {{ card.object }}</small> <small *ngIf="defaultCard === card.id">Default</small></h4>
+              <div class="information-block">
+                <span>Nome:</span>
+                {{ card.name }}
+              </div>
+              <div class="information-block">
+                <span>Numero:</span>
+                **** {{ card.last4 }}
+              </div>
+              <div class="information-block">
+                <span>Scadenza:</span>
+                {{ card.exp_month }}/{{ formatYear(card.exp_year) }}
+              </div>
+              <div class="information-block">
+                <span>Tipo:</span>
+                {{ card.brand }} {{ card.funding }} {{ card.object }}
+              </div>
+              <div class="information-block">
+                <span>Indirizzo:</span>
+                {{ card.address_line1 }} {{ card.address_line2 }} <br>
+                {{ card.address_state }} {{ card.address_city }} <br>
+                {{ card.address_zip }} {{ card.address_country }}
+              </div>
+            </div>
+            <div class="col-lg-4 col-md-4">
+              <div class="buttons-block">
+                <a class="btn btn-success" *ngIf="defaultCard !== card.id" (click)="selectCard(card.id)">Default</a>
+                <a class="btn btn-danger" (click)="deleteCard(card.id)">Rimuovi</a>
+                <a class="btn btn-secondary" (click)="editCard(card.id)">Modifica</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- <div class="account-body">
+          <div class="actions">
+            <button type="button" class="btn btn-success" name="button" (click)="sendQuotation(Quotation)">Aggiun</button>
+            <a class="btn btn-secondary" *ngIf="cards?.length===0" (click)="showCardPage()">Aggiungi un metodo</a>
+            <a class="btn btn-secondary" *ngIf="cards?.length > 0" (click)="showCardPage()">Aggiungi un altro metodo</a>
+          </div>
+        </div> -->
       </div>
     </div>
   </div>
