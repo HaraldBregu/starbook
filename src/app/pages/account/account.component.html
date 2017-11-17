@@ -354,9 +354,13 @@
             <div class="post-content">
               <div class="row">
                 <div class="col-md-12">
-                  <p class="jsontext">{{post | json}}</p>
-                  <p>Cliente completo: {{post.customer.complete}}</p>
-                  <p>Acquistato da {{post.count_of_prof}} persone</p>
+                  <!-- <p class="jsontext">{{post | json}}</p> -->
+                  <p>ID: {{post._id}}</p>
+                  <p>Title: {{post.title}}</p>
+                  <p>Description: {{post.description}}</p>
+                  <p>Dati cliente link: <a *ngIf="post.customer.link" href="{{post.customer.link}}" target="_blank"><b>Acquista Qui</b></a></p>
+                  <p>Dati cliente completi: {{post.customer.complete}}</p>
+                  <p>Acquistato da: {{post.count_of_prof}} persone</p>
                 </div>
 
                 <!-- <div class="col-md-12">

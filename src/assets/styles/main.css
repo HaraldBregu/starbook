@@ -9252,7 +9252,8 @@ app-account {
           app-account .account-container .account .account-content .account-body .post-container {
             margin-top: 20px;
             padding: 10px;
-            border: 1px solid grey; }
+            border: 1px solid grey;
+            word-wrap: break-word; }
             app-account .account-container .account .account-content .account-body .post-container .jsontext {
               word-wrap: break-word; }
       app-account .account-container .account .quotation-content {

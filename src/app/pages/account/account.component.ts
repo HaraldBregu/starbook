@@ -1153,8 +1153,6 @@ export class AccountComponent implements OnInit {
     this.inbox_tab = item
   }
 
-  // open popup
-
   showAddCard() {
     this.popup = "NEW_CARD_POPUP"
   }
