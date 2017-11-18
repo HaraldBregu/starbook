@@ -444,6 +444,10 @@ export class HomeComponent implements OnInit {
 
   // UTILS
 
+  counter(count) {
+    // console.log(count)
+    return new Array(count)
+  }
   getStringDate(date) {
     return date.toJSON().split('T')[0]
   }

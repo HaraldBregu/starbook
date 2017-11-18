@@ -57,16 +57,15 @@
             <div class="post-body">
               <div class="post-initial">
                 <div class="top-title">
-                  <span class="top-title-label">Richiesta:</span>
-                  <span *ngIf="post.status && post.status.active===true" class="top-title-value loading-dots">In attesa di proposte</span>
-                  <span *ngIf="post.status && post.status.active===false" class="top-title-value">Assegnata</span>
+                  <!-- <span class="top-title-label">Richiesta:</span> -->
+                  <span *ngIf="post.status && post.status.active===true" class="top-title-value active loading-dots">In attesa di proposte</span>
+                  <span *ngIf="post.status && post.status.active===false" class="top-title-value assigned">Lavoro venduto</span>
                 </div>
                 <i class="fa fa-briefcase left-icon" aria-hidden="true"></i>
                 <h1 class="post-title">{{post.title}}</h1>
                 <span class="post-location">a {{checkPostLocation(post)}}</span>
               </div>
               <div class="post-warranty">
-                <!-- <span class="top-title">GARANTISCI</span> -->
                 <div class="warranty-amount">
                   <!-- <span class="warranty-price">{{getPriceBasedOnBudget(post)/100}}</span><span class="warranty-cent">,95€</span> -->
                   <span class="warranty-price">{{ getDecimalPartPrice(post) }}</span><span class="warranty-cent">,{{ getFracPartPrice(post) }}€</span>
@@ -129,33 +128,42 @@
                         <i class="fa fa-circle-o" aria-hidden="true"></i>
                       </div>
                     </div> -->
-
                     <!-- <div class="post-informations">
                       <span class="label">COSTO:</span>
                       <span class="content contact-price">{{getPriceBasedOnBudget(post)/100}}€</span>
                     </div> -->
                   </div>
                 </div>
-              </div>
-              <div class="row" *ngIf="!post.status || post.status.active!==false">
-                <!-- <div class="col-md-12">
-                  <div class="post-action-description">
-                    <span class="title-action">Visualizza l'anteprima del contatto.</span>
-                    <span class="description-action">Riceverai tutte le informazioni del contatto una volta garantito l'acquisto e potrai contattare il cliente tramite mail e telefono.</span>
+                <div class="col-md-12">
+                  <div class="post-description" *ngIf="post.status && post.status.active===false && post.temp_data">
+                    <span class="title">Risultati della richiesta</span>
+                    <span class="subtitle">Le aziende accettate e le aziende rimborsate.</span>
+                    <div *ngFor="let tick of counter(post.temp_data.purchases)" class="customer accepted"><i class="fa fa-check" aria-hidden="true"></i></div>
+                    <div *ngFor="let tick of counter(post.temp_data.refunds)" class="customer refunded">
+                      <i class="fa fa-repeat" aria-hidden="true"></i>
+                    </div>
                   </div>
-                </div> -->
+                </div>
+              </div>
+              <div class="row">
                 <div class="col-md-12">
                    <div class="post-actions">
-                     <button type="button" class="btn btn-action" id="previewPurchaseContact" (click)="previewPurchase(post)">
+                     <button *ngIf="!post.status || post.status.active===true" type="button" class="btn btn-action" id="previewPurchaseContact" (click)="previewPurchase(post)">
                        <span class="title" id="previewPurchaseContact">Contatta cliente</span>
+                     </button>
+                     <button *ngIf="post.status && post.status.active===false" type="button" class="btn btn-action btn-closed" id="previewClosedContact">
+                       <span class="title" id="previewClosedContact">Venduto</span>
                      </button>
                    </div>
                 </div>
               </div>
             </div>
-            <div class="post-footer" *ngIf="!post.status || post.status.active!==false">
-              <div class="post-message">
+            <div class="post-footer">
+              <div class="post-message" *ngIf="!post.status || post.status.active===true" >
                 <span>Riceverai tutte le informazioni del contatto una volta garantito l'acquisto e potrai contattare il cliente tramite email e telefono.</span>
+              </div>
+              <div class="post-message" *ngIf="post.status && post.status.active===false">
+                <span>Questa richiesta di lavoro è stata venduta e non è più possibile acquistarla.</span>
               </div>
               <div class="post-actions-right" *ngIf="!params.id">
                 <a routerLink="/post/{{post._id}}"><i class="fa fa-sign-out icon-new-page" aria-hidden="true"></i></a>

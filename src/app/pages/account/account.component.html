@@ -361,6 +361,7 @@
                   <p>Dati cliente link: <a *ngIf="post.customer.link" href="{{post.customer.link}}" target="_blank"><b>Acquista Qui</b></a></p>
                   <p>Dati cliente completi: {{post.customer.complete}}</p>
                   <p>Acquistato da: {{post.count_of_prof}} persone</p>
+                  <p *ngIf="post.count_of_prof>0 && post.customer.complete===false">Devi acquistare il contatto</p>
                 </div>
 
                 <!-- <div class="col-md-12">
