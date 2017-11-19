@@ -4302,6 +4302,12 @@ app-home {
   app-home .popup-container .popup .popup-content .popup-body .btn-form-login {
     width: 100%;
     border-radius: 3px; }
+  app-home .popup-container .popup .popup-content .popup-body .show-login-popup {
+    color: #16a085;
+    font-weight: 400;
+    margin-bottom: 20px;
+    cursor: pointer;
+    text-decoration: underline; }
   app-home .popup-container .popup .popup-content .popup-body .btn-form-signup {
     width: 100%;
     border-radius: 3px; }

@@ -345,7 +345,7 @@
     <div class="account-content tabbed-content" *ngIf="profile_tab==='affiliation'">
       <div class="account-header">
         <h2>Affiliazione lavori</h2>
-        <button type="button" name="button" class="btn btn-primary" (click)="popup='NEW_AFFILIATE_POST_POPUP';">Nuovo</button>
+        <button type="button" name="button" class="btn btn-primary" (click)="newPost();">Nuovo</button>
         <button type="button" name="button" class="btn btn-warning" (click)="readPosts();">Reload</button>
       </div>
       <div class="account-body">
@@ -354,35 +354,15 @@
             <div class="post-content">
               <div class="row">
                 <div class="col-md-12">
-                  <!-- <p class="jsontext">{{post | json}}</p> -->
                   <p>ID: {{post._id}}</p>
                   <p>Title: {{post.title}}</p>
                   <p>Description: {{post.description}}</p>
-                  <p>Dati cliente link: <a *ngIf="post.customer.link" href="{{post.customer.link}}" target="_blank"><b>Acquista Qui</b></a></p>
-                  <p>Dati cliente completi: {{post.customer.complete}}</p>
-                  <p>Acquistato da: {{post.count_of_prof}} persone</p>
+                  <p>Cliente link: <a *ngIf="post.customer.link" href="{{post.customer.link}}" target="_blank"><b>Acquista Qui</b></a></p>
+                  <p>Dati completi: {{post.customer.complete}}</p>
+                  <p>Pubblica: {{getAccessControl(post)}}</p>
+                  <p>Acquisti: {{post.count_of_prof}}</p>
                   <p *ngIf="post.count_of_prof>0 && post.customer.complete===false">Devi acquistare il contatto</p>
                 </div>
-
-                <!-- <div class="col-md-12">
-                  <p>{{post._id}}</p>
-                </div>
-                <div class="col-md-12">
-                  <p>{{post.title}}</p>
-                </div>
-                <div class="col-md-12">
-                  <p>{{post.description}}</p>
-                </div>
-                <div class="col-md-12" *ngFor="let detail of post.details">
-                  <p>{{detail}}</p>
-                </div>
-                <div class="col-md-12">
-                  <p>Active: {{post.status.active}}</p>
-                </div>
-                <div class="col-md-12">
-                  <p>Public: {{post['_acl']['*']['read']}}</p>
-                </div> -->
-
                 <div class="col-md-12">
                   <button type="button" name="button" class="btn btn-secondary" (click)="openAndModyfyPost(post)">Aggiorna</button>
                 </div>
@@ -1245,6 +1225,9 @@
 <div class="popup-container" [ngStyle]="{'display' : popup==='NEW_AFFILIATE_POST_POPUP' ? 'block' : 'none'}">
   <div class="popup-shadow" [ngStyle]="{'display' : popup ? 'block' : 'none'}" (click)="popup=null;"></div>
   <div class="popup popup-post">
+    <div class="popup-loader" *ngIf="AffiliatePostStatus.loading">
+      <i class="fa fa-circle-o-notch animate loader"></i>
+    </div>
     <div class="popup-content">
       <div class="popup-nav">
         <button type="button" class="close" (click)="popup=null;">&times;</button>Crea un nuovo post
@@ -1318,25 +1301,36 @@
               <label for="estimate-cost-input">Costo Preventivo</label>
               <input id="estimate-cost-input" type="number" placeholder="Preventivo" class="form-control" [ngClass]="{'error-input': AffiliatePostStatus.error}" [(ngModel)]="AffiliatePost.budget.estimate_cost" [ngModelOptions]="{standalone: true}">
             </div>
-            <div class="form-group col-md-6">
-              <div class="form-check">
-                <label class="form-check-label">
-                  <input type="checkbox" class="form-check-input" [checked]="AffiliatePost.customer.complete" (change)="AffiliatePost.customer.complete = !AffiliatePost.customer.complete">Dati cliente completi
-                </label>
-              </div>
+
+            <div class="form-group col-md-12">
+              <label for="link-input">Link</label>
+              <input id="link-input" type="text" placeholder="Link" class="form-control" [ngClass]="{'error-input': AffiliatePostStatus.error}" [(ngModel)]="AffiliatePost.customer.link" [ngModelOptions]="{standalone: true}">
             </div>
-            <div class="form-group col-md-6">
-              <div class="form-check">
-                <label class="form-check-label">
-                  <input type="checkbox" class="form-check-input" [checked]="AffiliatePost.publish" (change)="AffiliatePost.publish = !AffiliatePost.publish">Pubblica
-                </label>
-              </div>
+
+            <div class="form-check col-md-12">
+              <label class="form-check-label">
+                <input type="checkbox" class="form-check-input" [checked]="AffiliatePost.customer.complete" (change)="AffiliatePost.customer.complete = !AffiliatePost.customer.complete">
+                <span>Dati completi</span>
+              </label>
             </div>
+            <div class="form-check col-md-12">
+              <label class="form-check-label">
+                <input type="checkbox" class="form-check-input" [checked]="AffiliatePost._acl['*']['read']" (change)="AffiliatePost._acl['*']['read'] = !AffiliatePost._acl['*']['read']">
+                <span>Pubblica</span>
+              </label>
+            </div>
+            <div class="form-check col-md-12">
+              <label class="form-check-label">
+                <input type="checkbox" class="form-check-input" [checked]="AffiliatePost.status.active" (change)="AffiliatePost.status.active = !AffiliatePost.status.active">
+                <span>Attivo</span>
+              </label>
+            </div>
+
           </div>
         </form>
       </div>
       <div class="popup-footer">
-        <button id="addCard" type="button" class="btn btn-danger" (click)="savePost()"><i class="fa fa-circle-o-notch animate" *ngIf="AffiliatePostStatus.loading"></i>Salva</button>
+        <button id="addCard" type="button" class="btn btn-danger" (click)="savePost()">Salva</button>
       </div>
     </div>
   </div>

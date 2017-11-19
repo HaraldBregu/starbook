@@ -286,11 +286,12 @@ export class AccountComponent implements OnInit {
       lastname : "",
       email : "",
       phone_number : "",
-      complete : false
+      complete : false,
+      link : ""
     },
     address : {
-      street : "",
-      street_number : "",
+      street : "V******",
+      street_number : "**",
       postal_code : "",
       city : "",
       province : "",
@@ -302,10 +303,16 @@ export class AccountComponent implements OnInit {
       min : 0,
       max : 0
     },
-    publish : false
+    status: {
+      active : true,
+    },
+    _acl: {
+      "*" : {
+        read: true
+      }
+    }
   }
   public AffiliatePostDetails = []
-  public AffiliatePostSelected = null
   public AffiliatePostTempDetail = ""
   public AffiliatePostStatus = {
     creating : false,
@@ -323,7 +330,7 @@ export class AccountComponent implements OnInit {
     error: null,
   }
 
-  constructor(private route: ActivatedRoute, private router: Router, private navigationService: NavigationService, private profileService: ProfileService, private authService: AuthService, private seoService: SeoService, private contactService: ContactService, private popupsService: PopupsService, private commonService: CommonService, private paymentService: PaymentService) {
+  constructor(private route: ActivatedRoute, private router: Router, private navigationService: NavigationService, private profileService: ProfileService, private authService: AuthService, private seoService: SeoService, private contactService: ContactService, private popupsService: PopupsService, public commonService: CommonService, private paymentService: PaymentService) {
     this.navigationService.updateMessage("Dashboard")
     if (isBrowser) {
       let account = JSON.parse(localStorage.getItem('auth'))
@@ -1328,18 +1335,32 @@ export class AccountComponent implements OnInit {
 
   // AFFILIATE SECTION
 
+  newPost() {
+    this.popup = 'NEW_AFFILIATE_POST_POPUP'
+  }
   savePost() {
+    this.AffiliatePostStatus.loading = true
+
     if(this.AffiliatePost['_id']) {
       this.commonService.putMethod('affiliate/me/posts/' + this.AffiliatePost['_id'], this.AffiliatePost).then((data) => {
         // console.log(JSON.stringify("Created post" + data))
+        this.AffiliatePostStatus.loading = false
+        this.popup = null
       }).catch((error) => {
+        this.AffiliatePostStatus.loading = false
+        this.popup = null
         // console.log(JSON.stringify("Error creation" + error))
       })
-    } else {
+    }
+    else {
       this.commonService.postMethod('affiliate/me/posts', this.AffiliatePost).then((data) => {
-        console.log(JSON.stringify("Created post" + data))
+        // console.log(JSON.stringify("Created post" + data))
+        this.AffiliatePostStatus.loading = false
+        this.popup = null
       }).catch((error) => {
-        console.log(JSON.stringify("Error creation" + error))
+        this.AffiliatePostStatus.loading = false
+        this.popup = null
+        // console.log(JSON.stringify("Error creation" + error))
       })
     }
   }
@@ -1352,7 +1373,6 @@ export class AccountComponent implements OnInit {
         var affPost = this.AffiliatePosts[i]
         this.commonService.getMethod('posts/' + affPost['_id'] + '/contacts').then((data) => {
           // console.log(JSON.stringify(data))
-          // return data.result.length
           this.AffiliatePosts[i]['count_of_prof'] = data.result.length
         }).catch((error) => {
           this.AffiliatePosts[i]['count_of_prof'] = 0
@@ -1372,7 +1392,7 @@ export class AccountComponent implements OnInit {
     this.AffiliatePost.details[i] = $event.target.value
   }
   openAndModyfyPost(post) {
-    this.AffiliatePostSelected = post
+    // console.log(JSON.stringify(post))
     this.AffiliatePost = post
     this.popup = "NEW_AFFILIATE_POST_POPUP"
   }
@@ -1558,6 +1578,10 @@ export class AccountComponent implements OnInit {
         return ""
       }
     }
+  }
+  getAccessControl(post) {
+    // console.log(JSON.stringify(post))
+    return (post._acl['*']['read']===null) ? false : post._acl['*']['read']
   }
 
   // EXTRA

@@ -129,11 +129,11 @@ export class HomeComponent implements OnInit {
       })
     } else {
       this.SeoData['image_url'] = "https://s3-eu-west-1.amazonaws.com/starbook-s3/website/richieste-lavoro-bacheca.png"
-      // this.navigationService.updateMessage("Tutte le richieste")
-      this.commonService.getMethod('posts').then((data) => {
+      this.commonService.getMethod('posts?active=1').then((data) => {
         this.posts = data.result
         // console.log(JSON.stringify(data))
       }).catch((error) => {
+
       })
     }
 
@@ -153,7 +153,6 @@ export class HomeComponent implements OnInit {
     this.seoService.setOgElem('og:url', this.SeoData['url'])
     this.seoService.setOgElem('og:image', this.SeoData['image_url'])
     this.seoService.setOgElem('og:image:secure_url', this.SeoData['image_url'])
-
   }
 
   checkCustomerFirstname(post) {
