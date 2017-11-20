@@ -4087,6 +4087,25 @@ app-home {
                   background: #2ecc71; }
                 app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-description .refunded {
                   background: #f1c40f; }
+              app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-pictures {
+                overflow: hidden;
+                margin-top: 20px; }
+                app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-pictures .picture {
+                  position: relative; }
+                  app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-pictures .picture .post-picture {
+                    object-fit: cover;
+                    height: 200px;
+                    width: 100%; }
+                  app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-pictures .picture .overlay {
+                    position: absolute;
+                    top: 0;
+                    bottom: 0;
+                    left: 0;
+                    right: 0;
+                    height: 100%;
+                    width: 100%;
+                    opacity: 1;
+                    background-color: #eceeef33; }
               app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-actions {
                 display: block;
                 margin-top: 40px; }

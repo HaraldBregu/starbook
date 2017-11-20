@@ -90,14 +90,9 @@
                       <span class="content content_mobile" *ngFor="let detail of post.details">{{detail}}</span>
                     </div>
                     <div class="row">
-                      <!-- <div class="col-md-12">
-                        <div class="post-informations">
-                          <span class="label">Cliente:</span><span class="content customer-type">PRIVATO</span>
-                        </div>
-                      </div> -->
                       <div class="col-md-12">
                         <div class="row">
-                          <div class="col-md-6">
+                          <div class="col-md-7">
                             <div class="row">
                               <div class="col-md-12">
                                 <div class="post-informations">
@@ -121,7 +116,7 @@
                               </div>
                             </div>
                           </div>
-                          <div class="col-md-6">
+                          <div class="col-md-5">
                             <div class="post-informations" *ngIf="post.status && post.status.active===false && post.temp_data">
                               <span class="label">Risultati della richiesta</span>
                               <span class="sublabel">Le aziende accettate e le aziende rimborsate.</span>
@@ -130,72 +125,22 @@
                                 <i class="fa fa-repeat" aria-hidden="true"></i>
                               </div>
                             </div>
-
-                            <!-- <div class="post-description" *ngIf="post.status && post.status.active===false && post.temp_data">
-                              <div class="post-informations" *ngIf="post.status && post.status.active===false && post.temp_data">
-                                <span class="title">Risultati della richiesta</span>
-                                <span class="subtitle">Le aziende accettate e le aziende rimborsate.</span>
-                                <div *ngFor="let tick of counter(post.temp_data.purchases)" class="customer accepted"><i class="fa fa-check" aria-hidden="true"></i></div>
-                                <div *ngFor="let tick of counter(post.temp_data.refunds)" class="customer refunded">
-                                  <i class="fa fa-repeat" aria-hidden="true"></i>
-                                </div>
-                              </div>
-                            </div> -->
                           </div>
                         </div>
                       </div>
-                      <!-- <div class="col-md-12">
-                        <div class="post-informations">
-                          <span class="label">Budget:</span>
-                          <span class="content price">{{post.budget.min/100}}€ - {{post.budget.max/100}}€</span>
-                        </div>
-                      </div>
-                      <div class="col-md-12">
-                        <div class="post-informations">
-                          <span class="label">Stato:</span>
-                          <span class="content">
-                            <span *ngIf="post.status && post.status.active===true" class="top-title-value active loading-dots">In attesa di proposte</span>
-                            <span *ngIf="post.status && post.status.active===false" class="top-title-value assigned">Lavoro venduto</span>
-                          </span>
-                        </div>
-                      </div> -->
                     </div>
-                    <!-- <div class="post-informations">
-                      <span class="label">URGENZA:</span>
-                      <div class="content priority">
-                        <i class="fa fa-circle" aria-hidden="true"></i>
-                        <i class="fa fa-circle" aria-hidden="true"></i>
-                        <i class="fa fa-circle" aria-hidden="true"></i>
-                        <i class="fa fa-circle" aria-hidden="true"></i>
-                        <i class="fa fa-circle" aria-hidden="true"></i>
-                      </div>
-                    </div> -->
-                    <!-- <div class="post-informations">
-                      <span class="label">CONCORRENZA:</span>
-                      <div class="content competitors">
-                        <i class="fa fa-circle" aria-hidden="true"></i>
-                        <i class="fa fa-circle-o" aria-hidden="true"></i>
-                        <i class="fa fa-circle-o" aria-hidden="true"></i>
-                        <i class="fa fa-circle-o" aria-hidden="true"></i>
-                        <i class="fa fa-circle-o" aria-hidden="true"></i>
-                      </div>
-                    </div> -->
-                    <!-- <div class="post-informations">
-                      <span class="label">COSTO:</span>
-                      <span class="content contact-price">{{getPriceBasedOnBudget(post)/100}}€</span>
-                    </div> -->
                   </div>
                 </div>
-                <!-- <div class="col-md-12">
-                  <div class="post-description" *ngIf="post.status && post.status.active===false && post.temp_data">
-                    <span class="title">Risultati della richiesta</span>
-                    <span class="subtitle">Le aziende accettate e le aziende rimborsate.</span>
-                    <div *ngFor="let tick of counter(post.temp_data.purchases)" class="customer accepted"><i class="fa fa-check" aria-hidden="true"></i></div>
-                    <div *ngFor="let tick of counter(post.temp_data.refunds)" class="customer refunded">
-                      <i class="fa fa-repeat" aria-hidden="true"></i>
+                <div class="col-md-12" *ngIf="post.images_links && post.images_links.length!==0">
+                  <div class="row post-pictures">
+                    <div class="col-md-4" *ngFor="let image_link of post.images_links">
+                      <div class="picture">
+                        <img class="post-picture" src="{{image_link}}" alt="immagine richiesta">
+                        <div class="overlay"></div>
+                      </div>
                     </div>
                   </div>
-                </div> -->
+                </div>
               </div>
               <div class="row">
                 <div class="col-md-12">

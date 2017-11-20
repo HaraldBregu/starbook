@@ -411,6 +411,29 @@ app-home {
                     background: #f1c40f;
                   }
                 }
+                .post-pictures {
+                  overflow: hidden;
+                  margin-top: 20px;
+                  .picture {
+                    position: relative;
+                    .post-picture {
+                      object-fit: cover;
+                      height: 200px;
+                      width: 100%;
+                    }
+                    .overlay {
+                      position: absolute;
+                      top: 0;
+                      bottom: 0;
+                      left: 0;
+                      right: 0;
+                      height: 100%;
+                      width: 100%;
+                      opacity: 1;
+                      background-color: #eceeef33;
+                    }
+                  }
+                }
                 .post-actions {
                   display: block;
                   margin-top: 40px;

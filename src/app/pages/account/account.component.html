@@ -1247,13 +1247,30 @@
               <label for="description-input">Descrizione</label>
               <textarea id="description-input" class="form-control" placeholder="Descrivi la tua richiesta" rows="4" [(ngModel)]="AffiliatePost.description" [ngModelOptions]="{standalone: true}"></textarea>
             </div>
-            <div class="form-group col-md-12" *ngFor="let detail of AffiliatePost.details; let i=index">
-              <input id="details-input" type="text" class="form-control" value="{{detail}}" (change)="detailAffiliatePostChangeAtIndex($event, i)">
-            </div>
+
             <div class="form-group col-md-12">
               <label for="detail-input">Dettaglio</label>
               <input id="detail-input" type="text" class="form-control" placeholder="dettaglio" autofocus="" [(ngModel)]="AffiliatePostTempDetail" (keyup.enter)="addTempDetail()" [ngModelOptions]="{standalone: true}">
             </div>
+            <div class="form-group col-md-12" *ngFor="let detail of AffiliatePost.details; let i=index">
+              <input id="details-input" type="text" class="form-control" value="{{detail}}" (change)="detailAffiliatePostChangeAtIndex($event, i)">
+            </div>
+
+            <div class="form-group col-md-12">
+              <label for="detail-input">Link Immagine</label>
+              <input id="detail-input" type="text" class="form-control" placeholder="img link" autofocus="" [(ngModel)]="AffiliatePostTempImageLink" (keyup.enter)="addTempImageLink()" [ngModelOptions]="{standalone: true}">
+            </div>
+            <div class="form-group col-md-12" *ngFor="let detail of AffiliatePost.images_links; let i=index">
+              <div class="row">
+                <div class="col-md-10">
+                  <input id="details-input" type="text" class="form-control" value="{{detail}}" (change)="detailAffiliatePostChangeAtIndex($event, i)">
+                </div>
+                <div class="col-md-2">
+                  <button type="button" name="button" class="btn btn-primary" (click)="removeImageLink(detail)">X</button>
+                </div>
+              </div>
+            </div>
+
             <div class="form-group col-md-6">
               <label for="firstname-input">Nome</label>
               <input id="firstname-input" type="text" placeholder="Nome" class="form-control" [ngClass]="{'error-input': AffiliatePostStatus.error}" [(ngModel)]="AffiliatePost.customer.firstname" [ngModelOptions]="{standalone: true}">

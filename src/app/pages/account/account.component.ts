@@ -306,14 +306,15 @@ export class AccountComponent implements OnInit {
     status: {
       active : true,
     },
+    images_links: [],
     _acl: {
       "*" : {
         read: true
       }
     }
   }
-  public AffiliatePostDetails = []
   public AffiliatePostTempDetail = ""
+  public AffiliatePostTempImageLink = ""
   public AffiliatePostStatus = {
     creating : false,
     loading : false,
@@ -1366,7 +1367,7 @@ export class AccountComponent implements OnInit {
   }
   readPosts() {
     this.commonService.getMethod('affiliate/me/posts').then((data) => {
-      // console.log(JSON.stringify(data))
+      console.log(JSON.stringify(data))
       this.AffiliatePosts = data.result
 
       for (let i = 0; i < this.AffiliatePosts.length; i++) {
@@ -1387,6 +1388,19 @@ export class AccountComponent implements OnInit {
   addTempDetail() {
     this.AffiliatePost.details.push(this.AffiliatePostTempDetail)
     this.AffiliatePostTempDetail = null
+  }
+  addTempImageLink() {
+    if (!this.AffiliatePost['images_links']) {
+      var images_links = this.AffiliatePost['images_links'] = []
+      images_links.push(this.AffiliatePostTempImageLink)
+      this.AffiliatePostTempImageLink = null
+    }
+  }
+  removeImageLink(link) {
+    var index = this.AffiliatePost.images_links.indexOf(link)
+    if (index > -1) {
+      this.AffiliatePost.images_links.splice(index, 1)
+    }
   }
   detailAffiliatePostChangeAtIndex($event, i) {
     this.AffiliatePost.details[i] = $event.target.value
