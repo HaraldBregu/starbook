@@ -3777,7 +3777,7 @@ app-home {
           -moz-box-shadow: 0 0 10px 0 rgba(50, 50, 50, 0.1);
           box-shadow: 0 0 10px 0 rgba(50, 50, 50, 0.1);
           padding: 40px 50px;
-          margin-top: 30px; }
+          margin-top: 10px; }
           app-home .home-container .home .home-content .home-header img {
             width: 40px;
             float: left; }
@@ -3807,7 +3807,7 @@ app-home {
             margin-left: 50px; }
         app-home .home-container .home .home-content .home-body .post {
           background: white;
-          margin-top: 30px;
+          margin-top: 50px;
           margin-bottom: 10px;
           border-radius: 10px;
           border: solid 1px #e0e0e0;
@@ -3822,7 +3822,7 @@ app-home {
               padding: 40px 50px;
               font-family: Helvetica Neue, sans-serif; }
             app-home .home-container .home .home-content .home-body .post .post-content .post-body {
-              padding: 40px 50px;
+              padding: 60px 50px 50px;
               overflow: auto; }
               app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-interest {
                 display: block;
@@ -4562,7 +4562,7 @@ app-home {
     margin-left: 80px; }
 
   app-home .home-container .home .home-content .home-body .post .post-content .post-body {
-    padding: 30px; }
+    padding: 40px 30px 30px; }
 
   app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-informations .content {
     margin-left: 120px; }
@@ -4753,7 +4753,7 @@ app-home {
     font-size: 16px !important; }
 
   app-home .home-container .home .home-content .home-body .post .post-content .post-body {
-    padding: 20px; }
+    padding: 30px 20px 20px; }
 
   app-home .popup-container .popup .popup-content .popup-footer .action .title {
     padding: 0; }

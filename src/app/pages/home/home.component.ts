@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { URLSearchParams } from '@angular/http'
 import { Router, Route, ActivatedRoute, Params } from '@angular/router';
 import { NavigationService } from '../../shared/navigation.service';
 import { ProfileService } from '../../shared/profile.service';
@@ -21,6 +22,7 @@ import { FacebookService, InitParams, LoginResponse, LoginOptions, UIResponse, U
 export class HomeComponent implements OnInit {
   public SeoData = {}
   public params = null
+  public query = null
   public CurrentAccount = null
   public popup = null
   public posts = null
@@ -100,7 +102,7 @@ export class HomeComponent implements OnInit {
     // this.route.fragment.subscribe((fragment: string) => {
     //   console.log("My hash fragment is here => ", fragment)
     // })
-
+    this.route.queryParams.subscribe(params => { this.query = params })
     // this.commonService.getMethod('accounts').then((data) => {
     //   this.TestimonialAccounts = data.result
     // }).catch((error) => {
@@ -129,7 +131,13 @@ export class HomeComponent implements OnInit {
       })
     } else {
       this.SeoData['image_url'] = "https://s3-eu-west-1.amazonaws.com/starbook-s3/website/richieste-lavoro-bacheca.png"
-      this.commonService.getMethod('posts?active=1').then((data) => {
+
+      let params = new URLSearchParams()
+      for(let key in this.query) {
+        params.set(key, this.query[key])
+      }
+      
+      this.commonService.getMethod('posts?' + params.toString()).then((data) => {
         this.posts = data.result
         // console.log(JSON.stringify(data))
       }).catch((error) => {

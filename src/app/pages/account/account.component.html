@@ -357,6 +357,7 @@
                   <p>ID: {{post._id}}</p>
                   <p>Title: {{post.title}}</p>
                   <p>Description: {{post.description}}</p>
+                  <p>Costo Contatto: {{post.budget.estimate_cost}}</p>
                   <p>Cliente link: <a *ngIf="post.customer.link" href="{{post.customer.link}}" target="_blank"><b>Acquista Qui</b></a></p>
                   <p>Dati completi: {{post.customer.complete}}</p>
                   <p>Pubblica: {{getAccessControl(post)}}</p>
