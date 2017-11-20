@@ -56,11 +56,10 @@
             <img class="purchased-image" *ngIf="post.status && post.status.active===false" src='../assets/images/purchased-label.png'>
             <div class="post-body">
               <div class="post-initial">
-                <div class="top-title">
-                  <!-- <span class="top-title-label">Richiesta:</span> -->
+                <!-- <div class="top-title">
                   <span *ngIf="post.status && post.status.active===true" class="top-title-value active loading-dots">In attesa di proposte</span>
                   <span *ngIf="post.status && post.status.active===false" class="top-title-value assigned">Lavoro venduto</span>
-                </div>
+                </div> -->
                 <i class="fa fa-briefcase left-icon" aria-hidden="true"></i>
                 <h1 class="post-title">{{post.title}}</h1>
                 <span class="post-location">a {{checkPostLocation(post)}}</span>
@@ -91,22 +90,75 @@
                       <span class="content content_mobile" *ngFor="let detail of post.details">{{detail}}</span>
                     </div>
                     <div class="row">
-                      <div class="col-md-12">
+                      <!-- <div class="col-md-12">
                         <div class="post-informations">
                           <span class="label">Cliente:</span><span class="content customer-type">PRIVATO</span>
                         </div>
-                      </div>
+                      </div> -->
                       <div class="col-md-12">
-                        <div class="post-informations">
-                          <span class="label">Stato:</span><img class="content verified-image" src="../assets/images/verified-contact.png" alt="verificato">
+                        <div class="row">
+                          <div class="col-md-6">
+                            <div class="row">
+                              <div class="col-md-12">
+                                <div class="post-informations">
+                                  <span class="label">Cliente:</span><img class="content verified-image" src="../assets/images/verified-contact.png" alt="verificato">
+                                </div>
+                              </div>
+                              <div class="col-md-12">
+                                <div class="post-informations">
+                                  <span class="label">Budget:</span>
+                                  <span class="content price">{{post.budget.min/100}}€ - {{post.budget.max/100}}€</span>
+                                </div>
+                              </div>
+                              <div class="col-md-12">
+                                <div class="post-informations">
+                                  <span class="label">Stato:</span>
+                                  <span class="content">
+                                    <span *ngIf="post.status && post.status.active===true" class="top-title-value active loading-dots">In attesa di proposte</span>
+                                    <span *ngIf="post.status && post.status.active===false" class="top-title-value assigned">Lavoro venduto</span>
+                                  </span>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-md-6">
+                            <div class="post-informations" *ngIf="post.status && post.status.active===false && post.temp_data">
+                              <span class="label">Risultati della richiesta</span>
+                              <span class="sublabel">Le aziende accettate e le aziende rimborsate.</span>
+                              <div *ngFor="let tick of counter(post.temp_data.purchases)" class="customer accepted"><i class="fa fa-check" aria-hidden="true"></i></div>
+                              <div *ngFor="let tick of counter(post.temp_data.refunds)" class="customer refunded">
+                                <i class="fa fa-repeat" aria-hidden="true"></i>
+                              </div>
+                            </div>
+
+                            <!-- <div class="post-description" *ngIf="post.status && post.status.active===false && post.temp_data">
+                              <div class="post-informations" *ngIf="post.status && post.status.active===false && post.temp_data">
+                                <span class="title">Risultati della richiesta</span>
+                                <span class="subtitle">Le aziende accettate e le aziende rimborsate.</span>
+                                <div *ngFor="let tick of counter(post.temp_data.purchases)" class="customer accepted"><i class="fa fa-check" aria-hidden="true"></i></div>
+                                <div *ngFor="let tick of counter(post.temp_data.refunds)" class="customer refunded">
+                                  <i class="fa fa-repeat" aria-hidden="true"></i>
+                                </div>
+                              </div>
+                            </div> -->
+                          </div>
                         </div>
                       </div>
-                      <div class="col-md-12">
+                      <!-- <div class="col-md-12">
                         <div class="post-informations">
                           <span class="label">Budget:</span>
                           <span class="content price">{{post.budget.min/100}}€ - {{post.budget.max/100}}€</span>
                         </div>
                       </div>
+                      <div class="col-md-12">
+                        <div class="post-informations">
+                          <span class="label">Stato:</span>
+                          <span class="content">
+                            <span *ngIf="post.status && post.status.active===true" class="top-title-value active loading-dots">In attesa di proposte</span>
+                            <span *ngIf="post.status && post.status.active===false" class="top-title-value assigned">Lavoro venduto</span>
+                          </span>
+                        </div>
+                      </div> -->
                     </div>
                     <!-- <div class="post-informations">
                       <span class="label">URGENZA:</span>
@@ -134,7 +186,7 @@
                     </div> -->
                   </div>
                 </div>
-                <div class="col-md-12">
+                <!-- <div class="col-md-12">
                   <div class="post-description" *ngIf="post.status && post.status.active===false && post.temp_data">
                     <span class="title">Risultati della richiesta</span>
                     <span class="subtitle">Le aziende accettate e le aziende rimborsate.</span>
@@ -143,7 +195,7 @@
                       <i class="fa fa-repeat" aria-hidden="true"></i>
                     </div>
                   </div>
-                </div>
+                </div> -->
               </div>
               <div class="row">
                 <div class="col-md-12">

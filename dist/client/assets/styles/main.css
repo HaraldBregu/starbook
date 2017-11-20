@@ -3923,6 +3923,12 @@ app-home {
                   font-weight: 700;
                   color: #343a43;
                   line-height: 26px; }
+                app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-informations .sublabel {
+                  display: block;
+                  font-size: 15px;
+                  color: #343a43;
+                  float: left;
+                  width: 100%; }
                 app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-informations .content {
                   display: block;
                   margin-left: 170px;
@@ -3935,7 +3941,6 @@ app-home {
                   font-weight: 700;
                   color: rgba(0, 0, 0, 0.7); }
                 app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-informations .price {
-                  color: #12BF55;
                   font-weight: 700; }
                 app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-informations .contact-price {
                   font-weight: 900;
@@ -3958,6 +3963,15 @@ app-home {
                   line-height: 25px; }
                 app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-informations img {
                   height: 25px; }
+                app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-informations .top-title-value {
+                  padding: 3px 15px;
+                  font-weight: 700;
+                  color: white;
+                  border-radius: 25px; }
+                app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-informations .active {
+                  background: #2ecc71; }
+                app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-informations .assigned {
+                  background: #f1c40f; }
               app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-customer {
                 font-family: 'Open Sans', sans-serif;
                 display: block; }
@@ -4760,7 +4774,11 @@ app-home {
 
   app-home .popup-container .popup .popup-content .popup-footer .action .warranty-amount {
     padding: 0 15px;
-    font-size: 26px; } }
+    font-size: 26px; }
+
+  app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-informations .top-title-value {
+    float: right;
+    margin-left: 0px !important; } }
 @media (max-width: 375px) {
   app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-actions .btn-action .title {
     font-size: 24px; }
@@ -4797,8 +4815,8 @@ app-home {
   overflow: hidden;
   display: inline-block;
   vertical-align: bottom;
-  -webkit-animation: ellipsis steps(5, end) 2900ms infinite;
-  animation: ellipsis steps(5, end) 2900ms infinite;
+  -webkit-animation: ellipsis steps(5, end) 6000ms infinite;
+  animation: ellipsis steps(5, end) 6000ms infinite;
   content: "\2026";
   /* ascii code for the ellipsis character */
   width: 0px; }

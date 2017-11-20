@@ -204,6 +204,13 @@ app-home {
                     color: #343a43;
                     line-height: 26px;
                   }
+                  .sublabel {
+                    display: block;
+                    font-size: 15px;
+                    color: #343a43;
+                    float: left;
+                    width: 100%;
+                  }
                   .content {
                     display: block;
                     margin-left: 170px;
@@ -219,7 +226,7 @@ app-home {
                     color: rgba(0, 0, 0, 0.70);
                   }
                   .price {
-                    color: #12BF55;
+                    // color: #12BF55;
                     font-weight: 700;
                   }
                   .contact-price {
@@ -249,6 +256,18 @@ app-home {
                   }
                   img {
                     height: 25px;
+                  }
+                  .top-title-value {
+                    padding: 3px 15px;
+                    font-weight: 700;
+                    color: white;
+                    border-radius: 25px;
+                  }
+                  .active {
+                    background: #2ecc71;
+                  }
+                  .assigned {
+                    background: #f1c40f;
                   }
                 }
                 .post-customer {
@@ -1235,6 +1254,10 @@ app-home {
     padding: 0 15px;
     font-size: 26px;
   }
+  app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-informations .top-title-value {
+    float: right;
+    margin-left: 0px !important;
+  }
 }
 
 @media (max-width: 375px) {
@@ -1309,8 +1332,8 @@ app-home {
   overflow: hidden;
   display: inline-block;
   vertical-align: bottom;
-  -webkit-animation: ellipsis steps(5,end) 2900ms infinite;
-  animation: ellipsis steps(5,end) 2900ms infinite;
+  -webkit-animation: ellipsis steps(5,end) 6000ms infinite;
+  animation: ellipsis steps(5,end) 6000ms infinite;
   content: "\2026"; /* ascii code for the ellipsis character */
   width: 0px;
 }
