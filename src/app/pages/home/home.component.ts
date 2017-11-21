@@ -23,6 +23,7 @@ export class HomeComponent implements OnInit {
   public SeoData = {}
   public params = null
   public query = null
+  public fragment = null
   public CurrentAccount = null
   public popup = null
   public posts = null
@@ -79,6 +80,13 @@ export class HomeComponent implements OnInit {
 
   public TestimonialAccounts = null
 
+  public PostCustomers = null
+  public SelectedPostCustomer = null
+  public PostCustomersState = {
+    loading: false,
+    error: null,
+  }
+
   constructor(private route: ActivatedRoute, private router: Router, private navigationService: NavigationService, private seoService: SeoService, public commonService: CommonService, private authService: AuthService, private paymentService: PaymentService, private fb: FacebookService) {
     this.navigationService.updateMessage("Bacheca del lavoro")
     this.emailPattern = /^[a-z0-9!#$%&'*+\/=?^_`{|}~.-]+@[a-z0-9]([a-z0-9-]*[a-z0-9])?(\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)*$/i;
@@ -99,24 +107,19 @@ export class HomeComponent implements OnInit {
       })
     }
     this.route.params.subscribe(params => { this.params = params })
-    // this.route.fragment.subscribe((fragment: string) => {
-    //   console.log("My hash fragment is here => ", fragment)
-    // })
+    this.route.fragment.subscribe((fragment: string) => { this.fragment = fragment })
     this.route.queryParams.subscribe(params => { this.query = params })
-    // this.commonService.getMethod('accounts').then((data) => {
-    //   this.TestimonialAccounts = data.result
-    // }).catch((error) => {
-    //   this.TestimonialAccounts = null
-    // })
+
+    // console.log("My hash fragment is here => ", this.fragment)
+    // console.log("My query is here => ", this.query)
+
     this.commonService.getMethod('companies?type=business_customers').then((data) => {
       // console.log(JSON.stringify(data))
       this.TestimonialAccounts = data.result
-
     }).catch((error) => {
       // console.log(JSON.stringify(error))
       this.TestimonialAccounts = null
     })
-
 
     this.posts = null
     if (this.params['id']) {
@@ -136,7 +139,7 @@ export class HomeComponent implements OnInit {
       for(let key in this.query) {
         params.set(key, this.query[key])
       }
-      
+
       this.commonService.getMethod('posts?' + params.toString()).then((data) => {
         this.posts = data.result
         // console.log(JSON.stringify(data))
@@ -346,6 +349,20 @@ export class HomeComponent implements OnInit {
     }
     this.checkPurchasePost(post)
   }
+  previewUpdatePost(post) {
+    this.SelectedPostCustomer = null
+    this.selected_post = post
+    this.commonService.disableScroll()
+    this.popup = "SELECT_COMPANY_POPUP"
+    this.PostCustomersState.loading = true
+    this.commonService.getMethod('posts/' + post._id + "/customers").then((data) => {
+      // console.log(JSON.stringify(data.result))
+      this.PostCustomers = data.result
+      this.PostCustomersState.loading = false
+    }).catch((error) => {
+      this.PostCustomersState.loading = false
+    })
+  }
   checkPurchasePost(post) {
     this.popup = "PREVIEW_PURCHASE_CONTACT_POPUP"
     this.PurchaseState.loading = true
@@ -446,6 +463,31 @@ export class HomeComponent implements OnInit {
       else {
         this.CardState.error = "Controlla i campi inseriti e riprova."
       }
+    })
+  }
+  selectCompanyForPost(customer) {
+    this.SelectedPostCustomer = customer
+  }
+  assignCustomerToPost(post, customer) {
+    this.PostCustomersState.loading = true
+    // console.log("Post: " + JSON.stringify(post))
+    // console.log("Customer: " + JSON.stringify(customer))
+    var data = {}
+    data['status'] = {
+      active: false
+    }
+    data['applicant'] = {
+      _id: customer._id
+    }
+    this.commonService.putMethod('posts/' + post._id + "/customers", data).then((data) => {
+      // console.log(JSON.stringify(data.result))
+      this.PostCustomersState.loading = false
+      this.popup = null;
+      this.commonService.enableScroll();
+    }).catch((error) => {
+      this.PostCustomersState.loading = false
+      this.popup = null;
+      this.commonService.enableScroll();
     })
   }
 

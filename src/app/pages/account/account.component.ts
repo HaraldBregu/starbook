@@ -1367,7 +1367,7 @@ export class AccountComponent implements OnInit {
   }
   readPosts() {
     this.commonService.getMethod('affiliate/me/posts').then((data) => {
-      console.log(JSON.stringify(data))
+      // console.log(JSON.stringify(data))
       this.AffiliatePosts = data.result
 
       for (let i = 0; i < this.AffiliatePosts.length; i++) {
@@ -1393,6 +1393,9 @@ export class AccountComponent implements OnInit {
     if (!this.AffiliatePost['images_links']) {
       var images_links = this.AffiliatePost['images_links'] = []
       images_links.push(this.AffiliatePostTempImageLink)
+      this.AffiliatePostTempImageLink = null
+    } else {
+      this.AffiliatePost.images_links.push(this.AffiliatePostTempImageLink)
       this.AffiliatePostTempImageLink = null
     }
   }
@@ -1423,21 +1426,36 @@ export class AccountComponent implements OnInit {
   // CONTACT SECTION
 
   sendNotificationToCustomer(selectedContact) {
-    console.log(JSON.stringify(selectedContact))
-
+    // console.log(JSON.stringify(selectedContact))
     this.NotifyCustomerState.loading = true
     this.NotifyCustomerState.notified = false
     let data = {
       customer : selectedContact.post.customer
     }
-
     this.commonService.postMethod('contacts/' + selectedContact._id +'/notify', data).then((data) => {
-      console.log(JSON.stringify(data))
+      // console.log(JSON.stringify(data))
       this.NotifyCustomerState.loading = false
       this.NotifyCustomerState.notified = true
       // this.popup = null
     }).catch((error) => {
-      console.log(JSON.stringify(error))
+      // console.log(JSON.stringify(error))
+      this.NotifyCustomerState.loading = false
+      this.NotifyCustomerState.notified = true
+      // this.popup = null
+    })
+  }
+  askStatusOfRequest(selectedContact) {
+    // console.log(JSON.stringify(selectedContact))
+    this.NotifyCustomerState.loading = true
+    this.NotifyCustomerState.notified = false
+    let data = { post : selectedContact.post }
+    this.commonService.postMethod('contacts/' + selectedContact._id +'/request_update_status_post', data).then((data) => {
+      // console.log(JSON.stringify(data))
+      this.NotifyCustomerState.loading = false
+      this.NotifyCustomerState.notified = true
+      // this.popup = null
+    }).catch((error) => {
+      // console.log(JSON.stringify(error))
       this.NotifyCustomerState.loading = false
       this.NotifyCustomerState.notified = true
       // this.popup = null

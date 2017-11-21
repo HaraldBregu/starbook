@@ -357,6 +357,7 @@
                   <p>ID: {{post._id}}</p>
                   <p>Title: {{post.title}}</p>
                   <p>Description: {{post.description}}</p>
+                  <p>Numero Immagini: <span *ngIf="post.images_links">{{post.images_links.length}}</span></p>
                   <p>Costo Contatto: {{post.budget.estimate_cost}}</p>
                   <p>Cliente link: <a *ngIf="post.customer.link" href="{{post.customer.link}}" target="_blank"><b>Acquista Qui</b></a></p>
                   <p>Dati completi: {{post.customer.complete}}</p>
@@ -819,7 +820,8 @@
           <a *ngIf="getPhoneNumber(contact.post)" role="button" href="tel:{{getPhoneNumber(contact.post)}}" target="_blank" name="button" class="btn btn-phone"><i class="fa fa-phone" aria-hidden="true"></i></a>
           <a *ngIf="getEmailAddress(contact.post)" role="button" href="mailto:{{getEmailAddress(contact.post)}}" target="_blank" name="button" class="btn btn-email"><i class="fa fa-envelope" aria-hidden="true"></i></a>
           <a *ngIf="getGoogleMapsLink(contact.post)" role="button" name="button" class="btn btn-map" href="{{getGoogleMapsLink(contact.post)}}" target="_blank"><i class="fa fa-location-arrow" aria-hidden="true"></i></a>
-          <a role="button" name="button" class="btn btn-default" (click)="popup='SEND_NOTIFICATION_POPUP'; SelectedContact=contact; NotifyCustomerState.notified=false;"><b>Invia notifica</b></a>
+          <a role="button" name="button" class="btn btn-warning" (click)="popup='SEND_NOTIFICATION_POPUP'; SelectedContact=contact; NotifyCustomerState.notified=false;"><b>Notifica</b></a>
+          <a role="button" name="button" class="btn btn-primary" (click)="popup='SEND_STATE_POST_REQUEST_POPUP'; SelectedContact=contact; NotifyCustomerState.notified=false;"><b>Chiedi stato richiesta</b></a>
         </div>
       </div>
     </div>
@@ -1373,7 +1375,33 @@
         <p *ngIf="NotifyCustomerState.notified" class="description-paragraph">Cliente notificato con successo.</p>
       </div>
       <div class="popup-footer">
-        <button *ngIf="!NotifyCustomerState.notified" id="sendNotification" type="button" class="btn btn-primary btn-primary-notification" (click)="sendNotificationToCustomer(SelectedContact)">Invia Notifica</button>
+        <button *ngIf="!NotifyCustomerState.notified" id="sendNotification" type="button" class="btn btn-warning btn-primary-notification" (click)="sendNotificationToCustomer(SelectedContact)">Invia notifica</button>
+        <button *ngIf="NotifyCustomerState.notified" id="closeNotificationPopup" type="button" class="btn btn-primary btn-primary-notification" (click)="popup=null">Fatto</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="popup-container" [ngStyle]="{'display' : popup==='SEND_STATE_POST_REQUEST_POPUP' ? 'block' : 'none'}">
+  <div class="popup-shadow" [ngStyle]="{'display' : popup ? 'block' : 'none'}" (click)="popup=null;"></div>
+  <div class="popup">
+    <div class="popup-loader" *ngIf="NotifyCustomerState.loading">
+      <i class="fa fa-circle-o-notch animate loader"></i>
+    </div>
+    <div class="popup-content">
+      <div class="popup-nav">
+        <button type="button" class="close" (click)="popup=null;">&times;</button>Chiedi stato richiesta
+      </div>
+      <div class="popup-header text-center">
+        <i *ngIf="NotifyCustomerState.notified" class="fa fa-check-circle notified-icon" aria-hidden="true"></i>
+        <span *ngIf="!NotifyCustomerState.notified" class="title">Chiedi stato richesta.</span>
+        <span *ngIf="NotifyCustomerState.notified" class="title">Notifica inviata</span>
+      </div>
+      <div class="popup-body text-center">
+        <p *ngIf="!NotifyCustomerState.notified" class="description-paragraph">Chiedi lo stato della richesta in modo da poter concludere la richiesta e il lavoro.</p>
+        <p *ngIf="NotifyCustomerState.notified" class="description-paragraph">Cliente notificato con successo.</p>
+      </div>
+      <div class="popup-footer">
+        <button *ngIf="!NotifyCustomerState.notified" id="sendNotification" type="button" class="btn btn-primary btn-primary-notification" (click)="askStatusOfRequest(SelectedContact)">Invia richiesta</button>
         <button *ngIf="NotifyCustomerState.notified" id="closeNotificationPopup" type="button" class="btn btn-secondary btn-primary-notification" (click)="popup=null">Fatto</button>
       </div>
     </div>

@@ -1,7 +1,7 @@
 <div class="home-container">
   <div class="home">
     <div class="home-content">
-      <div class="home-header">
+      <div class="home-header" *ngIf="!fragment">
         <div *ngIf="!params.id">
           <h1 class="title">Richieste per: <b>Lavori, Servizi, Preventivi</b></h1>
           <p class="description">
@@ -15,7 +15,7 @@
           </p>
         </div>
       </div>
-      <div class="home-header">
+      <div class="home-header" *ngIf="!fragment">
         <div class="options">
           <div class="row">
             <div class="col-md-4">
@@ -78,7 +78,6 @@
               <div class="row">
                 <div class="col-md-12">
                   <div class="post-description">
-                    <!-- <span class="title">DESCRIZIONE DEL LAVORO:</span> -->
                     <div class="post-informations">
                       <span class="label label_mobile">Titolo:</span><span class="content content_mobile">{{post.title}}</span>
                     </div>
@@ -89,16 +88,16 @@
                       <span class="label label_mobile">Dettagli:</span>
                       <span class="content content_mobile" *ngFor="let detail of post.details">{{detail}}</span>
                     </div>
-                    <div class="row">
+                    <div class="row" *ngIf="!fragment">
                       <div class="col-md-12">
                         <div class="row">
-                          <div class="col-md-7">
+                          <div class="col-md-12">
                             <div class="row">
-                              <div class="col-md-12">
+                              <!-- <div class="col-md-12">
                                 <div class="post-informations">
                                   <span class="label">Cliente:</span><img class="content verified-image" src="../assets/images/verified-contact.png" alt="verificato">
                                 </div>
-                              </div>
+                              </div> -->
                               <div class="col-md-12">
                                 <div class="post-informations">
                                   <span class="label">Budget:</span>
@@ -106,6 +105,17 @@
                                 </div>
                               </div>
                               <div class="col-md-12">
+                                <div class="post-informations" *ngIf="post.status && post.status.active===false && post.temp_data">
+                                  <span class="label">Risultati della richiesta</span>
+                                  <span class="sublabel">Le aziende accettate e le aziende rimborsate.</span>
+                                  <div *ngFor="let tick of counter(post.temp_data.purchases)" class="customer accepted"><i class="fa fa-check" aria-hidden="true"></i></div>
+                                  <div *ngFor="let tick of counter(post.temp_data.refunds)" class="customer refunded">
+                                    <i class="fa fa-repeat" aria-hidden="true"></i>
+                                  </div>
+                                </div>
+                              </div>
+
+                              <!-- <div class="col-md-12">
                                 <div class="post-informations">
                                   <span class="label">Stato:</span>
                                   <span class="content">
@@ -113,10 +123,10 @@
                                     <span *ngIf="post.status && post.status.active===false" class="top-title-value assigned">Lavoro venduto</span>
                                   </span>
                                 </div>
-                              </div>
+                              </div> -->
                             </div>
                           </div>
-                          <div class="col-md-5">
+                          <!-- <div class="col-md-5">
                             <div class="post-informations" *ngIf="post.status && post.status.active===false && post.temp_data">
                               <span class="label">Risultati della richiesta</span>
                               <span class="sublabel">Le aziende accettate e le aziende rimborsate.</span>
@@ -125,7 +135,7 @@
                                 <i class="fa fa-repeat" aria-hidden="true"></i>
                               </div>
                             </div>
-                          </div>
+                          </div> -->
                         </div>
                       </div>
                     </div>
@@ -145,22 +155,28 @@
               <div class="row">
                 <div class="col-md-12">
                    <div class="post-actions">
-                     <button *ngIf="!post.status || post.status.active===true" type="button" class="btn btn-action" id="previewPurchaseContact" (click)="previewPurchase(post)">
+                     <button *ngIf="(!post.status || post.status.active===true) && !fragment" type="button" class="btn btn-action" id="previewPurchaseContact" (click)="previewPurchase(post)">
                        <span class="title" id="previewPurchaseContact">Contatta cliente</span>
                      </button>
-                     <button *ngIf="post.status && post.status.active===false" type="button" class="btn btn-action btn-closed" id="previewClosedContact">
+                     <button *ngIf="(post.status && post.status.active===false) && !fragment" type="button" class="btn btn-action btn-closed" id="previewClosedContact">
                        <span class="title" id="previewClosedContact">Venduto</span>
+                     </button>
+                     <button *ngIf="fragment" type="button" class="btn btn-action btn-update" id="previewPurchaseContact" (click)="previewUpdatePost(post)">
+                       <span class="title" id="previewPurchaseContact">Aggiorna richiesta</span>
                      </button>
                    </div>
                 </div>
               </div>
             </div>
             <div class="post-footer">
-              <div class="post-message" *ngIf="!post.status || post.status.active===true" >
+              <div class="post-message" *ngIf="(!post.status || post.status.active===true) && !fragment" >
                 <span>Riceverai tutte le informazioni del contatto una volta garantito l'acquisto e potrai contattare il cliente tramite email e telefono.</span>
               </div>
-              <div class="post-message" *ngIf="post.status && post.status.active===false">
+              <div class="post-message" *ngIf="(post.status && post.status.active===false) && !fragment">
                 <span>Questa richiesta di lavoro è stata venduta e non è più possibile acquistarla.</span>
+              </div>
+              <div class="post-message" *ngIf="fragment">
+                <span>Aggiorna la richiesta per poter notificare i professionisti e far partire il sistema dei rimborsi.</span>
               </div>
               <div class="post-actions-right" *ngIf="!params.id">
                 <a routerLink="/post/{{post._id}}"><i class="fa fa-sign-out icon-new-page" aria-hidden="true"></i></a>
@@ -169,7 +185,7 @@
           </div>
         </div>
       </div>
-      <div class="home-footer">
+      <div class="home-footer" *ngIf="!fragment">
         <div class="footer">
           <div class="row">
             <div class="col-md-12" *ngIf="TestimonialAccounts && TestimonialAccounts.length>0">
@@ -383,6 +399,40 @@
           <a *ngIf="getEmailAddress(purchased_post)" role="button" href="mailto:{{getEmailAddress(purchased_post)}}" target="_blank" name="button" class="btn btn-email"><i class="fa fa-envelope" aria-hidden="true"></i><b>Email</b></a>
           <a *ngIf="getGoogleMapsLink(purchased_post)" role="button" name="button" class="btn btn-map" href="{{getGoogleMapsLink(purchased_post)}}" target="_blank"><i class="fa fa-location-arrow" aria-hidden="true"></i><b>Vai</b></a>
           <a *ngIf="getEmailAddress(purchased_post)" role="button" routerLink="/account/contacts" target="_blank" name="button" class="btn btn-list"><i class="fa fa-list" aria-hidden="true"></i></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="popup-container" *ngIf="selected_post" [ngStyle]="{'display' : popup==='SELECT_COMPANY_POPUP' ? 'block' : 'none'}">
+  <div class="popup-shadow" [ngStyle]="{'display' : popup ? 'block' : 'none'}" (click)="popup=null; commonService.enableScroll()"></div>
+  <div class="popup">
+    <div class="popup-loader" *ngIf="PostCustomersState.loading">
+      <i class="fa fa-circle-o-notch animate loader"></i>
+    </div>
+    <div class="popup-content">
+      <div class="popup-nav">
+        <button type="button" class="close" (click)="popup=null; commonService.enableScroll()">&times;</button>Aggiorna la richiesta
+      </div>
+      <div class="popup-header">
+        <h3 class="post-title">Seleziona l'azienda e assegna il lavoro.</h3>
+      </div>
+      <div class="popup-body">
+        <div class="row">
+          <div class="col-md-12" *ngFor="let contact of PostCustomers" (click)="selectCompanyForPost(contact.customer)">
+            <div class="customer-company" [ngClass]="{'active-customer':(SelectedPostCustomer && (contact.customer._id===SelectedPostCustomer._id))}">
+              <img class="image" [src]="imageForAccount(contact.customer)">
+              <span class="pro-name">{{checkCompanyName(contact.customer)}}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="popup-footer">
+        <div class="row">
+          <div class="col-md-12">
+            <button type="button" class="btn btn-secondary" (click)="popup=null; commonService.enableScroll()">Decido più tardi</button>
+            <button type="button" class="btn btn-primary" [disabled]="!SelectedPostCustomer" (click)="assignCustomerToPost(selected_post, SelectedPostCustomer)">Assegna lavoro</button>
+          </div>
         </div>
       </div>
     </div>

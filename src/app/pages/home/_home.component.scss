@@ -103,7 +103,7 @@ app-home {
                 .post-warranty {
                   display: block;
                   font-family: 'Open Sans', sans-serif;
-                  margin-top: 5px;
+                  // margin-top: 5px;
                   text-align: right;
                   float: right;
                   .top-title {
@@ -116,16 +116,16 @@ app-home {
                     margin-left: 10px;
                     display: inline-flex;
                     .warranty-price {
-                      font-size: 52px;
+                      font-size: 44px;
                       font-weight: 900;
                       color: #2ecc71;
-                      line-height: 44px;
+                      line-height: 34px;
                     }
                     .warranty-cent {
-                      font-size: 26px;
+                      font-size: 20px;
                       font-weight: 900;
                       color: #2ecc71;
-                      line-height: 28px;
+                      line-height: 18px;
                     }
                   }
                   .warranty-text {
@@ -146,7 +146,7 @@ app-home {
                 .post-initial {
                   display: block;
                   overflow: auto;
-                  padding: 10px 0px;
+                  // padding: 10px 0px;
                   margin-bottom: 10px;
                   float: left;
                   .top-title {
@@ -531,6 +531,38 @@ app-home {
                   	box-shadow: none;
                   }
 
+                  .btn-update {
+                    background: #f1c40f !important;
+                    box-shadow: none !important;
+                    text-shadow: none !important;
+                    .title {
+                      display: block;
+                      font-weight: 500;
+                      color: white;
+                      line-height: 60px;
+                      font-size: 30px;
+                      padding: 0 60px;
+                    }
+                    .price {
+                      float: right;
+                      line-height: 65px;
+                      font-size: 30px;
+                      font-weight: 900;
+                      border-left: 1px solid white;
+                      padding: 0 25px;
+                    }
+                  }
+                  .btn-update:hover {
+                    background-image: linear-gradient(to bottom, #67bd67 0%, #47a447 100%);
+                  }
+                  .btn-update:active:hover {
+                    color: #fff;
+                    background-color: #398439;
+                    -webkit-box-shadow: none;
+                    -moz-box-shadow: none;
+                    box-shadow: none;
+                  }
+
                   .bottom-message {
                     display: block;
                     font-size: 18px;
@@ -834,6 +866,26 @@ app-home {
           line-height: 28px;
         }
       }
+    }
+    .customer-company {
+      padding: 10px;
+      margin-bottom: 10px;
+      cursor: pointer;
+      .image {
+        height: 40px;
+        border-radius: 25px;
+      }
+      .pro-name {
+        font-size: 20px;
+        font-weight: 400;
+        margin-left: 10px;
+      }
+    }
+    .customer-company:hover {
+      background-color: white;
+    }
+    .active-customer {
+      background-color: white;
     }
   }
   .popup-container .popup .popup-content .popup-footer {
