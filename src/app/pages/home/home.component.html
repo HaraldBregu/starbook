@@ -154,17 +154,7 @@
               </div>
               <div class="row">
                 <div class="col-md-12">
-                   <div class="post-actions">
-                     <button *ngIf="(!post.status || post.status.active===true) && !fragment" type="button" class="btn btn-action" id="previewPurchaseContact" (click)="previewPurchase(post)">
-                       <span class="title" id="previewPurchaseContact">Contatta cliente</span>
-                     </button>
-                     <button *ngIf="(post.status && post.status.active===false) && !fragment" type="button" class="btn btn-action btn-closed" id="previewClosedContact">
-                       <span class="title" id="previewClosedContact">Venduto</span>
-                     </button>
-                     <button *ngIf="fragment" type="button" class="btn btn-action btn-update" id="previewPurchaseContact" (click)="previewUpdatePost(post)">
-                       <span class="title" id="previewPurchaseContact">Aggiorna richiesta</span>
-                     </button>
-                   </div>
+                  <app-action [post]="post" (onPreviewPurchase)="previewPost($event)" (onPreviewUpdate)="previewUpdatePost(post)" (onSendQuotation)="openQuotationForm(post)"></app-action>
                 </div>
               </div>
             </div>
@@ -185,14 +175,13 @@
           </div>
         </div>
       </div>
-      <div class="home-footer" *ngIf="!fragment">
+      <!-- <div class="home-footer" *ngIf="!fragment">
         <div class="footer">
           <div class="row">
             <div class="col-md-12" *ngIf="TestimonialAccounts && TestimonialAccounts.length>0">
               <span class="testimonial-title">Aziende attive su Starbook</span>
               <div class="pagelist-container">
                 <div class="page-container" *ngFor="let account of TestimonialAccounts">
-                  <!-- routerLink="/business/{{account._id}}" target="_blank" -->
                   <div class="page">
                     <img class="image" [src]="imageForAccount(account)">
                     <span class="pro-name">{{checkCompanyName(account)}}</span>
@@ -202,7 +191,7 @@
             </div>
           </div>
         </div>
-      </div>
+      </div> -->
       <div class="home-footer">
         <div class="footer">
           <div class="row">
@@ -231,81 +220,82 @@
     <div class="popup-loader" *ngIf="PurchaseState.loading">
       <i class="fa fa-circle-o-notch animate loader"></i>
     </div>
-    <div class="popup-content">
+    <div class="popup-content background-white">
       <div class="popup-nav">
-        <button type="button" class="close" (click)="popup=null; commonService.enableScroll()">&times;</button>Anteprima del contatto
+        <button type="button" class="close" (click)="popup=null; commonService.enableScroll()">&times;</button>Anteprima della richiesta
       </div>
       <div class="popup-header">
-        <h3 class="post-title">{{selected_post.title}}</h3>
+        <h3 class="post-title left">Richiesta cliente</h3>
+        <div class="post-warranty right">
+          <div class="warranty-amount">
+            <span class="warranty-price">{{ getDecimalPartPrice(selected_post) }}</span><span class="warranty-cent">,{{ getFracPartPrice(selected_post) }}€</span>
+          </div>
+          <div class="warranty-text">
+            <span class="warranty-title">CONTATTO</span>
+          </div>
+        </div>
       </div>
       <div class="popup-body">
         <div class="row">
-          <div class="col-md-12">
-            <div class="info">
-              <span class="label label_mobile">LAVORO:</span><span class="content content_mobile">{{selected_post.title}}</span>
-            </div>
-          </div>
-          <div class="col-md-12">
-            <div class="info">
-              <span class="label label_mobile">DESCRIZIONE: </span><span class="content content_mobile">{{selected_post.description}}</span>
-            </div>
-          </div>
-          <div class="col-md-12">
-            <div class="info">
-              <span class="label label_mobile">DETTAGLI:</span>
-              <span class="content content_mobile" *ngFor="let detail of selected_post.details">{{detail}}</span>
-            </div>
-          </div>
-          <div class="col-md-6">
-            <div class="info">
-              <span class="label">COGNOME:</span><span class="content content-mobile-right">{{checkCustomerLastname(selected_post)}}</span>
-            </div>
-            <div class="info">
-              <span class="label">NOME:</span><span class="content content-mobile-right">{{checkCustomerFirstname(selected_post)}}</span>
-            </div>
-            <div class="info">
-              <span class="label">EMAIL:</span><span class="content content-mobile-right">{{checkCustomerEmailAddress(selected_post)}}</span>
-            </div>
-            <div class="info">
-              <span class="label">TELEFONO:</span><span class="content content-mobile-right">{{checkCustomerPhoneNumber(selected_post)}}</span>
-            </div>
-            <div class="info">
-              <span class="label">COMUNE:</span><span class="content content-mobile-right">{{checkPostLocation(selected_post)}}</span>
-            </div>
-            <div class="info">
-              <span class="label">INDIRIZZO:</span><span class="content content-mobile-right">{{checkAddressStreet(selected_post)}}</span>
-            </div>
-          </div>
-          <div class="col-md-6">
-            <div class="info">
-              <span class="label">CLIENTE:</span><span class="content content-mobile-right customer-type">PRIVATO</span>
-            </div>
-            <div class="info">
-              <span class="label">STATO:</span><img class="content content-mobile-right verified-image" src="../assets/images/verified-contact.png" alt="verificato">
-            </div>
-            <div class="info">
-              <span class="label">URGENZA:</span>
-              <div class="content content-mobile-right priority">
-                <i class="fa fa-circle" aria-hidden="true"></i>
-                <i class="fa fa-circle" aria-hidden="true"></i>
-                <i class="fa fa-circle" aria-hidden="true"></i>
-                <i class="fa fa-circle" aria-hidden="true"></i>
-                <i class="fa fa-circle" aria-hidden="true"></i>
+          <div class="col-md-7">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="info-client">
+                  <div class="client-avatar">
+                    <span class="name-initials">{{getFirstChar(selected_post.customer.firstname)}}{{getFirstChar(selected_post.customer.lastname)}}</span>
+                  </div>
+                  <span class="client-name" *ngIf="(purchased_post && (purchased_post.customer.complete===false) && (purchased_post._id===selected_post._id)) || !purchased_post">{{getFirstChar(selected_post.customer.firstname)}}. {{getFirstChar(selected_post.customer.lastname)}}****</span>
+                  <span class="client-name" *ngIf="purchased_post && (purchased_post.customer.complete===true) && (purchased_post._id===selected_post._id)">{{purchased_post.customer.firstname}} {{purchased_post.customer.lastname}}</span>
+                  <span class="client-request">{{selected_post.title}}</span>
+                </div>
+              </div>
+              <div class="col-md-12">
+                <div class="info">
+                  <span class="label label_mobile">Descrizione:</span>
+                  <span class="content content_mobile">{{selected_post.description}}</span>
+                </div>
+              </div>
+              <div class="col-md-12">
+                <div class="info">
+                  <span class="label label_mobile">Dettagli:</span>
+                  <span class="content content_mobile" *ngFor="let detail of selected_post.details">{{detail}}</span>
+                </div>
               </div>
             </div>
-            <!-- <div class="info">
-              <span class="label">CONCORRENZA:</span>
-              <div class="content content-mobile-right competitors">
-                <i class="fa fa-circle" aria-hidden="true"></i>
-                <i class="fa fa-circle-o" aria-hidden="true"></i>
-                <i class="fa fa-circle-o" aria-hidden="true"></i>
-                <i class="fa fa-circle-o" aria-hidden="true"></i>
-                <i class="fa fa-circle-o" aria-hidden="true"></i>
+          </div>
+          <div class="col-md-5">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="info">
+                  <span class="label left">Comune:</span>
+                  <span class="content content-mobile-right right">{{checkPostLocation(selected_post)}}</span>
+                </div>
+                <div class="map-container">
+                  <sebm-google-map
+                  [latitude]="Map.latitude"
+                  [longitude]="Map.longitude"
+                  [zoom]="Map.zoom"
+                  [zoomControl]="false"
+                  [streetViewControl]="false"
+                  [disableDefaultUI]="true" [scrollwheel]="false"
+                  [disableDoubleClickZoom]="true" [mapDraggable]="false">
+                    <sebm-google-map-marker [latitude]="Map.latitude" [longitude]="Map.longitude">
+                    </sebm-google-map-marker>
+                  </sebm-google-map>
+                </div>
+                <div class="info">
+                  <span class="label left">Cliente:</span>
+                  <span class="content content-mobile-right customer-type right">PRIVATO</span>
+                </div>
+                <div class="info">
+                  <span class="label left">Stato:</span>
+                  <img class="content content-mobile-right verified-image right" src="../assets/images/verified-contact.png" alt="verificato">
+                </div>
+                <div class="info">
+                  <span class="label left">Budget:</span>
+                  <span class="content content-mobile-right price right content-budget">{{selected_post.budget.min/100}}€ - {{selected_post.budget.max/100}}€</span>
+                </div>
               </div>
-            </div> -->
-            <div class="info">
-              <span class="label">BUDGET:</span>
-              <span class="content content-mobile-right price">{{selected_post.budget.min/100}}€ - {{selected_post.budget.max/100}}€</span>
             </div>
           </div>
         </div>
@@ -315,27 +305,249 @@
           <span class="error">{{PurchaseState.error}}</span>
         </div>
         <div class="row">
-          <div class="col-md-12">
-            <!-- <p class="description-purchase">Garanzia di acquisizione contatto.</p> -->
-            <p class="description-small"><i>Garanzia che verrà utilizzato in caso di lavoro accettato dal cliente.</i></p>
-            <p class="description-small"><i>IVA Inclusa</i></p>
+          <div class="col-md-12" *ngIf="!purchased_post">
+            <button type="button" class="btn btn-danger btn-preview" id="previewPurchaseContact" (click)="showPreviewPurchasePost(selected_post)">
+              Contatta cliente
+            </button>
           </div>
-          <div class="col-md-12">
-            <div class="action" (click)="purchase(selected_post)">
-              <!-- <span class="title">Garanzia d'acquisto</span> -->
-              <span class="title">Garantisci</span>
-              <!-- <span class="price">{{getPriceBasedOnBudget(selected_post)/100}}€</span> -->
-              <div class="warranty-amount">
-                <span class="warranty-price">{{ getDecimalPartPrice(selected_post) }}</span><span class="warranty-cent">,{{ getFracPartPrice(selected_post) }}€</span>
-              </div>
-            </div>
+          <div class="col-md-12" *ngIf="purchased_post && (purchased_post._id===selected_post._id)">
+            <a role="button" class="btn btn-primary btn-preview" id="previewPurchaseContact" routerLink = "/account/contacts" target="_blank">
+              Guarda contatto
+            </a>
+          </div>
+          <div class="col-md-12" *ngIf="!purchased_post">
+            <p class="description-small"><i>Procedendo ti verrà mostrato quello che riceverai dopo l'acquisto del contatto.</i></p>
+          </div>
+          <div class="col-md-12" *ngIf="purchased_post && (purchased_post._id===selected_post._id)">
+            <p class="description-small"><i>Per guardare tutti i dettagli del contatto vai nella sezione contatti del tuo account.</i></p>
           </div>
         </div>
       </div>
     </div>
   </div>
 </div>
-<div class="popup-container" *ngIf="purchased_post" [ngStyle]="{'display' : popup==='PURCHASED_CONTACT_POPUP' ? 'block' : 'none'}">
+<div class="popup-container" *ngIf="selected_post" [ngStyle]="{'display' : popup_second==='CONFIRM_PURCHASE_POPUP' ? 'block' : 'none'}">
+  <div class="popup-shadow" [ngStyle]="{'display' : popup ? 'block' : 'none'}" (click)="popup_second=null;"></div>
+  <div class="popup purchase">
+    <div class="popup-loader" *ngIf="PurchaseState.loading || DefaultCardState.loading || CardsState.loading || CardState.loading">
+      <i class="fa fa-circle-o-notch animate loader"></i>
+    </div>
+    <div class="popup-content background-white">
+      <div class="popup-nav">
+        <button type="button" class="close" (click)="popup_second=null;">&times;</button>Conferma l'acquisto
+      </div>
+      <div class="popup-header">
+        <h3 class="post-title">Che cosa avrai:</h3>
+        <p><span class="badge">1</span><span class="list-item">Dati completi del cliente: telefono, email, indirizzo.</span></p>
+        <p><span class="badge">2</span><span class="list-item">Illimitate notifiche verso il cliente via email gratis.</span></p>
+        <p><span class="badge">3</span><span class="list-item">Crediti da poter inviare nuove proposte ai clienti.</span></p>
+        <p><span class="badge">4</span><span class="list-item">Rimborso credito per lavoro chiuso o non accettato.</span></p>
+      </div>
+      <div class="popup-header" *ngIf="!CardsState.loading">
+        <h3 class="post-title">Seleziona pagamento</h3>
+        <p>Seleziona o aggiungi un metodo di pagamento per continuare.</p>
+      </div>
+      <div class="popup-body" *ngIf="!CardsState.loading">
+        <div *ngIf="Cards.length>0">
+          <div *ngFor="let card of Cards">
+            <div class="default-card-container" (click)="selectCard(card.id);">
+              <div class="default-card noselect">
+                <i *ngIf="DefaultCard===card.id" class="fa fa-check-circle checked" aria-hidden="true"></i>
+                <i *ngIf="DefaultCard!==card.id" class="fa fa-circle-thin unchecked" aria-hidden="true"></i>
+                <span class="card-item">Numero Carta **** {{ card.last4 }}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="default-card-container" *ngIf="Cards.length>0 && DefaultCard && !DefaultCardState.loading" (click)="DefaultCard=null; CardState.error=null;">
+          <div class="default-card noselect">
+            <i class="fa fa-plus" aria-hidden="true"></i>
+            <span class="card-item">Nuova Carta</span>
+          </div>
+        </div>
+        <form *ngIf="!DefaultCard">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="list-cards">
+                <img src="../../../assets/images/visa.png" alt="Visa">
+                <img src="../../../assets/images/mastercard.png" alt="Mastercard">
+                <img src="../../../assets/images/americanexpress.png" alt="AmericanExpress">
+                <img src="../../../assets/images/discover.png" alt="Discover">
+              </div>
+            </div>
+            <div class="form-group col-md-12">
+              <label for="firstname-input">Numero carta *</label>
+              <input autocomplete="off" type="text" placeholder="Numero" class="form-control" [ngClass]="{'error-input': CardState.error}" id="numberInput" [(ngModel)]="Card.number" [ngModelOptions]="{standalone: true}">
+            </div>
+            <div class="form-group col-md-6">
+              <label for="dateInput">Scadenza *</label>
+              <input autocomplete="off" type="text" placeholder="MM/AA" class="form-control" [ngClass]="{'error-input': CardState.error}" id="dateInput" [(ngModel)]="Card.exp_date" (keyup)="checkExpiry(Card.exp_date)" (change)="checkExpiry(Card.exp_date)" [ngModelOptions]="{standalone: true}">
+            </div>
+            <div class="form-group col-md-6">
+              <label for="numberInput">Codice di sicurezza *</label>
+              <input autocomplete="off" type="text" placeholder="CVC/CVV" class="form-control" [ngClass]="{'error-input': CardState.error}" id="numberInput" [(ngModel)]="Card.cvc" [ngModelOptions]="{standalone: true}">
+            </div>
+            <div class="form-group col-md-12">
+              <div class="error-container" *ngIf="CardState.error">
+                <span class="error">{{CardState.error}}</span>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="popup-footer">
+        <button type="button" class="btn btn-success btn-confirm" id="confirmPurchase" (click)="confirmPurchase(selected_post)">
+          <span class="title">Conferma acquisto</span>
+          <div class="warranty-amount">
+            <span class="warranty-price">{{ getDecimalPartPrice(selected_post) }}</span><span class="warranty-cent">,{{ getFracPartPrice(selected_post) }}€</span>
+          </div>
+        </button>
+        <span class="security-message">*Protocollo di sicurezza HTTPS, certificati TSL (SSL) e processore di pagamenti <a href="https://stripe.com" target="_blank">Stripe.com</a>.</span>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="popup-container" *ngIf="selected_post" [ngStyle]="{'display' : popup_second==='PURCHASE_CONFIRMED_POPUP' ? 'block' : 'none'}">
+  <div class="popup-shadow" [ngStyle]="{'display' : popup ? 'block' : 'none'}" (click)="popup_second=null;"></div>
+  <div class="popup purchase">
+    <!-- <div class="popup-loader">
+      <i class="fa fa-circle-o-notch animate loader"></i>
+    </div> -->
+    <div class="popup-content background-white">
+      <div class="popup-nav">
+        <button type="button" class="close" (click)="popup_second=null;">&times;</button>Acquisto confermato
+      </div>
+      <div class="popup-header">
+        <h3 class="post-title">Che cosa avrai:</h3>
+        <p><span class="badge">1</span><span class="list-item">Dati completi del cliente: telefono, email, indirizzo.</span></p>
+        <p><span class="badge">2</span><span class="list-item">Illimitate notifiche verso il cliente via email gratis.</span></p>
+        <p><span class="badge">3</span><span class="list-item">Crediti da poter inviare nuove proposte ai clienti.</span></p>
+        <p><span class="badge">4</span><span class="list-item">Rimborso credito per lavoro chiuso o non accettato.</span></p>
+      </div>
+      <div class="popup-header" *ngIf="!CardsState.loading">
+        <h3 class="post-title">Complimenti, hai acquistato un contatto!</h3>
+        <p>Riceverai i dati del cliente successivamente via mail.</p>
+      </div>
+      <div class="popup-body">
+
+      </div>
+      <div class="popup-footer">
+        <button type="button" class="btn btn-success btn-confirm" id="confirmPurchase" (click)="donePurchase(selected_post)">
+          <span class="title">Fatto</span>
+        </button>
+        <span class="security-message">*Protocollo di sicurezza HTTPS, certificati TSL (SSL) e processore di pagamenti <a href="https://stripe.com" target="_blank">Stripe.com</a>.</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="popup-container" [ngStyle]="{'display' : popup_second==='SIGNUP_POPUP' ? 'block' : 'none'}">
+  <div class="popup-shadow" [ngStyle]="{'display' : popup ? 'block' : 'none'}" (click)="popup_second=null; popup='PREVIEW_PURCHASE_CONTACT_POPUP'; checkPurchasePost(selected_post);"></div>
+  <div class="popup">
+    <div class="popup-loader" *ngIf="AuthState.loading">
+      <i class="fa fa-circle-o-notch animate loader"></i>
+    </div>
+    <div class="popup-content">
+      <div class="popup-nav">
+        <button type="button" class="close" (click)="popup_second=null; popup='PREVIEW_PURCHASE_CONTACT_POPUP'; checkPurchasePost(selected_post);">&times;</button>Registrazione
+      </div>
+      <div class="popup-header">
+        <h3 class="post-title">Registrazione</h3>
+        <p>Registrati inserendo i tuoi dati per poter utilizzare tutte le funzionalità della piattaforma.</p>
+      </div>
+      <div class="popup-body">
+        <form (keyup.enter)="signup(AuthField)">
+          <div class="row">
+            <div class="form-group col-md-12">
+              <label for="business-name-input">Ragione sociale</label>
+              <input class="form-control" placeholder="Nome della tua azienda" type="text" [ngClass]="{'error-input': AuthState.error}" id="business-name-input" [(ngModel)]="AuthField.business.name" [ngModelOptions]="{standalone: true}">
+            </div>
+            <div class="form-group col-md-6">
+              <label for="firstNameInput">Nome</label>
+              <input type="firstname" placeholder="Nome" class="form-control" [ngClass]="{'error-input': AuthState.error}" id="firstNameInput" [(ngModel)]="AuthField.profile.firstname" [ngModelOptions]="{standalone: true}">
+            </div>
+            <div class="form-group col-md-6">
+              <label for="lastNameInput">Cognome</label>
+              <input type="lastname" placeholder="Cognome" class="form-control" [ngClass]="{'error-input': AuthState.error}" id="lastNameInput" [(ngModel)]="AuthField.profile.lastname" [ngModelOptions]="{standalone: true}">
+            </div>
+            <div class="form-group col-md-12">
+              <label for="emailInput">Email</label>
+              <input type="email" placeholder="La tua mail" class="form-control" [ngClass]="{'error-input': AuthState.error}" id="emailInput" [(ngModel)]="AuthField.email" [ngModelOptions]="{standalone: true}">
+            </div>
+            <div class="form-group col-md-12">
+              <label for="passwordInput">Scegli una password</label>
+              <input type="password" placeholder="Password" class="form-control" [ngClass]="{'error-input': AuthState.error}" id="passwordInput" [(ngModel)]="AuthField.password" [ngModelOptions]="{standalone: true}">
+            </div>
+            <div class="form-group col-md-12">
+              <div class="error-container" *ngIf="AuthState.error">
+                <span class="error">{{AuthState.error}}</span>
+              </div>
+            </div>
+            <div class="form-group col-md-12">
+              <button type="button" id="signup" class="btn btn-primary btn-form-signup" (click)="signup(AuthField)">Iscriviti</button>
+            </div>
+            <div class="form-group col-md-12 text-center">
+              <a class="show-login-popup" (click)="popup_second='LOGIN_POPUP';">Sei gia iscritto? Accedi</a>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="popup-footer text-center">
+        <span class="text">Continuando dichiari di aver letto e accetti le <a routerLink="/info/legal" target="_blank">condizioni generali e l’informativa sulla privacy</a></span>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="popup-container" [ngStyle]="{'display' : popup_second==='LOGIN_POPUP' ? 'block' : 'none'}">
+  <div class="popup-shadow" [ngStyle]="{'display' : popup ? 'block' : 'none'}" (click)="popup_second=null; popup='PREVIEW_PURCHASE_CONTACT_POPUP'; checkPurchasePost(selected_post);"></div>
+  <div class="popup">
+    <div class="popup-loader" *ngIf="AuthState.loading">
+      <i class="fa fa-circle-o-notch animate loader"></i>
+    </div>
+    <div class="popup-content">
+      <div class="popup-nav">
+        <button type="button" class="close" (click)="popup_second=null; popup='PREVIEW_PURCHASE_CONTACT_POPUP'; checkPurchasePost(selected_post);">&times;</button>Accedi
+      </div>
+      <div class="popup-header">
+        <h3 class="post-title">Accedi al tuo account</h3>
+        <p>Hai gia un account registrato su Starbook? Accedi per contattare il cliente.</p>
+      </div>
+      <div class="popup-body">
+        <form (keyup.enter)="login(AuthField)">
+          <div class="row">
+            <div class="form-group col-md-12">
+              <label for="email">Indirizzo email</label>
+              <input id="email" class="form-control" type="email" name="email" [ngClass]="{'error-input': AuthState.error}" [(ngModel)]="AuthField.email" [ngModelOptions]="{standalone: true}">
+            </div>
+            <div class="form-group col-md-12">
+              <label for="password">Password</label>
+              <input id="password" class="form-control" type="password" name="password" [ngClass]="{'error-input': AuthState.error}" [(ngModel)]="AuthField.password" [ngModelOptions]="{standalone: true}">
+            </div>
+            <div class="form-group col-md-12">
+              <div class="error-container" *ngIf="AuthState.error">
+                <span class="error">{{AuthState.error}}</span>
+              </div>
+            </div>
+            <div class="form-group col-md-12">
+              <a class="btn btn-primary btn-form-login" (click)="login(AuthField)">Accedi</a>
+            </div>
+            <div class="form-group col-md-12 text-center">
+              <a class="show-login-popup" (click)="popup='SIGNUP_POPUP';">Nuovo utente? Registrati</a>
+            </div>
+            <div class="form-group col-md-12 text-center">
+              <a class="password-forgot" routerLink="/auth/password_recovery" target="_blank">Hai dimenticato la password?</a>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="popup-footer text-center">
+        <span class="text">Continuando dichiari di aver letto e accetti le <a routerLink="/info/legal" target="_blank">condizioni generali e l’informativa sulla privacy</a></span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- <div class="popup-container" *ngIf="purchased_post" [ngStyle]="{'display' : popup==='PURCHASED_CONTACT_POPUP' ? 'block' : 'none'}">
   <div class="popup-shadow" [ngStyle]="{'display' : popup ? 'block' : 'none'}" (click)="popup=null; commonService.enableScroll()"></div>
   <div class="popup contact">
     <div class="popup-loader" *ngIf="PurchaseState.loading">
@@ -403,7 +615,8 @@
       </div>
     </div>
   </div>
-</div>
+</div> -->
+
 <div class="popup-container" *ngIf="selected_post" [ngStyle]="{'display' : popup==='SELECT_COMPANY_POPUP' ? 'block' : 'none'}">
   <div class="popup-shadow" [ngStyle]="{'display' : popup ? 'block' : 'none'}" (click)="popup=null; commonService.enableScroll()"></div>
   <div class="popup">
@@ -438,112 +651,10 @@
     </div>
   </div>
 </div>
-<div class="popup-container" [ngStyle]="{'display' : popup==='SIGNUP_POPUP' ? 'block' : 'none'}">
-  <div class="popup-shadow" [ngStyle]="{'display' : popup ? 'block' : 'none'}" (click)="popup=null; commonService.enableScroll()"></div>
-  <div class="popup">
-    <div class="popup-loader" *ngIf="AuthState.loading">
-      <i class="fa fa-circle-o-notch animate loader"></i>
-    </div>
-    <div class="popup-content">
-      <div class="popup-nav">
-        <button type="button" class="close" (click)="popup=null; commonService.enableScroll();">&times;</button>Registrazione
-      </div>
-      <div class="popup-header">
-        <h3 class="post-title">Registrati e contatta il cliente</h3>
-        <p>Non hai ancora un account su Starbook? Registrati inserendo i tuoi dati per contattare il cliente.</p>
-      </div>
-      <div class="popup-body">
-        <form (keyup.enter)="signup(AuthField)">
-          <div class="row">
-            <div class="form-group col-md-12">
-              <label for="business-name-input">Ragione Sociale:</label>
-              <input class="form-control" placeholder="Nome della tua azienda" type="text" [ngClass]="{'error-input': AuthState.error}" id="business-name-input" [(ngModel)]="AuthField.business.name" [ngModelOptions]="{standalone: true}">
-            </div>
-            <div class="form-group col-md-6">
-              <label for="firstNameInput">Nome</label>
-              <input type="firstname" placeholder="Nome" class="form-control" [ngClass]="{'error-input': AuthState.error}" id="firstNameInput" [(ngModel)]="AuthField.profile.firstname" [ngModelOptions]="{standalone: true}">
-            </div>
-            <div class="form-group col-md-6">
-              <label for="lastNameInput">Cognome</label>
-              <input type="lastname" placeholder="Cognome" class="form-control" [ngClass]="{'error-input': AuthState.error}" id="lastNameInput" [(ngModel)]="AuthField.profile.lastname" [ngModelOptions]="{standalone: true}">
-            </div>
-            <div class="form-group col-md-12">
-              <label for="emailInput">Email</label>
-              <input type="email" placeholder="La tua mail" class="form-control" [ngClass]="{'error-input': AuthState.error}" id="emailInput" [(ngModel)]="AuthField.email" [ngModelOptions]="{standalone: true}">
-            </div>
-            <div class="form-group col-md-12">
-              <label for="passwordInput">Scegli una password</label>
-              <input type="password" placeholder="Password" class="form-control" [ngClass]="{'error-input': AuthState.error}" id="passwordInput" [(ngModel)]="AuthField.password" [ngModelOptions]="{standalone: true}">
-            </div>
-            <div class="form-group col-md-12">
-              <div class="error-container" *ngIf="AuthState.error">
-                <span class="error">{{AuthState.error}}</span>
-              </div>
-            </div>
-            <div class="form-group col-md-12">
-              <button type="button" id="signup" class="btn btn-success btn-form-signup" (click)="signup(AuthField)">Iscriviti</button>
-            </div>
-            <div class="form-group col-md-12 text-center">
-              <a class="show-login-popup" (click)="popup='LOGIN_POPUP';">Sei gia iscritto? Accedi</a>
-            </div>
-          </div>
-        </form>
-      </div>
-      <div class="popup-footer">
-        <span class="text">Continuando dichiari di aver letto e accetti le <a routerLink="/info/legal" target="_blank">condizioni generali e l’informativa sulla privacy</a></span>
-      </div>
-    </div>
-  </div>
-</div>
-<div class="popup-container" [ngStyle]="{'display' : popup==='LOGIN_POPUP' ? 'block' : 'none'}">
-  <div class="popup-shadow" [ngStyle]="{'display' : popup ? 'block' : 'none'}" (click)="popup=null; commonService.enableScroll()"></div>
-  <div class="popup">
-    <div class="popup-loader" *ngIf="AuthState.loading">
-      <i class="fa fa-circle-o-notch animate loader"></i>
-    </div>
-    <div class="popup-content">
-      <div class="popup-nav">
-        <button type="button" class="close" (click)="popup=null; commonService.enableScroll()">&times;</button>Login
-      </div>
-      <div class="popup-header">
-        <h3 class="post-title">Accedi e contatta il cliente</h3>
-        <p>Hai gia un account registrato su Starbook? Accedi per contattare il cliente.</p>
-      </div>
-      <div class="popup-body">
-        <form (keyup.enter)="login(AuthField)">
-          <div class="row">
-            <div class="form-group col-md-12">
-              <label for="email">Indirizzo email</label>
-              <input id="email" class="form-control" type="email" name="email" [ngClass]="{'error-input': AuthState.error}" [(ngModel)]="AuthField.email" [ngModelOptions]="{standalone: true}">
-            </div>
-            <div class="form-group col-md-12">
-              <label for="password">Password</label>
-              <input id="password" class="form-control" type="password" name="password" [ngClass]="{'error-input': AuthState.error}" [(ngModel)]="AuthField.password" [ngModelOptions]="{standalone: true}">
-            </div>
-            <div class="form-group col-md-12">
-              <div class="error-container" *ngIf="AuthState.error">
-                <span class="error">{{AuthState.error}}</span>
-              </div>
-            </div>
-            <div class="form-group col-md-12">
-              <a class="btn btn-success btn-form-login" (click)="login(AuthField)">Accedi</a>
-            </div>
-            <div class="form-group col-md-12 text-center">
-              <a class="show-login-popup" (click)="popup='SIGNUP_POPUP';">Nuovo utente? Registrati</a>
-            </div>
-            <div class="form-group col-md-12 text-center">
-              <a class="password-forgot" routerLink="/auth/password_recovery" target="_blank">Hai dimenticato la password?</a>
-            </div>
-          </div>
-        </form>
-      </div>
-      <div class="popup-footer">
-        <span class="text">Continuando dichiari di aver letto e accetti le <a routerLink="/info/legal" target="_blank">condizioni generali e l’informativa sulla privacy</a></span>
-      </div>
-    </div>
-  </div>
-</div>
-<div class="popup-container" [ngStyle]="{'display' : popup==='NEW_CARD_POPUP' ? 'block' : 'none'}">
+
+
+
+<!-- <div class="popup-container" [ngStyle]="{'display' : popup==='NEW_CARD_POPUP' ? 'block' : 'none'}">
   <div class="popup-shadow" [ngStyle]="{'display' : popup ? 'block' : 'none'}" (click)="popup='PREVIEW_PURCHASE_CONTACT_POPUP';"></div>
   <div class="popup">
     <div class="popup-loader" *ngIf="CardState.loading">
@@ -589,13 +700,13 @@
       <div class="popup-footer">
         <div class="refund">
           <img class="refund-image" src="../assets/images/refund-guarantee.png" alt="rimborso">
-          <span class="title">Rimborso garantito</span>
+          <span class="title">Rimborso credito</span>
         </div>
         <button id="addCard" type="button" class="btn btn-danger btn-full-width" (click)="addCardAndContinue()">Salva e continua</button>
       </div>
     </div>
   </div>
-</div>
+</div> -->
 <div class="popup-container" [ngStyle]="{'display' : popup==='SUCCESS_PURCHASED_CONTACT_POPUP' ? 'block' : 'none'}">
   <div class="popup-shadow" [ngStyle]="{'display' : popup ? 'block' : 'none'}" (click)="popup=null; commonService.enableScroll()"></div>
   <div class="popup thankyoupage">
@@ -614,6 +725,162 @@
         </div>
         <div class="form-group">
           <p><i>Per maggiore sicurezza controlla l'indirizzo email e il numero di telefono nel suo account Starbook.</i></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="popup-container" *ngIf="selected_post" [ngStyle]="{'display' : popup==='PROPOSAL_FORM_POPUP' ? 'block' : 'none'}">
+  <div class="popup-shadow" [ngStyle]="{'display' : popup ? 'block' : 'none'}" (click)="popup=null; commonService.enableScroll()"></div>
+  <div class="popup proposal">
+    <div class="popup-loader" *ngIf="PurchaseState.loading">
+      <i class="fa fa-circle-o-notch animate loader"></i>
+    </div>
+    <div class="popup-content">
+      <div class="popup-nav">
+        <button type="button" class="close" (click)="popup=null; commonService.enableScroll()">&times;</button>Invia una proposta al cliente
+      </div>
+      <div class="popup-header">
+        <h3 class="post-title">Richiesta cliente</h3>
+      </div>
+      <div class="popup-body">
+        <div class="row">
+          <!-- <div class="col-md-12">
+            <h3 class="section-title">Richiesta cliente</h3>
+          </div> -->
+          <div class="col-md-7">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="info-client">
+                  <div class="client-avatar">
+                    <span class="name-initials">{{getFirstChar(selected_post.customer.firstname)}}{{getFirstChar(selected_post.customer.lastname)}}</span>
+                  </div>
+                  <span class="client-name">{{getFirstChar(selected_post.customer.firstname)}}. {{getFirstChar(selected_post.customer.lastname)}}****</span>
+                  <span class="client-request">{{selected_post.title}}</span>
+                </div>
+              </div>
+              <!-- <div class="col-md-12">
+                <div class="info">
+                  <span class="label label_mobile">Lavoro richiesto:</span>
+                  <span class="content content_mobile">{{selected_post.title}}</span>
+                </div>
+              </div> -->
+              <div class="col-md-12">
+                <div class="info">
+                  <span class="label label_mobile">Descrizione:</span>
+                  <span class="content content_mobile">{{selected_post.description}}</span>
+                </div>
+              </div>
+              <div class="col-md-12">
+                <div class="info">
+                  <span class="label label_mobile">Dettagli:</span>
+                  <span class="content content_mobile" *ngFor="let detail of selected_post.details">{{detail}}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-5">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="info">
+                  <span class="label left">Comune:</span>
+                  <span class="content content-mobile-right right">{{checkPostLocation(selected_post)}}</span>
+                </div>
+                <div class="map-container">
+                  <sebm-google-map
+                  [latitude]="Map.latitude"
+                  [longitude]="Map.longitude"
+                  [zoom]="Map.zoom"
+                  [zoomControl]="false"
+                  [streetViewControl]="false"
+                  [disableDefaultUI]="true" [scrollwheel]="false"
+                  [disableDoubleClickZoom]="true" [mapDraggable]="false">
+                    <sebm-google-map-marker [latitude]="Map.latitude" [longitude]="Map.longitude">
+                    </sebm-google-map-marker>
+                  </sebm-google-map>
+                </div>
+                <div class="info">
+                  <span class="label left">Cliente:</span>
+                  <span class="content content-mobile-right customer-type right">PRIVATO</span>
+                </div>
+                <div class="info">
+                  <span class="label left">Stato:</span>
+                  <img class="content content-mobile-right verified-image right" src="../assets/images/verified-contact.png" alt="verificato">
+                </div>
+                <div class="info">
+                  <span class="label left">Budget:</span>
+                  <span class="content content-mobile-right price right content-budget">{{selected_post.budget.min/100}}€ - {{selected_post.budget.max/100}}€</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-12">
+            <div class="divider"></div>
+          </div>
+          <div class="col-md-12">
+            <h3 class="section-title">Proposta</h3>
+          </div>
+          <div class="col-md-12">
+            <div class="form-group">
+              <label class="label label_mobile" for="something-input">Messaggio</label>
+              <textarea id="something-input" placeholder="Scrivi qui il tuo messaggio..." class="form-control" rows="8" [(ngModel)]="Proposal.text" [ngModelOptions]="{standalone: true}"></textarea>
+            </div>
+          </div>
+          <div class="col-md-8">
+            <div class="form-group">
+              <!-- <p>Inserisci un prezzo stimato dei lavori.</p> -->
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label for="something-input">Prezzo stimato</label>
+              <div class="estimate-price form-group">
+                <label for="something-input">Euro</label>
+                <input id="something-input" class="form-control" placeholder="0" type="text" [ngClass]="{'error-input': ProposalState.error}" [(ngModel)]="Proposal.estimate_price" [ngModelOptions]="{standalone: true}">
+              </div>
+            </div>
+          </div>
+          <!-- <div class="col-md-4">
+            <div class="form-group">
+              <p>La qualità del servizio che offri.</p>
+            </div>
+          </div>
+          <div class="col-md-8">
+            <div class="form-group">
+              <label for="something-input">La qualità del servizio che offri</label>
+              <input id="something-input" class="form-control" type="text" [ngClass]="{'error-input': ProposalState.error}" [(ngModel)]="Proposal.product_quality" [ngModelOptions]="{standalone: true}">
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="something-input">Data inizio lavoro (stimata)</label>
+              <input id="something-input" class="form-control" type="text" [ngClass]="{'error-input': ProposalState.error}" [(ngModel)]="Proposal.start_date" [ngModelOptions]="{standalone: true}">
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="something-input">Durata stimata in giorni</label>
+              <input id="something-input" class="form-control" type="text" [ngClass]="{'error-input': ProposalState.error}" [(ngModel)]="Proposal.work_duration_day" [ngModelOptions]="{standalone: true}">
+            </div>
+          </div> -->
+        </div>
+      </div>
+      <div class="popup-footer">
+        <div class="error-container" *ngIf="PurchaseState.error">
+          <span class="error">{{PurchaseState.error}}</span>
+        </div>
+        <div class="row">
+          <!-- <div class="col-md-12">
+            <p class="description-small"><i>Garanzia che verrà utilizzato in caso di lavoro accettato dal cliente.</i></p>
+            <p class="description-small"><i>IVA Inclusa</i></p>
+          </div> -->
+          <div class="col-md-12">
+            <button type="button" class="btn btn-danger btn-preview" id="previewPurchaseContact" (click)="showPreviewProposal(selected_post)">
+              Invia proposta
+            </button>
+          </div>
         </div>
       </div>
     </div>

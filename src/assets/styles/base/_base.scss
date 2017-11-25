@@ -41,6 +41,10 @@ p {
   letter-spacing: 0.11px !important;
 }
 
+.background-white {
+  background: white !important;
+  background-color: white !important;
+}
 
 .btn-default {
   height: 50px;
@@ -60,7 +64,7 @@ p {
 }
 
 .btn-success {
-  background: #1abc9c;
+  background: #1ba783;
   border-radius: 0;
   height: 50px;
   border: 0;
@@ -356,7 +360,7 @@ p {
   font-size: 17px;
   letter-spacing: 0.1px;
   padding: 0 20px;
-  border-radius: 3px !important;
+  border-radius: 5px !important;
   background-color: #FFFFFF;
   border: 1px solid #cbd3d5;
   // font-weight: 300;
@@ -366,19 +370,19 @@ p {
 }
 textarea.form-control {
   resize: none;
-  font-size: 17px;
+  font-size: 15px;
   letter-spacing: 0.01px;
   box-shadow: none;
-  padding: 20px;
+  padding: 15px;
 }
 .form-group {
   margin-bottom: 15px;
 }
 .form-group input {
-  height: 50px !important;
+  height: 45px !important;
 }
 .form-group select {
-  height: 50px !important;
+  height: 45px !important;
   -webkit-appearance: none;
   -webkit-border-radius: 3px;
   // background: url("data:image/svg+xml;utf8,<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' width='24' height='24' viewBox='0 0 24 24'><path fill='#444' d='M7.406 7.828l4.594 4.594 4.594-4.594 1.406 1.406-6 6-6-6z'></path></svg>");
@@ -394,7 +398,7 @@ textarea.form-control {
 
 .form-control:focus {
   color: black;
-  border-width: 2px !important;
+  border-width: 1px !important;
   border-color: #66afe9 !important;
 }
 // .form-group .ui-inputtext {
@@ -733,6 +737,7 @@ input::-ms-clear {
 ///////////////////////
 // Dot animation
 ///////////////////////
+
 @keyframes blink {
     /**
      * At the start of the animation the dot
@@ -795,7 +800,6 @@ input::-ms-clear {
     animation-delay: .4s;
 }
 
-
 ///////////////////////
 // POPUP CONTAINER
 ///////////////////////
@@ -832,7 +836,8 @@ input::-ms-clear {
     position: relative;
     background: white;
     max-width: 520px;
-    margin: 80px auto;
+    margin: 55px auto;
+    border-radius: 5px;
     overflow-x: hidden;
     overflow-y: scroll;
     box-shadow: 0 5px 15px rgba(0,0,0,.5);
@@ -842,6 +847,7 @@ input::-ms-clear {
       height: 100%;
       background: rgba(255, 255, 255, 0.7);
       z-index: 2000;
+      border-radius: 3px;
       .loader {
         position: absolute;
         font-size: 35px;
@@ -857,7 +863,7 @@ input::-ms-clear {
       }
     }
     .popup-content {
-      background-color: #f5f5f5;
+      // background: #f5f5f5;
       .popup-nav {
         color: #484848;
         font-size: 16px;
@@ -869,7 +875,7 @@ input::-ms-clear {
         }
       }
       .popup-header {
-        padding: 10px 20px;
+        padding: 20px;
         .title {
           display: block;
           font-size: 28px;
@@ -889,7 +895,7 @@ input::-ms-clear {
         .list-cards {
           margin-bottom: 20px;
           img {
-            width: 60px;
+            width: 50px;
           }
         }
         .error-container {
@@ -1010,7 +1016,6 @@ input::-ms-clear {
         }
       }
       .popup-footer {
-        text-align: right;
         padding: 20px;
         border-top: 1px solid #dce0e0;
         .btn {
@@ -1054,6 +1059,11 @@ input::-ms-clear {
     max-width: 700px;
   }
 }
+@media (max-width: 768px) {
+  .popup-container {
+    padding: 0 10px;
+  }
+}
 @media (max-width: 425px) {
   .popup-container {
     padding: 0 10px;
@@ -1061,6 +1071,6 @@ input::-ms-clear {
   .popup-container .popup {
     position: relative;
     width: 100%;
-    margin: 10px auto;
+    // margin: 10px auto;
   }
 }

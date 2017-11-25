@@ -12,8 +12,8 @@
     <div class="account-tab">
       <ul>
         <li><a class="btn btn-transparent" (click)="clickLeftTabItem('informations')" [ngClass]="{'active':profile_tab==='informations'}"><i class="fa fa-user-circle" aria-hidden="true"></i>Informazioni</a></li>
+        <li><a class="btn btn-transparent" (click)="clickLeftTabItem('payment_method')" [ngClass]="{'active':profile_tab==='payment_method'}"><i class="fa fa-credit-card" aria-hidden="true"></i>Il Credito</a></li>
         <li><a class="btn btn-transparent" (click)="clickLeftTabItem('settings')" [ngClass]="{'active':profile_tab==='settings'}"><i class="fa fa-wrench" aria-hidden="true"></i>Impostazioni</a></li>
-        <li><a class="btn btn-transparent" (click)="clickLeftTabItem('payment_method')" [ngClass]="{'active':profile_tab==='payment_method'}"><i class="fa fa-credit-card" aria-hidden="true"></i>Pagamento</a></li>
         <li><a class="btn btn-transparent" (click)="clickLeftTabItem('share')" [ngClass]="{'active':profile_tab==='share'}"><i class="fa fa-share" aria-hidden="true"></i>Condividi</a></li>
         <li *ngIf="isAffiliate"><a class="btn btn-transparent" (click)="clickLeftTabItem('affiliation')" [ngClass]="{'active':profile_tab==='affiliation'}"><i class="fa fa-share" aria-hidden="true"></i>Affiliazione</a></li>
       </ul>
@@ -363,6 +363,7 @@
                   <p>Dati completi: {{post.customer.complete}}</p>
                   <p>Pubblica: {{getAccessControl(post)}}</p>
                   <p>Acquisti: {{post.count_of_prof}}</p>
+                  <p>Attivo: {{post.status.active}}</p>
                   <p *ngIf="post.count_of_prof>0 && post.customer.complete===false">Devi acquistare il contatto</p>
                 </div>
                 <div class="col-md-12">
@@ -384,353 +385,6 @@
               <p><a routerLink="/info/help" target="_blank">Aiuto e Assistenza</a></p>
             </div>
           </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- PROMOTION -->
-<div class="promotion-container" *ngIf="page==='inprogress_promotion' || page==='terminated_promotion' || page==='new_promotion'">
-  <div class="promotion">
-    <div class="promotion-tab">
-      <ul>
-        <li><a class="btn btn-transparent" (click)="clickLeftTabAds('inprogress_promotion')" [ngClass]="{'active':page==='inprogress_promotion'}"><i class="fa fa-bar-chart" aria-hidden="true"></i>In corso</a></li>
-        <li><a class="btn btn-transparent" (click)="clickLeftTabAds('terminated_promotion')" [ngClass]="{'active':page==='terminated_promotion'}"><i class="fa fa-times" aria-hidden="true"></i>Terminati</a></li>
-        <li><a class="btn btn-primary" (click)="popup='SETUP_PROMOTION_POPUP';"><i class="fa fa-plus" aria-hidden="true"></i>Promuovi</a></li>
-      </ul>
-    </div>
-    <div *ngIf="page==='inprogress_promotion'">
-      <div class="promotion-content tabbed-content" *ngIf="inprogress_promotions.length===0">
-        <div class="promotion-header">
-          <p>Non hai nessuna promozione in corso.</p>
-        </div>
-        <div class="promotion-body">
-          <div class="image-container">
-            <img class="image" src="../assets/images/starbook_promotion_icon.png" alt="avatar">
-          </div>
-          <div class="text-container">
-            <h5>Pubblicizza la tua attività</h5>
-            <p>Promuovi la tua pagina professionale. Scegli il budget giornaliero, seleziona la durata e inizia subito.</p>
-            <button type="button" name="button" class="btn btn-primary" (click)="popup='SETUP_PROMOTION_POPUP';">Promuovi adesso</button>
-          </div>
-        </div>
-      </div>
-      <div *ngFor="let promotion of inprogress_promotions">
-        <div class="promotion-content tabbed-content">
-          <div class="promotion-header">
-            <span class="title">Promozione attività</span>
-            <span class="date">{{formatedDateFromString(promotion.created_at)}}</span>
-          </div>
-          <div class="promotion-body">
-            <div class="image-container">
-              <img class="image" src="../assets/images/starbook_promotion_active.png" alt="avatar">
-            </div>
-            <div class="text-container">
-              <h5>Promozione in corso...</h5>
-              <p>Controlla la tua campagna promozionale, guarda i click, la copertura raggiunta e l'importo speso</p>
-              <div class="ads-container">
-                <p>
-                  <span *ngIf="promotion.facebook && promotion.facebook.days>0"><img class="ads-icon" src="../assets/images/facebook.png" alt="facebook ads"><strong>Giorni: </strong>{{promotion.facebook.days}} <strong>Costo giornaliero: </strong>{{promotion.facebook.daily_budget/100}}€</span>
-                </p>
-                <p>
-                  <span *ngIf="promotion.google && promotion.google.days>0"><img class="ads-icon" src="../assets/images/google_adwords.png" alt="google awords"><strong>Giorni: </strong>{{promotion.google.days}} <strong>Costo giornaliero: </strong>{{promotion.google.daily_budget/100}}€</span>
-                </p>
-              </div>
-            </div>
-          </div>
-          <div class="promotion-footer">
-            <span><strong>Importo totale:</strong> {{promotion.charges[0].amount/100}}€</span>
-            <span><strong>Copertura:</strong> {{getCoversForPromotion(promotion)}}</span>
-            <span><strong>Click sui link:</strong> {{getClicksForPromotion(promotion)}}</span>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div *ngIf="page==='terminated_promotion'">
-      <div class="promotion-content tabbed-content" *ngIf="received_quotations.length===0 && loading_received_quotation===false">
-        <div class="promotion-header">
-          <p>Non ci sono promozioni terminate.</p>
-        </div>
-        <div class="promotion-body">
-          <div class="image-container">
-            <img class="image" src="../assets/images/starbook_promotion_icon.png" alt="avatar">
-          </div>
-          <div class="text-container">
-            <h5>Pubblicizza la tua attività</h5>
-            <p>Promuovi la tua pagina professionale. Scegli il budget giornaliero, seleziona la durata e inizia subito.</p>
-            <button type="button" name="button" class="btn btn-primary" (click)="popup='SETUP_PROMOTION_POPUP';">Promuovi adesso</button>
-          </div>
-        </div>
-      </div>
-      <!-- <div *ngFor="let promotion of inprogress_promotions">
-        <div class="promotion-content tabbed-content">
-          <div class="promotion-header">
-            <span class="title">Promozione attività</span>
-            <span class="date">{{formatedDateFromString(promotion.created_at)}}</span>
-          </div>
-          <div class="promotion-body">
-            <div class="image-container">
-              <img class="image" src="../assets/images/starbook_promotion_terminated.png" alt="avatar">
-            </div>
-            <div class="text-container">
-              <h5>Promozione terminata</h5>
-              <p>Promuovi la tua pagina professionale. Scegli il budget giornaliero, seleziona la durata e inizia subito.</p>
-            </div>
-          </div>
-        </div>
-      </div> -->
-    </div>
-    <!-- <div *ngIf="page==='new_promotion'">
-      <div class="promotion-content tabbed-content">
-        <div class="promotion-header">
-          <h2>Promuovi e trova clienti</h2>
-          <p>Pubblicizza la tua attività nelle piattaforme con maggior numero di utenti al mondo. Semplice in pochi passi la tua azienda verra notata e contattata da tutte le persone che si trovano nella tua zona dove lavori.</p>
-          <div class="list-ad-platforms">
-            <img src="../../../assets/images/facebook_ads.jpeg" alt="Facebook Ads">
-            <img src="../../../assets/images/google_adwords.png" alt="Google Adwords">
-            <img src="../../../assets/images/linkedin_ad.jpg" alt="Linkedin Advertising">
-          </div>
-        </div>
-        <div class="promotion-body">
-          <div class="section">
-            <h4>Seleziona la durata</h4>
-            <p>Inserisci il tempo che vuoi visualizzare la tua promozione. Seleziona una delle opzioni sotto e continua.</p>
-          </div>
-          <form>
-            <div class="row">
-              <div class="col-md-4 option-container noselect" *ngFor="let option of CrossAdvertisingWeekPeriod">
-                <div class="option" [ngClass]="{'selected':option.count===DefaultCrossAdvertisingWeekPeriod.count}" (click)="selectAdPeriod(option)">
-                  <span>{{option.count}} {{option.item}}</span>
-                </div>
-              </div>
-            </div>
-          </form>
-          <div class="section">
-            <h4>Costo giornaliero</h4>
-            <p>Scegli la somma massima che vuoi spendere al giorno per la tua promozione. Il totale viene calcolato in base ai giorni e settimane che hai selezionato. (l'offerta minima è 2€ al giorno)</p>
-          </div>
-          <form>
-            <div class="row">
-              <div class="col-md-4 option-container noselect" *ngFor="let option of CrossAdvertisingDailyPrices">
-                <div class="option" [ngClass]="{'selected':option.price===DefaultCrossAdvertisingDailyPrice.price}" (click)="selectAdPrice(option)">
-                  <span>{{option.price/100}}{{option.currency}} / giorno</span>
-                </div>
-              </div>
-            </div>
-          </form>
-          <div class="section">
-            <h4>Stime e attività della promozione</h4>
-            <p>Controlla il costo e la stima di visite della tua promozione.</p>
-          </div>
-          <form>
-            <div class="row">
-              <div class="col-md-4 estimate-container">
-                <div class="estimate">
-                  <span class="amount sun-flower">{{getTotalCostPromotion()/100}}€</span><span class="weeks"> / {{DefaultCrossAdvertisingWeekPeriod.count}} {{DefaultCrossAdvertisingWeekPeriod.item}}</span>
-                  <span class="title">Costo per il periodo</span>
-                </div>
-              </div>
-              <div class="col-md-4 estimate-container">
-                <div class="estimate">
-                  <span class="amount wet-asphalt">{{getTotalCoveragePromotion()}}</span>
-                  <span class="title">Visualizzazioni nella tua zona</span>
-                </div>
-              </div>
-              <div class="col-md-4 estimate-container">
-                <div class="estimate">
-                  <span class="amount nephritis">{{getGrowPercentage()}}%</span>
-                  <span class="title">Crescita stimata dei clienti</span>
-                </div>
-              </div>
-            </div>
-          </form>
-          <div class="actions">
-            <button type="button" class="btn btn-warning" name="button" (click)="popup='PREVIEW_PROMOTION_POPUP';">Prepara la promozione</button>
-          </div>
-        </div>
-      </div>
-    </div> -->
-  </div>
-</div>
-<div class="popup-container setup-promotion" [ngStyle]="{'display' : popup==='SETUP_PROMOTION_POPUP' ? 'block' : 'none'}">
-  <div class="popup-shadow" [ngStyle]="{'display' : popup ? 'block' : 'none'}" (click)="popup=null;"></div>
-  <div class="popup ads-popup">
-    <div class="popup-content">
-      <div class="popup-nav">
-        <button type="button" class="close" (click)="popup=null;">&times;</button>Promuovi la tua attività
-      </div>
-      <div class="popup-header">
-        <h3>Pubblicizza la tua attività</h3>
-        <p>Promuovi la tua pagina professionale. Scegli il budget giornaliero, seleziona la durata e inizia subito.</p>
-      </div>
-      <div class="popup-body">
-        <div class="platform-ads">
-          <div class="platform-ads-header">
-            <img class="image" src="../assets/images/facebook.png" alt="platform">
-            <div class="platform-name">
-              <span class="title">Facebook</span><span class="description">Ads</span>
-            </div>
-          </div>
-          <div class="platform-ads-body">
-            <form>
-              <p>Durata promozione</p>
-              <div class="row">
-                <div class="col-md-4" *ngFor="let option of FacebookPromotion.time_options">
-                  <div class="option">
-                    <div class="option-content noselect" [ngClass]="{'facebook-option-selected':option.count===FacebookPromotion.default_time_option.count}" (click)="selectFacebookAdPeriod(option)">
-                      <span>{{option.count}} {{option.item}}</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </form>
-            <form>
-              <p>Budget giornaliero</p>
-              <div class="row">
-                <div class="col-md-4" *ngFor="let option of FacebookPromotion.price_options">
-                  <div class="option">
-                    <div class="option-content noselect" [ngClass]="{'facebook-option-selected':option.price===FacebookPromotion.default_price_options.price}" (click)="selectFacebookAdPrice(option)">
-                      <span>{{option.price/100}}{{option.currency}}</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </form>
-          </div>
-        </div>
-        <div class="platform-ads-facebook-divider"></div>
-        <div class="platform-ads">
-          <div class="platform-ads-header noselect selectable" [ngClass]="{'google-disabled' : !GooglePromotion.active}" (click)="GooglePromotion.active = !GooglePromotion.active">
-            <img class="image noselect" src="../assets/images/google_adwords.png" alt="platform">
-            <div class="platform-name">
-              <span class="title">Google</span>
-              <span class="description">Adwords</span>
-            </div>
-          </div>
-          <div class="platform-ads-body" *ngIf="GooglePromotion.active">
-            <form>
-              <p>Durata promozione</p>
-              <div class="row">
-                <div class="col-md-4" *ngFor="let option of GooglePromotion.time_options">
-                  <div class="option">
-                    <div class="option-content noselect" [ngClass]="{'google-option-selected':option.count===GooglePromotion.default_time_option.count}" (click)="selectGoogleAdPeriod(option)">
-                      <span>{{option.count}} {{option.item}}</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </form>
-            <form>
-              <p>Budget giornaliero</p>
-              <div class="row">
-                <div class="col-md-4" *ngFor="let option of GooglePromotion.price_options">
-                  <div class="option">
-                    <div class="option-content noselect" [ngClass]="{'google-option-selected':option.price===GooglePromotion.default_price_options.price}" (click)="selectGoogleAdPrice(option)">
-                      <span>{{option.price/100}}{{option.currency}}</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </form>
-          </div>
-        </div>
-        <div class="platform-ads-google-divider"></div>
-        <div class="row noselect">
-          <div class="col-md-6">
-            <div class="platform-ads">
-              <div class="platform-ads-header selectable" [ngClass]="{'google-disabled' : !Promotion.google.indexing}" (click)="Promotion.google.indexing = !Promotion.google.indexing">
-                <img class="image" src="../assets/images/google_search.png" alt="avatar">
-                <span class="description">Registrazione nel indice di Google Search</span>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-6">
-            <div class="platform-ads">
-              <div class="platform-ads-header selectable" [ngClass]="{'google-disabled' : !Promotion.google.mapping}" (click)="Promotion.google.mapping = !Promotion.google.mapping">
-                <img class="image" src="../assets/images/google_maps.png" alt="avatar">
-                <span class="description">Registrazione attività su Google Maps</span>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="platform-ads-facebook-divider"></div>
-        <div class="platform-ads">
-          <div class="platform-ads-header">
-            <h4>Riepilogo</h4>
-            <p>Facebook - Durata: {{FacebookPromotion.default_time_option.count}} {{FacebookPromotion.default_time_option.item}}, Costo giornaliero: {{FacebookPromotion.default_price_options.price/100}}{{FacebookPromotion.default_price_options.currency}}</p>
-            <p *ngIf="GooglePromotion.active">Google - Durata: {{GooglePromotion.default_time_option.count}} {{GooglePromotion.default_time_option.item}}, Costo giornaliero: {{GooglePromotion.default_price_options.price/100}}{{GooglePromotion.default_price_options.currency}}</p>
-            <span class="total">{{totalPromotionCost()/100}}€</span>
-            <p><small>(il totale comprende 5€ di comissione Starbook)</small></p>
-          </div>
-        </div>
-      </div>
-      <div class="popup-footer">
-        <div class="error-container" *ngIf="Promotion_State.error_message">
-          <span class="error">{{Promotion_State.error_message}}</span>
-        </div>
-        <div class="actions">
-          <button type="button" id="next" class="btn btn-secondary" (click)="popup=null;">Annulla</button>
-          <button type="button" id="next" class="btn btn-success" (click)="startPromotion()"><i class="fa fa-circle-o-notch animate" *ngIf="Promotion_State.loading"></i><div *ngIf="!Promotion_State.loading">Inizia promozione</div></button>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-<div class="popup-container" [ngStyle]="{'display' : popup==='ADD_PROMOTION_CARD_AND_CONTINUE_POPUP' ? 'block' : 'none'}">
-  <div class="popup-shadow" [ngStyle]="{'display' : popup ? 'block' : 'none'}" (click)="popup='SETUP_PROMOTION_POPUP';"></div>
-  <div class="popup">
-    <div class="popup-content">
-      <div class="popup-nav">
-        <button type="button" class="close" (click)="popup='SETUP_PROMOTION_POPUP';">&times;</button>Aggiungi un metodo di pagamento
-      </div>
-      <div class="popup-header">
-        <div class="list-cards">
-          <img src="../../../assets/images/visa.png" alt="Visa">
-          <img src="../../../assets/images/mastercard.png" alt="Mastercard">
-          <img src="../../../assets/images/americanexpress.png" alt="AmericanExpress">
-          <img src="../../../assets/images/discover.png" alt="Discover">
-        </div>
-      </div>
-      <div class="popup-body">
-        <form>
-          <div class="row">
-            <div class="form-group col-md-12">
-              <label for="firstname-input">Numero carta *</label>
-              <input autocomplete="off" type="text" placeholder="Numero" class="form-control" [ngClass]="{'error-input': card_state.message_error}" id="numberInput" [(ngModel)]="Card.number" [ngModelOptions]="{standalone: true}">
-            </div>
-            <div class="col-md-6">
-              <div class="form-group">
-                <label for="dateInput">Scadenza *</label>
-                <input autocomplete="off" type="text" placeholder="MM/AA" class="form-control" [ngClass]="{'error-input': card_state.message_error}" id="dateInput" [(ngModel)]="Card.exp_date" (keyup)="checkExpiry(Card.exp_date)" (change)="checkExpiry(Card.exp_date)" [ngModelOptions]="{standalone: true}">
-              </div>
-            </div>
-            <div class="form-group col-md-6">
-              <label for="numberInput">Codice di sicurezza *</label>
-              <input autocomplete="off" type="text" placeholder="CVC/CVV" class="form-control" [ngClass]="{'error-input': card_state.message_error}" id="numberInput" [(ngModel)]="Card.cvc" [ngModelOptions]="{standalone: true}">
-            </div>
-            <div class="form-group col-md-12">
-              <label for="nameInput">Nome e cognome</label>
-              <input type="name" name="name" placeholder="" class="form-control" id="nameInput" [(ngModel)]="Card.name" [ngModelOptions]="{standalone: true}">
-            </div>
-            <div class="form-group col-md-6">
-              <label for="capInput">Codice postale</label>
-              <input type="text" placeholder="" class="form-control" id="capInput" [(ngModel)]="Card.address_zip" [ngModelOptions]="{standalone: true}">
-            </div>
-            <div class="form-group col-md-6">
-              <label for="countryInput">Paese</label>
-              <input type="text" placeholder="" class="form-control" id="countryInput" [(ngModel)]="Card.address_country" [ngModelOptions]="{standalone: true}">
-            </div>
-          </div>
-        </form>
-      </div>
-      <div class="popup-footer">
-        <div class="error-container" *ngIf="card_state.message_error">
-          <span class="error">{{card_state.message_error}}</span>
-        </div>
-        <div class="actions">
-          <button type="button" id="next" class="btn btn-secondary" (click)="popup='SETUP_PROMOTION_POPUP';">Indietro</button>
-          <button id="addCard" type="button" class="btn btn-danger" (click)="savePromotionCardAndContinue()"><i class="fa fa-circle-o-notch animate" *ngIf="card_state.loading"></i>Salva e continua</button>
-        </div>
       </div>
     </div>
   </div>
@@ -1550,6 +1204,353 @@
             <a class="btn btn-secondary" *ngIf="cards?.length > 0" (click)="showCardPage()">Aggiungi un altro metodo</a>
           </div>
         </div> -->
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PROMOTION Deprecated -->
+<div class="promotion-container" *ngIf="page==='inprogress_promotion' || page==='terminated_promotion' || page==='new_promotion'">
+  <div class="promotion">
+    <div class="promotion-tab">
+      <ul>
+        <li><a class="btn btn-transparent" (click)="clickLeftTabAds('inprogress_promotion')" [ngClass]="{'active':page==='inprogress_promotion'}"><i class="fa fa-bar-chart" aria-hidden="true"></i>In corso</a></li>
+        <li><a class="btn btn-transparent" (click)="clickLeftTabAds('terminated_promotion')" [ngClass]="{'active':page==='terminated_promotion'}"><i class="fa fa-times" aria-hidden="true"></i>Terminati</a></li>
+        <li><a class="btn btn-primary" (click)="popup='SETUP_PROMOTION_POPUP';"><i class="fa fa-plus" aria-hidden="true"></i>Promuovi</a></li>
+      </ul>
+    </div>
+    <div *ngIf="page==='inprogress_promotion'">
+      <div class="promotion-content tabbed-content" *ngIf="inprogress_promotions.length===0">
+        <div class="promotion-header">
+          <p>Non hai nessuna promozione in corso.</p>
+        </div>
+        <div class="promotion-body">
+          <div class="image-container">
+            <img class="image" src="../assets/images/starbook_promotion_icon.png" alt="avatar">
+          </div>
+          <div class="text-container">
+            <h5>Pubblicizza la tua attività</h5>
+            <p>Promuovi la tua pagina professionale. Scegli il budget giornaliero, seleziona la durata e inizia subito.</p>
+            <button type="button" name="button" class="btn btn-primary" (click)="popup='SETUP_PROMOTION_POPUP';">Promuovi adesso</button>
+          </div>
+        </div>
+      </div>
+      <div *ngFor="let promotion of inprogress_promotions">
+        <div class="promotion-content tabbed-content">
+          <div class="promotion-header">
+            <span class="title">Promozione attività</span>
+            <span class="date">{{formatedDateFromString(promotion.created_at)}}</span>
+          </div>
+          <div class="promotion-body">
+            <div class="image-container">
+              <img class="image" src="../assets/images/starbook_promotion_active.png" alt="avatar">
+            </div>
+            <div class="text-container">
+              <h5>Promozione in corso...</h5>
+              <p>Controlla la tua campagna promozionale, guarda i click, la copertura raggiunta e l'importo speso</p>
+              <div class="ads-container">
+                <p>
+                  <span *ngIf="promotion.facebook && promotion.facebook.days>0"><img class="ads-icon" src="../assets/images/facebook.png" alt="facebook ads"><strong>Giorni: </strong>{{promotion.facebook.days}} <strong>Costo giornaliero: </strong>{{promotion.facebook.daily_budget/100}}€</span>
+                </p>
+                <p>
+                  <span *ngIf="promotion.google && promotion.google.days>0"><img class="ads-icon" src="../assets/images/google_adwords.png" alt="google awords"><strong>Giorni: </strong>{{promotion.google.days}} <strong>Costo giornaliero: </strong>{{promotion.google.daily_budget/100}}€</span>
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="promotion-footer">
+            <span><strong>Importo totale:</strong> {{promotion.charges[0].amount/100}}€</span>
+            <span><strong>Copertura:</strong> {{getCoversForPromotion(promotion)}}</span>
+            <span><strong>Click sui link:</strong> {{getClicksForPromotion(promotion)}}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="page==='terminated_promotion'">
+      <div class="promotion-content tabbed-content" *ngIf="received_quotations.length===0 && loading_received_quotation===false">
+        <div class="promotion-header">
+          <p>Non ci sono promozioni terminate.</p>
+        </div>
+        <div class="promotion-body">
+          <div class="image-container">
+            <img class="image" src="../assets/images/starbook_promotion_icon.png" alt="avatar">
+          </div>
+          <div class="text-container">
+            <h5>Pubblicizza la tua attività</h5>
+            <p>Promuovi la tua pagina professionale. Scegli il budget giornaliero, seleziona la durata e inizia subito.</p>
+            <button type="button" name="button" class="btn btn-primary" (click)="popup='SETUP_PROMOTION_POPUP';">Promuovi adesso</button>
+          </div>
+        </div>
+      </div>
+      <!-- <div *ngFor="let promotion of inprogress_promotions">
+        <div class="promotion-content tabbed-content">
+          <div class="promotion-header">
+            <span class="title">Promozione attività</span>
+            <span class="date">{{formatedDateFromString(promotion.created_at)}}</span>
+          </div>
+          <div class="promotion-body">
+            <div class="image-container">
+              <img class="image" src="../assets/images/starbook_promotion_terminated.png" alt="avatar">
+            </div>
+            <div class="text-container">
+              <h5>Promozione terminata</h5>
+              <p>Promuovi la tua pagina professionale. Scegli il budget giornaliero, seleziona la durata e inizia subito.</p>
+            </div>
+          </div>
+        </div>
+      </div> -->
+    </div>
+    <!-- <div *ngIf="page==='new_promotion'">
+      <div class="promotion-content tabbed-content">
+        <div class="promotion-header">
+          <h2>Promuovi e trova clienti</h2>
+          <p>Pubblicizza la tua attività nelle piattaforme con maggior numero di utenti al mondo. Semplice in pochi passi la tua azienda verra notata e contattata da tutte le persone che si trovano nella tua zona dove lavori.</p>
+          <div class="list-ad-platforms">
+            <img src="../../../assets/images/facebook_ads.jpeg" alt="Facebook Ads">
+            <img src="../../../assets/images/google_adwords.png" alt="Google Adwords">
+            <img src="../../../assets/images/linkedin_ad.jpg" alt="Linkedin Advertising">
+          </div>
+        </div>
+        <div class="promotion-body">
+          <div class="section">
+            <h4>Seleziona la durata</h4>
+            <p>Inserisci il tempo che vuoi visualizzare la tua promozione. Seleziona una delle opzioni sotto e continua.</p>
+          </div>
+          <form>
+            <div class="row">
+              <div class="col-md-4 option-container noselect" *ngFor="let option of CrossAdvertisingWeekPeriod">
+                <div class="option" [ngClass]="{'selected':option.count===DefaultCrossAdvertisingWeekPeriod.count}" (click)="selectAdPeriod(option)">
+                  <span>{{option.count}} {{option.item}}</span>
+                </div>
+              </div>
+            </div>
+          </form>
+          <div class="section">
+            <h4>Costo giornaliero</h4>
+            <p>Scegli la somma massima che vuoi spendere al giorno per la tua promozione. Il totale viene calcolato in base ai giorni e settimane che hai selezionato. (l'offerta minima è 2€ al giorno)</p>
+          </div>
+          <form>
+            <div class="row">
+              <div class="col-md-4 option-container noselect" *ngFor="let option of CrossAdvertisingDailyPrices">
+                <div class="option" [ngClass]="{'selected':option.price===DefaultCrossAdvertisingDailyPrice.price}" (click)="selectAdPrice(option)">
+                  <span>{{option.price/100}}{{option.currency}} / giorno</span>
+                </div>
+              </div>
+            </div>
+          </form>
+          <div class="section">
+            <h4>Stime e attività della promozione</h4>
+            <p>Controlla il costo e la stima di visite della tua promozione.</p>
+          </div>
+          <form>
+            <div class="row">
+              <div class="col-md-4 estimate-container">
+                <div class="estimate">
+                  <span class="amount sun-flower">{{getTotalCostPromotion()/100}}€</span><span class="weeks"> / {{DefaultCrossAdvertisingWeekPeriod.count}} {{DefaultCrossAdvertisingWeekPeriod.item}}</span>
+                  <span class="title">Costo per il periodo</span>
+                </div>
+              </div>
+              <div class="col-md-4 estimate-container">
+                <div class="estimate">
+                  <span class="amount wet-asphalt">{{getTotalCoveragePromotion()}}</span>
+                  <span class="title">Visualizzazioni nella tua zona</span>
+                </div>
+              </div>
+              <div class="col-md-4 estimate-container">
+                <div class="estimate">
+                  <span class="amount nephritis">{{getGrowPercentage()}}%</span>
+                  <span class="title">Crescita stimata dei clienti</span>
+                </div>
+              </div>
+            </div>
+          </form>
+          <div class="actions">
+            <button type="button" class="btn btn-warning" name="button" (click)="popup='PREVIEW_PROMOTION_POPUP';">Prepara la promozione</button>
+          </div>
+        </div>
+      </div>
+    </div> -->
+  </div>
+</div>
+<div class="popup-container setup-promotion" [ngStyle]="{'display' : popup==='SETUP_PROMOTION_POPUP' ? 'block' : 'none'}">
+  <div class="popup-shadow" [ngStyle]="{'display' : popup ? 'block' : 'none'}" (click)="popup=null;"></div>
+  <div class="popup ads-popup">
+    <div class="popup-content">
+      <div class="popup-nav">
+        <button type="button" class="close" (click)="popup=null;">&times;</button>Promuovi la tua attività
+      </div>
+      <div class="popup-header">
+        <h3>Pubblicizza la tua attività</h3>
+        <p>Promuovi la tua pagina professionale. Scegli il budget giornaliero, seleziona la durata e inizia subito.</p>
+      </div>
+      <div class="popup-body">
+        <div class="platform-ads">
+          <div class="platform-ads-header">
+            <img class="image" src="../assets/images/facebook.png" alt="platform">
+            <div class="platform-name">
+              <span class="title">Facebook</span><span class="description">Ads</span>
+            </div>
+          </div>
+          <div class="platform-ads-body">
+            <form>
+              <p>Durata promozione</p>
+              <div class="row">
+                <div class="col-md-4" *ngFor="let option of FacebookPromotion.time_options">
+                  <div class="option">
+                    <div class="option-content noselect" [ngClass]="{'facebook-option-selected':option.count===FacebookPromotion.default_time_option.count}" (click)="selectFacebookAdPeriod(option)">
+                      <span>{{option.count}} {{option.item}}</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </form>
+            <form>
+              <p>Budget giornaliero</p>
+              <div class="row">
+                <div class="col-md-4" *ngFor="let option of FacebookPromotion.price_options">
+                  <div class="option">
+                    <div class="option-content noselect" [ngClass]="{'facebook-option-selected':option.price===FacebookPromotion.default_price_options.price}" (click)="selectFacebookAdPrice(option)">
+                      <span>{{option.price/100}}{{option.currency}}</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+        <div class="platform-ads-facebook-divider"></div>
+        <div class="platform-ads">
+          <div class="platform-ads-header noselect selectable" [ngClass]="{'google-disabled' : !GooglePromotion.active}" (click)="GooglePromotion.active = !GooglePromotion.active">
+            <img class="image noselect" src="../assets/images/google_adwords.png" alt="platform">
+            <div class="platform-name">
+              <span class="title">Google</span>
+              <span class="description">Adwords</span>
+            </div>
+          </div>
+          <div class="platform-ads-body" *ngIf="GooglePromotion.active">
+            <form>
+              <p>Durata promozione</p>
+              <div class="row">
+                <div class="col-md-4" *ngFor="let option of GooglePromotion.time_options">
+                  <div class="option">
+                    <div class="option-content noselect" [ngClass]="{'google-option-selected':option.count===GooglePromotion.default_time_option.count}" (click)="selectGoogleAdPeriod(option)">
+                      <span>{{option.count}} {{option.item}}</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </form>
+            <form>
+              <p>Budget giornaliero</p>
+              <div class="row">
+                <div class="col-md-4" *ngFor="let option of GooglePromotion.price_options">
+                  <div class="option">
+                    <div class="option-content noselect" [ngClass]="{'google-option-selected':option.price===GooglePromotion.default_price_options.price}" (click)="selectGoogleAdPrice(option)">
+                      <span>{{option.price/100}}{{option.currency}}</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+        <div class="platform-ads-google-divider"></div>
+        <div class="row noselect">
+          <div class="col-md-6">
+            <div class="platform-ads">
+              <div class="platform-ads-header selectable" [ngClass]="{'google-disabled' : !Promotion.google.indexing}" (click)="Promotion.google.indexing = !Promotion.google.indexing">
+                <img class="image" src="../assets/images/google_search.png" alt="avatar">
+                <span class="description">Registrazione nel indice di Google Search</span>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="platform-ads">
+              <div class="platform-ads-header selectable" [ngClass]="{'google-disabled' : !Promotion.google.mapping}" (click)="Promotion.google.mapping = !Promotion.google.mapping">
+                <img class="image" src="../assets/images/google_maps.png" alt="avatar">
+                <span class="description">Registrazione attività su Google Maps</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="platform-ads-facebook-divider"></div>
+        <div class="platform-ads">
+          <div class="platform-ads-header">
+            <h4>Riepilogo</h4>
+            <p>Facebook - Durata: {{FacebookPromotion.default_time_option.count}} {{FacebookPromotion.default_time_option.item}}, Costo giornaliero: {{FacebookPromotion.default_price_options.price/100}}{{FacebookPromotion.default_price_options.currency}}</p>
+            <p *ngIf="GooglePromotion.active">Google - Durata: {{GooglePromotion.default_time_option.count}} {{GooglePromotion.default_time_option.item}}, Costo giornaliero: {{GooglePromotion.default_price_options.price/100}}{{GooglePromotion.default_price_options.currency}}</p>
+            <span class="total">{{totalPromotionCost()/100}}€</span>
+            <p><small>(il totale comprende 5€ di comissione Starbook)</small></p>
+          </div>
+        </div>
+      </div>
+      <div class="popup-footer">
+        <div class="error-container" *ngIf="Promotion_State.error_message">
+          <span class="error">{{Promotion_State.error_message}}</span>
+        </div>
+        <div class="actions">
+          <button type="button" id="next" class="btn btn-secondary" (click)="popup=null;">Annulla</button>
+          <button type="button" id="next" class="btn btn-success" (click)="startPromotion()"><i class="fa fa-circle-o-notch animate" *ngIf="Promotion_State.loading"></i><div *ngIf="!Promotion_State.loading">Inizia promozione</div></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="popup-container" [ngStyle]="{'display' : popup==='ADD_PROMOTION_CARD_AND_CONTINUE_POPUP' ? 'block' : 'none'}">
+  <div class="popup-shadow" [ngStyle]="{'display' : popup ? 'block' : 'none'}" (click)="popup='SETUP_PROMOTION_POPUP';"></div>
+  <div class="popup">
+    <div class="popup-content">
+      <div class="popup-nav">
+        <button type="button" class="close" (click)="popup='SETUP_PROMOTION_POPUP';">&times;</button>Aggiungi un metodo di pagamento
+      </div>
+      <div class="popup-header">
+        <div class="list-cards">
+          <img src="../../../assets/images/visa.png" alt="Visa">
+          <img src="../../../assets/images/mastercard.png" alt="Mastercard">
+          <img src="../../../assets/images/americanexpress.png" alt="AmericanExpress">
+          <img src="../../../assets/images/discover.png" alt="Discover">
+        </div>
+      </div>
+      <div class="popup-body">
+        <form>
+          <div class="row">
+            <div class="form-group col-md-12">
+              <label for="firstname-input">Numero carta *</label>
+              <input autocomplete="off" type="text" placeholder="Numero" class="form-control" [ngClass]="{'error-input': card_state.message_error}" id="numberInput" [(ngModel)]="Card.number" [ngModelOptions]="{standalone: true}">
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="dateInput">Scadenza *</label>
+                <input autocomplete="off" type="text" placeholder="MM/AA" class="form-control" [ngClass]="{'error-input': card_state.message_error}" id="dateInput" [(ngModel)]="Card.exp_date" (keyup)="checkExpiry(Card.exp_date)" (change)="checkExpiry(Card.exp_date)" [ngModelOptions]="{standalone: true}">
+              </div>
+            </div>
+            <div class="form-group col-md-6">
+              <label for="numberInput">Codice di sicurezza *</label>
+              <input autocomplete="off" type="text" placeholder="CVC/CVV" class="form-control" [ngClass]="{'error-input': card_state.message_error}" id="numberInput" [(ngModel)]="Card.cvc" [ngModelOptions]="{standalone: true}">
+            </div>
+            <div class="form-group col-md-12">
+              <label for="nameInput">Nome e cognome</label>
+              <input type="name" name="name" placeholder="" class="form-control" id="nameInput" [(ngModel)]="Card.name" [ngModelOptions]="{standalone: true}">
+            </div>
+            <div class="form-group col-md-6">
+              <label for="capInput">Codice postale</label>
+              <input type="text" placeholder="" class="form-control" id="capInput" [(ngModel)]="Card.address_zip" [ngModelOptions]="{standalone: true}">
+            </div>
+            <div class="form-group col-md-6">
+              <label for="countryInput">Paese</label>
+              <input type="text" placeholder="" class="form-control" id="countryInput" [(ngModel)]="Card.address_country" [ngModelOptions]="{standalone: true}">
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="popup-footer">
+        <div class="error-container" *ngIf="card_state.message_error">
+          <span class="error">{{card_state.message_error}}</span>
+        </div>
+        <div class="actions">
+          <button type="button" id="next" class="btn btn-secondary" (click)="popup='SETUP_PROMOTION_POPUP';">Indietro</button>
+          <button id="addCard" type="button" class="btn btn-danger" (click)="savePromotionCardAndContinue()"><i class="fa fa-circle-o-notch animate" *ngIf="card_state.loading"></i>Salva e continua</button>
+        </div>
       </div>
     </div>
   </div>

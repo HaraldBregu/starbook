@@ -24,7 +24,7 @@ export class AccountComponent implements OnInit {
   public page = ''
   public tabs = [
     {name: 'Account', route: 'profile'},
-    {name: 'Promozioni', route: 'inprogress_promotion'},
+    // {name: 'Promozioni', route: 'inprogress_promotion'},
     {name: 'Contatti', route: 'contacts'},
     {name: 'Messaggi', route: 'requests'},
     {name: 'Preventivi', route: 'quotation'},
@@ -432,9 +432,9 @@ export class AccountComponent implements OnInit {
           this.ContactsState.loading = false
         })
       }
-      else if (this.page==="inprogress_promotion") {
-
-      }
+      // else if (this.page==="inprogress_promotion") {
+      //
+      // }
       else if (this.page==="terminated_promotion") {
 
       }

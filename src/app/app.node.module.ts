@@ -70,6 +70,7 @@ import { TestsComponent } from './pages/tests/tests.component';
 import { BlogComponent } from './pages/blog/blog.component';
 import { PostComponent } from './pages/blog/post/post.component';
 import { HomeComponent } from './pages/home/home.component';
+import { ActionComponent } from './pages/home/action/action.component';
 
 import { DataentryComponent } from './pages/dataentry/dataentry.component';
 
@@ -89,6 +90,10 @@ import { CurrencyPipe } from './pipes/currency.pipe';
 import { CurrencyFormatPipe } from './pipes/currency-format.pipe';
 import { CurrencyCentPipe } from "./pipes/currency-cent.pipe";
 
+import { AgmCoreModule } from 'angular2-google-maps/core';
+const googleMapsCore = AgmCoreModule.forRoot({
+  apiKey : 'AIzaSyCLc5etDSrqieAn4lPCsvFDpkM3-F7-c5M',
+});
 
 let imports = [
   NodeHttpModule,
@@ -102,6 +107,7 @@ let imports = [
   Ng2PageScrollModule.forRoot(),
   FacebookModule.forRoot(),
   DateValueAccessorModule,
+  googleMapsCore
 ];
 let declarations = [
   AppComponent,
@@ -132,6 +138,7 @@ let declarations = [
   ContactComponent,
   ToolsComponent,
   HomeComponent,
+  ActionComponent,
   NotfoundComponent,
   TestsComponent,
   DataentryComponent,

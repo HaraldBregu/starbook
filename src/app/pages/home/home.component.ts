@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { URLSearchParams } from '@angular/http'
+import { Http, Headers, URLSearchParams } from '@angular/http';
 import { Router, Route, ActivatedRoute, Params } from '@angular/router';
 import { NavigationService } from '../../shared/navigation.service';
 import { ProfileService } from '../../shared/profile.service';
@@ -13,6 +13,8 @@ import { PaymentService } from '../../shared/payment.service';
 import * as globals from '../../globals';
 import { Observable, Subscription } from 'rxjs/Rx';
 import { FacebookService, InitParams, LoginResponse, LoginOptions, UIResponse, UIParams, FBVideoComponent } from 'ngx-facebook';
+import { ActionComponent } from './action/action.component';
+import { OrdersService } from '../../shared/orders.service';
 
 @Component({
   selector: 'app-home',
@@ -26,6 +28,7 @@ export class HomeComponent implements OnInit {
   public fragment = null
   public CurrentAccount = null
   public popup = null
+  public popup_second = null
   public posts = null
   public post = null
   public selected_post = null
@@ -53,6 +56,16 @@ export class HomeComponent implements OnInit {
     error: null,
   }
 
+  public Cards = []
+  public CardsState = {
+    loading: false,
+    error: null,
+  }
+  public DefaultCard = null
+  public DefaultCardState = {
+    loading: false,
+    error: null,
+  }
   public Card = {
     number: null,
     exp_month: null,
@@ -87,7 +100,24 @@ export class HomeComponent implements OnInit {
     error: null,
   }
 
-  constructor(private route: ActivatedRoute, private router: Router, private navigationService: NavigationService, private seoService: SeoService, public commonService: CommonService, private authService: AuthService, private paymentService: PaymentService, private fb: FacebookService) {
+  public Proposal = {
+    text: "",
+    estimate_price: null,
+    product_quality:0,
+    start_date: null,
+    work_duration_day: 0,
+  }
+  public ProposalState = {
+    error: null
+  }
+
+  public Map = {
+    latitude: 45.464211,
+    longitude: 9.191383,
+    zoom: 8
+  }
+
+  constructor(private route: ActivatedRoute, private router: Router, private navigationService: NavigationService, private seoService: SeoService, private ordersService: OrdersService, public commonService: CommonService, private authService: AuthService, private paymentService: PaymentService, private fb: FacebookService, private http: Http) {
     this.navigationService.updateMessage("Bacheca del lavoro")
     this.emailPattern = /^[a-z0-9!#$%&'*+\/=?^_`{|}~.-]+@[a-z0-9]([a-z0-9-]*[a-z0-9])?(\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)*$/i;
     if (isBrowser) {
@@ -236,21 +266,6 @@ export class HomeComponent implements OnInit {
   }
   getPriceBasedOnBudget(post) {
     return post.budget.estimate_cost
-    // let min_budget = post.budget.min
-    // let max_budget = post.budget.max
-    // let avg_budget = (min_budget + max_budget)/2
-    // if (avg_budget<30000) {
-    //   return 300
-    // }
-    // else if (avg_budget >= 30000 && avg_budget<50000) {
-    //   return 1200
-    // }
-    // else if (avg_budget >= 50000 && avg_budget<100000) {
-    //   return 1500
-    // }
-    // else {
-    //   return 2000
-    // }
   }
   getDecimalPartPrice(post) {
     let price_contact = this.getPriceBasedOnBudget(post)/100
@@ -262,6 +277,146 @@ export class HomeComponent implements OnInit {
     let dec_number = String(string_price_contact).substr(String(string_price_contact).indexOf('.')+1)
     return dec_number
   }
+  getFirstChar(word) {
+    return word.charAt(0)
+  }
+  showLocByCity() {
+    this.ordersService.getLocationByCity("Milano").then((location) => {
+      return 45.464211
+    }).catch((error) => {
+      // console.log(error);
+    });
+  }
+
+  previewUpdatePost(post) {
+    this.SelectedPostCustomer = null
+    this.selected_post = post
+    this.commonService.disableScroll()
+    this.popup = "SELECT_COMPANY_POPUP"
+    this.PostCustomersState.loading = true
+    this.commonService.getMethod('posts/' + post._id + "/customers").then((data) => {
+      this.PostCustomers = data.result
+      this.PostCustomersState.loading = false
+    }).catch((error) => {
+      this.PostCustomersState.loading = false
+    })
+  }
+
+  // 1. Show preview post
+
+  previewPost(post) {
+    this.selected_post = post
+    this.commonService.disableScroll()
+    if (this.authService.currentAccount()) {
+      this.checkPurchasePost(post)
+    } else {
+      // this.popup_second = "SIGNUP_POPUP"
+    }
+    this.popup = "PREVIEW_PURCHASE_CONTACT_POPUP"
+  }
+
+  // 2. Show preview purchase
+
+  showPreviewPurchasePost(post) {
+    if (!this.authService.currentAccount()) {
+      this.popup_second = "SIGNUP_POPUP"
+      return
+    }
+    this.getCards()
+    this.popup_second = 'CONFIRM_PURCHASE_POPUP'
+  }
+
+  // 3. Confirm purchase post
+
+  confirmPurchase(post) {
+    if (this.DefaultCard) {
+      if (this.PurchaseState.loading) {return}
+      this.PurchaseState.loading = true
+      this.PurchaseState.error = null
+      this.purchased_post = null
+      this.commonService.postMethod('posts/' + post._id + '/contacts', {price_contact:post.budget.estimate_cost}).then((data) => {
+        this.PurchaseState.loading = false
+        this.PurchaseState.error = null
+        this.popup_second = "PURCHASE_CONFIRMED_POPUP"
+      }).catch((error) => {
+        this.PurchaseState.loading = false
+        this.PurchaseState.error = null
+        if (error.status===400) {
+          // Non hai carte
+          // this.popup = "NEW_CARD_POPUP"
+          // this.getCards()
+        }
+        else if (error.status===402) {
+          var response_body = JSON.parse(error._body)
+          var stripe_result = response_body.result
+          if (stripe_result) {
+            if (stripe_result.raw) {
+              var raw = stripe_result.raw
+              if (raw.decline_code === "insufficient_funds") {
+                this.CardState.error = "Fondi non sufficienti per eseguire questo pagamento. Per favore inserisci una carta o seleziona un altra."
+              }
+            }
+          }
+        }
+        else {
+          this.CardState.error = "Errore sconosciuto. Per favore riprova dopo aver aggirnato la pagina."
+        }
+      })
+    }
+    if (!this.DefaultCard) {
+      if (this.Card && !this.paymentService.cardNumberValidate(this.Card.number)) {
+        this.CardState.error = "Il numero della carta non è corretto."
+        return
+      }
+      if (this.Card.exp_date && this.Card.exp_date.length === 5) {
+        let exp_parts = this.Card.exp_date.split('/');
+        if (exp_parts[0] !== this.Card.exp_date) {
+          this.Card.exp_month = exp_parts[0];
+          this.Card.exp_year = exp_parts[1];
+        } else {
+          this.CardState.error = "Errore data";
+          return
+        }
+      }
+      else {
+        this.CardState.error = "La data non è completa";
+        return
+      }
+
+      this.CardState.loading = true
+      this.CardState.error = null
+      this.paymentService.addNewCard(this.Card).then((response) => {
+        // console.log(JSON.stringify(response))
+        this.CardState.loading = false
+        this.CardState.error = null
+        this.Card.number = null
+        this.Card.exp_month = null
+        this.Card.exp_year = null
+        this.Card.cvc = null
+        this.Cards.push(response)
+        this.DefaultCard = response.id
+        this.confirmPurchase(post)
+      }).catch((error) => {
+        this.CardState.loading = false
+        this.CardState.error = null
+        if (error === 400) {
+          this.CardState.error = "Per favore inserisci correttamente i dati della carta."
+        }
+        else if (error === 402) {
+          this.CardState.error = "Per favore inserisci correttamente i dati della carta."
+        }
+        else {
+          this.CardState.error = "Controlla i campi inseriti e riprova."
+        }
+      })
+    }
+  }
+  donePurchase(post) {
+    this.popup_second = null
+    this.checkPurchasePost(post)
+  }
+
+  // Login Signup
 
   login(data) {
     if (this.AuthState.loading) {return}
@@ -271,7 +426,7 @@ export class HomeComponent implements OnInit {
       this.AuthState.error = null
       this.CurrentAccount = data
       this.AuthState.loading = false
-      this.checkPurchasePost(this.selected_post)
+      this.showPreviewPurchasePost(this.selected_post)
     }).catch((error) => {
       this.AuthState.loading = false
       if (error===404) {
@@ -299,7 +454,7 @@ export class HomeComponent implements OnInit {
       this.navigationService.updatePersonalMenu(data)
       this.AuthState.error = null
       this.AuthState.loading = false
-      this.checkPurchasePost(this.selected_post)
+      this.showPreviewPurchasePost(this.selected_post)
     }).catch((error) => {
       this.AuthState.loading = false
       switch (error) {
@@ -329,7 +484,7 @@ export class HomeComponent implements OnInit {
         this.AuthState.error = null
         this.CurrentAccount = data
         this.AuthState.loading = false
-        this.checkPurchasePost(this.selected_post)
+        this.showPreviewPurchasePost(this.selected_post)
       }).catch((error) => {
         this.AuthState.loading = false
       })
@@ -337,134 +492,61 @@ export class HomeComponent implements OnInit {
       this.AuthState.loading = false
     })
   }
-  previewPurchase(post) {
-    this.selected_post = post
-    if(post.status && post.status==="PURCHASED") {
-      return
-    }
-    this.commonService.disableScroll()
-    if (!this.authService.currentAccount()) {
-      this.popup = "SIGNUP_POPUP"
-      return
-    }
-    this.checkPurchasePost(post)
-  }
-  previewUpdatePost(post) {
-    this.SelectedPostCustomer = null
-    this.selected_post = post
-    this.commonService.disableScroll()
-    this.popup = "SELECT_COMPANY_POPUP"
-    this.PostCustomersState.loading = true
-    this.commonService.getMethod('posts/' + post._id + "/customers").then((data) => {
-      // console.log(JSON.stringify(data.result))
-      this.PostCustomers = data.result
-      this.PostCustomersState.loading = false
-    }).catch((error) => {
-      this.PostCustomersState.loading = false
-    })
-  }
+
+  // Utils for post
+
   checkPurchasePost(post) {
-    this.popup = "PREVIEW_PURCHASE_CONTACT_POPUP"
     this.PurchaseState.loading = true
     this.PurchaseState.error = null
     this.purchased_post = null
-    this.commonService.getMethod('contacts?' + "post_id=" + post['_id'] ).then((data) => {
+    this.commonService.getMethod('contacts?post_id=' + post['_id']).then((data) => {
+      // console.log(JSON.stringify(data))
       this.PurchaseState.loading = false
       if (data.result.length > 0) {
         this.purchased_post = data.result[0]['post']
-        // console.log(JSON.stringify(this.purchased_post.customer.complete))
-        if (this.purchased_post.customer.complete===false) {
-          this.popup = "SUCCESS_PURCHASED_CONTACT_POPUP"
-        } else {
-          this.popup = "PURCHASED_CONTACT_POPUP"
-        }
-      } else {
+        // if (this.purchased_post.customer.complete===false) {
+        //   this.popup = "
+        //   "
+        // } else {
+        //   this.popup = "PURCHASED_CONTACT_POPUP"
+        // }
+      }
+      else {
         this.popup = "PREVIEW_PURCHASE_CONTACT_POPUP"
       }
     }).catch((error) => {
+      // console.log(JSON.stringify(error))
       this.PurchaseState.loading = false
     })
   }
-  purchase(post) {
-    if (this.PurchaseState.loading) {return}
-    this.PurchaseState.loading = true
-    this.PurchaseState.error = null
-    this.purchased_post = null
-    let price_contact = this.getPriceBasedOnBudget(post)
-    this.commonService.postMethod('posts/' + post._id + '/contacts', {price_contact:price_contact}).then((data) => {
-      this.PurchaseState.loading = false
-      this.PurchaseState.error = null
-      this.checkPurchasePost(post)
-    }).catch((error) => {
-      this.PurchaseState.loading = false
-      this.PurchaseState.error = null
-      if (error.status===400) {
-        this.popup = "NEW_CARD_POPUP"
-      }
-      else if (error.status===402) {
-        var response_body = JSON.parse(error._body)
-        var stripe_result = response_body.result
-        if (stripe_result) {
-          if (stripe_result.raw) {
-            var raw = stripe_result.raw
-            if (raw.decline_code === "insufficient_funds") {
-              this.PurchaseState.error = "Fondi non sufficienti per eseguire questo pagamento. Per favore inserisci un altra carta o ricarica quella attuale."
-            }
-          }
-        }
-        this.popup = "NEW_CARD_POPUP"
-      }
-      else {
-        this.PurchaseState.error = "Errore sconosciuto. Per favore riprova dopo aver aggirnato la pagina."
-      }
-    })
-  }
-  addCardAndContinue() {
-    if (this.CardState.loading) {return}
-    this.CardState.loading = true
-    this.CardState.error = null
-    if (this.Card && this.paymentService.cardNumberValidate(this.Card.number)) {
-      this.CardState.error = null
-    }
-    else if (this.Card && !this.paymentService.cardNumberValidate(this.Card.number)) {
-      this.CardState.error = "Il numero della carta non è corretto."
-    }
-    if (this.Card.exp_date && this.Card.exp_date.length === 5) {
-      let exp_parts = this.Card.exp_date.split('/');
-      if (exp_parts[0] !== this.Card.exp_date) {
-        this.Card.exp_month = exp_parts[0];
-        this.Card.exp_year = exp_parts[1];
-      } else {
-        this.CardState.error = "Errore data";
-      }
-    }
-    else {
-      this.CardState.error = "La data non è completa";
-    }
 
-    this.paymentService.addNewCard(this.Card).then((response) => {
-      this.CardState.loading = false
-      this.CardState.error = null
-      this.popup = "PREVIEW_PURCHASE_CONTACT_POPUP"
-      this.purchase(this.selected_post)
-      this.Card.number = null
-      this.Card.exp_month = null
-      this.Card.exp_year = null
-      this.Card.cvc = null
+  getCards() {
+    if (this.CardsState.loading) {return}
+    this.CardsState.loading = true
+    this.DefaultCard = null
+    this.commonService.getMethod('me/customers').then((data) => {
+      // console.log(JSON.stringify(data))
+      this.Cards = data.sources.data
+      this.DefaultCard = data.default_source
+      this.CardsState.loading = false
     }).catch((error) => {
-      this.CardState.loading = false
-      this.CardState.error = null
-      if (error === 400) {
-        this.CardState.error = "Per favore inserisci correttamente i dati della carta."
-      }
-      else if (error === 402) {
-        this.CardState.error = "Per favore inserisci correttamente i dati della carta."
-      }
-      else {
-        this.CardState.error = "Controlla i campi inseriti e riprova."
-      }
+      this.Cards = []
+      this.CardsState.loading = false
     })
   }
+  selectCard(card_id) {
+    if (this.DefaultCardState.loading) {return}
+    this.DefaultCardState.loading = true
+    this.commonService.postMethod('me/customers', {default_source: card_id}).then((status) => {
+      this.DefaultCard = status.default_source
+      // console.log(this.DefaultCard)
+      this.DefaultCardState.loading = false
+    }).catch((error) => {
+      this.DefaultCardState.loading = false
+    })
+  }
+
+
   selectCompanyForPost(customer) {
     this.SelectedPostCustomer = customer
   }
@@ -489,6 +571,14 @@ export class HomeComponent implements OnInit {
       this.popup = null;
       this.commonService.enableScroll();
     })
+  }
+  openQuotationForm(post) {
+    this.selected_post = post
+    this.commonService.disableScroll()
+    this.popup = "PROPOSAL_FORM_POPUP"
+  }
+  sendProposal(post) {
+
   }
 
   // UTILS

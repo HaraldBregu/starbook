@@ -61,6 +61,26 @@ export class OrdersService {
     }).catch(this.handleError);
   }
 
+  getLocationByCity(key: string) {
+    let params = new URLSearchParams();
+    let addresses = [];
+    params.set('address', key);
+    params.set('language', 'it');
+    params.set('components', 'country:IT');
+    params.set('key', 'AIzaSyCLc5etDSrqieAn4lPCsvFDpkM3-F7-c5M');
+    return this.http.get(this.googleApi, {search: params}).toPromise().then((response) => {
+      let data: any[] = response.json().results;
+      console.log(JSON.stringify(data))
+
+      if (data.length) {
+        var location = data[0].geometry.location
+        console.log(JSON.stringify(location))
+        return location;
+      }
+
+    }).catch(this.handleError);
+  }
+
   getAddresses(key: string) {
     let params = new URLSearchParams();
     let addresses = [];

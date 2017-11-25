@@ -426,6 +426,10 @@ p {
   font-size: 18px !important;
   letter-spacing: 0.11px !important; }
 
+.background-white  {
+  background: white !important;
+  background-color: white !important; }
+
 .btn-default {
   height: 50px;
   line-height: 50px;
@@ -443,7 +447,7 @@ p {
   background-color: #e6e6e6; }
 
 .btn-success {
-  background: #1abc9c;
+  background: #1ba783;
   border-radius: 0;
   height: 50px;
   border: 0;
@@ -670,7 +674,7 @@ p {
   font-size: 17px;
   letter-spacing: 0.1px;
   padding: 0 20px;
-  border-radius: 3px !important;
+  border-radius: 5px !important;
   background-color: #FFFFFF;
   border: 1px solid #cbd3d5; }
 
@@ -679,19 +683,19 @@ p {
 
 textarea.form-control {
   resize: none;
-  font-size: 17px;
+  font-size: 15px;
   letter-spacing: 0.01px;
   box-shadow: none;
-  padding: 20px; }
+  padding: 15px; }
 
 .form-group {
   margin-bottom: 15px; }
 
 .form-group input {
-  height: 50px !important; }
+  height: 45px !important; }
 
 .form-group select {
-  height: 50px !important;
+  height: 45px !important;
   -webkit-appearance: none;
   -webkit-border-radius: 3px; }
 
@@ -703,7 +707,7 @@ textarea.form-control {
 
 .form-control:focus {
   color: black;
-  border-width: 2px !important;
+  border-width: 1px !important;
   border-color: #66afe9 !important; }
 
 .form-group label, .input-group label {
@@ -1066,7 +1070,8 @@ input::-ms-clear {
     position: relative;
     background: white;
     max-width: 520px;
-    margin: 80px auto;
+    margin: 55px auto;
+    border-radius: 5px;
     overflow-x: hidden;
     overflow-y: scroll;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5); }
@@ -1075,7 +1080,8 @@ input::-ms-clear {
       width: 100%;
       height: 100%;
       background: rgba(255, 255, 255, 0.7);
-      z-index: 2000; }
+      z-index: 2000;
+      border-radius: 3px; }
       .popup-container .popup .popup-loader .loader {
         position: absolute;
         font-size: 35px;
@@ -1088,158 +1094,157 @@ input::-ms-clear {
         left: 0;
         bottom: 0;
         right: 0; }
-    .popup-container .popup .popup-content {
-      background-color: #f5f5f5; }
-      .popup-container .popup .popup-content .popup-nav {
-        color: #484848;
-        font-size: 16px;
-        padding: 12px 20px;
-        border-bottom: 1px solid #dce0e0; }
-        .popup-container .popup .popup-content .popup-nav .close {
-          line-height: 24px;
-          font-size: 30px; }
-      .popup-container .popup .popup-content .popup-header {
-        padding: 10px 20px; }
-        .popup-container .popup .popup-content .popup-header .title {
+    .popup-container .popup .popup-content .popup-nav {
+      color: #484848;
+      font-size: 16px;
+      padding: 12px 20px;
+      border-bottom: 1px solid #dce0e0; }
+      .popup-container .popup .popup-content .popup-nav .close {
+        line-height: 24px;
+        font-size: 30px; }
+    .popup-container .popup .popup-content .popup-header {
+      padding: 20px; }
+      .popup-container .popup .popup-content .popup-header .title {
+        display: block;
+        font-size: 28px;
+        font-weight: 600; }
+      .popup-container .popup .popup-content .popup-header .list-cards img {
+        width: 60px; }
+    .popup-container .popup .popup-content .popup-body {
+      padding: 10px 20px; }
+      .popup-container .popup .popup-content .popup-body .list-cards {
+        margin-bottom: 20px; }
+        .popup-container .popup .popup-content .popup-body .list-cards img {
+          width: 50px; }
+      .popup-container .popup .popup-content .popup-body .error-container {
+        margin-bottom: 10px; }
+        .popup-container .popup .popup-content .popup-body .error-container .error {
+          color: #f75c4b; }
+      .popup-container .popup .popup-content .popup-body .input-group-addon {
+        padding: 0 20px;
+        font-size: 18px; }
+      .popup-container .popup .popup-content .popup-body .total {
+        padding: 0 0 30px;
+        text-align: center; }
+        .popup-container .popup .popup-content .popup-body .total .top-title {
           display: block;
-          font-size: 28px;
-          font-weight: 600; }
-        .popup-container .popup .popup-content .popup-header .list-cards img {
-          width: 60px; }
-      .popup-container .popup .popup-content .popup-body {
-        padding: 10px 20px; }
-        .popup-container .popup .popup-content .popup-body .list-cards {
-          margin-bottom: 20px; }
-          .popup-container .popup .popup-content .popup-body .list-cards img {
-            width: 60px; }
-        .popup-container .popup .popup-content .popup-body .error-container {
-          margin-bottom: 10px; }
-          .popup-container .popup .popup-content .popup-body .error-container .error {
-            color: #f75c4b; }
-        .popup-container .popup .popup-content .popup-body .input-group-addon {
-          padding: 0 20px;
-          font-size: 18px; }
-        .popup-container .popup .popup-content .popup-body .total {
-          padding: 0 0 30px;
-          text-align: center; }
-          .popup-container .popup .popup-content .popup-body .total .top-title {
-            display: block;
-            font-weight: 400; }
-          .popup-container .popup .popup-content .popup-body .total .price {
-            font-size: 48px;
-            font-weight: 500; }
-        .popup-container .popup .popup-content .popup-body .rest {
-          padding: 0 0 30px;
-          text-align: center; }
-          .popup-container .popup .popup-content .popup-body .rest .top-title {
-            display: block;
-            font-weight: 400; }
-          .popup-container .popup .popup-content .popup-body .rest .price {
-            font-size: 38px;
-            font-weight: 500; }
-        .popup-container .popup .popup-content .popup-body .price-field {
-          text-align: right; }
-        .popup-container .popup .popup-content .popup-body .message {
-          text-align: center;
-          padding: 20px 0; }
-        .popup-container .popup .popup-content .popup-body .details {
-          overflow: auto; }
-          .popup-container .popup .popup-content .popup-body .details .form-group {
-            overflow: auto;
-            margin-bottom: 5px; }
-            .popup-container .popup .popup-content .popup-body .details .form-group .item {
-              float: left;
-              width: 70%; }
-            .popup-container .popup .popup-content .popup-body .details .form-group .amount {
-              float: left;
-              width: 20%;
-              text-align: center;
-              border-left: none; }
-          .popup-container .popup .popup-content .popup-body .details .list {
-            overflow: auto;
-            margin-bottom: 5px; }
-            .popup-container .popup .popup-content .popup-body .details .list .item {
-              float: left;
-              width: 75%; }
-            .popup-container .popup .popup-content .popup-body .details .list .amount {
-              float: left;
-              width: 15%;
-              text-align: center;
-              border-left: none;
-              border-right: none;
-              padding: 5px; }
-            .popup-container .popup .popup-content .popup-body .details .list button {
-              width: 10%;
-              outline: none; }
-          .popup-container .popup .popup-content .popup-body .details .new {
-            overflow: auto;
-            margin-bottom: 5px; }
-            .popup-container .popup .popup-content .popup-body .details .new .item {
-              float: left;
-              width: 75%; }
-            .popup-container .popup .popup-content .popup-body .details .new .amount {
-              float: left;
-              width: 25%;
-              text-align: center;
-              border-left: none; }
-          .popup-container .popup .popup-content .popup-body .details .actions {
-            padding: 0 0 30px; }
-            .popup-container .popup .popup-content .popup-body .details .actions .btn-link {
-              font-size: 18px; }
-        .popup-container .popup .popup-content .popup-body .actions {
-          padding-top: 30px; }
-          .popup-container .popup .popup-content .popup-body .actions .btn {
-            width: 100%;
-            font-weight: 500;
-            outline: none; }
-          .popup-container .popup .popup-content .popup-body .actions .btn-warning {
-            color: black; }
-          .popup-container .popup .popup-content .popup-body .actions .btn-warning:hover {
-            color: black !important; }
-        .popup-container .popup .popup-content .popup-body .input {
-          max-width: 200px;
-          margin: auto; }
-      .popup-container .popup .popup-content .popup-footer {
-        text-align: right;
-        padding: 20px;
-        border-top: 1px solid #dce0e0; }
-        .popup-container .popup .popup-content .popup-footer .btn {
-          border-radius: 4px;
-          height: 50px;
-          line-height: 50px;
-          font-size: 21px;
-          padding: 0 30px;
           font-weight: 400; }
-          .popup-container .popup .popup-content .popup-footer .btn i {
-            margin-right: 10px; }
-        .popup-container .popup .popup-content .popup-footer .btn-secondary {
-          border-color: #c4c4c4;
-          background: white;
-          color: #484848; }
-        .popup-container .popup .popup-content .popup-footer .btn-secondary:hover {
-          border-color: #aaa;
-          color: #484848; }
-        .popup-container .popup .popup-content .popup-footer .btn-danger {
-          border-color: #ff5a5f;
-          background-color: #ff5a5f; }
-        .popup-container .popup .popup-content .popup-footer .btn-danger:hover {
-          border-color: #ff7e82;
-          background-color: #ff7e82; }
-        .popup-container .popup .popup-content .popup-footer .error-container {
-          margin-bottom: 10px; }
-          .popup-container .popup .popup-content .popup-footer .error-container .error {
-            color: #f75c4b; }
+        .popup-container .popup .popup-content .popup-body .total .price {
+          font-size: 48px;
+          font-weight: 500; }
+      .popup-container .popup .popup-content .popup-body .rest {
+        padding: 0 0 30px;
+        text-align: center; }
+        .popup-container .popup .popup-content .popup-body .rest .top-title {
+          display: block;
+          font-weight: 400; }
+        .popup-container .popup .popup-content .popup-body .rest .price {
+          font-size: 38px;
+          font-weight: 500; }
+      .popup-container .popup .popup-content .popup-body .price-field {
+        text-align: right; }
+      .popup-container .popup .popup-content .popup-body .message {
+        text-align: center;
+        padding: 20px 0; }
+      .popup-container .popup .popup-content .popup-body .details {
+        overflow: auto; }
+        .popup-container .popup .popup-content .popup-body .details .form-group {
+          overflow: auto;
+          margin-bottom: 5px; }
+          .popup-container .popup .popup-content .popup-body .details .form-group .item {
+            float: left;
+            width: 70%; }
+          .popup-container .popup .popup-content .popup-body .details .form-group .amount {
+            float: left;
+            width: 20%;
+            text-align: center;
+            border-left: none; }
+        .popup-container .popup .popup-content .popup-body .details .list {
+          overflow: auto;
+          margin-bottom: 5px; }
+          .popup-container .popup .popup-content .popup-body .details .list .item {
+            float: left;
+            width: 75%; }
+          .popup-container .popup .popup-content .popup-body .details .list .amount {
+            float: left;
+            width: 15%;
+            text-align: center;
+            border-left: none;
+            border-right: none;
+            padding: 5px; }
+          .popup-container .popup .popup-content .popup-body .details .list button {
+            width: 10%;
+            outline: none; }
+        .popup-container .popup .popup-content .popup-body .details .new {
+          overflow: auto;
+          margin-bottom: 5px; }
+          .popup-container .popup .popup-content .popup-body .details .new .item {
+            float: left;
+            width: 75%; }
+          .popup-container .popup .popup-content .popup-body .details .new .amount {
+            float: left;
+            width: 25%;
+            text-align: center;
+            border-left: none; }
+        .popup-container .popup .popup-content .popup-body .details .actions {
+          padding: 0 0 30px; }
+          .popup-container .popup .popup-content .popup-body .details .actions .btn-link {
+            font-size: 18px; }
+      .popup-container .popup .popup-content .popup-body .actions {
+        padding-top: 30px; }
+        .popup-container .popup .popup-content .popup-body .actions .btn {
+          width: 100%;
+          font-weight: 500;
+          outline: none; }
+        .popup-container .popup .popup-content .popup-body .actions .btn-warning {
+          color: black; }
+        .popup-container .popup .popup-content .popup-body .actions .btn-warning:hover {
+          color: black !important; }
+      .popup-container .popup .popup-content .popup-body .input {
+        max-width: 200px;
+        margin: auto; }
+    .popup-container .popup .popup-content .popup-footer {
+      padding: 20px;
+      border-top: 1px solid #dce0e0; }
+      .popup-container .popup .popup-content .popup-footer .btn {
+        border-radius: 4px;
+        height: 50px;
+        line-height: 50px;
+        font-size: 21px;
+        padding: 0 30px;
+        font-weight: 400; }
+        .popup-container .popup .popup-content .popup-footer .btn i {
+          margin-right: 10px; }
+      .popup-container .popup .popup-content .popup-footer .btn-secondary {
+        border-color: #c4c4c4;
+        background: white;
+        color: #484848; }
+      .popup-container .popup .popup-content .popup-footer .btn-secondary:hover {
+        border-color: #aaa;
+        color: #484848; }
+      .popup-container .popup .popup-content .popup-footer .btn-danger {
+        border-color: #ff5a5f;
+        background-color: #ff5a5f; }
+      .popup-container .popup .popup-content .popup-footer .btn-danger:hover {
+        border-color: #ff7e82;
+        background-color: #ff7e82; }
+      .popup-container .popup .popup-content .popup-footer .error-container {
+        margin-bottom: 10px; }
+        .popup-container .popup .popup-content .popup-footer .error-container .error {
+          color: #f75c4b; }
   .popup-container .popup-post {
     max-width: 700px; }
 
+@media (max-width: 768px) {
+  .popup-container {
+    padding: 0 10px; } }
 @media (max-width: 425px) {
   .popup-container {
     padding: 0 10px; }
 
   .popup-container .popup {
     position: relative;
-    width: 100%;
-    margin: 10px auto; } }
+    width: 100%; } }
 @font-face {
   font-family: 'FontAwesome';
   src: url("/assets/fonts/fontawesome-webfont.eot?v=4.7.0");
@@ -3807,7 +3812,7 @@ app-home {
             margin-left: 50px; }
         app-home .home-container .home .home-content .home-body .post {
           background: white;
-          margin-top: 50px;
+          margin-top: 40px;
           margin-bottom: 10px;
           border-radius: 10px;
           border: solid 1px #e0e0e0;
@@ -4118,20 +4123,14 @@ app-home {
                   margin-top: 10px;
                   text-align: center;
                   border-radius: 3px;
-                  color: #fff;
-                  background-color: #12bf53;
-                  filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
-                  background-repeat: repeat-x;
-                  white-space: normal;
                   cursor: pointer;
-                  outline: none; }
+                  height: auto; }
                   app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-actions .btn-action .title {
                     display: block;
                     font-weight: 500;
                     color: white;
                     line-height: 60px;
-                    font-size: 30px;
-                    padding: 0 60px; }
+                    font-size: 25px; }
                   app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-actions .btn-action .price {
                     float: right;
                     line-height: 65px;
@@ -4139,10 +4138,6 @@ app-home {
                     font-weight: 900;
                     border-left: 1px solid white;
                     padding: 0 25px; }
-                app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-actions .btn-action:hover {
-                  background-color: #11d75b; }
-                app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-actions .btn-action:active:hover {
-                  background-color: #11d75b; }
                 app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-actions .btn-closed {
                   background: #bdc3c7 !important;
                   box-shadow: none !important;
@@ -4309,15 +4304,18 @@ app-home {
             app-home .home-container .home .home-content .home-footer .footer a {
               cursor: pointer; }
   app-home .popup-container .contact {
-    max-width: 700px; }
+    max-width: 800px;
+    border-radius: 5px; }
+  app-home .popup-container .proposal {
+    max-width: 800px;
+    border-radius: 5px; }
   app-home .popup-container .popup .popup-content .popup-header p {
     font-family: 'Open Sans', sans-serif;
     font-size: 16px !important;
     margin-top: 5px;
     line-height: 24px; }
   app-home .popup-container .popup .popup-content .popup-header .post-title {
-    font-weight: 600;
-    margin-top: 5px; }
+    font-weight: 600; }
   app-home .popup-container .popup .popup-content .popup-header .post-timer {
     display: block;
     margin-top: 20px; }
@@ -4344,6 +4342,34 @@ app-home {
         width: 45px;
         text-align: center;
         height: 35px; }
+  app-home .popup-container .popup .popup-content .popup-header .post-warranty {
+    display: block;
+    font-family: 'Open Sans', sans-serif;
+    text-align: right; }
+    app-home .popup-container .popup .popup-content .popup-header .post-warranty .warranty-amount {
+      float: right;
+      display: inline-flex; }
+      app-home .popup-container .popup .popup-content .popup-header .post-warranty .warranty-amount .warranty-price {
+        font-size: 32px;
+        font-weight: 900;
+        color: #2ecc71;
+        line-height: 26px; }
+      app-home .popup-container .popup .popup-content .popup-header .post-warranty .warranty-amount .warranty-cent {
+        font-size: 16px;
+        font-weight: 900;
+        color: #2ecc71;
+        line-height: 18px; }
+    app-home .popup-container .popup .popup-content .popup-header .post-warranty .warranty-text {
+      text-align: left; }
+      app-home .popup-container .popup .popup-content .popup-header .post-warranty .warranty-text .warranty-title {
+        display: block;
+        font-size: 12px;
+        font-weight: 600;
+        color: #343a43; }
+      app-home .popup-container .popup .popup-content .popup-header .post-warranty .warranty-text .warranty-description {
+        display: block;
+        color: rgba(0, 0, 0, 0.7);
+        font-size: 12px; }
   app-home .popup-container .thankyoupage .popup-content .popup-header {
     text-align: center; }
     app-home .popup-container .thankyoupage .popup-content .popup-header .purchased-icon {
@@ -4351,6 +4377,21 @@ app-home {
       color: #27ae60; }
     app-home .popup-container .thankyoupage .popup-content .popup-header p {
       padding-top: 10px; }
+  app-home .popup-container .contact .popup-content .popup-header {
+    overflow: hidden; }
+  app-home .popup-container .popup .popup-content .popup-header .badge {
+    float: left;
+    background: #f39c12;
+    width: 22px;
+    height: 22px;
+    line-height: 22px;
+    text-align: center;
+    border-radius: 20px;
+    color: white;
+    font-weight: 600; }
+  app-home .popup-container .popup .popup-content .popup-header .list-item {
+    display: block;
+    margin-left: 30px; }
   app-home .popup-container .thankyoupage .popup-content .popup-body {
     text-align: center; }
     app-home .popup-container .thankyoupage .popup-content .popup-body .btn-done {
@@ -4393,24 +4434,27 @@ app-home {
     width: 100%;
     overflow: auto; }
     app-home .popup-container .popup .popup-content .popup-body .info .label {
-      float: left;
-      font-size: 15px;
-      font-weight: 600;
-      color: #A3A3A3; }
+      display: block;
+      font-size: 17px;
+      font-weight: 500;
+      color: #343a43;
+      line-height: 26px; }
     app-home .popup-container .popup .popup-content .popup-body .info .content {
       display: block;
-      margin-left: 120px;
       font-size: 16px;
-      color: black; }
+      color: #343a43; }
+    app-home .popup-container .popup .popup-content .popup-body .info .content-budget {
+      line-height: 26px; }
     app-home .popup-container .popup .popup-content .popup-body .info .customer-type {
       text-transform: uppercase;
       font-weight: 700;
-      color: rgba(0, 0, 0, 0.7); }
+      color: rgba(0, 0, 0, 0.7);
+      line-height: 26px; }
     app-home .popup-container .popup .popup-content .popup-body .info .verified-image {
       display: block;
       font-size: 18px;
       color: rgba(0, 0, 0, 0.8);
-      height: 22px; }
+      height: 26px; }
     app-home .popup-container .popup .popup-content .popup-body .info .priority {
       color: #f39c12; }
     app-home .popup-container .popup .popup-content .popup-body .info .competitors {
@@ -4427,6 +4471,10 @@ app-home {
         font-size: 28px;
         font-weight: 900;
         line-height: 28px; }
+  app-home .popup-container .popup .popup-content .popup-body .map-container {
+    border: 1px solid black; }
+    app-home .popup-container .popup .popup-content .popup-body .map-container .sebm-google-map-container {
+      height: 120px; }
   app-home .popup-container .popup .popup-content .popup-body .customer-company {
     padding: 10px;
     margin-bottom: 10px;
@@ -4442,6 +4490,70 @@ app-home {
     background-color: white; }
   app-home .popup-container .popup .popup-content .popup-body .active-customer {
     background-color: white; }
+  app-home .popup-container .popup .popup-content .popup-body .section-title {
+    padding: 20px 0; }
+  app-home .popup-container .popup .popup-content .popup-body .divider {
+    border-top: 1px solid #cbd3d5;
+    margin: 20px 0; }
+  app-home .popup-container .popup .popup-content .popup-body .estimate-price {
+    padding: 4px 16px;
+    background: white;
+    border: solid 1px #e6e6e6; }
+    app-home .popup-container .popup .popup-content .popup-body .estimate-price .form-control {
+      border: 0;
+      font-size: 50px;
+      padding: 0; }
+  app-home .popup-container .popup .popup-content .popup-body .info-client {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    display: block;
+    width: 100%;
+    overflow: auto; }
+    app-home .popup-container .popup .popup-content .popup-body .info-client .client-avatar {
+      width: 40px;
+      height: 40px;
+      background: #f39c12;
+      border-radius: 3px;
+      float: left; }
+      app-home .popup-container .popup .popup-content .popup-body .info-client .client-avatar .name-initials {
+        line-height: 40px;
+        font-size: 17px;
+        text-align: center;
+        display: block; }
+    app-home .popup-container .popup .popup-content .popup-body .info-client .client-name {
+      display: block;
+      margin-left: 50px;
+      font-size: 16px;
+      font-weight: 700; }
+    app-home .popup-container .popup .popup-content .popup-body .info-client .client-request {
+      font-size: 16px;
+      color: #343a43;
+      display: block;
+      margin-left: 50px; }
+  app-home .popup-container .popup .popup-content .popup-body .security-message {
+    font-size: 12px !important; }
+  app-home .popup-container .popup .popup-content .popup-body .default-card-container {
+    padding: 15px;
+    border: 1px solid #dce0e0;
+    background: white;
+    margin-bottom: 10px;
+    border-radius: 5px; }
+    app-home .popup-container .popup .popup-content .popup-body .default-card-container .default-card .checked {
+      font-size: 25px;
+      color: #007bff;
+      float: left; }
+    app-home .popup-container .popup .popup-content .popup-body .default-card-container .default-card .unchecked {
+      font-size: 25px;
+      color: #ccc;
+      float: left; }
+    app-home .popup-container .popup .popup-content .popup-body .default-card-container .default-card .card-item {
+      line-height: 24px;
+      margin-left: 8px; }
+    app-home .popup-container .popup .popup-content .popup-body .default-card-container .new-card .new-card-item {
+      line-height: 24px;
+      margin-left: 8px; }
+  app-home .popup-container .popup .popup-content .popup-body .default-card-container:hover {
+    background: #fafafa; }
   app-home .popup-container .popup .popup-content .popup-footer .description-purchase {
     text-align: center;
     font-size: 20px !important;
@@ -4450,7 +4562,8 @@ app-home {
   app-home .popup-container .popup .popup-content .popup-footer .description-small {
     text-align: center;
     font-weight: 300;
-    font-size: 17px !important; }
+    font-size: 17px !important;
+    margin: 10px 0; }
   app-home .popup-container .popup .popup-content .popup-footer .post-timer {
     display: block; }
     app-home .popup-container .popup .popup-content .popup-footer .post-timer .text {
@@ -4527,6 +4640,18 @@ app-home {
     -webkit-box-shadow: none;
     -moz-box-shadow: none;
     box-shadow: none; }
+  app-home .popup-container .popup .popup-content .popup-footer .btn-preview {
+    display: inline-block;
+    position: relative;
+    text-align: center;
+    width: 100%;
+    border-radius: 3px;
+    white-space: normal;
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 60px;
+    height: auto;
+    cursor: pointer; }
   app-home .popup-container .popup .popup-content .popup-footer .actions {
     text-align: center; }
     app-home .popup-container .popup .popup-content .popup-footer .actions .btn {
@@ -4595,6 +4720,36 @@ app-home {
       background-color: #2c3e50; }
     app-home .popup-container .popup .popup-content .popup-footer .actions .btn-list:hover {
       background-color: #2c3e50; }
+  app-home .popup-container .popup .popup-content .popup-footer .btn-confirm {
+    width: 100%;
+    font-size: 26px;
+    line-height: 55px;
+    padding: 0;
+    height: auto; }
+    app-home .popup-container .popup .popup-content .popup-footer .btn-confirm .title {
+      font-weight: 500;
+      color: white;
+      font-size: 24px; }
+    app-home .popup-container .popup .popup-content .popup-footer .btn-confirm .warranty-amount {
+      float: right;
+      font-size: 30px;
+      font-weight: 900;
+      border-left: 1px solid white;
+      padding: 0 15px;
+      line-height: 55px;
+      display: inline-flex; }
+      app-home .popup-container .popup .popup-content .popup-footer .btn-confirm .warranty-amount .warranty-price {
+        font-size: 28px;
+        font-weight: 500;
+        line-height: 55px; }
+      app-home .popup-container .popup .popup-content .popup-footer .btn-confirm .warranty-amount .warranty-cent {
+        font-size: 18px;
+        font-weight: 500;
+        line-height: 46px; }
+  app-home .popup-container .popup .popup-content .popup-footer .security-message {
+    font-size: 12px !important;
+    margin-top: 10px;
+    display: block; }
   app-home .popup-container .popup .popup-content .popup-footer .refund {
     float: left; }
   app-home .popup-container .popup .popup-content .popup-footer .refund .refund-image {
@@ -4604,10 +4759,6 @@ app-home {
     margin-left: 10px;
     font-size: 18px;
     line-height: 50px; }
-  app-home .popup-container .popup .popup-content .popup-footer .btn {
-    margin-top: 15px; }
-  app-home .popup-container .popup .popup-content .popup-footer .btn-full-width {
-    width: 100%; }
 
 @media (max-width: 1024px) {
   app-home .home-container .home .home-content .home-body .post {
@@ -9481,7 +9632,7 @@ app-account {
           text-align: left;
           color: rgba(0, 0, 0, 0.7); }
           app-account .account-container .account-tab ul li .btn-transparent i {
-            margin-right: 5px;
+            margin-right: 10px;
             color: rgba(0, 0, 0, 0.7); }
         app-account .account-container .account-tab ul li .btn-transparent:hover {
           font-weight: 400;
