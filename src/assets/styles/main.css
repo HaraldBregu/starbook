@@ -4471,10 +4471,6 @@ app-home {
         font-size: 28px;
         font-weight: 900;
         line-height: 28px; }
-  app-home .popup-container .popup .popup-content .popup-body .map-container {
-    border: 1px solid black; }
-    app-home .popup-container .popup .popup-content .popup-body .map-container .sebm-google-map-container {
-      height: 120px; }
   app-home .popup-container .popup .popup-content .popup-body .customer-company {
     padding: 10px;
     margin-bottom: 10px;
@@ -11787,6 +11783,11 @@ app-dataentry {
       margin: auto; }
       app-dataentry .dataentry-container .dataentry .dataentry-content {
         position: relative; }
+
+app-maps .map-container {
+  border: 1px solid black; }
+  app-maps .map-container .sebm-google-map-container {
+    height: 120px; }
 
 ngb-datepicker,
 .datepicker {

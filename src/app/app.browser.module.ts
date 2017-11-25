@@ -79,6 +79,9 @@ const googleMapsCore = AgmCoreModule.forRoot({
   apiKey : 'AIzaSyCLc5etDSrqieAn4lPCsvFDpkM3-F7-c5M',
 });
 
+import { MapsComponent } from './maps/maps.component';
+import { MapsService } from './maps/maps.service';
+
 export class HammerConfig extends HammerGestureConfig  {
   overrides = <any> {
     'swipe': {velocity: 0.4, threshold: 20}
@@ -131,6 +134,7 @@ let declarations = [
   NotfoundComponent,
   TestsComponent,
   DataentryComponent,
+  MapsComponent,
   // ClipboardDirective,
   FormatterDirective,
   CurrencyPipe,
@@ -188,7 +192,8 @@ else {
     ShareService,
     ClipboardService,
     PostsService,
-    CurrencyPipe
+    CurrencyPipe,
+    MapsService,
   ],
   exports:exp
 })

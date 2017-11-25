@@ -4,7 +4,7 @@
     <div class="row">
       <div class="col-md-6">
         <button *ngIf="(!post.status || post.status.active===true) && !fragment" type="button" class="btn btn-success btn-action" id="previewPurchaseContact" (click)="previewPurchase(post)">
-          <span class="title" id="previewPurchaseContact">Contatta cliente</span>
+          <span class="title" id="previewPurchaseContact">Più informazioni</span>
         </button>
       </div>
       <div class="col-md-6">
@@ -16,16 +16,12 @@
   </div>
   <div *ngIf="countContacts===0">
     <button *ngIf="(!post.status || post.status.active===true) && !fragment" type="button" class="btn btn-success btn-action" id="previewPurchaseContact" (click)="previewPurchase(post)">
-      <span class="title" id="previewPurchaseContact">Contatta cliente</span>
+      <span class="title" id="previewPurchaseContact">Più informazioni</span>
     </button>
   </div> -->
 
-  <!-- <button *ngIf="(!post.status || post.status.active===true) && !fragment" type="button" class="btn btn-action" id="previewPurchaseContact" (click)="previewPurchase(post)">
-    <span class="title" id="previewPurchaseContact">Contatta cliente</span>
-  </button> -->
-
-  <button *ngIf="(!post.status || post.status.active===true) && !fragment" type="button" class="btn btn-success btn-action" id="previewPurchaseContact" (click)="previewPurchase(post)">
-    <span class="title" id="previewPurchaseContact">Contatta cliente</span>
+  <button *ngIf="(!post.status || post.status.active===true) && !fragment" type="button" class="btn btn-warning btn-action" id="previewPurchaseContact" (click)="previewPurchase(post)">
+    <span class="title" id="previewPurchaseContact">Più informazioni</span>
   </button>
 
   <button *ngIf="(post.status && post.status.active===false) && !fragment" type="button" class="btn btn-action btn-closed" id="previewClosedContact">

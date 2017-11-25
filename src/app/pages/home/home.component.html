@@ -270,19 +270,7 @@
                   <span class="label left">Comune:</span>
                   <span class="content content-mobile-right right">{{checkPostLocation(selected_post)}}</span>
                 </div>
-                <div class="map-container">
-                  <sebm-google-map
-                  [latitude]="Map.latitude"
-                  [longitude]="Map.longitude"
-                  [zoom]="Map.zoom"
-                  [zoomControl]="false"
-                  [streetViewControl]="false"
-                  [disableDefaultUI]="true" [scrollwheel]="false"
-                  [disableDoubleClickZoom]="true" [mapDraggable]="false">
-                    <sebm-google-map-marker [latitude]="Map.latitude" [longitude]="Map.longitude">
-                    </sebm-google-map-marker>
-                  </sebm-google-map>
-                </div>
+                <app-maps [city]="selected_post.address.city"></app-maps>
                 <div class="info">
                   <span class="label left">Cliente:</span>
                   <span class="content content-mobile-right customer-type right">PRIVATO</span>
@@ -307,7 +295,7 @@
         <div class="row">
           <div class="col-md-12" *ngIf="!purchased_post">
             <button type="button" class="btn btn-danger btn-preview" id="previewPurchaseContact" (click)="showPreviewPurchasePost(selected_post)">
-              Contatta cliente
+              Vedi tutti i dati
             </button>
           </div>
           <div class="col-md-12" *ngIf="purchased_post && (purchased_post._id===selected_post._id)">
@@ -652,8 +640,6 @@
   </div>
 </div>
 
-
-
 <!-- <div class="popup-container" [ngStyle]="{'display' : popup==='NEW_CARD_POPUP' ? 'block' : 'none'}">
   <div class="popup-shadow" [ngStyle]="{'display' : popup ? 'block' : 'none'}" (click)="popup='PREVIEW_PURCHASE_CONTACT_POPUP';"></div>
   <div class="popup">
@@ -787,19 +773,7 @@
                   <span class="label left">Comune:</span>
                   <span class="content content-mobile-right right">{{checkPostLocation(selected_post)}}</span>
                 </div>
-                <div class="map-container">
-                  <sebm-google-map
-                  [latitude]="Map.latitude"
-                  [longitude]="Map.longitude"
-                  [zoom]="Map.zoom"
-                  [zoomControl]="false"
-                  [streetViewControl]="false"
-                  [disableDefaultUI]="true" [scrollwheel]="false"
-                  [disableDoubleClickZoom]="true" [mapDraggable]="false">
-                    <sebm-google-map-marker [latitude]="Map.latitude" [longitude]="Map.longitude">
-                    </sebm-google-map-marker>
-                  </sebm-google-map>
-                </div>
+                <app-maps [city]="selected_post.address.city"></app-maps>
                 <div class="info">
                   <span class="label left">Cliente:</span>
                   <span class="content content-mobile-right customer-type right">PRIVATO</span>

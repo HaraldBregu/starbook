@@ -74,6 +74,9 @@ import { ActionComponent } from './pages/home/action/action.component';
 
 import { DataentryComponent } from './pages/dataentry/dataentry.component';
 
+import { MapsComponent } from './maps/maps.component';
+import { MapsService } from './maps/maps.service';
+
 // import { ClipboardDirective } from './directives/clipboard.directive';
 
 // import { RouterModule } from '@angular/router';
@@ -149,6 +152,7 @@ let declarations = [
   CurrencyCentPipe,
   PhonePipe,
   ExpiryPipe,
+  MapsComponent,
 ];
 let exp = [
   FormatterDirective,
@@ -200,7 +204,8 @@ else {
     PostsService,
     CurrencyPipe,
     CurrencyFormatPipe,
-    CurrencyCentPipe
+    CurrencyCentPipe,
+    MapsService
   ],
   exports:exp
 })

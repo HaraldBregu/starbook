@@ -111,12 +111,6 @@ export class HomeComponent implements OnInit {
     error: null
   }
 
-  public Map = {
-    latitude: 45.464211,
-    longitude: 9.191383,
-    zoom: 8
-  }
-
   constructor(private route: ActivatedRoute, private router: Router, private navigationService: NavigationService, private seoService: SeoService, private ordersService: OrdersService, public commonService: CommonService, private authService: AuthService, private paymentService: PaymentService, private fb: FacebookService, private http: Http) {
     this.navigationService.updateMessage("Bacheca del lavoro")
     this.emailPattern = /^[a-z0-9!#$%&'*+\/=?^_`{|}~.-]+@[a-z0-9]([a-z0-9-]*[a-z0-9])?(\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)*$/i;
@@ -279,13 +273,6 @@ export class HomeComponent implements OnInit {
   }
   getFirstChar(word) {
     return word.charAt(0)
-  }
-  showLocByCity() {
-    this.ordersService.getLocationByCity("Milano").then((location) => {
-      return 45.464211
-    }).catch((error) => {
-      // console.log(error);
-    });
   }
 
   previewUpdatePost(post) {
