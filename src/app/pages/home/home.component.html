@@ -1,9 +1,9 @@
 <div class="home-container">
   <div class="home">
     <div class="home-content">
-      <div class="home-header" *ngIf="!fragment">
+      <!-- <div class="home-header" *ngIf="!fragment">
         <div *ngIf="!params.id">
-          <h1 class="title">Richieste per: <b>Lavori, Servizi, Preventivi</b></h1>
+          <h1 class="title">Clienti per serramenti, porte interne e infissi</h1>
           <p class="description">
             Trova una richiesta di lavoro per la tua categoria. Garantisci l'acquisto del contatto in caso di lavoro accettato. Ricevi i dati del cliente e contattalo direttamente.
           </p>
@@ -14,8 +14,9 @@
             Garantisci l'acquisto del contatto in caso di lavoro accettato. Ricevi i dati del cliente e contattalo direttamente.
           </p>
         </div>
-      </div>
+      </div> -->
       <div class="home-header" *ngIf="!fragment">
+        <h1 class="title">Clienti per serramenti</h1>
         <div class="options">
           <div class="row">
             <div class="col-md-4">
@@ -26,12 +27,13 @@
             <div class="col-md-4">
               <img src="../assets/images/pay-for-job.png" alt="pagamento">
               <span class="opt-title">Acquisti in sicurezza</span>
-              <span class="opt-description">Il pagamento del totale viene effettuato solo se il cliente accetta la sua offerta.</span>
+              <!-- <span class="opt-description">Il pagamento del totale viene effettuato solo se il cliente accetta la sua offerta.</span> -->
+              <span class="opt-description">L'acquisto del contatto viene effettuato con processori di pagamento sicuri.</span>
             </div>
             <div class="col-md-4">
               <img src="../assets/images/refund-guarantee.png" alt="rimborso">
-              <span class="opt-title">Rimborso credito</span>
-              <span class="opt-description">Il tuoi acquisti ritornano sempre con il sistema del rimborso credito.</span>
+              <span class="opt-title">Raccogli crediti</span>
+              <span class="opt-description">Il tuoi acquisti ritornano raccogliendo sempre più crediti.</span>
               <!-- <span class="opt-title">Ritorno sull'investimento</span>
               <span class="opt-description">Il tuo investimento ritorna sempre con il sistema del rimborso credito.</span> -->
             </div>
@@ -70,8 +72,8 @@
                   <span class="warranty-price">{{ getDecimalPartPrice(post) }}</span><span class="warranty-cent">,{{ getFracPartPrice(post) }}€</span>
                 </div>
                 <div class="warranty-text">
-                  <span class="warranty-title">Garantisci:</span>
-                  <span class="warranty-description"><i>iva inclusa</i></span>
+                  <span class="warranty-title">Contatto</span>
+                  <span class="warranty-description"><i>(iva inclusa)</i></span>
                   <!-- <span class="warranty-description"><i>Per lavoro accettato</i></span> -->
                 </div>
               </div>

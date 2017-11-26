@@ -32,7 +32,11 @@
       </li> -->
 
       <li class="nav-item account" *ngIf="auth">
-        <a class="nav-link" [ngClass]="{'active': (page==='Account')}" routerLink="/account/profile"><img class="image" [src]="account_avatar_url" (error)="errorHandler($event)" alt="avatar"><span>Account</span></a>
+        <a class="nav-link" [ngClass]="{'active': (page==='Account')}" routerLink="/account/profile"><img class="image" [src]="account_avatar_url" (error)="errorHandler($event)" alt="avatar">
+          <span>Account</span>
+          <!-- <span class="account-title">Account</span>
+          <span class="account-name">{{auth.profile.firstname}}</span> -->
+        </a>
       </li>
 
       <li class="nav-item">

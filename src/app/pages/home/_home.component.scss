@@ -30,6 +30,7 @@ app-home {
           .title {
             font-weight: 300;
             color: rgba(0, 0, 0, 0.70);
+            margin-bottom: 30px;
           }
           i {
             color: #2ecc71;
@@ -585,7 +586,7 @@ app-home {
               .post-footer {
                 overflow: hidden;
                 border-top: solid 1px #e0e0e0;
-                padding: 30px 50px;
+                padding: 20px 50px;
                 .post-message {
                   float: left;
                   span {

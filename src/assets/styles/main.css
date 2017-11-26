@@ -3788,7 +3788,8 @@ app-home {
             float: left; }
           app-home .home-container .home .home-content .home-header .title {
             font-weight: 300;
-            color: rgba(0, 0, 0, 0.7); }
+            color: rgba(0, 0, 0, 0.7);
+            margin-bottom: 30px; }
           app-home .home-container .home .home-content .home-header i {
             color: #2ecc71;
             font-size: 19px;
@@ -4218,7 +4219,7 @@ app-home {
             app-home .home-container .home .home-content .home-body .post .post-content .post-footer {
               overflow: hidden;
               border-top: solid 1px #e0e0e0;
-              padding: 30px 50px; }
+              padding: 20px 50px; }
               app-home .home-container .home .home-content .home-body .post .post-content .post-footer .post-message {
                 float: left; }
                 app-home .home-container .home .home-content .home-body .post .post-content .post-footer .post-message span {
