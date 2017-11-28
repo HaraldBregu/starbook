@@ -1,0 +1,32 @@
+<div class="progress-container" *ngIf="step">
+  <div class="progress" [ngStyle]="{'width': getProgressWidth()}">
+  </div>
+</div>
+<div class="loader-container" *ngIf="loading">
+  <i class="fa fa-circle-o-notch animate loader"></i>
+</div>
+
+<div class="request-container">
+  <button type="button" id="next" class="btn btn-success" (click)="previousStep()">Indietro</button>
+  <div class="request max-width-500">
+    <div class="request-content">
+      <div class="request-header">
+        <h1 class="title-step">Tipologia del lavoro</h1>
+        <p class="description-step">Inserisci il tipo del lavoro che hai bisogno di realizzare.</p>
+      </div>
+      <div class="request-body">
+        <form>
+        </form>
+        <!-- <a id="next" class="btn btn-success back" (click)="previousStep()">Indietro</a> -->
+      </div>
+      <div class="request-footer">
+        <div class="form-group">
+          <button type="button" class="btn btn-success btn-next" (click)="nextStep()">AVANTI</button>
+        </div>
+        <!-- <div class="form-group">
+        </div> -->
+        <p>titoli small</p>
+      </div>
+    </div>
+  </div>
+</div>

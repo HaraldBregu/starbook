@@ -125,6 +125,9 @@ export class AppComponent implements OnInit, OnDestroy {
             else if (this.page === "Profile") {
               this.hasNavigation = true
             }
+            else if (this.page === "Request") {
+              this.hasNavigation = true
+            }
             else {
               this.hasNavigation = true
               this.hasCenterContainer = true;

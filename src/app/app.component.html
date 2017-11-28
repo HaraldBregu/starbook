@@ -9,15 +9,21 @@
       </div>
     </div>
     <ul class="nav navbar-nav navbar-right">
+
       <li class="nav-item signup-item" *ngIf="!auth && (page==='Company' || page==='Business')">
         <a class="btn btn-success btn-signup" routerLink="/auth/signup">Iscriviti</a>
       </li>
-      <li class="nav-item account">
+
+      <!-- <li class="nav-item" *ngIf="page!=='Request'">
+        <a class="nav-link request" [ngClass]="{'active': (page==='Request')}" routerLink="/request"><i class="fa fa-plus" aria-hidden="true"></i></a>
+      </li> -->
+
+      <li class="nav-item account" *ngIf="page!=='Request'">
         <a class="nav-link work" [ngClass]="{'active': (page==='Home')}" routerLink="/post"><i class="fa fa-briefcase" aria-hidden="true"></i></a>
       </li>
-      <li class="nav-item account" *ngIf="auth">
+      <!-- <li class="nav-item account" *ngIf="auth">
         <a class="nav-link message" routerLink="/account/contacts"><i class="fa fa-phone" aria-hidden="true"></i></a>
-      </li>
+      </li> -->
       <!-- <li class="nav-item account" *ngIf="auth">
         <a class="nav-link message" routerLink="/account/requests"><i class="fa fa-inbox" aria-hidden="true"></i></a>
       </li> -->
@@ -31,7 +37,7 @@
         <a class="nav-link" [ngClass]="{'active': (page==='Business')}" routerLink="/account/profile"><img class="image" [src]="account_avatar_url" (error)="errorHandler($event)" alt="avatar"><span>Account</span></a>
       </li> -->
 
-      <li class="nav-item account" *ngIf="auth">
+      <li class="nav-item account" *ngIf="auth && page!=='Request'">
         <a class="nav-link" [ngClass]="{'active': (page==='Account')}" routerLink="/account/profile"><img class="image" [src]="account_avatar_url" (error)="errorHandler($event)" alt="avatar">
           <span>Account</span>
           <!-- <span class="account-title">Account</span>

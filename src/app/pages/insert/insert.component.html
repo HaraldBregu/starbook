@@ -1,7 +1,7 @@
 <div class="insert-container">
   <div class="progress-container" *ngIf="step">
-    <div class="progress"
-    [ngStyle]="{'width': setProgressWidth()}"></div>
+    <div class="progress" [ngStyle]="{'width': setProgressWidth()}">
+    </div>
   </div>
   <button type="button" id="next" class="btn btn-success back" (click)="undoStep()" *ngIf="step!=='title' && step!=='end'">Indietro</button>
 

@@ -14,8 +14,8 @@ export const routes: string[] = [
   'company',
   'company/:page',
 
-  'tools',
-  'tools/:page',
+  // 'tools',
+  // 'tools/:page',
 
   'account',
   'account/:page',
@@ -40,8 +40,8 @@ export const routes: string[] = [
 
   'facebook',
 
-  // 'requests',
-  // 'requests/:page',
+  'request',
+  'request/:step',
 
   // 'contact',
   // 'contact/:page',
@@ -54,16 +54,16 @@ export const routes: string[] = [
   // 'info/about',
 
   // TESTS
-  'customer',
-  'customer/:page',
+  // 'customer',
+  // 'customer/:page',
 
-  'quotation',
-  'quotation/:id',
+  // 'quotation',
+  // 'quotation/:id',
 
   'post',
   'post/:id',
 
-  'dataentry',
+  // 'dataentry',
 
   // 'worker',
   // 'worker/:page',

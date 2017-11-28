@@ -33,40 +33,41 @@ import { ContactService } from './shared/contact.service';
 import { ShareService } from './pages/share/share.service';
 import { ClipboardService } from './shared/clipboard.service';
 import { PostsService } from './pages/blog/posts.service';
-import { QuotationComponent } from './pages/quotation/quotation.component';
+// import { QuotationComponent } from './pages/quotation/quotation.component';
 import { AppComponent } from './app.component';
-import { LandingComponent } from './landing/landing.component';
+// import { LandingComponent } from './landing/landing.component';
 import { CompanyComponent } from './company/company.component';
-import { CategoryComponent } from './pages/category/category.component';
-import { ServiceComponent } from './pages/service/service.component';
-import { ServicesComponent } from './pages/services/services.component';
-import { InsertComponent } from './pages/insert/insert.component';
-import { CheckoutComponent } from './pages/checkout/checkout.component';
-import { OrdersComponent } from './pages/orders/orders.component';
+// import { CategoryComponent } from './pages/category/category.component';
+// import { ServiceComponent } from './pages/service/service.component';
+// import { ServicesComponent } from './pages/services/services.component';
+// import { InsertComponent } from './pages/insert/insert.component';
+// import { CheckoutComponent } from './pages/checkout/checkout.component';
+// import { OrdersComponent } from './pages/orders/orders.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { PopupsComponent } from './popups/popups.component';
 import { PhonePipe } from './pipes/phone.pipe';
 import { ExpiryPipe } from './pipes/expiry.pipe';
 import { LoadingComponent } from './shared/loading/loading.component';
 import { FacebookComponent } from './pages/facebook/facebook.component';
-import { WizardComponent } from './pages/wizard/wizard.component';
-import { AboutComponent } from './pages/about/about.component';
+// import { WizardComponent } from './pages/wizard/wizard.component';
+// import { AboutComponent } from './pages/about/about.component';
 import { HelpComponent } from './pages/help/help.component';
 import { LegalComponent } from './pages/legal/legal.component';
 import { AccountComponent } from './pages/account/account.component';
 import { AuthComponent } from './pages/auth/auth.component';
-import { RequestsComponent } from './pages/requests/requests.component';
-import { ShareComponent } from './pages/share/share.component';
-import { ContactComponent } from './pages/contact/contact.component';
-import { ToolsComponent } from './pages/tools/tools.component';
+// import { RequestsComponent } from './pages/requests/requests.component';
+// import { ShareComponent } from './pages/share/share.component';
+// import { ContactComponent } from './pages/contact/contact.component';
+// import { ToolsComponent } from './pages/tools/tools.component';
 import { NotfoundComponent } from './pages/notfound/notfound.component';
-import { TestsComponent } from './pages/tests/tests.component';
+// import { TestsComponent } from './pages/tests/tests.component';
 import { BlogComponent } from './pages/blog/blog.component';
 import { PostComponent } from './pages/blog/post/post.component';
 import { HomeComponent } from './pages/home/home.component';
 import { ActionComponent } from './pages/home/action/action.component';
+import { RequestComponent } from './pages/request/request.component';
 
-import { DataentryComponent } from './pages/dataentry/dataentry.component';
+// import { DataentryComponent } from './pages/dataentry/dataentry.component';
 
 // import { ClipboardDirective } from './directives/clipboard.directive';
 
@@ -104,36 +105,37 @@ let imports = [
 ];
 let declarations = [
   AppComponent,
-  LandingComponent,
+  // LandingComponent,
   CompanyComponent,
   AuthComponent,
-  OrdersComponent,
+  // OrdersComponent,
   ProfileComponent,
   PopupsComponent,
-  ServiceComponent,
+  // ServiceComponent,
   LoadingComponent,
   FacebookComponent,
-  WizardComponent,
-  AboutComponent,
+  // WizardComponent,
+  // AboutComponent,
   HelpComponent,
   LegalComponent,
   AccountComponent,
-  ServicesComponent,
-  InsertComponent,
-  CheckoutComponent,
-  RequestsComponent,
-  ShareComponent,
+  // ServicesComponent,
+  // InsertComponent,
+  // CheckoutComponent,
+  // RequestsComponent,
+  // ShareComponent,
+  RequestComponent,
   BlogComponent,
   PostComponent,
-  QuotationComponent,
-  CategoryComponent,
-  ContactComponent,
-  ToolsComponent,
+  // QuotationComponent,
+  // CategoryComponent,
+  // ContactComponent,
+  // ToolsComponent,
   HomeComponent,
   ActionComponent,
   NotfoundComponent,
-  TestsComponent,
-  DataentryComponent,
+  // TestsComponent,
+  // DataentryComponent,
   MapsComponent,
   // ClipboardDirective,
   FormatterDirective,
