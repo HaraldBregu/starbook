@@ -6,25 +6,93 @@
   <i class="fa fa-circle-o-notch animate loader"></i>
 </div>
 
-<div class="request-container">
-  <button type="button" id="next" class="btn btn-success" (click)="previousStep()">Indietro</button>
-  <div class="request max-width-500">
+
+<div class="request-container" *ngIf="step==='propriety'">
+  <div class="request max-width-800">
     <div class="request-content">
       <div class="request-header">
-        <h1 class="title-step">Tipologia del lavoro</h1>
-        <p class="description-step">Inserisci il tipo del lavoro che hai bisogno di realizzare.</p>
+        <h1 class="title-step">La proprietà dove eseguirai il lavoro</h1>
+        <p class="description-step">Per piacere, seleziona una delle opzioni indicate.</p>
+      </div>
+      <div class="request-body">
+        <div class="row">
+          <div class="col-md-4">
+            <div class="form-group">
+              <button type="button" class="btn btn-success btn-option" (click)="nextStep()">APPARTAMENTO</button>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <button type="button" class="btn btn-success btn-option" (click)="nextStep()">CASA INDIPENDENTE</button>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <button type="button" class="btn btn-success btn-option" (click)="nextStep()">LOCALE COMMERCIALE</button>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <button type="button" class="btn btn-success btn-option" (click)="nextStep()">CONDOMINIO</button>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <button type="button" class="btn btn-success btn-option" (click)="nextStep()">ALTRO</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="request-container" *ngIf="step==='service'">
+  <button type="button" id="next" class="btn btn-success button-back" (click)="previousStep()">INDIETRO</button>
+  <div class="request max-width-800">
+    <div class="request-content">
+      <div class="request-header">
+        <h1 class="title-step">Che tipo di servizio hai bisogno?</h1>
+        <p class="description-step">Per piacere, seleziona una delle opzioni indicate.</p>
+      </div>
+      <div class="request-body">
+        <div class="row">
+          <div class="col-md-4">
+            <div class="form-group">
+              <button type="button" class="btn btn-success btn-option" (click)="nextStep()">INSTALLAZIONE</button>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <button type="button" class="btn btn-success btn-option" (click)="nextStep()">SOSTITUZIONE</button>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <button type="button" class="btn btn-success btn-option" (click)="nextStep()">RIPARAZIONE</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="request-container" *ngIf="step==='details'">
+  <button type="button" id="next" class="btn btn-success button-back" (click)="previousStep()">INDIETRO</button>
+  <div class="request max-width-700">
+    <div class="request-content">
+      <div class="request-header">
+        <h1 class="title-step">Dettagli del progetto</h1>
+        <p class="description-step">Inserisci i dettagli del tuo progetto</p>
       </div>
       <div class="request-body">
         <form>
         </form>
-        <!-- <a id="next" class="btn btn-success back" (click)="previousStep()">Indietro</a> -->
       </div>
       <div class="request-footer">
         <div class="form-group">
           <button type="button" class="btn btn-success btn-next" (click)="nextStep()">AVANTI</button>
         </div>
-        <!-- <div class="form-group">
-        </div> -->
         <p>titoli small</p>
       </div>
     </div>

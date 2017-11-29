@@ -13,16 +13,16 @@ export class RequestComponent implements OnInit {
 
   constructor(private router: Router, private route: ActivatedRoute, private navigationService: NavigationService) {
     this.navigationService.updateMessage("Richiesta serramenti")
-    this.steps = ['title', 'detail', 'register', "login", "dati", "end", "share", "other"]
-
+    this.steps = ["propriety", "service", "details", "budget", "timing", "quality", "address", "customer", "end"]
   }
 
   ngOnInit() {
     this.route.params.subscribe((params: Params) => {
       this.step = params['step']
-      if (!this.step) {
-        this.router.navigate(['request/title']);
+      if (!this.step || (this.steps.indexOf(this.step)<0)) {
+        this.router.navigate(['request/' + this.steps[0]])
       }
+
       // if (this.step==='title') {
       //
       // }

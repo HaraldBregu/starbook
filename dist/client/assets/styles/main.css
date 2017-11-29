@@ -1248,11 +1248,17 @@ input::-ms-clear {
 .full-width {
   width: 100% !important; }
 
+.max-width-500 {
+  max-width: 500px !important; }
+
 .max-width-600 {
   max-width: 600px !important; }
 
-.max-width-500 {
-  max-width: 500px !important; }
+.max-width-700 {
+  max-width: 700px !important; }
+
+.max-width-800 {
+  max-width: 800px !important; }
 
 @font-face {
   font-family: 'FontAwesome';
@@ -3740,8 +3746,9 @@ app-root .navbar {
     margin-top: 14px;
     font-size: 28px;
     width: 48px;
+    height: 48px;
     padding: 0;
-    line-height: 48px !important;
+    line-height: 52px !important;
     text-align: center; }
   app-root .navbar .nav .account .message {
     color: #696969 !important;
@@ -3769,8 +3776,9 @@ app-root .navbar {
     margin-top: 14px;
     font-size: 28px;
     width: 48px;
+    height: 48px;
     padding: 0;
-    line-height: 48px !important;
+    line-height: 52px !important;
     text-align: center;
     background: #f0f0f0; }
 
@@ -3954,7 +3962,6 @@ app-home {
                 padding: 5px 0; }
                 app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-informations .label {
                   display: block;
-                  float: left;
                   font-size: 17px;
                   font-weight: 700;
                   color: #343a43;
@@ -3967,7 +3974,6 @@ app-home {
                   width: 100%; }
                 app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-informations .content {
                   display: block;
-                  margin-left: 170px;
                   font-size: 18px;
                   color: #343a43; }
                 app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-informations .content-full-width {
@@ -8046,6 +8052,7 @@ app-request {
   -webkit-overflow-scrolling: touch;
   background: white; }
   app-request .request-container {
+    position: relative;
     font-family: 'Open Sans', sans-serif;
     padding: 40px 10px; }
     app-request .request-container .request {
@@ -8053,17 +8060,45 @@ app-request {
       text-align: center; }
       app-request .request-container .request .request-content {
         position: relative; }
-        app-request .request-container .request .request-content .request-header .title-step {
-          margin: 40px 0 10px; }
-        app-request .request-container .request .request-content .request-header .description-step {
-          font-size: 24px !important;
-          color: #95a0aa;
-          margin: 0 0 20px;
-          text-align: center; }
+        app-request .request-container .request .request-content .request-header {
+          padding: 30px 0; }
+          app-request .request-container .request .request-content .request-header .description-step {
+            font-size: 24px !important;
+            color: #95a0aa;
+            margin-top: 10px;
+            text-align: center; }
+        app-request .request-container .request .request-content .request-body {
+          padding: 40px 0; }
+          app-request .request-container .request .request-content .request-body .btn-option {
+            font-weight: 700;
+            font-size: 16px;
+            line-height: 45px;
+            height: auto;
+            color: #1ba783 !important;
+            background: white;
+            border: 1px solid #1ba783 !important;
+            border-radius: 5px;
+            width: 100%; }
+          app-request .request-container .request .request-content .request-body .btn-option:hover {
+            color: white !important;
+            background-color: #16a085 !important; }
         app-request .request-container .request .request-content .request-footer .btn-next {
           font-weight: 700;
           font-size: 20px;
           border-radius: 3px; }
+    app-request .request-container .button-back {
+      position: absolute;
+      top: 20px;
+      left: 0;
+      font-weight: 800;
+      font-size: 16px;
+      line-height: 40px;
+      height: auto;
+      color: #1ba783 !important;
+      background: white; }
+    app-request .request-container .button-back:hover {
+      color: white !important;
+      background-color: #16a085 !important; }
   app-request .progress-container {
     position: fixed;
     width: 100%;
