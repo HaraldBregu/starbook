@@ -36,6 +36,8 @@ const routes: Routes = [
   // { path: '', component: LandingComponent, data: { name: 'Landing' } },
   // { path: '', component: CompanyComponent, data: { name: 'Company' } },
   { path: '', component: HomeComponent, data: { name: 'Home' } },
+  { path: 'post', component: HomeComponent, data: { name: 'Home' } },
+  { path: 'post/:id', component: HomeComponent, data: { name: 'Home' } },
 
   { path: 'company', component: CompanyComponent, data: { name: 'Company' } },
   { path: 'company/:page', component: CompanyComponent, data: { name: 'Company' } },
@@ -77,8 +79,6 @@ const routes: Routes = [
 
   // { path: 'checkout/:step', component: CheckoutComponent, data: { name: 'Checkout' } },
 
-  { path: 'post', component: HomeComponent, data: { name: 'Home' } },
-  { path: 'post/:id', component: HomeComponent, data: { name: 'Home' } },
 
   // {
   //   path: 'services/:id',
@@ -116,6 +116,9 @@ const routes: Routes = [
   // { path: 'customer/:page', component: TestsComponent, data: { name: 'Customer' } },
 
   // { path: 'dataentry', component: DataentryComponent, data: { name: 'DataEntry' } },
+
+  // { path: 'wizard', component: WizardComponent },
+  // { path: 'wizard/:step', component: WizardComponent },
 
   { path: '404', component: NotfoundComponent },
   { path: '**', redirectTo: '' }

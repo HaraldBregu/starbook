@@ -60,7 +60,6 @@ export const Promotion_State = {
   loading : false,
   error_message : null,
 }
-
 export const Promotion = {
   min_start_date : new Date(),
   start_date : new Date(),
@@ -75,7 +74,6 @@ export const Promotion = {
     mapping : true,
   }
 }
-
 export const FacebookPromotion = {
   active : false,
   time_options : [
@@ -115,7 +113,6 @@ export const FacebookPromotion = {
     currency: "€"
   }
 }
-
 export const GooglePromotion = {
   active : false,
   time_options : [
@@ -154,4 +151,271 @@ export const GooglePromotion = {
     price: 200,
     currency: "€"
   }
+}
+
+
+export const PostDetailOption = {
+  service: {
+    title: "Richiesta infissi",
+    description: "Per piacere, seleziona il servizio che hai bisogno. L'azienda verrà scelta a seconda del servizio richiesto.",
+    forms: [{
+      title: "Richiesta infissi",
+      description: "Per piacere, seleziona il servizio che hai bisogno. L'azienda verrà scelta a seconda del servizio richiesto.",
+      type: "RADIO",
+      required: true,
+      details: [
+        {
+          title: "Fornitura e posa infissi",
+          description: "Si richiede sia la fornitura che la posa in opera da uno specialista nel settore dei serramenti e infissi.",
+          type: "SERVICE",
+        },
+        {
+          title: "Posa infissi",
+          description: "Il materiale è stato fornito. Si richiede solo la posa in opera da uno specialista nel settore dei serramenti e infissi.",
+          type: "SERVICE",
+        },
+        {
+          title: "Fornitura infissi",
+          description: "Si richiede solo fornitura del materiale da un tecnico venditore nel settore dei serramenti e infissi.",
+          // description: "Scegliendo questa opzione un tecnico e venditore vi fornira gli infissi che ha bisogno nei tempi da voi prestabiliti.",
+          type: "SERVICE",
+        },
+        {
+          title: "Assistenza e manutenzione infissi",
+          description: "Si richiede un tecnico specializzato per assistenza e manutenzione degli serramenti. Problemi da sistemare, riparazioni vari, manutenzione e pulizie.",
+          type: "SERVICE",
+        },
+      ]
+    }]
+  },
+  category : {
+    title: "Seleziona la categoria degli infissi",
+    description: "Per piacere, seleziona una delle categorie di infissi da inserire nella richiesta. Ogni categoria di infissi ha le sue carateristiche, vantaggi, preggi e diffetti.",
+    forms: [
+      {
+        title: "Seleziona la categoria degli infissi",
+        description: "Per piacere, seleziona una delle categorie di infissi da inserire nella richiesta. Ogni categoria di infissi ha le sue carateristiche, vantaggi, preggi e diffetti.",
+        type: "RADIO",
+        required: true,
+        details: [
+          {
+            title: "Infissi in PVC",
+            description: "Un ottimo isolante termico e acustico. Ha una conducibilità termica molto bassa, assicura un totale isolamento dal freddo, dal caldo, dall’acqua e dal vento.",
+            type: "TITLE",
+          },
+          {
+            title: "Infissi in PVC e alluminio",
+            description: "Un ottimo isolante termico e acustico. Ha una conducibilità termica molto bassa, assicura un totale isolamento dal freddo, dal caldo, dall’acqua e dal vento.",
+            type: "TITLE",
+          },
+          {
+            title: "Infissi in alluminio",
+            description: "Gli infissi in alluminio resistono bene agli agenti atmosferici e non necessitano di manutenzione costante o cure specifiche.",
+            type: "TITLE",
+          },
+          {
+            title: "Infissi in alluminio e legno",
+            description:"Un infisso isolante che valorizza gli ambienti interni, con le tonalità del legno desiderate, e protetto dall’usura del tempo.",
+            type: "TITLE",
+          },
+          {
+            title: "Infissi in legno",
+            description: "Gli infissi in legno sono tra i più tradizionali in più sono un ottimo isolante termico e acustico. É un materiale che ha costantemente bisogno di cura e manutenzione.",
+            type: "TITLE",
+          },
+          // {
+          //   title: "Infissi consigliati",
+          //   description: "Un tecnico specialista del settore vi consiglerà il miglior serramento con miglior prezzo/qualità adatto al vostro budget.",
+          //   type: "TITLE",
+          // },
+        ]
+      }
+    ]
+  },
+  real: {
+    title: "Scegli il tipo del locale o immobile",
+    description: "Per piacere, per una richiesta più dettagliata seleziona una delle opzioni di locale o immobile dove vuoi eseguire i lavori.",
+    forms: [
+      {
+        title: "Scegli il tipo del locale o immobile",
+        description: "Per piacere, per una richiesta più dettagliata seleziona una delle opzioni di locale o immobile dove vuoi eseguire i lavori.",
+        type: "RADIO",
+        required: true,
+        details: [
+          {
+            title: "Appartamento",
+            description: "Il tipo del locale o immobile",
+            type: "LOCATION",
+          },
+          {
+            title: "Casa indipendente",
+            description: "Il tipo del locale o immobile",
+            type: "LOCATION",
+          },
+          {
+            title: "Locale commerciale",
+            description: "Il tipo del locale o immobile",
+            type: "LOCATION",
+          },
+          {
+            title: "Negozio",
+            description: "Il tipo del locale o immobile",
+            type: "LOCATION",
+          },
+          {
+            title: "Ufficio",
+            description: "Il tipo del locale o immobile",
+            type: "LOCATION",
+          },
+          {
+            title: "Studio",
+            description: "Il tipo del locale o immobile",
+            type: "LOCATION",
+          },
+          {
+            title: "Edificio industriale",
+            description: "Il tipo del locale o immobile",
+            type: "LOCATION",
+          },
+          {
+            title: "Condominio",
+            description: "Il tipo del locale o immobile",
+            type: "LOCATION",
+          },
+          {
+            title: "Taverna",
+            description: "Il tipo del locale o immobile",
+            type: "LOCATION",
+          },
+          {
+            title: "Veranda",
+            description: "Il tipo del locale o immobile",
+            type: "LOCATION",
+          },
+          {
+            title: "Altro",
+            description: "Il tipo del locale o immobile",
+            type: "LOCATION",
+          },
+        ]
+      }
+    ],
+  },
+  details: {
+    title: "Quantità e prodotti",
+    description: "Per piacere, inserisci la quantità degli infissi e seleziona i prodotti che vuoi inserire nella richiesta di preventivo.",
+    forms: [
+      {
+        title: "Quantità degli elementi",
+        description: "La quantita degli infissi e serramenti. Ogni infisso viene considerato come un unità.",
+        type: "INPUT",
+        required: true,
+        details: [
+          {
+            title: "Quantità degli elementi",
+            description: "La quantita degli infissi e serramenti. Ogni infisso viene considerato come un unità.",
+            type: "NUMBER",
+            value: 1
+          },
+        ]
+      },
+      {
+        title: "Dettagli della richiesta",
+        description: "Per piacere, inserisci la quantità degli elementi e seleziona i componenti aggiuntivi che vuoi inserire nella richiesta di preventivo.",
+        type: "CHECK",
+        required: false,
+        details: [
+          {
+            title: "Accessori",
+            description: "Tutti gli accessori che compongono gli infissi e serramenti.",
+            type: "OPTION",
+          },
+          {
+            title: "Persiane",
+            description: "Le persiane che completano gli infissi.",
+            type: "OPTION",
+          },
+          {
+            title: "Taparelle",
+            description: "Le taparelle che completano gli infissi.",
+            type: "OPTION",
+          },
+          {
+            title: "Zanzariere",
+            description: "Le zanzariere che completano gli infissi.",
+            type: "OPTION",
+          },
+          {
+            title: "Cassonetti",
+            description: "I cassonetti che completano gli infissi.",
+            type: "OPTION",
+          },
+        ]
+      }
+    ],
+  },
+  options: {
+    title: "Opzioni extra",
+    description: "Seleziona gli opzioni extra che vuoi avere. Per un preventivo più dettagliato e preciso le informazioni extra sono molto importanti.",
+    forms: [
+      {
+        title: "Quantità degli elementi",
+        description: "La quantita degli infissi e serramenti. Ogni infisso viene considerato come un unità.",
+        type: "CHECK",
+        required: false,
+        details: [
+          {
+            title: "Detrazioni fiscali %",
+            description: "Agevolazioni e detrazioni fiscali da utilizzare.",
+            type: "OPTION",
+          },
+          {
+            title: "Miglior rapporto qualità/prezzo",
+            description: "Richiesta del miglior rapporto qualità/prezzo.",
+            type: "OPTION",
+          },
+          {
+            title: "Sconti %",
+            description: "Richiesta sconti in caso di accettazione del lavoro.",
+            type: "OPTION",
+          },
+          {
+            title: "Garanzia servizio",
+            description: "Richiesta garanzia di lavoro e materiale.",
+            type: "OPTION",
+          },
+          {
+            title: "Tempi di consegna certi e garantiti",
+            description: "Tempi di consegna prestabiliti e certi per una programmazione più chiara.",
+            type: "OPTION",
+          },
+          {
+            title: "Relievo e progetto del lavoro",
+            description: "Richiesta di sopralluogo e relievo progetto.",
+            type: "OPTION",
+          },
+          {
+            title: "Certificazione",
+            description: "Certificazione dei lavori finali.",
+            type: "OPTION",
+          },
+          {
+            title: "Finanziamento",
+            description: "Possibilità di chiedere un finanziamento e pagamento rateale.",
+            type: "OPTION",
+          },
+          {
+            title: "Trasporto merce",
+            description: "Richiesta trasporto merce. In molti casi questo servizio è compreso.",
+            type: "OPTION",
+          },
+          {
+            title: "Smaltimento macerie",
+            description: "Richiesta smaltimento macerie. In molti casi questo servizio è compreso.",
+            type: "OPTION",
+          },
+        ],
+      },
+    ],
+  },
 }

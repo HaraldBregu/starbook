@@ -375,6 +375,9 @@ textarea.form-control {
   box-shadow: none;
   padding: 15px;
 }
+.input-group input {
+  height: 45px !important;
+}
 .form-group {
   margin-bottom: 15px;
 }
@@ -433,12 +436,12 @@ textarea.form-control {
   margin-bottom: 15px;
 }
 .input-group .form-control {
-  height: 50px;
-  border: 1px solid #DCDCDC;
+  // border: 1px solid #DCDCDC;
+  border: 1px solid #bdc3c7;
   box-shadow: none;
 }
 .input-group .error-input {
-  border: 2px solid #f75c4b;
+  border: 1px solid #f75c4b;
 }
 // .input-group .ui-inputtext {
 //   height: 50px !important;
@@ -1073,6 +1076,9 @@ input::-ms-clear {
     width: 100%;
     // margin: 10px auto;
   }
+  .hide-425 {
+    display: none !important;
+  }
 }
 
 
@@ -1090,4 +1096,38 @@ input::-ms-clear {
 }
 .max-width-800 {
   max-width: 800px !important;
+}
+.max-width-900 {
+  max-width: 900px !important;
+}
+
+.font-size-18 {
+  font-size: 18px !important;
+}
+.font-size-17 {
+  font-size: 17px !important;
+}
+
+.overflow-auto {
+  overflow: auto !important;
+}
+
+.elipsis-2lines {
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+.display-block {
+  display: block;
+}
+
+.background-f1c40f {
+  background: #f1c40f;
+}
+.background-27ae60 {
+  background: #27ae60;
+}
+.background-2980b9 {
+  background: #2980b9;
 }

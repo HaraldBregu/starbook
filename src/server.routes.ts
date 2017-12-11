@@ -68,6 +68,9 @@ export const routes: string[] = [
   // 'worker',
   // 'worker/:page',
 
+  // 'wizard',
+  // 'wizard/:step',
+
   '404',
   '**'
 ];

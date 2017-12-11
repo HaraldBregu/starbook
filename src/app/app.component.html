@@ -1,25 +1,25 @@
-<nav *ngIf="page && hasNavigation" class="navbar navbar-fixed-top" [style.border-bottom]="border_bottom_color" (window:resize)="onResize()">
+<nav *ngIf="page && hasNavigation && page!=='Request'" class="navbar navbar-fixed-top" [style.border-bottom]="border_bottom_color" (window:resize)="onResize()">
   <div class="container-starbook">
     <!-- <a class="navbar-brand" *ngIf="!auth" routerLink="/"><img src="/assets/images/brand-logo-name-rotated.png" alt="starbook.co"></a> -->
-    <a class="navbar-brand" *ngIf="(screenWidth > 600)" routerLink="/"><img src="/assets/images/brand-logo-name-rotated.png" alt="starbook.co"></a>
-    <a class="navbar-brand" *ngIf="(screenWidth < 600 || screenWidth === 600)" routerLink="/"><img src="/assets/images/brand-logo-rotated.png" alt="starbook.co"></a>
+    <a class="navbar-brand" *ngIf="(screenWidth > 600)" routerLink="/"><img src="/assets/images/brand-logo-full-dark.png" alt="starbook.co"></a>
+    <a class="navbar-brand" *ngIf="(screenWidth < 600 || screenWidth === 600)" routerLink="/"><img src="/assets/images/brand-logo-dark.png" alt="starbook.co"></a>
     <div class="center-container" *ngIf="hasCenterContainer">
       <div class="tagline">
         <h4>{{tagline}}</h4>
       </div>
     </div>
     <ul class="nav navbar-nav navbar-right">
-
       <li class="nav-item signup-item" *ngIf="!auth && (page==='Company' || page==='Business')">
         <a class="btn btn-success btn-signup" routerLink="/auth/signup">Iscriviti</a>
       </li>
-
-      <!-- <li class="nav-item" *ngIf="page!=='Request'">
-        <a class="nav-link request" [ngClass]="{'active': (page==='Request')}" routerLink="/request"><i class="fa fa-plus" aria-hidden="true"></i></a>
-      </li> -->
-
-      <li class="nav-item account" *ngIf="page!=='Request'">
-        <a class="nav-link work" [ngClass]="{'active': (page==='Home')}" routerLink="/post"><i class="fa fa-briefcase" aria-hidden="true"></i></a>
+      <li class="nav-item" *ngIf="page!=='Request' && (screenWidth > 600)">
+        <a class="nav-link request" [ngClass]="{'active': (page==='Request')}" routerLink="/request">
+          <i class="fa fa-plus" aria-hidden="true"></i>
+          <span class="text">Preventivo</span>
+        </a>
+      </li>
+      <li class="nav-item account" *ngIf="page!=='Request' && (screenWidth > 600)">
+        <a class="nav-link work" [ngClass]="{'active': (page==='Home') && (screenWidth > 600)}" routerLink="/post"><i class="fa fa-briefcase" aria-hidden="true"></i></a>
       </li>
       <!-- <li class="nav-item account" *ngIf="auth">
         <a class="nav-link message" routerLink="/account/contacts"><i class="fa fa-phone" aria-hidden="true"></i></a>
@@ -37,20 +37,22 @@
         <a class="nav-link" [ngClass]="{'active': (page==='Business')}" routerLink="/account/profile"><img class="image" [src]="account_avatar_url" (error)="errorHandler($event)" alt="avatar"><span>Account</span></a>
       </li> -->
 
-      <li class="nav-item account" *ngIf="auth && page!=='Request'">
+      <!-- <li class="nav-item account" *ngIf="auth && page!=='Request'">
         <a class="nav-link" [ngClass]="{'active': (page==='Account')}" routerLink="/account/profile"><img class="image" [src]="account_avatar_url" (error)="errorHandler($event)" alt="avatar">
           <span>Account</span>
-          <!-- <span class="account-title">Account</span>
-          <span class="account-name">{{auth.profile.firstname}}</span> -->
         </a>
-      </li>
+      </li> -->
 
       <li class="nav-item">
         <div class="user-container dropdown">
-          <a class="btn btn-navbar" data-toggle="dropdown"><i class="fa fa-bars" aria-hidden="true"></i></a>
+          <a class="btn btn-navbar" data-toggle="dropdown"><i class="fa fa-user-circle-o" aria-hidden="true"></i></a>
           <ul class="dropdown-menu">
+
+            <li class="list-item" *ngIf="(screenWidth < 600 || screenWidth === 600)"><a class="btn" routerLink="/request"><i class="fa fa-plus" aria-hidden="true"></i><span>Richiesta preventivo</span></a></li>
+            <li class="list-item" *ngIf="(screenWidth < 600 || screenWidth === 600)"><a class="btn" routerLink="/post"><i class="fa fa-briefcase" aria-hidden="true"></i><span>Bacheca del lavoro</span></a></li>
+
             <li class="list-item" *ngIf="auth"><a class="btn" routerLink="/account/profile"><i class="fa fa-user" aria-hidden="true"></i><span>Account</span></a></li>
-            <li class="list-item" *ngIf="auth"><a class="btn" routerLink="/account/inprogress_promotion"><i class="fa fa-bullhorn" aria-hidden="true"></i><span>Promuovi</span></a></li>
+            <!-- <li class="list-item" *ngIf="auth"><a class="btn" routerLink="/account/inprogress_promotion"><i class="fa fa-bullhorn" aria-hidden="true"></i><span>Promuovi</span></a></li> -->
             <li class="list-item" *ngIf="auth"><a class="btn" routerLink="/account/requests"><i class="fa fa-inbox" aria-hidden="true"></i><span>Messaggi</span></a></li>
             <li class="list-item" *ngIf="auth"><a class="btn" routerLink="/account/quotation"><i class="fa fa-wpforms" aria-hidden="true"></i><span>Preventivi</span></a></li>
             <!-- <li class="list-item" *ngIf="!auth" (click)="getLoginPopup()"><a class="btn">Accedi</a></li> -->
@@ -76,6 +78,39 @@
     </ul>
   </div>
 </nav>
+
+<nav *ngIf="page==='Request'" class="navbar navbar-fixed-top request-navbar" [style.border-bottom]="border_bottom_color" (window:resize)="onResize()">
+  <div class="navbar-container">
+    <a class="navbar-brand" *ngIf="(screenWidth > 600)" routerLink="/"><img src="/assets/images/brand-logo-full-dark-green.png" alt="starbook.co"></a>
+    <a class="navbar-brand" *ngIf="(screenWidth < 600 || screenWidth === 600)" routerLink="/"><img src="/assets/images/brand-logo-dark-green.png" alt="starbook.co"></a>
+    <div class="center-container" *ngIf="hasCenterContainer">
+      <div class="tagline">
+        <h4>{{tagline}}</h4>
+      </div>
+    </div>
+    <ul class="nav navbar-nav navbar-right">
+      <li class="nav-item">
+        <div class="user-container dropdown">
+          <a class="btn btn-navbar" data-toggle="dropdown"><i class="fa fa-user-circle" aria-hidden="true"></i></a>
+          <ul class="dropdown-menu">
+            <li class="list-item" *ngIf="auth"><a class="btn" routerLink="/account/profile"><i class="fa fa-user" aria-hidden="true"></i><span>Account</span></a></li>
+            <li class="list-item" *ngIf="auth"><a class="btn" routerLink="/account/requests"><i class="fa fa-inbox" aria-hidden="true"></i><span>Messaggi</span></a></li>
+            <li class="list-item" *ngIf="auth"><a class="btn" routerLink="/account/quotation"><i class="fa fa-wpforms" aria-hidden="true"></i><span>Preventivi</span></a></li>
+            <li class="list-item" *ngIf="!auth" routerLink="/auth/login"><a class="btn">Accedi</a></li>
+            <li class="list-item line"></li>
+            <li class="list-item"><a class="btn" routerLink="/blog">Blog</a></li>
+            <li class="list-item" *ngIf="auth"><a class="btn" routerLink="/account/help">Aiuto</a></li>
+            <li class="list-item line"></li>
+            <li class="list-item"><a class="btn" routerLink="/info/legal">Privacy & Condizioni</a></li>
+            <li class="list-item" *ngIf="!auth"><a class="btn" routerLink="/info/help">Aiuto</a></li>
+            <li class="list-item" *ngIf="auth"><a class="btn" (click)="popup='LOGOUT_POPUP'">Esci</a></li>
+          </ul>
+        </div>
+      </li>
+    </ul>
+  </div>
+</nav>
+
 <router-outlet></router-outlet>
 <app-popups></app-popups>
 

@@ -50,7 +50,8 @@
         </div>
         <div class="forms">
           <div class="form-group">
-            <p-autoComplete id="address" class="form-control" [(ngModel)]="temp_address" (clickOutside)="clickOutsideAddressInput()" [ngModelOptions]="{standalone: true}" [suggestions]="addresses" field="street_number_city" (completeMethod)="getAddresses($event)" (onSelect)="selectAddress($event)" placeholder="Via, Numero, Città"></p-autoComplete>
+            <!-- <p-autoComplete id="address" class="form-control" [(ngModel)]="temp_address" (clickOutside)="clickOutsideAddressInput()" [ngModelOptions]="{standalone: true}" [suggestions]="addresses" field="street_number_city" (completeMethod)="getAddresses($event)" (onSelect)="selectAddress($event)" placeholder="Via, Numero, Città"></p-autoComplete> -->
+            <p-autoComplete id="address" class="form-control" [(ngModel)]="temp_address" [ngModelOptions]="{standalone: true}" [suggestions]="addresses" field="street_number_city" (completeMethod)="getAddresses($event)" (onSelect)="selectAddress($event)" placeholder="Via, Numero, Città"></p-autoComplete>
           </div>
         </div>
         <div class="messages" [hidden]="!address_state.error_message">

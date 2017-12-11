@@ -13,12 +13,11 @@ import { PaymentService } from '../../shared/payment.service';
 import * as globals from '../../globals';
 import { Observable, Subscription } from 'rxjs/Rx';
 import { FacebookService, InitParams, LoginResponse, LoginOptions, UIResponse, UIParams, FBVideoComponent } from 'ngx-facebook';
-import { ActionComponent } from './action/action.component';
 import { OrdersService } from '../../shared/orders.service';
 
 @Component({
   selector: 'app-home',
-  templateUrl: './home.component.html'
+  templateUrl: './home.component.html',
 })
 
 export class HomeComponent implements OnInit {
@@ -111,24 +110,25 @@ export class HomeComponent implements OnInit {
     error: null
   }
 
-  constructor(private route: ActivatedRoute, private router: Router, private navigationService: NavigationService, private seoService: SeoService, private ordersService: OrdersService, public commonService: CommonService, private authService: AuthService, private paymentService: PaymentService, private fb: FacebookService, private http: Http) {
+  constructor(public route: ActivatedRoute, private router: Router, private navigationService: NavigationService, private seoService: SeoService, private ordersService: OrdersService, public commonService: CommonService, private authService: AuthService, private paymentService: PaymentService, private fb: FacebookService, private http: Http) {
     this.navigationService.updateMessage("Bacheca del lavoro")
     this.emailPattern = /^[a-z0-9!#$%&'*+\/=?^_`{|}~.-]+@[a-z0-9]([a-z0-9-]*[a-z0-9])?(\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)*$/i;
+    // console.log("Router url: " + this.router.url)
     if (isBrowser) {
       window.scrollTo(0, 0)
-      if (document.location.hostname === "www.starbook.co") {
-        fb.init({appId: '1108461325907277', version: 'v2.7'})
-      } else if (document.location.hostname === "glacial-shore-66987.herokuapp.com" || document.location.hostname === "localhost") {
-        fb.init({appId: '1251898728230202', version: 'v2.7'})
-      }
+      // if (document.location.hostname === "www.starbook.co") {
+      //   fb.init({appId: '1108461325907277', version: 'v2.7'})
+      // } else if (document.location.hostname === "glacial-shore-66987.herokuapp.com" || document.location.hostname === "localhost") {
+      //   fb.init({appId: '1251898728230202', version: 'v2.7'})
+      // }
     }
   }
 
   ngOnInit() {
     if (isBrowser) {
-      Observable.interval(1000).subscribe(x => {
-        this.updateCountDownDate()
-      })
+      // Observable.interval(1000).subscribe(x => {
+      //   this.updateCountDownDate()
+      // })
     }
     this.route.params.subscribe(params => { this.params = params })
     this.route.fragment.subscribe((fragment: string) => { this.fragment = fragment })
@@ -158,24 +158,22 @@ export class HomeComponent implements OnInit {
       })
     } else {
       this.SeoData['image_url'] = "https://s3-eu-west-1.amazonaws.com/starbook-s3/website/richieste-lavoro-bacheca.png"
-
       let params = new URLSearchParams()
       for(let key in this.query) {
         params.set(key, this.query[key])
       }
-
       this.commonService.getMethod('posts?' + params.toString()).then((data) => {
         this.posts = data.result
         // console.log(JSON.stringify(data))
       }).catch((error) => {
-
       })
     }
 
-    this.SeoData['title'] = "Bacheca del lavoro"
-    this.SeoData['description'] = "Trova una richiesta di lavoro in base alle tue competenze. Guarda i dati del contatto, invia un preventivo e lavora."
+    this.SeoData['title'] = "Clienti per infissi"
+    this.SeoData['description'] = "Una piattaforma che mette a disposizione richieste dettagliate da potenziali clienti nella tua zona offrendo partnership a lungo termine e costi agevolati."
     this.SeoData['url'] = 'https://www.starbook.co' + this.router.url
     this.seoService.setTitle(this.SeoData['title'])
+
     this.seoService.setMetaElem('description', this.SeoData['description'])
     this.seoService.setOgElem('twitter:card', "summary_large_image")
     this.seoService.setOgElem('twitter:title', this.SeoData['title'])
@@ -188,91 +186,6 @@ export class HomeComponent implements OnInit {
     this.seoService.setOgElem('og:url', this.SeoData['url'])
     this.seoService.setOgElem('og:image', this.SeoData['image_url'])
     this.seoService.setOgElem('og:image:secure_url', this.SeoData['image_url'])
-  }
-
-  checkCustomerFirstname(post) {
-    return post.customer.firstname
-  }
-  checkCustomerLastname(post) {
-    return post.customer.lastname
-  }
-  checkPostTitle(post) {
-    return post.title
-  }
-  checkPostDescription(post) {
-    return post.description
-  }
-  checkCustomerEmailAddress(post) {
-    return post.customer.email
-  }
-  checkCustomerPhoneNumber(post) {
-    return post.customer.phone_number
-  }
-  checkPostLocation(post) {
-    if (post.address.province) {
-      return post.address.city + " (" +  post.address.province + ")"
-    }
-    return post.address.city
-  }
-  checkAddressStreet(post) {
-    return post.address.street
-  }
-  updateCountDownDate() {
-    var now = new Date().getTime();
-    var fromDate = new Date();
-    fromDate.setHours(24,0,0,0);
-    var toDate = fromDate.getTime();
-    var distance = toDate - now;
-    // var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-    var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))
-    var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60))
-    var seconds = Math.floor((distance % (1000 * 60)) / 1000)
-    this.CountDownDate.hours = hours
-    this.CountDownDate.minutes = minutes
-    this.CountDownDate.seconds = seconds
-  }
-  getCountDownHours(post) {
-    let string_time = ""
-    let hours = this.CountDownDate.hours
-    string_time = hours.toString()
-    if (hours<10) {
-      string_time = "0" + hours.toString()
-    }
-    return string_time
-  }
-  getCountDownMinutes(post) {
-    let string_time = ""
-    let minutes = this.CountDownDate.minutes
-    string_time = minutes.toString()
-    if (minutes<10) {
-      string_time = "0" + minutes.toString()
-    }
-    return string_time
-  }
-  getCountDownSeconds(post) {
-    let string_time = ""
-    let seconds = this.CountDownDate.seconds
-    string_time = seconds.toString()
-    if (seconds<10) {
-      string_time = "0" + seconds.toString()
-    }
-    return string_time
-  }
-  getPriceBasedOnBudget(post) {
-    return post.budget.estimate_cost
-  }
-  getDecimalPartPrice(post) {
-    let price_contact = this.getPriceBasedOnBudget(post)/100
-    return Math.trunc(price_contact)
-  }
-  getFracPartPrice(post) {
-    var price_contact = this.getPriceBasedOnBudget(post)/100
-    var string_price_contact = price_contact.toFixed(2)
-    let dec_number = String(string_price_contact).substr(String(string_price_contact).indexOf('.')+1)
-    return dec_number
-  }
-  getFirstChar(word) {
-    return word.charAt(0)
   }
 
   previewUpdatePost(post) {
@@ -289,8 +202,6 @@ export class HomeComponent implements OnInit {
     })
   }
 
-  // 1. Show preview post
-
   previewPost(post) {
     this.selected_post = post
     this.commonService.disableScroll()
@@ -301,9 +212,6 @@ export class HomeComponent implements OnInit {
     }
     this.popup = "PREVIEW_PURCHASE_CONTACT_POPUP"
   }
-
-  // 2. Show preview purchase
-
   showPreviewPurchasePost(post) {
     if (!this.authService.currentAccount()) {
       this.popup_second = "SIGNUP_POPUP"
@@ -312,16 +220,13 @@ export class HomeComponent implements OnInit {
     this.getCards()
     this.popup_second = 'CONFIRM_PURCHASE_POPUP'
   }
-
-  // 3. Confirm purchase post
-
   confirmPurchase(post) {
     if (this.DefaultCard) {
       if (this.PurchaseState.loading) {return}
       this.PurchaseState.loading = true
       this.PurchaseState.error = null
       this.purchased_post = null
-      this.commonService.postMethod('posts/' + post._id + '/contacts', {price_contact:post.budget.estimate_cost}).then((data) => {
+      this.commonService.postMethod('posts/' + post._id + '/contacts', {price_contact:499}).then((data) => {
         this.PurchaseState.loading = false
         this.PurchaseState.error = null
         this.popup_second = "PURCHASE_CONFIRMED_POPUP"
@@ -403,8 +308,6 @@ export class HomeComponent implements OnInit {
     this.checkPurchasePost(post)
   }
 
-  // Login Signup
-
   login(data) {
     if (this.AuthState.loading) {return}
     this.AuthState.error = null
@@ -480,8 +383,6 @@ export class HomeComponent implements OnInit {
     })
   }
 
-  // Utils for post
-
   checkPurchasePost(post) {
     this.PurchaseState.loading = true
     this.PurchaseState.error = null
@@ -505,6 +406,9 @@ export class HomeComponent implements OnInit {
       // console.log(JSON.stringify(error))
       this.PurchaseState.loading = false
     })
+  }
+  setPriceCalculated(post) {
+    // console.log(post)
   }
 
   getCards() {
@@ -532,7 +436,6 @@ export class HomeComponent implements OnInit {
       this.DefaultCardState.loading = false
     })
   }
-
 
   selectCompanyForPost(customer) {
     this.SelectedPostCustomer = customer
@@ -567,8 +470,6 @@ export class HomeComponent implements OnInit {
   sendProposal(post) {
 
   }
-
-  // UTILS
 
   counter(count) {
     // console.log(count)
@@ -664,31 +565,10 @@ export class HomeComponent implements OnInit {
       }
     }
   }
-  getGoogleMapsLink(post) {
-    if (post['address']['city']) {
-      return "https://maps.google.com/?q=" + post['address']['city'] + ", " + post['address']['street']
-    } else {
-      return ""
+  checkPostLocation(post) {
+    if (post.address.province) {
+      return post.address.city + " (" +  post.address.province + ")"
     }
-  }
-  getPhoneNumber(post) {
-    if (post) {
-      if (post.customer['phone_number'] && post.customer['phone_number']!==null) {
-        return post.customer['phone_number']
-      }
-      else {
-        return ""
-      }
-    }
-  }
-  getEmailAddress(post) {
-    if (post) {
-      if (post.customer['email'] && post.customer['email']!==null) {
-        return post.customer['email']
-      }
-      else {
-        return ""
-      }
-    }
+    return post.address.city
   }
 }

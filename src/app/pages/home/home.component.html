@@ -1,41 +1,71 @@
 <div class="home-container">
   <div class="home">
     <div class="home-content">
-      <!-- <div class="home-header" *ngIf="!fragment">
-        <div *ngIf="!params.id">
-          <h1 class="title">Clienti per serramenti, porte interne e infissi</h1>
-          <p class="description">
-            Trova una richiesta di lavoro per la tua categoria. Garantisci l'acquisto del contatto in caso di lavoro accettato. Ricevi i dati del cliente e contattalo direttamente.
-          </p>
+      <!-- <div class="home-header" *ngIf="router.url==='/'">
+        <div class="row">
+          <div class="col-md-12">
+            <h1 class="title">Serramenti e infissi</h1>
+            <p class="description">Chiedi un preventivo gratuito alle migliori aziende nella tua zona. Fai una richiesta in semplici passi e Starbook penserà a proporti la migliore azienda della zona. Con Starbook risparmi tempo e denaro.</p>
+          </div>
         </div>
-        <div *ngIf="params.id && posts && posts.length===1">
-          <h1 class="title">Richiesta per: <b>{{posts[0].title}}</b></h1>
-          <p class="description">
-            Garantisci l'acquisto del contatto in caso di lavoro accettato. Ricevi i dati del cliente e contattalo direttamente.
-          </p>
+        <div class="row">
+          <div class="col-md-4">
+            <div class="options">
+              <img src="../assets/images/verified-customer.png" alt="verificato">
+              <span class="opt-title">Richiesta personalizzata</span>
+              <span class="opt-description">Fai la tua richiesta di preventivo selezionando più opzioni predefinite in modo da dare un idea più chiara alle aziende.</span>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="options">
+              <img src="../assets/images/verified-customer.png" alt="verificato">
+              <span class="opt-title">Aziende selezionate</span>
+              <span class="opt-description">Per ogni richiesta di preventivo noi proponiamo solo le aziende con più esperienza e le più specializzate nel settore.</span>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="options">
+              <img src="../assets/images/verified-customer.png" alt="verificato">
+              <span class="opt-title">Risparmia tempo</span>
+              <span class="opt-description">Non dovrai mai spendere tempo a cercare da solo l'azienda per i tuoi lavori. Ci pensiamo noi in breve tempo a offrirti l'azienda più seria.</span>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <button type="button" class="btn btn-primary btn-request" routerLink="/request/service">
+              Chiedi un preventivo
+            </button>
+          </div>
         </div>
       </div> -->
       <div class="home-header" *ngIf="!fragment">
-        <h1 class="title">Clienti per serramenti</h1>
-        <div class="options">
-          <div class="row">
-            <div class="col-md-4">
-              <img src="../assets/images/verified-customer.png" alt="verificato">
-              <span class="opt-title">Solo clienti verificati</span>
-              <span class="opt-description">I clienti sono sempre verificati e filtrati. Le richieste di lavoro sono selezionate.</span>
+        <div class="row">
+          <div class="col-md-12">
+            <h1 class="title">Clienti per infissi</h1>
+            <p class="description">Una piattaforma che mette a disposizione richieste dettagliate da potenziali clienti nella tua zona offrendo partnership a lungo termine e costi agevolati.</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-4">
+            <div class="options">
+              <span class="opt-icon background-f1c40f"><i class="fa fa-list" aria-hidden="true"></i></span>
+              <span class="opt-title">Richieste più specifiche</span>
+              <span class="opt-description">Finalmente le richieste dei clienti su Starbook diventano più complete e dettagliate.</span>
             </div>
-            <div class="col-md-4">
-              <img src="../assets/images/pay-for-job.png" alt="pagamento">
-              <span class="opt-title">Acquisti in sicurezza</span>
-              <!-- <span class="opt-description">Il pagamento del totale viene effettuato solo se il cliente accetta la sua offerta.</span> -->
-              <span class="opt-description">L'acquisto del contatto viene effettuato con processori di pagamento sicuri.</span>
+          </div>
+          <div class="col-md-4">
+            <div class="options">
+              <span class="opt-icon background-27ae60"><i class="fa fa-map-marker" aria-hidden="true"></i></span>
+              <span class="opt-title">Lavori in zona</span>
+              <span class="opt-description">Riceverai richieste da clienti nella tua zona o entro un raggio geografico predefinito.</span>
             </div>
-            <div class="col-md-4">
-              <img src="../assets/images/refund-guarantee.png" alt="rimborso">
-              <span class="opt-title">Raccogli crediti</span>
-              <span class="opt-description">Il tuoi acquisti ritornano raccogliendo sempre più crediti.</span>
-              <!-- <span class="opt-title">Ritorno sull'investimento</span>
-              <span class="opt-description">Il tuo investimento ritorna sempre con il sistema del rimborso credito.</span> -->
+          </div>
+          <div class="col-md-4">
+            <div class="options">
+              <span class="opt-icon background-2980b9"><i class="fa fa-handshake-o" aria-hidden="true"></i></span>
+              <span class="opt-title">Partner per sempre</span>
+              <span class="opt-description">A lungo termine con Starbook puoi diventare partner e ricevere richieste con prezzi più agevolati.</span>
             </div>
           </div>
         </div>
@@ -56,56 +86,66 @@
         <div class="post" *ngFor="let post of posts">
           <div class="post-content">
             <img class="purchased-image" *ngIf="post.status && post.status.active===false" src='../assets/images/purchased-label.png'>
-            <div class="post-body">
-              <div class="post-initial">
-                <!-- <div class="top-title">
-                  <span *ngIf="post.status && post.status.active===true" class="top-title-value active loading-dots">In attesa di proposte</span>
-                  <span *ngIf="post.status && post.status.active===false" class="top-title-value assigned">Lavoro venduto</span>
-                </div> -->
-                <i class="fa fa-briefcase left-icon" aria-hidden="true"></i>
-                <h1 class="post-title">{{post.title}}</h1>
-                <span class="post-location">a {{checkPostLocation(post)}}</span>
-              </div>
-              <div class="post-warranty">
-                <div class="warranty-amount">
-                  <!-- <span class="warranty-price">{{getPriceBasedOnBudget(post)/100}}</span><span class="warranty-cent">,95€</span> -->
-                  <span class="warranty-price">{{ getDecimalPartPrice(post) }}</span><span class="warranty-cent">,{{ getFracPartPrice(post) }}€</span>
-                </div>
-                <div class="warranty-text">
-                  <span class="warranty-title">Contatto</span>
-                  <span class="warranty-description"><i>(iva inclusa)</i></span>
-                  <!-- <span class="warranty-description"><i>Per lavoro accettato</i></span> -->
-                </div>
-              </div>
+            <div class="post-header">
               <div class="row">
                 <div class="col-md-12">
+                  <div class="post-initial">
+                    <i class="fa fa-briefcase left-icon" aria-hidden="true"></i>
+                    <h1 class="post-title" *ngIf="!(post.details | objectContain:'ARRAY_HAVE_TITLE') && !post.title">Richiesta preventivo</h1>
+                    <h1 class="post-title" *ngIf="!(post.details | objectContain:'ARRAY_HAVE_TITLE') && post.title">{{post.title}}</h1>
+                    <h1 class="post-title" *ngIf="(post.details | objectContain:'ARRAY_HAVE_TITLE')">{{post.details | elementInArrayBy: 'type': 'TITLE': 'title'}}</h1>
+                    <span class="post-location"><i class="fa fa-map-marker" aria-hidden="true"></i> {{checkPostLocation(post)}}</span>
+                  </div>
+                  <div class="post-warranty">
+                    <app-dynamicprice class="warranty-amount" [price]="post.budget" (onPriceCalculated)="setPriceCalculated($event)" ></app-dynamicprice>
+                    <div class="warranty-text">
+                      <span class="warranty-title">Contatto</span>
+                      <span class="warranty-description"><i>(iva inclusa)</i></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="post-body">
+              <div class="row" *ngIf="post.description && post.description.length>0">
+                <div class="col-md-12">
+                  <div class="post-details">
+                    <div class="post-detail">
+                      <span class="title font-size-18">Descrizione del cliente</span>
+                      <span class="description font-size-17">{{post.description}}</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row" *ngIf="post.details | objectContain:'CONTAIN_OBJECT_IN_ARRAY'">
+                <div class="col-md-6" *ngFor="let detail of post.details | sortBy: 'type': true: 'OBJECT'">
+                  <div class="post-details">
+                    <div class="post-detail">
+                      <span class="title" *ngIf="detail.value">{{detail.title}}: {{detail.value}}</span>
+                      <span class="title" *ngIf="!detail.value">{{detail.title}}</span>
+                      <span class="description elipsis-2lines">{{detail.description}}</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row" *ngIf="post.details | objectContain:'STRING_OBJECT_IN_ARRAY'">
+                <div class="col-md-12">
+                  <div class="post-details">
+                    <div class="post-detail">
+                      <span class="title font-size-18">Dettagli</span>
+                      <span class="description elipsis-2lines font-size-17" *ngFor="let detail of post.details | sortBy: 'type': true: 'STRING'">{{detail}}</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- <div class="row">
+                <div class="col-md-12" *ngIf="post.details && post.details.length>0">
                   <div class="post-description">
-                    <div class="post-informations">
-                      <span class="label label_mobile">Titolo:</span><span class="content content_mobile">{{post.title}}</span>
-                    </div>
-                    <div class="post-informations">
-                      <span class="label label_mobile">Descrizione:</span><span class="content content_mobile">{{post.description}}</span>
-                    </div>
-                    <div class="post-informations" *ngIf="post.details && post.details.length>0">
-                      <span class="label label_mobile">Dettagli:</span>
-                      <span class="content content_mobile" *ngFor="let detail of post.details">{{detail}}</span>
-                    </div>
                     <div class="row" *ngIf="!fragment">
                       <div class="col-md-12">
                         <div class="row">
                           <div class="col-md-12">
                             <div class="row">
-                              <!-- <div class="col-md-12">
-                                <div class="post-informations">
-                                  <span class="label">Cliente:</span><img class="content verified-image" src="../assets/images/verified-contact.png" alt="verificato">
-                                </div>
-                              </div> -->
-                              <div class="col-md-12">
-                                <div class="post-informations">
-                                  <span class="label">Budget:</span>
-                                  <span class="content price">{{post.budget.min/100}}€ - {{post.budget.max/100}}€</span>
-                                </div>
-                              </div>
                               <div class="col-md-12">
                                 <div class="post-informations" *ngIf="post.status && post.status.active===false && post.temp_data">
                                   <span class="label">Risultati della richiesta</span>
@@ -116,62 +156,36 @@
                                   </div>
                                 </div>
                               </div>
-
-                              <!-- <div class="col-md-12">
-                                <div class="post-informations">
-                                  <span class="label">Stato:</span>
-                                  <span class="content">
-                                    <span *ngIf="post.status && post.status.active===true" class="top-title-value active loading-dots">In attesa di proposte</span>
-                                    <span *ngIf="post.status && post.status.active===false" class="top-title-value assigned">Lavoro venduto</span>
-                                  </span>
-                                </div>
-                              </div> -->
                             </div>
                           </div>
-                          <!-- <div class="col-md-5">
-                            <div class="post-informations" *ngIf="post.status && post.status.active===false && post.temp_data">
-                              <span class="label">Risultati della richiesta</span>
-                              <span class="sublabel">Le aziende accettate e le aziende rimborsate.</span>
-                              <div *ngFor="let tick of counter(post.temp_data.purchases)" class="customer accepted"><i class="fa fa-check" aria-hidden="true"></i></div>
-                              <div *ngFor="let tick of counter(post.temp_data.refunds)" class="customer refunded">
-                                <i class="fa fa-repeat" aria-hidden="true"></i>
-                              </div>
-                            </div>
-                          </div> -->
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
-                <div class="col-md-12" *ngIf="post.images_links && post.images_links.length!==0">
-                  <div class="row post-pictures">
-                    <div class="col-md-4" *ngFor="let image_link of post.images_links">
-                      <div class="picture">
-                        <img class="post-picture" src="{{image_link}}" alt="immagine richiesta">
-                        <div class="overlay"></div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+              </div> -->
+            </div>
+            <div class="post-footer">
               <div class="row">
                 <div class="col-md-12">
                   <app-action [post]="post" (onPreviewPurchase)="previewPost($event)" (onPreviewUpdate)="previewUpdatePost(post)" (onSendQuotation)="openQuotationForm(post)"></app-action>
                 </div>
               </div>
-            </div>
-            <div class="post-footer">
-              <div class="post-message" *ngIf="(!post.status || post.status.active===true) && !fragment" >
-                <span>Riceverai tutte le informazioni del contatto una volta garantito l'acquisto e potrai contattare il cliente tramite email e telefono.</span>
-              </div>
-              <div class="post-message" *ngIf="(post.status && post.status.active===false) && !fragment">
-                <span>Questa richiesta di lavoro è stata venduta e non è più possibile acquistarla.</span>
-              </div>
-              <div class="post-message" *ngIf="fragment">
-                <span>Aggiorna la richiesta per poter notificare i professionisti e far partire il sistema dei rimborsi.</span>
-              </div>
-              <div class="post-actions-right" *ngIf="!params.id">
-                <a routerLink="/post/{{post._id}}"><i class="fa fa-sign-out icon-new-page" aria-hidden="true"></i></a>
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="post-message" *ngIf="(!post.status || post.status.active===true) && !fragment" >
+                    <span>Riceverai tutte le informazioni del contatto una volta garantito l'acquisto e potrai contattare il cliente tramite email e telefono.</span>
+                  </div>
+                  <div class="post-message" *ngIf="(post.status && post.status.active===false) && !fragment">
+                    <span>Questa richiesta di lavoro è stata venduta e non è più possibile acquistarla.</span>
+                  </div>
+                  <div class="post-message" *ngIf="fragment">
+                    <span>Aggiorna la richiesta per poter notificare i professionisti e far partire il sistema dei rimborsi.</span>
+                  </div>
+                  <!-- <div class="post-actions-right" *ngIf="!params.id">
+                    <a routerLink="/post/{{post._id}}"><i class="fa fa-sign-out icon-new-page" aria-hidden="true"></i></a>
+                  </div> -->
+                </div>
               </div>
             </div>
           </div>
@@ -227,64 +241,102 @@
         <button type="button" class="close" (click)="popup=null; commonService.enableScroll()">&times;</button>Anteprima della richiesta
       </div>
       <div class="popup-header">
-        <h3 class="post-title left">Richiesta cliente</h3>
-        <div class="post-warranty right">
-          <div class="warranty-amount">
-            <span class="warranty-price">{{ getDecimalPartPrice(selected_post) }}</span><span class="warranty-cent">,{{ getFracPartPrice(selected_post) }}€</span>
-          </div>
-          <div class="warranty-text">
-            <span class="warranty-title">CONTATTO</span>
+        <div class="row">
+          <div class="col-md-12">
+            <h3 class="post-title left" *ngIf="!(selected_post.details | objectContain:'ARRAY_HAVE_TITLE') && !selected_post.title">Richiesta preventivo</h3>
+            <h3 class="post-title left" *ngIf="!(selected_post.details | objectContain:'ARRAY_HAVE_TITLE') && selected_post.title">{{selected_post.title}}</h3>
+            <h3 class="post-title left" *ngIf="(selected_post.details | objectContain:'ARRAY_HAVE_TITLE')">{{selected_post.details | elementInArrayBy: 'type': 'TITLE': 'title'}}</h3>
+            <div class="post-warranty right">
+              <app-dynamicprice class="warranty-amount" [price]="selected_post.budget" (onPriceCalculated)="setPriceCalculated($event)" ></app-dynamicprice>
+              <div class="warranty-text">
+                <span class="warranty-title">CONTATTO</span>
+                <span class="warranty-description"><i>(iva inclusa)</i></span>
+              </div>
+            </div>
           </div>
         </div>
       </div>
       <div class="popup-body">
         <div class="row">
-          <div class="col-md-7">
-            <div class="row">
-              <div class="col-md-12">
-                <div class="info-client">
-                  <div class="client-avatar">
-                    <span class="name-initials">{{getFirstChar(selected_post.customer.firstname)}}{{getFirstChar(selected_post.customer.lastname)}}</span>
-                  </div>
-                  <span class="client-name" *ngIf="(purchased_post && (purchased_post.customer.complete===false) && (purchased_post._id===selected_post._id)) || !purchased_post">{{getFirstChar(selected_post.customer.firstname)}}. {{getFirstChar(selected_post.customer.lastname)}}****</span>
-                  <span class="client-name" *ngIf="purchased_post && (purchased_post.customer.complete===true) && (purchased_post._id===selected_post._id)">{{purchased_post.customer.firstname}} {{purchased_post.customer.lastname}}</span>
-                  <span class="client-request">{{selected_post.title}}</span>
-                </div>
+          <div class="col-md-12" *ngIf="selected_post.description && selected_post.description.length>0">
+            <div class="post-details">
+              <div class="post-detail">
+                <span class="title font-size-18">Descrizione del cliente</span>
+                <span class="description font-size-17">{{selected_post.description}}</span>
               </div>
-              <div class="col-md-12">
-                <div class="info">
-                  <span class="label label_mobile">Descrizione:</span>
-                  <span class="content content_mobile">{{selected_post.description}}</span>
-                </div>
-              </div>
-              <div class="col-md-12">
-                <div class="info">
-                  <span class="label label_mobile">Dettagli:</span>
-                  <span class="content content_mobile" *ngFor="let detail of selected_post.details">{{detail}}</span>
+            </div>
+          </div>
+          <div class="col-md-12" *ngIf="selected_post.details | objectContain:'CONTAIN_OBJECT_IN_ARRAY'">
+            <div *ngFor="let detail of selected_post.details | sortBy: 'type': true: 'OBJECT'">
+              <div class="post-details">
+                <div class="post-detail">
+                  <!-- <span class="title">{{detail.title}}</span> -->
+                  <span class="title" *ngIf="detail.value">{{detail.title}}: {{detail.value}}</span>
+                  <span class="title" *ngIf="!detail.value">{{detail.title}}</span>
+                  <span class="description">{{detail.description}}</span>
                 </div>
               </div>
             </div>
           </div>
-          <div class="col-md-5">
-            <div class="row">
-              <div class="col-md-12">
-                <div class="info">
-                  <span class="label left">Comune:</span>
-                  <span class="content content-mobile-right right">{{checkPostLocation(selected_post)}}</span>
-                </div>
+          <div class="col-md-12" *ngIf="selected_post.details | objectContain:'STRING_OBJECT_IN_ARRAY'">
+            <div class="post-details">
+              <div class="post-detail">
+                <span class="title font-size-17">Dettagli</span>
+                <span class="description font-size-17 display-block" *ngFor="let detail of selected_post.details | sortBy: 'type': true: 'STRING'">{{detail}}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <!-- <div class="client-details">
+              <div class="client-avatar">
+                <span class="name-initials">{{selected_post.customer.firstname.charAt(0)}} {{selected_post.customer.lastname.charAt(0)}}</span>
+              </div>
+              <span class="client-name" *ngIf="(purchased_post && (purchased_post.customer.complete===false) && (purchased_post._id===selected_post._id)) || !purchased_post">{{selected_post.customer.firstname.charAt(0)}}. {{selected_post.customer.lastname.charAt(0)}}****</span>
+              <span class="client-name" *ngIf="purchased_post && (purchased_post.customer.complete===true) && (purchased_post._id===selected_post._id)">{{purchased_post.customer.firstname}} {{purchased_post.customer.lastname}}</span>
+              <span class="client-request" *ngIf="!(selected_post.details | objectContain:'ARRAY_HAVE_TITLE') && !selected_post.title">Richiesta preventivo</span>
+              <span class="client-request" *ngIf="!(selected_post.details | objectContain:'ARRAY_HAVE_TITLE') && selected_post.title">{{selected_post.title}}</span>
+              <span class="client-request" *ngIf="(selected_post.details | objectContain:'ARRAY_HAVE_TITLE')">{{selected_post.details | elementInArrayBy: 'type': 'TITLE': 'title'}}</span>
+            </div> -->
+            <div class="post-details">
+              <div class="post-detail overflow-auto">
+                <span class="title left">Nominativo:</span>
+                <span class="description right font-size-17" *ngIf="(purchased_post && (purchased_post.customer.complete===false) && (purchased_post._id===selected_post._id)) || !purchased_post">{{selected_post.customer.firstname.charAt(0)}}. {{selected_post.customer.lastname.charAt(0)}}****</span>
+                <span class="description right font-size-17" *ngIf="purchased_post && (purchased_post.customer.complete===true) && (purchased_post._id===selected_post._id)">{{purchased_post.customer.firstname}} {{purchased_post.customer.lastname}}</span>
+              </div>
+              <div class="post-detail overflow-auto">
+                <span class="title left">Cliente:</span>
+                <span class="description right font-size-17">PRIVATO</span>
+              </div>
+            </div>
+            <div class="post-details">
+              <div class="post-detail overflow-auto">
+                <span class="title left">Stato:</span>
+                <span class="description right font-size-17">VERIFICATO</span>
+              </div>
+            </div>
+            <div class="post-details">
+              <div class="post-detail overflow-auto">
+                <span class="title left">Comune:</span>
+                <span class="description right font-size-17">{{checkPostLocation(selected_post)}}</span>
+              </div>
+            </div>
+            <div class="post-details" *ngIf="purchased_post">
+              <div class="post-detail overflow-auto">
+                <span class="title left">Email:</span>
+                <span class="description right font-size-17">{{purchased_post.customer.email}}</span>
+              </div>
+              <div class="post-detail overflow-auto">
+                <span class="title left">Telefono:</span>
+                <span class="description right font-size-17">{{purchased_post.customer.phone_number}}</span>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="post-details">
+              <div class="post-detail overflow-auto">
                 <app-maps [city]="selected_post.address.city"></app-maps>
-                <div class="info">
-                  <span class="label left">Cliente:</span>
-                  <span class="content content-mobile-right customer-type right">PRIVATO</span>
-                </div>
-                <div class="info">
-                  <span class="label left">Stato:</span>
-                  <img class="content content-mobile-right verified-image right" src="../assets/images/verified-contact.png" alt="verificato">
-                </div>
-                <div class="info">
-                  <span class="label left">Budget:</span>
-                  <span class="content content-mobile-right price right content-budget">{{selected_post.budget.min/100}}€ - {{selected_post.budget.max/100}}€</span>
-                </div>
               </div>
             </div>
           </div>
@@ -388,9 +440,9 @@
       <div class="popup-footer">
         <button type="button" class="btn btn-success btn-confirm" id="confirmPurchase" (click)="confirmPurchase(selected_post)">
           <span class="title">Conferma acquisto</span>
-          <div class="warranty-amount">
+          <!-- <div class="warranty-amount">
             <span class="warranty-price">{{ getDecimalPartPrice(selected_post) }}</span><span class="warranty-cent">,{{ getFracPartPrice(selected_post) }}€</span>
-          </div>
+          </div> -->
         </button>
         <span class="security-message">*Protocollo di sicurezza HTTPS, certificati TSL (SSL) e processore di pagamenti <a href="https://stripe.com" target="_blank">Stripe.com</a>.</span>
       </div>
@@ -742,9 +794,9 @@
               <div class="col-md-12">
                 <div class="info-client">
                   <div class="client-avatar">
-                    <span class="name-initials">{{getFirstChar(selected_post.customer.firstname)}}{{getFirstChar(selected_post.customer.lastname)}}</span>
+                    <span class="name-initials">{{selected_post.customer.firstname.charAt(0)}} {{selected_post.customer.lastname.charAt(0)}}</span>
                   </div>
-                  <span class="client-name">{{getFirstChar(selected_post.customer.firstname)}}. {{getFirstChar(selected_post.customer.lastname)}}****</span>
+                  <span class="client-name">{{selected_post.customer.firstname.charAt(0)}}. {{selected_post.customer.lastname.charAt(0)}}****</span>
                   <span class="client-request">{{selected_post.title}}</span>
                 </div>
               </div>
@@ -784,10 +836,10 @@
                   <span class="label left">Stato:</span>
                   <img class="content content-mobile-right verified-image right" src="../assets/images/verified-contact.png" alt="verificato">
                 </div>
-                <div class="info">
+                <!-- <div class="info">
                   <span class="label left">Budget:</span>
                   <span class="content content-mobile-right price right content-budget">{{selected_post.budget.min/100}}€ - {{selected_post.budget.max/100}}€</span>
-                </div>
+                </div> -->
               </div>
             </div>
           </div>
@@ -812,10 +864,10 @@
           <div class="col-md-4">
             <div class="form-group">
               <label for="something-input">Prezzo stimato</label>
-              <div class="estimate-price form-group">
+              <!-- <div class="estimate-price form-group">
                 <label for="something-input">Euro</label>
                 <input id="something-input" class="form-control" placeholder="0" type="text" [ngClass]="{'error-input': ProposalState.error}" [(ngModel)]="Proposal.estimate_price" [ngModelOptions]="{standalone: true}">
-              </div>
+              </div> -->
             </div>
           </div>
           <!-- <div class="col-md-4">

@@ -20,9 +20,6 @@ export class WizardComponent implements OnInit {
   public service_data;
   public screenWidth;
 
-  ////////////////////////////
-  //// ORDER OBJECT //////////
-  ////////////////////////////
   public Order = {
     service_id: '',
     title: '',
@@ -44,9 +41,6 @@ export class WizardComponent implements OnInit {
     created: false
   };
 
-  ///////////////////////////////
-  //// CONFIRM ADDRESS //////////
-  ///////////////////////////////
   public address = {
     street: null,
     street_number: null,
@@ -64,9 +58,6 @@ export class WizardComponent implements OnInit {
   };
   public addresses = [];
 
-  ////////////////////////////
-  //// CONFIRM DATE //////////
-  ////////////////////////////
   public date = null;
   public temp_date;
   public minDate = new Date(new Date().getTime() + 24 * 60 * 60 * 1000);
@@ -76,10 +67,6 @@ export class WizardComponent implements OnInit {
     loading: false,
     error_message: null
   }
-
-  /////////////////////////
-  /////// LOGIN  //////////
-  /////////////////////////
   public loginParameters = {
     email: '',
     password: ''
@@ -91,10 +78,6 @@ export class WizardComponent implements OnInit {
     email_error: null,
     password_error: null,
   };
-
-  //////////////////////////
-  /////// Signup  //////////
-  //////////////////////////
   public signupParameters = {
     firstname: '',
     lastname: '',
@@ -114,19 +97,11 @@ export class WizardComponent implements OnInit {
     password_error: null,
     confirm_password_error: null
   };
-
-  ///////////////////////////
-  /////// FACEBOOK //////////
-  ///////////////////////////
   public facebook_state = {
     loading: false,
     button_title: "Continua con Facebook",
     error_message: null,
   }
-
-  //////////////////////////
-  /////// PROFILE //////////
-  //////////////////////////
   public profileInformation = {
     phone_number: ''
   };
@@ -135,10 +110,6 @@ export class WizardComponent implements OnInit {
     button_title: "Salva",
     phone_number_error:null
   };
-
-  //////////////////////////
-  /////// PAYMENT //////////
-  //////////////////////////
   public Card = {
     number: null,
     exp_month: null,
@@ -181,34 +152,34 @@ export class WizardComponent implements OnInit {
         //   });
         // }
 
-    if (isBrowser) {
-      // this.service_data = this.orderService.getWizardData();
-      this.service_data = {};
-
-      if (Object.keys(this.service_data).length===0) {
-        this.Order = this.readOrderFromLocal()
-        if (this.Order.address) {
-          if (this.Order.address.street_number.length > 0) {
-            this.temp_address = this.Order.address.street + ', ' + this.Order.address.street_number + ' ' + this.Order.address.city;
-          } else {
-            this.temp_address = this.Order.address.street + ', ' + this.Order.address.city;
-          }
-        }
-        if (this.Order.date) {
-          this.temp_date = new Date(this.Order.date);
-          let date = new Date(this.Order.date);
-          let day = date.getDate() > 9 ? date.getDate() : '0' + date.getDate();
-          this.formated_date =  day + ' ' + this.it.monthNames[date.getMonth()] + ' ' + date.getFullYear();
-        }
-      } else {
-        var service = this.service_data[0]
-        this.Order.service_id = service._id;
-        this.Order.title = service.title;
-        this.Order.details = service.details;
-        this.Order.upfront_amount = 490;
-        this.saveOrderToLocal(this.Order);
-      }
-    }
+    // if (isBrowser) {
+    //   // this.service_data = this.orderService.getWizardData();
+    //   this.service_data = {};
+    //
+    //   if (Object.keys(this.service_data).length===0) {
+    //     this.Order = this.readOrderFromLocal()
+    //     if (this.Order.address) {
+    //       if (this.Order.address.street_number.length > 0) {
+    //         this.temp_address = this.Order.address.street + ', ' + this.Order.address.street_number + ' ' + this.Order.address.city;
+    //       } else {
+    //         this.temp_address = this.Order.address.street + ', ' + this.Order.address.city;
+    //       }
+    //     }
+    //     if (this.Order.date) {
+    //       this.temp_date = new Date(this.Order.date);
+    //       let date = new Date(this.Order.date);
+    //       let day = date.getDate() > 9 ? date.getDate() : '0' + date.getDate();
+    //       this.formated_date =  day + ' ' + this.it.monthNames[date.getMonth()] + ' ' + date.getFullYear();
+    //     }
+    //   } else {
+    //     var service = this.service_data[0]
+    //     this.Order.service_id = service._id;
+    //     this.Order.title = service.title;
+    //     this.Order.details = service.details;
+    //     this.Order.upfront_amount = 490;
+    //     this.saveOrderToLocal(this.Order);
+    //   }
+    // }
   }
 
   ngOnInit() {
@@ -275,6 +246,7 @@ export class WizardComponent implements OnInit {
   ///////////////////////////////
   //// CONFIRM PREVIEW //////////
   ///////////////////////////////
+
   confirmPreview() {
     this.router.navigate(['order/address']);
   }
@@ -315,10 +287,7 @@ export class WizardComponent implements OnInit {
     this.orderService.getAddresses(event.query).then((addresses) => {
       this.addresses = [];
       this.addresses = addresses;
-
-
-
-
+      console.log(JSON.stringify(addresses))
     }).catch((error) => {
       // console.log(error);
     });
@@ -342,6 +311,7 @@ export class WizardComponent implements OnInit {
   ////////////////////////////
   //// CONFIRM DATE //////////
   ////////////////////////////
+
   confirmDate() {
     if (!this.Order.date) {
       this.date_state.error_message = "Per favore inserisci una data";
@@ -366,6 +336,7 @@ export class WizardComponent implements OnInit {
   /////////////////////////////
   //// CONFIRM ORDER //////////
   /////////////////////////////
+
   confirmOrder() {
     if (localStorage.getItem('auth')) {
       this.order_status.loading = true;
@@ -411,6 +382,7 @@ export class WizardComponent implements OnInit {
   ///////////////////////////
   //// CONFIRM END //////////
   ///////////////////////////
+
   confirmEnd() {
     let user = JSON.parse(localStorage.getItem('auth'));
     if (!user.phone_number || user.phone_number.length < 10) {
@@ -424,6 +396,7 @@ export class WizardComponent implements OnInit {
   ////////////////////////////////////
   ////////// AUTHENTICATION //////////
   ////////////////////////////////////
+
   login() {
     if (this.login_state.loading || this.facebook_state.loading) {return;}
     if (this.loginParameters.email.length === 0 || this.loginParameters.password.length === 0) {
@@ -597,6 +570,7 @@ export class WizardComponent implements OnInit {
   //////////////////////////
   ////////// CARD //////////
   //////////////////////////
+
   addCard() {
     if (this.card_state.loading) {return;}
     this.card_state.loading = true;
@@ -711,6 +685,7 @@ export class WizardComponent implements OnInit {
   ////////////////////////////////////
   ////////// PROFILE INFO ////////////
   ////////////////////////////////////
+
   saveInformations() {
     if (this.profile_info_state.loading) {return;}
     if (this.profileInformation.phone_number.length < 9 ) {
@@ -741,6 +716,7 @@ export class WizardComponent implements OnInit {
   ///////////////////////////
   ////////// ORDER //////////
   ///////////////////////////
+
   saveOrderToLocal(order) {
     if (isBrowser) {
       localStorage.setItem('order', JSON.stringify(order));

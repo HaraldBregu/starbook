@@ -688,6 +688,9 @@ textarea.form-control {
   box-shadow: none;
   padding: 15px; }
 
+.input-group input {
+  height: 45px !important; }
+
 .form-group {
   margin-bottom: 15px; }
 
@@ -721,12 +724,11 @@ textarea.form-control {
   margin-bottom: 15px; }
 
 .input-group .form-control {
-  height: 50px;
-  border: 1px solid #DCDCDC;
+  border: 1px solid #bdc3c7;
   box-shadow: none; }
 
 .input-group .error-input {
-  border: 2px solid #f75c4b; }
+  border: 1px solid #f75c4b; }
 
 .animate {
   -webkit-animation: spin 1000ms infinite linear;
@@ -1244,7 +1246,10 @@ input::-ms-clear {
 
   .popup-container .popup {
     position: relative;
-    width: 100%; } }
+    width: 100%; }
+
+  .hide-425 {
+    display: none !important; } }
 .full-width {
   width: 100% !important; }
 
@@ -1259,6 +1264,36 @@ input::-ms-clear {
 
 .max-width-800 {
   max-width: 800px !important; }
+
+.max-width-900 {
+  max-width: 900px !important; }
+
+.font-size-18 {
+  font-size: 18px !important; }
+
+.font-size-17 {
+  font-size: 17px !important; }
+
+.overflow-auto {
+  overflow: auto !important; }
+
+.elipsis-2lines  {
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical; }
+
+.display-block {
+  display: block; }
+
+.background-f1c40f {
+  background: #f1c40f; }
+
+.background-27ae60 {
+  background: #27ae60; }
+
+.background-2980b9 {
+  background: #2980b9; }
 
 @font-face {
   font-family: 'FontAwesome';
@@ -3461,6 +3496,125 @@ app-root .navbar {
   padding: 0px !important;
   background: white;
   line-height: 70px; }
+  app-root .navbar .navbar-container {
+    padding: 0 20px;
+    max-width: 1440px;
+    margin: auto;
+    height: 70px; }
+    app-root .navbar .navbar-container .navbar-nav .nav-item + .nav-item {
+      margin-left: 0 !important; }
+    app-root .navbar .navbar-container .navbar-nav .nav-link {
+      position: relative;
+      font-weight: 400;
+      font-size: 16px;
+      color: rgba(33, 33, 33, 0.8) !important;
+      padding: 0 15px;
+      z-index: 2;
+      margin-left: 5px;
+      margin-right: 5px;
+      line-height: 50px; }
+    app-root .navbar .navbar-container .navbar-nav .nav-link:hover,
+    app-root .navbar .navbar-container .navbar-nav .nav-link.active {
+      background-color: #f0f0f0;
+      transition: width .0s ease; }
+    app-root .navbar .navbar-container .navbar-nav .request:hover,
+    app-root .navbar .navbar-container .navbar-nav .request.active {
+      background-color: #1ba783;
+      color: white !important;
+      transition: width .0s ease; }
+    app-root .navbar .navbar-container .navbar-nav .register-item {
+      background: #f7941e;
+      padding: 0 10px; }
+      app-root .navbar .navbar-container .navbar-nav .register-item .nav-link {
+        position: relative;
+        font-weight: 500;
+        font-size: 16px;
+        color: #324978 !important;
+        padding: 0 15px;
+        z-index: 2;
+        margin-left: 1px;
+        margin-right: 1px;
+        line-height: 50px;
+        color: white !important;
+        font-weight: 600; }
+      app-root .navbar .navbar-container .navbar-nav .register-item .nav-link:hover,
+      app-root .navbar .navbar-container .navbar-nav .register-item .nav-link.active {
+        background: transparent; }
+    app-root .navbar .navbar-container .navbar-nav .register-item:hover {
+      background: #da7a08 !important; }
+    app-root .navbar .navbar-container .navbar-nav .publish-item {
+      position: relative;
+      background: #f1c40f;
+      font-size: 20px;
+      padding: 0 40px;
+      z-index: 2;
+      line-height: 50px;
+      color: white !important;
+      font-weight: 600; }
+      app-root .navbar .navbar-container .navbar-nav .publish-item :hover, app-root .navbar .navbar-container .navbar-nav .publish-item .active {
+        background: transparent; }
+    app-root .navbar .navbar-container .navbar-nav .publish-item:hover {
+      background: #1abc9c !important; }
+    app-root .navbar .navbar-container .top-menu {
+      padding-right: 0 !important;
+      overflow-x: visible !important; }
+    app-root .navbar .navbar-container .user-container {
+      float: right; }
+      app-root .navbar .navbar-container .user-container .user {
+        line-height: 70px; }
+        app-root .navbar .navbar-container .user-container .user .image {
+          height: 40px;
+          border-radius: 25px; }
+      app-root .navbar .navbar-container .user-container .dropdown-menu {
+        float: right;
+        right: 0px;
+        padding: 5px 0;
+        left: initial;
+        top: 65px;
+        width: 270px;
+        border: none;
+        border-radius: 3px;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.25), 0 0 1px rgba(0, 0, 0, 0.35);
+        line-height: 0; }
+        app-root .navbar .navbar-container .user-container .dropdown-menu .list-item {
+          padding: 0px;
+          font-size: 14px; }
+          app-root .navbar .navbar-container .user-container .dropdown-menu .list-item .btn {
+            line-height: 1.9;
+            font-size: 14px;
+            color: rgba(0, 0, 0, 0.6);
+            padding: 7px 25px;
+            width: 100%;
+            height: 100%;
+            text-align: left; }
+            app-root .navbar .navbar-container .user-container .dropdown-menu .list-item .btn span {
+              margin: 0 10px; }
+        app-root .navbar .navbar-container .user-container .dropdown-menu .list-item:hover {
+          background-color: #F7F7F7; }
+        app-root .navbar .navbar-container .user-container .dropdown-menu .line {
+          border-top: solid 1px rgba(0, 0, 0, 0.05);
+          margin-top: 5px;
+          margin-bottom: 5px;
+          padding: 0; }
+      app-root .navbar .navbar-container .user-container .dropdown-menu:before {
+        position: absolute;
+        top: -7px;
+        right: 16px;
+        display: inline-block;
+        border-right: 7px solid transparent;
+        border-bottom: 7px solid #ccc;
+        border-left: 7px solid transparent;
+        border-bottom-color: rgba(0, 0, 0, 0.2);
+        content: ''; }
+      app-root .navbar .navbar-container .user-container .dropdown-menu:after {
+        position: absolute;
+        top: -6px;
+        right: 17px;
+        display: inline-block;
+        border-right: 6px solid transparent;
+        border-bottom: 6px solid #ffffff;
+        border-left: 6px solid transparent;
+        content: ''; }
   app-root .navbar .container-starbook {
     padding: 0 20px;
     max-width: 1440px;
@@ -3484,7 +3638,7 @@ app-root .navbar {
       transition: width .0s ease; }
     app-root .navbar .container-starbook .navbar-nav .request:hover,
     app-root .navbar .container-starbook .navbar-nav .request.active {
-      background-color: #e74c3c;
+      background-color: #1ba783;
       color: white !important;
       transition: width .0s ease; }
     app-root .navbar .container-starbook .navbar-nav .register-item {
@@ -3582,8 +3736,8 @@ app-root .navbar {
         content: ''; }
   app-root .navbar .center-container {
     position: absolute;
-    left: 300px;
-    right: 300px;
+    left: 200px;
+    right: 200px;
     height: 70px;
     padding: 0 10px;
     margin: auto;
@@ -3679,7 +3833,7 @@ app-root .navbar {
       text-align: center; }
       app-root .navbar .center-container .tagline h4 {
         line-height: 70px;
-        font-weight: 300;
+        font-weight: 400;
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis; }
@@ -3691,7 +3845,7 @@ app-root .navbar {
     padding: 0;
     margin: 0; }
     app-root .navbar .navbar-brand img {
-      height: 48px;
+      height: 32px;
       cursor: pointer; }
     app-root .navbar .navbar-brand .mobile {
       display: none; }
@@ -3716,8 +3870,8 @@ app-root .navbar {
     margin: 0;
     height: 48px;
     background: white;
-    color: #696969 !important;
-    font-size: 28px;
+    color: #263961 !important;
+    font-size: 32px;
     border-radius: 27px;
     width: 48px;
     text-align: center;
@@ -3739,7 +3893,7 @@ app-root .navbar {
     line-height: 0 !important;
     margin-top: 14px; }
   app-root .navbar .nav .account .work {
-    color: #34495e !important;
+    color: #263961 !important;
     border-radius: 50px;
     padding: 8px;
     line-height: 0 !important;
@@ -3769,33 +3923,76 @@ app-root .navbar {
     font-weight: 700;
     padding: 0 5px; }
   app-root .navbar .nav .nav-item .request {
-    color: #696969 !important;
+    color: #263961 !important;
     border-radius: 50px;
-    padding: 8px;
-    line-height: 0 !important;
     margin-top: 14px;
     font-size: 28px;
-    width: 48px;
     height: 48px;
-    padding: 0;
-    line-height: 52px !important;
+    padding: 0 20px;
+    line-height: 50px !important;
     text-align: center;
     background: #f0f0f0; }
+    app-root .navbar .nav .nav-item .request i {
+      float: left;
+      line-height: 52px; }
+    app-root .navbar .nav .nav-item .request .text {
+      font-size: 22px;
+      margin-left: 10px;
+      float: left;
+      line-height: 48px; }
+app-root .request-navbar {
+  background: #242f41;
+  border-bottom: 1px solid #242f41 !important; }
+app-root .request-navbar .center-container {
+  max-width: none;
+  padding: 0; }
+app-root .request-navbar .center-container .tagline {
+  color: white; }
+app-root .request-navbar .center-container .tagline h4 {
+  font-weight: 500; }
+app-root .request-navbar .nav .nav-item .btn-navbar {
+  background: #242f41;
+  color: white !important; }
+app-root .request-navbar .nav .nav-item .btn-navbar:hover {
+  background-color: #131a25; }
 
 @media (max-width: 768px) {
-  app-root .navbar .center-container {
-    display: none; } }
+  app-root .request-navbar .center-container {
+    display: block;
+    left: 100px;
+    right: 100px; } }
 @media (max-width: 425px) {
   app-root .navbar .nav .account .nav-link span {
-    display: none; } }
+    display: none; }
+
+  app-root .navbar .center-container,
+  app-root .request-navbar .center-container {
+    display: block;
+    left: 47px;
+    right: 56px;
+    float: left;
+    position: absolute; }
+
+  app-root .navbar .container-starbook {
+    padding: 0 15px; }
+
+  app-root .request-navbar .container-starbook {
+    padding: 0 15px; } }
 @media (max-width: 375px) {
   app-root .navbar .container-starbook {
+    padding: 0 10px; }
+
+  app-root .navbar .navbar-container {
     padding: 0 10px; } }
 @media (max-width: 320px) {
   app-root .navbar .nav .signup-item {
     display: none; }
 
   app-root .navbar .container-starbook .navbar-nav .nav-link {
+    margin-left: 0;
+    margin-right: 0; }
+
+  app-root .navbar .navbar-container .navbar-nav .nav-link {
     margin-left: 0;
     margin-right: 0; } }
 app-home {
@@ -3816,46 +4013,62 @@ app-home {
         app-home .home-container .home .home-content .home-header {
           font-family: 'Open Sans', sans-serif;
           background: white;
-          border-radius: 10px;
+          border-radius: 3px;
           border: solid 1px #e0e0e0;
           -webkit-box-shadow: 0 0 10px 0 rgba(50, 50, 50, 0.1);
           -moz-box-shadow: 0 0 10px 0 rgba(50, 50, 50, 0.1);
           box-shadow: 0 0 10px 0 rgba(50, 50, 50, 0.1);
-          padding: 40px 50px;
-          margin-top: 10px; }
-          app-home .home-container .home .home-content .home-header img {
-            width: 40px;
-            float: left; }
+          padding: 50px;
+          margin-top: 20px; }
+          app-home .home-container .home .home-content .home-header .row + .row {
+            margin-top: 3rem; }
           app-home .home-container .home .home-content .home-header .title {
-            font-weight: 300;
-            color: rgba(0, 0, 0, 0.7);
-            margin-bottom: 30px; }
-          app-home .home-container .home .home-content .home-header i {
-            color: #2ecc71;
-            font-size: 19px;
-            font-weight: 300;
-            margin-right: 5px; }
-          app-home .home-container .home .home-content .home-header span {
-            font-size: 19px; }
+            font-weight: 700;
+            color: #575a5c;
+            letter-spacing: unset; }
           app-home .home-container .home .home-content .home-header .description {
+            color: #565a5c;
             margin-top: 10px;
-            color: rgba(0, 0, 0, 0.8); }
-          app-home .home-container .home .home-content .home-header .options i {
-            display: block; }
-          app-home .home-container .home .home-content .home-header .options .opt-title {
-            display: block;
-            font-size: 22px;
-            margin-left: 50px; }
-          app-home .home-container .home .home-content .home-header .options .opt-description {
-            display: block;
-            font-weight: 300;
-            font-size: 16px;
-            margin-left: 50px; }
+            font-size: 20px !important;
+            line-height: 1.5; }
+          app-home .home-container .home .home-content .home-header .btn-request {
+            padding: 5px 50px;
+            border-radius: 3px;
+            font-weight: 500;
+            height: auto; }
+          app-home .home-container .home .home-content .home-header .options {
+            padding: 10px 0 0; }
+            app-home .home-container .home .home-content .home-header .options img {
+              width: 40px;
+              float: left; }
+            app-home .home-container .home .home-content .home-header .options .opt-icon {
+              width: 45px;
+              height: 45px;
+              line-height: 45px;
+              border-radius: 25px;
+              float: left;
+              text-align: center;
+              color: white;
+              font-size: 22px; }
+            app-home .home-container .home .home-content .home-header .options .opt-title {
+              display: block;
+              font-size: 22px;
+              margin-left: 60px;
+              color: #5e5f61;
+              font-weight: 600; }
+            app-home .home-container .home .home-content .home-header .options .opt-description {
+              display: block;
+              font-weight: 400;
+              font-size: 16px;
+              margin-left: 60px;
+              color: #565a5c;
+              line-height: 1.5;
+              margin-top: 10px; }
         app-home .home-container .home .home-content .home-body .post {
           background: white;
-          margin-top: 40px;
+          margin-top: 30px;
           margin-bottom: 10px;
-          border-radius: 10px;
+          border-radius: 3px;
           border: solid 1px #e0e0e0;
           -webkit-box-shadow: 0 0 10px 0 rgba(50, 50, 50, 0.1);
           -moz-box-shadow: 0 0 10px 0 rgba(50, 50, 50, 0.1);
@@ -3863,12 +4076,86 @@ app-home {
           overflow: auto; }
           app-home .home-container .home .home-content .home-body .post .post-content {
             position: relative;
-            background: white; }
+            background: white;
+            padding: 30px; }
             app-home .home-container .home .home-content .home-body .post .post-content .post-header {
-              padding: 40px 50px;
+              padding: 20px;
               font-family: Helvetica Neue, sans-serif; }
+              app-home .home-container .home .home-content .home-body .post .post-content .post-header .post-warranty {
+                display: block;
+                font-family: 'Open Sans', sans-serif;
+                text-align: right;
+                float: right; }
+                app-home .home-container .home .home-content .home-body .post .post-content .post-header .post-warranty .top-title {
+                  display: block;
+                  margin-bottom: 15px;
+                  font-size: 17px; }
+                app-home .home-container .home .home-content .home-body .post .post-content .post-header .post-warranty .warranty-amount {
+                  float: right;
+                  margin-left: 10px;
+                  display: inline-flex; }
+                  app-home .home-container .home .home-content .home-body .post .post-content .post-header .post-warranty .warranty-amount .warranty-price {
+                    font-size: 44px;
+                    font-weight: 900;
+                    color: #2ecc71;
+                    line-height: 34px; }
+                  app-home .home-container .home .home-content .home-body .post .post-content .post-header .post-warranty .warranty-amount .warranty-cent {
+                    font-size: 20px;
+                    font-weight: 900;
+                    color: #2ecc71;
+                    line-height: 18px; }
+                app-home .home-container .home .home-content .home-body .post .post-content .post-header .post-warranty .warranty-text {
+                  float: right;
+                  text-align: right; }
+                  app-home .home-container .home .home-content .home-body .post .post-content .post-header .post-warranty .warranty-text .warranty-title {
+                    display: block;
+                    font-size: 13px;
+                    font-weight: 900;
+                    text-transform: uppercase;
+                    color: #696c6f; }
+                  app-home .home-container .home .home-content .home-body .post .post-content .post-header .post-warranty .warranty-text .warranty-description {
+                    display: block;
+                    color: rgba(0, 0, 0, 0.7); }
+              app-home .home-container .home .home-content .home-body .post .post-content .post-header .post-initial {
+                display: block;
+                overflow: hidden;
+                margin-bottom: 10px;
+                float: left; }
+                app-home .home-container .home .home-content .home-body .post .post-content .post-header .post-initial .top-title {
+                  display: block;
+                  margin-bottom: 15px;
+                  font-size: 17px;
+                  font-weight: 500; }
+                  app-home .home-container .home .home-content .home-body .post .post-content .post-header .post-initial .top-title .top-title-label {
+                    color: #343a43;
+                    margin-right: 5px; }
+                  app-home .home-container .home .home-content .home-body .post .post-content .post-header .post-initial .top-title .top-title-value {
+                    padding: 5px 15px;
+                    font-weight: 500;
+                    color: white;
+                    border-radius: 25px; }
+                  app-home .home-container .home .home-content .home-body .post .post-content .post-header .post-initial .top-title .active {
+                    background: #2ecc71; }
+                  app-home .home-container .home .home-content .home-body .post .post-content .post-header .post-initial .top-title .assigned {
+                    background: #f1c40f; }
+                app-home .home-container .home .home-content .home-body .post .post-content .post-header .post-initial .left-icon {
+                  color: #2980B9;
+                  font-size: 80px;
+                  float: left; }
+                app-home .home-container .home .home-content .home-body .post .post-content .post-header .post-initial .post-title {
+                  margin-left: 100px;
+                  color: #2980B9;
+                  font-weight: 500;
+                  text-transform: uppercase; }
+                app-home .home-container .home .home-content .home-body .post .post-content .post-header .post-initial .post-location {
+                  display: block;
+                  margin-top: 5px;
+                  font-size: 22px;
+                  font-weight: 300;
+                  color: rgba(0, 0, 0, 0.7);
+                  margin-left: 100px; }
             app-home .home-container .home .home-content .home-body .post .post-content .post-body {
-              padding: 60px 50px 50px;
+              padding: 20px;
               overflow: auto; }
               app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-interest {
                 display: block;
@@ -3883,78 +4170,28 @@ app-home {
                   text-align: right;
                   font-size: 30px;
                   color: #27ae60; }
-              app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-warranty {
+              app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-details {
                 display: block;
-                font-family: 'Open Sans', sans-serif;
-                text-align: right;
-                float: right; }
-                app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-warranty .top-title {
+                font-family: 'Open Sans', sans-serif; }
+                app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-details .post-detail {
                   display: block;
-                  margin-bottom: 15px;
-                  font-size: 17px; }
-                app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-warranty .warranty-amount {
-                  float: right;
-                  margin-left: 10px;
-                  display: inline-flex; }
-                  app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-warranty .warranty-amount .warranty-price {
-                    font-size: 44px;
-                    font-weight: 900;
-                    color: #2ecc71;
-                    line-height: 34px; }
-                  app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-warranty .warranty-amount .warranty-cent {
-                    font-size: 20px;
-                    font-weight: 900;
-                    color: #2ecc71;
-                    line-height: 18px; }
-                app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-warranty .warranty-text {
-                  float: right;
-                  text-align: right; }
-                  app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-warranty .warranty-text .warranty-title {
+                  padding: 10px 0; }
+                  app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-details .post-detail .title {
                     display: block;
-                    font-size: 17px;
-                    font-weight: 700;
-                    color: #343a43; }
-                  app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-warranty .warranty-text .warranty-description {
-                    display: block;
-                    color: rgba(0, 0, 0, 0.7); }
-              app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-initial {
-                display: block;
-                overflow: auto;
-                margin-bottom: 10px;
-                float: left; }
-                app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-initial .top-title {
-                  display: block;
-                  margin-bottom: 15px;
-                  font-size: 17px;
-                  font-weight: 500; }
-                  app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-initial .top-title .top-title-label {
-                    color: #343a43;
-                    margin-right: 5px; }
-                  app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-initial .top-title .top-title-value {
-                    padding: 5px 15px;
-                    font-weight: 500;
-                    color: white;
-                    border-radius: 25px; }
-                  app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-initial .top-title .active {
-                    background: #2ecc71; }
-                  app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-initial .top-title .assigned {
-                    background: #f1c40f; }
-                app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-initial .left-icon {
-                  color: #2980B9;
-                  font-size: 80px;
-                  float: left; }
-                app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-initial .post-title {
-                  margin-left: 100px;
-                  color: #2980B9;
-                  font-weight: 500;
-                  text-transform: uppercase; }
-                app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-initial .post-location {
-                  display: block;
-                  margin-top: 10px;
-                  font-size: 24px;
-                  font-weight: 300;
-                  color: rgba(0, 0, 0, 0.7);
-                  margin-left: 100px; }
+                    font-size: 15px;
+                    font-weight: 900;
+                    color: #77838e;
+                    text-transform: uppercase; }
+                  app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-details .post-detail .description {
+                    font-size: 14px;
+                    color: #6b7884;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    display: -webkit-box;
+                    -webkit-line-clamp: 2;
+                    -webkit-box-orient: vertical;
+                    line-height: 1.5;
+                    min-height: 42px; }
               app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-informations {
                 display: block;
                 width: 100%;
@@ -4149,8 +4386,7 @@ app-home {
                     opacity: 1;
                     background-color: #eceeef33; }
               app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-actions {
-                display: block;
-                margin-top: 40px; }
+                display: block; }
                 app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-actions .title {
                   font-size: 24px;
                   font-weight: 400;
@@ -4257,22 +4493,113 @@ app-home {
                 overflow: auto; }
             app-home .home-container .home .home-content .home-body .post .post-content .post-footer {
               overflow: hidden;
-              border-top: solid 1px #e0e0e0;
-              padding: 20px 50px; }
+              padding: 20px; }
+              app-home .home-container .home .home-content .home-body .post .post-content .post-footer .post-actions {
+                display: block; }
+                app-home .home-container .home .home-content .home-body .post .post-content .post-footer .post-actions .title {
+                  font-size: 24px;
+                  font-weight: 400;
+                  color: rgba(0, 0, 0, 0.7); }
+                app-home .home-container .home .home-content .home-body .post .post-content .post-footer .post-actions .btn-action {
+                  display: block;
+                  position: relative;
+                  width: 100%;
+                  margin-top: 10px;
+                  text-align: center;
+                  border-radius: 3px;
+                  cursor: pointer;
+                  height: auto;
+                  outline: none; }
+                  app-home .home-container .home .home-content .home-body .post .post-content .post-footer .post-actions .btn-action .title {
+                    display: block;
+                    font-weight: 500;
+                    color: white;
+                    line-height: 60px;
+                    font-size: 25px; }
+                  app-home .home-container .home .home-content .home-body .post .post-content .post-footer .post-actions .btn-action .price {
+                    float: right;
+                    line-height: 65px;
+                    font-size: 30px;
+                    font-weight: 900;
+                    border-left: 1px solid white;
+                    padding: 0 25px; }
+                app-home .home-container .home .home-content .home-body .post .post-content .post-footer .post-actions .btn-closed {
+                  background: #bdc3c7 !important;
+                  box-shadow: none !important;
+                  text-shadow: none !important; }
+                  app-home .home-container .home .home-content .home-body .post .post-content .post-footer .post-actions .btn-closed .title {
+                    display: block;
+                    font-weight: 500;
+                    color: white;
+                    line-height: 60px;
+                    font-size: 30px;
+                    padding: 0 60px; }
+                  app-home .home-container .home .home-content .home-body .post .post-content .post-footer .post-actions .btn-closed .price {
+                    float: right;
+                    line-height: 65px;
+                    font-size: 30px;
+                    font-weight: 900;
+                    border-left: 1px solid white;
+                    padding: 0 25px; }
+                app-home .home-container .home .home-content .home-body .post .post-content .post-footer .post-actions .btn-closed:hover {
+                  background-image: linear-gradient(to bottom, #67bd67 0%, #47a447 100%); }
+                app-home .home-container .home .home-content .home-body .post .post-content .post-footer .post-actions .btn-closed:active:hover {
+                  color: #fff;
+                  background-color: #398439;
+                  -webkit-box-shadow: none;
+                  -moz-box-shadow: none;
+                  box-shadow: none; }
+                app-home .home-container .home .home-content .home-body .post .post-content .post-footer .post-actions .btn-update {
+                  background: #f1c40f !important;
+                  box-shadow: none !important;
+                  text-shadow: none !important; }
+                  app-home .home-container .home .home-content .home-body .post .post-content .post-footer .post-actions .btn-update .title {
+                    display: block;
+                    font-weight: 500;
+                    color: white;
+                    line-height: 60px;
+                    font-size: 30px;
+                    padding: 0 60px; }
+                  app-home .home-container .home .home-content .home-body .post .post-content .post-footer .post-actions .btn-update .price {
+                    float: right;
+                    line-height: 65px;
+                    font-size: 30px;
+                    font-weight: 900;
+                    border-left: 1px solid white;
+                    padding: 0 25px; }
+                app-home .home-container .home .home-content .home-body .post .post-content .post-footer .post-actions .btn-update:hover {
+                  background-image: linear-gradient(to bottom, #67bd67 0%, #47a447 100%); }
+                app-home .home-container .home .home-content .home-body .post .post-content .post-footer .post-actions .btn-update:active:hover {
+                  color: #fff;
+                  background-color: #398439;
+                  -webkit-box-shadow: none;
+                  -moz-box-shadow: none;
+                  box-shadow: none; }
+                app-home .home-container .home .home-content .home-body .post .post-content .post-footer .post-actions .bottom-message {
+                  display: block;
+                  font-size: 18px;
+                  font-weight: 300;
+                  margin-top: 10px;
+                  font-style: italic; }
               app-home .home-container .home .home-content .home-body .post .post-content .post-footer .post-message {
-                float: left; }
+                float: left;
+                margin-top: 10px; }
                 app-home .home-container .home .home-content .home-body .post .post-content .post-footer .post-message span {
                   font-family: 'Open Sans', sans-serif;
-                  font-size: 18px;
+                  font-size: 14px;
+                  font-style: italic;
                   font-weight: 300; }
               app-home .home-container .home .home-content .home-body .post .post-content .post-footer .post-actions-right {
-                float: right; }
+                float: right;
+                margin-top: 10px; }
                 app-home .home-container .home .home-content .home-body .post .post-content .post-footer .post-actions-right .icon-new-page {
-                  font-size: 24px; }
+                  font-size: 20px; }
             app-home .home-container .home .home-content .home-body .post .post-content .purchased-image {
               position: absolute;
               width: 120px;
-              right: 0; }
+              right: 0;
+              top: 0;
+              z-index: 1000; }
           app-home .home-container .home .home-content .home-body .post .loader {
             text-align: center;
             padding: 50px; }
@@ -4281,7 +4608,7 @@ app-home {
         app-home .home-container .home .home-content .home-footer {
           position: relative;
           background: white;
-          border-radius: 10px;
+          border-radius: 3px;
           border: solid 1px #e0e0e0;
           -webkit-box-shadow: 0 0 10px 0 rgba(50, 50, 50, 0.1);
           -moz-box-shadow: 0 0 10px 0 rgba(50, 50, 50, 0.1);
@@ -4355,7 +4682,9 @@ app-home {
     margin-top: 5px;
     line-height: 24px; }
   app-home .popup-container .popup .popup-content .popup-header .post-title {
-    font-weight: 600; }
+    color: #2980B9;
+    font-weight: 700;
+    text-transform: uppercase; }
   app-home .popup-container .popup .popup-content .popup-header .post-timer {
     display: block;
     margin-top: 20px; }
@@ -4385,31 +4714,25 @@ app-home {
   app-home .popup-container .popup .popup-content .popup-header .post-warranty {
     display: block;
     font-family: 'Open Sans', sans-serif;
-    text-align: right; }
+    text-align: right;
+    float: right; }
     app-home .popup-container .popup .popup-content .popup-header .post-warranty .warranty-amount {
       float: right;
+      margin-left: 10px;
       display: inline-flex; }
-      app-home .popup-container .popup .popup-content .popup-header .post-warranty .warranty-amount .warranty-price {
-        font-size: 32px;
-        font-weight: 900;
-        color: #2ecc71;
-        line-height: 26px; }
-      app-home .popup-container .popup .popup-content .popup-header .post-warranty .warranty-amount .warranty-cent {
-        font-size: 16px;
-        font-weight: 900;
-        color: #2ecc71;
-        line-height: 18px; }
     app-home .popup-container .popup .popup-content .popup-header .post-warranty .warranty-text {
-      text-align: left; }
+      float: right;
+      text-align: right; }
       app-home .popup-container .popup .popup-content .popup-header .post-warranty .warranty-text .warranty-title {
         display: block;
-        font-size: 12px;
-        font-weight: 600;
+        font-size: 13px;
+        font-weight: 900;
+        color: #263961;
+        text-transform: uppercase;
         color: #343a43; }
       app-home .popup-container .popup .popup-content .popup-header .post-warranty .warranty-text .warranty-description {
         display: block;
-        color: rgba(0, 0, 0, 0.7);
-        font-size: 12px; }
+        color: rgba(0, 0, 0, 0.7); }
   app-home .popup-container .thankyoupage .popup-content .popup-header {
     text-align: center; }
     app-home .popup-container .thankyoupage .popup-content .popup-header .purchased-icon {
@@ -4419,6 +4742,49 @@ app-home {
       padding-top: 10px; }
   app-home .popup-container .contact .popup-content .popup-header {
     overflow: hidden; }
+  app-home .popup-container .contact .popup-content .popup-body .post-details {
+    display: block;
+    font-family: 'Open Sans', sans-serif; }
+    app-home .popup-container .contact .popup-content .popup-body .post-details .post-detail {
+      display: block;
+      padding: 5px 0; }
+      app-home .popup-container .contact .popup-content .popup-body .post-details .post-detail .title {
+        display: block;
+        font-size: 15px;
+        font-weight: 900;
+        color: #95a0aa;
+        text-transform: uppercase; }
+      app-home .popup-container .contact .popup-content .popup-body .post-details .post-detail .description {
+        font-size: 14px;
+        color: #95a0aa;
+        overflow: hidden; }
+  app-home .popup-container .contact .popup-content .popup-body .client-details {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    display: block;
+    width: 100%;
+    overflow: auto; }
+    app-home .popup-container .contact .popup-content .popup-body .client-details .client-avatar {
+      width: 40px;
+      height: 40px;
+      background: #f39c12;
+      border-radius: 3px;
+      float: left; }
+      app-home .popup-container .contact .popup-content .popup-body .client-details .client-avatar .name-initials {
+        line-height: 40px;
+        font-size: 17px;
+        text-align: center;
+        display: block; }
+    app-home .popup-container .contact .popup-content .popup-body .client-details .client-name {
+      display: block;
+      margin-left: 50px;
+      font-size: 16px;
+      font-weight: 700; }
+    app-home .popup-container .contact .popup-content .popup-body .client-details .client-request {
+      font-size: 16px;
+      color: #343a43;
+      display: block;
+      margin-left: 50px; }
   app-home .popup-container .popup .popup-content .popup-header .badge {
     float: left;
     background: #f39c12;
@@ -4800,38 +5166,31 @@ app-home {
   app-home .home-container .home .home-content .home-body .post {
     margin-top: 20px; } }
 @media (max-width: 768px) {
+  app-home .home-container .home .home-content .home-body .post .post-content {
+    padding: 10px; }
+
   app-home .home-container .home .home-content .home-header {
-    padding: 30px;
+    padding: 25px;
     margin-top: 10px; }
 
   app-home .home-container .home .home-content .home-body .post {
     margin-top: 20px; }
 
-  app-home .home-container .home .home-content .home-body .post .post-content .post-header {
-    padding: 30px; }
-
-  app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-initial .left-icon {
+  app-home .home-container .home .home-content .home-body .post .post-content .post-header .post-initial .left-icon {
     font-size: 60px; }
 
-  app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-initial .post-title {
-    margin-left: 80px; }
+  app-home .home-container .home .home-content .home-body .post .post-content .post-header .post-initial .post-title {
+    margin-left: 80px;
+    font-size: 25px; }
 
-  app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-initial .post-location {
+  app-home .home-container .home .home-content .home-body .post .post-content .post-header .post-initial .post-location {
     margin-top: 5px;
-    margin-left: 80px; }
-
-  app-home .home-container .home .home-content .home-body .post .post-content .post-body {
-    padding: 40px 30px 30px; }
-
-  app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-informations .content {
-    margin-left: 120px; }
+    margin-left: 80px;
+    font-size: 20px; }
 
   app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-customer .info .content {
     margin-left: 90px;
     text-align: right; }
-
-  app-home .home-container .home .home-content .home-body .post .post-content .post-footer {
-    padding: 20px 30px; }
 
   app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-timer .timer .hours,
   app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-timer .timer .minutes,
@@ -4881,22 +5240,11 @@ app-home {
   app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-interest .icons {
     text-align: left; }
 
-  app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-warranty {
-    width: 100%;
-    margin-bottom: 10px;
-    text-align: left; }
-
   app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-actions .btn-action .title {
     padding: 0 10px; }
 
-  app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-initial {
-    float: none; }
-
-  app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-warranty .warranty-amount {
-    margin: 0; }
-
-  app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-warranty .warranty-text {
-    float: left;
+  app-home .home-container .home .home-content .home-body .post .post-content .post-header .post-warranty {
+    margin-bottom: 10px;
     text-align: left; } }
 @media (max-width: 425px) {
   app-home .popup-container .popup .popup-content .popup-footer .post-timer {
@@ -4916,57 +5264,36 @@ app-home {
     float: right;
     margin: 0; }
 
-  app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-timer {
-    margin-top: 10px;
-    margin-bottom: 10px;
-    float: none;
-    width: 100%;
-    text-align: left; }
+  app-home .home-container .home .home-content .home-body .post .post-content .post-header  {
+    padding: 15px; }
 
-  app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-timer .timer {
-    text-align: left; }
-
-  app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-actions {
-    margin-top: 30px;
-    width: 100%; }
-
-  app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-informations .label_mobile {
-    float: none; }
-
-  app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-informations .content {
-    margin-left: 90px; }
-
-  app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-informations .content_mobile {
-    margin: 0; }
-
-  app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-initial .left-icon {
+  app-home .home-container .home .home-content .home-body .post .post-content .post-header .post-initial .left-icon {
     display: none; }
 
-  app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-initial .post-title {
+  app-home .home-container .home .home-content .home-body .post .post-content .post-header .post-initial .post-title {
     margin-left: 0;
     font-size: 28px; }
 
-  app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-initial .post-location {
+  app-home .home-container .home .home-content .home-body .post .post-content .post-header .post-initial .post-location {
     margin-left: 0;
     font-size: 20px; }
 
-  app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-actions .btn-action .title {
-    font-size: 26px;
-    padding: 0 5px; }
-
-  app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-actions .btn-action .price {
-    font-size: 24px;
-    padding: 0 10px; }
-
-  app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-actions .btn-action {
-    width: 100%; }
-
-  app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-customer {
-    margin-top: 30px; }
-
-  app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-initial {
+  app-home .home-container .home .home-content .home-body .post .post-content .post-header .post-initial {
     float: none;
     width: 100%; }
+
+  app-home .home-container .home .home-content .home-body .post .post-content .post-header .post-warranty .warranty-amount {
+    margin: 0; }
+
+  app-home .home-container .home .home-content .home-body .post .post-content .post-header .post-warranty .warranty-text {
+    float: left;
+    text-align: left; }
+
+  app-home .home-container .home .home-content .home-body .post .post-content .post-header .post-warranty {
+    width: 100%; }
+
+  app-home .home-container .home .home-content .home-body .post .post-content .post-body {
+    padding: 15px; }
 
   app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-description .content-budget {
     text-align: right;
@@ -4996,6 +5323,46 @@ app-home {
     float: right;
     margin-left: 0px !important; }
 
+  app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-actions .btn-action .title {
+    font-size: 26px;
+    padding: 0 5px; }
+
+  app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-actions .btn-action .price {
+    font-size: 24px;
+    padding: 0 10px; }
+
+  app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-actions .btn-action {
+    width: 100%; }
+
+  app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-customer {
+    margin-top: 30px; }
+
+  app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-timer {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    float: none;
+    width: 100%;
+    text-align: left; }
+
+  app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-timer .timer {
+    text-align: left; }
+
+  app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-actions {
+    margin-top: 30px;
+    width: 100%; }
+
+  app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-informations .label_mobile {
+    float: none; }
+
+  app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-informations .content {
+    margin-left: 90px; }
+
+  app-home .home-container .home .home-content .home-body .post .post-content .post-body .post-informations .content_mobile {
+    margin: 0; }
+
+  app-home .home-container .home .home-content .home-body .post .post-content .post-footer {
+    padding: 15px; }
+
   app-home .home-container .home .home-content .home-footer {
     padding: 30px; }
 
@@ -5006,13 +5373,10 @@ app-home {
     margin-top: 20px; }
 
   app-home .home-container .home .home-content .home-header .title {
-    font-size: 30px; }
+    font-size: 32px; }
 
   app-home .home-container .home .home-content .home-header .description {
-    font-size: 16px !important; }
-
-  app-home .home-container .home .home-content .home-body .post .post-content .post-body {
-    padding: 30px 20px 20px; }
+    font-size: 20px !important; }
 
   app-home .popup-container .popup .popup-content .popup-footer .action .title {
     padding: 0; }
@@ -5092,6 +5456,22 @@ app-home {
     color: rgba(255, 255, 255, 0.75); }
   100% {
     color: white; } }
+app-dynamicprice {
+  display: block;
+  font-family: 'Open Sans', sans-serif; }
+  app-dynamicprice .price-container {
+    display: inline-flex; }
+    app-dynamicprice .price-container .price-int {
+      font-size: 44px;
+      font-weight: 900;
+      color: #2ecc71;
+      line-height: 34px; }
+    app-dynamicprice .price-container .price-cent {
+      font-size: 20px;
+      font-weight: 900;
+      color: #2ecc71;
+      line-height: 18px; }
+
 app-company {
   display: block;
   width: 100%;
@@ -8054,21 +8434,138 @@ app-request {
   app-request .request-container {
     position: relative;
     font-family: 'Open Sans', sans-serif;
-    padding: 40px 10px; }
+    padding: 40px 20px;
+    margin-top: 68px;
+    min-height: 74vh; }
     app-request .request-container .request {
       margin: auto;
-      text-align: center; }
+      margin-top: 20px;
+      margin-bottom: 20px; }
       app-request .request-container .request .request-content {
         position: relative; }
         app-request .request-container .request .request-content .request-header {
-          padding: 30px 0; }
+          padding: 20px 0; }
+          app-request .request-container .request .request-content .request-header .title-step {
+            color: #29384d;
+            font-weight: 600; }
           app-request .request-container .request .request-content .request-header .description-step {
             font-size: 24px !important;
             color: #95a0aa;
-            margin-top: 10px;
-            text-align: center; }
+            margin-top: 10px; }
         app-request .request-container .request .request-content .request-body {
-          padding: 40px 0; }
+          padding: 20px 0; }
+          app-request .request-container .request .request-content .request-body .extra-item {
+            display: block;
+            padding: 10px 0;
+            cursor: pointer; }
+            app-request .request-container .request .request-content .request-body .extra-item .extra-image {
+              width: 60px;
+              height: 60px; }
+            app-request .request-container .request .request-content .request-body .extra-item .extra-item-content  {
+              display: block;
+              min-height: 50px; }
+            app-request .request-container .request .request-content .request-body .extra-item .extra-icon {
+              width: 30px;
+              height: 30px;
+              background: #bdc3c7;
+              color: white;
+              border-radius: 20px;
+              line-height: 30px;
+              text-align: center;
+              font-size: 18px;
+              float: left; }
+            app-request .request-container .request .request-content .request-body .extra-item .extra-title {
+              display: block;
+              text-transform: uppercase;
+              color: #95a0aa;
+              font-size: 20px;
+              font-weight: 800;
+              margin-left: 40px;
+              line-height: 34px; }
+            app-request .request-container .request .request-content .request-body .extra-item .extra-description {
+              display: block;
+              font-size: 16px;
+              color: #95a0aa;
+              line-height: 1.5; }
+          app-request .request-container .request .request-content .request-body .extra-item:hover .extra-icon {
+            background: #95a0aa; }
+          app-request .request-container .request .request-content .request-body .extra-item.active .extra-icon {
+            background: #1ba783; }
+          app-request .request-container .request .request-content .request-body .extra-item.active .extra-title {
+            color: #1ba783; }
+          app-request .request-container .request .request-content .request-body .extra-item.active .extra-description {
+            color: #515d67; }
+          app-request .request-container .request .request-content .request-body .extra-tab {
+            display: block;
+            padding: 10px 0;
+            cursor: pointer; }
+            app-request .request-container .request .request-content .request-body .extra-tab .extra-tab-content {
+              padding: 10px 20px 12px;
+              border: 1px solid #37bc9b;
+              border-radius: 5px; }
+            app-request .request-container .request .request-content .request-body .extra-tab .extra-title {
+              color: #37bc9b;
+              text-transform: uppercase;
+              font-weight: 900;
+              font-size: 15px; }
+          app-request .request-container .request .request-content .request-body .extra-tab:hover .extra-tab-content,
+          app-request .request-container .request .request-content .request-body .extra-tab.active .extra-tab-content {
+            background: #37bc9b;
+            border: 1px solid #37bc9b; }
+          app-request .request-container .request .request-content .request-body .extra-tab:hover .extra-title,
+          app-request .request-container .request .request-content .request-body .extra-tab.active .extra-title {
+            color: white; }
+          app-request .request-container .request .request-content .request-body .counter-item {
+            display: block;
+            padding: 10px 0; }
+          app-request .request-container .request .request-content .request-body .title-group {
+            display: block;
+            font-size: 18px;
+            margin-bottom: 5px;
+            text-align: left;
+            font-weight: 800;
+            color: #95a0aa;
+            text-transform: uppercase; }
+          app-request .request-container .request .request-content .request-body .description-group {
+            display: block;
+            font-size: 17px;
+            margin-bottom: 20px;
+            text-align: left;
+            color: #95a0aa; }
+          app-request .request-container .request .request-content .request-body .counter-group .input-group-btn .btn {
+            width: 80px;
+            height: 80px;
+            color: #95a0aa; }
+          app-request .request-container .request .request-content .request-body .counter-group .input-group-btn .btn-left {
+            border-top-left-radius: 5px;
+            border-bottom-left-radius: 5px; }
+          app-request .request-container .request .request-content .request-body .counter-group .input-group-btn .btn-right {
+            border-top-right-radius: 5px;
+            border-bottom-right-radius: 5px; }
+          app-request .request-container .request .request-content .request-body .counter-group .form-control {
+            height: 80px !important;
+            border-radius: 0 !important;
+            text-align: center;
+            font-size: 30px;
+            font-weight: 600; }
+          app-request .request-container .request .request-content .request-body .success-icon {
+            display: inline-block;
+            width: 120px;
+            height: 120px;
+            background: #37b97a;
+            color: white;
+            border-radius: 65px;
+            line-height: 120px;
+            text-align: center;
+            font-size: 60px; }
+          app-request .request-container .request .request-content .request-body .conditions {
+            position: absolute;
+            bottom: -20px;
+            left: 0; }
+          app-request .request-container .request .request-content .request-body .error-message {
+            margin: 10px 0;
+            text-align: center;
+            display: block; }
           app-request .request-container .request .request-content .request-body .btn-option {
             font-weight: 700;
             font-size: 16px;
@@ -8082,10 +8579,47 @@ app-request {
           app-request .request-container .request .request-content .request-body .btn-option:hover {
             color: white !important;
             background-color: #16a085 !important; }
-        app-request .request-container .request .request-content .request-footer .btn-next {
-          font-weight: 700;
-          font-size: 20px;
-          border-radius: 3px; }
+          app-request .request-container .request .request-content .request-body .address-group .form-control {
+            overflow: hidden;
+            padding: 0; }
+          app-request .request-container .request .request-content .request-body .address-group .form-control input {
+            border: 0;
+            width: 100%;
+            outline: none;
+            padding: 0 20px;
+            height: 45px !important; }
+          app-request .request-container .request .request-content .request-body .address-group .form-control input ul li {
+            font-size: 15px;
+            padding: 10px; }
+          app-request .request-container .request .request-content .request-body .ui-autocomplete-panel {
+            padding: 0 10px;
+            padding-bottom: 10px;
+            overflow: auto; }
+          app-request .request-container .request .request-content .request-body .ui-autocomplete-panel .ui-autocomplete-list-item {
+            border-radius: 3px;
+            border: 0 none;
+            cursor: pointer;
+            font-weight: 400;
+            margin: 1px 0;
+            padding: 10px;
+            text-align: left;
+            font-size: 15px;
+            color: #000000cc; }
+          app-request .request-container .request .request-content .request-body .ui-state-highlight {
+            border-color: #156090;
+            background: #186ba0;
+            color: #FFFFFF !important; }
+        app-request .request-container .request .request-content .request-footer {
+          padding: 20px 0; }
+          app-request .request-container .request .request-content .request-footer .btn-next {
+            font-weight: 700;
+            font-size: 20px;
+            border-radius: 3px;
+            padding: 0 60px; }
+          app-request .request-container .request .request-content .request-footer .error-message {
+            margin: 10px 0;
+            text-align: center;
+            display: block; }
     app-request .request-container .button-back {
       position: absolute;
       top: 20px;
@@ -8095,27 +8629,83 @@ app-request {
       line-height: 40px;
       height: auto;
       color: #1ba783 !important;
-      background: white; }
+      background: white;
+      padding: 0 30px;
+      border-top-right-radius: 3px;
+      border-bottom-right-radius: 3px;
+      z-index: 990; }
     app-request .request-container .button-back:hover {
       color: white !important;
       background-color: #16a085 !important; }
-  app-request .progress-container {
+  app-request .step-container {
     position: fixed;
     width: 100%;
-    background: #edefed;
-    height: 10px;
+    background: white;
+    z-index: 1024;
+    overflow: hidden;
+    height: 64px; }
+    app-request .step-container .step {
+      list-style: none;
+      overflow: hidden;
+      z-index: 1;
+      margin: 0 auto;
+      padding: 20px; }
+      app-request .step-container .step .step-icon {
+        display: inline-block;
+        width: 24px;
+        height: 24px;
+        background: #95a0aa;
+        color: white;
+        border-radius: 40px;
+        line-height: 24px;
+        font-size: 14px;
+        font-weight: 900; }
+      app-request .step-container .step .title {
+        font-family: Arial, sans-serif;
+        padding: 0 5px;
+        font-size: 14px;
+        font-weight: 600;
+        color: #95a0aa;
+        line-height: 14px;
+        margin-top: 8px;
+        text-transform: uppercase; }
+    app-request .step-container .step li {
+      position: relative;
+      color: rgba(0, 0, 0, 0.8);
+      float: left;
+      text-align: center;
+      font-weight: 400;
+      padding: 0 10px;
+      width: 20%; }
+      app-request .step-container .step li .icon {
+        font-size: 22px;
+        color: #95a0aa; }
+    app-request .step-container .step .selected .step-icon {
+      background: #37bc9b; }
+    app-request .step-container .step .selected .title {
+      color: #37bc9b; }
+    app-request .step-container .step li:hover {
+      color: black; }
+    app-request .step-container .step .active {
+      font-weight: 500;
+      color: black;
+      border-bottom: 3px solid #4567ab; }
+  app-request .progress-container {
+    position: fixed;
+    top: 134px;
+    width: 100%;
+    background: #242f41;
+    height: 4px;
     z-index: 1000; }
     app-request .progress-container .progress {
-      height: 10px;
-      background: #1ba783;
-      border-top-right-radius: 15px;
-      border-bottom-right-radius: 15px; }
+      height: 4px;
+      background: #1ba783; }
   app-request .loader-container {
-    position: absolute;
+    position: fixed;
     width: 100%;
     height: 100%;
     background: rgba(255, 255, 255, 0.7);
-    z-index: 2000;
+    z-index: 2500;
     border-radius: 3px;
     top: 0;
     bottom: 0;
@@ -8133,7 +8723,85 @@ app-request {
       left: 0;
       bottom: 0;
       right: 0; }
+  app-request .footer-container {
+    position: relative;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: white;
+    padding: 10px 20px;
+    max-width: 1440px;
+    margin: auto;
+    height: 70px;
+    border-top: 1px solid #dbdbdb;
+    z-index: 1020; }
+    app-request .footer-container .footer {
+      overflow: auto; }
+      app-request .footer-container .footer .app {
+        float: left; }
+        app-request .footer-container .footer .app .app-name {
+          font-size: 22px;
+          line-height: 50px;
+          font-weight: 900;
+          color: #949494; }
+        app-request .footer-container .footer .app .app-message {
+          font-size: 14px;
+          margin-left: 5px;
+          line-height: 50px;
+          color: #585858; }
+      app-request .footer-container .footer .links {
+        float: right;
+        list-style: none;
+        overflow: hidden;
+        color: #585858; }
+        app-request .footer-container .footer .links .link {
+          float: left;
+          line-height: 50px;
+          text-align: center;
+          cursor: pointer;
+          font-weight: 400;
+          margin-right: 12px; }
 
+@media (max-width: 768px) {
+  app-request {
+    padding: 70px 0 0; }
+
+  app-request .footer-container {
+    position: relative;
+    height: auto; }
+
+  app-request .footer-container .footer .app {
+    float: none; }
+
+  app-request .footer-container .footer .links {
+    float: none; }
+
+  app-request .footer-container .footer .links .link {
+    line-height: inherit; }
+
+  app-request .footer-container .footer .app .app-name {
+    line-height: inherit; }
+
+  app-request .footer-container .footer .app .app-message {
+    line-height: inherit; } }
+@media (max-width: 425px) {
+  app-request .progress-container {
+    top: 124px; }
+
+  app-request .request-container {
+    margin-top: 58px; }
+
+  app-request .request-container .request {
+    margin: auto; }
+
+  app-request .request-container .button-back {
+    top: 10px; }
+
+  app-request .step-container {
+    height: 54px; }
+
+  app-request .step-container .step {
+    padding: 15px 20px; } }
 app-notfound {
   display: block;
   width: 100%;

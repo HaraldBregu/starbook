@@ -224,6 +224,11 @@ export class CommonService {
     $('body').removeClass('hide-scroll-y')
   }
 
+  scrollToTop() {
+    if (isBrowser) {window.scrollTo(0, 0)}
+  }
+
+
   saveObjectToLocalWithName(object, name) {
     if (isBrowser) { localStorage.setItem(name, JSON.stringify(object)); }
   }

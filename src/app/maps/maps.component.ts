@@ -23,7 +23,7 @@ export class MapsComponent implements OnInit {
   }
 
   ngOnChanges() {
-    console.log(JSON.stringify(this.Map))
+    // console.log(JSON.stringify(this.Map))
     this.mapsService.getLocation(this.city).then((location) => {
       // {"lat":45.4642035,"lng":9.189982}
       this.Map.latitude = location.lat
