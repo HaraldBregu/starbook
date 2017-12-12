@@ -53,7 +53,8 @@ export class RequestComponent implements OnInit {
     this.SeoData['description'] = "Una piattaforma che mette a disposizione richieste dettagliate da potenziali clienti nella tua zona offrendo partnership a lungo termine e costi agevolati."
     this.SeoData['url'] = 'https://www.starbook.co' + this.router.url
     this.seoService.setTitle(this.SeoData['title'])
-
+    this.SeoData['image_url'] = "https://s3-eu-west-1.amazonaws.com/starbook-s3/website/serramenti-infissi-richiesta-preventivo.png"
+    
     this.seoService.setMetaElem('description', this.SeoData['description'])
     this.seoService.setOgElem('twitter:card', "summary_large_image")
     this.seoService.setOgElem('twitter:title', this.SeoData['title'])
