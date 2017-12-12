@@ -53,7 +53,7 @@ export class RequestComponent implements OnInit {
     this.SeoData['description'] = "Ricevi Gratis il miglior preventivo qualità/prezzo per il rinnovo o installazione degli infissi. Ti offriamo la migliore azienda della tua zona in poco tempo e senza impegni."
     this.SeoData['url'] = 'https://www.starbook.co' + this.router.url
     this.seoService.setTitle(this.SeoData['title'])
-    this.SeoData['image_url'] = "https://s3-eu-west-1.amazonaws.com/starbook-s3/website/serramenti-infissi-richiesta-preventivo.png"
+    this.SeoData['image_url'] = "https://s3-eu-west-1.amazonaws.com/starbook-s3/website/richiesta-infissi-serramenti.jpg"
 
     this.seoService.setMetaElem('description', this.SeoData['description'])
     this.seoService.setOgElem('twitter:card', "summary_large_image")

@@ -207,8 +207,6 @@ export class HomeComponent implements OnInit {
     this.commonService.disableScroll()
     if (this.authService.currentAccount()) {
       this.checkPurchasePost(post)
-    } else {
-      // this.popup_second = "SIGNUP_POPUP"
     }
     this.popup = "PREVIEW_PURCHASE_CONTACT_POPUP"
   }

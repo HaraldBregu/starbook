@@ -294,7 +294,6 @@ app-request {
         font-weight: 900;
       }
       .title {
-        // display: block;
         font-family: Arial, sans-serif;
         padding: 0 5px;
         font-size: 14px;
@@ -313,7 +312,6 @@ app-request {
       font-weight: 400;
       padding: 0 10px;
       width: 20%;
-      // height: 46px;
       .icon {
         font-size: 22px;
         color: #95a0aa;
@@ -325,24 +323,6 @@ app-request {
     .step .selected .title {
       color: #37bc9b;
     }
-    // .step li:before {
-    //   content: "";
-    //   width: 100%;
-    //   position: absolute;
-    //   left: 50%;
-    //   top: 9px;
-    //   z-index: 0;
-    //   border-bottom: 5px solid #37bc9b;
-    // }
-    // ul:before {
-    //   content: "";
-    //   width: 100%;
-    //   position: absolute;
-    //   left: -50%;
-    //   top: 9px;
-    //   z-index: 0;
-    //   border-bottom: 5px solid #CBCCC9;
-    // }
     .step li:hover {
       color: black;
     }
@@ -356,7 +336,7 @@ app-request {
     position: fixed;
     top: 134px;
     width: 100%;
-    background: #242f41;
+    background: #0a111b;
     height: 4px;
     z-index: 1000;
     .progress {
@@ -437,9 +417,6 @@ app-request {
 }
 
 @media (max-width: 768px) {
-  app-request .request-container .request {
-    // margin-top: 50px;
-  }
   app-request {
     padding: 70px 0 0;
   }
@@ -484,9 +461,3 @@ app-request {
     padding: 15px 20px;
   }
 }
-
-// @media (min-height: 800px) {
-//   app-request .footer-container {
-//     position: fixed;
-//   }
-// }
