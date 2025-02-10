@@ -1,252 +1,253 @@
 <div class="landing-container">
-  <div class="header-container">
-    <div class="overlay">
-      <div class="header">
-        <h1>Prenota il servizio che ti serve se non hai tempo da perdere.</h1>
-        <!-- <div class="header-text">
+    <div class="header-container">
+      <div class="overlay">
+        <div class="header">
           <h1>Prenota il servizio che ti serve se non hai tempo da perdere.</h1>
-          <p>Su <span>Starbook</span> niente annunci, scegli il servizio, inserisci la data e prenota.</p>
-        </div>
-        <div class="search">
-          <div class="search-field">
-            <p-autoComplete [(ngModel)]="query" [suggestions]="results" field="title" scrollHeight="275px" (completeMethod)="search($event)" (onSelect)="selectResult(query)" placeholder="Cerca un servizio" minLength="0">
-              <template let-res>
-                <div class="search-result" (click)="selectResult(res)">{{ res.title }}</div>
-              </template>
-            </p-autoComplete>
-            <div class="spinner" *ngIf="spinerView">
-              <svg width='21px' height='21px' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid" class="uil-ring">
-                <rect x="0" y="0" width="100" height="100" fill="none" class="bk"></rect>
-                <circle cx="50" cy="50" r="45" stroke-dasharray="169.64600329384882 113.09733552923257" stroke="#3B568D" fill="none" stroke-width="10">
-                  <animateTransform attributeName="transform" type="rotate" values="0 50 50;180 50 50;360 50 50;" keyTimes="0;0.5;1" dur="1s" repeatCount="indefinite" begin="0s"></animateTransform>
-                </circle>
-              </svg>
+          <!-- <div class="header-text">
+            <h1>Prenota il servizio che ti serve se non hai tempo da perdere.</h1>
+            <p>Su <span>Starbook</span> niente annunci, scegli il servizio, inserisci la data e prenota.</p>
+          </div>
+          <div class="search">
+            <div class="search-field">
+              <p-autoComplete [(ngModel)]="query" [suggestions]="results" field="title" scrollHeight="275px" (completeMethod)="search($event)" (onSelect)="selectResult(query)" placeholder="Cerca un servizio" minLength="0">
+                <template let-res>
+                  <div class="search-result" (click)="selectResult(res)">{{ res.title }}</div>
+                </template>
+              </p-autoComplete>
+              <div class="spinner" *ngIf="spinerView">
+                <svg width='21px' height='21px' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid" class="uil-ring">
+                  <rect x="0" y="0" width="100" height="100" fill="none" class="bk"></rect>
+                  <circle cx="50" cy="50" r="45" stroke-dasharray="169.64600329384882 113.09733552923257" stroke="#3B568D" fill="none" stroke-width="10">
+                    <animateTransform attributeName="transform" type="rotate" values="0 50 50;180 50 50;360 50 50;" keyTimes="0;0.5;1" dur="1s" repeatCount="indefinite" begin="0s"></animateTransform>
+                  </circle>
+                </svg>
+              </div>
+              <div class="close-container" *ngIf="!spinerView && clearView">
+                <span class="close rounded thick" (click)="clearSearchForm()"></span>
+              </div>
+              <div class="ui-autocomplete-panel empty" *ngIf="results.length === 0 && query.length > 0">
+                <div class="no-result noselect">
+                  Il servizio "{{query}}" non è disponibile
+                  <button class="suggess-service" (click)="requireService()">{{newServiceRequest.message}}</button>
+                </div>
+              </div>
             </div>
-            <div class="close-container" *ngIf="!spinerView && clearView">
-              <span class="close rounded thick" (click)="clearSearchForm()"></span>
+            <div class="search-button">
+              <button class="btn btn-primary" (click)="searchMore()"><i class="fa fa-search" aria-hidden="true"></i></button>
             </div>
-            <div class="ui-autocomplete-panel empty" *ngIf="results.length === 0 && query.length > 0">
-              <div class="no-result noselect">
-                Il servizio "{{query}}" non è disponibile
-                <button class="suggess-service" (click)="requireService()">{{newServiceRequest.message}}</button>
+          </div> -->
+          <div class="search-panel">
+            <div class="fields">
+              <div class="service-title">
+                <div class="form-group">
+                  <label for="serviceTitleInput">Di cosa hai bisogno?</label>
+                  <div class="input-group">
+                    <span class="input-group-addon" id="price-input"><i class="fa fa-pencil" aria-hidden="true"></i></span>
+                    <!-- <p-autoComplete [(ngModel)]="query" [suggestions]="suggestions" field="title" scrollHeight="275px" (completeMethod)="showSuggestions($event)" (ngModelChange)="changeSearch($event)" placeholder="Servizio, professionista, altro?" minLength="0">
+                      <template let-res>
+                        <i class="fa fa-search" aria-hidden="true"></i><div class="search-result" (click)="selectSuggestion(res)">{{ res.title }}</div>
+                      </template>
+                    </p-autoComplete> -->
+                    <div class="spinner">
+                      <svg width='21px' height='21px' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid" class="uil-ring">
+                        <rect x="0" y="0" width="100" height="100" fill="none" class="bk"></rect>
+                        <circle cx="50" cy="50" r="45" stroke-dasharray="169.64600329384882 113.09733552923257" stroke="#3B568D" fill="none" stroke-width="10">
+                          <!-- <animateTransform attributeName="transform" type="rotate" values="0 50 50;180 50 50;360 50 50;" keyTimes="0;0.5;1" dur="1s" repeatCount="indefinite" begin="0s"></animateTransform> -->
+                        </circle>
+                      </svg>
+                    </div>
+                    <div class="close-container">
+                      <span class="close rounded thick" (click)="clearSearchForm()"></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="service-when">
+                <div class="form-group">
+                  <label for="dateInput">Quando ti serve?</label>
+                  <div class="input-group">
+                    <span class="input-group-addon" id="price-input"><i class="fa fa-calendar-check-o" aria-hidden="true"></i></span>
+                    <!-- <p-calendar class="date form-control" name="data" placeholder="Quando?" [(ngModel)]="temp_date" id="date" autocomplete="off" readonlyInput="true" dateFormat="dd MM yy" [locale]="it" [minDate]="minDate" (onSelect)="selectDate()"></p-calendar> -->
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="service-action">
+              <div class="form-group text-center">
+                <button type="button" id="BookService" class="btn btn-danger">Prenota</button>
               </div>
             </div>
           </div>
-          <div class="search-button">
-            <button class="btn btn-primary" (click)="searchMore()"><i class="fa fa-search" aria-hidden="true"></i></button>
-          </div>
+        </div>
+        <!-- <div class="bottom-container">
+          <div class="arrow"></div>
         </div> -->
-        <div class="search-panel">
-          <div class="fields">
-            <div class="service-title">
-              <div class="form-group">
-                <label for="serviceTitleInput">Di cosa hai bisogno?</label>
-                <div class="input-group">
-                  <span class="input-group-addon" id="price-input"><i class="fa fa-pencil" aria-hidden="true"></i></span>
-                  <p-autoComplete [(ngModel)]="query" [suggestions]="suggestions" field="title" scrollHeight="275px" (completeMethod)="showSuggestions($event)" (ngModelChange)="changeSearch($event)" placeholder="Servizio, professionista, altro?" minLength="0">
-                    <template let-res>
-                      <i class="fa fa-search" aria-hidden="true"></i><div class="search-result" (click)="selectSuggestion(res)">{{ res.title }}</div>
-                    </template>
-                  </p-autoComplete>
-                  <div class="spinner" *ngIf="spinerView">
-                    <svg width='21px' height='21px' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid" class="uil-ring">
-                      <rect x="0" y="0" width="100" height="100" fill="none" class="bk"></rect>
-                      <circle cx="50" cy="50" r="45" stroke-dasharray="169.64600329384882 113.09733552923257" stroke="#3B568D" fill="none" stroke-width="10">
-                        <animateTransform attributeName="transform" type="rotate" values="0 50 50;180 50 50;360 50 50;" keyTimes="0;0.5;1" dur="1s" repeatCount="indefinite" begin="0s"></animateTransform>
-                      </circle>
-                    </svg>
-                  </div>
-                  <div class="close-container" *ngIf="!spinerView && clearView">
-                    <span class="close rounded thick" (click)="clearSearchForm()"></span>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="service-when">
-              <div class="form-group">
-                <label for="dateInput">Quando ti serve?</label>
-                <div class="input-group">
-                  <span class="input-group-addon" id="price-input"><i class="fa fa-calendar-check-o" aria-hidden="true"></i></span>
-                  <p-calendar class="date form-control" name="data" placeholder="Quando?" [(ngModel)]="temp_date" id="date" autocomplete="off" readonlyInput="true" dateFormat="dd MM yy" [locale]="it" [minDate]="minDate" (onSelect)="selectDate()"></p-calendar>
-                </div>
+      </div>
+    </div>
+    <!-- <div class="services-container">
+      <div class="services-header">
+        <h3><i class="fa fa-circle-o-notch animate" *ngIf="services_state.loading"></i> Servizi più utilizzati</h3>
+      </div>
+      <div class="services-body" *ngIf="services.length>0">
+        <div id="BookService" class="service-container" *ngFor="let service of services" (click)="bookServiceNow(service)">
+          <div class="service" [ngStyle]="{'background-image' : ' url(' + 'https://s3-eu-west-1.amazonaws.com/starbook-s3/services/'+ service._id + '/cover/0' + ')'}">
+            <div id="BookService" class="overlay">
+              <div class="text-container">
+                <span class="title">{{service.title}}</span>
               </div>
             </div>
           </div>
-          <div class="service-action">
-            <div class="form-group text-center">
-              <button type="button" id="BookService" class="btn btn-danger" (click)="bookServiceNow($object)">Prenota</button>
-            </div>
-          </div>
         </div>
-      </div>
-      <!-- <div class="bottom-container">
-        <div class="arrow"></div>
-      </div> -->
-    </div>
-  </div>
-  <!-- <div class="services-container">
-    <div class="services-header">
-      <h3><i class="fa fa-circle-o-notch animate" *ngIf="services_state.loading"></i> Servizi più utilizzati</h3>
-    </div>
-    <div class="services-body" *ngIf="services.length>0">
-      <div id="BookService" class="service-container" *ngFor="let service of services" (click)="bookServiceNow(service)">
-        <div class="service" [ngStyle]="{'background-image' : ' url(' + 'https://s3-eu-west-1.amazonaws.com/starbook-s3/services/'+ service._id + '/cover/0' + ')'}">
-          <div id="BookService" class="overlay">
-            <div class="text-container">
-              <span class="title">{{service.title}}</span>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="service-container">
-        <div class="service" [ngStyle]="{'background-image' : ' url(' + 'https://s3-eu-west-1.amazonaws.com/starbook-s3/services/590b34bf6c8dd682c65e99bb/cover/0' + ')'}">
-          <div class="overlay">
-            <div class="text-container">
-              <span class="title">Elettrico</span>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="service-container">
-        <div class="service" [ngStyle]="{'background-image' : ' url(' + 'https://s3-eu-west-1.amazonaws.com/starbook-s3/services/590b34bf6c8dd682c65e99bb/cover/0' + ')'}">
-          <div class="overlay">
-            <div class="text-container">
-              <span class="title">Elettrico</span>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="service-container">
-        <div class="service" [ngStyle]="{'background-image' : ' url(' + 'https://s3-eu-west-1.amazonaws.com/starbook-s3/services/590b34bf6c8dd682c65e99bb/cover/0' + ')'}">
-          <div class="overlay">
-            <div class="text-container">
-              <span class="title">Elettrico</span>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="service-container">
-        <div class="service" [ngStyle]="{'background-image' : ' url(' + 'https://s3-eu-west-1.amazonaws.com/starbook-s3/services/590b34bf6c8dd682c65e99bb/cover/0' + ')'}">
-          <div class="overlay">
-            <div class="text-container">
-              <span class="title">Elettrico</span>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="service-container">
-        <div class="service" [ngStyle]="{'background-image' : ' url(' + 'https://s3-eu-west-1.amazonaws.com/starbook-s3/services/590b34bf6c8dd682c65e99bb/cover/0' + ')'}">
-          <div class="overlay">
-            <div class="text-container">
-              <span class="title">Elettrico</span>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="service-container">
-        <div class="service" [ngStyle]="{'background-image' : ' url(' + 'https://s3-eu-west-1.amazonaws.com/starbook-s3/services/590b34bf6c8dd682c65e99bb/cover/0' + ')'}">
-          <div class="overlay">
-            <div class="text-container">
-              <span class="title">Elettrico</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div> -->
-
-  <!-- <div class="category-container" *ngIf="professionals">
-    <div class="category">
-      <div class="category-header">
-        <h1>Ultimi Servizi</h1>
-      </div>
-      <div class="category-body">
-        <div class="service-container" *ngFor="let professional of professionals" (click)="selectService(professional)">
-          <div class="service" title="{{professional.title}}" [ngStyle]="{'background-image' : ' url(' + images_url + 'services/'+ professional._id + '/cover/0' + ')'}">
+        <div class="service-container">
+          <div class="service" [ngStyle]="{'background-image' : ' url(' + 'https://s3-eu-west-1.amazonaws.com/starbook-s3/services/590b34bf6c8dd682c65e99bb/cover/0' + ')'}">
             <div class="overlay">
               <div class="text-container">
-                <span class="title">{{ professional.title }}</span>
+                <span class="title">Elettrico</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="service-container">
+          <div class="service" [ngStyle]="{'background-image' : ' url(' + 'https://s3-eu-west-1.amazonaws.com/starbook-s3/services/590b34bf6c8dd682c65e99bb/cover/0' + ')'}">
+            <div class="overlay">
+              <div class="text-container">
+                <span class="title">Elettrico</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="service-container">
+          <div class="service" [ngStyle]="{'background-image' : ' url(' + 'https://s3-eu-west-1.amazonaws.com/starbook-s3/services/590b34bf6c8dd682c65e99bb/cover/0' + ')'}">
+            <div class="overlay">
+              <div class="text-container">
+                <span class="title">Elettrico</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="service-container">
+          <div class="service" [ngStyle]="{'background-image' : ' url(' + 'https://s3-eu-west-1.amazonaws.com/starbook-s3/services/590b34bf6c8dd682c65e99bb/cover/0' + ')'}">
+            <div class="overlay">
+              <div class="text-container">
+                <span class="title">Elettrico</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="service-container">
+          <div class="service" [ngStyle]="{'background-image' : ' url(' + 'https://s3-eu-west-1.amazonaws.com/starbook-s3/services/590b34bf6c8dd682c65e99bb/cover/0' + ')'}">
+            <div class="overlay">
+              <div class="text-container">
+                <span class="title">Elettrico</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="service-container">
+          <div class="service" [ngStyle]="{'background-image' : ' url(' + 'https://s3-eu-west-1.amazonaws.com/starbook-s3/services/590b34bf6c8dd682c65e99bb/cover/0' + ')'}">
+            <div class="overlay">
+              <div class="text-container">
+                <span class="title">Elettrico</span>
               </div>
             </div>
           </div>
         </div>
       </div>
+    </div> -->
+  
+    <!-- <div class="category-container" *ngIf="professionals">
+      <div class="category">
+        <div class="category-header">
+          <h1>Ultimi Servizi</h1>
+        </div>
+        <div class="category-body">
+          <div class="service-container" *ngFor="let professional of professionals" (click)="selectService(professional)">
+            <div class="service" title="{{professional.title}}" [ngStyle]="{'background-image' : ' url(' + images_url + 'services/'+ professional._id + '/cover/0' + ')'}">
+              <div class="overlay">
+                <div class="text-container">
+                  <span class="title">{{ professional.title }}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div> -->
+  
+    <!-- <div class="bullets-container">
+      <h1>Come funziona</h1>
+      <div class="row bullets">
+        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12">
+          <div class="box">
+            <img src="../../../assets/images/service-list.png" class="rounded mx-auto d-block" alt="Seleziona il servizio">
+            <h3>Richiedi un servizio</h3>
+            <h5>Richiedi un servizio di cui hai bisogno.</h5>
+          </div>
+        </div>
+        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12">
+          <div class="box">
+            <img src="../../../assets/images/service-booking.png" class="rounded mx-auto d-block" alt="Ordina il servizio">
+            <h3>Inserisci dove e quando</h3>
+            <h5>Decidi tu dove è quando hai bisogno.</h5>
+          </div>
+        </div>
+        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12">
+          <div class="box">
+            <img src="../../../assets/images/service-time.png" class="rounded mx-auto d-block" alt="Calcola preventivo">
+            <h3>Prenota e rilassati</h3>
+            <h5>In poco tempo riceverai il servizio che ti serve.</h5>
+          </div>
+        </div>
+      </div>
+    </div> -->
+    <!-- <div class="professional-container" *ngIf="!currentUser">
+      <div class="overlay">
+        <div class="professional">
+          <h1>Hai una professione, un mestiere o un'attività?</h1>
+          <p>Inizia ad usare Starbook per rendere più accessibile la tua attività, ricevere le richieste dai clienti direttamente nel tuo telefono e senza perdere tempo.</p>
+          <button class="btn btn-warning" routerLink="/company">Scopri di più</button>
+        </div>
+      </div>
+    </div> -->
+    <div class="container-fluid prefooter-container">
+      <div class="row prefooter">
+        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12">
+          <p>Sicurezza del sito</p>
+          <div class="list-security">
+            <img src="../../../assets/images/norton.png" title="Norton Security" alt="Norton Security">
+            <img src="../../../assets/images/secure.png" title="100% Secure" alt="100% Secure">
+            <img src="../../../assets/images/trust.png" title="Trusted Website" alt="Trusted Website">
+          </div>
+        </div>
+        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12">
+          <p>Sistemi di pagamento</p>
+          <div class="list-payment-methods">
+            <img src="../../../assets/images/mastercard.png" title="Mastercard" alt="Mastercard">
+            <img src="../../../assets/images/visa.png" title="Visa" alt="Visa">
+            <img src="../../../assets/images/americanexpress.png" title="American Express" alt="American Express">
+            <!-- <img src="../../../assets/images/stripe.png" alt="Stripe"> -->
+          </div>
+        </div>
+        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12">
+          <!-- <p><a routerLink="/info/help">Aiuto e Assistenza</a></p> -->
+          <p><a routerLink="/info/legal">Privacy e Condizioni</a></p>
+          <!-- <p><a routerLink="/contact/partner" *ngIf="currentUser">Diventa partner</a></p> -->
+          <!-- <p><a routerLink="/insert/product">Pubblica un servizio</a></p> -->
+          <!-- <p><a routerLink="/info/about">Chi siamo</a></p> -->
+          <p><a routerLink="/blog">Blog</a></p>
+        </div>
+        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12">
+          <p>Seguici su</p>
+          <div class="list-socials">
+            <a href="https://www.facebook.com/starbook.co/" target="_blank"><img src="../../../assets/images/facebook.png" title="Facebook" alt="Facebook"></a>
+            <a href="https://twitter.com/starbookco/" target="_blank"><img src="../../../assets/images/twitter.png" title="Twitter" alt="Twitter"></a>
+            <a href="https://www.instagram.com/starbook.co/" target="_blank"><img src="../../../assets/images/instagram.png" title="Instagram" alt="Instagram"></a>
+          </div>
+        </div>
+      </div>
     </div>
-  </div> -->
-
-  <!-- <div class="bullets-container">
-    <h1>Come funziona</h1>
-    <div class="row bullets">
-      <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12">
-        <div class="box">
-          <img src="../../../assets/images/service-list.png" class="rounded mx-auto d-block" alt="Seleziona il servizio">
-          <h3>Richiedi un servizio</h3>
-          <h5>Richiedi un servizio di cui hai bisogno.</h5>
-        </div>
-      </div>
-      <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12">
-        <div class="box">
-          <img src="../../../assets/images/service-booking.png" class="rounded mx-auto d-block" alt="Ordina il servizio">
-          <h3>Inserisci dove e quando</h3>
-          <h5>Decidi tu dove è quando hai bisogno.</h5>
-        </div>
-      </div>
-      <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12">
-        <div class="box">
-          <img src="../../../assets/images/service-time.png" class="rounded mx-auto d-block" alt="Calcola preventivo">
-          <h3>Prenota e rilassati</h3>
-          <h5>In poco tempo riceverai il servizio che ti serve.</h5>
-        </div>
-      </div>
-    </div>
-  </div> -->
-  <!-- <div class="professional-container" *ngIf="!currentUser">
-    <div class="overlay">
-      <div class="professional">
-        <h1>Hai una professione, un mestiere o un'attività?</h1>
-        <p>Inizia ad usare Starbook per rendere più accessibile la tua attività, ricevere le richieste dai clienti direttamente nel tuo telefono e senza perdere tempo.</p>
-        <button class="btn btn-warning" routerLink="/company">Scopri di più</button>
-      </div>
-    </div>
-  </div> -->
-  <div class="container-fluid prefooter-container">
-    <div class="row prefooter">
-      <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12">
-        <p>Sicurezza del sito</p>
-        <div class="list-security">
-          <img src="../../../assets/images/norton.png" title="Norton Security" alt="Norton Security">
-          <img src="../../../assets/images/secure.png" title="100% Secure" alt="100% Secure">
-          <img src="../../../assets/images/trust.png" title="Trusted Website" alt="Trusted Website">
-        </div>
-      </div>
-      <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12">
-        <p>Sistemi di pagamento</p>
-        <div class="list-payment-methods">
-          <img src="../../../assets/images/mastercard.png" title="Mastercard" alt="Mastercard">
-          <img src="../../../assets/images/visa.png" title="Visa" alt="Visa">
-          <img src="../../../assets/images/americanexpress.png" title="American Express" alt="American Express">
-          <!-- <img src="../../../assets/images/stripe.png" alt="Stripe"> -->
-        </div>
-      </div>
-      <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12">
-        <!-- <p><a routerLink="/info/help">Aiuto e Assistenza</a></p> -->
-        <p><a routerLink="/info/legal">Privacy e Condizioni</a></p>
-        <!-- <p><a routerLink="/contact/partner" *ngIf="currentUser">Diventa partner</a></p> -->
-        <!-- <p><a routerLink="/insert/product">Pubblica un servizio</a></p> -->
-        <!-- <p><a routerLink="/info/about">Chi siamo</a></p> -->
-        <p><a routerLink="/blog">Blog</a></p>
-      </div>
-      <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12">
-        <p>Seguici su</p>
-        <div class="list-socials">
-          <a href="https://www.facebook.com/starbook.co/" target="_blank"><img src="../../../assets/images/facebook.png" title="Facebook" alt="Facebook"></a>
-          <a href="https://twitter.com/starbookco/" target="_blank"><img src="../../../assets/images/twitter.png" title="Twitter" alt="Twitter"></a>
-          <a href="https://www.instagram.com/starbook.co/" target="_blank"><img src="../../../assets/images/instagram.png" title="Instagram" alt="Instagram"></a>
-        </div>
-      </div>
+    <div class="footer">
+      <p><a routerLink="/"><strong>Starbook</strong> © 2017 Tutti i diritti riservati</a></p>
     </div>
   </div>
-  <div class="footer">
-    <p><a routerLink="/"><strong>Starbook</strong> © 2017 Tutti i diritti riservati</a></p>
-  </div>
-</div>
+  

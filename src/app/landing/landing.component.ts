@@ -1,17 +1,14 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { Router, Route, ActivatedRoute, Params } from '@angular/router';
-import { SeoService } from '../shared/seo.service';
-import { NavigationService } from '../shared/navigation.service';
-import { isBrowser } from 'angular2-universal';
-import { CommonService } from '../shared/common.service';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-landing',
-  templateUrl: './landing.component.html'
+  imports: [],
+  templateUrl: './landing.component.html',
+  styleUrl: './landing.component.scss'
 })
-export class LandingComponent implements OnInit {
+export class LandingComponent {
   public it: any;
-  public currentUser;
+  // public currentUser;
 
   public spinerView = false;
   public clearView = false;
@@ -21,7 +18,7 @@ export class LandingComponent implements OnInit {
 
   public services = []
   public services_state = {
-    loading:false,
+    loading: false,
   }
 
   public professionals = []
@@ -29,7 +26,7 @@ export class LandingComponent implements OnInit {
   public seoObject = {}
 
   public date = null;
-  public temp_date;
+  // public temp_date;
   public minDate = new Date(new Date().getTime() + 24 * 60 * 60 * 1000);
   public formated_date = null;
   public date_state = {
@@ -39,7 +36,15 @@ export class LandingComponent implements OnInit {
 
   public title_service = ''
 
-  constructor(private router: Router, private route: ActivatedRoute, private navigationService: NavigationService, private seoService: SeoService, private commonService: CommonService) {
+  constructor(
+    /*private router: Router, 
+    private route: ActivatedRoute, 
+    private navigationService: NavigationService, 
+    private seoService: SeoService, 
+    private commonService: CommonService,
+    */
+  ) {
+    /*
     this.navigationService.updateMessage("")
     this.it = {
       firstDayOfWeek: 1,
@@ -103,85 +108,87 @@ export class LandingComponent implements OnInit {
       this.services = []
       this.services_state.loading = false
     })
+    */
   }
 
   ngOnInit() {
-    if (isBrowser) { window.scrollTo(0, 0) }
-    if (this.query.length>0) {
-      this.clearView = true;
-    }
+    // if (isBrowser) { window.scrollTo(0, 0) }
+    // if (this.query.length > 0) {
+    //   this.clearView = true;
+    // }
   }
 
-  bookServiceNow(service) {
-    if (service) {
-      this.title_service = service.title
-    } else {
-      if (!this.temp_date || !this.title_service) {
-        return
-      }
-    }
-    if (this.commonService.readObjectForKey("checkout_order")) {
-      var current_checkout_order = this.commonService.readObjectForKey("checkout_order")
-      current_checkout_order['services'] = [{"title":this.title_service,"details":[]}]
-      current_checkout_order['date'] = this.temp_date
-      this.commonService.saveObjectForKey(current_checkout_order, "checkout_order")
-    } else {
-      this.commonService.saveObjectForKey({
-        date: this.date,
-        services:[{"title":this.title_service,"details":[]}]
-      }, "checkout_order")
-    }
-    if (service) {
-      this.router.navigate(['checkout/date']);
-    } else {
-      this.router.navigate(['checkout/address']);
-    }
-    return false;
+  bookServiceNow(service: any) {
+    // if (service) {
+    //   this.title_service = service.title
+    // } else {
+    //   if (!this.temp_date || !this.title_service) {
+    //     return
+    //   }
+    // }
+    // if (this.commonService.readObjectForKey("checkout_order")) {
+    //   var current_checkout_order = this.commonService.readObjectForKey("checkout_order")
+    //   current_checkout_order['services'] = [{ "title": this.title_service, "details": [] }]
+    //   current_checkout_order['date'] = this.temp_date
+    //   this.commonService.saveObjectForKey(current_checkout_order, "checkout_order")
+    // } else {
+    //   this.commonService.saveObjectForKey({
+    //     date: this.date,
+    //     services: [{ "title": this.title_service, "details": [] }]
+    //   }, "checkout_order")
+    // }
+    // if (service) {
+    //   this.router.navigate(['checkout/date']);
+    // } else {
+    //   this.router.navigate(['checkout/address']);
+    // }
+    // return false;
   }
 
-  changeSearch(event) {
-    if (typeof event==='object') {
-      this.title_service = event.title
-    }
-    if (typeof event==='string') {
-      this.title_service = event
-    }
-    this.clearView = true
-    if (event.length===0) {
-      this.clearView = false
-      this.title_service = null
-    }
+  changeSearch(event: any) {
+    // if (typeof event==='object') {
+    //   this.title_service = event.title
+    // }
+    // if (typeof event==='string') {
+    //   this.title_service = event
+    // }
+    // this.clearView = true
+    // if (event.length===0) {
+    //   this.clearView = false
+    //   this.title_service = null
+    // }
+  }
 
+  showSuggestions(event: any) {
+    // this.spinerView = true
+    // this.commonService.search(event.query).then((results) => {
+    //   this.spinerView = false
+    //   this.suggestions = results.result;
+    // }).catch((error) => {
+    //   this.spinerView = false
+    //   this.suggestions = []
+    // })
   }
-  showSuggestions(event) {
-    this.spinerView = true
-    this.commonService.search(event.query).then((results) => {
-      this.spinerView = false
-      this.suggestions = results.result;
-    }).catch((error) => {
-      this.spinerView = false
-      this.suggestions = []
-    })
-  }
-  selectSuggestion(service) {
-    this.clearView = true
-    this.title_service = service.title
+  selectSuggestion(service: any) {
+    // this.clearView = true
+    // this.title_service = service.title
   }
   clearSearchForm() {
-    this.query = '';
-    this.results = [];
-    this.clearView = false;
-    this.title_service = null;
+    // this.query = '';
+    // this.results = [];
+    // this.clearView = false;
+    // this.title_service = null;
   }
 
   selectDate() {
-    let date = new Date(this.temp_date);
-    let day = date.getDate() > 9 ? date.getDate() : '0' + date.getDate();
-    let correctMonth = 1 + date.getMonth();
-    let month = correctMonth > 9 ? correctMonth : '0' + correctMonth;
-    this.date = date.getFullYear() + '-' + month + '-' + day + 'T' + '08:00' + ':00.000Z';
-    let _date = new Date(this.date);
-    let _day = _date.getDate() > 9 ? _date.getDate() : '0' + _date.getDate();
-    this.formated_date =  _day + ' ' + this.it.monthNames[_date.getMonth()] + ' ' + _date.getFullYear();
+    // let date = new Date(this.temp_date);
+    // let day = date.getDate() > 9 ? date.getDate() : '0' + date.getDate();
+    // let correctMonth = 1 + date.getMonth();
+    // let month = correctMonth > 9 ? correctMonth : '0' + correctMonth;
+    // this.date = date.getFullYear() + '-' + month + '-' + day + 'T' + '08:00' + ':00.000Z';
+    // let _date = new Date(this.date);
+    // let _day = _date.getDate() > 9 ? _date.getDate() : '0' + _date.getDate();
+    // this.formated_date =  _day + ' ' + this.it.monthNames[_date.getMonth()] + ' ' + _date.getFullYear();
   }
+
 }
