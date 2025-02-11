@@ -57,3 +57,27 @@ Angular CLI does not come with an end-to-end testing framework by default. You c
 ## Additional Resources
 
 For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+
+
+
+
+TOOLS
+
+ng g c hero-component --flat -t -s --skip-Tests
+
+ng g c dashboard --flat -t -s --skip-tests && ng g m dashboard --routing
+
+-s for inline css, preventing style file creation
+--flat to prevent folder creation
+-t for inline template, preventing html file creation
+--skip-Tests to prevent .spec file creation
+
+ng g c dashboard -s --skip-tests && ng g m dashboard --routing
+
+ng g c main -s --skip-tests && ng g m main --routing
+
+ng g c app -s --skip-tests 
+
+ng g c app -s --skip-tests --flat
+
+ng g c dashboard/home -s --skip-tests
