@@ -10,7 +10,7 @@ import { LayoutService } from '../service/layout.service';
 @Component({
     selector: 'app-layout',
     standalone: true,
-    imports: [CommonModule, AppTopbar, AppSidebar, RouterModule, /*AppFooter*/],
+    imports: [CommonModule, AppTopbar, AppSidebar, RouterModule, AppFooter],
     templateUrl: "./app.layout.html"
 })
 export class AppLayout {
@@ -51,7 +51,6 @@ export class AppLayout {
         const sidebarEl = this.document.querySelector('.layout-sidebar');
         const topbarEl = this.document.querySelector('.layout-menu-button');
         const eventTarget = event.target as Node;
-
         return !(sidebarEl?.isSameNode(eventTarget) || sidebarEl?.contains(eventTarget) || topbarEl?.isSameNode(eventTarget) || topbarEl?.contains(eventTarget));
     }
 
@@ -84,6 +83,7 @@ export class AppLayout {
         return {
             'layout-overlay': this.layoutService.layoutConfig().menuMode === 'overlay',
             'layout-static': this.layoutService.layoutConfig().menuMode === 'static',
+            'sm:ml-64': this.layoutService.layoutState().staticMenuDesktopInactive && this.layoutService.layoutConfig().menuMode === 'static',
             'layout-static-inactive': this.layoutService.layoutState().staticMenuDesktopInactive && this.layoutService.layoutConfig().menuMode === 'static',
             'layout-overlay-active': this.layoutService.layoutState().overlayMenuActive,
             'layout-mobile-active': this.layoutService.layoutState().staticMenuMobileActive

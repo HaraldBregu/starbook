@@ -18,7 +18,7 @@ import { LayoutService } from '../service/layout.service';
     templateUrl: "./app.topbar.html"
 })
 export class AppTopbar {
-    items!: MenuItem[];
+    //items!: MenuItem[];
     layoutService = inject(LayoutService)
 
     constructor(
