@@ -5,12 +5,8 @@ export const serverRoutes: ServerRoute[] = [
     path: '**',
     renderMode: RenderMode.Prerender
   },
-  {
-    path: 'company',
-    renderMode: RenderMode.Client
-  },
-  {
-    path: 'landing',
-    renderMode: RenderMode.Client
-  },
+  // {
+  //   path: 'dashboard',
+  //   renderMode: RenderMode.Client
+  // },
 ];
