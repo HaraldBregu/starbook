@@ -21,11 +21,12 @@ export class AppLayout {
     @ViewChild(AppTopbar) appTopBar!: AppTopbar;
 
     layoutService = inject(LayoutService)
+    document = inject(DOCUMENT) as Document;
 
     constructor(
         public renderer: Renderer2,
         public router: Router,
-        @Inject(DOCUMENT) private document: Document
+        //@Inject(DOCUMENT) private document: Document
     ) {
 
         this.overlayMenuOpenSubscription = this.layoutService.overlayOpen$.subscribe(() => {
